@@ -98,7 +98,7 @@ public:
 	const std::string &KeyName() const;
 	bool HasConflict() const;
 	
-	// Load this command from an input file (for testing or scripted missions)
+	// Load this command from an input file (for testing or scripted missions).
 	void Load(const DataNode &node);
 	
 	// Reset this to an empty command.

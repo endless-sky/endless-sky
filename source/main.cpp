@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 	Audio::Init(GameData::Sources());
 	
 	// This is the main loop where all the action begins.
-	try { 
+	try {
 		GameLoop(player, conversation, testToRun, debugMode);
 	}
 	catch(const runtime_error &error)

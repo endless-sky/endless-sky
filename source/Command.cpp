@@ -221,7 +221,7 @@ bool Command::HasConflict() const
 
 
 
-// Load this command from an input file (for testing or scripted missions)
+// Load this command from an input file (for testing or scripted missions).
 void Command::Load(const DataNode &node)
 {
 	for(int i = 1; i < node.Size(); ++i)

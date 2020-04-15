@@ -1011,7 +1011,7 @@ void Engine::Draw() const
 
 
 
-// Give an (automated/scripted) command on behalf of the player
+// Give an (automated/scripted) command on behalf of the player.
 void Engine::GiveCommand(const Command &command)
 {
 	activeCommands.Set(command);

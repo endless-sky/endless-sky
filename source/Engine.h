@@ -79,7 +79,7 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
-	// Receive a (scripted) command on behalf of the player.
+	// Give an (automated/scripted) command on behalf of the player.
 	void GiveCommand(const Command &command);
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
