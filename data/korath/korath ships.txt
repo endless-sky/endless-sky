@@ -175,7 +175,7 @@ ship "Korath Refuge"
 	description "Korath Refuges hold the must vulnerable of the Korath, those that would not survive a battle, even in a ship with armor and shields. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships immediately flee; they're among the fastest ships the Korath have built."
 	description "Like other world-ships, the Refuge has built-in nanite factory. At peace, it manufactures parts, medicine, medical equipment, and sufficient food for bare sustenance. In battle, it repairs the hull, recharges shields, and provides significant ramscoop."
 
-ship "Efret fi Zujaja"
+ship "Korath Transport"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
@@ -183,13 +183,13 @@ ship "Efret fi Zujaja"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 794
-		"bunks" 1492
+		"required crew" 619
+		"bunks" 1837
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
-		"cargo space" 264
+		"cargo space" 191
 		"outfit space" 779
 		"weapon capacity" 314
 		"engine capacity" 165
@@ -207,7 +207,7 @@ ship "Efret fi Zujaja"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 250
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -232,8 +232,7 @@ ship "Efret fi Zujaja"
 	"final explode" "final explosion large"
 	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. This particular world-ship is designed to transport hundreds of people at a time between planets or stations."
 
-
-ship "Efret fi Jara"
+ship "Korath Freighter"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	attributes
@@ -241,13 +240,13 @@ ship "Efret fi Jara"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 794
-		"bunks" 1492
+		"required crew" 494
+		"bunks" 813
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
-		"cargo space" 264
+		"cargo space" 941
 		"outfit space" 779
 		"weapon capacity" 314
 		"engine capacity" 165
@@ -290,8 +289,7 @@ ship "Efret fi Jara"
 	"final explode" "final explosion large"
 	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. The Korath use this particular design to transport vast cargo between their planets and stations."
 
-
-ship "Efret fi Iibriq"
+ship "Korath Tanker"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
 	attributes
