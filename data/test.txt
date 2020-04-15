@@ -84,7 +84,7 @@ event "Korath Emporium"
 		"required reputation" -10
 		tribute 1000000
 			threshold 0
-			fleet "Korath Civilian" 20
+			fleet "Korath Civilian (World)" 30
 
 outfitter "korath exile test outfitter"
 	"Jump Drive"

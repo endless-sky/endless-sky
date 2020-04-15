@@ -95,15 +95,15 @@ outfit "Korath Expeller"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"velocity" 472
+		"velocity" 400
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.9
 		"firing heat" 3.6
-		"shield damage" 2.6
-		"hull damage" .85
-		"hit force" 25
-	description "This smaller version of the Banisher is designed for fighters to push vessels away from Korath carriers."
+		"shield damage" 1.7
+		"hull damage" .75
+		"hit force" 20
+	description "The short-range Expeller is designed for fighters to push vessels away from Korath carriers."
 
 effect "banisher impact"
 	sprite "effect/banisher impact"
@@ -608,8 +608,7 @@ outfit "Firestorm Torpedo"
 	thumbnail "outfit/firestorm torpedo"
 	"mass" 0.7
 	"firestorm torpedo capacity" -1
-	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
-	description "Though the warhead is a Korath design, the torpedo casing and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
+	description `Ammo for the Firestorm Turret`
 
 outfit "Firestorm Torpedo Rack"
 	plural "Firestorm Torpedo Racks"
@@ -662,24 +661,23 @@ outfit "Firestorm Turret"
 		"infrared tracking" .7
 		"optical tracking" .9
 		"trigger radius" 20
-		"blast radius" 60
+		"blast radius" 90
 		"shield damage" 1900
-		"hull damage" 1900
-		"ion damage" 30
-		"heat damage" 5000
-		"hit force" 3600
+		"hull damage" 1300
+		"ion damage" 21
+		"heat damage" 2000
+		"hit force" 4000
 		"missile strength" 285
-	description "This turret fires a Firestorm Torpedo in any direction. Though you may dodge it for a while, the Firestorm Torpedo's long range and blast radius will eventually catch up with you (or an innocent asteroid). The weapon's damage is small for its hefty requirements, but it has devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
-	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
+	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
 		"no repeat"
 		"frame rate" 12
-	"lifetime" 30
+	"lifetime" 25
 	sound "firestorm hit"
 	"random angle" 360
-	"random velocity" 2
+	"random velocity" 4
 	"velocity scale" 0.1
 
 
@@ -716,8 +714,7 @@ outfit "Korath Heaver"
 		"firing heat" 190
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
-	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher feel like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
-	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Hyperdrive, Fuel Processor, Banisher, and thruster, wrapped in steel, and mounted on the lower half of a Firestorm Turret. Despite the slap-shod design, the device is extremely effective.`
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. At close range, this merely pushes the enemy, but after the debris exits hyperspace, they are deadly projectiles.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"
@@ -733,10 +730,10 @@ outfit "Heaver Shard"
 		sprite "projectile/heaver shard"
 			"frame rate" 12
 			"rewind"
-		"random velocity" 5
-		"velocity" 20
-		"lifetime" 55
-		"random lifetime" 10
+		"random velocity" 3
+		"velocity" 10
+		"lifetime" 100
+		"random lifetime" 20
 		"shield damage" 22
 		"hull damage" 24
 		"inaccuracy" 3.5
@@ -770,16 +767,16 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 1
-		"turret turn" 2.2
+		"turret turn" 1.9
 		"velocity" 720
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 7.5
 		"firing heat" 25
 		"shield damage" 8.2
-		"hull damage" 7.1
-		"heat damage" 71
-	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory. The Korath Exiles cannot build the original Kor Sestor design, but even this lesser version is devastatingly powerful."
+		"hull damage" 6.1
+		"heat damage" 59
+	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory."
 
 effect "korath inferno hit"
 	sprite "effect/korath inferno hit"
@@ -835,12 +832,12 @@ outfit "Korath Digger"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3.8
-		"firing heat" 5.7
+		"firing energy" 2.4
+		"firing heat" 5.2
 		"shield damage" 2.1
 		"hull damage" 4.2
 		"disruption damage" .04
-	description `The basis for the design of a Korath Digger was an old turret. This modified version has no turret mount and is more accurate, but sacrifices efficiency and range.`
+	description `The basis for the design of a Korath Digger was an old turret. This modified version has no turret mount and is more accurate at the cost of a shorter range.`
 
 effect "korath digger hit"
 	sprite "effect/korath digger hit"

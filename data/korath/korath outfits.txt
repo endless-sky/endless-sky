@@ -184,15 +184,15 @@ outfit "Engine (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"
-	"mass" 21
-	"outfit space" -21
-	"engine capacity" -21
-	"thrust" 9.8
-	"turn" 240
-	"thrusting energy" 1.4
-	"thrusting heat" 3.3
-	"turning energy" 0.6
-	"turning heat" 1.8
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"thrust" 8.2
+	"turn" 200
+	"thrusting energy" 1.2
+	"thrusting heat" 2.9
+	"turning energy" 0.5
+	"turning heat" 1.6
 	"flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"flare sound" "plasma tiny"

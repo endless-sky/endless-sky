@@ -266,7 +266,11 @@ government "Korath (Civilian)"
 	"crew attack" 1.1
 	"crew defense" 2.1
 	language "Korath"
-	
+
+	"attitude toward"
+		"Kor Sestor" -.01
+		"Korath" .1
+
 	"player reputation" 1
 
 government "Korath Nanobots"
