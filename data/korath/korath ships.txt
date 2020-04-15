@@ -238,7 +238,7 @@ ship "Korath World-Ship"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath World-Ships are massive nomadic habitats Korath use to transport troops, pillaged goods, or house their population."
+	description "Korath World-Ships are massive nomadic habitats Korath use to transport troops and pillaged goods, or house their population."
 
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
