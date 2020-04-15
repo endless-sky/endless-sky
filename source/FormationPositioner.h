@@ -13,14 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FORMATION_POSITIONER_H_
 #define FORMATION_POSITIONER_H_
 
-#include "Angle.h"
 #include "Body.h"
 #include "FormationPattern.h"
-#include "Point.h"
-#include "Ship.h"
-
-#include <map>
-#include <vector>
 
 
 
@@ -37,16 +31,12 @@ public:
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
-	// Ship pointer is used to get the scaling factor (in the next round of
-	// position calculations).
 	Point NextPosition();
 	
 	
 private:
 	// The scaling factor currently being used.
 	double activeScalingFactor = 80.;
-	// The scaling factor that is to be used for the next round of position calculations.
-	double nextScalingFactor = 0.;
 	
 	// Values used during ship position calculation iterations.
 	int ring = 0;
@@ -56,7 +46,7 @@ private:
 	
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body * formationLead;
-	const FormationPattern  * pattern;
+	const FormationPattern * pattern;
 };
 
 

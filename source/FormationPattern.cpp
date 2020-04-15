@@ -12,12 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FormationPattern.h"
 
-#include "Angle.h"
-#include "DataNode.h"
-#include "Point.h"
-
-#include <vector>
-
 using namespace std;
 
 

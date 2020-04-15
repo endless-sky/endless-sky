@@ -14,10 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Point.h"
-#include "Ship.h"
-
-#include <map>
-#include <vector>
 
 using namespace std;
 
