@@ -290,8 +290,9 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
-		"Engine (Meteor Class)" 2
+		"Engine (Meteor Class)"
 		"Steering (Planetary Class)"
+		"Thruster (Comet Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 
@@ -316,7 +317,8 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
-		"Engine (Meteor Class)" 2
+		"Engine (Meteor Class)"
+		"Thruster (Comet Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Hyperdrive"
@@ -847,7 +849,6 @@ ship "Korath Ravager" "Korath Ravager (Crippled Disarmed)"
 		"Cargo Expansion" 1
 		"Large Heat Shunt" 6
 		"Triple Plasma Core"
-		"Generator (Furnace Class)" 2
 		"Outfit Scanner"
 		"Cargo Scanner"
 		"Korath Repeater Rifle" 137

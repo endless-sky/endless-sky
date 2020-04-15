@@ -1169,10 +1169,10 @@ ship "Korath Ravager"
 		"engine capacity" 232
 		"ramscoop" 2
 		weapon
-			"blast radius" 350
-			"shield damage" 6000
-			"hull damage" 3200
-			"hit force" 9600
+			"blast radius" 300
+			"shield damage" 4400
+			"hull damage" 2200
+			"hit force" 6600
 	outfits
 		"Korath Inferno"
 		"Korath Digger Turret" 6
@@ -1213,8 +1213,7 @@ ship "Korath Ravager"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description `The Ravager was the last crewed warship the Korath designed before they switched to drone ships. Neither side knows who originated the design; each kept capturing the others' ships and reverse-engineering improvements. This unending design competition bred a ship uncharacteristically efficient for the Korath. Armored heat sinks protect vulnerable areas of the ship, boosting hull strength and heat dissipation with minimal weight. Shields, weapon, and engine systems span the whole ship, to maximize all three. Mass is focused at the center, reducing drag.`
-	description `Unfortunately, this led to a vast crew requirement, leaving little space for passengers, cargo, or outfits. Ravagers can handle a phenominal arsenal and enough engines to out-maneuver the fastest drones, but not both at the same time. This led the Korath to automated ships: inefficient, uncrewed, and numerous.`
+	description `The Ravager was the last crewed warship the Korath designed before they switched to drone ships. Neither side knows who originated the design; each kept capturing the others' ships and reverse-engineering improvements. This unending design competition bred a ship uncharacteristically efficient for the Korath. Unfortunately, its vast crew requirement leaves little space for passengers, cargo, or outfits. Ravagers can handle a phenominal arsenal and enough engines to out-maneuver the fastest drones, but not both at the same time.`
 
 
 ship "Korath Dredger"
@@ -1238,18 +1237,18 @@ ship "Korath Dredger"
 		
 		# Capabilities of built-in nanite factory:
 		"ramscoop" 2
-		"shield generation" 1.1
-		"shield energy" 0.9
-		"hull repair rate" 1.1
-		"hull energy" 1.0
+		"shield generation" 0.7
+		"shield energy" 0.4
+		"hull repair rate" 1.2
+		"hull energy" 0.9
 		"hull heat" 1.4
 		"energy capacity" 1800
 		
 		weapon
 			"blast radius" 300
-			"shield damage" 5600
-			"hull damage" 2800
-			"hit force" 9000
+			"shield damage" 4600
+			"hull damage" 2300
+			"hit force" 5900
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Warder" 2
@@ -1289,8 +1288,7 @@ ship "Korath Dredger"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "After the Korath were exiled, they realized they would need to raid nearby species to survive. Their world-ships were too precious and their Ravagers were too expensive. The Dredger was their first new ship: abundant cargo and passenger space, bays for five fighters, and seven turrets. It even has a small built-in nanite-run factory which lets it refine ore to create simple ship parts or equipment. During battle, the factory acts as a modified systems core and ramscoop."
-	description "The Dredger's failing was its expense. Korath factories can produce Raiders four times as quickly, allowing four times as many raids. The Dredger is still used as a mining vessel, a fighter-carrier for planetary raids, and is the main cargo and transport ship for civilians. However, it no longer goes on solo raids."
+	description "After the Korath were exiled, they realized they would need to raid nearby species to survive. Their world-ships were too precious and their Ravagers were too expensive. The Dredger was their first new ship: abundant cargo and passenger space, bays for four fighters, and seven turrets. It even has a small built-in nanite-run factory to refine ore, and repair the ship during battle. Its failing was its expense; Korath Raiders can be built four times as quickly."
 
 ship "Korath Refabricator"
 	sprite "ship/korath refabricator"
@@ -1369,8 +1367,7 @@ ship "Korath Refabricator"
 	explode "large explosion" 60
 	explode "huge explosion" 25
 	"final explode" "final explosion large"
-	description "The Refabricator is a millennia-old ship design that has improved in every generation. At the height of the Korath war, these ships created drones and clouds of combat nanites. The Korath Exiles no longer have access to modern nanites capable of such rapid mass-production. Instead, they use modified System Core nanites to manufacture ship parts and daily necessities from cargo brought back by Raiders and Dredgers."
-	description "In battle, the Refabricator's nanite-run factory serves as a vast systems core and powerful ramscoop. This ship is devastatingly powerful in battle, but it is considered too valuable to lose. The Korath only take these to war if they're certain of success, and need to process an entire planet's resources."
+	description "The Refabricator is factory ship; a millennia-old ship design that has improved in every generation. At the height of the Korath war, these ships created drones and clouds of combat nanites. Today, its nanite-run factory produces basic living supplies and ship parts, and are vast systems cores in battle."
 
 ship "Korath Haven"
 	sprite "ship/korath haven"
@@ -1378,8 +1375,8 @@ ship "Korath Haven"
 	attributes
 		category "Transport"
 		"cost" 231580000
-		"shields" 237000
-		"hull" 197000
+		"shields" 197800
+		"hull" 151300
 		"required crew" 29500
 		"bunks" 35800
 		"mass" 4880
@@ -1472,5 +1469,4 @@ ship "Korath Haven"
 	explode "large explosion" 70
 	explode "huge explosion" 35
 	"final explode" "final explosion large"
-	description "The Korath Exiles built these vast havens as their main population centers. An estimated 80% of the Korath Exiles live on such ships. In addition to living space, each Korath Haven has industrial and hydroponics capacity sufficient for bare subsistence of its inhabitants. During battle, the built-in nanite factory repairs the ship, recharges shields, and provides significant ramscoop."
-	description "The exiles lacked resources to design a new vessel of this size, so they patched together other designs. A Korath Haven's wings and steering are from the incomplete Kor Metri Model 1024 world-ship drone. The body and thrusters are from the unfinished Kor Sestor Tek Ot Rah 681 world-ship drone. The nanite-run factories are from a Refabricator. The city buildings and hydroponics are modified from Refuge, Refabricator, and station parts. The resulting monstrosity is weak for a vessel of this size, but is sufficient for its purpose."
+	description "The Korath Exiles built these vast ships as their main population centers. In addition to living space, each Korath Haven has industrial and hydroponics capacity sufficient for bare subsistence of its inhabitants. During battle, the built-in nanite-run factories repair the ship, recharges shields, and provides powerful ramscoops."

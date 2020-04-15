@@ -243,8 +243,7 @@ fleet "Korath Civilian Miners"
 	fighters "korath"
 	cargo 0
 	personality
-		# Mute avoids having them repair you during battle.
-		heroic frugal mining harvests mute
+		disables frugal mining harvests coward
 	variant 5
 		"Korath Dredger (Civilian)"
 
@@ -254,7 +253,7 @@ fleet "Korath Home"
 	fighters "korath"
 	cargo 3
 	personality
-		timid opportunistic
+		heroic disables plunders opportunistic harvests
 	variant 5
 		"Korath Ravager (Quad Inferno)"
 	variant 5
@@ -269,15 +268,16 @@ fleet "Korath Home"
 		"Korath Ravager (Grab-Strike Inferno)"
 	variant 7
 		"Korath Dredger (Fast Inferno)"
-		"Korath Chaser (Expeller)" 2
-		"Korath Chaser (Digger)" 2
-	variant 7
-		"Korath Dredger"
-		"Korath Chaser (Expeller)" 2
+		"Korath Chaser" 2
 		"Korath Chaser (Digger)" 2
 	variant 7
 		"Korath Dredger"
 		"Korath Chaser (Expeller)" 4
+	variant 7
+		"Korath Dredger"
+		"Korath Chaser" 4
+	variant 15
+		"Korath Tanker (Jump)"
 
 fleet "Korath Planetary Raid"
 	government "Korath"
@@ -314,12 +314,12 @@ fleet "Korath Planetary Raid"
 	variant 5
 		"Korath Raider"
 		"Korath Dredger (Fast Inferno)"
-		"Korath Chaser (Expeller)" 2
-		"Korath Chaser (Digger)" 4
+		"Korath Chaser (Fire-Lance)" 3
+		"Korath Chaser (Digger)" 3
 	variant 5
 		"Korath Raider"
 		"Korath Dredger"
-		"Korath Chaser (Expeller)" 3
+		"Korath Chaser (Fire-Lance)" 3
 		"Korath Chaser (Digger)" 3
 	variant 5
 		"Korath Ravager (Dual Heaver)"
@@ -365,8 +365,7 @@ fleet "Korath Civilian Large"
 	fighters "korath"
 	cargo 3
 	personality
-		# Mute avoids having them repair you during battle.
-		heroic frugal opportunistic mute
+		frugal opportunistic disables coward
 	variant 5
 		"Korath Dredger (Civilian)" 2
 		"Korath Chaser (Digger)" 4
@@ -387,8 +386,7 @@ fleet "Korath Civilian World"
 	fighters "korath"
 	cargo 3
 	personality
-		# Mute avoids having them repair you during battle.
-		heroic frugal opportunistic mute
+		frugal opportunistic disables coward
 	variant 2
 		"Korath Haven"
 		"Korath Chaser" 4
