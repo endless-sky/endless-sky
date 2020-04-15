@@ -230,7 +230,7 @@ ship "Efret fi Zujaja"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The Korath constructed thousands of world-ships far larger than these, to evacuate from their planets and stations as their war slowly destroyed their civilization. With the protection of the Quarg, the Kor Efret no longer need to evacuate, so their world-ships are used as ordinary transport and cargo vessels. As time went on, the Kor Efret designs became smaller, cheaper, and simpler as the need for efficiency replaced the need for durability. Though they may envy their anscestors' vast creations, they don't envy the non-stop death."
+	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. This particular world-ship is designed to transport hundreds of people at a time between planets or stations."
 
 
 ship "Efret fi Jara"
@@ -288,7 +288,7 @@ ship "Efret fi Jara"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The Korath constructed thousands of world-ships far larger than these, to evacuate from their planets and stations as their war slowly destroyed their civilization. With the protection of the Quarg, the Kor Efret no longer need to evacuate, so their world-ships are used as ordinary transport and cargo vessels. As time went on, the Kor Efret designs became smaller, cheaper, and simpler as the need for efficiency replaced the need for durability. Though they may envy their anscestors' vast creations, they don't envy the non-stop death."
+	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. The Korath use this particular design to transport vast cargo between their planets and stations."
 
 
 ship "Efret fi Iibriq"
@@ -299,13 +299,14 @@ ship "Efret fi Iibriq"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 794
-		"bunks" 1492
+		"required crew" 607
+		"bunks" 933
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
-		"fuel capacity" 1000
-		"cargo space" 264
+		"fuel capacity" 5000
+		"ramscoop" 30
+		"cargo space" 522
 		"outfit space" 779
 		"weapon capacity" 314
 		"engine capacity" 165
@@ -346,7 +347,7 @@ ship "Efret fi Iibriq"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The Korath constructed thousands of world-ships far larger than these, to evacuate from their planets and stations as their war slowly destroyed their civilization. With the protection of the Quarg, the Kor Efret no longer need to evacuate, so their world-ships are used as ordinary transport and cargo vessels. As time went on, the Kor Efret designs became smaller, cheaper, and simpler as the need for efficiency replaced the need for durability. Though they may envy their anscestors' vast creations, they don't envy the non-stop death."
+	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. Without a ready supply of deuterium, the Korath use this particular model of world-ship to collect and refine deuterium in flight. Along the way, it carries passengers and cargo."
 
 
 
@@ -1155,8 +1156,8 @@ ship "Korath Ravager"
 	attributes
 		category "Heavy Warship"
 		"cost" 3760000
-		"shields" 47000
-		"hull" 34000
+		"shields" 27000
+		"hull" 25000
 		"required crew" 319
 		"bunks" 338
 		"mass" 1260
@@ -1225,7 +1226,7 @@ ship "Korath Dredger"
 		category "Heavy Freighter"
 		"cost" 29370000
 		"shields" 39000
-		"hull" 21000
+		"hull" 16000
 		"required crew" 191
 		"bunks" 353
 		"mass" 1353
@@ -1280,7 +1281,6 @@ ship "Korath Dredger"
 	engine -33 171 .4
 	engine -2 182 .6
 	engine 31 171 .4
-	fighter 0 89
 	fighter 51 59
 	fighter -51 59
 	fighter 0 -42
