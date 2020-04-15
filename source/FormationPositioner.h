@@ -22,7 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // to a position (Point) in the formation.
 class FormationPositioner{
 public:
-	// Initializer based on the formation pattern to follow
+	// Initializer based on the formation pattern to follow.
 	FormationPositioner(const Body * formationLead, const FormationPattern * pattern): formationLead(formationLead), pattern(pattern) {}
 	
 	// Start/reset/initialize for a (new) round of formation position calculations

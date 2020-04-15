@@ -28,14 +28,14 @@ class FormationPattern {
 public:
 	const std::string Name() const;
 	
-	// Load formation from datafile
+	// Load formation from a datafile.
 	void Load(const DataNode &node);
 	
-	// Calculate next line and amount of positions on a line
+	// Calculate next line and amount of positions on a line.
 	int NextLine(unsigned int ring, unsigned int lineNr) const;
 	int LineSlots(unsigned int ring, unsigned int lineNr) const;
 	
-	// Calculate a position based on an iteration number, line number and position-on-line number
+	// Calculate a position based on the current ring, line and slot on the line.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot) const;
 	
 	
@@ -45,9 +45,9 @@ protected:
 		Line(Point anchor, int slots, Angle direction) : anchor(anchor), initialSlots(slots), direction(direction) {}
 		
 	public:
-		// The initial anchor point for this line
+		// The initial anchor point for this line.
 		Point anchor;
-		// Vector to apply to get to the next anchor point for the next iteration
+		// Vector to apply to get to the next anchor point for the next iteration.
 		Point repeatVector;
 		
 		// The number of initial positions for this line and the amount of additional
@@ -56,14 +56,14 @@ protected:
 		int slotsIncrease = -1;
 
 		// The direction angle in which this line extends and space between any
-		// 2 ship slots on the line. (Defaults to 2)
+		// 2 ship slots on the line. (Defaults to 2.)
 		Angle direction;
 		double spacing = 2;
 	};
 	
 	
 protected:
-	// The line definitions that define the formation.
+	// The lines that define the formation.
 	std::vector<Line> lines;
 	
 	

@@ -29,7 +29,6 @@ void FormationPattern::Load(const DataNode &node)
 		name = node.Token(1);
 	
 	for(const DataNode &child : node)
-	{
 		if(child.Size() >= 5 && child.Token(0) == "line")
 		{
 			lines.emplace_back(Point(child.Value(1), child.Value(2)), static_cast<int>(child.Value(3) + 0.5), Angle(child.Value(4)));
@@ -48,20 +47,18 @@ void FormationPattern::Load(const DataNode &node)
 				}
 			}
 		}
-	}
 }
 
 
 
-// Get the next line that has space for placement of ships. Returns -1
-// if none found/available.
+// Get the next line that has space for placement of ships. Returns -1 if none found/available.
 int FormationPattern::NextLine(unsigned int ring, unsigned int lineNr) const
 {
-	// All lines participate in the first ring
+	// All lines participate in the first initial ring.
 	if(ring == 0 && lineNr < (lines.size()-1))
 		return lineNr + 1;
 	
-	// For later rings only lines that repeat will participate
+	// For later rings only lines that repeat will participate.
 	unsigned int linesScanned = 0;
 	while(linesScanned <= lines.size())
 	{
@@ -83,14 +80,14 @@ int FormationPattern::LineSlots(unsigned int ring, unsigned int lineNr) const
 	if(lineNr >= lines.size())
 		return 0;
 	
-	// Retrieve the relevant line
+	// Retrieve the relevant line.
 	Line line = lines[lineNr];
 	
-	// For the first ring, only the initial positions are relevant
+	// For the first ring, only the initial positions are relevant.
 	if(ring == 0)
 		return line.initialSlots;
 	
-	// If we are in a later ring, then skip lines that don't repeat
+	// If we are in a later ring, then skip lines that don't repeat.
 	if(line.slotsIncrease < 0)
 		return 0;
 	
@@ -107,7 +104,8 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	
 	Line line = lines[lineNr];
 	
-	// Calculate position based
+	// Calculate position based on the initial anchor, the ring on which we are, the
+	// line-position on the current line and the rotation of the current line.
 	return line.anchor +
 		line.repeatVector * ring +
 		line.direction.Rotate(Point(0, -line.spacing * lineSlot));
