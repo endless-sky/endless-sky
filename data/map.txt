@@ -13865,7 +13865,8 @@ system "Kor Ak'Mari"
 	fleet "Korath Raid" 2800
 	fleet "Korath Home" 5000
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian World" 10000
 	object
 		sprite star/wr
 		period 100
@@ -13923,7 +13924,8 @@ system "Kor En'lakfar"
 	fleet "Korath Raid" 600
 	fleet "Korath Home" 1800
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian World" 1500
 	object
 		sprite star/g0
 		period 10
@@ -13985,7 +13987,8 @@ system "Kor Fel'tar"
 	fleet "Korath Raid" 1600
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Home" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian World" 1500
 	object
 		sprite star/k0
 		period 10
@@ -14048,7 +14051,8 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Raid" 1300
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian World" 1500
 	fleet "Korath Home" 3000
 	fleet "Korath Civilian Miners" 10000
 	object
@@ -14110,7 +14114,8 @@ system "Kor Nor'peli"
 	trade Plastic 423
 	fleet "Korath Raid" 1000
 	fleet "Korath Home" 2000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1000
+	fleet "Korath Civilian World" 5000
 	object
 		sprite star/k0-old
 		distance 25.4857
@@ -14177,7 +14182,8 @@ system "Kor Tar'bei"
 	fleet "Korath Raid" 1200
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Home" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1000
+	fleet "Korath Civilian World" 3000
 	object
 		sprite star/m0
 		period 10
@@ -14227,7 +14233,8 @@ system "Kor Zena'i"
 	trade Plastic 381
 	fleet "Korath Raid" 800
 	fleet "Korath Home" 3000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian World" 1500
 	object
 		sprite star/g5-old
 		distance 8.94444
