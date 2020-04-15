@@ -667,7 +667,7 @@ outfit "Firestorm Turret"
 		"ion damage" 21
 		"heat damage" 2000
 		"hit force" 4000
-		"missile strength" 285
+		"missile strength" 105
 	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
 
 effect "firestorm ring"
