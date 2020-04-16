@@ -454,7 +454,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 			`	You are buffeted by wind as one of the Wanderers lands next to your ship and says, in the Hai language, "Unfettered [raider, pirate] fleet comes. We have put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
 				goto choice
 			label hint
-			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air."`
+			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air.`
 			`	Looking around, you suddenly see a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
 			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
 			label choice
@@ -2471,6 +2471,23 @@ event "battle for ap'arak ends"
 		add fleet "Wanderer Drones" 4000
 		add fleet "Wanderer Defense" 600
 		add fleet "Large Unfettered" 700
+
+mission "pug defend wanderers"
+	invisible
+	landing
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	on offer
+		event "pug defend wanderers"
+		fail
+
+event "pug defend wanderers"
+	government "Pug (Wanderer)"
+		"attitude toward"
+			"Wanderer" .01
+	government "Pug"
+		"attitude toward"
+			"Wanderer" .01
 
 mission "Wanderers Ap'arak 2"
 	landing
