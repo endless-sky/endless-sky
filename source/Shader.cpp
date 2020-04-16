@@ -43,8 +43,16 @@ Shader::Shader(const char *vertex, const char *fragment)
 	
 	GLint status;
 	glGetProgramiv(program, GL_LINK_STATUS, &status);
-	if(status == GL_FALSE)
+	if(status == GL_FALSE) {
+		GLint maxLength = 0;
+		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
+		std::vector<GLchar> infoLog(maxLength);
+		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
+		string error(infoLog.data());
+		Files::LogError(error);
+
 		throw runtime_error("Linking OpenGL shader program failed.");
+	}
 }
 
 
