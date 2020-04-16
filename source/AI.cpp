@@ -1317,7 +1317,20 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 			return;
 	}
 	
-	MoveTo(ship, command, it->second.NextPosition(), parent->Velocity(), 50, .1);
+	// Aggresively try to match the position and velocity for the formation position.
+	static const double POSITION_DEADBAND = 50.;
+	static const double VELOCITY_DEADBAND = 0.1;
+	bool inPosition = MoveTo(ship, command, it->second.NextPosition(), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
+	
+	// If we match the position and velocity, then also match the facing angle.
+	if(inPosition)
+	{
+		double facingDelta = formationLead->Facing().Degrees() - ship.Facing().Degrees();
+		if(abs(facingDelta) > 180.)
+			facingDelta += (facingDelta < 0. ? 360. : -360.);
+		
+		command.SetTurn(facingDelta);
+	}
 }
 
 
