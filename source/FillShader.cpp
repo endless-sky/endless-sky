@@ -37,6 +37,7 @@ namespace {
 void FillShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex fill shader\n"
 		"uniform vec2 scale;\n"
 		"uniform vec2 center;\n"
 		"uniform vec2 size;\n"
@@ -48,6 +49,7 @@ void FillShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+		"// fragment fill shader\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
 		"out vec4 finalColor;\n"
