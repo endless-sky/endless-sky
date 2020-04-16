@@ -227,7 +227,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
 	for(const auto &it : ship.Outfits())
 		for(auto &cit : chassis)
-			cit.second -= it.second * it.first->Get(cit.first);
+			cit.second -= min(0., it.second * it.first->Get(cit.first));
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -240,17 +240,30 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributesHeight += 20;
 	}
 	
-	if(ship.BaysFree(false))
+	if(ship.HasBays())
 	{
-		attributeLabels.push_back("drone bays:");
-		attributeValues.push_back(to_string(ship.BaysFree(false)));
-		attributesHeight += 20;
-	}
-	if(ship.BaysFree(true))
-	{
-		attributeLabels.push_back("fighter bays:");
-		attributeValues.push_back(to_string(ship.BaysFree(true)));
-		attributesHeight += 20;
+		unsigned drone = 0;
+		unsigned fighter = 0;
+		for(const auto &bay : ship.Bays())
+		{
+			if(bay.isFighter)
+				++fighter;
+			else
+				++drone;
+		}
+		
+		if(drone)
+		{
+			attributeLabels.emplace_back("drone bays:");
+			attributeValues.emplace_back(to_string(drone));
+			attributesHeight += 20;
+		}
+		if(fighter)
+		{
+			attributeLabels.emplace_back("fighter bays:");
+			attributeValues.emplace_back(to_string(fighter));
+			attributesHeight += 20;
+		}
 	}
 	
 	tableLabels.clear();
@@ -269,6 +282,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double efficiency = ship.CoolingEfficiency();
 	heatTable.push_back(Format::Number(
 		60. * (attributes.Get("heat generation") 
+			+ attributes.Get("solar heat")
 			+ attributes.Get("fuel heat")
 			- efficiency * (attributes.Get("cooling") + attributes.Get("active cooling")))));
 	attributesHeight += 20;

@@ -1,0 +1,3163 @@
+# Copyright (c) 2014-2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Aerie"
+	sprite "ship/aerie"
+	thumbnail "thumbnail/aerie"
+	attributes
+		category "Medium Warship"
+		"cost" 3500000
+		"shields" 5700
+		"hull" 1900
+		"required crew" 10
+		"bunks" 28
+		"mass" 130
+		"drag" 4.1
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 50
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 136
+		"Sidewinder Missile Rack" 2
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel" 2
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -10 91
+	engine 10 91
+	gun -13 -79 "Sidewinder Missile Launcher"
+	gun 13 -79 "Sidewinder Missile Launcher"
+	turret 0 0 "Heavy Anti-Missile Turret"
+	turret -17 14 "Heavy Laser Turret"
+	turret 17 14 "Heavy Laser Turret"
+	fighter -42 -2
+	fighter 42 2
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Lionheart Aerie is a light carrier, designed to be just big enough for two fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millennium, but this model comes with the very latest in generator and weapon technology."
+
+
+
+ship "Argosy"
+	plural "Argosies"
+	sprite "ship/argosy"
+	thumbnail "thumbnail/argosy"
+	attributes
+		category "Light Freighter"
+		"cost" 1960000
+		"shields" 4200
+		"hull" 2600
+		"required crew" 4
+		"bunks" 14
+		"mass" 330
+		"drag" 5.9
+		"heat dissipation" .7
+		"fuel capacity" 400
+		"cargo space" 120
+		"outfit space" 270
+		"weapon capacity" 90
+		"engine capacity" 80
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Energy Blaster" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Blaster Turret"
+		"Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
+	engine -25 91 0.6
+	engine -14 91 0.8
+	engine 14 91 0.8
+	engine 25 91 0.6
+	gun -22 -37 "Energy Blaster"
+	gun -22 -37 "Meteor Missile Launcher"
+	gun 22 -37 "Energy Blaster"
+	gun 22 -37 "Meteor Missile Launcher"
+	turret 0 -12.5 "Blaster Turret"
+	turret 0 9.5 "Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 60 80
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Argosy from Southbound Shipyards is very popular with merchants not because of its capacity, which is actually slightly smaller than the Syndicate Freighter, but because it can hold its own in combat even against a small pirate fleet."
+	description "	The Argosy is also a very easy ship to upgrade with faster engines or more powerful weapons as needed, so many privately owned Argosies have very different capabilities than the stock model."
+
+
+
+ship "Arrow"
+	sprite "ship/arrow"
+	thumbnail "thumbnail/arrow"
+	attributes
+		category "Transport"
+		"cost" 1200000
+		"shields" 2000
+		"hull" 400
+		"required crew" 1
+		"bunks" 5
+		"mass" 130
+		"drag" 2.0
+		"heat dissipation" .85
+		"fuel capacity" 600
+		"cargo space" 10
+		"outfit space" 180
+		"weapon capacity" 50
+		"engine capacity" 75
+		weapon
+			"blast radius" 24
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 360
+	outfits
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
+		"Anti-Missile Turret"
+		
+		"Dwarf Core"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Luxury Accommodations"
+		
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+		
+	engine -10 60
+	engine 10 60
+	gun -8 -34 "Sidewinder Missile Launcher"
+	gun 8 -34
+	turret 0 16 "Anti-Missile Turret"
+	leak "leak" 80 50
+	explode "tiny explosion" 12
+	explode "small explosion" 18
+	explode "medium explosion" 6
+	"final explode" "final explosion small"
+	description "The Arrow is a light transport, designed for bringing a small number of very rich passengers - Syndicate CEOs, for example - from one planet to another with speed and style. It makes up for its light armament by being able to outrun nearly every other ship in the sky."
+
+
+
+ship "Bactrian"
+	sprite "ship/bactrian"
+	thumbnail "thumbnail/bactrian"
+	attributes
+		licenses
+			City-Ship
+		category "Heavy Warship"
+		"cost" 17600000
+		"shields" 17500
+		"hull" 8600
+		"required crew" 70
+		"bunks" 245
+		"mass" 940
+		"drag" 16.1
+		"heat dissipation" .4
+		"fuel capacity" 700
+		"cargo space" 530
+		"outfit space" 740
+		"weapon capacity" 300
+		"engine capacity" 180
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"Laser Rifle" 15
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -18 230
+	engine 18 230
+	gun -15 -226 "Torpedo Launcher"
+	gun 15 -226 "Torpedo Launcher"
+	gun -40 -133 "Sidewinder Missile Launcher"
+	gun -45 -128 "Sidewinder Missile Launcher"
+	turret -22 -148 "Heavy Laser Turret"
+	turret 26 -80 "Heavy Anti-Missile Turret"
+	turret -41 -20 "Heavy Laser Turret"
+	turret 32 -7 "Heavy Laser Turret"
+	turret 53 82 "Heavy Laser Turret"
+	turret -37 186 "Heavy Anti-Missile Turret"
+	fighter -38 -26
+	fighter 35 36
+	fighter -47 97
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large"
+	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive for weeks at a time without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance."
+	description "	Naturally, this versatility also makes it extremely expensive, and the Bactrian is normally only for sale to citizens who have been vetted by the local government of the Deep."
+
+
+
+ship "Barb"
+	sprite "ship/barb"
+	thumbnail "thumbnail/barb"
+	attributes
+		category "Fighter"
+		"cost" 50000
+		"shields" 800
+		"hull" 200
+		"required crew" 1
+		"bunks" 2
+		"mass" 20
+		"drag" .8
+		"heat dissipation" .78
+		"outfit space" 85
+		"weapon capacity" 24
+		"engine capacity" 22
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Energy Blaster"
+		"Blaster Turret"
+		
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
+		
+	engine -10 28
+	engine 9 28
+	gun -9 -29 "Energy Blaster"
+	turret 8 6 "Blaster Turret"
+	leak "leak" 60 50
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
+
+
+
+ship "Barb" "Barb (Proton)"
+	sprite "ship/barbp"
+	thumbnail "thumbnail/barbp"
+	attributes
+		category "Fighter"
+		"cost" 50000
+		"shields" 800
+		"hull" 200
+		"required crew" 1
+		"bunks" 1
+		"mass" 20
+		"drag" .8
+		"heat dissipation" .78
+		"outfit space" 85
+		"weapon capacity" 28
+		"engine capacity" 22
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Proton Gun"
+		
+		"nGVF-AA Fuel Cell"
+		Supercapacitor
+		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
+		
+	engine -10 28
+	engine 9 28
+	gun -9 -29 "Proton Gun"
+	leak "leak" 60 50
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `The Barb's commercial success spurred demand for a variant equipped with a Proton Gun. Syndicated Systems had to remove the turret mounting hardware to fit the powerful cannon, but the result is a level of short-range firepower that is unheard-of for a craft its size.`
+
+
+
+ship "Bastion"
+	sprite "ship/bastion"
+	thumbnail "thumbnail/bastion"
+	attributes
+		category "Medium Warship"
+		"cost" 3860000
+		"shields" 7500
+		"hull" 4700
+		"required crew" 17
+		"bunks" 40
+		"mass" 580
+		"drag" 10.3
+		"heat dissipation" .5
+		"fuel capacity" 500
+		"cargo space" 110
+		"outfit space" 470
+		"weapon capacity" 190
+		"engine capacity" 120
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Plasma Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 60
+		"Heavy Rocket Rack" 2
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
+		
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Tactical Scanner"
+		"Laser Rifle" 7
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine 31.5 89.5
+	engine -31.5 89.5
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
+	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5 "Plasma Cannon"
+	turret 35.5 29.5 "Blaster Turret"
+	turret -35.5 29.5 "Blaster Turret"
+	turret 0 0.5 "Anti-Missile Turret"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "tiny explosion" 5
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description "The Southbound Shipyards Bastion is designed as a heavy defense platform to accompany freighter convoys, in addition to having enough cargo capacity to serve as a freighter in its own right. Because of its heavy armament, it is classified as a warship rather than a freighter."
+
+
+
+ship "Behemoth"
+	sprite "ship/behemoth"
+	thumbnail "thumbnail/behemoth"
+	attributes
+		category "Heavy Freighter"
+		"cost" 10800000
+		"shields" 7600
+		"hull" 6300
+		"required crew" 12
+		"bunks" 30
+		"mass" 540
+		"drag" 11.7
+		"heat dissipation" .4
+		"fuel capacity" 600
+		"cargo space" 490
+		"outfit space" 510
+		"weapon capacity" 280
+		"engine capacity" 90
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
+	outfits
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		
+		"NT-200 Nucleovoltaic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
+		"Laser Rifle" 3
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
+	engine -34 143 0.8
+	engine 34 143 0.8
+	engine -56 148.5 0.6
+	engine 56 148.5 0.6
+	gun -47.5 -57.5
+	gun 47.5 -57.5
+	turret -31 -50 "Heavy Laser Turret"	
+	turret 31 -50 "Heavy Anti-Missile Turret"	
+	turret -47.5 33.5 "Heavy Laser Turret"
+	turret 47.5 33.5 "Heavy Laser Turret"
+	turret -22 66.5 "Heavy Anti-Missile Turret"
+	turret 22 66.5 "Heavy Laser Turret"
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "The Behemoth is a recent ship design from Betelgeuse Shipyards, designed as an alternative to the Syndicate Bulk Freighter. Although its cargo capacity is somewhat lower, it is also more maneuverable, and packs a heavier armament by default."
+
+
+
+ship "Berserker"
+	sprite "ship/berserker"
+	thumbnail "thumbnail/berserker"
+	attributes
+		category "Interceptor"
+		"cost" 520000
+		"shields" 2200
+		"hull" 500
+		"required crew" 1
+		"bunks" 2
+		"mass" 110
+		"drag" 2.2
+		"heat dissipation" .85
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 200
+		"weapon capacity" 35
+		"engine capacity" 65
+		weapon
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
+	outfits
+		"Energy Blaster" 2
+		"Javelin Pod" 2
+		"Javelin" 400
+		
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -10 45
+	engine 10 45
+	gun -20 12 "Energy Blaster"
+	gun 20 12 "Energy Blaster"
+	gun -44 10 "Javelin Pod"
+	gun 44 10 "Javelin Pod"
+	leak "leak" 60 50
+	leak "flame" 80 80
+	explode "tiny explosion" 10
+	explode "small explosion" 15
+	"final explode" "final explosion small"
+	description "Once one of the most popular interceptor-class ships, the Berserker's popularity is now waning in favor of more modern and versatile ships like the Hawk. Although limited numbers are still produced by Betelgeuse Shipyards, most Berserkers that are in service today are more than half a century old."
+
+
+
+ship "Blackbird"
+	sprite "ship/blackbird"
+	thumbnail "thumbnail/blackbird"
+	attributes
+		category "Transport"
+		"cost" 2230000
+		"shields" 4400
+		"hull" 900
+		"required crew" 3
+		"bunks" 28
+		"mass" 220
+		"drag" 5.0
+		"heat dissipation" .7
+		"fuel capacity" 700
+		"cargo space" 60
+		"outfit space" 350
+		"weapon capacity" 90
+		"engine capacity" 110
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		
+		"S3 Thermionic"
+		"KP-6 Photovoltaic Array" 3
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Luxury Accommodations"
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -40 55
+	engine 40 55
+	turret -18 0 "Heavy Laser Turret"
+	turret 18 0 "Heavy Anti-Missile Turret"
+	leak "leak" 50 50
+	leak "flame" 70 80
+	explode "tiny explosion" 15
+	explode "small explosion" 34
+	explode "medium explosion" 18
+	explode "large explosion" 2
+	"final explode" "final explosion small"
+	description "The Tarazed Blackbird is a high-class passenger transport, designed to move large numbers of people across the galaxy with speed and safety. Although not equipped with much weaponry, a Blackbird is well protected and fast enough to evade pirate attacks, and its cargo capacity is high enough to allow the captain to take courier missions on the side."
+
+
+
+ship "Bounder"
+	sprite "ship/bounder"
+	thumbnail "thumbnail/bounder"
+	attributes
+		category "Transport"
+		"cost" 1140000
+		"shields" 2200
+		"hull" 700
+		"required crew" 1
+		"bunks" 17
+		"mass" 130
+		"drag" 3.7
+		"heat dissipation" .8
+		"fuel capacity" 900
+		"cargo space" 40
+		"outfit space" 220
+		"weapon capacity" 50
+		"engine capacity" 110
+		weapon
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
+	outfits
+		"Anti-Missile Turret" 2
+		
+		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Array"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -12 44
+	engine 12 44
+	turret -37 4 "Anti-Missile Turret"
+	turret 37 4 "Anti-Missile Turret"
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description "The Megaparsec Bounder is a scout ship and courier, designed not for battle but for carrying passengers and small amounts of cargo across large distances quickly."
+
+
+
+ship "Boxwing"
+	sprite "ship/boxwing"
+	thumbnail "thumbnail/boxwing"
+	attributes
+		category "Fighter"
+		cost 369000
+		"shields" 400
+		"hull" 800
+		"required crew" 1
+		"bunks" 1
+		"mass" 45
+		"drag" .59
+		"heat dissipation" .27
+		"outfit space" 45
+		"engine capacity" 28
+		"cargo space" 80
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"nGVF-AA Fuel Cell"
+
+		"X1050 Ion Engines"
+
+	engine 23 -1
+	engine -23 -1
+	engine 19 29
+	engine -19 29
+	leak "leak" 70 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
+
+
+ship "Bulk Freighter"
+	sprite "ship/bulk freighter"
+	thumbnail "thumbnail/bulk freighter"
+	attributes
+		category "Heavy Freighter"
+		"cost" 9400000
+		"shields" 4000
+		"hull" 7600
+		"required crew" 6
+		"bunks" 18
+		"mass" 870
+		"drag" 15.8
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 600
+		"outfit space" 410
+		"weapon capacity" 180
+		"engine capacity" 85
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Laser Turret" 3
+		"Heavy Anti-Missile Turret" 2
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D23-QP Shield Generator"
+		"Laser Rifle"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
+	engine -22 198
+	engine 22 198
+	gun -20 -175 "Sidewinder Missile Launcher"
+	gun 20 -175 "Sidewinder Missile Launcher"
+	turret -12 -155 "Laser Turret"
+	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 0 5 "Laser Turret"
+	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 30 175 "Laser Turret"
+	leak "leak" 40 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. It is also, however, an incredibly slow ship and difficult to maneuver, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+
+
+
+ship "Carrier"
+	sprite "ship/carrier"
+	thumbnail "thumbnail/carrier"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Navy Carrier"
+		"cost" 15200000
+		"shields" 21400
+		"hull" 8300
+		"required crew" 111
+		"bunks" 184
+		"mass" 910
+		"drag" 17.7
+		"heat dissipation" .45
+		"fuel capacity" 700
+		"cargo space" 100
+		"outfit space" 820
+		"weapon capacity" 370
+		"engine capacity" 210
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
+	outfits
+		"Particle Cannon" 4
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 150
+		"Meteor Missile Box" 2
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer" 2
+		"Water Coolant System"
+		"Brig"
+		"Laser Rifle" 40
+		"Fragmentation Grenades" 40
+		"Security Station"
+		"Tactical Scanner"
+		
+		"X5700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -35 200
+	engine 35 200
+	gun -16 -176 "Particle Cannon"
+	gun 16 -176 "Particle Cannon"
+	gun -16 -176 "Meteor Missile Launcher"
+	gun 16 -176 "Meteor Missile Launcher"
+	gun -25 -166 "Particle Cannon"
+	gun 25 -166 "Particle Cannon"
+	gun -25 -166 "Meteor Missile Launcher"
+	gun 25 -166 "Meteor Missile Launcher"
+	turret 0 -114 "Heavy Anti-Missile Turret"
+	turret 0 15 "Heavy Laser Turret"
+	turret 0 103 "Heavy Anti-Missile Turret"
+	turret 0 157 "Heavy Laser Turret"
+	fighter -37 -65
+	fighter 37 -65
+	fighter -46 40
+	fighter 46 40
+	drone -72 -46
+	drone 72 -46
+	drone -101 57
+	drone 101 57
+	drone -74 57
+	drone 74 57
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 30 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Carrier is more than just a warship: it is practically a mobile space station, with docking bays for an entire squadron of drones and fighters and enough crew to fill a small village. Although designed primarily for engaging enemies from a distance, a Carrier can also do significant damage in close combat."
+
+
+
+ship "Class C Freighter"
+	sprite "ship/bulk freighter"
+	thumbnail "thumbnail/bulk freighter"
+	attributes
+		category "Heavy Warship"
+		"cost" 11400000
+		"shields" 13500
+		"hull" 7600
+		"required crew" 18
+		"bunks" 43
+		"mass" 810
+		"drag" 16.4
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 20
+		"outfit space" 400
+		"weapon capacity" 140
+		"engine capacity" 85
+		weapon
+			"blast radius" 200
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Laser Rifle" 5
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
+	engine -22 198
+	engine 22 198
+	turret -12 -155 "Heavy Laser Turret"
+	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 30 175 "Heavy Laser Turret"
+	turret -30 175 "Heavy Anti-Missile Turret"
+	drone -66 -115 left
+	drone -66 -65 left
+	drone -66 -15 left
+	drone -66 35 left
+	drone -66 85 left
+	drone -66 135 left
+	drone 66 -115 right
+	drone 66 -65 right
+	drone 66 -15 right
+	drone 66 35 right
+	drone 66 85 right
+	drone 66 135 right
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 40 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description `The Class C "Freighter" is a stealth warship designed by the Syndicate for baiting pirates with the offer of a seemingly helpless, ordinary bulk freighter. Inside, its cargo space has all been converted into drone bays, allowing it to carry a dozen combat drones.`
+
+
+
+ship "Clipper"
+	sprite "ship/clipper"
+	thumbnail "thumbnail/clipper"
+	attributes
+		category "Light Freighter"
+		"cost" 900000
+		"shields" 2700
+		"hull" 800
+		"required crew" 3
+		"bunks" 9
+		"mass" 150
+		"drag" 3.7
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 70
+		"outfit space" 260
+		"weapon capacity" 60
+		"engine capacity" 80
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
+	outfits
+		"Beam Laser" 2
+		"Javelin Pod" 2
+		"Javelin" 400
+		
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
+	engine -22 47
+	engine 22 47
+	gun -21.5 -18 "Javelin Pod"
+	gun 21.5 -18 "Javelin Pod"
+	gun -11 -8.5 "Beam Laser"
+	gun 11 -8.5 "Beam Laser"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small"
+	description "The Clipper is the smaller sister ship to the popular Southbound Shipyards Argosy. Although not able to carry as much cargo, Clippers are versatile ships that can be used as passenger transports, couriers, or even warships in a pinch, and they come with enough free space to be customized based on an individual captain's needs."
+
+
+
+ship "Combat Drone"
+	sprite "ship/combat drone"
+	thumbnail "thumbnail/combat drone"
+	attributes
+		category "Drone"
+		licenses
+			Navy
+		"cost" 83000
+		"hull" 700
+		"automaton" 1
+		"mass" 20
+		"drag" .59
+		"heat dissipation" .9
+		"outfit space" 58
+		"weapon capacity" 8
+		"engine capacity" 28
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
+	outfits
+		"Beam Laser"
+		
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
+	engine -9 29
+	engine 9 29
+	gun 0 -29 "Beam Laser"
+	explode "tiny explosion" 15
+	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
+
+
+
+ship "Corvette"
+	sprite "ship/corvette"
+	thumbnail "thumbnail/corvette"
+	attributes
+		category "Medium Warship"
+		"cost" 4400000
+		"shields" 6800
+		"hull" 800
+		"required crew" 8
+		"bunks" 32
+		"mass" 150
+		"drag" 3.5
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 40
+		"outfit space" 420
+		"weapon capacity" 150
+		"engine capacity" 100
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Heavy Laser" 2
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Heavy Laser Turret"
+		"Anti-Missile Turret"
+		
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -11 118
+	engine 11 118
+	gun -12 -68 "Heavy Laser"
+	gun 12 -68 "Heavy Laser"
+	gun -14 -60 "Sidewinder Missile Launcher"
+	gun 14 -60 "Sidewinder Missile Launcher"
+	turret 0 -11 "Heavy Laser Turret"
+	turret 0 74 "Anti-Missile Turret"
+	leak "leak" 40 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "Incorporating new, experimental lightweight materials, the Lionheart Corvette combines the speed and agility of a fighter with the armament of a heavy warship. Its weak hull is more than compensated for by its advanced shielding matrix."
+
+
+
+ship "Cruiser"
+	sprite "ship/cruiser"
+	thumbnail "thumbnail/cruiser"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Navy Cruiser"
+		"cost" 11200000
+		"shields" 19600
+		"hull" 6400
+		"required crew" 81
+		"bunks" 136
+		"mass" 680
+		"drag" 10.1
+		"heat dissipation" .45
+		"fuel capacity" 600
+		"cargo space" 60
+		"outfit space" 760
+		"weapon capacity" 320
+		"engine capacity" 170
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Particle Cannon" 4
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer" 2
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
+		"Security Station"
+		"Tactical Scanner"
+		
+		"X4700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -29 156
+	engine 29 156
+	gun -31 -63 "Particle Cannon"
+	gun 31 -63 "Particle Cannon"
+	gun -41 -52 "Particle Cannon"
+	gun 41 -52 "Particle Cannon"
+	gun -20 -44 "Sidewinder Missile Launcher"
+	gun 20 -44 "Sidewinder Missile Launcher"
+	turret 0 -40 "Heavy Anti-Missile Turret"
+	turret -33 -19 "Heavy Laser Turret"
+	turret 33 -19 "Heavy Laser Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
+	drone -25 18
+	drone 25 18
+	drone -25 49
+	drone 25 49
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 40 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Republic Cruiser is a relatively recent design, a much larger version of the Frigate designed to be able to take on an entire pirate fleet if necessary. In addition to a wide variety of weaponry, Cruisers have space to carry four attack drones: fast, pilotless fighters that can be controlled remotely."
+
+
+
+ship "Dagger"
+	sprite "ship/dagger"
+	thumbnail "thumbnail/dagger"
+	attributes
+		category "Fighter"
+		"cost" 129000
+		"shields" 1000
+		"hull" 300
+		"required crew" 1
+		"bunks" 1
+		"mass" 20
+		"drag" .63
+		"heat dissipation" .9
+		"outfit space" 90
+		"weapon capacity" 20
+		"engine capacity" 30
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Beam Laser"
+		"Javelin Pod"
+		"Javelin" 200
+		
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
+	engine -15 30
+	engine 15 30
+	gun -14 -10 "Beam Laser"
+	gun 14 -10 "Javelin Pod"
+	leak "leak" 60 50
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
+
+
+
+ship "Dreadnought"
+	sprite "ship/dreadnought"
+	thumbnail "thumbnail/dreadnought"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Militia"
+		"cost" 11900000
+		"shields" 18100
+		"hull" 7300
+		"required crew" 84
+		"bunks" 147
+		"mass" 630
+		"drag" 10.1
+		"heat dissipation" .65
+		"fuel capacity" 600
+		"cargo space" 100
+		"outfit space" 790
+		"weapon capacity" 360
+		"engine capacity" 190
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Torpedo Launcher" 4
+		"Torpedo" 120
+		"Plasma Turret" 3
+		"Heavy Anti-Missile Turret" 2
+		
+		"Breeder Reactor"
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Helium Cooler"
+		"Tactical Scanner"
+		"Laser Rifle" 25
+		
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+		
+	engine -25.5 173.5
+	engine 25.5 173.5
+	gun -9.5 -186 "Torpedo Launcher"
+	gun 9.5 -186 "Torpedo Launcher"
+	gun -18.5 -173.5 "Torpedo Launcher"
+	gun 18.5 -173.5 "Torpedo Launcher"
+	turret 0 -99.5 "Plasma Turret"
+	turret -39 -63.5 "Heavy Anti-Missile Turret"
+	turret 39 -63.5 "Heavy Anti-Missile Turret"
+	turret -39 107.5 "Plasma Turret"
+	turret 39 107.5 "Plasma Turret"
+	leak "leak" 40 50
+	leak "flame" 20 80
+	leak "big leak" 80 30
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "The Dreadnought is a new warship that was designed by Southbound Shipyards in order to provide a large capital ship for the Free Worlds fleets, something capable of standing up to a Navy Cruiser or even a Carrier."
+
+
+
+ship "Falcon"
+	sprite "ship/falcon"
+	thumbnail "thumbnail/falcon"
+	attributes
+		category "Heavy Warship"
+		"cost" 10900000
+		"shields" 12800
+		"hull" 3700
+		"required crew" 52
+		"bunks" 75
+		"mass" 510
+		"drag" 6.7
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 90
+		"outfit space" 540
+		"weapon capacity" 240
+		"engine capacity" 150
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Quad Blaster Turret" 3
+		"Heavy Anti-Missile Turret"
+		
+		"Breeder Reactor"
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 15
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -17 143
+	engine 17 143
+	gun -17 -88 "Plasma Cannon"
+	gun 17 -88 "Plasma Cannon"
+	gun -17 -88 "Torpedo Launcher"
+	gun 17 -88 "Torpedo Launcher"
+	turret -16 -24 "Heavy Anti-Missile Turret"
+	turret 16 -24 "Quad Blaster Turret"
+	turret -57 40 "Quad Blaster Turret"
+	turret 57 40 "Quad Blaster Turret"
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 60 30
+	explode "tiny explosion" 40
+	explode "small explosion" 55
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	"final explode" "final explosion medium"
+	description "The Tarazed Falcon is one of the most powerful warships that civilians can buy, a sleeker and more maneuverable alternative to the venerable and somewhat outdated Leviathan."
+
+
+
+ship "Finch"
+	plural "Finches"
+	sprite "ship/finch"
+	thumbnail "thumbnail/finch"
+	attributes
+		category "Fighter"
+		"cost" 126000
+		"shields" 1100
+		"hull" 200
+		"required crew" 1
+		"bunks" 1
+		"mass" 40
+		"drag" .83
+		"heat dissipation" .85
+		"outfit space" 110
+		"weapon capacity" 20
+		"engine capacity" 40
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Beam Laser"
+		"Javelin Pod"
+		"Javelin" 200
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		
+	engine -5 32
+	engine 5 32
+	gun -7 -14 "Beam Laser"
+	gun 7 -14 "Javelin Pod"
+	leak "flame" 60 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter. Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the blindingly fast Finch bears strong resemblance to its hyperspace-faring cousin."
+
+
+
+ship "Firebird"
+	sprite "ship/firebird"
+	thumbnail "thumbnail/firebird"
+	attributes
+		category "Medium Warship"
+		"cost" 3700000
+		"shields" 5800
+		"hull" 3400
+		"required crew" 7
+		"bunks" 22
+		"mass" 290
+		"drag" 4.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 400
+		"weapon capacity" 160
+		"engine capacity" 100
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Particle Cannon" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret"
+		"Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"nGVF-AA Fuel Cell"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Laser Rifle" 3
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -31.5 67
+	engine 31.5 67
+	gun -27 -28 "Particle Cannon"
+	gun 27 -28 "Particle Cannon"
+	gun -38 -13 "Meteor Missile Launcher"
+	gun 38 -13 "Meteor Missile Launcher"
+	turret 0 -38 "Anti-Missile Turret"	
+	turret 0 3 "Quad Blaster Turret"
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "The Betelgeuse Shipyards Firebird is a warship with a long and storied past; Firebirds fought on both sides of the Alpha Wars over half a millennium ago, and although the equipment and systems have been upgraded continuously since then, the basic design remains almost the same. The Firebird is also a very rugged ship and easy to repair; supposedly a few of the Firebirds that fought in those wars are still in service today."
+
+
+
+ship "Flivver"
+	sprite "ship/flivver"
+	thumbnail "thumbnail/flivver"
+	attributes
+		category "Transport"
+		"cost" 180000
+		"shields" 1400
+		"hull" 200
+		"required crew" 1
+		"bunks" 3
+		"mass" 40
+		"drag" 1.0
+		"heat dissipation" .9
+		"fuel capacity" 500
+		"cargo space" 5
+		"outfit space" 130
+		"weapon capacity" 25
+		"engine capacity" 45
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"A120 Atomic Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -16 27
+	engine 16 27
+	gun -6 -31
+	gun 6 -31
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 10
+	description "With space for neither cargo nor passengers nor heavy weaponry, the Flivver's only selling point is speed. Flivvers are sold mostly to wealthy individuals who want to be able to travel the stars without needing to share a bunk room on a merchant transport with common people."
+
+
+
+ship "Freighter"
+	sprite "ship/freighter"
+	thumbnail "thumbnail/freighter"
+	attributes
+		category "Light Freighter"
+		"cost" 730000
+		"shields" 2000
+		"hull" 2000
+		"required crew" 2
+		"bunks" 7
+		"mass" 240
+		"drag" 5.6
+		"heat dissipation" .6
+		"fuel capacity" 600
+		"cargo space" 150
+		"outfit space" 250
+		"weapon capacity" 80
+		"engine capacity" 70
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"nGVF-EE Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Scram Drive"
+		
+	engine -9 97
+	engine 9 97
+	turret 0 -52 "Blaster Turret"
+	turret 0 6 "Heavy Anti-Missile Turret"
+	turret 0 65 "Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 10
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	"final explode" "final explosion small"
+	description "The Freighter is designed by the Syndicate to be an efficient means of carrying cargo from system to system, but is so slow and difficult to land that most pilots hate flying them."
+	description "	Freighters are an obvious target for pirates, but turn much too slowly to be able to bring any forward-facing guns to bear on an approaching enemy. As a result, the latest model of freighter is equipped only with turrets, including an anti-missile turret to prevent attackers from simply bombarding them into submission from a safe distance."
+
+
+
+ship "Frigate"
+	sprite "ship/frigate"
+	thumbnail "thumbnail/frigate"
+	attributes
+		category "Medium Warship"
+		licenses
+			Navy
+		"cost" 5200000
+		"shields" 8000
+		"hull" 2500
+		"required crew" 21
+		"bunks" 44
+		"mass" 310
+		"drag" 5.2
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 35
+		"outfit space" 410
+		"weapon capacity" 170
+		"engine capacity" 100
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Particle Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
+		
+		"NT-200 Nucleovoltaic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 5
+		"Fragmentation Grenades" 5
+		"Security Station"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -26 92
+	engine 26 92
+	gun -10 -83 "Particle Cannon"
+	gun 10 -83 "Particle Cannon"
+	gun -10 -83 "Torpedo Launcher"
+	gun 10 -83 "Torpedo Launcher"
+	turret 0 -37 "Anti-Missile Turret"
+	turret -12 -12 "Blaster Turret"
+	turret 12 -12 "Blaster Turret"
+	leak "leak" 40 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "For centuries, the Frigate was the largest warship produced by the Republic Navy Yard, but now they seem quite small compared to a Cruiser or a Carrier. Armed with a variety of weapons, and with relatively good maneuverability for a ship its size, the Frigate is equally capable at fending off small fighters or bombarding larger ships."
+
+
+
+ship "Fury"
+	plural "Furies"
+	sprite "ship/fury"
+	thumbnail "thumbnail/fury"
+	attributes
+		category "Interceptor"
+		"cost" 490000
+		"shields" 2000
+		"hull" 400
+		"required crew" 1
+		"bunks" 3
+		"mass" 70
+		"drag" 1.6
+		"heat dissipation" .9
+		"fuel capacity" 600
+		"cargo space" 15
+		"outfit space" 160
+		"weapon capacity" 40
+		"engine capacity" 60
+		weapon
+			"blast radius" 24
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 360
+	outfits
+		"Energy Blaster" 4
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer" 2
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -11 35 0.8
+	engine 11 35 0.8
+	engine -18 37 0.6
+	engine 18 37 0.6
+	gun -10.5 -25.5
+	gun 10.5 -25.5
+	gun -17 -19.5
+	gun 17 -19.5
+	leak "flame" 50 80
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	description "The Fury is Southbound Shipyards' most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
+
+
+
+ship "Gunboat"
+	sprite "ship/gunboat"
+	thumbnail "thumbnail/gunboat"
+	attributes
+		category "Light Warship"
+		licenses
+			Navy
+		"cost" 3200000
+		"shields" 5800
+		"hull" 1400
+		"required crew" 7
+		"bunks" 12
+		"mass" 150
+		"drag" 3.1
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 50
+		"outfit space" 270
+		"weapon capacity" 100
+		"engine capacity" 90
+		weapon
+			"blast radius" 72
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Tactical Scanner"
+		"Brig"
+		
+		"X3700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -12 57
+	engine 12 57
+	gun -28 -28 "Heavy Laser"
+	gun 28 -28 "Heavy Laser"
+	turret 0 -8 "Heavy Laser Turret"
+	leak "leak" 50 50
+	leak "flame" 80 80
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description "The Navy Gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
+
+
+
+ship "Hauler"
+	sprite "ship/hauler i"
+	thumbnail "thumbnail/hauler i"
+	attributes
+		category "Light Freighter"
+		"cost" 1430000
+		"shields" 2500
+		"hull" 3700
+		"required crew" 3
+		"bunks" 12
+		"mass" 250
+		"drag" 10.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 130
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+	engine -45 122.5
+	engine 45 122.5
+	gun -14.5 -92.5
+	gun 14.5 -92.5
+	turret -21.5 -48 "Quad Blaster Turret"
+	turret 21.5 -48 "Heavy Anti-Missile Turret"
+	turret -18.5 78.5 "Heavy Anti-Missile Turret"
+	turret 18.5 78.5 "Quad Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 20
+	explode "small explosion" 35
+	explode "medium explosion" 20
+	explode "large explosion" 5
+	"final explode" "final explosion medium"
+	description "Several centuries ago, in the early days of the Republic, the sudden increase in commerce and space travel led to high demand for cargo ships. Haulers were first created simply by bolting a cockpit and engine block onto a cargo container, and the basic design has not changed much since then."
+
+
+
+ship "Hauler II"
+	sprite "ship/hauler ii"
+	thumbnail "thumbnail/hauler ii"
+	attributes
+		category "Heavy Freighter"
+		"cost" 2340000
+		"shields" 2900
+		"hull" 5200
+		"required crew" 3
+		"bunks" 12
+		"mass" 360
+		"drag" 11.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 260
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Laser Rifle"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 159.5
+	engine 45 159.5
+	gun -14.5 -129.5
+	gun 14.5 -129.5
+	turret -21.5 -84.5 "Quad Blaster Turret"
+	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
+	turret -18.5 115.5 "Heavy Anti-Missile Turret"
+	turret 18.5 115.5 "Quad Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description "This is a mid-sized freighter, designed for a balance between cargo capacity and defensive capability. Centuries ago, various Hauler models made up nearly half of the merchant vessels in service, but today the design is considered somewhat outdated."
+
+
+
+ship "Hauler III"
+	sprite "ship/hauler iii"
+	thumbnail "thumbnail/hauler iii"
+	attributes
+		category "Heavy Freighter"
+		"cost" 3260000
+		"shields" 3300
+		"hull" 6700
+		"required crew" 3
+		"bunks" 12
+		"mass" 470
+		"drag" 12.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 390
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Laser Rifle"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+	engine -45 196.5
+	engine 45 196.5
+	gun -14.5 -166.5
+	gun 14.5 -166.5
+	turret -21.5 -122 "Quad Blaster Turret"
+	turret 21.5 -122 "Heavy Anti-Missile Turret"
+	turret -18.5 152.5 "Heavy Anti-Missile Turret"
+	turret 18.5 152.5 "Quad Blaster Turret"
+	leak "leak" 50 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description "Considered by many to be outdated, there are nonetheless many Haulers still in service due to their combination of comparatively low price and simple construction. This large version of the Hauler provides the best tradeoff between price and cargo space."
+
+
+
+ship "Hawk"
+	sprite "ship/hawk"
+	thumbnail "thumbnail/hawk"
+	attributes
+		category "Interceptor"
+		"cost" 670000
+		"shields" 2500
+		"hull" 500
+		"required crew" 2
+		"bunks" 4
+		"mass" 150
+		"drag" 2.1
+		"heat dissipation" .8
+		"fuel capacity" 300
+		"cargo space" 20
+		"outfit space" 200
+		"weapon capacity" 50
+		"engine capacity" 70
+		weapon
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
+	outfits
+		"Heavy Laser" 2
+		
+		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Panel" 2
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
+	engine -24 41
+	engine 24 41
+	gun -9 -17
+	gun 9 -17
+	leak "leak" 60 50
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	"final explode" "final explosion small"
+	description "The Tarazed Hawk is an interceptor-class warship often used as an escort for freighters or in a planetary militia's patrol squadron. Hawks are fast enough to chase down most smaller ships, but are capable of mounting much more powerful weapons. They are also, of course, a favorite ship of pirate captains who have earned enough money to afford one."
+
+
+
+ship "Headhunter"
+	sprite "ship/headhunter"
+	thumbnail "thumbnail/headhunter"
+	attributes
+		category "Light Warship"
+		"cost" 1850000
+		"shields" 3800
+		"hull" 700
+		"required crew" 2
+		"bunks" 4
+		"mass" 120
+		"drag" 2.6
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 250
+		"weapon capacity" 60
+		"engine capacity" 80
+		weapon
+			"blast radius" 44
+			"shield damage" 440
+			"hull damage" 220
+			"hit force" 660
+	outfits
+		"Heavy Laser" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+	
+	engine -16 47
+	engine 16 47
+	gun -17.5 -17
+	gun 17.5 -17
+	gun -12 -25.5 "Heavy Laser"
+	gun 12 -25.5 "Heavy Laser"
+	turret 0 9 "Heavy Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 80 80
+	explode "tiny explosion" 20
+	explode "small explosion" 25
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description "The Headhunter is one of the newest ships designed by Lionheart: a versatile ship that can serve equally well for carrying cargo or for bounty hunting. As with many of Lionheart's designs, the hull is mostly composite fiber rather than metal, sacrificing armor strength for the sake of lighter weight and faster movement."
+
+
+
+ship "Heavy Shuttle"
+	sprite "ship/heavy shuttle"
+	thumbnail "thumbnail/heavy shuttle"
+	attributes
+		category "Transport"
+		"cost" 320000
+		"shields" 700
+		"hull" 700
+		"required crew" 1
+		"bunks" 8
+		"mass" 110
+		"drag" 2.1
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 35
+		"outfit space" 120
+		"weapon capacity" 10
+		"engine capacity" 60
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -6.5 38.5
+	engine 6.5 38.5
+	gun -3 -38.5
+	gun 3 -38.5
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 5
+	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perennial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
+
+
+
+ship "Lance"
+	sprite "ship/lance"
+	thumbnail "thumbnail/lance"
+	attributes
+		category "Fighter"
+		"cost" 93000
+		"shields" 800
+		"hull" 400
+		"required crew" 1
+		"bunks" 1
+		"mass" 30
+		"drag" .7
+		"heat dissipation" .8
+		"outfit space" 100
+		"weapon capacity" 20
+		"engine capacity" 30
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Energy Blaster"
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
+		
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer" 2
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
+	engine -15 30
+	engine 15 30
+	gun -14 -10 "Energy Blaster"
+	gun 14 -10 "Sidewinder Missile Launcher"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
+
+
+
+ship "Leviathan"
+	sprite "ship/leviathan"
+	thumbnail "thumbnail/leviathan"
+	attributes
+		category "Heavy Warship"
+		"cost" 9800000
+		"shields" 14400
+		"hull" 5000
+		"required crew" 43
+		"bunks" 64
+		"mass" 480
+		"drag" 7.6
+		"heat dissipation" .5
+		"fuel capacity" 500
+		"cargo space" 80
+		"outfit space" 620
+		"weapon capacity" 240
+		"engine capacity" 120
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Particle Cannon" 4
+		"Quad Blaster Turret" 3
+		"Anti-Missile Turret"
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Helium Cooler"
+		"Laser Rifle" 15
+		
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -24 126
+	engine 24 126
+	gun -37.5 -31.5 "Particle Cannon"
+	gun 37.5 -31.5 "Particle Cannon"
+	gun -49 -19.5 "Particle Cannon"
+	gun 49 -19.5 "Particle Cannon"
+	turret -14 -10 "Quad Blaster Turret"
+	turret 14 -10 "Quad Blaster Turret"
+	turret -25.5 12.5 "Quad Blaster Turret"
+	turret 25.5 12.5 "Anti-Missile Turret"
+	leak "leak" 50 50
+	leak "flame" 30 80
+	leak "big leak" 60 30
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion large"
+	description "The Betelgeuse Shipyards Leviathan has been in service since long before the Republic existed. Although considered today to be an outdated and clunky model, it is still a force to be reckoned with."
+
+
+
+ship "Manta"
+	sprite "ship/manta"
+	thumbnail "thumbnail/manta"
+	attributes
+		category "Medium Warship"
+		"cost" 3400000
+		"shields" 5900
+		"hull" 1500
+		"required crew" 6
+		"bunks" 10
+		"mass" 170
+		"drag" 4.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 100
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Particle Cannon" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 75
+		"Meteor Missile Box"
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"Laser Rifle"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -33 38
+	engine 33 38
+	gun -21 -35 "Particle Cannon"
+	gun 21 -35 "Particle Cannon"
+	gun -27 -35 "Particle Cannon"
+	gun 27 -35 "Particle Cannon"
+	gun -66 -32 "Meteor Missile Launcher"
+	gun 66 -32 "Meteor Missile Launcher"
+	leak "leak" 60 50
+	leak "flame" 40 80
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description "After their Quicksilver light warship with its armament of particle cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
+
+
+
+ship "Modified Argosy"
+	plural "Modified Argosies"
+	sprite "ship/modified argosy"
+	thumbnail "thumbnail/modified argosy"
+	attributes
+		category "Light Warship"
+		"cost" 1960000
+		"shields" 4800
+		"hull" 1900
+		"required crew" 5
+		"bunks" 12
+		"mass" 250
+		"drag" 6.2
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 60
+		"outfit space" 340
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Heavy Laser" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Brig"
+		"Laser Rifle" 2
+		
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -25 93 0.6
+	engine -14 93 0.8
+	engine 14 93 0.8
+	engine 25 93 0.6
+	gun -22 -37 "Heavy Laser"
+	gun 22.5 -37 "Heavy Laser"
+	gun -22 -37 "Meteor Missile Launcher"
+	gun 22.5 -37 "Meteor Missile Launcher"
+	turret 0 -12.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Heavy Laser Turret"
+	leak "leak" 70 50
+	leak "flame" 30 80
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description "The Argosy has long been a favorite ship for pirates, who have come up with many tricks for modifying them to be more suitable as warships."
+
+
+
+ship "Mule"
+	sprite "ship/mule"
+	thumbnail "thumbnail/mule"
+	attributes
+		category "Medium Warship"
+		"cost" 4080000
+		"shields" 5400
+		"hull" 4400
+		"required crew" 14
+		"bunks" 43
+		"mass" 320
+		"drag" 5.7
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 170
+		"outfit space" 440
+		"weapon capacity" 170
+		"engine capacity" 110
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 136
+		"Sidewinder Missile Rack" 2
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 2
+		"Ramscoop"
+		"Laser Rifle"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -12 123
+	engine 12 123
+	gun -9 -119 "Sidewinder Missile Launcher"
+	gun 9 -119 "Sidewinder Missile Launcher"
+	turret 22 -65 "Heavy Anti-Missile Turret"
+	turret -37 -21 "Heavy Laser Turret"
+	turret 39 35 "Heavy Laser Turret"
+	turret -9 59 "Heavy Anti-Missile Turret"
+	fighter -16 -9
+	leak "leak" 50 50
+	leak "flame" 80 80
+	leak "big leak" 80 30
+	explode "tiny explosion" 10
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	"final explode" "final explosion medium"
+	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but must be classified as a warship because of its heavy armament and shields. This hodgepodge nature has its downside, though, namely its high crew requirement and the fact that any dedicated ship of the same cost will do better in a specialized role than the Mule will."
+
+
+
+ship "Nest"
+	sprite "ship/nest"
+	thumbnail "thumbnail/nest"
+	attributes
+		category "Medium Warship"
+		"cost" 2500000
+		"shields" 2500
+		"hull" 3700
+		"required crew" 5
+		"bunks" 14
+		"mass" 250
+		"drag" 10.5
+		"heat dissipation" .67
+		"fuel capacity" 500
+		"cargo space" 40
+		"outfit space" 400
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator" 2
+		"Large Radar Jammer"
+		"Laser Rifle" 2
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 122.5
+	engine 45 122.5
+	gun -14.5 -92.5
+	gun 14.5 -92.5
+	turret -21.5 -48 "Quad Blaster Turret"
+	turret 21.5 -48 "Heavy Anti-Missile Turret"
+	turret -18.5 78.5 "Heavy Anti-Missile Turret"
+	turret 18.5 78.5 "Quad Blaster Turret"
+	fighter -47 12 under
+	fighter 47 12 under
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
+	explode "tiny explosion" 20
+	explode "small explosion" 35
+	explode "medium explosion" 20
+	explode "large explosion" 5
+	"final explode" "final explosion medium"
+	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
+
+
+
+ship "Osprey"
+	sprite "ship/osprey"
+	thumbnail "thumbnail/osprey"
+	attributes
+		category "Medium Warship"
+		"cost" 4200000
+		"shields" 7200
+		"hull" 1600
+		"required crew" 9
+		"bunks" 24
+		"mass" 270
+		"drag" 5.9
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 40
+		"outfit space" 450
+		"weapon capacity" 180
+		"engine capacity" 130
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Plasma Cannon" 4
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
+		
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Helium Cooler"
+		"Laser Rifle" 3
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -40 67
+	engine 40 67
+	gun -8 -100 "Plasma Cannon"
+	gun 8 -100 "Plasma Cannon"
+	gun -26 -53 "Plasma Cannon"
+	gun 26 -53 "Plasma Cannon"
+	turret -16 -16 "Quad Blaster Turret"
+	turret 16 -16 "Heavy Anti-Missile Turret"
+	leak "leak" 40 50
+	leak "flame" 80 80
+	leak "big leak" 80 30
+	explode "medium explosion" 24
+	explode "large explosion" 16
+	explode "small explosion" 40
+	explode "tiny explosion" 28
+	"final explode" "final explosion medium"
+	description "After the Blackbird gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perennial favorite among those who have the extra cash to spend on it."
+
+
+
+ship "Protector"
+	sprite "ship/protector"
+	thumbnail "thumbnail/protector"
+	attributes
+		category "Heavy Warship"
+		"cost" 5500000
+		"shields" 9500
+		"hull" 6500
+		"required crew" 30
+		"bunks" 69
+		"mass" 500
+		"drag" 10.3
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 570
+		"weapon capacity" 220
+		"engine capacity" 100
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D67-TM Shield Generator"
+		"Small Radar Jammer" 3
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 6
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -11 125
+	engine 11 125
+	gun -15 -100 "Sidewinder Missile Launcher"
+	gun 15 -100 "Sidewinder Missile Launcher"
+	turret -54 -54 "Quad Blaster Turret"
+	turret 54 -54 "Quad Blaster Turret"
+	turret -73 0 "Heavy Anti-Missile Turret"
+	turret 73 0 "Heavy Anti-Missile Turret"
+	turret -54 54 "Quad Blaster Turret"
+	turret 54 54 "Quad Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 20 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion large"
+	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
+
+
+
+ship "Quicksilver"
+	sprite "ship/quicksilver"
+	thumbnail "thumbnail/quicksilver"
+	attributes
+		category "Light Warship"
+		"cost" 1090000
+		"shields" 3000
+		"hull" 800
+		"required crew" 3
+		"bunks" 6
+		"mass" 120
+		"drag" 2.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 240
+		"weapon capacity" 60
+		"engine capacity" 70
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Particle Cannon" 2
+		
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
+	engine -17 54
+	engine 17 54
+	gun -6 -38 "Particle Cannon"
+	gun 6 -38 "Particle Cannon"
+	leak "leak" 50 50
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	"final explode" "final explosion small"
+	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two particle cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed."
+
+
+
+ship "Rainmaker"
+	sprite "ship/rainmaker"
+	thumbnail "thumbnail/rainmaker"
+	attributes
+		category "Light Warship"
+		licenses
+			Navy
+		"cost" 1580000
+		"shields" 3500
+		"hull" 1200
+		"required crew" 7
+		"bunks" 14
+		"mass" 180
+		"drag" 3.8
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 25
+		"outfit space" 230
+		"weapon capacity" 60
+		"engine capacity" 50
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Energy Blaster" 2
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 180
+		"Meteor Missile Box" 4
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Large Radar Jammer"
+		"Tactical Scanner"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -8 46
+	engine 8 46
+	gun -10 -30 "Energy Blaster"
+	gun 10 -30 "Energy Blaster"
+	gun -27 -5 "Meteor Missile Launcher"
+	gun 27 -5 "Meteor Missile Launcher"
+	gun -17 -5 "Meteor Missile Launcher"
+	gun 17 -5 "Meteor Missile Launcher"
+	leak "leak" 50 50
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description "The Rainmaker is a missile boat built in the Republic Navy Yard. It comes equipped with four missile launchers and enough ammunition to destroy even ships many times its size. Because of their lack of maneuverability and relatively light shielding, Rainmakers serve best as long-range attack ships, and once their missile supply is spent, they are relatively useless in combat."
+
+
+
+ship "Raven"
+	sprite "ship/raven"
+	thumbnail "thumbnail/raven"
+	attributes
+		category "Light Warship"
+		"cost" 2200000
+		"shields" 4700
+		"hull" 1400
+		"required crew" 6
+		"bunks" 13
+		"mass" 130
+		"drag" 3.7
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 30
+		"outfit space" 280
+		"weapon capacity" 100
+		"engine capacity" 100
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Heavy Laser" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Panel" 2
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Laser Rifle" 2
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -12 43
+	engine 12 43
+	gun -10 -33 "Heavy Laser"
+	gun 10 -33 "Heavy Laser"
+	gun -16 -28 "Torpedo Launcher"
+	gun 16 -28 "Torpedo Launcher"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "medium explosion" 24
+	explode "large explosion" 16
+	explode "tiny explosion" 28
+	explode "small explosion" 40
+	"final explode" "final explosion small"
+	description "The Lionheart Raven is their most popular warship, an agile and elegant vessel that can nevertheless deal out and absorb considerable damage. Ravens are a favorite ship for bounty hunters, because they are more than a match for pirate interceptors and can be used by a skilled pilot to take down much larger ships as well."
+
+
+
+ship "Roost"
+	sprite "ship/roost"
+	thumbnail "thumbnail/roost"
+	attributes
+		category "Medium Warship"
+		"cost" 3000000
+		"shields" 2900
+		"hull" 5200
+		"required crew" 7
+		"bunks" 16
+		"mass" 360
+		"drag" 11.5
+		"heat dissipation" .67
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 450
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator" 4
+		"Large Radar Jammer"
+		"Tactical Scanner"
+		"Laser Rifle" 2
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 159.5
+	engine 45 159.5
+	gun -14.5 -129.5
+	gun 14.5 -129.5
+	turret -21.5 -84.5 "Quad Blaster Turret"
+	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
+	turret -18.5 115.5 "Heavy Anti-Missile Turret"
+	turret 18.5 115.5 "Quad Blaster Turret"
+	fighter -47 -24 under
+	fighter 47 -24 under
+	fighter -47 50 under
+	fighter 47 50 under
+	leak "leak" 50 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description `Southbound Shipyards' new fighter-carrying containers have created a new use for what many considered an outdated design. Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship. After Southbound assembly workers successfully named the "Nest", "Hauler II: Type F" was quickly dubbed the "Roost" to continue the theme.`
+
+
+
+ship "Scout"
+	sprite "ship/scout"
+	thumbnail "thumbnail/scout"
+	attributes
+		category "Transport"
+		"cost" 850000
+		"shields" 1200
+		"hull" 400
+		"required crew" 2
+		"bunks" 12
+		"mass" 110
+		"drag" 3.4
+		"heat dissipation" .7
+		"fuel capacity" 800
+		"cargo space" 55
+		"outfit space" 220
+		"weapon capacity" 40
+		"engine capacity" 100
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Energy Blaster" 2
+		"Anti-Missile Turret"
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Ramscoop"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -8 46
+	engine 8 46
+	gun -20 -7 "Energy Blaster"
+	gun 20 -7 "Energy Blaster"
+	turret 0 -7 "Anti-Missile Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	leak "leak" 50 50
+	leak "flame" 60 80
+	"final explode" "final explosion small"
+	description "The Lionheart Scoutship was designed back in the days when the galaxy was more sparsely populated, and ships prospecting for habitable worlds or worlds rich in resources would often travel far away from any habitable ports where they would be able to refuel. Although the galaxy has now been much more thoroughly explored, the Scout remains a popular ship for long-distance travel."
+
+
+
+ship "Shuttle"
+	sprite "ship/shuttle"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
+	thumbnail "thumbnail/shuttle"
+	attributes
+		category "Transport"
+		"cost" 180000
+		"shields" 500
+		"hull" 600
+		"required crew" 1
+		"bunks" 6
+		"mass" 70
+		"drag" 1.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 120
+		"weapon capacity" 10
+		"engine capacity" 60
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -6 30
+	engine 6 30
+	gun 0 -31
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 5
+	description "Although Betelgeuse Shipyards produces other ship models as well, the majority of their profits come from sales of the Shuttle. This versatile ship serves equally well as a passenger transport or a cargo courier. It also happens to be the cheapest ship you can buy which is capable of hyperspace travel."
+	description `	Shuttles are not designed to withstand combat of any sort, but they are fast and maneuverable enough to get out of harm's way if attacked by a larger, slower ship. Although they are typically unarmed, they have enough space for one weapon, which is the origin of the popular phrase, "as useless as a blaster cannon on a shuttlecraft."`
+
+
+
+ship "Skein"
+	sprite "ship/skein"
+	thumbnail "thumbnail/skein"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Militia"
+		"cost" 3500000
+		"shields" 3300
+		"hull" 6700
+		"required crew" 7
+		"bunks" 18
+		"mass" 470
+		"drag" 12.5
+		"heat dissipation" .71
+		"fuel capacity" 700
+		"cargo space" 120
+		"outfit space" 500
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator" 4
+		"Large Radar Jammer"
+		"Tactical Scanner"
+		"Laser Rifle" 4
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+	engine -45 196.5
+	engine 45 196.5
+	gun -14.5 -166.5
+	gun 14.5 -166.5
+	turret -21.5 -122 "Quad Blaster Turret"
+	turret 21.5 -122 "Heavy Anti-Missile Turret"
+	turret -18.5 152.5 "Heavy Anti-Missile Turret"
+	turret 18.5 152.5 "Quad Blaster Turret"
+	fighter -47 -61 under
+	fighter 47 -61 under
+	fighter -47 14 under
+	fighter 47 14 under
+	fighter -47 88 under
+	fighter 47 88 under
+	leak "leak" 50 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
+
+
+
+ship "Sparrow"
+	sprite "ship/sparrow"
+	thumbnail "thumbnail/sparrow"
+	attributes
+		category "Interceptor"
+		"cost" 225000
+		"shields" 1200
+		"hull" 300
+		"required crew" 1
+		"bunks" 2
+		"mass" 50
+		"drag" .9
+		"heat dissipation" .8
+		"fuel capacity" 300
+		"cargo space" 15
+		"outfit space" 130
+		"weapon capacity" 20
+		"engine capacity" 40
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Beam Laser" 2
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+		
+	engine -5 35
+	engine 5 35
+	gun -7 -10
+	gun 7 -10
+	leak "flame" 60 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is to upgrade the weapons and hunt pirates... or become one. In either case, it is a perilous way to earn a living."
+	description "	Insurance reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it. Pilots who have survived longer than that tend to swear by replacing the stock weapons with missile launchers."
+
+
+
+ship "Splinter"
+	sprite "ship/splinter"
+	thumbnail "thumbnail/splinter"
+	attributes
+		category "Medium Warship"
+		"cost" 3100000
+		"shields" 5200
+		"hull" 1700
+		"required crew" 7
+		"bunks" 21
+		"mass" 250
+		"drag" 4.0
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 75
+		"outfit space" 400
+		"weapon capacity" 150
+		"engine capacity" 100
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Proton Gun" 2
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Small Radar Jammer" 2
+		"Water Coolant System"
+		"Laser Rifle"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -15 115
+	engine 15 115
+	gun -15 -80 "Proton Gun"
+	gun 15 -80 "Proton Gun"
+	turret -17 -28 "Blaster Turret"
+	turret 0 -28 "Anti-Missile Turret"
+	turret 17 -28 "Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "The Splinter is the largest warship produced by the Megaparsec shipyard. It is designed to be faster and more maneuverable than other ships of a similar size, in order to serve as a heavy escort ship or as part of a planetary defense and patrol fleet. Because of its intended use in merchant convoys, it also has a fair amount of cargo space."
+
+
+
+ship "Star Barge"
+	sprite "ship/star barge"
+	thumbnail "thumbnail/star barge"
+	attributes
+		category "Light Freighter"
+		"cost" 190000
+		"shields" 600
+		"hull" 1000
+		"required crew" 1
+		"bunks" 3
+		"mass" 70
+		"drag" 2.1
+		"heat dissipation" .8
+		"fuel capacity" 300
+		"cargo space" 50
+		"outfit space" 130
+		"weapon capacity" 20
+		"engine capacity" 40
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Anti-Missile Turret"
+
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -9 38
+	engine 9 38
+	turret 0 -8 "Anti-Missile Turret"
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 10
+	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other. It is a slow and ugly ship, but it can carry enough cargo to earn its captain a steady income even in parts of the galaxy where it is hard to find passengers to carry or courier missions."
+	description "	Because they often carry valuable cargo, and because they are too slow to evade any attackers, Star Barges are a common target of pirates."
+
+
+
+ship "Star Queen"
+	sprite "ship/star queen"
+	thumbnail "thumbnail/star queen"
+	attributes
+		category "Transport"
+		"cost" 5500000
+		"shields" 4100
+		"hull" 2200
+		"required crew" 41
+		"bunks" 112
+		"mass" 230
+		"drag" 4.5
+		"heat dissipation" .65
+		"fuel capacity" 700
+		"cargo space" 60
+		"outfit space" 360
+		"weapon capacity" 120
+		"engine capacity" 100
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 135
+		"Heavy Anti-Missile Turret" 2
+		
+		"KP-6 Photovoltaic Array" 4
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Small Radar Jammer" 3
+		"Luxury Accommodations"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -18.5 115
+	engine 18.5 115
+	gun 0 -113 "Sidewinder Missile Launcher"
+	gun -24 -76 "Sidewinder Missile Launcher"
+	gun 24 -76 "Sidewinder Missile Launcher"
+	turret -21.5 2.5 "Heavy Anti-Missile Turret"
+	turret 21.5 2.5 "Heavy Anti-Missile Turret"
+	leak "leak" 50 50
+	leak "big leak" 80 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Star Queen is a relic of a more peaceful period of galactic history: a luxury liner for high-end tourists. Every cabin has its own mini-bar, and the bathrooms have marble tile and showers that use actual hot water instead of chemicals or sonic vibrations."
+	description "	In support of environmental movements across the galaxy, all Star Queens come standard with an array of solar panels as their only source of energy as opposed to more popular power generators such as fuel cells or nuclear reactors that produce some amount of waste. Although some argue that this is a pointless move given the prevalence of clean fusion reactors, others have applauded it and cited the prohibitive costs of fusion reactors as a reason for using solar panels."
+
+
+
+ship "Surveillance Drone"
+	sprite "ship/surveillance drone"
+	thumbnail "thumbnail/surveillance drone"
+	attributes
+		category "Drone"
+		licenses
+			Navy
+		"cost" 50000
+		"hull" 300
+		"automaton" 1
+		"mass" 15
+		"drag" .53
+		"heat dissipation" .9
+		"outfit space" 53
+		"weapon capacity" 0
+		"engine capacity" 28
+		weapon
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
+	outfits
+		"nGVF-AA Fuel Cell"
+		"Surveillance Pod"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
+	engine -5 29
+	engine 5 29
+	explode "tiny explosion" 15
+	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
+
+
+
+ship "Vanguard"
+	sprite "ship/vanguard"
+	thumbnail "thumbnail/vanguard"
+	attributes
+		category "Heavy Warship"
+		"cost" 7200000
+		"shields" 9800
+		"hull" 6000
+		"required crew" 23
+		"bunks" 45
+		"mass" 500
+		"drag" 8
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 560
+		"weapon capacity" 220
+		"engine capacity" 120
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Proton Gun" 7
+		"Anti-Missile Turret"
+
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 4
+		
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	
+	engine -15 130
+	engine 15 130
+	gun 0 -132 "Proton Gun"
+	gun -22 -122 "Proton Gun"
+	gun 22 -122 "Proton Gun"
+	gun -21 -45 "Proton Gun"
+	gun 21 -45 "Proton Gun"
+	gun -31 -45 "Proton Gun"
+	gun 31 -45 "Proton Gun"
+	turret 0 42 "Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `The Vanguard is Syndicated Systems' newest warship intended for the heavy anti-pirate defense market. Vanguards offer an unusual feature set, focusing on powerful fixed guns and featuring Syndicated Systems' latest automation technologies, resulting in an atypically low crew complement for a ship its size. Few capital ships will endure for long under the withering fusillade of gunfire that it can unleash against those in front of it.`
+
+
+
+ship "Wasp"
+	sprite "ship/wasp"
+	thumbnail "thumbnail/wasp"
+	attributes
+		category "Interceptor"
+		"cost" 400000
+		"shields" 1500
+		"hull" 500
+		"required crew" 1
+		"bunks" 2
+		"mass" 60
+		"drag" 1.2
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 150
+		"weapon capacity" 28
+		"engine capacity" 60
+		weapon
+			"blast radius" 20
+			"shield damage" 200
+			"hull damage" 100
+			"hit force" 300
+	outfits
+		"Energy Blaster" 2
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -6 33
+	engine 6 33
+	gun 0 -38 "Sidewinder Missile Launcher"
+	gun -13 -31 "Energy Blaster"
+	gun 13 -31 "Energy Blaster"
+	leak "leak" 60 50
+	explode "tiny explosion" 20
+	explode "small explosion" 10
+	description "The Wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
