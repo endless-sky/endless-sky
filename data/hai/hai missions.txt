@@ -1622,7 +1622,7 @@ mission "Nanachi 3"
 			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planing and preparing for adverse events."`
 					goto end
 			label end
-			`	"I see..." She says.  "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
+			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
 			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species chould be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
 					goto board
 			label board
@@ -1635,7 +1635,7 @@ mission "Nanachi 3"
 			`	"What's wrong? Are you struggling to pick between two different jobs?" you ask.`
 			`	"These all seem very easy and I could even accept many at a time, but the problem is their pay isn't very good." She grabs some worn papers from her pocket, and shows it to you: they're the documents for her loan. "The bank back home would only give me enough for the ship if I agreed on a short-term loan. I lost two days before you came along to help me, and if I don't get some better paying job soon, I won't even be able to pay the interest."`
 			`	As you're trying to figure out a way to get the most out of the available missions, you feel a tap on your shoulder, and turn to see a Hai standing beside a human couple. The couple introduce themselves as Xavier and Vanessa, who are here with their Hai friend Narancia. "We overheard your conversation and are willing to pay a little extra for a job. We're part of a group organizing a big festival in Allhome to celebrate the friendship between humans and Hai, and we just got a last-minute idea: we'd like to get our hands on some Quarg spices."`
-			`	Nanachi perks up during their conversation.  "I'm sure I can get the spices to <planet> within two weeks. I won't let you down!"`
+			`	Nanachi perks up during their conversation. "I'm sure I can get the spices to <planet> within two weeks. I won't let you down!"`
 			`	"That's wonderful," Narancia says. They tell Nanachi that they won't be going along; they already have a transport to Allhome, and will stay here a bit longer to try and advertise the event. "Just come to Allhome after you've picked up the spices. Safe travels!"`
 				accept
 	on stopover

@@ -4482,6 +4482,10 @@ system Arculus
 			sprite planet/ice7
 			distance 431
 			period 47.6313
+	object
+		sprite planet/browndwarf-t
+		distance 3358
+		period 4153
 
 system Arneb
 	pos -523 -580
@@ -7494,6 +7498,10 @@ system Delia
 			sprite planet/rock7-b
 			distance 519
 			period 38.9968
+	object
+		sprite planet/browndwarf-y
+		distance 4586
+		period 8024
 
 system "Delta Capricorni"
 	pos -285 202
@@ -10072,7 +10080,7 @@ system Feraticus
 	fleet "Ka'het" 3150
 	fleet "Ka'het Aggressive" 8500
 	object
-		sprite star/b5
+		sprite planet/browndwarf-l-rouge
 		period 10
 	object
 		sprite planet/rock0-b
@@ -14796,17 +14804,17 @@ system Lire
 		distance 1361.41
 		period 611.409
 	object
-		sprite planet/gas11
+		sprite planet/browndwarf-l
 		distance 2307.37
 		period 1349.04
 		object
 			sprite planet/miranda-b
-			distance 178
-			period 12.5005
+			distance 300
+			period 27
 		object
 			sprite planet/rock3
-			distance 300
-			period 27.3514
+			distance 425
+			period 36
 
 system Lolami
 	pos -628 -10
@@ -17697,12 +17705,12 @@ system Paeli
 	fleet "Ka'het" 3500
 	fleet "Ka'het Aggressive" 9800
 	object
-		sprite star/g0-old
+		sprite planet/browndwarf-t-rouge
 		period 10
 	object
 		sprite planet/desert4-b
-		distance 220.64
-		period 63.5217
+		distance 275
+		period 64
 	object
 		sprite planet/cloud3
 		distance 746.89
@@ -17839,7 +17847,7 @@ system Parca
 		distance 928.524
 		period 410.528
 	object
-		sprite planet/gas5
+		sprite planet/browndwarf-y
 		distance 1622.01
 		period 947.84
 	object
@@ -18141,20 +18149,20 @@ system Perfica
 	fleet "Remnant Transport" 7500
 	fleet "Korath Ember Waste Raid" 30000
 	object
-		sprite star/g0-old
+		sprite planet/browndwarf-y-rouge
 		period 10
 	object
 		sprite planet/ice5
-		distance 227.29
-		period 41.7079
+		distance 351
+		period 94
 	object
 		sprite planet/dust6-b
-		distance 446.3
-		period 114.759
+		distance 652
+		period 174
 	object
 		sprite planet/cloud6-b
-		distance 826.99
-		period 289.467
+		distance 962
+		period 348
 	object
 		sprite planet/desert4-b
 		distance 1757.75
@@ -20971,17 +20979,22 @@ system Segesta
 			distance 171
 			period 21.3838
 	object
-		sprite planet/gas2-b
+		sprite planet/browndwarf-t
 		distance 1408.25
 		period 1024.27
 		object
 			sprite planet/tethys-b
-			distance 194
-			period 16.3726
+			distance 300
+			period 27
 	object "Ember Wormhole"
 		sprite planet/wormhole-red
 		distance 2749.5
 		period 2794.32
+	object
+		sprite planet/gas2-b
+		distance 2749.5
+		period 2794.32
+		offset 180
 
 system Seginus
 	pos -557 356
@@ -26632,7 +26645,7 @@ planet "Keneska Fek"
 planet "Kessel Sepret"
 	attributes korath station
 	landscape land/station1
-	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on Human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
+	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
 	security 0
 
