@@ -757,8 +757,10 @@ int64_t Ship::ChassisCost() const
 
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
-string Ship::FlightCheck() const
+vector<string> Ship::FlightCheck() const
 {
+	auto checks = vector<string>{};
+	
 	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
 	double burning = attributes.Get("fuel energy");
 	double solar = attributes.Get("solar collection");
@@ -776,45 +778,51 @@ string Ship::FlightCheck() const
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
 	
-	// Error conditions:
+	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
-		return "overheating!";
-	if(energy <= 0.)
-		return "no energy!";
-	if((energy - burning <= 0.) && (fuel <= 0.))
-		return "no fuel!";
-	if(!thrust && !reverseThrust && !afterburner)
-		return "no thruster!";
-	if(!turn)
-		return "no steering!";
+		checks.emplace_back("overheating!");
+	else if(energy <= 0.)
+		checks.emplace_back("no energy!");
+	else if((energy - burning <= 0.) && (fuel <= 0.))
+		checks.emplace_back("no fuel!");
+	else if(!thrust && !reverseThrust && !afterburner)
+		checks.emplace_back("no thruster!");
+	else if(!turn)
+		checks.emplace_back("no steering!");
 	
-	// Warning conditions:
-	if(!thrust && !reverseThrust)
-		return "afterburner only?";
-	if(!thrust && !afterburner)
-		return "reverse only?";
-	if(!generation && !solar)
-		return "battery only?";
-	if(energy < thrustEnergy)
-		return "limited thrust?";
-	if(energy < turnEnergy)
-		return "limited turn?";
-	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
-		return "solar power?";
-	if(fuel < 0.)
-		return "fuel?";
-	if(!canBeCarried)
+	// If no errors were found, check all warning conditions:
+	if(checks.empty())
 	{
-		if(!hyperDrive && !jumpDrive)
-			return "no hyperdrive?";
-		if(fuelCapacity < JumpFuel())
-			return "no fuel?";
+		if(!thrust && !reverseThrust)
+			checks.emplace_back("afterburner only?");
+		if(!thrust && !afterburner)
+			checks.emplace_back("reverse only?");
+		if(!generation && !solar)
+			checks.emplace_back("battery only?");
+		if(energy < thrustEnergy)
+			checks.emplace_back("limited thrust?");
+		if(energy < turnEnergy)
+			checks.emplace_back("limited turn?");
+		if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
+			checks.emplace_back("solar power?");
+		if(fuel < 0.)
+			checks.emplace_back("fuel?");
+		if(!canBeCarried)
+		{
+			if(!hyperDrive && !jumpDrive)
+				checks.emplace_back("no hyperdrive?");
+			if(fuelCapacity < JumpFuel())
+				checks.emplace_back("no fuel?");
+		}
+		for(const auto &it : outfits)
+			if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
+			{
+				checks.emplace_back("insufficient energy to fire?");
+				break;
+			}
 	}
-	for(const auto &it : outfits)
-		if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
-			return "insufficient energy to fire?";
 	
-	return "";
+	return checks;
 }
 
 
