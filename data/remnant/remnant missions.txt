@@ -768,7 +768,9 @@ mission "Remnant: Void Sprites 3"
 	npc
 		government " Drak "
 		system "Nenia"
-		personality staying heroic nemesis uninterested
+		personality
+			staying heroic nemesis uninterested
+			confusion 30
 		ship "Archon (Cloaked)" "Lifted Lorax"
 	on stopover
 		conversation
@@ -1256,7 +1258,9 @@ mission "Remnant: Return the Samples"
 	npc
 		government " Drak "
 		system "Nenia"
-		personality staying heroic nemesis uninterested
+		personality
+			staying heroic nemesis uninterested
+			confusion 30
 		ship "Archon (Cloaked)" "Lifted Lorax"
 	on accept
 		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the void sprites and a leading expert in non-carbon based lifeforms.`
@@ -1297,7 +1301,9 @@ mission "Remnant: Return the Samples 2"
 	npc
 		government "Drak"
 		system "Nenia"
-		personality staying heroic nemesis uninterested
+		personality
+			staying heroic nemesis uninterested
+			confusion 30
 		ship "Archon" "Lifted Lorax"
 	on stopover
 		conversation

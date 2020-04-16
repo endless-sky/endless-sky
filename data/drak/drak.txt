@@ -94,6 +94,10 @@ outfit "Drak Turret"
 		"shield damage" 256
 		"hull damage" 256
 		"hit force" 120
+		# Updates to shut down super-heavies that can handle
+		# the Drak's damage output:
+		"ion damage" 20000
+		"heat damage" 40000
 	description "This is a turret based cannon with significant range and accuracy."
 
 effect "drak bolt impact"
