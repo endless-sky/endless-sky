@@ -166,6 +166,7 @@ mission "Hai Reveal [D03] Cleanup"
 	to offer
 		has "Hai Reveal [D02] Cleanup: done"
 	on offer
+		event "lofty spawn"
 		conversation
 			`An all-hai greeting party are waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer when you return to Mountaintop. It appears to have avoided media attention, and the summit is progressing towards a resolution at an acceptable rate. It's been slow going, since the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
 			`	You've had time to consider for a couple of days on the return the events that led to you hauling a group of spontaneously abandoned hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
@@ -227,41 +228,61 @@ mission "Hai Reveal [D04] Cleanup"
 	#This is a gamble. If you indicate in any way that you are overtly hostile, she'll kill you and deal with the consequences later.
 	#She also knows that if you go missing, someone else will come looking. Someone will eventually find her great-grandaughter, and she can't intercept everyone.
 	#She's acting as the gatekeeper, gambling that the one she chooses to let through will have compassion and understanding.
-			
-
-event "lofty goals"
-#This isn't done yet, just needs to be a generic system with a world though.
+	
+	
+event "lofty spawn"
 #East-West coordinate from Canopus and North-South from Uwa Fahn
-#Currently just a bastardised copy of Ultima thule.
 	system "Al Hurr"
+		pos -4421 -491
+		government "Pirate"
+		belt 1312
+		trade "Clothing" 201
+		trade "Electronics" 658
+		trade "Equipment" 484
+		trade "Food" 280
+		trade "Heavy Metals" 850
+		trade "Industrial" 621
+		trade "Luxury Goods" 1134
+		trade "Medical" 582
+		trade "Metal" 339
+		trade "Plastic" 353
 		object
-			sprite star/f0
+			sprite star/f5
 			period 10
 		object
-			sprite planet/desert5
-			distance 200
-			period 22.3607
+			sprite planet/rock15
+			distance 382
+			period 52.6472
 		object
-			sprite planet/europa-b
-			distance 403.41
-			period 64.056
+			sprite planet/rock6
+			distance 686
+			period 77.7827
 		object Aspiration
-			sprite planet/desert7-b
-			distance 824.9
-			period 187.302
+			sprite planet/ice8-b
+			distance 980
+			period 98.6622
+		object
+			sprite planet/dust6
+			distance 1299
+			period 119.0528
 		object
 			sprite planet/gas1
 			distance 1706.99
 			period 557.553
 			object
-				sprite planet/ice8-b
+				sprite planet/dust1
 				distance 216
 				period 11.1964
 	planet Aspiration
 		attributes pirate
-		landscape land/station0
+		landscape land/sea17-harro
 		description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years it might be not dissimilar from Earth before it was paved over, but for now it's a sparse world, with a single major town built on a promontory overlooking a wide river mouth carrying runoff from continental scale glaciers to the sea.`
-		spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls, Aspiration is not on any trade routes and it does not expect visitors.`
+		spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls, Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked up permanently on the outskirts.`
+
+
+event "lofty goals"
+	system "Al Hurr"
+		pos -421 -491
 
 
 mission "Hai Reveal [D05] Cleanup"
