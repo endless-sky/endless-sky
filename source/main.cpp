@@ -46,7 +46,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode);
+void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun, bool &debugMode);
 Conversation LoadConversation();
 #ifdef _WIN32
 void InitConsole();
@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
+	string testToRun = "";
+
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -84,6 +86,8 @@ int main(int argc, char *argv[])
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
+		else if(arg == "--test" && *++it)
+			testToRun = *it;
 	}
 	
 	// Begin loading the game data. Exit early if we are not using the UI.
@@ -121,7 +125,7 @@ int main(int argc, char *argv[])
 	
 	// This is the main loop where all the action begins.
 	try {
-		GameLoop(player, conversation, debugMode);
+		GameLoop(player, conversation, testToRun, debugMode);
 	}
 	catch(const runtime_error &error)
 	{
@@ -141,7 +145,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
+void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun, bool &debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -250,6 +254,16 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
+		// Currently running the hardcoded "empty" testcase;
+		//   Wait for the game to be fully loaded and then quit.
+		//
+		// This testcase can catch issues related to startup/data-loading,
+		// and it helps to show if the CI testframework is working.
+		// This hardcoded testcase is expected to be replaced by the 
+		// larger testframework that is planned for ES.
+		if(!testToRun.empty() && GameData::Progress() == 1)
+			menuPanels.Quit();
+		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
 		if((mod & KMOD_CAPS) && inFlight && debugMode)
@@ -309,6 +323,7 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
+	cerr << "        --test <name>: run the empty testcase (any name is fine for now)" << endl;
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
