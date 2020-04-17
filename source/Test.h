@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef TEST_H_
 #define TEST_H_
 
-#include "Test.h"
-
 #include "Command.h"
 #include "ConditionSet.h"
 
