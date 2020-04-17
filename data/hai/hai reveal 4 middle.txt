@@ -29,7 +29,7 @@ mission "Hai Rescue [A01] Visit Darkwaste"
 			`You receive an emergency communication from a Hai woman named Teeneep. The message is brief and cryptic, but you deduce that it refers to the Hai you've rescued from human space in the past. They need to talk to you again as soon as possible. There is a set of landing coordinates on the uninhabited Hai planet, <destination>`
 				accept
 
-mission "Hai Rescue [A02] Nanotransceiver Identification"
+mission "Hai Rescue [A02] Microtransceiver Identification"
 	landing
 	name "Missing Researchers"
 	description "Fly to <destination> to ask the Quarg about the microtransceivers."
@@ -81,7 +81,7 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 			`	"This technology is clearly not of human or Hai origin. It has some similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these  is significantly beyond our science and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology, a race that has mastered miniaturized technology and is comfortable with its principles."`
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
 			branch "saved geocoris"
-				not has "leaks response 4a: failed"
+				not has "Leaks Response 4a: failed"
 				goto skip
 			label "saved geocoris"
 			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
@@ -118,14 +118,14 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 					decline
 
 # Must be after the Quarg and Korath intro missions:
-mission "ZZ Hai Rescue [A03] Nanotransceiver Identification"
+mission "ZZ Hai Rescue [A03] Microtransceiver Identification"
 	landing
 	name "Missing Researchers"
 	description "Fly to <destination> to talk to Tarazed Shipyards about the microtransceivers."
 	source "Kuwaru Efreti"
 	destination "Wayfarer"
 	to offer
-		has "Hai Rescue [A02] Nanotransceiver Identification: done"
+		has "Hai Rescue [A02] Microtransceiver Identification: done"
 	on offer
 		log `The Korath identified the microtransceivers as using the same materials and design principles as their own technology, but extremely primitive and poorly-made. The Quarg provided a data card that Tarazed Shipyards may be able to use.`
 		conversation
@@ -232,7 +232,7 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 	destination Earth
 	clearance `Curious about your story, the authorities let you land.`
 	to offer
-		has "ZZ Hai Rescue [A03] Nanotransceiver Identification: done"
+		has "ZZ Hai Rescue [A03] Microtransceiver Identification: done"
 	to complete
 		has "Hai Rescue [A05] Boarded Smuggler: offered"
 	on offer
