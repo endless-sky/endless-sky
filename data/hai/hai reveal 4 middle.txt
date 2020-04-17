@@ -32,7 +32,7 @@ mission "Hai Rescue [A01] Visit Darkwaste"
 mission "Hai Rescue [A02] Nanotransceiver Identification"
 	landing
 	name "Missing Researchers"
-	description "Fly to <destination> to ask the Quarg about the nanotransceivers."
+	description "Fly to <destination> to ask the Quarg about the microtransceivers."
 	source Darkwaste
 	destination "Kuwaru Efreti"
 	to offer
@@ -48,12 +48,12 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 					defer
 			`	You walk twenty meters into the cave and pass through an open doorway. There's a variety of medical machinery and some computers in a makeshift base. Some of the people you've rescued are present, with some more humans and Hai you haven't met. A few of them have pulse rifles. A woman walks towards you.`
 			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a civil rights advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and humans victims are here; they were rescued by other kind merchants in human space."`
-			`	"My organization researched their problem and discovered some patterns to the disappearances. We've found these kidnappings have been going on for several years. What is strangest is the nanotransceivers in most of the kidnapped victims."`
+			`	"My organization researched their problem and discovered some patterns to the disappearances. We've found these kidnappings have been going on for several years. What is strangest is the microtransceivers in most of the kidnapped victims."`
 			choice
 				`	"What patterns have you noticed in the kidnappings?"`
 					goto patterns
-				`	"Tell me about the nanotransceivers."`
-					goto nanotransceivers
+				`	"Tell me about the microtransceivers."`
+					goto microtransceivers
 				`	"How long have the kidnappings been happening?"`
 					goto kidnappings
 			label questions
@@ -76,12 +76,12 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 			label uninhabited
 			`	Teeneep looks at you as if you were daft, "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for kidnapping victims. This gives us a safe place to hide any critical people or information."`
 				goto questions
-			label nanotransceivers
-			`	A Hai in a medical uniform explains, "The victims each have have thousands of nanoscale transmitter-receivers in their body, each the size of a single blood cell. We call them nanotransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
-			`	"This technology is clearly not of human or Hai origin. Its construction is well beyond our science and some materials involved have properties unlike anything we've ever seen. This technology comes from another race. A race that has mastered nanotechnology."`
+			label microtransceivers
+			`	A Hai in a medical uniform explains, "The victims each have have thousands of microscale transmitter-receivers in their body, each the size of a single blood cell. We call them microtransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
+			`	"This technology is clearly not of human or Hai origin. It has some similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these  is significantly beyond our science and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology, a race that has mastered miniaturized technology and is comfortable with its principles."`
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
 			branch "saved geocoris"
-			not has "leaks response 4a: failed"
+				not has "leaks response 4a: failed"
 				goto skip
 			label "saved geocoris"
 			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
@@ -109,7 +109,7 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 			`	"What we need is a skilled pilot with a jump drive to visit some locations we cannot easily access."`
 				goto questions
 			label help precious opinions  
-			`	"We have some leads in human and Korath space we need you to follow. The Quarg at Alta Hai had me talk to scientists on <destination>. They say they can help, but they need a sample of the nanotransceivers. I know the humans gave you a Jump Drive; I need you to use it to deliver the nanotransceivers."`
+			`	"We have some leads in human and Korath space we need you to follow. The Quarg at Alta Hai had me talk to scientists on <destination>. They say they can help, but they need a sample of the microtransceivers. I know the humans gave you a Jump Drive; I need you to use it to deliver the microtransceivers."`
 			`	She hands you a data card, "This has some info on it that you might find useful. Right now though the Quarg in Korath space might eliminate some leads, and add new ones. Follow the leads. Once you have proof the kidnappings are an organized effort, return here, and we will pay you 2,000,000 credits."`
 			choice
 				`	"I'll start right away."`
@@ -121,19 +121,19 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 mission "ZZ Hai Rescue [A03] Nanotransceiver Identification"
 	landing
 	name "Missing Researchers"
-	description "Fly to <destination> to talk to Tarazed Shipyards about the nanotransceivers."
+	description "Fly to <destination> to talk to Tarazed Shipyards about the microtransceivers."
 	source "Kuwaru Efreti"
 	destination "Wayfarer"
 	to offer
 		has "Hai Rescue [A02] Nanotransceiver Identification: done"
 	on offer
-		log `The Korath identified the nanotransceivers as their race's design, but extremely primitive and poorly-made. The Quarg provided a data card that Tarazed Shipyards may be able to use.`
+		log `The Korath identified the microtransceivers as using the same materials and design principles as their own technology, but extremely primitive and poorly-made. The Quarg provided a data card that Tarazed Shipyards may be able to use.`
 		conversation
-			`After you land, a hovering gray platform lowers to the entrance of your ship. You step on, and it raises you to a higher level of the ringworld where many Quarg and a few Korath are present. You find the first Quarg who will talk to you and show it the vial of nanotransceivers.`
-			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of nanotransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
-			`	You pass through another two grey platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cells attached to a tiny machine; this may be a nanoscale medicine laboratory.`
-			`	The Quarg and Korath discuss your nanotransceivers for a few minutes, placing them in various instruments.`
-			`	Finally you have your answer. A Quarg scientist tells you, "These are Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these nanotransceivers," it hands you a standard data card compatible with human computers.`
+			`After you land, a hovering gray platform lowers to the entrance of your ship. You step on, and it raises you to a higher level of the ringworld where many Quarg and a few Korath are present. You find the first Quarg who will talk to you and show it the vial of microtransceivers.`
+			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of microtransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
+			`	You pass through another two grey platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cells attached to a tiny machine; this may be a microscale medicine laboratory.`
+			`	The Quarg and Korath discuss your microtransceivers for a few minutes, placing them in various instruments.`
+			`	Finally you have your answer. A Quarg scientist tells you, "These appear to be Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these microtransceivers," it hands you a standard data card compatible with human computers.`
 			`	"Take this to Tarazed Shipyards."`
 			`	You recall Teeneep gave you a contact at Tarazed Shipyards.`
 				accept
@@ -227,7 +227,7 @@ event "devil-run smugglers visible"
 mission "Hai Rescue [A04] Tarazed Analysis"
 	landing
 	name "Missing Researchers"
-	description `Find and board a ship that has nanotransceivers. Your display will identify such ships as government "Smuggler." Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
+	description `Find and board a ship that has microtransceivers. Your display will identify such ships as government "Smuggler." Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
 	source Wayfarer
 	destination Earth
 	clearance `Curious about your story, the authorities let you land.`
@@ -238,13 +238,13 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 	on offer
 		event "devil-run smugglers visible"
 		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago and he hopes his research will help you find her.`
-		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") carry slaves with special nanotransceivers. They are probably carrying human or Hai researchers.`
-		log `Goraz Zoltof used the galactic network of television transmitters to scan for evidence of smuggling ships carrying kidnapping victims with nanotransceivers. He detected hints of transmissions in the uninhabited space between the Far North and the Syndicate, and also near pirate systems.`
+		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") carry slaves with special microtransceivers. They are probably carrying human or Hai researchers.`
+		log `Goraz Zoltof used the galactic network of television transmitters to scan for evidence of smuggling ships carrying kidnapping victims with microtransceivers. He detected hints of transmissions in the uninhabited space between the Far North and the Syndicate, and also near pirate systems.`
 		conversation
 			`You read Teeneep's contact information for Tarazed Shipyards, and it talks about a man named, "Goraz Zoltof," a widower in their communications research laboratory. There's an address and detailed information about the man.`
 			`	After a series of shuttles and trains, you reach his house and knock on the door.`
 			`	He's a little groggy, but manages to ask, "Yes?"`
-			`	You explain about the nanotransceivers, the Quarg, and the kidnappings. You avoid mentioning that some of the people are Hai, just in case he's never heard of them.`
+			`	You explain about the microtransceivers, the Quarg, and the kidnappings. You avoid mentioning that some of the people are Hai, just in case he's never heard of them.`
 			`	He seems to awaken immediately, "You found a lead on my wife's disappearance? Yes, I can help you modify your ship's communicator to detect these signals. Let's go to my laboratory at once."`
 			choice
 				`	(Head to the laboratory.)`
@@ -273,7 +273,7 @@ mission "Hai Rescue [A05] Boarded Smuggler"
 	on offer
 		conversation
 			`As you approach the airlock of the smuggler ship <origin>, the door opens and a Hai rushes through pointing a gun back towards a human in the ship. The human and Hai shoot at the same time, killing each other. In his death throes, the Hai manages to toss a keycard in your direction. It is damaged beyond usefulness, but you can see a pair of logos on it. One looks like an angry cat in a circle and the other looks demonic.`
-			`	Soon after, you hear explosions in the ship and see an escape pod float away. It seems the smugglers set the self-destruct and signaled for help. The pod has no nanotransceiver transmissions, so it must be one of the smugglers. Apparently the smugglers care more about not being caught than about finishing their mission.`
+			`	Soon after, you hear explosions in the ship and see an escape pod float away. It seems the smugglers set the self-destruct and signaled for help. The pod has no microtransceiver transmissions, so it must be one of the smugglers. Apparently the smugglers care more about not being caught than about finishing their mission.`
 			`	Now it's time to set a course for <destination> where you can finally get some answers.`
 			`	Multiple hyperspace windows begin to form. You prepare for battle.`
 				launch
@@ -294,7 +294,7 @@ mission "Hai Rescue [A06A] Smuggler Ambush"
 		government "Smuggler (Hai Trafficker)"
 	on offer
 		conversation
-			`You scan this smuggling ship and notice none of the nanotransceiver transmissions come from a lifeform. Instead, they all seem to come from a containment cell just behind the airlock. It seems these smugglers don't always carry slaves, but they do have a supply of nanotransceivers on hand anyway (perhaps for future catches).`
+			`You scan this smuggling ship and notice none of the microtransceiver transmissions come from a lifeform. Instead, they all seem to come from a containment cell just behind the airlock. It seems these smugglers don't always carry slaves, but they do have a supply of microtransceivers on hand anyway (perhaps for future catches).`
 			`	The ship begins to self-destruct and escape pods float away, just like before.`
 			`	Multiple hyperspace windows begin to form. You prepare for battle.`
 				launch
@@ -352,7 +352,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			choice
 				`	(Enter the building.)`
 			`	You're ushered to an elevator and given a room number: 3017A19, the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have lower population than one of these buildings.`
-			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the nanotransceivers.`
+			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the microtransceivers.`
 			`	"This cat symbol was used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organisation was eventually torn in two by a collection of regular anarchists and other unsavoury characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities."`
 			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, the internal players simply... disappeared."`
 			`	"Officially the Sydnicate maintains that they wiped Base Principles out to the last individual, but evidence never did prove it had been conclusively terminated."`
@@ -362,7 +362,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	When you arrive, Giti tells you, "This is a religious materials archive. Give me a minute here..." Her voice trails off as she starts typing on a terminal. She walks back and forth between several bookshelves skimming books for a few minutes.`
 			`	"I found it," she says. "You found a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. They were one of the first organizations to fund large-scale settlements on Freedom, though the symbol was ultimately co-opted by miscreants. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!"`
 			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Terminus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space."`
-			`	"Fly through the wormhole at the coordinates on that card, if you can, come back and tell me what you see. In the meantime, I'll ask other researchers about the nanotransceivers."`
+			`	"Fly through the wormhole at the coordinates on that card, if you can, come back and tell me what you see. In the meantime, I'll ask other researchers about the microtransceivers."`
 			choice
 				`	(Thank her and return to your ship.)`
 			`	Upon returning to your ship, you ponder Giti's findings. The coordinates are for a system in Syndicate space that is not reachable by starlane, so you'll need a Jump Drive. The red wormhole requires another key.`
@@ -383,7 +383,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	"What? I... Aaa! Don't startle me like that. I just need a minute. Hold on..."`
 			label wait
 			`	"Okay. I've arranged for some advanced scanning equipment that can see past most types of radiation and a few hundred meters of solid rock. I'll have to come with you on this trip."`
-			`	"Oh! I almost forgot to tell you the good news. I found some people who know about the nanotransceiver transmissions. Navy carriers have sensitive communication arrays that can pick up the transmissions. The Navy is combing their communication logs and will have some answers when we return."`
+			`	"Oh! I almost forgot to tell you the good news. I found some people who know about the microtransceiver transmissions. Navy carriers have sensitive communication arrays that can pick up the transmissions. The Navy is combing their communication logs and will have some answers when we return."`
 			`	"Meet me in the spaceport when you have a bunk and 7 tons of cargo space free. Oh, and make sure you have a ramscoop. The navy will pay for this trip."`
 
 mission "Hai Rescue [A08] Scanner"
@@ -430,7 +430,7 @@ mission "Hai Rescue [A09] Slaver Ships"
 		has "Hai Rescue [A08] Scanner: done"
 	on offer
 		conversation
-			`The Earth authorities give you an unusual landing vector that leads to a secret docking bay below ground in Argentina. You land and a Navy cadet meets you at your ship with an urgent message, "Republic Intelligence and a Navy Marshal want to see you as soon as possible. They have news about your nanotransceiver transmissions. Please follow me."`
+			`The Earth authorities give you an unusual landing vector that leads to a secret docking bay below ground in Argentina. You land and a Navy cadet meets you at your ship with an urgent message, "Republic Intelligence and a Navy Marshal want to see you as soon as possible. They have news about your microtransceiver transmissions. Please follow me."`
 			`	Giti adds, "I'll take the scanners and data to some researchers and let you know when I have more information. Please go with the cadet. It sounds like you'll finally get some answers."`
 			`	The cadet takes you to an elevator just outside your ship, down more than three hundred floors to a large meeting room. Within, you see two men and a woman in formal dress. One man has a Republic Intelligence uniform with the name, Agent Kopkow. Another wears a navy full dress uniform that you don't immediately recognize. After a moment of thought, you realize he is Marshal, the second-highest rank in the Navy, answering only to the Grand Marshal. His uniform is is labeled, Adurath Kaine. The woman is a Navy captain wearing the prominent Parliamentary Medal of Valor. Her name label says, "Captain Anna Wallace."`
 			choice

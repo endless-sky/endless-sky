@@ -427,11 +427,11 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 				accept
 	on complete
 		payment 400000
-		log `You need to visit the Sunracer spaceport to pick up a man, Tutitot, a worm, and an orb. Tutitot and the worm will act as spies, getting caught by the kidnappers. The orb, placed at Devil-Run, will detect his presence. A week or two after you deposit the orb, the Drak will contact you to let you know Tutitot is ready to report.`
+		log `You need to visit the Sunracer spaceport to pick up a man named Tutitot, a worm, and an orb. Tutitot and the worm will act as spies, getting caught by the kidnappers. The orb, placed at Devil-Run, will detect his presence. A week or two after you deposit the orb, the Drak will contact you to let you know Tutitot is ready to report.`
 		conversation
 			`You arrive, but you're brought to a warehouse instead of a proper meeting room. You're baffled as to why until you see a new participant: one of the Quarg scientists you talked to before. They're extremely tall, and would not have fit in the office buildings. This must be the "other group" Teeneep said would help. You and Teeneep join the Quarg and Stephen Moray at a tall table.`
 			`	Teeneep explains about her plan for a spy and it seems Stephen Moray already came to the same conclusion. He says, "Yes, we found a Hai recently that was kidnapped just before the Hai border was closed. His name is, Tutitot Eeegin, and he agreed to be a spy for us."`
-			`	The Quarg speaks, "Teeneep is a clever Hai, she asked us to change the nanotransceivers. They would let Tutitot send telepathic signals millions of your kilometers. Alas, the Quarg have not such technology, nor do the Korath." He smiles, "But the Quarg speak to the Drak." He pulls out a glass orb and it floats to the table; there is a black worm with purple hairs inside. The orb has a blinking blue light on top.`
+			`	The Quarg speaks, "Teeneep is a clever Hai, she asked us to change the microtransceivers. They would let Tutitot send telepathic signals millions of your kilometers. Alas, the Quarg have not such technology, nor do the Korath." He smiles, "But the Quarg speak to the Drak." He pulls out a glass orb and it floats to the table; there is a black worm with purple hairs inside. The orb has a blinking blue light on top.`
 			`	"Drak see farther than young races like ours. If the humans and the Fettered Hai war now, they will be weakened. The Unfettered will quickly overrun the Fettered, and soon the humans. You will discover the secret of Jump Drives for them, and they will be a threat far beyond their borders. One day the humans will be strong enough to weather that storm, or the Fettered will temper their Unfettered brethren. That day has not come; your war must be stopped."`
 			`	"This worm will let Tutitot talk to the holder of this orb, millions of kilometers away. Return Tutitot to the kidnappers. Go then to Devil-Eye to place the orb. When Tutitot has reached the Philosopher's Paradise, the Drak will send you a... feeling. You will know it is time."`
 				goto "actual questions"
@@ -905,6 +905,8 @@ mission "Hai Rescue [C06] Freedom"
 					goto korath
 				`	"Can you speak to other Korath for me?"`
 					goto "translation services"
+				`	"Do you know anything about the microtranceivers?"`
+					goto "microtranceivers"
 				`	"I have no more questions."`
 			`	"It was a pleasure meeting you," says the human leader.`
 				goto leave
@@ -920,6 +922,12 @@ mission "Hai Rescue [C06] Freedom"
 				goto questions
 			label "translation services"
 			`	The Korath leader looks worried, "No, we cannot. Few among us Korath know your language, and we must remain here in secret. Perhaps in time there will be a way, but not yet."`
+				goto questions
+			label "microtranceivers"
+			`	The Korath leader looks to the Hai who responds, "Is that how you were led back here?"`
+			`	"Yes," you say.`
+			`	"That is excellent, that was the plan. The microtranceivers were a combination of proper Hai expertise and what little our Korath friends here could tell us. None of them were scientists, but the princples of their science are part of their basic schooling. With their knowledge of their technologies' principles, a couple of Hai experts on our medical microbots, and samples taken from the system cores on one of the Korath ships, we were able to create what you have found. Our overlords wanted them so that they could monitor everyone they kidnapped during processing but we made them more powerful, able to broadcast into hyperspace, in the hopes that it would lead someone back here."`
+			`	The human leader says, "I can scarcely believe it worked, but I'm very glad."`
 				goto questions
 			label home
 			`	The three leaders laugh. The Hai answers, "We are home. This is a place of learning where three races join as one to seek knowledge. Some recent kidnapping victims wish to leave. We will help you find them and send them home."`

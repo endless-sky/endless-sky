@@ -53,7 +53,7 @@ mission "building mountaintop 1"
 			choice
 				`	"Who are these Elders?"`
 				`	"Of course, that's natural."`
-				goto main
+					goto main
 			`	Sayari explains, "The Hai are ruled by an elected 'Council of Elders', they are not responsible for every administrative decision that occurs but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
 			label main
 			'	"If you're willing, there will be a council meeting in an hour, I can put you first on the agenda. Will you do this?" asks Sayari.`
@@ -61,7 +61,7 @@ mission "building mountaintop 1"
 				`	"I suppose I must."`
 				`	"Someone better be paying me for this."`
 				`	"Of course, let's do it."`
-			accept
+					accept
 	on accept
 		event "role-play station"
 		conversation
@@ -243,7 +243,7 @@ mission "building mountaintop 3"
 			`	"We've just discovered a problem, interest has soared in sign-ups for Mountaintop, but we've realised that most of our 'human' furnishings produced in Hai space aren't going to pass as having been manufactured with your technology. Mr Yang has pulled some strings, but now we urgently need someone to go pick them up from Prime in Betelgeuse."`
 			`	"Everything else should be ready on our end soon enough, if you can just handle that pick-up and delivery we'll be ok."`
 			`	You assure her you can handle a simple pick-up.`
-			accept
+				accept
 	on complete
 		event "role-play station active" 12
 		conversation
