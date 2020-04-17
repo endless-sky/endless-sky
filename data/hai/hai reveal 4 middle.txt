@@ -39,7 +39,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 		has "Hai Rescue [A01] Visit Darkwaste: done"
 	on offer
 		log "People" "Teeneep Goot'r" `Teeneep is a civil rights leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
-		log `Hai you have rescued are among many that have gone missing over the past few decades, along with humans as well. They all have nanotransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, used her network of information-gatherers to find contacts to help you research the problem in human space and beyond. Your search begins with the Quarg south of Hai space.`
+		log `Hai you have rescued are among many that have gone missing over the past few decades, along with humans as well. They all have microtransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, used her network of information-gatherers to find contacts to help you research the problem in human space and beyond. Your search begins with the Quarg south of Hai space.`
 		conversation
 			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship is outfitted to fly rapidly through unfriendly territory without stopping.`
 			choice
@@ -67,8 +67,8 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 					goto anyone
 				`	"What patterns have you noticed in the kidnappings?"`
 					goto patterns
-				`	"Tell me about the nanotransceivers."`
-					goto nanotransceivers
+				`	"Tell me about the microtransceivers."`
+					goto microtransceivers
 				`	"How long have the kidnappings been happening?"`
 					goto kidnappings
 				`	"How can I help you?"`
@@ -82,7 +82,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
 			branch "saved geocoris"
 				not has "Leaks Response 4a: failed"
-				goto skip
+					goto skip
 			label "saved geocoris"
 			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
 			label skip

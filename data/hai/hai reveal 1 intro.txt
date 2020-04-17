@@ -596,7 +596,7 @@ mission "Leaks Response 4"
 		conversation
 			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem."`
 			branch "saved geocoris"
-			not has "leaks response 4a: failed"
+				not has "Leaks Response 4a: failed"
 			`	He sighs deeply, "It is a shame though that the kidnapped Hai could not be saved, but the other Hai captains tell me it was a mess out there."`
 			`	He places one of his furry hands comfortingly on your shoulder, "I'm sure you did all you could."`
 				goto end
