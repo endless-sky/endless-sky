@@ -198,7 +198,31 @@ jobs:
         mv ${{ env.ARTIFACT }} artifact/
 
 
-  test_ubuntu:
+  # This section is for tests on ubuntu 16 (and on ubuntu 20).
+  # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
+  autotest_ubuntu16:
+    runs-on: ubuntu-16.04
+    needs: build_ubuntu
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev
+        sudo apt-get install -y --no-install-recommends mesa-utils libmad0 libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6 xvfb
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: binary-ubuntu-16.04
+        path: .
+    - name: Execute available testcases
+      run: |
+        chmod +x endless-sky
+        ./tests/run_tests_headless.sh
+
+
+  parsetest_ubuntu:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -222,31 +246,7 @@ jobs:
         ./tests/test_parse.sh ./endless-sky
 
 
-  # This section is for tests on ubuntu 16 (and on ubuntu 20).
-  # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
-  test_ubuntu16:
-    runs-on: ubuntu-16.04
-    needs: build_ubuntu
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: |
-        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
-        sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev
-        sudo apt-get install -y --no-install-recommends mesa-utils libmad0 libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6 xvfb
-    - name: Download artifact
-      uses: actions/download-artifact@v1.0.0
-      with:
-        name: binary-ubuntu-16.04
-        path: .
-    - name: Execute available testcases
-      run: |
-        chmod +x endless-sky
-        ./tests/run_tests_headless.sh
-
-
-  test_windows:
+  parsetest_windows:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -272,7 +272,7 @@ jobs:
       run: .\tests\test_parse.ps1 EndlessSky.exe
 
 
-  test_macos:
+  parsetest_macos:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
