@@ -136,7 +136,7 @@ mission "To Earth Day celebration [2]"
 		personality timid escort
 		fleet
 			names "civilian"
-			formation "Delta Tailing"
+			formation "Delta (tailing)"
 			variant
 				"Flivver (Racing)" 10
 	on visit
