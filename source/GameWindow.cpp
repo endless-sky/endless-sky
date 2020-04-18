@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 #include "ImageBuffer.h"
-#include "Preferences.h"
 #include "Screen.h"
 
 #include "gl_header.h"
@@ -164,9 +163,8 @@ bool GameWindow::Init()
 	glDisable(GL_DEPTH_TEST);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	
-	// Enable standard VSync. (Attempting to set VSync to an unsupported value, such
-	// as -1 for "Adaptive VSync", can crash older drivers.)
-	SetVSync(VSync::on);
+	// Enable the user's preferred VSync state.
+	SetVSync(Preferences::VSyncState());
 	
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
@@ -289,20 +287,20 @@ void GameWindow::AdjustViewport()
 
 // Attempts to set the requested SDL Window VSync to the given state. Returns false
 // if the operation could not be completed successfully.
-bool GameWindow::SetVSync(VSync state)
+bool GameWindow::SetVSync(Preferences::VSync state)
 {
 	if(!context)
 		return false;
 	
 	switch(state)
 	{
-		case VSync::adaptive:
+		case Preferences::VSync::adaptive:
 			SDL_GL_SetSwapInterval(-1);
 			break;
-		case VSync::off:
+		case Preferences::VSync::off:
 			SDL_GL_SetSwapInterval(0);
 			break;
-		case VSync::on:
+		case Preferences::VSync::on:
 			SDL_GL_SetSwapInterval(1);
 			break;
 		default:

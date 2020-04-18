@@ -13,18 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAMEWINDOW_H_
 #define GAMEWINDOW_H_
 
+#include "Preferences.h"
+
 #include <string>
 
 // This class is a collection of global functions for handling SDL_Windows.
 class GameWindow {
-public:
-	enum class VSync : int {
-		adaptive = -1,
-		off,
-		on
-	};
-	
-	
 public:
 	static bool Init();
 	static void Quit();
@@ -39,7 +33,7 @@ public:
 	static void AdjustViewport();
 	
 	// Attempt to set the game's VSync setting.
-	static bool SetVSync(VSync state);
+	static bool SetVSync(Preferences::VSync state);
 	
 	// Last known windowed-mode width & height.
 	static int Width();
