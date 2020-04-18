@@ -292,22 +292,29 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	if(!context)
 		return false;
 	
+	const int originalState = SDL_GL_GetSwapInterval();
+	int interval = 1;
 	switch(state)
 	{
 		case Preferences::VSync::adaptive:
-			SDL_GL_SetSwapInterval(-1);
+			interval = -1;
 			break;
 		case Preferences::VSync::off:
-			SDL_GL_SetSwapInterval(0);
+			interval = 0;
 			break;
 		case Preferences::VSync::on:
-			SDL_GL_SetSwapInterval(1);
+			interval = 1;
 			break;
 		default:
 			return false;
 	}
-	
-	return checkSDLerror() == false;
+	if(SDL_GL_SetSwapInterval(interval) == -1)
+	{
+		checkSDLerror();
+		SDL_GL_SetSwapInterval(originalState);
+		return false;
+	}
+	return SDL_GL_GetSwapInterval() == interval;
 }
 
 
