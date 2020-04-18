@@ -16,8 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "GameWindow.h"
 #include "Files.h"
+#include "GameWindow.h"
 #include "Screen.h"
 
 #include <algorithm>
