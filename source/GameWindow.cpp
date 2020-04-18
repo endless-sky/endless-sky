@@ -166,9 +166,7 @@ bool GameWindow::Init()
 	
 	// Enable standard VSync. (Attempting to set VSync to an unsupported value, such
 	// as -1 for "Adaptive VSync", can crash older drivers.)
-	// TODO: Export control of VSync setting to Preferences for user-controlled VSync.
-	if(SDL_GL_SetSwapInterval(1) == -1)
-		checkSDLerror();
+	SetVSync(VSync::on);
 	
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
@@ -285,6 +283,33 @@ void GameWindow::AdjustViewport()
 	drawWidth = (drawWidth * roundWidth) / windowWidth;
 	drawHeight = (drawHeight * roundHeight) / windowHeight;
 	glViewport(0, 0, drawWidth, drawHeight);
+}
+
+
+
+// Attempts to set the requested SDL Window VSync to the given state. Returns false
+// if the operation could not be completed successfully.
+bool GameWindow::SetVSync(VSync state)
+{
+	if(!context)
+		return false;
+	
+	switch(state)
+	{
+		case VSync::adaptive:
+			SDL_GL_SetSwapInterval(-1);
+			break;
+		case VSync::off:
+			SDL_GL_SetSwapInterval(0);
+			break;
+		case VSync::on:
+			SDL_GL_SetSwapInterval(1);
+			break;
+		default:
+			return false;
+	}
+	
+	return checkSDLerror() == false;
 }
 
 
