@@ -10,7 +10,7 @@
 
 ########################################################################
 
-mission "Hai Secret Leaker Begins"
+mission "HRF 00 Resolution Timer"
 	landing
 	invisible
 	to offer
