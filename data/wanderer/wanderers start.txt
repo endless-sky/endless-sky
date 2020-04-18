@@ -1865,11 +1865,12 @@ mission "Wanderers Hai Assistance 2"
 	on offer
 		log "Traveled to the Hai homeworld with Ambassador Sayari to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
 		conversation
-			`The Hai's recently elected "council of elders" agrees to meet with you and Sayari and the two of you make an effort to avoid directing yourselves towards Teeneep. Your friend's popularity as an Elder does not extend to inside these walls, and it would be detrimental to your cause to seek her assent specifically here. After you describe the situation with the Wanderers, one of the other elders says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
+			`The Hai's recently elected "council of elders" agrees to meet with you and Sayari and the two of you make an effort to avoid directing yourselves towards Teeneep. Your friend's popularity as an Elder does not extend to inside these walls, and it would be detrimental to your cause to seek her assent specifically here. After you describe the situation with the Wanderers, one of the other elders who seems aloder and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
 			`	Sayari says, "We must not allow the Unfettered to commit genocide in the name of the Hai people."`
 			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
 			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
-			`	Here Teeneep makes an obvious noise of disgust, which draws a few mixed looks but is not commented on.`
+			`	Teeneep responds, "You can hardly fault them for that; a treaty under duress is no treaty at all. No amount of begging or negotiating will convince them to stop their war. They recognize only strength, not the pleas of a coward. We must show strength, and so must the Wanderers. We should increase our fleets at Wah Ki, making ourselves more of a threat."`
+			`	Some of the other Elders nod in agreement, but a smattering of dissent is voiced loudly enough that the older Elder from before interjects, "Perhaps there are other suggestions we may consider?".`
 			choice
 				`	"Could you threaten to cut off aid to the Unfettered if they continue their aggression?"`
 				`	"Could you launch an attack on the Unfettered, force them to fight a war on two fronts?"`
@@ -1880,8 +1881,8 @@ mission "Wanderers Hai Assistance 2"
 			`	"I will not authorize preemptive violence against our own flesh and blood," says one of the elders. "We only defend ourselves against them, never willingly initiate an attack."`
 			`	Teeneep and another Elder who seems to be in her corner both chitter the Hai equivalent of "Hear Hear" to this, though she is being very careful with her contributions.`
 			label threaten
-			`	"Perhaps it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
-			`	After well over an hour of further discussion, and with no small backing from Teeneep, they reach the consensus that this is their best option. As you leave the meeting, Sayari exchanges a few words with Teeneep before approaching you, "And now, I would like to visit the Unfettered themselves. Perhaps we can talk sense into them."`
+			`	"Perhaps Teeneep is right and it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
+			`	After well over an hour of further discussion, and with calculated backing from Teeneep, they reach the consensus that this is their best option. As you leave the meeting, Sayari exchanges a few words with Teeneep before approaching you, "And now, I would like to visit the Unfettered themselves. They will probably not listen, but perhaps we can talk sense into them. In any event, it is my job to try."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1903,6 +1904,7 @@ mission "Wanderers Hai Assistance 3"
 	landing
 	name "Return to <planet>"
 	description "Return with Sayari to <destination>, and tell Iktat Rek that you had some success in convincing the Hai to interfere with the Unfettered."
+	clearance
 	autosave
 	source "Darkcloak"
 	destination "Vara K'chrai"
@@ -1913,12 +1915,18 @@ mission "Wanderers Hai Assistance 3"
 		log "The Unfettered are unwilling to agree to even a temporary ceasefire with the Wanderers. They seem to think that they will win this war easily."
 		event "wanderers: tempest mass production"
 		conversation
-			`The Unfettered war chiefs listen to Sayari's plea with condescending smiles on their faces. When she is done speaking, one of them says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
+			`The Unfettered war chiefs gather around General Choot'k to listen to Sayari's plea with condescending smiles on their faces. When she is done speaking, Choot'k says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
 			`	"But people will die, on your side as well as the Wanderers," says Sayari. "They are willing to give you these worlds if you only give them time, perhaps no more than a few months or a year. Why lose your lives to claim what will be yours soon enough?"`
-			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says another of the chiefs.`
-			`	You are unable to convince them to change their plans, and as soon as the conversation ends they insist that you leave their planet. "Our warriors in orbit are eager to test this human's strength," says one of the chiefs, laughing.`
+			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says one of the chiefs.`
+			branch positive
+				"reputation: Hai (Unfettered)" > 0
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You were afforded a safe arrival here because of our history with the mighty Captain <last>, but now you must leave."`
+			`	"Beware! Our warriors in orbit are eager to test themselves against this famous human's strength," says one of the chiefs, laughing.`
 			`	As you and Sayari board your ship she mutters to you, "I was told to expect this, there's no need to stay and fight."`
 				launch
+			label positive
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You are a respected warrior Captain <last>, but now you must leave with this Fettered diplomat."`
+			`	As you and Sayari board your ship she mutters to you, "I was told to expect this, but it was only right to try."`
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
 

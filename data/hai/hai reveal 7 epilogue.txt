@@ -1,0 +1,55 @@
+# Copyright (c) 2020 MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+########################################################################
+
+mission "Hai Secret Leaker Begins"
+	landing
+	invisible
+	to offer
+		has "hai-human resolution announced"
+	on offer
+		event "hai-human treaty prepared" 160 200
+		fail
+
+event "hai-human treaty prepared"
+
+
+mission "HRF 01 Summoned to Mountaintop"
+	landing
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Hai"
+		not attributes "uninhabited"
+	destination "Mountaintop"
+	to offer
+		has "event: hai-human treaty prepared"
+		has "Expanding Business [4]: done"
+		has "Pirate Troubles [4]: done"
+		has "Nanachi 4: done"
+		#This makes sure that the background missions for the danger of travelling to Hai space can still happen (as they definitely don't work after this section).
+		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
+	on offer
+		conversation
+			#A message summons you for the treaty resolution.
+			`When you land at the spaceport you find a message waiting for you from Teneep in the system buffer.`
+			branch haispace
+			`	The message has travelled a very long way and filtered through a great many buffers and relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
+			label haispace
+			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on Mountaintop when you're ready.`
+			accept
+	
+	
+	
+	
+	
+	
+	
+#The final conclusion event.
+event "hai-human treaty signed"
