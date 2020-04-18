@@ -48,7 +48,7 @@ public:
 	static bool ZoomViewOut();
 	
 	// VSync setting, either "on", "off", or "adaptive".
-	static bool ToggleVSync();
+	static void ToggleVSync();
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 };

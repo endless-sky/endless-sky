@@ -141,7 +141,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
-			// For some settings, clicking the option does more than just toggle a boolean state.
+			// For some settings, clicking the option does more than just toggle a
+			// boolean state keyed by the option's name.
 			if(zone.Value() == ZOOM_FACTOR)
 			{
 				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
