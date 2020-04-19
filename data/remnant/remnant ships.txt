@@ -599,7 +599,6 @@ ship "Petrel"
 
 
 ship "Puffin"
-	plural "Puffins"
 	sprite "ship/puffin"
 	thumbnail "thumbnail/puffin"
 	attributes
@@ -844,4 +843,3 @@ ship "Tern"
 	explode "small explosion" 20
 	description "The Tern is a small, hardy drone developed to plunge into the atmosphere of nearby gas giants for collecting valuable resources. These thick-shelled craft are also surprisingly effective when pressed into service as screening ships when enemies intrude into Remnant space."
 	description "	Unlike most spacefaring nations, the Remnant do not have enough people to pilot fighter wings in waves likely to sustain significant casualties. As such, they frequently use these hardy drones to fulfill similar screening roles in their home systems, allowing manned craft to focus on more specialized tasks."
-
