@@ -116,10 +116,31 @@ namespace {
 		return false;
 	}
 	
+	// Determine if the ship has anti-missile turrets
+	bool CanAntimissile(const Ship &ship)
+	{
+		for(const Hardpoint &hardpoint : ship.Weapons())
+		{
+			const Weapon *weapon = hardpoint.GetOutfit();
+			if(weapon && hardpoint.IsAntiMissile())
+				return true;
+		}
+		return false;
+	}
+	
+	// Determine if the ship has sensors.
+	bool CanScan(const Ship &ship)
+	{
+		if ( ship.Attributes().Get("cargo scan power") + ship.Attributes().Get("outfit scan power") + ship.Attributes().Get("atmosphere scan") + ship.Attributes().Get("asteroid scan power") > 0 )
+			return true;
+		return false;
+	}
+	
+	// Launch fighters and drones.
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || bay.ship->Health() > .75))
+			if(bay.ship && (includingDamaged || ( bay.ship->Health() > .75 && ( IsArmed(*bay.ship) || CanAntimissile(*bay.ship) || CanScan(*bay.ship) || ship.Health() < 0.375 ))))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
 	
@@ -1618,7 +1639,20 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch
 	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
 		return true;
 	
-	// TODO: Reboard if in need of ammo.
+	// If an unarmed fighter was launched (or a missile boat has run out of ammo), and its parent is reasonably healthy, it should return.
+	double maxRange = 0.;
+	for(const Hardpoint &hardpoint : ship.Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon)
+		{
+			if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
+				continue;
+			maxRange = max(maxRange, weapon->Range());
+		}
+	}
+	if(!maxRange && ( ship.Health() <= parent.Health() || parent.Health() > 0.5))
+		return true;
 	
 	// If a fighter has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
