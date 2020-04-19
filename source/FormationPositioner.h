@@ -31,7 +31,7 @@ public:
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
-	Point NextPosition();
+	Point NextPosition(int minimumRing = 0);
 	
 	
 private:

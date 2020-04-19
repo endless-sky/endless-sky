@@ -29,8 +29,19 @@ void FormationPositioner::Start()
 
 
 
-Point FormationPositioner::NextPosition()
+Point FormationPositioner::NextPosition(int minimumRing)
 {
+	// Set the minimumRing if we have one.
+	if(minimumRing > ring)
+	{
+		// Set ring to minimum.
+		ring = minimumRing;
+		// Reset all other iterator values.
+		activeLine=0;
+		lineSlots=-1;
+		lineSlot=0;
+	}
+	
 	// If there are no active lines, then just return center point.
 	if(activeLine < 0)
 		return Point();

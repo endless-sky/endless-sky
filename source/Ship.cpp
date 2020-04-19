@@ -3066,6 +3066,21 @@ const FormationPattern *Ship::GetFormationPattern() const
 
 
 
+int Ship::GetFormationRing() const
+{
+	return formationRing;
+}
+
+
+
+void Ship::SetFormationRing(int newRing)
+{
+	if(newRing >= 0)
+		formationRing = newRing;
+}
+
+
+
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {

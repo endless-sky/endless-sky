@@ -344,6 +344,107 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 
 
 
+// Fleet commands from the player.
+void AI::IssueFormationRingDecrease(const PlayerInfo &player)
+{
+	// Figure out what ships we are giving orders to
+	vector<Ship *> ships;
+	bool fullFleet = player.SelectedShips().empty();
+	if(fullFleet)
+	{
+		for(const shared_ptr<Ship> &it : player.Ships())
+			if(it.get() != player.Flagship() && !it->IsParked()
+				&& !it->IsDestroyed())
+				ships.push_back(it.get());
+	}
+	else
+		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		{
+			shared_ptr<Ship> ship = it.lock();
+			if(ship)
+				ships.push_back(ship.get());
+		}
+	
+	// This should never happen, but just in case:
+	if(ships.empty())
+	{
+		if(fullFleet)
+			Messages::Add("No ships in the fleet to change formation for.");
+		else
+			Messages::Add("No ships selected that can change formation.");
+		
+		return;
+	}
+	
+	int changed = 0;
+	
+	for(Ship *ship : ships)
+	{
+		ship->SetFormationRing(0);
+		changed++;
+	}
+	
+	Messages::Add(to_string(changed) + " ships are now flying in formation ring 0.");
+}
+
+
+
+// Fleet commands from the player.
+void AI::IssueFormationRingIncrease(const PlayerInfo &player)
+{
+	// Figure out what ships we are giving orders to
+	vector<Ship *> ships;
+	bool fullFleet = player.SelectedShips().empty();
+	if(fullFleet)
+	{
+		for(const shared_ptr<Ship> &it : player.Ships())
+			if(it.get() != player.Flagship() && !it->IsParked()
+				&& !it->IsDestroyed())
+				ships.push_back(it.get());
+	}
+	else
+		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		{
+			shared_ptr<Ship> ship = it.lock();
+			if(ship)
+				ships.push_back(ship.get());
+		}
+	
+	// This should never happen, but just in case:
+	if(ships.empty())
+	{
+		if(fullFleet)
+			Messages::Add("No ships in the fleet to change formation for.");
+		else
+			Messages::Add("No ships selected that can change formation.");
+		
+		return;
+	}
+	
+	// First check which and how many formations we have in the current set of selected ships.
+	int maxRing = 0;
+	for(Ship *ship : ships)
+	{
+		int shipRing = ship->GetFormationRing();
+		if(shipRing > maxRing)
+			maxRing = shipRing;
+	}
+	maxRing++;
+	
+	// Now set the new ring on the selected ships.
+	int changed = 0;
+	for(Ship *ship : ships)
+	{
+		ship->SetFormationRing(maxRing);
+		changed++;
+	}
+	
+	Messages::Add(to_string(changed) + " ships are now flying in ring " + to_string(maxRing) + " of their formation.");
+}
+
+
+
+
 void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &target)
 {
 	Orders newOrders;
@@ -421,18 +522,23 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 				break;
 			}
 	
+	// Temporary borrow the gather, hold and fight commands to control formations.
 	if(activeCommands.Has(Command::GATHER) && activeCommands.Has(Command::SHIFT))
 		IssueFormationChange(player);
+	if(activeCommands.Has(Command::FIGHT) && activeCommands.Has(Command::SHIFT))
+		IssueFormationRingIncrease(player);
+	if(activeCommands.Has(Command::HOLD) && activeCommands.Has(Command::SHIFT))
+		IssueFormationRingDecrease(player);
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	Orders newOrders;
-	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours())
+	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours() && !activeCommands.Has(Command::SHIFT))
 	{
 		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
 		newOrders.target = target;
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
-	if(activeCommands.Has(Command::HOLD))
+	if(activeCommands.Has(Command::HOLD) && !activeCommands.Has(Command::SHIFT))
 	{
 		newOrders.type = Orders::HOLD_POSITION;
 		IssueOrders(player, newOrders, "holding position.");
@@ -1416,7 +1522,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	// Aggresively try to match the position and velocity for the formation position.
 	static const double POSITION_DEADBAND = 50.;
 	static const double VELOCITY_DEADBAND = 0.1;
-	bool inPosition = MoveTo(ship, command, it->second.NextPosition(), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
+	bool inPosition = MoveTo(ship, command, it->second.NextPosition(ship.GetFormationRing()), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
 	
 	// If we match the position and velocity, then also match the facing angle.
 	if(inPosition)
