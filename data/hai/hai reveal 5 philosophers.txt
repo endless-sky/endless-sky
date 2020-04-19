@@ -357,7 +357,7 @@ mission "Hai Rescue [B03] Diplomacy: Syndicate Internal Affairs"
 			has "Hai Rescue [B02] Diplomacy: Syndicate: done"
 			has "Hai Rescue [B02B] Diplomacy: Syndicate (Retry): done"
 	on offer
-		log `People` `Stephen Moray` `Deputy Director Moray works for Syndicate Internal Affairs dealing with pirate-related matters. In addition to enforcing the law, he also smuggles slaves from pirate worlds into freedom in Syndicate space. He has promised to find out who is responsible for the kidnappings.`
+		log "People" "Stephen Moray" `Deputy Director Moray works for Syndicate Internal Affairs dealing with pirate-related matters. In addition to enforcing the law, he also smuggles slaves from pirate worlds into freedom in Syndicate space. He has promised to find out who is responsible for the kidnappings.`
 		conversation
 			`Deputy Director Stephen Moray meets you at the entrance of your ship. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My part of Internal Affairs works on piracy-related matters."`
 			`	"I know what your people are going through," he says. "When I was a teenager, pirates kidnapped my brother and father, and forced them to serve on pirate vessels, calling them 'indentured servants.' My father watched helplessly as my brother's disabled ship was destroyed by a Navy Frigate just as it exited hyperspace. My father eventually escaped. He is serving his seventeenth year of a twenty-five-year sentence for piracy, even though his deeds were against his will"`

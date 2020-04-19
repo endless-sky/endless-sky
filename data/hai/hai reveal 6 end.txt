@@ -43,6 +43,7 @@ mission "Hai Reveal [D01] Cleanup"
 		#The actual treaty, post certain Hai missions, will be the one to result in a station in Cardax.
 	on complete
 		log `The Free Worlds, Republic, and Hai Elders, have signed a resolution to ensure safe passage for Hai in human space, on the condition that they register with a customs authority on Mountaintop. Any Hai sent against their will into human space will be recovered alive if possible, regardless of the risk to human soldiers. Human authorities will not change their approach towards regular human pirates and slavery though, citing "unsustainable loss of life."`
+		log `Unfortunately it seems that in the midst of the crisis a single ship loaded with kidnapped Hai was misplaced by the pirate faction. Now they're in need of rescue from where they've been dumped, and someone has to check for loose ends...`
 		conversation
 			`Arriving on Mountaintop brings with it full diplomatic regalia. The Chancellor of the Free Worlds and President of the Republic are in their most respectable suits, Alondo and Xilin have the traditional symbols of office (though Alondo's looks like the Free Worlds have perhaps not finalised their design just yet), and dress uniforms laden with medals abound on both sides.`
 			`	When you ask around you find out that Terry is not invited to such an event, as the Syndicate is technically part of the republic and awarded no special diplomatic status, not to mention that Terry appears to have left the station as soon as she was released at the end of the crisis.`
@@ -58,7 +59,7 @@ mission "Hai Reveal [D01] Cleanup"
 			`	Xilin looks at you pointedly, "We need you to go pick them up, bring them here, and while you're at it make sure the threat really is ended. If it's not, this resolution may not happen, despite everything we've achieved."`
 			`	You look from Xilin to Sayari and do your best to look like this isn't totally ruining the lovely breakfast you just had.`
 			choice
-				`	"of course, I'll take care of it."`
+				`	"Of course, I'll take care of it."`
 
 				
 event "mountaintop ascendant"
@@ -167,6 +168,7 @@ mission "Hai Reveal [D03] Cleanup"
 		has "Hai Reveal [D02] Cleanup: done"
 	on offer
 		event "lofty spawn"
+		log `With the Hai safely recovered you have a hunch about the loose end that left them there. It doesn't make a lot of sense yet, but you're sure you'll find answers on Freedom.`
 		conversation
 			`An all-hai greeting party are waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer when you return to Mountaintop. It appears to have avoided media attention, and the summit is progressing towards a resolution at an acceptable rate. It's been slow going, since the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
 			`	You've had time to consider for a couple of days on the return the events that led to you hauling a group of spontaneously abandoned hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
@@ -196,6 +198,7 @@ mission "Hai Reveal [D04] Cleanup"
 		has "Hai Reveal [D03] Cleanup: done"
 	on offer
 		event "lofty goals"
+		log `You have confirmed that the loose end is Terry, her grandmother ultimately pleaded with you for her life, but also told you where to find her. It turns out there was a whole other world out here in the north only accessible by jump drive. Someone lives there and apparently Terry has something to do with it.`
 		conversation
 			`	When you land on Freedom the spaceport is busy as ever, but as you go around asking if anyone has seen a woman matching Terry's description your reception starts to get distinctly weird. You wouldn't describe it as frosty, for no one actually seems to know anything and remains exactly as friendly and helpful as you'd expect a bunch of anarchists to be, but yet the more you ask around the more it seems that people are following you around and whispering to each other. You can't help but wonder just who Terry really is, and just how deeply involved she was. She seems to have been one step ahead all the way.`
 			`	As you go down a short alley, one that is flanked by tall buildings but quite wide and airy, you hear the creek of hinges behind you and turn to see a great wooden gate being closed behind you. The same happens at the other end of the alley, and the people in the alley suddenly disappear through doorways. As you're looking around you realise nearly a dozen plasma rifles are pointing at you from windows in upper floors.`
@@ -378,6 +381,9 @@ mission "Hai Reveal [D05A] Spare Terry"
 	destination "Mountaintop"
 	to offer
 		has "Hai Reveal [D04] Cleanup: done"
+	on complete
+		log `You hunted down Terry on Aspiration and confronted her about the events that led you here. You learned that the remnants of the anarcho-syndicalist, anti-Syndicate organisation called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community seems to have been built in isolation with people who believed in the principles of anarcho-syndicalism. Terry threw herself on your mercy, you had destroyed her plans, her livelihood, and forced her to abandon her ambitions. You allowed her to live, but nevertheless this loose end is thoroughly tied up.`
+		log "People" "Terry Adrianopolous" `During the crisis Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and re-making the government into a less corrupt structure. Unfortunately she dealt with people of the worst sort and condoned kidnapping and exploitation to achieve it. With her life in ruins though, and her goals noble, you were merciful. She continues to live on the world of Aspiration, far from civilisation.`
 	
 mission "Hai Reveal [D05B] End Terry"
 	landing
@@ -386,5 +392,8 @@ mission "Hai Reveal [D05B] End Terry"
 	destination "Mountaintop"
 	to offer
 		has "Hai Reveal [D04] Cleanup: done"
+	on complete
+		log `You hunted down Terry on Aspiration and confronted her about the events that led you here. You learned that the remnants of the anarcho-syndicalist, anti-Syndicate organisation called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community seems to have been built in isolation with people who believed in the principles of anarcho-syndicalism. Terry threw herself on your mercy, you had destroyed her plans, her livelihood, and forced her to abandon her ambitions. When she pleaded her case you became her executioner; this loose end is thoroughly tied up.`
+		log "People" "Terry Adrianopolous" `During the crisis Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and re-making the government into a less corrupt structure. Unfortunately she dealt with people of the worst sort and condoned kidnapping and exploitation to achieve it. Despite her noble intentions her crimes were unconscionable. Her story ended on the bluffs of Aspiration, though no one may ever know it.`
 	
 event "hai-human resolution announced"

@@ -466,6 +466,8 @@ mission "Hai Leaks Response 1"
 			has "ZZ Event Hai Secret Leaks: RSHU: done"
 			has "ZZ Event Hai Secret Leaks: FWHU: done"
 	on offer
+		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). Her experience has placed her in charge of coordinating the Hai response to the crisis of their continued secrecy.`
+		log `The Hai are very real, and the worlds of humanity seem poised to become aware of this but the Hai would like to avoid this. As a person of note with respect in all corners of human space the Hai have asked you to assist in representing their interests where travel to human space is required as a somewhat neutral party.`
 		conversation
 			`As you come into land on Hai-home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
 			`	Word of your status in human space seems to have spread ahead of you, especially with you beng known on many Hai worlds as one of the view significant human visitors. A small crowd of Hai have gathered to peek at you on the short walk from the Spaceport to the government building you are led to.`
@@ -507,6 +509,7 @@ mission "Hai Leaks Response 2"
 	passengers 3
 	on offer
 		event "pirates respond to leaks"
+		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man with a firm handshake. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and the recent peace.`
 		conversation
 			`On approach to the spaceport on Earth you communicate your need to speak to an official of significant standing on diplomatic business. Since you are not a diplomat this does cause some minor kerfuffle in the process, but thanks to your renown from the Pug war you are able to blow past such petty objections sufficiently so as to shortcut the process. The diplomatic ID from the box Sayari gave you doesn't hurt either.`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a hired, private room at the spaceport.`
@@ -531,6 +534,7 @@ mission "Hai Leaks Response 2"
 			`	"Excellent, in that case we should go to Deep first for speed, shall we be off?"`
 				accept
 	on stopover
+		log "People" "Terry Adrianopolous" `Protege to the CEO, Terry Adrianopolous has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder, including an ability to act with apparently genuine friendliness to people whom she may consider her opponents.`
 		conversation
 			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
 			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
@@ -541,6 +545,7 @@ mission "Hai Leaks Response 2"
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
+		log `You have brought a number of diplomatic representatives from each of the main human factions to Hai-home to attend to the crisis in a collaborative manner. They do not believe any of their automatic responses that have already been engaged will be enough to suppress the information leak, though there is a reasonable model for how long they have to work with. While they work on the problem though you have been asked to help route some pirates. Apparently less scrupulous individuals have reacted swiftly to the leak and investigated in the hopes of scoring quickly.`
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business at the moment Sayeri inquires how your journey went.`
@@ -591,6 +596,7 @@ mission "Hai Leaks Response 2A"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
+		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic core for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free World's interests during this crisis.`
 		conversation
 			`When you land on Deep Katya is there waiting for you along with Alondo, "<first> it's so good to see you again! When the Republic briefed the council we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting as you look from one to the other, "I thought it seemed odd when they said I was meeting you for this Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
@@ -669,6 +675,7 @@ mission "Hai Leaks Response 4"
 	on complete
 		payment 1000000
 		event "waypoint pirates vanquished"
+		log `Defeated a nasty marauder whose ship was the "Black Lich". He had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. You were rewarded well for this particular piece of aid.`
 		conversation
 			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
 			
@@ -719,6 +726,7 @@ event "waypoint pirates vanquished"
 # 	on fail
 # 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the heroic ending, revert to the autosave or another earlier snapshot of the game.`
 # 	on complete
+#		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it and it may be a valuable prize.`
 # 		event "returned geocoris" 365
 # 		#The Geodesic Geocoris may become available to purchase specially later on.
 		
@@ -829,12 +837,13 @@ mission "Hai Leaks Response 6"
 		event "role-play fleet deception"
 		# Hai like you a lot now, and as a result, you have permanent access to Hai-home:
 		"reputation: Hai" >?= 100
+		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act as an isolated furry role-play community. This is only a short-term solution. While they are working on a longer-term solution Sayari has quietly asked you to look into a rumour about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist and so she would like you to be sure there's no issues lurking while the diplomatic process is working.`
 		conversation
 			`When you return to Hai-home you are met by a group of relieved diplomats.`
 			`	Of all of them Alondo seems to be the least tired and takes the time to let you know what's been going on, "Captain <last>! You've missed quite the palava. Still, I doubt you lost much by missing out on trying to explain to Sayuri what a 'furry' is."`
 			choice
 				`	"Oh I don't know, could've been entertaining."`
-				`	"IHmm, yes, no probably not."`
+				`	"Hmm, yes, no probably not."`
 			`	He chuckles, "Anyway, I have a hunch that we're going to be needing you before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part' as it were of a closed in role-play community, just chilling out here and having fun."`
 			`	"Come though," he says, "I hear you've been instrumental in driving off some opportunistic pirates and helping stem the information leak, I'll buy you a drink on the other's behalf."`
 			`	Some hours later you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep, your cabin by far seems to be the best place to not be bothered.`
@@ -867,6 +876,7 @@ mission "Hai Leaks Response 6"
 	to complete
 		"hai slave prereq" >= 3
 	on complete
+		log `You found proof of more kidnapped Hai. Sayari's fears appear to have been entirely justified...`
 		dialog `You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you have enough information for Sayuri.`
 		event "secret mountaintop"
 
