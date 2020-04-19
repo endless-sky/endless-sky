@@ -131,7 +131,7 @@ namespace {
 	// Determine if the ship has sensors.
 	bool CanScan(const Ship &ship)
 	{
-		if ( ship.Attributes().Get("cargo scan power") + ship.Attributes().Get("outfit scan power") + ship.Attributes().Get("atmosphere scan") + ship.Attributes().Get("asteroid scan power") > 0 )
+		if ( ship.Attributes().Get("cargo scan power") + ship.Attributes().Get("outfit scan power") + ship.Attributes().Get("atmosphere scan") + ship.Attributes().Get("asteroid scan power") + ship.Attributes().Get("tactical scan power") > 0 )
 			return true;
 		return false;
 	}
@@ -140,7 +140,7 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || ( bay.ship->Health() > .75 && ( IsArmed(*bay.ship) || CanAntimissile(*bay.ship) || CanScan(*bay.ship) || ship.Health() < 0.375 ))))
+			if(bay.ship && (includingDamaged || ( bay.ship->Health() > .75 && ( IsArmed(*bay.ship) || CanAntimissile(*bay.ship) || CanScan(*bay.ship) || (ship.Shields() + ship.Hull() < 1 )))))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
 	
@@ -1651,7 +1651,8 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch
 			maxRange = max(maxRange, weapon->Range());
 		}
 	}
-	if(!maxRange && ( ship.Health() <= parent.Health() || parent.Health() > 0.5))
+	double canScan = ( ship.Attributes().Get("cargo scan power") + ship.Attributes().Get("outfit scan power") + ship.Attributes().Get("atmosphere scan") + ship.Attributes().Get("asteroid scan power") + ship.Attributes().Get("tactical scan power") > 0 );
+	if(!maxRange && !canScan && ( ship.Health() <= parent.Health() || (parent.Hull() + parent.Shields() > 1 )))
 		return true;
 	
 	// If a fighter has fuel capacity but is very low, it should return if
