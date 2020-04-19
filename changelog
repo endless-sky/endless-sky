@@ -1,8 +1,8 @@
 Version 0.9.12:
   * Bug fixes:
-    * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @MCOfficer, Mr. Doom, @Naminson, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
+    * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @MCOfficer, Mr. Doom, @Naminson, @NomadicVolcano, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
     * The Penguin now requires a Remnant license to purchase. (@Zitchas)
-    * Out of system ships can no longer be selected in the outfitter and shipyard. (@tehhowch)
+    * Out-of-system ships can no longer be selected in the outfitter and shipyard. (@tehhowch)
     * Pressing D to depart will no longer also immediately deploy fighters on launch. (@petervdmeer)
     * Fixed various instances of missing or unnecessary minor tags on missions. (@Amazinite, @Anarchist2)
     * Governments now have the same attitude toward the " Hai " government as they do the "Hai" government. (@NomadicVolcano)
@@ -12,6 +12,8 @@ Version 0.9.12:
     * The number of drone and fighter bays is now properly displayed in the ship info when in flight. (@tehhowch)
     * The pop-up dialog when launching with ships that can not leave the system will now always refer to the correct number of ships. (@tehhowch)
     * Fixed various cases where the map would improperly display whether a mission's objectives were satisfied. (@tehhowch)
+    * Afterburner and other visual effects are no longer drawn "shifted" by their velocity. (@tehhowch)
+    * Fixed a possible crash on startup caused by unsupported VSync settings. (@tehhowch)
   * Game content:
     * New content:
       * New variant of the mystery deliver jobs that has unique dialog for station destinations. (@Anarchist2)
@@ -24,6 +26,7 @@ Version 0.9.12:
       * Added a new Heliarch turret, the Ion Hail Turret. (@Arachi-Lover, @beccabunny)
       * More Ka'het ship names and hails. (@beccabunny)
       * Added a new star/planet type, the brown dwarf. (@ravenshining)
+      * Added spaceport news stories for Hai space. (@NomadicVolcano)
     * Balance:
       * Slightly increased the hull and ion damage of the Ion Rain Gun. (@Arachi-Lover)
       * Reduced the outfit space requirement of solar panels to make them more attractive to use. (@Zitchas, @Amazinite)
@@ -48,6 +51,8 @@ Version 0.9.12:
     * Generate downloadable continuous builds upon commit. (@MCOfficer)
     * Make AppImage releases compatible with systems older than Ubuntu 18.04. (@MCOfficer)
     * Expanded the credits to acknowledge everyone who has contributed to the game on GitHub. (@Zitchas)
+    * The game's build systems now support placing code files in subdirectories. (@tehhowch)
+    * Various improvements to the GitHub build pipeline. (@MCOfficer, @petervdmeer, @tehhowch)
 
 Version 0.9.11:
   * Big changes:
