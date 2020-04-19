@@ -29,259 +29,320 @@ mission "Event: Pug Media Coverage"
 	to offer
 		has "event: pug media coverage"
 	on offer
+		event "hai secret leaks" 10 15
 		conversation
 			`It's been weeks now but as you walk through the spaceport you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines.`
 			`	As you look around you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect, that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict and learn not to tolerate the sorts of extremism that lead to the events that precipitated the war.`
 			`	Others...`
 			`	You sigh deeply as you watch some paranoid fringe world politician demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known and that it was the responsibility of the government to find out and inform the people.`
 			`	Your thoughts, you keep to yourself.`
-			event "hai secret leaks" 10 15
 				decline
 
 event "hai secret leaks"
 
-mission "Event: Hai Secret Leaks A"
+
+
+conversation "hai reveal free worlds news"
+	`You are relaxing at the spaceport while your ship refuels after conducting a spot of business. On the viewscreen is some talk show or other, not something you specifically paid attention to but apparently a quite popular one out of Tarazed.`
+	`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
+	`	"So now in our surprise segment let me introduce you to Ronald. He once crewed on one of these big trade ships but after seeing what he saw, he just had to come foward!"`
+	`	The host stresses the word 'had' so much his voice squeeks but the audience's attention has certainly been gained.`
+	`	"But first, lets take a look at a clip."`
+	`	You raise your eyebrows with surprise.`
+	branch "hai knowledge"
+		has "First Contact: Hai: offered"
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
+	`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
+	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
+		accept
+	label "hai knowledge"
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
+	`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
+	`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
+		accept
+
+
+conversation "hai reveal republic or syndicate news"
+	`You are relaxing at the spaceport while your ship refuels after conducting a spot of business when a breaking news broadcast comes on; not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
+	`	The severe looking anchorwoman bores down the camera with an expression that demands attention.`
+	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders! He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at 6."`
+	`	You raise your eyebrows with surprise.`
+	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait so you stick around for the full segment out of curiosity.`
+	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently travelled many weeks before deciding to seek the media in order to avoid being shut down by republic intelligence if he contacted media elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
+	branch "hai knowledge"
+		has "First Contact: Hai: offered"
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
+	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
+	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
+		accept	
+	label "hai knowledge"
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
+	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
+	`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
+		accept
+
+
+conversation "What is going on in Hai space? (Have not met Unfettered.)"
+	`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children and passers-by look upon you with a hint of wariness.`
+	`	You realise that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
+	choice
+		`	"Why does everyone seem so afraid?"`
+		`	"Why are you all wearing pink?"`
+			goto pink
+	`	She shakes her head and wrinkles her nose with a look of distaste, "Some marauder came here just yesterday, posing as a trader to investigate the rumours. We thought the Hai had means of keeping them out but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+	`	She sighs deeply, "Everyone is just a bit shaken and distrustful at the moment."`
+	`	"Oh that's awful!" you say.`
+	`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."`
+		goto main
+	label pink
+	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."`
+	label main
+	`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
+	choice
+		# Rewrote question so it makes sense whether you met them or not
+		`	"What are these 'Unfettered' doing?"`
+			goto rebels
+		`	"That is a serious problem."`
+	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
+	`	"Are you Captain <last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
+	`	You nod your affirmation.`
+	`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."`
+	`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
+		decline
+	label rebels
+	`	She seems surprised you asked, "Oh, they're a sort of rebel Hai group. If you don't know you should go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit will explain it far better than I ever could."`
+		decline
+
+
+
+conversation "What is going on in Hai space? (Met the Unfettered.)"
+	`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children and passers-by look upon you with a hint of wariness.`
+	`	You realise that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
+	choice
+		`	"Why does everyone seem so afraid?"`
+		`	"Why are you all wearing pink?"`
+			goto pink
+	`	She shakes her head and wrinkles her nose with a look of distaste, "Some marauder came here just yesterday, posing as a trader to investigate the rumours. We thought the Hai had means of keeping them out but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+	`	She sighs deeply, "Everyone is just a bit shaken and distrustful at the moment."`
+	`	"Oh that's awful!" you say.`
+	`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."`
+		goto main
+	label pink
+	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."`
+	label main
+	`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
+	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
+	`	"Are you Captain <last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
+	`	You nod your affirmation.`
+	`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."`
+	`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
+		decline
+
+
+
+# Six possibilities for origin and destination, to work around bug 1938
+# Symbols RS=Republic or Syndicate FW = Free Worlds
+# H=met Hai, U=met Unfettered
+
+mission "ZZ Event Hai Secret Leaks: RSH"
 	landing
+	name "Visit the Hai on Allhome"
+	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok."
 	source
 		government "Republic" "Syndicate"
 		attributes "spaceport"
-	to offer
-		has "event: hai secret leaks"
-		not "Event: Hai Secret Leaks B: offered"
-	on offer
-		conversation
-			`You are relaxing at the spaceport while your ship refuels after conducting a spot of business when a breaking news broadcast comes on; not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
-			`	The severe looking anchorwoman bores down the camera with an expression that demands attention.`
-			`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders! He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at 6."`
-			`	You raise your eyebrows with surprise.`
-			`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait so you stick around for the full segment out of curiosity.`
-			`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently travelled many weeks before deciding to seek the media in order to avoid being shut down by republic intelligence if he contacted media elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
-			branch "hai knowledge"
-				has "First Contact: Hai: offered"
-			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
-			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
-			`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
-				decline	
-			label "hai knowledge"
-			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
-			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
-			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
-		fail
-	
-mission "Event: Hai Secret Leaks B"
-	landing
-	source
-		government "Free Worlds"
-		attributes "spaceport"
-	to offer
-		has "event: hai secret leaks"
-		not "Event: Hai Secret Leaks A: offered"
-	on offer
-		event "pirates investigate leaks"
-		conversation
-			`You are relaxing at the spaceport while your ship refuels after conducting a spot of business. On the viewscreen is some talk show or other, not something you specifically paid attention to but apparently a quite popular one out of Tarazed.`
-			`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
-			`	"So now in our surprise segment let me introduce you to Ronald. He once crewed on one of these big trade ships but after seeing what he saw, he just had to come foward!"`
-			`	The host stresses the word 'had' so much his voice squeeks but the audience's attention has certainly been gained.`
-			`	"But first, lets take a look at a clip."`
-			`	You raise your eyebrows with surprise.`
-			branch "hai knowledge"
-				has "First Contact: Hai: offered"
-			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
-			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
-			`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
-				decline
-			label "hai knowledge"
-			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
-			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
-			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
-		fail
-		
-event "pirates investigate leaks"
-	system "Waypoint"
-		government "Pirate"
-		add fleet "Marauder fleet IX" 600
-		
-#Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
-
-mission "Leaks 1A: Visit the Hai"
-	name "Visit the Hai on Allhome"
-	description "It seems like events may be taking away the hai's valued secrecy, best see if things are ok."
-	landing
-	destination "Allhome"
-	to offer
-		has "event: hai secret leaks"
-	to fail
-		or
-			has "Event: Hai Secret Leaks A: declined"
-			has "Event: Hai Secret Leaks B: declined"
-	to complete
-		has "Leaks 1B: Investigate the Hai: failed"
-	
-mission "Leaks 1B: Investigate the Hai"
-	name "Investigate the Hai"
-	description "A secret and violent alien race that Traders have known about for ages? Preposterous; go find out what's really going on."
-	landing
 	waypoint "Ultima Thule"
 	destination "Allhome"
 	to offer
 		has "event: hai secret leaks"
-	to fail
-		or
-			has "Event: Hai Secret Leaks A: failed"
-			has "Event: Hai Secret Leaks B: failed"
-	to complete
-		has "Leaks 1A: Visit the Hai: failed"
-	
-	
-#Branch A is if you already have Hai first contact - sends you directly to Hai Home (detour if you haven't visited Wah Ki yet).
+		has "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
+		not "asked to investigate hai leak"
+	on offer
+		event "pirates investigate leaks"
+		set "asked to investigate hai leak"
+		conversation "hai reveal republic or syndicate news"
+	on complete
+		conversation "What is going on in Hai space? (Have not met Unfettered.)"
 
-mission "Leaks 1A Unfettered A"
+mission "ZZ Event Hai Secret Leaks: FWH"
+	landing
+	name "Visit the Hai on Allhome"
+	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok."
+	source
+		government "Free Worlds"
+		attributes "spaceport"
+	waypoint "Ultima Thule"
+	destination "Allhome"
+	to offer
+		has "event: hai secret leaks"
+		has "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
+		not "asked to investigate hai leak"
+	on offer
+		event "pirates investigate leaks"
+		set "asked to investigate hai leak"
+		conversation "hai reveal free worlds news"
+	on complete
+		conversation "What is going on in Hai space? (Have not met Unfettered.)"
+
+mission "ZZ Event Hai Secret Leaks: RSHU"
+	landing
+	name "Visit the Hai"
+	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok. Visit <stopovers> and <destination>."
+	source
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+	stopover "Allhome"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "event: hai secret leaks"
+		has "First Contact: Hai: offered"
+		has "First Contact: Unfettered: offered"
+		not "asked to investigate hai leak"
+	on offer
+		set "asked to investigate hai leak"
+		conversation "hai reveal republic or syndicate news"
+	on visit
+		dialog "You need to visit Allhome first before you can finish this mission."
+	on stopover
+		conversation "What is going on in Hai space? (Met the Unfettered.)"
+	on complete
+		conversation "reached Hai-home after secrets leaked"
+
+mission "ZZ Event Hai Secret Leaks: FWHU"
+	landing
+	name "Visit the Hai"
+	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok. Visit <stopovers> and <destination>."
+	source
+		government "Free Worlds"
+		attributes "spaceport"
+	stopover "Allhome"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "event: hai secret leaks"
+		has "First Contact: Hai: offered"
+		has "First Contact: Unfettered: offered"
+		not "asked to investigate hai leak"
+	on offer
+		set "asked to investigate hai leak"
+		conversation "hai reveal free worlds news"
+	on visit
+		dialog "You need to visit Allhome first before you can finish this mission."
+	on stopover
+		conversation "What is going on in Hai space? (Met the Unfettered.)"
+	on complete
+		conversation "reached Hai-home after secrets leaked"
+
+mission "ZZ Event Hai Secret Leaks: RS"
+	landing
+	name "Investigate the Hai"
+	description "A secret and violent alien race that Traders have known about for ages? Preposterous; go find out what's really going on."
+	source
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+	waypoint "Ultima Thule"
+	destination "Allhome"
+	to offer
+		has "event: hai secret leaks"
+		not "First Contact: Hai: offered"
+		not "asked to investigate hai leak"
+	on offer
+		event "pirates investigate leaks"
+		set "asked to investigate hai leak"
+		conversation "hai reveal republic or syndicate news"
+
+mission "ZZ Event Hai Secret Leaks: FW"
+	landing
+	name "Investigate the Hai"
+	description "A secret and violent alien race that Traders have known about for ages? Preposterous; go find out what's really going on."
+	source
+		government "Free Worlds"
+		attributes "spaceport"
+	waypoint "Ultima Thule"
+	destination "Allhome"
+	to offer
+		has "event: hai secret leaks"
+		not "First Contact: Hai: offered"
+		not "asked to investigate hai leak"
+	on offer
+		set "asked to investigate hai leak"
+		event "pirates investigate leaks"
+		conversation "hai reveal free worlds news"
+	
+	
+event "pirates investigate leaks"
+	system "Waypoint"
+		government "Pirate"
+		add fleet "Marauder fleet IX" 600
+	
+	
+#This branch is if you have met the Hai but not the Unfettered
+
+mission "Hai Witness Unfettered [1]"
 	name "Witness the Unfettered"
 	description "Turns out this endless conflict has some truth to it, go see where it's happening."
 	landing
-	source
-		government "Hai"
-		not attributes "uninhabited"
-		not planet "Cloudfire"
-		not planet "Hai-home"
+	source "Allhome"
 	destination "Darkcloak"
 	to offer
-		has "Leaks 1A: Visit the Hai: done"
-	on offer
-		conversation
-			`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children and passers-by look upon you with a hint of wariness.`
-			`	You realise that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
-			choice
-				`	"Why does everyone seem so afraid?"`
-				`	"Why are you all wearing pink?"`
-					goto pink
-			`	She shakes her head and wrinkles her nose with a look of distaste, "Some marauder came here just yesterday, posing as a trader to investigate the rumours. We thought the Hai had means of keeping them out but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
-			`	She sighs deeply, "Everyone is just a bit shaken and distrustful at the moment."`
-			`	"Oh that's awful!" you say.`
-			`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."`
-			goto main
-			label pink
-			`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."`
-			label main
-			`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
-			choice
-				`	"That is a serious problem." (If you already know about them.)`
-				`	"Who are the Unfettered?" (Go and find out.)`
-					goto rebels
-			`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
-			`	"Are you Captain <Last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
-			`	You nod your affirmation.`
-			`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."`
-			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
-				decline
-			label rebels
-			`	She seems surprised you asked, "Oh, they're a sort of rebel Hai group. If you don't know you should go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit will explain it far better than I ever could."`
-				accept
-	on accept
-		fail "Leaks 2A: Envoy Accepted"
+		or
+			has "ZZ Event Hai Secret Leaks: RSH: done"
+			has "ZZ Event Hai Secret Leaks: FWH: done"
 	on complete
 		conversation
 			`You had to bribe your way through just to land without being blown up. These Unfettered Hai do not seem friendly, but it's time to find out what they're about.`
 	
 	
 	#Follow-up on Cloudfire
-mission "Leaks 1AB"
+	# Must trigger before Unfettered contact mission
+mission "00 Hai Witness Unfettered [2]"
 	name "Find out about the Rebels on Cloudfire"
 	description "Go to Cloudfire and compare the Hai's side of the conflict."
 	landing
-	source
-		planet "Darkcloak" 
+	source "Darkcloak" 
 	destination "Cloudfire"
 	to offer
-		has "Leaks 1A: Visit the Hai: done"
-		has "Leaks 1A Unfettered A: done"
+		has "Hai Witness Unfettered [1]: done"
 	on complete
 		conversation
 			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
 			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
 			`	It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
 	
-#This fires at the same time as leaks "1A unfettered A" and takes you to Hai-home if you don't need to visit Cloudfire.
-mission "Leaks 2A: Envoy Accepted"
-	name "Head directly to Hai-home"
-	description "Travel to Hai-home, go directly to Hai-home, do not pass Go or collect $200."
+# This fires if you haven't met the Hai, to trigger the entire tour.
+# It must happen after the first contact mission.
+mission "ZZ Hai Tour [0] From Allhome"
+	invisible
 	landing
-	source
-		government "Hai"
-		not attributes "uninhabited"
-		not planet "Cloudfire"
-		not planet "Hai-home"
-	destination "Hai-home"
-	clearance
+	source "Allhome"
 	to offer
-		has "Leaks 1A: Visit the Hai: done"
-	to fail
 		or
-			has "Leaks 1A Unfettered A: done"
-			has "Leaks 1A Unfettered A: active"
-			has "Leaks Response 1: offered"
+			has "ZZ Event Hai Secret Leaks: RS: done"
+			has "ZZ Event Hai Secret Leaks: FW: done"
+	on offer
+		fail "Hai Witness Unfettered [1]"
+		conversation "What is going on in Hai space? (Have not met Unfettered.)"
 	to complete
 		has "Leaks 1A Unfettered A: declined"
 	
-#This fires after you've visited Darkcloak and Cloudfire to learn about the Unfettered
-mission "Leaks 2B: Envoy Accepted"
-	name "Head directly to Hai-home"
-	description "Go to Hai-home and meet whoever wants to speak with you."
-	landing
-	source
-		planet "Cloudfire"
-	destination "Hai-home"
-	clearance
-	to offer
-		has "Leaks 1AB: done"
-	to fail
-		has "Leaks Response 1: offered"
-	on offer
-		conversation
-			`After looking around Cloudfire for some time you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby and your ears suddenly perk up at the word "marauder".`
-			`	"Yesterday a marauder has terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
-			`	At a table nearby you hear a Hai staffmember exclaim, "Oh that's awful!"`
-			`	The rumours must be spreading further by the day you think, no doubt something will soon have to be done.`
-			`	This thought has no sooner crossed your mind when your solitude is interrupted by a small group of somewhat official-looking Hai.`
-			`	"Are you Captain <Last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
-			`	You nod your affirmation.`
-			`	"Your reputation precedes you Captain. As a person of note at home who we hear has now been travelling all over Hai space, you are presently being treated as an Envoy."`
-			`	For a second you wonder if it's a joke but they look as serious as Hai can look.`
-			choice
-				`	"Oh I really don't think that's necessary."`
-					goto nevertheless
-				`	"Oh, I'm honoured, thank you."`
-			`	"If you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you."`
-			goto main
-			label nevertheless
-			`	"You may not think it's necessary, but sometimes that is the price of fame."`
-			`	The officious looking Hai shrugs, "In any event please head directly to Hai-home. Someone would very much like to talk to you."`
-			label main
-			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
-				accept
 	
-	
-#Branch B is if you haven't met the Hai before, fires after First contact happens, sends you on a short guided tour of Hai space.
-	
-#This mission may not fire immediately after first contact as intended (subject to testing) unless PR #4764 is resolved.
 	#Stop 1 Imo Dep (Stonebreak)
-mission "Leaks Tour 1"
-	name "Check out Stonebreak in Imo Dep"
-	description "Go to Stonebreak and learn more about the Hai's worlds."
+mission "ZZ Hai Tour [1] Stonebreak"
+	name "You're summoned to <planet>"
+	description "Go to <destination> and learn more about the Hai's worlds."
 	landing
-	source
-		government "Hai"
-		not attributes "uninhabited"
-		not planet "Cloudfire"
-		not planet "Hai-home" 
+	source "Allhome"
 	destination "Stonebreak"
 	to offer
-		has "First Contact: Hai: declined"
-		has "Leaks 1B: Investigate the Hai: done"
+		or
+			has "ZZ Event Hai Secret Leaks: RS: done"
+			has "ZZ Event Hai Secret Leaks: FW: done"
 	on offer
 		conversation
-			`As you are leaving the Merchant and the Hai, the Hai calls out as an afterthought, "Oh Captain, if you really want to see what the Hai are like, you should go viit Stonebreak."`
+			`As you are leaving the Merchant and the Hai, the Hai calls out as an afterthought, "Oh Captain, if you really want to see what the Hai are like, you should go visit Stonebreak."`
 			choice
 				`	"Thanks, I'll do that!"`
 					accept
@@ -294,102 +355,116 @@ mission "Leaks Tour 1"
 			`	As you are wandering around and getting a feel for the place you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out.`
 		
 	#Stop 2 Alta Hai (Alta Hai Ringworld)
-mission "Leaks Tour 2"
-	name "Check out the ringworld Alta Hai"
-	description "Go to Stonebreak and learn more about the Hai's worlds."
+mission "Hai Tour [2] Alta Hai"
 	landing
-	source
-		planet "Stonebreak"
+	name "Visit the ringworld on <planet>"
+	description "Go to <destination> and learn more about the Hai's worlds."
+	source "Stonebreak"
 	destination "Alta Hai"
 	to offer
-		has "Leaks Tour 1: done"
-	on complete
+		has "ZZ Hai Tour [1] Stonebreak: done"
+
+	#Stop 3 Wah Yoot (Darkcloak) - must happen after Quarg first contact
+mission "ZZ Hai Tour [3] Meet Unfettered"
+	name "Meet the Rebels on <planet>"
+	description "Go to <destination> and learn more about the Hai's conflict."
+	landing
+	source "Alta Hai"
+	destination "Darkcloak"
+	to offer
+		has "Hai Tour [2] Alta Hai: done"
+	on offer
 		conversation
 			`This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
-			`	As you're looking around you find a Quarg to query, "So this isn't Hai space then, but it's a dead end?"`
+			`	Pondering your questions, you find a Quarg to query, "So this isn't Hai space then, but it's a dead end?"`
 			`	The Quarg explains, "Much like in Enif in human space, this is where we live as friends to the Hai."`
 			`	This explanation seems typically Quarg, but it's the best one you're able to get.`
 			`	Before you go you ask, "Do you know about the rebels I've been hearing about?"`
 			`	The Quarg responds, "The Hai and their rebels are the same. You should travel to Darkcloak in Wah Yoot to understand."`
 			`	It seems like there's nothing else for it but to see for yourself.`
-
-	#Stop 3 Wah Yoot (Darkcloak)
-mission "Leaks Tour 3"
-	name "Meet the Rebels on Darkcloak"
-	description "Go to Darkcloak and learn more about the Hai's conflict."
-	landing
-	source
-		planet "Alta Hai" 
-	destination "Darkcloak"
-	to offer
-		has "Leaks Tour 2: done"
-	on complete
-		conversation
-			`You had to bribe your way through just to land without being blown up. These Unfettered Hai do not seem friendly, but it's time to find out what they're about.`
+				accept
 	
 	#Stop 4 Wah Ki (Cloudfire)
-mission "Leaks Tour 4"
+	# Must happen before unfettered first contact
+mission "00 Hai Tour [4] Cloudfire"
 	name "Find out about the Rebels on Cloudfire"
 	description "Go to Cloudfire and compare the Hai's side of the conflict."
 	landing
-	source
-		planet "Darkcloak" 
+	source "Darkcloak" 
 	destination "Cloudfire"
 	to offer
-		has "Leaks Tour 3: done"
+		has "ZZ Hai Tour [3] Meet Unfettered: done"
+	on offer
+		conversation
+			`You had to bribe your way through just to land without being blown up. These Unfettered Hai do not seem friendly, but it's time to find out what they're about.`
+				accept
 	on complete
 		conversation
 			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
 			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
 			`	It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
 	
-#Time to rejoin the main story.
-mission "Leaks Tour 5"
+# Both tours merge here
+mission "Hai Tour [5] Tour Ends"
 	name "Head directly to Hai-home"
 	description "Go to Hai-home and meet whoever wants to speak with you."
 	landing
-	source
-		planet "Cloudfire"
+	source "Cloudfire"
 	destination "Hai-home"
 	clearance
 	to offer
-		has "Leaks Tour 4: done"
+		or
+			has "00 Hai Tour [4] Cloudfire: done"
+			has "00 Hai Witness Unfettered [2]: done"
 	on offer
-		conversation
-			`After looking around Cloudfire for some time you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby and your ears suddenly perk up at the word "marauder".`
-			`	"Yesterday a marauder terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
-			`	At a table nearby you hear a Hai staffmember exclaim, "Oh that's awful!"`
-			`	The rumours must be spreading further by the day you think, no doubt something will soon have to be done.`
-			`	This thought has no sooner crossed your mind when your solitude is interrupted by a small group of somewhat official-looking Hai.`
-			`	"Are you Captain <Last>?" one of them asks you, "Don't worry, you're not in trouble or anything."`
-			`	You nod your affirmation.`
-			`	"Your reputation precedes you Captain. As a person of note at home who we hear has now been travelling all over Hai space, you are presently being treated as an Envoy."`
-			`	For a second you wonder if it's a joke but they look as serious as Hai can look.`
-			choice
-				`	"Oh I really don't think that's necessary."`
-					goto nevertheless
-				`	"Oh, I'm honoured, thank you."`
-			`	"If you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you."`
-				goto main
-			label nevertheless
-			`	"You may not think it's necessary, but sometimes that is the price of fame."`
-			`	The officious-looking Hai shrugs, "In any event please head directly to Hai-home. Someone would very much like to talk to you."`
-			label main
-			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
-				accept
+		conversation "reached Hai-home after secrets leaked"
+
+conversation "reached Hai-home after secrets leaked"
+	branch "skipped tours"
+		or
+			has "ZZ Event Hai Secret Leaks: RSHU: done"
+			has "ZZ Event Hai Secret Leaks: FWHU: done"
+	`After looking around Cloudfire for some time you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby and your ears suddenly perk up at the word "marauder".`
+	`	"Yesterday a marauder terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+		goto "that's awful"
+	label "skipped tours"
+	`Soon after you land on <planet>, you notice a news broadcast on a nearby wall, "Yesterday a marauder terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+		goto "that's awful"
+	label "that's awful"
+	`	At a table nearby you hear a Hai staff member exclaim, "Oh that's awful!"`
+	`	The rumours must be spreading further by the day you think, no doubt something will soon have to be done.`
+	`	This thought has no sooner crossed your mind when your solitude is interrupted by a small group of somewhat official-looking Hai.`
+	`	"Are you Captain <last>?" one of them asks you, "Don't worry, you're not in trouble or anything."`
+	`	You nod your affirmation.`
+	`	"Your reputation precedes you Captain. As a person of note at home who we hear has now been travelling all over Hai space, you are presently being treated as an Envoy."`
+	`	For a second you wonder if it's a joke but they look as serious as Hai can look.`
+	choice
+		`	"Oh I really don't think that's necessary."`
+			goto nevertheless
+		`	"Oh, I'm honoured, thank you."`
+	`	"If you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you."`
+		goto main
+	label nevertheless
+	`	"You may not think it's necessary, but sometimes that is the price of fame."`
+	`	The officious-looking Hai shrugs, "In any event please head directly to Hai-home. Someone would very much like to talk to you."`
+	label main
+	`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
+		accept
+
+
+#All prior branches merge here.
 	
-	
-#Branches merge here.
-	
-mission "Leaks Response 1"
+mission "Hai Leaks Response 1"
 	landing
+	name "Hai message to <planet>"
+	description "Take the diplomatic ID from the box from Sayari to <destination>."
 	source "Hai-home"
 	destination "Earth"
 	to offer
 		or
-			has "Leaks 2A: Envoy Accepted: done"
-			has "leaks 2B: Envoy Accepted: done"
-			has "Leaks Tour 5: done"
+			has "Hai Tour [5] Tour Ends: done"
+			has "ZZ Event Hai Secret Leaks: RSHU: done"
+			has "ZZ Event Hai Secret Leaks: FWHU: done"
 	on offer
 		conversation
 			`As you come into land on Hai-home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
@@ -406,7 +481,7 @@ mission "Leaks Response 1"
 			`	After a moment to let you ponder, she continues, "Our reports tell us that you are a well-known individual, respected both by your own government and abroad in the other human governments. Our reports also tell us that 'Hai' is quickly becoming a buzzword in your space. A few traders brought the news ahead of you."`
 			`	She pauses and looks at you seriously.`
 			`	"We think it would be prudent for you to represent your people as our point of contact. Would you accept such a role?"`
-			`You give it a moment of thought.`
+			`	You give it a moment of thought.`
 			choice
 				`	"It certainly seems rather practical."`
 			`	"Fantastic," she says, though her tone is much more business like than the wording would imply, "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
@@ -417,24 +492,25 @@ mission "Leaks Response 1"
 				accept
 	
 	
-mission "Leaks Response 2"
+mission "Hai Leaks Response 2"
+	landing
 	name "Collect Representatives"
 	description "Go collect representatives from the 3 main Human governments."
-	landing
 	source "Earth"
 	stopover "Deep"
 	stopover "Foundry"
 	destination "Hai-home"
+	blocked "You have a mission here for the Hai, but you need thee bunks free."
 	clearance
 	to offer
-		has "Leaks Response 1: done"
+		has "Hai Leaks Response 1: done"
 	passengers 3
 	on offer
 		event "pirates respond to leaks"
 		conversation
 			`On approach to the spaceport on Earth you communicate your need to speak to an official of significant standing on diplomatic business. Since you are not a diplomat this does cause some minor kerfuffle in the process, but thanks to your renown from the Pug war you are able to blow past such petty objections sufficiently so as to shortcut the process. The diplomatic ID from the box Sayari gave you doesn't hurt either.`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a hired, private room at the spaceport.`
-			`	"Captain <Last>," he steps around the table to grasp your hand in a firm handshake, "Xilin Yang, it's an honour to meet a war hero like yourself."`
+			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake, "Xilin Yang, it's an honour to meet a war hero like yourself."`
 			choice
 				`	"It was a brutal business, but someone had to do it. For the people."`
 				`	"Please, it was far less dramatic than it's made out to be."`
@@ -457,7 +533,7 @@ mission "Leaks Response 2"
 	on stopover
 		conversation
 			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
-			`	He smiles warmly, "Apologies Captain <Last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
+			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
 			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, he will be accompanying you as the Syndicate representative."`
 			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You resolve not to get on her bad side if at all possible.`
 			`"Oh by the way," says Alastair, pausing briefly as he turns to depart, "The Navy and my security forces are working jointly to get some of our message relays up in the Far North to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."`
@@ -482,11 +558,11 @@ mission "Leaks Response 2"
 			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."`
 			choice
 				`"Would that be so bad?"`
-			`"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release."`
-			`Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
-			`It is so hard to say "no" to a Hai and their cute squirrelly features.`
+			`	"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release."`
+			`	Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
+			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
-				`"I'll do what I can."`
+				`	"I'll do what I can."`
 #If a republic/syndicate campaign gets added this on complete text will need variants.
 	
 	
@@ -508,15 +584,15 @@ event "pirates respond to leaks"
 		
 	
 #If a republic/syndicate campaign gets added this text will need variants.
-mission "Leaks Response 2A"
+mission "Hai Leaks Response 2A"
 	landing
 	invisible
 	source Deep
 	to offer
-		has "Leaks Response 2: active"
+		has "Hai Leaks Response 2: active"
 	on offer
 		conversation
-			`When you land on Deep Katya is there waiting for you along with Alondo, "<First> it's so good to see you again! When the Republic briefed the council we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
+			`When you land on Deep Katya is there waiting for you along with Alondo, "<first> it's so good to see you again! When the Republic briefed the council we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting as you look from one to the other, "I thought it seemed odd when they said I was meeting you for this Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
 			`	"Oh it was always going to be Alondo," she says, "but there's never a bad excuse for travelling with an old friend, especially when you're meeting other friends too."`
 			`	"Do we have time for a drink before we must rush off?" asks Alondo.`
@@ -526,37 +602,38 @@ mission "Leaks Response 2A"
 			`	Fortunately, after an hour and a couple of drinks, all embarrassment has been forgotten on both sides by the time you're returning to your ship.`
 				decline
 	
-mission "Leaks Response 2B"
+mission "Hai Leaks Response 2B"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 	to offer
-		has "Leaks Response 2: active"
+		has "Hai Leaks Response 2: active"
 	on offer
 		conversation
 			`While refuelling on <origin> you see that the media circus is continuing uabated. Apparently pirates have started making renewed attacks on trade lanes in the north, utilising some of the strange weapons observed in the recorded clip of Hai ships fighting each other. Goodness knows how they got their hands on them, but it can't be good news.`
 				decline
 
 #This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
-mission "Leaks Response 3"
+mission "Hai Leaks Response 3"
 	name "Meet with Security Forces on Allhome"
-	description "Meet with the Security Forces on Allhome before fightin the pirates."
+	description "Meet with the Security Forces on Allhome before fighting the pirates."
 	landing
 	source "Hai-home"
 	destination "Allhome"
 	to offer
-		has "Leaks Response 2: done"
+		has "Hai Leaks Response 2: done"
 
 #Go kill pirates mission with chat on Allhome.
-mission "Leaks Response 4"
-	name "Defeat the Black Lich and board the Geocoris"
-	description "Defeat the marauder capatain and rescue the captured Hai from his stolen Geocoris."
+mission "Hai Leaks Response 4"
+	name "Defeat the Black Lich"
+	description "Defeat Black Lich's Marauder Leviathan at Waypoint."
 	autosave
 	landing
 	source "Allhome"
+	waypoint "Waypoint"
 	destination "Allhome"
 	to offer
-		has "Leaks Response 3: done"
+		has "Hai Leaks Response 3: done"
 	on offer
 		conversation
 			`When you land on Allhome you are met by the Hai Captain of the local forces. You're not an expert at judging Hai ages but he appears to be a little younger than expected.`
@@ -569,43 +646,43 @@ mission "Leaks Response 4"
 				`	"I had heard about the kidnapping."`
 			`	He nods, "Unfortunately it's taking a while for them to redistribute an appropriately resourced defence force thanks to the Unfettered."`
 			`	"Even more unfortunately," he continues, "it seems that the overabundance of these pirates is a result of one particular individual's success. His ship, called the Black Lich, is hanging out in Waypoint with the stolen Geocoris that we hear might have been converted into some kind of semi-stable weapons platform and now be being used as a temporary base."`
-			`	"Fortunately this gives us an opportunity though. If the kidnapped hai are still on board we might be able to rescue them, and if we can defeat the Black Lich we may stem the tide of opportunists that are swarming through the wormhole."`
+			`	"Fortunately this gives us an opportunity though. If the kidnapped Hai are still on board we might be able to rescue them, and if we can defeat the Black Lich we may stem the tide of opportunists that are swarming through the wormhole."`
 			`	"What do you say?"`
 			`	The poor Captain seems desperate.`
 			choice
 				`	We shall bring them safely home.`
 					accept
-	npc accompany
+	npc
 		government "Hai"
 		personality escort disables heroic
-		fleet 9
+		fleet 16
 			names "hai"
 			variant
-				"Lightning Bug" 4
-				"Pond Strider" 3
-				"Shield Beetle (Police)" 2
-				# help on this? not sure if this is right at all.
+				"Shield Beetle (Six Ion)"
+			variant
+				"Shield Beetle (Durable Pulse)"
 	npc kill
 		government "Pirate"
-		personality staying nemesis
+		personality staying marked target
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
 	on complete
 		payment 1000000
 		event "waypoint pirates vanquished"
 		conversation
-			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem."`
-			branch "saved geocoris"
-				not "Leaks Response 4a: failed"
-			`	He sighs deeply, "It is a shame though that the kidnapped Hai could not be saved, but the other Hai captains tell me it was a mess out there."`
-			`	He places one of his furry hands comfortingly on your shoulder, "I'm sure you did all you could."`
-				goto end
-			label "saved geocoris"
-			`	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy."`
-			`	"I do need to do a full security scan of it before I let it go though, just to complete all the incident paperwork, so if you have any business on world here then you should take your time."`
-			label end
-			`	"In any event, let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
-			`	With a final nod of thanks he departs to attend to business, leaving you free to wander the spaceport until they release your new ship.`
+			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
+			
+			# branch "saved geocoris"
+			# 	not "Hai Leaks Response 4a: failed"
+			# `	He sighs deeply, "It is a shame though that the kidnapped Hai could not be saved, but the other Hai captains tell me it was a mess out there."`
+			# `	He places one of his furry hands comfortingly on your shoulder, "I'm sure you did all you could."`
+			# 	goto end
+			# label "saved geocoris"
+			# `	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy."`
+			# `	"I do need to do a full security scan of it before I let it go though, just to complete all the incident paperwork, so if you have any business on world here then you should take your time."`
+			# label end
+			# `	"In any event, let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
+			# `	With a final nod of thanks he departs to attend to business, leaving you free to wander the spaceport until they release your new ship.`
 	
 	
 event "waypoint pirates vanquished"
@@ -622,26 +699,28 @@ event "waypoint pirates vanquished"
 		remove fleet "Large Northern Pirates" 600
 		remove fleet "Large Core Pirates" 600
 
-		
-mission "Leaks Response 4a"
-	landing
-	invisible
-	source "Allhome"
-	destination "Allhome"
-	to offer
-		has "Leaks Response 3: done"
-	npc board save
-		government "Pirate"
-		personality staying nemesis
-		system "Waypoint"
-		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
-		dialog
-			`After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise them that they will be safely on Allhome before long.`
-	on fail
-		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the heroic ending, revert to the autosave or another earlier snapshot of the game.`
-	on complete
-		event "returned geocoris" 365
-		#The Geodesic Geocoris may become available to purchase specially later on.
+# It is impossible to implement a "capture and return npc"
+# mission. Once the ship is captured, the NPC is gone and the mission
+# is failed.
+#
+# mission "Hai Leaks Response 4A"
+# 	name "Recover the Geocoris"
+# 	description "Recover the stolen Geocoris, somewhere near Hai space."
+# 	landing
+# 	source "Allhome"
+# 	to offer
+# 		has "Hai Leaks Response 3: done"
+# 	npc board
+# 		government "Pirate"
+# 		personality staying marked mute
+# 		system "Waypoint"
+# 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
+# 		dialog `After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise to escort their ship to Allhome.`
+# 	on fail
+# 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the heroic ending, revert to the autosave or another earlier snapshot of the game.`
+# 	on complete
+# 		event "returned geocoris" 365
+# 		#The Geodesic Geocoris may become available to purchase specially later on.
 		
 event "returned geocoris"
 		
@@ -728,16 +807,28 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	turret "Chameleon Anti-Missile"
 	turret "Electron Turret"
 
-mission "Leaks Response 5"
+mission "Hai Leaks Response 5"
+	landing
+	name "Talk to Hai authorities to <planet>"
+	description "Meet Hai authorities on <destination>."
+	source "Allhome"
+	clearance
+	destination "Hai-home"
+	to offer
+		has "Hai Leaks Response 4: done"
+
+mission "Hai Leaks Response 6"
 	name "Investigate rumours of kidnapped Hai."
 	description "It's a statistical oddity, but Sayuri's friend thinks someone is kidnapping Hai and wants you to check out a possible smuggling operation across the nearby parts of human space to disprove it."
 	autosave
 	landing
 	source "Hai-home"
 	to offer
-		has "Leaks Response 4: done"
+		has "Hai Leaks Response 4: done"
 	on offer
 		event "role-play fleet deception"
+		# Hai like you a lot now, and as a result, you have permanent access to Hai-home:
+		"reputation: Hai" >?= 100
 		conversation
 			`When you return to Hai-home you are met by a group of relieved diplomats.`
 			`	Of all of them Alondo seems to be the least tired and takes the time to let you know what's been going on, "Captain <last>! You've missed quite the palava. Still, I doubt you lost much by missing out on trying to explain to Sayuri what a 'furry' is."`
@@ -749,8 +840,8 @@ mission "Leaks Response 5"
 			`	Some hours later you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep, your cabin by far seems to be the best place to not be bothered.`
 			`	Part way there though a hooded figure suddenly falls in step beside you.`
 			choice
-				`	Keep walking.`
-				`	Ask them who they are.`
+				`	(Keep walking.)`
+				`	(Ask them who they are.)`
 			`	"Sssshhhh!" says the voice at your elbow, "do not react, and do not be alarmed, it is merely I."`
 			`	You look at the figure out of the corner of your eye and connect the whispered voice to the squirrelly muzzle poking out. To your surprise it is Sayuri.`
 			`	"I should not be coming to you with this, so you must promise to say nothing of this to anyone just yet."`

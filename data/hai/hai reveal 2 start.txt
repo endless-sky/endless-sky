@@ -94,7 +94,7 @@ mission "Hai Rescue: Prison Role-Players"
 		not "event: hai-human treaty signed"
 		not "Hai Rescue: Prison Role-Players: offered"
 		# No combat rating requirement since there are no NPCs.
-		has "Leaks Response 5: accepted"
+		has "Hai Leaks Response 6: active"
 		# Some subset of these are restricted so you can't pick up enough of them to finish the quest at the same time as starting it.
 	on offer
 		"Hai Rescue: Prison Role-Players (offer count)" ++
@@ -157,7 +157,7 @@ mission "Hai Rescue: Ooonem"
 		not "event: hai-human treaty signed"
 		not "Hai Rescue: Ooonem: offered"
 		has "First Contact: Hai: offered"
-		has "Leaks Response 5: accepted"
+		has "Hai Leaks Response 6: active"
 		# Some subset of these are restricted so you can't pick up enough of them to finish the quest at the same time as starting it.
 	on offer
 		"Hai Rescue: Ooonem (offer count)" ++
@@ -302,7 +302,7 @@ mission "Hai Rescue: Gipeep"
 		"combat rating" > 50
 		not "event: hai-human treaty signed"
 		has "Unwanted Cargo: done"
-		has "Leaks Response 5: accepted"
+		has "Hai Leaks Response 6: active"
 		# Some subset of these are restricted so you can't pick up enough of them to finish the quest at the same time as starting it.
 	on offer
 		conversation
@@ -357,11 +357,11 @@ mission "Hai Rescue [A00] Darkwaste Timer"
 	to offer
 		"hai slave prereq" >= 3
 		"combat rating" > 3000
-		has "Leaks Response 5: done"
+		has "Hai Leaks Response 6: done"
 	on offer
 		event "hai rescue: teeneep message" 50
 		fail
 
 
 event "hai rescue: teeneep message"
-	
+

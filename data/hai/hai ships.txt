@@ -636,6 +636,32 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 
+ship "Shield Beetle" "Shield Beetle (Six Ion)"
+	outfits
+		"Ion Cannon" 6
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Fissure Batteries"
+		"Outfits Expansion" 3
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 55
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun
+	gun
+	turret
+	turret
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+
 # Shield beetle with extra fuel they don't get stuck between systems.
 # They don't get their ramscoops until after the mission.
 ship "Shield Beetle" "Shield Beetle (Fuel Jump)"
@@ -743,6 +769,32 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
+
+ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
+	outfits
+		"Pulse Cannon" 8
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile" 2 
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Williwaw Cooling" 8
+		"Pulse Rifle" 55
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
