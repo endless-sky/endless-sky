@@ -500,7 +500,7 @@ mission "Hai Leaks Response 2"
 	stopover "Deep"
 	stopover "Foundry"
 	destination "Hai-home"
-	blocked "You have a mission here for the Hai, but you need thee bunks free."
+	blocked "You have a mission here for the Hai, but you need three bunks free."
 	clearance
 	to offer
 		has "Hai Leaks Response 1: done"
@@ -545,7 +545,7 @@ mission "Hai Leaks Response 2"
 			`You are directed to an official landing pad on your return to Hai-home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business at the moment Sayeri inquires how your journey went.`
 			choice
-				`I don't recall there being nearly so many pirates.`
+				`	"I don't recall there being nearly so many pirates."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well it seems that the rumours of us, and the information making its way through your media has attracted every opportunist this side of the Deep."`
 			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
 			`	Alondo looks surprised, but Mr Yang and Ms Adrianopolous both merely nod sagely.`
@@ -557,7 +557,7 @@ mission "Hai Leaks Response 2"
 			`	"Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr Yang.`
 			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."`
 			choice
-				`"Would that be so bad?"`
+				`	"Would that be so bad?"`
 			`	"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release."`
 			`	Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
