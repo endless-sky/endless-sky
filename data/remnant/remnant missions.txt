@@ -1251,7 +1251,7 @@ mission "Remnant: Return the Samples"
 					decline
 
 			`	"Thank you. Since we are continuing to work together, I would like to introduce myself again." He takes a breath, thinks for a second, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is that his name is "Plume."`
-			`	"Just remember: you will need to use a puffin to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
+			`	"Just remember: you will need to use a Puffin to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
 		government " Drak "
