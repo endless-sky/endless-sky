@@ -14,6 +14,7 @@ Version 0.9.12:
     * Fixed various cases where the map would improperly display whether a mission's objectives were satisfied. (@tehhowch)
     * Afterburner and other visual effects are no longer drawn "shifted" by their velocity. (@tehhowch)
     * Fixed a possible crash on startup caused by unsupported VSync settings. (@tehhowch)
+    * Restored the visual alert for fatal errors that occur during startup. (@tehhowch)
   * Game content:
     * New content:
       * New variant of the mystery deliver jobs that has unique dialog for station destinations. (@Anarchist2)
@@ -40,11 +41,11 @@ Version 0.9.12:
       * Tweaked the description of the Ka'het Primary Cooling. (@beccabunny)
       * Renamed the Carrier and Cruiser licenses to the Navy Carrier and Navy Cruiser licenses. (@Zitchas)
       * The Pug Arfecta will now defend the Wanderers if the player attacks them. (@Amazinite)
-      * The Hauler VI missions now mention by Southbound Shipyards skipped over the Hauler IV and V. (@Anarchist2)
+      * The Hauler VI missions now mention why Southbound Shipyards skipped over the Hauler IV and V. (@Anarchist2)
   * Game mechanics:
     * Added a "solar heat" attribute that generates heat based on the type of and distance to the system star(s). (@Amazinite)
     * Automatic conditions are now updated daily instead of only on landing. (@petervdmeer)
-    * The flagship system and planet are now automatic condition variables. (@petervdmeer)
+    * The flagship's system and planet are now automatic condition variables. (@petervdmeer)
     * Negative shield/hull energy and shield/hull fuel will no longer block the ability to repair. (@Amazinite)
   * Under the hood:
     * Organized the game data into subfolders based off of factions and species. (@Amazinite)
