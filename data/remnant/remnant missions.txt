@@ -730,7 +730,7 @@ event "remnant: nenia restored"
 mission "Remnant: Void Sprites 3"
 	landing
 	name "Visit void sprite planets"
-	description `Purchase a "Puffin" ship from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
+	description `Purchase a "Puffin" from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
 	source "Aventine"
 	stopover "Viminal"
 	stopover "Nasqueron"
