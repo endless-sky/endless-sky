@@ -679,6 +679,13 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 
 
 
+bool Mission::HasFailed() const
+{
+	return hasFailed;
+}
+
+
+
 // Mark a mission failed (e.g. due to a "fail" action in another mission).
 void Mission::Fail()
 {
