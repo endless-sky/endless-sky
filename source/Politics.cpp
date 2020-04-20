@@ -233,15 +233,18 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
+					if(mission.HasFailed(player))
+						continue;
+					
 					// Append the illegalCargoMessage from each applicable mission, if available
 					string illegalCargoMessage = mission.IllegalCargoMessage();
-					if(!illegalCargoMessage.empty() && !mission.HasFailed())
+					if(!illegalCargoMessage.empty())
 					{
 						reason = ".\n\t";
 						reason.append(illegalCargoMessage);
 					}
 					// Fail any missions with illegal cargo and "Stealth" set
-					if(!mission.HasFailed() && mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
 					{
 						player.FailMission(mission);
 						failedMissions++;
