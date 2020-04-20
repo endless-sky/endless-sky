@@ -140,7 +140,7 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || ( bay.ship->Health() > .75 && ( IsArmed(*bay.ship) || CanAntimissile(*bay.ship) || CanScan(*bay.ship) || (ship.Shields() + ship.Hull() < 1 )))))
+			if(bay.ship && (includingDamaged || ( bay.ship->Health() > .75 && ( IsArmed(*bay.ship) || CanAntimissile(*bay.ship) || CanScan(*bay.ship) || (ship.Shields() + ship.Hull() < 0.75 )))))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
 	
