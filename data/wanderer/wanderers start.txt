@@ -12,7 +12,7 @@ mission "Wandering Nightmares"
 	minor
 	landing
 	name "Quiet your Nightmares"
-	description "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
+	description "You have recurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
 	source
 		not attributes "wanderer"
 	destination "Vara K'chrai"
@@ -21,7 +21,6 @@ mission "Wandering Nightmares"
 		not "First Contact: Wanderer: offered"
 		not "First Contact: Wanderer (Before Hai): offered"
 	on offer
-		event "Vara K'chrai is accessible"
 		log "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
 		conversation
 			`Terrified, you see you're in a room filled with angry squirrels. Suddenly one's arm is ripped off and blood spatters on a nearby wall. There's a map on the wall, but you can't quite see it. You hear the flapping of birds' wings as you struggle to see, but your dream is cut short when you awaken.`
@@ -29,11 +28,6 @@ mission "Wandering Nightmares"
 			`	Little blood reached the wall, but it surrounded one system. Perhaps this is a threat from some malevolent deity warning you of a terrible fate that will befall you there. You'll never sleep well again until you investigate.`
 			`	Whatever fate may have in store for you, it can't be worse than a lifetime of insomnia.`
 				accept
-
-event "Vara K'chrai is accessible"
-	# You can now begin the Wanderers campaign.
-	planet "Vara K'chrai"
-		"required reputation" 0
 
 mission "First Contact: Wanderer (Before Hai)"
 	landing
@@ -1259,12 +1253,11 @@ mission "Wanderers: Alpha Surveillance F"
 			choice
 				`	"Yes."`
 					goto jump
-				`	"Wait, you know about the Hai?"`
-				# A stupid question at this point, but the player may need a reminder.
-			`	Danforth looks bemused. "Living on their doorstep? Of course I do. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
+				`	"You seem to be very familiar with the Hai's space?"`
+			`	Danforth looks bemused. "Living on their doorstep? I've known about them from long before the secret broke. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
 			label jump
 			`	"It's not just the distance," says Elias. "The only way to get there is by jump drive. Fortunately Captain <last> has one."`
-			`	"As do I," says Danforth, a bit smugly. When he sees your surprised expressions he elaborates. "Recovered it from the Pug. Accidentally forgot to file the paperwork reporting it. You know how it is. Old men like me can be absent-minded." He smiles. "My engineers are installing it in my flagship even as we speak."`
+			`	"As do I," says Danforth, a bit smugly. When he sees your surprised expressions he elaborates. "Recovered it from the Pug. Accidentally forgot to file the paperwork reporting it. You know how it is. Old men like me can be absent-minded." He smiles, "My engineers are installing it in my flagship even as we speak."`
 			choice
 				`	"So you're willing to come with us?"`
 				`	"Are you sure you want to take the risk of traveling with us?"`

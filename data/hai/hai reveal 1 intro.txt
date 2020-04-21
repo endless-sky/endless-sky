@@ -925,7 +925,6 @@ mission "Hai Leaks Response 6"
 		"hai slave prereq" >= 3
 	on complete
 		log `You found proof of more kidnapped Hai. Sayari's fears appear to have been entirely justified...`
-		event "secret mountaintop"
 
 mission "Hai Leaks Response 7"
 	landing

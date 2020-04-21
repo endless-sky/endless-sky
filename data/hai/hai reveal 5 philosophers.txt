@@ -809,8 +809,8 @@ mission "Hai Rescue [C05] Operatives"
 		has "Hai Rescue [C04] Foundry: done"
 	on offer
 		conversation
-			`Deputy Director Stephen Moray greets you as you exit your ship. "The Unfettered are fearsome pilots, as are you, but we need some special operatives to storm the city. The Republic has rounded up the best troops in the whole of the Republic and has armed them with some special equipment. They're being very hush-hush about it, but I understand it is advanced anti-pirate gear Deep Sky has been developing.`
-			`	"Head to <destination> to pick up the 200 operatives and their 70 tons of gear. The Republic will give you your usual payment of <payment>.`
+			`Deputy Director Stephen Moray greets you as you exit your ship. "The Unfettered are fearsome pilots, as are you, but we need some special operatives to storm the city. The Republic has rounded up the best troops in the whole of the Republic and has armed them with some special equipment. They're being very hush-hush about it, but I understand it is advanced anti-pirate gear Deep Sky has been developing."`
+			`	"Head to <destination> to pick up the 200 operatives and their 70 tons of gear. The Republic will give you your usual payment of <payment>."`
 			`	"I'll keep the Unfettered distracted... and secret... until you return."`
 				accept
 	on complete
@@ -885,7 +885,7 @@ mission "Hai Rescue [C07] Devil-Hide Battle"
 		has "Hai Rescue [C06] Meet the Fleet: done"
 	on offer
 		conversation
-			`General Choot'k meets you as he sees you preparing for the invasion. "I want to see you prove yourself in battle before I open the entrance to the Philosopher's Paradise. When we arrive at Devil-Hide, you'll demand tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. We won't help you fight the tribute defense fleets, but we'll kill any other pirates that show up.`
+			`General Choot'k meets you as he sees you preparing for the invasion. "I want to see you prove yourself in battle before I open the entrance to the Philosopher's Paradise. When we arrive at Devil-Hide, you'll demand tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. We won't help you fight the tribute defense fleets, but we'll kill any other pirates that show up."`
 			`	You sigh, knowing his threat is true. The daily tribute will be a nice addition to your income, but this is a bit of a nuisance.`
 				accept
 	on fail
@@ -1020,7 +1020,7 @@ mission "Hai Rescue [C08] Freedom"
 			`	The human leader says, "Most of the humans in this city have been here for several generations. This has always been home to us."`
 				goto questions
 			label place
-			`	"We understand you have heard most of the story from your spy. This place was founded over a hundred twenty years ago by anarchists from the colony of Freedom. With the Syndicate on their doorstep, some of them devolved into anarcho-syndicalists and attempted to bring it down from within. To do this, they allied with less peaceful anarchists and pirates. Those less savory types kidnapped researchers and engineers, forcing them to devise new weapons or medicines, and who eventually inherited control here after the syndicalists were wiped out. Our city also has manufacturing facilities where we created goods the pirates could not easily build in human space where their facilities are destroyed regularly."`
+			`	"We understand you have heard most of the story from your spy. This place was founded over a hundred twenty years ago by anarchists from the colony of Freedom. With the Syndicate on their doorstep, some of them evolved into anarcho-syndicalists and attempted to bring it down from within. To do this, they allied with less peaceful anarchists and pirates. Those less savory types kidnapped researchers and engineers, forcing them to devise new weapons or medicines, and who eventually inherited control here after the syndicalists were wiped out. Our city also has manufacturing facilities where we created goods the pirates could not easily build in human space where their facilities are destroyed regularly."`
 			`	"There have been various attempts to take the city by force or by money. Early on there were attempts by Alpha groups, and then various illegal organizations who tracked this place down from rumours about their rivals. There was even someone from the Syndicate who came with his personal fleet, though none of them returned home from that attempt. Some used chemical or biological weapons, others sent ships. Many offered money or favors. Philosopher's Paradise has always been an independent country, and always will be."`
 			`	"Now that the pirates are gone, us civilians may rule without fear, and for that you have our gratitude. As the upper region of the city has already been destroyed, we have little to fear from attack by space creatures in the short-term, and soon we'll have our shipyards at full capacity such that we may defend ourselves."`
 			`	"We won't ever join the Republic or any other government beyond the wormhole but you personally will always be welcome, along with those you trust, for what you have done today. Our research and manufacturing facilities are damaged now, but as they are repaired we will make them available to you."`

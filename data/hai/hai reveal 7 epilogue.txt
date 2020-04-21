@@ -31,23 +31,21 @@ mission "HRF 01 Summoned to Mountaintop"
 		not attributes "uninhabited"
 	destination "Mountaintop"
 	to offer
-		
 		#This makes sure that the background missions for the danger of travelling to Hai space can still happen (as they definitely don't work after this section).
 		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
 		
 		has "event: hai-human treaty prepared"
-
-		# Nanachi's story can't happen until 3019, which will be an extremely long
-		# delay for some players. The updated dialog works after the treaty
-		# is signed
-		#has "Nanachi 4: done"
-
+		has "Nanachi 4: done"
+		# Nanachi is too long a chain to do in the middle of the main story, 
+		# the starting conditions have been changed to be available as soon as you're famous and not busy.
+		has "Expanding Business [4]: done"
+		# Expanding Business capitalises on the situation to get the first part started.
+		
 		# Pirate troubles is now a prerequisite to Hai Rescue [A01] Visit Darkwaste
 		# and the chance is 100% after pirates respond to leaks.
 
-		# Expanding Business still works since a salesman is expected to exaggerate,
-		# especially if he is trying to enlist the help of a celebrity.
-		#has "Expanding Business [4]: done"
+		
+
 	on offer
 		conversation
 			#A message summons you for the treaty resolution.

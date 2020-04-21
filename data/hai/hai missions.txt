@@ -660,7 +660,7 @@ mission "Expanding Business [1]"
 			
 			label opportunity
 			branch public
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	"Allow me to explain. The journey to the Hai can be a dangerous one, and you know that. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Now that many merchants are here, they're trapped. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
 			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
 				goto choices
@@ -1025,7 +1025,7 @@ mission "Hiding in Plain Sight"
 				`	"I don't. You'll have to ask someone else."`
 					decline
 			branch public
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
 				goto return
 			label public
@@ -1081,7 +1081,7 @@ mission "Hai Honeymoon"
 			
 			label next
 			branch public
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. I know it's risky to bring Touhar into human space, but <planet> is a sparsely inhabited world, and I have a friend who owns a house in the mountains far from anyone who could see him."`
 				goto return
 			label public
@@ -1398,7 +1398,7 @@ mission "Pirate Troubles [3]"
 			label negotiations
 			`	"Perhaps we will stop," the leader says with a smile. "Under one condition. We'd like a one time shipment of various Hai weapons and technology. The shipment should be as big as possible. I've seen the freighters those aliens have. They're massive. Load two or three up with the goods and we'll consider focusing our attention elsewhere."`
 			branch public
-				has "hai-human resolution announced"
+				has "event: pirates respond to leaks"
 			choice
 				`	"Okay. I'll meet with the Hai and see what they can provide."`
 					goto tribute
@@ -1532,7 +1532,7 @@ mission "Nanachi 1"
 	deadline 2 1
 	to offer
 		or
-			has "Hai Leaks Response 6: offered"
+			has "event: hai-human resolution announced"
 			and
 				"net worth" > 20000000
 				"combat rating" > 1200
@@ -1628,7 +1628,7 @@ mission "Nanachi 3"
 		conversation
 			`You send a message to Nanachi and you two meet up in the spaceport. You're still walking toward the job board, when she asks: "Back home I heard stories about how humans have a much larger population than the Hai, and that their home planet has even more people than Hai-home. Is it true that there are many other human worlds with spaceports this large?" You name her a few human planets that are extremely populous, and how even some planets with fewer people than this world have incredibly large spaceports.`
 			branch public
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	While you tell her stories of many different planets you've visited, she seems to be particularly interested in Earth. "I've seen a bit of human architecture in videos of planets like Allhome, but I can't even imagine what your capital must look like. Tens of thousands of years of another species' history, it sounds even more exciting than what I heard about our landmarks on Hai-home. Captain, do you think that someday, when we no longer need to be kept hidden from humanity, that I'll be able to visit Earth, and see the beauty of your capital?" Seeing how little she knows about humanity, it's not surprising that she is unaware of the state that Earth is in.`
 				goto return
 			label public
@@ -1646,7 +1646,7 @@ mission "Nanachi 3"
 					goto board
 			label fake
 			branch public2
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
 					goto board
 			label public2
@@ -1708,7 +1708,7 @@ mission "Nanachi 4"
 		conversation
 			`The bar is just as busy as the docks. Many captains here must have transported something for the festival. "Captain <last>, Captain Nanachi!" shouts Narancia, beckoning the two of you to join her and the others at their table. You learn that they were inspired by the Hai's own March festival, and wanted to bring small parts of human culture to Hai space.`
 			branch public
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	"They can't go to our planets and experience it for themselves yet, so we thought about bringing it to them!" Vanessa says.`
 				goto return
 			label public
@@ -1722,7 +1722,7 @@ mission "Nanachi 4"
 				`	"Are those art pieces really that valuable?"`
 				`	"Can't you just postpone the festival until the pirates are taken care of?"`
 			branch public2
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! It'll take months before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled three weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
 				goto return2
@@ -1740,7 +1740,7 @@ mission "Nanachi 4"
 			`	She thanks you profusely, and promises that she'll pay you for everything as soon as she can. The organizers are a bit hesitant, but seeing as no other captain here has decided to offer them help, they agree to let the two of you go to Prime and retrieve the cargo.`
 			`	Vanessa grabs ahold of Nanachi's arm before she can run off to the spaceport. "Just remember, if you can't get back here by <day>, don't worry about it; we'll understand. I'm sure we can come up with some alternative to have the festival without our main attractions."`
 			branch public3
-				has "hai-human resolution announced"
+				has "event: hai-human resolution announced"
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're just trying to help this girl, but don't get killed over this. If you run into those pirates don't try to fight them, just rush to Prime."`
 				accept
 			label public3
