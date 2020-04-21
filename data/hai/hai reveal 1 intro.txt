@@ -873,7 +873,7 @@ mission "Hai Leaks Response 5"
 
 mission "Hai Leaks Response 6"
 	name "Investigate rumours of kidnapped Hai."
-	description "It's a statistical oddity, but Sayuri's friend thinks someone is kidnapping Hai. Check Hai spaceports and nearby parts of human space for evidence of a Hai trafficking operation."
+	description "It's a statistical oddity, but Sayuri's friend thinks someone is kidnapping Hai. Check spaceports in nearby parts of Hai and human space for evidence of a Hai trafficking operation."
 	autosave
 	landing
 	source "Hai-home"
