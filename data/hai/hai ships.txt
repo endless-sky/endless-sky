@@ -605,6 +605,38 @@ ship "Shield Beetle" "Shield Beetle (Police)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 
+# Custom anti-pirate build; insufficient battery for fighting Hai:
+ship "Shield Beetle" "Shield Beetle (Pulse Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Tracker Storage Pod" 7
+		"Hai Tracker" 644
+		"Chameleon Anti-Missile" 2
+		"Pulse Turret" 2
+		
+		"Outfits Expansion" 4
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Quantum Keystone"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 7
+		"Pulse Rifle" 55
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
 		"Ion Cannon" 4
@@ -636,6 +668,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 
+# Custom anti-pirate build; insufficient battery for fighting Hai:
 ship "Shield Beetle" "Shield Beetle (Six Ion)"
 	outfits
 		"Ion Cannon" 6
@@ -770,6 +803,7 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 
+# Custom anti-pirate build; insufficient battery for fighting Hai:
 ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
 	outfits
 		"Pulse Cannon" 8

@@ -68,6 +68,24 @@ ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump)"
 		"Thruster (Planetary Class)"
 		"Fuel Processor" 2
 
+# Unfettered flagship carrying the surviving human operatives
+ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump Full)"
+	add attributes
+		"required crew" 43
+	outfits
+		"Large Heat Shunt" 2
+		"Jump Drive"
+		"Systems Core (Large)"
+		"Quantum Keystone"
+		"Outfits Expansion" 3
+		"Boulder Reactor" 3
+		`"Bufaer" Atomic Steering`
+		Sunbeam 6
+		"Korath Warder"
+		"Small Heat Shunt"
+		"Thruster (Planetary Class)"
+		"Fuel Processor" 2
+
 # Ambassadorial Centipede designed to fly deep into hostile space:
 ship "Centipede" "Centipede (Teeneep)"
 	# Add some ambassadorial staff:
@@ -254,10 +272,13 @@ fleet "Hai Wormhole Guards"
 
 event "hai and human ships at wormhole"
 	system "Waypoint"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
 		add fleet "Hai Wormhole Guards" 400
 	system "Heia Due"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
 		add fleet "Hai Wormhole Guards" 1000
 	system "Ultima Thule"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
 		add fleet "Human Wormhole Guards" 400
 		# Occasional pirates to show the fleet in action
 		add fleet "Small Northern Pirates" 5000
@@ -265,6 +286,7 @@ event "hai and human ships at wormhole"
 		# Smugglers would be bright enough not to try this route
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Rajak"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
 		add fleet "Human Wormhole Guards" 1000
 		# Smugglers would be bright enough not to try this route
 		remove fleet "Smuggler (Hai Traffickers)"
@@ -650,7 +672,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 					goto watch
 			`	As you enter the room, a pair of Unfettered grab you and pin you to the wall. Teeneep pulls out a throwing knife and says, "Let him go now." The Unfettered let go immediately and she puts her knife away. As you walk towards her, she signals for you to stay where you are.`
 			label watch
-			`	Teeneep explains to the leader, "Twenty thousand Hai have been kidnapped and enslaved by human pirates. They're concealed in a subterranean base that can only be reached with a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them."`
+			`	Teeneep explains to the leader, "Twenty thousand Hai have been enslaved by human pirates. They're concealed in a subterranean base that can only be reached with a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them."`
 			# Note: Teeneep is using hyperbole; she knows most of the 20,000 Hai at Philosopher's Paradise were probably born there.
 			`	"You were once the protectors of all Hai. I ask you be so again. Free our people from slavery, and kill their human slavers."`
 			`	The Unfettered leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you? A race of slothful cowards? Your people are an insult to all Hai." He turns to walk away.`
@@ -677,7 +699,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			`	He flicks his fingers dismissively at what appears to be a cheap imported bottle of bourbon. Despite his complaints it is nevertheless nearly empty.`
 			`	"Please, tell me there's something I can do to get this over with quicker somehow."`
 			choice
-				`	"You're in luck friend."`
+				`	"You're in luck, friend."`
 			`	You explain to him about the upgrades the Unfettered need to their ships in order to join battle, and the plan to rescue the Hai and end the standoff before anyone does anything stupid.`
 			`	"And of course," he says, "you're not an official representative of the Republic, so you need someone to authorise and organise things if it's to happen quickly."`
 			`	"Well have no fear, I can definitely do that!" Within a few short minutes you seem to have lifted a handful of years off of Xilin's worried features.`
@@ -775,52 +797,71 @@ mission "Hai Rescue [C04] Foundry"
 		fleet "Human Wormhole Guards" 20
 	on complete
 		payment 600000
+
+
+mission "Hai Rescue [C05] Operatives"
+	landing
+	name "Pick up Operatives"
+	description "Head to <destination> to pick up 200 operatives and their 70 tons of gear. Payment is <payment>."
+	source "Foundry"
+	destination "Valhalla"
+	to offer
+		has "Hai Rescue [C04] Foundry: done"
+	on offer
+		conversation
+			`Deputy Director Stephen Moray greets you as you exit your ship. "The Unfettered are fearsome pilots, as are you, but we need some special operatives to storm the city. The Republic has rounded up the best troops in the whole of the Republic and has armed them with some special equipment. They're being very hush-hush about it, but I understand it is advanced anti-pirate gear Deep Sky has been developing.`
+			`	"Head to <destination> to pick up the 200 operatives and their 70 tons of gear. The Republic will give you your usual payment of <payment>.`
+			`	"I'll keep the Unfettered distracted... and secret... until you return."`
+				accept
+	on complete
+		payment 600000
+
+mission "Hai Rescue [C06] Meet the Fleet"
+	landing
+	name "Rejoin the Fleet at <planet>"
+	description "Rejoin the Unfettered at <destination>. Payment is <payment>."
+	source "Valhalla"
+	destination "Foundry"
+	passengers 200
+	cargo "anti-pirate gear" 70
+	blocked "You haven't the room for all <bunks> operatives and their <tons> of equipment. Land here again once you have that much space."
+	to offer
+		has "Hai Rescue [C05] Operatives: done"
+	on visit
+		dialog `You forgot some of the operatives or their equipment; they're probably in your escorts. Wait for the escorts to arrive and land again to finish this mission.`
+	on offer
 		log `Agent Kopkow of Republic Intelligence complained that they're running out of cover stories to hide the Hai. He needs the Hai-human conflict resolved without an more public displays. Once I have space for his 200 operatives, I need to pick them up at the Foundry spaceport.`
 		conversation
-			`You land on Foundry and are met by Agent Kopkow, the Republic Intelligence agent you met on Earth. He seems extremely concerned about something.`
+			`Soon after landing, you are met by Agent Kopkow, the Republic Intelligence agent you met on Earth. He seems extremely concerned about something.`
 			`	"It is becoming increasingly difficult to cover up the existence of the Hai. The captains at Ultima Thule already know about the Hai, but we had to tell the crews we were dealing with a major pirate threat. We hired a few pirate gangs, tricking them into flying through the area to back our story. The Shield Beetles at Prime were explained away as experimental ship designs."`
 			`	"Our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore.`
 			`	"I've brought 200 intelligence operatives, specially trained for attacking pirate strongholds, and equipped with advanced weapons that... are on a need-to-know basis. Unfortunately, we possess no ships that can transport that many people safely to the surface. Even a Bactrian would be torn to pieces. You will have to transport the operatives. We can transport them back afterwards."`
 			`	"Once you're ready for the battle at Philosopher's Paradise, meet our operatives in the spaceport. You will need 200 bunks and 70 tons of cargo space to fit all the operatives and their gear. Please don't take long. We're running out of cover stories."`
 			`	He walks off dismayed.`
-				decline
-			
-mission "Hai Rescue [C05] Devil-Hide Battle"
-	name "Missing Researchers"
-	description "Dominate <planet>. Land with the Unfettered Flagship and all 200 operatives."
-	passengers 200
-	cargo "unknown republic equipment" 70
+				accept
+	on complete
+		payment 600000
+
+
+mission "Hai Rescue [C07A] Devil-Hide Fleet"
+	landing
+	invisible
 	source "Foundry"
-	destination "Philosopher's Paradise"
-	blocked "You need room for all <bunks> operatives."
+	destination "Hai-home"
 	to offer
-		has "Hai Rescue [C04] Foundry: done"
-	on enter "Devil-Hide"
-		conversation
-			# The only alternative to Domination is to provide clearance but automatically launch when you land on an "on visit."
-			# That repairs your ship every time you land though, so it isn't actually an option. 
-			`Teeneep reminds you that the operatives and General Choot'k's Shield Beetle must survive. His Shield Beetle has red engine flares; the others have blue. She says you'll need to Dominate the planet before you can land.`
-			`	(NOTE: You need to Dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send defense fleets over and over until they run out. Demand tribute again, and they'll agree. Then land to finish the mission.)`
-			`	(WARNING: The Unfettered will not help you fight the defense fleets sent in response to your tribute demands. They want to see you prove yourself in battle. The Unfettered will fight the other pirate ships though.)`
-	on visit
-		conversation
-			`To finish this mission, you must destroy all defending pirate vessels, and land with the Unfettered Flagship, all 200 operatives, and their 70 tons of cargo.`
-				launch
-	on accept
-		event "Philosopher's Paradise can be dominated"
-	on offer
-		conversation
-			`The 200 operatives and all Unfettered Hai shield beetles are ready to go.`
-			`	This may be a very difficult battle. Are you ready?`
-			choice
-				`	(Attack Philosopher's Paradise.)`
-					accept
-				`	(Come back later.)`
-					defer
-	npc save accompany
-		government "Hai (Friendly Unfettered)"
-		personality escort heroic
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Unfettered Flagship"
+		has "Hai Rescue [C06] Meet the Fleet: done"
+# Workaround for bug #1936 is to introduce another bug the user is unlikely to
+# trigger. Visit Hai-home with this fleet and it vanishes.
+#	to complete
+#		has "Hai Reveal [D01] Cleanup: done"
+	to fail
+		or
+			has "Hai Rescue [C07] Devil-Hide Battle: failed"
+			has "Hai Rescue [C07] Devil-Hide Battle: declined"
+			has "Hai Reveal [D01] Cleanup: failed"
+			has "Hai Reveal [D01] Cleanup: declined"
+			has "Hai Rescue [C08] Freedom: failed"
+			has "Hai Rescue [C08] Freedom: declined"
 	npc
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic
@@ -830,16 +871,56 @@ mission "Hai Rescue [C05] Devil-Hide Battle"
 		fleet 5
 			variant
 				"Shield Beetle (Plasma Blaster Jump)"
+
+mission "Hai Rescue [C07] Devil-Hide Battle"
+	landing
+	name "Missing Researchers"
+	description "Dominate <planet>. Land with the Unfettered Flagship and all 200 operatives."
+	passengers 200
+	cargo "anti-pirate gear" 70
+	source "Foundry"
+	destination "Philosopher's Paradise"
+	blocked "You need room for all <bunks> operatives and their <tons> of equipment."
+	to offer
+		has "Hai Rescue [C06] Meet the Fleet: done"
+	on offer
+		conversation
+			`General Choot'k meets you as he sees you preparing for the invasion. "I want to see you prove yourself in battle before I open the entrance to the Philosopher's Paradise. When we arrive at Devil-Hide, you'll demand tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. We won't help you fight the tribute defense fleets, but we'll kill any other pirates that show up.`
+			`	You sigh, knowing his threat is true. The daily tribute will be a nice addition to your income, but this is a bit of a nuisance.`
+				accept
+	on fail
+		fail "Hai Rescue [C07A] Devil-Hide Fleet"
+	on decline
+		fail "Hai Rescue [C07A] Devil-Hide Fleet"
+	on visit
+		conversation
+			`To complete this mission, you must land with all <bunks> operatives, their <tons> tons of gear, and General Choot'k's Shield Beetle.`
+	on enter "Devil-Hide"
+		conversation
+			`Teeneep reminds you that the operatives and General Choot'k's Shield Beetle must survive. His Shield Beetle has red engine flares; the others have blue. She says you'll need to Dominate the planet before you can land.`
+			`	(NOTE: You need to Dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send defense fleets over and over until they run out. Demand tribute again, and they'll agree. Then land to finish the mission.)`
+			`	(WARNING: The Unfettered will not help you fight the defense fleets sent in response to your tribute demands. They want to see you prove yourself in battle. The Unfettered will fight the other pirate ships though.)`
+	on visit
+		conversation
+			`To finish this mission, you must destroy all defending pirate vessels, and land with the Unfettered Flagship, all 200 operatives, and their 70 tons of cargo.`
+				launch
+	on accept
+		event "Philosopher's Paradise can be dominated"
+	npc save accompany
+		government "Hai (Friendly Unfettered)"
+		personality escort heroic
+		ship "Shield Beetle (Sunbeam Korath Jump)" "Unfettered Flagship"
 	on complete
+		fail "Hai Rescue [B04Z] Guard"
 		event "Liberated Philosopher's Paradise"
-	npc kill
+	npc
 		government "Pirate (Devil-Run Gang)"
-		personality heroic target
+		personality heroic
 		system "Devil-Hide"
-		fleet "Devil-Run Warships" 15
-	npc kill
+		fleet "Devil-Run Warships" 8
+	npc
 		government "Pirate (Devil-Run Gang)"
-		personality heroic staying target
+		personality heroic staying
 		system "Devil-Hide"
 		fleet
 			names "pirate"
@@ -853,24 +934,28 @@ event "Philosopher's Paradise can be dominated"
 			threshold 3000
 			fleet "Devil-Run Warships" 5
 
-mission "Hai Rescue [C06] Freedom"
+mission "Hai Rescue [C08] Freedom"
 	landing
 	name "Missing Researchers"
-	description "Escort General Choot'k's ship back to <destination>. Payment is <payment>."
+	description "Escort General Choot'k's ship to <stopovers> and then <destination>. Payment is <payment>."
 	source "Philosopher's Paradise"
 	stopover "Foundry"
 	destination "Hai-home"
 	to offer
-		has "Hai Rescue [C05] Devil-Hide Battle: done"
+		has "Hai Rescue [C07] Devil-Hide Battle: done"
 	on visit
 		dialog `To finish this mission, you need to wait for General Choot'k's ship to arrive and land again.`
+	on fail
+		fail "Hai Rescue [C07A] Devil-Hide Fleet"
+	on decline
+		fail "Hai Rescue [C07A] Devil-Hide Fleet"
 	on offer
 		fail "Hai Rescue [B04Z] Guard"
 		log `Factions` `Philosopher's Paradise` `Formerly a pirate stronghold, this city of scientists is a hundred twenty years old now. Korath, Hai, and Humans live peacefully, working side-by-side, and most have no desire to leave. They value their independence and have refused Republic membership. This city orbits a strange world that defies analysis in a region of space that has never been touched by civilization. Quarg refuse to go here, and Drak consider it outside their domain.`
 		log `Liberated Philosopher's Paradise. They said they have inventions that may be of use to me, but their facilities are damaged. As they repair the facilities, they'll make new technologies available to me as their friend.`
 		conversation
 			`General Choot'k cuts open the doors of a large hangar and your ships land. Two hundred operatives pour out. They're wearing exoskeletons with built-in shields. As they storm through the complex, you follow some of them.`
-			`	Their guns are able to literally melt away meter-thick walls in seconds. They have gas bombs that release an extremely powerful stun gas which knocks people out for hours. The pirates outnumber the Republic operatives twenty-five to one, but this huge advantage in equiupment, combined with training, gives the operatives a fighting chance.`
+			`	Their guns are able to literally melt away meter-thick walls in seconds. They have gas bombs that release an extremely powerful stun gas which knocks people out for hours. The pirates outnumber the Republic operatives twenty-five to one, but this huge advantage in equipment, combined with training, gives the operatives a fighting chance.`
 			`	The operatives move room to room, neutralising all opposition with ease until the pirates switch tactics. They begin using electromagnetic pulse devices to shut down the suits (and all other electronics nearby). This leaves the operatives helpless for about ten seconds.`
 			`	After a bloody struggle, forty-three surviving operatives win the fight, clearing the way to a large blast door. The vast door is twelve meters high and wide, and scanners show it to be six meters deep. The operatives focus all of their suits' firepower on one part of the door, eventually burning a hole through it. They pass through into the darkness of the next room.`
 			choice
@@ -893,6 +978,8 @@ mission "Hai Rescue [C06] Freedom"
 			choice
 				`	"Do you want me to take you home?"`
 					goto home
+				`	"Do you know anything about the microtranceivers?"`
+					goto "microtranceivers"
 				`	"What can you tell me about this city?"`
 					goto place
 				`	"What do you do here?"`
@@ -901,12 +988,10 @@ mission "Hai Rescue [C06] Freedom"
 					goto space
 				`	"How did the Korath get here?"`
 					goto korath
-				`	"Why were there Korath Raiders in this system?"`
-					goto korath
 				`	"Can you speak to other Korath for me?"`
 					goto "translation services"
-				`	"Do you know anything about the microtranceivers?"`
-					goto "microtranceivers"
+				`	"Why were there Korath Raiders in this system?"`
+					goto korath
 				`	"I have no more questions."`
 			`	"It was a pleasure meeting you," says the human leader.`
 				goto leave
@@ -926,7 +1011,7 @@ mission "Hai Rescue [C06] Freedom"
 			label "microtranceivers"
 			`	The Korath leader looks to the Hai who responds, "Is that how you were led back here?"`
 			`	"Yes," you say.`
-			`	"That is excellent, that was the plan. The microtranceivers were a combination of proper Hai expertise and what little our Korath friends here could tell us. None of them were scientists, but the princples of their science are part of their basic schooling. With their knowledge of their technologies' principles, a couple of Hai experts on our medical microbots, and samples taken from the system cores on one of the Korath ships, we were able to create what you have found. Our overlords wanted them so that they could monitor everyone they kidnapped during processing but we made them more powerful, able to broadcast into hyperspace, in the hopes that it would lead someone back here."`
+			`	The Hai leader continues, "That is excellent, that was the plan. Our overlords ordered us to make microtranceivers to track their prey. The microtranceivers were a combination of Hai medical microbots and what little our Korath friends here could tell us. None of the Korath were scientists, but the principles of their science are part of their engineers' training. With their knowledge, we augmented the transceivers to transmit in hyperspace as well, hoping it would lead someone back here."`
 			`	The human leader says, "I can scarcely believe it worked, but I'm very glad."`
 				goto questions
 			label home
@@ -935,10 +1020,10 @@ mission "Hai Rescue [C06] Freedom"
 			`	The human leader says, "Most of the humans in this city have been here for several generations. This has always been home to us."`
 				goto questions
 			label place
-			`	"We understand you have heard most of the story from your spy. This place was founded over a hundred twenty years ago by anarchists from the colony of Freedom. However, with the Syndicate on their literal doorstep, some of them evolved into anarcho-syndicalists and attempted to bring it down from within. In order to do this they ended up dealing with less peaceful anarchists and pirates. It was these less savoury types who began kidnapping researchers and engineers, forcing them to devise new weapons or medicines, and who eventually inherited control here after the syndicalists were wiped out. Our city also has manufacturing facilities where we created goods the pirates could not easily build in human space where their facilities are destroyed regularly."`
+			`	"We understand you have heard most of the story from your spy. This place was founded over a hundred twenty years ago by anarchists from the colony of Freedom. With the Syndicate on their doorstep, some of them devolved into anarcho-syndicalists and attempted to bring it down from within. To do this, they allied with less peaceful anarchists and pirates. Those less savory types kidnapped researchers and engineers, forcing them to devise new weapons or medicines, and who eventually inherited control here after the syndicalists were wiped out. Our city also has manufacturing facilities where we created goods the pirates could not easily build in human space where their facilities are destroyed regularly."`
 			`	"There have been various attempts to take the city by force or by money. Early on there were attempts by Alpha groups, and then various illegal organizations who tracked this place down from rumours about their rivals. There was even someone from the Syndicate who came with his personal fleet, though none of them returned home from that attempt. Some used chemical or biological weapons, others sent ships. Many offered money or favors. Philosopher's Paradise has always been an independent country, and always will be."`
 			`	"Now that the pirates are gone, us civilians may rule without fear, and for that you have our gratitude. As the upper region of the city has already been destroyed, we have little to fear from attack by space creatures in the short-term, and soon we'll have our shipyards at full capacity such that we may defend ourselves."`
-			`	"We may never join the Republic or any other government beyond the wormhole but you personally will always be welcome, along with those you trust, for what you have done today. Our research and manufacturing facilities are damaged now, but as they are repaired we will make them available to you."`
+			`	"We won't ever join the Republic or any other government beyond the wormhole but you personally will always be welcome, along with those you trust, for what you have done today. Our research and manufacturing facilities are damaged now, but as they are repaired we will make them available to you."`
 			# (That refers to advanced ships and outfits available after quests.)
 				goto questions
 			label do
@@ -966,35 +1051,14 @@ mission "Hai Rescue [C06] Freedom"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Unfettered Flagship"
-	npc
-		government "Hai (Friendly Unfettered)"
-		personality escort heroic
-		fleet 3
-			variant
-				"Shield Beetle (Particle Jump)"
-		fleet 3
-			variant
-				"Shield Beetle (Plasma Blaster Jump)"
+		ship "Shield Beetle (Sunbeam Korath Jump Full)" "Unfettered Flagship"
 				
-mission "Hai Rescue [C06A] Freedom Operatives"
-	landing
-	name "Returning Operatives"
-	description "Deliver the operatives to Foundry."
-	source "Philosopher's Paradise"
-	destination "Foundry"
-	passengers 43
-	to offer
-		has "Hai Rescue [C05] Devil-Hide Battle: done"
-	on visit
-		dialog `To finish this mission, your escorts with the surviving operatives must land with you.`
-
-mission "Hai Rescue [C06G] Philosopher Guard"
+mission "Hai Rescue [C08G] Philosopher Guard"
 	landing
 	invisible
 	source "Philosopher's Paradise"
 	to offer
-		has "Hai Rescue [C05] Devil-Hide Battle: done"
+		has "Hai Rescue [C07] Devil-Hide Battle: done"
 	npc kill
 		government "Philosophers"
 		personality heroic staying
@@ -1009,202 +1073,3 @@ mission "Hai Rescue [C06G] Philosopher Guard"
 				"Protector"
 				"Vanguard (Particle)"
 				"Vanguard"
-
-########################################################################
-
-fleet "Hai Friendly Wormhole Guards"
-	government "Hai"
-	names "hai"
-	cargo 0
-	personality
-		heroic disables plunders frugal opportunistic surveillance
-	variant 3
-		"Shield Beetle (Police)"
-	variant 1
-		"Lightning Bug (Surveillance)" 2
-	variant 1
-		"Lightning Bug (Surveillance)" 3
-
-fleet "Navy Surveillance that won't enter the wormhole"
-	government "Republic that won't enter wormhole"
-	# ... otherwise the surveillance drones fly through the wormhole
-	names "republic capital"
-	fighters "republic fighter"
-	cargo 0
-	personality
-		surveillance opportunistic disables plunders
-	variant 10
-		"Cruiser"
-		"Surveillance Drone" 4
-	variant 10
-		"Gunboat" 2
-
-fleet "Navy Friendly Wormhole Guards"
-	government "Republic that won't enter wormhole"
-	names "republic capital"
-	fighters "republic fighter"
-	cargo 0
-	personality
-		heroic disables plunders frugal opportunistic
-	variant 5
-		"Frigate" 2
-		"Rainmaker"
-		"Gunboat"
-	variant 3
-		"Cruiser"
-		"Combat Drone" 4
-	variant 3
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate"
-		"Rainmaker"
-	variant 2
-		"Carrier"
-		"Lance" 4
-		"Combat Drone" 6
-	variant 1
-		"Carrier"
-		"Lance" 4
-		"Combat Drone" 6
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate" 2
-		"Rainmaker" 2
-		"Gunboat" 2
-	variant 1
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate" 2
-	variant 1
-		"Frigate"
-		"Rainmaker" 2
-		"Gunboat"
-
-fleet "Free Worlds Friendly Wormhole Guards"
-	government "Free Worlds that won't enter wormhole"
-	names "free worlds capital"
-	cargo 1
-	personality
-		heroic disables plunders frugal opportunistic
-	variant 3
-		"Dreadnought"
-	variant 3
-		"Skein"
-		"Finch" 6
-	variant 3
-		"Skein"
-		"Finch" 6
-	variant 3
-		"Roost"
-		"Finch" 4
-	variant 10
-		"Bastion"
-	variant 5
-		"Bastion (Heavy)"
-	variant 5
-		"Bastion (Laser)"
-	variant 8
-		"Osprey"
-	variant 4
-		"Osprey (Missile)"
-	variant 4
-		"Osprey (Laser)"
-	variant 6
-		"Bastion"
-		"Osprey"
-	variant 3
-		"Bastion (Heavy)"
-		"Osprey (Missile)"
-	variant 3
-		"Bastion (Laser)"
-		"Osprey (Laser)"
-	variant 2
-		"Falcon"
-	variant 1
-		"Falcon (Heavy)"
-	variant 1
-		"Falcon (Laser)"
-	variant 4
-		"Falcon"
-		"Bastion"
-	variant 2
-		"Falcon (Heavy)"
-		"Bastion (Heavy)"
-
-event "hai-human treaty signed"
-	# Pirates at Ultima Thule are intentionally retained as the illegal
-	# activity the treaty is preventing. Notice that the authorities
-	# now board the ships before destroying them.
-	system "Waypoint"
-		remove fleet "Hai Wormhole Guards"
-		add fleet "Hai Friendly Wormhole Guards" 1000
-	system "Heia Due"
-		remove fleet "Hai Wormhole Guards"
-	system "Ultima Thule"
-		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
-		add fleet "Navy Friendly Wormhole Guards" 2000
-		add fleet "Free Worlds Friendly Wormhole Guards" 5000
-		add fleet "Navy Surveillance that won't enter the wormhole" 2000
-	system "Rajak"
-		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
-		add fleet "Navy Friendly Wormhole Guards" 4000
-		add fleet "Free Worlds Friendly Wormhole Guards" 9000
-		add fleet "Navy Surveillance that won't enter the wormhole" 2000
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Sumar"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Danoa"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Cardax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Volax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Moktar"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Rigel"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Alnitak"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Saiph"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Betelgeuse"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Mintaka"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Gorvi"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Tortor"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Unagi"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Hatyasa"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Zaurak"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Sheratan"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Ruchbah"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Alpheratz"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Achernar"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Al Dhanab"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Mirach"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Alcyone"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Almaaz"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Arneb"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Alnilam"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Almach"
-		remove fleet "Smuggler (Hai Traffickers)"

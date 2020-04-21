@@ -10,11 +10,32 @@
 
 ########################################################################
 
+mission "Wandering Nightmares"
+	minor
+	landing
+	name "Quiet your Nightmares"
+	description "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
+	source
+		not attributes "wanderer"
+	destination "Vara K'chrai"
+	to offer
+		has "event: wandering nightmare map"
+		not "First Contact: Wanderer: offered"
+		not "First Contact: Wanderer (Before Hai): offered"
+	on offer
+		log "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
+		conversation
+			`Terrified, you see you're in a room filled with angry squirrels. Suddenly one's arm is ripped off and blood spatters on a nearby wall. There's a map on the wall, but you can't quite see it. You hear the flapping of birds' wings as you struggle to see, but your dream is cut short when you awaken.`
+			`	You've had this dream every night for a week now. At long last, you realize it isn't a dream; it is a memory. When Teeneep cut the arm off an Unfettered warrior, blood spattered on a map on the wall. A map of a region north of Hai space.`
+			`	Little blood reached the wall, but it surrounded one system. Perhaps this is a threat from some malevolent deity warning you of a terrible fate that will befall you there. You'll never sleep well again until you investigate.`
+			`	Whatever fate may have in store for you, it can't be worse than a lifetime of insomnia.`
+				accept
+
 mission "HRF 00 Resolution Timer"
 	landing
 	invisible
 	to offer
-		has "hai-human resolution announced"
+		has "event: hai-human resolution announced"
 	on offer
 		event "hai-human treaty prepared" 160 200
 		fail
@@ -24,17 +45,30 @@ event "hai-human treaty prepared"
 
 mission "HRF 01 Summoned to Mountaintop"
 	landing
+	name "Treaty at <planet>"
+	description "Go to <destination> to witness signing of the Hai-human treaty."
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Hai"
 		not attributes "uninhabited"
 	destination "Mountaintop"
 	to offer
-		has "event: hai-human treaty prepared"
-		has "Expanding Business [4]: done"
-		has "Pirate Troubles [4]: done"
-		has "Nanachi 4: done"
+		
 		#This makes sure that the background missions for the danger of travelling to Hai space can still happen (as they definitely don't work after this section).
 		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
+		
+		has "event: hai-human treaty prepared"
+
+		# Nanachi's story can't happen until 3019, which will be an extremely long
+		# delay for some players. The updated dialog works after the treaty
+		# is signed
+		#has "Nanachi 4: done"
+
+		# Pirate troubles is now a prerequisite to Hai Rescue [A01] Visit Darkwaste
+		# and the chance is 100% after pirates respond to leaks.
+
+		# Expanding Business still works since a salesman is expected to exaggerate,
+		# especially if he is trying to enlist the help of a celebrity.
+		#has "Expanding Business [4]: done"
 	on offer
 		conversation
 			#A message summons you for the treaty resolution.
@@ -43,7 +77,7 @@ mission "HRF 01 Summoned to Mountaintop"
 			`	The message has travelled a very long way and filtered through a great many buffers and relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
 			label haispace
 			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on Mountaintop when you're ready.`
-			accept
+				accept
 	
 	
 	

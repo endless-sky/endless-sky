@@ -28399,6 +28399,7 @@ planet "Vara K'chrai"
 	spaceport `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
+	"required reputation" 25
 	bribe 0
 
 planet "Vara Ke'sok"

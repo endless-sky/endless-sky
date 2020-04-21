@@ -12,6 +12,8 @@
 
 #Investigate a theorised smuggling route and rescue Hai. You have to do at least three of these missions.
 
+#NOTE: The Hai Leaks Response 6 and 7 missions will break if any of these missions have Hai-home as a destination.
+
 mission "Hai Rescue: Yeertle Family"
 	landing
 	name "Return the Yeertle family"
@@ -318,7 +320,7 @@ mission "Hai Rescue: Gipeep"
 				`	(Leave.)`
 					decline
 			`	You put the key in the lock, turn, and the next thump you hear pushes the crate open so hard it falls over. An angry-looking Hai jumps out and starts yelling at you in its own language.`
-			`	After a few seconds, the Hai calms down and speaks in your own tongue, "They locked me in a box! I was walking home from a store on <destination> and some humans pulled me into an alley. They shoved me in a box and now I'm...", the Hai looks around, "not in Hai space?"`
+			`	After a few seconds, the Hai calms down and speaks in your own tongue, "They locked me in a box! I was walking home from a store on <destination> and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?"`
 			`	"Please take me home. I'm a ship architect from <destination>. We should hurry before they come back."`
 			choice
 				`	"Of course. Just hop in my ship."`

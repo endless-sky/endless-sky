@@ -91,7 +91,6 @@ government "Deep Security"
 	swizzle 0
 	"player reputation" 1
 	"attitude toward"
-		"Deep Security that won't enter wormhole" 1
 		"Merchant" .5
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
@@ -179,7 +178,6 @@ government "Free Worlds"
 	
 	"player reputation" 1
 	"attitude toward"
-		"Free Worlds that won't enter wormhole" 1
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
@@ -320,7 +318,6 @@ government "Human Alliance"
 		"Navy (Oathkeeper)" .1
 		"Neutral" .1
 		"Free Worlds" .1
-		"Human Alliance that won't enter wormhole" 1
 	# These ships exist purely as scenery and only for a short
 	# time; if they persist longer in future versions, we should
 	# add hails.
@@ -696,7 +693,6 @@ government "Republic"
 		"Militia" .1
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
-		"Republic that won't enter wormhole" 1
 		"Smuggler (Hai Trafficker)" -.3
 		"Navy Intelligence" 1
 		"Navy (Oathkeeper)" 1
@@ -759,7 +755,6 @@ government "Syndicate"
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" -.4
-		"Syndicate that won't enter wormhole" 1
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
@@ -801,6 +796,12 @@ government "Test Dummy"
 	"player reputation" -1000
 	"hostile hail" "test dummy"
 	"hostile disabled hail" "disabled test dummy"
+
+# For space objects of unknown origin, to ensure the player can't land:
+government "Unknown"
+	swizzle 1
+	color .4 .4 .4
+	"player reputation" -1000
 
 government "Uninhabited"
 	color .4 .4 .4

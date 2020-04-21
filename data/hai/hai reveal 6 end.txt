@@ -19,9 +19,10 @@ mission "Hai Reveal [D01] Cleanup"
 	passengers 4
 	blocked "You need <bunks> passenger spaces to transport Xilin, Alondo, Sayari and Teeneep."
 	to offer
-		has "Hai Rescue [C06] Freedom: done"
+		has "Hai Rescue [C08] Freedom: done"
 	on offer
 		event "mountaintop ascendant"
+		fail "Hai Rescue [C07A] Devil-Hide Fleet"
 		log `Returned the Hai to their own space to bring an end to the missing Hai saga. All that remains is to work out what to do about the leak, and the cover story so thin as to provide no modesty to its wearers.`
 		log `Teeneep and General Choot'k together, prominent leaders of the Fettered and Unfettered Hai, kissed in a romantic goodbye. They spoke of a future peaceful unification of the Hai.`
 		conversation
@@ -37,7 +38,7 @@ mission "Hai Reveal [D01] Cleanup"
 			`	"We'll be ready to go in a couple of hours. What do you say?"`
 			choice
 				`	"Seems silly not to come on the final trip, of course I'll take you."`
-			accept
+					accept
 		#Taking the diplomats (all) and Teeneep to Mountaintop; for the public resolution, spirit of this was already drafted in the days while you returned.
 		#This treaty is essentially a 'resolution' to commit to a broader and more detailed treaty to be negotiated in full.
 		#The actual treaty, post certain Hai missions, will be the one to result in a station in Cardax.
@@ -57,13 +58,12 @@ mission "Hai Reveal [D01] Cleanup"
 			`	"It seems that somewhere along the way a shipload of kidnapped Hai that didn't make it to a processing area, or through the wormhole, got lost. The Hai have been left on Sunracer, and the ship appears to have disappeared," says Xilin.`
 			`	"For the moment," says Sayari, "We're the only ones who know about it, the Hai are in hiding and tapped into a communication grid. I intercepted their transmission as it was routed through this station directly."`
 			`	Xilin looks at you pointedly, "We need you to go pick them up, bring them here, and while you're at it make sure the threat really is ended. If it's not, this resolution may not happen, despite everything we've achieved."`
-			`	You look from Xilin to Sayari and do your best to look like this isn't totally ruining the lovely breakfast you just had.`
 			choice
 				`	"Of course, I'll take care of it."`
+			`	You look from Xilin to Sayari and do your best to look like this isn't totally ruining the lovely breakfast you just had.`
 
 				
 event "mountaintop ascendant"
-	unvisit "Ultima Thule"
 	system "Ultima Thule"
 		object
 			sprite star/f0
@@ -94,9 +94,10 @@ event "mountaintop ascendant"
 			period 2158.5
 			object Mountaintop
 				sprite planet/station7
-				distance 115
-				period 11.1964
+				distance 315
+				period 31.1964
 	planet Mountaintop
+		government "Hai"
 		attributes hai "hai tourism"
 		landscape land/station0
 		description `This brand new station is built with wide spacious interiors to accomodate the Hai's preferred geometric development pattern and long-term perspectives. The powerful holoprojection system which projected an 'anomaly' into space to cover the wormhole is now inactive. Now that the Hai are entering public relations with human governments this station has come into its own. A wide concourse facilitates social and business exchanges, as well as parades and demonstrations. The two uppermost decks are given over entirely to the state functions and diplomatic services including the now famed Borealis Chamber, formally referred to as 'Where Mountains Touch The Sky', where the public acknowledgment of the Hai was first given and the two species committed a formal resolution to define a treaty of cooperation.`
@@ -125,15 +126,15 @@ mission "Hai Reveal [D02] Cleanup"
 			label responses
 			choice
 				`	"The Hai are no longer a secret in human space, but they are concerned how you ended up here."`
-				goto revealed
+					goto revealed
 				`	"What happened to the ship that brought you here?"`
-				goto kidnappers
+					goto kidnappers
 				`	"Well, lets get you home before anything else happens hey?"`
-				goto depart
+					goto depart
 			label revealed
 			`	"Ah, we thought we saw something about that, but our comms are spotty and it seemed not something to rely on just yet. We all actually signed up to go to Mountaintop to take part in the facade, so it seemed especially suspicious."`
 			`	He shrugs, "Well anyway, an abundance of caution seemed warranted, we were kidnapped after all."`
-			goto responses
+				goto responses
 			label kidnappers
 			`	"We were en route to somewhere after the ship left Hai space. We don't really know what happened but they received some kind of message that made them very concerned. They said something about hiding somewhere safe and they landed here."`
 			`	At this point he frowns in the way Hai do, "We were set down here for days and days, our kidnappers couldn't seem to work out what they should do. Eventually a woman came in this ship here."`
@@ -142,7 +143,7 @@ mission "Hai Reveal [D02] Cleanup"
 				`	"Do you know where they went?"`
 				`	"What did this woman look like?"`
 			`	"The woman was very fierce and very strict about what people said aloud. She disciplined a number of our kidnappers in front of us for opening their mouths at the wrong time. We have no idea where they went, but we did hear one of them say that they were afraid they wouldn't be welcome there. It sounded like it was out of the way somewhere, wherever it was."`
-			goto responses
+				goto responses
 			label depart
 			`	The Hai sincerely thanks you and they load their meagre possessions and board your ship inside of twenty minutes. The star barge looks like it'd take a few hours at least to make ready for flight and then have to go through the risk of visiting the spaceport for fuelling, so you leave it behind.`
 
@@ -173,7 +174,7 @@ mission "Hai Reveal [D03] Cleanup"
 			`An all-hai greeting party are waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer when you return to Mountaintop. It appears to have avoided media attention, and the summit is progressing towards a resolution at an acceptable rate. It's been slow going, since the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
 			`	You've had time to consider for a couple of days on the return the events that led to you hauling a group of spontaneously abandoned hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
 			`	While your passengers are quietly loaded onto a handful of transports to be quietly taken home, Sayari and Xilin find you somewhere quiet.`
-			`	"Thankyou <Last>, you had all the necessary discretion at this sensitive time," says Sayari.`
+			`	"Thank you, <last>, you had all the necessary discretion at this sensitive time," says Sayari.`
 			`	Xilin is more direct, "I'll certainly thank you for saving me from another headache. Was there anything else you found? It seems so odd."`
 			choice
 				`	"There is something, but I'm not totally sure."`
@@ -186,7 +187,7 @@ mission "Hai Reveal [D03] Cleanup"
 				`	"Not if I can help it."`
 				`	"I think and hope, perhaps not."`
 			`	You leave them with only guesses, you're not entirely sure yourself but one thing you do know, is that you have to go to Freedom where this all began.`
-	
+				accept	
 	
 mission "Hai Reveal [D04] Cleanup"
 	landing
@@ -194,10 +195,10 @@ mission "Hai Reveal [D04] Cleanup"
 	description "Find Aspiration in the Al Hurr system. It wasn't on the maps before but it's meant to be close by."
 	source "Freedom"
 	destination "Aspiration"
+	clearance
 	to offer
 		has "Hai Reveal [D03] Cleanup: done"
 	on offer
-		event "lofty goals"
 		log `You have confirmed that the loose end is Terry, her grandmother ultimately pleaded with you for her life, but also told you where to find her. It turns out there was a whole other world out here in the north only accessible by jump drive. Someone lives there and apparently Terry has something to do with it.`
 		conversation
 			`	When you land on Freedom the spaceport is busy as ever, but as you go around asking if anyone has seen a woman matching Terry's description your reception starts to get distinctly weird. You wouldn't describe it as frosty, for no one actually seems to know anything and remains exactly as friendly and helpful as you'd expect a bunch of anarchists to be, but yet the more you ask around the more it seems that people are following you around and whispering to each other. You can't help but wonder just who Terry really is, and just how deeply involved she was. She seems to have been one step ahead all the way.`
@@ -228,6 +229,8 @@ mission "Hai Reveal [D04] Cleanup"
 			`	"If you have the means, point your scanners towards Mebsuta from here, seek out Aspiration."`
 			`	Her voice catches at the end and she looks back at you from the corner of her eye, "If you have it in your heart to do so, please, do not harm my great-grandaughter."`
 			`	She steps to a doorway and vanishes inside. Within seconds the windows are closed, the gates are open, and you are left alone in the alley with the bustle of the spaceport beyond again.`
+				accept
+				
 	#This is a gamble. If you indicate in any way that you are overtly hostile, she'll kill you and deal with the consequences later.
 	#She also knows that if you go missing, someone else will come looking. Someone will eventually find her great-grandaughter, and she can't intercept everyone.
 	#She's acting as the gatekeeper, gambling that the one she chooses to let through will have compassion and understanding.
@@ -236,7 +239,7 @@ mission "Hai Reveal [D04] Cleanup"
 event "lofty spawn"
 #East-West coordinate from Canopus and North-South from Uwa Fahn
 	system "Al Hurr"
-		pos -4421 -491
+		pos -432 -491
 		government "Pirate"
 		belt 1312
 		trade "Clothing" 201
@@ -281,11 +284,7 @@ event "lofty spawn"
 		landscape land/sea17-harro
 		description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years it might be not dissimilar from Earth before it was paved over, but for now it's a sparse world, with a single major town built on a promontory overlooking a wide river mouth carrying runoff from continental scale glaciers to the sea.`
 		spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls, Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked up permanently on the outskirts.`
-
-
-event "lofty goals"
-	system "Al Hurr"
-		pos -421 -491
+		"required reputation" 100
 
 
 mission "Hai Reveal [D05] Cleanup"
@@ -344,35 +343,38 @@ mission "Hai Reveal [D05] Cleanup"
 					goto judge
 			label spare
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
-			`	The holster clicks as you put the weapon away.`
 			apply
 				set "Hai Reveal [D05B] End Terry: failed"
-			goto return
+			`	The holster clicks as you put the weapon away.`
+				goto return
 			label end
 			`	You draw your weapon and point it at her, your thumb on the safety. Some prices are too high to pay for a better future.`
-			`	The retort of the weapon is taken away on the wind.`
 			apply
 				set "Hai Reveal [D05B] Spare Terry: failed"
-			goto return
+			`	The retort of the weapon is taken away on the wind.`
+				goto return
 			label judge
 			`	"You'd better be," she says, "you and I both know that this can't become public. If you take me to the Syndicate they will do away with me if they find out, and I doubt they could manage to not."`
 			`	"Oh, Alastair did tell me to say you're fired if you don't get back quickly... that was over a week ago now," you say.`
 			`	She rolls her eyes, "Of course, this is exactly the sort of callous governance I expect of them."`
 			`	"Don't distract from the point though. I can never go back, you are the only one who knows everything, and no one else can know it all. You must decide here, now, how this ends."`
 			`	"You are the judge, whether you like it or not, and no one else will carry out your judgement."`
-			goto decide
+				goto decide
 			label return
 			`	You return to your ship, you're done here.`
+				accept
 	on complete
 		event "hai-human resolution announced"
+		event "wandering nightmare map" 7
 		conversation
 			`When you return to mountaintop you reassure Sayari and Xilin that there is nothing more to do. The danger is over, for good.`
 			`	As it happens the summit has functionally concluded by the time you return. The diplomats had been running interference to prolong things in fact, knowing that your return had critical consequences. Now that you're here, the remaining agenda items miraculously get resolved within hours, and late in the day you find yourself once again  Where Mountains Touch The Sky as the successful resolution is announced.`
 			`	The historic moment lays the groundwork for a future official treaty framework and governmental cooperation, and established Mountaintop as the principle diplomatic embassy for both peoples.`
 			`	Less publicly, extensive surveillance fleets are posted on both sides of the wormhole to detect any kidnappings or other illegal travel. Now the only way for illicit transfers to happen is if a government employee is involved, but all three countries have quietly agreed to watch for that behavior and punish it severely.`
 			`	At last, it really is over and you can get back to your own life.`
-			`	Maybe you'll have to find out who the Unfettered were stealing their other technolgies from...`
+			`	Maybe you'll have to find out who the Unfettered were stealing their other technolgies from. They mentioned, "Wanderers."`
 
+event "wandering nightmare map"
 
 mission "Hai Reveal [D05A] Spare Terry"
 	landing
@@ -395,5 +397,210 @@ mission "Hai Reveal [D05B] End Terry"
 	on complete
 		log `You hunted down Terry on Aspiration and confronted her about the events that led you here. You learned that the remnants of the anarcho-syndicalist, anti-Syndicate organisation called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community seems to have been built in isolation with people who believed in the principles of anarcho-syndicalism. Terry threw herself on your mercy, you had destroyed her plans, her livelihood, and forced her to abandon her ambitions. When she pleaded her case you became her executioner; this loose end is thoroughly tied up.`
 		log "People" "Terry Adrianopolous" `During the crisis Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and re-making the government into a less corrupt structure. Unfortunately she dealt with people of the worst sort and condoned kidnapping and exploitation to achieve it. Despite her noble intentions her crimes were unconscionable. Her story ended on the bluffs of Aspiration, though no one may ever know it.`
-	
+
+
+########################################################################
+
+fleet "Hai Friendly Wormhole Guards"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		heroic disables plunders frugal opportunistic surveillance
+	variant 3
+		"Shield Beetle (Police)"
+	variant 1
+		"Lightning Bug (Surveillance)" 2
+	variant 1
+		"Lightning Bug (Surveillance)" 3
+
+fleet "Navy Surveillance that won't enter the wormhole"
+	government "Republic that won't enter wormhole"
+	# ... otherwise the surveillance drones fly through the wormhole
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		surveillance opportunistic disables plunders
+	variant 10
+		"Cruiser"
+		"Surveillance Drone" 4
+	variant 10
+		"Gunboat" 2
+
+fleet "Navy Friendly Wormhole Guards"
+	government "Republic that won't enter wormhole"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		heroic disables plunders frugal opportunistic
+	variant 5
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"
+	variant 3
+		"Cruiser"
+		"Combat Drone" 4
+	variant 3
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Rainmaker"
+	variant 2
+		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
+	variant 1
+		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker" 2
+		"Gunboat" 2
+	variant 1
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+	variant 1
+		"Frigate"
+		"Rainmaker" 2
+		"Gunboat"
+
+fleet "Free Worlds Friendly Wormhole Guards"
+	government "Free Worlds that won't enter wormhole"
+	names "free worlds capital"
+	cargo 1
+	personality
+		heroic disables plunders frugal opportunistic
+	variant 3
+		"Dreadnought"
+	variant 3
+		"Skein"
+		"Finch" 6
+	variant 3
+		"Skein"
+		"Finch" 6
+	variant 3
+		"Roost"
+		"Finch" 4
+	variant 10
+		"Bastion"
+	variant 5
+		"Bastion (Heavy)"
+	variant 5
+		"Bastion (Laser)"
+	variant 8
+		"Osprey"
+	variant 4
+		"Osprey (Missile)"
+	variant 4
+		"Osprey (Laser)"
+	variant 6
+		"Bastion"
+		"Osprey"
+	variant 3
+		"Bastion (Heavy)"
+		"Osprey (Missile)"
+	variant 3
+		"Bastion (Laser)"
+		"Osprey (Laser)"
+	variant 2
+		"Falcon"
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Laser)"
+	variant 4
+		"Falcon"
+		"Bastion"
+	variant 2
+		"Falcon (Heavy)"
+		"Bastion (Heavy)"
+
 event "hai-human resolution announced"
+	
+	# Fleet build-up is gone, no more smugglers, and everyone is monitoring
+	# everyone else.
+
+	# Pirates at Ultima Thule are intentionally retained as the
+	# illegal activity the humans are preventing. Notice that the
+	# authorities now board the ships before destroying them.
+	
+	system "Waypoint"
+		remove fleet "Hai Wormhole Guards"
+		add fleet "Hai Friendly Wormhole Guards" 1000
+		add fleet "Small Hai" 5000
+	system "Heia Due"
+		remove fleet "Hai Wormhole Guards"
+	system "Ultima Thule"
+		remove fleet "Human Wormhole Guards"
+		remove fleet "Smuggler (Hai Traffickers)"
+		add fleet "Navy Friendly Wormhole Guards" 2000
+		add fleet "Free Worlds Friendly Wormhole Guards" 5000
+		add fleet "Navy Surveillance that won't enter the wormhole" 2000
+	system "Rajak"
+		remove fleet "Human Wormhole Guards"
+		remove fleet "Smuggler (Hai Traffickers)"
+		add fleet "Navy Friendly Wormhole Guards" 4000
+		add fleet "Free Worlds Friendly Wormhole Guards" 9000
+		add fleet "Navy Surveillance that won't enter the wormhole" 2000
+	system "Hassaleh"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Sumar"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Danoa"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Cardax"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Hassaleh"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Volax"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Moktar"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Rigel"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Alnitak"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Saiph"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Betelgeuse"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Mintaka"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Gorvi"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Tortor"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Unagi"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Hatyasa"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Zaurak"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Sheratan"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Ruchbah"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Alpheratz"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Achernar"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Al Dhanab"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Mirach"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Alcyone"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Almaaz"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Arneb"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Alnilam"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Almach"
+		remove fleet "Smuggler (Hai Traffickers)"
+

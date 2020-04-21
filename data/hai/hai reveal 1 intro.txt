@@ -582,10 +582,12 @@ event "pirates respond to leaks"
 		add fleet "Small Core Pirates" 420
 		remove fleet "Small Hai"
 		remove fleet "Large Hai"
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
 	system "Heia Due"
 		add fleet "Marauder fleet IX" 900
 		add fleet "Large Northern Pirates" 600
 		add fleet "Large Core Pirates" 600
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 3000
 		
 	
 #If a republic/syndicate campaign gets added this text will need variants.
@@ -661,12 +663,7 @@ mission "Hai Leaks Response 4"
 	npc
 		government "Hai"
 		personality escort disables heroic
-		fleet 16
-			names "hai"
-			variant
-				"Shield Beetle (Six Ion)"
-			variant
-				"Shield Beetle (Durable Pulse)"
+		fleet "Anti-Pirate Hai (No Wormhole Travel)" 16
 	npc kill
 		government "Pirate"
 		personality staying marked target
@@ -696,8 +693,7 @@ event "waypoint pirates vanquished"
 	#Add pirate spawns to Waypoint and Heia Due
 	system "Waypoint"
 		government "Hai"
-		add fleet "Small Hai" 1200
-		add fleet "Large Hai" 2500
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
 		remove fleet "Marauder fleet IX" 900
 		remove fleet "Large Northern Pirates" 600
 		remove fleet "Large Core Pirates" 600
@@ -831,9 +827,11 @@ mission "Hai Leaks Response 6"
 	autosave
 	landing
 	source "Hai-home"
+	clearance
 	to offer
 		has "Hai Leaks Response 4: done"
 	on offer
+		event "secret mountaintop"
 		event "role-play fleet deception"
 		# Hai like you a lot now, and as a result, you have permanent access to Hai-home:
 		"reputation: Hai" >?= 100
@@ -877,14 +875,25 @@ mission "Hai Leaks Response 6"
 		"hai slave prereq" >= 3
 	on complete
 		log `You found proof of more kidnapped Hai. Sayari's fears appear to have been entirely justified...`
-		dialog `You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you have enough information for Sayuri.`
 		event "secret mountaintop"
+
+mission "Hai Leaks Response 7"
+	landing
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		not attributes "uninhabited"
+	to offer
+		has "Hai Leaks Response 6: active"
+		"hai slave prereq" >= 3
+	on offer
+		conversation
+			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you have enough information for Sayuri.`
+				decline
 
 event "role-play fleet deception"
 	system "Ultima Thule"
-		add fleet "Small Hai" 1200
-		add fleet "Large Hai" 2500
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
 	system "Rajak"
-		add fleet "Small Hai" 1200
-		add fleet "Large Hai" 2500
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
 		

@@ -663,7 +663,7 @@ mission "Expanding Business [1]"
 				has "hai-human resolution announced"
 			`	"Allow me to explain. The journey to the Hai can be a dangerous one, and you know that. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Now that many merchants are here, they're trapped. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
 			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
-			goto choices
+				goto choices
 			label public
 			`	"Allow me to explain. The journey to the Hai can be a dangerous one, even with the new commitment to safety made by both governments. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Even now those pirates roam almost un-challenged many merchants are trapped here without the means to safely return. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
 			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
@@ -815,7 +815,6 @@ mission "Expanding Business [5]"
 	destination "Greenwater"
 	to offer
 		has "event: request for a shipyard"
-		has "event: hai-human treaty signed"
 	on offer
 		dialog `You receive a message from David Turner when you land. "Hello, Captain. I hope you've been enjoying your share in the outfitter. I have a new proposition for you, as I've bought out the rest of the park around the outfitter. Meet me on <destination> if you'd like to hear about it."`
 
@@ -1028,7 +1027,7 @@ mission "Hiding in Plain Sight"
 			branch public
 				has "hai-human resolution announced"
 			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
-			goto return
+				goto return
 			label public
 			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' Now that Kiru doesn't have to worry about pretending to be a cosplayer full time we're really keen to go."`
 			label return
@@ -1084,7 +1083,7 @@ mission "Hai Honeymoon"
 			branch public
 				has "hai-human resolution announced"
 			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. I know it's risky to bring Touhar into human space, but <planet> is a sparsely inhabited world, and I have a friend who owns a house in the mountains far from anyone who could see him."`
-			goto return
+				goto return
 			label public
 			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. Some people still tell us it's risky to bring Touhar into human space, especially to such a sparsely inhabited world as <planet>, but I have a friend who owns a house in the mountains and it just seems like everything is working out so well right now."`
 			label return
@@ -1106,14 +1105,15 @@ mission "Hai Honeymoon"
 mission "Pirate Troubles [0]"
 	name "Defend <system>"
 	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
-	minor
 	source
 		near "Waypoint" 2
 		government "Hai"
 	to offer
 		has "First Contact: Unfettered: offered"
 		"combat rating" > 1100
-		random < 10
+		or
+			random < 10
+			has "event: pirates respond to leaks"
 	on offer
 		conversation
 			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but the Unfettered Hai never reach this far south. A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
@@ -1625,7 +1625,7 @@ mission "Nanachi 3"
 			branch public
 				has "hai-human resolution announced"
 			`	While you tell her stories of many different planets you've visited, she seems to be particularly interested in Earth. "I've seen a bit of human architecture in videos of planets like Allhome, but I can't even imagine what your capital must look like. Tens of thousands of years of another species' history, it sounds even more exciting than what I heard about our landmarks on Hai-home. Captain, do you think that someday, when we no longer need to be kept hidden from humanity, that I'll be able to visit Earth, and see the beauty of your capital?" Seeing how little she knows about humanity, it's not surprising that she is unaware of the state that Earth is in.`
-			goto return
+				goto return
 			label public
 			`	While you tell her stories of many different planets you've visited, she seems to be particularly interested in Earth. "I've seen a bit of human architecture in videos of planets like Allhome, but I can't even imagine what your capital must look like. Tens of thousands of years of another species' history, it sounds even more exciting than what I heard about our landmarks on Hai-home. Captain, do you think that someday, when I have a bigger ship or when the routes are safer, that I'll be able to visit Earth, and see the beauty of your capital?" Seeing how little she knows about humanity, it's not surprising that she is unaware of the state that Earth is in.`
 			label return
@@ -1646,7 +1646,7 @@ mission "Nanachi 3"
 					goto board
 			label public2
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If she does manage to be successful enough to fly to Earth one day, though, she will no doubt be extremely disappointed.`
-					goto board
+				goto board
 			label truth
 			`	She looks at you in confusion, as if trying to understand what you mean, so you explain it to her. "Despite how much humanity has advanced in the past centuries, Earth has been largely neglected. Most of the land has been turned into cities, which have over the years decayed into slums. If you ever managed to visit you'd be better off going to museums or monuments, but even then there are many thieves roaming the streets and it is very dangerous to be out at night. Lots of folks born there just think about how to get out."`
 			`	You keep telling her about the issues facing humanity's birthplace, and her previous eagerness to learn about the planet fades. "How could your ancestors let their own home become like this?"`
@@ -1705,7 +1705,7 @@ mission "Nanachi 4"
 			branch public
 				has "hai-human resolution announced"
 			`	"They can't go to our planets and experience it for themselves yet, so we thought about bringing it to them!" Vanessa says.`
-			goto return
+				goto return
 			label public
 			`	"It's still quite an expensive ordeal go to our planets and experience it for themselves, so we thought about bringing it to them!" Vanessa says.`
 			label return
@@ -1720,7 +1720,7 @@ mission "Nanachi 4"
 				has "hai-human resolution announced"
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! It'll take months before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled three weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
-			goto return2
+				goto return2
 			label public2
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! Even if we contact the navy it will take weeks before they can mobilise to hunt them down and guarantee that they've made it safe for the convoy to come here, and the hazard pay to request a carrier escort is frankly ridiculous. The art exhibition is scheduled only three weeks from now!"`
 			`	Some of them eye you as they try to figure out what to do but before any well-formed ideas are reached, Nanachi speaks up, "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either so it's much more likely to go unnoticed or uncared for."`

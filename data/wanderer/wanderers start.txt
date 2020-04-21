@@ -8,6 +8,19 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Make Vara K'chrai Accessible"
+	landing
+	invisible
+	to offer
+		has "event: hai-human resolution announced"
+	on offer
+		event "Vara K'chrai is accessible"
+
+event "Vara K'chrai is accessible"
+	# You can now begin the Wanderers campaign.
+	planet "Vara K'chrai"
+		"required reputation" 0
+
 mission "First Contact: Wanderer (Before Hai)"
 	landing
 	source
@@ -15,6 +28,7 @@ mission "First Contact: Wanderer (Before Hai)"
 	to offer
 		not "First Contact: Hai: offered"
 	on offer
+		fail "Wandering Nightmares"
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
 			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
@@ -40,6 +54,7 @@ mission "First Contact: Wanderer"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
+		fail "Wandering Nightmares"
 		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
 			branch revisit
@@ -95,7 +110,6 @@ mission "Wanderers: Hai Diplomat"
 	clearance
 	to offer
 		has "First Contact: Wanderer: offered"
-		has "hai-human treaty signed"
 		not "Wanderers: Diplomacy: offered"
 	on offer
 		conversation
@@ -1232,6 +1246,7 @@ mission "Wanderers: Alpha Surveillance F"
 				`	"Yes."`
 					goto jump
 				`	"Wait, you know about the Hai?"`
+				# A stupid question at this point, but the player may need a reminder.
 			`	Danforth looks bemused. "Living on their doorstep? Of course I do. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
 			label jump
 			`	"It's not just the distance," says Elias. "The only way to get there is by jump drive. Fortunately Captain <last> has one."`
@@ -1865,7 +1880,7 @@ mission "Wanderers Hai Assistance 2"
 	on offer
 		log "Traveled to the Hai homeworld with Ambassador Sayari to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
 		conversation
-			`The Hai's recently elected "council of elders" agrees to meet with you and Sayari and the two of you make an effort to avoid directing yourselves towards Teeneep. Your friend's popularity as an Elder does not extend to inside these walls, and it would be detrimental to your cause to seek her assent specifically here. After you describe the situation with the Wanderers, one of the other elders who seems aloder and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
+			`The Hai's recently elected Council of "Elders" agrees to meet with you and Sayari and the two of you make an effort to avoid directing yourselves towards Teeneep. Your young friend's popularity as an Elder does not extend to inside these walls, and it would be detrimental to your cause to seek her assent specifically here. After you describe the situation with the Wanderers, one of the other elders who seems older and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
 			`	Sayari says, "We must not allow the Unfettered to commit genocide in the name of the Hai people."`
 			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
 			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
@@ -1927,6 +1942,7 @@ mission "Wanderers Hai Assistance 3"
 			label positive
 			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You are a respected warrior Captain <last>, but now you must leave with this Fettered diplomat."`
 			`	As you and Sayari board your ship she mutters to you, "I was told to expect this, but it was only right to try."`
+				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
 
