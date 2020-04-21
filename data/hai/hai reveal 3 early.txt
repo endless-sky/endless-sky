@@ -177,7 +177,9 @@ mission "Hai Building Mountaintop [1b] Return"
 		has "Hai Building Mountaintop [1a] Construction Escorts: done"
 	on offer
 		conversation
-			`The Geocoris captains thank you for your service, and inform you that the Hai government needs your help again. You should return to <destination> to see what they want.`
+			`When you arrive, you see a Geocoris with a steel ring built around it. Space-based cranes are removing the three outer sections of the Geocoris and moving them to the steel ring. After they finish with the first, they dismantle the other seven Geocoris you escorted. Within a few hours, there is a makeshift station with eight Geocoris power generators and a sizable amount of storage and habitat space. The construction workers begin unpacking the contents of the Geocoris storage pods, assembling auxiliary life support systems and a massive holoprojector.`
+			`	The Geocoris captains explain the Hai had built this space station elsewhere already and dismantled it into eight Geocoris, so it may be reassembled rapidly. They thank you for your service, and inform you that the Hai government needs your help again.`
+			`	Content that the station is built satisfactorily, you prepare to return to <destination>.`
 				accept
 
 
@@ -284,8 +286,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 mission "Hai Building Mountaintop [2a] Sales Job"
 	landing
 	invisible
-	# Repeat 1 less time than the number of stopovers in prior mission.
-	repeat 15
+	repeat
 	source 
 		not planet "Hai-home"
 		not planet "Mountaintop"
@@ -358,17 +359,21 @@ event "role-play station active"
 				distance 216
 				period 11.1964
 		object "Wormhole Alpha"
-			sprite planet/wormhole
+			sprite planet/wormhole-syndicate-ad
+				"frame rate" 1
+				"random start frame"
 			distance 4208.63
 			period 2158.5
 			object Mountaintop
 				sprite planet/station7
 				distance 315
 				period 31.1964
-		object
-			sprite planet/wisp
-			distance 4208.63
-			period 2158.5
+# The wisp covers the middle of the wormhole and prevents you from
+# traveling through if you happen to be on top of the wisp.
+#		object
+#			sprite planet/wisp
+#			distance 4208.63
+#			period 2158.5
 	planet Mountaintop
 		government "Neutral"
 		attributes station tourism

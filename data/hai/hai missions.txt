@@ -1524,14 +1524,19 @@ mission "Nanachi 1"
 	name "Escort Nanachi to <planet>"
 	description "Help Nanachi, a Hai who just bought her first ship, make a simple delivery to <destination> by <date>."
 	minor
-	source "Giverstone"
+	source
+		# This is a mandatory mission, so the range is as far as a
+		# Heavy Shuttle can reach (500 fuel)
+		near "Wah Ki" 1 5
 	destination "Cloudfire"
-	deadline
+	deadline 2 1
 	to offer
-		"net worth" > 20000000
-		"combat rating" > 1200
-		year > 3018
-		has "First Contact: Hai: offered"
+		or
+			has "Hai Leaks Response 6: offered"
+			and
+				"net worth" > 20000000
+				"combat rating" > 1200
+				has "First Contact: Hai: offered"
 	on offer
 		conversation
 			`As you are making your way through the spaceport you notice a worried-looking Hai staring at the local job board and back at some sort of document they are holding.`

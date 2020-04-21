@@ -10,7 +10,7 @@
 
 ########################################################################
 
-# Part 1: Search Korath and human space for the missing researchers
+# Part 4: Search Korath and human space for the missing researchers
 
 mission "Hai Rescue [A01] Visit Darkwaste"
 	landing
@@ -24,6 +24,7 @@ mission "Hai Rescue [A01] Visit Darkwaste"
 	to offer
 		has "event: hai rescue: teeneep message"
 		has "Hai Building Mountaintop [3] Furnishings: done"
+		has "Nanachi 4: done"
 		or
 			has "Pirate Troubles [4]: done"
 			has "Pirate Troubles [4]: declined"

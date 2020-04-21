@@ -318,6 +318,7 @@ government "Human Alliance"
 		"Navy (Oathkeeper)" .1
 		"Neutral" .1
 		"Free Worlds" .1
+		"Human Alliance that won't enter wormhole" 1.0
 	# These ships exist purely as scenery and only for a short
 	# time; if they persist longer in future versions, we should
 	# add hails.

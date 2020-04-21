@@ -51,7 +51,7 @@ mission "Hai Reveal [D01] Cleanup"
 			`	The station appears to have had work ongoing on it before you arrived, and after a remarkably short time you find yourself standing with the diplomats in the grand Borealis Chamber 'Where Mountains Touch The Sky' as Teeneep makes the first publicly broadcast speech from a Hai to the human media. The three heads of state announce a resolution granting safe passage to all Hai in human space, so long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety.`
 			`	This meeting will now turn into a multi-day summit to discuss and settle upon the appropriate terms of referencee and necessary criteria for a full resolution outlining a path to a formal treaty. This process will take a number of days.`
 			choice
-				`	Relax`
+				`	(Relax)`
 			`Just when you thought that maybe you'd get on with your own life, there's a knock on the door of your station quarters just as you finish breakfast. A slightly sheepish looking Sayari and Xilin are waiting for you when you open the door.`
 			`	"We need to talk."`
 			`	You feel the deepest of sighs settle into your bones, but at this point you just gesture them inside. It would have been too easy if it was all over wouldn't it?`
@@ -198,7 +198,10 @@ mission "Hai Reveal [D04] Cleanup"
 	clearance
 	to offer
 		has "Hai Reveal [D03] Cleanup: done"
+	on enter Almaaz
+		dialog `As you depart the planet, you notice a new system has appeared on your scanners to the south-west. You should adjust your destination accordingly.`
 	on offer
+		event "lofty goals"
 		log `You have confirmed that the loose end is Terry, her grandmother ultimately pleaded with you for her life, but also told you where to find her. It turns out there was a whole other world out here in the north only accessible by jump drive. Someone lives there and apparently Terry has something to do with it.`
 		conversation
 			`	When you land on Freedom the spaceport is busy as ever, but as you go around asking if anyone has seen a woman matching Terry's description your reception starts to get distinctly weird. You wouldn't describe it as frosty, for no one actually seems to know anything and remains exactly as friendly and helpful as you'd expect a bunch of anarchists to be, but yet the more you ask around the more it seems that people are following you around and whispering to each other. You can't help but wonder just who Terry really is, and just how deeply involved she was. She seems to have been one step ahead all the way.`
@@ -237,7 +240,56 @@ mission "Hai Reveal [D04] Cleanup"
 	
 	
 event "lofty spawn"
-#East-West coordinate from Canopus and North-South from Uwa Fahn
+# Half-way between Milky Way and Pug galaxy:
+	system "Al Hurr"
+		pos 5000 3500
+		government "Uninhabited"
+		belt 1312
+		trade "Clothing" 201
+		trade "Electronics" 658
+		trade "Equipment" 484
+		trade "Food" 280
+		trade "Heavy Metals" 850
+		trade "Industrial" 621
+		trade "Luxury Goods" 1134
+		trade "Medical" 582
+		trade "Metal" 339
+		trade "Plastic" 353
+		object
+			sprite star/f5
+			period 10
+		object
+			sprite planet/rock15
+			distance 382
+			period 52.6472
+		object
+			sprite planet/rock6
+			distance 686
+			period 77.7827
+		object Aspiration
+			sprite planet/ice8-b
+			distance 980
+			period 98.6622
+		object
+			sprite planet/dust6
+			distance 1299
+			period 119.0528
+		object
+			sprite planet/gas1
+			distance 1706.99
+			period 557.553
+			object
+				sprite planet/dust1
+				distance 216
+				period 11.1964
+	planet Aspiration
+		landscape land/sea17-harro
+		description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years it might be not dissimilar from Earth before it was paved over, but for now it's a sparse world, with a single major town built on a promontory overlooking a wide river mouth carrying runoff from continental scale glaciers to the sea.`
+		spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls, Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked up permanently on the outskirts.`
+		"required reputation" 100
+
+	
+event "lofty goals"
 	system "Al Hurr"
 		pos -432 -491
 		government "Pirate"

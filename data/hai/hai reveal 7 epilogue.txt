@@ -10,27 +10,6 @@
 
 ########################################################################
 
-mission "Wandering Nightmares"
-	minor
-	landing
-	name "Quiet your Nightmares"
-	description "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
-	source
-		not attributes "wanderer"
-	destination "Vara K'chrai"
-	to offer
-		has "event: wandering nightmare map"
-		not "First Contact: Wanderer: offered"
-		not "First Contact: Wanderer (Before Hai): offered"
-	on offer
-		log "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
-		conversation
-			`Terrified, you see you're in a room filled with angry squirrels. Suddenly one's arm is ripped off and blood spatters on a nearby wall. There's a map on the wall, but you can't quite see it. You hear the flapping of birds' wings as you struggle to see, but your dream is cut short when you awaken.`
-			`	You've had this dream every night for a week now. At long last, you realize it isn't a dream; it is a memory. When Teeneep cut the arm off an Unfettered warrior, blood spattered on a map on the wall. A map of a region north of Hai space.`
-			`	Little blood reached the wall, but it surrounded one system. Perhaps this is a threat from some malevolent deity warning you of a terrible fate that will befall you there. You'll never sleep well again until you investigate.`
-			`	Whatever fate may have in store for you, it can't be worse than a lifetime of insomnia.`
-				accept
-
 mission "HRF 00 Resolution Timer"
 	landing
 	invisible

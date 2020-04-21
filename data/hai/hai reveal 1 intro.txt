@@ -20,6 +20,55 @@ mission "Hai Secret Leaker Begins"
 		fail
 
 event "pug media coverage"
+	# add attitudes for aliases of governments
+	government "Republic"
+		"attitude toward"
+			"Republic that won't enter wormhole" 1.0
+	government "Republic that won't enter wormhole"
+		"attitude toward"
+			"Republic" 1.0
+
+	government "Syndicate"
+		"attitude toward"
+			"Syndicate that won't enter wormhole" 1.0
+	government "Syndicate that won't enter wormhole"
+		"attitude toward"
+			"Syndicate" 1.0
+
+	government "Free Worlds"
+		"attitude toward"
+			"Free Worlds that won't enter wormhole" 1.0
+	government "Free Worlds that won't enter wormhole"
+		"attitude toward"
+			"Free Worlds" 1.0
+
+	government "Deep Security"
+		"attitude toward"
+			"Deep Security that won't enter wormhole" 1.0
+	government "Deep Security that won't enter wormhole"
+		"attitude toward"
+			"Deep Security" 1.0
+
+mission "Hai Reveal: Reputation Reset"
+	landing
+	invisible
+	to offer
+		has "event: pug media coverage"
+	on offer
+		# Sync reputations for aliases of governments governments:
+		"reputation: Deep Security that won't enter wormhole" = "reputation: Deep Security"
+		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
+		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
+		"reputation: Syndicate that won't enter wormhole" = "reputation: Syndicate"
+
+		# Make sure the new governments start with appropriate rep:
+		"reputation: Human Alliance that won't enter wormhole" = 1000
+		"reputation: Human Alliance" = 1000
+		"reputation: Hai (Friendly Unfettered)" = 1000
+		"reputation: Bounty Hunter that Attacks Hai" = -1000
+		"reputation: Philosophers" = 1000
+		"reputation: Pirate (Devil-Run Gang)" = -1000
+		fail
 
 mission "Event: Pug Media Coverage"
 	landing
@@ -189,7 +238,7 @@ mission "ZZ Event Hai Secret Leaks: FWH"
 mission "ZZ Event Hai Secret Leaks: RSHU"
 	landing
 	name "Visit the Hai"
-	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok. Visit <stopovers> and <destination>."
+	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok. Visit <stopovers> and then <destination>."
 	source
 		government "Republic" "Syndicate"
 		attributes "spaceport"
@@ -276,7 +325,7 @@ mission "ZZ Event Hai Secret Leaks: FW"
 event "pirates investigate leaks"
 	system "Waypoint"
 		government "Pirate"
-		add fleet "Marauder fleet IX" 600
+		add fleet "Marauder fleet IX" 2000
 	
 	
 #This branch is if you have met the Hai but not the Unfettered
@@ -497,7 +546,7 @@ mission "Hai Leaks Response 1"
 mission "Hai Leaks Response 2"
 	landing
 	name "Collect Representatives"
-	description "Go collect representatives from the 3 main Human governments."
+	description "Collect human government representatives from <stopovers> and take them to <destination>."
 	source "Earth"
 	stopover "Deep"
 	stopover "Foundry"
@@ -568,6 +617,8 @@ mission "Hai Leaks Response 2"
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
 				`	"I'll do what I can."`
+					decline
+
 #If a republic/syndicate campaign gets added this on complete text will need variants.
 	
 	
@@ -575,19 +626,18 @@ event "pirates respond to leaks"
 	#Add pirate spawns to Waypoint and Heia Due
 	system "Waypoint"
 		government "Pirate"
-		add fleet "Marauder fleet IX" 900
-		add fleet "Large Northern Pirates" 600
-		add fleet "Small Northern Pirates" 420
-		add fleet "Large Core Pirates" 600
-		add fleet "Small Core Pirates" 420
+		add fleet "Large Northern Pirates" 3000
+		add fleet "Small Northern Pirates" 1000
+		add fleet "Large Core Pirates" 3000
+		add fleet "Small Core Pirates" 1000
 		remove fleet "Small Hai"
 		remove fleet "Large Hai"
-		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
 	system "Heia Due"
-		add fleet "Marauder fleet IX" 900
-		add fleet "Large Northern Pirates" 600
-		add fleet "Large Core Pirates" 600
-		add fleet "Anti-Pirate Hai (Wormhole Travel)" 3000
+		add fleet "Marauder fleet IX" 3000
+		add fleet "Large Northern Pirates" 3000
+		add fleet "Large Core Pirates" 3000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
 		
 	
 #If a republic/syndicate campaign gets added this text will need variants.
@@ -694,13 +744,13 @@ event "waypoint pirates vanquished"
 	system "Waypoint"
 		government "Hai"
 		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
-		remove fleet "Marauder fleet IX" 900
-		remove fleet "Large Northern Pirates" 600
-		remove fleet "Large Core Pirates" 600
+		remove fleet "Marauder fleet IX"
+		remove fleet "Large Northern Pirates"
+		remove fleet "Large Core Pirates"
 	system "Heia Due"
-		remove fleet "Marauder fleet IX" 900
-		remove fleet "Large Northern Pirates" 600
-		remove fleet "Large Core Pirates" 600
+		remove fleet "Marauder fleet IX"
+		remove fleet "Large Northern Pirates"
+		remove fleet "Large Core Pirates"
 
 # It is impossible to implement a "capture and return npc"
 # mission. Once the ship is captured, the NPC is gone and the mission
@@ -823,7 +873,7 @@ mission "Hai Leaks Response 5"
 
 mission "Hai Leaks Response 6"
 	name "Investigate rumours of kidnapped Hai."
-	description "It's a statistical oddity, but Sayuri's friend thinks someone is kidnapping Hai and wants you to check out a possible smuggling operation across the nearby parts of human space to disprove it."
+	description "It's a statistical oddity, but Sayuri's friend thinks someone is kidnapping Hai. Check Hai spaceports and nearby parts of human space for evidence of a Hai trafficking operation."
 	autosave
 	landing
 	source "Hai-home"
