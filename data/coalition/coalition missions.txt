@@ -472,6 +472,38 @@ mission "Coalition Outbreak 3"
 
 
 
+mission "Kimek Gift"
+	minor
+	name "Not One Minute Late"
+	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a Jump Drive, and can make it there in time, she asked you to deliver the present by <date>."
+	deadline 2
+	to offer
+		has "Coalition: First Contact: done"
+	source "Second Cerulean"
+	destination "Cold Horizon"
+	on offer
+		require "Jump Drive"
+		conversation
+			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package, with some papers attached.`
+			`	Once she spots you, she quickly comes to you and says, "Human! The visitor I've heard about, you are! From the outside! A Jump Drive you have, if our space you've reached, yes?"`
+			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your Jump Drive, get there in a day you could. Help me would you, Captain?"`
+			choice
+				`	"Just that small package? Easy enough, I'll do it."`
+					accept
+				`	"I'm not headed there, sorry, have another mission to do. Somewhere else."`
+					decline
+	on complete
+		payment 36750
+		"coalition jobs" ++
+		conversation
+			`Apparently this Saryd in question doesn't live here on the spaceport village, so you must take a train to go to his home. Thankfully a train ticket was attached to the package, so you waste no time and get on the next train there.`
+			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and glance at the sights of the seemingly infinite winter forest.`
+			`	Halfway through a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now serving something akin to hot chocolate, only it is a blue, creamy substance.`
+			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included, and deliver the present to her Saryd friend. Apparently his birthday just started.`
+			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
+
+
+
 mission "Saryd Students 1"
 	minor
 	name "Acquire Arachi Rum"
@@ -625,6 +657,147 @@ mission "Saryd Census 2"
 
 
 
+mission "Saryd Couple 1"
+	minor
+	name "Acquiring Funds"
+	description "Inturi and Aunaris, a young Saryd couple, need to make enough money to buy their dream home. Transport Inturi to <destination>, where she was offered a job in the university there."
+	passengers 1
+	to offer
+		has "Coalition: First Contact: done"
+	source
+		near "Hunter" 1 2
+	destination "Shadow of Leaves"
+	on offer
+		conversation
+			`After walking around the spaceport for a few minutes, you notice one of the Saryd workers that were refuelling your ship is rushing somewhere here in the spaceport, only without his uniform, as if his shift just ended. He meets up with another Saryd, and starts looking at a map with her.`
+			choice
+				`	(Approach them.)`
+				`	(Go back to your ship and check if it was properly refuelled)`
+					decline
+			`	They pause their map-gazing, and introduce themselves as Inturi and Aunaris, a young couple who are looking to move out of <origin>, and build a home they've always dreamed of on another world.`
+			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
+			`	"Much too far away, his old job took him, and well paid crewmembers are not," Aunaris says, bringing up the map again and showing it to you. "Offered a job in Starlit University, on <destination>, I was. Not too distant from <origin>, it is, and a higher pay, it offers. Transport me there, would you, Captain?"`
+			choice
+				`	"Of course, just come to my ship when you've prepared your luggage."`
+				`	"Sorry, I'm headed elsewhere now."`
+					decline
+			`	They both thank you, and you head back to your ship.`
+			`	By nightfall, Aunaris arrives, accompanied by Inturi and some other Saryds, who you guess must be family members, as they all say their goodbyes. Once she steps in your ship, you show her to her bunk, and prepare to leave.`
+				accept
+	on complete
+		"coalition jobs" ++
+		event "saryd couple has money" 42 86
+		conversation
+			`Aunaris thanks you for bringing her here, and apologizes for not being able to pay you right away, but promises once she and Inturi have figured out their home, they will work hard to pay you.`
+			`	"Stay here for a few months, I probably will, before the remaining funds I have," she says, before saying goodbye and taking a cable car to her new workplace.`
+
+
+
+event "saryd couple has money"
+
+
+
+mission "Saryd Couple 2"
+	name "Home Sweet Plot Of Land"
+	description "The Saryd couple, Inturi and Aunaris, have finally amassed enough money to buy a plot of land on <destination>, where they will begin building their very own home. Bring both of them there, so that they can settle the purchase."
+	passengers 2
+	to offer
+		has "event: saryd couple has money"
+	source "Shadow of Leaves"
+	destination "Far Garden"
+	on offer
+		conversation
+			`You're met with two familiar faces in the spaceport, Inturi and Aunaris, the Saryd couple you met some time ago, who were working on acquring the funding needed to build their own home.`
+			`	"Worked for a week in another ship, I did, until landed here we had," Inturi says, joking about his way of catching a ride on a ship without paying a transport fee.`
+			`	"Sleeping well, I have not been, but helped much with the campus administration, I have. A bonus, I was given," Aunaris tells you.`
+			`	They say they just need a transport to <destination>, the world they have chosen to put down roots, and after everything is done, they will work on getting you your payment.`
+			`	You show them to their bunks, and prepare for the trip.`
+	on complete
+		"coalition jobs" ++
+
+
+
+mission "Saryd Couple 3"
+	name "Reversed House Spider"
+	description "Take Inturi to <destination>, where he will purchase a small Arach ship that he and Aunaris will repurpose into a home."
+	landing
+	passengers 1
+	to offer
+		has "Saryd Couple 2: done"
+	source "Far Garden"
+	destination "Saros"
+	on offer
+		conversation
+			`The couple leaves your ship, and head to a real estate agency. From what they told you during the trip, they have about fifteen hundred thousand credits they can spend, which they claim is in line with the standard properties here, in the most valued (and most sought-after) locations, and that they should still have enough money to pay you afterwards.`
+			`	They return from consulting, the both of them with disappointed looks on their faces. Inturi starts looking at the ships landing and departing, while Aunaris comes talk to you.`
+			`	"Kept watch of one property, for months we had. On a mountain village, overlooking a lake, and with access to a nearby forest, it is. A few days ago, purchased it was," she sighs. "Available, another plot of land neighboring it is, but over half our funds, the land alone costs."`
+			`	Inturi then looks over, as if he had just received a shock, and says, "That's it! A ship! Live in a ship, we could!"`
+			choice
+				`	"What do you mean?"`
+				`	"I like the enthusiasm, but unfortunately I'm not looking for any more crewmembers right now."`
+				`	"If you say so. Just don't forget the oranges, scurvy probably is a problem for Saryds too."`
+			`	"Live in a ship?" Aunaris repeats the sentence, puzzled.`
+			`	"In an Arach ship, for that week I worked. Taught me some things, the captain did, often repurposed into houses, their ships are," he explains. "Their smallest ship, we could buy, save time and money otherwise spent building a home, it would."`
+			`	They talk for a bit in private, and after a few minutes Inturi apparently managed to fully explain his idea and convince her.`
+			`	They head back to the real estate agency, and arrange the purchase of the plot of land. Inturi then asks that you transport him to <destination>, where the basic Arach ship model is sold, and after buying it he will return here with the new "house."`
+			`	Aunaris will remain here to finish sorting out all the paperwork, and will be waiting by the property once you two return.`
+				accept
+
+
+
+mission "Saryd Couple 4"
+	name "Test Drive, Final Drive"
+	description "Escort Inturi's ship, which will be repurposed into a home for him and Aunaris, to <destination>."
+	landing
+	to offer
+		has "Saryd Couple 3: done"
+	source "Saros"
+	destination "Far Garden"
+	on offer
+		conversation
+			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that alhough he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
+			`	Only when you're with him inside the Arach vessel is that you think of asking if he even knows how to fly a ship, but he reassures you that that won't be a problem.`
+			`	"To work as a copilot for an old friend, my first job was. Worry about me crashing the ship, you need not," he jokes.`
+			`	He says he will wait for your lead, and follow you to <destination> once you depart.`
+				accept
+	npc accompany save
+		personality escort timid
+		government "Coalition"
+		ship "Arach Courier" "Boop"
+	on visit
+		dialog `You have reached <planet>, but Inturi's ship hasn't arrived yet. Better depart and wait for it to get here.`
+	on complete
+		"coalition jobs" ++
+		event "saryd couple payment" 51 96
+		conversation
+			`You help Inturi park the ship on the plot of land, but since the Arach Courier takes up almost the entire area, your own ship has to land on a regular landing pad.`
+			`	After taking a transport up the mountain, you see that some workers are already there, and are starting to remove ship components that won't be needed, like its engines and the hyperdrive. A house doesn't need to be able to traverse the void of space, after all.`
+			`	Inturi and Aunaris thank you again, and promise to pay you once they've finished settling in their new home, and gotten the money for it.`
+			`	You wish them luck and head back to your ship.`
+
+
+
+event "saryd couple payment"
+
+
+
+mission "Saryd Couple Payment"
+	invisible
+	landing
+	to offer
+		has "event: saryd couple payment"
+	source
+		government "Coalition" "Heliarch"
+	on offer
+		payment 325400
+		conversation
+			`When you land, you're notified of <payment> being transferred to your account.`
+			`	With it, there's a message. It's from Inturi and Aunaris, the Saryd couple who you helped move out to their very own home.`
+			`	In the message, they apologize for taking so long to pay you, and go on to tell you about how they've been doing there. Aunaris has been working in a school there, while Inturi has been helping other residents set up their own "ship-houses", as he calls them. Apparently it's become somewhat popular there, after people saw their home was a spaceship.`
+			`	They thank you again, and say you're welcome to visit anytime.`
+
+
+
 mission "Longcow Vaccines 1"
 	minor
 	name "Longcow Vaccines"
@@ -724,3 +897,61 @@ mission "Arachi Orphans"
 			`You help the old Arach caretaker and some workers take the luggage out of your ship, then head to the orphanage.`
 			`	A Saryd couple runs the place, and greet you and the old Arach when you get there. Aside from a few Saryd kids, you notice the place already has an Arach child, and some Kimek too.`
 			`	After you make sure all their belongings are inside the foster house, the Arachi children head on inside, to get acquainted with their new family. Their caretaker thanks you and hands you <payment> before heading inside himself.`
+
+
+
+mission "Arachi Cartoonist 1"
+	minor
+	name "A New Design"
+	description "The Arach cartoonist Drugub is currently struggling to find inspiration for new spaceship designs for his comics. Head to <destination> and find something you can bring back to show him the ship models produced there."
+	to offer
+		has "Coalition: First Contact: done"
+	source "Mebla's Portion"
+	destination "Prime"
+	on offer
+		conversation
+			`As you're moving along one of the underground tunnels that connect the spaceport here, an Arach stops you on your tracks.`
+			`	He introduces himself as Drugub, a cartoonist who has seen some local fame lately for his sci-fi comics. "Many ship designs produced in our space are, but only so many ideas from them, I can get," he says. "Expand my creative horizon, seeing the general shape of some human ships would."`
+			choice
+				`	"I can help with that. Do you have any type of ship in mind?"`
+				`	"Sorry, but I won't be heading back to human space for a while."`
+					decline
+			`	He tells you about how this comic series is set during a less developed time, so he has been trying to take after older ship designs.`
+			`	After you briefly detail the human shipyards to him, he is most interested in Betelgeuse's older, historical designs, and settles for those.`
+			`	He thanks you and wishes you safe travels on your journey to <planet>.`
+				accept
+
+
+
+mission "Arachi Cartoonist 2"
+	name "A New Design"
+	description "Return to Drugub on <destination>, and give him the flyer with pictures and some details of Betelgeuse's ship models."
+	landing
+	to offer
+		has "Arachi Cartoonist 1: done"
+	source "Prime"
+	destination "Mebla's Portion"
+	on offer
+		conversation
+			`When you ask the shipyard clerk if you could have something that detailed their ship models to "show a friend who is new to spaceships", she hands you a flyer, which you then unfold to see all of Betelgeuse's ships depicted, as well as some details on each (and the pricing for each too, of course).`
+			`	"Usually we show these to first time buyers, but you can take one if you want. Are you here for a friend like that? Maybe I could help you figure out what ship would best suit them."`
+			`	You thank her, saying that your friend does not have the funds for any of the ships, and just wants some info, and head back to your ship.`
+			`	Hopefully a small pamphlet will do for Drugub to get some ideas.`
+				accept
+	on complete
+		"coalition jobs" ++
+		payment 75940
+		conversation
+			`Drugub is excitedly waiting for you when you return. However simple a piece of paper it may seem to you, he grabs the flyer as if it's some scroll of knowledge.`
+			`	He hands you your payment of <payment>, and spends some time with you still, asking you all questions he can think of about each ship.`
+			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
+			`	He spends some more minutes listening to you after he asks that you describe how you've seen each of the ships perform, thanks you again, and prepares to leave.`
+			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan', may I? Just as a small thank you."`
+			choice
+				`	"Of course! It's called <ship>."`
+				`	"The name is nothing special, I wouldn't even get the reference it if I read your comic in the future honestly."`
+					goto noship
+			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
+				accept
+			label noship
+			`	"Ah, I see. Well, just a reference it would be, so as you say not very special it would be I suppose. Anyway, thanks again Captain."`
