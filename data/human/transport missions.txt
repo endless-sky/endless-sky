@@ -3593,6 +3593,7 @@ mission "Antibiotics To South"
 	destination
 		attributes south
 	to offer
+		"armament deterrence" > 2.1
 		random < 5
 	cargo "antibiotics" 25 2 .05
 	
