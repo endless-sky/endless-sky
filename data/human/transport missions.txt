@@ -3585,7 +3585,7 @@ mission "Hauler VI cargo prototype 3"
 
 mission "Antibiotics To South"
 	name "Antibiotics shipment to <destination>"
-	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the 'Australis'`
+	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the 'Australis'.`
 	minor
 	source
 		attributes medical
@@ -3602,7 +3602,7 @@ mission "Antibiotics To South"
 			`You spot a well dressed man eyeing your ship. When you approach him, he turns to you and asks "Is this your ship? I'm looking for someone with a heavily armed fleet."`
 			choice
 				`	"It is. Why?"`
-			`The stranger begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <planet> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, they're in even higher demand in pirate territory, so the last couple convoys that have gone down there have all been attacked by pirate ships. I don't have the budget for an escort, so anyone I send down there has to be alone. If you can take one of these shipments to <destination>, I can arrange a payment of <payment>."`
+			`The stranger begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <source> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, they're in even higher demand in pirate territory, so the last couple convoys that have gone down there have all been attacked by pirate ships. I don't have the budget for an escort, so anyone I send down there has to be alone. If you can take one of these shipments to <destination>, I can arrange a payment of <payment>."`
 			choice
 				`	"Do you know anything about these pirates?"`
 				`	"Sounds too risky for me."`
