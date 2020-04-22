@@ -2706,6 +2706,26 @@ ship "Science Drone"
 
 
 
+mission "Time to save people"
+	description "Save people who accidently failed their spaceship from <origin>."
+	name "Rescue people"
+	destination
+		"Asgard"
+	passengers 34
+	to offer
+		has "Rescue people: done"
+	
+	on offer
+		dialog `You flyover <origin>. There are more than thirty people are waiting to evacuate from <origin>. Would you like to help them?`
+	
+	on visit
+		dialog phrase "You've landed on <origin>"
+	on complete
+		payment 120000
+		dialog `Thanks! You successfully carried people to <planet>. Although it is not a high payment, thanks again for helping them. Here is yours <payment>.`
+
+
+
 mission "Lost Boy 1"
 	minor
 	name `Rescue Tod`
