@@ -29,9 +29,13 @@ fleet "Heliarch"
 	variant 2
 		"Heliarch Interdictor (Bombardment)"
 	variant 1
+		"Heliarch Interdictor (Missile)"
+	variant 1
 		"Heliarch Punisher (Interdicting)"
 	variant 1
 		"Heliarch Punisher (Missile)"
+	variant 1
+		"Heliarch Punisher (Pure Finishers)"
 	variant 1
 		"Heliarch Punisher (Scrappy)"
 
