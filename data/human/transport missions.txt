@@ -3582,3 +3582,47 @@ mission "Hauler VI cargo prototype 3"
 			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
+
+mission "Antibiotics To South"
+	name "Antibiotics shipment to <destination>"
+	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the 'Australis'`
+	minor
+	source
+		attributes medical
+		not attributes south rim
+	destination
+		attributes south
+	to offer
+		random < 5
+	cargo "antibiotics" 25 2 .05
+	
+	on offer
+		conversation
+			`You spot a well dressed man eyeing your ship. When you approach him, he turns to you and asks "Is this your ship? I'm looking for someone with a heavily armed fleet."`
+			choice
+				`	"It is. Why?"`
+			`The stranger begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <planet> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, they're in even higher demand in pirate territory, so the last couple convoys that have gone down there have all been attacked by pirate ships. I don't have the budget for an escort, so anyone I send down there has to be alone. If you can take one of these shipments to <destination>, I can arrange a payment of <payment>."`
+			choice
+				`	"Do you know anything about these pirates?"`
+				`	"Sounds too risky for me."`
+					decline
+			`	He is silent for a moment, and he seems to be having a hard time figuring out what to say to you. "Well, I don't know much. We've been hit by a number of them, but the one that's been giving us the most trouble is something called the 'Australis'. As you can imagine, the last convoys had higher priorities than scanning it." He chuckles to himself, and then says that "So, all I can say for sure is that it's an unusually fast medium warship, so you can't outrun it. Believe me, we've tried."`
+			choice
+				`	"I think I can handle that."`
+				`	"Count me out."`
+					decline
+			`"Thank you very much, captain." he says. "I'll take care of everything else from here."`
+				accept
+	npc
+		government "Bounty Hunter"
+		personality nemesis heroic disables harvests plunders
+			confusion 150
+		system
+			distance 2 3
+		ship "Marauder Manta (Engines)" "Australis"
+	
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 40000
+		dialog phrase "generic cargo delivery payment"
