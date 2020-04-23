@@ -380,6 +380,7 @@ outfitter "Remnant"
 	"Personal Cloak System"
 	"Personal Cloaking Suit"
 	"Quantum Tear"
+	"Plasma Crystal Core"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"

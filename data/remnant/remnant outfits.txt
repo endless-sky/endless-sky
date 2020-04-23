@@ -1153,3 +1153,19 @@ outfit "Crystal Cell"
 	description "Building on new developments, Remnant engineers have developed ways to pull energy out of the fabric of space-time. The resulting generator does not produce much more than the Aeon cell, but it takes up much less space."
 
 
+
+outfit "Plasma Crystal Core"
+	category "Power"
+	licenses
+		Remnant
+	cost 4188000
+	thumbnail "outfit/plasma crystal core"
+	"mass" 50
+	"outfit space" -40
+	"energy generation" 12
+	"heat generation" 21.0
+	"energy capacity" 1000
+	description "With over a century of experience salvaging, maintaining, and working with the Korath Plasma Cores - it was only a matter of time before the Remnant figured out how to build and improve them. As a result of their research into dimensional manifolds sustained through quantum crystals, Remnant engineers have figured out how to stabilize the traditional plasma core into a more refined version."
+	description "	These plasma cores are often found on the Remnant's newer warships."
+
+
