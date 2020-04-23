@@ -77,7 +77,6 @@ mission "Hai Rescue: Yeertle Family"
 	npc
 		government "Bounty Hunter that Won't Enter Hai Space"
 		personality plunders disables unconstrained
-		fleet "Large Core Pirates" 1
 		fleet "Small Core Pirates" 1
 
 

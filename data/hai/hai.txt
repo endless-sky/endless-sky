@@ -198,30 +198,48 @@ fleet "Large Hai"
 		"Grasshopper (Tracker)"
 
 # Hai that hunt pirates near the wormhole. They have custom builds suitable for smashing pirates but useless against other Hai. Two versions: travel through wormhole or not.
+
 fleet "Anti-Pirate Hai (Wormhole Travel)"
 	government " Hai "
 	names "hai"
 	cargo 0
 	personality
-		heroic
+		heroic opportunistic
 	variant
 		"Shield Beetle (Six Ion)"
+		"Ladybug (Pulse)" 2
 	variant
 		"Shield Beetle (Pulse Tracker)"
-	variant 2
+		"Ladybug (Tracker)" 2
+	variant
 		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Durable Pulse)" 2
+		
 fleet "Anti-Pirate Hai (No Wormhole Travel)"
 	government "Hai"
 	names "hai"
 	cargo 0
 	personality
-		heroic
+		heroic opportunistic
 	variant
 		"Shield Beetle (Six Ion)"
+		"Ladybug (Pulse)" 2
+	variant
+		"Shield Beetle (Six Ion)"
+		"Ladybug (Three Ion)" 2
 	variant
 		"Shield Beetle (Pulse Tracker)"
-	variant 2
+		"Ladybug (Tracker)" 2
+	variant
 		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Tracker)" 2
+	variant
+		"Shield Beetle (Durable Pulse)" 2
 
 fleet "Hai Surveillance"
 	government "Hai"

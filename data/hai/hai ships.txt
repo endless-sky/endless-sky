@@ -441,6 +441,146 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 
 
 
+ship "Ladybug"
+	sprite "ship/hai ladybug"
+	thumbnail "thumbnail/hai ladybug"
+	attributes
+		category "Medium Warship"
+		"cost" 8950000
+		"shields" 12300
+		"hull" 3600
+		"required crew" 9
+		"bunks" 33
+		"mass" 280
+		"drag" 5.4
+		"heat dissipation" .85
+		"fuel capacity" 900
+		"cargo space" 91
+		"outfit space" 460
+		"weapon capacity" 170
+		"engine capacity" 120
+
+		# Expensive features mentioned in description:
+		"ramscoop" 0.25
+		"cargo scan power" 5
+		"cargo scan speed" 1
+		"outfit scan power" 17
+		"outfit scan speed" 1
+		"tactical scan power" 25
+		"atmosphere scan" 100
+		"asteroid scan power" 30
+		
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Ion Cannon" 2
+		"Hai Tracker Pod" 1
+		"Hai Tracker" 56
+		"Chameleon Anti-Missile"
+		"Pulse Turret"
+
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Hai Fissure Batteries"
+		"Hai Chasm Batteries"
+		"Supercapacitor"
+		"Boulder Reactor"
+		"Pulse Rifle" 7
+		
+		`"Bondir" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Hyperdrive"
+
+	gun 0 -69.5 "Hai Tracker Pod"
+	gun -12 -68.5 "Ion Cannon"
+	gun 12 -68.5 "Ion Cannon"
+	turret -36 3 "Chameleon Anti-Missile"
+	turret 36 3 "Pulse Turret"
+	engine -36 62
+	engine 36 62
+	engine -51 58
+	engine 51 58
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "These sensor-laden exploration vessels hail back to a more peaceful era of the Hai. Though they have no true ramscoop, a technology the Hai never developed, their built-in collection gills magnify the natural ramscoop present in all ships. These expensive features are the reason the ship has been replaced with the Lightning Bug."
+	description "However, this ship has seen combat in recent years against human pirates. With room for two shield regenerators, good maneuverability, and the range to strike deep in pirate territory, their long sleep has ended."
+
+ship "Ladybug" "Ladybug (Three Ion)"
+	outfits
+		"Ion Cannon" 3
+		"Bullfrog Anti-Missile" 2
+
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Hai Fissure Batteries"
+		"Hai Chasm Batteries"
+		"Supercapacitor"
+		"Boulder Reactor"
+		"Pulse Rifle" 7
+		
+		`"Bondir" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
+
+ship "Ladybug" "Ladybug (Pulse)"
+	outfits
+		"Pulse Cannon" 3
+		"Pulse Turret" 2
+
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 3
+		"Hai Fissure Batteries"
+		"Hai Chasm Batteries" 2
+		"Supercapacitor"
+		"Boulder Reactor"
+		"Pulse Rifle" 7
+		
+		`"Bondir" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Hyperdrive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+
+ship "Ladybug" "Ladybug (Tracker)"
+	outfits
+		"Hai Tracker Pod" 3
+		"Tracker Storage Pod" 5
+		"Hai Tracker" 308
+		"Pulse Turret"
+		"Chameleon Anti-Missile"
+
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Hai Fissure Batteries"
+		"Boulder Reactor"
+		"Pulse Rifle" 7
+		
+		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Hyperdrive"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Chameleon Anti-Missile"
+	turret "Pulse Turret"
+
+
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
 	thumbnail "thumbnail/hai pond strider"

@@ -93,7 +93,7 @@ event "mountaintop ascendant"
 			distance 4208.63
 			period 2158.5
 			object Mountaintop
-				sprite planet/station7
+				sprite "planet/station hai eight geocoris"
 				distance 315
 				period 31.1964
 	planet Mountaintop

@@ -49,6 +49,12 @@ event "pug media coverage"
 		"attitude toward"
 			"Deep Security" 1.0
 
+event "hai ladybug available"
+	shipyard "Hai Intermediate"
+		"Ladybug"
+	shipyard "Hai Advanced"
+		"Ladybug"
+
 mission "Hai Reveal: Reputation Reset"
 	landing
 	invisible
@@ -558,6 +564,7 @@ mission "Hai Leaks Response 2"
 	passengers 3
 	on offer
 		event "pirates respond to leaks"
+		event "hai ladybug available"
 		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man with a firm handshake. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and the recent peace.`
 		conversation
 			`On approach to the spaceport on Earth you communicate your need to speak to an official of significant standing on diplomatic business. Since you are not a diplomat this does cause some minor kerfuffle in the process, but thanks to your renown from the Pug war you are able to blow past such petty objections sufficiently so as to shortcut the process. The diplomatic ID from the box Sayari gave you doesn't hurt either.`
@@ -712,8 +719,14 @@ mission "Hai Leaks Response 4"
 					accept
 	npc
 		government "Hai"
-		personality escort disables heroic
-		fleet "Anti-Pirate Hai (No Wormhole Travel)" 16
+		personality escort heroic
+		fleet "Anti-Pirate Hai (No Wormhole Travel)" 4
+	npc
+		government "Pirate"
+		personality staying disables plunders harvests
+		system "Waypoint"
+		fleet "Marauder fleet IX" 5
+		fleet "Hired Guns" 1
 	npc kill
 		government "Pirate"
 		personality staying marked target
@@ -740,7 +753,7 @@ mission "Hai Leaks Response 4"
 	
 	
 event "waypoint pirates vanquished"
-	#Add pirate spawns to Waypoint and Heia Due
+	#Update pirate and anti-pirate spawns in Waypoint and Heia Due
 	system "Waypoint"
 		government "Hai"
 		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
