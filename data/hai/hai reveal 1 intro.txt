@@ -594,7 +594,7 @@ mission "Hai Leaks Response 2"
 		conversation
 			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
 			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
-			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, he will be accompanying you as the Syndicate representative."`
+			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, she will be accompanying you as the Syndicate representative."`
 			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You resolve not to get on her bad side if at all possible.`
 			`"Oh by the way," says Alastair, pausing briefly as he turns to depart, "The Navy and my security forces are working jointly to get some of our message relays up in the Far North to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."`
 			`After which he finally, actually, departs for good.`
@@ -657,7 +657,7 @@ mission "Hai Leaks Response 2A"
 	on offer
 		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic core for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free World's interests during this crisis.`
 		conversation
-			`When you land on Deep Katya is there waiting for you along with Alondo, "<first> it's so good to see you again! When the Republic briefed the council we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
+			`When you land on Deep Katya is there waiting for you along with Alondo, "<first> it's so good to see you again! When the Republic briefed the Chancellor, he brought us in and we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting as you look from one to the other, "I thought it seemed odd when they said I was meeting you for this Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
 			`	"Oh it was always going to be Alondo," she says, "but there's never a bad excuse for travelling with an old friend, especially when you're meeting other friends too."`
 			`	"Do we have time for a drink before we must rush off?" asks Alondo.`
@@ -671,6 +671,9 @@ mission "Hai Leaks Response 2B"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
+		not planet
+			Deep
+			Foundry
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
@@ -905,7 +908,7 @@ mission "Hai Leaks Response 6"
 			choice
 				`	"Oh I don't know, could've been entertaining."`
 				`	"Hmm, yes, no probably not."`
-			`	He chuckles, "Anyway, I have a hunch that we're going to be needing you before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part' as it were of a closed in role-play community, just chilling out here and having fun."`
+			`	He chuckles, "Anyway, I have a hunch that we're going to be needing you before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part', as it were, of an exclusive role-play community, just chilling out here and having fun."`
 			`	"Come though," he says, "I hear you've been instrumental in driving off some opportunistic pirates and helping stem the information leak, I'll buy you a drink on the other's behalf."`
 			`	Some hours later you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep, your cabin by far seems to be the best place to not be bothered.`
 			`	Part way there though a hooded figure suddenly falls in step beside you.`

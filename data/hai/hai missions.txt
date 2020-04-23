@@ -1531,6 +1531,7 @@ mission "Nanachi 1"
 	destination "Cloudfire"
 	deadline 2 1
 	to offer
+		random < 15
 		or
 			has "event: hai-human resolution announced"
 			and

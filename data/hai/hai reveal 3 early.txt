@@ -42,13 +42,13 @@ event "secret mountaintop"
 			distance 4208.63
 			period 2158.5
 			object Mountaintop
-				sprite "planet/station hai geocoris"
+				sprite "effect/flotsam yottrite"
 				distance 315
 				period 31.1964
 	planet Mountaintop
 		government "Unknown"
 		# Placeholder description; you can't actually land.
-		description `There's a partially-dismantled Hai Geocoris orbiting this wormhole.`
+		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
 		"required reputation" 1000
 
 mission "Hai Building Mountaintop [1] Construction Fleet"

@@ -348,7 +348,7 @@ mission "Hai Rescue [B02B] Diplomacy: Syndicate (Retry)"
 	on enter "Waypoint"
 		dialog `There is a massive fleet of Hai ships here, and more coming in all the time. If this fleet were to enter human space, we might be overrun.`
 	on enter "Ultima Thule"
-		dialog `Although it is reassuring to see humans come together for a common cause, you don't look forward to seeing two species enter an all-out war over a misunderstanding. You also wonder how the human authorities are keeping the Hai a secret with a huge fleet at the wormhole.`
+		dialog `Although it is reassuring to see humans come together for a common cause, you don't look forward to seeing two species enter an all-out war over a misunderstanding. You also wonder just how effectively the human authorities are keeping the Hai a secret with a huge fleet at an alien station broadcasting Syndicate advertisments...`
 	on enter "Mirfak"
 		dialog `As you enter the system, authorities ask you to land as soon as possible with Teeneep and meet a Syndicate representative.`
 	on offer
