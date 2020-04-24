@@ -24,7 +24,8 @@ event "news: add alien paranoia"
 	news "alien paranoia: generic citizen"
 		location
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-			not system Deneb
+			not planet Pugglemug
+			not planet Pugglequat
 		name
 			word
 				"Concerned citizen"
@@ -71,7 +72,8 @@ event "news: add alien paranoia"
 	news "Pug paranoia: generic citizen"
 		location
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-			not system Deneb
+			not planet Pugglemug
+			not planet Pugglequat
 		name
 			word
 				"Concerned citizen"
@@ -130,7 +132,8 @@ event "news: add alien paranoia"
 		location
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 			near Tarazed 0 10
-			not system Deneb
+			not planet Pugglemug
+			not planet Pugglequat
 		name
 			word
 				"Concerned citizen"
@@ -183,7 +186,8 @@ event "news: add alien paranoia"
 		location
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 			attributes core
-			not system Deneb
+			not planet Pugglemug
+			not planet Pugglequat
 		name
 			word
 				"Concerned citizen"
@@ -238,6 +242,8 @@ event "news: add alien paranoia"
 		location
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 			near Cardax 12
+			not planet Pugglemug
+			not planet Pugglequat
 		name
 			word
 				"Concerned citizen"
@@ -504,7 +510,7 @@ phrase "paranoia: band members are aliens"
 		" aliens"
 	word
 		" in disguise."
-		" wearing holograms."
+		" concealed by a hologram."
 		" hiding among us."
 		" pretending to be human."
 
@@ -593,7 +599,6 @@ phrase "The (person in my life) near me must be"
 		" in the next apartment"
 	word
 		" must be"
-		" is"
 		" has to be"
 
 phrase "My (person in my life) must be"
@@ -623,6 +628,5 @@ phrase "My (person in my life) must be"
 		"therapist"
 		"beau"
 	word
-		" is"
 		" must be"
 		" could be"
