@@ -2640,7 +2640,7 @@ phrase "hostile disabled"
 		"You'd better not cross me, you"
 		"My friends will avenge me, you"
 		"Stay away from me, you"
-		"How dare you, you
+		"How dare you, you"
 		"Back off, you"
 	word
 		" "
