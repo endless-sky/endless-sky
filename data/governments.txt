@@ -426,7 +426,7 @@ government "Quarg"
 	"player reputation" 1
 	"attitude toward"
 		"Merchant" .01
-		"Kor Efret" .01
+		"Kor Efret" .25
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Hai" .01
