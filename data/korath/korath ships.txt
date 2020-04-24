@@ -209,7 +209,6 @@ ship "Korath Transport"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 1000
 		"Korath Defense Station" 40
-		"Nerve Gas" 3000
 
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -268,7 +267,6 @@ ship "Korath Freighter"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 380
 		"Korath Defense Station" 30
-		"Nerve Gas" 2000
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1272,7 +1270,6 @@ ship "Korath Dredger"
 		"Steering (Planetary Class)"
 		"Engine (Meteor Class)" 2
 		"Jump Drive"
-		"Nerve Gas" 1000
 	turret -37 -155 "Korath Digger Turret"
 	turret 0 -155 "Korath Warder"
 	turret 37 -155 "Korath Digger Turret"
