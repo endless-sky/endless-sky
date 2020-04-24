@@ -147,7 +147,7 @@ conversation "What is going on in Hai space? (Have not met Unfettered.)"
 	`	She nods, "Unfortunately, these pirates are increasing in number by the day and it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
 	choice
 		# Rewrote question so it makes sense whether you met them or not
-		`	"Who are the Unfettered?"
+		`	"Who are the Unfettered?"`
 	`	She seems surprised you asked, "Oh, they're a sort of rebel Hai group. If you don't know you should go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit will explain it far better than I ever could."`
 		decline
 
