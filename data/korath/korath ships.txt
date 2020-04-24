@@ -304,9 +304,9 @@ ship "Korath Tanker"
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
-		"fuel capacity" 5000
-		"ramscoop" 30
-		"cargo space" 522
+		"fuel capacity" 3000
+		"ramscoop" 20
+		"cargo space" 422
 		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
@@ -1300,14 +1300,14 @@ ship "Korath Refabricator"
 		"cost" 39370000
 		"shields" 93000
 		"hull" 107000
-		"required crew" 971
-		"bunks" 2185
+		"required crew" 957
+		"bunks" 1933
 		"mass" 2780
 		"drag" 21.4
 		"heat dissipation" .65
 		"fuel capacity" 2200
 		"cargo space" 2845
-		"outfit space" 1649
+		"outfit space" 1629
 		"weapon capacity" 576
 		"engine capacity" 240
 		
@@ -1334,8 +1334,8 @@ ship "Korath Refabricator"
 		"Large Heat Shunt" 8
 		"Small Heat Shunt"
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2185
-		"Korath Defense Station" 40
+		"Korath Repeater Rifle"  1933
+		"Korath Defense Station" 30
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
