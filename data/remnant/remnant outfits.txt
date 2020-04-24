@@ -1167,7 +1167,7 @@ outfit "Plasma Crystal Core"
 	"energy capacity" 500
 	"ion resistance" 0.05
 	"fuel generation" 0.1
-	description "While the Remnant maintain a strong distrust for atomic power sources, the need for denser generators has led them to introduce the Crystal Plasma Core. Based on the highly dependable Korath version that Remnant have been salvaging for centuries intermingled with Remnant innovations, this compact reactor sacrifices a small amount of energy density in exchange for running significantly cooler."
-	description "Perhaps more important for some, are the peripheral improvements over standard reactors. The most obvious improvement is that these generators produced stabilized byproducts suitable for use as hyperdrive fuel on a continuous basis. The less obvious feature is that they can serve as a means of grounding out some of the ionization that a ship might be exposed to in the Ember Waste."
+	description "While the Remnant continue to maintain a strong distrust for atomic power sources, the need for more robust generators has led them to introduce the Crystal Plasma Core. Based on the highly dependable Korath version that the Remnant have been salvaging for centuries and augmented with Remnant innovations, this compact reactor sacrifices a small amount of energy density in exchange for running significantly cooler."
+	description "Perhaps more important for some are the peripheral improvements over standard reactors. The most obvious improvement is that these generators produce stabilized byproducts suitable for use as hyperdrive fuel on a continuous basis. The less obvious feature is that they can nullify some of the ionization that a ship might be exposed to in the Ember Waste."
 
 
