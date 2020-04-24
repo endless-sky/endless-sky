@@ -95,7 +95,8 @@ ship "Korath Tanker" "Korath Tanker (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -342,7 +343,8 @@ ship "Korath Refabricator" "Korath Refabricator (Grab-Strike)"
 		"Large Heat Shunt" 7
 		"Small Heat Shunt" 2
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle"  2185
+		"Korath Defense Station" 40
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
@@ -369,7 +371,8 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos)"
 
 		"Large Heat Shunt" 9
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle"  2185
+		"Korath Defense Station" 40
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
@@ -815,7 +818,8 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos Jump)"
 
 		"Large Heat Shunt" 9
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle"  2185
+		"Korath Defense Station" 40
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
@@ -1026,7 +1030,8 @@ ship "Korath Transport" "Korath World-Ship A (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 1000
+		"Korath Defense Station" 40
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1052,7 +1057,8 @@ ship "Korath Freighter" "Korath World-Ship B (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1078,7 +1084,8 @@ ship "Korath Tanker" "Korath World-Ship C (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1104,7 +1111,8 @@ ship "Korath Freighter" "Korath World-Ship B (Ember)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
@@ -1129,7 +1137,8 @@ ship "Korath Freighter" "Korath World-Ship B (Crippled)"
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
