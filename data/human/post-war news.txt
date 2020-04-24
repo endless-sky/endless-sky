@@ -293,13 +293,11 @@ event "news: add alien paranoia"
 			system Deneb
 		name
 			word
-				"Astrophysicist"
-				"Materials science researcher"
-				"Research engineer"
-				"Anthropologist"
+				"Scientist"
+				"Engineer"
 				"Student"
-				"Xenoarchaeologist"
 				"Historian"
+				"Xenoarchaeologist"
 		portrait
 			portrait/human13
 			portrait/human37
