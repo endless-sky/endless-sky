@@ -1305,6 +1305,7 @@ mission "Hai Prisoner Roleplay"
 	passengers 3 20
 	to offer
 		random < 5
+		not "Hai Rescue [A09] Slaver Ships: offered"
 	source
 		government "Hai"
 	destination

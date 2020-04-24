@@ -360,7 +360,7 @@ mission "Hai Rescue [A00] Darkwaste Timer"
 		"combat rating" > 3000
 		has "Hai Leaks Response 6: done"
 	on offer
-		event "hai rescue: teeneep message" 50
+		event "hai rescue: teeneep message" 20 30
 		fail
 
 

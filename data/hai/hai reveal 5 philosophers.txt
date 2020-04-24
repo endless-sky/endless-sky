@@ -1011,7 +1011,7 @@ mission "Hai Rescue [C08] Freedom"
 			label "microtranceivers"
 			`	The Korath leader looks to the Hai who responds, "Is that how you were led back here?"`
 			`	"Yes," you say.`
-			`	The Hai leader continues, "That is excellent, that was the plan. Our overlords ordered us to make microtranceivers to track their prey. The microtranceivers were a combination of Hai medical microbots and what little our Korath friends here could tell us. None of the Korath were scientists, but the principles of their science are part of their engineers' training. With their knowledge, we augmented the transceivers to transmit in hyperspace as well, hoping it would lead someone back here."`
+			`	The Hai leader continues, "That is excellent, that was the plan. Our overlords ordered us to make microtranceivers to track their prey. The microtranceivers were a combination of Hai medical microbots and what our Korath friends here could tell us. None of the Korath were scientists, but the principles of their science are part of their engineers' training. With their knowledge, we augmented the transceivers to transmit in hyperspace as well, hoping it would lead someone back here."`
 			`	The human leader says, "I can scarcely believe it worked, but I'm very glad."`
 				goto questions
 			label home

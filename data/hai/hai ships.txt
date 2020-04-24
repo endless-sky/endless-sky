@@ -510,7 +510,7 @@ ship "Ladybug"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "These sensor-laden exploration vessels hail back to a more peaceful era of the Hai. Though they have no true ramscoop, a technology the Hai never developed, their built-in collection gills magnify the natural ramscoop present in all ships. These expensive features are the reason the ship has been replaced with the Lightning Bug."
-	description "However, this ship has seen combat in recent years against human pirates. With room for two shield regenerators, good maneuverability, and the range to strike deep in pirate territory, their long sleep has ended."
+	description "However, this ship has seen combat in recent years against human pirates. With room for plentiful shield regeneratoration, good maneuverability, and the range to strike deep in pirate territory, their long sleep has ended."
 
 ship "Ladybug" "Ladybug (Three Ion)"
 	outfits

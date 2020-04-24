@@ -61,7 +61,7 @@ mission "Hai Reveal: Reputation Reset"
 	to offer
 		has "event: pug media coverage"
 	on offer
-		# Sync reputations for aliases of governments governments:
+		# Sync reputations for aliases of governments:
 		"reputation: Deep Security that won't enter wormhole" = "reputation: Deep Security"
 		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
 		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
@@ -215,6 +215,7 @@ mission "ZZ Event Hai Secret Leaks: RSH"
 		not "asked to investigate hai leak"
 	on offer
 		event "pirates investigate leaks"
+		event "news: hai video clip published"
 		set "asked to investigate hai leak"
 		conversation "hai reveal republic or syndicate news"
 	on complete
@@ -236,6 +237,7 @@ mission "ZZ Event Hai Secret Leaks: FWH"
 		not "asked to investigate hai leak"
 	on offer
 		event "pirates investigate leaks"
+		event "news: hai video clip published"
 		set "asked to investigate hai leak"
 		conversation "hai reveal free worlds news"
 	on complete
@@ -257,7 +259,9 @@ mission "ZZ Event Hai Secret Leaks: RSHU"
 		has "First Contact: Unfettered: offered"
 		not "asked to investigate hai leak"
 	on offer
+		event "pirates investigate leaks"
 		set "asked to investigate hai leak"
+		event "news: hai video clip published"
 		conversation "hai reveal republic or syndicate news"
 	on visit
 		dialog "You need to visit Allhome first before you can finish this mission."
@@ -282,7 +286,9 @@ mission "ZZ Event Hai Secret Leaks: FWHU"
 		has "First Contact: Unfettered: offered"
 		not "asked to investigate hai leak"
 	on offer
+		event "pirates investigate leaks"
 		set "asked to investigate hai leak"
+		event "news: hai video clip published"
 		conversation "hai reveal free worlds news"
 	on visit
 		dialog "You need to visit Allhome first before you can finish this mission."
@@ -306,6 +312,7 @@ mission "ZZ Event Hai Secret Leaks: RS"
 		not "asked to investigate hai leak"
 	on offer
 		event "pirates investigate leaks"
+		event "news: hai video clip published"
 		set "asked to investigate hai leak"
 		conversation "hai reveal republic or syndicate news"
 
@@ -324,6 +331,7 @@ mission "ZZ Event Hai Secret Leaks: FW"
 		not "asked to investigate hai leak"
 	on offer
 		set "asked to investigate hai leak"
+		event "news: hai video clip published"
 		event "pirates investigate leaks"
 		conversation "hai reveal free worlds news"
 	
@@ -332,8 +340,8 @@ event "pirates investigate leaks"
 	system "Waypoint"
 		government "Pirate"
 		add fleet "Marauder fleet IX" 2000
-	
-	
+		add fleet "Anti-Pirate Hai (No Wormhole Travel)" 700
+
 #This branch is if you have met the Hai but not the Unfettered
 
 mission "Hai Witness Unfettered [1]"
@@ -639,7 +647,6 @@ event "pirates respond to leaks"
 		add fleet "Small Core Pirates" 1000
 		remove fleet "Small Hai"
 		remove fleet "Large Hai"
-		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
 	system "Heia Due"
 		add fleet "Marauder fleet IX" 3000
 		add fleet "Large Northern Pirates" 3000
@@ -723,12 +730,12 @@ mission "Hai Leaks Response 4"
 	npc
 		government "Hai"
 		personality escort heroic
-		fleet "Anti-Pirate Hai (No Wormhole Travel)" 4
+		fleet "Anti-Pirate Hai (No Wormhole Travel)" 5
 	npc
 		government "Pirate"
 		personality staying disables plunders harvests
 		system "Waypoint"
-		fleet "Marauder fleet IX" 5
+		fleet "Marauder fleet IX" 4
 		fleet "Hired Guns" 1
 	npc kill
 		government "Pirate"
@@ -759,8 +766,9 @@ event "waypoint pirates vanquished"
 	#Update pirate and anti-pirate spawns in Waypoint and Heia Due
 	system "Waypoint"
 		government "Hai"
-		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
 		remove fleet "Marauder fleet IX"
+		remove fleet "Anti-Pirate Hai (No Wormhole Travel)"
 		remove fleet "Large Northern Pirates"
 		remove fleet "Large Core Pirates"
 	system "Heia Due"
