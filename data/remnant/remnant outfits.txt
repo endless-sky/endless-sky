@@ -1157,15 +1157,17 @@ outfit "Crystal Cell"
 outfit "Plasma Crystal Core"
 	category "Power"
 	licenses
-		Remnant
-	cost 4188000
+		Remnant Capital
+	cost 6200000
 	thumbnail "outfit/plasma crystal core"
-	"mass" 50
-	"outfit space" -40
-	"energy generation" 12
+	"mass" 49
+	"outfit space" -39
+	"energy generation" 9.5
 	"heat generation" 21.0
-	"energy capacity" 1000
-	description "With over a century of experience salvaging, maintaining, and working with the Korath Plasma Cores - it was only a matter of time before the Remnant figured out how to build and improve them. As a result of their research into dimensional manifolds sustained through quantum crystals, Remnant engineers have figured out how to stabilize the traditional plasma core into a more refined version."
-	description "	These plasma cores are often found on the Remnant's newer warships."
+	"energy capacity" 500
+	"ion resistance" 0.05
+	"fuel generation" 0.1
+	description "While the Remnant maintain a strong distrust for atomic power sources, the need for denser generators has led them to introduce the Crystal Plasma Core. Based on the highly dependable Korath version that Remnant have been salvaging for centuries intermingled with Remnant innovations, this compact reactor sacrifices a small amount of energy density in exchange for running significantly cooler."
+	description "Perhaps more important for some, are the peripheral improvements over standard reactors. The most obvious improvement is that these generators produced stabilized byproducts suitable for use as hyperdrive fuel on a continuous basis. The less obvious feature is that they can serve as a means of grounding out some of the ionization that a ship might be exposed to in the Ember Waste."
 
 
