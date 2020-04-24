@@ -28,6 +28,7 @@ event "news: add alien paranoia"
 		name
 			word
 				"Concerned citizen"
+				"Cryptozoologist"
 				"Reporter"
 				"Merchant captain"
 				"Worried parent"
@@ -74,6 +75,7 @@ event "news: add alien paranoia"
 		name
 			word
 				"Concerned citizen"
+				"Cryptozoologist"
 				"Reporter"
 				"Merchant captain"
 				"Worried parent"
@@ -132,6 +134,7 @@ event "news: add alien paranoia"
 		name
 			word
 				"Concerned citizen"
+				"Cryptozoologist"
 				"Reporter"
 				"Merchant captain"
 				"Worried parent"
@@ -184,6 +187,7 @@ event "news: add alien paranoia"
 		name
 			word
 				"Concerned citizen"
+				"Cryptozoologist"
 				"Reporter"
 				"Merchant captain"
 				"Worried parent"
@@ -237,6 +241,7 @@ event "news: add alien paranoia"
 		name
 			word
 				"Concerned citizen"
+				"Cryptozoologist"
 				"Reporter"
 				"Merchant captain"
 				"Worried parent"
@@ -295,7 +300,6 @@ event "news: add alien paranoia"
 				"Student"
 				"Xenoarchaeologist"
 				"Historian"
-				"Cryptozoologist"
 		portrait
 			portrait/human13
 			portrait/human37
