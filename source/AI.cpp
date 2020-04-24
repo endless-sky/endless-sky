@@ -358,9 +358,14 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
-			if(!ship || !ship->IsTargetable() || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
-					&& ship->GetSystem() != flagship->GetSystem())
-					|| (ship->IsDisabled() && it->second.type == Orders::ATTACK))
+			// Check if the target ship itself is targetable.
+			bool invalidTarget = !ship || !ship->IsTargetable() || (ship->IsDisabled() && it->second.type == Orders::ATTACK);
+			// Check if the target ship is in a system where we can target.
+			// This check only checks for undocked ships (that have a current system).
+			bool targetOutOfReach = !ship || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
+					&& ship->GetSystem() != flagship->GetSystem());
+			
+			if(invalidTarget || targetOutOfReach)
 			{
 				it = orders.erase(it);
 				continue;
@@ -3680,6 +3685,11 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// If this is a move command, make sure the fleet is bunched together
 	// enough that each ship takes up no more than about 30,000 square pixels.
 	double maxSquadOffset = sqrt(10000. * squadCount);
+
+	// A target is valid if we have no target, or when the target is in the
+	// same system as the flagship.
+	bool isValidTarget = !newTarget || (newTarget && player.Flagship() &&
+		newTarget->GetSystem() == player.Flagship()->GetSystem());
 	
 	// Now, go through all the given ships and set their orders to the new
 	// orders. But, if it turns out that they already had the given orders,
@@ -3687,54 +3697,51 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// toggle is a move command; it always counts as a new command.
 	bool hasMismatch = isMoveOrder;
 	bool gaveOrder = false;
-	
-	// A target is valid if we have no target, or when the target is in the
-	// same system as the flagship.
-	bool isValidTarget = !newTarget || (newTarget && player.Flagship() &&
-		newTarget->GetSystem() == player.Flagship()->GetSystem());
-	
-	for(const Ship *ship : ships)
+	if(isValidTarget)
 	{
-		// Never issue orders to a ship to target itself.
-		if(ship == newTarget)
-			continue;
-		
-		gaveOrder = true;
-		
-		// If we don't have a valid target, then we cancel the orders for
-		// all selected ships. The only reason we still got into this loop
-		// is to make sure that we selected at least 1 ship that can follow
-		// the order.
-		if(!isValidTarget)
-			break;
-		
-		hasMismatch |= !orders.count(ship);
-		
-		Orders &existing = orders[ship];
-		hasMismatch |= (existing.type != newOrders.type);
-		hasMismatch |= (existing.target.lock().get() != newTarget);
-		existing = newOrders;
-		
-		if(isMoveOrder)
+		for(const Ship *ship : ships)
 		{
-			// In a move order, rather than commanding every ship to move to the
-			// same point, they move as a mass so their center of gravity is
-			// that point but their relative positions are unchanged.
-			Point offset = ship->Position() - centerOfGravity;
-			if(offset.Length() > maxSquadOffset)
-				offset = offset.Unit() * maxSquadOffset;
-			existing.point += offset;
+			// Never issue orders to a ship to target itself.
+			if(ship == newTarget)
+				continue;
+			
+			gaveOrder = true;
+			
+			// If we don't have a valid target, then we cancel the orders for
+			// all selected ships. The only reason we still got into this loop
+			// is to make sure that we selected at least 1 ship that can follow
+			// the order.
+			if(!isValidTarget)
+				break;
+			
+			hasMismatch |= !orders.count(ship);
+			
+			Orders &existing = orders[ship];
+			hasMismatch |= (existing.type != newOrders.type);
+			hasMismatch |= (existing.target.lock().get() != newTarget);
+			existing = newOrders;
+			
+			if(isMoveOrder)
+			{
+				// In a move order, rather than commanding every ship to move to the
+				// same point, they move as a mass so their center of gravity is
+				// that point but their relative positions are unchanged.
+				Point offset = ship->Position() - centerOfGravity;
+				if(offset.Length() > maxSquadOffset)
+					offset = offset.Unit() * maxSquadOffset;
+				existing.point += offset;
+			}
+			else if(existing.type == Orders::HOLD_POSITION)
+			{
+				bool shouldReverse = false;
+				// Set the point this ship will "guard," so it can return
+				// to it if knocked away by projectiles / explosions.
+				existing.point = StoppingPoint(*ship, Point(), shouldReverse);
+			}
 		}
-		else if(existing.type == Orders::HOLD_POSITION)
-		{
-			bool shouldReverse = false;
-			// Set the point this ship will "guard," so it can return
-			// to it if knocked away by projectiles / explosions.
-			existing.point = StoppingPoint(*ship, Point(), shouldReverse);
-		}
+		if(!gaveOrder)
+			return;
 	}
-	if(!gaveOrder)
-		return;
 	if(hasMismatch)
 		Messages::Add(who + description);
 	else
