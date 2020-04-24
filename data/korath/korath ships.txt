@@ -183,14 +183,14 @@ ship "Korath Transport"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 619
-		"bunks" 1837
+		"required crew" 607
+		"bunks" 1037
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 191
-		"outfit space" 779
+		"outfit space" 859
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -207,8 +207,10 @@ ship "Korath Transport"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 250
-		
+		"Korath Repeater Rifle" 1000
+		"Korath Defense Station" 40
+		"Nerve Gas" 3000
+
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
@@ -236,18 +238,18 @@ ship "Korath Freighter"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	attributes
-		category "Transport"
+		category "Bulk Freighter"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 494
-		"bunks" 813
+		"required crew" 414
+		"bunks" 651
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 941
-		"outfit space" 779
+		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -264,7 +266,9 @@ ship "Korath Freighter"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
+		"Nerve Gas" 2000
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -297,15 +301,15 @@ ship "Korath Tanker"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 607
-		"bunks" 933
+		"required crew" 414
+		"bunks" 651
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 5000
 		"ramscoop" 30
 		"cargo space" 522
-		"outfit space" 779
+		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -322,8 +326,9 @@ ship "Korath Tanker"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
-		
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
+
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
@@ -1225,7 +1230,7 @@ ship "Korath Dredger"
 		"shields" 39000
 		"hull" 16000
 		"required crew" 191
-		"bunks" 353
+		"bunks" 683
 		"mass" 1353
 		"drag" 16
 		"heat dissipation" .55
@@ -1267,7 +1272,7 @@ ship "Korath Dredger"
 		"Steering (Planetary Class)"
 		"Engine (Meteor Class)" 2
 		"Jump Drive"
-
+		"Nerve Gas" 1000
 	turret -37 -155 "Korath Digger Turret"
 	turret 0 -155 "Korath Warder"
 	turret 37 -155 "Korath Digger Turret"
@@ -1298,14 +1303,14 @@ ship "Korath Refabricator"
 		"cost" 39370000
 		"shields" 93000
 		"hull" 107000
-		"required crew" 2150
-		"bunks" 4785
+		"required crew" 971
+		"bunks" 2185
 		"mass" 2780
 		"drag" 21.4
 		"heat dissipation" .65
 		"fuel capacity" 2200
 		"cargo space" 2845
-		"outfit space" 1549
+		"outfit space" 1649
 		"weapon capacity" 576
 		"engine capacity" 240
 		
@@ -1332,7 +1337,8 @@ ship "Korath Refabricator"
 		"Large Heat Shunt" 8
 		"Small Heat Shunt"
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle"  2185
+		"Korath Defense Station" 40
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
