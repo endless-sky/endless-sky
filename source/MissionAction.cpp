@@ -1,4 +1,4 @@
-/* MissionAction.h
+/* MissionAction.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -153,24 +153,34 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		const string &key = child.Token(0);
 		bool hasValue = (child.Size() >= 2);
 		
-		if(key == "log" || key == "dialog")
+		if(key == "log")
 		{
-			bool isSpecial = (key == "log" && child.Size() >= 3);
-			string &text = (key == "dialog" ? dialogText :
-				isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText);
-			for(int i = isSpecial ? 3 : 1; i < child.Size(); ++i)
+			bool isSpecial = (child.Size() >= 3);
+			string &text = (isSpecial ?
+				specialLogText[child.Token(1)][child.Token(2)] : logText);
+			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		}
+		else if(key == "dialog")
+		{
+			// Dialog text may be supplied from a stock named phrase, a
+			// private unnamed phrase, or directly specified.
+			if(hasValue && child.Token(1) == "phrase")
 			{
-				if(!text.empty())
-					text += "\n\t";
-				text += child.Token(i);
+				if(!child.HasChildren() && child.Size() == 3)
+					stockDialogPhrase = GameData::Phrases().Get(child.Token(2));
+				else
+					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
-			for(const DataNode &grand : child)
-				for(int i = 0; i < grand.Size(); ++i)
-				{
-					if(!text.empty())
-						text += "\n\t";
-					text += grand.Token(i);
-				}
+			else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
+			{
+				const DataNode &firstGrand = (*child.begin());
+				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
+					dialogPhrase.Load(firstGrand);
+				else
+					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
+			}
+			else
+				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(key == "conversation" && child.HasChildren())
 			conversation.Load(child);
@@ -317,6 +327,13 @@ int MissionAction::Payment() const
 
 
 
+const string &MissionAction::DialogText() const
+{
+	return dialogText;
+}
+
+
+
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
@@ -384,7 +401,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation.IsEmpty() && ui)
@@ -409,9 +426,14 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 			subs["<ship>"] = player.Flagship()->Name();
 		string text = Format::Replace(dialogText, subs);
 		
+		// Don't push the dialog text if this is a visit action on a nonunique
+		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
+		// avoid the player being spammed by dialogs if they have multiple
+		// missions active with the same destination (e.g. in the case of
+		// stacking bounty jobs).
 		if(isOffer)
 			ui->Push(new Dialog(text, player, destination));
-		else
+		else if(isUnique || trigger != "visit")
 			ui->Push(new Dialog(text));
 	}
 	else if(isOffer && ui)
@@ -473,6 +495,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		result.events[it.first] = make_pair(day, day);
 	}
 	result.gifts = gifts;
+	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
@@ -486,6 +509,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		for(const auto &eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 	
+	// Create any associated dialog text from phrases, or use the directly specified text.
+	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
+		: (!dialogPhrase.Name().empty() ? dialogPhrase.Get()
+		: this->dialogText);
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
 	

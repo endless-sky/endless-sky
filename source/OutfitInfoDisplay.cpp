@@ -26,44 +26,60 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const map<string, double> SCALE = {
-		{"active cooling", 60.},
-		{"afterburner energy", 60.},
-		{"afterburner fuel", 60.},
-		{"afterburner heat", 60.},
-		{"cloak", 60.},
-		{"cloaking energy", 60.},
-		{"cloaking fuel", 60.},
-		{"cloaking heat", 60.},
-		{"cooling", 60.},
-		{"cooling energy", 60.},
-		{"energy consumption", 60.},
-		{"energy generation", 60.},
-		{"heat generation", 60.},
-		{"heat dissipation", 60.},
-		{"hull repair rate", 60.},
-		{"hull energy", 60.},
-		{"hull heat", 60.},
-		{"jump speed", 60.},
-		{"reverse thrusting energy", 60.},
-		{"reverse thrusting heat", 60.},
-		{"shield generation", 60.},
-		{"shield energy", 60.},
-		{"shield heat", 60.},
-		{"solar collection", 60.},
-		{"thrusting energy", 60.},
-		{"thrusting heat", 60.},
-		{"turn", 60.},
-		{"turning energy", 60.},
-		{"turning heat", 60.},
+	const vector<pair<double, string>> UNIT_PAIRS = {
+		make_pair(60., ""),
+		make_pair(60. * 60., ""),
+		make_pair(60. * 100., ""),
+		make_pair(100., "%"),
+		make_pair(1. / 60., "")
+	};
+	
+	const map<string, int> SCALE = {
+		{"active cooling", 0},
+		{"afterburner energy", 0},
+		{"afterburner fuel", 0},
+		{"afterburner heat", 0},
+		{"cloak", 0},
+		{"cloaking energy", 0},
+		{"cloaking fuel", 0},
+		{"cloaking heat", 0},
+		{"cooling", 0},
+		{"cooling energy", 0},
+		{"energy consumption", 0},
+		{"energy generation", 0},
+		{"fuel consumption", 0},
+		{"fuel energy", 0},
+		{"fuel generation", 0},
+		{"fuel heat", 0},
+		{"heat generation", 0},
+		{"heat dissipation", 0},
+		{"hull repair rate", 0},
+		{"hull energy", 0},
+		{"hull fuel", 0},
+		{"hull heat", 0},
+		{"jump speed", 0},
+		{"reverse thrusting energy", 0},
+		{"reverse thrusting heat", 0},
+		{"scram drive", 0},
+		{"shield generation", 0},
+		{"shield energy", 0},
+		{"shield fuel", 0},
+		{"shield heat", 0},
+		{"solar collection", 0},
+		{"solar heat", 0},
+		{"thrusting energy", 0},
+		{"thrusting heat", 0},
+		{"turn", 0},
+		{"turning energy", 0},
+		{"turning heat", 0},
 		
-		{"thrust", 60. * 60.},
-		{"reverse thrust", 60. * 60.},
-		{"afterburner thrust", 60. * 60.},
+		{"thrust", 1},
+		{"reverse thrust", 1},
+		{"afterburner thrust", 1},
 		
-		{"ion resistance", 60. * 100.},
-		{"disruption resistance", 60. * 100.},
-		{"slowing resistance", 60. * 100.}
+		{"ion resistance", 2},
+		{"disruption resistance", 2},
+		{"slowing resistance", 2}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -199,7 +215,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			continue;
 		
 		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : sit->second);
+		double scale = (sit == SCALE.end() ? 1. : UNIT_PAIRS[sit->second].first);
+		string units = (sit == SCALE.end() ? "" : UNIT_PAIRS[sit->second].second);
 		
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end()) 
@@ -211,7 +228,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else
 		{
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale));
+			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
@@ -233,6 +250,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeLabels.emplace_back("ammo:");
 		attributeValues.emplace_back(outfit.Ammo()->Name());
 		attributesHeight += 20;
+		if(outfit.AmmoUsage() != 1)
+		{
+			attributeLabels.emplace_back("ammo usage:");
+			attributeValues.emplace_back(Format::Number(outfit.AmmoUsage()));
+			attributesHeight += 20;
+		}
 	}
 	
 	attributeLabels.emplace_back("range:");

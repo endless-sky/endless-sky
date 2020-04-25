@@ -81,7 +81,7 @@ bool UI::Handle(const SDL_Event &event)
 		else if(event.type == SDL_KEYDOWN)
 		{
 			Command command(event.key.keysym.sym);
-			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command);
+			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
 		
 		// If this panel does not want anything below it to receive events, do
@@ -240,7 +240,10 @@ bool UI::IsDone() const
 
 
 
-// Check if it is time to quit.
+// Check if there are no panels left. No panels left on the gamePanels-
+// stack usually means that it is time for the game to quit, while no
+// panels left on the menuPanels-stack is a normal state for a running
+// game.
 bool UI::IsEmpty() const
 {
 	return stack.empty() && toPush.empty();

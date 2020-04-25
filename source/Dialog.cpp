@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "DataNode.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -112,7 +113,7 @@ void Dialog::Draw()
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
 	
 	// Get the position of the top of this dialog, and of the text and input.
-	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5);
+	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
 	Point textPos(WIDTH * -.5 + 10., pos.Y() + 20.);
 	Point inputPos = Point(0., -70.) - pos;
 	
@@ -177,7 +178,27 @@ void Dialog::Draw()
 
 
 
-bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+// Format and add the text from the given node to the given string.
+void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &text)
+{
+	for(int i = startingIndex; i < node.Size(); ++i)
+	{
+		if(!text.empty())
+			text += "\n\t";
+		text += node.Token(i);
+	}
+	for(const DataNode &child : node)
+		for(int i = 0; i < child.Size(); ++i)
+		{
+			if(!text.empty())
+				text += "\n\t";
+			text += child.Token(i);
+		}
+}
+
+
+
+bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));

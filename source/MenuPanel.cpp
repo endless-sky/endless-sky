@@ -38,11 +38,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 
+#include <algorithm>
+
 using namespace std;
 
 namespace {
 	bool isReady = false;
-	float alpha = 1.;
+	float alpha = 1.f;
 	const int scrollSpeed = 2;
 }
 
@@ -60,7 +62,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) && alpha < 1.)
+	if(GetUI()->IsTop(this) && alpha < 1.f)
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -131,8 +133,8 @@ void MenuPanel::Draw()
 		Angle a(0.);
 		for(int i = 0; i < progress; ++i)
 		{
-			Color color(.5 * alpha, 0.f);
-			PointerShader::Draw(Point(), a.Unit(), 8., 20., 140. * alpha, color);
+			Color color(.5f * alpha, 0.f);
+			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 			a += da;
 		}
 	}
@@ -147,7 +149,7 @@ void MenuPanel::Draw()
 			fade = max(0.f, (115 - y) / 20.f);
 		if(fade)
 		{
-			Color color(((line.empty() || line[0] == ' ') ? .2 : .4) * fade, 0.);
+			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
 			font.Draw(line, Point(-470., y), color);
 		}
 		y += 20;
@@ -175,7 +177,7 @@ void MenuPanel::OnCallback(int)
 
 
 
-bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!isReady)
 		return false;

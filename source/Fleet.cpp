@@ -26,10 +26,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <iterator>
 
 using namespace std;
 
 namespace {
+	// Generate an offset magnitude that will sample from an annulus (planets)
+	// or a circle (systems without inhabited planets).
+	double OffsetFrom(pair<Point, double> &center)
+	{
+		// If the center has a radius, then position ships further away.
+		double minimumOffset = center.second ? 1. : 0.;
+		// Since it is sensible that ships would be nearer to the object of
+		// interest on average, do not apply the sqrt(rand) correction.
+		return (Random::Real() + minimumOffset) * 400. + 2. * center.second;
+	}
+	
 	// Construct a list of all outfits for sale in this system and its linked neighbors.
 	Sale<Outfit> GetOutfitsForSale(const System *here)
 	{
@@ -72,7 +84,18 @@ namespace {
 					double mass = outfit->Mass();
 					// Avoid free outfits, massless outfits, and those too large to fit.
 					if(mass > 0. && mass < maxSize && outfit->Cost() > 0)
+					{
+						// Also avoid outfits that add space (such as Outfits / Cargo Expansions)
+						// or modify bunks.
+						// TODO: Specify rejection criteria in datafiles as ConditionSets or similar.
+						const auto &attributes = outfit->Attributes();
+						if(attributes.Get("outfit space") > 0.
+								|| attributes.Get("cargo space") > 0.
+								|| attributes.Get("bunks"))
+							continue;
+						
 						outfits.push_back(outfit);
+					}
 				}
 			}
 		}
@@ -217,7 +240,7 @@ const Government *Fleet::GetGovernment() const
 }
 
 
-
+// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
 	if(!total || variants.empty())
@@ -228,14 +251,14 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	if(variant.ships.empty())
 		return;
 	
-	// Figure out what system the ship is starting in, where it is going, and
+	// Figure out what system the fleet is starting in, where it is going, and
 	// what position it should start from in the system.
 	const System *source = &system;
 	const System *target = &system;
 	Point position;
-	double radius = 0.;
+	double radius = 1000.;
 	
-	// Only pick a random entry point for this ship if a source planet was not specified.
+	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
 		// Where this fleet can come from depends on whether it is friendly to any
@@ -250,7 +273,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		for(const Ship *ship : variant.ships)
 		{
 			if(ship->Attributes().Get("jump drive"))
+			{
 				hasJump = true;
+				break;
+			}
 			if(ship->Attributes().Get("hyperdrive"))
 				hasHyper = true;
 		}
@@ -303,33 +329,53 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(!linkVector.empty())
 				target = linkVector[Random::Int(linkVector.size())];
 		}
+		// We are entering this system via hyperspace, not taking off from a planet.
 		else
-		{
-			// We are entering this system via hyperspace, not taking off from a planet.
-			radius = 1000.;
 			source = linkVector[choice];
-		}
 	}
 	
-	// Find the stellar object for the given planet, and place the ships there.
+	auto placed = Instantiate(variant);
+	// Carry all ships that can be carried, as they don't need to be positioned
+	// or checked to see if they can access a particular planet.
+	for(auto &ship : placed)
+		PlaceFighter(ship, placed);
+	
+	// Find the stellar object for this planet, and place the ships there.
 	if(planet)
 	{
-		for(const StellarObject &object : system.Objects())
-			if(object.GetPlanet() == planet)
-			{
-				position = object.Position();
-				radius = object.Radius();
-				break;
-			}
+		const StellarObject *object = system.FindStellar(planet);
+		if(!object)
+		{
+			// Log this error.
+			Files::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
+				+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
+			return;
+		}
+		// To take off from the planet, all non-carried ships must be able to access it.
+		else if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
+				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
+		{
+			position = object->Position();
+			radius = object->Radius();
+		}
+		// The chosen planet could not be departed from by all ships in the variant.
+		else
+		{
+			// If there are no departure paths, then there are no arrival paths either.
+			if(source == target)
+				return;
+			// Otherwise, have the fleet arrive here from the target system.
+			std::swap(source, target);
+			planet = nullptr;
+		}
 	}
 	
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
-	vector<shared_ptr<Ship>> placed = Instantiate(variant);
 	for(shared_ptr<Ship> &ship : placed)
 	{
-		// If this is a fighter and someone can carry it, no need to position it.
-		if(PlaceFighter(ship, placed))
+		// If this is a carried fighter, no need to position it.
+		if(ship->GetParent())
 			continue;
 		
 		Angle angle = Angle::Random(360.);
@@ -360,7 +406,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 
 
-// Place a fleet in the given system, already "in action."
+// Place one of the variants in the given system, already "in action." If the carried flag is set,
+// only uncarried ships will be added to the list (as any carriables will be stored in bays).
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
 	if(!total || variants.empty())
@@ -372,7 +419,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		return;
 	
 	// Determine where the fleet is going to or coming from.
-	Point center = ChooseCenter(system);
+	auto center = ChooseCenter(system);
 	
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
@@ -384,7 +431,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 			continue;
 		
 		Angle angle = Angle::Random();
-		Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
+		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
 		double velocity = Random::Real() * ship->MaxVelocity();
 		
 		ships.push_front(ship);
@@ -414,10 +461,8 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		int choice = Random::Int(system.Links().size());
-		set<const System *>::const_iterator it = system.Links().begin();
-		while(choice--)
-			++it;
+		auto it = system.Links().cbegin();
+		advance(it, Random::Int(system.Links().size()));
 		source = *it;
 	}
 	
@@ -435,10 +480,11 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 
 void Fleet::Place(const System &system, Ship &ship)
 {
-	// Move out a random distance from that object, facing toward it or away.
-	Point pos = ChooseCenter(system) + Angle::Random().Unit() * Random::Real() * 400.;
+	// Choose a random inhabited object in the system to spawn around.
+	auto center = ChooseCenter(system);
+	Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
 	
-	double velocity = Random::Real() * ship.MaxVelocity();
+	double velocity = ship.IsDisabled() ? 0. : Random::Real() * ship.MaxVelocity();
 	
 	ship.SetSystem(&system);
 	Angle angle = Angle::Random();
@@ -446,7 +492,7 @@ void Fleet::Place(const System &system, Ship &ship)
 }
 
 
-	
+
 int64_t Fleet::Strength() const
 {
 	int64_t sum = 0;
@@ -493,15 +539,17 @@ const Fleet::Variant &Fleet::ChooseVariant() const
 
 
 
-Point Fleet::ChooseCenter(const System &system)
+// Obtain a positional reference and the radius of the object at that position (e.g. a planet).
+// Spaceport status can be modified during normal gameplay, so this information is not cached.
+pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
-	vector<Point> centers;
+	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
 		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-			centers.push_back(object.Position());
+			centers.emplace_back(object.Position(), object.Radius());
 	
 	if(centers.empty())
-		return Point();
+		return {Point(), 0.};
 	return centers[Random::Int(centers.size())];
 }
 

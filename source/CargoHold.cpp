@@ -1,4 +1,4 @@
-/* CargoHold.h
+/* CargoHold.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -393,7 +393,7 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold &to)
 	if(amount && !existing)
 		return 0;
 	amount = min(amount, existing);
-	if(to.size)
+	if(to.size >= 0)
 		amount = max(0, min(amount, to.Free()));
 	// Don't transfer 0 tons unless that's all that exists.
 	if(existing && !amount)

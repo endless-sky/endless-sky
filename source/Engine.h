@@ -96,6 +96,7 @@ private:
 	void SpawnFleets();
 	void SpawnPersons();
 	void SendHails();
+	void HandleKeyboardInputs();
 	void HandleMouseClicks();
 	
 	void FillCollisionSets();
@@ -123,11 +124,12 @@ private:
 	
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner, double radius, int type, double angle = 0.);
+		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
 		
 		Point position;
 		double outer;
 		double inner;
+		double disabled;
 		double radius;
 		int type;
 		double angle;
@@ -200,6 +202,15 @@ private:
 	bool doEnter = false;
 	bool hadHostiles = false;
 	
+	// Commands that are currently active (and not yet handled). This is a combination
+	// of keyboard and mouse commands (and any other available input device).
+	Command activeCommands;
+	// Keyboard commands that were active in the previous step.
+	Command keyHeld;
+	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
+	int landKeyInterval = 0;
+	
+	// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;
 	bool doClick = false;
 	bool hasShift = false;
@@ -209,7 +220,6 @@ private:
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
-	Command clickCommands;
 	
 	double zoom = 1.;
 	

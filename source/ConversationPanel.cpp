@@ -34,11 +34,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 
+#if defined _WIN32
+#include "Files.h"
+#endif
+
 #include <iterator>
 
 using namespace std;
 
 namespace {
+#if defined _WIN32
+	size_t PATH_LENGTH;
+#endif
 	// Width of the conversation text.
 	const int WIDTH = 540;
 	// Margin on either side of the text.
@@ -51,6 +58,9 @@ namespace {
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship)
 	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
+#if defined _WIN32
+	PATH_LENGTH = Files::Saves().size();
+#endif
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
@@ -125,29 +135,30 @@ void ConversationPanel::Draw()
 	else if(choices.empty())
 	{
 		// This conversation node is prompting the player to enter their name.
+		Point fieldSize(150, 20);
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
-			Point size(150, 20);
 			// Handle mouse clicks in whatever field is not selected.
 			if(side != choice)
 			{
-				AddZone(Rectangle(center, size), [this, side](){ this->ClickName(side); });
+				AddZone(Rectangle(center, fieldSize), [this, side](){ this->ClickName(side); });
 				continue;
 			}
 			
 			// Fill in whichever entry box is active right now.
-			FillShader::Fill(center, size, selectionColor);
+			FillShader::Fill(center, fieldSize, selectionColor);
 			// Draw the text cursor.
-			center.X() += font.Width(choice ? lastName : firstName) - 67;
+			string displayedText = font.TruncateFront(choice ? lastName : firstName, fieldSize.X() - 5);
+			center.X() += font.Width(displayedText) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
 		}
 		
 		font.Draw("First name:", point + Point(40, 0), dim);
-		font.Draw(firstName, point + Point(120, 0), choice ? grey : bright);
+		font.Draw(font.TruncateFront(firstName, fieldSize.X() - 5), point + Point(120, 0), choice ? grey : bright);
 		
 		font.Draw("Last name:", point + Point(270, 0), dim);
-		font.Draw(lastName, point + Point(350, 0), choice ? bright : grey);
+		font.Draw(font.TruncateFront(lastName, fieldSize.X() - 5), point + Point(350, 0), choice ? bright : grey);
 		
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
@@ -186,7 +197,7 @@ void ConversationPanel::Draw()
 
 
 // Handle key presses.
-bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active.
@@ -195,7 +206,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
-		if(key == SDLK_RETURN || key == SDLK_KP_ENTER)
+		if(isNewPress && (key == SDLK_RETURN || key == SDLK_KP_ENTER))
 		{
 			Exit();
 			return true;
@@ -218,7 +229,13 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 				c += 'A' - 'a';
 			// Don't allow characters that can't be used in a file name.
 			static const string FORBIDDEN = "/\\?*:|\"<>~";
-			if(FORBIDDEN.find(c) == string::npos)
+			// Prevent the name from being so large that it cannot be saved.
+			// Most path components can be at most 255 bytes.
+			size_t MAX_NAME_LENGTH = 250;
+#if defined _WIN32
+			MAX_NAME_LENGTH -= PATH_LENGTH;
+#endif
+			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
 		}
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
@@ -249,7 +266,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		--choice;
 	else if(key == SDLK_DOWN && choice < conversation.Choices(node) - 1)
 		++choice;
-	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && choice < conversation.Choices(node))
+	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < conversation.Choices(node))
 		Goto(conversation.NextNode(node, choice), choice);
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
 		Goto(conversation.NextNode(node, key - '1'), key - '1');

@@ -174,7 +174,7 @@ void LoadPanel::Draw()
 
 
 
-bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == 'n')
 	{
@@ -312,7 +312,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 			{
 				selectedFile = it.first;
 				if(clicks > 1)
-					KeyDown('l', 0, Command());
+					KeyDown('l', 0, Command(), true);
 				break;
 			}
 	}

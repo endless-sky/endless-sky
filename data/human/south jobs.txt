@@ -1,0 +1,219 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Pirate Occupation [0]"
+	name `Pirates occupying <system>`
+	minor
+	repeat
+	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	to offer
+		random < 5
+		"combat rating" > 100
+	source
+		not government "Pirate"
+		attributes "south" "rim"
+	destination
+		not government "Pirate" "Quarg"
+		distance 2 3
+		attributes "south"
+	npc
+		government "Militia"
+		personality heroic
+		fleet "Small Militia"
+	npc
+		government "Militia"
+		personality heroic staying
+		system destination
+		fleet "Small Militia"
+	npc evade
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Small Southern Pirates" 3
+	on offer
+		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
+	on complete
+		payment 100000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Pirate Occupation [1]"
+	name `Pirates occupying <system>`
+	minor
+	repeat
+	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	to offer
+		random < 5
+		"combat rating" > 200
+	source
+		not government "Pirate"
+		attributes "south" "rim"
+	destination
+		not government "Pirate" "Quarg"
+		distance 2 3
+		attributes "south"
+	npc
+		government "Militia"
+		personality heroic
+		fleet "Small Militia" 2
+	npc
+		government "Militia"
+		personality heroic staying
+		system destination
+		fleet "Small Militia"
+	npc evade
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
+	on offer
+		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Pirate Occupation [2]"
+	name `Pirates occupying <system>`
+	minor
+	repeat
+	description `A large gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	to offer
+		random < 5
+		"combat rating" > 300
+	source
+		not government "Pirate"
+		attributes "south" "rim"
+	destination
+		not government "Pirate" "Quarg"
+		distance 2 3
+		attributes "south"
+	npc
+		government "Militia"
+		personality heroic
+		fleet "Large Militia"
+		fleet "Small Militia"
+	npc
+		government "Militia"
+		personality heroic staying
+		system destination
+		fleet "Small Militia"
+	npc evade
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Southern Pirates" 3
+	on offer
+		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
+	on complete
+		payment 200000
+		dialog phrase "generic pirate attack payment dialog"
+
+conversation "pirate occupation"
+	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship in the region to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+	choice
+		`	(Don't join the fight.)`
+			decline
+		`	(Join the defense fleet.)`
+	`A few militia pilots have gathered to help repel the pirate attack. You join them, and prepare your ship for the upcoming battle...`
+		accept
+
+
+
+mission "Sketchy Cargo [0]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <tons> of cargo to <destination>. Payment is <payment>."
+	cargo "unlabeled cargo" 5 2 .1
+	to offer
+		random < 15
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
+
+mission "Sketchy Cargo [1]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <tons> of cargo to <destination>. Payment is <payment>."
+	cargo "unlabeled cargo" 25 2 .05
+	to offer
+		random < 10
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
+
+
+
+mission "Sketchy Passenger [0]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 15
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 2000 160
+		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
+
+mission "Sketchy Passenger [1]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 2 10 .7
+	to offer
+		random < 10
+	source
+		attributes "south"
+	destination
+		distance 2 10
+		attributes "south"
+	on accept
+		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 2000 160
+		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."

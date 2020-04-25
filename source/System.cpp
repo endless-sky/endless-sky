@@ -294,9 +294,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		double fraction = root->distance / habitable;
 		if(object.IsStar())
 			object.message = &STAR;
-		else if (object.IsStation())
+		else if(object.IsStation())
 			object.message = &STATION;
-		else if (object.IsMoon())
+		else if(object.IsMoon())
 		{
 			if(fraction < .5)
 				object.message = &HOTMOON;

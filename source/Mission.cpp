@@ -627,19 +627,20 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 	if(player.GetPlanet() != destination)
 		return false;
 	
-	if(!toComplete.Test(player.Conditions()))
-		return false;
-	
 	return IsSatisfied(player);
 }
 
 
 
 // This function dictates whether missions on the player's map are shown in
-// bright or dim text colors.
+// bright or dim text colors, and may be called while in-flight or landed.
 bool Mission::IsSatisfied(const PlayerInfo &player) const
 {
 	if(!waypoints.empty() || !stopovers.empty())
+		return false;
+	
+	// Test the completion conditions for this mission.
+	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
 	// Determine if any fines or outfits that must be transferred, can.
@@ -656,8 +657,19 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	// If any of the cargo for this mission is being carried by a ship that is
 	// not in this system, the mission cannot be completed right now.
 	for(const auto &ship : player.Ships())
-		if(ship->GetSystem() != player.GetSystem() && ship->Cargo().Get(this))
+	{
+		// Skip in-system ships, and carried ships whose parent is in-system.
+		if(ship->GetSystem() == player.GetSystem() || (!ship->GetSystem() && ship->CanBeCarried()
+				&& ship->GetParent() && ship->GetParent()->GetSystem() == player.GetSystem()))
+			continue;
+		
+		if(ship->Cargo().GetPassengers(this))
 			return false;
+		// Check for all mission cargo, including that which has 0 mass.
+		auto &cargo = ship->Cargo().MissionCargo();
+		if(cargo.find(this) != cargo.end())
+			return false;
+	}
 	
 	return true;
 }
@@ -794,9 +806,15 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		++player.Conditions()[name + ": active"];
 	}
 	else if(trigger == DECLINE)
+	{
 		++player.Conditions()[name + ": offered"];
+		++player.Conditions()[name + ": declined"];
+	}
 	else if(trigger == FAIL)
+	{
 		--player.Conditions()[name + ": active"];
+		++player.Conditions()[name + ": failed"];
+	}
 	else if(trigger == COMPLETE)
 	{
 		--player.Conditions()[name + ": active"];
@@ -812,7 +830,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip);
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -826,6 +844,18 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 const list<NPC> &Mission::NPCs() const
 {
 	return npcs;
+}
+
+
+
+// Checks if the given ship belongs to one of the mission's NPCs.
+bool Mission::HasShip(const shared_ptr<Ship> &ship) const
+{
+	for(const auto &npc : npcs)
+		for(const auto &npcShip : npc.Ships())
+			if(npcShip == ship)
+				return true;
+	return false;
 }
 
 
@@ -891,6 +921,21 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 const string &Mission::Identifier() const
 {
 	return name;
+}
+
+
+
+// Get a specific mission action from this mission.
+// If a mission action is not found for the given trigger, returns an empty
+// mission action.
+const MissionAction &Mission::GetAction(Trigger trigger) const
+{
+	auto ait = actions.find(trigger);
+	static const MissionAction EMPTY;
+	if(ait != actions.end())
+		return ait->second;
+	else
+		return EMPTY;
 }
 
 
@@ -1131,7 +1176,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 // Perform an "on enter" MissionAction associated with the current system.
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
-	const auto &eit = onEnter.find(system);
+	const auto eit = onEnter.find(system);
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);

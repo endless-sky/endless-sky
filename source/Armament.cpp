@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 
 #include "Command.h"
+#include "Files.h"
 #include "Outfit.h"
 #include "Ship.h"
 
@@ -52,6 +53,12 @@ void Armament::Add(const Outfit *outfit, int count)
 	int existing = 0;
 	int added = 0;
 	bool isTurret = outfit->Get("turret mounts");
+	// Do not equip weapons that do not define how they are mounted.
+	if(!isTurret && !outfit->Get("gun ports"))
+	{
+		Files::LogError("Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		return;
+	}
 	
 	// To start out with, check how many instances of this weapon are already
 	// installed. If "adding" a negative number of outfits, remove the installed

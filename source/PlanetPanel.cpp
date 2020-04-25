@@ -18,8 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "GameData.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -94,32 +94,40 @@ void PlanetPanel::Draw()
 	if(player.IsDead())
 		return;
 	
-	const Ship *flagship = player.Flagship();
-	
 	Information info;
 	info.SetSprite("land", planet.Landscape());
-	bool hasAccess = planet.CanUseServices();
-	bool hasShip = false;
-	for(const auto &it : player.Ships())
-		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-		{
-			hasShip = true;
-			break;
-		}
+	
+	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
-	if(flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
-		info.SetCondition("has trade");
-	if(planet.IsInhabited() && hasAccess)
-		info.SetCondition("has bank");
-	if(flagship && planet.IsInhabited() && hasAccess)
-		info.SetCondition("is inhabited");
-	if(flagship && planet.HasSpaceport() && hasAccess)
-		info.SetCondition("has spaceport");
-	if(planet.HasShipyard() && hasAccess)
-		info.SetCondition("has shipyard");
-	if(hasShip && planet.HasOutfitter() && hasAccess)
-		info.SetCondition("has outfitter");
+	
+	if(planet.CanUseServices())
+	{
+		if(planet.IsInhabited())
+		{
+			info.SetCondition("has bank");
+			if(flagship)
+			{
+				info.SetCondition("is inhabited");
+				if(system.HasTrade())
+					info.SetCondition("has trade");
+			}
+		}
+		
+		if(flagship && planet.HasSpaceport())
+			info.SetCondition("has spaceport");
+		
+		if(planet.HasShipyard())
+			info.SetCondition("has shipyard");
+		
+		if(planet.HasOutfitter())
+			for(const auto &it : player.Ships())
+				if(it->GetSystem() == &system && !it->IsDisabled())
+				{
+					info.SetCondition("has outfitter");
+					break;
+				}
+	}
 	
 	ui.Draw(info, this);
 	
@@ -130,7 +138,7 @@ void PlanetPanel::Draw()
 
 
 // Only override the ones you need; the default action is to return false.
-bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
@@ -142,46 +150,43 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		selectedPanel = nullptr;
 	}
-	else if(key == 't' && flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
+	else if(key == 't' && hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && planet.IsInhabited() && hasAccess)
+	else if(key == 'b' && hasAccess && planet.IsInhabited())
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
+	else if(key == 'p' && hasAccess && flagship && planet.HasSpaceport())
 	{
 		selectedPanel = spaceport.get();
-		spaceport->UpdateNews();
+		if(isNewPress)
+			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 's' && planet.HasShipyard() && hasAccess)
+	else if(key == 's' && hasAccess && planet.HasShipyard())
 	{
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'o' && planet.HasOutfitter() && hasAccess)
+	else if(key == 'o' && hasAccess && planet.HasOutfitter())
 	{
-		bool hasShip = false;
 		for(const auto &it : player.Ships())
-			if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+			if(it->GetSystem() == &system && !it->IsDisabled())
 			{
-				hasShip = true;
-				break;
+				GetUI()->Push(new OutfitterPanel(player));
+				return true;
 			}
-		if(hasShip)
-			GetUI()->Push(new OutfitterPanel(player));
-		return true;
 	}
-	else if(key == 'j' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 'j' && hasAccess && flagship && planet.IsInhabited())
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 'h' && hasAccess && flagship && planet.IsInhabited())
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
@@ -200,7 +205,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		return false;
 	
 	// If we are here, it is because something happened to change the selected
-	// panel. So, we need to pop the old selected panel:
+	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
 	
@@ -237,21 +242,21 @@ void PlanetPanel::TakeOffIfReady()
 	
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly.
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled() || ship->IsParked())
-			continue;
-		
-		string check = ship->FlightCheck();
-		if(!check.empty() && check.back() == '!')
+	const auto flightChecks = player.FlightCheck();
+	if(!flightChecks.empty())
+		for(const auto &result : flightChecks)
 		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
-			return;
+			// If there is a flightcheck error, it will be the first (and only) entry.
+			auto &check = result.second.front();
+			if(check.back() == '!')
+			{
+				GetUI()->Push(new ConversationPanel(player,
+					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
+				return;
+			}
 		}
-	}
 	
-	// The checks that follow are typically cause by parking or selling
+	// The checks that follow are typically caused by parking or selling
 	// ships or changing outfits.
 	const Ship *flagship = player.Flagship();
 	
@@ -263,17 +268,25 @@ void PlanetPanel::TakeOffIfReady()
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
-	int droneCount = 0;
-	int fighterCount = 0;
-	for(const auto &it : player.Ships())
-		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == player.GetSystem())
-		{
-			const string &category = it->Attributes().Category();
-			droneCount += (category == "Drone") - it->BaysFree(false);
-			fighterCount += (category == "Fighter") - it->BaysFree(true);
-		}
+	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
+	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
+	size_t nonJumpCount = 0;
+	if(!flightChecks.empty())
+	{
+		// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
+		const auto jumpWarnings = set<string>{
+			"no bays?", "no fuel?", "no hyperdrive?"
+		};
+		for(const auto &result : flightChecks)
+			for(const auto &warning : result.second)
+				if(jumpWarnings.count(warning))
+				{
+					++nonJumpCount;
+					break;
+				}
+	}
 	
-	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
 		if(missionCargoToSell > 0 || overbooked > 0)
@@ -295,24 +308,18 @@ void PlanetPanel::TakeOffIfReady()
 				out << " of your mission cargo.";
 			}
 		}
+		else if(nonJumpCount > 0)
+		{
+			out << "If you take off now you will launch with ";
+			if(nonJumpCount == 1)
+				out << "a ship";
+			else
+				out << nonJumpCount << " ships";
+			out << " that will not be able to leave the system.";
+		}
 		else
 		{
 			out << "If you take off now you will have to sell ";
-			bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
-
-			if(fighterCount == 1)
-				out << "a fighter";
-			else if(fighterCount > 0)
-				out << fighterCount << " fighters";
-			if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
-				out << (triple ? ", " : " and ");
-		
-			if(droneCount == 1)
-				out << "a drone";
-			else if(droneCount > 0)
-				out << droneCount << " drones";
-			if(droneCount > 0 && cargoToSell > 0)
-				out << (triple ? ", and " : " and ");
 
 			if(cargoToSell == 1)
 				out << "a ton of cargo";

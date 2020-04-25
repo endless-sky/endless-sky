@@ -55,7 +55,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
-			ammo = GameData::Outfits().Get(child.Token(1));
+		{
+			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
+			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), max(0, usage));
+		}
 		else if(key == "icon")
 			icon = SpriteSet::Get(child.Token(1));
 		else if(key == "fire effect")
@@ -111,7 +114,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "drag")
 				drag = value;
 			else if(key == "hardpoint offset")
-				hardpointOffset = value;
+			{
+				// A single value specifies the y-offset, while two values
+				// specifies an x & y offset, e.g. for an asymmetric hardpoint.
+				// The point is specified in traditional XY orientation, but must
+				// be inverted along the y-dimension for internal use.
+				if(child.Size() == 2)
+					hardpointOffset = Point(0., -value);
+				else if(child.Size() == 3)
+					hardpointOffset = Point(value, -child.Value(2));
+				else
+					child.PrintTrace("Unsupported \"" + key + "\" specification:");
+			}
 			else if(key == "turn")
 				turn = value;
 			else if(key == "inaccuracy")
@@ -228,7 +242,14 @@ const Sound *Weapon::WeaponSound() const
 
 const Outfit *Weapon::Ammo() const
 {
-	return ammo;
+	return ammo.first;
+}
+
+
+
+int Weapon::AmmoUsage() const
+{
+	return ammo.second;
 }
 
 

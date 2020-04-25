@@ -113,7 +113,7 @@ void ShipInfoPanel::Draw()
 
 
 
-bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -411,7 +411,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	
 	// Draw the ship, using the black silhouette swizzle.
 	SpriteShader::Draw(sprite, bounds.Center(), scale, 8);
-	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5));
+	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 	
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = max(count[0][0], count[1][0]);
@@ -453,10 +453,10 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 		
 		// Determine what color to use for the line.
-		double high = (index == hoverIndex ? .8 : .5);
-		Color color(high, .75 * high, 0., 1.);
+		float high = (index == hoverIndex ? .8f : .5f);
+		Color color(high, .75f * high, 0.f, 1.f);
 		if(isTurret)
-			color = Color(0., .75 * high, high, 1.);
+			color = Color(0.f, .75f * high, high, 1.f);
 		
 		// Draw the line.
 		Point from(fromX[isRight], zoneCenter.Y());
@@ -592,13 +592,13 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 
 void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &color) const
 {
-	Color black(0., 1.);
+	Color black(0.f, 1.f);
 	Point mid(to.X(), from.Y());
 	
-	LineShader::Draw(from, mid, 3.5, black);
-	LineShader::Draw(mid, to, 3.5, black);
-	LineShader::Draw(from, mid, 1.5, color);
-	LineShader::Draw(mid, to, 1.5, color);
+	LineShader::Draw(from, mid, 3.5f, black);
+	LineShader::Draw(mid, to, 3.5f, black);
+	LineShader::Draw(from, mid, 1.5f, color);
+	LineShader::Draw(mid, to, 1.5f, color);
 }
 
 
