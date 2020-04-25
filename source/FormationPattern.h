@@ -69,6 +69,9 @@ protected:
 	
 private:
 	std::string name;
+	int symmetry_rotational = -1;
+	bool symmetry_longitudinal = false;
+	bool symmetry_transverse = false;
 };
 
 

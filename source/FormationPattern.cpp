@@ -29,7 +29,21 @@ void FormationPattern::Load(const DataNode &node)
 		name = node.Token(1);
 	
 	for(const DataNode &child : node)
-		if(child.Size() >= 5 && child.Token(0) == "line")
+		if(child.Token(0) == "symmetry")
+		{
+			if(child.Size()>=2)
+				for(int i=1; i<child.Size(); i++)
+				{
+					if(child.Token(i) == "transverse")
+						symmetry_transverse = true;
+					else if(child.Token(i) == "longitudinal")
+						symmetry_longitudinal = true;
+				}
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2 && grand.Token(0) == "rotational")
+					symmetry_rotational = grand.Value(1);
+		}
+		else if(child.Size() >= 5 && child.Token(0) == "line")
 		{
 			lines.emplace_back(Point(child.Value(1), child.Value(2)), static_cast<int>(child.Value(3) + 0.5), Angle(child.Value(4)));
 			Line &line = lines[lines.size()-1];
