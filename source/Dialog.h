@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <functional>
 #include <string>
 
+class DataNode;
 class PlayerInfo;
 class System;
 
@@ -57,11 +58,14 @@ template <class T>
 	// Draw this panel.
 	virtual void Draw() override;
 	
+	// Static method used to convert a DataNode into formatted Dialog text.
+	static void ParseTextNode(const DataNode &node, size_t startingIndex, std::string &text);
+	
 	
 protected:
 	// The use can click "ok" or "cancel", or use the tab key to toggle which
 	// button is highlighted and the enter key to select it.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	
 	

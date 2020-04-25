@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 class DataNode;
@@ -49,8 +50,10 @@ public:
 	// Get the government of this fleet.
 	const Government *GetGovernment() const;
 	
+	// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
-	// Place a fleet in the given system, already "in action."
+	// Place a fleet in the given system, already "in action." If the carried flag is set, only
+	// uncarried ships will be added to the list (as any carriables will be stored in bays).
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
 	
 	// Do the randomization to make a ship enter or be in the given system.
@@ -73,7 +76,7 @@ private:
 	
 private:
 	const Variant &ChooseVariant() const;
-	static Point ChooseCenter(const System &system);
+	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(const Variant &variant) const;
 	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
 	void SetCargo(Ship *ship) const;

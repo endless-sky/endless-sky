@@ -101,6 +101,18 @@ tip "fuel:"
 tip "fuel capacity:"
 	`An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
 
+tip "fuel consumption:"
+	`Fuel consumed per second while in flight (can generate energy or heat).`
+	
+tip "fuel energy:"
+	`Energy produced per second while in flight, as a consequence of fuel consumption.`
+	
+tip "fuel generation:"
+	`Fuel generated per second.`
+	
+tip "fuel heat:"
+	`Heat produced per second while in flight, as a consequence of fuel consumption.`
+
 tip "gun ports needed:"
 	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
 
@@ -120,10 +132,13 @@ tip "hull:"
 	`Total hull strength. Small ships are disabled when their hull strength drops below 45%; larger ships are disabled at 15%.`
 
 tip "hull energy:"
-	`Energy per second consumed when repairing the hull.`
+	`Energy consumed per second when repairing the hull.`
+
+tip "hull fuel:"
+	`Fuel consumed per second when repairing the hull.`
 
 tip "hull heat:"
-	`Heat per second generated when repairing the hull.`
+	`Heat produced per second when repairing the hull.`
 
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
@@ -140,6 +155,9 @@ tip "jump speed:"
 tip "jump fuel:"
 	`How much fuel is consumed when you jump between systems using this drive.`
 
+tip "maintenance costs:"
+	`How many credits per day you need to spend to maintain this outfit. Even if a ship is parked or an outfit is in cargo, you still need to pay for its maintenance.`
+
 tip "map:"
 	`How many star systems are included in this map.`
 
@@ -148,6 +166,9 @@ tip "mass with no cargo:"
 
 tip "mass:"
 	`Mass, in tons. A ship's mass determines how fast it turns and accelerates.`
+
+tip "operating costs:"
+	`How many credits per day you need to spend to maintain this outfit while it is in active use.`
 
 tip "outfit scan:"
 	`Lets you scan your target ship's outfits from up to this distance away.`
@@ -200,6 +221,9 @@ tip "sells for:"
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
+tip "shield fuel:"
+	`Fuel consumed per second when recharging shields.`
+
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
@@ -218,6 +242,9 @@ tip "slowing resistance:"
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
 
+tip "solar heat:"
+	`Produces a variable amount of heat depending on how far this ship is from the star at the center of the system.`
+
 tip "tactical scan power:"
 	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
 
@@ -226,6 +253,9 @@ tip "max speed:"
 
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
+
+tip "movement:"
+	`How quickly this ship can accelerate and turn.`
 
 tip "movement, full / no cargo:"
 	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
@@ -300,7 +330,7 @@ tip "max:"
 
 # Outfit categories:
 tip "Guns:"
-	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition).`
+	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition.`
 
 tip "Turrets:"
 	`Weapons that can fire in any direction and will track your currently selected target.`
@@ -330,7 +360,10 @@ tip "Special:"
 
 # Weapon attributes:
 tip "ammo:"
-	`When this weapon fires it consumes one outfit of this type.`
+	`When this weapon fires it consumes outfits of this type.`
+
+tip "ammo usage:"
+	`The number of units of ammo that this weapon consumes when fired.`
 
 tip "range:"
 	`Total range of this weapon.`
@@ -402,7 +435,7 @@ tip "heat damage / shot:"
 	`Each shot increases the target ship's heat by this amount, or half this amount if its shields are up.`
 
 tip "ion damage / shot:"
-	`Each shot increases the target's ionization by this amount. Total energy lost is 100 times this amount.`
+	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy and slowly wears off over time.`
 
 tip "slowing damage / shot:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
@@ -440,6 +473,9 @@ tip "overheating!"
 tip "no energy!"
 	`This ship does not have any source of energy to power its systems. You should install some sort of generator.`
 
+tip "no fuel!"
+	`This ship does not have enough fuel to provide energy to power its systems. You should increase the fuel capacity.`
+
 tip "no thruster!"
 	`This ship does not have any sort of thruster installed. If it took off, it would be unable to move.`
 
@@ -464,8 +500,17 @@ tip "limited turn?"
 tip "solar power?"
 	`This ship is powered entirely by solar energy. If you fly too far from the center of a star system, maneuvering may become difficult because your engines will only have a fraction of the power they require.`
 
+tip "fuel?"
+	`This ship consumes fuel. However, it would immediately run out of fuel if it departs.`
+
 tip "no hyperdrive?"
 	`This ship has no hyperdrive. If it took off, it would be unable to leave this star system.`
 
 tip "no fuel?"
 	`This ship has insufficient fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
+
+tip "no bays?"
+	`There are insufficient bays available to carry this ship. If you take off, it would be unable to leave this star system.`
+
+tip "insufficient energy to fire?"
+	`This ship has insufficient energy storage to fire an installed weapon.`

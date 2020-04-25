@@ -36,12 +36,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 #include <SDL2/SDL.h>
 
+#include <algorithm>
+
 using namespace std;
 
 namespace {
-	const int ICON_TILE = 62;
-	const int ICON_COLS = 4;
-	const double ICON_SIZE = ICON_TILE - 8;
+	constexpr int ICON_TILE = 62;
+	constexpr int ICON_COLS = 4;
+	constexpr float ICON_SIZE = ICON_TILE - 8;
+	
+	bool CanShowInSidebar(const Ship &ship, const System *here)
+	{
+		return ship.GetSystem() == here && !ship.IsDisabled();
+	}
 }
 
 
@@ -106,8 +113,8 @@ void ShopPanel::Draw()
 	
 	if(!warningType.empty())
 	{
-		static const int WIDTH = 250;
-		static const int PAD = 10;
+		constexpr int WIDTH = 250;
+		constexpr int PAD = 10;
 		const string &text = GameData::Tooltip(warningType);
 		WrappedText wrap(FontSet::Get(14));
 		wrap.SetWrapWidth(WIDTH - 2 * PAD);
@@ -125,9 +132,9 @@ void ShopPanel::Draw()
 	
 	if(dragShip && dragShip->GetSprite())
 	{
-		static const Color selected(.8, 1.);
+		static const Color selected(.8f, 1.f);
 		const Sprite *sprite = dragShip->GetSprite();
-		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+		float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 		Point size(sprite->Width() * scale, sprite->Height() * scale);
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
 	}
@@ -176,22 +183,24 @@ void ShopPanel::DrawSidebar()
 		Screen::Right() - SIDE_WIDTH / 2 - 93,
 		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40 - 93);
 	
+	const System *here = player.GetSystem();
 	int shipsHere = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
-		shipsHere += !(ship->GetSystem() != player.GetSystem() || ship->IsDisabled());
+		shipsHere += CanShowInSidebar(*ship, here);
 	if(shipsHere < 4)
 		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
 	// Check whether flight check tooltips should be shown.
+	const auto flightChecks = player.FlightCheck();
 	Point mouse = GetUI()->GetMouse();
 	warningType.clear();
 	
-	static const Color selected(.8, 1.);
-	static const Color unselected(.4, 1.);
+	static const Color selected(.8f, 1.f);
+	static const Color unselected(.4f, 1.f);
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
+		if(!CanShowInSidebar(*ship, here))
 			continue;
 	
 		if(point.X() > Screen::Right())
@@ -211,16 +220,17 @@ void ShopPanel::DrawSidebar()
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)
 		{
-			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
-		string check = ship->FlightCheck();
-		if(!check.empty())
+		const auto checkIt = flightChecks.find(ship);
+		if(checkIt != flightChecks.end())
 		{
+			const string &check = (*checkIt).second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(zones.back().Contains(mouse))
@@ -257,9 +267,9 @@ void ShopPanel::DrawSidebar()
 	maxSideScroll = max(0., point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
-		Point(0., -1.), 10., 10., 5., Color(sideScroll > 0 ? .8 : .2, 0.));
+		Point(0., -1.), 10.f, 10.f, 5.f, Color(sideScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
-		Point(0., 1.), 10., 10., 5., Color(sideScroll < maxSideScroll ? .8 : .2, 0.));
+		Point(0., 1.), 10.f, 10.f, 5.f, Color(sideScroll < maxSideScroll ? .8f : .2f, 0.f));
 }
 
 
@@ -336,18 +346,21 @@ void ShopPanel::DrawMain()
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 	
-	// Draw all the available ships.
+	// Draw all the available items.
 	// First, figure out how many columns we can draw.
 	const int TILE_SIZE = TileSize();
-	int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
-	int columns = mainWidth / TILE_SIZE;
-	int columnWidth = mainWidth / columns;
+	const int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
+	// If the user horizontally compresses the window too far, draw nothing.
+	if(mainWidth < TILE_SIZE)
+		return;
+	const int columns = mainWidth / TILE_SIZE;
+	const int columnWidth = mainWidth / columns;
 	
-	Point begin(
+	const Point begin(
 		(Screen::Width() - columnWidth) / -2,
 		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
 	Point point = begin;
-	float endX = Screen::Right() - (SIDE_WIDTH + 1);
+	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
 	for(const string &category : categories)
@@ -357,7 +370,7 @@ void ShopPanel::DrawMain()
 			continue;
 		
 		// This should never happen, but bail out if we don't know what planet
-		// we are on (meaning there's no way to know what ships are for sale).
+		// we are on (meaning there's no way to know what items are for sale).
 		if(!planet)
 			break;
 		
@@ -385,15 +398,15 @@ void ShopPanel::DrawMain()
 			
 			if(isSelected)
 			{
-				Color color(.2, 0.);
+				Color color(.2f, 0.f);
 				int dy = DividerOffset();
 				
 				float before = point.X() - TILE_SIZE / 2 - Screen::Left();
-				FillShader::Fill(Point(Screen::Left() + .5 * before, point.Y() + dy),
+				FillShader::Fill(Point(Screen::Left() + .5f * before, point.Y() + dy),
 					Point(before, 1.), color);
 				
-				float after = endX - (point.X() + TILE_SIZE / 2);
-				FillShader::Fill(Point(endX - .5 * after, point.Y() + dy),
+				float after = endX - (static_cast<float>(point.X()) + TILE_SIZE / 2);
+				FillShader::Fill(Point(endX - .5f * after, point.Y() + dy),
 					Point(after, 1.), color);
 				
 				// The center of the display needs to be between these two values:
@@ -449,9 +462,9 @@ void ShopPanel::DrawMain()
 	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + 40.);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
-		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
+		Point(0., -1.), 10.f, 10.f, 5.f, Color(mainScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
-		Point(0., 1.), 10., 10., 5., Color(mainScroll < maxMainScroll ? .8 : .2, 0.));
+		Point(0., 1.), 10.f, 10.f, 5.f, Color(mainScroll < maxMainScroll ? .8f : .2f, 0.f));
 }
 
 
@@ -525,7 +538,7 @@ void ShopPanel::ToggleCargo()
 
 
 // Only override the ones you need; the default action is to return false.
-bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	scrollDetailsIntoView = false;
 	bool toCargo = selectedOutfit && (key == 'r' || key == 'u');
@@ -612,7 +625,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			
 			const System *here = player.GetSystem();
 			for(Ship *ship : added)
-				if(!ship->IsDisabled() && ship->GetSystem() == here)
+				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 			
 			if(!playerShips.count(playerShip))
@@ -626,7 +639,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			
 			const System *here = player.GetSystem();
 			for(Ship *ship : wanted)
-				if(!ship->IsDisabled() && ship->GetSystem() == here)
+				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 			
 			if(!playerShips.count(playerShip))
@@ -907,7 +920,7 @@ void ShopPanel::SideSelect(int count)
 				it = player.Ships().end();
 			--it;
 			
-			if((*it)->GetSystem() == here && !(*it)->IsDisabled())
+			if(CanShowInSidebar(**it, here))
 				++count;
 		}
 	}
@@ -919,7 +932,7 @@ void ShopPanel::SideSelect(int count)
 			if(it == player.Ships().end())
 				it = player.Ships().begin();
 			
-			if((*it)->GetSystem() == here && !(*it)->IsDisabled())
+			if(CanShowInSidebar(**it, here))
 				--count;
 		}
 	}
@@ -940,7 +953,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
-			if(other->GetSystem() != here || other->IsDisabled())
+			if(!CanShowInSidebar(*other, here))
 				continue;
 			
 			if(other.get() == ship || other.get() == playerShip)
@@ -1155,11 +1168,11 @@ char ShopPanel::CheckButton(int x, int y)
 		return ' ';
 	
 	x -= Screen::Right() - SIDE_WIDTH;
-	if(x < 80)
+	if(x > 9 && x < 70)
 		return 'b';
-	else if(x < 160)
+	else if(x > 89 && x < 150)
 		return 's';
-	else
+	else if(x > 169 && x < 240)
 		return 'l';
 	
 	return ' ';

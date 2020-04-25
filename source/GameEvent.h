@@ -50,6 +50,8 @@ public:
 	
 	void Apply(PlayerInfo &player);
 	
+	const std::list<DataNode> &Changes() const;
+	
 	
 private:
 	Date date;

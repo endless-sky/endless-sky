@@ -12,13 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AsteroidField.h"
 
-#include "SpriteSet.h"
 #include "DrawList.h"
 #include "Mask.h"
 #include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Screen.h"
+#include "SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -27,9 +27,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const double WRAP = 4096.;
-	const int CELL_SIZE = 256;
-	const int CELL_COUNT = WRAP / CELL_SIZE;
+	constexpr double WRAP = 4096.;
+	constexpr unsigned CELL_SIZE = 256u;
+	constexpr unsigned CELL_COUNT = WRAP / CELL_SIZE;
 }
 
 
@@ -119,7 +119,7 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 
 
 // Check if the given projectile collides with any asteroids.
-Body *AsteroidField::Collide(const Projectile &projectile, int step, double *closestHit)
+Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 {
 	Body *hit = nullptr;
 	

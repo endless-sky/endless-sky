@@ -243,7 +243,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	
 	int count = playerShips.size();
 	int initialCount = count;
-	string message = "Sell ";
+	string message = "Sell the ";
 	const Font &font = FontSet::Get(14);
 	if(count == 1)
 		message += playerShip->Name();

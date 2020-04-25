@@ -153,10 +153,10 @@ void MainPanel::Draw()
 		if(canDrag)
 		{
 			const Color &dragColor = *GameData::Colors().Get("drag select");
-			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, dragColor);
-			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, dragColor);
-			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, dragColor);
-			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, dragColor);
+			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8f, dragColor);
+			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8f, dragColor);
+			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8f, dragColor);
+			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8f, dragColor);
 		}
 		else
 			isDragging = false;
@@ -196,7 +196,7 @@ void MainPanel::OnCallback()
 
 
 // Only override the ones you need; the default action is to return false.
-bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
 		show = command;
@@ -323,7 +323,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					int tons = ceil(it.second * it.first->Mass());
 					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
-				else	
+				else
 					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
 			}
 		if(first)
@@ -469,9 +469,10 @@ void MainPanel::StepEvents(bool &isActive)
 		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && actor->IsPlayer()
 				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
 		{
-			Mission *mission = player.BoardingMission(event.Target());
+			auto boardedShip = event.Target();
+			Mission *mission = player.BoardingMission(boardedShip);
 			if(mission && mission->HasSpace(*flagship))
-				mission->Do(Mission::OFFER, player, GetUI());
+				mission->Do(Mission::OFFER, player, GetUI(), boardedShip);
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
 						? Mission::BOARDING : Mission::ASSISTING, GetUI());
@@ -486,11 +487,11 @@ void MainPanel::StepEvents(bool &isActive)
 			// completion conversation creates a BoardingPanel for it, or if the
 			// NPC completion conversation ends via `accept,` even if the ship is
 			// still hostile.
-			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed()
-					&& event.Target()->GetGovernment()->IsEnemy())
+			if(isActive && (event.Type() == ShipEvent::BOARD) && !boardedShip->IsDestroyed()
+					&& boardedShip->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
-				GetUI()->Push(new BoardingPanel(player, event.Target()));
+				GetUI()->Push(new BoardingPanel(player, boardedShip));
 				isActive = false;
 			}
 		}

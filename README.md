@@ -9,7 +9,7 @@ Endless Sky is a sandbox-style space exploration game similar to Elite, Escape V
 See the [player's manual](https://github.com/endless-sky/endless-sky/wiki/PlayersManual) for more information, or the [home page](https://endless-sky.github.io/) for screenshots and the occasional blog post.
 
 # Installing the game
-Official releases of Endless Sky are available on [Steam](https://steamcommunity.com/app/404410/) and as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky/releases). A PPA is available for [Ubuntu](https://launchpad.net/~mzahniser/+archive/ubuntu/endless-sky) and for [Debian](https://packages.debian.org/source/sid/endless-sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
+Official releases of Endless Sky are available on [Steam](https://store.steampowered.com/app/404410/Endless_Sky/) and as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky/releases). A PPA is available for [Ubuntu](https://launchpad.net/~mzahniser/+archive/ubuntu/endless-sky) and for [Debian](https://packages.debian.org/source/sid/endless-sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
 
 ### System Requirements
 Endless Sky has very minimal system requirements, meaning most systems should be able to run the game. The most restrictive requirement is likely that your device must support at least OpenGL 3.
@@ -18,7 +18,7 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |---|----:|----:|
 |RAM | 350 MB | 750 MB |
 |Graphics | OpenGL 3.0 | OpenGL 3.3 |
-|Storage Free | 65 MB | 170 MB |
+|Storage Free | 120 MB | 300 MB |
 
 ### Building from source
 While most development is done on Linux using the [SCons](https://scons.org/) build tool to compile the project, IDE-specific files are provided for [XCode](https://developer.apple.com/xcode/) and [Code::Blocks](http://www.codeblocks.org/) to simplify the installation on Mac OS and Windows. It is possible to use other IDEs or build systems to compile the game, but support is not provided.

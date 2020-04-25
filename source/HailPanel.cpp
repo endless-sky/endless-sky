@@ -192,7 +192,7 @@ void HailPanel::Draw()
 	interface->Draw(info, this);
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
-	double zoom = min(2., 400. / max(sprite->Width(), sprite->Height()));
+	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
 	Point center(-170., -10.);
 	
 	DrawList draw;
@@ -228,7 +228,7 @@ void HailPanel::Draw()
 
 
 
-bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 	

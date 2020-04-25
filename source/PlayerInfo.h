@@ -60,8 +60,8 @@ public:
 	void New();
 	// Load an existing player.
 	void Load(const std::string &path);
-	// Load the most recently saved player.
-	void LoadRecent();
+	// Load the most recently saved player. If no save could be loaded, returns false.
+	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
 	
@@ -106,14 +106,19 @@ public:
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
 	int64_t Salaries() const;
+	// Calculate the daily maintenance cost for all ships and in cargo outfits.
+	int64_t Maintenance() const;
 	
 	// Access the flagship (the first ship in the list). This returns null if
-	// the player does not have any ships.
+	// the player does not have any ships that can be a flagship.
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
+	// Inspect the flightworthiness of the player's active fleet as a whole to
+	// determine which ships cannot travel with the group.
+	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
@@ -173,9 +178,9 @@ public:
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
 	// Access the "condition" flags for this player.
-	int GetCondition(const std::string &name) const;
-	std::map<std::string, int> &Conditions();
-	const std::map<std::string, int> &Conditions() const;
+	int64_t GetCondition(const std::string &name) const;
+	std::map<std::string, int64_t> &Conditions();
+	const std::map<std::string, int64_t> &Conditions() const;
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
@@ -241,7 +246,7 @@ public:
 	
 	
 private:
-	// Don't anyone else to copy this class, because pointers won't get
+	// Don't allow anyone else to copy this class, because pointers won't get
 	// transferred properly.
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;
@@ -304,7 +309,7 @@ private:
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
 	
-	std::map<std::string, int> conditions;
+	std::map<std::string, int64_t> conditions;
 	
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

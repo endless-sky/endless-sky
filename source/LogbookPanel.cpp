@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 #include "WrappedText.h"
 
+#include <algorithm>
 #include <set>
 
 using namespace std;
@@ -160,7 +161,7 @@ void LogbookPanel::Draw()
 
 
 
-bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);

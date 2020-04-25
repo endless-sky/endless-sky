@@ -239,6 +239,8 @@ namespace {
 			png_set_gray_to_rgb(png);
 		if(colorType & PNG_COLOR_MASK_COLOR)
 			png_set_bgr(png);
+		// Let libpng handle any interlaced image decoding.
+		png_set_interlace_handling(png);
 		png_read_update_info(png, info);
 		
 		// Read the file.

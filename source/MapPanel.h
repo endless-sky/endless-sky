@@ -48,10 +48,10 @@ public:
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
 	
-	static const double OUTER;
-	static const double INNER;
-	static const double LINK_WIDTH;
-	static const double LINK_OFFSET;
+	static const float OUTER;
+	static const float INNER;
+	static const float LINK_WIDTH;
+	static const float LINK_OFFSET;
 	
 	
 public:
@@ -61,12 +61,12 @@ public:
 	virtual void Draw() override;
 	
 	void DrawButtons(const std::string &condition);
-	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
+	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
