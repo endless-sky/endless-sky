@@ -609,3 +609,10 @@ outfit "Pulse Rifle"
 	"capture defense" 1.0
 	"unplunderable" 1
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
+
+outfit "Failed Control System"
+	category "Systems"
+	cost 0
+	thumbnail "outfit/control transceiver"
+	"mass" 1
+	description "This was meant to control some sort of experimental system, but it appears to have failed."

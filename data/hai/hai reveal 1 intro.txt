@@ -688,24 +688,27 @@ mission "Hai Leaks Response 4"
 		personality staying marked target
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
+	to complete
+		or
+			has "00 Hai Leaks Response 4B: done"
+			has "00 Hai Leaks Response 4B: failed"
 	on complete
 		payment 1000000
 		event "waypoint pirates vanquished"
 		log `Defeated a nasty marauder whose ship was the "Black Lich". He had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. You were rewarded well for this particular piece of aid.`
 		conversation
-			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
-			
-			# branch "saved geocoris"
-			# 	not "Hai Leaks Response 4a: failed"
-			# `	He sighs deeply, "It is a shame though that the kidnapped Hai could not be saved, but the other Hai captains tell me it was a mess out there."`
-			# `	He places one of his furry hands comfortingly on your shoulder, "I'm sure you did all you could."`
-			# 	goto end
-			# label "saved geocoris"
-			# `	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy."`
-			# `	"I do need to do a full security scan of it before I let it go though, just to complete all the incident paperwork, so if you have any business on world here then you should take your time."`
-			# label end
-			# `	"In any event, let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
-			# `	With a final nod of thanks he departs to attend to business, leaving you free to wander the spaceport until they release your new ship.`
+			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem."`
+			branch "saved geocoris"
+				not "Hai Leaks Response 4B: failed"
+			`	He sighs deeply, "It is a shame though that the kidnapped Hai could not be saved, but the other Hai captains tell me it was a mess out there."`
+			`	He places one of his furry hands comfortingly on your shoulder, "I'm sure you did all you could."`
+				goto end
+			label "saved geocoris"
+			`	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy."`
+			`	"I do need to do a full security scan of it before I let it go though, just to complete all the incident paperwork, so if you have any business on world here then you should take your time."`
+			label end
+			`	"In any event, let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
+			`	With a final nod of thanks he departs to attend to business, leaving you free to wander the spaceport until they release your new ship.`
 	
 	
 event "waypoint pirates vanquished"
@@ -722,30 +725,41 @@ event "waypoint pirates vanquished"
 		remove fleet "Large Northern Pirates"
 		remove fleet "Large Core Pirates"
 
-# It is impossible to implement a "capture and return npc"
-# mission. Once the ship is captured, the NPC is gone and the mission
-# is failed.
-#
-# mission "Hai Leaks Response 4A"
-# 	name "Recover the Geocoris"
-# 	description "Recover the stolen Geocoris, somewhere near Hai space."
-# 	landing
-# 	source "Allhome"
-# 	to offer
-# 		has "Hai Leaks Response 3: done"
-# 	npc board
-# 		government "Pirate"
-# 		personality staying marked mute
-# 		system "Waypoint"
-# 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
-# 		dialog `After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise to escort their ship to Allhome.`
-# 	on fail
-# 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the heroic ending, revert to the autosave or another earlier snapshot of the game.`
-# 	on complete
-#		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it and it may be a valuable prize.`
-# 		event "returned geocoris" 365
-# 		#The Geodesic Geocoris may become available to purchase specially later on.
-		
+# It is impossible to implement a "capture and return npc" mission. 
+# Once the ship is captured, the NPC is gone and the mission is failed.
+# The NPC has an outfit used to determine if you managed to get it back safely.
+mission "Hai Leaks Response 4A"
+	name "Recover the Geocoris"
+ 	description "Recover the stolen Geocoris, somewhere near Hai space, and return to Allhome."
+ 	landing
+ 	source "Allhome"
+	destination "Allhome"
+ 	to offer
+ 		has "Hai Leaks Response 3: done"
+ 	npc board
+ 		government "Pirate"
+ 		personality staying marked mute
+ 		system "Waypoint"
+ 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
+ 		dialog `After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise to escort their ship to Allhome.`
+
+# Must be able to resolve earlier than the rest in this set.
+mission "00 Hai Leaks Response 4B"
+	invisible
+ 	landing
+ 	source "Allhome"
+ 	to offer
+ 		has "Hai Leaks Response 3: done"
+	on complete
+		outfit "Failed Control System" -1
+		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it and it may be a valuable prize.`
+ 		event "returned geocoris" 365
+ 		#The Geodesic Geocoris may become available to purchase specially later on.
+	to fail
+		has "Hai Leaks Response 4A: done"
+ 	on fail
+ 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
+
 event "returned geocoris"
 		
 ship "Geodesic Geocoris"
@@ -825,6 +839,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 		Hyperdrive
+		"Failed Control System"
 	turret "Electron Turret"
 	turret "Electron Turret"
 	turret "Chameleon Anti-Missile"
