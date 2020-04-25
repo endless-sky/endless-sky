@@ -222,12 +222,13 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
 		
+		int failedMissions = 0;
+		
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
-				int failedMissions = 0;
 				maxFine = fine;
 				reason = " for carrying illegal cargo.";
 
@@ -250,11 +251,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						++failedMissions;
 					}
 				}
-				if(failedMissions)
-				{
-					reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission") 
-						+ " after your illegal cargo was discovered.";
-				}
 			}
 		}
 		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
@@ -271,6 +267,11 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
+		}
+		if(failedMissions)
+		{
+			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission") 
+				+ " after your illegal cargo was discovered.";
 		}
 	}
 	
