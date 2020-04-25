@@ -68,7 +68,7 @@ void PlanetPanel::Step()
 {
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
-	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
+	if(flagship && flagship->CanBeFlagship() && (player.MustLaunch() || requestedLaunch))
 	{
 		TakeOffIfReady();
 		return;
@@ -233,8 +233,8 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
-	// Check whether the player should be warned before taking off.
-	if(player.ShouldLaunch())
+	// Check whether the player can be warned before takeoff.
+	if(player.MustLaunch())
 	{
 		TakeOff();
 		return;

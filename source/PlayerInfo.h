@@ -99,7 +99,7 @@ public:
 	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
-	bool ShouldLaunch() const;
+	bool MustLaunch() const;
 	
 	// Access the player's accounting information.
 	const Account &Accounts() const;
@@ -283,7 +283,7 @@ private:
 	Date date;
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
-	bool shouldLaunch = false;
+	bool mustLaunch = false;
 	bool hasFullClearance = true;
 	bool isDead = false;
 	

@@ -137,7 +137,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "clearance")
 			hasFullClearance = true;
 		else if(child.Token(0) == "launching")
-			shouldLaunch = true;
+			mustLaunch = true;
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
 			const System *next = GameData::Systems().Find(child.Token(1));
@@ -649,9 +649,9 @@ const StellarObject *PlayerInfo::GetStellarObject() const
 
 
 // Check if the player must take off immediately.
-bool PlayerInfo::ShouldLaunch() const
+bool PlayerInfo::MustLaunch() const
 {
-	return shouldLaunch;
+	return mustLaunch;
 }
 
 
@@ -1181,7 +1181,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(!flagship)
 		return false;
 	
-	shouldLaunch = false;
+	mustLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
 	
 	// Jobs are only available when you are landed.
@@ -1601,7 +1601,7 @@ void PlayerInfo::MissionCallback(int response)
 	Mission &mission = missionList.front();
 	
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	mustLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1648,7 +1648,7 @@ void PlayerInfo::MissionCallback(int response)
 void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	mustLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
 
 
@@ -2630,7 +2630,7 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("clearance");
 	// This flag is set if the player must leave the planet immediately upon
 	// loading the game (i.e. because a mission forced them to take off).
-	if(shouldLaunch)
+	if(mustLaunch)
 		out.Write("launching");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
