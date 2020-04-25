@@ -46,7 +46,6 @@ protected:
 	
 private:
 	void TakeOffIfReady();
-	void PreflightChecks();
 	void TakeOff();
 	
 	

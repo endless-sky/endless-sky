@@ -786,7 +786,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				flightChecks.emplace(ship, checks);
 			
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
-			if(ship->CanBeCarried() || ship->Bays().empty())
+			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
 			
 			for(auto &bay : ship->Bays())

@@ -240,10 +240,12 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
-	// Check if any of the player's ships are configured in such a way that they
-	// will be impossible to fly.
+	// Check if any of the player's ships are configured in such a way that they will be impossible to
+	// fly, or won't be able to follow the fleet on jumps (e.g. due to lack of fuel, drive, or carrier).
+	size_t nonJumpCount = 0;
 	const auto flightChecks = player.FlightCheck();
 	if(!flightChecks.empty())
+	{
 		for(const auto &result : flightChecks)
 		{
 			// If there is a flightcheck error, it will be the first (and only) entry.
@@ -254,61 +256,38 @@ void PlanetPanel::TakeOffIfReady()
 					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
 				return;
 			}
-		}
-	
-	// Outfit changes or flagship reassignment may void a travel plan. Notify the player of this change.
-	string message;
-	if(player.HasInvalidTravelPlan())
-		message = "If you take off now, your current travel plan will be cleared as parts of it are now inaccessible.";
-	else if(player.TravelDestination() && !player.TravelDestination()->IsAccessible(player.Flagship()))
-		message = "If you take off now, your intended landing target will be cleared as it is now inaccessible.";
-	
-	if(message.empty())
-		PreflightChecks();
-	else
-	{
-		message += "\nThis may be due to changing your flagship or its installed outfits, or some unknown galactic event.\nAre you sure you want to continue?";
-		GetUI()->Push(new Dialog(this, &PlanetPanel::PreflightChecks, message));
-	}
-}
-
-
-
-// Check if changes to the player's fleet have resulted in the need to sell
-// anything off (like excess commodity cargo or drones).
-void PlanetPanel::PreflightChecks()
-{
-	// Check for items that must be sold if the player were to take off. These are
-	// typically caused by parking or selling ships, or changing outfits.
-	const Ship *flagship = player.Flagship();
-	
-	// Are you overbooked? Don't count fireable flagship crew. If your
-	// ship can't hold the required crew, count it as having no fireable
-	// crew rather than a negative number.
-	const CargoHold &cargo = player.Cargo();
-	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
-	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
-	// Will you have to sell something other than regular cargo?
-	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
-	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
-	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
-	size_t nonJumpCount = 0;
-	if(!flightChecks.empty())
-	{
-		// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
-		const auto jumpWarnings = set<string>{
-			"no bays?", "no fuel?", "no hyperdrive?"
-		};
-		for(const auto &result : flightChecks)
+			// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
+			static const auto jumpWarnings = set<string>{
+				"no bays?", "no fuel?", "no hyperdrive?"
+			};
 			for(const auto &warning : result.second)
 				if(jumpWarnings.count(warning))
 				{
 					++nonJumpCount;
 					break;
 				}
+		}
 	}
 	
-	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
+	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
+	const Ship *flagship = player.Flagship();
+	const CargoHold &cargo = player.Cargo();
+	// Are you overbooked? Don't count fireable flagship crew.
+	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
+	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
+	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
+	// Will you have to sell something other than regular cargo?
+	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
+	
+	// Outfit changes or flagship reassignment may void a travel plan.
+	bool invalidPlan = false;
+	bool invalidDestination = false;
+	if(player.HasInvalidTravelPlan())
+		invalidPlan = true;
+	else if(player.TravelDestination() && !player.TravelDestination()->IsAccessible(player.Flagship()))
+		invalidDestination = true;
+	
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0 || invalidPlan || invalidDestination)
 	{
 		ostringstream out;
 		// Warn about missions that will fail on takeoff.
@@ -331,6 +310,7 @@ void PlanetPanel::PreflightChecks()
 				out << " of your mission cargo.";
 			}
 		}
+		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
 		{
 			out << "If you take off now you will launch with ";
@@ -340,7 +320,8 @@ void PlanetPanel::PreflightChecks()
 				out << nonJumpCount << " ships";
 			out << " that will not be able to leave the system.";
 		}
-		else
+		// Warn about non-commodity cargo you will have to sell.
+		else if(cargoToSell > 0)
 		{
 			out << "If you take off now you will have to sell ";
 			
@@ -349,6 +330,16 @@ void PlanetPanel::PreflightChecks()
 			else if(cargoToSell > 0)
 				out << cargoToSell << " tons of cargo";
 			out << " that you do not have space for.";
+		}
+		// Warn about a cleared travel plan or destination.
+		else
+		{
+			out << "If you take off now, your ";
+			if(invalidPlan)
+				out << "current travel plan will be cleared as parts of it are";
+			else
+				out << "intended landing target will be cleared as it is";
+			out << " now inaccessible. This may be due to changing your flagship or its installed outfits.";
 		}
 		
 		out << "\nAre you sure you want to continue?";
