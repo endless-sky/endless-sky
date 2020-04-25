@@ -433,10 +433,15 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	if(isActive && wasActive)
+	if(isActive)
 	{
 		HandleKeyboardInputs();
-		ai.UpdateKeys(player, activeCommands);
+		// Ignore any inputs given when first becoming active, since those inputs
+		// were issued when some other panel (e.g. planet, hail) was displayed.
+		if(!wasActive)
+			activeCommands.Clear();
+		else
+			ai.UpdateKeys(player, activeCommands);
 	}
 	wasActive = isActive;
 	Audio::Update(center);
@@ -1379,7 +1384,7 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
-		batchDraw[calcTickTock].Add(visual);
+		batchDraw[calcTickTock].AddVisual(visual);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();

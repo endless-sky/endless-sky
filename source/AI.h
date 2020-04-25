@@ -97,9 +97,9 @@ private:
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
-	static void CircleAround(Ship &ship, Command &command, const Ship &target);
-	static void Swarm(Ship &ship, Command &command, const Ship &target);
-	static void KeepStation(Ship &ship, Command &command, const Ship &target);
+	static void CircleAround(Ship &ship, Command &command, const Body &target);
+	static void Swarm(Ship &ship, Command &command, const Body &target);
+	static void KeepStation(Ship &ship, Command &command, const Body &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);

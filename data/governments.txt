@@ -70,6 +70,8 @@ government "Deep Security"
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
+government "Derelict"
+
 government "Drak"
 	swizzle 5
 	color 1 1 1
@@ -135,8 +137,10 @@ government "Hai (Unfettered)"
 	"player reputation" -1000
 	"attitude toward"
 		"Hai" -.01
+		" Hai " -.01
 		"Wanderer" -.01
 		"Pug" -.01
+		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
 	"bribe" .02
@@ -204,6 +208,7 @@ government "Ka'het"
 		"Quarg" -.01
 		"Pug" -.01
 		"Hai" -.01
+		" Hai " -.01
 		"Korath" -.01
 		"Navy (Oathkeeper)" -.01
 		"Republic" -.01
@@ -212,6 +217,10 @@ government "Ka'het"
 		"Wanderer" -.01
 	
 	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
 
 government " Ka'het "
 	"display name" "Ka'het"
@@ -224,6 +233,7 @@ government " Ka'het "
 		"Quarg" -.01
 		"Pug" -.01
 		"Hai" -.01
+		" Hai " -.01
 		"Korath" -.01
 		"Navy (Oathkeeper)" -.01
 		"Republic" -.01
@@ -232,6 +242,10 @@ government " Ka'het "
 		"Wanderer" -.01
 	
 	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
 
 government "Korath"
 	swizzle 0
@@ -368,6 +382,7 @@ government "Pirate"
 	"attitude toward"
 		"Author" -.01
 		"Hai" -.01
+		" Hai " -.01
 		"Korath" -.01
 		"Merchant" -.1
 		"Syndicate" -.01
@@ -378,6 +393,20 @@ government "Pirate"
 	raid "pirate raid"
 
 government "Pug"
+	swizzle 0
+	color .99 .89 .70
+	
+	"player reputation" 1
+	"attitude toward"
+		"Drak" -.01
+		"Quarg" -.01
+	"friendly hail" "friendly pug"
+	"friendly disabled hail" "friendly disabled pug"
+	"hostile hail" "hostile pug"
+	"hostile disabled hail" "hostile pug"
+
+government "Pug (Wanderer)"
+	"display name" "Pug"
 	swizzle 0
 	color .99 .89 .70
 	
@@ -401,6 +430,7 @@ government "Quarg"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Hai" .01
+		" Hai " .01
 		"Pirate" -.01
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
@@ -413,7 +443,13 @@ government "Remnant"
 	"player reputation" 1
 	"bribe" 0
 	"attitude toward"
-		"Korath" -.01
+		"Indigenous Lifeform" 0.05
+		"Korath" -.05
+		"Alpha" -.05
+	"penalty for"
+		assist -0.25
+		capture 10
+		destroy 10
 
 government "Republic"
 	swizzle 0

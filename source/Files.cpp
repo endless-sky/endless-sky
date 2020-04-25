@@ -335,7 +335,7 @@ vector<string> Files::ListDirectories(string directory)
 	}
 	
 	closedir(dir);
-#endif	
+#endif
 	return list;
 }
 

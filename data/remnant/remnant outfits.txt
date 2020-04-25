@@ -1,0 +1,573 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Weapons:
+
+outfit "Inhibitor Cannon"
+	category "Guns"
+	licenses
+		Remnant
+	cost 471000
+	thumbnail "outfit/inhibitor cannon"
+	"mass" 16
+	"outfit space" -16
+	"weapon capacity" -16
+	"gun ports" -1
+	weapon
+		sprite "projectile/inhibitor"
+			"frame rate" 10
+			"no repeat"
+		sound "inhibitor"
+		"hit effect" "inhibitor impact" 3
+		"inaccuracy" .5
+		"velocity" 36
+		"random velocity" .5
+		"lifetime" 24
+		"reload" 13
+		"cluster"
+		"firing energy" 26
+		"firing heat" 45.5
+		"firing force" 13
+		"shield damage" 26
+		"hull damage" 19.5
+		"hit force" 39
+		"slowing damage" .5
+	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
+
+effect "inhibitor impact"
+	sprite "effect/inhibitor impact"
+		"frame rate" 30
+		"no repeat"
+	"lifetime" 11
+	"random angle" 360
+	"random frame rate" 15
+	"random velocity" 6
+	"velocity scale" -.05
+
+outfit "Inhibitor Turret"
+	category "Turrets"
+	licenses
+		Remnant
+	cost 1371000
+	thumbnail "outfit/inhibitor turret"
+	"mass" 42
+	"outfit space" -28
+	"weapon capacity" -22
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/inhibitor"
+			"frame rate" 10
+			"no repeat"
+		"hardpoint sprite" "hardpoint/inhibitor turret"
+		"hardpoint offset" 6.
+		sound "inhibitor"
+		"hit effect" "inhibitor impact" 3
+		"inaccuracy" .5
+		"turret turn" 3.5
+		"velocity" 36
+		"random velocity" .5
+		"lifetime" 24
+		"reload" 6.5
+		"cluster"
+		"firing energy" 26
+		"firing heat" 45.5
+		"firing force" 13
+		"shield damage" 26
+		"hull damage" 19.5
+		"hit force" 39
+		"slowing damage" .5
+	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
+	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
+
+
+outfit "Thrasher Cannon"
+	category "Guns"
+	licenses
+		Remnant
+	cost 218000
+	thumbnail "outfit/thrasher cannon"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	weapon
+		sprite "projectile/thrasher"
+			"frame rate" 10
+			"random start frame"
+			"no repeat"
+		sound "thrasher"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 9
+		"velocity" 10
+		"lifetime" 36
+		"reload" 20
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
+	description "This weapon was originally developed in an attempt to reverse engineer a long-range energy projectile favored by an alien species that the Remnant encountered nearby. In the process they discovered that by adding more energy to the projectiles they could do a lot more damage in exchange for shorter range, and the Thrasher Cannon was born."
+
+effect "thrasher impact"
+	sprite "effect/thrasher impact"
+		"frame rate" 30
+		"no repeat"
+	"lifetime" 11
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 3
+	"velocity scale" -.1
+
+
+outfit "Thrasher Turret"
+	category "Turrets"
+	licenses
+		Remnant
+	cost 980000
+	thumbnail "outfit/thrasher turret"
+	"mass" 49
+	"outfit space" -49
+	"weapon capacity" -49
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/thrasher"
+			"frame rate" 10
+			"random start frame"
+			"no repeat"
+		"hardpoint sprite" "hardpoint/thrasher turret"
+		"hardpoint offset" 6.
+		sound "thrasher"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 6
+		"turret turn" 2.4
+		"velocity" 10
+		"lifetime" 36
+		"reload" 5
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
+	description "This turret mounts four Thrasher Cannons on a single rotating base. The resulting weapon deals a very satisfying amount of damage when fired from close range, especially against a slow-moving target."
+
+
+outfit "Point Defense Turret"
+	category "Turrets"
+	licenses
+		Remnant
+	cost 1120000
+	thumbnail "outfit/point defense"
+	"mass" 33
+	"outfit space" -33
+	"weapon capacity" -33
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/point defense"
+		"fire effect" "point defense fire"
+		"die effect" "point defense hit"
+		"die effect" "point defense die"
+		"anti-missile" 42
+		"velocity" 270
+		"lifetime" 1
+		"reload" 10
+		"firing energy" 62
+		"firing heat" 18
+	description "Not long after the Remnant settled on Aventine, they began to discover caches of alien technology in vaults deep under the mountains, guarded by ancient but still-functioning point-defense systems. The Remnant learned how to duplicate those defense systems, and they are now considered to be much more useful than most of the items that they were guarding."
+
+effect "point defense fire"
+	sprite "effect/point defense fire"
+		"frame rate" 17
+		"no repeat"
+	sound "point defense"
+
+	lifetime 10
+	"velocity scale" .5
+
+effect "point defense hit"
+	sprite "effect/point defense hit"
+		"frame rate" 13
+		"no repeat"
+	lifetime 10
+	"velocity scale" .2
+
+effect "point defense die"
+	sprite "effect/point defense die"
+		"frame rate" 20
+		"no repeat"
+	lifetime 15
+	"velocity scale" .2
+
+
+outfit "EMP Torpedo"
+	plural "EMP Torpedoes"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 4400
+	thumbnail "outfit/emp torpedo"
+	"mass" 1
+	"emp torpedo capacity" -1
+	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
+
+outfit "EMP Torpedo Bay"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 583000
+	thumbnail "outfit/emp torpedo bay"
+	"mass" 9
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	"emp torpedo capacity" 9
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "EMP Torpedo"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		stream
+		"reload" 330
+		"firing energy" 400
+		"firing heat" 18
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 7
+		"acceleration" .7
+		"drag" .1
+		"turn" 2
+		"homing" 3
+		"infrared tracking" .7
+		"radar tracking" .8
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 48
+		"hit force" 90
+		"missile strength" 80
+	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+
+effect "emp torpedo fire"
+	sprite "effect/emp torpedo fire"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random angle" 10
+	"random frame rate" 10
+	"random spin" 2
+	"random velocity" 7
+
+effect "emp ring"
+	sprite "effect/emp ring"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 60
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 4
+	"velocity scale" 0.1
+
+effect "emp spark"
+	sprite "effect/emp spark"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 45
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 7
+	"velocity scale" 0.1
+
+
+
+# Systems:
+
+outfit "Crystal Capacitor"
+	category "Power"
+	licenses
+		Remnant
+	cost 113000
+	thumbnail "outfit/crystal capacitor"
+	"mass" 12
+	"outfit space" -12
+	"energy capacity" 3400
+	"energy consumption" .4
+	"heat generation" .4
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
+	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
+
+outfit "Millennium Cell"
+	category "Power"
+	licenses
+		Remnant
+	cost 553000
+	thumbnail "outfit/millennium cell"
+	"mass" 29
+	"outfit space" -29
+	"energy generation" 3.6
+	"heat generation" 6.0
+	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
+
+outfit "Epoch Cell"
+	category "Power"
+	licenses
+		Remnant
+	cost 2123000
+	thumbnail "outfit/epoch cell"
+	"mass" 98
+	"outfit space" -98
+	"energy generation" 12.7
+	"heat generation" 19.8
+	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
+
+outfit "Aeon Cell"
+	category "Power"
+	licenses
+		Remnant
+	cost 4384000
+	thumbnail "outfit/aeon cell"
+	"mass" 160
+	"outfit space" -160
+	"energy generation" 21.9
+	"heat generation" 31.5
+	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
+
+outfit "Thermoelectric Cooler"
+	category "Systems"
+	licenses
+		Remnant
+	cost 100000
+	thumbnail "outfit/thermoelectric cooler"
+	"mass" 4
+	"outfit space" -4
+	"active cooling" 7
+	"cooling energy" .4
+	description "This cooler is actually just one of the power-generating elements of a Millennium Cell, but wired so it can run in reverse: consuming electricity in order to transfer heat from a ship's systems to its exterior."
+
+outfit "Emergency Ramscoop"
+	category "Systems"
+	licenses
+		Remnant
+	cost 72000
+	thumbnail "outfit/emergency ramscoop"
+	"mass" 4
+	"outfit space" -4
+	"ramscoop" 0.5
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+
+outfit "Quantum Key Stone"
+	category "Systems"
+	licenses
+		Remnant
+	cost 240000
+	thumbnail "outfit/keystone"
+	"mass" 1
+	"outfit space" -1
+	"quantum keystone" 1
+	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
+
+outfit "Salvage Scanner"
+	category "Systems"
+	licenses
+		Remnant
+	cost 410000
+	thumbnail "outfit/salvage scanner"
+	"mass" 7
+	"outfit space" -7
+	"outfit scan power" 13
+	"outfit scan speed" 1
+	"tactical scan power" 84
+	description "When the Remnant unraveled the alien point defense turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	description "	 While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
+
+
+
+# Engines:
+
+outfit "Bellows-Class Afterburner"
+	category "Engines"
+	"cost" 640000
+	thumbnail "outfit/remnant afterburner"
+	"mass" 13
+	"outfit space" -11
+	"engine capacity" -11
+	"afterburner thrust" 153.0
+	"afterburner fuel" 2.0
+	"afterburner energy" 6.0
+	"afterburner heat" 8.0
+	"afterburner effect" "remnant afterburner"
+	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
+	description "	The Bellows-class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
+
+effect "remnant afterburner"
+	sprite "effect/remnant afterburner/remnant afterburner"
+		"no repeat"
+		"frame rate" 30
+	sound "afterburner"
+	"lifetime" 0.1
+	"random angle" 0
+	"random spin" 0
+	"random velocity" 1.
+	"velocity scale" 0.1
+
+
+
+outfit "Anvil-Class Engine"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 290000
+	thumbnail "outfit/tiny remnant engine"
+	"mass" 26
+	"outfit space" -26
+	"engine capacity" -26
+	"thrust" 13.5
+	"thrusting energy" 2.05
+	"thrusting heat" 1.95
+	"turn" 336.0
+	"turning energy" 1.05
+	"turning heat" 1.1
+	"flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	description "This tiny set of engines was designed specifically for craft so small that it combines both thrusters and steering into one unit."
+
+outfit "Crucible-Class Thruster"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 200000
+	thumbnail "outfit/small remnant thruster"
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"thrust" 18.0
+	"thrusting energy" 2.65
+	"thrusting heat" 2.5
+	"flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	description "These small but powerful engines are driven by ionized gas propelled at a sizable fraction of the speed of light."
+
+outfit "Forge-Class Thruster"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 441000
+	thumbnail "outfit/medium remnant thruster"
+	"mass" 39
+	"outfit space" -39
+	"engine capacity" -39
+	"thrust" 37.0
+	"thrusting energy" 5.15
+	"thrusting heat" 5.0
+	"flare sprite" "effect/remnant flare/medium"
+		"frame rate" 4
+	"flare sound" "plasma small"
+	description "The Remnant have taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
+
+outfit "Smelter-Class Thruster"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 984000
+	thumbnail "outfit/large remnant thruster"
+	"mass" 76
+	"outfit space" -76
+	"engine capacity" -76
+	"thrust" 76.8
+	"thrusting energy" 10.10
+	"thrusting heat" 10.2
+	"flare sprite" "effect/remnant flare/large"
+		"frame rate" 3
+	"flare sound" "plasma medium"
+	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
+
+outfit "Crucible-Class Steering"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 172000
+	thumbnail "outfit/small remnant steering"
+	"mass" 14
+	"outfit space" -14
+	"engine capacity" -14
+	"turn" 448.0
+	"turning energy" 1.32
+	"turning heat" 1.4
+	description "This steering system is tiny enough to fit in even an interceptor, but the Remnant mostly use them to provide an extra bit of maneuverability for their larger ships."
+
+outfit "Forge-Class Steering"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 393000
+	thumbnail "outfit/medium remnant steering"
+	"mass" 28
+	"outfit space" -28
+	"engine capacity" -28
+	"turn" 952.0
+	"turning energy" 2.64
+	"turning heat" 3.0
+	description "This unusually power-hungry steering system packs a lot of power into a relatively small space. It seems that engine technology has progressed more rapidly for the Remnant than it has for the rest of humanity."
+
+outfit "Smelter-Class Steering"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 880000
+	thumbnail "outfit/large remnant steering"
+	"mass" 55
+	"outfit space" -55
+	"engine capacity" -55
+	"turn" 1980.0
+	"turning energy" 5.21
+	"turning heat" 6.2
+	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
+
+outfit "Tuning Rifle"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 22000
+	thumbnail "outfit/remnant rifle"
+	"capture attack" 1.2
+	"capture defense" 1.8
+	"unplunderable" 1
+	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
+
+outfit "Void Rifle"
+	category "Special"
+	licenses
+		Remnant
+	cost 1000000
+	thumbnail "outfit/void rifle"
+	"capture attack" 20
+	"capture defense" 20
+	"energy consumption" 0.017
+	"unplunderable" 1
+	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old void rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
+	description "	When fired, the void rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
+
+outfit "Remnant License"
+	category "Special"
+	thumbnail "outfit/remnant license"
+	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+
+outfit "Remnant Capital License"
+	category "Special"
+	thumbnail "outfit/remnant capital license"
+	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."

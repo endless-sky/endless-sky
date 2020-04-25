@@ -246,7 +246,8 @@ void PlanetPanel::TakeOffIfReady()
 	if(!flightChecks.empty())
 		for(const auto &result : flightChecks)
 		{
-			const string &check = result.second;
+			// If there is a flightcheck error, it will be the first (and only) entry.
+			auto &check = result.second.front();
 			if(check.back() == '!')
 			{
 				GetUI()->Push(new ConversationPanel(player,
@@ -294,9 +295,17 @@ void PlanetPanel::PreflightChecks()
 	size_t nonJumpCount = 0;
 	if(!flightChecks.empty())
 	{
+		// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
+		const auto jumpWarnings = set<string>{
+			"no bays?", "no fuel?", "no hyperdrive?"
+		};
 		for(const auto &result : flightChecks)
-			if(result.second == "no hyperdrive?" || result.second == "no fuel?" || result.second == "no bays?")
-				++nonJumpCount;
+			for(const auto &warning : result.second)
+				if(jumpWarnings.count(warning))
+				{
+					++nonJumpCount;
+					break;
+				}
 	}
 	
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
