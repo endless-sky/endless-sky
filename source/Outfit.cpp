@@ -220,9 +220,10 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
 		double minimum = 0.;
-		if(WHITELIST.count(at.first))
+		auto it = WHITELIST.find(at.first);
+		if(it != WHITELIST.end())
 		{
-			minimum = WHITELIST.find(at.first)->second;
+			minimum = it->second;
 			// Whitelisted attributes with a value of 0 can have any value.
 			if(!minimum)
 				continue;
