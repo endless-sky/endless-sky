@@ -225,9 +225,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
-			int failedMissions = 0;
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
+				int failedMissions = 0;
 				maxFine = fine;
 				reason = " for carrying illegal cargo.";
 
