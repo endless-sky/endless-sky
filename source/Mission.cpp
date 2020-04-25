@@ -679,7 +679,7 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 
 
 
-bool Mission::HasFailed() const
+bool Mission::IsFailed() const
 {
 	return hasFailed;
 }

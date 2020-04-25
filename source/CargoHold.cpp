@@ -577,7 +577,7 @@ int CargoHold::IllegalCargoFine() const
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		if(!it.first->HasFailed())
+		if(!it.first->IsFailed())
 			totalFine += fine;
 	}
 	
@@ -586,7 +586,7 @@ int CargoHold::IllegalCargoFine() const
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		if(!it.first->HasFailed())
+		if(!it.first->IsFailed())
 			totalFine += fine;
 	}
 	

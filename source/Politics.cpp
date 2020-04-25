@@ -233,7 +233,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
-					if(mission.HasFailed())
+					if(mission.IsFailed())
 						continue;
 					
 					// Append the illegalCargoMessage from each applicable mission, if available
@@ -247,7 +247,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
 					{
 						player.FailMission(mission);
-						failedMissions++;
+						++failedMissions;
 					}
 				}
 				if(failedMissions)
