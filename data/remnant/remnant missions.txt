@@ -2550,7 +2550,7 @@ mission "Remnant: Cognizance 11"
 				accept
 	on stopover
 		dialog
-			`You cruise through the atmosphere at a relaxed pace, waiting while the equipment does its work. You see fewer Void Spritest than usual, many have scars. Once the equipment indicates that it has reached capacity you climb up to where the pelican is waiting in the high atmosphere, hook up the connections to offload the gas, then head back down into the depths of the planet. After several hours the captain of the pelican informs you that the tanks are full, and it is time to head to Esquiline.`
+			`You cruise through the atmosphere at a relaxed pace, waiting while the equipment does its work. You see fewer Void Sprites than usual, and many have scars. Once the equipment indicates that it has reached capacity you climb up to where the pelican is waiting in the high atmosphere, hook up the connections to offload the gas, then head back down into the depths of the planet. After several hours the captain of the pelican informs you that the tanks are full, and it is time to head to Esquiline.`
 	on complete
 		event "remnant: postverta reveal"
 		conversation
