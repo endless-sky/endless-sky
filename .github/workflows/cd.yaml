@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types: 
+      - synchronize # New commit has been pushed
+      - opened
 
 jobs:
 
@@ -114,7 +118,8 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  process_artifacts:
+  upload_artifacts_to_release:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs:
       - ubuntu_x86_64
@@ -209,4 +214,4 @@ jobs:
             --replace \
             --name ${{ env.OUTPUT_MACOS }} \
             --file ${{ env.OUTPUT_MACOS }}
-      
+    
