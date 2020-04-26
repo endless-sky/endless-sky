@@ -740,10 +740,9 @@ mission "Hai Leaks Response 4A"
 	npc board kill
 		government "Pirate"
 		personality staying marked mute
-		cargo "Failed Control System"
 		system "Waypoint"
 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
-		dialog `After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise to escort their ship safely to Allhome. (You may need to land and depart 3 times in order to progress the missions properly.)`
+		dialog `After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise to escort their ship safely to Allhome. (You will need to swap the geocoris to your flag and depart & land again in order to progress the missions properly.)`
 	on fail
 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
 
