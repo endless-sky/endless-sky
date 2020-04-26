@@ -838,6 +838,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 		Hyperdrive
+	cargo
 		"Failed Control System"
 	turret "Electron Turret"
 	turret "Electron Turret"
