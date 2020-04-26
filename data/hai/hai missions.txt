@@ -1369,6 +1369,17 @@ government " Scar's Legion "
 	fine 0
 	"hostile hail" "hostile pirate"
 
+government "Scar's Legion "
+	"display name" "Scar's Legion"
+	swizzle 6
+	color .78 0 0
+	"player reputation" -1000
+	"attitude toward"
+		"Wormhole Alpha" -.01
+	bribe 0
+	fine 0
+	"hostile hail" "hostile pirate"
+
 event "battle against scar's legion"
 	system "Danoa"
 		fleet "Human Miners" 1600
@@ -1495,7 +1506,7 @@ mission "Pirate Troubles [3a]"
 		dialog "As you continue to ascend away from the base, you notice that dozens of new holes have appeared on the surface. Poking out of each of them, you see a Heavy Rocket Launcher, armed and ready to fire. It looks like you might not be able to survive..."
 	
 	npc kill
-		government " Scar's Legion "
+		government "Scar's Legion "
 		personality nemesis
 		ship "Leviathan (Hai Weapons)" "Keloid"
 		fleet "Small Northern Pirates"
