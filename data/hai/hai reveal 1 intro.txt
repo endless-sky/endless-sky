@@ -479,7 +479,7 @@ mission "Hai Leaks Response 1"
 		log `The Hai are very real, and the worlds of humanity seem poised to become aware of this but the Hai would like to avoid this. As a person of note with respect in all corners of human space the Hai have asked you to assist in representing their interests where travel to human space is required as a somewhat neutral party.`
 		conversation
 			`As you come into land on Hai-home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
-			`	Word of your status in human space seems to have spread ahead of you, especially with you beng known on many Hai worlds as one of the view significant human visitors. A small crowd of Hai have gathered to peek at you on the short walk from the Spaceport to the government building you are led to.`
+			`	Word of your status in human space seems to have spread ahead of you, especially with you being known on many Hai worlds as one of the few significant human visitors. A small crowd of Hai have gathered to peek at you on the short walk from the Spaceport to the government building you are led to.`
 			branch karma
 				karma > 1
 			`	As you are making the walk you hear questions posed and rumours stated. Occasionally you hear words like "survivor" and "dangerous" thrown in amongst the babble.`
@@ -690,8 +690,8 @@ mission "Hai Leaks Response 4"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
 	to complete
 		or
-			has "00 Hai Leaks Response 4B: done"
-			has "00 Hai Leaks Response 4B: failed"
+			has "Hai Leaks Response 4B: offered"
+			has "Hai Leaks Response 4A: failed"
 	on complete
 		payment 1000000
 		event "waypoint pirates vanquished"
@@ -699,7 +699,7 @@ mission "Hai Leaks Response 4"
 		conversation
 			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem."`
 			branch "saved geocoris"
-				not "Hai Leaks Response 4B: failed"
+				has "00 Hai Leaks Response 4B: declined"
 			`	He sighs deeply, "It is a shame though that the kidnapped Hai could not be saved, but the other Hai captains tell me it was a mess out there."`
 			`	He places one of his furry hands comfortingly on your shoulder, "I'm sure you did all you could."`
 				goto end
@@ -730,17 +730,21 @@ event "waypoint pirates vanquished"
 # The NPC has an outfit used to determine if you managed to get it back safely.
 mission "Hai Leaks Response 4A"
 	name "Recover the Geocoris"
-	description "Recover the stolen Geocoris, somewhere near Hai space, and return to Allhome."
+	description "Recover the stolen Geocoris supporting the pirates in Waypoint, and return to Allhome."
 	landing
 	source "Allhome"
+	waypoint "Waypoint"
+	destination "Allhome"
 	to offer
 		has "Hai Leaks Response 3: done"
-	npc board
+	npc board kill
 		government "Pirate"
 		personality staying marked mute
 		system "Waypoint"
 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
-		dialog `After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise to escort their ship to Allhome.`
+		dialog `After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise to escort their ship safely to Allhome.`
+	on fail
+		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
 
 # Must be able to resolve earlier than the rest in this set.
 mission "00 Hai Leaks Response 4B"
@@ -748,16 +752,16 @@ mission "00 Hai Leaks Response 4B"
 	landing
 	source "Allhome"
 	to offer
-		has "Hai Leaks Response 3: done"
-	on complete
+		has "Hai Leaks Response 4: offered"
+	on offer
 		outfit "Failed Control System" -1
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it and it may be a valuable prize.`
 		event "returned geocoris" 365
+		conversation
+			`You have successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it...`
+				decline
 		#The Geodesic Geocoris may become available to purchase specially later on.
-	to fail
-		has "Hai Leaks Response 4A: done"
-	on fail
-		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
+
 
 event "returned geocoris"
 		

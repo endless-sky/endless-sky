@@ -462,6 +462,7 @@ mission "Returning Home"
 	minor
 	source
 		government "Hai"
+		not planet "Allhome"
 	destination
 		attributes "dirt belt"
 		attributes "farming"
@@ -1017,6 +1018,9 @@ mission "Hiding in Plain Sight"
 	to offer
 		random < 30
 		has "First Contact: Hai: offered"
+		or
+			not "event: pirates respond to leaks"
+			has "event: hai-human resolution announced"
 	on offer
 		conversation
 			`While eating in a spaceport cafeteria that serves both Hai and human cuisine, you are approached by a teenage human and Hai. "Hello. Do you know how to get to <destination>?" the Hai asks.`
@@ -1106,8 +1110,9 @@ mission "Pirate Troubles [0]"
 	name "Defend <system>"
 	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
 	source
-		near "Waypoint" 2
+		near "Waypoint" 3
 		government "Hai"
+		not planet "Allhome"
 	to offer
 		has "First Contact: Unfettered: offered"
 		"combat rating" > 1100
