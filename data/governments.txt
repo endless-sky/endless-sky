@@ -520,3 +520,4 @@ government "Wormhole Alpha"
 	"attitude toward"
 		"Hai" -.01
 		"Hai (Unfettered)" -.01
+		" Scar's Legion " -.01

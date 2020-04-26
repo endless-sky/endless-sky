@@ -83,8 +83,8 @@ mission "First Contact: Unfettered"
 		conversation
 			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
 			choice
-				`(Sure.)`
-				`(Not now, it's too risky.)`
+				`	(Sure.)`
+				`	(Not now, it's too risky.)`
 					defer
 			`	You catch the eye of one of the Hai dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
@@ -1170,6 +1170,7 @@ mission "Pirate Troubles [1]"
 		or
 			has "accepted scar's legion tribute"
 			has "defeated scar's legion"
+			has "ran from scar's legion"
 
 mission "Pirate Troubles [1]: Farpoint"
 	landing
@@ -1180,7 +1181,7 @@ mission "Pirate Troubles [1]: Farpoint"
 	on offer
 		conversation
 			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
-			`	You return to your ships and sift through the files. The leader of the gang is named Scar (to no one's surprise), who use to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
+			`	You return to your ships and sift through the files. The leader of the gang is named Scar (to no one's surprise), who used to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
 				decline
 
 mission "Pirate Troubles [1]: Freedom or Zenith"
@@ -1285,12 +1286,67 @@ mission "Pirate Troubles [2]"
 		event "scar's hideout"
 		conversation
 			`After having visited various pirate worlds asking about Scar's Legion, you believe that you know where their hideout is.`
-			`	You know that the leader of Scar's Legion use to talk about wanting a hollowed out asteroid as a base. You also know that Scar's Legion has recently been very active in the uninhabited systems of the Far North. You conclude that the gang's hideout could is likely an asteroid located in one of a few systems that are in proximity to the wormhole that leads to the Hai. You mark <waypoints> on your map and get ready to confront them.`
+			`	You know that the leader of Scar's Legion used to talk about wanting a hollowed out asteroid as a base. You also know that Scar's Legion has recently been very active in the uninhabited systems of the Far North. You conclude that the gang's hideout could is likely an asteroid located in one of a few systems that are in proximity to the wormhole that leads to the Hai. You mark <waypoints> on your map and get ready to confront them.`
 				accept
 	to complete
 		never
 	to fail
 		has "Pirate Troubles [3]: offered"
+
+outfit "Scar's Hideout Launcher"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turret mounts" -1
+	weapon
+		sprite "projectile/rocket"
+			"frame rate" 4
+		sound "rocket"
+		"hit effect" "heavy rocket hit" 32
+		"turret turn" 360
+		"velocity" 8
+		"lifetime" 1
+		"reload" 1000
+		"firing energy" 1
+		"acceleration" .8
+		"drag" .1
+		"submunition" "Scar's Heavy Rocket" 32
+
+outfit "Scar's Heavy Rocket"
+	weapon
+		sprite "projectile/rocket"
+			"frame rate" 4
+		sound "rocket"
+		"hit effect" "heavy rocket hit"
+		"die effect" "small explosion"
+		safe
+		"inaccuracy" 40
+		"lifetime" 124
+		"reload" 240
+		"firing energy" 1
+		"firing heat" 250
+		"acceleration" .8
+		"drag" .1
+		"trigger radius" 20
+		"blast radius" 50
+		"shield damage" 850
+		"hull damage" 720
+		"hit force" 200
+		"missile strength" 16
+
+ship "Scar's Hideout Defenses"
+	attributes
+		hull 100000000
+		"heat dissipation" 10
+		mass 1
+		turn 1
+		drag 1
+		"energy capacity" 3840
+		"energy consumption" 32
+		thrust 1
+		automaton 1
+	outfits
+		"Scar's Hideout Launcher" 1
+	turret 0 0
 
 government "Scar's Legion"
 	swizzle 6
@@ -1355,6 +1411,15 @@ mission "Pirate Troubles [3]"
 			`	You activate your ship's engines to escape. The floodlights suddenly reactivate.`
 			
 			label die
+			branch deader
+				not "ships: Heavy Warship"
+				not "ships: Medium Warship"
+			apply
+				set "ran from scar's legion"
+			`	Before you can even react, several dozen lasers and streams of bullets come flying out from behind the floodlights. Reflexively, you thrust with your engines, knocking over many of the lights and slamming your ship into the blast door, bursting it open.`
+				flee
+			
+			label deader
 			`	Before you can even react, several dozen lasers and streams of bullets come flying out from behind the floodlights. You attempt to pull your ship up and fly straight through the ceiling before your ship is too damaged to move, but then you spot a number of rockets flying straight at your cockpit. You die instantly as the rockets impact the glass in front of you.`
 				die
 			
@@ -1381,14 +1446,14 @@ mission "Pirate Troubles [3]"
 			`	The crowd of pirates response with a cacophony of jeers and boos. The leader raises his fist in the air, and the crowd falls silent. "Well I'm afraid that just won't do."`
 			`	The leader paces back and forth in silence for a moment. "Well if we don't get what we want, then we're just going to need to keep on attacking. Which means that your presence here is pretty useless."`
 			`	The leader turns to the crowd. "How about a fight? To the death!" The crowd erupts in cheers. The leader turns back to you. "We fight in this system only. Just you and me. You attempt to run, my men hunt you down. How's that sound?" You attempt to respond, but before you can, the leader pulls his gun and aims it at you. "Run."`
-					launch
+				launch
 			
 			label tribute
+			apply
+				set "accepted scar's legion tribute"
 			`	"Excellent!" the pirate says, which is met with cheers from the rest of the pirates in the room. "But make it quick. Wouldn't want to keep us waiting." The blast doors reopen, and you return to your ship to leave immediately.`
 				flee
 	
-	on decline
-		set "accepted scar's legion tribute"
 	on accept
 		event "battle against scar's legion"
 	
@@ -1414,6 +1479,43 @@ mission "Pirate Troubles [3]"
 	on complete
 		set "defeated scar's legion"
 		event "battle against scar's legion over"
+
+mission "Pirate Troubles [3a]"
+	landing
+	name "Scar's Legion"
+	description "After attempting to destroy Scar's Legion through brute force, they have retaliated accordingly. Either run back to <destination>, or hold your ground, defeat the gang, and return to <destination>."
+	source "Scar's Hideout"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		event "battle against scar's legion"
+	on enter
+		dialog "As you continue to ascend away from the base, you notice that dozens of new holes have appeared on the surface. Poking out of each of them, you see a Heavy Rocket Launcher, armed and ready to fire. You brace for impact..."
+	
+	npc kill
+		government " Scar's Legion "
+		personality nemesis
+		ship "Leviathan (Hai Weapons)" "Keloid"
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates" 4
+		dialog "You've destroyed all the ships of Scar's Legion. Head back to <destination> to inform the Hai of this."
+	npc
+		government " Scar's Legion "
+		personality nemesis
+		ship "Scar's Hideout Defenses"
+
+	on complete
+		set "defeated scar's legion"
+		event "battle against scar's legion over"
+		"reputation: Hai" -= 20
+	
+	to fail
+		or
+			has "accepted scar's legion tribute"
+			has "Pirate Troubles [4a]: offered"
+			has "Pirate Troubles [3]: active"
 
 mission "Pirate Troubles [4]"
 	landing
@@ -1449,18 +1551,34 @@ mission "Pirate Troubles [4]"
 				accept
 			
 			label defeated
+			branch ran
+				has "ran from scar's legion"
 			`	"I defeated the leader of Scar's Legion. They shouldn't cause any more trouble for you now."`
 			`	One of the elders frowns. "Did you kill their leader in cold blood, or was it self defense?"`
 			choice
 				`	"They asked for a tribute of your weapons and technology, but I refused the offer, so they attacked me."`
 					goto refused
 				`	"They were not willing to negotiate, and I was forced to defend myself."`
+					goto unwilling
+			label ran
+			`	"I defeated Scar's Legion. They shouldn't cause any more trouble for you now."`
+			`	One of the elders frowns. "Did you kill them in cold blood, or was it self defense?"`
+			choice
+				`	"I threatened them, and they retaliated in response."`
+					goto threatened
+				`	"They were not willing to negotiate, and I was forced to defend myself."`
+			label unwilling
 			`	"This is most unfortunate," another elder says. "But I am happy to hear that they will not cause any more loss of life among our people."`
 				goto end
 			
 			label refused
 			`	"This is most unfortunate," another elder says. "We would have been willing to provide them the technology they sought if only they had asked nicely in the first place."`
-			`	"Better that we eliminate a threat instead of make them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with out own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
+			`	"Better that we eliminate a threat instead of make them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
+				goto end
+			
+			label threatened
+			`	"This is most unfortunate," another elder says. "While there might have been a chance that a deal couldn't have been done, you should've made at least made an attempt to resolve this peacefully."`
+			`	"Better that we eliminate a threat than turn a blind eye to them," the first elder says. "These pirates might have attacked us with technology stolen from us, or worse still, attacked other humans with them, making us complicit in this slaughter."`
 			
 			label end
 			`	The elders thank you for your assistance in this situation and send you on your way.`
@@ -1484,10 +1602,30 @@ mission "Pirate Troubles [4]"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
 	
+	to fail
+		has "Pirate Troubles [4a]: offered"
+	
 	on complete
 		"reputation: Hai" += 40
 		payment 500000
 		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
+
+mission "Pirate Troubles [4a]"
+	landing
+	source "Hai-home"
+	to offer
+		has "ran from scar's legion"
+		not "defeated scar's legion"
+	on offer
+		"reputation: Hai" += 10
+		payment 500000
+		conversation
+			`When you land on <origin>, you are approached by a group of Hai elders. "We have heard about your efforts to resolve the current situation with Scar's Legion. Have you done so?"`
+			choice
+				`	"No, I tried to attack them pre-emptively, but failed."`
+			`	They seem very disappointed in your response. "Retaliation is not the way of the Hai. You should have attempted to negotiate with them. We believe it is now too late to try any further negotiations, due to them becoming riled up by your threats. Regardless, you have done well by locating the base of operations for Scar's Legion so that our own forces can deal with them, and we appreciate that." They hand you <payment> before walking off into the spaceport.`
+				decline
+
 
 
 
