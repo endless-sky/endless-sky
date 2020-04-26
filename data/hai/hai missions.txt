@@ -1492,7 +1492,7 @@ mission "Pirate Troubles [3a]"
 	on offer
 		event "battle against scar's legion"
 	on enter
-		dialog "As you continue to ascend away from the base, you notice that dozens of new holes have appeared on the surface. Poking out of each of them, you see a Heavy Rocket Launcher, armed and ready to fire. You brace for impact..."
+		dialog "As you continue to ascend away from the base, you notice that dozens of new holes have appeared on the surface. Poking out of each of them, you see a Heavy Rocket Launcher, armed and ready to fire. It looks like you might not be able to survive..."
 	
 	npc kill
 		government " Scar's Legion "
