@@ -747,19 +747,17 @@ mission "Hai Leaks Response 4A"
 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
 
 # Must be able to resolve earlier than the rest in this set.
+#The Geodesic Geocoris may become available to purchase specially later on.
 mission "00 Hai Leaks Response 4B"
 	landing
 	source "Allhome"
-	to offer
-		require "Failed Control System" 1
 	on offer
+		require "Failed Control System"
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it and it may be a valuable prize.`
 		event "returned geocoris" 365
 		conversation
 			`You have successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it...`
 				decline
-		#The Geodesic Geocoris may become available to purchase specially later on.
-
 
 event "returned geocoris"
 		
