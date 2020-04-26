@@ -119,7 +119,7 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   upload_artifacts_to_release:
-    if: github.event_name == "push"
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs:
       - ubuntu_x86_64
