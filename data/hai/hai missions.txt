@@ -1509,7 +1509,7 @@ mission "Pirate Troubles [3a]"
 	on complete
 		set "defeated scar's legion"
 		event "battle against scar's legion over"
-		"reputation: Hai" -= 20
+		"reputation: Hai" -= 10
 	
 	to fail
 		or
@@ -1623,7 +1623,7 @@ mission "Pirate Troubles [4a]"
 			`When you land on <origin>, you are approached by a group of Hai elders. "We have heard about your efforts to resolve the current situation with Scar's Legion. Have you done so?"`
 			choice
 				`	"No, I tried to attack them pre-emptively, but failed."`
-			`	They seem very disappointed in your response. "Retaliation is not the way of the Hai. You should have attempted to negotiate with them. We believe it is now too late to try any further negotiations, due to them becoming riled up by your threats. Regardless, you have done well by locating the base of operations for Scar's Legion so that our own forces can deal with them, and we appreciate that." They hand you <payment> before walking off into the spaceport.`
+			`	They seem very disappointed in your response. "Retaliation is not the way of the Hai. You should have attempted to negotiate with them. We believe it is now too late to try any further negotiations, due to them becoming riled up by your threats. Regardless, you have done well by locating the base of operations for Scar's Legion so that we can inform the Republic Navy of them, and we appreciate that." They hand you <payment> before walking off into the spaceport.`
 				decline
 
 
