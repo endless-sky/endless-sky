@@ -2635,11 +2635,11 @@ mission "Remnant: Cognizance 12"
 	on offer
 		conversation
 			`You land by the starport and is immediately accosted by a Remnant who informs you that Prefect Chilia is on his personal warship before escorting you to a nearby starling. Inside you find Chilia and several other Remnants clustered around a holographic display and some display panels. "Ah, Captain. Join us, please." Chilia gestures for you to join them around the displays. As you approach, you note that the holographic display shows the Ember Waste, although there are a few details that do not match normal star maps.`
-			`	Chilia notices you eyeing the deviations. "Perceptive, captain. Our sensors have reported some unusual energy signatures coming from this location. Scouts in the area says they are picking up signs of a new system. Unfortunately, they could neither locate neither a hyperlane nor a wormhole that would allow them to reach it." He looks up at you. "We are hoping that you might be able to figure out a way in."`
+			`	Chilia notices you eyeing the deviations. "Perceptive, captain. Our sensors have reported some unusual energy signatures coming from this location. Scouts in the area says they are picking up signs of a new system. There were no immediately apparent hyperlinks or wormholes that connect to it, but there are still unusual energy fluctuations in the area. Unusual even for the Ember Waste." He looks up at you. "We are hoping that you might be able to figure out a way in."`
 			choice
 				`	"I could see if I can reach it with a Jump Drive."`
 				`	"I will see if I can find another way."`
-			`	"Thank you, Captain <first>. We have some ships that can follow, but you have more experience with things like this, so we would like you to lead the way."`
+			`	"Thank you, Captain <first>. We have some ships that can follow, and there are other scouts already in the area that should be reporting soon. Given your experience with the wider galaxy, though, we would like you to lead the way."`
 				accept
 	on enter "Postverta"
 		dialog
@@ -2648,8 +2648,8 @@ mission "Remnant: Cognizance 12"
 		dialog
 			`The station is surprisingly still active, despite its apparent age. You poke around a bit, but its mysteries remain just that.`
 	on complete
-		conversation
-			`As you arrive back at Viminal you broadcast a warning to the port authorities that you have something following you. You inform them that it isn't hostile, but it is an unknown that originated in the new system.`
+		dialog
+			`As you arrive back at Viminal you broadcast a warning to the port authorities that you have something following you. You inform them that it is not hostile, but it is an unknown that originated in the new system.`
 
 
 
@@ -2665,13 +2665,14 @@ mission "Remnant: Cognizance 12b"
 	npc accompany
 		government "Indigenous Lifeform"
 		personality waiting mute
-		ship "Void Sprite Elder" "Unknown Entity"
+		ship "Ember Waste Node" "Unknown Entity"
 	
 
 
 mission "Remnant: Cognizance 13"
 	name "Follow the Creature"
 	description "The creature seems to be creating constellations and trying to get you to follow it."
+	landing
 	source "Viminal"
 	waypoint
 		system Peragenor
@@ -2684,12 +2685,12 @@ mission "Remnant: Cognizance 13"
 		conversation
 			`Quite a number of Remnants have gathered around the Spaceport, watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries are in position around the area in case the creature becomes violent.`
 			`	After several hours of watching the creature, one captain pushes his way forward to where you, Chilia, and Plume are talking. "I think I have an idea about this thing, Prefect!" the man signs excitedly. "Look at the positions of the glowing tips when it freezes. That pattern there matches the star positions of the main Ember Waste systems when viewed from Peragenor, and that second matches Convector." He pulls out a datapad and pulls up a projection of the starmap. "It is hard to tell due to the imprecision, but it looks like the third freeze is probably Antevorta or Nenia."`
-			`	Plume chimes in "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating it wants you to go. Will you give it a try?"`
+			`	Plume chimes in "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating it wants you to go. Please give it a try."`
 				accept
 	npc accompany
 		government "Indigenous Lifeform"
 		personality mute
-		ship "Void Sprite Elder" "Unknown Entity"
+		ship "Ember Waste Node" "Unknown Entity"
 	on enter Peragenor
 		dialog `The creature comes to a stop in front of you, spins around briefly, then spreads out its tentacles in another pattern. Following the Remnant's intuition, you match it to your star charts as probably being Convector. After holding the position for a minute, the creature realigns itself and starts to shimmer with the tell-tale signs of starting to make a jump, but it holds it, as if waiting for you.`
 	on enter Convector
@@ -2700,16 +2701,16 @@ mission "Remnant: Cognizance 13"
 		conversation
 			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward there is a sudden silence and the flickers of energy synchronize.`
 			`	You feel a sudden pressure in your mind, and a sense of presence as the world around you fades out somewhat.`
-			`	"Know you not, do I. Live creature inside dead creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - perhaps I shall hear."`
+			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - perhaps I shall hear."`
 			`	With that, the pressure vanishes and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are quite sure that the Remnant are going to want to hear about this.`
 	on complete
-		event "remnant: nenia elder"
+		event "remnant: nenia ember waste node"
 
 
 
-event "remnant: nenia elder"
+event "remnant: nenia ember waste node"
 	system "Nenia"
-		add fleet "Void Sprites Elder" 10000
+		add fleet "Ember Waste Node" 10000
 	
 
 
@@ -2719,7 +2720,7 @@ mission "Remnant: Cognizance 14"
 	source
 		government "Remnant"
 	landing
-	destination Viminal
+	destination Aventine
 	waypoint "Nenia"
 	to offer
 		has "Remnant: Cognizance 13: done"
@@ -2758,7 +2759,7 @@ mission "Remnant: Cognizance 14"
 		fleet "Large Remnant" 3
 	npc evade
 		government "Korath"
-		personality heroic disables plunders entering
+		personality heroic disables plunders harvests entering staying
 		system "Nenia"
 		fleet
 			names "korath"
@@ -2767,30 +2768,30 @@ mission "Remnant: Cognizance 14"
 				"Korath Raider (Ember)" 3
 	on enter "Nenia"
 		dialog `The pelicans immediatley set to work collecting void sprites, and are soon ready to go.`
-	on enter "Arculus"
+	on enter "Pantica"
 		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 	on complete
 		log "Succesfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
 		payment 1000000
-		event "remnant: arculus void sprites"
+		event "remnant: pantica void sprites"
 		event "remnant: cognizance timer" 30
 		conversation
 			`	Moments later a ping comes in on the comlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in" concludes Plume.`
-			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover ongoing crew, maintnance, and upgrading costs. A larger one time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred in this mission.`
+			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintnance, and upgrading costs. A larger one time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred in this mission."`
 
 
 
-event "remnant: arculus void sprites"
-	system "Arculus"
-		fleet "Void Sprites" 4000
-		planet "Esquiline"
-			remove attributes uninhabited
-			description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station.`
-			add spaceport `	Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time; along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
+event "remnant: pantica void sprites"
+	system "Pantica"
+		add fleet "Void Sprites" 4000
+	planet "Esquiline"
+		remove attributes uninhabited
+		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station.`
+		add spaceport `	Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time; along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
 
 
 
 event "remnant: cognizance timer"
 	system "Nenia"
-		fleet "Void Sprites Elder" 5000
+		fleet "Ember Waste Node" 6000

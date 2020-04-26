@@ -138,12 +138,12 @@ effect "void sprite infant death"
 
 
 
-ship "Void Sprite Elder"
+ship "Ember Waste Node"
 	noun "creature"
-	sprite "ship/void sprite elder/void sprite elder"
+	sprite "ship/ember waste node/ember waste node"
 		"frame rate" 5
 		rewind
-	thumbnail "thumbnail/void sprite elder"
+	thumbnail "thumbnail/ember waste node"
 	"never disabled"
 	attributes
 		category "Heavy Warship"
@@ -253,10 +253,10 @@ fleet "Void Sprites"
 
 
 
-fleet "Void Sprites Elder"
+fleet "Ember Waste Node"
 	government "Void Sprite"
 	cargo 0
 	personality
 		timid mining harvests mute
 	variant
-		"Void Sprite Elder"
+		"Ember Waste Node"
