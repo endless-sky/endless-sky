@@ -8,7 +8,7 @@ The [issues page](https://github.com/endless-sky/endless-sky/issues) on GitHub i
 
 If requesting a new feature, first ask yourself: will this make the game more fun or interesting? Remember that this is a game, not a simulator. Changes will not be made purely for the sake of realism, especially if they introduce needless complexity or aggravation.
 
-### Posting pull requests
+### Posting pull requestssdfsdf
 
 If you are posting a pull request, please:
 
