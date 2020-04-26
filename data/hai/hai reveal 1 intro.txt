@@ -690,7 +690,7 @@ mission "Hai Leaks Response 4"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
 	to complete
 		or
-			has "Hai Leaks Response 4B: offered"
+			has "00 Hai Leaks Response 4B: offered"
 			has "Hai Leaks Response 4A: failed"
 	on complete
 		payment 1000000
@@ -754,7 +754,7 @@ mission "00 Hai Leaks Response 4B"
 	to offer
 		has "Hai Leaks Response 4: offered"
 	on offer
-		outfit "Failed Control System" -1
+		require outfit "Failed Control System" 
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris, something is different about it and it may be a valuable prize.`
 		event "returned geocoris" 365
 		conversation
