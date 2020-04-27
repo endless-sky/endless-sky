@@ -1584,16 +1584,12 @@ mission "Pirate Troubles [4]"
 			
 			label refused
 			`	"This is most unfortunate," another elder says. "We would have been willing to provide them the technology they sought if only they had asked nicely in the first place."`
-<<<<<<< scars-not-insta-kill
 			`	"Better that we eliminate a threat instead of make them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
 				goto end
 			
 			label threatened
 			`	"This is most unfortunate," another elder says. "While there might have been a chance that a deal couldn't have been done, you should've made at least made an attempt to resolve this peacefully."`
 			`	"Better that we eliminate a threat than turn a blind eye to them," the first elder says. "These pirates might have attacked us with technology stolen from us, or worse still, attacked other humans with them, making us complicit in this slaughter."`
-=======
-			`	"Better that we eliminate a threat instead of making them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
->>>>>>> master
 			
 			label end
 			`	The elders thank you for your assistance in this situation and send you on your way.`
