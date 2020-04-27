@@ -1209,7 +1209,7 @@ mission "Pirate Troubles [1]: Haven"
 		conversation
 			`You order a drink from a small rundown bar in the <origin> spaceport and try to make small talk with the bartender to get him open to giving information about Scar's Legion. He seems reluctant at first, but eventually warms up to you. A few other patrons of the bar join in on the conversation. Luckily no one seems mad about you asking about Scar's Legion. One of the patrons makes it clear that Scar's Legion has no friends on this world, "at least not anymore."`
 			`	You leave the bar after an hour or two. Once you return to your ship, you write down all the information you can remember. The gang use to operate exclusively out of the Far North until they crossed one of the larger gangs, causing them to flee the region a few years ago. One of the pirates guesses that they fled for the Core.`
-			`	Another person mentioned that the leader of the gang use to always talk about making their own base in an uninhabited system where no one would find it. "He always talked about hollowing out an asteroid to use as a hideout. My guess is he was just always high on the ringworld shavings his gang was dealing."`
+			`	Another person mentioned that the leader of the gang used to always talk about making their own base in an uninhabited system where no one would find it. "He always talked about hollowing out an asteroid to use as a hideout. My guess is he was just always high on the ringworld shavings his gang was dealing."`
 				decline
 
 mission "Pirate Troubles [1]: Stormhold"
@@ -1584,12 +1584,16 @@ mission "Pirate Troubles [4]"
 			
 			label refused
 			`	"This is most unfortunate," another elder says. "We would have been willing to provide them the technology they sought if only they had asked nicely in the first place."`
+<<<<<<< scars-not-insta-kill
 			`	"Better that we eliminate a threat instead of make them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
 				goto end
 			
 			label threatened
 			`	"This is most unfortunate," another elder says. "While there might have been a chance that a deal couldn't have been done, you should've made at least made an attempt to resolve this peacefully."`
 			`	"Better that we eliminate a threat than turn a blind eye to them," the first elder says. "These pirates might have attacked us with technology stolen from us, or worse still, attacked other humans with them, making us complicit in this slaughter."`
+=======
+			`	"Better that we eliminate a threat instead of making them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
+>>>>>>> master
 			
 			label end
 			`	The elders thank you for your assistance in this situation and send you on your way.`
