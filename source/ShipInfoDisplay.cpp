@@ -240,17 +240,30 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributesHeight += 20;
 	}
 	
-	if(ship.BaysFree(false))
+	if(ship.HasBays())
 	{
-		attributeLabels.push_back("drone bays:");
-		attributeValues.push_back(to_string(ship.BaysFree(false)));
-		attributesHeight += 20;
-	}
-	if(ship.BaysFree(true))
-	{
-		attributeLabels.push_back("fighter bays:");
-		attributeValues.push_back(to_string(ship.BaysFree(true)));
-		attributesHeight += 20;
+		unsigned drone = 0;
+		unsigned fighter = 0;
+		for(const auto &bay : ship.Bays())
+		{
+			if(bay.isFighter)
+				++fighter;
+			else
+				++drone;
+		}
+		
+		if(drone)
+		{
+			attributeLabels.emplace_back("drone bays:");
+			attributeValues.emplace_back(to_string(drone));
+			attributesHeight += 20;
+		}
+		if(fighter)
+		{
+			attributeLabels.emplace_back("fighter bays:");
+			attributeValues.emplace_back(to_string(fighter));
+			attributesHeight += 20;
+		}
 	}
 	
 	tableLabels.clear();
