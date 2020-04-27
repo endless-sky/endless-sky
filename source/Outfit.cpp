@@ -38,7 +38,16 @@ namespace {
 		{"hull heat", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
-		{"shield heat", 0.}
+		{"shield heat", 0.},
+		{"disruption resistance energy", 0.},
+		{"disruption resistance fuel", 0.},
+		{"disruption resistance heat", 0.},
+		{"ion resistance energy", 0.},
+		{"ion resistance fuel", 0.},
+		{"ion resistance heat", 0.},
+		{"slowing resistance energy", 0.},
+		{"slowing resistance fuel", 0.},
+		{"slowing resistance heat", 0.}
 	};
 }
 
