@@ -2660,8 +2660,6 @@ mission "Remnant: Cognizance 12b"
 	destination "Viminal"
 	to offer
 		has "Remnant: Cognizance 12: active"
-	to complete
-		has "Remnant: Cognizance 12: done"
 	npc accompany
 		government "Indigenous Lifeform"
 		personality waiting mute
@@ -2678,7 +2676,7 @@ mission "Remnant: Cognizance 13"
 		system Peragenor
 		system Convector
 		system Nenia
-	stopover Nasqueron
+	destination Nasqueron
 	to offer
 		has "Remnant: Cognizance 12: done"
 	on offer
@@ -2697,14 +2695,13 @@ mission "Remnant: Cognizance 13"
 		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
 	on enter Nenia
 		dialog `You have never seen such activity from the Void Sprites. Many quickly congregate around the strange ship, and seem to escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Korath ship, presumably another Raider.`
-	on stopover
+	on complete
+		event "remnant: nenia ember waste node"
 		conversation
 			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward there is a sudden silence and the flickers of energy synchronize.`
 			`	You feel a sudden pressure in your mind, and a sense of presence as the world around you fades out somewhat.`
 			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - perhaps I shall hear."`
 			`	With that, the pressure vanishes and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are quite sure that the Remnant are going to want to hear about this.`
-	on complete
-		event "remnant: nenia ember waste node"
 
 
 
@@ -2727,8 +2724,8 @@ mission "Remnant: Cognizance 14"
 	on offer
 		conversation
 			`It is almost starting to feel commonplace to have Remnant pouncing on your ship and using your cockpit as a meeting room. This time, it is Prefect Chilia and Plume who seem to appear out of nowhere requesting permision to board. The two gather around your console to watch the recording of your trip. They nod at your narration of what transpired, and focus intently when you describe the strange presence in your mind. When you finish recounting your experience, they lean back in thought.`
-			`	"Captain <first>, the exact meaning is unclear, but it seems to be the voice of something not accustomed to speaking to us or creatures like us. Regardless, I think we should move forward with our plan," signs Prefect Chilia. "Best case scenario, we can deprive the Korath of easy access to the void sprites. Worst case scenario, we can move enough that - should the Korath hunt them to the extinction in Nenia, they will continue to exist in our territory."`
-			`	Plume signals his cautious agreement. "This message is intriguing, but I do not think it should be our first priority. That being said, perhaps we should send along some additional remnant who can focus on the possibilities of more such messages."`
+			`	"Captain <first>, the exact meaning is unclear, but it seems to be the voice of something not accustomed to speaking to us or creatures like us" signs Prefect Chilia. "While interesting, I think we should move forward with our plan and continue investigating this later." Plume reluctantly signs his agreement as Chilia continues, "Best case scenario, we can deprive the Korath of easy access to the void sprites. Worst case scenario, we can move enough that - should the Korath hunt them to the extinction in Nenia, they will continue to exist in our territory."`
+			`	Plume signals his cautious agreement. "This message is intriguing, but I agree it should not be our first priority. That being said, I will plan for additional investigations after we have completed this initial operation."`
 			`	The two look at you, and Chilia signs authoratively, "We are evacuating a large group of void sprites from Nenia to Esquiline. The atmospheres are largely a match, and we have reconfigured the station to provide the nutrients that aren't otherwise present. We have a fleet of Pelicans that have basically been hollowed out so we can lure as many void sprites into it as we can."`
 			choice
 				`	"How are we supposed to lure them inside?"`
@@ -2767,7 +2764,7 @@ mission "Remnant: Cognizance 14"
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 3
 	on enter "Nenia"
-		dialog `The pelicans immediatley set to work collecting void sprites, and are soon ready to go.`
+		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. The Korath hunting party, however, is clearly waiting for you and moves to attack. As they do so, the pelicans immediatley set to work collecting void sprites. As the last one closes its hold again, the confirmation codes flash across your tactical screen. "Good to go."`
 	on enter "Pantica"
 		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 	on complete
@@ -2786,6 +2783,8 @@ event "remnant: pantica void sprites"
 	system "Pantica"
 		add fleet "Void Sprites" 4000
 	planet "Esquiline"
+		government "Remnant"
+		add attributes remnant
 		remove attributes uninhabited
 		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station.`
 		add spaceport `	Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time; along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
@@ -2795,3 +2794,5 @@ event "remnant: pantica void sprites"
 event "remnant: cognizance timer"
 	system "Nenia"
 		fleet "Ember Waste Node" 6000
+
+
