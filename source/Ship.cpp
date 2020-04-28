@@ -114,15 +114,16 @@ namespace {
 		if(heatCost < 0.)
 			resistance = min(resistance, heat / -heatCost);
 		
-		// Update the energy, fuel, and heat given how much resistance is being used,
-		// then update the stat.
+		// Update the stat, energy, fuel, and heat given how much resistance is being used.
 		if(resistance > 0.)
 		{
+			stat = max(0., .99 * stat - resistance);
 			energy -= resistance * energyCost;
 			fuel -= resistance * fuelCost;
 			heat += resistance * heatCost;
 		}
-		stat = max(0., .99 * stat - resistance);
+		else
+			stat = .99 * stat;
 	}
 }
 
