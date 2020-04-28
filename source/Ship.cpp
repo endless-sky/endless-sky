@@ -103,8 +103,7 @@ namespace {
 		
 		// Calculate how much resistance can be used assuming no
 		// energy or fuel cost.
-		double after = max(0., .99 * stat - resistance);
-		resistance = .99 * stat - after;
+		resistance = .99 * stat - max(0., .99 * stat - resistance);
 		
 		// Limit the resistance by the available energy, fuel, and heat.
 		if(energyCost > 0.)
