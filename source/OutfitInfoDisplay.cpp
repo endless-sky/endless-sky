@@ -26,11 +26,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const vector<pair<double, string>> UNIT_PAIRS = {
+	const vector<pair<double, string>> SCALE_LABELS = {
 		make_pair(60., ""),
 		make_pair(60. * 60., ""),
 		make_pair(60. * 100., ""),
 		make_pair(100., "%"),
+		make_pair(100., ""),
 		make_pair(1. / 60., "")
 	};
 	
@@ -81,10 +82,30 @@ namespace {
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
 		
-		{"repair delay", 4},
-		{"disabled repair delay", 4},
-		{"shield delay", 4},
-		{"depleted shield delay", 4}
+		{"hull repair multiplier", 3},
+		{"hull energy multiplier", 3},
+		{"hull fuel multiplier", 3},
+		{"hull heat multiplier", 3},
+		{"piercing resistance", 3},
+		{"shield generation multiplier", 3},
+		{"shield energy multiplier", 3},
+		{"shield fuel multiplier", 3},
+		{"shield heat multiplier", 3},
+		
+		{"disruption protection", 4},
+		{"force protection", 4},
+		{"fuel protection", 4},
+		{"heat protection", 4},
+		{"hull protection", 4},
+		{"ion protection", 4},
+		{"piercing protection", 4},
+		{"shield protection", 4},
+		{"slowing protection", 4},
+		
+		{"repair delay", 5},
+		{"disabled repair delay", 5},
+		{"shield delay", 5},
+		{"depleted shield delay", 5}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -220,8 +241,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			continue;
 		
 		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : UNIT_PAIRS[sit->second].first);
-		string units = (sit == SCALE.end() ? "" : UNIT_PAIRS[sit->second].second);
+		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
 		
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end()) 
