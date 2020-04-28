@@ -49,6 +49,15 @@ namespace {
 		{"piercing protection", -0.99},
 		{"shield protection", -0.99},
 		{"slowing protection", -0.99}
+    
+		{"hull repair multiplier", -1.},
+		{"hull energy multiplier", -1.},
+		{"hull fuel multiplier", -1.},
+		{"hull heat multiplier", -1.},
+		{"shield generation multiplier", -1.},
+		{"shield energy multiplier", -1.},
+		{"shield fuel multiplier", -1.},
+		{"shield heat multiplier", -1.}
 	};
 }
 
