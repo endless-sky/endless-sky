@@ -546,7 +546,7 @@ phrase "paranoia: media creators are aliens"
 		" but I think"
 		" and I know now that"
 	word
-		" the one of the actors is"
+		" one of the actors is"
 		" the director is"
 		" the lead actor is"
 		" the set designer is"
