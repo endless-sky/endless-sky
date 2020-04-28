@@ -48,7 +48,7 @@ namespace {
 		{"ion protection", -0.99},
 		{"piercing protection", -0.99},
 		{"shield protection", -0.99},
-		{"slowing protection", -0.99}
+		{"slowing protection", -0.99},
     
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
