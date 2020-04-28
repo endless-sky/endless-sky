@@ -43,8 +43,9 @@ outfit "Drak Draining Field"
 	"turret mounts" -1
 	weapon
 		"turret turn" 180 # instant turret tracking
-		"velocity" 50
-		"lifetime" 25
+		"velocity" 1
+		"lifetime" 1
+		"range override" 1100
 		"blast radius" 1100 # blast radius so that all nearby ships are impacted
 		"trigger radius" 1250 # trigger radius equal to the range for instant trigger
 		"reload" 1
