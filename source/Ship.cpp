@@ -221,25 +221,23 @@ void Ship::Load(const DataNode &node)
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
 			(key == "bay" && child.Size() >= 4))
 		{
-			// The drone and fighter keywords are for backwards compatiblity
-			// Initialize as if the keyword was fighter. The values will be
-			// overwritten in case of drone or bay keywords.
-			// Newer format is bay "BayCategory".
+			// While the `drone` and `fighter` keywords are supported for backwards compatiblity, the
+			// standard format is `bay <ship-category>`, with the same signature for other values.
 			string category = "Fighter";
 			int childOffset = 0;
 			if(key == "drone")
-				category = "Drone";			
+				category = "Drone";
 			else if(key == "bay")
 			{
 				category = child.Token(1);
-				// The "bay" key has category as first child, so all
-				// other childs move 1 position.
 				childOffset += 1;
 			}
-			if(!BAY_TYPES.count(category)){
-				child.PrintTrace("Warning: Invalid category defined for bay.");
+			if(!BAY_TYPES.count(category))
+			{
+				child.PrintTrace("Warning: Invalid category defined for bay:");
 				continue;
 			}
+			
 			if(!hasBays)
 			{
 				bays.clear();
@@ -565,7 +563,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	
-	canBeCarried = (BAY_TYPES.count(attributes.Category()) > 0);
+	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
 	
 	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
 	string warning;
