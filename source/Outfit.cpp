@@ -40,6 +40,16 @@ namespace {
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
 		
+		{"disruption protection", -0.99},
+		{"force protection", -0.99},
+		{"fuel protection", -0.99},
+		{"heat protection", -0.99},
+		{"hull protection", -0.99},
+		{"ion protection", -0.99},
+		{"piercing protection", -0.99},
+		{"shield protection", -0.99},
+		{"slowing protection", -0.99},
+    
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
