@@ -86,6 +86,7 @@ namespace {
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
 		{"hull heat multiplier", 3},
+		{"piercing resistance", 3},
 		{"shield generation multiplier", 3},
 		{"shield energy multiplier", 3},
 		{"shield fuel multiplier", 3},

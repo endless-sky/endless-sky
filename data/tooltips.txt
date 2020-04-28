@@ -473,6 +473,9 @@ tip "radar tracking:"
 tip "piercing:"
 	`This percentage of this weapon's damage always leaks through to the hull.`
 
+tip "piercing resistance:"
+	`What percentage of a weapon's piercing damage is resisted, preventing damage from leaking through the shields to the hull.`
+
 tip "shield damage / shot:"
 	`Each shot fired by this weapon does this amount of shield damage.`
 
