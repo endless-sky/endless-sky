@@ -143,14 +143,26 @@ tip "hull:"
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
 
+tip "hull energy multiplier:"
+	`Modifies the energy consumed when repairing the hull by the given factor.`
+
 tip "hull fuel:"
 	`Fuel consumed per second when repairing the hull.`
+
+tip "hull fuel multiplier:"
+	`Modifies the fuel consumed when repairing the hull by the given factor.`
 
 tip "hull heat:"
 	`Heat produced per second when repairing the hull.`
 
+tip "hull heat multiplier:"
+	`Modifies the heat produced when repairing the hull by the given factor.`
+
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
+
+tip "hull repair multiplier:"
+	`Modifies the amount of hull strength repaired per second by the given factor.`
 
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
@@ -239,14 +251,26 @@ tip "sells for:"
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
+tip "shield energy multiplier:"
+	`Modifies the energy consumed when recharging shields by the given factor.`
+
 tip "shield fuel:"
 	`Fuel consumed per second when recharging shields.`
+
+tip "shield fuel multiplier:"
+	`Modifies the fuel consumed when recharging shields by the given factor.`
 
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
+tip "shield heat multiplier:"
+	`Modifies the heat produced when recharging shields by the given factor.`
+
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "shield generation multiplier:"
+	`Modifies the amount of shield points recharged per second by the given factor.`
 
 tip "shields charge / max:"
 	`Shield regeneration rate (per second) and total shields.`

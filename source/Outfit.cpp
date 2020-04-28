@@ -47,7 +47,16 @@ namespace {
 		{"ion resistance heat", 0.},
 		{"slowing resistance energy", 0.},
 		{"slowing resistance fuel", 0.},
-		{"slowing resistance heat", 0.}
+		{"slowing resistance heat", 0.},
+		
+		{"hull repair multiplier", -1.},
+		{"hull energy multiplier", -1.},
+		{"hull fuel multiplier", -1.},
+		{"hull heat multiplier", -1.},
+		{"shield generation multiplier", -1.},
+		{"shield energy multiplier", -1.},
+		{"shield fuel multiplier", -1.},
+		{"shield heat multiplier", -1.}
 	};
 }
 
