@@ -79,7 +79,16 @@ namespace {
 		
 		{"ion resistance", 2},
 		{"disruption resistance", 2},
-		{"slowing resistance", 2}
+		{"slowing resistance", 2},
+		
+		{"hull repair multiplier", 3},
+		{"hull energy multiplier", 3},
+		{"hull fuel multiplier", 3},
+		{"hull heat multiplier", 3},
+		{"shield generation multiplier", 3},
+		{"shield energy multiplier", 3},
+		{"shield fuel multiplier", 3},
+		{"shield heat multiplier", 3}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
