@@ -198,7 +198,7 @@ outfit "Small Thrust Module"
 	"engine capacity" -9
 	"thrust" 6.6
 	"thrusting energy" 0.46
-	"thrusting heat" 3.5
+	"thrusting heat" 3
 	"flare sprite" "effect/coalition flare/small"
 		"frame rate" 4.8
 	"flare sound" "atomic tiny"
@@ -215,7 +215,7 @@ outfit "Large Thrust Module"
 	"engine capacity" -32
 	"thrust" 26.2
 	"thrusting energy" 1.7
-	"thrusting heat" 12.5
+	"thrusting heat" 11
 	"flare sprite" "effect/coalition flare/large"
 		"frame rate" 3.5
 	"flare sound" "atomic small"
@@ -232,7 +232,7 @@ outfit "Small Steering Module"
 	"engine capacity" -7
 	"turn" 178.8
 	"turning energy" 0.26
-	"turning heat" 2.3
+	"turning heat" 2.1
 	description "Despite its high efficiency, this module is not sufficient for any but the tiniest of ships. Instead, the modules are designed with the expectation that ships may use two or three of them in tandem."
 
 outfit "Large Steering Module"
@@ -246,7 +246,7 @@ outfit "Large Steering Module"
 	"engine capacity" -25
 	"turn" 711.9
 	"turning energy" 1.0
-	"turning heat" 8.2
+	"turning heat" 6.8
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 
 outfit "Enforcer Confrontation Gear"
