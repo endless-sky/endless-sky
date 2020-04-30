@@ -193,7 +193,7 @@ outfit "Tracker Storage Pod"
 	thumbnail "outfit/hai tracker storage"
 	"mass" 4.4
 	"outfit space" -10
-	"tracker capacity" 28
+	"tracker capacity" 56
 	ammo "Hai Tracker"
 	description "The Tracker Storage Pod is used to store extra ammunition for Tracker Pods."
 
