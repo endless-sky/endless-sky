@@ -582,6 +582,8 @@ fleet "Kor Mereti Miners"
 
 
 outfitter "Korath Basics"
+	"Korath Piercer"
+	"Korath Mine"
 	"Korath Piercer Rack"
 	"Korath Mine Rack"
 	"Command Center"
