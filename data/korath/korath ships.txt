@@ -119,11 +119,11 @@ ship "Korath Refuge"
 
 		# Capabilities of built-in nanite factory.
 		"ramscoop" 12
-		"shield generation" 9
-		"shield energy" 13.2
-		"hull repair rate" 10.2
-		"hull energy" 13.8
-		"hull heat" 19.1
+		"shield generation" 13
+		"shield energy" 18
+		"hull repair rate" 3.9
+		"hull energy" 3.7
+		"hull heat" 5.5
 		"energy capacity" 4300
 		
 		
@@ -175,7 +175,7 @@ ship "Korath Refuge"
 	description "Korath Refuges hold the must vulnerable of the Korath, those that would not survive a battle, even in a ship with armor and shields. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships immediately flee; they're among the fastest ships the Korath have built."
 	description "Like other world-ships, the Refuge has built-in nanite factory. At peace, it manufactures parts, medicine, medical equipment, and sufficient food for bare sustenance. In battle, it repairs the hull, recharges shields, and provides significant ramscoop."
 
-ship "Efret fi Zujaja"
+ship "Korath Transport"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
@@ -183,14 +183,14 @@ ship "Efret fi Zujaja"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 794
-		"bunks" 1492
+		"required crew" 607
+		"bunks" 1037
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 779
+		"cargo space" 191
+		"outfit space" 859
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -207,8 +207,9 @@ ship "Efret fi Zujaja"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
-		
+		"Korath Repeater Rifle" 1000
+		"Korath Defense Station" 40
+
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
@@ -230,25 +231,24 @@ ship "Efret fi Zujaja"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The Korath constructed thousands of world-ships far larger than these, to evacuate from their planets and stations as their war slowly destroyed their civilization. With the protection of the Quarg, the Kor Efret no longer need to evacuate, so their world-ships are used as ordinary transport and cargo vessels. As time went on, the Kor Efret designs became smaller, cheaper, and simpler as the need for efficiency replaced the need for durability. Though they may envy their anscestors' vast creations, they don't envy the non-stop death."
+	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. This particular world-ship is designed to transport hundreds of people at a time between planets or stations."
 
-
-ship "Efret fi Jara"
+ship "Korath Freighter"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	attributes
-		category "Transport"
+		category "Bulk Freighter"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 794
-		"bunks" 1492
+		"required crew" 414
+		"bunks" 651
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 779
+		"cargo space" 941
+		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -265,7 +265,8 @@ ship "Efret fi Jara"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -274,24 +275,23 @@ ship "Efret fi Jara"
 	engine -37 343 .8
 	engine 0 343 .9
 	engine 37 343 .8
-	turret -76 -157 "Korath Grab-Strike"
-	turret 76 -157 "Korath Banisher"
-	turret -59 -135 "Korath Warder"
-	turret 59 -135 "Korath Grab-Strike"
-	turret -61 -6 "Korath Banisher"
-	turret 61 -6 "Korath Warder"
-	turret -66 210 "Korath Warder"
-	turret 66 210 "Korath Banisher"
+	turret -76 -219 "Korath Grab-Strike"
+	turret 76 -219 "Korath Grab-Strike"
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165 "Korath Warder"
+	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The Korath constructed thousands of world-ships far larger than these, to evacuate from their planets and stations as their war slowly destroyed their civilization. With the protection of the Quarg, the Kor Efret no longer need to evacuate, so their world-ships are used as ordinary transport and cargo vessels. As time went on, the Kor Efret designs became smaller, cheaper, and simpler as the need for efficiency replaced the need for durability. Though they may envy their anscestors' vast creations, they don't envy the non-stop death."
+	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. The Korath use this particular design to transport vast cargo between their planets and stations."
 
-
-ship "Efret fi Iibriq"
+ship "Korath Tanker"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
 	attributes
@@ -299,14 +299,15 @@ ship "Efret fi Iibriq"
 		cost 27690000
 		shields 47000
 		hull 34000
-		"required crew" 794
-		"bunks" 1492
+		"required crew" 414
+		"bunks" 651
 		"mass" 1735
 		"drag" 21
 		"heat dissipation" .4
-		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 779
+		"fuel capacity" 3000
+		"ramscoop" 20
+		"cargo space" 422
+		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -323,8 +324,9 @@ ship "Efret fi Iibriq"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
-		
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
+
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
@@ -332,21 +334,21 @@ ship "Efret fi Iibriq"
 	engine -37 343 .8
 	engine 0 343 .9
 	engine 37 343 .8
-	turret -76 -157 "Korath Grab-Strike"
-	turret 76 -157 "Korath Banisher"
-	turret -59 -135 "Korath Warder"
-	turret 59 -135 "Korath Grab-Strike"
-	turret -61 -6 "Korath Banisher"
-	turret 61 -6 "Korath Warder"
-	turret -66 210 "Korath Warder"
-	turret 66 210 "Korath Banisher"
+	turret -45 -243 "Korath Warder"
+	turret 45 -243 "Korath Grab-Strike"
+	turret -47 -136 "Korath Grab-Strike"
+	turret 47 -136 "Korath Banisher"
+	turret -70 57 "Korath Warder"
+	turret 70 57 "Korath Banisher"
+	turret -91 290 "Korath Banisher"
+	turret 91 290 "Korath Warder"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The Korath constructed thousands of world-ships far larger than these, to evacuate from their planets and stations as their war slowly destroyed their civilization. With the protection of the Quarg, the Kor Efret no longer need to evacuate, so their world-ships are used as ordinary transport and cargo vessels. As time went on, the Kor Efret designs became smaller, cheaper, and simpler as the need for efficiency replaced the need for durability. Though they may envy their anscestors' vast creations, they don't envy the non-stop death."
+	description "Before the Korath started destroying their worlds, smaller world-ships like these were their main transport and cargo vessels. Newer ships are more durable, but these are still cheaper to manufacture. Today, the Kor Efret use them exclusively; they have little to fear under the protection of the Quarg. Without a ready supply of deuterium, the Korath use this particular model of world-ship to collect and refine deuterium in flight. Along the way, it carries passengers and cargo."
 
 
 
@@ -1155,8 +1157,8 @@ ship "Korath Ravager"
 	attributes
 		category "Heavy Warship"
 		"cost" 3760000
-		"shields" 47000
-		"hull" 34000
+		"shields" 27000
+		"hull" 25000
 		"required crew" 319
 		"bunks" 338
 		"mass" 1260
@@ -1170,10 +1172,10 @@ ship "Korath Ravager"
 		"engine capacity" 232
 		"ramscoop" 2
 		weapon
-			"blast radius" 350
-			"shield damage" 6000
-			"hull damage" 3200
-			"hit force" 9600
+			"blast radius" 300
+			"shield damage" 4400
+			"hull damage" 2200
+			"hit force" 6600
 	outfits
 		"Korath Inferno"
 		"Korath Digger Turret" 6
@@ -1214,8 +1216,7 @@ ship "Korath Ravager"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description `The Ravager was the last crewed warship the Korath designed before they switched to drone ships. Neither side knows who originated the design; each kept capturing the others' ships and reverse-engineering improvements. This unending design competition bred a ship uncharacteristically efficient for the Korath. Armored heat sinks protect vulnerable areas of the ship, boosting hull strength and heat dissipation with minimal weight. Shields, weapon, and engine systems span the whole ship, to maximize all three. Mass is focused at the center, reducing drag.`
-	description `Unfortunately, this led to a vast crew requirement, leaving little space for passengers, cargo, or outfits. Ravagers can handle a phenominal arsenal and enough engines to out-maneuver the fastest drones, but not both at the same time. This led the Korath to automated ships: inefficient, uncrewed, and numerous.`
+	description `The Ravager was the last crewed warship the Korath designed before they switched to drone ships. Neither side knows who originated the design; each kept capturing the others' ships and reverse-engineering improvements. This unending design competition bred a ship uncharacteristically efficient for the Korath. Unfortunately, its vast crew requirement leaves little space for passengers, cargo, or outfits. Ravagers can handle a phenominal arsenal and enough engines to out-maneuver the fastest drones, but not both at the same time.`
 
 
 ship "Korath Dredger"
@@ -1225,9 +1226,9 @@ ship "Korath Dredger"
 		category "Heavy Freighter"
 		"cost" 29370000
 		"shields" 39000
-		"hull" 21000
+		"hull" 16000
 		"required crew" 191
-		"bunks" 353
+		"bunks" 683
 		"mass" 1353
 		"drag" 16
 		"heat dissipation" .55
@@ -1239,18 +1240,18 @@ ship "Korath Dredger"
 		
 		# Capabilities of built-in nanite factory:
 		"ramscoop" 2
-		"shield generation" 2.5
-		"shield energy" 3.4
-		"hull repair rate" 1.6
-		"hull energy" 1.6
-		"hull heat" 2.1
+		"shield generation" 0.7
+		"shield energy" 0.4
+		"hull repair rate" 1.2
+		"hull energy" 0.9
+		"hull heat" 1.4
 		"energy capacity" 1800
 		
 		weapon
 			"blast radius" 300
-			"shield damage" 5600
-			"hull damage" 2800
-			"hit force" 9000
+			"shield damage" 4600
+			"hull damage" 2300
+			"hit force" 5900
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Warder" 2
@@ -1269,7 +1270,6 @@ ship "Korath Dredger"
 		"Steering (Planetary Class)"
 		"Engine (Meteor Class)" 2
 		"Jump Drive"
-
 	turret -37 -155 "Korath Digger Turret"
 	turret 0 -155 "Korath Warder"
 	turret 37 -155 "Korath Digger Turret"
@@ -1280,7 +1280,6 @@ ship "Korath Dredger"
 	engine -33 171 .4
 	engine -2 182 .6
 	engine 31 171 .4
-	fighter 0 89
 	fighter 51 59
 	fighter -51 59
 	fighter 0 -42
@@ -1291,8 +1290,7 @@ ship "Korath Dredger"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "After the Korath were exiled, they realized they would need to raid nearby species to survive. Their world-ships were too precious and their Ravagers were too expensive. The Dredger was their first new ship: abundant cargo and passenger space, bays for five fighters, and seven turrets. It even has a small built-in nanite-run factory which lets it refine ore to create simple ship parts or equipment. During battle, the factory acts as a modified systems core and ramscoop."
-	description "The Dredger's failing was its expense. Korath factories can produce Raiders four times as quickly, allowing four times as many raids. The Dredger is still used as a mining vessel, a fighter-carrier for planetary raids, and is the main cargo and transport ship for civilians. However, it no longer goes on solo raids."
+	description "After the Korath were exiled, they realized they would need to raid nearby species to survive. Their world-ships were too precious and their Ravagers were too expensive. The Dredger was their first new ship: abundant cargo and passenger space, bays for four fighters, and seven turrets. It even has a small built-in nanite-run factory to refine ore, and repair the ship during battle. Its failing was its expense; Korath Raiders can be built four times as quickly."
 
 ship "Korath Refabricator"
 	sprite "ship/korath refabricator"
@@ -1302,25 +1300,25 @@ ship "Korath Refabricator"
 		"cost" 39370000
 		"shields" 93000
 		"hull" 107000
-		"required crew" 2150
-		"bunks" 4785
+		"required crew" 957
+		"bunks" 1933
 		"mass" 2780
 		"drag" 21.4
 		"heat dissipation" .65
 		"fuel capacity" 2200
 		"cargo space" 2845
-		"outfit space" 1549
+		"outfit space" 1629
 		"weapon capacity" 576
 		"engine capacity" 240
 		
 		# Capabilities of huge built-in nanite factory:
 		"ramscoop" 12
-		"shield generation" 21
-		"shield energy" 30.8
-		"hull repair rate" 27
-		"hull energy" 27
-		"hull heat" 36
-		"energy capacity" 9800
+		"shield generation" 27.6
+		"shield energy" 36.2
+		"hull repair rate" 9.1
+		"hull energy" 8.3
+		"hull heat" 13.5
+		"energy capacity" 10500
 		
 		weapon
 			"blast radius" 600
@@ -1336,7 +1334,8 @@ ship "Korath Refabricator"
 		"Large Heat Shunt" 8
 		"Small Heat Shunt"
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle"  1933
+		"Korath Defense Station" 30
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
@@ -1371,8 +1370,7 @@ ship "Korath Refabricator"
 	explode "large explosion" 60
 	explode "huge explosion" 25
 	"final explode" "final explosion large"
-	description "The Refabricator is a millennia-old ship design that has improved in every generation. At the height of the Korath war, these ships created drones and clouds of combat nanites. The Korath Exiles no longer have access to modern nanites capable of such rapid mass-production. Instead, they use modified System Core nanites to manufacture ship parts and daily necessities from cargo brought back by Raiders and Dredgers."
-	description "In battle, the Refabricator's nanite-run factory serves as a vast systems core and powerful ramscoop. This ship is devastatingly powerful in battle, but it is considered too valuable to lose. The Korath only take these to war if they're certain of success, and need to process an entire planet's resources."
+	description "The Refabricator is factory ship; a millennia-old ship design that has improved in every generation. At the height of the Korath war, these ships created drones and clouds of combat nanites. Today, its nanite-run factory produces basic living supplies and ship parts, and are vast systems cores in battle."
 
 ship "Korath Haven"
 	sprite "ship/korath haven"
@@ -1380,8 +1378,8 @@ ship "Korath Haven"
 	attributes
 		category "Transport"
 		"cost" 231580000
-		"shields" 237000
-		"hull" 197000
+		"shields" 197800
+		"hull" 151300
 		"required crew" 29500
 		"bunks" 35800
 		"mass" 4880
@@ -1395,12 +1393,12 @@ ship "Korath Haven"
 		
 		# Capabilities of the two huge built-in nanite factories:
 		"ramscoop" 30
-		"shield generation" 38
-		"shield energy" 50
-		"hull repair rate" 46
-		"hull energy" 46
-		"hull heat" 61
-		"energy capacity" 18300
+		"shield generation" 60.8
+		"shield energy" 50.3
+		"hull repair rate" 20.7
+		"hull energy" 15.2
+		"hull heat" 26.4
+		"energy capacity" 22500
 		
 		weapon
 			"blast radius" 900
@@ -1412,7 +1410,7 @@ ship "Korath Haven"
 		"Korath Inferno" 6
 		"Korath Warder" 6
 		"Korath Heaver" 4
-		
+
 		"Large Heat Shunt" 12
 		"Triple Plasma Core" 4
 
@@ -1474,5 +1472,4 @@ ship "Korath Haven"
 	explode "large explosion" 70
 	explode "huge explosion" 35
 	"final explode" "final explosion large"
-	description "The Korath Exiles built these vast havens as their main population centers. An estimated 80% of the Korath Exiles live on such ships. In addition to living space, each Korath Haven has industrial and hydroponics capacity sufficient for bare subsistence of its inhabitants. During battle, the built-in nanite factory repairs the ship, recharges shields, and provides significant ramscoop."
-	description "The exiles lacked resources to design a new vessel of this size, so they patched together other designs. A Korath Haven's wings and steering are from the incomplete Kor Metri Model 1024 world-ship drone. The body and thrusters are from the unfinished Kor Sestor Tek Ot Rah 681 world-ship drone. The nanite-run factories are from a Refabricator. The city buildings and hydroponics are modified from Refuge, Refabricator, and station parts. The resulting monstrosity is weak for a vessel of this size, but is sufficient for its purpose."
+	description "The Korath Exiles built these vast ships as their main population centers. In addition to living space, each Korath Haven has industrial and hydroponics capacity sufficient for bare subsistence of its inhabitants. During battle, the built-in nanite-run factories repair the ship, recharges shields, and provides powerful ramscoops."

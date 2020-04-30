@@ -25,6 +25,40 @@ using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
+	
+	// A whitelist of attributes which do not have minimum values of 0.
+	// The key is the attribute name and the value is the minimum value
+	// that the attribute is allowed to have. A value of 0 means that the
+	// attribute can have any value. Non-zero values mean that the attributes
+	// cannot be allowed to go below that value when installing or selling
+	// outfits.
+	const map<string, double> WHITELIST = {
+		{"hull energy", 0.},
+		{"hull fuel", 0.},
+		{"hull heat", 0.},
+		{"shield energy", 0.},
+		{"shield fuel", 0.},
+		{"shield heat", 0.},
+		
+		{"disruption protection", -0.99},
+		{"force protection", -0.99},
+		{"fuel protection", -0.99},
+		{"heat protection", -0.99},
+		{"hull protection", -0.99},
+		{"ion protection", -0.99},
+		{"piercing protection", -0.99},
+		{"shield protection", -0.99},
+		{"slowing protection", -0.99},
+    
+		{"hull repair multiplier", -1.},
+		{"hull energy multiplier", -1.},
+		{"hull fuel multiplier", -1.},
+		{"hull heat multiplier", -1.},
+		{"shield generation multiplier", -1.},
+		{"shield energy multiplier", -1.},
+		{"shield fuel multiplier", -1.},
+		{"shield heat multiplier", -1.}
+	};
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -201,10 +235,22 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 {
 	for(const auto &at : other.attributes)
 	{
+		// The minimum allowed value of most attributes is 0. Some attributes
+		// have special functionality when negative, though, and are therefore
+		// allowed to have values less than 0.
+		double minimum = 0.;
+		auto it = WHITELIST.find(at.first);
+		if(it != WHITELIST.end())
+		{
+			minimum = it->second;
+			// Whitelisted attributes with a value of 0 can have any value.
+			if(!minimum)
+				continue;
+		}
 		double value = Get(at.first);
 		// Allow for rounding errors:
-		if(value + at.second * count < -EPS)
-			count = value / -at.second + EPS;
+		if(value + at.second * count < minimum - EPS)
+			count = (value - minimum) / -at.second + EPS;
 	}
 	
 	return count;

@@ -23,7 +23,7 @@ event "Korath Emporium"
 		government Uninhabited
 		habitable 371.071
 		belt 1240
-		link Zaurak
+		link Durax
 		asteroids "small rock" 36 1.99
 		asteroids "medium rock" 44 1.57
 		asteroids "large rock" 12 1.08
@@ -84,7 +84,7 @@ event "Korath Emporium"
 		"required reputation" -10
 		tribute 1000000
 			threshold 0
-			fleet "Korath Civilian" 20
+			fleet "Korath Civilian (World)" 30
 
 outfitter "korath exile test outfitter"
 	"Jump Drive"
@@ -187,9 +187,9 @@ shipyard "korath exile test shipyard"
 	"Korath Raider"
 	"Korath Chaser"
 	"Korath Refuge"
-	"Efret fi Zujaja"
-	"Efret fi Jara"
-	"Efret fi Iibriq"
+	"Korath Transport"
+	"Korath Freighter"
+	"Korath Tanker"
 	"Kar Ik Vot 349"
 	"Tek Far 71 - Lek"
 	"Tek Far 78 - Osk"

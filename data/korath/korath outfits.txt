@@ -184,15 +184,15 @@ outfit "Engine (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"
-	"mass" 21
-	"outfit space" -21
-	"engine capacity" -21
-	"thrust" 9.8
-	"turn" 240
-	"thrusting energy" 1.4
-	"thrusting heat" 3.3
-	"turning energy" 0.6
-	"turning heat" 1.8
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"thrust" 8.2
+	"turn" 200
+	"thrusting energy" 1.2
+	"thrusting heat" 2.9
+	"turning energy" 0.5
+	"turning heat" 1.6
 	"flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"flare sound" "plasma tiny"
@@ -391,5 +391,16 @@ outfit "Korath Repeater Rifle"
 	thumbnail "outfit/korath rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
+	"unplunderable" 1
+	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+
+
+outfit "Korath Defense Station"
+	category "Hand to Hand"
+	cost 53000
+	"capture defense" 30
+	"outfit space" 2
+	"energy consumption" 0.051
+	"heat generation" 0.102
 	"unplunderable" 1
 	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."

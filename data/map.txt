@@ -4726,7 +4726,7 @@ system Atik
 	government Uninhabited
 	habitable 371.071
 	belt 1240
-	link Zaurak
+	link Durax
 	asteroids "small rock" 36 1.99
 	asteroids "medium rock" 44 1.57
 	asteroids "large rock" 12 1.08
@@ -4747,8 +4747,6 @@ system Atik
 	trade Medical 651
 	trade Metal 327
 	trade Plastic 416
-	fleet "Small Syndicate" 10000
-	fleet "Large Syndicate" 25000
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
@@ -8292,6 +8290,7 @@ system Durax
 	habitable 1080
 	belt 1287
 	link Alcyone
+	link Misam
 	asteroids "small rock" 7 3.1744
 	asteroids "medium rock" 4 2.304
 	asteroids "large rock" 6 3.6768
@@ -13866,7 +13865,8 @@ system "Kor Ak'Mari"
 	fleet "Korath Raid" 2800
 	fleet "Korath Home" 5000
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian World" 10000
 	object
 		sprite star/wr
 		period 100
@@ -13922,9 +13922,11 @@ system "Kor En'lakfar"
 	trade Metal 236
 	trade Plastic 488
 	fleet "Korath Raid" 600
-	fleet "Korath Home" 1800
+	fleet "Korath Home" 8000
+	fleet "Korath Planetary Raid" 25000
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 5000
+	fleet "Korath Civilian World" 25000
 	object
 		sprite star/g0
 		period 10
@@ -13983,10 +13985,11 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 1600
+	fleet "Korath Raid" 2500
+	fleet "Korath Home" 2500
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Home" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Civilian Large" 4000
+	fleet "Korath Civilian World" 25000
 	object
 		sprite star/k0
 		period 10
@@ -14049,8 +14052,10 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Raid" 1300
-	fleet "Korath Civilian" 1000
-	fleet "Korath Home" 3000
+	fleet "Korath Home" 8000
+	fleet "Korath Planetary Raid" 25000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian World" 25000
 	fleet "Korath Civilian Miners" 10000
 	object
 		sprite star/f5-old
@@ -14109,9 +14114,12 @@ system "Kor Nor'peli"
 	trade Medical 850
 	trade Metal 517
 	trade Plastic 423
-	fleet "Korath Raid" 1000
-	fleet "Korath Home" 2000
-	fleet "Korath Civilian" 1000
+	# No military presence above Far'en Lai except for
+	# ships passing through. The system is guarded by the
+	# largest Korath civilian vessels.
+	fleet "Korath Planetary Raid" 30000
+	fleet "Korath Ember Waste Raid" 2500
+	fleet "Korath Civilian World" 500
 	object
 		sprite star/k0-old
 		distance 25.4857
@@ -14175,10 +14183,10 @@ system "Kor Tar'bei"
 	trade Medical 817
 	trade Metal 498
 	trade Plastic 402
-	fleet "Korath Raid" 1200
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Home" 5000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Home" 1000
+	fleet "Korath Civilian Large" 1000
+	fleet "Korath Civilian World" 3000
 	object
 		sprite star/m0
 		period 10
@@ -14226,9 +14234,11 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 800
-	fleet "Korath Home" 3000
-	fleet "Korath Civilian" 1000
+	fleet "Korath Raid" 10000
+	fleet "Korath Home" 1500
+	fleet "Korath Planetary Raid" 20000
+	fleet "Korath Civilian Large" 1000
+	fleet "Korath Civilian World" 2500
 	object
 		sprite star/g5-old
 		distance 8.94444
@@ -16640,7 +16650,6 @@ system Mirfak
 	link Menkar
 	link Bellatrix
 	link Moktar
-	link Misam
 	asteroids "small rock" 3 3.3592
 	asteroids "medium rock" 5 4.6436
 	asteroids "large rock" 5 3.5568
@@ -16749,12 +16758,11 @@ system Mirzam
 			period 12.1447
 
 system Misam
-	pos -139 -80
-	government Uninhabited
+	pos -9 -80
+	government Pirate
 	habitable 993
 	belt 1091
-	link Mirfak
-	link Oblate
+	link Durax
 	asteroids "small rock" 30 2.4918
 	asteroids "medium rock" 65 2.7068
 	asteroids "large rock" 1 2.561
@@ -16774,11 +16782,11 @@ system Misam
 	trade Medical 688
 	trade Metal 288
 	trade Plastic 368
-	fleet "Small Core Pirates" 12000
-	fleet "Large Syndicate" 15000
-	fleet "Small Syndicate" 10000
-	fleet "Human Miners" 3000
-	fleet "Korath Miners" 20000
+	fleet "Large Core Pirates" 8000
+	fleet "Small Core Pirates" 2000
+	fleet "Human Miners" 10000
+	fleet "Large Syndicate" 20000
+	fleet "Korath Miners" 15000
 	object
 		sprite star/k0
 		period 10
@@ -16790,8 +16798,8 @@ system Misam
 			sprite planet/lava0-b
 			distance 159
 			period 24.2278
-	object
-		sprite planet/cloud3
+	object "New Tortuga"
+		sprite planet/ocean3-b
 		distance 1010.56
 		period 391.013
 		object
@@ -17568,7 +17576,6 @@ system Oblate
 	belt 1704
 	link Alcyone
 	link Moktar
-	link Misam
 	asteroids "small rock" 2 2.1
 	asteroids "medium rock" 7 1.3944
 	asteroids "large rock" 2 1.7976
@@ -24787,7 +24794,6 @@ system Zaurak
 	link Sheratan
 	link Alcyone
 	link Menkar
-	link Atik
 	asteroids "small rock" 30 5.0232
 	asteroids "medium rock" 34 5.2052
 	asteroids "large rock" 11 1.82
@@ -26787,7 +26793,7 @@ planet "Keneska Fek"
 planet "Kessel Sepret"
 	attributes korath station
 	landscape land/station1
-	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on Human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
+	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
 	security 0
 
@@ -27364,6 +27370,32 @@ planet "New Switzerland"
 	tribute 300
 		threshold 2000
 		fleet "Small Republic" 11
+
+planet "New Tortuga"
+	attributes pirate "core pirate" core religious factory
+	landscape land/fog6
+	description `A planet of violent storms and frequent earthquakes, New Tortuga would turn away anyone unless they have a reason to hide. The few settlements on the planet are subterranean cave cities far from any fault lines. Thick blast doors block all entrances, and vast pumping systems remove water after the frequent supertyphoon-strength tropical storms.`
+	description `Most of the inhabitants of this planet are Syndicate dissidents who support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets cannot penetrate as far as New Tortuga. Here, shipyards, factories, and outfitters provide an uninterrupted supply.`
+	description `Surprisingly, many of the inhabitants are deeply religious. They're driven out by the atheist Syndicate management who frown on religion, viewing it as a source of inefficiency. Although the Syndicate does not officially ban religion, they treat devout employees poorly, and persecute religious leaders. Here, the pirates leave them alone as long as they keep manufacturing goods.`
+	outfitter "Basic Outfits"
+	outfitter "Ammo North"
+	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Syndicate Basics"
+	outfitter "Syndicate Advanced"
+	shipyard "Basic Ships"
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
+	shipyard "Southern Pirates"
+	shipyard "Northern Pirates"
+	shipyard "Megaparsec Basics"
+	bribe 0.03
+	security 0
+	"required reputation" -10
+	tribute 700
+		threshold 1000
+		fleet "Large Core Pirates" 8
+
 
 planet "New Tibet"
 	attributes "dirt belt" religious factory

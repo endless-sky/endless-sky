@@ -79,7 +79,6 @@ government "Drak"
 	"fine" 0
 	"attitude toward"
 		"Indigenous Lifeform" 1
-		"Korath (Civilian)" .0001
 
 government "Escort"
 	swizzle 5
@@ -267,7 +266,11 @@ government "Korath (Civilian)"
 	"crew attack" 1.1
 	"crew defense" 2.1
 	language "Korath"
-	
+
+	"attitude toward"
+		"Kor Sestor" -.01
+		"Korath" .1
+
 	"player reputation" 1
 
 government "Korath Nanobots"
@@ -281,7 +284,6 @@ government "Kor Efret"
 	"attitude toward"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
-		"Korath (Civilian)" .0001
 
 	"player reputation" 1
 
@@ -439,7 +441,6 @@ government "Quarg"
 	"attitude toward"
 		"Merchant" .01
 		"Kor Efret" .01
-		"Korath (Civilian)" .0001
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Hai" .01

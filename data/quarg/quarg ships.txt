@@ -41,7 +41,7 @@ ship "Quarg Skylark"
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 120
+		"Intrusion Countermeasures" 210
 		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
@@ -95,7 +95,7 @@ ship "Quarg Wardragon"
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 160
+		"Intrusion Countermeasures" 185
 		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"

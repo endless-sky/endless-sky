@@ -84,7 +84,32 @@ ship "Korath Chaser" "Korath Chaser (Digger)"
 		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
+
+ship "Korath Tanker" "Korath Tanker (Jump)"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
 		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	turret -45 -243 "Korath Warder"
+	turret 45 -243 "Korath Grab-Strike"
+	turret -47 -136 "Korath Grab-Strike"
+	turret 47 -136 "Korath Banisher"
+	turret -70 57 "Korath Warder"
+	turret 70 57 "Korath Banisher"
+	turret -91 290 "Korath Banisher"
+	turret 91 290 "Korath Warder"
+
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Korath Piercer Launcher" 4
@@ -266,8 +291,9 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
-		"Engine (Meteor Class)" 2
+		"Engine (Meteor Class)"
 		"Steering (Planetary Class)"
+		"Thruster (Comet Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 
@@ -292,7 +318,8 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
-		"Engine (Meteor Class)" 2
+		"Engine (Meteor Class)"
+		"Thruster (Comet Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Hyperdrive"
@@ -316,7 +343,8 @@ ship "Korath Refabricator" "Korath Refabricator (Grab-Strike)"
 		"Large Heat Shunt" 7
 		"Small Heat Shunt" 2
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle" 1933
+		"Korath Defense Station" 30
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
@@ -343,7 +371,8 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos)"
 
 		"Large Heat Shunt" 9
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle" 1933
+		"Korath Defense Station" 30
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
@@ -789,7 +818,8 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos Jump)"
 
 		"Large Heat Shunt" 9
 		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
+		"Korath Repeater Rifle" 1933
+		"Korath Defense Station" 30
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
@@ -823,7 +853,6 @@ ship "Korath Ravager" "Korath Ravager (Crippled Disarmed)"
 		"Cargo Expansion" 1
 		"Large Heat Shunt" 6
 		"Triple Plasma Core"
-		"Generator (Furnace Class)" 2
 		"Outfit Scanner"
 		"Cargo Scanner"
 		"Korath Repeater Rifle" 137
@@ -955,19 +984,19 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 
 # Backward-compatibility to avoid breaking plug-ins
 
-ship "Efret fi Zujaja" "Korath World-Ship"
+ship "Korath Transport" "Korath World-Ship"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
-	turret -45 -243 "Korath Warder"
-	turret 45 -243 "Korath Grab-Strike"
-	turret -47 -136 "Korath Grab-Strike"
-	turret 47 -136 "Korath Banisher"
-	turret -70 57 "Korath Warder"
-	turret 70 57 "Korath Banisher"
-	turret -91 290 "Korath Banisher"
-	turret 91 290 "Korath Warder"
+	turret -76 -157 "Korath Grab-Strike"
+	turret 76 -157 "Korath Banisher"
+	turret -59 -135 "Korath Warder"
+	turret 59 -135 "Korath Grab-Strike"
+	turret -61 -6 "Korath Banisher"
+	turret 61 -6 "Korath Warder"
+	turret -66 210 "Korath Warder"
+	turret 66 210 "Korath Banisher"
 	
-ship "Efret fi Jara" "Korath World-Ship B"
+ship "Korath Freighter" "Korath World-Ship B"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	turret -76 -219 "Korath Grab-Strike"
@@ -979,7 +1008,7 @@ ship "Efret fi Jara" "Korath World-Ship B"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
-ship "Efret fi Iibriq" "Korath World-Ship C"
+ship "Korath Tanker" "Korath World-Ship C"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
 	turret -45 -243 "Korath Warder"
@@ -991,7 +1020,7 @@ ship "Efret fi Iibriq" "Korath World-Ship C"
 	turret -91 290 "Korath Banisher"
 	turret 91 290 "Korath Warder"
 
-ship "Efret fi Zujaja" "Korath World-Ship A (Jump)"
+ship "Korath Transport" "Korath World-Ship A (Jump)"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
@@ -1001,7 +1030,8 @@ ship "Efret fi Zujaja" "Korath World-Ship A (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 1000
+		"Korath Defense Station" 40
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1016,7 +1046,7 @@ ship "Efret fi Zujaja" "Korath World-Ship A (Jump)"
 	turret -66 210 "Korath Warder"
 	turret 66 210 "Korath Banisher"
 
-ship "Efret fi Jara" "Korath World-Ship B (Jump)"
+ship "Korath Freighter" "Korath World-Ship B (Jump)"
 	sprite "ship/world-ship b"
 	outfits
 		"Korath Grab-Strike" 2
@@ -1027,7 +1057,8 @@ ship "Efret fi Jara" "Korath World-Ship B (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1042,7 +1073,7 @@ ship "Efret fi Jara" "Korath World-Ship B (Jump)"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
-ship "Efret fi Iibriq" "Korath World-Ship C (Jump)"
+ship "Korath Tanker" "Korath World-Ship C (Jump)"
 	sprite "ship/world-ship c"
 	outfits
 		"Korath Grab-Strike" 2
@@ -1053,7 +1084,8 @@ ship "Efret fi Iibriq" "Korath World-Ship C (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1068,7 +1100,7 @@ ship "Efret fi Iibriq" "Korath World-Ship C (Jump)"
 	turret -91 286 "Korath Banisher"
 	turret 91 286 "Korath Warder"
 
-ship "Efret fi Jara" "Korath World-Ship B (Ember)"
+ship "Korath Freighter" "Korath World-Ship B (Ember)"
 	sprite "ship/world-ship b"
 	outfits
 		"Korath Grab-Strike" 2
@@ -1079,7 +1111,8 @@ ship "Efret fi Jara" "Korath World-Ship B (Ember)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
@@ -1096,7 +1129,7 @@ ship "Efret fi Jara" "Korath World-Ship B (Ember)"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
-ship "Efret fi Jara" "Korath World-Ship B (Crippled)"
+ship "Korath Freighter" "Korath World-Ship B (Crippled)"
 	sprite "ship/world-ship b"
 	outfits
 		"Korath Banisher" 3
@@ -1104,7 +1137,8 @@ ship "Efret fi Jara" "Korath World-Ship B (Crippled)"
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 380
+		"Korath Defense Station" 30
 		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
