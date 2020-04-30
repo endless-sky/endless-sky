@@ -8291,6 +8291,7 @@ system Durax
 	belt 1287
 	link Alcyone
 	link Misam
+	link Atik
 	asteroids "small rock" 7 3.1744
 	asteroids "medium rock" 4 2.304
 	asteroids "large rock" 6 3.6768
@@ -16782,8 +16783,10 @@ system Misam
 	trade Medical 688
 	trade Metal 288
 	trade Plastic 368
-	fleet "Large Core Pirates" 8000
-	fleet "Small Core Pirates" 2000
+	fleet "Small Core Pirates" 600
+	fleet "Large Core Pirates" 800
+	fleet "Marauder fleet IX" 3000
+	fleet "Korath Planetary Raid" 5000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
@@ -27376,7 +27379,8 @@ planet "New Tortuga"
 	landscape land/fog6
 	description `A planet of violent storms and frequent earthquakes, New Tortuga would turn away anyone unless they have a reason to hide. The few settlements on the planet are subterranean cave cities far from any fault lines. Thick blast doors block all entrances, and vast pumping systems remove water after the frequent supertyphoon-strength tropical storms.`
 	description `Most of the inhabitants of this planet are Syndicate dissidents who support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets cannot penetrate as far as New Tortuga. Here, shipyards, factories, and outfitters provide an uninterrupted supply.`
-	description `Surprisingly, many of the inhabitants are deeply religious. They're driven out by the atheist Syndicate management who frown on religion, viewing it as a source of inefficiency. Although the Syndicate does not officially ban religion, they treat devout employees poorly, and persecute religious leaders. Here, the pirates leave them alone as long as they keep manufacturing goods.`
+	spaceport `As you walk through the spaceport, you notice a surprising number of religious buildings scattered between the pirate bars and black market stores. Most of the shops are run not by pirates, but by ordinary folk, frequently wearing religious garb. They interact with pirates as customers and guests rather than as an oppressive government.`
+	spaceport `The relative peace frequently broken by a pirate band wandering through the spaceport. The pirates here are generally more orderly and militarized than the ones seen on other planets. Their ships are more advanced too, with high-tech weapons and engines clearly visible outside the weapon hardpoints and engine mounts.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
