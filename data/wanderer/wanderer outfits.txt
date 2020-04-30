@@ -249,7 +249,7 @@ outfit "Thunderhead Launcher"
 		"homing" 4
 		"infrared tracking" .9
 		"radar tracking" .6
-		"missile strength" 12
+		"missile strength" 40
 	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
 outfit "Thunderhead Missile"
@@ -289,7 +289,7 @@ outfit "Thunderhead Storage Array"
 	thumbnail "outfit/thunderhead storage"
 	"mass" 2
 	"outfit space" -8
-	"thunderhead capacity" 20
+	"thunderhead capacity" 40
 	ammo "Thunderhead Missile"
 	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
 
