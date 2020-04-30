@@ -238,7 +238,7 @@ outfit "Korath Piercer Rack"
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
 	"outfit space" -7
-	"piercer capacity" 16
+	"piercer capacity" 32
 	ammo "Korath Piercer"
 	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
 
@@ -251,7 +251,7 @@ outfit "Korath Piercer Launcher"
 	"weapon capacity" -27
 	"energy capacity" 50
 	"gun ports" -1
-	"piercer capacity" 31
+	"piercer capacity" 32
 	weapon
 		sprite "projectile/piercer"
 			"frame rate" 5
@@ -276,7 +276,7 @@ outfit "Korath Piercer Launcher"
 		"infrared tracking" .9
 		"shield damage" 290
 		"hull damage" 440
-		"piercing" .2
+		"piercing" .6
 		"hit force" 300
 		"missile strength" 73
 		"stream"
@@ -390,7 +390,7 @@ outfit "Korath Mine Rack"
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
 	"outfit space" -9
-	"minelayer capacity" 9
+	"minelayer capacity" 18
 	ammo "Korath Mine"
 	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
 
@@ -403,7 +403,7 @@ outfit "Korath Minelayer"
 	"weapon capacity" -48
 	"energy capacity" 50
 	"gun ports" -1
-	"minelayer capacity" 17
+	"minelayer capacity" 18
 	weapon
 		sprite "projectile/korath minelayer"
 			"frame rate" .6
@@ -449,6 +449,7 @@ outfit "Korath Mine Submunition"
 		"drag" .05
 		"shield damage" 350
 		"hull damage" 280
+		"slowing damage" 2
 		"hit force" 200
 		"missile strength" 22
 
