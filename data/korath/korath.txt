@@ -189,8 +189,19 @@ phrase "kor mereti"
 	phrase
 		"digit"
 
-
+# To support plug-ins:
 fleet "Korath Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 40
+		"Korath Raider"
+		"Korath Chaser" 2
+
+fleet "Korath Small Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
@@ -243,7 +254,7 @@ fleet "Korath Civilian Miners"
 	fighters "korath"
 	cargo 0
 	personality
-		disables frugal mining harvests coward
+		heroic disables frugal mining harvests
 	variant 5
 		"Korath Dredger (Civilian)"
 
@@ -279,7 +290,7 @@ fleet "Korath Home"
 	variant 15
 		"Korath Tanker (Jump)"
 
-fleet "Korath Planetary Raid"
+fleet "Korath Large Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
@@ -356,16 +367,13 @@ fleet "Korath Ember Waste Raid"
 		"Korath Raider (Ember)"
 		"Korath Chaser (Digger)" 2
 
-# Korath Exiles don't do "small" so there is no
-# Korath Civilian Small fleet.
-
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
 	names "korath"
 	fighters "korath"
 	cargo 3
 	personality
-		frugal opportunistic disables coward
+		frugal opportunistic disables
 	variant 5
 		"Korath Dredger (Civilian)" 2
 		"Korath Chaser (Digger)" 4
@@ -386,7 +394,7 @@ fleet "Korath Civilian World"
 	fighters "korath"
 	cargo 3
 	personality
-		frugal opportunistic disables coward
+		frugal opportunistic disables
 	variant 2
 		"Korath Haven"
 		"Korath Chaser" 4

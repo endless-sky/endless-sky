@@ -2377,7 +2377,7 @@ system Alcyone
 	fleet "Small Core Pirates" 400
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
-	fleet "Korath Planetary Raid" 50000
+	fleet "Korath Large Raid" 50000
 	object
 		sprite star/m4
 		distance 45.5
@@ -3145,7 +3145,7 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
-	fleet "Korath Planetary Raid" 50000
+	fleet "Korath Large Raid" 50000
 	fleet "Korath Miners" 25000
 	object
 		sprite star/k5
@@ -3665,7 +3665,7 @@ system "Alpha Hydri"
 	fleet "Large Core Pirates" 6000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 9000
-	fleet "Korath Planetary Raid" 40000
+	fleet "Korath Large Raid" 40000
 	object
 		sprite star/g0
 		distance 24.6857
@@ -8314,7 +8314,7 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 5500
+	fleet "Korath Small Raid" 5500
 	fleet "Korath Miners" 25000
 	object
 		sprite star/g0-old
@@ -13863,7 +13863,7 @@ system "Kor Ak'Mari"
 	trade Medical 726
 	trade Metal 217
 	trade Plastic 524
-	fleet "Korath Raid" 2800
+	fleet "Korath Small Raid" 2800
 	fleet "Korath Home" 5000
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1500
@@ -13922,9 +13922,9 @@ system "Kor En'lakfar"
 	trade Medical 840
 	trade Metal 236
 	trade Plastic 488
-	fleet "Korath Raid" 600
+	fleet "Korath Small Raid" 600
 	fleet "Korath Home" 8000
-	fleet "Korath Planetary Raid" 25000
+	fleet "Korath Large Raid" 25000
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 5000
 	fleet "Korath Civilian World" 25000
@@ -13986,7 +13986,7 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 2500
+	fleet "Korath Small Raid" 2500
 	fleet "Korath Home" 2500
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 4000
@@ -14052,9 +14052,9 @@ system "Kor Men"
 	trade Medical 844
 	trade Metal 240
 	trade Plastic 497
-	fleet "Korath Raid" 1300
+	fleet "Korath Small Raid" 1300
 	fleet "Korath Home" 8000
-	fleet "Korath Planetary Raid" 25000
+	fleet "Korath Large Raid" 25000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian World" 25000
 	fleet "Korath Civilian Miners" 10000
@@ -14118,7 +14118,7 @@ system "Kor Nor'peli"
 	# No military presence above Far'en Lai except for
 	# ships passing through. The system is guarded by the
 	# largest Korath civilian vessels.
-	fleet "Korath Planetary Raid" 30000
+	fleet "Korath Large Raid" 30000
 	fleet "Korath Ember Waste Raid" 2500
 	fleet "Korath Civilian World" 500
 	object
@@ -14235,9 +14235,9 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 10000
+	fleet "Korath Small Raid" 10000
 	fleet "Korath Home" 1500
-	fleet "Korath Planetary Raid" 20000
+	fleet "Korath Large Raid" 20000
 	fleet "Korath Civilian Large" 1000
 	fleet "Korath Civilian World" 2500
 	object
@@ -16786,7 +16786,7 @@ system Misam
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 800
 	fleet "Marauder fleet IX" 3000
-	fleet "Korath Planetary Raid" 5000
+	fleet "Korath Large Raid" 5000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
@@ -18797,7 +18797,7 @@ system Polaris
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1500
-	fleet "Korath Planetary Raid" 50000
+	fleet "Korath Large Raid" 50000
 	object
 		sprite star/k5
 		period 10
@@ -21513,7 +21513,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
-	fleet "Korath Planetary Raid" 40000
+	fleet "Korath Large Raid" 40000
 	object
 		sprite star/f5
 		distance 21.0713
