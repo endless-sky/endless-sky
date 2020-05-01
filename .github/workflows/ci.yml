@@ -1,0 +1,272 @@
+name: Build & Parse
+
+# TODO:
+# - Reduce duplicate code (Blocking: https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
+# - Cache artifact files directly instead of directories (Workaround for https://github.com/actions/upload-artifact/issues/3)
+# - Don't tar the macOS app before uploading (Workaround for https://github.com/actions/upload-artifact/issues/36)
+# - Investigate using scoop as package manager on windows
+# - Cache build files on all systems (Looking at you OSX)
+# - Cache development libraries on windows
+# - Run windows builds as matrix with different mingw versions
+# - Construct more intelligent workflows
+#    e.g.
+#      data/* -> use "latest" build for triggering branch, only run parse and/or acceptance tests
+#      source/* -> build new binary, run all tests, cache binary
+#      PR opened -> upload artifact ZIPs to PR as comment, and edit/replace as new commits come in
+# - Windows: Allow programmers to use their own copy of development libs without hacking a temporary URL in the windows step
+
+on:
+  push:
+    paths:
+    - 'source/**'
+    - 'data/**'
+    - 'tests/**'
+    - 'EndlessSky.xcodeproj/**'
+    - 'XCode/**'
+    - '.github/workflows/**'
+    - keys.txt
+    - SConstruct
+    - .winmake
+  pull_request:
+    paths:
+    - 'source/**'
+    - 'data/**'
+    - 'tests/**'
+    - 'EndlessSky.xcodeproj/**'
+    - 'XCode/**'
+    - '.github/workflows/**'
+    - keys.txt
+    - SConstruct
+    - .winmake
+
+
+jobs:
+
+  build_ubuntu:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-16.04]
+    env:
+        CCACHE_DIR: ./ccache/
+        CXX: ccache g++
+        ARTIFACT: endless-sky
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore cached artifact
+      id: cache-artifact
+      uses: actions/cache@v1.1.0
+      with: 
+        path: artifact
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }} # Any of these files will trigger a rebuild
+    - name: Move restored artifact
+      if: steps.cache-artifact.outputs.cache-hit == 'true'
+      run: mv artifact/${{ env.ARTIFACT }} .
+    - name: Install dependencies
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
+    - name: Cache ccache
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      uses: actions/cache@v1.1.0
+      with:
+        path: ${{ env.CCACHE_DIR }}
+        key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
+        restore-keys: | 
+          ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
+          ${{ matrix.os }}-ccache-${{ github.repository }}-
+          ${{ matrix.os }}-ccache-
+    - name: Compile
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: scons -j $(nproc);
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }} 
+        path: ${{ env.ARTIFACT }}
+    - name: Move artifact for caching
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        mkdir artifact
+        mv ${{ env.ARTIFACT }} artifact/
+
+
+  build_windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    env:
+        SCCACHE_DIR: ./sccache/
+        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+        DIR_ESLIB: .\dev64
+        CXX: sccache g++
+        ARTIFACT: EndlessSky.exe 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore cached artifact
+      id: cache-artifact
+      uses: actions/cache@v1.1.0
+      with:
+        path: artifact
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }} # Any of these files will trigger a rebuild
+    - name: Move restored artifact
+      if: steps.cache-artifact.outputs.cache-hit == 'true'
+      run: mv artifact/${{ env.ARTIFACT }} .
+    - name: Install dependencies
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: choco install sccache
+    - name: Fetch development libraries
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+        Expand-Archive win64-dev.zip -DestinationPath . -Force
+        Remove-Item win64-dev.zip
+    - name: Cache sccache
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      uses: actions/cache@v1.1.0
+      with:
+        path: ${{ env.SCCACHE_DIR }}
+        key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
+        restore-keys: |
+          ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-
+          ${{ matrix.os }}-sccache-${{ github.repository }}-
+          ${{ matrix.os }}-sccache
+    - name: Compile
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
+        COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
+        COPY ".\dev64\bin\*.dll" .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }}
+        path: ${{ env.ARTIFACT }}
+    - name: Move artifact for caching
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        MD artifact
+        MOVE ${{ env.ARTIFACT }} artifact/
+
+
+  build_macos:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+    env:
+      ARTIFACT: EndlessSky.app.tar
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore cached artifact
+      id: cache-artifact
+      uses: actions/cache@v1.1.0
+      with: 
+        path: artifact
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
+    - name: Move restored artifact
+      if: steps.cache-artifact.outputs.cache-hit == 'true'
+      run: mv artifact/${{ env.ARTIFACT }} .
+    - name: Install dependencies
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        brew update
+        brew install libmad libpng jpeg-turbo sdl2
+    - name: Compile
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet install
+    - name: Archive artifact
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        cd /tmp/EndlessSky.dst/Applications/
+        tar -cf $GITHUB_WORKSPACE/${{ env.ARTIFACT }} "Endless Sky.app"
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: app-${{ matrix.os }}
+        path: ${{ env.ARTIFACT }}
+    - name: Move artifact for caching
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        mkdir artifact
+        mv ${{ env.ARTIFACT }} artifact/
+
+
+  test_ubuntu:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-16.04]
+    needs: build_ubuntu
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }}
+        path: .
+    - name: Execute test_parse
+      run: |
+        chmod +x endless-sky
+        ./tests/test_parse.sh ./endless-sky
+
+  test_windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    needs: build_windows
+    steps:
+    - uses: actions/checkout@v2
+    - name: Fetch development libraries
+      run: |
+        Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+        Expand-Archive win64-dev.zip -DestinationPath . -Force
+        Remove-Item win64-dev.zip
+        COPY ".\dev64\bin\*.dll" .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }}
+        path: .
+    - name: Execute test_parse
+      run: .\tests\test_parse.ps1 EndlessSky.exe
+
+
+  test_macos:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+    needs: build_macos
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        brew update
+        brew install libmad libpng jpeg-turbo sdl2
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: app-${{ matrix.os }}
+        path: .
+    - name: Extract artifact
+      run: tar -xf EndlessSky.app.tar
+    - name: Execute test_parse
+      run: |
+        chmod +x "./Endless Sky.app/Contents/MacOS/Endless Sky"
+        ./tests/test_parse.sh "./Endless Sky.app/Contents/MacOS/Endless Sky"

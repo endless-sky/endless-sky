@@ -22,9 +22,7 @@ Files:
  images/ship/marrow*
  images/ship/mbounder*
  images/ship/mfalcon*
- images/ship/mfirebird*
  images/ship/mfury*
- images/ship/mleviathan*
  images/ship/mmanta*
  images/ship/mquicksilver*
  images/ship/mraven*
@@ -297,11 +295,13 @@ Files:
  images/ship/hai?grasshopper*
  images/ship/gull*
  images/ship/pelican*
+ images/ship/riptide*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
  images/thumbnail/gull*
  images/thumbnail/pelican*
+ images/thumbnail/riptide*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -312,28 +312,72 @@ License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
  
- Files:
+Files:
  images/outfit/quarg?skylance*
  images/hardpoint/quarg?skylance*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fernando S. Sáez (Azure Nyoki), and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
- Files:
+Files:
  images/outfit/quarg*
  images/hardpoint/quarg*
  images/outfit/small?quarg*
  images/outfit/medium?quarg*
  images/outfit/large?quarg*
+ images/outfit/enforcer?riot?staff*
+ images/outfit/laser?rifle*
+ images/outfit/hai?pebble?core*
+ images/outfit/hai?boulder*
+ images/outfit/hai?geode*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/effect/remnant?afterburner/remnant?afterburner*
+ images/hardpoint/annihilator?turret*
+ images/hardpoint/inhibitor?turret*
+ images/hardpoint/ion?hail?turret*
+ images/hardpoint/ravager?turret*
+ images/outfit/inhibitor?turret*
+ images/outfit/ion?hail?turret*
+ images/outfit/overcharged?shield?module*
+ images/outfit/overclocked?repair?module*
+ images/outfit/remnant?afterburner*
  images/outfit/remnant?capital?license*
  images/outfit/salvage?scanner*
+ images/outfit/tiny?remnant?engine*
+ images/outfit/void?rifle*
+ images/scene/penguinscene*
+ images/ship/ibis*
+ images/ship/penguin/penguin*
+ images/ship/petrel*
+ images/ship/tern*
+ images/thumbnail/ibis*
+ images/thumbnail/penguin*
+ images/thumbnail/petrel*
+ images/thumbnail/tern*
+ images/planet/station1c*
+ images/planet/station2c*
+ images/planet/station3c*
+ images/ship/archon?b*
+ images/ship/archon?c*
+ images/asteroid/yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/harvested?yottrite*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Michael Zahniser and Rob Lavinsky (under the same license).
+
+Files:
+ images/effect/flotsam?yottrite*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
  images/land/badlands0*
@@ -494,10 +538,10 @@ Copyright: tehhowch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
-Files: images/effect/explosion/pug/* 
+Files: images/effect/explosion/pug/*
 Copyright: Vilhelm (https://github.com/Vilhelm16)
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license) 
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  sounds/thrasher.wav
@@ -515,20 +559,25 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
-Files: images/planet/station0
+Files: images/outfit/security?station*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
 
 Files:
  images/ship/nest*
  images/ship/roost*
  images/ship/skein*
+ images/thumbnail/nest*
+ images/thumbnail/roost*
+ images/thumbnail/skein*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
-Files: images/ship/boxwing*
+Files:
+ images/ship/boxwing*
+ images/thumbnail/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -549,16 +598,127 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
- Copyright: Michael Zahniser <mzahniser@gmail.com>
+ images/thumbnail/argosy*
+ images/thumbnail/clipper*
+ images/thumbnail/dreadnought*
+ images/thumbnail/fury*
+ images/thumbnail/hauler?i*
+ images/thumbnail/hauler?ii*
+ images/thumbnail/hauler?iii*
+ images/thumbnail/modified argosy*
+ images/thumbnail/bastion*
+ images/thumbnail/behemoth*
+ images/thumbnail/heavy?shuttle*
+ images/thumbnail/firebird*
+ images/thumbnail/leviathan*
+ images/thumbnail/shuttle*
+ images/thumbnail/star?queen*
+ images/ship/localworldship*
+Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
+ images/thumbnail/mfirebird*
+ images/thumbnail/mleviathan*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/outfit/pug?staff*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Frederick Goy IV (under the same license).
+
+Files:
+ images/planet/station1*
+ images/planet/station2*
+ images/planet/station3*
+ images/planet/station4*
+ images/planet/station8*
+ images/planet/station9*
+ images/planet/station10*
+ images/planet/station11*
+ images/planet/station12*
+ images/planet/station13*
+ images/planet/station14*
+ images/planet/station15*
+ images/planet/station16*
+ images/planet/station17*
+ images/ship/maeri'het*
+ images/ship/subsidurial*
+ images/ship/telis'het*
+ images/ship/faes'mar*
+ images/ship/selii'mar*
+ images/thumbnail/maeri'het*
+ images/thumbnail/telis'het*
+ images/thumbnail/faes'mar*
+ images/thumbnail/selii'mar*
+ images/thumbnail/subsidurial*
+ images/effect/ravager?impact*
+ images/outfit/ka'het?annihilator?turret*
+ images/outfit/ka'het?annihilator*
+ images/outfit/ka'het?emp?deployer*
+ images/outfit/ka'het?primary?cooling*
+ images/outfit/ka'het?ravager?turret*
+ images/outfit/ka'het?ravager?beam*
+ images/outfit/ka'het?shield?restorer*
+ images/outfit/ka'het?support?cooling*
+ images/planet/dyson1*
+ images/planet/dyson2*
+ images/planet/dyson3*
+ images/planet/station0*
+ images/planet/station1b*
+ images/planet/station2b*
+ images/planet/station3b*
+ images/planet/station3bd*
+ images/projectile/annihilator*
+ images/projectile/ravager?beam*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/label/graveyard*
+Copyright: @RestingImmortal
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/enforcer?confrontation?gear*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Evan Fluharty (under the same license).
+
+Files:
+ images/outfit/hai?williwaw*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Made in cooperation with Becca Tommaso (tommasobecca03@gmail.com) and derived from works by Michael Zahniser (under the same license) and Maximilian Korber (under the same license)
+
+Files
+ images/effect/remnant leak*
+ images/effect/remnant leak sparkle*
+Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license)
+
+Files
+ images/planet/browndwarf-l-rouge*
+ images/planet/browndwarf-l*
+ images/planet/browndwarf-y-rouge*
+ images/planet/browndwarf-y*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+
+Files
+ images/planet/browndwarf-t-rouge*
+ images/planet/browndwarf-t*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain)
+ 
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

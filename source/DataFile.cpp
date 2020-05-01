@@ -102,9 +102,11 @@ void DataFile::Load(const char *it, const char *end)
 	vector<int> whiteStack(1, -1);
 	bool fileIsSpaces = false;
 	bool warned = false;
+	size_t lineNumber = 0;
 	
 	for( ; it != end; ++it)
 	{
+		++lineNumber;
 		// Find the first non-white character in this line.
 		bool isSpaces = false;
 		int white = 0;
@@ -152,6 +154,7 @@ void DataFile::Load(const char *it, const char *end)
 		list<DataNode> &children = stack.back()->children;
 		children.emplace_back(stack.back());
 		DataNode &node = children.back();
+		node.lineNumber = lineNumber;
 		
 		// Remember where in the tree we are.
 		stack.push_back(&node);
