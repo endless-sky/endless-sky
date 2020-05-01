@@ -1384,7 +1384,7 @@ void Engine::CalculateStep()
 						if(it.second > 0)
 							Audio::Play(it.first, ship->Position());
 				}
-				if(ship->IsReversing())
+				else if(ship->IsReversing())
 				{
 					for(const auto &it : ship->Attributes().ReverseFlareSounds())
 						if(it.second > 0)
@@ -1410,7 +1410,7 @@ void Engine::CalculateStep()
 				if(it.second > 0)
 					Audio::Play(it.first);
 		}
-		if(flagship->IsReversing())
+		else if(flagship->IsReversing())
 		{
 			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
 				if(it.second > 0)
@@ -2098,7 +2098,7 @@ void Engine::AddSprites(const Ship &ship)
 	
 	if(ship.IsThrusting())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
-	if(ship.IsReversing())
+	else if(ship.IsReversing())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsSteering())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
@@ -2120,7 +2120,7 @@ void Engine::AddSprites(const Ship &ship)
 	
 	if(ship.IsThrusting())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
-	if(ship.IsReversing())
+	else if(ship.IsReversing())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsSteering())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
