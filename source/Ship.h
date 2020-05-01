@@ -82,22 +82,22 @@ public:
 	
 	class EnginePoint : public Point {
 	public:
-		EnginePoint(double x, double y, double zoom, double angle) : Point(x, y), zoom(zoom), angle(angle) {}
+		EnginePoint(double x, double y, double zoom, Angle angle) : Point(x, y), zoom(zoom), angle(angle) {}
 		double Zoom() const { return zoom; }
-		double Angle() const { return angle; }
+		Angle Facing() const { return angle; }
 		
 		uint8_t side = 0;
 		static const uint8_t UNDER = 0;
 		static const uint8_t OVER = 1;
 		
-		uint8_t facing = 0;
+		uint8_t steering = 0;
 		static const uint8_t NONE = 0;
 		static const uint8_t LEFT = 1;
 		static const uint8_t RIGHT = 2;
 		
 	private:
 		double zoom;
-		double angle;
+		Angle angle;
 	};
 	
 	

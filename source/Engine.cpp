@@ -159,7 +159,7 @@ namespace {
 		Messages::Add(tag + message);
 	}
 	
-	void DrawFlareSprites(Ship ship, DrawList *draw, bool calcTickTock, vector<Ship::EnginePoint> enginePoints, vector<pair<Body, int>> flareSprites, uint8_t side)
+	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints, const vector<pair<Body, int>> &flareSprites, uint8_t side)
 	{
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
@@ -167,14 +167,14 @@ namespace {
 			// If multiple engines with the same flare are installed, draw up to
 			// three copies of the flare sprite.
 			for(const auto &it : flareSprites)
-				if(((point.facing == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
-					|| (point.facing == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.) 
-					|| point.facing == Ship::EnginePoint::NONE)
-					&& point.side == side)
+				if(point.side == side &&
+					(point.steering == Ship::EnginePoint::NONE
+					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
+					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
-						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.Angle(), point.Zoom());
-						draw[calcTickTock].Add(sprite, ship.Cloaking());
+						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.Facing(), point.Zoom());
+						draw.Add(sprite, ship.Cloaking());
 					}
 		}
 	}
@@ -2097,11 +2097,11 @@ void Engine::AddSprites(const Ship &ship)
 			}
 	
 	if(ship.IsThrusting())
-		DrawFlareSprites(ship, draw, calcTickTock, ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
+		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsReversing())
-		DrawFlareSprites(ship, draw, calcTickTock, ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
+		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsSteering())
-		DrawFlareSprites(ship, draw, calcTickTock, ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
+		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
 	if(drawCloaked)
 		draw[calcTickTock].AddSwizzled(ship, 7);
@@ -2119,11 +2119,11 @@ void Engine::AddSprites(const Ship &ship)
 		}
 	
 	if(ship.IsThrusting())
-		DrawFlareSprites(ship, draw, calcTickTock, ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
+		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsReversing())
-		DrawFlareSprites(ship, draw, calcTickTock, ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
+		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsSteering())
-		DrawFlareSprites(ship, draw, calcTickTock, ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
+		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())

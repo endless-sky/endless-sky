@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Ship.h"
 
+#include "Angle.h"
 #include "Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -178,7 +179,7 @@ void Ship::Load(const DataNode &node)
 				hasEngine = true;
 			}
 			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), (child.Size() > 4 ? child.Value(4) : 0.));
+				(child.Size() > 3 ? child.Value(3) : 1.), Angle((child.Size() > 4 ? child.Value(4) : 0.)));
 			EnginePoint &engine = enginePoints.back();
 			for(const DataNode &it : child)
 			{
@@ -198,7 +199,7 @@ void Ship::Load(const DataNode &node)
 				hasReverseEngine = true;
 			}
 			reverseEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), 180. + (child.Size() > 4 ? child.Value(4) : 0.));
+				(child.Size() > 3 ? child.Value(3) : 1.), Angle(180. + (child.Size() > 4 ? child.Value(4) : 0.)));
 			EnginePoint &engine = reverseEnginePoints.back();
 			for(const DataNode &it : child)
 			{
@@ -218,7 +219,7 @@ void Ship::Load(const DataNode &node)
 				hasSteeringEngine = true;
 			}
 			steeringEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), (child.Size() > 4 ? child.Value(4) : 0));
+				(child.Size() > 3 ? child.Value(3) : 1.), Angle((child.Size() > 4 ? child.Value(4) : 0.)));
 			EnginePoint &engine = steeringEnginePoints.back();
 			for(const DataNode &it : child)
 			{
@@ -229,7 +230,7 @@ void Ship::Load(const DataNode &node)
 							engine.side = j;
 					for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
 						if(it.Token(i) == STEERING_FACING[j])
-							engine.facing = j;
+							engine.steering = j;
 				}
 			}
 		}
@@ -695,7 +696,7 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const EnginePoint &point : enginePoints)
 		{
-			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Angle());
+			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Facing().Degrees());
 			if(point.side)
 			{
 				out.BeginChild();
@@ -706,7 +707,7 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const EnginePoint &point : reverseEnginePoints)
 		{
-			out.Write("reverse engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Angle());
+			out.Write("reverse engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Facing().Degrees());
 			if(point.side)
 			{
 				out.BeginChild();
@@ -716,23 +717,17 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const EnginePoint &point : steeringEnginePoints)
 		{
-			out.Write("steering engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Angle());
-			if(point.side && point.facing)
-			{
-				out.BeginChild();
-				out.Write(ENGINE_SIDE[point.side], STEERING_FACING[point.facing]);
-				out.EndChild();
-			}
-			else if(point.side)
+			out.Write("steering engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Facing().Degrees());
+			if(point.side)
 			{
 				out.BeginChild();
 				out.Write(ENGINE_SIDE[point.side]);
 				out.EndChild();
 			}
-			else if(point.facing)
+			if(point.steering)
 			{
 				out.BeginChild();
-				out.Write(STEERING_FACING[point.facing]);
+				out.Write(STEERING_FACING[point.steering]);
 				out.EndChild();
 			}
 		}
@@ -1513,7 +1508,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
-				isReversing = !isThrusting;
+				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 				if(thrust)
 				{
