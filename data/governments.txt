@@ -256,7 +256,7 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
-		"Korath (Civilian)" .0001
+		"Korath (Civilian)" .01
 	
 	"player reputation" -10
 
@@ -269,7 +269,7 @@ government "Korath (Civilian)"
 
 	"attitude toward"
 		"Kor Sestor" -.01
-		"Korath" .1
+		"Korath" .01
 
 	"player reputation" 1
 
