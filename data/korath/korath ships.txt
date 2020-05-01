@@ -1382,9 +1382,9 @@ ship "Korath Haven"
 		"hull" 151300
 		"required crew" 29500
 		"bunks" 35800
-		"mass" 4880
-		"drag" 27.4
-		"heat dissipation" .65
+		"mass" 6380
+		"drag" 35.1
+		"heat dissipation" .55
 		"fuel capacity" 3000
 		"cargo space" 3910
 		"outfit space" 2265
@@ -1419,53 +1419,47 @@ ship "Korath Haven"
 		"Grav-Steering (Nebula Class)"
 		"Hyperdrive"
 
+	turret -47 -404 "Korath Digger Turret"
+	turret 47 -404 "Korath Digger Turret"
+	turret -131 -349 "Korath Inferno"
+	turret 131 -349 "Korath Inferno"
+	turret -275 -311 "Korath Heaver"
+	turret 275 -311 "Korath Heaver"
+	turret -293 -298 "Korath Warder"
+	turret 293 -298 "Korath Warder"
+	turret -407 -53 "Korath Inferno"
+	turret 407 -53 "Korath Inferno"
+	turret -410 -27 "Korath Warder"
+	turret 410 -27 "Korath Warder"
+	turret -333 191 "Korath Digger Turret"
+	turret 333 191 "Korath Digger Turret"
+	turret -319 209 "Korath Inferno"
+	turret 319 209 "Korath Inferno"
+	turret -201 317 "Korath Heaver"
+	turret 201 317 "Korath Heaver"
+	turret -183 330 "Korath Digger Turret"
+	turret 183 330 "Korath Digger Turret"
+	turret -11 397 "Korath Warder"
+	turret 11 397 "Korath Warder"
+	engine -430 136 0.6
+	engine -409 132 0.8
+	engine -388 130 0.6
+	engine 430 136 0.6
+	engine 409 132 0.8
+	engine 388 130 0.6
+	fighter -241 -129 under
+	fighter -231 -129 under
+	fighter -221 -129 under
+	fighter -211 -129 under
+	fighter -201 -129 under
+	fighter -191 -129 under
+	fighter  241 -129 under
+	fighter  231 -129 under
+	fighter  221 -129 under
+	fighter  211 -129 under
+	fighter  201 -129 under
+	fighter  191 -129 under
 
-	turret -127.5 -400 "Korath Digger Turret"
-	turret 127.5 -400 "Korath Digger Turret"
-	turret -143 -393 "Korath Inferno"
-	turret 143 -393 "Korath Inferno"
-	turret -229 -332 "Korath Heaver"
-	turret 229 -332 "Korath Heaver"
-	turret -240 -320 "Korath Warder"
-	turret 240 -320 "Korath Warder"
-	turret -301 -170 "Korath Inferno"
-	turret 301 -170 "Korath Inferno"
-	turret -297 -70 "Korath Warder"
-	turret 297 -70 "Korath Warder"
-	turret -246 70 "Korath Digger Turret"
-	turret 246 70 "Korath Digger Turret"
-	turret -236 88 "Korath Inferno"
-	turret 236 88 "Korath Inferno"
-	turret -165 195 "Korath Heaver"
-	turret 165 195 "Korath Heaver"
-	turret -154 210 "Korath Digger Turret"
-	turret 154 210 "Korath Digger Turret"
-	turret -244 322 "Korath Warder"
-	turret 244 322 "Korath Warder"
-	engine -270 356 0.6
-	engine -246 356 0.8
-	engine -215 356 0.6
-	engine -159 403 0.4
-	engine -140.5 403 0.6
-	engine -119 403 0.4
-	engine 159 403 0.4
-	engine 140.5 403 0.6
-	engine 119 403 0.4
-	engine 270 356 0.6
-	engine 246 356 0.8
-	engine 215 356 0.6
-	fighter -160 -300 under
-	fighter 160 -300 under
-	fighter -171 -208 under
-	fighter 171 -208 under
-	fighter -172 -72 under
-	fighter 172 -72 under
-	fighter -154 53 under
-	fighter 154 53 under
-	fighter -118 141 under
-	fighter 118 141 under
-	fighter -89 303 under
-	fighter 89 303 under
 	explode "tiny explosion" 90
 	explode "small explosion" 120
 	explode "medium explosion" 110
