@@ -173,7 +173,7 @@ namespace {
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
-						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.Facing(), point.Zoom());
+						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.angle, point.zoom);
 						draw.Add(sprite, ship.Cloaking());
 					}
 		}

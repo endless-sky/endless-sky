@@ -130,8 +130,6 @@ void Ship::Load(const DataNode &node)
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
 	bool hasEngine = false;
-	bool hasReverseEngine = false;
-	bool hasSteeringEngine = false;
 	bool hasArmament = false;
 	bool hasBays = false;
 	bool hasExplode = false;
@@ -171,66 +169,39 @@ void Ship::Load(const DataNode &node)
 				attributes.Load(child);
 			}
 		}
-		else if(key == "engine" && child.Size() >= 3)
+		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
 		{
 			if(!hasEngine)
 			{
 				enginePoints.clear();
+				reverseEnginePoints.clear();
+				steeringEnginePoints.clear();
 				hasEngine = true;
 			}
-			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), Angle((child.Size() > 4 ? child.Value(4) : 0.)));
-			EnginePoint &engine = enginePoints.back();
-			for(const DataNode &it : child)
+			bool reverse = (key == "reverse engine");
+			bool steering = (key == "steering engine");
+			
+			vector<EnginePoint> &editPoints = !steering && !reverse ? enginePoints : 
+				(reverse ? reverseEnginePoints : steeringEnginePoints); 
+			editPoints.emplace_back(child.Value(1), child.Value(2),
+				(child.Size() > 3 ? child.Value(3) : 1.));
+			EnginePoint &engine = editPoints.back();
+			for(const DataNode &grand : child)
 			{
-				for(int i = 0; i < it.Size(); ++i)
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "zoom" && grand.Size() >= 2)
+					engine.zoom = grand.Value(1);
+				else if (grandKey == "angle" && grand.Size() >= 2)
+					engine.angle = Angle(grand.Value(1) + (reverse ? 180. : 0.));
+				else
 				{
 					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
-						if(it.Token(i) == ENGINE_SIDE[j])
+						if(grandKey == ENGINE_SIDE[j])
 							engine.side = j;
-				}
-			}
-		}
-		else if(key == "reverse engine" && child.Size() >= 3)
-		{
-			if(!hasReverseEngine)
-			{
-				reverseEnginePoints.clear();
-				hasReverseEngine = true;
-			}
-			reverseEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), Angle(180. + (child.Size() > 4 ? child.Value(4) : 0.)));
-			EnginePoint &engine = reverseEnginePoints.back();
-			for(const DataNode &it : child)
-			{
-				for(int i = 0; i < it.Size(); ++i)
-				{
-					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
-						if(it.Token(i) == ENGINE_SIDE[j])
-							engine.side = j;
-				}
-			}
-		}
-		else if(key == "steering engine" && child.Size() >= 3)
-		{
-			if(!hasSteeringEngine)
-			{
-				steeringEnginePoints.clear();
-				hasSteeringEngine = true;
-			}
-			steeringEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), Angle((child.Size() > 4 ? child.Value(4) : 0.)));
-			EnginePoint &engine = steeringEnginePoints.back();
-			for(const DataNode &it : child)
-			{
-				for(int i = 0; i < it.Size(); ++i)
-				{
-					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
-						if(it.Token(i) == ENGINE_SIDE[j])
-							engine.side = j;
-					for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
-						if(it.Token(i) == STEERING_FACING[j])
-							engine.steering = j;
+					if(steering)
+						for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
+							if(grandKey == STEERING_FACING[j])
+								engine.steering = j;
 				}
 			}
 		}
@@ -696,40 +667,32 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const EnginePoint &point : enginePoints)
 		{
-			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Facing().Degrees());
-			if(point.side)
-			{
-				out.BeginChild();
-				out.Write(ENGINE_SIDE[point.side]);
-				out.EndChild();
-			}
+			out.Write("engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.angle.Degrees());
+			out.Write(ENGINE_SIDE[point.side]);
+			out.EndChild();
 				
 		}
 		for(const EnginePoint &point : reverseEnginePoints)
 		{
-			out.Write("reverse engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Facing().Degrees());
-			if(point.side)
-			{
-				out.BeginChild();
-				out.Write(ENGINE_SIDE[point.side]);
-				out.EndChild();
-			}
+			out.Write("reverse engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.angle.Degrees());
+			out.Write(ENGINE_SIDE[point.side]);
+			out.EndChild();
 		}
 		for(const EnginePoint &point : steeringEnginePoints)
 		{
-			out.Write("steering engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Facing().Degrees());
-			if(point.side)
-			{
-				out.BeginChild();
-				out.Write(ENGINE_SIDE[point.side]);
-				out.EndChild();
-			}
-			if(point.steering)
-			{
-				out.BeginChild();
-				out.Write(STEERING_FACING[point.steering]);
-				out.EndChild();
-			}
+			out.Write("steering engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.angle.Degrees());
+			out.Write(ENGINE_SIDE[point.side]);
+			out.Write(STEERING_FACING[point.steering]);
+			out.EndChild();
 		}
 		for(const Hardpoint &hardpoint : armament.Get())
 		{
