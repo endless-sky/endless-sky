@@ -560,6 +560,9 @@ ship "Penguin"
 		"reverse thrust" 16
 		"reverse thrusting energy" 2.5
 		"reverse thrusting heat" 2.0
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
 		weapon
 			"blast radius" 20
 			"shield damage" 260
@@ -577,6 +580,29 @@ ship "Penguin"
 	
 	engine 0 30
 	gun 0 -33
+	"reverse engine" 0 -32
+		zoom 0.25
+		angle 0
+	"steering engine" -6.5 -26
+		"zoom" 0.2
+		"angle" 90
+		over
+		right
+	"steering engine" 6.5 -26
+		"zoom" 0.2
+		"angle" 270
+		over
+		left
+	"steering engine" -11 17
+		"zoom" 0.2
+		"angle" 90
+		under
+		left
+	"steering engine" 11 17
+		"zoom" 0.2
+		"angle" 270
+		under
+		right
 	turret 0 5.5
 	leak "remnant leak sparkle" 30 2
 	explode "tiny explosion" 8
