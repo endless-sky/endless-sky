@@ -129,9 +129,9 @@ jobs:
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
       - uses: actions/checkout@v2
-      - name: Install gothub
+      - name: Install github-release
         run: |
-          go get github.com/itchio/gothub
+          go get github.com/github-release/github-release
           echo "::set-env name=GOPATH::$(go env GOPATH)"
           echo "::add-path::$(go env GOPATH)/bin"
       - name: Set environment variables
@@ -146,16 +146,16 @@ jobs:
         run: |
           DESCRIPTION=$'This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
           \n
-          \nTriggered on commit ${{ github.sha }} by ${{ github.actor }}
+          \nTriggered on commit ${{ github.sha }} by @${{ github.actor }}
           \nhttps://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
-          if ! gothub info -t continuous > /dev/null 2>&1; then
-            gothub release \
+          if ! github-release info -t continuous > /dev/null 2>&1; then
+            github-release release \
               --tag continuous \
               --name "Continuous Build" \
               --description "$DESCRIPTION" \
               --pre-release
           else
-            gothub edit \
+            github-release edit \
               --tag continuous \
               --name "Continuous Build" \
               --description "$DESCRIPTION" \
@@ -166,9 +166,9 @@ jobs:
         with:
           name: ${{ env.OUTPUT_UBUNTU }}
           path: ${{ github.workspace }}
-      - name: Upload ${{ env.OUTPUT_UBUNTU }}
+      - name: Add ${{ env.OUTPUT_UBUNTU }} to release tag
         run: |
-          gothub upload \
+          github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_UBUNTU }} \
@@ -178,9 +178,9 @@ jobs:
         with:
           name: ${{ env.OUTPUT_APPIMAGE }}
           path: ${{ github.workspace }}
-      - name: Upload ${{ env.OUTPUT_APPIMAGE }}
+      - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
         run: |
-          gothub upload \
+          github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_APPIMAGE }} \
@@ -190,9 +190,9 @@ jobs:
         with:
           name: ${{ env.OUTPUT_WINDOWS }}
           path: ${{ github.workspace }}
-      - name: Upload ${{ env.OUTPUT_WINDOWS }}
+      - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
         run: |
-          gothub upload \
+          github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_WINDOWS }} \
@@ -202,9 +202,9 @@ jobs:
         with:
           name: ${{ env.OUTPUT_MACOS }}
           path: ${{ github.workspace }}
-      - name: Upload ${{ env.OUTPUT_MACOS }}
+      - name: Add ${{ env.OUTPUT_MACOS }} to release tag
         run: |
-          gothub upload \
+          github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_MACOS }} \
