@@ -73,10 +73,8 @@ public:
 	// non-const shared pointer to the target.
 	std::shared_ptr<Ship> TargetPtr() const;
 	
-	// Get the point of the position from which this projectile was
-	// fired and the position at which it impacted the target.
-	const Point &FirePosition() const;
-	const Point &ImpactPosition() const;
+	// Get the distance that this projectile has traveled.
+	double DistanceTraveled() const;
 	
 private:
 	void CheckLock(const Ship &target);
@@ -84,8 +82,6 @@ private:
 	
 private:
 	const Weapon *weapon = nullptr;
-	Point firePosition;
-	Point impactPosition;
 	
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
@@ -93,6 +89,7 @@ private:
 	
 	double clip = 1.;
 	int lifetime = 0;
+	double distanceTraveled = 0;
 	bool hasLock = true;
 };
 

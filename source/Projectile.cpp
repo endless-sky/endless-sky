@@ -39,7 +39,6 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
-	firePosition = position;
 	government = parent.GetGovernment();
 	
 	// If you are boarding your target, do not fire on it.
@@ -66,7 +65,6 @@ Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
-	firePosition = parent.position;
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
 	
@@ -215,6 +213,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	}
 	
 	position += velocity;
+	distanceTraveled += velocity.Length();
 	
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
@@ -229,11 +228,11 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
-	impactPosition = Point(position + velocity * intersection);
+	distanceTraveled -= velocity.Length() * (1. - intersection);
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
-			visuals.emplace_back(*it.first, impactPosition, velocity, angle, hitVelocity);
+			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
 	lifetime = -100;
 }
@@ -284,20 +283,6 @@ const Ship *Projectile::Target() const
 shared_ptr<Ship> Projectile::TargetPtr() const
 {
 	return targetShip.lock();
-}
-
-
-
-const Point &Projectile::FirePosition() const
-{
-	return firePosition;
-}
-
-
-
-const Point &Projectile::ImpactPosition() const
-{
-	return impactPosition;
 }
 
 
