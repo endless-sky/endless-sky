@@ -76,6 +76,9 @@ outfit "X1050 Ion Engines"
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"flare sound" "ion tiny"
+	"steering flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"steering flare sound" "ion tiny"
 	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only "adequate" in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
 
 
@@ -171,6 +174,9 @@ outfit "X1200 Ion Steering"
 	"turn" 160
 	"turning energy" .3
 	"turning heat" .6
+	"steering flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"steering flare sound" "ion tiny"
 	description "This is the smallest set of steering thrusters that you can buy, generally considered suitable only for tiny, pilotless drones. Occasionally pilots looking for some extra outfit space will try swapping out their larger steering systems for one of these, but the results are invariably disappointing."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -184,6 +190,9 @@ outfit "X2200 Ion Steering"
 	"turn" 307
 	"turning energy" .6
 	"turning heat" 1.1
+	"steering flare sprite" "effect/ion flare/small"
+		"frame rate" 1.1
+	"steering flare sound" "ion small"
 	description "The X2200 steering system is designed for fighters and other small spacecraft, as well as for use in larger ships when maneuverability is not needed."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -197,6 +206,9 @@ outfit "X3200 Ion Steering"
 	"turn" 590
 	"turning energy" 1.1
 	"turning heat" 2.0
+	"steering flare sprite" "effect/ion flare/medium"
+		"frame rate" 1.0
+	"steering flare sound" "ion medium"
 	description "The X3200 steering system is intended for small warships and freighters. It produces enough turning force to lend agility to all but the largest of human ships, and it is considerably more energy-efficient than the plasma-drive alternatives."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -210,6 +222,9 @@ outfit "X4200 Ion Steering"
 	"turn" 1132
 	"turning energy" 1.9
 	"turning heat" 3.9
+	"steering flare sprite" "effect/ion flare/large"
+		"frame rate" 0.9
+	"steering flare sound" "ion large"
 	description "The X4200 is a powerful steering system, designed mostly for warships because quick steering is seldom a requirement in freighter design."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -223,6 +238,9 @@ outfit "X5200 Ion Steering"
 	"turn" 2174
 	"turning energy" 3.5
 	"turning heat" 7.3
+	"steering flare sprite" "effect/ion flare/huge"
+		"frame rate" 0.8
+	"steering flare sound" "ion huge"
 	description "The X5200 is a steering system so large and powerful that only a handful of ships can install it. Due to its limited market, it is produced in small numbers."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -319,6 +337,9 @@ outfit "Chipmunk Plasma Steering"
 	"turn" 256
 	"turning energy" .5
 	"turning heat" 1.1
+	"steering flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
 	description "This is the smallest plasma steering system that Delta V produces. The packaging features a cartoon of what appears to be a very highly caffeinated rodent."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -332,6 +353,9 @@ outfit "Greyhound Plasma Steering"
 	"turn" 492
 	"turning energy" 0.9
 	"turning heat" 2.1
+	"steering flare sprite" "effect/plasma flare/small"
+		"frame rate" 6
+	"steering flare sound" "plasma small"
 	description "The Greyhound class plasma propulsion systems are Delta V's most popular product, suitable for a wide range of small starships."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -345,6 +369,9 @@ outfit "Impala Plasma Steering"
 	"turn" 944
 	"turning energy" 1.6
 	"turning heat" 4.1
+	"steering flare sprite" "effect/plasma flare/medium"
+		"frame rate" 7
+	"steering flare sound" "plasma medium"
 	description "Impala class plasma steering systems are suitable for most freighters and all but the largest warships, and are also considerably more compact than the ion propulsion systems produced by the Syndicate."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -358,6 +385,9 @@ outfit "Orca Plasma Steering"
 	"turn" 1812
 	"turning energy" 2.9
 	"turning heat" 7.7
+	"steering flare sprite" "effect/plasma flare/large"
+		"frame rate" 8
+	"steering flare sound" "plasma large"
 	description "An Orca class steering system will allow any mid-sized ship to turn as quickly as a fighter, and is powerful enough to serve even the largest of warships."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -371,6 +401,9 @@ outfit "Tyrant Plasma Steering"
 	"turn" 3479
 	"turning energy" 5.2
 	"turning heat" 14.7
+	"steering flare sprite" "effect/plasma flare/huge"
+		"frame rate" 9
+	"steering flare sound" "plasma huge"
 	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships can make use of it."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -462,6 +495,9 @@ outfit "A125 Atomic Steering"
 	"turn" 392
 	"turning energy" 0.9
 	"turning heat" 2.2
+	"steering flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"steering flare sound" "atomic tiny"
 	description "Deep Sky's atomic thrusters are a popular choice for high-end starships. It is not uncommon for a set of atomic engines to cost more than the ship they are installed in."
 
 outfit "A255 Atomic Steering"
@@ -474,6 +510,9 @@ outfit "A255 Atomic Steering"
 	"turn" 687
 	"turning energy" 1.5
 	"turning heat" 3.7
+	"steering flare sprite" "effect/atomic flare/small"
+		"frame rate" 13
+	"steering flare sound" "atomic small"
 	description "If you have exhausted all your other options for making your ship more maneuverable, it may be time to invest in a set of atomic engines."
 
 outfit "A375 Atomic Steering"
@@ -486,6 +525,9 @@ outfit "A375 Atomic Steering"
 	"turn" 1192
 	"turning energy" 2.5
 	"turning heat" 6.3
+	"steering flare sprite" "effect/atomic flare/medium"
+		"frame rate" 12
+	"steering flare sound" "atomic medium"
 	description "Bounty hunters and other captains who need to gain a speed advantage over the ships they are pursuing often dream of being able to save up enough money for a set of atomic engines."
 
 outfit "A525 Atomic Steering"
@@ -498,6 +540,9 @@ outfit "A525 Atomic Steering"
 	"turn" 2050
 	"turning energy" 4.1
 	"turning heat" 10.5
+	"steering flare sprite" "effect/atomic flare/large"
+		"frame rate" 11
+	"steering flare sound" "atomic large"
 	description "This set of maneuvering thrusters from Deep Sky will allow small warships to turn as fast as a fighter. For larger ships, swapping the existing engines with a set of atomics can free up a considerable amount of space for other outfits or weapons."
 
 outfit "A865 Atomic Steering"
@@ -510,6 +555,9 @@ outfit "A865 Atomic Steering"
 	"turn" 3509
 	"turning energy" 6.6
 	"turning heat" 17.5
+	"steering flare sprite" "effect/atomic flare/huge"
+		"frame rate" 10
+	"steering flare sound" "atomic huge"
 	description "Atomic engines are considered by many to be Deep Sky's crowning achievement. Although they are so expensive that relatively few of them are in use, there are few captains who do not dream of one day installing a set of them."
 
 
@@ -523,4 +571,7 @@ outfit "AR120 Reverse Thruster"
 	"reverse thrust" 15.4
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."

@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "SpriteSet.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -59,6 +60,20 @@ namespace {
 		{"shield fuel multiplier", -1.},
 		{"shield heat multiplier", -1.}
 	};
+	
+	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
+	{
+		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
+			[&it](pair<Body, int> flare)
+			{
+				return it.first.GetSprite() == flare.first.GetSprite();
+			});
+		
+		if(oit == thisFlares.end())
+			thisFlares.emplace_back(it.first, count * it.second);
+		else
+			oit->second += count * it.second;
+	}
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -94,8 +109,22 @@ void Outfit::Load(const DataNode &node)
 			flareSprites.emplace_back(Body(), 1);
 			flareSprites.back().first.LoadSprite(child);
 		}
+		else if(child.Token(0) == "reverse flare sprite" && child.Size() >= 2)
+		{
+			reverseFlareSprites.emplace_back(Body(), 1);
+			reverseFlareSprites.back().first.LoadSprite(child);
+		}
+		else if(child.Token(0) == "steering flare sprite" && child.Size() >= 2)
+		{
+			steeringFlareSprites.emplace_back(Body(), 1);
+			steeringFlareSprites.back().first.LoadSprite(child);
+		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			++flareSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
+			++reverseFlareSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
+			++steeringFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
@@ -272,19 +301,17 @@ void Outfit::Add(const Outfit &other, int count)
 	}
 	
 	for(const auto &it : other.flareSprites)
-	{
-		auto oit = flareSprites.begin();
-		for( ; oit != flareSprites.end(); ++oit)
-			if(oit->first.GetSprite() == it.first.GetSprite())
-				break;
-		
-		if(oit == flareSprites.end())
-			flareSprites.emplace_back(it.first, count * it.second);
-		else
-			oit->second += count * it.second;
-	}
+		AddFlareSprites(flareSprites, it, count);
+	for(const auto &it : other.reverseFlareSprites)
+		AddFlareSprites(reverseFlareSprites, it, count);
+	for(const auto &it : other.steeringFlareSprites)
+		AddFlareSprites(steeringFlareSprites, it, count);
 	for(const auto &it : other.flareSounds)
 		flareSounds[it.first] += count * it.second;
+	for(const auto &it : other.reverseFlareSounds)
+		reverseFlareSounds[it.first] += count * it.second;
+	for(const auto &it : other.steeringFlareSounds)
+		steeringFlareSounds[it.first] += count * it.second;
 	for(const auto &it : other.afterburnerEffects)
 		afterburnerEffects[it.first] += count * it.second;
 }
@@ -307,9 +334,37 @@ const vector<pair<Body, int>> &Outfit::FlareSprites() const
 
 
 
+const vector<pair<Body, int>> &Outfit::ReverseFlareSprites() const
+{
+	return reverseFlareSprites;
+}
+
+
+
+const vector<pair<Body, int>> &Outfit::SteeringFlareSprites() const
+{
+	return steeringFlareSprites;
+}
+
+
+
 const map<const Sound *, int> &Outfit::FlareSounds() const
 {
 	return flareSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::ReverseFlareSounds() const
+{
+	return reverseFlareSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::SteeringFlareSounds() const
+{
+	return steeringFlareSounds;
 }
 
 
