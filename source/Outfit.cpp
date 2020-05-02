@@ -61,13 +61,13 @@ namespace {
 		{"shield heat multiplier", -1.}
 	};
 	
-	void AddFlareSprites(vector<pair<Body,int>> &thisFlares, pair<Body,int> it, int count)
+	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body,int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
-		[&it](pair<Body, int> flare)
-		{
-			return it.first.GetSprite() == flare.first.GetSprite();
-		});
+			[&it](pair<Body, int> flare)
+			{
+				return it.first.GetSprite() == flare.first.GetSprite();
+			});
 		
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);

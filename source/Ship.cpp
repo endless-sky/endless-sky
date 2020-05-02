@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Ship.h"
 
-#include "Angle.h"
 #include "Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -181,9 +180,9 @@ void Ship::Load(const DataNode &node)
 			bool reverse = (key == "reverse engine");
 			bool steering = (key == "steering engine");
 			
-			vector<EnginePoint> &editPoints = !steering && !reverse ? enginePoints : 
+			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints : 
 				(reverse ? reverseEnginePoints : steeringEnginePoints); 
-			editPoints.emplace_back(child.Value(1), child.Value(2),
+			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
 			for(const DataNode &grand : child)
@@ -680,7 +679,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("reverse engine", 2. * point.X(), 2. * point.Y());
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
-			out.Write("angle", point.facing.Degrees());
+			out.Write("angle", point.facing.Degrees() - 180.);
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 		}
