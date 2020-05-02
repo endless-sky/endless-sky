@@ -321,3 +321,11 @@ void Projectile::CheckLock(const Ship &target)
 		hasLock |= Check(probability, base);
 	}
 }
+
+
+
+double Projectile::DistanceTraveled() const
+{
+	return distanceTraveled;
+}
+
