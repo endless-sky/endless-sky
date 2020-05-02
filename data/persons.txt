@@ -102,6 +102,28 @@ person "Michael Zahniser"
 		gun 7 -14 "Electron Beam"
 	ship "Finch" "Finch"
 		"never disabled"
+		add attributes
+			"weapon capacity" 22
+			"outfit space" 140
+			"shields" 900
+			"hull" 1800
+		outfits
+			"Electron Beam" 2
+			
+			"Fuel Pod"
+			"Liquid Nitrogen Cooler"
+			"Large Radar Jammer"
+			"Ramscoop"
+			"S-270 Regenerator"
+			
+			"LP036a Battery Pack"
+			"Fission Reactor"
+			
+			"A125 Atomic Steering"
+			"A120 Atomic Thruster"
+			"Ionic Afterburner"
+		gun -7 -14 "Electron Beam"
+		gun 7 -14 "Electron Beam"
 
 
 
