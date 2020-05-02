@@ -3707,13 +3707,6 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			
 			gaveOrder = true;
 			
-			// If we don't have a valid target, then we cancel the orders for
-			// all selected ships. The only reason we still got into this loop
-			// is to make sure that we selected at least 1 ship that can follow
-			// the order.
-			if(!isValidTarget)
-				break;
-			
 			hasMismatch |= !orders.count(ship);
 			
 			Orders &existing = orders[ship];
