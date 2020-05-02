@@ -3138,12 +3138,18 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	double disabled = max(0., min(attributes.Get("disabled"), maximumHull));
-	double disabledPercent = max(0., min(attributes.Get("disabled percentage"), 1.));
-	if(disabled > 0. || disabledPercent > 0.)
-		return max(disabled, disabledPercent * maximumHull);
+	double absoluteThreshold = attributes.Get("absolute threshold");
+	if(absoluteThreshold > 0.)
+		return absoluteThreshold;
 	
-	return floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))));
+	double minimumHull;
+	double thresholdPercent = max(0., min(attributes.Get("threshold percentage"), 1.));
+	if(thresholdPercent)
+		minimumHull = maximumHull * thresholdPercent;
+	else
+		minimumHull = floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))))
+
+	return max(0., minimumHull + attribute.Get("hull threshold"));
 }
 
 

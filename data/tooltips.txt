@@ -68,12 +68,6 @@ tip "cooling inefficiency:"
 tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
-tip "disabled:"
-	`Alters the hull strength value at which the ship will become disabled.`
-
-tip "disabled percentage:"
-	`Alters the percentage of the remaining hull strength at which the ship will become disabled.`
-
 tip "disruption resistance:"
 	`How much shield disruption damage this ship can resist per second.`
 
@@ -148,6 +142,15 @@ tip "hull heat:"
 
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
+
+tip "absolute threshold:"
+	`The remaining hull strength at which the ship becomes disabled, unaltered by any other attributes.`
+
+tip "hull threshold:"
+	`Alters the hull strength value at which the ship will become disabled.`
+
+tip "threshold percentage:"
+	`Alters the percentage of the remaining hull strength at which the ship will become disabled.`
 
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
