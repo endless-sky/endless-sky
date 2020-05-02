@@ -137,7 +137,7 @@ public:
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
-	std::string FlightCheck() const;
+	std::vector<std::string> FlightCheck() const;
 	
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
@@ -258,7 +258,8 @@ public:
 	double DisabledHull() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
-	int JumpsRemaining() const;
+	// If followParent is false, this ship will not follow the parent.
+	int JumpsRemaining(bool followParent = true) const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
 	// Get the cost of making a jump of the given type (if possible).
