@@ -228,7 +228,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
-	distanceTraveled -= velocity.Length() * (1. - intersection);
+	distanceTraveled += velocity.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
