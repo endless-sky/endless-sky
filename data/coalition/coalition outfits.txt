@@ -40,7 +40,7 @@ outfit "Small Reactor Module"
 	thumbnail "outfit/small reactor module"
 	"mass" 42
 	"outfit space" -42
-	"energy generation" 8.8
+	"energy generation" 9.8
 	"heat generation" 19
 	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. So for ships that must have a reliable energy source to power weapons, the Heliarchs use nuclear reactors."
 
@@ -52,7 +52,7 @@ outfit "Large Reactor Module"
 	thumbnail "outfit/large reactor module"
 	"mass" 98
 	"outfit space" -98
-	"energy generation" 22.3
+	"energy generation" 24.2
 	"heat generation" 45
 	description "This reactor was designed for the most powerful Heliarch warships. Its design has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
 
