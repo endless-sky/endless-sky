@@ -80,6 +80,7 @@ person "Michael Zahniser"
 		"never disabled"
 		add attributes
 			"weapon capacity" 22
+			"engine capacity" 22
 			"outfit space" 140
 			"shields" 900
 			"hull" 1800
