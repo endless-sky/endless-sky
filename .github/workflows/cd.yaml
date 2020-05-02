@@ -4,10 +4,14 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types: 
+      - synchronize # New commit has been pushed
+      - opened
 
 jobs:
 
-  ubuntu_x86_64:
+  cd_ubuntu_x86_64:
     runs-on: ubuntu-latest
     env:
       OUTPUT: endless-sky-x86_64-continuous.tar.gz
@@ -31,7 +35,7 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  appimage_x86_64:
+  cd_appimage_x86_64:
     runs-on: ubuntu-16.04
     env:
       ARCH: x86_64
@@ -53,7 +57,7 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  windows_win64:
+  cd_windows_win64:
     runs-on: windows-latest
     env:
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
@@ -85,10 +89,10 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  macos_x86_64:
+  cd_macos_x86_64:
     runs-on: macos-latest
     env:
-      OUTPUT: EndlessSky-macOS-continuous.zip
+      OUTPUT: EndlessSky-macOS10.15-continuous.zip
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -114,19 +118,20 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  process_artifacts:
+  cd_upload_artifacts_to_release:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs:
-      - ubuntu_x86_64
-      - appimage_x86_64
-      - windows_win64
-      - macos_x86_64
+      - cd_ubuntu_x86_64
+      - cd_appimage_x86_64
+      - cd_windows_win64
+      - cd_macos_x86_64
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT_UBUNTU: endless-sky-x86_64-continuous.tar.gz
       OUTPUT_APPIMAGE: endless-sky-x86_64-continuous.AppImage
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
-      OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
+      OUTPUT_MACOS: EndlessSky-macOS10.15-continuous.zip
     steps:
       - uses: actions/checkout@v2
       - name: Install github-release
@@ -209,4 +214,4 @@ jobs:
             --replace \
             --name ${{ env.OUTPUT_MACOS }} \
             --file ${{ env.OUTPUT_MACOS }}
-      
+    
