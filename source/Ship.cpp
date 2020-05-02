@@ -192,7 +192,7 @@ void Ship::Load(const DataNode &node)
 				if(grandKey == "zoom" && grand.Size() >= 2)
 					engine.zoom = grand.Value(1);
 				else if(grandKey == "angle" && grand.Size() >= 2)
-					engine.angle = Angle(grand.Value(1) + (reverse ? 180. : 0.));
+					engine.facing = Angle(grand.Value(1) + (reverse ? 180. : 0.));
 				else
 				{
 					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
@@ -670,7 +670,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("engine", 2. * point.X(), 2. * point.Y());
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
-			out.Write("angle", point.angle.Degrees());
+			out.Write("angle", point.facing.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 				
@@ -680,7 +680,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("reverse engine", 2. * point.X(), 2. * point.Y());
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
-			out.Write("angle", point.angle.Degrees());
+			out.Write("angle", point.facing.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 		}
@@ -689,7 +689,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("steering engine", 2. * point.X(), 2. * point.Y());
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
-			out.Write("angle", point.angle.Degrees());
+			out.Write("angle", point.facing.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.Write(STEERING_FACING[point.steering]);
 			out.EndChild();

@@ -94,7 +94,7 @@ public:
 		static const uint8_t RIGHT = 2;
 		
 		double zoom;
-		Angle angle;
+		Angle facing;
 	};
 	
 	
