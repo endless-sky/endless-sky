@@ -167,8 +167,7 @@ namespace {
 			// If multiple engines with the same flare are installed, draw up to
 			// three copies of the flare sprite.
 			for(const auto &it : flareSprites)
-				if(point.side == side &&
-					(point.steering == Ship::EnginePoint::NONE
+				if(point.side == side && (point.steering == Ship::EnginePoint::NONE
 					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)

@@ -191,7 +191,7 @@ void Ship::Load(const DataNode &node)
 				const string &grandKey = grand.Token(0);
 				if(grandKey == "zoom" && grand.Size() >= 2)
 					engine.zoom = grand.Value(1);
-				else if (grandKey == "angle" && grand.Size() >= 2)
+				else if(grandKey == "angle" && grand.Size() >= 2)
 					engine.angle = Angle(grand.Value(1) + (reverse ? 180. : 0.));
 				else
 				{
