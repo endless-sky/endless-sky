@@ -61,7 +61,7 @@ namespace {
 		{"shield heat multiplier", -1.}
 	};
 	
-	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body,int> &it, int count)
+	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
 			[&it](pair<Body, int> flare)
