@@ -3147,9 +3147,9 @@ double Ship::MinimumHull() const
 	if(thresholdPercent)
 		minimumHull = maximumHull * thresholdPercent;
 	else
-		minimumHull = floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))))
+		minimumHull = floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))));
 
-	return max(0., minimumHull + attribute.Get("hull threshold"));
+	return max(0., minimumHull + attributes.Get("hull threshold"));
 }
 
 
