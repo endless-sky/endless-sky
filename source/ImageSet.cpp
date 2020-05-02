@@ -12,10 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ImageSet.h"
 
+#include "Files.h"
 #include "Mask.h"
 #include "Sprite.h"
-
-#include <iostream>
 
 using namespace std;
 
@@ -171,17 +170,18 @@ void ImageSet::Add(const string &path)
 // an error for each missing frame. (It will be left uninitialized.)
 void ImageSet::Check() const
 {
+	string prefix = "Sprite \"" + name + "\": ";
 	if(paths[1].size() > paths[0].size())
-		cerr << "Sprite \"" << name << "\": " << (paths[1].size() - paths[0].size())
-			<< " extra frames for the @2x sprite will be ignored." << endl;
+		Files::LogError(prefix + to_string(paths[1].size() - paths[0].size())
+				+ " extra frames for the @2x sprite will be ignored.");
 	
 	for(size_t i = 0; i < paths[0].size(); ++i)
 	{
 		if(paths[0][i].empty())
-			cerr << "Sprite \"" << name << "\": missing frame " << i << "." << endl;
+			Files::LogError(prefix + "missing frame " + to_string(i) + ".");
 		
 		if(!paths[1].empty() && (i >= paths[1].size() || paths[1][i].empty()))
-			cerr << "Sprite \"" << name << "\": missing @2x frame " << i << "." << endl;
+			Files::LogError(prefix + "missing @2x frame " + to_string(i) + ".");
 	}
 }
 
@@ -191,7 +191,7 @@ void ImageSet::Check() const
 // worker threads. This also generates collision masks if needed.
 void ImageSet::Load()
 {
-	// Determine how many frames there will be, total. THe image buffers will
+	// Determine how many frames there will be, total. The image buffers will
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();

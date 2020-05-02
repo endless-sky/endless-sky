@@ -44,6 +44,52 @@ effect "slowing spark"
 	"random velocity" .1
 
 
+effect "flame"
+	sprite "effect/flame"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 11
+	"random angle" 10
+	"random spin" 10
+	"random velocity" 4
+
+effect "leak"
+	sprite "effect/leak"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 30
+	"random spin" 2
+	"random velocity" 7
+
+effect "big leak"
+	sprite "effect/leak big"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+effect "remnant leak"
+	sprite "effect/remnant leak"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+effect "remnant leak sparkle"
+	sprite "effect/remnant leak sparkle"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+
 effect "tiny explosion"
 	sprite "effect/explosion/tiny"
 		"no repeat"
@@ -51,9 +97,9 @@ effect "tiny explosion"
 	sound "explosion tiny"
 	"lifetime" 20
 	"random angle" 360
-	"random velocity" .2
-	"random spin" 1
 	"random frame rate" 5
+	"random spin" 1
+	"random velocity" .2
 	"velocity scale" .4
 
 effect "small explosion"
@@ -63,9 +109,9 @@ effect "small explosion"
 	sound "explosion small"
 	"lifetime" 24
 	"random angle" 360
-	"random velocity" .4
-	"random spin" 2
 	"random frame rate" 5
+	"random spin" 2
+	"random velocity" .4
 	"velocity scale" .4
 
 effect "medium explosion"
@@ -75,9 +121,9 @@ effect "medium explosion"
 	sound "explosion medium"
 	"lifetime" 28
 	"random angle" 360
-	"random velocity" .6
-	"random spin" 3
 	"random frame rate" 5
+	"random spin" 3
+	"random velocity" .6
 	"velocity scale" .4
 
 effect "large explosion"
@@ -87,9 +133,9 @@ effect "large explosion"
 	sound "explosion large"
 	"lifetime" 32
 	"random angle" 360
-	"random velocity" .8
-	"random spin" 4
 	"random frame rate" 5
+	"random spin" 4
+	"random velocity" .8
 	"velocity scale" .4
 
 effect "huge explosion"
@@ -99,9 +145,9 @@ effect "huge explosion"
 	sound "explosion huge"
 	"lifetime" 36
 	"random angle" 360
-	"random velocity" 1
-	"random spin" 5
 	"random frame rate" 5
+	"random spin" 5
+	"random velocity" 1
 	"velocity scale" .4
 
 
@@ -115,6 +161,19 @@ effect "final explosion large"
 	sound "final explosion large"
 
 
+
+effect "basic launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+
+
+
 effect "smoke"
 	sprite "effect/smoke"
 		"no repeat"
@@ -123,6 +182,32 @@ effect "smoke"
 	"lifetime" 60
 	"random angle" 360
 	"random spin" 5
+
+
+effect "missile hit"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 15
+	sound "missile hit"
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 3
+	"random frame rate" 5
+	"velocity scale" .4
+
+
+effect "torpedo hit"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 15
+	sound "torpedo hit"
+	"lifetime" 32
+	"random angle" 360
+	"random velocity" .8
+	"random spin" 4
+	"random frame rate" 5
+	"velocity scale" .4
 
 
 effect "missile death"
@@ -137,9 +222,9 @@ effect "box"
 	sprite "effect/box"
 		"frame rate" 6
 		"random start frame"
-	"random frame rate" 12
 	"lifetime" 60000
 	"random angle" 30
+	"random frame rate" 12
 	"random spin" 10
 	"random velocity" -1
 
@@ -159,6 +244,67 @@ effect "bolide"
 		"frame rate" 3
 	"lifetime" 120
 	"random angle" 360
+	"random frame rate" 6
 	"random spin" 5
 	"velocity scale" .8
-	"random frame rate" 6
+
+	
+effect "pug tiny explosion"
+	sprite "effect/explosion/pug/tiny"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion tiny"
+	"lifetime" 20
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 1
+	"random velocity" .2
+	"velocity scale" .4
+
+effect "pug small explosion"
+	sprite "effect/explosion/pug/small"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion small"
+	"lifetime" 24
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 2
+	"random velocity" .4
+	"velocity scale" .4
+
+effect "pug medium explosion"
+	sprite "effect/explosion/pug/medium"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion medium"
+	"lifetime" 28
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 3
+	"random velocity" .6
+	"velocity scale" .4
+
+effect "pug large explosion"
+	sprite "effect/explosion/pug/large"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion large"
+	"lifetime" 32
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 4
+	"random velocity" .8
+	"velocity scale" .4
+
+effect "pug huge explosion"
+	sprite "effect/explosion/pug/huge"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion huge"
+	"lifetime" 36
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .4

@@ -10,12 +10,27 @@
 
 government "Alpha"
 	swizzle 1
+	"crew attack" 1.4
+	"crew defense" 2.2
 	"player reputation" -1000
 	"bribe" 0
 
 government "Author"
 	"player reputation" 1
 	"bribe" 0
+
+government "Builder"
+	# While when you attack the drones they will try to defend themselves, when you come back 
+	# as long as you don't attack them again they will focus on their usual activities
+	color .91 .13 .82
+	language "Builder"
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
 
 government "Bounty"
 	swizzle 6
@@ -35,6 +50,8 @@ government "Bounty Hunter"
 government "Coalition"
 	swizzle 5
 	color 1 .6 .7
+	"crew attack" .6
+	"crew defense" 3
 	language "Coalition"
 	"player reputation" 1
 	"attitude toward"
@@ -52,6 +69,8 @@ government "Deep Security"
 		"Pirate" -.2
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
+
+government "Derelict"
 
 government "Drak"
 	swizzle 5
@@ -86,12 +105,30 @@ government "Hai"
 	
 	"player reputation" 0
 	"attitude toward"
-		"Hai (Unfettered)" -.5
+		" Hai " 1
+		"Hai (Unfettered)" -.1
 		"Merchant" .01
 	"bribe" .02
-	"fine" 0
 	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government " Hai "
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Unfettered)" -.1
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
 
 government "Hai (Unfettered)"
 	swizzle 4
@@ -100,20 +137,29 @@ government "Hai (Unfettered)"
 	"player reputation" -1000
 	"attitude toward"
 		"Hai" -.01
+		" Hai " -.01
 		"Wanderer" -.01
 		"Pug" -.01
+		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Heliarch"
 	swizzle 0
 	color 1 .8 .5
+	"crew attack" 1.3
+	"crew defense" 2.8
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
+	"friendly disabled hail" "friendly disabled heliarch"
+	"hostile hail" "hostile heliarch"
+	"hostile disabled hail" "hostile disabled heliarch"
 	"attitude toward"
 		"Quarg" -.01
 		"Coalition" 1
@@ -129,6 +175,17 @@ government "Independent"
 	"hostile hail" "hostile civilian"
 	raid "Large Southern Pirates"
 
+government " Independent "
+	"display name" "Independent"
+	swizzle 6
+	color .78 .36 .36
+	
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
 government "Indigenous Lifeform"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
@@ -141,9 +198,60 @@ government "Indigenous Lifeform"
 		destroy 0
 		atrocity 0
 
+government "Ka'het"
+	swizzle 0
+	language "Ka'het"
+
+	"attitude toward"
+		" Ka'het " -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Pug" -.01
+		"Hai" -.01
+		" Hai " -.01
+		"Korath" -.01
+		"Navy (Oathkeeper)" -.01
+		"Republic" -.01
+		"Free Worlds" -.01
+		"Hai (Unfettered)" -.01
+		"Wanderer" -.01
+	
+	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
+
+government " Ka'het "
+	"display name" "Ka'het"
+	swizzle 0
+	language "Ka'het"
+
+	"attitude toward"
+		"Ka'het" -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Pug" -.01
+		"Hai" -.01
+		" Hai " -.01
+		"Korath" -.01
+		"Navy (Oathkeeper)" -.01
+		"Republic" -.01
+		"Free Worlds" -.01
+		"Hai (Unfettered)" -.01
+		"Wanderer" -.01
+	
+	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
+
 government "Korath"
 	swizzle 0
 	color .8 .5 .1
+	"crew attack" 1.4
+	"crew defense" 2.6
 	language "Korath"
 	
 	"attitude toward"
@@ -191,6 +299,13 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
+government "Marauder"
+	swizzle 6
+	"player reputation" 1
+	"bribe" .1
+	"fine" 0
+	"hostile hail" "hostile pirate"
+
 government "Merchant"
 	swizzle 5
 	
@@ -217,6 +332,8 @@ government "Militia"
 
 government "Navy Intelligence"
 	swizzle 0
+	"crew attack" 1.2
+	"crew defense" 2.2
 	"attitude toward"
 		"Syndicate" -.1
 		"Pirate" -.3
@@ -224,6 +341,8 @@ government "Navy Intelligence"
 government "Navy (Oathkeeper)"
 	swizzle 0
 	color .91 .42 .09
+	"crew attack" 1.2
+	"crew defense" 2.2
 	
 	"player reputation" 100
 	"attitude toward"
@@ -263,6 +382,7 @@ government "Pirate"
 	"attitude toward"
 		"Author" -.01
 		"Hai" -.01
+		" Hai " -.01
 		"Korath" -.01
 		"Merchant" -.1
 		"Syndicate" -.01
@@ -281,7 +401,23 @@ government "Pug"
 		"Drak" -.01
 		"Quarg" -.01
 	"friendly hail" "friendly pug"
+	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
+	"hostile disabled hail" "hostile pug"
+
+government "Pug (Wanderer)"
+	"display name" "Pug"
+	swizzle 0
+	color .99 .89 .70
+	
+	"player reputation" 1
+	"attitude toward"
+		"Drak" -.01
+		"Quarg" -.01
+	"friendly hail" "friendly pug"
+	"friendly disabled hail" "friendly disabled pug"
+	"hostile hail" "hostile pug"
+	"hostile disabled hail" "hostile pug"
 
 government "Quarg"
 	swizzle 0
@@ -294,20 +430,32 @@ government "Quarg"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Hai" .01
+		" Hai " .01
 		"Pirate" -.01
 	"hostile hail" "hostile quarg"
+	"hostile disabled hail" "hostile quarg"
 
 government "Remnant"
 	swizzle 0
 	color .89 .38 .62
+	"crew defense" 2.2
 	
 	"player reputation" 1
+	"bribe" 0
 	"attitude toward"
-		"Korath" -.01
+		"Indigenous Lifeform" 0.05
+		"Korath" -.05
+		"Alpha" -.05
+	"penalty for"
+		assist -0.25
+		capture 10
+		destroy 10
 
 government "Republic"
 	swizzle 0
 	color .91 .42 .09
+	"crew attack" 1.2
+	"crew defense" 2.2
 	
 	"player reputation" 2
 	"attitude toward"
@@ -355,7 +503,7 @@ government "Test Dummy"
 	"hostile disabled hail" "disabled test dummy"
 
 government "Uninhabited"
-	color .3 .3 .3
+	color .4 .4 .4
 
 government "Wanderer"
 	swizzle 2
@@ -363,5 +511,12 @@ government "Wanderer"
 	"player reputation" 1
 	language "Wanderer"
 	"friendly hail" "wanderer untranslated"
+	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
 	"hostile disabled hail" "wanderer untranslated"
+
+# A dummy government used to prevent Hai from entering the wormhole in Waypoint/Ultima Thule, but allowing human merchants and other governments to enter.
+government "Wormhole Alpha"
+	"attitude toward"
+		"Hai" -.01
+		"Hai (Unfettered)" -.01

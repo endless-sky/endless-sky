@@ -133,7 +133,7 @@ void Audio::Init(const vector<string> &sources)
 	// The listener is looking "into" the screen. This orientation vector is
 	// used to determine what sounds should be in the right or left speaker.
 	ALfloat zero[3] = {0., 0., 0.};
-	ALfloat	orientation[6] = {0., 0., -1., 0., 1., 0.};
+	ALfloat orientation[6] = {0., 0., -1., 0., 1., 0.};
 	
 	alListenerf(AL_GAIN, volume);
 	alListenerfv(AL_POSITION, zero);
@@ -579,7 +579,7 @@ namespace {
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			if(!sounds[name].Load(path))
+			if(!sounds[name].Load(path, name))
 				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}

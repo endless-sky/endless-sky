@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 
@@ -28,6 +29,7 @@ class DataNode;
 class DataWriter;
 class Planet;
 class PlayerInfo;
+class Ship;
 class ShipEvent;
 class System;
 class UI;
@@ -99,8 +101,9 @@ public:
 	// check for whether you can offer a mission does not take available space
 	// into account, so before actually offering a mission you should also check
 	// if the player has enough space.
-	bool CanOffer(const PlayerInfo &player) const;
+	bool CanOffer(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	bool HasSpace(const PlayerInfo &player) const;
+	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
@@ -121,14 +124,16 @@ public:
 	
 	// When the state of this mission changes, it may make changes to the player
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
-	// used as the callback for any UI panel that returns a value. If it is not
-	// possible for this change to happen, this function returns false.
+	// used as the callback for an `on offer` conversation, to handle its response.
+	// If it is not possible for this change to happen, this function returns false.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER};
-	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr);
+	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 	
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Checks if the given ship belongs to one of the mission's NPCs.
+	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
@@ -137,10 +142,14 @@ public:
 	// never modified by string substitution, so it can be used in condition
 	// variables, etc.
 	const std::string &Identifier() const;
+	// Get a specific mission action from this mission.
+	// If the mission action is not found for the given trigger, returns an empty
+	// mission action.
+	const MissionAction &GetAction(Trigger trigger) const; 
 	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
-	Mission Instantiate(const PlayerInfo &player) const;
+	Mission Instantiate(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	
 	
 private:

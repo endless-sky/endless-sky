@@ -48,7 +48,7 @@ void Music::Init(const vector<string> &sources)
 			if(path.length() < root.length() + 4)
 				continue;
 			string ext = path.substr(path.length() - 4);
-			if(ext != ".mp3" && path != ".MP3")
+			if(ext != ".mp3" && ext != ".MP3")
 				continue;
 			
 			string name = path.substr(root.length(), path.length() - root.length() - 4);

@@ -310,7 +310,7 @@ string Font::TruncateMiddle(const string &str, int width) const
 		bool nextWorks = (nextWidth <= width);
 		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
 		{
-			leftChars = min(prevChars,nextChars) / 2;
+			leftChars = min(prevChars, nextChars) / 2;
 			rightChars = min(prevChars, nextChars) - leftChars;
 			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
 		}
@@ -391,7 +391,7 @@ void Font::CalculateAdvances(ImageBuffer &image)
 		{
 			int maxD = 0;
 			int glyphWidth = 0;
-			uint32_t *begin = reinterpret_cast<uint32_t *>(image.Pixels());
+			uint32_t *begin = image.Pixels();
 			for(int y = 0; y < height; ++y)
 			{
 				// Find the last non-empty pixel in the previous glyph.
@@ -475,9 +475,6 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	screenWidth = 0;
 	screenHeight = 0;
 	
-	// The texture always comes from texture unit 0.
-	glUniform1i(shader.Uniform("tex"), 0);
-
 	colorI = shader.Uniform("color");
 	scaleI = shader.Uniform("scale");
 	glyphI = shader.Uniform("glyph");

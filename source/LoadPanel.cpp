@@ -66,11 +66,13 @@ namespace {
 LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), selectedPilot(player.Identifier())
 {
-	// If you have a player loaded, and the player is on a planet, makes sure
+	// If you have a player loaded, and the player is on a planet, make sure
 	// the player is saved so that any snapshot you create will be of the
 	// player's current state, rather than one planet ago. Only do this if the
-	// game is paused, i.e. the "main panel" is not on top:
-	if(player.GetPlanet() && !player.IsDead() && !gamePanels.IsTop(&*gamePanels.Root()))
+	// game is paused and 'dirty', i.e. the "main panel" is not on top, and we
+	// actually were using the loaded save.
+	if(player.GetPlanet() && !player.IsDead() && !gamePanels.IsTop(&*gamePanels.Root())
+			&& gamePanels.CanSave())
 		player.Save();
 	UpdateLists();
 }
@@ -172,7 +174,7 @@ void LoadPanel::Draw()
 
 
 
-bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == 'n')
 	{
@@ -310,7 +312,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 			{
 				selectedFile = it.first;
 				if(clicks > 1)
-					KeyDown('l', 0, Command());
+					KeyDown('l', 0, Command(), true);
 				break;
 			}
 	}
@@ -413,6 +415,7 @@ void LoadPanel::OnCallback(int)
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());
 	gamePanels.Reset();
+	gamePanels.CanSave(true);
 	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	gamePanels.StepAll();
@@ -479,6 +482,7 @@ void LoadPanel::LoadCallback()
 	// First, make sure the previous MainPanel has been deleted, so
 	// its background thread is no longer running.
 	gamePanels.Reset();
+	gamePanels.CanSave(true);
 	
 	player.Load(loadedInfo.Path());
 	

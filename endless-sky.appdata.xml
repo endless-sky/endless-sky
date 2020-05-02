@@ -3,8 +3,6 @@
   <id>io.github.endless_sky.endless_sky</id>
   <launchable type="desktop-id">endless-sky.desktop</launchable>
   <name>Endless Sky</name>
-  <name xml:lang="de">Weltraumspiel</name>
-  <name xml:lang="fr">Jeu spatial</name>
   <summary>Space exploration and combat game</summary>
   <summary xml:lang="de">Weltraumhandels und Kampfsimulator</summary>
   <summary xml:lang="fr">Jeu d'exploration et de combat dans l'espace</summary>
@@ -12,13 +10,13 @@
   <project_license>GPL-3.0 AND CC-BY-SA-4.0 AND CC-BY-SA-3.0 AND CC-BY-3.0</project_license>
   <metadata_license>CC0-1.0</metadata_license>
   <description>
-  <p>
-   Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
-  </p>
-  <p>
-   Endless Sky is a sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control. You start out as the captain of a tiny space ship and can choose what to do from there. The game includes a major plot line and many minor missions, but you can choose whether you want to play through the plot or strike out on your own as a merchant or bounty hunter or explorer.
-  </p>
+    <p>Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...</p>
+    <p>Endless Sky is a sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control. You start out as the captain of a tiny space ship and can choose what to do from there. The game includes a major plot line and many minor missions, but you can choose whether you want to play through the plot or strike out on your own as a merchant or bounty hunter or explorer.</p>
   </description>
+  <categories>
+    <category>Game</category>
+    <category>Simulation</category>
+  </categories>
   <url type="bugtracker">https://github.com/endless-sky/endless-sky/issues</url>
   <url type="help">https://github.com/endless-sky/endless-sky/wiki/PlayersManual</url>
   <url type="homepage">https://endless-sky.github.io/</url>
@@ -40,77 +38,98 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.8" date="2017-08-14">
+    <release version="0.9.12" date="2020-05-01">
       <description>
-        <p>Bug fixes:</p>
+        <p>This is a stable release focusing on bug fixes and polishing the recent v0.9.11 release.</p>
+        <p>Changes include:</p>
         <ul>
-            <li>Typo fixes. (@Amazinite, @Bladewood, @Hadron1776, @MessyMix, @tehhowch)</li>
-            <li>You no longer ever transfer crew to automata when capturing them. (@tehhowch)</li>
-            <li>Fixed ships not fully decloaking after cloaking to repair themselves. (@tehhowch)</li>
-            <li>Shift-selecting a range of ships in a shop no longer includes disabled ships. (@tehhowch)</li>
-            <li>Fixed an error in how the travel plan is drawn when you have no flagship. (@tehhowch)</li>
-            <li>Fixed flashing ships repeatedly triggering the warning siren. (@Hadron1776)</li>
-            <li>Fixed a bug that kept you from landing on planets that aren't on your travel plan. (@tehhowch)</li>
-            <li>Adding a stellar object that is linked to a planet definition now works properly.</li>
-            <li>Map labels now reset to their default state when loading a new game.</li>
-            <li>Fixed a crash that could happen when disowning ships.</li>
-            <li>Fixed a crash that could occur when your flagship is captured.</li>
-            <li>Daily weapon reloads (e.g. when you jump) no longer reset turret angles.</li>
-            <li>Fixed the messages list not resetting if creating a new pilot from the main menu.</li>
+          <li>Buying and selling items at maximum depreciation now accounts for the 7-day grace period.</li>
+          <li>Missions will no longer complete if a required passenger isn’t landed with you.</li>
+          <li>Several new star images have been added, as well as additional jobs for players with many bunks.</li>
+          <li>Tweaks to the balance of solar panels and some Coalition outfits, and to the fleets found in Hai space.</li>
         </ul>
-        <p>Game content:</p>
+        <p>Plugin authors and content creators have some small engine updates to consider:</p>
         <ul>
-            <li>Fixed a Remnant mission that could be offered on non-Remnant worlds. (@tehhowch)</li>
-            <li>Fixed the turret assignments on the cloaked Archon. (@tehhowch)</li>
-            <li>The uninhabited "Far Monad" world will no longer fine the player. (@Amazinite)</li>
-            <li>Fixed some issues with the Wanderer / Kor Sestor missions. (@tehhowch)</li>
-            <li>Reordering some ship hardpoints for consistency. (@warp-core)</li>
-            <li>Added a different faction log entry for the Remnant if you don't befriend them. (@tehhowch)</li>
-            <li>Added descriptions for the Remnant ships and thumbnail images for their outfits.</li>
-            <li>Made the Remnant's Point Defense Turret far more effective, to justify its price.</li>
-            <li>Made the Remnant generators a bit better, and made the Crystal Capacitor draw power.</li>
-            <li>Made the Starling and Albatross ships a bit faster, and gave the Starling more fuel.</li>
-            <li>Added another wormhole link connecting the rest of the Ember Waste.</li>
-            <li>Wanderer jobs now become less frequent after the Hai invade them.</li>
-            <li>The prison on Clink now "closes" once the war is over.</li>
-            <li>If you bomb Zenith in the Wanderer story, its planet sprite now changes to show the crater.</li>
-            <li>Some Hai ships now have "Quantum Keystones" installed, to match the lore about them.</li>
-            <li>Hai outfitters now sell fuel pods.</li>
-            <li>The mission NPC void sprites are now "mute," like all the others.</li>
-        </ul>
-        <p>Game mechanics:</p>
-        <ul>
-            <li>Fixed some inefficiencies and glitches with ships assisting each other. (@tehhowch)</li>
-            <li>Fixed some bugs with escort pathfinding and spurious refuelling. (@tehhowch)</li>
-            <li>Demanding tribute from a planet now always makes its government and allies hostile.</li>
-            <li>Enemies will no longer hang out just waiting for a player who is beyond the "invisible fence."</li>
-            <li>Missions can now specify a random range of time delays for events.</li>
-            <li>If your ship has no forward-facing guns, auto-aim will no longer activate.</li>
-            <li>The &lt;payment&gt; substitution in missions now shows payment for that action clause, if any.</li>
-            <li>Once a "derelict" NPC has been boarded, it can now repair when landing like an ordinary ship.</li>
-        </ul>
-        <p>User interface:</p>
-        <ul>
-            <li>In the radar, the "blink" color for mission targets is now customizable. (@Hadron1776)</li>
-            <li>Restricted planets are now a different color than hostile planets. (@Hadron1776)</li>
-            <li>If a plugin overrides the start date, new player messages still work correctly. (@Hadron1776)</li>
-            <li>Fixed a missing newline in the scan dialog for harvested materials in cargo. (@tehhowch)</li>
-            <li>In fullscreen mode, the cursor now disappears if you don't move the mouse for 10 seconds.</li>
-            <li>Sped up the main view zoom animation so it's easier to set it to a specific zoom level.</li>
-            <li>Made it so you can sell outfits in cargo without switching to the cargo view.</li>
-            <li>Fixed a case where your flagship could end up included in the escort selection.</li>
-            <li>In the map, systems with "inhabited" worlds but no spaceports now show up as uninhabited.</li>
-            <li>Made it possible to click a planet in the map to set it as your landing target.</li>
-            <li>You can now double-click a snapshot in the Load / Save panel to load it.</li>
-            <li>Planet labels now always use the government color (instead of being red for hostile planets).</li>
-        </ul>
-        <p>Under the hood:</p>
-        <ul>
-            <li>Refactored the assistance-seeking AI to use less CPU time. (@tehhowch)</li>
-            <li>Fixed some missing #includes that messed up compilation in Visual Studio.</li>
-            <li>Fixed some potential issues and dead code found by Clang's static analyzer.</li>
+          <li>Automatic condition variables now update daily, and not just upon landing.</li>
+          <li>The flagship’s system and planet are available as condition variables.</li>
+          <li>Heat can be added to a ship based on the system’s solar power output with the “solar heat” outfit attribute.</li>
         </ul>
       </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.12/changelog</url>
+    </release>
+    <release version="0.9.11" date="2020-02-24" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Major new changes include the following:</p>
+        <ul>
+          <li>A new region, the Graveyard, can be found near the Ember Waste.</li>
+          <li>New Remnant ships, outfits, and missions.</li>
+          <li>A rebalancing of human medium warships and transports.</li>
+          <li>A new Wanderer transport.</li>
+        </ul>
+        <p>Several features have been added to the game engine, for use by plugins and other content creators.</p>
+        <p>These include:</p>
+        <ul>
+          <li>The ability to modify the systems wherein a government scans ships for contraband, and the displayed government name.</li>
+          <li>Enabling secondary weapons to consume more than one unit of ammunition per shot.</li>
+          <li>Support for interpolation and character replacement in hails.</li>
+          <li>Support for algebraic condition expressions of arbitrary length.</li>
+          <li>Support for disabling specific spaceport news items.</li>
+        </ul>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.11/changelog</url>
+    </release>
+    <release version="0.9.10" date="2019-09-28">
+      <description>
+        <p>This is a stable release focusing on bug fixes and polish.</p>
+        <p>Major changes include:</p>
+        <ul>
+          <li>Fixed a bug where cargo was loaded onto ships with 0 cargo space.</li>
+          <li>Fixed a crash when mission NPCs have no system defined.</li>
+          <li>Avoiding a situation where the player could get stuck in Remnant space.</li>
+          <li>Depreciation now happens slower and includes a "grace period."</li>
+          <li>Improved the AI logic for when escorts stop to refuel.</li>
+        </ul>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.10/changelog</url>
+    </release>
+    <release version="0.9.9" date="2019-05-27" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release representing more than a year and a half of development work.</p>
+        <p>Major new changes include the following:</p>
+        <ul>
+          <li>Significant graphics and physics engine optimizations.</li>
+          <li>Cloaked ships can now be hit by projectiles.</li>
+          <li>Turrets turn slower, allowing fast ships to dodge them more easily.</li>
+          <li>Ramscoop and solar power effectiveness now varies from star to star.</li>
+          <li>New Remnant ships, outfits, and missions.</li>
+          <li>Purchasing a Bactrian now requires completing a mission string.</li>
+          <li>Added an "asteroid scanner" that lets you target minable asteroids.</li>
+          <li>Experimental "news" feature in the spaceport.</li>
+          <li>All ship sprites re-rendered with a more dramatic lighting angle.</li>
+          <li>The shipyard now shows an angled view of each ship instead of top-down.</li>
+        </ul>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.9/changelog</url>
+    </release>
+    <release version="0.9.8" date="2017-08-14">
+      <description>
+        <p>This is a stable release, fixing bugs and making other small improvements to the recent 0.9.7 unstable release.</p>
+        <p>Changes include:</p>
+        <ul>
+          <li>Fixed crashes when reordering or disowning ships in your fleet.</li>
+          <li>Fixed a bug when events add stellar objects (like the Wanderer wormhole).</li>
+          <li>Added shop thumbnail images for all the Remnant outfits.</li>
+          <li>Tweaked the balance of the Remnant ships and outfits.</li>
+          <li>Demanding tribute now always turns reputation with that government negative.</li>
+          <li>Fixed "derelict" NPCs not repairing on planets after you board them.</li>
+          <li>In full screen mode the cursor is now hidden after 10 seconds inactivity.</li>
+        </ul>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.8/changelog</url>
     </release>
   </releases>
+  <content_rating type="oars-1.1">
+    <content_attribute id="drugs-alcohol">mild</content_attribute>
+  </content_rating>
 </component>

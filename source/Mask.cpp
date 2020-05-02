@@ -334,6 +334,14 @@ double Mask::Radius() const
 
 
 
+// Get the list of points in the outline.
+const vector<Point> &Mask::Points() const
+{
+	return outline;
+}
+
+
+
 double Mask::Intersection(Point sA, Point vA) const
 {
 	// Keep track of the closest intersection point found.

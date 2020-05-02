@@ -45,8 +45,8 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
-	settings["Escorts use ammo frugally"] = true;
-	settings["Escorts expend ammo"] = true;
+	settings[FRUGAL_ESCORTS] = true;
+	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
 	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
@@ -54,6 +54,7 @@ void Preferences::Load()
 	settings["Show planet labels"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
+	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	
@@ -83,7 +84,7 @@ void Preferences::Save()
 	
 	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
-	out.Write("zoom", Screen::Zoom());
+	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
 	

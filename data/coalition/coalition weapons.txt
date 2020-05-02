@@ -1,0 +1,350 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Bombardment Cannon"
+	category "Guns"
+	licenses
+		Heliarch
+	cost 437000
+	thumbnail "outfit/bombardment cannon"
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	weapon
+		sprite "projectile/bombardment"
+			"frame rate" 3.2
+			"no repeat"
+		sound "bombardment"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 4
+		"velocity" 6
+		"random velocity" 1
+		"lifetime" 150
+		"reload" 9
+		"firing energy" 17
+		"firing heat" 14
+		"shield damage" 22
+		"hull damage" 25
+	description `The Bombardment Cannon was designed during the original war with the Quarg, in order to give Heliarch civilian ships a way to strike Quarg warships from a safe distance. But now, as with all their weapons, its use is limited to Heliarch warships.`
+
+outfit "Bombardment Turret"
+	category "Turrets"
+	licenses
+		Heliarch
+	cost 1845000
+	thumbnail "outfit/bombardment turret"
+	"mass" 43
+	"outfit space" -43
+	"weapon capacity" -43
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/bombardment"
+			"frame rate" 3.2
+			"no repeat"
+		"hardpoint sprite" "hardpoint/bombardment turret"
+		"hardpoint offset" 10.
+		sound "bombardment"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 4
+		"turret turn" 2.8
+		"velocity" 6
+		"random velocity" 1
+		"lifetime" 150
+		"reload" 3
+		"firing energy" 17
+		"firing heat" 14
+		"shield damage" 22
+		"hull damage" 25
+	description `A Bombardment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
+
+effect "bombardment impact"
+	sprite "effect/bombardment impact"
+		"no repeat"
+		"frame rate" 40
+	"lifetime" 7
+	"random angle" 40
+	"random spin" 20
+	"random velocity" 2
+	"velocity scale" -.2
+
+
+outfit "Finisher Pod"
+	category "Secondary Weapons"
+	licenses
+		Heliarch
+	cost 1370000
+	thumbnail "outfit/finisher pod"
+	"mass" 16
+	"outfit space" -36
+	"weapon capacity" -36
+	"gun ports" -1
+	"finisher capacity" 40
+	weapon
+		sprite "projectile/finisher activating"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo "Finisher Torpedo"
+		icon "icon/finisher"
+		"fire effect" "finisher sparks" 8
+		"hit effect" "finisher impact" 2
+		"hit effect" "finisher fragment" 12
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 5
+		"velocity" 10
+		"lifetime" 60
+		"reload" 80
+		"firing energy" 120
+		"firing heat" 20
+		"acceleration" .8
+		"drag" .1
+		"turn" 0.1
+		"homing" 2
+		"radar tracking" .8
+		"missile strength" 50
+		"submunition" "Active Finisher" 1
+	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
+
+outfit "Active Finisher"
+	weapon
+		sprite "projectile/finisher"
+			"frame rate" 2.4
+		"live effect" "finisher trail" 50
+		"hit effect" "finisher impact" 2
+		"hit effect" "finisher fragment" 12
+		"die effect" "small explosion"
+		"lifetime" 500
+		"acceleration" 1
+		"drag" .1
+		"turn" 2
+		"homing" 4
+		"radar tracking" .8
+		"optical tracking" .5
+		"missile strength" 50
+		"shield damage" 1500
+		"hull damage" 1900
+		"hit force" 750
+
+outfit "Finisher Torpedo"
+	plural "Finisher Torpedoes"
+	category "Ammunition"
+	cost 32000
+	thumbnail "outfit/finisher"
+	"mass" .5
+	"finisher capacity" -1
+	description `This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`
+
+effect "finisher sparks"
+	sprite "effect/finisher sparks"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 19
+	"random angle" 30
+	"random spin" 100
+	"random velocity" 4
+
+effect "finisher trail"
+	sprite "effect/finisher trail"
+		"no repeat"
+		"frame rate" 5
+	"lifetime" 37
+	"random spin" 1
+	"random velocity" 1
+	"velocity scale" .8
+
+effect "finisher impact"
+	sprite "effect/finisher impact"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 13
+	"random spin" 20
+	"random velocity" 2
+	"velocity scale" -.2
+
+effect "finisher fragment"
+	sprite "effect/finisher trail"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 23
+	"random angle" 360
+	"random spin" 1
+	"random velocity" 10
+	"velocity scale" -.1
+
+
+outfit "Heliarch Attractor"
+	category "Turrets"
+	licenses
+		Heliarch
+	cost 2187000
+	thumbnail "outfit/heliarch attractor"
+	"mass" 49
+	"outfit space" -49
+	"weapon capacity" -49
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/attractor"
+			"frame rate" 5.2
+			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch attractor"
+		"hardpoint offset" 9.
+		sound "heliarch attractor"
+		"hit effect" "attractor impact"
+		"inaccuracy" 2
+		"turret turn" 4.1
+		"velocity" 640
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.8
+		"firing heat" 4.5
+		"shield damage" 5.4
+		"hull damage" 4.2
+		"firing force" -30
+		"hit force" -30
+	description "When battling the Quarg, the Heliarchs learned that the Quarg would not engage in a battle that their ships might be unable to escape. In response, they focused on building weapons that would keep a ship from being able to come to a stop and activate its jump drive."
+
+effect "attractor impact"
+	sprite "effect/attractor impact"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 13
+	"random angle" 20
+	"random spin" 20
+	"random velocity" -10
+	"velocity scale" -.01
+
+
+outfit "Heliarch Repulsor"
+	category "Turrets"
+	licenses
+		Heliarch
+	cost 2549000
+	thumbnail "outfit/heliarch repulsor"
+	"mass" 56
+	"outfit space" -56
+	"weapon capacity" -56
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/repulsor"
+			"frame rate" 3.2
+			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch repulsor"
+		"hardpoint offset" 9.
+		sound "heliarch repulsor"
+		"hit effect" "repulsor impact"
+		"inaccuracy" 3
+		"turret turn" 3.4
+		"velocity" 560
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 5.9
+		"firing heat" 1.2
+		"shield damage" 3.6
+		"hull damage" 5.8
+		"firing force" 60
+		"hit force" 60
+		"slowing damage" .1
+	description "This beam turret allows a Heliarch ship to hold its enemies far enough away that they cannot make use of their short-range weapons."
+
+effect "repulsor impact"
+	sprite "effect/repulsor impact"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 20
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 4
+	"velocity scale" .01
+
+
+outfit "Ion Hail Turret"
+	category "Turrets"
+	licenses
+		Heliarch
+	cost 1268000
+	thumbnail "outfit/ion hail turret"
+	"mass" 26
+	"outfit space" -26
+	"weapon capacity" -26
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/ion hail turret"
+		"hardpoint offset" 10.
+		sound "ion rain"
+		"inaccuracy" 3
+		"turret turn" 4.2
+		"velocity" 12
+		"reload" 15
+		"burst reload" 3
+		"burst count" 5
+		"firing energy" 48
+		"firing heat" 24
+		"submunition" "ion hail" 4
+	description "Instead of just placing an Ion Rain Gun on a turret mount, the Heliarch tweaked the cycles of shots, having each shot be significantly more effective and seeing an overall increase to the weapon's range, but at the cost of a reload period."
+
+outfit "ion hail"
+	weapon
+		sprite "projectile/ion rain"
+			"frame rate" 7
+			"random start frame"
+		"hit effect" "ion rain impact"
+		"inaccuracy" 1
+		"random velocity" 3
+		"lifetime" 40
+		"random lifetime" 4
+		"hit force" 1
+		"shield damage" 12
+		"hull damage" 5
+		"ion damage" .32
+
+
+outfit "Ion Rain Gun"
+	category "Guns"
+	licenses
+		Heliarch
+	cost 798000
+	thumbnail "outfit/ion rain gun"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"gun ports" -1
+	weapon
+		sprite "projectile/ion rain"
+			"frame rate" 7
+			"random start frame"
+		sound "ion rain"
+		"hit effect" "ion rain impact"
+		"inaccuracy" 4.5
+		"velocity" 16
+		"random velocity" 2
+		"lifetime" 25
+		"random lifetime" 5
+		"reload" 4
+		"firing energy" 12
+		"firing heat" 4
+		"shield damage" 12
+		"hull damage" 5
+		"ion damage" .32
+	description "Heliarch ships primarily serve as a police force. This weapon is designed to neutralize a target's offensive capabilities until more Heliarch ships can join the fray."
+
+effect "ion rain impact"
+	sprite "effect/ion rain impact"
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 2
+	"random velocity" 10
+	"velocity scale" -.1

@@ -20,16 +20,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Outfit;
 class Planet;
 class Ship;
 class System;
 
 
 
-// This class represents a set of constraints on a randomly chosen planet or
-// system. For example, it can require that the planet used for a mission have
-// a certain attribute or be owned by a certain government, or be a certain
-// distance away from the current system.
+// This class represents a set of constraints on a randomly chosen ship, planet,
+// or system. For example, it can require that the planet used for a mission
+// have a certain attribute or be owned by a certain government, or be a
+// certain distance away from the current system.
 class LocationFilter {
 public:
 	LocationFilter() = default;
@@ -48,6 +49,8 @@ public:
 	// If the player is in the given system, does this filter match?
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;
 	bool Matches(const System *system, const System *origin = nullptr) const;
+	// Ships are chosen based on system/"near" filters, government, category
+	// of ship, outfits installed/carried, and their total attributes.
 	bool Matches(const Ship &ship) const;
 	
 	// Return a new LocationFilter with any "distance" conditions converted
@@ -85,7 +88,13 @@ private:
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
 	
-	// These filters store all the things the planet or system must not be.
+	// At least one of the outfits from each set must be available
+	// (to purchase or plunder):
+	std::list<std::set<const Outfit *>> outfits;
+	// A ship must belong to one of these categories:
+	std::set<std::string> shipCategory;
+	
+	// These filters store all the things the planet, system, or ship must not be.
 	std::list<LocationFilter> notFilters;
 	// These filters store all the things the planet or system must border.
 	std::list<LocationFilter> neighborFilters;

@@ -20,6 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "UI.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -55,12 +57,13 @@ void HiringPanel::Draw()
 	int flagshipRequired = flagship.RequiredCrew();
 	int flagshipExtra = flagship.Crew() - flagshipRequired;
 	int flagshipUnused = flagshipBunks - flagship.Crew();
-	info.SetString("flagship bunks", to_string(static_cast<int>(flagshipBunks)));
-	info.SetString("flagship required", to_string(static_cast<int>(flagshipRequired)));
-	info.SetString("flagship extra", to_string(static_cast<int>(flagshipExtra)));
-	info.SetString("flagship unused", to_string(static_cast<int>(flagshipUnused)));
+	info.SetString("flagship bunks", to_string(flagshipBunks));
+	info.SetString("flagship required", to_string(flagshipRequired));
+	info.SetString("flagship extra", to_string(flagshipExtra));
+	info.SetString("flagship unused", to_string(flagshipUnused));
 	
-	// Sum up the statistics for all your ships.
+	// Sum up the statistics for all your ships. You still pay the crew of
+	// disabled or out-of-system ships, but any parked ships have no crew costs.
 	int fleetBunks = 0;
 	int fleetRequired = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -71,16 +74,16 @@ void HiringPanel::Draw()
 		}
 	int passengers = player.Cargo().Passengers();
 	int fleetUnused = fleetBunks - fleetRequired - flagshipExtra;
-	info.SetString("fleet bunks", to_string(static_cast<int>(fleetBunks)));
-	info.SetString("fleet required", to_string(static_cast<int>(fleetRequired)));
-	info.SetString("fleet unused", to_string(static_cast<int>(fleetUnused)));
-	info.SetString("passengers", to_string(static_cast<int>(passengers)));
+	info.SetString("fleet bunks", to_string(fleetBunks));
+	info.SetString("fleet required", to_string(fleetRequired));
+	info.SetString("fleet unused", to_string(fleetUnused));
+	info.SetString("passengers", to_string(passengers));
 	
 	static const int DAILY_SALARY = 100;
 	int salary = DAILY_SALARY * (fleetRequired - 1);
 	int extraSalary = DAILY_SALARY * flagshipExtra;
-	info.SetString("salary required", to_string(static_cast<int>(salary)));
-	info.SetString("salary extra", to_string(static_cast<int>(extraSalary)));
+	info.SetString("salary required", to_string(salary));
+	info.SetString("salary extra", to_string(extraSalary));
 	
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -99,7 +102,7 @@ void HiringPanel::Draw()
 
 
 
-bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!player.Flagship())
 		return false;

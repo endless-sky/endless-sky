@@ -14,8 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define WEAPON_H_
 
 #include "Body.h"
+#include "Point.h"
 
 #include <map>
+#include <utility>
 
 class DataNode;
 class Effect;
@@ -58,6 +60,8 @@ public:
 	int BurstCount() const;
 	int Homing() const;
 	
+	int AmmoUsage() const;
+	
 	int MissileStrength() const;
 	int AntiMissile() const;
 	// Weapons of the same type will alternate firing (streaming) rather than
@@ -69,7 +73,7 @@ public:
 	double RandomVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
-	double HardpointOffset() const;
+	const Point &HardpointOffset() const;
 	
 	double Turn() const;
 	double Inaccuracy() const;
@@ -122,7 +126,9 @@ protected:
 	// default turnrate.
 	void SetTurretTurn(double rate);
 	
-	const Outfit *ammo = nullptr;
+	// A pair representing the outfit that is consumed as ammo and the number
+	// of that outfit consumed upon fire.
+	std::pair<const Outfit*, int> ammo;
 	
 	
 private:
@@ -165,7 +171,7 @@ private:
 	double randomVelocity = 0.;
 	double acceleration = 0.;
 	double drag = 0.;
-	double hardpointOffset = 0.;
+	Point hardpointOffset = {0., 0.};
 	
 	double turn = 0.;
 	double inaccuracy = 0.;
@@ -184,9 +190,8 @@ private:
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
-	double hitForce = 0.;
 	
-	static const int DAMAGE_TYPES = 7;
+	static const int DAMAGE_TYPES = 8;
 	static const int SHIELD_DAMAGE = 0;
 	static const int HULL_DAMAGE = 1;
 	static const int FUEL_DAMAGE = 2;
@@ -194,7 +199,8 @@ private:
 	static const int ION_DAMAGE = 4;
 	static const int DISRUPTION_DAMAGE = 5;
 	static const int SLOWING_DAMAGE = 6;
-	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0.};
+	static const int HIT_FORCE = 7;
+	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0., 0.};
 	
 	double piercing = 0.;
 	
@@ -222,7 +228,7 @@ inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
-inline double Weapon::HardpointOffset() const { return hardpointOffset; }
+inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
@@ -243,7 +249,7 @@ inline double Weapon::Piercing() const { return piercing; }
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
-inline double Weapon::HitForce() const { return hitForce; }
+inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
 
 inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }

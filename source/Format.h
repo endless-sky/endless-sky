@@ -25,6 +25,9 @@ public:
 	// Convert the given number into abbreviated format with a suffix like
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
+	static std::string Credits(int64_t value);
+	// Convert the given number to a string, with at most one decimal place.
+	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
@@ -35,6 +38,8 @@ public:
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);
+	// Replace all occurences of "target" with "replacement" in-place.
+	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
 	
 	// Convert a string to title caps or to lower case.
 	static std::string Capitalize(const std::string &str);

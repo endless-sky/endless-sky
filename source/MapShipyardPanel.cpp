@@ -44,6 +44,7 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 {
 	Init();
 	onlyShowSoldHere = onlyHere;
+	UpdateCache();
 }
 
 
@@ -171,7 +172,7 @@ void MapShipyardPanel::DrawItems()
 		
 		for(const Ship *ship : it->second)
 		{
-			string price = Format::Number(ship->Cost()) + " credits";
+			string price = Format::Credits(ship->Cost()) + " credits";
 			
 			string info = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";

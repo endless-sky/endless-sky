@@ -46,6 +46,23 @@ namespace {
 		}
 		return false;
 	}
+	bool SetsIntersect(const set<const Outfit *> &a, const set<const Outfit *> &b)
+	{
+		auto ait = a.begin();
+		auto bit = b.begin();
+		// The stored values are pointers to the same GameData array:
+		// directly compare them.
+		while(ait != a.end() && bit != b.end())
+		{
+			if(*ait == *bit)
+				return true;
+			else if(*ait < *bit)
+				++ait;
+			else
+				++bit;
+		}
+		return false;
+	}
 	
 	// Check if the given system is within the given distance of the center.
 	int Distance(const System *center, const System *system, int maximum)
@@ -164,7 +181,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Government *government : governments)
-					out.Write(government->GetName());
+					out.Write(government->GetTrueName());
 			}
 			out.EndChild();
 		}
@@ -175,6 +192,27 @@ void LocationFilter::Save(DataWriter &out) const
 			{
 				for(const string &name : it)
 					out.Write(name);
+			}
+			out.EndChild();
+		}
+		for(const auto &it : outfits)
+		{
+			out.Write("outfits");
+			out.BeginChild();
+			{
+				for(const Outfit *outfit : it)
+					if(!outfit->Name().empty())
+						out.Write(outfit->Name());
+			}
+			out.EndChild();
+		}
+		if(!shipCategory.empty())
+		{
+			out.Write("category");
+			out.BeginChild();
+			{
+				for(const string &category : shipCategory)
+					out.Write(category);
 			}
 			out.EndChild();
 		}
@@ -190,7 +228,8 @@ void LocationFilter::Save(DataWriter &out) const
 bool LocationFilter::IsEmpty() const
 {
 	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty();
+		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
+		&& outfits.empty() && shipCategory.empty();
 }
 
 
@@ -199,6 +238,10 @@ bool LocationFilter::IsEmpty() const
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
 	if(!planet || !planet->GetSystem())
+		return false;
+	
+	// If a ship class was given, do not match planets.
+	if(!shipCategory.empty())
 		return false;
 	
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
@@ -214,6 +257,11 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 		if(filter.Matches(planet, origin))
 			return false;
 	
+	// If outfits are specified, make sure they can be bought here.
+	for(const set<const Outfit *> &outfitList : outfits)
+		if(!SetsIntersect(outfitList, planet->Outfitter()))
+			return false;
+	
 	return Matches(planet->GetSystem(), origin, true);
 }
 
@@ -221,11 +269,17 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 
 bool LocationFilter::Matches(const System *system, const System *origin) const
 {
+	// If a ship class was given, do not match systems.
+	if(!shipCategory.empty())
+		return false;
+	
 	return Matches(system, origin, false);
 }
 
 
 
+// Check for matches with the ship's system, government, category,
+// outfits (installed and carried), and attributes.
 bool LocationFilter::Matches(const Ship &ship) const
 {
 	const System *origin = ship.GetSystem();
@@ -233,6 +287,36 @@ bool LocationFilter::Matches(const Ship &ship) const
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
 		return false;
+	
+	if(!shipCategory.empty() && !shipCategory.count(ship.Attributes().Category()))
+		return false;
+	
+	if(!attributes.empty())
+	{
+		// Create a set from the positive-valued attributes of this ship.
+		set<string> shipAttributes;
+		for(const auto &attr : ship.Attributes().Attributes())
+			if(attr.second > 0.)
+				shipAttributes.insert(shipAttributes.end(), attr.first);
+		for(const set<string> &attr : attributes)
+			if(!SetsIntersect(attr, shipAttributes))
+				return false;
+	}
+	
+	if(!outfits.empty())
+	{
+		// Create a set from all installed and carried outfits.
+		set<const Outfit *> shipOutfits;
+		for(const auto &oit : ship.Outfits())
+			if(oit.second > 0)
+				shipOutfits.insert(shipOutfits.end(), oit.first);
+		for(const auto &cit : ship.Cargo().Outfits())
+			if(cit.second > 0)
+				shipOutfits.insert(cit.first);
+		for(const auto &outfitSet : outfits)
+			if(!SetsIntersect(outfitSet, shipOutfits))
+				return false;
+	}
 	
 	for(const LocationFilter &filter : notFilters)
 		if(filter.Matches(ship))
@@ -382,6 +466,40 @@ void LocationFilter::LoadChild(const DataNode &child)
 			originMinDistance = child.Value(valueIndex);
 			originMaxDistance = child.Value(1 + valueIndex);
 		}
+	}
+	else if(key == "category" && child.Size() >= 2 + isNot)
+	{
+		// Ship categories cannot be combined in an "and" condition.
+		static const set<string> allowed(Ship::CATEGORIES.begin(), Ship::CATEGORIES.end());
+		for(int i = 1 + isNot; i < child.Size(); ++i)
+		{
+			const string &value = child.Token(i);
+			if(allowed.count(value))
+				shipCategory.insert(value);
+			else
+				child.PrintTrace("Invalid ship category: \"" + value + "\":");
+		}
+		for(const DataNode &grand : child)
+			for(int i = 0; i < grand.Size(); ++i)
+			{
+				const string &value = grand.Token(i);
+				if(allowed.count(value))
+					shipCategory.insert(value);
+				else
+					child.PrintTrace("Invalid ship category: \"" + value + "\":");
+			}
+	}
+	else if(key == "outfits" && child.Size() >= 2 + isNot)
+	{
+		outfits.push_back(set<const Outfit *>());
+		for(int i = 1 + isNot; i < child.Size(); ++i)
+			outfits.back().insert(GameData::Outfits().Get(child.Token(i)));
+		for(const DataNode &grand : child)
+			for(int i = 0; i < grand.Size(); ++i)
+				outfits.back().insert(GameData::Outfits().Get(grand.Token(i)));
+		// Don't allow empty outfit sets; that's probably a typo.
+		if(outfits.back().empty())
+			outfits.pop_back();
 	}
 	else
 		child.PrintTrace("Unrecognized location filter:");

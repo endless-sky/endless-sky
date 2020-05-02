@@ -168,7 +168,7 @@ bool ShipyardPanel::CanBuy() const
 
 
 
-void ShipyardPanel::Buy()
+void ShipyardPanel::Buy(bool fromCargo)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -177,7 +177,7 @@ void ShipyardPanel::Buy()
 	modifier = Modifier();
 	string message;
 	if(licenseCost)
-		message = "Note: you will need to pay " + Format::Number(licenseCost)
+		message = "Note: you will need to pay " + Format::Credits(licenseCost)
 			+ " credits for the licenses required to operate this ship, in addition to its cost."
 			" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
@@ -243,7 +243,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	
 	int count = playerShips.size();
 	int initialCount = count;
-	string message = "Sell ";
+	string message = "Sell the ";
 	const Font &font = FontSet::Get(14);
 	if(count == 1)
 		message += playerShip->Name();
@@ -270,7 +270,7 @@ void ShipyardPanel::Sell(bool toCargo)
 		for(int i = 1; i < MAX_LIST - 1; ++i)
 			message += font.TruncateMiddle((*it++)->Name(), MAX_NAME_WIDTH) + ",\n";
 		
-		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
+		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}
 	// To allow calculating the sale price of all the ships in the list,
 	// temporarily copy into a shared_ptr vector:
@@ -279,7 +279,7 @@ void ShipyardPanel::Sell(bool toCargo)
 		toSell.push_back(it->shared_from_this());
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 	
-	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Number(total) + " credits?";
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 

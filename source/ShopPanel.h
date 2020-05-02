@@ -57,7 +57,7 @@ protected:
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
 	virtual bool CanBuy() const = 0;
-	virtual void Buy() = 0;
+	virtual void Buy(bool fromCargo = false) = 0;
 	virtual void FailBuy() const = 0;
 	virtual bool CanSell(bool toCargo = false) const = 0;
 	virtual void Sell(bool toCargo = false) = 0;
@@ -69,7 +69,7 @@ protected:
 	virtual void ToggleCargo();
 	
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;

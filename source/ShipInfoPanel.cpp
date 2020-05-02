@@ -113,11 +113,12 @@ void ShipInfoPanel::Draw()
 
 
 
-bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(!player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
+	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == player.Ships().begin())
 			shipIt = player.Ships().end();
@@ -131,14 +132,14 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			shipIt = player.Ships().begin();
 		UpdateInfo();
 	}
-	else if(key == 'i')
+	else if(key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player));
 	}
-	else if(key == 'R')
+	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?"));
-	else if(canEdit && key == 'P')
+	else if(canEdit && (key == 'P' || (key == 'p' && shift)))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
@@ -150,49 +151,46 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				+ shipIt->get()->Name()
 				+ "\"? Disowning a ship rather than selling it means you will not get any money for it."));
 	}
-	else if((key == 'P' || key == 'c') && !canEdit)
+	else if(key == 'c' && CanDump())
 	{
-		if(CanDump())
+		int commodities = (*shipIt)->Cargo().CommoditiesSize();
+		int amount = (*shipIt)->Cargo().Get(selectedCommodity);
+		int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
+		if(amount)
 		{
-			int commodities = (*shipIt)->Cargo().CommoditiesSize();
-			int amount = (*shipIt)->Cargo().Get(selectedCommodity);
-			int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
-			if(amount)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpCommodities,
-					"How many tons of " + Format::LowerCase(selectedCommodity)
-						+ " do you want to jettison?", amount));
-			}
-			else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
-					"How many tons of " + Format::LowerCase(selectedPlunder->Name())
-						+ " do you want to jettison?", plunderAmount));
-			}
-			else if(plunderAmount == 1)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison a " + selectedPlunder->Name() + "?"));
-			}
-			else if(plunderAmount > 1)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
-					"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
-					plunderAmount));
-			}
-			else if(commodities)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all of this ship's regular cargo?"));
-			}
-			else
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all of this ship's cargo?"));
-			}
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpCommodities,
+				"How many tons of " + Format::LowerCase(selectedCommodity)
+					+ " do you want to jettison?", amount));
+		}
+		else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
+				"How many tons of " + Format::LowerCase(selectedPlunder->Name())
+					+ " do you want to jettison?", plunderAmount));
+		}
+		else if(plunderAmount == 1)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+				"Are you sure you want to jettison a " + selectedPlunder->Name() + "?"));
+		}
+		else if(plunderAmount > 1)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
+				"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
+				plunderAmount));
+		}
+		else if(commodities)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+				"Are you sure you want to jettison all of this ship's regular cargo?"));
+		}
+		else
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}
-	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
+	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
@@ -413,7 +411,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	
 	// Draw the ship, using the black silhouette swizzle.
 	SpriteShader::Draw(sprite, bounds.Center(), scale, 8);
-	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5));
+	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 	
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = max(count[0][0], count[1][0]);
@@ -455,10 +453,10 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 		
 		// Determine what color to use for the line.
-		double high = (index == hoverIndex ? .8 : .5);
-		Color color(high, .75 * high, 0., 1.);
+		float high = (index == hoverIndex ? .8f : .5f);
+		Color color(high, .75f * high, 0.f, 1.f);
 		if(isTurret)
-			color = Color(0., .75 * high, high, 1.);
+			color = Color(0.f, .75f * high, high, 1.f);
 		
 		// Draw the line.
 		Point from(fromX[isRight], zoneCenter.Y());
@@ -594,13 +592,13 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 
 void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &color) const
 {
-	Color black(0., 1.);
+	Color black(0.f, 1.f);
 	Point mid(to.X(), from.Y());
 	
-	LineShader::Draw(from, mid, 3.5, black);
-	LineShader::Draw(mid, to, 3.5, black);
-	LineShader::Draw(from, mid, 1.5, color);
-	LineShader::Draw(mid, to, 1.5, color);
+	LineShader::Draw(from, mid, 3.5f, black);
+	LineShader::Draw(mid, to, 3.5f, black);
+	LineShader::Draw(from, mid, 1.5f, color);
+	LineShader::Draw(mid, to, 1.5f, color);
 }
 
 
@@ -694,7 +692,7 @@ void ShipInfoPanel::Dump()
 	
 	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 	if(loss)
-		Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
+		Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
 }
 
 
@@ -710,7 +708,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
+			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
 	}
 }
 
@@ -729,7 +727,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
+			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
 	}
 }
 

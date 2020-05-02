@@ -35,7 +35,9 @@ color "logbook line" .2 .2 .2 1.
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
+color "disabled hull" .3 0 0 .3
 color "heat" .70 .43 .43 .75
+color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
 
@@ -68,8 +70,10 @@ color "escort hostile" 1. .6 .4 1.
 # Colors used when "status overlays" are enabled, and to show scan progress.
 color "overlay friendly shields" 0. .5 0. .25
 color "overlay friendly hull" .45 .5 0. .25
+color "overlay friendly disabled" .5 0 0 .25
 color "overlay hostile shields" .5 .15 0. .25
 color "overlay hostile hull" .5 .3 0. .25
+color "overlay hostile disabled" .3 .3 0 .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
@@ -82,6 +86,7 @@ color "radar inactive" .4 .4 .4 0.
 color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
+color "radar viewport" 0. .3 0. 0.
 
 # Colors used for warning and error tooltip backdrops.
 color "error back" .25 .1 .1 1.
@@ -328,6 +333,11 @@ interface "hud"
 		dimensions 110 110
 		color "hull"
 		size 1.5
+	ring "disabled hull"
+		center -75 155
+		dimensions 110 110
+		color "disabled hull"
+		size 1.5
 	bar "fuel"
 		from -53.5 425
 		dimensions 0 -192
@@ -342,6 +352,16 @@ interface "hud"
 		from -13.5 403
 		dimensions 0 -192
 		color "heat"
+		size 2
+	bar "overheat"
+		from -13.5 403
+		dimensions 0 -192
+		color "overheat"
+		size 2
+	bar "overheat blink"
+		from -13.5 403
+		dimensions 0 -192
+		color "dim"
 		size 2
 
 	# Targets.
@@ -386,6 +406,11 @@ interface "hud"
 		center 75 315
 		dimensions 110 110
 		color "hull"
+		size 1.5
+	ring "target disabled hull"
+		center 75 315
+		dimensions 110 110
+		color "disabled hull"
 		size 1.5
 	
 	visible if "range display"
@@ -816,34 +841,35 @@ interface "mission" bottom
 
 
 interface "map buttons" bottom right
-	sprite "ui/dialog cancel"
-		from -450 -50 to -360 0
-	button d "_Done"
-		from -450 -50 to -360 0
-	
 	active if "!is shipyards"
 	sprite "ui/wide button"
-		from -370 -50 to -260 0
+		from -464 -50 to -354 0
 	button s "_Shipyards"
-		from -370 -50 to -260 0
+		from -454 -40 to -364 -10
 	
 	active if "!is outfitters"
 	sprite "ui/wide button"
-		from -270 -50 to -160 0
+		from -364 -50 to -254 0
 	button o "_Outfitters"
-		from -270 -50 to -160 0
+		from -354 -40 to -264 -10
 	
 	active if "!is missions"
 	sprite "ui/dialog cancel"
-		from -170 -50 to -80 0
+		from -264 -50 to -174 0
 	button i "M_issions"
-		from -170 -50 to -80 0
+		from -254 -40 to -184 -10
 	
 	active if "!is ports"
 	sprite "ui/dialog cancel"
-		from -90 -50 to 0 0
+		from -184 -50 to -94 0
 	button p "_Ports"
+		from -174 -40 to -104 -10
+	
+	active
+	sprite "ui/dialog cancel"
 		from -90 -50 to 0 0
+	button d "_Done"
+		from -80 -40 to -10 -10
 	
 	sprite "ui/zoom"
 		from 0 -40 to -90 -90

@@ -43,9 +43,9 @@ namespace {
 	// Find any condition strings that begin with the given prefix, and convert
 	// them to strings ending in the given suffix (if any). Return those strings
 	// plus the values of the conditions.
-	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
+	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
 	{
-		vector<pair<int, string>> match;
+		vector<pair<int64_t, string>> match;
 		
 		auto it = player.Conditions().lower_bound(prefix);
 		for( ; it != player.Conditions().end(); ++it)
@@ -59,7 +59,7 @@ namespace {
 	}
 	
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
+	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -83,7 +83,7 @@ namespace {
 		table.Advance();
 		table.DrawGap(5);
 		
-		for(const pair<int, string> &it : list)
+		for(const auto &it : list)
 		{
 			table.Draw(it.second, dim);
 			if(drawValues)
@@ -174,9 +174,12 @@ void PlayerInfoPanel::Draw()
 
 
 
-bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
+	bool shift = (mod & KMOD_SHIFT);
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
+			|| key == 'i' || command.Has(Command::INFO))
 		GetUI()->Pop(this);
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER)
 	{
@@ -211,7 +214,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		}
 		// Holding both Ctrl & Shift keys and using the arrows moves the
 		// selected ship group up or down one row.
-		else if(!allSelected.empty() && (mod & KMOD_CTRL) && (mod & KMOD_SHIFT))
+		else if(!allSelected.empty() && control && shift)
 		{
 			// Move based on the position of the first selected ship. An upward
 			// movement is a shift of one, while a downward move shifts 1 and
@@ -234,7 +237,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			
 			// Clamp the destination index to the end of the ships list.
 			size_t moved = allSelected.size();
-			toIndex = min(player.Ships().size() - moved, static_cast<size_t>(toIndex));
+			toIndex = min(player.Ships().size() - moved, toIndex);
 			selectedIndex = player.ReorderShips(allSelected, toIndex);
 			// If the move accessed invalid indices, no moves are done
 			// but the selectedIndex is set to -1.
@@ -275,7 +278,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		if(selectedIndex >= 0)
 			allSelected.insert(selectedIndex);
 	}
-	else if(canEdit && key == 'P' && !allSelected.empty())
+	else if(canEdit && (key == 'P' || (key == 'p' && shift)) && !allSelected.empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -294,7 +297,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				player.ParkShip(&ship, !allParked);
 		}
 	}
-	else if(canEdit && key == 'A' && player.Ships().size() > 1)
+	else if(canEdit && (key == 'A' || (key == 'a' && shift)) && player.Ships().size() > 1)
 	{
 		// Toggle the parked status for all ships except the flagship.
 		bool allParked = true;
@@ -307,14 +310,14 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
 				player.ParkShip(it.get(), !allParked);
 	}
-	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
+	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
-		if(mod & (KMOD_CTRL | KMOD_GUI))
+		if(control)
 		{
 			// Convert from indices into ship pointers.
 			set<Ship *> selected;
@@ -333,7 +336,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			
 			// If the shift key is not down, replace the current set of selected
 			// ships with the group with the given index.
-			if(!(mod & KMOD_SHIFT))
+			if(!shift)
 				allSelected = added;
 			else
 			{
@@ -479,10 +482,10 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.Draw("player:", dim);
 	table.Draw(player.FirstName() + " " + player.LastName(), bright);
 	table.Draw("net worth:", dim);
-	table.Draw(Format::Number(player.Accounts().NetWorth()) + " credits", bright);
+	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
 	
 	// Determine the player's combat rating.
-	int combatLevel = log(max(1, player.GetCondition("combat rating")));
+	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
 	const string &combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
@@ -510,7 +513,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
 		table.Draw("piracy threat:", bright);
-		table.Draw(Format::Number(lround(100 * prob)) + "%", dim);
+		table.Draw(to_string(lround(100 * prob)) + "%", dim);
 		table.DrawGap(5);
 		
 		// Format the attraction and deterrence levels with tens places, so it
@@ -548,7 +551,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	Color elsewhere = *GameData::Colors().Get("dim");
-	Color dead(.4, 0., 0., 0.);
+	Color dead(.4f, 0.f, 0.f, 0.f);
 	
 	// Table attributes.
 	Table table;

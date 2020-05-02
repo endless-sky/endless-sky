@@ -13,9 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef EFFECT_H_
 #define EFFECT_H_
 
-#include "Angle.h"
 #include "Body.h"
-#include "Point.h"
 
 #include <string>
 
@@ -25,7 +23,7 @@ class Sound;
 
 
 // Class representing the template for a visual effect such as an explosion,
-// which is drawn for effect but  has no impact on any other objects in the
+// which is drawn for effect but has no impact on any other objects in the
 // game. Because this class is more heavyweight than it needs to be, actual
 // visual effects when they are placed use the Visual class, based on the
 // template provided by an Effect.

@@ -131,7 +131,7 @@ bool Date::operator!() const
 // Increment this date.
 void Date::operator++()
 {
-	*this = Date(*this + 1);
+	*this = *this + 1;
 }
 
 

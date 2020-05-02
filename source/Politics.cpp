@@ -1,4 +1,4 @@
-/* Politics.h
+/* Politics.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -277,7 +277,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Number(maxFine) + " credits" + reason;
+			+ Format::Credits(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}

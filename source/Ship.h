@@ -31,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Effect;
 class Flotsam;
 class Government;
 class Minable;
@@ -58,7 +59,7 @@ public:
 	public:
 		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), side(b.side), facing(b.facing) {}
+		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
@@ -74,7 +75,11 @@ public:
 		static const uint8_t LEFT = 1;
 		static const uint8_t RIGHT = 2;
 		static const uint8_t BACK = 3;
+		
+		// The launch effect(s) to be simultaneously played when the bay's ship launches.
+		std::vector<const Effect *> launchEffects;
 	};
+	
 	class EnginePoint : public Point {
 	public:
 		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
@@ -83,6 +88,7 @@ public:
 	private:
 		double zoom;
 	};
+	
 	
 public:
 	/* Functions provided by the Body base class:
@@ -128,9 +134,10 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
+
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
-	std::string FlightCheck() const;
+	std::vector<std::string> FlightCheck() const;
 	
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
@@ -166,7 +173,7 @@ public:
 	// Generate energy, heat, etc. (This is called by Move().)
 	void DoGeneration();
 	// Launch any ships that are ready to launch.
-	void Launch(std::list<std::shared_ptr<Ship>> &ships);
+	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
@@ -240,14 +247,19 @@ public:
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
 	double Hull() const;
-	double Energy() const;
-	double Heat() const;
 	double Fuel() const;
-	// Get the ship's "health," where 0 is disabled and 1 means full health.
+	double Energy() const;
+	// A ship's heat is generally between 0 and 1, but if it receives
+	// heat damage the value can increase above 1.
+	double Heat() const;
+	// Get the ship's "health," where <=0 is disabled and 1 means full health.
 	double Health() const;
+	// Get the hull fraction at which this ship is disabled.
+	double DisabledHull() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
-	int JumpsRemaining() const;
+	// If followParent is false, this ship will not follow the parent.
+	int JumpsRemaining(bool followParent = true) const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
 	// Get the cost of making a jump of the given type (if possible).
@@ -479,6 +491,22 @@ private:
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 	
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying.
+	class Leak {
+	public:
+		Leak(const Effect *effect = nullptr) : effect(effect) {}
+		
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+	};
+	std::vector<Leak> leaks;
+	std::vector<Leak> activeLeaks;
+	
+	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;
 	unsigned explosionRate = 0;
 	unsigned explosionCount = 0;

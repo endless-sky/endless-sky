@@ -322,7 +322,7 @@ Point abs(const Point &p)
 #ifdef __SSE3__
 	// Absolute value for doubles just involves clearing the sign bit.
 	static const __m128d sign_mask = _mm_set1_pd(-0.);
-    return Point(_mm_andnot_pd(sign_mask, p.v));
+	return Point(_mm_andnot_pd(sign_mask, p.v));
 #else
 	return Point(abs(p.x), abs(p.y));
 #endif

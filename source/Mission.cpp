@@ -61,6 +61,16 @@ namespace {
 		// Control will never reach here, but to satisfy the compiler:
 		return nullptr;
 	}
+	
+	// If a source, destination, waypoint, or stopover supplies more than one explicit choice
+	// or a mixture of explicit choice and location filter, print a warning.
+	void ParseMixedSpecificity(const DataNode &node, string &&kind, int expected)
+	{
+		if(node.Size() >= expected + 1)
+			node.PrintTrace("Warning: use a location filter to choose from multiple " + kind + "s:");
+		if(node.HasChildren())
+			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
+	}
 }
 
 
@@ -122,8 +132,12 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
+			{
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
+				else
+					grand.PrintTrace("Warning: \"stealth\" and \"illegal\" are now mission-level properties:");
+			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -177,26 +191,34 @@ void Mission::Load(const DataNode &node)
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
+		{
 			source = GameData::Planets().Get(child.Token(1));
+			ParseMixedSpecificity(child, "planet", 2);
+		}
 		else if(child.Token(0) == "source")
 			sourceFilter.Load(child);
 		else if(child.Token(0) == "destination" && child.Size() == 2)
+		{
 			destination = GameData::Planets().Get(child.Token(1));
+			ParseMixedSpecificity(child, "planet", 2);
+		}
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 		{
-			set<const System *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
-					? visitedWaypoints : waypoints;
+			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+			set<const System *> &set = visited ? visitedWaypoints : waypoints;
 			set.insert(GameData::Systems().Get(child.Token(1)));
+			ParseMixedSpecificity(child, "system", 2 + visited);
 		}
 		else if(child.Token(0) == "waypoint" && child.HasChildren())
 			waypointFilters.emplace_back(child);
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 		{
-			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
-					? visitedStopovers : stopovers;
+			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+			set<const Planet *> &set = visited ? visitedStopovers : stopovers;
 			set.insert(GameData::Planets().Get(child.Token(1)));
+			ParseMixedSpecificity(child, "planet", 2 + visited);
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
@@ -532,14 +554,14 @@ bool Mission::HasFullClearance() const
 
 
 // Check if it's possible to offer or complete this mission right now.
-bool Mission::CanOffer(const PlayerInfo &player) const
+bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	if(location == BOARDING || location == ASSISTING)
 	{
-		if(!player.BoardingShip())
+		if(!boardingShip)
 			return false;
 		
-		if(!sourceFilter.Matches(*player.BoardingShip()))
+		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
 	else
@@ -565,15 +587,15 @@ bool Mission::CanOffer(const PlayerInfo &player) const
 	}
 	
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	return true;
@@ -592,12 +614,17 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 
 
 
+// Check if this mission's cargo can fit entirely on the referenced ship.
+bool Mission::HasSpace(const Ship &ship) const
+{
+	return (cargoSize <= ship.Cargo().Free() && passengers <= ship.Cargo().BunksFree());
+}
+
+
+
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
 	if(player.GetPlanet() != destination)
-		return false;
-	
-	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
 	return IsSatisfied(player);
@@ -606,10 +633,14 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 
 
 // This function dictates whether missions on the player's map are shown in
-// bright or dim text colors.
+// bright or dim text colors, and may be called while in-flight or landed.
 bool Mission::IsSatisfied(const PlayerInfo &player) const
 {
 	if(!waypoints.empty() || !stopovers.empty())
+		return false;
+	
+	// Test the completion conditions for this mission.
+	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
 	// Determine if any fines or outfits that must be transferred, can.
@@ -626,8 +657,19 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	// If any of the cargo for this mission is being carried by a ship that is
 	// not in this system, the mission cannot be completed right now.
 	for(const auto &ship : player.Ships())
-		if(ship->GetSystem() != player.GetSystem() && ship->Cargo().Get(this))
+	{
+		// Skip in-system ships, and carried ships whose parent is in-system.
+		if(ship->GetSystem() == player.GetSystem() || (!ship->GetSystem() && ship->CanBeCarried()
+				&& ship->GetParent() && ship->GetParent()->GetSystem() == player.GetSystem()))
+			continue;
+		
+		if(ship->Cargo().GetPassengers(this))
 			return false;
+		// Check for all mission cargo, including that which has 0 mass.
+		auto &cargo = ship->Cargo().MissionCargo();
+		if(cargo.find(this) != cargo.end())
+			return false;
+	}
 	
 	return true;
 }
@@ -666,19 +708,32 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		return "";
 	
 	int extraCrew = 0;
-	if(player.Flagship())
-		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
+	const Ship *flagship = player.Flagship();
+	// You cannot fire crew in space.
+	if(flagship && player.GetPlanet())
+		extraCrew = flagship->Crew() - flagship->RequiredCrew();
 	
-	int cargoNeeded = cargoSize - (player.Cargo().Free() + player.Cargo().CommoditiesSize());
-	int bunksNeeded = passengers - (player.Cargo().BunksFree() + extraCrew);
+	int cargoNeeded = cargoSize;
+	int bunksNeeded = passengers;
+	if(player.GetPlanet())
+	{
+		cargoNeeded -= (player.Cargo().Free() + player.Cargo().CommoditiesSize());
+		bunksNeeded -= (player.Cargo().BunksFree() + extraCrew);
+	}
+	else
+	{
+		// Boarding a ship, so only use the flagship's space.
+		cargoNeeded -= flagship->Cargo().Free();
+		bunksNeeded -= flagship->Cargo().BunksFree();
+	}
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
 	map<string, string> subs;
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
-	if(player.Flagship())
-		subs["<ship>"] = player.Flagship()->Name();
+	if(flagship)
+		subs["<ship>"] = flagship->Name();
 	
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -718,7 +773,7 @@ bool Mission::IsUnique() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
 {
 	if(trigger == STOPOVER)
 	{
@@ -742,7 +797,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	}
 	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	if(trigger == ACCEPT)
@@ -751,9 +806,15 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		++player.Conditions()[name + ": active"];
 	}
 	else if(trigger == DECLINE)
+	{
 		++player.Conditions()[name + ": offered"];
+		++player.Conditions()[name + ": declined"];
+	}
 	else if(trigger == FAIL)
+	{
 		--player.Conditions()[name + ": active"];
+		++player.Conditions()[name + ": failed"];
+	}
 	else if(trigger == COMPLETE)
 	{
 		--player.Conditions()[name + ": active"];
@@ -769,7 +830,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -783,6 +844,18 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 const list<NPC> &Mission::NPCs() const
 {
 	return npcs;
+}
+
+
+
+// Checks if the given ship belongs to one of the mission's NPCs.
+bool Mission::HasShip(const shared_ptr<Ship> &ship) const
+{
+	for(const auto &npc : npcs)
+		for(const auto &npcShip : npc.Ships())
+			if(npcShip == ship)
+				return true;
+	return false;
 }
 
 
@@ -852,9 +925,24 @@ const string &Mission::Identifier() const
 
 
 
+// Get a specific mission action from this mission.
+// If a mission action is not found for the given trigger, returns an empty
+// mission action.
+const MissionAction &Mission::GetAction(Trigger trigger) const
+{
+	auto ait = actions.find(trigger);
+	static const MissionAction EMPTY;
+	if(ait != actions.end())
+		return ait->second;
+	else
+		return EMPTY;
+}
+
+
+
 // "Instantiate" a mission by replacing randomly selected values and places
 // with a single choice, and then replacing any wildcard text as well.
-Mission Mission::Instantiate(const PlayerInfo &player) const
+Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	Mission result;
 	// If anything goes wrong below, this mission should not be offered.
@@ -1020,8 +1108,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
 		subs["<origin>"] = player.GetPlanet()->Name();
-	else if(player.BoardingShip())
-		subs["<origin>"] = player.BoardingShip()->Name();
+	else if(boardingShip)
+		subs["<origin>"] = boardingShip->Name();
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
@@ -1088,7 +1176,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 // Perform an "on enter" MissionAction associated with the current system.
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
-	const auto &eit = onEnter.find(system);
+	const auto eit = onEnter.find(system);
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);

@@ -71,7 +71,12 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
-			ammo = GameData::Outfits().Get(child.Token(1));
+		{
+			// Non-weapon outfits can have ammo so that storage outfits
+			// properly remove excess ammo when the storage is sold, instead
+			// of blocking the sale of the outfit until the ammo is sold first.
+			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
+		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
@@ -94,7 +99,32 @@ void Outfit::Load(const DataNode &node)
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	{
 		SetTurretTurn(4.);
+		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+	}
+	// Convert any legacy cargo / outfit scan definitions into power & speed,
+	// so no runtime code has to check for both.
+	auto convertScan = [&](string &&kind) -> void
+	{
+		const string label = kind + " scan";
+		double initial = attributes.Get(label);
+		if(initial)
+		{
+			attributes[label] = 0.;
+			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+					+ label + " power\" and \"" + label + " speed\":");
+			
+			// A scan value of 300 is equivalent to a scan power of 9.
+			attributes[label + " power"] += initial * initial * .0001;
+			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
+			// It may have been already specified, and if so, should not be increased.
+			if(!attributes.Get(label + " speed"))
+				attributes[label + " speed"] = 1.;
+		}
+	};
+	convertScan("outfit");
+	convertScan("cargo");
 }
 
 

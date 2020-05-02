@@ -66,7 +66,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			SetBribe(gov->GetBribeFraction());
 			if(bribe)
 				message = "If you want us to leave you alone, it'll cost you "
-					+ Format::Number(bribe) + " credits.";
+					+ Format::Credits(bribe) + " credits.";
 		}
 	}
 	else if(ship->IsDisabled())
@@ -148,7 +148,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				message = "If you want to land here, it'll cost you "
-					+ Format::Number(bribe) + " credits.";
+					+ Format::Credits(bribe) + " credits.";
 			else
 				message = "I'm afraid we can't permit you to land here.";
 		}
@@ -192,7 +192,7 @@ void HailPanel::Draw()
 	interface->Draw(info, this);
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
-	double zoom = min(2., 400. / max(sprite->Width(), sprite->Height()));
+	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
 	Point center(-170., -10.);
 	
 	DrawList draw;
@@ -228,7 +228,7 @@ void HailPanel::Draw()
 
 
 
-bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 	
@@ -288,13 +288,13 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			{
 				ship->GetGovernment()->Bribe();
 				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
-					+ Format::Number(bribe) + " credits to refrain from attacking you today.");
+					+ Format::Credits(bribe) + " credits to refrain from attacking you today.");
 			}
 			else
 			{
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
-					+ Format::Number(bribe) + " credits to permit you to land.");
+					+ Format::Credits(bribe) + " credits to permit you to land.");
 			}
 			
 			player.Accounts().AddCredits(-bribe);

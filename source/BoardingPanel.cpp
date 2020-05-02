@@ -69,7 +69,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship. Certain other
-	// outfits are also unplunderable, like mass expansions.
+	// outfits are also unplunderable, like outfits expansions.
 	auto sit = victim->Outfits().begin();
 	auto cit = victim->Cargo().Outfits().begin();
 	while(sit != victim->Outfits().end() || cit != victim->Cargo().Outfits().end())
@@ -220,13 +220,13 @@ void BoardingPanel::Draw()
 
 
 // Handle key presses or button clicks that were mapped to key presses.
-bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
-			player.Die(true);
+			player.Die();
 		GetUI()->Pop(this);
 	}
 	else if(playerDied)
@@ -517,9 +517,10 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 
-// Constructor (outfit installed in the victim ship).
+// Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
+	: name(outfit->Name()), outfit(outfit), count(count),
+	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	UpdateStrings();
 }
@@ -627,7 +628,7 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 	
-	value = Format::Number(unitValue * count);
+	value = Format::Credits(unitValue * count);
 }
 
 

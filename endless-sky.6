@@ -1,10 +1,10 @@
-.TH endless\-sky 6 "15 Aug 2017" "ver. 0.9.8" "Endless Sky"
+.TH endless\-sky 6 "01 May 2020" "ver. 0.9.12" "Endless Sky"
 
 .SH NAME
 endless\-sky \- a space exploration and combat game.
 
 .SH SYNOPSIS
-\fBendless\-sky\fR [\-h] [\-\-help] [\-v] [\-\-version] [\-s] [\-\-ships] [\-r] [\-w] [\-\-weapons] [\-t] [\-\-talk] [\-r] [\-\-resources] [\-c] [\-\-config]
+\fBendless\-sky\fR [\-h] [\-\-help] [\-v] [\-\-version] [\-s] [\-\-ships] [\-w] [\-\-weapons] [\-t] [\-\-talk] [\-r] [\-\-resources] [\-c] [\-\-config] [\-p] [\-\-parse\-save]
 
 .SH DESCRIPTION
 \fBEndless Sky\fR is a space exploration and combat game combining action and role playing elements.
@@ -27,10 +27,10 @@ prints a short help message.
 prints the software version.
 
 .IP \fB\-s,\ \-\-ships
-prints (to STDOUT) a table showing primary characteristics of all ships in the game, to aid in balancing.
+prints (to STDOUT) a table showing primary characteristics of all ships in the game, to aid in balancing. This option prevents the game from launching.
 
 .IP \fB\-w,\ \-\-weapons
-prints (to STDOUT) a table of characteristics of all the available weapons.
+prints (to STDOUT) a table of characteristics of all the available weapons. This option prevents the game from launching.
 
 .IP \fB\-t,\ \-\-talk
 reads a data file from STDIN and looks for a "conversation" node at the root level (i.e. not indentated). If it finds one, that conversation is displayed in a pop\-up dialog. This is for testing conversations in a new mission you are developing.
@@ -40,6 +40,9 @@ sets the directory from which game resources (images, etc.) will be loaded.
 
 .IP \fB\-c,\ \-\-config\ <directory>
 sets the directory where preferences and saved games will be stored.
+
+.IP \fB\-p,\ \-\-parse\-save
+prints any content or whitespace\-formatting errors found while loading data files and the most recent saved game. This option prevents the game from launching.
 
 .SH AUTHOR
 Michael Zahniser (mzahniser@gmail.com)

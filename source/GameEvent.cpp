@@ -50,6 +50,7 @@ void GameEvent::Load(const DataNode &node)
 		"government",
 		"link",
 		"outfitter",
+		"news",
 		"planet",
 		"shipyard",
 		"system",
@@ -156,4 +157,11 @@ void GameEvent::Apply(PlayerInfo &player)
 		player.Visit(system);
 	for(const Planet *planet : planetsToVisit)
 		player.Visit(planet);
+}
+
+
+
+const list<DataNode> &GameEvent::Changes() const
+{
+	return changes;
 }

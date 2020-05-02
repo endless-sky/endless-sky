@@ -45,11 +45,11 @@ void DataFile::Load(const string &path)
 	if(data.empty() || data.back() != '\n')
 		data.push_back('\n');
 	
-	Load(&*data.begin(), &*data.end());
-	
 	// Note what file this node is in, so it will show up in error traces.
 	root.tokens.push_back("file");
 	root.tokens.push_back(path);
+	
+	Load(&*data.begin(), &*data.end());
 }
 
 
@@ -100,13 +100,37 @@ void DataFile::Load(const char *it, const char *end)
 	// new node added at the next deeper indentation level.
 	vector<DataNode *> stack(1, &root);
 	vector<int> whiteStack(1, -1);
+	bool fileIsSpaces = false;
+	bool warned = false;
+	size_t lineNumber = 0;
 	
 	for( ; it != end; ++it)
 	{
+		++lineNumber;
 		// Find the first non-white character in this line.
+		bool isSpaces = false;
 		int white = 0;
 		for( ; *it <= ' ' && *it != '\n'; ++it)
+		{
+			// Warn about mixed indentations when parsing files.
+			if(!isSpaces && *it == ' ')
+			{
+				// If we've parsed whitespace that wasn't a space, issue a warning.
+				if(white)
+					stack.back()->PrintTrace("Mixed whitespace usage in line");
+				else
+					fileIsSpaces = true;
+				
+				isSpaces = true;
+			}
+			else if(fileIsSpaces && !warned && *it != ' ')
+			{
+				warned = true;
+				stack.back()->PrintTrace("Mixed whitespace usage in file");
+			}
+			
 			++white;
+		}
 		
 		// If the line is a comment, skip to the end of the line.
 		if(*it == '#')
@@ -130,6 +154,7 @@ void DataFile::Load(const char *it, const char *end)
 		list<DataNode> &children = stack.back()->children;
 		children.emplace_back(stack.back());
 		DataNode &node = children.back();
+		node.lineNumber = lineNumber;
 		
 		// Remember where in the tree we are.
 		stack.push_back(&node);
