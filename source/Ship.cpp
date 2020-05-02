@@ -185,13 +185,15 @@ void Ship::Load(const DataNode &node)
 			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
+			if(reverse)
+				engine.facing = Angle(180.);
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
 				if(grandKey == "zoom" && grand.Size() >= 2)
 					engine.zoom = grand.Value(1);
 				else if(grandKey == "angle" && grand.Size() >= 2)
-					engine.facing = Angle(grand.Value(1) + (reverse ? 180. : 0.));
+					engine.facing += Angle(grand.Value(1));
 				else
 				{
 					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
