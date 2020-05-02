@@ -72,9 +72,9 @@ namespace {
 			return;
 		
 		// Energy and fuel costs are the energy or fuel required per unit repaired.
-		if(energyCost)
+		if(energyCost > 0.)
 			available = min(available, energy / energyCost);
-		if(fuelCost)
+		if(fuelCost > 0.)
 			available = min(available, fuel / fuelCost);
 		
 		double transfer = min(available, maximum - stat);
@@ -757,8 +757,10 @@ int64_t Ship::ChassisCost() const
 
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
-string Ship::FlightCheck() const
+vector<string> Ship::FlightCheck() const
 {
+	auto checks = vector<string>{};
+	
 	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
 	double burning = attributes.Get("fuel energy");
 	double solar = attributes.Get("solar collection");
@@ -776,45 +778,51 @@ string Ship::FlightCheck() const
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
 	
-	// Error conditions:
+	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
-		return "overheating!";
-	if(energy <= 0.)
-		return "no energy!";
-	if((energy - burning <= 0.) && (fuel <= 0.))
-		return "no fuel!";
-	if(!thrust && !reverseThrust && !afterburner)
-		return "no thruster!";
-	if(!turn)
-		return "no steering!";
+		checks.emplace_back("overheating!");
+	else if(energy <= 0.)
+		checks.emplace_back("no energy!");
+	else if((energy - burning <= 0.) && (fuel <= 0.))
+		checks.emplace_back("no fuel!");
+	else if(!thrust && !reverseThrust && !afterburner)
+		checks.emplace_back("no thruster!");
+	else if(!turn)
+		checks.emplace_back("no steering!");
 	
-	// Warning conditions:
-	if(!thrust && !reverseThrust)
-		return "afterburner only?";
-	if(!thrust && !afterburner)
-		return "reverse only?";
-	if(!generation && !solar)
-		return "battery only?";
-	if(energy < thrustEnergy)
-		return "limited thrust?";
-	if(energy < turnEnergy)
-		return "limited turn?";
-	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
-		return "solar power?";
-	if(fuel < 0.)
-		return "fuel?";
-	if(!canBeCarried)
+	// If no errors were found, check all warning conditions:
+	if(checks.empty())
 	{
-		if(!hyperDrive && !jumpDrive)
-			return "no hyperdrive?";
-		if(fuelCapacity < JumpFuel())
-			return "no fuel?";
+		if(!thrust && !reverseThrust)
+			checks.emplace_back("afterburner only?");
+		if(!thrust && !afterburner)
+			checks.emplace_back("reverse only?");
+		if(!generation && !solar)
+			checks.emplace_back("battery only?");
+		if(energy < thrustEnergy)
+			checks.emplace_back("limited thrust?");
+		if(energy < turnEnergy)
+			checks.emplace_back("limited turn?");
+		if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
+			checks.emplace_back("solar power?");
+		if(fuel < 0.)
+			checks.emplace_back("fuel?");
+		if(!canBeCarried)
+		{
+			if(!hyperDrive && !jumpDrive)
+				checks.emplace_back("no hyperdrive?");
+			if(fuelCapacity < JumpFuel())
+				checks.emplace_back("no fuel?");
+		}
+		for(const auto &it : outfits)
+			if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
+			{
+				checks.emplace_back("insufficient energy to fire?");
+				break;
+			}
 	}
-	for(const auto &it : outfits)
-		if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
-			return "insufficient energy to fire?";
 	
-	return "";
+	return checks;
 }
 
 
@@ -1089,7 +1097,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					
 					visuals.emplace_back(*effect, effectPosition, effectVelocity, angle);
 				}
-					
+				
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
 					CreateExplosion(visuals, true);
 				for(const auto &it : finalExplosions)
@@ -1359,6 +1367,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
 	double mass = Mass();
+	bool isUsingAfterburner = false;
 	if(isDisabled)
 		velocity *= 1. - attributes.Get("drag") / mass;
 	else if(!pilotError)
@@ -1420,15 +1429,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				energy -= energyCost;
 				acceleration += angle.Unit() * thrust / mass;
 				
-				if(!forget)
-					for(const EnginePoint &point : enginePoints)
-					{
-						Point pos = angle.Rotate(point) * Zoom() + position;
-						for(const auto &it : attributes.AfterburnerEffects())
-							for(int i = 0; i < it.second; ++i)
-								visuals.emplace_back(*it.first,
-									pos + velocity, velocity - 6. * angle.Unit(), angle);
-					}
+				// Only create the afterburner effects if the ship is in the player's system.
+				isUsingAfterburner = !forget;
 			}
 		}
 	}
@@ -1535,8 +1537,18 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 	
-	// And finally: move the ship!
+	// Finally, move the ship and create any movement visuals.
 	position += velocity;
+	if(isUsingAfterburner)
+		for(const EnginePoint &point : enginePoints)
+		{
+			Point pos = angle.Rotate(point) * Zoom() + position;
+			// Stream the afterburner effects outward in the direction the engines are facing.
+			Point effectVelocity = velocity - 6. * angle.Unit();
+			for(const auto &it : attributes.AfterburnerEffects())
+				for(int i = 0; i < it.second; ++i)
+					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
+		}
 }
 
 
@@ -1562,17 +1574,17 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 		
-		const double hullAvailable = attributes.Get("hull repair rate");
-		const double hullEnergy = attributes.Get("hull energy") / hullAvailable;
-		const double hullFuel = attributes.Get("hull fuel") / hullAvailable;
-		const double hullHeat = attributes.Get("hull heat") / hullAvailable;
+		const double hullAvailable = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
+		const double hullEnergy = (attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
+		const double hullFuel = (attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
+		const double hullHeat = (attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
 		double hullRemaining = hullAvailable;
 		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
 		
-		const double shieldsAvailable = attributes.Get("shield generation");
-		const double shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
-		const double shieldsFuel = attributes.Get("shield fuel") / shieldsAvailable;
-		const double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
+		const double shieldsAvailable = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
+		const double shieldsEnergy = (attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
+		const double shieldsFuel = (attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
+		const double shieldsHeat = (attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
 		
@@ -1674,8 +1686,10 @@ void Ship::DoGeneration()
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-		
-			energy += currentSystem->SolarPower() * scale * attributes.Get("solar collection");
+			
+			double solarScaling = currentSystem->SolarPower() * scale;
+			energy += solarScaling * attributes.Get("solar collection");
+			heat += solarScaling * attributes.Get("solar heat");
 		}
 		
 		double coolingEfficiency = CoolingEfficiency();
@@ -2410,11 +2424,21 @@ double Ship::DisabledHull() const
 
 
 
-int Ship::JumpsRemaining() const
+int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
 	// many jumps it can make.
-	double jumpFuel = JumpFuel(targetSystem);
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		auto p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
@@ -2625,18 +2649,18 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
-	double shieldDamage = weapon.ShieldDamage() * damageScaling;
-	double hullDamage = weapon.HullDamage() * damageScaling;
-	double hitForce = weapon.HitForce() * damageScaling;
-	double fuelDamage = weapon.FuelDamage() * damageScaling;
-	double heatDamage = weapon.HeatDamage() * damageScaling;
-	double ionDamage = weapon.IonDamage() * damageScaling;
-	double disruptionDamage = weapon.DisruptionDamage() * damageScaling;
-	double slowingDamage = weapon.SlowingDamage() * damageScaling;
+	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
+	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
+	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
+	double fuelDamage = weapon.FuelDamage() * damageScaling / (1. + attributes.Get("fuel protection"));
+	double heatDamage = weapon.HeatDamage() * damageScaling / (1. + attributes.Get("heat protection"));
+	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
+	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
+	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - weapon.Piercing();
+	double shieldFraction = 1. - max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
@@ -2954,7 +2978,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
-		if(it == outfits.end() || it->second <= 0)
+		if(it == outfits.end() || it->second < weapon->AmmoUsage())
 			return false;
 	}
 	
@@ -2979,7 +3003,7 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 	if(!weapon)
 		return;
 	if(weapon->Ammo())
-		AddOutfit(weapon->Ammo(), -1);
+		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
 	
 	energy -= weapon->FiringEnergy();
 	fuel -= weapon->FiringFuel();

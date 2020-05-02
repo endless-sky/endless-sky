@@ -52,10 +52,70 @@ void BatchDrawList::SetCenter(const Point &center)
 
 
 
-// Add an object based on the Body class.
+// Add an unswizzled object based on the Body class.
 bool BatchDrawList::Add(const Body &body, float clip)
 {
+	// TODO: Rather than compensate using 1/2 the Visual | Projectile velocity, we should
+	// extend the Sprite class to know its reference point. For most sprites, this will be
+	// the horizontal and vertical middle of the sprite, but for "laser" projectiles, this
+	// would be the middle of a sprite end. Adding such support will then help resolve issues
+	// with drawing things such as very large effects that simulate projectiles. This offset
+	// exists because we use the current position of a projectile, but have varied expectations
+	// of what that position means. For a "laser" projectile, it is created at the ship hardpoint but
+	// we want it to be drawn with its center halfway to the target. For longer-lived projectiles, we
+	// expect the position to be the actual location of the projectile at that point in time.
 	Point position = (body.Position() + .5 * body.Velocity() - center) * zoom;
+	return Add(body, position, clip);
+}
+
+
+
+// TODO: Once we have sprite reference positions, this method will not be needed.
+bool BatchDrawList::AddVisual(const Body &visual)
+{
+	return Add(visual, (visual.Position() - center) * zoom, 1.f);
+}
+
+
+
+// Draw all the items in this list.
+void BatchDrawList::Draw() const
+{
+	BatchShader::Bind();
+	
+	for(const pair<const Sprite * const, vector<float>> &it : data)
+		BatchShader::Add(it.first, isHighDPI, it.second);
+	
+	BatchShader::Unbind();
+}
+
+
+
+bool BatchDrawList::Cull(const Body &body, const Point &position) const
+{
+	if(!body.HasSprite() || !body.Zoom())
+		return true;
+	
+	Point unit = body.Unit();
+	// Cull sprites that are completely off screen, to reduce the number of draw
+	// calls that we issue (which may be the bottleneck on some systems).
+	Point size(
+		fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()),
+		fabs(unit.X() * body.Width()) + fabs(unit.Y() * body.Height()));
+	Point topLeft = position - size * zoom;
+	Point bottomRight = position + size * zoom;
+	if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
+		return true;
+	if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
+		return true;
+	
+	return false;
+}
+
+
+
+bool BatchDrawList::Add(const Body &body, Point position, float clip)
+{
 	if(Cull(body, position))
 		return false;
 	
@@ -90,40 +150,4 @@ bool BatchDrawList::Add(const Body &body, float clip)
 	Push(v, bottomRight, 1.f, 1.f - clip, frame);
 	
 	return true;
-}
-
-
-
-// Draw all the items in this list.
-void BatchDrawList::Draw() const
-{
-	BatchShader::Bind();
-	
-	for(const pair<const Sprite *, vector<float>> &it : data)
-		BatchShader::Add(it.first, isHighDPI, it.second);
-	
-	BatchShader::Unbind();
-}
-
-
-
-bool BatchDrawList::Cull(const Body &body, const Point &position) const
-{
-	if(!body.HasSprite() || !body.Zoom())
-		return true;
-	
-	Point unit = body.Unit();
-	// Cull sprites that are completely off screen, to reduce the number of draw
-	// calls that we issue (which may be the bottleneck on some systems).
-	Point size(
-		fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()),
-		fabs(unit.X() * body.Width()) + fabs(unit.Y() * body.Height()));
-	Point topLeft = position - size * zoom;
-	Point bottomRight = position + size * zoom;
-	if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
-		return true;
-	if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
-		return true;
-	
-	return false;
 }

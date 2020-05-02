@@ -323,7 +323,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					int tons = ceil(it.second * it.first->Mass());
 					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
-				else	
+				else
 					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
 			}
 		if(first)
