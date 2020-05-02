@@ -433,10 +433,15 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	if(isActive && wasActive)
+	if(isActive)
 	{
 		HandleKeyboardInputs();
-		ai.UpdateKeys(player, activeCommands);
+		// Ignore any inputs given when first becoming active, since those inputs
+		// were issued when some other panel (e.g. planet, hail) was displayed.
+		if(!wasActive)
+			activeCommands.Clear();
+		else
+			ai.UpdateKeys(player, activeCommands);
 	}
 	wasActive = isActive;
 	Audio::Update(center);
@@ -1379,7 +1384,7 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
-		batchDraw[calcTickTock].Add(visual);
+		batchDraw[calcTickTock].AddVisual(visual);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
@@ -1603,7 +1608,10 @@ void Engine::HandleKeyboardInputs()
 	// Certain commands are always sent when the corresponding key is depressed.
 	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
 		Command::FORWARD | Command::LEFT | Command::RIGHT;
-	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN | manueveringCommands);
+	
+	// Transfer all commands that need to be active as long as the corresponding key is pressed.
+	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
+		manueveringCommands | Command::SHIFT);
 	
 	// Issuing LAND again within the cooldown period signals a change of landing target.
 	constexpr int landCooldown = 60;
@@ -1624,12 +1632,19 @@ void Engine::HandleKeyboardInputs()
 	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
 	// starting (e.g. while escorts are aligning), or switches the landing target.
 	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
-		activeCommands.Set(Command::WAIT);
-	else
-		activeCommands.Clear(Command::WAIT);
+		activeCommands |= Command::WAIT;
 	
 	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
+
+	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
+	// Translation is done here to allow the autopilot (which will execute the STOP-command) to
+	// act on a single STOP command instead of the shift+BACK modifier).
+	if(keyHeld.Has(Command::BACK) && keyHeld.Has(Command::SHIFT))
+	{
+		activeCommands |= Command::STOP;
+		activeCommands.Clear(Command::BACK);
+	}
 }
 
 

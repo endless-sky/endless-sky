@@ -230,7 +230,7 @@ void ShopPanel::DrawSidebar()
 		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
 		{
-			const string &check = (*checkIt).second;
+			const string &check = (*checkIt).second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(zones.back().Contains(mouse))
@@ -954,7 +954,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
-			if(!CanShowInSidebar(*ship, here))
+			if(!CanShowInSidebar(*other, here))
 				continue;
 			
 			if(other.get() == ship || other.get() == playerShip)

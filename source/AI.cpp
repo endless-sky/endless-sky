@@ -33,8 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "Weapon.h"
 
-#include <SDL2/SDL.h>
-
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -47,7 +45,7 @@ namespace {
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
-			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
+			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STOP);
 		
 		return cancelers;
 	}
@@ -278,7 +276,6 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 // Commands issued via the keyboard (mostly, to the flagship).
 void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 {
-	shift = (SDL_GetModState() & KMOD_SHIFT);
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
@@ -286,6 +283,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
 		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
+		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
 		if(canceled)
@@ -296,6 +294,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	
 	if(!flagship || flagship->IsDestroyed())
 		return;
+
+	if(activeCommands.Has(Command::STOP))
+		Messages::Add("Coming to a stop.");
 	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
@@ -1831,7 +1832,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 
 
 	
-void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
+void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
 	command.SetTurn(TurnToward(ship, direction));
@@ -1841,7 +1842,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 
 
 
-void AI::Swarm(Ship &ship, Command &command, const Ship &target)
+void AI::Swarm(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
 	double maxSpeed = ship.MaxVelocity();
@@ -1854,7 +1855,7 @@ void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 
 
 
-void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
+void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 {
 	// Constants:
 	static const double MAX_TIME = 600.;
@@ -3002,6 +3003,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
 	Command command;
+	bool shift = activeCommands.Has(Command::SHIFT);
 	
 	bool isWormhole = false;
 	if(player.HasTravelPlan())
@@ -3441,6 +3443,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
+	}
+	else if(autoPilot.Has(Command::STOP))
+	{
+		// STOP is automatically cleared once the ship has stopped.
+		if(Stop(ship, command))
+			autoPilot.Clear(Command::STOP);
 	}
 	else if(autoPilot.Has(Command::JUMP))
 	{
