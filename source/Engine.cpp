@@ -1377,19 +1377,19 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
-				if(ship->IsThrusting())
+				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
 						if(it.second > 0)
 							Audio::Play(it.first, ship->Position());
 				}
-				else if(ship->IsReversing())
+				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().ReverseFlareSounds())
 						if(it.second > 0)
 							Audio::Play(it.first, ship->Position());
 				}
-				if(ship->IsSteering())
+				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().SteeringFlareSounds())
 						if(it.second > 0)
@@ -1403,19 +1403,19 @@ void Engine::CalculateStep()
 	if(flagship && showFlagship)
 	{
 		AddSprites(*flagship);
-		if(flagship->IsThrusting())
+		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
 				if(it.second > 0)
 					Audio::Play(it.first);
 		}
-		else if(flagship->IsReversing())
+		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
 				if(it.second > 0)
 					Audio::Play(it.first);
 		}
-		if(flagship->IsSteering())
+		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
 				if(it.second > 0)
