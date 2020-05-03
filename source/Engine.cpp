@@ -915,12 +915,14 @@ void Engine::Draw() const
 		Angle a = target.angle;
 		Angle da(360. / target.count);
 		
+		PointerShader::Bind();
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Draw(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
+			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
 				Radar::GetColor(target.type));
 			a += da;
 		}
+		PointerShader::Unbind();
 	}
 	
 	// Draw the heads-up display.
