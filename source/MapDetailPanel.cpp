@@ -277,22 +277,24 @@ bool MapDetailPanel::RClick(int x, int y)
 {
 	if(!selectedSystem || !Preferences::Has("System map sends move orders"))
 		return true;
+	// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
+	// positions aren't hard-coded.
 	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
 	{
+		// Only handle clicks on the actual orbits element, rather than the whole UI region.
+		// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
 		const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
-		if((Point(x, y) - orbitCenter).Length() > 130)
+		auto uiClick = Point(x, y) - orbitCenter;
+		if(uiClick.Length() > 130)
 			return true;
 		
-		// Only issue movement orders if the player is in flight.
+		// Only issue movement orders if the player is in-flight.
 		if(player.GetPlanet())
 			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
 		else if(!player.HasVisited(selectedSystem))
-			GetUI()->Push(new Dialog("You must visit this system before you can move your fleet there."));
+			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
 		else
-		{
-			Point destinationPos = (Point(x, y) - orbitCenter) / scale;
-			player.SetEscortMoveToPair(destinationPos, selectedSystem);
-		}
+			player.SetEscortDestination(selectedSystem, uiClick / scale);
 	}
 	
 	return true;

@@ -1659,14 +1659,14 @@ void Engine::HandleMouseClicks()
 		return;
 	
 	// Handle escort travel orders sent via the Map.
-	if(player.HasEscortMoveToPair())
+	if(player.HasEscortDestination())
 	{
-		pair<const Point, const System *> issuedEscortMoveTo = player.GetEscortMoveToPair();
-		ai.IssueMoveTarget(player, issuedEscortMoveTo.first, issuedEscortMoveTo.second);
-		player.SetEscortMoveToPair(Point());
+		auto moveTarget = player.GetEscortDestination();
+		ai.IssueMoveTarget(player, moveTarget.second, moveTarget.first);
+		player.SetEscortDestination();
 	}
 	
-	// If there is no other click event, bail out.
+	// If there is no click event sent while the engine was active, bail out.
 	if(!doClick)
 		return;
 	

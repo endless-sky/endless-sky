@@ -2189,24 +2189,26 @@ const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 
 
 
-pair<const Point, const System *> PlayerInfo::GetEscortMoveToPair()
+const pair<const System *, Point> &PlayerInfo::GetEscortDestination() const
 {
-	return make_pair(escortMoveToPoint, escortMoveToSystem);
+	return interstellarEscortDestination;
 }
 
 
 
-bool PlayerInfo::HasEscortMoveToPair() const
+// Determine if a system and nonzero position were specified.
+bool PlayerInfo::HasEscortDestination() const
 {
-	return escortMoveToSystem && escortMoveToPoint.Length();
+	return interstellarEscortDestination.first && interstellarEscortDestination.second;
 }
 
 
 
-void PlayerInfo::SetEscortMoveToPair(const Point &targetPosition, const System *targetSystem)
+// Set (or clear) the stored escort travel destination.
+void PlayerInfo::SetEscortDestination(const System *system, Point pos)
 {
-	escortMoveToSystem = targetSystem;
-	escortMoveToPoint = targetPosition;
+	interstellarEscortDestination.first = system;
+	interstellarEscortDestination.second = pos;
 }
 
 

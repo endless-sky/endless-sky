@@ -235,9 +235,10 @@ public:
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 	
-	std::pair<const Point, const System *> GetEscortMoveToPair();
-	void SetEscortMoveToPair(const Point &targetPosition, const System *targetSystem = nullptr);
-	bool HasEscortMoveToPair() const;
+	// Get or set the travel destination for selected escorts via the map.
+	const std::pair<const System *, Point> &GetEscortDestination() const;
+	void SetEscortDestination(const System *system = nullptr, Point pos = Point());
+	bool HasEscortDestination() const;
 	
 	// Get or set what coloring is currently selected in the map.
 	int MapColoring() const;
@@ -320,8 +321,6 @@ private:
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
-	Point escortMoveToPoint;
-	const System *escortMoveToSystem = nullptr;
 	
 	const Outfit *selectedWeapon = nullptr;
 	
@@ -339,9 +338,12 @@ private:
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
 	
+	// The system and position therein to which the "orbits" system UI issued a move order.
+	std::pair<const System *, Point> interstellarEscortDestination;
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
 	int mapZoom = 0;
+	
 	// Currently collapsed categories for various panels.
 	std::map<std::string, std::set<std::string>> collapsed;
 	
