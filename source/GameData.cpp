@@ -129,12 +129,12 @@ namespace {
 	
 	const Government *playerGovernment = nullptr;
 	
-	// Overload for those objects that don't get written to a save (and thus do not need SetName).
+	// Log a warning for an "undefined" class object that was never loaded from disk.
 	void Warn(const string &noun, const string &name)
 	{
 		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but never defined.");
 	}
-	// Set the name of an undefined class object, so that it can be written to the player's save.
+	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	template <class Type>
 	void NameAndWarn(const string &noun, Type &it)
 	{
