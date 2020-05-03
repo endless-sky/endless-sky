@@ -89,6 +89,32 @@ outfit "Korath Expeller"
 	"outfit space" -25
 	"weapon capacity" -25
 	"gun ports" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/expeller"
+			"frame rate" 60
+		sound "banisher"
+		"hit effect" "banisher impact"
+		"inaccuracy" .4
+		"turret turn" 4.2
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.9
+		"firing heat" 3.6
+		"shield damage" 1.7
+		"hull damage" .75
+		"hit force" 20
+	description "This fighter weapon has been mounted on a turret, allowing a capital ship to push small vessels away while keeping them within range of its offensive weapons."
+
+outfit "Expeller Turret"
+	category "Turrets"
+	cost 938000
+	thumbnail "outfit/expeller"
+	"mass" 29
+	"outfit space" -29
+	"weapon capacity" -29
+	"turret mounts" -1
 	weapon
 		sprite "projectile/expeller"
 			"frame rate" 60
@@ -98,6 +124,7 @@ outfit "Korath Expeller"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
+		"hardpoint sprite" "hardpoint/expeller.png"
 		"firing energy" 2.9
 		"firing heat" 3.6
 		"shield damage" 1.7

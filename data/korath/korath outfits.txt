@@ -91,6 +91,19 @@ outfit "Large Heat Shunt"
 	"cooling" 54
 	description "Without these powerful cooling systems, most Korath warships would overheat within seconds as soon as they began to fire their weapons."
 
+outfit "Liquid Sodium Cooler"
+	category "Systems"
+	cost 790000
+	thumbnail "outfit/liquid sodium cooler"
+	"mass" 77
+	"outfit space" -77
+	"heat generation" 1.5
+	"energy consumption" 3.1
+	"active cooling" 429
+	"cooling energy" 14.1
+	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary heating and cooling system keeps the sodium at a constant temperature, causing a continuous power drain even when the system is inactive."
+	description "Because this outfit takes more power than the full output of a plasma core, it is useless except to the very largest of ships."
+
 
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
@@ -147,6 +160,18 @@ outfit "Fuel Processor"
 	"fuel capacity" 200
 	"ramscoop" 2
 	description "The fuel processor was developed during the latter half of the Korath Civil War, when Korath factions attempted to provide for their war effort by raiding the Hai for supplies. Their ships would often end up stranded after they had run out of fuel and were unable to escape from the Hai military fleets, prompting the creation of this hybrid fuel storage and ramscoop device. These outfits are now the main source of fuel for the remaining Korath in the galaxy."
+
+outfit "Fuel Stack"
+	category "Systems"
+	cost 400000
+	thumbnail "outfit/korath fuel stack"
+	"mass" 61
+	"outfit space" -61
+	"fuel capacity" 800
+	"ramscoop" 16
+	"energy consumption" 1.1
+	"heat generation" 2.2
+	description "The Korath developed this giant fuel processor for capital ships that carry many of their fuel-guzzling outfits."
 
 
 outfit "Command Center"
