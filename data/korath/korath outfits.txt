@@ -203,6 +203,47 @@ outfit "Control Transceiver"
 	description "This is a miniaturized communication device, which can be connected to all the major systems of a Kor Sestor automaton, apparently as a way of controlling them remotely. The communications are encrypted and authenticated in a way that would make it nearly impossible to spoof the control signals."
 
 
+# vs thruster
+#   afterburner cost = 1.2 * thruster
+#   afterburner space = 1 + ( 2/3 * thruster ) rounded down
+#   afterburner energy = 1.5 * thruster
+#   afterburner heat = 2.5 * thruster
+#   afterburner thrust = 1.2 * thruster
+#   afterburner fuel = thrust / ( 5 * ( heat + energy + space ) )
+#   fuel capacity = 240 * fuel rounded up to nearest 50
+
+outfit "Afterburner (Asteroid Class)"
+	plural "Afterburners (Asteroid Class)"
+	category "Engines"
+	"cost" 136000
+	thumbnail "outfit/tiny korath afterburner"
+	"mass" 10
+	"outfit space" -10
+	"engine capacity" -10
+	"afterburner thrust" 13.4
+	"afterburner energy" 2.25
+	"afterburner heat" 8.5
+	"afterburner fuel" 0.14
+	"fuel capacity" 50
+	"ramscoop" 0.25
+	"afterburner effect" "afterburner"
+	description "Korath afterburners pump hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
+	description "This tiny thruster is designed for Korath fighters and provides a small amount of fuel capacity and ramscoop to supply the afterburner."
+
+outfit "Afterburner (Comet Class)"
+	plural "Afterburner (Comet Class)"
+	category "Engines"
+	"cost" 299000
+	thumbnail "outfit/small korath afterburner"
+	"mass" 16
+	"outfit space" -16
+	"engine capacity" -16
+	"afterburner thrust" 26.2
+	"afterburner energy" 4.2
+	"afterburner heat" 16.3
+	"afterburner fuel" .15
+	"afterburner effect" "afterburner"
+	description "Korath afterburners pump hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
 
 outfit "Engine (Meteor Class)"
 	plural "Engine (Meteor Class)"

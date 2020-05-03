@@ -44,6 +44,42 @@ outfit "Korath Grab-Strike"
 		"hit force" -160
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
+outfit "Korath Shunt-Strike"
+	category "Turrets"
+	cost 821000
+	thumbnail "outfit/shunt-strike"
+	"mass" 52
+	"outfit space" -52
+	"weapon capacity" -52
+	"energy capacity" 100
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/grab-strike"
+			"frame rate" 25
+			"random start frame"
+		"hardpoint sprite" "hardpoint/shunt-strike"
+		"hardpoint offset" 7.
+		sound "grab-strike"
+		"hit effect" "grab-strike impact"
+		"die effect" "grab-strike impact"
+		"inaccuracy" 1
+		"turret turn" 1.9
+		"velocity" 10
+		"lifetime" 100
+		"reload" 20
+		"firing energy" 60
+		"firing heat" 150
+		"acceleration" 1
+		"drag" .1
+		"turn" .2
+		"homing" 4
+		"tracking" .7
+		"shield damage" 108
+		"hull damage" 32
+		"hit force" -160
+	description "This outfit is a placeholder."
+
 effect "grab-strike impact"
 	sprite "effect/grab-strike impact"
 		"no repeat"
@@ -104,12 +140,12 @@ outfit "Korath Expeller"
 		"shield damage" 1.7
 		"hull damage" .75
 		"hit force" 20
-	description "This fighter weapon has been mounted on a turret, allowing a capital ship to push small vessels away while keeping them within range of its offensive weapons."
+	description "The short-range Expeller is designed for fighters to push vessels away from Korath carriers."
 
 outfit "Expeller Turret"
 	category "Turrets"
 	cost 938000
-	thumbnail "outfit/expeller"
+	thumbnail "outfit/expeller turret"
 	"mass" 29
 	"outfit space" -29
 	"weapon capacity" -29
@@ -123,14 +159,14 @@ outfit "Expeller Turret"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"hardpoint sprite" "hardpoint/expeller.png"
+		"hardpoint sprite" "hardpoint/expeller turret"
 		"firing energy" 2.9
 		"turret turn" 4.2
 		"firing heat" 3.6
 		"shield damage" 1.7
 		"hull damage" .75
 		"hit force" 20
-	description "The short-range Expeller is designed for fighters to push vessels away from Korath carriers."
+	description "This fighter weapon has been mounted on a turret, allowing a capital ship to push small vessels away while keeping them within range of its offensive weapons."
 
 effect "banisher impact"
 	sprite "effect/banisher impact"
