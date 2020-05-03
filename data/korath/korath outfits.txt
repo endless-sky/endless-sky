@@ -97,12 +97,12 @@ outfit "Liquid Sodium Cooler"
 	thumbnail "outfit/liquid sodium cooler"
 	"mass" 77
 	"outfit space" -77
-	"heat generation" 1.5
+	"heat generation" 1.85
 	"energy consumption" 3.1
-	"active cooling" 429
-	"cooling energy" 14.1
+	"active cooling" 493
+	"cooling energy" 11.7
 	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary heating and cooling system keeps the sodium at a constant temperature, causing a continuous power drain even when the system is inactive."
-	description "Because this outfit takes more power than the full output of a plasma core, it is useless except to the very largest of ships."
+	description "Because this outfit uses more power than the full output of a plasma core, it is useless except in the very largest of ships."
 
 
 outfit "Systems Core (Small)"
@@ -165,13 +165,13 @@ outfit "Fuel Stack"
 	category "Systems"
 	cost 400000
 	thumbnail "outfit/korath fuel stack"
-	"mass" 61
-	"outfit space" -61
+	"mass" 62
+	"outfit space" -62
 	"fuel capacity" 800
 	"ramscoop" 16
-	"energy consumption" 1.1
-	"heat generation" 2.2
-	description "The Korath developed this giant fuel processor for capital ships that carry many of their fuel-guzzling outfits."
+	"energy consumption" 0.8
+	"heat generation" 1.6
+	description "The Korath developed this giant fuel processor for capital ships that carry many of their fuel-guzzling outfits. It maintains a negative vacuum pressure, pulling gas into the ramscoops faster than a fuel processor would alone. Unfortunately, this comes with a constant heat and energy cost."
 
 
 outfit "Command Center"
@@ -204,13 +204,14 @@ outfit "Control Transceiver"
 
 
 # vs thruster
-#   afterburner cost = 1.2 * thruster
-#   afterburner space = 1 + ( 2/3 * thruster ) rounded down
-#   afterburner energy = 1.5 * thruster
-#   afterburner heat = 2.5 * thruster
-#   afterburner thrust = 1.2 * thruster
-#   afterburner fuel = thrust / ( 5 * ( heat + energy + space ) )
-#   fuel capacity = 240 * fuel rounded up to nearest 50
+#   afterburner cost = 1.2 * thruster cost
+#   afterburner energy = thruster energy
+#   afterburner heat = 2.5 * thruster heat
+#   afterburner thrust = 1.5 * thruster thrust
+#   afterburner fuel = ( heat + energy + space ) / 240
+#   fuel capacity = 600 * fuel rounded up to nearest 50
+#   ramscoop = fuel capacity / 500
+#   afterburner space = ( fuel capacity / 80 ) + ( 2/3 * thruster space ) rounded down
 
 outfit "Afterburner (Asteroid Class)"
 	plural "Afterburners (Asteroid Class)"
@@ -220,28 +221,29 @@ outfit "Afterburner (Asteroid Class)"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"afterburner thrust" 13.4
-	"afterburner energy" 2.25
+	"afterburner thrust" 16.8
+	"afterburner energy" 1.5
 	"afterburner heat" 8.5
-	"afterburner fuel" 0.14
+	"afterburner fuel" 0.083
 	"fuel capacity" 50
-	"ramscoop" 0.25
+	"ramscoop" 0.1
 	"afterburner effect" "afterburner"
 	description "Korath afterburners pump hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
-	description "This tiny thruster is designed for Korath fighters and provides a small amount of fuel capacity and ramscoop to supply the afterburner."
 
 outfit "Afterburner (Comet Class)"
 	plural "Afterburner (Comet Class)"
 	category "Engines"
 	"cost" 299000
 	thumbnail "outfit/small korath afterburner"
-	"mass" 16
-	"outfit space" -16
-	"engine capacity" -16
-	"afterburner thrust" 26.2
-	"afterburner energy" 4.2
+	"mass" 17
+	"outfit space" -17
+	"engine capacity" -17
+	"afterburner thrust" 32.7
+	"afterburner energy" 2.8
 	"afterburner heat" 16.3
-	"afterburner fuel" .15
+	"afterburner fuel" .146
+	"fuel capacity" 100
+	"ramscoop" 0.2
 	"afterburner effect" "afterburner"
 	description "Korath afterburners pump hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
 
@@ -355,7 +357,7 @@ outfit "Grav-Thruster (Nebula Class)"
 	"outfit space" -184
 	"engine capacity" -184
 	"thrust" 248.4
-	"thrusting energy" 20.4
+	"thrusting energy" 28.1
 	"thrusting heat" 49.4
 	"flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
@@ -440,7 +442,7 @@ outfit "Grav-Steering (Nebula Class)"
 	"outfit space" -122
 	"engine capacity" -122
 	"turn" 7005
-	"turning energy" 12.3
+	"turning energy" 16.4
 	"turning heat" 32
 	description "The Kor Metri were developing a new capital ship, the Model 1024, to counter a vast, new, battleship the Kor Sestor were preparing. Even Stellar-Class steering wasn't enough to turn the great beast. This steering system incorporates anti-gravity to accelerate the propelled plasma far beyond what the engine can manage on its own. The engine was first tested on a Model 256; the ship spun so fast its mines flew out of their racks and hit the hull."
 	description "Although the Model 1024 was never completed, its engines still see service on Korath Exile world-ships. The technology behind them has become the basis for the Banisher and Expeller."

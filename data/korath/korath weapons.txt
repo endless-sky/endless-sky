@@ -142,13 +142,13 @@ outfit "Korath Expeller"
 		"hit force" 20
 	description "The short-range Expeller is designed for fighters to push vessels away from Korath carriers."
 
-outfit "Expeller Turret"
+outfit "Korath Expeller Turret"
 	category "Turrets"
 	cost 938000
 	thumbnail "outfit/expeller turret"
-	"mass" 29
-	"outfit space" -29
-	"weapon capacity" -29
+	"mass" 27
+	"outfit space" -27
+	"weapon capacity" -27
 	"turret mounts" -1
 	weapon
 		sprite "projectile/expeller"
@@ -867,7 +867,7 @@ outfit "Korath Digger Turret"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" 1
-		"turret turn" 3
+		"turret turn" 3.2
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
