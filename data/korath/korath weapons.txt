@@ -96,7 +96,6 @@ outfit "Korath Expeller"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"turret turn" 4.2
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -126,6 +125,7 @@ outfit "Expeller Turret"
 		"reload" 1
 		"hardpoint sprite" "hardpoint/expeller.png"
 		"firing energy" 2.9
+		"turret turn" 4.2
 		"firing heat" 3.6
 		"shield damage" 1.7
 		"hull damage" .75
