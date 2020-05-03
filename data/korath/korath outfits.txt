@@ -94,15 +94,14 @@ outfit "Large Heat Shunt"
 outfit "Liquid Sodium Cooler"
 	category "Systems"
 	cost 790000
-	thumbnail "outfit/liquid sodium cooler"
+	thumbnail "outfit/liquid sodium"
 	"mass" 77
 	"outfit space" -77
-	"heat generation" 1.85
 	"energy consumption" 3.1
 	"active cooling" 493
 	"cooling energy" 11.7
-	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary heating and cooling system keeps the sodium at a constant temperature, causing a continuous power drain even when the system is inactive."
-	description "Because this outfit uses more power than the full output of a plasma core, it is useless except in the very largest of ships."
+	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system keeps the sodium at a safe temperature to avoid pipe bursts. This draws power even when the system is inactive."
+	description "Because this outfit uses more power than the full output of a plasma core, it is useless except in the very hottest of ships."
 
 
 outfit "Systems Core (Small)"
