@@ -98,7 +98,7 @@ outfit "Korath Shunt-Strike"
 	description "To maintain a ready supply of microbots, this turret constantly collects space debris and assembles new bots. That produces heat and consumes energy even when the weapon is not in use."
 
 
-effect "shunt-strike impact"
+effect "shunt-strike hit"
 	sprite "effect/shunt-strike-hit"
 		"no repeat"
 		"frame rate" 12
