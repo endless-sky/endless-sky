@@ -2032,7 +2032,7 @@ mission "FW Defend New Tibet"
 			`	"Our fleet is there?" asks JJ.`
 			`	"No sir, the Syndicate. They're under attack by the Syndicate."`
 			`	"What?" says JJ. He rushes into the communication room, and you and Freya follow. On the video screen is a Buddhist monk in a maroon robe; behind him, you see other monks rushing about with none of the serenity you would usually expect of them. "What's going on there?" asks JJ.`
-			`	The monk explains, "Yesterday a Syndicate ship landed near our monastery, and the pilot sought refuge with us. He brings evidence that the Syndicate, or some faction within the Syndicate, was behind the attacks on Geminus and Martini."`
+			`	The monk explains, "Yesterday a Syndicate ship landed near our monastery, and the pilot sought refuge with us. He brings evidence that the Syndicate, or some faction within the Syndicate, was behind the attacks on Gemini and Martini."`
 			choice
 				`	"Why would the Syndicate do that?"`
 				`	"What sort of evidence?"`
