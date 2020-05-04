@@ -407,22 +407,22 @@ bool Mission::IsValid() const
 	if(source && !source->IsValid())
 		return false;
 	// Every mission is required to have a destination.
-	if(!destination->IsValid())
+	if(!destination || !destination->IsValid())
 		return false;
 	for(const set<const Planet *> &usedPlanets : {stopovers, visitedStopovers})
 		for(const Planet *planet : usedPlanets)
-			if(!planet->IsValid())
+			if(!planet || !planet->IsValid())
 				return false;
 	
 	// Systems must have a non-default position.
 	for(const set<const System *> &usedSystems : {waypoints, visitedWaypoints})
 		for(const System *system : usedSystems)
-			if(!system->IsValid())
+			if(!system || !system->IsValid())
 				return false;
 	
 	// Actions triggered when entering a system should reference valid systems.
 	for(const pair<const System *, MissionAction> &it : onEnter)
-		if(!it.first->IsValid() || !it.second.IsValid())
+		if(!it.first || !it.first->IsValid() || !it.second.IsValid())
 			return false;
 	for(const pair<Trigger, MissionAction> &it : actions)
 		if(!it.second.IsValid())
@@ -431,7 +431,7 @@ bool Mission::IsValid() const
 	for(const MissionAction &action : genericOnEnter)
 		if(!action.IsValid())
 			return false;
-	if(!clearanceFilter.IsEmpty() && !clearanceFilter.IsValid())
+	if(!clearanceFilter.IsValid())
 		return false;
 	
 	for(const NPC &npc : npcs)

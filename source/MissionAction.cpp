@@ -350,7 +350,7 @@ bool MissionAction::IsValid() const
 	for(const auto &event : events)
 		if(!event.first->IsValid())
 			return false;
-	if(!systemFilter.IsEmpty() && !systemFilter.IsValid())
+	if(!systemFilter.IsValid())
 		return false;
 	
 	return true;

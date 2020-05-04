@@ -90,14 +90,18 @@ void GameEvent::Save(DataWriter &out) const
 		conditionsToApply.Save(out);
 		
 		for(const System *system : systemsToUnvisit)
-			out.Write("unvisit", system->Name());
+			if(system)
+				out.Write("unvisit", system->Name());
 		for(const Planet *planet : planetsToUnvisit)
-			out.Write("unvisit planet", planet->TrueName());
+			if(planet)
+				out.Write("unvisit planet", planet->TrueName());
 		
 		for(const System *system : systemsToVisit)
-			out.Write("visit", system->Name());
+			if(system)
+				out.Write("visit", system->Name());
 		for(const Planet *planet : planetsToVisit)
-			out.Write("visit planet", planet->TrueName());
+			if(planet)
+				out.Write("visit planet", planet->TrueName());
 		
 		for(const DataNode &change : changes)
 			out.Write(change);
@@ -137,11 +141,11 @@ bool GameEvent::IsValid() const
 	// Systems without a position in the map are not valid.
 	for(const auto &systems : {systemsToVisit, systemsToUnvisit})
 		for(const auto &system : systems)
-			if(!system->IsValid())
+			if(!system || !system->IsValid())
 				return false;
 	for(const auto &planets : {planetsToVisit, planetsToUnvisit})
 		for(const auto &planet : planets)
-			if(!planet->IsValid())
+			if(!planet || !planet->IsValid())
 				return false;
 	
 	// TODO: the DataNodes in `changes` generate definitions for elements

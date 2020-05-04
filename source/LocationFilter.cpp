@@ -269,6 +269,9 @@ bool LocationFilter::IsEmpty() const
 // from every restriction is valid, then this filter is valid.
 bool LocationFilter::IsValid() const
 {
+	if(IsEmpty())
+		return true;
+	
 	if(!CheckValidity(planets) || !CheckValidity(systems))
 		return false;
 	if(!CheckValidity(notFilters) || !CheckValidity(neighborFilters))
