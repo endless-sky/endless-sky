@@ -112,28 +112,36 @@ namespace {
 	{
 		if(c.empty())
 			return true;
-		bool valid = false;
-		for(const auto &t : c)
+		
+		for(const Type *t : c)
 			if(t->IsValid())
-			{
-				valid = true;
-				break;
-			}
-		return valid;
+				return true;
+		
+		return false;
 	}
 	template <class Container>
 	bool CheckValidity(const Container &list)
 	{
 		if(list.empty())
 			return true;
-		bool valid = false;
+		
 		for(const auto &filter : list)
 			if(filter.IsValid())
-			{
-				valid = true;
-				break;
-			}
-		return valid;
+				return true;
+		
+		return false;
+	}
+	bool CheckValidity(const list<set<const Outfit *>> &list)
+	{
+		if(list.empty())
+			return true;
+		
+		for(const auto &outfits : list)
+			for(const Outfit *o : outfits)
+				if(o->IsDefined())
+					return true;
+		
+		return false;
 	}
 }
 
@@ -231,8 +239,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Outfit *outfit : it)
-					if(!outfit->Name().empty())
-						out.Write(outfit->Name());
+					out.Write(outfit->Name());
 			}
 			out.EndChild();
 		}
@@ -272,7 +279,7 @@ bool LocationFilter::IsValid() const
 	if(IsEmpty())
 		return true;
 	
-	if(!CheckValidity(planets) || !CheckValidity(systems))
+	if(!CheckValidity(planets) || !CheckValidity(systems) || CheckValidity(outfits))
 		return false;
 	if(!CheckValidity(notFilters) || !CheckValidity(neighborFilters))
 		return false;

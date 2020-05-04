@@ -2357,7 +2357,7 @@ void PlayerInfo::ApplyChanges()
 	{
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 			ship->SetSystem(system);
-		if(ship->GetSystem() == system && (!ship->GetPlanet() || ship->GetPlanet()->Name().empty()))
+		if(ship->GetSystem() == system && (!ship->GetPlanet() || !ship->GetPlanet()->IsValid()))
 			ship->SetPlanet(planet);
 	}
 	
