@@ -44,42 +44,6 @@ outfit "Korath Grab-Strike"
 		"hit force" -160
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
-outfit "Korath Shunt-Strike"
-	category "Turrets"
-	cost 821000
-	thumbnail "outfit/shunt-strike"
-	"mass" 52
-	"outfit space" -52
-	"weapon capacity" -52
-	"energy capacity" 100
-	"turret mounts" -1
-	"required crew" 1
-	weapon
-		sprite "projectile/grab-strike"
-			"frame rate" 25
-			"random start frame"
-		"hardpoint sprite" "hardpoint/shunt-strike"
-		"hardpoint offset" 7.
-		sound "grab-strike"
-		"hit effect" "grab-strike impact"
-		"die effect" "grab-strike impact"
-		"inaccuracy" 1
-		"turret turn" 1.9
-		"velocity" 10
-		"lifetime" 100
-		"reload" 20
-		"firing energy" 60
-		"firing heat" 150
-		"acceleration" 1
-		"drag" .1
-		"turn" .2
-		"homing" 4
-		"tracking" .7
-		"shield damage" 108
-		"hull damage" 32
-		"hit force" -160
-	description "This outfit is a placeholder."
-
 effect "grab-strike impact"
 	sprite "effect/grab-strike impact"
 		"no repeat"
@@ -87,6 +51,66 @@ effect "grab-strike impact"
 	"lifetime" 15
 	"random angle" 360
 	"velocity scale" -.1
+
+outfit "Korath Shunt-Strike"
+	category "Turrets"
+	cost 821000
+	thumbnail "outfit/shunt-strike"
+	# 1/2 of a Systems Core (Small) + 1/2 of a Grab-Strike
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
+	# 1/5 of a Small Systems Core battery:
+	"energy capacity" 260
+	"turret mounts" -1
+	"required crew" 1
+	"energy consumption" 0.2
+	"heat generation" 0.3
+	weapon
+		sprite "projectile/shunt-strike"
+			"frame rate" 24
+			"random start frame"
+		"hardpoint sprite" "hardpoint/shunt-strike"
+		"hardpoint offset" 7.
+		sound "grab-strike"
+		"inaccuracy" 1
+		"turret turn" 2.1
+		"velocity" 9
+		"lifetime" 90
+		"reload" 30
+		"die effect" "shunt-strike hit"
+		"hit effect" "shunt-strike hit"
+		"hit effect" "shunt-strike sparkles" 8
+		"firing energy" 129
+		"firing heat" 331
+		"acceleration" 1
+		"drag" .07
+		"turn" .35
+		"homing" 4
+		"tracking" .9
+		"shield damage" 48
+		"hull damage" 162
+		"piercing" 0.1
+		"slowing damage" 2.5
+		# No heat damage because the partially-assembled Small Heat Shunts will cool
+		# your ship during the attack.
+	description "This dismantled Small Systems Core has been poorly-attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots with unusual programming. When they reach their target, they eat through the shields and try to rebuild the target ship as a ball of Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the hull and engines. This weapon is horrendously inefficient, even for the Korath, but extremely effective."
+	description "To maintain a ready supply of microbots, this turret constantly collects space debris and assembles new bots. That produces heat and consumes energy even when the weapon is not in use."
+
+
+effect "shunt-strike impact"
+	sprite "effect/shunt-strike-hit"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 30
+	"velocity scale" 0.05
+
+effect "shunt-strike sparkles"
+	sprite "effect/shunt-strike-sparkles"
+		"frame rate" 15
+	"lifetime" 60
+	"velocity scale" 0.05
+	"random angle" 10
 
 
 outfit "Korath Banisher"
@@ -823,6 +847,8 @@ outfit "Korath Inferno"
 	"weapon capacity" -71
 	"turret mounts" -1
 	"required crew" 1
+	# This is three fire-lances with 50% boost to heat damage, double range
+	# and 5x the firing heat, plus 5 space for the turret
 	weapon
 		sprite "projectile/korath inferno"
 			"frame rate" 20
@@ -835,10 +861,10 @@ outfit "Korath Inferno"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 7.5
-		"firing heat" 25
-		"shield damage" 8.2
-		"hull damage" 6.1
-		"heat damage" 59
+		"firing heat" 25.5
+		"shield damage" 10.5
+		"hull damage" 4.5
+		"heat damage" 54
 	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory."
 
 effect "korath inferno hit"

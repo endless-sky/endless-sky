@@ -93,15 +93,14 @@ outfit "Large Heat Shunt"
 
 outfit "Liquid Sodium Cooler"
 	category "Systems"
-	cost 790000
+	cost 1660000
 	thumbnail "outfit/liquid sodium"
-	"mass" 77
-	"outfit space" -77
-	"energy consumption" 3.1
-	"active cooling" 493
-	"cooling energy" 11.7
-	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system keeps the sodium at a safe temperature to avoid pipe bursts. This draws power even when the system is inactive."
-	description "Because this outfit uses more power than the full output of a plasma core, it is useless except in the very hottest of ships."
+	"mass" 37
+	"outfit space" -37
+	"energy consumption" 1.8
+	"active cooling" 162
+	"cooling energy" 3
+	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system keeps the sodium at a safe temperature to avoid pipe bursts. This draws a moderate amount of power even when the system is inactive."
 
 
 outfit "Systems Core (Small)"
@@ -164,12 +163,12 @@ outfit "Fuel Stack"
 	category "Systems"
 	cost 400000
 	thumbnail "outfit/korath fuel stack"
-	"mass" 62
-	"outfit space" -62
+	"mass" 65
+	"outfit space" -65
 	"fuel capacity" 800
-	"ramscoop" 16
-	"energy consumption" 0.8
-	"heat generation" 1.6
+	"ramscoop" 20
+	"energy consumption" 0.55
+	"heat generation" 2.2
 	description "The Korath developed this giant fuel processor for capital ships that carry many of their fuel-guzzling outfits. It maintains a negative vacuum pressure, pulling gas into the ramscoops faster than a fuel processor would alone. Unfortunately, this comes with a constant heat and energy cost."
 
 
