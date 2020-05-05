@@ -27380,8 +27380,9 @@ planet "New Tortuga"
 	description `A planet of violent storms and frequent earthquakes, New Tortuga would turn away anyone unless they have a reason to hide. The few settlements on the planet are subterranean cave cities far from any fault lines. Thick blast doors block all entrances, and vast pumping systems remove water after the frequent supertyphoon-strength tropical storms.`
 	description `Most of the inhabitants of this planet are Syndicate dissidents who support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets cannot penetrate as far as New Tortuga. Here, shipyards, factories, and outfitters provide an uninterrupted supply.`
 	spaceport `As you walk through the spaceport, you notice a surprising number of religious buildings scattered between the pirate bars and black market stores. Most of the shops are run not by pirates, but by ordinary folk, frequently wearing religious garb. They interact with pirates as customers and guests rather than as an oppressive government.`
-	spaceport `The relative peace frequently broken by a pirate band wandering through the spaceport. The pirates here are generally more orderly and militarized than the ones seen on other planets. Their ships are more advanced too, with high-tech weapons and engines clearly visible outside the weapon hardpoints and engine mounts.`
+	spaceport `The relative peace is frequently broken by a pirate band wandering through the spaceport. The pirates here are generally more obedient and militarized than the ones seen on other planets. Their ships are more advanced too, judging by what sticks out their weapon and engine hardpoints.`
 	outfitter "Basic Outfits"
+	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
@@ -27396,9 +27397,10 @@ planet "New Tortuga"
 	bribe 0.03
 	security 0
 	"required reputation" -10
-	tribute 700
-		threshold 1000
-		fleet "Large Core Pirates" 8
+	tribute 2600
+		threshold 5000
+		fleet "Marauder fleet IX" 9
+		fleet "Marauder fleet X" 3
 
 
 planet "New Tibet"

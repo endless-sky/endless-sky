@@ -95,11 +95,12 @@ outfit "Liquid Sodium Cooler"
 	category "Systems"
 	cost 1660000
 	thumbnail "outfit/liquid sodium"
+	# These stats are tuned so if the outfit is active 100% of the time (which it will be, on a Korath ship) then you break even in terms of cooling per outfit space.
 	"mass" 37
 	"outfit space" -37
-	"energy consumption" 1.8
+	"energy consumption" 1.5
+	"cooling energy" 4.5
 	"active cooling" 162
-	"cooling energy" 3
 	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system keeps the sodium at a safe temperature to avoid pipe bursts. This draws a moderate amount of power even when the system is inactive."
 
 
@@ -163,8 +164,8 @@ outfit "Fuel Stack"
 	category "Systems"
 	cost 400000
 	thumbnail "outfit/korath fuel stack"
-	"mass" 65
-	"outfit space" -65
+	"mass" 66
+	"outfit space" -66
 	"fuel capacity" 800
 	"ramscoop" 20
 	"energy consumption" 0.55
@@ -208,7 +209,6 @@ outfit "Control Transceiver"
 #   afterburner thrust = 1.5 * thruster thrust
 #   afterburner fuel = ( heat + energy + space ) / 240
 #   fuel capacity = 600 * fuel rounded up to nearest 50
-#   ramscoop = fuel capacity / 500
 #   afterburner space = ( fuel capacity / 80 ) + ( 2/3 * thruster space ) rounded down
 
 outfit "Afterburner (Asteroid Class)"
@@ -224,7 +224,6 @@ outfit "Afterburner (Asteroid Class)"
 	"afterburner heat" 8.5
 	"afterburner fuel" 0.083
 	"fuel capacity" 50
-	"ramscoop" 0.1
 	"afterburner effect" "afterburner"
 	description "Korath afterburners pump hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
 
@@ -241,7 +240,6 @@ outfit "Afterburner (Comet Class)"
 	"afterburner heat" 16.3
 	"afterburner fuel" .146
 	"fuel capacity" 100
-	"ramscoop" 0.2
 	"afterburner effect" "afterburner"
 	description "Korath afterburners pump hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
 
@@ -465,7 +463,7 @@ outfit "Korath Defense Station"
 	category "Hand to Hand"
 	cost 53000
 	"capture defense" 30
-	"outfit space" 2
+	"outfit space" -2
 	"energy consumption" 0.051
 	"heat generation" 0.102
 	"unplunderable" 1

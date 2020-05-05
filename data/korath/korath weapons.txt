@@ -81,7 +81,7 @@ outfit "Korath Shunt-Strike"
 		"die effect" "shunt-strike hit"
 		"hit effect" "shunt-strike hit"
 		"hit effect" "shunt-strike sparkles" 8
-		"firing energy" 129
+		"firing energy" 90
 		"firing heat" 331
 		"acceleration" 1
 		"drag" .07
@@ -94,8 +94,8 @@ outfit "Korath Shunt-Strike"
 		"slowing damage" 2.5
 		# No heat damage because the partially-assembled Small Heat Shunts will cool
 		# your ship during the attack.
-	description "This dismantled Small Systems Core has been poorly-attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots with unusual programming. When they reach their target, they eat through the shields and try to rebuild the target ship as a ball of Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the hull and engines. This weapon is horrendously inefficient, even for the Korath, but extremely effective."
-	description "To maintain a ready supply of microbots, this turret constantly collects space debris and assembles new bots. That produces heat and consumes energy even when the weapon is not in use."
+	description "This dismantled Small Systems Core is attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots that eat through a target's shields and attempt to rebuild its hull and systems as Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the ship."
+	description "To maintain a ready supply of microbots, this turret constantly builds more, consuming energy and producing heat even when inactive."
 
 
 effect "shunt-strike hit"
@@ -720,8 +720,6 @@ outfit "Firestorm Turret"
 	"turret mounts" -1
 	"required crew" 1
 	"firestorm torpedo capacity" 40
-	# Massive energy per shot; Korath don't have batteries and
-	# compensate using batteries in outfits.
 	"energy capacity" 1300
 	weapon
 		sprite "projectile/firestorm torpedo"
@@ -736,8 +734,8 @@ outfit "Firestorm Turret"
 		"die effect" "small explosion"
 		stream
 		"reload" 210
-		"firing energy" 1235
-		"firing heat" 851
+		"firing energy" 635
+		"firing heat" 451
 		"inaccuracy" 3
 		"lifetime" 1900
 		"velocity" 6.5
@@ -750,18 +748,17 @@ outfit "Firestorm Turret"
 		"trigger radius" 20
 		"blast radius" 90
 		"shield damage" 1900
-		"hull damage" 1300
-		"ion damage" 21
-		"heat damage" 2000
+		"hull damage" 1900
+		"heat damage" 4200
 		"hit force" 4000
 		"missile strength" 105
-	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
+	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity and imparts a large hit force."
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
 		"no repeat"
 		"frame rate" 12
-	"lifetime" 25
+	"lifetime" 30
 	sound "firestorm hit"
 	"random angle" 360
 	"random velocity" 4
@@ -776,9 +773,7 @@ outfit "Korath Heaver"
 	"outfit space" -46
 	"weapon capacity" -46
 	# Built-in fuel storage is a reservoir used during firing.
-	"fuel capacity" 100
-	# Fuel storage is a dismantled Fuel Processor, hence ramscoop:
-	"ramscoop" 1
+	"fuel capacity" 300
 	"turret mounts" -1
 	"required crew" 1
 	weapon
@@ -801,7 +796,7 @@ outfit "Korath Heaver"
 		"firing heat" 190
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
-	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. At close range, this merely pushes the enemy, but after the debris exits hyperspace, they are deadly projectiles.`
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." A small Banisher throws asteroids or other debris into an unstable hyperspace window. At close range, this merely pushes the enemy, but after the debris exits hyperspace, it is a rapidly-expanding cloud of deadly projectiles.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"
@@ -821,11 +816,10 @@ outfit "Heaver Shard"
 		"velocity" 10
 		"lifetime" 100
 		"random lifetime" 20
-		"shield damage" 22
-		"hull damage" 24
+		"shield damage" 17
+		"hull damage" 17
 		"inaccuracy" 3.5
-		"hit force" 3
-		"heat damage" 30
+		"hit force" 20
 		"hit effect" "heaver shard hit" 5
 		"missile strength" 12
 

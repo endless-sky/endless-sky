@@ -1160,7 +1160,7 @@ ship "Korath Ravager"
 		"shields" 27000
 		"hull" 25000
 		"required crew" 319
-		"bunks" 338
+		"bunks" 341
 		"mass" 1260
 		"drag" 12.3
 		# Ravager has massive surface area per volume plus heat sinks:
