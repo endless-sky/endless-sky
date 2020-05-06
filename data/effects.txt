@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 effect "jump drive"
-	sprite "effect/decloak"
+	sprite "effect/jump drive"
 		"no repeat"
 		"frame rate" 8
 		"rewind"
