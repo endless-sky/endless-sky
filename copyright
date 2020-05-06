@@ -506,6 +506,18 @@ Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
 
+Files:
+ sounds/jump?drive.wav
+ sounds/jump?in.wav
+ sounds/jump?out.wav
+Copyright: Zachary Siple
+License: CC-BY-NC-3.0
+Comment: Derived from:
+ https://freesound.org/people/tim.kahn/sounds/338969/
+ https://freesound.org/people/SoundFX.studio/sounds/456272/
+ https://freesound.org/people/Setuniman/sounds/155860/
+ https://freesound.org/people/Tuben/sounds/161392/
+
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
