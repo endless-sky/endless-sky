@@ -9,12 +9,12 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 effect "jump drive"
-	sprite "effect/jump drive"
+	sprite "effect/decloak"
 		"no repeat"
-		"frame rate" 12
-	"lifetime" 10
-	"random angle" 180
-	"velocity scale" 0.
+		"frame rate" 8
+		"rewind"
+	"lifetime" 8
+	"velocity scale" 3
 
 effect "ion spark"
 	sprite "effect/spark"
