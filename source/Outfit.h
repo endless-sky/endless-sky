@@ -81,6 +81,14 @@ public:
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
+	// Get this oufit's jump effects and sounds, if any.
+	const std::map<const Effect *, int> &JumpEffects() const;
+	const std::map<const Sound *, int> &HyperSounds() const;
+	const std::map<const Sound *, int> &HyperInSounds() const;
+	const std::map<const Sound *, int> &HyperOutSounds() const;
+	const std::map<const Sound *, int> &JumpSounds() const;
+	const std::map<const Sound *, int> &JumpInSounds() const;
+	const std::map<const Sound *, int> &JumpOutSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 	
@@ -105,6 +113,13 @@ private:
 	std::map<const Sound *, int> reverseFlareSounds;
 	std::map<const Sound *, int> steeringFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
+	std::map<const Effect *, int> jumpEffects;
+	std::map<const Sound *, int> hyperSounds;
+	std::map<const Sound *, int> hyperInSounds;
+	std::map<const Sound *, int> hyperOutSounds;
+	std::map<const Sound *, int> jumpSounds;
+	std::map<const Sound *, int> jumpInSounds;
+	std::map<const Sound *, int> jumpOutSounds;
 	const Sprite *flotsamSprite = nullptr;
 };
 

@@ -1245,7 +1245,19 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
 		if(isUsingJumpDrive && !forget)
-			CreateSparks(visuals, "jump drive", hyperspaceCount * Width() * Height() * .000006);
+		{
+			double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
+			const map<const Effect *, int> jumpEffects = attributes.JumpEffects();
+			if(jumpEffects.empty())
+				CreateSparks(visuals, "jump drive", sparkAmount);
+			else
+			{
+				// Spread the amount of particle effects created among all jump effects.
+				sparkAmount /= jumpEffects.size();
+				for(const auto &effect : jumpEffects)
+					CreateSparks(visuals, effect.first, sparkAmount);
+			}
+		}
 		
 		if(hyperspaceCount == HYPER_C)
 		{
@@ -3338,13 +3350,19 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 // Place a "spark" effect, like ionization or disruption.
 void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
 {
+	CreateSparks(visuals, GameData::Effects().Get(name), amount);
+}
+
+
+
+void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
+{
 	if(forget)
 		return;
 	
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
 	
-	const Effect *effect = GameData::Effects().Get(name);
 	while(true)
 	{
 		amount -= Random::Real();

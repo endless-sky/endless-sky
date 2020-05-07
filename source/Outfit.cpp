@@ -127,6 +127,20 @@ void Outfit::Load(const DataNode &node)
 			++steeringFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "jump effect" && child.Size() >= 2)
+			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
+			++hyperSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
+			++hyperInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
+			++hyperOutSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump sound" && child.Size() >= 2)
+			++jumpSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
+			++jumpInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
+			++jumpOutSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -314,6 +328,20 @@ void Outfit::Add(const Outfit &other, int count)
 		steeringFlareSounds[it.first] += count * it.second;
 	for(const auto &it : other.afterburnerEffects)
 		afterburnerEffects[it.first] += count * it.second;
+	for(const auto &it : other.jumpEffects)
+		jumpEffects[it.first] += count * it.second;
+	for(const auto &it : other.hyperSounds)
+		hyperSounds[it.first] += count * it.second;
+	for(const auto &it : other.hyperInSounds)
+		hyperInSounds[it.first] += count * it.second;
+	for(const auto &it : other.hyperOutSounds)
+		hyperOutSounds[it.first] += count * it.second;
+	for(const auto &it : other.jumpSounds)
+		jumpSounds[it.first] += count * it.second;
+	for(const auto &it : other.jumpInSounds)
+		jumpInSounds[it.first] += count * it.second;
+	for(const auto &it : other.jumpOutSounds)
+		jumpOutSounds[it.first] += count * it.second;
 }
 
 
@@ -373,6 +401,56 @@ const map<const Sound *, int> &Outfit::SteeringFlareSounds() const
 const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
 	return afterburnerEffects;
+}
+
+
+
+// Get this oufit's jump effects and sounds, if any.
+const map<const Effect *, int> &Outfit::JumpEffects() const
+{
+	return jumpEffects;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperSounds() const
+{
+	return hyperSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperInSounds() const
+{
+	return hyperInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperOutSounds() const
+{
+	return hyperOutSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpSounds() const
+{
+	return jumpSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpInSounds() const
+{
+	return jumpInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpOutSounds() const
+{
+	return jumpOutSounds;
 }
 
 
