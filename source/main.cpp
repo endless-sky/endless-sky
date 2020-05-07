@@ -86,57 +86,58 @@ int main(int argc, char *argv[])
 			loadOnly = true;
 	}
 	
-	// Begin loading the game data. Exit early if we are not using the UI.
-	if(!GameData::BeginLoad(argv))
-		return 0;
-	
-	// Load player data, including reference-checking.
-	PlayerInfo player;
-	bool checkedReferences = player.LoadRecent();
-	if(loadOnly)
-	{
-		if(!checkedReferences)
-			GameData::CheckReferences();
-		cout << "Parse completed." << endl;
-		return 0;
-	}
-	
-	// On Windows, make sure that the sleep timer has at least 1 ms resolution
-	// to avoid irregular frame rates.
-#ifdef _WIN32
-	timeBeginPeriod(1);
-#endif
-	
-	Preferences::Load();
-	
-	if(!GameWindow::Init())
-		return 1;
-	
-	GameData::LoadShaders();
-	
-	// Show something other than a blank window.
-	GameWindow::Step();
-	
-	Audio::Init(GameData::Sources());
-	
-	// This is the main loop where all the action begins.
 	try {
+		// Begin loading the game data. Exit early if we are not using the UI.
+		if(!GameData::BeginLoad(argv))
+			return 0;
+		
+		// Load player data, including reference-checking.
+		PlayerInfo player;
+		bool checkedReferences = player.LoadRecent();
+		if(loadOnly)
+		{
+			if(!checkedReferences)
+				GameData::CheckReferences();
+			cout << "Parse completed." << endl;
+			return 0;
+		}
+		
+		// On Windows, make sure that the sleep timer has at least 1 ms resolution
+		// to avoid irregular frame rates.
+#ifdef _WIN32
+		timeBeginPeriod(1);
+#endif
+		
+		Preferences::Load();
+		
+		if(!GameWindow::Init())
+			return 1;
+		
+		GameData::LoadShaders();
+		
+		// Show something other than a blank window.
+		GameWindow::Step();
+		
+		Audio::Init(GameData::Sources());
+		
+		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, debugMode);
 	}
 	catch(const runtime_error &error)
 	{
+		Audio::Quit();
 		GameWindow::ExitWithError(error.what());
 		return 1;
 	}
 	
-	// Remember the window state.
+	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
 
-	GameWindow::Quit();
 	Audio::Quit();
+	GameWindow::Quit();
 	
 	return 0;
 }
@@ -320,7 +321,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.11" << endl;
+	cerr << "Endless Sky 0.9.12" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
