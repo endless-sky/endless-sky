@@ -1,3 +1,61 @@
+Version 0.9.12:
+  * Bug fixes:
+    * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @MCOfficer, Mr. Doom, @Naminson, @NomadicVolcano, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
+    * The Penguin now requires a Remnant license to purchase. (@Zitchas)
+    * Out-of-system ships can no longer be selected in the outfitter and shipyard. (@tehhowch)
+    * Pressing D to depart will no longer also immediately deploy fighters on launch. (@petervdmeer)
+    * Fixed various instances of missing or unnecessary minor tags on missions. (@Amazinite, @Anarchist2)
+    * Governments now have the same attitude toward the " Hai " government as they do the "Hai" government. (@NomadicVolcano)
+    * No longer able to ask the Remnant about the Ka'het before having passed the blood test. (@beccabunny)
+    * Max depreciation age now accounts for the 7-day grace period. (@Amazinite)
+    * The Wanderer outfit license is now granted when you return to Wanderer space instead of while in Hai space. (@Amazinite)
+    * The number of drone and fighter bays is now properly displayed in the ship info when in flight. (@tehhowch)
+    * The pop-up dialog when launching with ships that can not leave the system will now always refer to the correct number of ships. (@tehhowch)
+    * Fixed various cases where the map would improperly display whether a mission's objectives were satisfied. (@tehhowch)
+    * Afterburner and other visual effects are no longer drawn "shifted" by their velocity. (@tehhowch)
+    * Fixed a possible crash on startup caused by unsupported VSync settings. (@tehhowch)
+    * Restored the visual alert for fatal errors that occur during startup. (@tehhowch)
+  * Game content:
+    * New content:
+      * New variant of the mystery deliver jobs that has unique dialog for station destinations. (@Anarchist2)
+      * Remnant ships now have unique leak effects. (@Zitchas)
+      * New missions in Hai space where the player helps a Hai captain who has just bought her first ship. (@Arachi-Lover, @Janaszar)
+      * Added a new person ship. (@Zitchas, @beccabunny)
+      * Added a new, extremely rare and valuable minable asteroid. (@Arachi-Lover, @beccabunny)
+      * There are now more large passenger jobs in human space to balance out with the abundance of large cargo jobs. (@MasterOfGrey)
+      * Added new Remnant outfits, an afterburner and a turret, to be used in future missions. (@Zitchas, @beccabunny)
+      * Added a new Heliarch turret, the Ion Hail Turret. (@Arachi-Lover, @beccabunny)
+      * More Ka'het ship names and hails. (@beccabunny)
+      * Added a new star/planet type, the brown dwarf. (@ravenshining)
+      * Added spaceport news stories for Hai space. (@NomadicVolcano)
+    * Balance:
+      * Slightly increased the hull and ion damage of the Ion Rain Gun. (@Arachi-Lover)
+      * Reduced the outfit space requirement of solar panels to make them more attractive to use. (@Zitchas, @Amazinite)
+      * Reduced the number of gun ports on the Kestrel (More Weapons) from 18 to 12. (@Naminson)
+    * Other:
+      * Kor Mereti will now use Wanderer hails after becoming friendly. (@Amazinite)
+      * The Pug in Pug Iyik are now a separate government from the Pug in Deneb. (@Amazinite)
+      * Hai space is now patrolled by Hai ships with scanners. (@NomadicVolcano)
+      * Added a blue flame to the base of the Fire-Lance projectile sprite to give it a blow-torch effect. (@Amazinite)
+      * Solar panels are now used by various human ships. (@Amazinite)
+      * Tweaked the description of the Ka'het Primary Cooling. (@beccabunny)
+      * Renamed the Carrier and Cruiser licenses to the Navy Carrier and Navy Cruiser licenses. (@Zitchas)
+      * The Pug Arfecta will now defend the Wanderers if the player attacks them. (@Amazinite)
+      * The Hauler VI missions now mention why Southbound Shipyards skipped over the Hauler IV and V. (@Anarchist2)
+  * Game mechanics:
+    * Added a "solar heat" attribute that generates heat based on the type of and distance to the system star(s). (@Amazinite)
+    * Automatic conditions are now updated daily instead of only on landing. (@petervdmeer)
+    * The flagship's system and planet are now automatic condition variables. (@petervdmeer)
+    * Negative shield/hull energy and shield/hull fuel will no longer block the ability to repair. (@Amazinite)
+  * Under the hood:
+    * Organized the game data into subfolders based off of factions and species. (@Amazinite)
+    * Generate downloadable continuous builds upon commit. (@MCOfficer)
+    * Make AppImage releases compatible with systems older than Ubuntu 18.04. (@MCOfficer)
+    * Expanded the credits to acknowledge everyone who has contributed to the game on GitHub. (@Zitchas)
+    * The game's build systems now support placing code files in subdirectories. (@tehhowch)
+    * Various improvements to the GitHub build pipeline. (@MCOfficer, @petervdmeer, @tehhowch)
+    * Release note updates for the Appstream XML file. (@corecontingency)
+
 Version 0.9.11:
   * Big changes:
     * Added the Graveyard, a region near the Ember Waste, and its inhabitants. (@beccabunny)
