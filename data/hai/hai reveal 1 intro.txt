@@ -762,26 +762,23 @@ mission "00 Hai Leaks Response 4B"
 event "returned geocoris"
 		
 ship "Geodesic Geocoris"
-	sprite "ship/hai geocoris"
-	thumbnail "thumbnail/hai geocoris"
+	sprite "ship/geodesic geocoris"
+	thumbnail "thumbnail/geodesic geocoris"
 	attributes
-		category "Heavy Freighter"
+		category "Heavy Warship"
 		"cost" 23540000
 		"shields" 26600
 		"hull" 7100
-		"required crew" 15
+		"required crew" 27
 		"bunks" 48
 		"mass" 955
-		"drag" 17.1
-		"heat dissipation" 0.45
+		"drag" 21.3
+		"heat dissipation" 0.4
 		"fuel capacity" 800
-		"cargo space" 761
+		"cargo space" 1003
 		"outfit space" 555
 		"weapon capacity" 250
-		"engine capacity" 104
-		"reverse thrust" 32
-		"reverse thrusting energy" 3.2
-		"reverse thrusting heat" 6
+		"engine capacity" 134
 		"energy capacity" 5200
 		"shield generation" 6.0
 		"shield energy" 8.8
@@ -789,29 +786,35 @@ ship "Geodesic Geocoris"
 		"hull energy" 0.8
 		"hull heat" 1.2
 		weapon
-			"blast radius" 300
-			"shield damage" 3000
-			"hull damage" 1500
-			"hit force" 4500
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
 	outfits
+		"Chameleon Anti-Missile" 2
+		"Quad Blaster Turret" 2
+		"Pulse Turret" 2
+		
+		"Quantum Keystone"
+		"Boulder Reactor" 2
+		"Liquid Helium Cooler"
+		"Security Station" 2
+		"Pulse Rifle" 30
+
+		"A525 Atomic Steering"
+		`"Biroo" Atomic Thruster`
 		"AR120 Reverse Thruster" 2
-		"Pulse Turret" 4
-		"Chameleon Anti-Missile" 1
-		"Boulder Reactor"
-		"Hai Valley Batteries"
-		"Outfits Expansion"
-		"Hai Williwaw Cooling" 2
-		`"Benga" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
 		Hyperdrive
 
-	engine 100 39
-	engine -100 39
-	turret 110 -23 "Pulse Turret"
-	turret -110 -23 "Pulse Turret"
-	turret 35 94 "Pulse Turret"
-	turret -35 94 "Pulse Turret"
-	turret 0 -89 "Chameleon Anti-Missile"
+	turret 0 -82.5 "Pulse Turret"
+	turret -95 -17 "Chameleon Anti-Missile"
+	turret 95 -17 "Chameleon Anti-Missile"
+	turret -29 3 "Quad Blaster Turret"
+	turret 29 3 "Quad Blaster Turret"
+	turret 0 91.5 "Pulse Turret"
+	engine -95 41.5 0.9
+	engine 95 41.5 0.9
+	engine 1 154.5 0.9
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30

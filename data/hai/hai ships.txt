@@ -499,10 +499,8 @@ ship "Ladybug"
 	gun 12 -68.5 "Ion Cannon"
 	turret -36 3 "Chameleon Anti-Missile"
 	turret 36 3 "Pulse Turret"
-	engine -36 62
-	engine 36 62
-	engine -51 58
-	engine 51 58
+	engine -36 62 0.8
+	engine 36 62 0.8
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50

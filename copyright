@@ -736,6 +736,25 @@ Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
+Files
+ images/*/*ladybug*
+ images/planet/station hai eight geocoris*
+Copyright: None (CC0: Public Domain)
+License: CC0: Public Domain
+Comment: Made by Nomadic Volcano with textures from texture.ninja.
+
+Files
+ images/planet/wormhole-syndicate-ad*
+Copyright: NomadicVolcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license)
+
+Files
+ images/planet/station hai geocoris*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: rotate, flip, scale the "images/thumbnail/hai geocoris@2x.png" by Michael Zahniser (under the same license)
+
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
