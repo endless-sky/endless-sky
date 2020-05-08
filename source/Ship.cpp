@@ -1247,7 +1247,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isUsingJumpDrive && !forget)
 		{
 			double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
-			const map<const Effect *, int> jumpEffects = attributes.JumpEffects();
+			const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
 			if(jumpEffects.empty())
 				CreateSparks(visuals, "jump drive", sparkAmount);
 			else

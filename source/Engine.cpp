@@ -1266,7 +1266,7 @@ void Engine::CalculateStep()
 	{
 		if(flagship->IsUsingJumpDrive())
 		{
-			const map<const Sound *, int> jumpSounds = flagship->Attributes().JumpSounds();
+			const map<const Sound *, int> &jumpSounds = flagship->Attributes().JumpSounds();
 			if(jumpSounds.empty())
 				Audio::Play(Audio::Get("jump drive"));
 			else
@@ -1275,7 +1275,7 @@ void Engine::CalculateStep()
 		}
 		else
 		{
-			const map<const Sound *, int> hyperSounds = flagship->Attributes().HyperSounds();
+			const map<const Sound *, int> &hyperSounds = flagship->Attributes().HyperSounds();
 			if(hyperSounds.empty())
 				Audio::Play(Audio::Get("hyperdrive"));
 			else
@@ -1399,20 +1399,17 @@ void Engine::CalculateStep()
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
-						if(it.second > 0)
-							Audio::Play(it.first, ship->Position());
+						Audio::Play(it.first, ship->Position());
 				}
 				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().ReverseFlareSounds())
-						if(it.second > 0)
-							Audio::Play(it.first, ship->Position());
+						Audio::Play(it.first, ship->Position());
 				}
 				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().SteeringFlareSounds())
-						if(it.second > 0)
-							Audio::Play(it.first, ship->Position());
+						Audio::Play(it.first, ship->Position());
 				}
 			}
 			else
@@ -1425,20 +1422,17 @@ void Engine::CalculateStep()
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
-				if(it.second > 0)
-					Audio::Play(it.first);
+				Audio::Play(it.first);
 		}
 		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
-				if(it.second > 0)
-					Audio::Play(it.first);
+				Audio::Play(it.first);
 		}
 		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
-				if(it.second > 0)
-					Audio::Play(it.first);
+				Audio::Play(it.first);
 		}
 	}
 	// Draw the projectiles.
@@ -1499,7 +1493,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			if(isJump)
 			{
-				const map<const Sound *, int> jumpSounds = ship->Attributes().JumpOutSounds();
+				const map<const Sound *, int> &jumpSounds = ship->Attributes().JumpOutSounds();
 				if(jumpSounds.empty())
 					Audio::Play(Audio::Get("jump out"), position);
 				else
@@ -1508,7 +1502,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			}
 			else
 			{
-				const map<const Sound *, int> hyperSounds = ship->Attributes().HyperOutSounds();
+				const map<const Sound *, int> &hyperSounds = ship->Attributes().HyperOutSounds();
 				if(hyperSounds.empty())
 					Audio::Play(Audio::Get("hyperdrive out"), position);
 				else
@@ -1522,7 +1516,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			if(isJump)
 			{
-				const map<const Sound *, int> jumpSounds = ship->Attributes().JumpInSounds();
+				const map<const Sound *, int> &jumpSounds = ship->Attributes().JumpInSounds();
 				if(jumpSounds.empty())
 					Audio::Play(Audio::Get("jump in"), position);
 				else
@@ -1531,7 +1525,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			}
 			else
 			{
-				const map<const Sound *, int> hyperSounds = ship->Attributes().HyperInSounds();
+				const map<const Sound *, int> &hyperSounds = ship->Attributes().HyperInSounds();
 				if(hyperSounds.empty())
 					Audio::Play(Audio::Get("hyperdrive in"), position);
 				else
