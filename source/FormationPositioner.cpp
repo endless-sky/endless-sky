@@ -21,56 +21,60 @@ using namespace std;
 
 void FormationPositioner::Start()
 {
-	ring = 0;
-	activeLine = 0;
-	lineSlot = 0;
-	lineSlots = -1;
+	int startRing = 0;
+	for(auto &it : ringPos)
+	{
+		// Track in which ring the ring-positioner ended in last run.
+		int endRing = it.second.ring;
+		// Set starting ring for current ring-positioner.
+		it.second.ring = max(startRing, it.first);
+		// Store starting ring for next ring-positioner.
+		startRing = endRing + 1;
+		
+		// Reset all other iterator values to start of ring.
+		it.second.activeLine = 0;
+		it.second.lineSlot = 0;
+		it.second.lineSlots = -1;
+	}
 }
 
 
 
 Point FormationPositioner::NextPosition(int minimumRing)
 {
-	// Set the minimumRing if we have one.
-	if(minimumRing > ring)
-	{
-		// Set ring to minimum.
-		ring = minimumRing;
-		// Reset all other iterator values.
-		activeLine = 0;
-		lineSlots = -1;
-		lineSlot = 0;
-	}
+	// Retrieve the correct ring-positioner.
+	RingPositioner &rPos = ringPos[minimumRing];
 	
 	// If there are no active lines, then just return center point.
-	if(activeLine < 0)
+	if(rPos.activeLine < 0)
 		return Point();
 	
-	if(lineSlots < 0)
-		lineSlots = pattern->LineSlots(ring, activeLine);
+	// Handle trigger to initialize lineSlots if required.
+	if(rPos.lineSlots < 0)
+		rPos.lineSlots = pattern->LineSlots(rPos.ring, rPos.activeLine);
 	
 	// Iterate to next line if the current line is full.
-	if(lineSlot >= lineSlots)
+	if(rPos.lineSlot >= rPos.lineSlots)
 	{
-		int nextLine = pattern->NextLine(ring, activeLine);
+		int nextLine = pattern->NextLine(rPos.ring, rPos.activeLine);
 		// If no new active line, just return center point.
 		if(nextLine < 0)
 		{
-			activeLine = -1;
+			rPos.activeLine = -1;
 			return Point();
 		}
 		// If we get back to an earlier line, then we moved a ring up.
-		if(nextLine <= activeLine)
-			ring++;
+		if(nextLine <= rPos.activeLine)
+			rPos.ring++;
 		
-		lineSlot = 0;
-		activeLine = nextLine;
-		lineSlots = pattern->LineSlots(ring, activeLine);
+		rPos.lineSlot = 0;
+		rPos.activeLine = nextLine;
+		rPos.lineSlots = pattern->LineSlots(rPos.ring, rPos.activeLine);
 	}
 	
-	Point relPos = pattern->Position(ring, activeLine, lineSlot) * activeScalingFactor;
+	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot) * rPos.activeScalingFactor;
 	// Set values for next ring.
-	lineSlot++;
+	rPos.lineSlot++;
 
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.

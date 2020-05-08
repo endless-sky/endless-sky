@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "FormationPattern.h"
 
+#include <map>
+
 
 
 // Represents an active formation for a set of spaceships. Assigns each ship
@@ -32,18 +34,26 @@ public:
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
 	Point NextPosition(int minimumRing = 0);
-	
-	
+
+
 private:
-	// The scaling factor currently being used.
-	double activeScalingFactor = 80.;
-	
-	// Values used during ship position calculation iterations.
-	int ring = 0;
-	int activeLine = 0;
-	int lineSlot = 0;
-	int lineSlots = -1;
-	
+	class RingPositioner{
+		public:
+			// The scaling factor currently being used for this ring.
+			double activeScalingFactor = 80.;
+
+			// Values used during ship position calculation iterations.
+			int ring = 0;
+			int activeLine = 0;
+			int lineSlot = 0;
+			int lineSlots = -1;
+	};
+
+
+private:
+	// The actual positioners based on the desired ring-numbers.
+	std::map<int, RingPositioner> ringPos;
+
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body * formationLead;
 	const FormationPattern * pattern;
