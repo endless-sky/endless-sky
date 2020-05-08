@@ -1522,7 +1522,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	}
 	
 	// Aggresively try to match the position and velocity for the formation position.
-	static const double POSITION_DEADBAND = 50.;
+	double POSITION_DEADBAND = ship.Radius() * 1.25;
 	static const double VELOCITY_DEADBAND = 0.1;
 	bool inPosition = MoveTo(ship, command, it->second.NextPosition(ship.GetFormationRing(), ship.Radius() * 2.), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
 	
