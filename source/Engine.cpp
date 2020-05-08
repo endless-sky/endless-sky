@@ -1264,24 +1264,13 @@ void Engine::CalculateStep()
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
-		if(flagship->IsUsingJumpDrive())
-		{
-			const map<const Sound *, int> &jumpSounds = flagship->Attributes().JumpSounds();
-			if(jumpSounds.empty())
-				Audio::Play(Audio::Get("jump drive"));
-			else
-				for(const auto &sound : jumpSounds)
-					Audio::Play(sound.first);
-		}
+		bool isJumping = flagship->IsUsingJumpDrive();
+		const map<const Sound *, int> &jumpSounds = isJumping ? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
+		if(jumpSounds.empty())
+			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
 		else
-		{
-			const map<const Sound *, int> &hyperSounds = flagship->Attributes().HyperSounds();
-			if(hyperSounds.empty())
-				Audio::Play(Audio::Get("hyperdrive"));
-			else
-				for(const auto &sound : hyperSounds)
-					Audio::Play(sound.first);
-		}
+			for(const auto &sound : jumpSounds)
+				Audio::Play(sound.first);
 	}
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
@@ -1491,47 +1480,23 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// Did this ship just begin hyperspacing?
 		if(wasHere && !wasHyperspacing && ship->IsHyperspacing())
 		{
-			if(isJump)
-			{
-				const map<const Sound *, int> &jumpSounds = ship->Attributes().JumpOutSounds();
-				if(jumpSounds.empty())
-					Audio::Play(Audio::Get("jump out"), position);
-				else
-					for(const auto &sound : jumpSounds)
-						Audio::Play(sound.first, position);
-			}
+			const map<const Sound *, int> &jumpSounds = isJump ? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
+			if(jumpSounds.empty())
+				Audio::Play(Audio::Get(isJump ? "jump out" : "hyperdrive out"), position);
 			else
-			{
-				const map<const Sound *, int> &hyperSounds = ship->Attributes().HyperOutSounds();
-				if(hyperSounds.empty())
-					Audio::Play(Audio::Get("hyperdrive out"), position);
-				else
-					for(const auto &sound : hyperSounds)
-						Audio::Play(sound.first, position);
-			}
+				for(const auto &sound : jumpSounds)
+					Audio::Play(sound.first, position);
 		}
 		
 		// Did this ship just jump into the player's system?
 		if(!wasHere && flagship && ship->GetSystem() == flagship->GetSystem())
 		{
-			if(isJump)
-			{
-				const map<const Sound *, int> &jumpSounds = ship->Attributes().JumpInSounds();
-				if(jumpSounds.empty())
-					Audio::Play(Audio::Get("jump in"), position);
-				else
-					for(const auto &sound : jumpSounds)
-						Audio::Play(sound.first, position);
-			}
+			const map<const Sound *, int> &jumpSounds = isJump ? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
+			if(jumpSounds.empty())
+				Audio::Play(Audio::Get(isJump ? "jump in" : "hyperdrive in"), position);
 			else
-			{
-				const map<const Sound *, int> &hyperSounds = ship->Attributes().HyperInSounds();
-				if(hyperSounds.empty())
-					Audio::Play(Audio::Get("hyperdrive in"), position);
-				else
-					for(const auto &sound : hyperSounds)
-						Audio::Play(sound.first, position);
-			}
+				for(const auto &sound : jumpSounds)
+					Audio::Play(sound.first, position);
 		}
 	}
 	
