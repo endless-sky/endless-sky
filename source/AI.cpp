@@ -601,6 +601,7 @@ void AI::Clean()
 {
 	actions.clear();
 	notoriety.clear();
+	formations.clear();
 	governmentActions.clear();
 	scanPermissions.clear();
 	playerActions.clear();
@@ -652,9 +653,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
 	
-	// Clear formation data so that it can be refilled this cycle. We might want
-	// to reset the counters instead of just clearing in a future update.
-	formations.clear();
+	// Restart all formations so that they can be refilled this cycle.
+	for(auto &bIt : formations)
+		for(auto &pIt : bIt.second)
+			pIt.second.Start();
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
