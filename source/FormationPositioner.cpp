@@ -39,6 +39,14 @@ void FormationPositioner::Start()
 		// Set scaling based on results from previous run.
 		it.second.activeScalingFactor = it.second.nextScalingFactor;
 	}
+	
+	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
+	// Otherwise we use the facing vector.
+	Point velocity = formationLead->Velocity();
+	if(velocity.Length() > 0.1)
+		direction = Angle(velocity);
+	else
+		direction = formationLead->Facing();
 }
 
 
@@ -81,15 +89,6 @@ Point FormationPositioner::NextPosition(int minimumRing, double scalingFactor)
 	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot) * rPos.activeScalingFactor;
 	// Set values for next ring.
 	rPos.lineSlot++;
-
-	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
-	// Otherwise we use the facing vector.
-	Point velocity = formationLead->Velocity();
-	Angle direction;
-	if(velocity.Length() > 0.1)
-		direction = Angle(velocity);
-	else
-		direction = formationLead->Facing();
 
 	return formationLead->Position() + direction.Rotate(relPos);
 }
