@@ -43,10 +43,25 @@ void FormationPositioner::Start()
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
 	Point velocity = formationLead->Velocity();
+	Angle desiredDir;
 	if(velocity.Length() > 0.1)
-		direction = Angle(velocity);
+		desiredDir = Angle(velocity);
 	else
-		direction = formationLead->Facing();
+		desiredDir = formationLead->Facing();
+	
+	Angle deltaDir = desiredDir - direction;
+
+	// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
+	// 10 seconds.
+	static const double MAX_FORMATION_TURN = 0.25;
+	
+	double deltaDegree = deltaDir.Degrees();
+	if(deltaDegree > MAX_FORMATION_TURN)
+		deltaDir = Angle(MAX_FORMATION_TURN);
+	else if(deltaDegree < -MAX_FORMATION_TURN)
+		deltaDir = Angle(-MAX_FORMATION_TURN);
+
+	direction += deltaDir;
 }
 
 
