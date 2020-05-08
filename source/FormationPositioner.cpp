@@ -35,15 +35,21 @@ void FormationPositioner::Start()
 		it.second.activeLine = 0;
 		it.second.lineSlot = 0;
 		it.second.lineSlots = -1;
+		
+		// Set scaling based on results from previous run.
+		it.second.activeScalingFactor = it.second.nextScalingFactor;
 	}
 }
 
 
 
-Point FormationPositioner::NextPosition(int minimumRing)
+Point FormationPositioner::NextPosition(int minimumRing, double scalingFactor)
 {
 	// Retrieve the correct ring-positioner.
 	RingPositioner &rPos = ringPos[minimumRing];
+	
+	// Set scaling for next round based on the sizes of the participating ships.
+	rPos.nextScalingFactor = max(rPos.nextScalingFactor, scalingFactor);
 	
 	// If there are no active lines, then just return center point.
 	if(rPos.activeLine < 0)

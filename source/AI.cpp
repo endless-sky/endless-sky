@@ -1524,7 +1524,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	// Aggresively try to match the position and velocity for the formation position.
 	static const double POSITION_DEADBAND = 50.;
 	static const double VELOCITY_DEADBAND = 0.1;
-	bool inPosition = MoveTo(ship, command, it->second.NextPosition(ship.GetFormationRing()), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
+	bool inPosition = MoveTo(ship, command, it->second.NextPosition(ship.GetFormationRing(), ship.Radius() * 2.), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
 	
 	// If we match the position and velocity, then also match the facing angle.
 	if(inPosition)

@@ -33,14 +33,15 @@ public:
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
-	Point NextPosition(int minimumRing = 0);
+	Point NextPosition(int minimumRing, double scalingFactor);
 
 
 private:
 	class RingPositioner{
 		public:
-			// The scaling factor currently being used for this ring.
-			double activeScalingFactor = 80.;
+			// The scaling factors being used for this ring.
+			double activeScalingFactor = 1.;
+			double nextScalingFactor = 1.;
 
 			// Values used during ship position calculation iterations.
 			int ring = 0;
