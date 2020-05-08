@@ -560,8 +560,8 @@ ship "Gunboat" "Gunboat (Bunks)"
 		
 		"Bunk Room"
 		"RT-I Radiothermal"
-		"LP36a Battery Pack"
-		"LP72a Battery Pack"
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
