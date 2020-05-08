@@ -74,6 +74,19 @@ namespace {
 		else
 			oit->second += count * it.second;
 	}
+	
+	// Used to add the contents of one outfit's map to another, while also
+	// erasing any key with a value of zero.
+	template <class T>
+	void MergeMaps(map<const T *, int> thisMap, map<const T *, int> otherMap, int count)
+	{
+		for(const auto &it : otherMap)
+		{
+			thisMap[it.first] += count * it.second;
+			if(thisMap[it.first] == 0)
+				thisMap.erase(it.first);
+		}
+	}
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -320,72 +333,17 @@ void Outfit::Add(const Outfit &other, int count)
 		AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
 		AddFlareSprites(steeringFlareSprites, it, count);
-	for(const auto &it : other.flareSounds)
-	{
-		flareSounds[it.first] += count * it.second;
-		if(flareSounds[it.first] == 0)
-			flareSounds.erase(it.first);
-	}
-	for(const auto &it : other.reverseFlareSounds)
-	{
-		reverseFlareSounds[it.first] += count * it.second;
-		if(reverseFlareSounds[it.first] == 0)
-			reverseFlareSounds.erase(it.first);
-	}
-	for(const auto &it : other.steeringFlareSounds)
-	{
-		steeringFlareSounds[it.first] += count * it.second;
-		if(steeringFlareSounds[it.first] == 0)
-			steeringFlareSounds.erase(it.first);
-	}
-	for(const auto &it : other.afterburnerEffects)
-	{
-		afterburnerEffects[it.first] += count * it.second;
-		if(afterburnerEffects[it.first] == 0)
-			afterburnerEffects.erase(it.first);
-	}
-	for(const auto &it : other.jumpEffects)
-	{
-		jumpEffects[it.first] += count * it.second;
-		if(jumpEffects[it.first] == 0)
-			jumpEffects.erase(it.first);
-	}
-	for(const auto &it : other.hyperSounds)
-	{
-		hyperSounds[it.first] += count * it.second;
-		if(hyperSounds[it.first] == 0)
-			hyperSounds.erase(it.first);
-	}
-	for(const auto &it : other.hyperInSounds)
-	{
-		hyperInSounds[it.first] += count * it.second;
-		if(hyperInSounds[it.first] == 0)
-			hyperInSounds.erase(it.first);
-	}
-	for(const auto &it : other.hyperOutSounds)
-	{
-		hyperOutSounds[it.first] += count * it.second;
-		if(hyperOutSounds[it.first] == 0)
-			hyperOutSounds.erase(it.first);
-	}
-	for(const auto &it : other.jumpSounds)
-	{
-		jumpSounds[it.first] += count * it.second;
-		if(jumpSounds[it.first] == 0)
-			jumpSounds.erase(it.first);
-	}
-	for(const auto &it : other.jumpInSounds)
-	{
-		jumpInSounds[it.first] += count * it.second;
-		if(jumpInSounds[it.first] == 0)
-			jumpInSounds.erase(it.first);
-	}
-	for(const auto &it : other.jumpOutSounds)
-	{
-		jumpOutSounds[it.first] += count * it.second;
-		if(jumpOutSounds[it.first] == 0)
-			jumpOutSounds.erase(it.first);
-	}
+	MergeMaps(flareSounds, other.flareSounds, count);
+	MergeMaps(reverseFlareSounds, other.reverseFlareSounds, count);
+	MergeMaps(steeringFlareSounds, other.steeringFlareSounds, count);
+	MergeMaps(afterburnerEffects, other.afterburnerEffects, count);
+	MergeMaps(jumpEffects, other.jumpEffects, count);
+	MergeMaps(hyperSounds, other.hyperSounds, count);
+	MergeMaps(hyperInSounds, other.hyperInSounds, count);
+	MergeMaps(hyperOutSounds, other.hyperOutSounds, count);
+	MergeMaps(jumpSounds, other.jumpSounds, count);
+	MergeMaps(jumpInSounds, other.jumpInSounds, count);
+	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
 }
 
 
