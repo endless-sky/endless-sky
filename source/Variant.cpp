@@ -53,7 +53,7 @@ void Variant::Load(const DataNode &node, const bool global)
 	{
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		if((add || remove) && child.Size == 1)
+		if((add || remove) && child.Size() == 1)
 		{	
 			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
