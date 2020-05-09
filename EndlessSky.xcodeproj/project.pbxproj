@@ -151,6 +151,7 @@
 		DFAAE2A61FD4A25C0072C0A8 /* BatchDrawList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A21FD4A25C0072C0A8 /* BatchDrawList.cpp */; };
 		DFAAE2A71FD4A25C0072C0A8 /* BatchShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A41FD4A25C0072C0A8 /* BatchShader.cpp */; };
 		DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */; };
+		F2984BCDAC4980F4D6929EE7 /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D38F4076BF68C65C0E03D654 /* Variant.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -170,6 +171,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F4B45C6919D54E1D30FEB0A /* Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Variant.h; path = source/Variant.h; sourceTree = "<group>"; };
 		4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "/usr/local/lib/libSDL2-2.0.0.dylib"; sourceTree = "<absolute>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
 		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 		B55C239C2303CE8A005C1A14 /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameWindow.h; path = source/GameWindow.h; sourceTree = "<group>"; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
+		D38F4076BF68C65C0E03D654 /* Variant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Variant.cpp; path = source/Variant.cpp; sourceTree = "<group>"; };
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
 		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
 		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 				A968639D1AE6FD0D004FE1FE /* Weapon.h */,
 				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
 				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
+				D38F4076BF68C65C0E03D654 /* Variant.cpp */,
+				0F4B45C6919D54E1D30FEB0A /* Variant.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -988,6 +993,7 @@
 				A96863CE1AE6FD0E004FE1FE /* LoadPanel.cpp in Sources */,
 				A96863A41AE6FD0E004FE1FE /* Armament.cpp in Sources */,
 				A96863F01AE6FD0E004FE1FE /* Screen.cpp in Sources */,
+				F2984BCDAC4980F4D6929EE7 /* Variant.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
