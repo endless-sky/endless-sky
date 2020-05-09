@@ -221,7 +221,7 @@ vector<const Ship *> Variant::ChooseShips() const
 const Ship *Variant::NestedChooseShip() const
 {
 	// Randomly choose between the ships and the variants.
-	if(Random::Int(total) < variantTotal)
+	if(static_cast<int>(Random::Int(total)) < variantTotal)
 		return ChooseVariant().NestedChooseShip();
 	else
 		return ships[Random::Int(total - variantTotal)];
@@ -244,9 +244,9 @@ const Variant &Variant::ChooseVariant() const
 	}
 	else
 	{
-		for(int choice = Random::Int(variantTotal - stockTotal); choice >= variants[variantIndex].second; ++variantIndex)
-			choice -= variants[variantIndex].second;
-		return variants[variantIndex].first;
+		for(int choice = Random::Int(variantTotal - stockTotal); choice >= variants[index].second; ++index)
+			choice -= variants[index].second;
+		return variants[index].first;
 	}
 }
 
