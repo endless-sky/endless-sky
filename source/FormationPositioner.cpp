@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Point.h"
 
+#include <cmath>
+
 using namespace std;
 
 
@@ -53,12 +55,12 @@ void FormationPositioner::Start()
 	
 	// Change the desired direction according to rotational symmetry if that fits better.
 	double symRot = pattern->SymmetryRotational();
-	if(symRot > 0 && abs(deltaDir.Degrees()) > (symRot/2))
+	if(symRot > 0 && fabs(deltaDir.Degrees()) > (symRot/2))
 	{
 		if(deltaDir.Degrees() > 0)
 			symRot = -symRot;
 		
-		while(abs(deltaDir.Degrees() + symRot) < abs(deltaDir.Degrees()))
+		while(fabs(deltaDir.Degrees() + symRot) < fabs(deltaDir.Degrees()))
 		{
 			desiredDir += Angle(symRot);
 			deltaDir = desiredDir - direction;
@@ -69,7 +71,7 @@ void FormationPositioner::Start()
 	static const double MIN_FLIP_TRIGGER = 135.;
 	
 	// If we are beyond the triggers for flipping, then immediately go to the desired direction.
-	if(abs(deltaDir.Degrees()) >= MIN_FLIP_TRIGGER &&
+	if(fabs(deltaDir.Degrees()) >= MIN_FLIP_TRIGGER &&
 		(pattern->SymmetryLongitudinal() || pattern->SymmetryTransverse()))
 	{
 		direction = desiredDir;
