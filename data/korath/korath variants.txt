@@ -285,16 +285,18 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 		"Korath Inferno" 2
 		"Korath Digger Turret" 3
 		
-		"Large Heat Shunt" 3
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt" 2
+		"Fuel Processor"
 		"Systems Core (Medium)"
 		"Plasma Core"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
-		"Engine (Meteor Class)"
 		"Steering (Planetary Class)"
-		"Thruster (Comet Class)"
+		"Steering (Lunar Class)"
 		"Thruster (Planetary Class)"
+		"Afterburner (Comet Class)"
 		"Jump Drive"
 
 	turret "Korath Digger Turret"
@@ -312,16 +314,18 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Korath Inferno" 2
 		"Korath Digger Turret" 3
 		
-		"Large Heat Shunt" 3
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt" 2
+		"Fuel Processor"
 		"Systems Core (Medium)"
 		"Plasma Core"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
-		"Engine (Meteor Class)"
-		"Thruster (Comet Class)"
 		"Steering (Planetary Class)"
+		"Steering (Lunar Class)"
 		"Thruster (Planetary Class)"
+		"Afterburner (Comet Class)"
 		"Hyperdrive"
 
 	turret "Korath Digger Turret"
@@ -844,8 +848,6 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos Jump)"
 # so damage is minimal.  Fewer than usual number of rifles so you have
 # a better chance of capturing it.
 ship "Korath Ravager" "Korath Ravager (Crippled Disarmed)"
-	add attributes
-		"ramscoop" -2
 	outfits
 		"Korath Warder" 2
 		"Korath Banisher" 3
@@ -911,8 +913,6 @@ ship "Korath Ravager" "Korath Ravager (Big Raider)"
 # weapons. Fewer rifles than usual so you have a better chance of
 # capturing it.
 ship "Korath Ravager" "Korath Ravager (Crippled Armed)"
-	add attributes
-		"ramscoop" -2
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Warder" 4
@@ -947,7 +947,6 @@ ship "Korath Ravager" "Korath Ravager (Crippled Armed)"
 ship "Korath Dredger" "Korath Dredger (Crippled)"
 	add attributes
 		# Remove the built-in nanite factory:
-		"ramscoop" -2
 		"shield generation" -2.5
 		"shield energy" -3.4
 		"hull repair rate" -1.6

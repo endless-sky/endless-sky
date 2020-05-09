@@ -92,8 +92,6 @@ outfit "Korath Shunt-Strike"
 		"hull damage" 162
 		"piercing" 0.1
 		"slowing damage" 2.5
-		# No heat damage because the partially-assembled Small Heat Shunts will cool
-		# your ship during the attack.
 	description "This dismantled Small Systems Core is attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots that eat through a target's shields and attempt to rebuild its hull and systems as Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the ship."
 	description "To maintain a ready supply of microbots, this turret constantly builds more, consuming energy and producing heat even when inactive."
 
@@ -767,13 +765,14 @@ effect "firestorm ring"
 
 outfit "Korath Heaver"
 	category "Secondary Weapons"
+	# This flak cannon's range and damage are lower than they appear because the shots spread out quickly.
 	cost 3450000
 	thumbnail "outfit/korath heaver"
 	"mass" 46
 	"outfit space" -46
 	"weapon capacity" -46
 	# Built-in fuel storage is a reservoir used during firing.
-	"fuel capacity" 300
+	"fuel capacity" 200
 	"turret mounts" -1
 	"required crew" 1
 	weapon
@@ -841,8 +840,7 @@ outfit "Korath Inferno"
 	"weapon capacity" -71
 	"turret mounts" -1
 	"required crew" 1
-	# This is three fire-lances with 50% boost to heat damage, double range
-	# and 5x the firing heat, plus 5 space for the turret
+	# Stats are the same as 3 Fire-Lances except 50% more heat damage, double range, 5 more space, 10% more power, and 400% more heat generation. This takes about 120-130 space to support.
 	weapon
 		sprite "projectile/korath inferno"
 			"frame rate" 20
@@ -854,12 +852,12 @@ outfit "Korath Inferno"
 		"velocity" 720
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 7.5
+		"firing energy" 8.25
 		"firing heat" 25.5
 		"shield damage" 10.5
 		"hull damage" 4.5
 		"heat damage" 54
-	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory."
+	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory. The more efficient short-range Fire-Lance is based on this technology."
 
 effect "korath inferno hit"
 	sprite "effect/korath inferno hit"
@@ -875,6 +873,7 @@ outfit "Korath Digger Turret"
 	category "Turrets"
 	cost 509000
 	thumbnail "outfit/korath digger turret"
+	# This weak turret is mostly a space-filler for ships that have free turret mounts, but little weapon space. 
 	"mass" 21
 	"outfit space" -21
 	"weapon capacity" -21

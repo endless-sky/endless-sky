@@ -19,37 +19,6 @@ event "Korath Emporium"
 	government "Escort"
 		swizzle 0
 	system Atik
-		pos -66 -52
-		government Uninhabited
-		habitable 371.071
-		belt 1240
-		link Durax
-		asteroids "small rock" 36 1.99
-		asteroids "medium rock" 44 1.57
-		asteroids "large rock" 12 1.08
-		asteroids "small metal" 36 1.26
-		asteroids "medium metal" 75 1.92
-		asteroids "large metal" 14 1.35
-		minables platinum 21 1.40315
-		minables tungsten 43 1.42935
-		minables gold 36 1.7943
-		minables uranium 22 1.71104
-		trade Clothing 381
-		trade Electronics 632
-		trade Equipment 605
-		trade Food 261
-		trade "Heavy Metals" 958
-		trade Industrial 738
-		trade "Luxury Goods" 1097
-		trade Medical 651
-		trade Metal 327
-		trade Plastic 416
-		fleet "Small Syndicate" 10000
-		fleet "Large Syndicate" 25000
-		fleet "Small Core Pirates" 10000
-		fleet "Large Core Pirates" 18000
-		fleet "Human Miners" 5000
-		fleet "Korath Miners" 15000
 		object
 			sprite star/b5
 			period 10
@@ -153,7 +122,12 @@ outfitter "korath exile test outfitter"
 	"Korath Expeller Turret"
 	"Afterburner (Asteroid Class)"
 	"Afterburner (Comet Class)"
+	"Afterburner (Lunar Class)"
+	"Afterburner (Planetary Class)"
+	"Afterburner (Stellar Class)"
 	"Korath Shunt-Strike"
+	"Afterburner"
+	"Ionic Afterburner"
 
 shipyard "korath exile variant shipyard"
 	"Korath Raider (Ember)"

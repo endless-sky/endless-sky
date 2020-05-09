@@ -1230,16 +1230,15 @@ ship "Korath Dredger"
 		"required crew" 191
 		"bunks" 683
 		"mass" 1353
-		"drag" 16
+		"drag" 16.1
 		"heat dissipation" .55
-		"fuel capacity" 1000
+		"fuel capacity" 800
 		"cargo space" 480
-		"outfit space" 796
-		"weapon capacity" 294
-		"engine capacity" 185
+		"outfit space" 795
+		"weapon capacity" 270
+		"engine capacity" 175
 		
 		# Capabilities of built-in nanite factory:
-		"ramscoop" 2
 		"shield generation" 0.7
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -1260,15 +1259,15 @@ ship "Korath Dredger"
 		
 		"Systems Core (Medium)"
 		"Triple Plasma Core"
-		"Generator (Furnace Class)"
-		"Small Heat Shunt" 2
+		"Small Heat Shunt"
 		"Large Heat Shunt" 2
-		"Fuel Processor" 3
+		"Fuel Stack"
 		"Korath Repeater Rifle" 190
 		
-		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Engine (Meteor Class)" 2
+		"Steering (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Comet Class)"
 		"Jump Drive"
 	turret -37 -155 "Korath Digger Turret"
 	turret 0 -155 "Korath Warder"
@@ -1418,7 +1417,6 @@ ship "Korath Haven"
 		"Thruster (Planetary Class)"
 		"Grav-Steering (Nebula Class)"
 		"Hyperdrive"
-
 	turret -47 -404 "Korath Digger Turret"
 	turret 47 -404 "Korath Digger Turret"
 	turret -131 -349 "Korath Inferno"
