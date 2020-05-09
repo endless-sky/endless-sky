@@ -126,8 +126,6 @@ outfitter "korath exile test outfitter"
 	"Afterburner (Planetary Class)"
 	"Afterburner (Stellar Class)"
 	"Korath Shunt-Strike"
-	"Afterburner"
-	"Ionic Afterburner"
 
 shipyard "korath exile variant shipyard"
 	"Korath Raider (Ember)"
