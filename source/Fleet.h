@@ -78,6 +78,9 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
+	// The stockVariants vector contains the variants that are defined as root
+	// nodes and stored in GameData, while the variants vector contains those
+	// variants defined by this fleet definition.
 	std::vector<std::pair<const Variant *, int>> stockVariants;
 	std::vector<std::pair<Variant, int>> variants;
 	// The sum of all available variant weights.
