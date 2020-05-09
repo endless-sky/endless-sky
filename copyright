@@ -755,6 +755,20 @@ Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
 License: CC-BY-SA-4.0
 Comment: rotate, flip, scale the "images/thumbnail/hai geocoris@2x.png" by Michael Zahniser (under the same license)
 
+Files
+ images/planet/browndwarf-l-rouge*
+ images/planet/browndwarf-l*
+ images/planet/browndwarf-y-rouge*
+ images/planet/browndwarf-y*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+
+Files
+ images/planet/browndwarf-t-rouge*
+ images/planet/browndwarf-t*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain)
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

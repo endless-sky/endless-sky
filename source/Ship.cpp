@@ -1097,7 +1097,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					
 					visuals.emplace_back(*effect, effectPosition, effectVelocity, angle);
 				}
-					
+				
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
 					CreateExplosion(visuals, true);
 				for(const auto &it : finalExplosions)
@@ -1367,6 +1367,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
 	double mass = Mass();
+	bool isUsingAfterburner = false;
 	if(isDisabled)
 		velocity *= 1. - attributes.Get("drag") / mass;
 	else if(!pilotError)
@@ -1428,15 +1429,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				energy -= energyCost;
 				acceleration += angle.Unit() * thrust / mass;
 				
-				if(!forget)
-					for(const EnginePoint &point : enginePoints)
-					{
-						Point pos = angle.Rotate(point) * Zoom() + position;
-						for(const auto &it : attributes.AfterburnerEffects())
-							for(int i = 0; i < it.second; ++i)
-								visuals.emplace_back(*it.first,
-									pos + velocity, velocity - 6. * angle.Unit(), angle);
-					}
+				// Only create the afterburner effects if the ship is in the player's system.
+				isUsingAfterburner = !forget;
 			}
 		}
 	}
@@ -1543,8 +1537,18 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 	
-	// And finally: move the ship!
+	// Finally, move the ship and create any movement visuals.
 	position += velocity;
+	if(isUsingAfterburner)
+		for(const EnginePoint &point : enginePoints)
+		{
+			Point pos = angle.Rotate(point) * Zoom() + position;
+			// Stream the afterburner effects outward in the direction the engines are facing.
+			Point effectVelocity = velocity - 6. * angle.Unit();
+			for(const auto &it : attributes.AfterburnerEffects())
+				for(int i = 0; i < it.second; ++i)
+					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
+		}
 }
 
 
