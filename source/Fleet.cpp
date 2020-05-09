@@ -276,7 +276,7 @@ const Government *Fleet::GetGovernment() const
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
-	if(!total || variants.empty())
+	if(!total || (variants.empty() && stockVariants.empty()))
 		return;
 	
 	// Pick a fleet variant to instantiate.
@@ -444,7 +444,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
-	if(!total || variants.empty())
+	if(!total || (variants.empty() && stockVariants.empty()))
 		return;
 	
 	// Pick a fleet variant to instantiate.
