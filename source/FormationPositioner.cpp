@@ -40,6 +40,7 @@ void FormationPositioner::Start()
 		
 		// Set scaling based on results from previous run.
 		it.second.activeScalingFactor = it.second.nextScalingFactor;
+		it.second.nextScalingFactor = 1.;
 	}
 	
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
