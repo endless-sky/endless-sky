@@ -242,6 +242,9 @@ tip "slowing resistance:"
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
 
+tip "solar heat:"
+	`Produces a variable amount of heat depending on how far this ship is from the star at the center of the system.`
+
 tip "tactical scan power:"
 	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
 
@@ -327,7 +330,7 @@ tip "max:"
 
 # Outfit categories:
 tip "Guns:"
-	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition).`
+	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition.`
 
 tip "Turrets:"
 	`Weapons that can fire in any direction and will track your currently selected target.`
@@ -432,7 +435,7 @@ tip "heat damage / shot:"
 	`Each shot increases the target ship's heat by this amount, or half this amount if its shields are up.`
 
 tip "ion damage / shot:"
-	`Each shot increases the target's ionization by this amount. Total energy lost is 100 times this amount.`
+	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy and slowly wears off over time.`
 
 tip "slowing damage / shot:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
@@ -505,6 +508,9 @@ tip "no hyperdrive?"
 
 tip "no fuel?"
 	`This ship has insufficient fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
+
+tip "no bays?"
+	`There are insufficient bays available to carry this ship. If you take off, it would be unable to leave this star system.`
 
 tip "insufficient energy to fire?"
 	`This ship has insufficient energy storage to fire an installed weapon.`
