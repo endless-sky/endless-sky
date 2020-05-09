@@ -50,18 +50,48 @@ void FormationPositioner::Start()
 		desiredDir = formationLead->Facing();
 	
 	Angle deltaDir = desiredDir - direction;
-
-	// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
-	// 10 seconds.
-	static const double MAX_FORMATION_TURN = 0.25;
 	
-	double deltaDegree = deltaDir.Degrees();
-	if(deltaDegree > MAX_FORMATION_TURN)
-		deltaDir = Angle(MAX_FORMATION_TURN);
-	else if(deltaDegree < -MAX_FORMATION_TURN)
-		deltaDir = Angle(-MAX_FORMATION_TURN);
-
-	direction += deltaDir;
+	// Change the desired direction according to rotational symmetry if that fits better.
+	double symRot = pattern->SymmetryRotational();
+	if(symRot > 0 && abs(deltaDir.Degrees()) > (symRot/2))
+	{
+		if(deltaDir.Degrees() > 0)
+			symRot = -symRot;
+		
+		while(abs(deltaDir.Degrees() + symRot) < abs(deltaDir.Degrees()))
+		{
+			desiredDir += Angle(symRot);
+			deltaDir = desiredDir - direction;
+		}
+	}
+	
+	// Angle at which to perform longitudinal or transverse mirror instead of turn.
+	static const double MIN_FLIP_TRIGGER = 135.;
+	
+	// If we are beyond the triggers for flipping, then immediately go to the desired direction.
+	if(abs(deltaDir.Degrees()) >= MIN_FLIP_TRIGGER &&
+		(pattern->SymmetryLongitudinal() || pattern->SymmetryTransverse()))
+	{
+		direction = desiredDir;
+		deltaDir = Angle(0.);
+		if(pattern->SymmetryLongitudinal())
+			mirroredLongitudinal = !mirroredLongitudinal;
+		if(pattern->SymmetryTransverse())
+			mirroredTransverse = !mirroredTransverse;
+	}
+	else
+	{
+		// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
+		// about 12 seconds.
+		static const double MAX_FORMATION_TURN = 0.25;
+		
+		if(deltaDir.Degrees() > MAX_FORMATION_TURN)
+			deltaDir = Angle(MAX_FORMATION_TURN);
+		else if(deltaDir.Degrees() < -MAX_FORMATION_TURN)
+			deltaDir = Angle(-MAX_FORMATION_TURN);
+		
+		direction += deltaDir;
+	}
 }
 
 
@@ -102,6 +132,12 @@ Point FormationPositioner::NextPosition(int minimumRing, double scalingFactor)
 	}
 	
 	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot) * rPos.activeScalingFactor;
+	
+	if(mirroredLongitudinal)
+		relPos.Set(-relPos.X(), relPos.Y());
+	if(mirroredTransverse)
+		relPos.Set(relPos.X(), -relPos.Y());
+	
 	// Set values for next ring.
 	rPos.lineSlot++;
 

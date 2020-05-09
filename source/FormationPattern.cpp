@@ -124,3 +124,24 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		line.repeatVector * ring +
 		line.direction.Rotate(Point(0, -line.spacing * lineSlot));
 }
+
+
+
+int FormationPattern::SymmetryRotational() const
+{
+	return symmetry_rotational;
+}
+
+
+
+bool FormationPattern::SymmetryLongitudinal() const
+{
+	return symmetry_longitudinal;
+}
+
+
+
+bool FormationPattern::SymmetryTransverse() const
+{
+	return symmetry_transverse;
+}

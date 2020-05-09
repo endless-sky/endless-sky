@@ -38,6 +38,11 @@ public:
 	// Calculate a position based on the current ring, line and slot on the line.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot) const;
 	
+	// Symmetry information.
+	int SymmetryRotational() const;
+	bool SymmetryLongitudinal() const;
+	bool SymmetryTransverse() const;
+	
 	
 protected:
 	class Line {

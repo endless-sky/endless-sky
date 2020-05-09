@@ -61,6 +61,11 @@ private:
 	
 	// The formation facing direction.
 	Angle direction;
+	
+	// Symmetry correction settings.
+	// The amount of rotation applied to the current positioner.
+	bool mirroredTransverse = false;
+	bool mirroredLongitudinal = false;
 };
 
 
