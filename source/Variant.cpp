@@ -222,32 +222,9 @@ const Ship *Variant::NestedChooseShip() const
 {
 	// Randomly choose between the ships and the variants.
 	if(static_cast<int>(Random::Int(total)) < variantTotal)
-		return ChooseVariant().NestedChooseShip();
+		return ChooseVariant(variants, stockVariants, variantTotal, stockTotal).NestedChooseShip();
 	else
 		return ships[Random::Int(total - variantTotal)];
-}
-
-
-
-const Variant &Variant::ChooseVariant() const
-{
-	unsigned index = 0;
-	// Randomly choose between the stock variants and the non-stock variants.
-	int chosen = Random::Int(variantTotal);
-	if(chosen < stockTotal)
-	{
-		// "chosen" is recycled here since it's already a random int between
-		// 0 and the weight of all stockVariants.
-		for( ; chosen >= stockVariants[index].second; ++index)
-			chosen -= stockVariants[index].second;
-		return *stockVariants[index].first;
-	}
-	else
-	{
-		for(int choice = Random::Int(variantTotal - stockTotal); choice >= variants[index].second; ++index)
-			choice -= variants[index].second;
-		return variants[index].first;
-	}
 }
 
 
@@ -274,6 +251,33 @@ int64_t Variant::Strength() const
 int64_t Variant::NestedStrength() const
 {
 	return Strength() / total;
+}
+
+
+
+// A static function used by Variant and Fleet to randomly choose a single
+// variant between a list of normal variants and a list of stock variants,
+// given the total weight between the two and the total weight of the stock
+// variants.
+const Variant &Variant::ChooseVariant(const vector<pair<Variant, int>> &nVariants, const vector<pair<const Variant *, int>> &sVariants, int vTotal, int sTotal)
+{
+	unsigned index = 0;
+	// Randomly choose between the stock variants and the non-stock variants.
+	int chosen = Random::Int(vTotal);
+	if(chosen < sTotal)
+	{
+		// "chosen" is recycled here since it's already a random int between
+		// 0 and the weight of all stockVariants.
+		for( ; chosen >= sVariants[index].second; ++index)
+			chosen -= sVariants[index].second;
+		return *sVariants[index].first;
+	}
+	else
+	{
+		for(int choice = Random::Int(vTotal - sTotal); choice >= nVariants[index].second; ++index)
+			choice -= nVariants[index].second;
+		return nVariants[index].first;
+	}
 }
 
 

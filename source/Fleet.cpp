@@ -280,7 +280,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		return;
 	
 	// Pick a fleet variant to instantiate.
-	const Variant &variant = ChooseVariant();
+	const Variant &variant = Variant::ChooseVariant(variants, stockVariants, total, stockTotal);
 	vector<const Ship *> variantShips = variant.ChooseShips();
 	if(variantShips.empty())
 		return;
@@ -448,7 +448,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		return;
 	
 	// Pick a fleet variant to instantiate.
-	const Variant &variant = ChooseVariant();
+	const Variant &variant = Variant::ChooseVariant(variants, stockVariants, total, stockTotal);
 	vector<const Ship *> variantShips = variant.ChooseShips();
 	if(variantShips.empty())
 		return;
@@ -536,29 +536,6 @@ int64_t Fleet::Strength() const
 	for(const auto &variant : stockVariants)
 		sum += variant.first->Strength() * variant.second;
 	return sum / total;
-}
-
-
-
-const Variant &Fleet::ChooseVariant() const
-{
-	unsigned index = 0;
-	// Randomly choose between the stock variants and the non-stock variants.
-	int chosen = Random::Int(total);
-	if(chosen < stockTotal)
-	{
-		// "chosen" is recycled here since it's already a random int between
-		// 0 and the weight of all stockVariants.
-		for( ; chosen >= stockVariants[index].second; ++index)
-			chosen -= stockVariants[index].second;
-		return *stockVariants[index].first;
-	}
-	else
-	{
-		for(int choice = Random::Int(total - stockTotal); choice >= variants[index].second; ++index)
-			choice -= variants[index].second;
-		return variants[index].first;
-	}
 }
 
 

@@ -43,20 +43,24 @@ public:
 	// vector are chosen, as well as a random selection of ships from any
 	// nested variants in the stockVariants or variants vectors.
 	std::vector<const Ship *> ChooseShips() const;
-	// The average credit worth of this variant.
-	int64_t Strength() const;
-	
-	bool operator==(const Variant &other) const;
-	
-private:
 	// Choose a ship from this variant given that it is a nested variant.
 	// Nested variants only choose a single ship from among their list
 	// of ships and variants.
 	const Ship *NestedChooseShip() const;
+	
+	// The average credit worth of this variant.
+	int64_t Strength() const;
 	// The average credit worth of this variant if it is nested within
 	// another variant.
 	int64_t NestedStrength() const;
-	const Variant &ChooseVariant() const;
+	
+	// A static function used by Variant and Fleet to randomly choose a single
+	// variant between a list of normal variants and a list of stock variants,
+	// given the total weight between the two and the total weight of the stock
+	// variants.
+	static const Variant &ChooseVariant(const std::vector<std::pair<Variant, int>> &nVariants, const std::vector<std::pair<const Variant *, int>> &sVariants, int vTotal, int sTotal);
+	
+	bool operator==(const Variant &other) const;
 	
 private:
 	std::string name;
