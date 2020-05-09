@@ -56,6 +56,7 @@ private:
 	// The average credit worth of this variant if it is nested within
 	// another variant.
 	int64_t NestedStrength() const;
+	const Variant &ChooseVariant() const;
 	
 private:
 	std::string name;

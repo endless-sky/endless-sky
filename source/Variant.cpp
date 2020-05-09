@@ -220,39 +220,34 @@ vector<const Ship *> Variant::ChooseShips() const
 // of ships and variants.
 const Ship *Variant::NestedChooseShip() const
 {
-	const Ship *chosenShip;
-	
 	// Randomly choose between the ships and the variants.
-	int chosen = Random::Int(total);
-	if(chosen < variantTotal)
+	if(Random::Int(total) < variantTotal)
+		return ChooseVariant().NestedChooseShip();
+	else
+		return ships[Random::Int(total - variantTotal)];
+}
+
+
+
+const Variant &Variant::ChooseVariant() const
+{
+	unsigned index = 0;
+	// Randomly choose between the stock variants and the non-stock variants.
+	int chosen = Random::Int(variantTotal);
+	if(chosen < stockTotal)
 	{
-		chosen = Random::Int(variantTotal);
-		unsigned variantIndex = 0;
-		// Randomly choose between the stock variants and the non-stock variants.
-		if(chosen < stockTotal)
-		{
-			// Choose a variant according to the weights of the variants.
-			for(int choice = Random::Int(stockTotal); choice >= stockVariants[variantIndex].second; ++variantIndex)
-				choice -= stockVariants[variantIndex].second;
-			
-			// Choose a ship from the chosen variant.
-			chosenShip = stockVariants[variantIndex].first->NestedChooseShip();
-		}
-		else
-		{
-			for(int choice = Random::Int(variantTotal - stockTotal); choice >= variants[variantIndex].second; ++variantIndex)
-				choice -= variants[variantIndex].second;
-			
-			chosenShip = variants[variantIndex].first.NestedChooseShip();
-		}
+		// "chosen" is recycled here since it's already a random int between
+		// 0 and the weight of all stockVariants.
+		for( ; chosen >= stockVariants[index].second; ++index)
+			chosen -= stockVariants[index].second;
+		return *stockVariants[index].first;
 	}
 	else
 	{
-		// Randomly choose one of the ships from this variant.
-		chosenShip = ships[Random::Int(total - variantTotal)];
+		for(int choice = Random::Int(variantTotal - stockTotal); choice >= variants[variantIndex].second; ++variantIndex)
+			choice -= variants[variantIndex].second;
+		return variants[variantIndex].first;
 	}
-	
-	return chosenShip;
 }
 
 

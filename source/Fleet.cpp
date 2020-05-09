@@ -542,14 +542,15 @@ int64_t Fleet::Strength() const
 
 const Variant &Fleet::ChooseVariant() const
 {
-	// Pick a random variant based on the weights.
 	unsigned index = 0;
-	// Choose between stockVariants and variants.
+	// Randomly choose between the stock variants and the non-stock variants.
 	int chosen = Random::Int(total);
 	if(chosen < stockTotal)
 	{
-		for(int choice = Random::Int(stockTotal); choice >= stockVariants[index].second; ++index)
-			choice -= stockVariants[index].second;
+		// "chosen" is recycled here since it's already a random int between
+		// 0 and the weight of all stockVariants.
+		for( ; chosen >= stockVariants[index].second; ++index)
+			chosen -= stockVariants[index].second;
 		return *stockVariants[index].first;
 	}
 	else
