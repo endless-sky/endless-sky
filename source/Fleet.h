@@ -66,7 +66,6 @@ public:
 	int64_t Strength() const;
 	
 private:
-	const Variant &ChooseVariant() const;
 	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(std::vector<const Ship *> &variantShips) const;
 	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
