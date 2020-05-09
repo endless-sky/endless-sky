@@ -8,34 +8,36 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-variant "Heliarch Neutralizer"
-	"Heliarch Neutralizer" 10
-	"Heliarch Neutralizer (Missile)"
-	"Heliarch Neutralizer (Nimble)"
-	"Heliarch Neutralizer (Scrappy)"
-
-variant "Heliarch Interdictor"
-	"Heliarch Interdictor" 10
-	"Heliarch Interdictor (Bombardment)"
-
-variant "Heliarch Punisher"
-	"Heliarch Punisher" 10
-	"Heliarch Punisher (Interdicting)"
-	"Heliarch Punisher (Missile)"
-	"Heliarch Punisher (Scrappy)"
-
 fleet "Heliarch"
 	government "Heliarch"
 	names "heliarch"
 	cargo 1
 	personality
 		heroic opportunistic
+	variant 40
+		"Heliarch Neutralizer"
+	variant 20
+		"Heliarch Interdictor"
+	variant 10
+		"Heliarch Punisher"
 	variant 4
-		variant "Heliarch Neutralizer"
+		"Heliarch Neutralizer (Missile)"
+	variant 4
+		"Heliarch Neutralizer (Nimble)"
+	variant 4
+		"Heliarch Neutralizer (Scrappy)"
 	variant 2
-		variant "Heliarch Interdictor"
+		"Heliarch Interdictor (Bombardment)"
+	variant 8
+		"Heliarch Interdictor (Ions)"
 	variant 1
-		variant "Heliarch Punisher"
+		"Heliarch Punisher (Interdicting)"
+	variant 7
+		"Heliarch Punisher (Ions)"
+	variant 1
+		"Heliarch Punisher (Missile)"
+	variant 1
+		"Heliarch Punisher (Scrappy)"
 
 fleet "Small Arach"
 	government "Coalition"

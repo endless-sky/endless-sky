@@ -17,27 +17,50 @@ fleet "Small Southern Merchants"
 		timid frugal appeasing
 	variant 60
 		"Shuttle"
-	variant 50
-		variant "Star Barge"
-	variant 40
-		variant "Clipper"
 	variant 30
-		variant "Star Barge" 2
-		"Sparrow"
-	variant 40
-		variant "Freighter (Southern)"
+		"Star Barge"
 	variant 20
-		variant "Freighter (Southern)"
+		"Star Barge (Armed)"
+	variant 20
+		"Clipper"
+	variant 10
+		"Clipper (Heavy)"
+	variant 10
+		"Clipper (Speedy)"
+	variant 10
+		"Star Barge" 2
+		"Sparrow"
+	variant 10
+		"Star Barge (Armed)" 2
+		"Sparrow"
+	variant 10
+		"Star Barge (Armed)"
+		"Star Barge"
+		"Sparrow"
+	variant 30
+		"Freighter"
+	variant 10
+		"Freighter (Fancy)"
+	variant 10
+		"Freighter"
+		"Sparrow"
+	variant 10
+		"Freighter (Fancy)"
 		"Sparrow"
 	variant 20
 		"Blackbird"
-	variant 2
-		variant "Mule"
-		variant "Human Fighters"
+	variant 1
+		"Mule"
+		"Dagger"
+	variant 1
+		"Mule (Heavy)"
+		"Dagger"
 	variant 2
 		"Bounder"
-	variant 6
-		variant "Heavy Shuttle"
+	variant 4
+		"Heavy Shuttle"
+	variant 2
+		"Heavy Shuttle (Armed)"
 	variant 3
 		"Hauler III"
 	variant 5
@@ -53,34 +76,73 @@ fleet "Large Southern Merchants"
 	personality
 		confusion 30
 		timid frugal appeasing
-	variant 30
-		variant "Freighter (Southern)"
+	variant 20
+		"Freighter"
 		"Hawk"
-	variant 40
-		variant "Freighter (Southern)" 2
-		"Sparrow" 2
-	variant 105
-		variant "Argosy (Southern)"
+	variant 10
+		"Freighter (Fancy)"
+		"Hawk"
 	variant 30
-		variant "Bastion"
-		variant "Freighter (Southern)" 3
-	variant 40
-		variant "Bastion"
-		variant "Argosy (Southern)"
-	variant 13
-		variant "Bastion"
-		variant "Freighter (Southern)" 3
-		variant "Star Barge" 4
-		variant "Fury"
+		"Freighter" 2
 		"Sparrow" 2
-	variant 40
-		variant "Argosy (Southern)" 2
+	variant 10
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow" 2
+	variant 30
+		"Argosy"
+	variant 20
+		"Argosy (Laser)"
+	variant 15
+		"Argosy (Missile)"
+	variant 25
+		"Argosy (Blaster)"
+	variant 15
+		"Argosy (Turret)"
+	variant 10
+		"Bastion"
+		"Freighter" 3
+	variant 10
+		"Bastion (Heavy)"
+		"Freighter (Fancy)" 3
+	variant 10
+		"Bastion (Laser)"
+		"Freighter" 3
+	variant 20
+		"Bastion"
+		"Argosy"
+	variant 10
+		"Bastion (Heavy)"
+		"Argosy (Missile)"
+	variant 10
+		"Bastion (Laser)"
+		"Argosy (Laser)"
+	variant 10
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow" 2
+	variant 3
+		"Bastion (Heavy)"
+		"Freighter (Fancy)" 3
+		"Star Barge (Armed)" 4
+		"Fury (Missile)"
+		"Sparrow" 2
+	variant 20
+		"Argosy" 2
+	variant 10
+		"Argosy (Blaster)"
+		"Argosy (Laser)"
+	variant 10
+		"Argosy (Turret)"
+		"Argosy (Missile)"
 	variant 10
 		"Blackbird"
 		"Sparrow" 2
 	variant 2
 		"Bactrian"
-		variant "Human Fighters" 3
+		"Dagger" 3
 	variant 12
 		"Hauler III"
 		"Hauler II"
@@ -90,7 +152,7 @@ fleet "Large Southern Merchants"
 		"Hauler" 2
 	variant 6
 		"Hauler III"
-		variant "Berserker" 2
+		"Berserker" 2
 
 fleet "Small Core Merchants"
 	government "Merchant"
@@ -103,35 +165,56 @@ fleet "Small Core Merchants"
 		"Shuttle"
 	variant 60
 		"Star Barge (Armed)"
-	variant 50
-		variant "Freighter"
+	variant 30
+		"Freighter"
 	variant 10
-		variant "Freighter"
+		"Freighter (Fancy)"
+	variant 10
+		"Freighter (Proton)"
+	variant 10
+		"Freighter"
 		"Wasp"
 	variant 20
-		variant "Freighter"
+		"Freighter"
 		"Star Barge (Armed)" 2
 	variant 20
-		variant "Freighter"
+		"Freighter"
 		"Shuttle" 2
 		"Quicksilver"
 	variant 50
-		variant "Bounder"
+		"Bounder"
 	variant 30
-		variant "Bounder"
+		"Bounder (Luxury)"
 		"Wasp"
 	variant 10
-		variant "Freighter"
+		"Freighter"
 		"Wasp" 2
+	variant 1
+		"Mule"
+		"Dagger"
+	variant 1
+		"Mule (Heavy)"
+		"Dagger"
+	variant 3
+		"Argosy"
 	variant 2
-		variant "Mule"
-		variant "Human Fighters"
-	variant 13
-		variant "Argosy (Core)"
-	variant 8
-		variant "Heavy Shuttle"
+		"Argosy (Blaster)"
 	variant 2
-		variant "Flivver"
+		"Argosy (Laser)"
+	variant 2
+		"Argosy (Proton)"
+	variant 2
+		"Argosy (Turret)"
+	variant 2
+		"Argosy (Missile)"
+	variant 5
+		"Heavy Shuttle"
+	variant 3
+		"Heavy Shuttle (Armed)"
+	variant 1
+		"Flivver (Luxury)"
+	variant 1
+		"Flivver (Racing)"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -140,50 +223,113 @@ fleet "Large Core Merchants"
 	personality
 		confusion 20
 		timid frugal appeasing
-	variant 40
-		variant "Freighter" 2
+	variant 30
+		"Freighter" 2
 		"Quicksilver" 2
 	variant 10
-		variant "Freighter" 2
-	variant 150
-		variant "Bulk Freighter"
-		variant "Wasp" 2
-	variant 40
-		variant "Bulk Freighter"
+		"Freighter (Fancy)" 2
+	variant 10
+		"Freighter (Proton)" 2
+		"Quicksilver" 2
+	variant 50
+		"Bulk Freighter"
+		"Wasp (Proton)" 2
+	variant 50
+		"Bulk Freighter"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 20
+		"Bulk Freighter (Blaster)"
+		"Wasp" 2
+	variant 10
+		"Bulk Freighter (Heavy)"
+		"Wasp (Proton)" 2
+	variant 10
+		"Bulk Freighter (Proton)"
+		"Wasp (Proton)" 2
+	variant 10
+		"Bulk Freighter (Proton)"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 20
+		"Bulk Freighter"
+	variant 10
+		"Bulk Freighter (Blaster)"
+	variant 5
+		"Bulk Freighter (Heavy)"
+	variant 5
+		"Bulk Freighter (Proton)"
 	variant 20
 		"Star Barge (Armed)" 3
-	variant 18
-		variant "Bulk Freighter" 2
-		"Quicksilver"
-		variant "Splinter"
-	variant 16
-		variant "Freighter" 4
+	variant 10
+		"Bulk Freighter" 2
+		"Quicksilver" 1
+		"Splinter" 1
+	variant 4
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Heavy)"
+		"Quicksilver" 1
+		"Splinter (Laser)" 1
+	variant 4
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Proton)"
+		"Quicksilver" 1
+		"Splinter (Proton)" 1
+	variant 10
+		"Freighter" 4
 		"Quicksilver" 2
-		variant "Splinter"
-	variant 14
-		variant "Freighter" 4
-		variant "Protector"
+		"Splinter" 1
+	variant 3
+		"Freighter" 4
+		"Quicksilver" 2
+		"Splinter (Laser)" 1
+	variant 3
+		"Freighter" 4
+		"Quicksilver" 2
+		"Splinter (Proton)" 1
 	variant 10
-		variant "Bulk Freighter" 2
-		variant "Protector"
-	variant 10
-		variant "Bulk Freighter" 2
-		variant "Wasp" 5
-	variant 12
-		variant "Bulk Freighter" 2
-		variant "Vanguard"
+		"Freighter" 4
+		"Protector" 1
 	variant 2
-		variant "Bulk Freighter" 2
-		variant "Protector"
+		"Freighter" 4
+		"Protector (Laser)" 1
+	variant 2
+		"Freighter" 4
+		"Protector (Proton)" 1
+	variant 10
+		"Bulk Freighter" 2
+		"Protector" 1
+	variant 10
+		"Bulk Freighter" 2
+		"Wasp" 3
+		"Wasp (Meteor)" 2
+	variant 10
+		"Bulk Freighter" 2
+		"Vanguard" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Protector (Laser)" 1
+	variant 1
+		"Bulk Freighter (Proton)" 2
+		"Protector (Proton)" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Vanguard (Particle)" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Vanguard (Missile)" 1
 	variant 20
-		variant "Bounder"
+		"Bounder"
 		"Quicksilver" 2
-	variant 2
+	variant 1
 		"Bactrian"
-		variant "Human Fighters" 3
+		"Dagger" 3
+	variant 1
+		"Bactrian"
+		"Lance" 3
 	variant 5
 		"Arrow"
-		variant "Wasp" 2
+		"Wasp (Proton)" 2
 	variant 2
 		"Arrow"
 
@@ -204,9 +350,16 @@ fleet "Paradise Merchants"
 	variant 3
 		"Star Queen"
 		"Sparrow" 5
-	variant 8
+	variant 3
 		"Star Queen"
-		variant "Wasp" 3
+		"Wasp" 4
+	variant 3
+		"Star Queen"
+		"Wasp (Proton)" 3
+	variant 2
+		"Star Queen"
+		"Wasp" 2
+		"Wasp (Meteor)"
 	variant 2
 		"Star Queen"
 		"Berserker" 3
@@ -220,21 +373,26 @@ fleet "Paradise Merchants"
 		"Sparrow" 2
 	variant 10
 		"Arrow"
-		variant "Flivver"
+		"Flivver"
 	variant 10
 		"Bounder"
-	variant 70
-		variant "Flivver (Paradise)"
-	variant 12
-		variant "Flivver (Paradise)" 3
+	variant 50
+		"Flivver"
+	variant 10
+		"Flivver" 3
+	variant 20
+		"Flivver (Racing)"
 	variant 2
-		variant "Flivver (Paradise)" 6
+		"Flivver (Racing)" 3
+	variant 2
+		"Flivver (Racing)" 6
 	variant 3
 		"Blackbird"
 		"Sparrow" 2
 	variant 3
 		"Blackbird"
 		"Berserker" 2
+
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -248,29 +406,51 @@ fleet "Small Northern Merchants"
 	variant 40
 		"Star Barge"
 		"Shuttle" 2
-	variant 50
-		variant "Freighter"
+	variant 30
+		"Freighter"
+	variant 10
+		"Freighter (Fancy)"
+	variant 10
+		"Freighter (Proton)"
 	variant 20
-		variant "Freighter"
+		"Freighter"
 		"Shuttle" 4
-	variant 12
-		variant "Freighter"
-		variant "Berserker"
-	variant 10
-		variant "Freighter"
+	variant 6
+		"Freighter"
+		"Berserker"
+	variant 3
+		"Freighter"
+		"Berserker (Afterburner)"
+	variant 3
+		"Freighter"
+		"Berserker (Strike)"
+	variant 5
+		"Freighter (Fancy)"
+		"Shuttle" 4
+	variant 5
+		"Freighter (Proton)"
 		"Shuttle" 4
 	variant 10
-		variant "Freighter" 3
-		"Sparrow"
+		"Freighter" 3
+		"Sparrow" 1
 	variant 10
 		"Blackbird"
-	variant 6
-		variant "Mule"
-		variant "Human Fighters"
-	variant 4
-		variant "Bounder"
-	variant 8
-		variant "Flivver"
+	variant 3
+		"Mule"
+		"Dagger"
+	variant 3
+		"Mule (Heavy)"
+		"Dagger"
+	variant 2
+		"Bounder"
+	variant 2
+		"Bounder (Luxury)"
+	variant 3
+		"Flivver"
+	variant 3
+		"Flivver (Luxury)"
+	variant 2
+		"Flivver (Racing)"
 	variant 4
 		"Hauler II"
 	variant 3
@@ -286,70 +466,166 @@ fleet "Large Northern Merchants"
 	personality
 		confusion 30
 		timid frugal appeasing
-	variant 50
-		variant "Freighter (North)" 2
-		variant "Firebird"
-	variant 12
-		variant "Freighter (North)" 2
-		variant "Berserker" 2
-	variant 16
-		variant "Freighter (North)" 3
-		variant "Firebird"
-	variant 40
-		variant "Freighter (North)" 2
-		variant "Corvette"
-	variant 16
-		variant "Freighter (North)" 3
-		variant "Corvette"
-	variant 25
-		variant "Freighter (North)" 4
-		variant "Leviathan"
-	variant 50
-		variant "Behemoth"
-	variant 10
-		variant "Behemoth"
-		variant "Berserker" 3
-	variant 10
-		variant "Behemoth" 2
+	variant 20
+		"Freighter" 2
+		"Firebird"
 	variant 6
-		variant "Behemoth"
-		variant "Headhunter" 2
+		"Freighter" 2
+		"Berserker" 2
+	variant 3
+		"Freighter" 2
+		"Berserker (Afterburner)" 2
+	variant 3
+		"Freighter" 2
+		"Berserker (Strike)" 2
+	variant 10
+		"Freighter" 2
+		"Firebird (Plasma)"
+	variant 10
+		"Freighter" 2
+		"Firebird (Laser)"
+	variant 10
+		"Freighter" 2
+		"Firebird (Missile)"
+	variant 10
+		"Freighter" 3
+		"Firebird"
+	variant 2
+		"Freighter" 3
+		"Firebird (Plasma)"
+	variant 2
+		"Freighter" 3
+		"Firebird (Laser)"
+	variant 2
+		"Freighter" 3
+		"Firebird (Missile)"
+	variant 20
+		"Freighter" 2
+		"Corvette"
+	variant 10
+		"Freighter" 2
+		"Corvette (Speedy)"
+	variant 10
+		"Freighter" 2
+		"Corvette (Missile)"
+	variant 10
+		"Freighter" 3
+		"Corvette"
+	variant 3
+		"Freighter" 3
+		"Corvette (Speedy)"
+	variant 3
+		"Freighter" 3
+		"Corvette (Missile)"
+	variant 1
+		"Freighter (Hai)" 2
+		"Corvette"
+	variant 6
+		"Freighter" 4
+		"Leviathan"
+	variant 6
+		"Freighter" 4
+		"Leviathan (Heavy)"
+	variant 6
+		"Freighter" 4
+		"Leviathan (Laser)"
+	variant 1
+		"Freighter (Hai)" 4
+		"Leviathan"
+	variant 30
+		"Behemoth"
+	variant 10
+		"Behemoth (Speedy)"
+	variant 10
+		"Behemoth (Proton)"
+	variant 10
+		"Behemoth"
+		"Berserker (Strike)" 3
+	variant 10
+		"Behemoth" 2
+	variant 1
+		"Behemoth (Hai)"
+	variant 4
+		"Behemoth"
+		"Headhunter" 2
+	variant 2
+		"Behemoth"
+		"Headhunter (Particle)" 2
 	variant 4
 		"Blackbird"
 		"Sparrow" 3
-	variant 8
-		variant "Bulk Freighter"
-		variant "Headhunter" 2
-	variant 18
-		variant "Bulk Freighter"
-		"Sparrow" 2
 	variant 4
-		variant "Bulk Freighter"
-		variant "Berserker" 2
+		"Bulk Freighter"
+		"Headhunter" 2
+	variant 2
+		"Bulk Freighter"
+		"Headhunter (Particle)" 2
 	variant 10
-		variant "Behemoth" 2
-		variant "Firebird"
-	variant 17
-		variant "Freighter (North)" 4
+		"Bulk Freighter"
 		"Sparrow" 2
-		variant "Firebird"
 	variant 4
+		"Bulk Freighter (Heavy)"
+		"Sparrow" 2
+	variant 2
+		"Bulk Freighter (Heavy)"
+		"Berserker" 2
+	variant 2
+		"Bulk Freighter (Heavy)"
+		"Berserker (Afterburner)" 2
+	variant 4
+		"Bulk Freighter (Blaster)"
+		"Sparrow" 2
+	variant 10
+		"Behemoth" 2
+		"Firebird" 1
+	variant 10
+		"Freighter" 4
+		"Sparrow" 2
+		"Firebird" 1
+	variant 3
+		"Freighter (Fancy)" 4
+		"Sparrow" 2
+		"Firebird (Plasma)" 1
+	variant 3
+		"Freighter (Proton)" 4
+		"Sparrow" 2
+		"Firebird (Plasma)" 1
+	variant 1
+		"Freighter (Hai)" 4
+		"Sparrow" 2
+		"Firebird" 1
+	variant 2
 		"Bactrian"
-		variant "Human Fighters" 3
+		"Dagger" 3
+	variant 2
+		"Bactrian"
+		"Lance" 3
 	variant 2
 		"Arrow"
-	variant 3
-		"Star Queen"
-		variant "Leviathan"
 	variant 1
 		"Star Queen"
-		variant "Headhunter" 3
+		"Leviathan"
 	variant 1
 		"Star Queen"
-		variant "Berserker" 2
-	variant 4
+		"Headhunter (Particle)" 3
+	variant 1
 		"Star Queen"
-		variant "Firebird" 2
+		"Berserker (Strike)" 2
+	variant 1
+		"Star Queen"
+		"Leviathan (Heavy)"
+	variant 1
+		"Star Queen"
+		"Leviathan (Laser)"
+	variant 1
+		"Star Queen"
+		"Firebird" 2
+	variant 2
+		"Star Queen"
+		"Firebird (Laser)" 2
+	variant 1
+		"Star Queen"
+		"Firebird (Plasma)" 2
 	variant 8
 		"Hauler III"
 		"Hauler II"
@@ -361,7 +637,7 @@ fleet "Large Northern Merchants"
 	variant 4
 		"Hauler III"
 		"Hauler II"
-		variant "Headhunter" 3
+		"Headhunter" 3
 
 fleet "Small Human Merchants (Hai)"
 	government "Merchant"
@@ -373,41 +649,53 @@ fleet "Small Human Merchants (Hai)"
 	variant 50
 		"Shuttle"
 	variant 40
-		variant "Star Barge"
+		"Star Barge"
 		"Shuttle" 2
-	variant 40
-		variant "Freighter (North)"
+	variant 30
+		"Freighter"
+	variant 10
+		"Freighter (Hai)"
 	variant 20
-		variant "Freighter"
+		"Freighter"
 		"Shuttle" 4
-	variant 9
-		variant "Freighter (North)"
-		variant "Berserker"
+	variant 6
+		"Freighter (Hai)"
+		"Berserker"
+	variant 3
+		"Freighter"
+		"Berserker (Afterburner)"
 	variant 5
-		variant "Freighter (North)"
+		"Freighter (Hai)"
 		"Shuttle" 4
 	variant 10
-		variant "Freighter" 3
+		"Freighter" 3
 		"Sparrow" 1
-	variant 6
-		variant "Mule (Hai)"
-		variant "Human Fighters"
-	variant 4
-		variant "Bounder"
-	variant 5
-		variant "Flivver (Hai)"
-	variant 4
-		variant "Hauler II (Hai)"
 	variant 3
-		variant "Hauler (Hai)"
+		"Mule (Hai Engines)"
+		"Dagger"
+	variant 3
+		"Mule (Hai Weapons)"
+		"Dagger"
 	variant 2
-		variant "Hauler II (Hai)"
-		variant "Hauler (Hai)"
+		"Bounder"
+	variant 2
+		"Bounder (Hai)"
+	variant 3
+		"Flivver"
+	variant 2
+		"Flivver (Hai)"
+	variant 4
+		"Hauler II (Hai)"
+	variant 3
+		"Hauler"
+	variant 2
+		"Hauler II"
+		"Hauler (Hai)"
 	variant 1
 		"Shuttle"
 		"Aphid"
 	variant 1
-		variant "Star Barge"
+		"Star Barge"
 		"Aphid"
 
 fleet "Large Human Merchants (Hai)"
@@ -417,86 +705,149 @@ fleet "Large Human Merchants (Hai)"
 	personality
 		confusion 30
 		timid frugal appeasing
-	variant 50
-		variant "Freighter (North)" 2
-		variant "Firebird (Hai)"
-	variant 10
-		variant "Freighter (North)" 2
-		variant "Berserker" 2
 	variant 20
-		variant "Freighter (North)" 2
-		variant "Corvette (Hai)"
-	variant 30
-		variant "Freighter (North)" 2
-		variant "Corvette (Hai)"
-	variant 24
-		variant "Freighter (North)" 4
-		variant "Leviathan (Hai)"
-	variant 40
-		variant "Behemoth"
-	variant 10
-		variant "Behemoth" 2
+		"Freighter" 2
+		"Firebird (Hai Shields)"
 	variant 6
-		variant "Behemoth"
-		variant "Headhunter (Hai)" 2
-	variant 6
-		variant "Bulk Freighter (Hai)"
-		variant "Headhunter (Hai)" 2
-	variant 18
-		variant "Bulk Freighter"
-		"Sparrow" 2
-	variant 4
-		variant "Bulk Freighter (Hai)"
-		variant "Berserker" 2
-	variant 10
-		variant "Behemoth" 2
-		variant "Firebird (Hai)"
-	variant 13
-		variant "Freighter (North)" 4
-		"Sparrow" 2
-		variant "Firebird (Hai)"
-	variant 4
-		variant "Bactrian (Hai)"
-		variant "Human Fighters" 3
-	variant 2
-		variant "Arrow (Hai)"
+		"Freighter (Hai)" 2
+		"Berserker" 2
 	variant 3
-		variant "Star Queen (Hai)"
-		variant "Leviathan (Hai)"
-	variant 1
-		variant "Star Queen (Hai)"
-		variant "Headhunter (Hai)" 3
-	variant 1
-		variant "Star Queen (Hai)"
-		variant "Berserker" 2
-	variant 1
-		variant "Star Queen (Hai)"
-		variant "Firebird (Hai)" 2
-	variant 1
-		variant "Star Queen (Hai)"
-		variant "Firebird (Hai)" 2
-	variant 8
-		variant "Hauler III (Hai)"
-		variant "Hauler II (Hai)"
+		"Freighter (Hai)" 2
+		"Berserker (Afterburner)" 2
+	variant 10
+		"Freighter" 2
+		"Firebird (Hai Weapons)"
+	variant 10
+		"Freighter (Hai)" 2
+		"Firebird (Missile)"
+	variant 10
+		"Freighter (Hai)" 3
+		"Firebird"
+	variant 2
+		"Freighter" 3
+		"Firebird (Hai Weapons)"
+	variant 2
+		"Freighter" 3
+		"Firebird (Missile)"
+	variant 20
+		"Freighter" 2
+		"Corvette"
+	variant 10
+		"Freighter" 2
+		"Corvette (Hai)"
+	variant 10
+		"Freighter (Hai)" 2
+		"Corvette (Missile)"
+	variant 10
+		"Freighter" 3
+		"Corvette"
+	variant 3
+		"Freighter (Hai)" 3
+		"Corvette (Hai)"
 	variant 6
-		variant "Hauler II (Hai)"
-		variant "Hauler (Hai)" 3
+		"Freighter (Hai)" 4
+		"Leviathan"
+	variant 6
+		"Freighter" 4
+		"Leviathan (Hai Weapons)"
+	variant 6
+		"Freighter (Hai)" 4
+		"Leviathan (Hai Engines)"
+	variant 30
+		"Behemoth"
+	variant 10
+		"Behemoth (Hai)"
+	variant 10
+		"Behemoth" 2
 	variant 4
-		variant "Hauler III (Hai)" 2
+		"Behemoth (Hai)"
+		"Headhunter (Hai)" 2
+	variant 2
+		"Behemoth"
+		"Headhunter (Hai)" 2
 	variant 4
-		variant "Hauler III (Hai)"
-		variant "Hauler II (Hai)"
-		variant "Headhunter (Hai)" 3
+		"Bulk Freighter (Hai)"
+		"Headhunter" 2
+	variant 2
+		"Bulk Freighter (Hai)"
+		"Headhunter (Hai)" 2
+	variant 10
+		"Bulk Freighter"
+		"Sparrow" 2
+	variant 4
+		"Bulk Freighter (Heavy)"
+		"Sparrow" 2
+	variant 2
+		"Bulk Freighter (Hai)"
+		"Berserker" 2
+	variant 2
+		"Bulk Freighter (Hai)"
+		"Berserker (Afterburner)" 2
+	variant 4
+		"Bulk Freighter (Blaster)"
+		"Sparrow" 2
+	variant 10
+		"Behemoth" 2
+		"Firebird (Hai Weapons)" 1
+	variant 10
+		"Freighter (Hai)" 4
+		"Sparrow" 2
+		"Firebird" 1
+	variant 3
+		"Freighter (Fancy)" 4
+		"Sparrow" 2
+		"Firebird (Plasma)" 1
+	variant 2
+		"Bactrian (Hai Weapons)"
+		"Dagger" 3
+	variant 2
+		"Bactrian (Hai Engines)"
+		"Lance" 3
+	variant 2
+		"Arrow (Hai)"
+	variant 1
+		"Star Queen (Hai)"
+		"Leviathan"
+	variant 1
+		"Star Queen"
+		"Headhunter (Particle)" 3
+	variant 1
+		"Star Queen"
+		"Berserker (Afterburner)" 2
+	variant 1
+		"Star Queen (Hai)"
+		"Leviathan (Heavy)"
+	variant 1
+		"Star Queen"
+		"Leviathan (Laser)"
+	variant 1
+		"Star Queen"
+		"Firebird" 2
+	variant 1
+		"Star Queen (Hai)"
+		"Firebird (Plasma)" 2
+	variant 8
+		"Hauler III"
+		"Hauler II (Hai)"
+	variant 6
+		"Hauler II"
+		"Hauler (Hai)" 3
+	variant 4
+		"Hauler III" 2
+	variant 4
+		"Hauler III (Hai)"
+		"Hauler II"
+		"Headhunter (Hai)" 3
 	variant 3
 		"Aphid" 2
 		"Sparrow" 2
-		variant "Firebird (Hai)" 1
+		"Firebird (Plasma)" 1
 	variant 2
-		variant "Hauler II (Hai)" 2
+		"Hauler II" 2
 		"Water Bug"
 	variant 1
 		"Water Bug" 2
-		variant "Firebird (Hai)"
+		"Firebird (Hai Weapons)" 1
 	variant 3
 		"Aphid" 3
 	variant 2
@@ -513,12 +864,18 @@ fleet "Human Miners"
 		timid frugal mining harvests
 	variant 5
 		"Sparrow"
-	variant 3
-		variant "Fury (Miner)"
-	variant 3
-		variant "Hawk (Miner)"
-	variant 3
-		variant "Headhunter (Miner)"
+	variant 1
+		"Fury"
+	variant 2
+		"Fury (Miner)"
+	variant 1
+		"Hawk"
+	variant 2
+		"Hawk (Miner)"
+	variant 1
+		"Headhunter"
+	variant 2
+		"Headhunter (Miner)"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
@@ -527,26 +884,58 @@ fleet "Small Free Worlds"
 	personality
 		heroic disables frugal opportunistic
 	variant 8
-		variant "Hawk (Militia)"
+		"Hawk"
 		"Sparrow"
-	variant 8
-		variant "Hawk (Militia)"
-		variant "Fury (Militia)"
 	variant 4
-		variant "Fury (Militia)"
+		"Hawk"
+		"Fury"
+	variant 2
+		"Hawk"
+		"Fury (Missile)"
+	variant 2
+		"Fury (Bomber)"
 		"Sparrow"
-	variant 6
-		variant "Fury (Militia)" 2
+	variant 2
+		"Hawk"
+		"Fury (Laser)"
+	variant 4
+		"Fury" 2
+	variant 2
+		"Fury (Laser)"
+		"Fury (Missile)"
 	variant 10
 		"Sparrow" 2
-	variant 6
-		variant "Hawk (Militia)"
+	variant 2
+		"Hawk"
+	variant 1
+		"Hawk (Rocket)"
+	variant 1
+		"Hawk (Plasma)"
+	variant 1
+		"Hawk (Speedy)"
+	variant 1
+		"Hawk (Bomber)"
 	variant 2
 		"Sparrow"
 	variant 2
 		"Osprey"
-	variant 12
-		variant "Hawk (Militia)"
+	variant 4
+		"Hawk"
+		"Sparrow" 2
+	variant 2
+		"Hawk (Rocket)"
+		"Sparrow" 2
+	variant 2
+		"Hawk (Speedy)"
+		"Sparrow" 2
+	variant 2
+		"Hawk (Bomber)"
+		"Sparrow" 2
+	variant 2
+		"Fury (Bomber)"
+		"Sparrow" 2
+	variant 2
+		"Hawk (Plasma)"
 		"Sparrow" 2
 
 fleet "Large Free Worlds"
@@ -555,42 +944,106 @@ fleet "Large Free Worlds"
 	cargo 1
 	personality
 		heroic disables frugal opportunistic
-	variant 20
-		variant "Bastion"
-	variant 16
-		variant "Osprey"
-		variant "Fury (Militia)"
-	variant 13
-		variant "Argosy (Southern)"
-	variant 12
-		variant "Bastion"
-		variant "Osprey"
+	variant 10
+		"Bastion"
+	variant 5
+		"Bastion (Heavy)"
+	variant 5
+		"Bastion (Laser)"
 	variant 8
-		variant "Bastion"
-		"Sparrow" 2
+		"Osprey"
+		"Fury"
 	variant 4
-		variant "Falcon"
+		"Osprey (Missile)"
+		"Fury (Missile)"
 	variant 4
-		variant "Falcon"
-		variant "Hawk (Militia)" 2
-		"Sparrow" 3
-	variant 12
-		variant "Falcon"
-		variant "Bastion"
-		variant "Hawk (Militia)"
-	variant 2
-		variant "Hawk (Militia)" 2
-		"Sparrow" 4
-	variant 2
-		variant "Bastion"
-		variant "Fury (Militia)" 2
-		"Sparrow" 2
-	variant 2
-		variant "Falcon"
-		variant "Fury (Militia)" 2
-		"Sparrow" 4
+		"Osprey (Laser)"
+		"Fury (Laser)"
+	variant 4
+		"Argosy"
 	variant 3
-		variant "Hawk (Militia)" 4
+		"Argosy (Blaster)"
+	variant 2
+		"Argosy (Laser)"
+	variant 2
+		"Argosy (Missile)"
+	variant 2
+		"Argosy (Turret)"
+	variant 6
+		"Bastion"
+		"Osprey"
+	variant 3
+		"Bastion (Heavy)"
+		"Osprey (Missile)"
+	variant 3
+		"Bastion (Laser)"
+		"Osprey (Laser)"
+	variant 4
+		"Bastion"
+		"Sparrow" 2
+	variant 2
+		"Bastion (Heavy)"
+		"Sparrow" 2
+	variant 2
+		"Bastion (Laser)"
+		"Sparrow" 2
+	variant 2
+		"Falcon"
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Laser)"
+	variant 2
+		"Falcon"
+		"Hawk" 2
+		"Sparrow" 3
+	variant 1
+		"Falcon (Heavy)"
+		"Hawk" 2
+		"Sparrow" 3
+	variant 1
+		"Falcon (Laser)"
+		"Hawk"
+		"Hawk (Plasma)"
+		"Sparrow" 3
+	variant 4
+		"Falcon"
+		"Bastion"
+		"Hawk"
+	variant 2
+		"Falcon (Heavy)"
+		"Bastion (Heavy)"
+		"Hawk (Rocket)"
+	variant 2
+		"Hawk (Rocket)" 2
+		"Sparrow" 4
+	variant 2
+		"Falcon (Heavy)"
+		"Bastion (Heavy)"
+		"Hawk (Bomber)"
+	variant 2
+		"Falcon (Laser)"
+		"Bastion (Laser)"
+		"Hawk (Speedy)"
+	variant 2
+		"Falcon (Laser)"
+		"Bastion (Laser)"
+		"Hawk (Bomber)"
+	variant 2
+		"Bastion (Heavy)"
+		"Fury (Bomber)" 2
+		"Sparrow" 2
+	variant 2
+		"Falcon (Heavy)"
+		"Fury (Bomber)" 2
+		"Sparrow" 4
+	variant 1
+		"Hawk" 4
+	variant 1
+		"Hawk (Plasma)" 4
+	variant 1
+		"Hawk (Plasma)" 2
+		"Hawk (Bomber)" 2
 
 fleet "Small Militia"
 	government "Militia"
@@ -600,26 +1053,51 @@ fleet "Small Militia"
 		heroic frugal
 		confusion 20
 	variant 8
-		variant "Hawk (Militia)"
+		"Hawk"
 		"Sparrow"
-	variant 8
-		variant "Hawk (Militia)"
-		variant "Fury (Militia)"
 	variant 4
-		variant "Fury (Militia)"
+		"Hawk"
+		"Fury"
+	variant 2
+		"Hawk"
+		"Fury (Missile)"
+	variant 2
+		"Hawk"
+		"Fury (Laser)"
+	variant 2
+		"Hawk"
+		"Fury (Bomber)"
+	variant 2
+		"Fury (Bomber)"
 		"Sparrow"
-	variant 6
-		variant "Fury (Militia)" 2
+	variant 4
+		"Fury" 2
+	variant 2
+		"Fury (Laser)"
+		"Fury (Missile)"
 	variant 10
 		"Sparrow" 2
-	variant 6
-		variant "Hawk (Militia)"
+	variant 2
+		"Hawk"
+	variant 1
+		"Hawk (Rocket)"
+	variant 1
+		"Hawk (Speedy)"
 	variant 2
 		"Sparrow"
 	variant 2
 		"Osprey"
-	variant 12
-		variant "Hawk (Militia)"
+	variant 4
+		"Hawk"
+		"Sparrow" 2
+	variant 2
+		"Hawk (Rocket)"
+		"Sparrow" 2
+	variant 2
+		"Hawk (Speedy)"
+		"Sparrow" 2
+	variant 2
+		"Fury (Bomber)"
 		"Sparrow" 2
 
 fleet "Large Militia"
@@ -629,42 +1107,67 @@ fleet "Large Militia"
 	personality
 		heroic frugal
 		confusion 20
-	variant 20
-		variant "Bastion"
-	variant 16
-		variant "Osprey"
-		variant "Fury (Militia)"
-	variant 13
-		variant "Argosy (Southern)"
-	variant 12
-		variant "Bastion"
-		variant "Osprey"
+	variant 10
+		"Bastion"
+	variant 5
+		"Bastion (Heavy)"
+	variant 5
+		"Bastion (Laser)"
 	variant 8
-		variant "Bastion"
-		"Sparrow" 2
+		"Osprey"
+		"Fury"
 	variant 4
-		variant "Falcon"
+		"Osprey (Missile)"
+		"Fury (Missile)"
 	variant 4
-		variant "Falcon"
-		variant "Hawk (Militia)" 2
-		"Sparrow" 3
-	variant 12
-		variant "Falcon"
-		variant "Bastion"
-		variant "Hawk (Militia)"
-	variant 2
-		variant "Hawk (Militia)" 2
-		"Sparrow" 4
-	variant 2
-		variant "Bastion"
-		variant "Fury (Militia)" 2
-		"Sparrow" 2
-	variant 2
-		variant "Falcon"
-		variant "Fury (Militia)" 2
-		"Sparrow" 4
+		"Osprey (Laser)"
+		"Fury (Laser)"
+	variant 4
+		"Argosy"
 	variant 3
-		variant "Hawk (Militia)" 4
+		"Argosy (Blaster)"
+	variant 2
+		"Argosy (Laser)"
+	variant 2
+		"Argosy (Missile)"
+	variant 2
+		"Argosy (Turret)"
+	variant 6
+		"Bastion"
+		"Osprey"
+	variant 3
+		"Bastion (Heavy)"
+		"Osprey (Missile)"
+	variant 3
+		"Bastion (Laser)"
+		"Osprey (Laser)"
+	variant 4
+		"Bastion"
+		"Sparrow" 2
+	variant 2
+		"Bastion (Heavy)"
+		"Sparrow" 2
+	variant 2
+		"Bastion (Laser)"
+		"Sparrow" 2
+	variant 2
+		"Falcon"
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Laser)"
+	variant 2
+		"Falcon"
+		"Hawk" 2
+		"Sparrow" 3
+	variant 1
+		"Falcon (Heavy)"
+		"Hawk" 2
+		"Sparrow" 3
+	variant 1
+		"Falcon (Laser)"
+		"Hawk" 2
+		"Sparrow" 3
 
 fleet "Small Republic"
 	government "Republic"
@@ -673,18 +1176,18 @@ fleet "Small Republic"
 	personality
 		heroic opportunistic
 	variant 6
-		variant "Rainmaker" 2
+		"Rainmaker" 2
 	variant 5
-		variant "Gunboat"
-		variant "Rainmaker"
+		"Gunboat"
+		"Rainmaker"
 	variant 4
-		variant "Frigate"
+		"Frigate"
 	variant 3
-		variant "Gunboat" 2
+		"Gunboat" 2
 	variant 1
-		variant "Rainmaker" 3
+		"Rainmaker" 3
 	variant 6
-		variant "Gunboat"
+		"Gunboat"
 
 fleet "Large Republic"
 	government "Republic"
@@ -694,38 +1197,38 @@ fleet "Large Republic"
 	personality
 		heroic opportunistic
 	variant 5
-		variant "Frigate" 2
-		variant "Rainmaker"
-		variant "Gunboat"
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"
 	variant 3
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
 	variant 3
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
-		variant "Frigate"
-		variant "Rainmaker"
+		"Frigate"
+		"Rainmaker"
 	variant 2
-		variant "Carrier"
+		"Carrier"
 		"Lance" 4
 		"Combat Drone" 6
 	variant 1
-		variant "Carrier"
+		"Carrier"
 		"Lance" 4
 		"Combat Drone" 6
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
-		variant "Frigate" 2
-		variant "Rainmaker" 2
-		variant "Gunboat" 2
+		"Frigate" 2
+		"Rainmaker" 2
+		"Gunboat" 2
 	variant 1
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
-		variant "Frigate" 2
+		"Frigate" 2
 	variant 1
-		variant "Frigate"
-		variant "Rainmaker" 2
-		variant "Gunboat"
+		"Frigate"
+		"Rainmaker" 2
+		"Gunboat"
 
 fleet "Navy Surveillance"
 	government "Republic"
@@ -750,17 +1253,28 @@ fleet "Small Deep Merchants"
 	variant 4
 		"Aerie"
 		"Dagger" 2
-	variant 8
-		variant "Mule"
+	variant 6
+		"Mule"
 		"Dagger"
-	variant 3
-		variant "Mule"
+	variant 2
+		"Mule (Heavy)"
 		"Dagger"
-		variant "Raven"
+	variant 2
+		"Mule"
+		"Dagger"
+		"Raven"
+	variant 1
+		"Mule (Heavy)"
+		"Dagger"
+		"Raven (Heavy)"
 	variant 3
-		variant "Headhunter (Deep)"
-	variant 5
-		variant "Flivver (Paradise)"
+		"Headhunter"
+	variant 1
+		"Headhunter (Strike)"
+	variant 3
+		"Flivver"
+	variant 2
+		"Flivver (Racing)"
 
 fleet "Large Deep Merchants"
 	government "Merchant"
@@ -776,32 +1290,53 @@ fleet "Large Deep Merchants"
 	variant 3
 		"Aerie"
 		"Dagger" 2
-		variant "Raven"
+		"Raven"
 	variant 3
-		variant "Headhunter (Deep)" 2
+		"Headhunter" 2
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
 	variant 8
 		"Bactrian"
 		"Dagger" 3
-	variant 4
+	variant 2
 		"Bactrian"
 		"Dagger" 3
-		variant "Raven"
+		"Raven"
 		"Aerie"
 		"Dagger" 2
-	variant 7
+	variant 2
 		"Bactrian"
 		"Dagger" 3
-		variant "Mule" 2
+		"Raven (Heavy)"
+		"Aerie"
 		"Dagger" 2
-	variant 3
-		"Star Queen"
-		variant "Raven" 2
+	variant 5
+		"Bactrian"
+		"Dagger" 3
+		"Mule" 2
+		"Dagger" 2
 	variant 2
+		"Bactrian"
+		"Dagger" 3
+		"Mule (Heavy)" 2
+		"Dagger" 2
+	variant 1
 		"Star Queen"
-		variant "Headhunter (Deep)" 2
+		"Raven" 2
+	variant 1
+		"Star Queen"
+		"Raven (Heavy)" 2
+	variant 1
+		"Star Queen"
+		"Headhunter" 2
+	variant 1
+		"Star Queen"
+		"Headhunter (Particle)"
+		"Headhunter (Strike)"
+	variant 1
+		"Star Queen"
+		"Raven (Afterburner)" 2
 
 fleet "Small Deep Security"
 	government "Deep Security"
@@ -813,12 +1348,24 @@ fleet "Small Deep Security"
 	variant 4
 		"Aerie"
 		"Dagger" 2
-	variant 5
-		variant "Raven"
-	variant 7
-		variant "Headhunter (Deep)"
-	variant 8
-		variant "Corvette"
+	variant 3
+		"Raven"
+	variant 1
+		"Raven (Heavy)"
+	variant 1
+		"Raven (Afterburner)"
+	variant 3
+		"Headhunter"
+	variant 2
+		"Headhunter (Particle)"
+	variant 2
+		"Headhunter (Strike)"
+	variant 4
+		"Corvette"
+	variant 2
+		"Corvette (Speedy)"
+	variant 2
+		"Corvette (Missile)"
 
 fleet "Large Deep Security"
 	government "Deep Security"
@@ -827,26 +1374,58 @@ fleet "Large Deep Security"
 	cargo 0
 	personality
 		heroic
-	variant 9
-		"Aerie"
-		"Dagger" 2
-		variant "Corvette"
 	variant 5
 		"Aerie"
 		"Dagger" 2
-		variant "Raven"
-	variant 6
-		variant "Raven" 2
-	variant 7
-		variant "Headhunter (Deep)" 2
+		"Corvette"
+	variant 2
+		"Aerie"
+		"Dagger" 2
+		"Corvette (Missile)"
+	variant 2
+		"Aerie"
+		"Dagger" 2
+		"Corvette (Speedy)"
+	variant 3
+		"Aerie"
+		"Dagger" 2
+		"Raven"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Raven (Heavy)"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Raven (Afterburner)"
+	variant 4
+		"Raven" 2
+	variant 2
+		"Raven (Heavy)" 2
+	variant 3
+		"Headhunter" 2
+	variant 2
+		"Headhunter (Particle)" 2
+	variant 2
+		"Headhunter (Particle)"
+		"Headhunter (Strike)"
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
-	variant 16
-		variant "Corvette"
-		variant "Raven"
 	variant 8
-		variant "Corvette" 2
+		"Corvette"
+		"Raven"
+	variant 4
+		"Corvette (Speedy)"
+		"Raven (Afterburner)"
+	variant 4
+		"Corvette (Missile)"
+		"Raven (Heavy)"
+	variant 5
+		"Corvette" 2
+	variant 3
+		"Corvette (Speedy)"
+		"Corvette (Missile)"
 
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
@@ -855,18 +1434,18 @@ fleet "Small Oathkeeper"
 	personality
 		heroic opportunistic
 	variant 6
-		variant "Rainmaker" 2
+		"Rainmaker" 2
 	variant 5
-		variant "Gunboat"
-		variant "Rainmaker"
+		"Gunboat"
+		"Rainmaker"
 	variant 4
-		variant "Frigate"
+		"Frigate"
 	variant 3
-		variant "Gunboat" 2
+		"Gunboat" 2
 	variant 1
-		variant "Rainmaker" 3
+		"Rainmaker" 3
 	variant 6
-		variant "Gunboat"
+		"Gunboat"
 
 fleet "Large Oathkeeper"
 	government "Navy (Oathkeeper)"
@@ -876,38 +1455,38 @@ fleet "Large Oathkeeper"
 	personality
 		heroic opportunistic
 	variant 5
-		variant "Frigate" 2
-		variant "Rainmaker"
-		variant "Gunboat"
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"
 	variant 3
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
 	variant 3
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
-		variant "Frigate"
-		variant "Rainmaker"
+		"Frigate"
+		"Rainmaker"
 	variant 2
-		variant "Carrier"
+		"Carrier"
 		"Lance" 4
 		"Combat Drone" 6
 	variant 1
-		variant "Carrier"
+		"Carrier"
 		"Lance" 4
 		"Combat Drone" 6
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
-		variant "Frigate" 2
-		variant "Rainmaker" 2
-		variant "Gunboat" 2
+		"Frigate" 2
+		"Rainmaker" 2
+		"Gunboat" 2
 	variant 1
-		variant "Cruiser"
+		"Cruiser"
 		"Combat Drone" 4
-		variant "Frigate" 2
+		"Frigate" 2
 	variant 1
-		variant "Frigate"
-		variant "Rainmaker" 2
-		variant "Gunboat"
+		"Frigate"
+		"Rainmaker" 2
+		"Gunboat"
 
 fleet "Small Syndicate"
 	government "Syndicate"
@@ -915,15 +1494,22 @@ fleet "Small Syndicate"
 	cargo 2
 	personality
 		heroic
-	variant 6
-		variant "Quicksilver" 3
-	variant 2
-		variant "Splinter"
-		variant "Quicksilver" 2
+	variant 3
+		"Quicksilver" 3
+	variant 3
+		"Quicksilver (Proton)" 3
 	variant 1
-		variant "Splinter"
-	variant 2
-		variant "Manta"
+		"Splinter"
+		"Quicksilver" 2
+	variant 1
+		"Splinter (Laser)"
+	variant 1
+		"Splinter (Proton)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Manta"
+	variant 1
+		"Manta (Proton)"
 
 fleet "Large Syndicate"
 	government "Syndicate"
@@ -932,32 +1518,72 @@ fleet "Large Syndicate"
 	cargo 2
 	personality
 		heroic
-	variant 5
-		variant "Splinter"
-		variant "Quicksilver" 3
+	variant 3
+		"Splinter"
+		"Quicksilver" 3
 	variant 2
-		variant "Splinter"
-	variant 3
-		variant "Splinter" 2
-	variant 3
-		variant "Splinter" 3
-	variant 3
-		variant "Manta" 2
-	variant 4
-		variant "Manta"
-		variant "Quicksilver" 2
-	variant 3
-		variant "Quicksilver" 5
-	variant 3
-		variant "Protector"
+		"Splinter (Laser)"
 	variant 2
-		variant "Vanguard"
+		"Splinter (Proton)"
+		"Quicksilver" 3
+	variant 1
+		"Splinter" 2
+	variant 1
+		"Splinter"
+		"Splinter (Laser)"
+	variant 1
+		"Splinter"
+		"Splinter (Proton)"
+	variant 1
+		"Splinter" 3
+	variant 1
+		"Splinter"
+		"Splinter (Laser)" 2
+	variant 1
+		"Splinter"
+		"Splinter (Proton)" 2
+	variant 2
+		"Manta" 2
+	variant 1
+		"Manta (Proton)" 2
 	variant 3
-		variant "Protector"
-		variant "Quicksilver" 2
-	variant 3
-		variant "Vanguard"
-		variant "Quicksilver" 2
+		"Manta"
+		"Quicksilver" 2
+	variant 1
+		"Manta (Proton)"
+		"Quicksilver" 2
+	variant 2
+		"Quicksilver" 5
+	variant 1
+		"Quicksilver (Proton)" 5
+	variant 1
+		"Protector"
+	variant 1
+		"Vanguard"
+	variant 1
+		"Vanguard (Missile)"
+	variant 1
+		"Protector (Laser)"
+	variant 1
+		"Protector (Proton)"
+	variant 1
+		"Protector"
+		"Quicksilver" 2
+	variant 1
+		"Protector (Laser)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Protector (Proton)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Vanguard (Particle)"
+		"Quicksilver" 2
+	variant 1
+		"Vanguard"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Vanguard (Missile)"
+		"Quicksilver (Proton)" 2
 
 fleet "Small Southern Pirates"
 	government "Pirate"
@@ -967,38 +1593,67 @@ fleet "Small Southern Pirates"
 		plunders harvests
 		confusion 20
 	variant 8
-		variant "Sparrow (Pirate)"
-	variant 7
-		variant "Hawk (Pirate)"
-	variant 13
-		variant "Fury (Pirate)"
+		"Sparrow"
+	variant 3
+		"Hawk"
+	variant 2
+		"Hawk (Speedy)"
+	variant 2
+		"Hawk (Rocket)"
+	variant 5
+		"Fury"
 	variant 4
-		variant "Sparrow (Pirate)" 2
-	variant 2
-		variant "Hawk (Pirate)"
-		variant "Sparrow (Pirate)"
-	variant 2
-		variant "Fury (Pirate)" 3
+		"Fury (Bomber)"
 	variant 1
-		variant "Fury (Pirate)" 2
+		"Fury (Laser)"
 	variant 1
-		variant "Fury (Pirate)"
-		variant "Hawk (Pirate)"
-	variant 2
-		variant "Hawk (Pirate)"
-		variant "Fury (Pirate)"
-		variant "Sparrow (Pirate)"
+		"Fury (Gatling)"
 	variant 1
-		variant "Sparrow (Pirate)" 3
+		"Fury (Missile)"
 	variant 1
-		variant "Fury (Pirate)"
-		variant "Sparrow (Pirate)"
-	variant 2
-		variant "Hawk (Pirate)" 2
+		"Fury (Heavy)"
 	variant 4
-		variant "Clipper"
+		"Sparrow" 2
 	variant 1
-		variant "Modified Argosy"
+		"Hawk"
+		"Sparrow"
+	variant 1
+		"Hawk (Speedy)"
+		"Sparrow"
+	variant 1
+		"Fury" 3
+	variant 1
+		"Fury (Missile)" 3
+	variant 1
+		"Fury (Heavy)" 2
+	variant 1
+		"Fury"
+		"Hawk"
+	variant 1
+		"Hawk"
+		"Fury"
+		"Sparrow"
+	variant 1
+		"Hawk (Rocket)"
+		"Fury (Missile)"
+		"Sparrow"
+	variant 1
+		"Sparrow" 3
+	variant 1
+		"Fury (Bomber)"
+		"Sparrow"
+	variant 1
+		"Hawk" 2
+	variant 1
+		"Hawk (Speedy)" 2
+	variant 2
+		"Clipper"
+	variant 1
+		"Clipper (Heavy)"
+	variant 1
+		"Clipper (Speedy)"
+	variant 1
+		"Modified Argosy"
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -1006,54 +1661,109 @@ fleet "Large Southern Pirates"
 	cargo 1
 	personality
 		plunders harvests
+	variant 2
+		"Sparrow" 4
+	variant 1
+		"Sparrow (Gatling)" 3
+	variant 5
+		"Argosy"
 	variant 3
-		variant "Sparrow (Pirate)" 4
-	variant 14
-		variant "Argosy (Southern)"
+		"Argosy (Blaster)"
+	variant 2
+		"Argosy (Laser)"
+	variant 2
+		"Argosy (Missile)"
+	variant 2
+		"Argosy (Turret)"
+	variant 1
+		"Modified Argosy"
+	variant 1
+		"Modified Argosy (Heavy)"
+	variant 1
+		"Modified Argosy (Blaster)"
+	variant 1
+		"Modified Argosy (Missile)"
 	variant 4
-		variant "Modified Argosy"
-	variant 8
-		variant "Clipper"
-	variant 1
-		variant "Osprey"
-		variant "Fury (Pirate)"
-	variant 1
-		variant "Osprey"
-		variant "Sparrow (Pirate)"
+		"Clipper"
 	variant 2
-		variant "Osprey"
-	variant 4
-		variant "Clipper"
-		variant "Hawk (Pirate)"
+		"Clipper (Heavy)"
 	variant 2
-		variant "Hawk (Pirate)"
-		variant "Sparrow (Pirate)" 3
+		"Clipper (Speedy)"
+	variant 1
+		"Osprey"
+		"Fury"
+	variant 1
+		"Osprey"
+		"Sparrow"
+	variant 1
+		"Osprey (Missile)"
+	variant 1
+		"Osprey (Laser)"
 	variant 2
-		variant "Fury (Pirate)"
-		variant "Sparrow (Pirate)" 3
+		"Clipper"
+		"Hawk"
 	variant 1
-		variant "Hawk (Pirate)"
-		variant "Fury (Pirate)" 2
+		"Clipper (Heavy)"
+		"Hawk (Rocket)"
+	variant 2
+		"Hawk (Bomber)"
+		"Sparrow" 3
+	variant 2
+		"Fury (Bomber)"
+		"Sparrow" 3
 	variant 1
-		variant "Fury (Pirate)" 3
-	variant 7
-		variant "Argosy (Southern)"
-		variant "Hawk (Pirate)"
+		"Clipper (Speedy)"
+		"Hawk (Speedy)"
+	variant 1
+		"Hawk (Bomber)"
+		"Fury (Gatling)" 2
+	variant 1
+		"Fury (Bomber)"
+		"Fury (Gatling)" 2
 	variant 3
-		variant "Modified Argosy"
-		variant "Sparrow (Pirate)" 2
+		"Argosy"
+		"Hawk"
 	variant 1
-		variant "Modified Argosy" 2
+		"Argosy (Blaster)"
+		"Hawk (Rocket)"
 	variant 1
-		variant "Modified Argosy"
-		variant "Fury (Pirate)" 2
-	variant 8
-		variant "Bastion"
+		"Argosy (Laser)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Turret)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Missile)"
+		"Hawk (Rocket)"
+	variant 1
+		"Modified Argosy"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Heavy)"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Blaster)"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Missile)" 2
+	variant 1
+		"Fury (Heavy)" 2
+		"Modified Argosy (Missile)"
 	variant 4
-		variant "Falcon"
+		"Bastion"
+	variant 2
+		"Bastion (Heavy)"
+	variant 2
+		"Bastion (Laser)"
+	variant 2
+		"Falcon"
 	variant 1
-		variant "Falcon"
-		variant "Sparrow (Pirate)" 3
+		"Falcon"
+		"Sparrow" 3
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Laser)"
 
 fleet "Small Independent"
 	government "Independent"
@@ -1063,38 +1773,54 @@ fleet "Small Independent"
 		plunders
 		confusion 20
 	variant 8
-		variant "Sparrow (Pirate)"
-	variant 7
-		variant "Hawk (Pirate)"
-	variant 13
-		variant "Fury (Pirate)"
-	variant 4
-		variant "Sparrow (Pirate)" 2
+		"Sparrow"
+	variant 3
+		"Hawk"
 	variant 2
-		variant "Hawk (Pirate)"
-		variant "Sparrow (Pirate)"
+		"Hawk (Speedy)"
 	variant 2
-		variant "Fury (Pirate)" 3
-	variant 1
-		variant "Fury (Pirate)" 2
-	variant 1
-		variant "Fury (Pirate)"
-		variant "Hawk (Pirate)"
+		"Hawk (Rocket)"
+	variant 5
+		"Fury"
 	variant 2
-		variant "Hawk (Pirate)"
-		variant "Fury (Pirate)"
-		variant "Sparrow (Pirate)"
+		"Fury (Laser)"
 	variant 1
-		variant "Sparrow (Pirate)" 3
-	variant 1
-		variant "Fury (Pirate)"
-		variant "Sparrow (Pirate)"
+		"Fury (Missile)"
 	variant 2
-		variant "Hawk (Pirate)" 2
-	variant 4
-		variant "Clipper"
+		"Sparrow" 2
 	variant 1
-		variant "Modified Argosy"
+		"Hawk"
+		"Sparrow"
+	variant 1
+		"Hawk (Speedy)"
+		"Sparrow"
+	variant 1
+		"Fury" 3
+	variant 1
+		"Fury (Missile)" 3
+	variant 1
+		"Fury"
+		"Hawk"
+	variant 1
+		"Hawk"
+		"Fury"
+		"Sparrow"
+	variant 1
+		"Hawk (Rocket)"
+		"Fury (Missile)"
+		"Sparrow"
+	variant 1
+		"Sparrow" 3
+	variant 1
+		"Hawk" 2
+	variant 1
+		"Hawk (Speedy)" 2
+	variant 2
+		"Clipper"
+	variant 1
+		"Clipper (Heavy)"
+	variant 1
+		"Clipper (Speedy)"
 
 fleet "Large Independent"
 	government "Independent"
@@ -1103,53 +1829,59 @@ fleet "Large Independent"
 	personality
 		plunders
 	variant 3
-		variant "Sparrow (Pirate)" 4
-	variant 14
-		variant "Argosy (Southern)"
-	variant 4
-		variant "Modified Argosy"
-	variant 8
-		variant "Clipper"
-	variant 1
-		variant "Osprey"
-		variant "Fury (Pirate)"
-	variant 1
-		variant "Osprey"
-		variant "Sparrow (Pirate)"
-	variant 2
-		variant "Osprey"
-	variant 4
-		variant "Clipper"
-		variant "Hawk (Pirate)"
-	variant 2
-		variant "Hawk (Pirate)"
-		variant "Sparrow (Pirate)" 3
-	variant 2
-		variant "Fury (Pirate)"
-		variant "Sparrow (Pirate)" 3
-	variant 1
-		variant "Hawk (Pirate)"
-		variant "Fury (Pirate)" 2
-	variant 1
-		variant "Fury (Pirate)" 3
-	variant 7
-		variant "Argosy (Southern)"
-		variant "Hawk (Pirate)"
+		"Sparrow" 4
+	variant 5
+		"Argosy"
 	variant 3
-		variant "Modified Argosy"
-		variant "Sparrow (Pirate)" 2
-	variant 1
-		variant "Modified Argosy" 2
-	variant 1
-		variant "Modified Argosy"
-		variant "Fury (Pirate)" 2
-	variant 8
-		variant "Bastion"
+		"Argosy (Blaster)"
+	variant 2
+		"Argosy (Laser)"
+	variant 2
+		"Argosy (Missile)"
+	variant 2
+		"Argosy (Turret)"
 	variant 4
-		variant "Falcon"
+		"Clipper"
+	variant 2
+		"Clipper (Heavy)"
+	variant 2
+		"Clipper (Speedy)"
+	variant 2
+		"Clipper"
+		"Hawk"
 	variant 1
-		variant "Falcon"
-		variant "Sparrow (Pirate)" 3
+		"Clipper (Heavy)"
+		"Hawk (Rocket)"
+	variant 1
+		"Clipper (Speedy)"
+		"Hawk (Speedy)"
+	variant 3
+		"Argosy"
+		"Hawk"
+	variant 1
+		"Argosy (Blaster)"
+		"Hawk (Rocket)"
+	variant 1
+		"Argosy (Laser)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Turret)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Missile)"
+		"Hawk (Rocket)"
+	variant 4
+		"Bastion"
+	variant 2
+		"Bastion (Heavy)"
+	variant 2
+		"Bastion (Laser)"
+	variant 2
+		"Falcon"
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Laser)"
 
 fleet "Small Core Pirates"
 	government "Pirate"
@@ -1158,14 +1890,39 @@ fleet "Small Core Pirates"
 	personality
 		plunders harvests
 		confusion 20
-	variant 22
-		variant "Core Pirate Interceptors"
-	variant 6
-		variant "Quicksilver"
 	variant 3
-		variant "Quicksilver" 2
+		"Quicksilver"
+	variant 3
+		"Quicksilver (Proton)"
 	variant 2
-		variant "Headhunter"
+		"Sparrow"
+	variant 3
+		"Hawk"
+	variant 2
+		"Hawk (Rocket)"
+	variant 2
+		"Hawk (Speedy)"
+	variant 1
+		"Headhunter"
+	variant 1
+		"Headhunter (Particle)"
+	variant 1
+		"Quicksilver" 2
+	variant 1
+		"Quicksilver"
+		"Quicksilver (Proton)"
+	variant 1
+		"Quicksilver (Proton)" 2
+	variant 2
+		"Wasp (Gatling)"
+	variant 3
+		"Wasp (Javelin)"
+	variant 8
+		"Wasp (Meteor)"
+	variant 2
+		"Wasp (Plasma)"
+	variant 2
+		"Wasp (Proton)"
 
 fleet "Large Core Pirates"
 	government "Pirate"
@@ -1173,32 +1930,73 @@ fleet "Large Core Pirates"
 	cargo 1
 	personality
 		plunders harvests
-	variant 7
-		variant "Quicksilver" 3
-	variant 9
-		variant "Splinter"
-		variant "Quicksilver"
-	variant 10
-		variant "Core Pirate Interceptors"
-		variant "Quicksilver" 2
-	variant 1
-		variant "Core Pirate Interceptors"
-		variant "Splinter"
+	variant 5
+		"Quicksilver (Proton)" 3
 	variant 2
-		variant "Headhunter"
-		variant "Quicksilver" 2
-	variant 6
-		variant "Manta"
-	variant 4
-		variant "Splinter" 2
-	variant 4
-		variant "Falcon"
-	variant 6
-		variant "Firebird"
+		"Quicksilver" 3
 	variant 3
-		variant "Vanguard"
+		"Splinter"
+		"Quicksilver (Proton)"
 	variant 3
-		variant "Protector"
+		"Splinter (Laser)"
+		"Quicksilver"
+	variant 2
+		"Hawk (Bomber)"
+		"Quicksilver" 2
+	variant 1
+		"Fury (Heavy)"
+		"Splinter"
+	variant 2
+		"Hawk (Bomber)"
+		"Quicksilver (Proton)" 2
+	variant 3
+		"Fury (Bomber)"
+		"Quicksilver" 2
+	variant 3
+		"Fury (Bomber)"
+		"Quicksilver (Proton)" 2
+	variant 2
+		"Headhunter (Strike)"
+		"Quicksilver" 2
+	variant 3
+		"Splinter (Proton)"
+		"Quicksilver"
+	variant 4
+		"Manta (Proton)"
+	variant 2
+		"Manta"
+	variant 2
+		"Splinter" 2
+	variant 1
+		"Splinter (Laser)" 2
+	variant 1
+		"Splinter (Proton)" 2
+	variant 2
+		"Falcon"
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Laser)"
+	variant 2
+		"Firebird"
+	variant 2
+		"Firebird (Laser)"
+	variant 1
+		"Firebird (Plasma)"
+	variant 1
+		"Firebird (Missile)"
+	variant 1
+		"Vanguard (Particle)"
+	variant 1
+		"Vanguard (Missile)"
+	variant 1
+		"Vanguard"
+	variant 1
+		"Protector (Laser)"
+	variant 1
+		"Protector (Proton)"
+	variant 1
+		"Protector"
 
 fleet "Small Northern Pirates"
 	government "Pirate"
@@ -1209,24 +2007,53 @@ fleet "Small Northern Pirates"
 		confusion 20
 	variant 5
 		"Sparrow"
-	variant 7
-		variant "Fury (Pirate North)"
-	variant 6
-		variant "Berserker"
-	variant 4
-		variant "Hawk (Pirate North)"
-	variant 1
-		variant "Hawk (Pirate North)"
-		"Sparrow"
-	variant 2
-		"Aerie"
-		variant "Human Fighters" 2
-	variant 7
-		variant "Headhunter (Deep)"
 	variant 3
-		variant "Raven"
-	variant 4
-		variant "Corvette"
+		"Fury"
+	variant 1
+		"Fury (Missile)"
+	variant 1
+		"Fury (Laser)"
+	variant 1
+		"Fury (Bomber)"
+	variant 1
+		"Fury (Heavy)"
+	variant 2
+		"Berserker"
+	variant 2
+		"Berserker (Afterburner)"
+	variant 2
+		"Berserker (Strike)"
+	variant 2
+		"Hawk"
+	variant 1
+		"Hawk (Rocket)"
+	variant 1
+		"Hawk (Speedy)"
+	variant 1
+		"Hawk (Bomber)"
+		"Sparrow"
+	variant 1
+		"Aerie"
+		"Lance" 2
+	variant 1
+		"Aerie"
+		"Dagger" 2
+	variant 3
+		"Headhunter"
+	variant 2
+		"Headhunter (Particle)"
+	variant 2
+		"Headhunter (Strike)"
+	variant 2
+		"Raven (Afterburner)"
+	variant 1
+		"Raven (Heavy)"
+	variant 2
+		"Corvette"
+	variant 1
+		"Corvette (Missile)"
+	variant 1
+		"Corvette (Speedy)"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -1234,49 +2061,100 @@ fleet "Large Northern Pirates"
 	cargo 1
 	personality
 		plunders harvests
-	variant 12
-		variant "Firebird"
-	variant 8
-		variant "Firebird"
-		variant "Corvette"
-	variant 4
-		variant "Firebird"
-		variant "Fury (Pirate North)"
 	variant 2
-		variant "Firebird"
-		variant "Berserker" 2
-	variant 4
-		variant "Raven" 2
-	variant 2
-		variant "Headhunter (Deep)" 2
+		"Firebird"
+	variant 5
+		"Firebird (Laser)"
 	variant 1
-		variant "Headhunter (Deep)" 3
+		"Firebird (Missile)"
+	variant 4
+		"Firebird (Plasma)"
+	variant 1
+		"Firebird"
+		"Corvette"
+	variant 4
+		"Firebird (Plasma)"
+		"Corvette (Speedy)"
+	variant 2
+		"Firebird (Plasma)"
+		"Corvette (Missile)"
+	variant 1
+		"Firebird (Laser)"
+		"Corvette (Missile)"
+	variant 2
+		"Firebird"
+		"Fury"
+	variant 2
+		"Firebird"
+		"Berserker" 2
+	variant 1
+		"Firebird (Plasma)"
+		"Fury (Missile)"
+	variant 1
+		"Firebird (Missile)"
+		"Fury (Bomber)"
 	variant 3
-		"Aerie"
-		"Dagger" 2
-		variant "Corvette"
+		"Raven (Afterburner)" 2
+	variant 1
+		"Raven (Heavy)" 2
+	variant 2
+		"Headhunter (Particle)"
+		"Headhunter (Strike)"
+	variant 1
+		"Headhunter (Particle)" 2
+		"Headhunter (Strike)"
 	variant 1
 		"Aerie"
 		"Dagger" 2
-		variant "Raven"
+		"Corvette"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Raven"
 	variant 2
 		"Aerie" 2
 		"Dagger" 4
+	variant 2
+		"Aerie"
+		"Dagger" 2
+		"Corvette (Missile)"
 	variant 1
 		"Aerie" 2
 		"Dagger" 4
-		variant "Firebird"
-	variant 4
-		variant "Mule"
-		variant "Human Fighters"
-	variant 14
-		variant "Leviathan"
-		variant "Firebird"
-	variant 6
-		variant "Leviathan"
+		"Firebird"
+	variant 2
+		"Mule"
+		"Lance"
+	variant 2
+		"Mule (Heavy)"
+		"Dagger"
+	variant 2
+		"Leviathan"
+		"Firebird"
 	variant 1
-		variant "Firebird"
-		variant "Fury (Pirate North)" 2
+		"Leviathan (Laser)"
+		"Firebird"
+	variant 3
+		"Leviathan (Laser)"
+		"Firebird (Laser)"
+	variant 2
+		"Leviathan (Heavy)"
+		"Firebird (Plasma)"
+	variant 2
+		"Leviathan (Heavy)"
+		"Firebird (Missile)"
+	variant 2
+		"Leviathan (Laser)"
+		"Firebird (Missile)"
+	variant 3
+		"Leviathan"
+	variant 2
+		"Leviathan (Laser)"
+	variant 1
+		"Leviathan (Heavy)"
+	variant 1
+		"Fury (Heavy)" 2
+		"Firebird (Missile)"
 	variant 1
 		"Bactrian"
 		"Dagger" 3
@@ -1421,21 +2299,30 @@ fleet "Syndicate Extremists"
 	personality
 		heroic
 	variant 3
-		variant "Splinter"
-		variant "Quicksilver" 3
+		"Splinter"
+		"Quicksilver" 3
 	variant 2
-		variant "Manta" 2
+		"Manta" 2
 	variant 2
-		variant "Quicksilver" 5
+		"Quicksilver" 5
 	variant 1
-		variant "Protector"
-		variant "Quicksilver" 2
-	variant 2
-		variant "Vanguard"
-		variant "Quicksilver" 2
-	variant 3
-		variant "Leviathan"
-		variant "Firebird" 2
+		"Protector"
+		"Quicksilver" 2
+	variant 1
+		"Vanguard"
+		"Quicksilver" 2
+	variant 1
+		"Vanguard (Missile)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Leviathan"
+		"Firebird" 2
+	variant 1
+		"Leviathan (Heavy)"
+		"Firebird (Missile)" 2
+	variant 1
+		"Leviathan (Heavy)"
+		"Firebird (Plasma)" 2
 
 fleet "Bounty Hunters"
 	government "Bounty Hunter"
@@ -1443,45 +2330,51 @@ fleet "Bounty Hunters"
 	personality
 		nemesis waiting heroic
 	variant 5
-		variant "Fury (Pirate)" 4
+		"Fury" 2
+		"Fury (Bomber)" 2
 	variant 5
-		variant "Hawk (Pirate)" 4
+		"Hawk" 2
+		"Hawk (Rocket)" 2
 	variant 5
-		variant "Hawk (Pirate)" 2
-		variant "Sparrow (Pirate)" 2
+		"Hawk"
+		"Hawk (Bomber)"
+		"Sparrow" 2
 	variant 5
-		variant "Fury (Pirate)"
-		variant "Sparrow (Pirate)" 2
+		"Fury (Bomber)"
+		"Sparrow" 2
 	variant 5
-		variant "Berserker"
-		variant "Quicksilver"
+		"Berserker (Strike)"
+		"Quicksilver"
 	variant 5
-		variant "Quicksilver" 2
-		variant "Headhunter (Deep)"
+		"Quicksilver" 2
+		"Headhunter (Particle)"
 	variant 3
-		variant "Sparrow (Pirate)" 2
-		variant "Headhunter (Deep)"
+		"Sparrow" 2
+		"Headhunter (Strike)"
 	variant 3
-		variant "Raven"
-		variant "Fury (Pirate)" 2
+		"Raven"
+		"Fury (Missile)" 2
 	variant 1
-		variant "Firebird"
-		variant "Fury (Pirate)"
+		"Firebird"
+		"Fury (Missile)"
 	variant 1
 		"Aerie"
 		"Lance" 2
 	variant 1
-		variant "Corvette"
-		variant "Fury (Pirate)"
+		"Corvette"
+		"Fury (Missile)"
 	variant 1
-		variant "Osprey"
-		variant "Fury (Pirate)"
+		"Osprey"
+		"Fury (Missile)"
 	variant 1
-		variant "Manta"
-		variant "Fury (Pirate)"
-	variant 2
-		variant "Splinter"
-		variant "Fury (Pirate)"
+		"Manta"
+		"Fury (Missile)"
+	variant 1
+		"Splinter"
+		"Fury (Missile)"
+	variant 1
+		"Splinter"
+		"Fury (Heavy)"
 
 fleet "Marauder fleet I"
 	government "Pirate"
@@ -1737,22 +2630,37 @@ fleet "Marauder fleet VII"
 		plunders
 	variant 18
 		"Marauder Falcon"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 1
 		"Marauder Falcon (Weapons)"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 1
 		"Marauder Falcon (Engines)"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 18
 		"Marauder Leviathan"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 	variant 1
 		"Marauder Leviathan (Engines)"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 	variant 1
 		"Marauder Leviathan (Weapons)"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant 1
+		"Marauder Leviathan (Weapons)"
+		"Firebird (Laser)" 3
 
 fleet "Marauder fleet VIII"
 	government "Pirate"
@@ -1762,22 +2670,34 @@ fleet "Marauder fleet VIII"
 		plunders
 	variant 8
 		"Marauder Falcon"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 1
 		"Marauder Falcon (Weapons)"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 1
 		"Marauder Falcon (Engines)"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 8
 		"Marauder Leviathan"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 	variant 1
 		"Marauder Leviathan (Engines)"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 	variant 1
 		"Marauder Leviathan (Weapons)"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 
 fleet "Marauder fleet IX"
 	government "Pirate"
@@ -1787,25 +2707,38 @@ fleet "Marauder fleet IX"
 		plunders
 	variant 3
 		"Marauder Falcon"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 1
 		"Marauder Falcon (Weapons)"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 1
 		"Marauder Falcon (Engines)"
-		variant "Osprey" 3
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
 	variant 3
 		"Marauder Leviathan"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 	variant 1
 		"Marauder Leviathan (Engines)"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 	variant 1
 		"Marauder Leviathan (Weapons)"
-		variant "Firebird" 3
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
 	variant 1
 		"Marauder Leviathan (Weapons)"
-		variant "Firebird" 4
+		"Firebird (Laser)" 3
+		"Firebird (Missile)"
 
 fleet "Marauder fleet X"
 	government "Pirate"

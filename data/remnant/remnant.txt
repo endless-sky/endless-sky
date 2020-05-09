@@ -8,31 +8,32 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-variant "Starling"
-	"Starling" 8
-	"Starling (Heavy)" 6
-	"Starling (Sniper)" 5
-	"Starling (Hunter)" 4
-	"Starling (Thrasher)" 3
-
-variant "Albatross"
-	"Albatross"
-	"Albatross (Sniper)"
-	"Albatross (Turret)"
-	"Albatross (Heavy)"
-
 fleet "Small Remnant"
 	government "Remnant"
 	names "remnant"
 	cargo 2
 	personality
 		heroic disables plunders appeasing
-	variant 26
-		variant "Starling"
-	variant 1
-		variant "Starling" 2
+	variant 8
+		"Starling"
+	variant 6
+		"Starling (Heavy)"
+	variant 5
+		"Starling (Sniper)"
 	variant 4
-		variant "Albatross"
+		"Starling (Hunter)"
+	variant 3
+		"Starling (Thrasher)"
+	variant 1
+		"Starling (Sniper)" 2
+	variant 1
+		"Albatross"
+	variant 1
+		"Albatross (Sniper)"
+	variant 1
+		"Albatross (Turret)"
+	variant 1
+		"Albatross (Heavy)"
 
 fleet "Large Remnant"
 	government "Remnant"
@@ -40,18 +41,30 @@ fleet "Large Remnant"
 	cargo 2
 	personality
 		heroic disables plunders appeasing
-	variant 15
-		variant "Albatross"
-		variant "Starling" 2
+	variant 6
+		"Albatross"
+		"Starling" 2
+	variant 6
+		"Albatross (Sniper)"
+		"Starling (Sniper)" 2
+	variant 6
+		"Albatross (Turret)"
+		"Starling (Thrasher)" 2
+	variant 6
+		"Albatross (Heavy)"
+		"Starling (Heavy)" 2
+	variant 3
+		"Albatross"
+		"Starling (Hunter)" 2
+	variant 3
+		"Albatross (Sniper)"
+		"Starling (Hunter)" 2
 	variant 2
-		variant "Albatross" 2
-
-variant "Gull"
-	"Gull"
-	"Gull (Sniper)"
-	"Gull (Support)"
-	"Gull (Cargo)"
-	"Gull (Bunks)"
+		"Albatross"
+		"Albatross (Sniper)"
+	variant 2
+		"Albatross (Heavy)"
+		"Albatross (Turret)"
 
 fleet "Remnant Transport"
 	government "Remnant"
@@ -59,26 +72,38 @@ fleet "Remnant Transport"
 	cargo 2
 	personality
 		disables plunders coward appeasing mining harvests
-	variant 15
-		variant "Gull"
+	variant 10
+		"Gull"
 	variant 5
-		"Pelican"
+		"Gull (Sniper)"
+	variant 4
+		"Gull (Support)"
 	variant 5
-		"Pelican"
-		variant "Gull" 2
+		"Gull (Cargo)"
 	variant 5
+		"Gull (Bunks)"
+	variant 10
 		"Pelican"
-		variant "Starling" 2
-	variant 3
+	variant 10
 		"Pelican"
-		variant "Gull" 2
-		variant "Starling" 2
-	variant 1
+		"Gull" 2
+	variant 8
+		"Pelican"
+		"Starling" 2
+	variant 6
+		"Pelican"
+		"Gull" 2
+		"Starling" 2
+	variant 2
 		"Pelican" 3
-		variant "Albatross"
-	variant 1
+		"Albatross (Heavy)"
+	variant 2
 		"Pelican" 2
-		variant "Starling" 3
+		"Starling (Thrasher)" 2
+		"Starling (Sniper)"
+	variant 2
+		"Pelican"
+		"Starling (Hunter)" 2
 
 fleet "Remnant Home Guard"
 	government "Remnant"
@@ -106,8 +131,24 @@ fleet "Light Remnant Defense"
 	names "remnant"
 	personality
 		staying heroic unconstrained
-	variant 1
-		variant "Starling" 10
+	variant 10
+		"Starling" 2
+		"Starling (Heavy)" 2
+		"Starling (Sniper)" 2
+		"Starling (Hunter)" 2
+		"Starling (Thrasher)" 2
+	variant 10
+		"Starling (Heavy)" 4
+		"Starling (Sniper)" 6
+	variant 10
+		"Starling" 10
+	variant 10
+		"Starling (Heavy)" 10
+	variant 10
+		"Starling (Sniper)" 10
+	variant 10
+		"Starling (Heavy)" 5
+		"Starling (Hunter)" 5
 
 fleet "Heavy Remnant Defense"
 	government "Remnant"
@@ -115,13 +156,32 @@ fleet "Heavy Remnant Defense"
 	personality
 		staying heroic unconstrained
 	variant 6
-		variant "Albatross" 4
-		variant "Starling" 6
-	variant 10
-		variant "Albatross" 3
-		variant "Starling" 6
-	variant 1
-		variant "Albatross" 4
+		"Albatross (Shield)"
+		"Albatross" 3
+		"Starling" 6
+	variant 6
+		"Albatross (Shield)"
+		"Albatross (Sniper)" 3
+		"Starling (Sniper)" 6
+	variant 6
+		"Albatross (Turret)" 3
+		"Starling (Thrasher)" 6
+	variant 6
+		"Albatross (Heavy)" 3
+		"Starling (Heavy)" 6
+	variant 3
+		"Albatross" 3
+		"Starling (Hunter)" 6
+	variant 3
+		"Albatross (Sniper)" 3
+		"Starling (Hunter)" 6
+	variant 2
+		"Albatross" 3
+		"Albatross (Sniper)" 6
+	variant 2
+		"Albatross (Shield)"
+		"Albatross (Heavy)" 2
+		"Albatross (Turret)"
 
 phrase "remnant"
 	word

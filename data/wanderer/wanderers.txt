@@ -38,13 +38,6 @@ phrase "wanderer"
 		"rai"
 		"sek"
 
-variant "Deep River"
-	"Deep River"
-	"Deep River 0"
-	"Deep River 1"
-	"Deep River 2"
-	"Deep River 3"
-	"Deep River 4"
 
 fleet "Wanderer Freight"
 	government "Wanderer"
@@ -52,15 +45,34 @@ fleet "Wanderer Freight"
 	cargo 3
 	personality
 		timid
-	variant 6
-		variant "Deep River"
-	variant 3
-		variant "Deep River"
-		"Summer Leaf"
-	variant 2
-		variant "Deep River"
+	variant
+		"Deep River 0"
+	variant
+		"Deep River 1"
+	variant
+		"Deep River 2"
+	variant
+		"Deep River 3"
+	variant
+		"Deep River 4"
+	variant
+		"Deep River"
+	variant
+		"Deep River 0"
 		"Summer Leaf" 2
-	variant 1
+	variant
+		"Deep River 1"
+		"Summer Leaf" 1
+	variant
+		"Deep River 2"
+		"Summer Leaf" 2
+	variant
+		"Deep River 3"
+		"Summer Leaf" 1
+	variant
+		"Deep River 4"
+		"Summer Leaf" 2
+	variant
 		"Deep River"
 		"Summer Leaf" 3
 
@@ -765,24 +777,24 @@ event "wanderers: riptide mass production"
 	shipyard "Wanderer Advanced"
 		"Riptide"
 
-variant "Tempest"
-	"Tempest" 3
-	"Tempest (Heavy)" 2
-	"Tempest (Missile)"
-
 event "wanderers: tempest mass production"
 	fleet "Wanderer Defense"
 		add variant 6
-			variant "Tempest"
+			"Tempest"
 			"Summer Leaf"
 			"Autumn Leaf"
 		add variant 4
-			variant "Tempest"
+			"Tempest (Heavy)"
 			"Strong Wind"
 		add variant 1
-			variant "Tempest" 3
-		add variant 3
-			variant "Tempest" 2
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		add variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		add variant 1
+			"Tempest (Missile)" 2
 		add variant 2
 			"Strong Wind"
 			"Autumn Leaf"
@@ -923,26 +935,28 @@ event "wanderers: the eye opens"
 			distance 2331.95
 			period 2518.05
 
-variant "Derecho"
-	"Derecho" 4
-	"Derecho (Turret)" 3
-	"Derecho (Tough)" 2
-
 event "wanderers: derecho mass production"
 	fleet "Wanderer Defense"
-		add variant 9
-			variant "Derecho"
-			variant "Tempest"
 		add variant 4
-			variant "Derecho"
+			"Derecho"
+			"Tempest"
+		add variant 3
+			"Derecho (Turret)"
+			"Tempest (Missile)"
+		add variant 2
+			"Derecho (Tough)"
+			"Tempest (Heavy)"
+		add variant 4
+			"Derecho"
 			"Strong Wind" 2
 		add variant 3
-			variant "Derecho"
+			"Derecho (Tough)"
 			"Autumn Leaf"
 			"Summer Leaf" 2
 		add variant 2
-			variant "Derecho"
-			variant "Tempest" 2
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Tempest"
 	shipyard "Wanderer Advanced"
 		"Derecho"
 	outfitter "Wanderer Advanced"
@@ -961,22 +975,28 @@ event "wanderers: spera anatrusk colony"
 		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
 		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
 
-variant "Hurricane"
-	"Hurricane" 2
-	"Hurricane (Turret)"
-	"Hurricane (Tough)"
-
 event "wanderers: hurricane mass production"
 	fleet "Wanderer Defense"
-		add variant 9
-			variant "Hurricane"
-		add variant 6
-			variant "Hurricane"
-			variant "Derecho"
-			variant "Tempest"
-		add variant 4
-			variant "Hurricane"
-			variant "Tempest" 2
+		add variant 5
+			"Hurricane"
+		add variant 2
+			"Hurricane (Turret)"
+		add variant 2
+			"Hurricane (Tough)"
+		add variant 3
+			"Hurricane"
+			"Derecho"
+			"Tempest"
+		add variant 2
+			"Hurricane"
+			"Tempest" 2
+		add variant 3
+			"Hurricane (Turret)"
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+		add variant 2
+			"Hurricane (Tough)"
+			"Tempest (Missile)" 2
 	shipyard "Wanderer Advanced"
 		"Hurricane"
 

@@ -592,47 +592,69 @@ event "southern carriers 3"
 			"Boxwing" 4
 
 	fleet "Small Southern Pirates"
-		add variant 2
+		add variant 1
 			"Nest"
-			variant "Barb" 2
+			"Barb" 2
+		add variant 1
+			"Nest"
+			"Barb (Gatling)" 2
 
 event "southern carriers 4"
 	fleet "Large Northern Merchants"
 		fighters "free worlds fighter"
-		add variant 4
+		add variant 2
 			"Hauler III"
 			"Hauler II"
-			variant "Roost"
-			variant "Human Fighters" 4
-		add variant 4
-			variant "Roost" 3
-			variant "Human Fighters" 8
+			"Roost (Sidewinder)"
+			"Dagger" 2
+			"Lance" 2
+		add variant 2
+			"Hauler III"
+			"Hauler II"
+			"Roost (Sidewinder)"
+			"Lance (Gatling)" 2
+			"Lance" 2
+		add variant 2
+			"Roost" 3
+			"Dagger" 4
+			"Lance" 4
+			"Boxwing" 4
+		add variant 2
+			"Roost" 3
+			"Lance (Gatling)" 4
+			"Lance" 4
 			"Boxwing" 4
 
 	fleet "Large Southern Pirates"
-		add variant 2
+		add variant 1
 			"Roost"
-			variant "Barb" 4
+			"Barb" 4
+		add variant 1
+			"Roost"
+			"Barb (Gatling)" 4
 
 	fleet "Large Independent"
 		fighters "free worlds fighter"
 		add variant 2
 			"Roost"
-			variant "Barb" 4
+			"Barb" 4
 		add variant 2
 			"Roost"
-			variant "Barb" 2
+			"Barb" 2
 			"Boxwing" 2
 
 	fleet "Small Northern Pirates"
 		add variant 1
-			variant "Nest"
+			"Nest"
 			"Lance" 2
 
 	fleet "Large Northern Pirates"
-		add variant 2
-			variant "Roost"
+		add variant 1
+			"Roost"
 			"Lance" 4
+		add variant 1
+			"Roost"
+			"Lance (Gatling)" 4
 
 event "initial deployment 4"
 	date 17 9 3014
@@ -819,7 +841,7 @@ event "recapture of Kornephoros"
 
 	fleet "Small Republic"
 		add variant 10
-			variant "Protector"
+			"Protector"
 
 
 
@@ -1001,8 +1023,6 @@ event "fw abandoned Greenrock"
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
-	variant "Fury (Militia)"
-		add "Fury (Flamethrower)"
 
 
 
@@ -1054,20 +1074,107 @@ event "fw safe passage ends"
 
 
 event "navy using mark ii ships"
-	variant "Rainmaker"
-		add "Rainmaker (Mark II)" 3
-	variant "Gunboat"
-		add "Gunboat (Mark II)" 3
-	variant "Frigate"
-		add "Frigate (Mark II)" 3
-	variant "Cruiser"
-		add "Cruiser (Mark II)" 3
-	variant "Carrier"
-		add "Carrier (Mark II)" 3
-	
 	fleet "Small Republic"
+		add variant 12
+			"Rainmaker (Mark II)" 2
+		add variant 12
+			"Gunboat (Mark II)"
+			"Rainmaker (Mark II)"
+		add variant 9
+			"Frigate (Mark II)"
+		add variant 6
+			"Gunboat (Mark II)" 2
+		add variant 3
+			"Rainmaker (Mark II)" 3
+		add variant 12
+			"Gunboat (Mark II)"
 		remove variant
-			variant "Protector"
+			"Protector"
+	
+	fleet "Large Republic"
+		add variant 12
+			"Frigate (Mark II)" 2
+			"Rainmaker (Mark II)"
+			"Gunboat (Mark II)"
+		add variant 6
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+		add variant 6
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)"
+			"Rainmaker (Mark II)"
+		add variant 6
+			"Carrier (Mark II)"
+			"Lance" 4
+			"Combat Drone" 6
+		add variant 3
+			"Carrier (Mark II)"
+			"Lance" 4
+			"Combat Drone" 6
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)" 2
+			"Rainmaker (Mark II)" 2
+			"Gunboat (Mark II)" 2
+		add variant 3
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)" 2
+		add variant 3
+			"Frigate (Mark II)"
+			"Rainmaker (Mark II)" 2
+			"Gunboat (Mark II)"
+
+	fleet "Small Oathkeeper"
+		add variant 12
+			"Rainmaker (Mark II)" 2
+		add variant 12
+			"Gunboat (Mark II)"
+			"Rainmaker (Mark II)"
+		add variant 9
+			"Frigate (Mark II)"
+		add variant 6
+			"Gunboat (Mark II)" 2
+		add variant 3
+			"Rainmaker (Mark II)" 3
+		add variant 12
+			"Gunboat (Mark II)"
+
+	fleet "Large Oathkeeper"
+		add variant 12
+			"Frigate (Mark II)" 2
+			"Rainmaker (Mark II)"
+			"Gunboat (Mark II)"
+		add variant 6
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+		add variant 6
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)"
+			"Rainmaker (Mark II)"
+		add variant 6
+			"Carrier (Mark II)"
+			"Lance" 4
+			"Combat Drone" 6
+		add variant 3
+			"Carrier (Mark II)"
+			"Lance" 4
+			"Combat Drone" 6
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)" 2
+			"Rainmaker (Mark II)" 2
+			"Gunboat (Mark II)" 2
+		add variant 3
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)" 2
+		add variant 3
+			"Frigate (Mark II)"
+			"Rainmaker (Mark II)" 2
+			"Gunboat (Mark II)"
 
 fleet "gunboat only"
 	government "Republic"
@@ -1279,14 +1386,14 @@ event "dreadnought deployment"
 		personality
 			heroic
 		add variant 4
-			variant "Dreadnought"
+			"Dreadnought"
 		add variant 2
-			variant "Dreadnought"
-			variant "Bastion"
+			"Dreadnought"
+			"Bastion"
 		add variant 2
-			variant "Dreadnought"
-			variant "Argosy (Southern)"
-			variant "Fury (Militia)"
+			"Dreadnought"
+			"Argosy"
+			"Fury"
 
 
 
@@ -1566,8 +1673,6 @@ event "stack core for sale"
 		outfitter "Stack Core"
 	planet Wayfarer
 		outfitter "Stack Core"
-	variant "Dreadnought"
-		add "Dreadnought (Mark II)"
 
 
 

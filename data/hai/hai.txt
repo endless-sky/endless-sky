@@ -8,96 +8,90 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-variant "Aphid"
-	"Aphid"
-	"Aphid (Anti-Missile)"
-
-variant "Centipede"
-	"Centipede"
-	"Centipede (Pulse)"
-
-variant "Geocoris"
-	"Geocoris"
-	"Geocoris (Tracker)"
-
-variant "Grasshopper"
-	"Grasshopper"
-	"Grasshopper (Tracker)"
-
-variant "Lightning Bug"
-	"Lightning Bug"
-	"Lightning Bug (Pulse)"
-
-variant "Shield Beetle"
-	"Shield Beetle"
-	"Shield Beetle (Tracker)"
-	"Shield Beetle (Pulse)"
-
-variant "Shield Beetle (Jump)"
-	"Shield Beetle (Jump)"
-	"Shield Beetle (Jump, Tracker)"
-
-variant "Water Bug"
-	"Water Bug"
-	"Water Bug (Pulse)"
-
 fleet "Small Hai"
 	government "Hai"
 	names "hai"
 	cargo 3
 	personality
 		disables opportunistic
-	variant 6
-		variant "Water Bug"
-		variant "Lightning Bug" 2
-	variant 2
-		variant "Water Bug" 2
-		variant "Lightning Bug"
-	variant 5
-		variant "Lightning Bug" 2
-		variant "Aphid" 3
 	variant 3
-		variant "Lightning Bug"
-		variant "Aphid" 5
-	variant 4
-		variant "Lightning Bug" 3
-	variant 2
-		variant "Centipede"
+		"Water Bug"
+		"Lightning Bug (Pulse)" 2
 	variant 3
-		variant "Aphid" 3
-		variant "Centipede"
-	variant 1
-		variant "Centipede" 3
-	variant 1
-		variant "Centipede" 2
-		variant "Lightning Bug" 2
+		"Water Bug (Pulse)"
+		"Lightning Bug" 2
+	variant
+		"Water Bug"
+		"Water Bug (Pulse)"
+		"Lightning Bug"
+	variant
+		"Water Bug" 2
+		"Lightning Bug (Pulse)"
+	variant 3
+		"Lightning Bug" 2
+		"Aphid" 3
+	variant
+		"Lightning Bug"
+		"Aphid" 5
 	variant 2
-		variant "Centipede" 2
-		variant "Water Bug"
+		"Lightning Bug (Pulse)" 2
+		"Aphid (Anti-Missile)" 3
+	variant 2
+		"Lightning Bug (Pulse)"
+		"Aphid (Anti-Missile)" 5
+	variant
+		"Lightning Bug" 3
+	variant
+		"Lightning Bug (Pulse)" 3
+	variant
+		"Lightning Bug (Pulse)"
+		"Lightning Bug" 2
+	variant
+		"Lightning Bug"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Centipede"
+	variant 3
+		"Aphid" 3
+		"Centipede"
+	variant
+		"Centipede" 2
+		"Centipede (Pulse)" 3
+	variant
+		"Centipede" 2
+		"Lightning Bug" 2
+	variant 2
+		"Centipede" 2
+		"Water Bug"
+	variant
+		"Centipede"
+		"Lightning Bug" 2
+	variant
+		"Centipede"
+		"Aphid" 5
+	variant
+		"Centipede" 2
+		"Lightning Bug" 2
+	variant
+		"Centipede" 2
+		"Lightning Bug" 
+	variant
+		"Grasshopper" 3
+	variant
+		"Grasshopper"
+		"Centipede" 2
+	variant
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+		"Centipede" 
+	variant
+		"Lightning Bug" 2
+		"Grasshopper"
+		"Grasshopper (Tracker)"
 	variant 1
-		variant "Centipede"
-		variant "Lightning Bug" 2
-	variant 1
-		variant "Centipede"
-		variant "Aphid" 5
-	variant 1
-		variant "Centipede" 2
-		variant "Lightning Bug" 
-	variant 1
-		variant "Grasshopper" 3
-	variant 1
-		variant "Grasshopper"
-		variant "Centipede" 2
-	variant 1
-		variant "Grasshopper" 2
-		variant "Centipede" 
-	variant 1
-		variant "Lightning Bug" 2
-		variant "Grasshopper" 2
-	variant 1
-		variant "Lightning Bug"
-		variant "Centipede" 
-		variant "Grasshopper" 2
+		"Lightning Bug"
+		"Centipede (Pulse)" 
+		"Grasshopper" 2
 
 fleet "Large Hai"
 	government "Hai"
@@ -105,73 +99,103 @@ fleet "Large Hai"
 	cargo 3
 	personality
 		disables opportunistic
-	variant 7
-		variant "Shield Beetle"
-		variant "Lightning Bug" 2
 	variant 2
-		variant "Shield Beetle"
-		variant "Lightning Bug"
-		variant "Aphid" 4
-	variant 3
-		variant "Shield Beetle"
-		variant "Lightning Bug"
-		variant "Water Bug" 2
-	variant 3
-		variant "Shield Beetle"
-		variant "Water Bug" 2
-	variant 3
-		variant "Shield Beetle"
-		variant "Lightning Bug" 2
-		variant "Water Bug"
-	variant 3
-		variant "Shield Beetle"
-		variant "Water Bug" 3
-	variant 4
-		variant "Shield Beetle" 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
 	variant 2
-		variant "Shield Beetle" 2
-		variant "Lightning Bug" 2
-	variant
-		variant "Shield Beetle"
-		variant "Centipede" 3
-	variant 2
-		variant "Water Bug" 3
-		variant "Centipede" 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
 	variant 1
-		variant "Centipede" 5
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+		"Aphid" 4
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+		"Aphid (Anti-Missile)" 4
 	variant 3
-		variant "Centipede" 2
-		variant "Lightning Bug" 3
-		variant "Water Bug"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+		"Water Bug"
+		"Water Bug (Pulse)"
+	variant 3
+		"Shield Beetle"
+		"Water Bug"
+		"Water Bug (Pulse)"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+		"Water Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Water Bug" 3
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
 	variant 2
-		variant "Aphid" 2
-		variant "Lightning Bug"
-		variant "Centipede"
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant
+		"Shield Beetle (Tracker)"
+		"Centipede" 3
+	variant 2
+		"Water Bug" 3
+		"Centipede" 2
+	variant
+		"Centipede" 3
+		"Centipede (Pulse)" 2
+	variant 3
+		"Centipede" 2
+		"Lightning Bug" 3
+		"Water Bug"
+	variant 2
+		"Aphid" 2
+		"Lightning Bug"
+		"Centipede"
 	variant 2
 		"Centipede"
 		"Shield Beetle (Pulse)" 2
 		"Shield Beetle (Tracker)"
 	variant
-		variant "Centipede" 2
-		variant "Lightning Bug" 2
-		variant "Aphid" 3
+		"Centipede" 2
+		"Lightning Bug" 2
+		"Aphid" 3
 	variant 1
-		variant "Geocoris"
-		variant "Shield Beetle" 2
-	variant 2
-		variant "Geocoris"
-		variant "Shield Beetle"
-		variant "Grasshopper" 2
+		"Geocoris"
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
 	variant 1
-		variant "Geocoris"
-		variant "Shield Beetle"
-		variant "Aphid" 3
+		"Geocoris"
+		"Shield Beetle (Pulse)"
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)" 
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Geocoris (Tracker)"
+		"Shield Beetle"
+		"Aphid (Anti-Missile)" 2
+		"Aphid" 
 	variant
-		variant "Centipede"
-		variant "Geocoris"
-		variant "Lightning Bug"
-		variant "Water Bug"
-		variant "Grasshopper"
+		"Centipede"
+		"Geocoris (Tracker)"
+		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
 
 fleet "Hai Surveillance"
 	government "Hai"
@@ -203,9 +227,13 @@ fleet "Small Unfettered"
 		disables
 		plunders
 	variant 3
-		variant "Lightning Bug" 2
+		"Lightning Bug (Pulse)" 2
+	variant 3
+		"Lightning Bug" 2
 	variant
-		variant "Lightning Bug"
+		"Lightning Bug"
+	variant
+		"Lightning Bug (Pulse)"
 
 fleet "Large Unfettered"
 	government "Hai (Unfettered)"
@@ -214,19 +242,44 @@ fleet "Large Unfettered"
 	personality
 		disables
 		plunders
-	variant 7
-		variant "Shield Beetle"
-		variant "Lightning Bug" 2
 	variant 2
-		variant "Shield Beetle"
-		variant "Lightning Bug"
-	variant 9
-		variant "Shield Beetle" 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
 	variant 1
-		variant "Lightning Bug" 5
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant 1
+		"Shield Beetle (Tracker)" 2
+	variant 1
+		"Shield Beetle" 2
+	variant 1
+		"Lightning Bug" 5
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
 	variant 2
-		variant "Shield Beetle" 2
-		variant "Lightning Bug" 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
 
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
@@ -235,8 +288,14 @@ fleet "Unfettered Raid"
 	personality
 		disables
 		plunders
-	variant 1
-		variant "Shield Beetle (Jump)" 3
+	variant
+		"Shield Beetle (Jump)" 3
+	variant
+		"Shield Beetle (Jump)" 2
+		"Shield Beetle (Jump, Tracker)" 1
+	variant
+		"Shield Beetle (Jump)" 1
+		"Shield Beetle (Jump, Tracker)" 2
 
 shipyard "Hai Basics"
 	"Aphid"

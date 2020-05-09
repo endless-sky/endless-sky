@@ -749,30 +749,6 @@ ship "Dreadnought" "Dreadnought (Jump)"
 
 
 
-ship "Dreadnought" "Dreadnought (Mark II)"
-	outfits
-		"Torpedo Launcher" 4
-		"Torpedo" 120
-		"Plasma Turret" 3
-		"Heavy Anti-Missile Turret" 2
-		"Stack Core"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Small Radar Jammer"
-		"Liquid Helium Cooler"
-		"Tactical Scanner"
-		"Laser Rifle" 25
-		"Orca Plasma Thruster"
-		"Orca Plasma Steering"
-		"Hyperdrive"
-	turret "Plasma Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Plasma Turret"
-	turret "Plasma Turret"
-
-
-
 ship "Falcon" "Falcon (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
@@ -1946,6 +1922,24 @@ ship "Scout" "Scout (Speedy)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+
+
+
+ship "Skein" "Skein (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"LP144a Battery Pack"
+		"Fission Reactor"
+		"D94-YV Shield Generator" 3
+		"Large Radar Jammer"
+		"Outfits Expansion" 2
+		"Laser Rifle" 2
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 
 
 
