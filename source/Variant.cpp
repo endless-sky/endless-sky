@@ -198,31 +198,29 @@ vector<pair<Variant, int>> Variant::Variants() const
 
 
 
-// Choose all ships from this variant and choose a ship from each nested variant.
+// Choose a list of ships from this variant. All ships from the ships
+// vector are chosen, as well as a random selection of ships from any
+// nested variants in the stockVariants or variants vectors.
 vector<const Ship *> Variant::ChooseShips() const
 {
 	vector<const Ship *> chosenShips = ships;
-	for(auto &it : variants)
+	for(const auto &it : variants)
 		for(int i = 0; i < it.second; i++)
-		{
-			vector<const Ship *> variantShips = it.first.NestedChooseShips();
-			chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
-		}
-	for(auto &it : stockVariants)
+			chosenShips.push_back(it.first.NestedChooseShip());
+	for(const auto &it : stockVariants)
 		for(int i = 0; i < it.second; i++)
-		{
-			vector<const Ship *> variantShips = it.first->NestedChooseShips();
-			chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
-		}
+			chosenShips.push_back(it.first->NestedChooseShip());
 	return chosenShips;
 }
 
 
 
-// Choose a ship from this variant according to the weight of all its contents. 
-vector<const Ship *> Variant::NestedChooseShips() const
+// Choose a ship from this variant given that it is a nested variant.
+// Nested variants only choose a single ship from among their list
+// of ships and variants.
+const Ship *Variant::NestedChooseShip() const
 {
-	vector<const Ship *> chosenShips;
+	const Ship *chosenShip;
 	
 	// Randomly choose between the ships and the variants.
 	int chosen = Random::Int(total);
@@ -230,7 +228,6 @@ vector<const Ship *> Variant::NestedChooseShips() const
 	{
 		chosen = Random::Int(variantTotal);
 		unsigned variantIndex = 0;
-		vector<const Ship *> variantShips;
 		// Randomly choose between the stock variants and the non-stock variants.
 		if(chosen < stockTotal)
 		{
@@ -238,25 +235,24 @@ vector<const Ship *> Variant::NestedChooseShips() const
 			for(int choice = Random::Int(stockTotal); choice >= stockVariants[variantIndex].second; ++variantIndex)
 				choice -= stockVariants[variantIndex].second;
 			
-			// Choose ships from the chosen variant.
-			variantShips = stockVariants[variantIndex].first->NestedChooseShips();
+			// Choose a ship from the chosen variant.
+			chosenShip = stockVariants[variantIndex].first->NestedChooseShip();
 		}
 		else
 		{
 			for(int choice = Random::Int(variantTotal - stockTotal); choice >= variants[variantIndex].second; ++variantIndex)
 				choice -= variants[variantIndex].second;
 			
-			variantShips = variants[variantIndex].first.NestedChooseShips();
+			chosenShip = variants[variantIndex].first.NestedChooseShip();
 		}
-		chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
 	}
 	else
 	{
 		// Randomly choose one of the ships from this variant.
-		chosenShips.push_back(ships[Random::Int(total - variantTotal)]);
+		chosenShip = ships[Random::Int(total - variantTotal)];
 	}
 	
-	return chosenShips;
+	return chosenShip;
 }
 
 
@@ -268,9 +264,9 @@ int64_t Variant::Strength() const
 	int64_t sum = 0;
 	for(const Ship *ship : ships)
 		sum += ship->Cost();
-	for(auto &variant : variants)
+	for(const auto &variant : variants)
 		sum += variant.first.NestedStrength() * variant.second;
-	for(auto &variant : stockVariants)
+	for(const auto &variant : stockVariants)
 		sum += variant.first->NestedStrength() * variant.second;
 	return sum;
 }

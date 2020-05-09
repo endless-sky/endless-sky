@@ -531,9 +531,9 @@ void Fleet::Place(const System &system, Ship &ship)
 int64_t Fleet::Strength() const
 {
 	int64_t sum = 0;
-	for(auto &variant : variants)
+	for(const auto &variant : variants)
 		sum += variant.first.Strength() * variant.second;
-	for(auto &variant : stockVariants)
+	for(const auto &variant : stockVariants)
 		sum += variant.first->Strength() * variant.second;
 	return sum / total;
 }
