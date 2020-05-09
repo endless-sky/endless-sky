@@ -119,7 +119,7 @@ mission "First Contact: Kuwaru Efreti"
 mission "Quarg Satellites"
 	minor
 	name "Deploy Quarg Scanners"
-	description "Head to each of the marked systems to drop off the Quarg scanning satellites, then head to <destination> to collect your payment."
+	description "Head to each of the marked systems to deploy the Quarg scanning satellites, then head to <destination> to collect your payment."
 	source
 		near "Umbral" 1 3
 		government "Quarg"
@@ -149,7 +149,7 @@ mission "Quarg Satellites"
 					decline
 			label where
 			`	"To <waypoints>. Once you are done, return here and you will receive <payment>."`
-			`	When you're back at your ship some more Quarg are ready with some robots, putting the four satellites inside your ship. They have some negative space, and are pyramidical, with each end having smaller pyramids on them. Each of the devices is roughly half your size, but probably weigh a lot more than you.`
+			`	As soon as you arrive at your ship some more Quarg are ready with some robots, putting the four satellites inside your ship. They have some negative space, and are pyramidical, with each end having smaller pyramids on them. Each of the devices is roughly half your size, but probably weigh a lot more than you.`
 				accept
 	on enter "Kappa Centauri"
 		dialog "You open your cargo hold, and let a Quarg scanner drift out to the void."
@@ -186,8 +186,8 @@ mission "Lagrange Ring: Cargo"
 				`	(Join them to see what's going on.)`
 				`	(Ignore them.)`
 					decline
-			`	You join the group, and one of the Quarg diverts its attention to you, while others continue speaking with the human merchants.`
-			`	"Would you also be someone willing to provide us a cargo service, Captain?" It asks, all the while checking a data pad, it seems to be related to the ships docked here. "Not many humans in this region have the cargo space required, much less proper defenses for cargo convoys. We are willing to richly pay for whoever meets the criteria and is willing to help us."`
+			`	You join the group, and one of the Quarg diverts its attention to you, while the others continue speaking with the human merchants.`
+			`	"Would you also be someone willing to provide us a cargo service, Captain?" It asks, all the while checking a data pad, it seems to be related to the ships docked here. "Not many of you humans in this region have the cargo space required, much less proper defenses for cargo convoys. We are willing to pay adequately for whoever meets the criteria and is willing to help us."`
 			choice
 				`	"Are those other Captains also doing this? What do you need so much cargo for?"`
 				`	"I'm not looking for any more cargo jobs right now, sorry."`
@@ -230,14 +230,14 @@ mission "Ask Quarg About Coalition Early"
 					decline
 			`	You stop the first Quarg that passes by you, and ask if they could tell their side of the story about the Coalition.`
 			`	"Ah, so you have encountered the foolish Coalition," it begins. "They once were three promising species, before they succumbed to the unwise desire for usurpation of the great deeds of others.`
-			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a maniacal military, as I am sure you have seen, having spoken with those wretched Heliarchs"`
+			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs"`
 			choice
 				`	"Is it true that they defeated you?"`
 					goto defeat
 				`	"Is it true what they told me? That you oppressed them and hindered their development?"`
 					goto oppress
 			label defeat
-			`	It clicks it's teeth together for a moment, and frowns a bit, "Do not underestimate us human. We are numerous, and we are strong," it pauses for a moment, with a blank expression on its face, as if trying to remember something. "We just know better than to slaughter billions for the sake of maintaining our position."`
+			`	It clicks it's teeth together for a moment, and frowns a bit, "Do not underestimate us, human. We are numerous, and we are strong," it pauses for a moment, with a blank expression on its face, as if trying to remember something. "We just know better than to slaughter billions for the sake of maintaining our position."`
 				goto end
 			label oppress
 			`	"Of course not. Have you seen us do such things with humanity? Or with any other alien species you might have reached in your travels with a Jump Drive? The Heliarchs, like any other fanatical military, merely fabricated an excuse to justify attacking us."`
