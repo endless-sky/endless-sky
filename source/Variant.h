@@ -61,6 +61,9 @@ public:
 	static const Variant &ChooseVariant(const std::vector<std::pair<Variant, int>> &nVariants, const std::vector<std::pair<const Variant *, int>> &sVariants, int vTotal, int sTotal);
 	
 	bool operator==(const Variant &other) const;
+
+private:
+	bool NestedInSelf(std::string check) const;
 	
 private:
 	std::string name;

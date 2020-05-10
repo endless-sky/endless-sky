@@ -166,6 +166,51 @@ void Variant::Load(const DataNode &node, const bool global)
 			}
 		}
 	}
+
+	// Prevent a variant from containing itself.
+	if(!name.empty())
+	{
+		for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
+		{
+			if(it->first->NestedInSelf(name))
+			{
+				total -= it->second;
+				variantTotal -= it->second;
+				stockTotal -= it->second;
+				stockVariants.erase(it);
+				--it;
+				node.PrintTrace("Infinite loop detected and removed in variant \"" + name + "\":");
+			}
+		}
+		for(auto it = variants.begin(); it != variants.end(); ++it)
+		{
+			if(it->first.NestedInSelf(name))
+			{
+				total -= it->second;
+				variantTotal -= it->second;
+				variants.erase(it);
+				--it;
+				node.PrintTrace("Infinite loop detected and removed in variant \"" + name + "\":");
+			}
+		}
+	}
+}
+
+
+
+bool Variant::NestedInSelf(string check) const
+{
+	if(!name.empty() && name == check)
+		return true;
+	
+	for(auto &it : stockVariants)
+		if(it.first->NestedInSelf(check))
+			return true;
+	for(auto &it : variants)
+		if(it.first.NestedInSelf(check))
+			return true;
+	
+	return false;
 }
 
 
