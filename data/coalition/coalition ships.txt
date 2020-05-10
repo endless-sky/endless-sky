@@ -343,7 +343,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 	outfits
 		"Finisher Pod" 2
 		"Finisher Storage Tube" 13
-		"Finisher Torpedo" 366
+		"Finisher Torpedo" 340
 
 		"Small Reactor Module" 2
 		"Overcharged Shield Module"
@@ -419,7 +419,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 	outfits
 		"Finisher Pod" 2
 		"Finisher Storage Tube" 4
-		"Finisher Torpedo" 168
+		"Finisher Torpedo" 160
 
 		"Small Reactor Module"
 		"Overcharged Shield Module"
@@ -609,7 +609,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 	outfits
 		"Finisher Pod" 6
 		"Finisher Storage Tube" 21
-		"Finisher Torpedo" 702
+		"Finisher Torpedo" 660
 
 		"Large Reactor Module"
 		"Overcharged Shield Module"
