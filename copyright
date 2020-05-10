@@ -718,6 +718,71 @@ Files
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from works by NASA (public domain)
+
+Files:
+ images/effect/firestorm*
+ images/effect/heaver*
+ images/effect/*digger*
+ images/effect/shunt*
+ images/hardpoint/expeller*
+ images/hardpoint/firestorm*
+ images/hardpoint/korath heaver*
+ images/hardpoint/korath inferno*
+ images/icon/firestorm torpedo*
+ images/icon/korath heaver*
+ images/outfit/expeller*
+ images/outfit/firestorm*
+ images/outfit/*korath afterburner*
+ images/outfit/hybrid korath*
+ images/outfit/jump chamber*
+ images/outfit/korath fuel stack*
+ images/outfit/korath heaver*
+ images/outfit/korath inferno*
+ images/outfit/korath probe*
+ images/outfit/korath*shock*
+ images/outfit/*korath reverser*
+ images/outfit/liquid sodium*
+ images/outfit/shunt bomb*
+ images/outfit/shunt-strike*
+ images/projectile/expeller*
+ images/projectile/firestorm*
+ images/projectile/heaver*
+ images/projectile/korath digger*
+ images/projectile/korath inferno*
+ images/projectile/shunt-strike*
+ images/ship/korath haven*
+ images/ship/korath refabricator*
+ images/ship/korath refuge*
+ images/ship/ravager*
+ images/thumbnail/korath haven*
+ images/thumbnail/korath refabricator*
+ images/thumbnail/korath refuge*
+ images/thumbnail/ravager*
+Copyright: None (CC0 Public Domain)
+License: N/A (CC0 Public Domain)
+Comment: Work by Nomadic Volcano (NomadicVolcano@gmail.com) based on textures from texture.ninja
+
+Files:
+ images/hardpoint/digger turret*
+ images/outfit/korath digger turret*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+
+Files:
+ images/thumbnail/dredger*
+ images/ship/dredger*
+ images/outfit/korath digger.png
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/*/korath*reverse*
+ images/*/korath*engine*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
  
 
 License: GPL-3+

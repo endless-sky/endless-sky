@@ -1,4 +1,5 @@
-# Copyright (c) 2014-2016 by Michael Zahniser
+# Copyright (c) 2020 by Nomadic Volcano
+# Based on earlier work copyright (c) 2014-2016 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -92,7 +93,7 @@ outfit "Korath Shunt-Strike"
 		"hull damage" 162
 		"piercing" 0.1
 		"slowing damage" 2.5
-	description "This dismantled Small Systems Core is attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots that eat through a target's shields and attempt to rebuild its hull and systems as Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the ship."
+	description "This dismantled Systems Core is attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots that eat through a target's shields and attempt to rebuild its hull and systems as Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the ship."
 	description "To maintain a ready supply of microbots, this turret constantly builds more, consuming energy and producing heat even when inactive."
 
 
@@ -901,7 +902,7 @@ outfit "Korath Digger"
 	category "Guns"
 	cost 419000
 	thumbnail "outfit/korath digger"
-	"mass" 22
+	"mass" 18
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
@@ -928,3 +929,28 @@ effect "korath digger hit"
 	"lifetime" 5
 	"random angle" 30
 	"velocity scale" .005
+
+
+outfit "Korath Shock Gun"
+	category "Guns"
+	cost 419000
+	thumbnail "outfit/korath shock gun"
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	weapon
+		sprite "projectile/korath digger short"
+			"frame rate" 20
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" 0.4
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.4
+		"firing heat" 5.2
+		"shield damage" 2.1
+		"hull damage" 4.2
+		"disruption damage" .04
+	description `This outfit is a placeholder.`

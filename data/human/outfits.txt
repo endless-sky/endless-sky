@@ -193,23 +193,6 @@ outfit "Jump Drive"
 	"jump drive" 1
 	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
 
-outfit "Jump Chamber"
-	category "Systems"
-	cost 62880000
-	thumbnail "outfit/jump chamber"
-	# space = 2 triple plasma cores + 1 jump drive
-	# heat = 2 triple plasma cores
-	# power = 2.5 triple plasma cores
-	# cost = 1.5 * ( 2 triple plasma cores + 1 jump drive )
-	"mass" 358
-	"outfit space" -358
-	"energy generation" 109
-	"heat generation" 308
-	"jump speed" .2
-	"jump fuel" 150
-	"jump drive" 1
-	description "This vast chamber is the key component of a larger system that manufactures Jump Drives and Jump Chambers. It contains a rupture in spacetime which emits vast amounts of heat and energy, and radiates extra-universal matter. If the energy and heat are not suitably contained, the drive will explode with a force sufficient to shatter a small moon. Adventurous captains will use this as a dangerous power source, if they have sufficient cooling to keep their ship from exploding."
-
 outfit "Jump Drive (Broken)"
 	category "Systems"
 	cost 25000

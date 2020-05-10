@@ -1,4 +1,5 @@
-# Copyright (c) 2016 by Michael Zahniser
+# Copyright (c) 2020 by Nomadic Volcano
+# Based on earlier work copyright (c) 2016 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -276,7 +277,7 @@ outfit "Afterburner (Planetary Class)"
 	"afterburner effect" "afterburner"
 	"flare sound" "plasma medium"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
-	description "These enormous afterburners have a dedicated reaction chamber with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
+	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
 
 outfit "Afterburner (Stellar Class)"
 	plural "Afterburners (Stellar Class)"
@@ -315,6 +316,86 @@ outfit "Engine (Meteor Class)"
 		"frame rate" 8
 	"flare sound" "plasma tiny"
 	description "This old engine dates back to a distant era before the escalating Korath war dictated faster drones. The Korath Exiles resurrected these engines in recent years to allow their Chasers to carry larger weapons at the cost of some speed."
+
+outfit "Reverser (Asteroid Class)"
+	plural "Reverser (Asteroid Class)"
+	category "Engines"
+	"cost" 113000
+	thumbnail "outfit/tiny korath reverser"
+	"mass" 14
+	"outfit space" -14
+	"weapon capacity" -14
+	"reverse thrust" 11.2
+	"reverse thrusting energy" 1.5
+	"reverse thrusting heat" 3.4
+	"flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"flare sound" "plasma tiny"
+	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
+
+outfit "Reverser (Comet Class)"
+	plural "Reversers (Comet Class)"
+	category "Engines"
+	"cost" 249000
+	thumbnail "outfit/small korath reverser"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -24
+	"reverse thrust" 21.8
+	"reverse thrusting energy" 2.8
+	"reverse thrusting heat" 6.5
+	"flare sprite" "effect/korath flare/small"
+		"frame rate" 7.5
+	"flare sound" "plasma small"
+	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
+
+outfit "Reverser (Lunar Class)"
+	plural "Reversers (Lunar Class)"
+	category "Engines"
+	"cost" 539000
+	thumbnail "outfit/medium korath reverser"
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
+	"reverse thrust" 41.2
+	"reverse thrusting energy" 4.9
+	"reverse thrusting heat" 11.9
+	"flare sprite" "effect/korath flare/medium"
+		"frame rate" 7
+	"flare sound" "plasma medium"
+	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
+
+outfit "Reverser (Planetary Class)"
+	plural "Reversers (Planetary Class)"
+	category "Engines"
+	"cost" 1216000
+	thumbnail "outfit/large korath reverser"
+	"mass" 69
+	"outfit space" -69
+	"weapon capacity" -69
+	"reverse thrust" 80.0
+	"reverse thrusting energy" 8.9
+	"reverse thrusting heat" 22.7
+	"flare sprite" "effect/korath flare/large"
+		"frame rate" 6.5
+	"flare sound" "plasma large"
+	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
+
+outfit "Reverser (Stellar Class)"
+	plural "Reversers (Stellar Class)"
+	category "Engines"
+	"cost" 2733000
+	thumbnail "outfit/huge korath reverser"
+	"mass" 118
+	"outfit space" -118
+	"weapon capacity" -118
+	"reverse thrust" 153.4
+	"reverse thrusting energy" 15.8
+	"reverse thrusting heat" 42.6
+	"flare sprite" "effect/korath flare/huge"
+		"frame rate" 6
+	"flare sound" "plasma huge"
+	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
 
 outfit "Thruster (Asteroid Class)"
 	plural "Thrusters (Asteroid Class)"
