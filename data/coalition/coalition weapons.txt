@@ -138,10 +138,10 @@ outfit "Finisher Storage Tube"
 	category "Ammunition"
 	cost 58800
 	thumbnail "outfit/finisher storage"
-	"mass" 3.9
+	"mass" 4
 	"outfit space" -15
 	"energy capacity" 120
-	"finisher capacity" 22
+	"finisher capacity" 20
 	ammo "Finisher Torpedo"
 	description "To free up space that would normally be used for a battery, the Heliarchs have incorporated a very small native battery to this finisher storage unit, allowing one to more easily fit multiple while sacrificing their batteries."
 
