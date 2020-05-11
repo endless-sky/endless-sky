@@ -1103,7 +1103,7 @@ ship "Diomedea"
 		"shield energy" 1.8
 		"hull repair rate" 4
 		"hull energy" 0.75
-		"atmosphere scan"
+		"atmosphere scan" 100
 		"outfit scan power" 25
 		"outfit scan speed" 1
 		"tactical scan power" 101
@@ -1220,7 +1220,7 @@ ship "Harrier"
 		
 		"Crucible-Class Thruster" 2
 		"Crucible-Class Steering"
-		"Remnant Afterburner"
+		"Bellows-Class Afterburner"
 		"Hyperdrive"
 		
 	gun 0 -48.5 "Nullifier Missile Pod"
@@ -1313,34 +1313,34 @@ ship "Phoenix"
 
 
 ship "Palpebrata"
-    plural "Palpebratas"
-    sprite "ship/palpebrata"
-    thumbnail "thumbnail/palpebrata"
-    attributes
-        category "Heavy Warship"
-        licenses
-            "Remnant Capital"
-        "cost" 45000000
-        "shields" 45200
-        "hull" 26500
-        "required crew" 51
-        "bunks" 85
-        "cargo space" 134
-        "mass" 680
-        "drag" 7.4
-        "heat dissipation" 0.5
-        "fuel capacity" 600
-        "ramscoop" 2
-        "outfit space" 774
-        "weapon capacity" 260
-        "engine capacity" 150
-        "shield generation" 5.2
-        "shield energy" 4.6
-        "hull repair rate" 1.5
-        "hull energy" 1.2
-        "outfit scan power" 25
-        "outfit scan speed" 2
-        "tactical scan power" 45
+	plural "Palpebratas"
+	sprite "ship/palpebrata"
+	thumbnail "thumbnail/palpebrata"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 45000000
+		"shields" 45200
+		"hull" 26500
+		"required crew" 51
+		"bunks" 85
+		"cargo space" 134
+		"mass" 680
+		"drag" 7.4
+		"heat dissipation" 0.5
+		"fuel capacity" 600
+		"ramscoop" 2
+		"outfit space" 774
+		"weapon capacity" 260
+		"engine capacity" 150
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"outfit scan power" 25
+		"outfit scan speed" 2
+		"tactical scan power" 45
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
