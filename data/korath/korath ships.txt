@@ -238,7 +238,7 @@ ship "Korath Freighter"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	attributes
-		category "Bulk Freighter"
+		category "Heavy Freighter"
 		cost 27690000
 		shields 47000
 		hull 34000

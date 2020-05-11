@@ -931,26 +931,95 @@ effect "korath digger hit"
 	"velocity scale" .005
 
 
-outfit "Korath Shock Gun"
+outfit "Korath Shocker"
 	category "Guns"
 	cost 419000
-	thumbnail "outfit/korath shock gun"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
+	thumbnail "outfit/korath shocker"
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
 	"gun ports" -1
+	"energy capacity" 190
 	weapon
-		sprite "projectile/korath digger short"
+		sprite "projectile/shock"
 			"frame rate" 20
-		sound "korath digger"
-		"hit effect" "korath digger hit"
+		#sound "korath digger"
 		"inaccuracy" 0.4
-		"velocity" 400
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 2.4
-		"firing heat" 5.2
-		"shield damage" 2.1
-		"hull damage" 4.2
-		"disruption damage" .04
+		"velocity" 12
+		"lifetime" 86
+		"reload" 60
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.35
+		"homing" 4
+		"tracking" 0.8
+		"firing energy" 190
+		"firing heat" 210
+		"shield damage" 140
+		"hull damage" 45
+		"ion damage" 3
 	description `This outfit is a placeholder.`
+
+outfit "Korath Shock Turret"
+	category "Turrets"
+	cost 509000
+	thumbnail "outfit/korath shock turret"
+	"mass" 27
+	"outfit space" -27
+	"weapon capacity" -27
+	"turret mounts" -1
+	"required crew" 1
+	"energy capacity" 190
+	weapon
+		sprite "projectile/shock"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/korath shock turret"
+		#sound "korath digger"
+		"turret turn" 3.6
+		"inaccuracy" 0.2
+		"velocity" 12
+		"lifetime" 86
+		"reload" 60
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.35
+		"homing" 4
+		"tracking" 0.8
+		"firing energy" 190
+		"firing heat" 210
+		"shield damage" 140
+		"hull damage" 45
+		"ion damage" 3
+	description `This description is a placeholder.`
+
+outfit "Korath Heavy Shock Turret"
+	category "Turrets"
+	cost 509000
+	thumbnail "outfit/korath heavy shock turret"
+	"mass" 81
+	"outfit space" -81
+	"weapon capacity" -81
+	"turret mounts" -1
+	"required crew" 1
+	"energy capacity" 190
+	weapon
+		sprite "projectile/shock"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/korath heavy shock turret"
+		#sound "korath digger"
+		"turret turn" 2.4
+		"inaccuracy" 0.2
+		"velocity" 13
+		"lifetime" 86
+		"reload" 20
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.35
+		"homing" 4
+		"tracking" 0.8
+		"firing energy" 190
+		"firing heat" 210
+		"shield damage" 140
+		"hull damage" 45
+		"ion damage" 3
+	description `This description is a placeholder.`

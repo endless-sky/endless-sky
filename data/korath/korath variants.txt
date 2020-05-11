@@ -74,6 +74,16 @@ ship "Korath Chaser" "Korath Chaser (Expeller)"
 		
 		"Engine (Meteor Class)"
 
+ship "Korath Chaser" "Korath Chaser (Shocker)"
+	outfits
+		"Korath Shocker"
+		
+		"Generator (Furnace Class)"
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 
+		
+		"Engine (Meteor Class)"
+
 ship "Korath Chaser" "Korath Chaser (Digger)"
 	outfits
 		"Korath Digger"

@@ -599,7 +599,7 @@ outfit "Korath Defense Station"
 	cost 53000
 	"capture defense" 30
 	"outfit space" -2
-	"energy consumption" 0.051
-	"heat generation" 0.102
+	"energy consumption" 0.0166667
+	"heat generation" 0.166667
 	"unplunderable" 1
-	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+	description "This description is a placeholder."
