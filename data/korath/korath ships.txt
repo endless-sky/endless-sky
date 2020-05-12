@@ -317,14 +317,15 @@ ship "Korath Tanker"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Grab-Strike" 2
+		"Korath Heaver" 2
 		"Korath Banisher" 3
 		"Korath Warder" 3
 		
 		"Triple Plasma Core"
+		"Generator (Candle Class)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Fuel Processor"
+		"Small Heat Shunt"
 		"Korath Repeater Rifle" 380
 		"Korath Defense Station" 30
 
@@ -336,8 +337,8 @@ ship "Korath Tanker"
 	engine 0 343 .9
 	engine 37 343 .8
 	turret -45 -243 "Korath Warder"
-	turret 45 -243 "Korath Grab-Strike"
-	turret -47 -136 "Korath Grab-Strike"
+	turret 45 -243 "Korath Heaver"
+	turret -47 -136 "Korath Heaver"
 	turret 47 -136 "Korath Banisher"
 	turret -70 57 "Korath Warder"
 	turret 70 57 "Korath Banisher"
@@ -1158,8 +1159,8 @@ ship "Korath Ravager"
 	attributes
 		category "Heavy Warship"
 		"cost" 3760000
-		"shields" 27000
-		"hull" 25000
+		"shields" 43000
+		"hull" 11000
 		"required crew" 319
 		"bunks" 341
 		"mass" 1260

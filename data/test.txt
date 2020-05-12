@@ -143,6 +143,7 @@ shipyard "korath exile variant shipyard"
 	"Korath Chaser (Shocker)"
 	"Korath Chaser (Digger)"
 	
+	"Korath Dredger (Shunt-Shock)"
 	"Korath Dredger (Fast Inferno)"
 	"Korath Dredger (Civilian)"
 

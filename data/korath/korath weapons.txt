@@ -148,7 +148,6 @@ outfit "Korath Expeller"
 	"outfit space" -25
 	"weapon capacity" -25
 	"gun ports" -1
-	"required crew" 1
 	weapon
 		sprite "projectile/expeller"
 			"frame rate" 60
@@ -814,8 +813,8 @@ outfit "Heaver Shard"
 			"rewind"
 		"random velocity" 3
 		"velocity" 10
-		"lifetime" 100
-		"random lifetime" 20
+		"lifetime" 40
+		"random lifetime" 15
 		"shield damage" 17
 		"hull damage" 17
 		"inaccuracy" 3.5
@@ -848,16 +847,16 @@ outfit "Korath Inferno"
 		"hardpoint sprite" "hardpoint/korath inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
-		"inaccuracy" 1
-		"turret turn" 1.9
-		"velocity" 720
+		"inaccuracy" 0.5
+		"turret turn" 2.7
+		"velocity" 525
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 8.25
-		"firing heat" 25.5
+		"firing energy" 7.5
+		"firing heat" 8.5
 		"shield damage" 10.5
 		"hull damage" 4.5
-		"heat damage" 54
+		"heat damage" 48
 	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory. The more efficient short-range Fire-Lance is based on this technology."
 
 effect "korath inferno hit"
@@ -875,9 +874,9 @@ outfit "Korath Digger Turret"
 	cost 509000
 	thumbnail "outfit/korath digger turret"
 	# This weak turret is mostly a space-filler for ships that have free turret mounts, but little weapon space. 
-	"mass" 21
-	"outfit space" -21
-	"weapon capacity" -21
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
 	"turret mounts" -1
 	"required crew" 1
 	weapon
@@ -887,7 +886,7 @@ outfit "Korath Digger Turret"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" 1
-		"turret turn" 3.2
+		"turret turn" 4.2
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -902,9 +901,9 @@ outfit "Korath Digger"
 	category "Guns"
 	cost 419000
 	thumbnail "outfit/korath digger"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
 	"gun ports" -1
 	weapon
 		sprite "projectile/korath digger short"
@@ -935,9 +934,9 @@ outfit "Korath Shocker"
 	category "Guns"
 	cost 419000
 	thumbnail "outfit/korath shocker"
-	"mass" 25
-	"outfit space" -25
-	"weapon capacity" -25
+	"mass" 23
+	"outfit space" -23
+	"weapon capacity" -23
 	"gun ports" -1
 	"energy capacity" 190
 	weapon
@@ -964,9 +963,9 @@ outfit "Korath Shock Turret"
 	category "Turrets"
 	cost 509000
 	thumbnail "outfit/korath shock turret"
-	"mass" 27
-	"outfit space" -27
-	"weapon capacity" -27
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
 	"turret mounts" -1
 	"required crew" 1
 	"energy capacity" 190
@@ -996,9 +995,9 @@ outfit "Korath Heavy Shock Turret"
 	category "Turrets"
 	cost 509000
 	thumbnail "outfit/korath heavy shock turret"
-	"mass" 81
-	"outfit space" -81
-	"weapon capacity" -81
+	"mass" 75
+	"outfit space" -75
+	"weapon capacity" -75
 	"turret mounts" -1
 	"required crew" 1
 	"energy capacity" 190

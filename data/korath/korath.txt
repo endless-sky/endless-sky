@@ -190,8 +190,8 @@ phrase "kor mereti"
 	phrase
 		"digit"
 
-# To support plug-ins:
 fleet "Korath Raid"
+	# Deprecated fleet to support plug-ins
 	government "Korath"
 	names "korath"
 	fighters "korath"
@@ -209,35 +209,22 @@ fleet "Korath Small Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant 40
+	variant 21
 		"Korath Raider"
 		"Korath Chaser" 2
-	variant 25
+	variant 21
 		"Korath Raider"
 		"Korath Chaser (Expeller)" 2
-	variant 25
+	variant 21
+		"Korath Raider"
+		"Korath Chaser (Shocker)" 2
+	variant 21
 		"Korath Raider"
 		"Korath Chaser (Digger)" 2
-	variant 1
-		"Korath Ravager"
-	variant 1
-		"Korath Ravager (Quad Inferno)"
-	variant 1
-		"Korath Ravager (Grab-Strike Digger)"
-	variant 1
-		"Korath Ravager (Eight Diggers)"
-	variant 1
-		"Korath Ravager (Dual Inferno)"
-	variant 1
+	variant 8
 		"Korath Ravager (Firestorm Heaver)"
-	variant 1
-		"Korath Ravager (Turbo Firestorm)"
-	variant 1
-		"Korath Ravager (Dual Heaver)"
-	variant 1
-		"Korath Ravager (Grab-Strike Banisher)"
-	variant 1
-		"Korath Ravager (Grab-Strike Inferno)"
+	variant 8
+		"Korath Ravager (Shock-Firestorm)"
 
 fleet "Korath Miners"
 	government "Korath"
@@ -269,11 +256,9 @@ fleet "Korath Home"
 	variant 5
 		"Korath Ravager (Quad Inferno)"
 	variant 5
-		"Korath Ravager (Eight Diggers)"
-	variant 5
 		"Korath Ravager (Grab-Strike Digger)"
 	variant 5
-		"Korath Ravager (Dual Inferno)"
+		"Korath Ravager (Inferno-Shock-Shunt)"
 	variant 5
 		"Korath Ravager (Grab-Strike Banisher)"
 	variant 5
@@ -288,8 +273,12 @@ fleet "Korath Home"
 	variant 7
 		"Korath Dredger"
 		"Korath Chaser" 4
-	variant 15
+	variant 7
 		"Korath Tanker (Jump)"
+	variant 7
+		"Korath Tanker (Jump Inferno-Digger)"
+	variant 7
+		"Korath Tanker (Jump Firestorm)"
 
 fleet "Korath Large Raid"
 	government "Korath"
@@ -298,58 +287,69 @@ fleet "Korath Large Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
+		
 	variant 5
-		"Korath Ravager (Quad Inferno)"
-		"Korath Raider"
-		"Korath Chaser (Digger)" 2
-	variant 5
-		"Korath Ravager (Eight Diggers)"
+		"Korath Ravager (Grab-Strike Inferno)"
 		"Korath Raider"
 		"Korath Chaser" 2
-	variant 5
-		"Korath Ravager (Grab-Strike Digger)"
-		"Korath Raider"
-		"Korath Chaser" 2
-	variant 5
-		"Korath Ravager (Dual Inferno)"
-		"Korath Raider"
-		"Korath Chaser (Digger)" 2
 	variant 5
 		"Korath Ravager (Grab-Strike Banisher)"
 		"Korath Raider"
 		"Korath Chaser (Expeller)" 2
 	variant 5
-		"Korath Ravager (Grab-Strike Inferno)"
+		"Korath Ravager (Grab-Strike Digger)"
+		"Korath Raider"
+		"Korath Chaser (Digger)" 2
+	variant 5
+		"Korath Ravager (Inferno-Shock-Shunt)"
+		"Korath Raider"
+		"Korath Chaser (Shocker)" 2
+	variant 5
+		"Korath Ravager (Quad Inferno)"
+		"Korath Raider"
+		"Korath Chaser (Shocker)" 2
+	variant 5
+		"Korath Ravager (Grab-Shock-Shunt)"
 		"Korath Raider"
 		"Korath Chaser (Digger)" 2
 		
 	variant 5
+		"Korath Raider" 2
+		"Korath Chaser (Shocker)" 4
+	variant 5
+		"Korath Raider" 2
+		"Korath Chaser (Digger)" 2
+		"Korath Chaser" 2
+		
+	variant 5
+		"Korath Dredger"
 		"Korath Raider"
+		"Korath Chaser" 3
+		"Korath Chaser (Digger)" 3
+	variant 5
+		"Korath Dredger (Shunt-Shock)"
+		"Korath Raider"
+		"Korath Chaser (Shocker)" 6
+	variant 5
+		"Korath Dredger (Grab-Shunt)"
+		"Korath Raider"
+		"Korath Chaser (Digger)" 3
+		"Korath Chaser" 3
+	variant 5
 		"Korath Dredger (Fast Inferno)"
-		"Korath Chaser" 3
-		"Korath Chaser (Digger)" 3
-	variant 5
 		"Korath Raider"
-		"Korath Dredger"
-		"Korath Chaser" 3
-		"Korath Chaser (Digger)" 3
-	variant 5
-		"Korath Ravager (Dual Heaver)"
-		"Korath Dredger"
-		"Korath Chaser (Expeller)" 4
-	variant 5
-		"Korath Tanker (Jump)"
+		"Korath Chaser" 6
+		
+	variant 8
+		"Korath Tanker"
 		"Korath Raider"
-		"Korath Chaser (Expeller)"
-	variant 5
-		"Korath Tanker (Jump)"
-		"Korath Raider"
-		"Korath Chaser (Digger)"
-		"Korath Chaser"
-	variant 5
-		"Korath Tanker (Jump)"
-		"Korath Dredger"
-		"Korath Chaser" 4
+		"Korath Chaser (Expeller)" 2
+	variant 8
+		"Korath Tanker (Jump Inferno-Digger)"
+
+	variant 8
+		"Korath Tanker (Jump Firestorm)"
+		"Korath Ravager (Firestorm-Heaver)"
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
@@ -367,6 +367,9 @@ fleet "Korath Ember Waste Raid"
 	variant 12
 		"Korath Raider (Ember)"
 		"Korath Chaser (Digger)" 2
+	variant 12
+		"Korath Raider (Ember)"
+		"Korath Chaser (Shocker)" 2
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
