@@ -389,7 +389,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you are willing to [provide, gift] help. Is this correct?"`
+			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you can [provide, gift] help. Is this correct?"`
 			choice
 				`	"Yes, I can. What do you need?"`
 					goto proposal
