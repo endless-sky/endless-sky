@@ -389,13 +389,13 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you perform [charitable, heroic] acts. Is this correct?"`
+			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you are willing to [provide, gift] help. Is this correct?"`
 			choice
-				`	"Yes it is. What do you need?"`
+				`	"Yes, I can. What do you need?"`
 					goto proposal
 				`	"Depends on how much you are willing to pay."`
 					goto jerk
-				`	"Where did you hear that from?"`
+				`	"What do you mean?"`
 			branch hai
 				"reputation: Hai" > 100
 			branch war
