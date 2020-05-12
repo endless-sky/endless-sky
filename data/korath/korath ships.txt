@@ -415,6 +415,7 @@ ship "Kar Ik Vot 349"
 		"engine capacity" 173
 		"self destruct" .8
 		"ramscoop" 3
+		"maintenance costs" 1000
 		weapon
 			"blast radius" 450
 			"shield damage" 6400
@@ -572,6 +573,7 @@ ship "Tek Far 71 - Lek"
 		"engine capacity" 102
 		"self destruct" .7
 		"ramscoop" 3
+		"maintenance costs" 600
 		weapon
 			"blast radius" 320
 			"shield damage" 4000
@@ -665,6 +667,7 @@ ship "Tek Far 78 - Osk"
 		"engine capacity" 117
 		"self destruct" .7
 		"ramscoop" 3
+		"maintenance costs" 600
 		weapon
 			"blast radius" 340
 			"shield damage" 4400
@@ -757,6 +760,7 @@ ship "Tek Far 109"
 		"engine capacity" 98
 		"self destruct" .7
 		"ramscoop" 3
+		"maintenance costs" 600
 		weapon
 			"blast radius" 280
 			"shield damage" 3200
@@ -828,6 +832,7 @@ ship "Met Par Tek 53"
 		"engine capacity" 110
 		"self destruct" .65
 		"ramscoop" 3
+		"maintenance costs" 250
 		weapon
 			"blast radius" 250
 			"shield damage" 3200
@@ -914,6 +919,7 @@ ship "Far Lek 14"
 		"weapon capacity" 11
 		"engine capacity" 24
 		"self destruct" .6
+		"maintenance costs" 25
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -952,6 +958,7 @@ ship "Far Osk 27"
 		"weapon capacity" 22
 		"engine capacity" 24
 		"self destruct" .6
+		"maintenance costs" 25
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -995,6 +1002,7 @@ ship "Model 8"
 		"engine capacity" 60
 		"self destruct" .60
 		"ramscoop" 3
+		"maintenance costs" 50
 		weapon
 			"blast radius" 100
 			"shield damage" 1200
@@ -1041,6 +1049,7 @@ ship "Model 16"
 		"engine capacity" 107
 		"self destruct" .65
 		"ramscoop" 3
+		"maintenance costs" 250
 		weapon
 			"blast radius" 200
 			"shield damage" 2200
@@ -1094,6 +1103,7 @@ ship "Model 32"
 		"engine capacity" 110
 		"self destruct" .70
 		"ramscoop" 3
+		"maintenance costs" 250
 		weapon
 			"blast radius" 240
 			"shield damage" 3200
@@ -1148,6 +1158,7 @@ ship "Model 64"
 		"engine capacity" 114
 		"self destruct" .74
 		"ramscoop" 3
+		"maintenance costs" 600
 		weapon
 			"blast radius" 280
 			"shield damage" 4000
@@ -1204,6 +1215,7 @@ ship "Model 128"
 		"engine capacity" 132
 		"self destruct" .77
 		"ramscoop" 3
+		"maintenance costs" 600
 		weapon
 			"blast radius" 320
 			"shield damage" 4600
@@ -1261,6 +1273,7 @@ ship "Model 256"
 		"engine capacity" 145
 		"self destruct" .79
 		"ramscoop" 3
+		"maintenance costs" 1000
 		weapon
 			"blast radius" 340
 			"shield damage" 5200
@@ -1320,6 +1333,7 @@ ship "Model 512"
 		"engine capacity" 161
 		"self destruct" .80
 		"ramscoop" 3
+		"maintenance costs" 1000
 		weapon
 			"blast radius" 380
 			"shield damage" 5600
