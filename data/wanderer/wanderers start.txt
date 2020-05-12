@@ -391,7 +391,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 		conversation
 			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you are capable of [providing, gifting] help. Is this correct?"`
 			choice
-				`	"Yes, I can. What do you need?"`
+				`	"Yes it is. What do you need?"`
 					goto proposal
 				`	"Depends on how much you are willing to pay."`
 					goto jerk
