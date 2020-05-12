@@ -349,7 +349,7 @@ fleet "Korath Large Raid"
 
 	variant 8
 		"Korath Tanker (Jump Firestorm)"
-		"Korath Ravager (Firestorm-Heaver)"
+		"Korath Ravager (Firestorm Heaver)"
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
