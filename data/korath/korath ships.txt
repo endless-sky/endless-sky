@@ -919,7 +919,6 @@ ship "Far Lek 14"
 		"weapon capacity" 11
 		"engine capacity" 24
 		"self destruct" .6
-		"maintenance costs" 25
 		weapon
 			"blast radius" 5
 			"shield damage" 50
