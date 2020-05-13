@@ -1168,6 +1168,15 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 		
+		// If at some point during the jump process the ship is disabled, abort
+		// the jump sequence.
+		if(isDisabled)
+		{
+			hyperspaceSystem = nullptr;
+			hyperspaceCount = 0;
+			return;
+		}
+
 		// Enter hyperspace.
 		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
@@ -1181,15 +1190,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// or more particles per ship per turn at the peak of the jump.
 		if(isUsingJumpDrive && !forget)
 			CreateSparks(visuals, "jump drive", hyperspaceCount * Width() * Height() * .000006);
-
-		// If at some point during the jump process the ship is disabled, abort
-		// the jump sequence.
-		if (isDisabled)
-		{
-			hyperspaceSystem = nullptr;
-			hyperspaceCount = 0;
-			return;
-		}
 		
 		if(hyperspaceCount == HYPER_C)
 		{
