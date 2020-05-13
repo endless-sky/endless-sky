@@ -1165,9 +1165,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
-		// Don't apply external acceleration while jumping.
-		acceleration = Point();
-		
 		// If at some point during the jump process the ship is disabled, abort
 		// the jump sequence.
 		if(isDisabled)
@@ -1176,6 +1173,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			hyperspaceCount = 0;
 			return;
 		}
+
+		// Don't apply external acceleration while jumping.
+		acceleration = Point();
 
 		// Enter hyperspace.
 		int direction = hyperspaceSystem ? 1 : -1;
