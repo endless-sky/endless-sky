@@ -73,7 +73,7 @@ outfit "Korath Shunt-Strike"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/shunt-strike"
 		"hardpoint offset" 7.
-		sound "grab-strike"
+		sound "shunt-strike"
 		"inaccuracy" 1
 		"turret turn" 2.1
 		"velocity" 9
@@ -107,7 +107,7 @@ effect "shunt-strike hit"
 effect "shunt-strike sparkles"
 	sprite "effect/shunt-strike-sparkles"
 		"frame rate" 15
-	"lifetime" 60
+	"lifetime" 90
 	"velocity scale" 0.05
 	"random angle" 10
 
@@ -693,7 +693,7 @@ outfit "Firestorm Torpedo"
 	thumbnail "outfit/firestorm torpedo"
 	"mass" 0.7
 	"firestorm torpedo capacity" -1
-	description `Ammo for the Firestorm Turret`
+	description `Ammo for the Firestorm Turret.`
 
 outfit "Firestorm Torpedo Rack"
 	plural "Firestorm Torpedo Racks"
@@ -751,6 +751,7 @@ outfit "Firestorm Turret"
 		"hit force" 4000
 		"missile strength" 105
 	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity and imparts a large hit force."
+	description `	Though the warhead is a simple Korath design, the torpedo casing and launcher are distinctly not Korath in style. This may be a device they discovered and learned to reproduce.`
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
@@ -942,10 +943,10 @@ outfit "Korath Shocker"
 	weapon
 		sprite "projectile/shock"
 			"frame rate" 20
-		#sound "korath digger"
+		sound "korath shocker"
 		"inaccuracy" 0.4
 		"velocity" 12
-		"lifetime" 86
+		"lifetime" 90
 		"reload" 60
 		"acceleration" 1
 		"drag" .1
@@ -957,7 +958,7 @@ outfit "Korath Shocker"
 		"shield damage" 140
 		"hull damage" 45
 		"ion damage" 3
-	description `This outfit is a placeholder.`
+	description `The Korath Shocker is designed to incapacitate small vessels long enough for a Korath mothership to disable and pillage them.`
 
 outfit "Korath Shock Turret"
 	category "Turrets"
@@ -973,11 +974,11 @@ outfit "Korath Shock Turret"
 		sprite "projectile/shock"
 			"frame rate" 20
 		"hardpoint sprite" "hardpoint/korath shock turret"
-		#sound "korath digger"
+		sound "korath shocker"
 		"turret turn" 3.6
 		"inaccuracy" 0.2
 		"velocity" 12
-		"lifetime" 86
+		"lifetime" 90
 		"reload" 60
 		"acceleration" 1
 		"drag" .1
@@ -989,7 +990,7 @@ outfit "Korath Shock Turret"
 		"shield damage" 140
 		"hull damage" 45
 		"ion damage" 3
-	description `This description is a placeholder.`
+	description `This weaker version of the Heavy Shock Turret will slowly drain power from its target's energy reserves. Several of these firing at once can be quite deadly.`
 
 outfit "Korath Heavy Shock Turret"
 	category "Turrets"
@@ -1005,11 +1006,11 @@ outfit "Korath Heavy Shock Turret"
 		sprite "projectile/shock"
 			"frame rate" 20
 		"hardpoint sprite" "hardpoint/korath heavy shock turret"
-		#sound "korath digger"
+		sound "korath shocker"
 		"turret turn" 2.4
 		"inaccuracy" 0.2
 		"velocity" 13
-		"lifetime" 86
+		"lifetime" 100
 		"reload" 20
 		"acceleration" 1
 		"drag" .1
@@ -1021,4 +1022,47 @@ outfit "Korath Heavy Shock Turret"
 		"shield damage" 140
 		"hull damage" 45
 		"ion damage" 3
-	description `This description is a placeholder.`
+	description `This turret rapidly drains its target's energy reserves. If they haven't generator capacity to spare, the unfortunate targets may soon be stripped bare by a Korath raiding party.`
+
+
+outfit "Korath Nutrigel"
+	category "Ammunition"
+	cost 200
+	thumbnail "outfit/korath nutrigel"
+	"mass" .0625
+	"nutrigel capacity" -1
+	description "This glowing red gel makes up the bulk of the diet of the Korath. It was only by accident that they discovered it explodes when super-heated and thrown at a shield."
+
+outfit "Korath Gel Gun"
+	category "Secondary Weapons"
+	cost 393000
+	thumbnail "outfit/korath gel gun"
+	"mass" 11
+	"outfit space" -17
+	"weapon capacity" -17
+	"energy capacity" 50
+	"gun ports" -1
+	"nutrigel capacity" 96
+	weapon
+		sprite "projectile/nutrigel"
+			"frame rate" 20
+		sound "nutrigel"
+		ammo "Korath Nutrigel"
+		icon "icon/nutrigel"
+		"hit effect" "nutrigel impact"
+		"inaccuracy" 1
+		"velocity" 19
+		"lifetime" 10
+		"reload" 90
+		"firing energy" 36
+		"firing heat" 107
+		"shield damage" 450
+		"hull damage" 150
+	description "This weapon is highly effective against shields, but it has such a short range that the ship itself must act as a projectile. It is typically used in afterburner-equipped Korath Chasers, who can dive-bomb their targets."
+
+effect "nutrigel impact"
+	sprite "effect/nutrigel"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 30
+	"velocity scale" .02

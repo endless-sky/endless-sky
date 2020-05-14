@@ -209,18 +209,21 @@ fleet "Korath Small Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant 21
+	variant 17
 		"Korath Raider"
 		"Korath Chaser" 2
-	variant 21
+	variant 17
 		"Korath Raider"
 		"Korath Chaser (Expeller)" 2
-	variant 21
+	variant 17
 		"Korath Raider"
 		"Korath Chaser (Shocker)" 2
-	variant 21
+	variant 17
 		"Korath Raider"
 		"Korath Chaser (Digger)" 2
+	variant 16
+		"Korath Raider"
+		"Korath Chaser (Gel)" 2
 	variant 8
 		"Korath Ravager (Firestorm Heaver)"
 	variant 8
@@ -272,7 +275,8 @@ fleet "Korath Home"
 		"Korath Chaser (Expeller)" 4
 	variant 7
 		"Korath Dredger"
-		"Korath Chaser" 4
+		"Korath Chaser (Gel)" 2
+		"Korath Chaser (Shocker)" 2
 	variant 7
 		"Korath Tanker (Jump)"
 	variant 7
@@ -291,7 +295,7 @@ fleet "Korath Large Raid"
 	variant 5
 		"Korath Ravager (Grab-Strike Inferno)"
 		"Korath Raider"
-		"Korath Chaser" 2
+		"Korath Chaser (Shocker)" 2
 	variant 5
 		"Korath Ravager (Grab-Strike Banisher)"
 		"Korath Raider"
@@ -303,19 +307,22 @@ fleet "Korath Large Raid"
 	variant 5
 		"Korath Ravager (Inferno-Shock-Shunt)"
 		"Korath Raider"
-		"Korath Chaser (Shocker)" 2
+		"Korath Chaser (Gel)" 2
 	variant 5
 		"Korath Ravager (Quad Inferno)"
 		"Korath Raider"
-		"Korath Chaser (Shocker)" 2
+		"Korath Chaser (Digger)"
+		"Korath Chaser (Gel)"
 	variant 5
 		"Korath Ravager (Grab-Shock-Shunt)"
 		"Korath Raider"
-		"Korath Chaser (Digger)" 2
+		"Korath Chaser (Digger)"
+		"Korath Chaser (Shocker)"
 		
 	variant 5
 		"Korath Raider" 2
-		"Korath Chaser (Shocker)" 4
+		"Korath Chaser (Shocker)" 2
+		"Korath Chaser (Gel)" 2
 	variant 5
 		"Korath Raider" 2
 		"Korath Chaser (Digger)" 2
@@ -338,7 +345,8 @@ fleet "Korath Large Raid"
 	variant 5
 		"Korath Dredger (Fast Inferno)"
 		"Korath Raider"
-		"Korath Chaser" 6
+		"Korath Chaser" 3
+		"Korath Chaser (Gel)" 3
 		
 	variant 8
 		"Korath Tanker"
@@ -346,7 +354,8 @@ fleet "Korath Large Raid"
 		"Korath Chaser (Expeller)" 2
 	variant 8
 		"Korath Tanker (Jump Inferno-Digger)"
-
+		"Korath Raider"
+		"Korath Chaser (Gel)" 2
 	variant 8
 		"Korath Tanker (Jump Firestorm)"
 		"Korath Ravager (Firestorm Heaver)"
@@ -370,6 +379,9 @@ fleet "Korath Ember Waste Raid"
 	variant 12
 		"Korath Raider (Ember)"
 		"Korath Chaser (Shocker)" 2
+	variant 12
+		"Korath Raider (Ember)"
+		"Korath Chaser (Gel)" 2
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
@@ -401,9 +413,10 @@ fleet "Korath Civilian World"
 		frugal opportunistic disables
 	variant 2
 		"Korath Haven"
-		"Korath Chaser" 4
-		"Korath Chaser (Expeller)" 4
-		"Korath Chaser (Digger)" 4
+		"Korath Chaser (Gel)" 3
+		"Korath Chaser (Shocker)" 3
+		"Korath Chaser" 3
+		"Korath Chaser (Digger)" 3
 	variant 2
 		"Korath Haven (Kingslayer)"
 		"Korath Chaser" 6
@@ -414,23 +427,20 @@ fleet "Korath Civilian World"
 	variant 2
 		"Korath Haven (Sciuridaeavore)"
 		"Korath Chaser (Digger)" 6
-		"Korath Chaser" 6
+		"Korath Chaser (Gel)" 6
 	variant 3
 		"Korath Refabricator (Grab-Strike)"
-		"Korath Chaser" 2
-		"Korath Chaser (Expeller)" 2
-		"Korath Chaser (Digger)" 2
+		"Korath Chaser (Shocker)" 3
+		"Korath Chaser (Expeller)" 3
 	variant 3
 		"Korath Refabricator (Six Infernos)"
-		"Korath Chaser" 2
-		"Korath Chaser (Expeller)" 2
-		"Korath Chaser (Digger)" 2
+		"Korath Chaser (Digger)" 6
 	variant 3
 		"Korath Refabricator"
 		"Korath Chaser" 2
 		"Korath Chaser (Expeller)" 2
 		"Korath Chaser (Digger)" 2
-	variant 12
+	variant 9
 		"Korath Refuge"
 
 fleet "Kor Efret Home"

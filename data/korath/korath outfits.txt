@@ -223,10 +223,10 @@ outfit "Afterburner (Asteroid Class)"
 	# are tweaked a bit to make space.
 	"fuel capacity" 100
 	"ramscoop" 0.5
-	"afterburner thrust" 7.4
-	"afterburner energy" 0.9
-	"afterburner heat" 5.7
-	"afterburner fuel" 0.049
+	"afterburner thrust" 8.175
+	"afterburner energy" 0.77
+	"afterburner heat" 6.26
+	"afterburner fuel" 0.0408
 	"afterburner effect" "afterburner"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
 	description "Because this outfit is intended for unfueled fighters, it includes a sizable amount of fuel and a ramscoop to supply the afterburner."

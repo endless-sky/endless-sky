@@ -74,6 +74,19 @@ ship "Korath Chaser" "Korath Chaser (Expeller)"
 		
 		"Engine (Meteor Class)"
 
+ship "Korath Chaser" "Korath Chaser (Gel)"
+	outfits
+		"Korath Gel Gun"
+		"Korath Nutrigel" 96
+		
+		"Generator (Candle Class)"
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 
+		
+		"Engine (Meteor Class)"
+		"Afterburner (Asteroid Class)"
+
 ship "Korath Chaser" "Korath Chaser (Shocker)"
 	outfits
 		"Korath Shocker"
