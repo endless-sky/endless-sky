@@ -1623,7 +1623,7 @@ mission "Nanachi 3"
 					goto end
 			label end
 			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
-			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species chould be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
+			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
 					goto board
 			label board
 			`	You two reach the job board and decide to start looking for jobs suited for Nanachi's ship.`
