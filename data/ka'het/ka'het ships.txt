@@ -223,7 +223,8 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
 		"Ka'het MHD Generator" 2
-		"Ka'het Reserve Accumulator" 4
+		"Ka'het Reserve Accumulator" 3
+		"Outfits Expansion"
 
 		Hyperdrive
 
