@@ -292,6 +292,47 @@ effect "emp spark"
 	"velocity scale" 0.1
 
 
+outfit "Quantum Tear"
+	category "Secondary Weapons"
+	cost 150000000
+	thumbnail "outfit/superweapon outfit image"
+	"mass" 100
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	unplunderable 1
+	weapon
+		sprite "projectile/superweapon"
+		icon "icon/flamethrower"
+		sound "final explosion small"
+		"die effect" "superweapon fadeout"
+		# "hit effect" "superweapon residue" 7
+		"hit effect" "superweapon residue blue" 10
+		"fire effect" "blue sparks" 2
+		"hit effect" "superweapon hit"
+		"hit effect" "large impact glow"
+		"fire effect" "large glow"
+		"burst count" 60
+		"burst reload" 1
+		"velocity" 125
+		"inaccuracy" 0
+		"safe"
+		"lifetime" 25
+		"reload" 2
+		"firing force" 50
+		"trigger radius" 150
+		"blast radius" 400
+		"firing energy" 500
+		"firing heat" 450
+		"firing fuel" 25
+		"shield damage" 5000
+		"hull damage" 5000
+		"slowing damage" 10
+		"hit force" 500
+	description "While their pursuit of the secrets of Jump Drives has yet to result in the successful manufacture of such a drive, it has led to many other advances. One such is the Quantum Tear. The Remnant look at you dubiously when you ask for an explanation as to how these work. When your eyes glaze over after the first sentence, they abbreviate the explantion to 'These weapons utilize a variant hyperspace manifold to create microtears in target particles causing the rupture of their quantum state, resulting in the disruption of both internal and applied forces.'"
+	description "	These massive weapons require special hardpoints, and are built in such few number that the Remnant distribute them directly to the captains they trust with them. Due to the prodigious energy and fuel requirements, only the most massive of Remnant ships can support regular use of these weapons."
+
+
 
 # Systems:
 
@@ -571,3 +612,562 @@ outfit "Remnant Capital License"
 	category "Special"
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
+
+
+
+outfit "Nullifier Missile"
+	plural "Nullifier Missiles"
+	category "Ammunition"
+	cost 3500
+	thumbnail "outfit/nullifier"
+	"mass" 1
+	"nullifier missile capacity" -1
+	description "This is ammunition for the Nullifier Missile Pod, a weapon that is manufactured by the Remnant."
+
+outfit "Nullifier Missile Pod"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 475000
+	thumbnail "outfit/nullifier missile pod"
+	"mass" 9
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	"nullifier missile capacity" 11
+	weapon
+		sprite "projectile/nullifier"
+			"frame rate" 2
+			"rewind"
+			"random start frame"
+		sound "rocket"
+		ammo "Nullifier Missile"
+		icon "icon/nullifier"
+		"fire effect" "nullifier fire" 5
+		"hit effect" "nullifier spark" 5
+		"hit effect" "nullifier hit" 2
+		"die effect" "tiny explosion"
+		"die effect" "nullifier die" 5
+		cluster
+		safe
+		phasing
+		"reload" 200
+		"firing energy" 10
+		"firing heat" 25
+		"inaccuracy" 4
+		"lifetime" 250
+		"velocity" 9
+		"acceleration" .9
+		"drag" .1
+		"turn" 1
+		"homing" 4
+		"infrared tracking" .9
+		"optical tracking" .7
+		"trigger radius" 20
+		"blast radius" 100
+		"shield damage" 950
+		"hull damage" 150
+		"fuel damage" 100
+		"ion damage" 5
+		"slowing damage" 5
+		"hit force" 700
+		"missile strength" 140
+	description "With the rest of the galaxy starting to intrude on the Ember Waste, the Remnant designers created a weapon to ensure that no enemy ship manages to escape their space."
+	description "The Nullifier missile makes use of the Remnant's experience in containing and degrading nuclear reactions to forcefully stabilize the fuel of enemy starships. While it is easy enough for affected ships to purge their tanks of the useless material, it will make substantial dents in their fuel reserves."
+
+effect "nullifier fire"
+	sprite "effect/nullifier fire/nullifier fire"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random angle" 10
+	"random frame rate" 10
+	"random spin" 2
+	"random velocity" 7
+
+effect "nullifier spark"
+	sprite "effect/nullifier spark/nullifier spark"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 22
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 4
+	"velocity scale" 0.1
+
+effect "nullifier die"
+	sprite "effect/nullifier die/nullifier die"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 45
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 5
+	"velocity scale" 0.1
+
+effect "nullifier hit"
+	sprite "effect/nullifier hit/nullifier hit"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 22
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 2
+	"velocity scale" 0.1
+
+
+outfit "Remnant Ramscoop"
+	category "Systems"
+	licenses
+		Remnant
+	cost 450000
+	thumbnail "outfit/remnant ramscoop"
+	"mass" 3
+	"outfit space" -3
+	"ramscoop" 1.2
+	description "In contrast to most of the galaxy, the Ember Waste is comparatively dense with the raw elements necessary for the production of fuel. Driven by the ever present fear that war is about to return to their desolate corner, the Remnant combined reverse engineered Deep technology with alien technology to provide improved sources of fuel to power their systems. The resulting system isn't quite as efficient as the Deep's design, but its compact size makes it much easier to fit onto almost any ship."
+
+
+outfit "Ember Waste Ramscoop"
+	category "Systems"
+	licenses
+		Remnant
+	cost 625000
+	thumbnail "outfit/ember waste ramscoop"
+	"mass" 11
+	"outfit space" -11
+	"ramscoop" 7
+	description "Driven by fear that their corner of the galaxy is becoming less and less secretive, the Remnant are leaping upon every opportunity to innovate, steal, or cobble together fuel systems of ever increasing capacity. Their latest creation builds upon what they learned from the catalytic ramscoops with new techniques learned from the Wanderer ramscoops. While the Wanderer ramscoop creates a big field to pull in available matter, the Remnant use a set of nine small ramscoops spread out over the periphery of the ship to effectively generate a larger mesh to catch material, which is then rerouted back to a central processing unit. Some Remnant engineers consider this system effectively a way to let their ships breath in space."
+
+
+
+outfit "Remnant Plasma Torch Cannon"
+	category "Guns"
+	licenses
+		"Remnant Capital"
+	cost 1003000
+	thumbnail "outfit/remnant plasma torch cannon"
+	"mass" 15
+	"outfit space" -14
+	"weapon capacity" -14
+	"gun ports" -1
+	"cooling" 5
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .2
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.8
+		"firing heat" 5.2
+		"shield damage" 6.0
+		"hull damage" 10.0
+		"heat damage" 10
+	description "Inspired by the human plasma cannon and flamethrower, the Remnant combined the two together into a lethal stream of plasma that wreaks havoc on ship systems."
+
+
+
+outfit "Remnant Plasma Torch Turret"
+	category "Turrets"
+	licenses
+		"Remnant Capital"
+	cost 1003000
+	thumbnail "outfit/remnant plasma torch turret"
+	"mass" 15
+	"outfit space" -15
+	"weapon capacity" -15
+	"turret mounts" -1
+	"cooling" 5
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .2
+		"turret turn" 2.5
+		"velocity" 550
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 5
+		"firing heat" 10.2
+		"shield damage" 12.0
+		"hull damage" 20.0
+		"heat damage" 20
+	description "This turret mounts a pair of plasma torches on a newly designed platform. "
+
+
+outfit "Flak Turret"
+	category "Turrets"
+	licenses
+		Remnant
+	cost 350000
+	thumbnail "outfit/flak cannon"
+	"mass" 10
+	"outfit space" 10
+	"weapon capacity" -10
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/flak cannon"
+		"hardpoint offset" 10
+		sprite "projectile/rail slug"
+			"frame rate" 3
+				"hardpoint offset" 15.
+		sound "explosion small"
+		"hit effect" "flak explosion"
+		"hit effect" "flak smoke slow" 10
+		"hit effect" "flak smoke fast" 5
+		"fire effect" "flak muzzle flash"
+		"fire effect" "flak muzzle smoke" 2
+		"die effect" "flak die"
+		"safe"
+		"inaccuracy" 25
+		"turret turn" 4
+		"burst count" 10
+		"burst reload" 5
+		"velocity" 15
+		"lifetime" 35
+		"reload" 25
+		"blast radius" 150
+		"firing energy" 1
+		"firing heat" 10
+		"hit force" 100
+		"shield damage" 40
+		"hull damage" 20
+	description `These flak turrets date back to the era when the most serious thing planets needed to protect against was the ocassional pirate raid. Desperate for weaponry to fend of the Alphas, the Remnants salvaged many of these for their ships.`
+	description `	While these weapons are poor in terms of their direct damage potential, the Remnant keep them in service because of their utility at disrupting incoming fighter formations.`
+
+
+
+outfit "Remnant Flak Turret"
+	category "Turrets"
+	cost 450000
+	thumbnail "outfit/remnant flak turret"
+	"mass" 26
+	"outfit space" -26
+	"weapon capacity" -26
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/remnant flak turret"
+		"hardpoint offset" 10
+		sprite "projectile/rail slug"
+			"frame rate" 3
+				"hardpoint offset" 15.
+		sound "explosion small"
+		"hit effect" "flak explosion"
+		"hit effect" "flak smoke slow" 10
+		"hit effect" "flak smoke fast" 5
+		"fire effect" "flak muzzle flash"
+		"fire effect" "flak muzzle smoke" 2
+		"die effect" "flak die"
+		"safe"
+		"inaccuracy" 20
+		"turret turn" 5
+		"burst count" 11
+		"burst reload" 4
+		"velocity" 20
+		"lifetime" 55
+		"reload" 20
+		"blast radius" 150
+		"firing energy" 5
+		"firing heat" 10
+		"hit force" 200
+		"shield damage" 224
+		"hull damage" 296
+	description `This turret was designed and manufactured by a group of Remnant engineers who firmly believe the old motto "by many small things great things can accomplish things." In response to the automaton threat, they believe that taking a page from the Korath tactics by filling the skies with lethal pieces of metal is one of the best ways to eliminate that threat.`
+
+effect "flak explosion"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 20
+	sound "explosion medium"
+	"lifetime" 120
+	"random angle" 360
+	"random velocity" .5
+	"random spin" 1
+	"random frame rate" 5
+	"velocity scale" .01
+	
+	
+effect "flak smoke slow"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 50
+	"random angle" 360
+	"random spin" 5
+	"velocity scale" .01
+	"random velocity" 1
+	
+effect "flak smoke fast"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 5
+	"velocity scale" .01
+	"random velocity" 2
+	
+effect "flak muzzle flash"
+	sprite "effect/explosion/tiny"
+		"no repeat"
+		"frame rate" 25
+	sound "explosion tiny"
+	"lifetime" 15
+	"random angle" 360
+	"random velocity" 0
+	"random spin" 1
+	"random frame rate" 5
+	"velocity scale" 1
+	
+effect "flak muzzle smoke"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 5
+	"random spin" 5
+	"random velocity" 13
+	"velocity scale" 1
+	"random velocity" 1
+	
+effect "flak die"
+	sprite "effect/sidewinder fire"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"velocity scale" .75
+	"random velocity" .25
+
+
+
+outfit "Remnant Artillery"
+	category "Guns"
+	licenses
+		"Remnant Capital"
+	cost 871000
+	thumbnail "outfit/remnant artillery"
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
+	"gun ports" -1
+	weapon
+		sprite "projectile/inhibitor"
+			"frame rate" 10
+			"no repeat"
+		sound "inhibitor"
+		"hit effect" "inhibitor impact" 3
+		"inaccuracy" .1
+		"velocity" 47
+		"random velocity" .5
+		"lifetime" 35
+		"reload" 25
+		"firing energy" 26
+		"firing fuel" 5
+		"firing force" 13
+		"shield damage" 52
+		"hull damage" 38
+		"hit force" 78
+		"slowing damage" .5
+	description `With the advent of longer ranged weapons on Korath warships, it was determined that some sort of weapon was needed to fulfill the 'sniper' role in the Remnant fleets. The result was the creation of the Remnant Artillery - a cannon that utilizes deuterium fuel solidified into armor piercing shells designed for long range anti-capital ship combat.`
+
+
+
+outfit "Tactical Assault System"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/tactical assault system"
+	"mass" 2
+	"outfit space" -2
+	"capture defense" 4.3
+	"unplunderable" 1
+	description `The Remnant use arrangements of hooks, ropes and pulleys to maneuver on the outside of ships while planet-side. At your suggestion, some of these have been refitted to allow for use inside ships. When defending a ship, you  can suspend your crew from them and allow greater mobility in defense.`
+
+
+
+outfit "Personal Cloak System"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/personal cloak system"
+	"mass" 10
+	"outfit space" -10
+	"cloak suit space" 4
+	"unplunderable" 1
+	description `These systems provide the behind-the-scenes technological wizardry that allows the personal cloaking suits to function. So long as the wearer of one of those suits is onboard a ship with this system installed, they will be able to appear and disappear at will. Unfortunately, the system only has the power to support 4 suits, and cannot project the cloaking field beyond the edge of the ship's shields.`
+
+
+
+outfit "Personal Cloaking Suit"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/personal cloaking suit"
+	"mass" 2
+	"outfit space" 0
+	"capture defense" 8
+	"capture attack" 2
+	"cloak suit space" -1
+	"unplunderable" 1
+	description `The development of personal cloaking fields has the potential to revolutionize ship to ship combat. While the equipment necessary to generate the cloak still can't be miniaturized enough for an individual to wear, these suits contain the beacons and tracking points to allow the main equipment integrated into the ship to project a tight cloaking field specific to its wearer. As a result, these suits can render combat-trained personnel extremely effective on or in very close quarters to their own ship.`
+	description `This suit requires the 'Personal Cloak System' to be installed in order to function.`
+
+
+
+outfit "Boarding Claws"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/remnant boarding claws"
+	"mass" 4
+	"outfit space" -4
+	"capture offense" 8
+	"unplunderable" 1
+	description `With the advent of living ships paralleling their shift to the offense, the Remnant have developed new equipment for boarding enemy ships. These boarding claws ensure that enemy ships cannot escape, while providing specialized tools to forcefully take control of enemy internal systems. It also gives invaders several additional boarding routes aside from the standard gantries. This gives the attacking Remnant a decided advantage in ship to ship combat.`
+
+
+
+outfit "Remnant GASER Cannon"
+	category "Guns"
+	licenses
+		"Remnant"
+	cost 903000
+	thumbnail "outfit/remnant gaser cannon"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"gun ports" -1
+	"cooling" 5
+	weapon
+		sprite "projectile/gaser cannon/gaser cannon"
+			"frame rate" 10
+			rewind
+		sound "electron beam"
+		"hit effect" "gaser hit"
+		"inaccuracy" .2
+		"velocity" 600
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1.4
+		"firing heat" 3.0
+		"shield damage" 4.0
+		"hull damage" 6.0
+		"fuel damage" 3.0
+	description "The GASER is the product of lengthy research into the field of spatially and temporally stabilized gamma rays produced through the use of di-positronium. Spurred by the acquisition of heavy lasers demonstrating new techniques used by the rest of humanity, Remnant researchers were able to significantly improve on these designs to create a highly effective beam weapon."
+	description "While they were not able to eliminate the heat produced by the gaser canon using integrated cooling systems, these cooling systems are integrated so that they can provide continuous cooling to help minimize the thermally-induced downtime between firing."
+
+
+
+effect "gaser hit"
+	sprite "effect/gaser hit/gaser hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"random spin" 1
+	"velocity scale" -.003
+
+
+
+outfit "Remnant GASER Turret"
+	category "Turrets"
+	licenses
+		"Remnant"
+	cost 903000
+	thumbnail "outfit/remnant gaser turret"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"turret mounts" -1
+	"cooling" 10
+	weapon
+		"hardpoint sprite" "hardpoint/remnant gaser turret"
+		"hardpoint offset" 8
+		sprite "projectile/gaser turret/gaser turret"
+			"frame rate" 10
+			rewind
+		sound "electron beam"
+		"hit effect" "gaser turret hit"
+		"inaccuracy" .2
+		"turret turn" 2.4
+		"velocity" 600
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.8
+		"firing heat" 5.2
+		"shield damage" 8.0
+		"hull damage" 12.0
+		"fuel damage" 6.0
+	description "This turret mounts a pair of gaser cannons on a newly designed platform. "
+
+
+
+effect "gaser turret hit"
+	sprite "effect/gaser turret hit/gaser turret hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"random spin" 1
+	"velocity scale" -.003
+
+
+
+outfit "Crystal Grid"
+	category "Power"
+	licenses
+		Remnant
+	cost 253000
+	thumbnail "outfit/crystal grid"
+	"mass" 25
+	"outfit space" -25
+	"energy capacity" 7500
+	"energy consumption" .3
+	"heat generation" .3
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
+	description "	While crystal grids still leak excess energy and heat, these new arrays reduce the leakage considerably."
+
+
+
+outfit "Crystal Cell"
+	category "Power"
+	licenses
+		Remnant
+	cost 5600000
+	thumbnail "outfit/crystal cell"
+	"mass" 110
+	"outfit space" -110
+	"energy generation" 22
+	"heat generation" 27
+	description "Building on new developments, Remnant engineers have developed ways to pull energy out of the fabric of space-time. The resulting generator does not produce much more than the Aeon cell, but it takes up much less space."
+
+
+
+outfit "Plasma Crystal Core"
+	category "Power"
+	licenses
+		Remnant Capital
+	cost 6200000
+	thumbnail "outfit/plasma crystal core"
+	"mass" 49
+	"outfit space" -39
+	"energy generation" 9.5
+	"heat generation" 21.0
+	"energy capacity" 500
+	"ion resistance" 0.05
+	"fuel generation" 0.1
+	description "While the Remnant continue to maintain a strong distrust for atomic power sources, the need for more robust generators has led them to introduce the Crystal Plasma Core. Based on the highly dependable Korath version that the Remnant have been salvaging for centuries and augmented with Remnant innovations, this compact reactor sacrifices a small amount of energy density in exchange for running significantly cooler."
+	description "Perhaps more important for some are the peripheral improvements over standard reactors. The most obvious improvement is that these generators produce stabilized byproducts suitable for use as hyperdrive fuel on a continuous basis. The less obvious feature is that they can nullify some of the ionization that a ship might be exposed to in the Ember Waste."
+
+

@@ -235,7 +235,6 @@ outfit "Uranium"
 	"installable" -1
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
 
-
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 20000
@@ -243,6 +242,97 @@ minable "yottrite"
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
+
+minable "plant"
+	sprite "asteroid/plant/spin"
+	hull 2800
+	payload "Void Orchid" 21
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
+
+minable "plant2"
+	sprite "asteroid/plant2/spin"
+	hull 2600
+	payload "Void Orchid" 20
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
+
+minable "plant cluster"
+	sprite "asteroid/plant cluster/spin"
+	hull 1200
+	payload "Void Orchid" 11
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "large plant"
+	sprite "asteroid/large plant/spin"
+	hull 3800
+	payload "Void Orchid" 41
+	explode "smoke" 30
+	explode "bolide" 40
+	explode "final explosion medium"
+
+minable "large plant2"
+	sprite "asteroid/large plant2/spin"
+	hull 3600
+	payload "Void Orchid" 41
+	explode "smoke" 30
+	explode "bolide" 40
+	explode "final explosion medium"
+
+minable "large plant cluster"
+	sprite "asteroid/large plant cluster/spin"
+	hull 2200
+	payload "Void Orchid" 22
+	explode "smoke" 30
+	explode "bolide" 40
+	explode "final explosion medium"
+
+minable "stealth space flora"
+	sprite "asteroid/stealth space flora/spin"
+	hull 1000
+	payload "Void Orchid" 8
+	explode "smoke" 15
+	explode "bolide" 10
+	explode "final explosion small"
+
+minable "large stealth space flora"
+	sprite "asteroid/large stealth space flora/spin"
+	hull 2000
+	payload "Void Orchid" 16
+	explode "smoke" 25
+	explode "bolide" 20
+	explode "final explosion medium"
+
+minable "space flora"
+	sprite "asteroid/space flora/spin"
+	hull 1000
+	payload "Void Orchid" 8
+	explode "smoke" 15
+	explode "bolide" 10
+	explode "final explosion small"
+
+minable "large space flora"
+	sprite "asteroid/large space flora/spin"
+	hull 2000
+	payload "Void Orchid" 16
+	explode "smoke" 25
+	explode "bolide" 20
+	explode "final explosion medium"
+
+
+outfit "Void Orchid"
+	plural "Void Orchids"
+	category "Special"
+	cost 11000
+	thumbnail "outfit/harvested silicon"
+	"flotsam sprite" "effect/flotsam silicon"
+	"mass" 1
+	"installable" -1
+	description "'Void orchid' is the generic term for a variety of strange plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
 
 outfit "Yottrite"
 	plural "Yottrite"

@@ -308,3 +308,89 @@ effect "pug huge explosion"
 	"random spin" 5
 	"random velocity" 1
 	"velocity scale" .4
+
+effect "superweapon fadeout"
+	sprite "effect/superweapon fadeout"
+		"start frame" 0
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 4
+	"velocity scale" 1
+
+effect "superweapon hit"
+	sprite "effect/superweapon fadeout"
+		"start frame" 1
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 4
+	"velocity scale" .25
+
+effect "blue sparks"
+	sprite "effect/seeker impact blue"
+		"start frame" 0
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 10
+	"velocity scale" 1
+	"random angle" 360
+	"random velocity" 20
+	"random frame rate" 10
+
+effect "nuke residue non-moving blue"
+	sprite "effect/explosion/blue huge"
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 9
+	"random angle" 360
+	"random velocity" 15
+	"random spin" 5
+	"velocity scale" 0.01
+
+effect "nuke residue non-moving"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 30
+	"random angle" 360
+	"random velocity" 15
+	"random spin" 5
+	"velocity scale" 0.04
+
+effect "superweapon residue blue"
+	sprite "effect/explosion/blue huge"
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 9
+	"random angle" 360
+	"random velocity" 20
+	"random spin" 5
+	"velocity scale" .2
+
+effect "superweapon residue"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 30
+	"random angle" 360
+	"random velocity" 15
+	"random spin" 5
+	"velocity scale" 2.5
+
+
+effect "large glow"
+	sprite "effect/superweapon pulse"
+		"start frame" 0
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 3
+	"velocity scale" 1
+	"random angle" 360
+	"random frame rate" 10
+
+effect "large impact glow"
+	sprite "effect/big superweapon impact"
+		"frame rate" 60
+	"random angle" 360
+	"lifetime" 15
+	"velocity scale" .3
+
