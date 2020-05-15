@@ -1171,9 +1171,9 @@ ship "Diomedea"
 
 
 
-ship "Harrier"
-	sprite "ship/harrier"
-	thumbnail "thumbnail/harrier"
+ship "Jaeger"
+	sprite "ship/jaeger"
+	thumbnail "thumbnail/jaeger"
 	attributes
 		category "Interceptor"
 		licenses
@@ -1232,6 +1232,7 @@ ship "Harrier"
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "The Harrier is a short range (for the Remnant) interceptor designed to patrol the upper atmosphere of gas giants and use their decisive speed advantage to conduct hit and run attacks on threats in nearby systems. While technically weaker than the Starlings, but it is a faster and cheaper alternative for providing covering fire in engagements near Remnant systems. Typically, the Remnant use Harriers to ambush Korath ships with a barrage of nullifiers which pins the target ship in-system. They then harass it with their GASER cannons until heavier ships arrive to finish the work."
+	description "	The cloaking technology is built into the Jaeger's hull; it cannot be removed or transferred to another ship."
 
 
 
@@ -1309,38 +1310,43 @@ ship "Phoenix"
 	explode "huge explosion" 30
 	"final explode" "final explosion large" 1
 	description "The Phoenix is a test platform version of the Vulture. It is not a ship meant to be purchased in its current form. It is basically a vulture with an extra several hundreds of tons of outfit and engine space for testing purposes."
+	description "	The cloaking technology is built into the Phoenix's hull; it cannot be removed or transferred to another ship."
 
 
 
-ship "Palpebrata"
-	plural "Palpebratas"
-	sprite "ship/palpebrata"
-	thumbnail "thumbnail/palpebrata"
+ship "Skua"
+	plural "Skuas"
+	sprite "ship/skua"
+	thumbnail "thumbnail/skua"
 	attributes
 		category "Heavy Warship"
 		licenses
 			"Remnant Capital"
 		"cost" 45000000
-		"shields" 45200
-		"hull" 26500
-		"required crew" 51
-		"bunks" 85
-		"cargo space" 134
-		"mass" 680
-		"drag" 7.4
-		"heat dissipation" 0.5
-		"fuel capacity" 600
-		"ramscoop" 2
-		"outfit space" 774
-		"weapon capacity" 260
-		"engine capacity" 150
-		"shield generation" 5.2
-		"shield energy" 4.6
-		"hull repair rate" 1.5
-		"hull energy" 1.2
-		"outfit scan power" 25
-		"outfit scan speed" 2
-		"tactical scan power" 45
+		"shields" 36200
+		"hull" 36600
+		"required crew" 34
+		"bunks" 65
+		"cargo space" 124
+		"mass" 630
+		"drag" 8.6
+		"heat dissipation" 0.7
+		"fuel capacity" 1100
+		"ramscoop" 2.5
+		"outfit space" 688
+		"weapon capacity" 266
+		"engine capacity" 190
+		"shield generation" 6.2
+		"shield energy" 4.0
+		"hull repair rate" 3.5
+		"hull energy" 1.0
+		"gaslining" 1
+		"cloak" .03
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"outfit scan power" 23
+		"outfit scan speed" 1
+		"tactical scan power" 47
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -1383,4 +1389,6 @@ ship "Palpebrata"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
+	description "Upon hearing the news that the Korath Exiles had regained access to automata technology, the Remnant quickly realized that they would need a dedicated anti-swarm ship. Given tha the Albatross was overdue for an update, they decided to do so with an eye to creating an anti-fighter platform suited to close quarters combat."
+	description "Remnant expertise in material sciences definitely shows in the Skua: While the shields are at roughly the same level as the Albatross, the hull is three times more durable. Perhaps more importantly, however, is that it can now cloak. Drawing on preliminary studies of the Void Sprites, the Skua is has been significantly reinforced to allow for greater strengths in terms of both compression and tension. As a result, it can handle a greater variety of internal configurations as well as the pressures generated from submersion deep in gas giants."
+	description "	The cloaking technology is built into the Skua's hull; it cannot be removed or transferred to another ship."
