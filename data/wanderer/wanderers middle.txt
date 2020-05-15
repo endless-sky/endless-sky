@@ -3021,22 +3021,22 @@ mission "Wanderers: Sestor: Exiles 2"
 		government "Korath"
 		system "Kor En'lakfar"
 		personality heroic staying
-		fleet "Korath Raid"
+		fleet "Korath Small Raid"
 	npc save
 		government "Korath"
 		system "Kor Men"
 		personality heroic staying
-		fleet "Korath Raid"
+		fleet "Korath Small Raid"
 	npc save
 		government "Korath"
 		system "Kor Ak'Mari"
 		personality heroic staying
-		fleet "Korath Raid"
+		fleet "Korath Small Raid"
 	npc save
 		government "Korath"
 		system "Kor Zena'i"
 		personality heroic staying
-		fleet "Korath Raid"
+		fleet "Korath Small Raid"
 	npc save
 		government "Korath"
 		system "Kor Tar'bei"
@@ -3047,12 +3047,13 @@ mission "Wanderers: Sestor: Exiles 2"
 		system "Kor Nor'peli"
 		personality heroic staying
 		fleet "Korath Home" 2
-		fleet "Korath Raid"
+		fleet "Korath Small Raid"
 
 
 
 event "wanderers: exiles peaceful"
 	"reputation: Korath" >?= 1
+	"reputation: Korath (Civilian)" >?= 1
 
 mission "Wanderers: Sestor: Exiles 3"
 	landing
@@ -3259,6 +3260,7 @@ mission "Wanderers: Sestor: Factory 3"
 
 event "wanderers: exiles hostile"
 	"reputation: Korath" = -1000
+	# Civilians remain at default value of 1 until player pisses them off again.
 
 event "wanderers: exiles have drones"
 	fleet "Korath Home"
