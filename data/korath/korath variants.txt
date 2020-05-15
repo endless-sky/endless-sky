@@ -958,11 +958,11 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos Jump)"
 # a better chance of capturing it.
 ship "Korath Ravager" "Korath Ravager (Crippled Disarmed)"
 	outfits
-		"Korath Warder" 2
+		"Korath Warder" 3
 		"Korath Banisher" 3
 
 		"Cargo Expansion" 1
-		"Large Heat Shunt" 6
+		"Large Heat Shunt"
 		"Triple Plasma Core"
 		"Outfit Scanner"
 		"Cargo Scanner"
@@ -970,10 +970,11 @@ ship "Korath Ravager" "Korath Ravager (Crippled Disarmed)"
 		
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
+		"Afterburner (Comet Class)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	turret "Korath Banisher"
-	turret
+	turret "Korath Warder"
 	turret
 	turret
 	turret
@@ -1018,74 +1019,75 @@ ship "Korath Ravager" "Korath Ravager (Big Raider)"
 	
 
 # Boss fight: Ravager with no repair nor ramscoop. Unlike the previous
-# solo Ravager boss, this one is fully-armed, albeit with low-tech
-# weapons. Fewer rifles than usual so you have a better chance of
-# capturing it.
-ship "Korath Ravager" "Korath Ravager (Crippled Armed)"
+# solo Ravager boss, this one is fully-armed with an odd assortment
+# of technology that fascinate Remnant scientists.
+ship "Korath Ravager" "Korath Ravager (Crippled Strange)"
 	outfits
-		"Korath Grab-Strike" 4
-		"Korath Warder" 4
-		"Korath Banisher" 2
+		"Korath Heaver" 1
+		"Korath Shock Turret" 2
+		"Korath Warder" 1
+		"Korath Expeller Turret" 6
 
-		"Generator (Furnace Class)" 2
+		"Generator (Furnace Class)"
 		"Triple Plasma Core"
-		"Large Heat Shunt" 3
-		"Korath Repeater Rifle" 137
+		"Large Heat Shunt"
+		"Small Heat Shunt" 2
+		"Cargo Expansion" 4
+		"Outfit Scanner" 6
+		"Cargo Scanner" 2
+		"Korath Repeater Rifle" 219
 		
 		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
+		"Grav-Steering (Nebula Class)"
+		"Reverser (Lunar Class)"
 		"Jump Drive (Broken)"
 		Hyperdrive
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
+	turret "Korath Expeller Turret"
+	turret "Korath Expeller Turret"
+	turret "Korath Shock Turret"
+	turret "Korath Shock Turret"
+	turret "Korath Heaver"
 	turret "Korath Warder"
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Korath Expeller Turret"
+	turret "Korath Expeller Turret"
+	turret "Korath Expeller Turret"
+	turret "Korath Expeller Turret"
 
-# Low-tech Dredger for early boss fight. This is essentially a durable
-# Korath Raider (Crippled). All outfits can be obtained from ships the
-# player has already seen. Extra cooling and power will make ion and
-# heat damage less effective. Fewer rifles than usual so you have a
-# better chance of capturing it (though it isn't an ideal catch due to
-# the missing nanite factory).
+# Strange Dredger for an early boss fight.
 ship "Korath Dredger" "Korath Dredger (Crippled)"
 	add attributes
 		# Remove the built-in nanite factory:
-		"shield generation" -2.5
-		"shield energy" -3.4
-		"hull repair rate" -1.6
-		"hull energy" -1.6
-		"hull heat" -2.1
+		"shield generation" -0.7
+		"shield energy" -0.4
+		"hull repair rate" -1.2
+		"hull energy" -0.9
+		"hull heat" -1.4
 		"energy capacity" -1800
 	outfits
-		"Korath Grab-Strike" 2
-		"Korath Banisher"
+		"Korath Shunt-Strike"
+		"Korath Expeller Turret" 5
 		"Korath Warder"
 		
 		"Triple Plasma Core"
 		"Generator (Furnace Class)"
-		"Small Heat Shunt"
-		"Large Heat Shunt" 3
-		"Korath Repeater Rifle" 71
+		"Small Heat Shunt" 2
+		"Large Heat Shunt" 2
+		"Korath Repeater Rifle" 190
+		"Korath Defense Station" 6
 		
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
-		"Engine (Meteor Class)" 3
+		"Reverser (Lunar Class)"
 		"Jump Drive (Broken)"
 		Hyperdrive
 
-	turret "Korath Grab-Strike"
-	turret
-	turret "Korath Grab-Strike"
+	turret "Korath Expeller Turret"
+	turret "Korath Shunt-Strike"
+	turret "Korath Expeller Turret"
 	turret "Korath Warder"
-	turret
-	turret
-	turret "Korath Banisher"
+	turret "Korath Expeller Turret"
+	turret "Korath Expeller Turret"
+	turret "Korath Expeller Turret"
 
 
 ########################################################################

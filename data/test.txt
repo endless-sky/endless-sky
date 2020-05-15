@@ -168,7 +168,7 @@ shipyard "korath exile variant shipyard"
 	"Korath Refabricator (Six Infernos Jump)"
 	"Korath Ravager (Crippled Disarmed)"
 	"Korath Ravager (Big Raider)"
-	"Korath Ravager (Crippled Armed)"
+	"Korath Ravager (Crippled Strange)"
 	"Korath Dredger (Crippled)"
 
 shipyard "korath exile test shipyard"
