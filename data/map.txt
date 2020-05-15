@@ -5922,7 +5922,6 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
-	fleet "Small Tern" 1500
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
@@ -17107,16 +17106,6 @@ system Nenia
 	minables silicon 27 0.740133
 	minables iron 18 1.55307
 	minables silver 4 1.274
-	minables "plant" 20 0.8
-	minables "plant2" 20 1.01
-	minables "plant cluster" 20 1.4
-	minables "large plant" 20 0.8
-	minables "large plant2" 20 1.01
-	minables "large plant cluster" 20 1.4
-	minables "space flora" 40 1.1
-	minables "large space flora" 20 1.5
-	minables "stealth space flora" 20 0.9
-	minables "large stealth space flora" 20 0.8
 	trade Clothing 310
 	trade Electronics 804
 	trade Equipment 425
