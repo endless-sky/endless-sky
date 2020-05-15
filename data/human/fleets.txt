@@ -2873,3 +2873,158 @@ fleet "Hired Guns"
 		"Bactrian (Hired Gun)"
 		"Dagger" 3
 		"Splinter (Proton)"
+
+fleet "Marauder small defense fleet"
+	government "Marauder that acts like a pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 2
+		"Marauder Firebird"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 1
+		"Marauder Firebird (Engines)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 1
+		"Marauder Firebird (Weapons)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 4
+		"Marauder Manta"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 2
+		"Marauder Manta (Engines)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 2
+		"Marauder Manta (Weapons)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 4
+		"Marauder Splinter"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 2
+		"Marauder Splinter (Engines)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 2
+		"Marauder Splinter (Weapons)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+	variant 3
+		"Marauder Quicksilver"
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder (Engines)"
+	variant 3
+		"Marauder Quicksilver"
+		"Marauder Arrow (Engines)"
+		"Marauder Bounder (Weapons)"
+	variant 1
+		"Marauder Quicksilver (Engines)"
+		"Marauder Arrow" 2
+		"Marauder Bounder" 2
+	variant 1
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Arrow" 2
+		"Marauder Bounder" 2
+	variant 3
+		"Marauder Raven"
+		"Marauder Arrow (Engines)"
+		"Marauder Bounder (Weapons)"
+	variant 3
+		"Marauder Raven"
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder (Engines)"
+	variant 1
+		"Marauder Raven (Engines)"
+		"Marauder Arrow" 2
+		"Marauder Bounder" 2
+	variant 1
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow" 2
+		"Marauder Bounder" 2
+
+fleet "Marauder large defense fleet"
+	government "Marauder that acts like a pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Falcon"
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
+	variant 1
+		"Marauder Falcon (Weapons)"
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
+	variant 1
+		"Marauder Falcon (Engines)"
+		"Osprey"
+		"Osprey (Missile)"
+		"Osprey (Laser)"
+	variant 3
+		"Marauder Leviathan"
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant 1
+		"Marauder Leviathan (Engines)"
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant 1
+		"Marauder Leviathan (Weapons)"
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant 1
+		"Marauder Leviathan (Weapons)"
+		"Firebird (Laser)" 3
+		"Firebird (Missile)"
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Modified Argosy" 2
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Mule (Heavy)"
+		"Dagger" 4
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Corvette"
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Splinter (Laser)"
+	variant 1
+		"Bactrian (Hired Gun)"
+		"Dagger" 3
+		"Splinter (Proton)"
+	variant 1
+		"Vanguard (Particle)"
+		"Modified Argosy" 2
+	variant 1
+		"Vanguard (Missile)"
+		"Headhunter (Strike)" 2
+	variant 1
+		"Vanguard (Particle)"
+		"Mule (Heavy)"
+		"Dagger"
+	variant 1
+		"Vanguard (Particle)"
+		"Corvette"
+	variant 1
+		"Vanguard (Particle)"
+		"Splinter (Laser)"
+	variant 1
+		"Vanguard (Particle)"
+		"Splinter (Proton)"

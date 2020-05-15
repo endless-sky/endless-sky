@@ -320,6 +320,23 @@ government "Marauder"
 	"fine" 0
 	"hostile hail" "hostile pirate"
 
+government "Marauder that acts like a pirate"
+	swizzle 6
+	"display name" "Marauder"
+	
+	"player reputation" -10
+	"attitude toward"
+		"Author" .01
+		"Pirate" 1
+		"Hai" -.01
+		" Hai " -.01
+		"Korath" -.01
+		"Merchant" -.1
+		"Syndicate" -.01
+	"bribe" .1
+	"fine" 0
+	"hostile hail" "hostile pirate"
+
 government "Merchant"
 	swizzle 5
 	
@@ -395,6 +412,7 @@ government "Pirate"
 	"player reputation" -10
 	"attitude toward"
 		"Author" -.01
+		"Pirate" 1
 		"Hai" -.01
 		" Hai " -.01
 		"Korath" -.01

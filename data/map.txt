@@ -16783,10 +16783,12 @@ system Misam
 	trade Medical 688
 	trade Metal 288
 	trade Plastic 368
-	fleet "Small Core Pirates" 600
-	fleet "Large Core Pirates" 800
-	fleet "Marauder fleet IX" 3000
-	fleet "Korath Large Raid" 5000
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 3000
+	fleet "Marauder small defense fleet" 2000
+	fleet "Marauder large defense fleet" 5000
+	fleet "Korath Small Raid" 3000
+	fleet "Korath Large Raid" 6000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
@@ -27397,10 +27399,10 @@ planet "New Tortuga"
 	bribe 0.03
 	security 0
 	"required reputation" -10
-	tribute 2600
+	tribute 6000
 		threshold 5000
-		fleet "Marauder fleet IX" 9
-		fleet "Marauder fleet X" 3
+		fleet "Marauder large defense fleet" 10
+		fleet "Marauder small defense fleet" 15
 
 
 planet "New Tibet"
