@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -357,6 +358,26 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "cargo hold")
+		{
+			for(const DataNode &grand : child)
+			{
+				const string &key = grand.Token(0);
+				if(key == "mission" && grand.Size()>3 && grand.IsNumber(3))
+				{
+					if(grand.Token(2) == "cargo")
+						missionCargoLoaded.emplace(grand.Token(2),int(grand.Value(3)));
+					if(grand.Token(2) == "passengers")
+						missionPassengersLoaded.emplace(grand.Token(2),int(grand.Value(3)));
+				}
+				else if(key == "outfit" && grand.Size()>2 && grand.IsNumber(2))
+					outfitCargoLoaded.emplace(grand.Token(1),int(grand.Value(2)));
+				else if(key == "commodities" && grand.Size()>2 && grand.IsNumber(2))
+					commoditiesLoaded.emplace(grand.Token(1),int(grand.Value(2)));
+				else
+					grand.PrintTrace("Skipping unrecognized cargo hold contents:");
+			}
+		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -598,6 +619,15 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Perform a full IsDisabled calculation.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	if(!missionCargoLoaded.empty() || !missionPassengersLoaded.empty() || !outfitCargoLoaded.empty() || !commoditiesLoaded.empty())
+	{
+		cargo.LoadFrom(missionCargoLoaded,missionPassengersLoaded,outfitCargoLoaded,commoditiesLoaded);
+		missionCargoLoaded.clear();
+		missionPassengersLoaded.clear();
+		outfitCargoLoaded.clear();
+		commoditiesLoaded.clear();
+	}
 }
 
 
@@ -749,6 +779,22 @@ void Ship::Save(DataWriter &out) const
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
 			out.Write("parked");
+		if(!cargo.IsEmpty())
+		{
+			out.Write("cargo hold");
+			out.BeginChild();
+			{
+				for(const auto &it : cargo.MissionCargo())
+					out.Write("mission", it.first->Name(), "cargo", it.second);
+				for(const auto &it : cargo.PassengerList())
+					out.Write("mission", it.first->Name(), "passengers", it.second);
+				for(const auto &it : cargo.Outfits())
+					out.Write("outfit", it.first->Name(), it.second);
+				for(const auto &it : cargo.Commodities())
+					out.Write("commodities", it.first, it.second);
+			}
+			out.EndChild();
+		}
 	}
 	out.EndChild();
 }

@@ -544,6 +544,12 @@ private:
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
+	
+	// Used to load cargo hold
+	std::map<std::string,int> outfitCargoLoaded;
+	std::map<std::string,int> commoditiesLoaded;
+	std::map<std::string,int> missionCargoLoaded;
+	std::map<std::string,int> missionPassengersLoaded;
 };
 
 

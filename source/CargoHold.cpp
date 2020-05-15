@@ -592,3 +592,24 @@ int CargoHold::IllegalCargoFine() const
 	
 	return totalFine;
 }
+
+void CargoHold::LoadFrom(const std::map<std::string,int> &loadMissionCargo,
+	const std::map<std::string,int> &loadPassengers,
+	const std::map<std::string,int> &loadOutfits,
+	const std::map<std::string,int> &loadCommodities)
+{
+	const Set<Mission> &allMissions = GameData::Missions();
+	const Set<Outfit> &allOutfits = GameData::Outfits();
+	
+	for(const auto &it : loadMissionCargo)
+		if(allMissions.Has(it.first))
+			missionCargo[allMissions.Get(it.first)] = it.second;
+	for(const auto &it : loadPassengers)
+		if(allMissions.Has(it.first))
+			passengers[allMissions.Get(it.first)] = it.second;
+	for(const auto &it : loadOutfits)
+		if(allOutfits.Has(it.first))
+			outfits[allOutfits.Get(it.first)] = it.second;
+	for(const auto &it : loadCommodities)
+		commodities[it.first] = it.second;
+}

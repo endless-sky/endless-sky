@@ -104,7 +104,11 @@ public:
 	// bad that it warrants a death sentence.
 	int IllegalCargoFine() const;
 	
-	
+	// Used by Ship.FinishLoading() to fill in all contents from the save file
+	void LoadFrom(const std::map<std::string,int> &loadMissionCargo,
+		const std::map<std::string,int> &loadMissionPassengers,
+		const std::map<std::string,int> &loadOutfits,
+		const std::map<std::string,int> &loadCommodities);
 private:
 	// Use -1 to indicate unlimited capacity.
 	int size = -1;
