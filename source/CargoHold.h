@@ -91,6 +91,9 @@ public:
 	int Remove(const std::string &commodity, int amount = 1);
 	int Remove(const Outfit *outfit, int amount = 1);
 	
+	void Add(const CargoHold &other);
+	void Remove(const CargoHold &other);
+	
 	// Add or remove any cargo or passengers associated with the given mission.
 	void AddMissionCargo(const Mission *mission);
 	void RemoveMissionCargo(const Mission *mission);

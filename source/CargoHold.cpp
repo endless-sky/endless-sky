@@ -613,3 +613,45 @@ void CargoHold::LoadFrom(const std::map<std::string,int> &loadMissionCargo,
 	for(const auto &it : loadCommodities)
 		commodities[it.first] = it.second;
 }
+
+void CargoHold::Add(const CargoHold &other)
+{
+	for(const auto &it : other.missionCargo)
+		missionCargo[it.first] += it.second;
+	for(const auto &it : other.passengers)
+		passengers[it.first] += it.second;
+	for(const auto &it : other.outfits)
+		outfits[it.first] += it.second;
+	for(const auto &it : other.commodities)
+		commodities[it.first] += it.second;
+}
+
+
+void CargoHold::Remove(const CargoHold &other)
+{
+	for(const auto &it : other.missionCargo)
+		if(missionCargo.contains(it.first))
+			missionCargo[it.first] -= it.second;
+	for(const auto &it : other.passengers)
+		if(passengers.contains(it.first))
+			passengers[it.first] += it.second;
+	for(const auto &it : other.outfits)
+		if(outfits.contains(it.first))
+			outfits[it.first] += it.second;
+	for(const auto &it : other.commodities)
+		if(commodities.contains(it.first))
+			commodities[it.first] += it.second;
+
+	for(auto &it : missionCargo)
+		if(it.second<=0)
+			missionCargo.erase(it);
+	for(auto &it : passengers)
+		if(it.second<=0)
+			passengers.erase(it);
+	for(auto &it : outfits)
+		if(it.second<=0)
+			outfits.erase(it);
+	for(auto &it : commodities)
+		if(it.second<=0)
+			commodities.erase(it);
+}
