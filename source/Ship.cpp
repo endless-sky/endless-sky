@@ -1176,7 +1176,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
-
+		
 		// Enter hyperspace.
 		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
