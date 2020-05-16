@@ -116,6 +116,10 @@ void Conversation::Load(const DataNode &node)
 			nodes.emplace_back(true);
 			for(const DataNode &grand : child)
 			{
+				// Check for common errors such as indenting a goto incorrectly:
+				if(grand.Size() > 1)
+					node.PrintTrace("Choice text should be a single string. Only the first string in the line (\""+grand.Token(0)+"\") will be used:");
+				
 				// Store the text of this choice. By default, the choice will
 				// just bring you to the next node in the script.
 				nodes.back().data.emplace_back(grand.Token(0), nodes.size());
