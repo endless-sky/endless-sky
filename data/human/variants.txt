@@ -725,6 +725,31 @@ ship "Cruiser" "Cruiser (Mark II)"
 
 
 
+ship "Defense Drone" "Defense Drone (surveillance)"
+	outfits
+		"LP036a Battery Pack"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"Outfit Scanner"
+		"Cargo Scanner" 2
+		"Tactical Scanner"
+		"KP-6 Photovoltaic Panel"
+ship "Defense Drone" "Defense Drone (Modified)"
+	outfits
+		"LP036a Battery Pack"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"KP-6 Photovoltaic Panel" 2
+		"Modified Blaster"
+ship "Defense Drone" "Defense Drone (Syndicate)"
+	outfits
+		"LP036a Battery Pack"
+		"X1050 Ion Engines"
+		"KP-6 Photovoltaic Panel" 2
+		"Energy Blaster"
+
+
+
 ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Torpedo Launcher" 4
@@ -1616,6 +1641,21 @@ ship "Modified Argosy" "Modified Argosy (Smuggler)"
 		"Scram Drive"
 
 
+ship "Modified Freighter" "Modified Freighter (Fancy)"
+	outfits
+		"Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+	turret "Laser Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Laser Turret"
+
 
 ship "Mule" "Mule (Hai Engines)"
 	outfits
@@ -1690,6 +1730,13 @@ ship "Nest" "Nest (Sidewinder)"
 		"A375 Atomic Steering"
 		Hyperdrive
 
+
+ship "Nock" "Nock (Modified)"
+	outfits
+		"LP036a Battery Pack"
+		"X1050 Ion Engines"
+		"KP-6 Photovoltaic Panel" 5
+		"Modified Blaster"
 
 
 ship "Osprey" "Osprey (Alien Weapons)"

@@ -534,6 +534,7 @@ event "southern carriers 2"
 		"Skein"
 	shipyard "Syndicate Basics"
 		"Barb (Proton)"
+		"Nock"
 	outfitter "Syndicate Basics"
 		"X1050 Ion Engines"
 	fleet "Large Southern Merchants"
@@ -565,6 +566,58 @@ event "southern carriers 2"
 			"Nest"
 			"Barb"
 			"Boxwing"
+	fleet "Small Southern Merchants"
+		add variant 5
+			"Modified Freighter"
+			"Nock" 2
+		add variant 5
+			"Modified Freighter"
+			"Nock (Modified)" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock (Modified)" 2
+	fleet "Small Core Merchants"
+		add variant 5
+			"Modified Freighter"
+			"Nock" 2
+			add variant 5
+			"Modified Freighter"
+			"Nock (Modified)" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock (Modified)" 2
+	fleet "Paradise Merchants"
+		add variant 5
+			"Modified Freighter"
+			"Nock" 2
+		add variant 5
+			"Modified Freighter"
+			"Nock (Modified)" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock (Modified)" 2
+	fleet "Small Northern Merchants"
+		add variant 5
+			"Modified Freighter"
+			"Nock" 2
+		add variant 5
+			"Modified Freighter"
+			"Nock (Modified)" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock" 2
+		add variant 5
+			"Modified Freighter (Fancy)"
+			"Nock (Modified)" 2
 
 event "southern carriers 3"
 	shipyard "Tarazed Basics"

@@ -1131,6 +1131,35 @@ ship "Dagger"
 	explode "small explosion" 5
 	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
 
+ship "Defense Drone"
+	sprite "ship/defense_drone"
+	thumbnail "thumbnail/defense_drone"
+	attributes
+		category "Drone"
+		"cost" 30000
+		"hull" 450
+		"automaton" 1
+		"mass" 10
+		"drag" .45
+		"heat dissipation" .9
+		"outfit space" 49
+		"weapon capacity" 6
+		"engine capacity" 28
+		weapon
+			"blast radius" 5
+			"shield damage" 35
+			"hull damage" 10
+			"hit force" 50
+	outfits
+		"KP-6 Photovoltaic Panel" 2
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"LP036a Battery Pack"
+		"Energy Blaster"
+	engine 0 29
+	gun 0 -29 "Energy Blaster"
+	explode "tiny explosion" 10
+	description "The Korunak Robotics Defense Drone series is almost as old as space exploration itself. The first models of this drone were used as surveillance cameras on Earth, and later as reconnaissance drones as the first colonies were established. They were repurposed as expendable freighter defense vessels during the Alpha wars, and the main design hasn't changed much since. Since it no longer bears any trademark value, the latest model is made mostly out of sparingly used aluminium and iron, which gives it poor hull integrity for the sake of affordability and agility."
 
 
 ship "Dreadnought"
@@ -2181,6 +2210,56 @@ ship "Modified Argosy"
 	"final explode" "final explosion medium"
 	description "The Argosy has long been a favorite ship for pirates, who have come up with many tricks for modifying them to be more suitable as warships."
 
+ship "Modified Freighter"
+	sprite "ship/mfreighter"
+	thumbnail "thumbnail/mfreighter"
+	attributes
+		category "Light Freighter"
+		"cost" 900000
+		"shields" 2200
+		"hull" 2500
+		"required crew" 4
+		"bunks" 7
+		"mass" 250
+		"drag" 5.6
+		"heat dissipation" .6
+		"fuel capacity" 600
+		"cargo space" 105
+		"outfit space" 270
+		"weapon capacity" 90
+		"engine capacity" 70
+		"drone bays" 2
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"nGVF-EE Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Scram Drive"
+		
+	engine -9 97
+	engine 9 97
+	turret 0 -52 "Blaster Turret"
+	turret 0 6 "Heavy Anti-Missile Turret"
+	turret 0 65 "Blaster Turret"
+	drone -12 36 left
+	drone 12 36 right
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 10
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	"final explode" "final explosion small"
+	description "Once the Navy began building cruisers, demand for a civilian ship that can carry drones quickly became apparent. The Syndicate quickly answered this newly arisen interest in drones with a Modified Freighter: aside from having stronger hull and more weapon space than the standard model, it can also carry a pair of drones, which the captain can choose to sacrifice in order to give the fleet more time to escape the pirates."
 
 
 ship "Mule"
@@ -2304,6 +2383,35 @@ ship "Nest"
 	"final explode" "final explosion medium"
 	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
 
+ship "Nock"
+	sprite "ship/nock"
+	thumbnail "thumbnail/nock"
+	attributes
+		category "Drone"
+		"cost" 55000
+		"shields" 300
+		"hull" 350
+		"automaton" 1
+		"mass" 10
+		"drag" .45
+		"heat dissipation" .9
+		"outfit space" 49
+		"weapon capacity" 7
+		"engine capacity" 20
+		weapon
+			"blast radius" 5
+			"shield damage" 40
+			"hull damage" 15
+			"hit force" 55
+	outfits
+		"KP-6 Photovoltaic Panel" 4
+		"X1050 Ion Engines"
+		"LP036a Battery Pack"
+		"Energy Blaster"
+	engine 0 29
+	gun 0 -29 "Energy Blaster"
+	explode "tiny explosion" 10
+	description "The Nock was released on market shortly after the Barb, although its development started almost a decade beforehand. It is easy to assume that the Nock was developed by the same team, since neither are particularly pretty, and appear pretty cramped by design. Despite the fact that it still requires to be remotely controlled by its carrier, the on-board AI has been developed to the point where it can sustain a shield matrix. This lets its carriers recharge it enough to be deployed again, making it reusable in prolonged battles."
 
 
 ship "Osprey"

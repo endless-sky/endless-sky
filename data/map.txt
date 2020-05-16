@@ -20208,6 +20208,7 @@ system Rutilicus
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 6000
 	fleet "Human Miners" 3000
+	fleet "Southern Patrol Drones" 2000
 	object
 		sprite star/g5
 		period 10
