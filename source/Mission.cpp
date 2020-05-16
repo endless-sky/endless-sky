@@ -30,7 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cmath>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -255,18 +254,18 @@ void Mission::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(child.Token(0) == "subs")
+		else if(child.Token(0) == "text substitutions")
 		{
 			for(const DataNode &grand : child)
 			{
 				if(grand.Size() > 1 && grand.Token(0).find(">") != string::npos)
-					child.PrintTrace("No \">\" allowed in subs keys (\""+grand.Token(0)+"\"):");
+					grand.PrintTrace("Skipping invalid use of angle brackets in substitution key \""+grand.Token(0)+"\":");
 				else if(grand.Size() == 3 && grand.Token(1) == "phrase")
 					missionSubs.emplace_back(grand.Token(0), "phrase:"+grand.Token(2));
 				else if(grand.Size() == 3 && grand.Token(1) == "=")
 					missionSubs.emplace_back(grand.Token(0), "assign:"+grand.Token(2));
 				else
-					child.PrintTrace("Skipping unrecognized subs definition \""+grand.Token(0)+"\":");
+					grand.PrintTrace("Skipping unrecognized text substitutions definition \""+grand.Token(0)+"\":");
 			}
 		}
 		else
