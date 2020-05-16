@@ -107,6 +107,8 @@ public:
 	// missions. If the returned value is negative, you are carrying something so
 	// bad that it warrants a death sentence.
 	int IllegalCargoFine() const;
+	
+	
 private:
 	// Use -1 to indicate unlimited capacity.
 	int size = -1;
