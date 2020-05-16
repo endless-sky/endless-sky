@@ -630,28 +630,28 @@ void CargoHold::Add(const CargoHold &other)
 void CargoHold::Remove(const CargoHold &other)
 {
 	for(const auto &it : other.missionCargo)
-		if(missionCargo.contains(it.first))
+		if(missionCargo.find(it.first)!=missionCargo.end())
 			missionCargo[it.first] -= it.second;
 	for(const auto &it : other.passengers)
-		if(passengers.contains(it.first))
+		if(passengers.find(it.first)!=passengers.end())
 			passengers[it.first] += it.second;
 	for(const auto &it : other.outfits)
-		if(outfits.contains(it.first))
+		if(outfits.find(it.first)!=outfits.end())
 			outfits[it.first] += it.second;
 	for(const auto &it : other.commodities)
-		if(commodities.contains(it.first))
+		if(commodities.find(it.first)!=commodities.end())
 			commodities[it.first] += it.second;
 
 	for(auto &it : missionCargo)
 		if(it.second<=0)
-			missionCargo.erase(it);
+			missionCargo.erase(it.first);
 	for(auto &it : passengers)
 		if(it.second<=0)
-			passengers.erase(it);
+			passengers.erase(it.first);
 	for(auto &it : outfits)
 		if(it.second<=0)
-			outfits.erase(it);
+			outfits.erase(it.first);
 	for(auto &it : commodities)
 		if(it.second<=0)
-			commodities.erase(it);
+			commodities.erase(it.first);
 }

@@ -200,7 +200,6 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "mission")
 		{
 			missions.emplace_back(child);
-			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
 			availableJobs.emplace_back(child);

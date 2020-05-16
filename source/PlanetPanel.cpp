@@ -260,13 +260,14 @@ void PlanetPanel::TakeOffIfReady()
 	// ships or changing outfits.
 	const Ship *flagship = player.Flagship();
 	
+	CargoHold cargo=player.Cargo();
 	// Are you overbooked? Don't count fireable flagship crew. If your
 	// ship can't hold the required crew, count it as having no fireable
 	// crew rather than a negative number.
-	int overbooked = -cargoHere.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
-	int missionCargoToSell = cargoHere.MissionCargoSize() - cargoHere.Size();
+	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
+	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
-	int cargoToSell = -(cargoHere.Free() + cargoHere.CommoditiesSize());
+	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -290,7 +291,7 @@ void PlanetPanel::TakeOffIfReady()
 		ostringstream out;
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
-			bool both = ((cargoToSell > 0 && cargoHere.MissionCargoSize()) && overbooked > 0);
+			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
 			out << "If you take off now you will fail a mission due to not having enough ";
 
 			if(overbooked > 0)
