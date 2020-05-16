@@ -114,11 +114,16 @@ void Conversation::Load(const DataNode &node)
 		{
 			// Create a new node with one or more choices in it.
 			nodes.emplace_back(true);
+			bool foundErrors = false;
 			for(const DataNode &grand : child)
 			{
 				// Check for common errors such as indenting a goto incorrectly:
 				if(grand.Size() > 1)
-					node.PrintTrace("Choice text should be a single string. Only the first string in the line (\""+grand.Token(0)+"\") will be used:");
+				{
+					grand.PrintTrace("Conversation choices should be a single token:");
+					foundErrors = true;
+					continue;
+				}
 				
 				// Store the text of this choice. By default, the choice will
 				// just bring you to the next node in the script.
@@ -129,7 +134,8 @@ void Conversation::Load(const DataNode &node)
 			}
 			if(nodes.back().data.empty())
 			{
-				child.PrintTrace("Conversation contains an empty \"choice\" node:");
+				if(!foundErrors)
+					child.PrintTrace("Conversation contains an empty \"choice\" node:");
 				nodes.pop_back();
 			}
 		}
@@ -167,6 +173,9 @@ void Conversation::Load(const DataNode &node)
 			nodes.back().canMergeOnto = false;
 			nodes.back().conditions.Load(child);
 		}
+		// Check for common errors such as indenting a goto incorrectly:
+		else if(child.Size() > 1)
+			child.PrintTrace("Conversation text should be a single token:");
 		else
 		{
 			// This is just an ordinary text node.
@@ -184,10 +193,6 @@ void Conversation::Load(const DataNode &node)
 			// so, future nodes can't merge onto this one.
 			if(LoadGotos(child))
 				nodes.back().canMergeOnto = false;
-			
-			// Check for common errors such as indenting a goto incorrectly:
-			if(child.Size() > 1)
-				node.PrintTrace("Conversation text should be a single string. Only the first string in the line (\""+child.Token(0)+"\") will be used:");
 		}
 	}
 	
