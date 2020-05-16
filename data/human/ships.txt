@@ -1138,7 +1138,6 @@ ship "Defense Drone"
 		category "Drone"
 		"cost" 30000
 		"hull" 450
-		"automaton" 1
 		"mass" 10
 		"drag" .45
 		"heat dissipation" .9
@@ -2391,7 +2390,6 @@ ship "Nock"
 		"cost" 55000
 		"shields" 300
 		"hull" 350
-		"automaton" 1
 		"mass" 10
 		"drag" .45
 		"heat dissipation" .9
