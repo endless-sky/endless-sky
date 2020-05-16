@@ -36,7 +36,7 @@ public:
 	Mortgage() = default;
 	// Create a new mortgage of the given amount. If this is a fine, set the
 	// credit score to zero for a higher interest rate.
-	Mortgage(int64_t principal, int creditScore, int term = 365);
+	Mortgage(int64_t principal, int creditScore, int term = 365, const std::string &type="");
 	// Construct and Load() at the same time.
 	Mortgage(const DataNode &node);
 	

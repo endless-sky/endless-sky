@@ -53,8 +53,8 @@ public:
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
 	void AddMortgage(int64_t principal);
-	void AddFine(int64_t amount,int term=60);
-	void AddFine(int64_t amount,double interest,int term);
+	void AddFine(int64_t amount);
+	void AddDebt(int64_t amount,int term=-1,double interest=-1,const std::string &type="");
 	int64_t Prequalify() const;
 	// Assets:
 	int64_t NetWorth() const;

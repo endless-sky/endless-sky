@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Format.h"
 
 #include <algorithm>
 #include <cmath>
@@ -31,7 +32,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 	if(annualRevenue <= 0)
 		return 0;
 	
-	double interest = (600 - creditScore / 2) * .00001;
+	double interest = (600 - creditScore / 2) / 100000.;
 	double power = pow(1. + interest, term);
 	double multiplier = interest * term * power / (power - 1.);
 	return static_cast<int64_t>(max(0., annualRevenue / multiplier));
@@ -40,17 +41,17 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 
 
 // Create a new mortgage of the given amount.
-Mortgage::Mortgage(int64_t principal, int creditScore, int term)
-	: type(creditScore <= 0 ? "Fine" : "Mortgage"),
+Mortgage::Mortgage(int64_t principal, int creditScore, int term, const string &requestedType)
+	:type(requestedType),
 	principal(principal),
-	interest((600 - creditScore / 2) * .00001),
+	interest((600 - creditScore / 2) / 100000.),
 	term(term)
 {
-	int thousandths = 600 - creditScore / 2;
-	if(thousandths < 1000)
-		interestString = "0." + to_string(thousandths) + "%";
-	else
-		interestString = to_string(thousandths / 1000) + "." + to_string(thousandths % 1000) + "%";
+	
+	if(type.empty())
+		type = creditScore <= 0 ? "Fine" : "Mortgage";
+	
+	interestString = Format::Decimal(interest * 100, 3) + "%";
 }
 
 
@@ -78,8 +79,7 @@ void Mortgage::Load(const DataNode &node)
 		else if(child.Token(0) == "interest" && child.Size() >= 2)
 		{
 			interest = child.Value(1);
-			int f = 100000. * interest;
-			interestString = "0." + to_string(f) + "%";
+			interestString = Format::Decimal(interest * 100, 3) + "%";
 		}
 		else if(child.Token(0) == "term" && child.Size() >= 2)
 			term = child.Value(1);

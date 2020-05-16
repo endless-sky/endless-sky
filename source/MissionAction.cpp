@@ -223,41 +223,58 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				swap(minDays, maxDays);
 			events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 		}
-		else if(key == "fine")
+		else if(key == "debt")
 		{
 			if(child.Size() < 2)
 			{
-				child.PrintTrace("Skipping invalid \"fine\": must have 1 to 3 arguments:");
-				continue;
-			}
-			fine = child.Value(1);
-			fineTerm = -1;
-			fineInterest = -1;
-			if(fine < 0)
-			{
-				child.PrintTrace("Fines must be larger than 0.");
+				child.PrintTrace("Skipping incomplete \"debt\":");
 				continue;
 			}
 			if(child.Size() > 2)
+				child.PrintTrace("Too many arguments to debt; expected 1:");
+			debt = child.Value(1);
+			debtTerm = 60;
+			debtInterest = -1;
+			debtType = "";
+			for(const DataNode &grand : child)
 			{
-				fineTerm = child.Value(2);
-				if(fineTerm < 1)
+				if(grand.Size() < 2)
 				{
-					child.PrintTrace("Fine terms must be 1 or more days");
+					grand.PrintTrace("Skipping incomplete debt attribute \""+grand.Token(0)+"\":");
 					continue;
 				}
-			}
-			if(child.Size() > 3)
-			{
-				fineInterest = child.Value(3)/100.0;
-				if(fineInterest < 0)
+				if(grand.Size() > 2)
+					grand.PrintTrace("Debt attributes must have 1 value (\""+grand.Token(0)+"\"):");
+				if(grand.Token(0) == "interest rate")
 				{
-					child.PrintTrace("Fine interest must be 0 or higher.");
-					continue;
+					debtInterest = grand.Value(1)/100.0;
+					if(debtInterest < 0)
+					{
+						grand.PrintTrace("Debt interest must be 0% or higher.");
+						continue;
+					}
 				}
+				else if(grand.Token(0) == "term")
+				{
+					debtTerm = grand.Value(1);
+					if(debtTerm < 1)
+					{
+						grand.PrintTrace("Debt terms must be 1 or more days");
+						continue;
+					}
+				}
+				else if(grand.Token(0) == "type")
+				{
+					if(grand.Token(1) == "mortgage")
+						debtType = "mortgage";
+					else if(grand.Token(1) == "fine")
+						debtType = "fine";
+					else
+						grand.PrintTrace("Skipping unrecognized debt type \""+grand.Token(1)+"\":");
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized debt attribute \""+grand.Token(0)+"\":");
 			}
-			if(child.Size() > 4)
-				child.PrintTrace("Invalid fine block; must have 1 to 3 arguments.");
 		}
 		else if(key == "fail")
 		{
@@ -493,15 +510,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	if(payment)
 		player.Accounts().AddCredits(payment);
 	
-	if(fine > 0)
-	{
-		if(fineInterest >= 0)
-			player.Accounts().AddFine(fine,fineInterest,fineTerm);
-		else if(fineTerm > 0)
-			player.Accounts().AddFine(fine,fineTerm);
-		else
-			player.Accounts().AddFine(fine);
-	}
+	if(debt > 0)
+		player.Accounts().AddDebt(debt,debtTerm,debtInterest,debtType);
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 	
@@ -542,13 +552,14 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.gifts = gifts;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
-	if(fine > 0)
+	if(debt > 0)
 	{
-		result.fine = fine;
-		subs["<fine>"] = Format::Credits(result.fine)
-			+ (result.fine == 1 ? " credit" : " credits");
-		result.fineTerm = fineTerm;
-		result.fineInterest = fineInterest;
+		result.debt = debt;
+		subs["<debt>"] = Format::Credits(result.debt)
+			+ (result.debt == 1 ? " credit" : " credits");
+		result.debtTerm = debtTerm;
+		result.debtInterest = debtInterest;
+		result.debtType = debtType;
 	}
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
