@@ -124,6 +124,8 @@ public:
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
+	// Finishing loading the cargo has to happen in a third pass for player's ships.
+	void FinishLoadingCargo(const PlayerInfo &player);
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	
@@ -544,12 +546,6 @@ private:
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
-	
-	// Used to load cargo hold
-	std::map<std::string, int> outfitCargoLoaded;
-	std::map<std::string, int> commoditiesLoaded;
-	std::map<std::string, int> missionCargoLoaded;
-	std::map<std::string, int> missionPassengersLoaded;
 };
 
 

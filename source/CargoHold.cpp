@@ -85,6 +85,38 @@ void CargoHold::Load(const DataNode &node)
 				outfits[outfit] += count;
 			}
 		}
+		else if(child.Token(0) == "mission cargo")
+			for(const DataNode &grand : child)
+			{
+				loadedMissionCargo[grand.Token(0)] = grand.Value(1);
+			}
+		else if(child.Token(0) == "mission passengers")
+			for(const DataNode &grand : child)
+			{
+				loadedPassengers[grand.Token(0)] = grand.Value(1);
+			}
+
+	}
+}
+
+
+
+void CargoHold::FinishLoading(const list<Mission> &missions)
+{
+	for(const auto &it : missions)
+	{
+		const auto mc = loadedMissionCargo.find(it.Name());
+		if(mc != loadedMissionCargo.end())
+		{
+			missionCargo[&it] = mc->second;
+			loadedMissionCargo.erase(mc);
+		}
+		const auto mp = loadedPassengers.find(it.Name());
+		if(mp != loadedPassengers.end())
+		{
+			passengers[&it] = mp->second;
+			loadedPassengers.erase(mp);
+		}
 	}
 }
 
@@ -93,58 +125,63 @@ void CargoHold::Load(const DataNode &node)
 // Save the cargo manifest to a file.
 void CargoHold::Save(DataWriter &out) const
 {
-	bool first = true;
-	for(const auto &it : commodities)
-		if(it.second)
+	bool outerActive = false;
+	bool innerActive = false;
+	
+	auto activateScope = [&] (bool &isActive, const char *what) {
+		if(!isActive)
 		{
-			// Only write a "cargo" block if it is not going to be empty.
-			if(first)
-			{
-				out.Write("cargo");
-				out.BeginChild();
-				out.Write("commodities");
-				out.BeginChild();
-			}
-			first = false;
-			
+			isActive = true;
+			out.Write(what);
+			out.BeginChild();
+		}
+	};
+	
+	auto deactivateScope = [&] (bool &isActive) {
+		if(isActive)
+		{
+			isActive = false;
+			out.EndChild();
+		}
+	};
+	
+	for(const auto &it : commodities)
+		if(!it.first.empty() && it.second>0)
+		{
+			activateScope(outerActive, "cargo");
+			activateScope(innerActive, "commodities");
 			out.Write(it.first, it.second);
 		}
-	// We only need to EndChild() if at least one line was written above.
-	if(!first)
-		out.EndChild();
+	deactivateScope(innerActive);
 	
-	bool firstOutfit = true;
 	for(const auto &it : outfits)
 		if(it.second && !it.first->Name().empty())
 		{
-			// It is possible this cargo hold contained no commodities, meaning
-			// we must print the opening tag now.
-			if(first)
-			{
-				out.Write("cargo");
-				out.BeginChild();
-			}
-			first = false;
-			
-			// If this is the first outfit to be written, print the opening tag.
-			if(firstOutfit)
-			{
-				out.Write("outfits");
-				out.BeginChild();
-			}
-			firstOutfit = false;
-			
+			activateScope(outerActive, "cargo");
+			activateScope(innerActive, "outfits");
 			out.Write(it.first->Name(), it.second);
 		}
-	// Back out any indentation blocks that are set, depending on what sorts of
-	// cargo were written to the file.
-	if(!firstOutfit)
-		out.EndChild();
-	if(!first)
-		out.EndChild();
+	deactivateScope(innerActive);
 	
-	// Mission cargo is not saved because it is repopulated when the missions
-	// are read rather than when the cargo is read.
+	for(const auto &it : missionCargo)
+		if(it.second && it.first && !it.first->Name().empty())
+		{
+			activateScope(outerActive, "cargo");
+			activateScope(innerActive, "mission cargo");
+			out.Write(it.first->Name(), it.second);
+		}
+	deactivateScope(innerActive);
+	
+	for(const auto &it : passengers)
+		if(it.second && it.first && !it.first->Name().empty())
+		{
+			activateScope(outerActive, "cargo");
+			activateScope(innerActive, "mission passengers");
+			out.Write(it.first->Name(), it.second);
+		}
+	deactivateScope(innerActive);
+	
+	deactivateScope(outerActive);
 }
 
 
@@ -591,25 +628,4 @@ int CargoHold::IllegalCargoFine() const
 	}
 	
 	return totalFine;
-}
-
-void CargoHold::LoadFrom(const std::map<std::string,int> &loadMissionCargo,
-	const std::map<std::string,int> &loadPassengers,
-	const std::map<std::string,int> &loadOutfits,
-	const std::map<std::string,int> &loadCommodities)
-{
-	const Set<Mission> &allMissions = GameData::Missions();
-	const Set<Outfit> &allOutfits = GameData::Outfits();
-	
-	for(const auto &it : loadMissionCargo)
-		if(allMissions.Has(it.first))
-			missionCargo[allMissions.Get(it.first)] = it.second;
-	for(const auto &it : loadPassengers)
-		if(allMissions.Has(it.first))
-			passengers[allMissions.Get(it.first)] = it.second;
-	for(const auto &it : loadOutfits)
-		if(allOutfits.Has(it.first))
-			outfits[allOutfits.Get(it.first)] = it.second;
-	for(const auto &it : loadCommodities)
-		commodities[it.first] = it.second;
 }

@@ -268,6 +268,10 @@ void PlayerInfo::Load(const string &path)
 			}
 		}
 	}
+	// Finish loading the cargo hold for player's ships now that we have the mission list
+	for(auto &it : ships)
+		it->FinishLoadingCargo(*this);
+	
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
 	UpdateCargoCapacities();
