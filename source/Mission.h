@@ -224,8 +224,9 @@ private:
 	std::list<MissionAction> genericOnEnter;
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
-	// Mission-specific variables
-	std::vector<std::pair<std::string,std::string>> missionSubs;
+	// String substitution requests read in by Load()
+	std::vector<std::pair<std::string,std::string>> missionSubText;
+	std::vector<std::pair<std::string,std::string>> missionSubPhrases;
 };
 
 

@@ -187,8 +187,6 @@ bool GameData::BeginLoad(const char * const *argv)
 		it.second.FinishLoading(true);
 	for(auto &it : persons)
 		it.second.FinishLoading();
-	for(auto &it : missions)
-		it.second.FinishLoading();
 	startConditions.FinishLoading();
 	
 	// Store the current state, to revert back to later.

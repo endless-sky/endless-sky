@@ -261,9 +261,9 @@ void Mission::Load(const DataNode &node)
 				if(grand.Size() > 1 && grand.Token(0).find(">") != string::npos)
 					grand.PrintTrace("Skipping invalid use of angle brackets in substitution key \""+grand.Token(0)+"\":");
 				else if(grand.Size() == 3 && grand.Token(1) == "phrase")
-					missionSubs.emplace_back(grand.Token(0), "phrase:"+grand.Token(2));
+					missionSubPhrases.emplace_back(grand.Token(0), grand.Token(2));
 				else if(grand.Size() == 3 && grand.Token(1) == "=")
-					missionSubs.emplace_back(grand.Token(0), "assign:"+grand.Token(2));
+					missionSubText.emplace_back(grand.Token(0), grand.Token(2));
 				else
 					grand.PrintTrace("Skipping unrecognized text substitutions definition \""+grand.Token(0)+"\":");
 			}
@@ -274,22 +274,6 @@ void Mission::Load(const DataNode &node)
 	
 	if(displayName.empty())
 		displayName = name;
-}
-
-
-
-void Mission::FinishLoading()
-{
-	for(auto &it : missionSubs)
-	{
-		if(it.second.find("assign:") != string::npos)
-			it.second=it.second.substr(7);
-		else if(it.second.find("phrase:") != string::npos)
-		{
-			const Phrase *phrase = GameData::Phrases().Get(it.second.substr(7));
-			it.second = phrase ? phrase->Get() : "";
-		}
-	}
 }
 
 
@@ -982,6 +966,14 @@ const MissionAction &Mission::GetAction(Trigger trigger) const
 Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	Mission result;
+	std::vector<std::pair<std::string,std::string>> missionSubs;
+	for(auto &it : missionSubPhrases)
+	{
+		const Phrase *phrase = GameData::Phrases().Get(it.second);
+		missionSubs.emplace_back(it.first, phrase ? phrase->Get() : "");
+	}
+	missionSubs.insert(missionSubs.end(), missionSubText.begin(), missionSubText.end());
+	
 	// If anything goes wrong below, this mission should not be offered.
 	result.hasFailed = true;
 	result.isVisible = isVisible;
