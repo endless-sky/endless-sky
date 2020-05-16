@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define PLANET_PANEL_H_
 
 #include "Panel.h"
-#include "CargoHold.h"
 
 #include "WrappedText.h"
 
@@ -54,8 +53,6 @@ private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
-	
-	CargoHold cargoHere;
 	
 	const Planet &planet;
 	const System &system;
