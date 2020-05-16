@@ -88,6 +88,10 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	
+	int64_t fine = 0;
+	int64_t fineTerm = -1;
+	double fineInterest = -1;
+	
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 	

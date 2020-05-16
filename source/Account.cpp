@@ -333,10 +333,19 @@ void Account::AddMortgage(int64_t principal)
 
 
 
-// Add a "fine" with a high, fixed interest rate and a short term.
-void Account::AddFine(int64_t amount)
+// Add a "fine" with a high, fixed interest rate
+void Account::AddFine(int64_t amount, int term)
 {
-	mortgages.emplace_back(amount, 0, 60);
+	mortgages.emplace_back(amount, 0, term);
+}
+
+
+
+// Add a "fine" with a high, fixed interest rate and a short term.
+void Account::AddFine(int64_t amount, double interest, int term)
+{
+	double creditScore = 2*(600-interest/.00001);
+	mortgages.emplace_back(amount, int(creditScore), term);
 }
 
 
