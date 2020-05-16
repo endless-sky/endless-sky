@@ -227,7 +227,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		{
 			if(child.Size() < 2)
 			{
-				child.PrintTrace("Invalid fine block; must have 1 to 3 arguments.");
+				child.PrintTrace("Skipping invalid \"fine\": must have 1 to 3 arguments:");
 				continue;
 			}
 			fine = child.Value(1);
@@ -542,10 +542,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.gifts = gifts;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
-	if(fine)
+	if(fine > 0)
 	{
 		result.fine = fine;
-		subs["<fine>"] = Format::Number(abs(result.fine))
+		subs["<fine>"] = Format::Credits(result.fine)
 			+ (result.fine == 1 ? " credit" : " credits");
 		result.fineTerm = fineTerm;
 		result.fineInterest = fineInterest;

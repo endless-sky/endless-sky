@@ -46,11 +46,11 @@ Mortgage::Mortgage(int64_t principal, int creditScore, int term)
 	interest((600 - creditScore / 2) * .00001),
 	term(term)
 {
-	int thousanths = 600 - creditScore / 2;
-	if(thousanths < 1000)
-		interestString = "0." + to_string(thousanths) + "%";
+	int thousandths = 600 - creditScore / 2;
+	if(thousandths < 1000)
+		interestString = "0." + to_string(thousandths) + "%";
 	else
-		interestString = to_string(thousanths/1000) + "." + to_string(thousanths%1000) + "%";
+		interestString = to_string(thousandths / 1000) + "." + to_string(thousandths % 1000) + "%";
 }
 
 
