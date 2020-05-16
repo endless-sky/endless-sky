@@ -180,6 +180,10 @@ void Conversation::Load(const DataNode &node)
 			// so, future nodes can't merge onto this one.
 			if(LoadGotos(child))
 				nodes.back().canMergeOnto = false;
+			
+			// Check for common errors such as indenting a goto incorrectly:
+			if(child.Size() > 1)
+				node.PrintTrace("Conversation text should be a single string. Only the first string in the line (\""+child.Token(0)+"\") will be used:");
 		}
 	}
 	
