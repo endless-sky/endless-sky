@@ -20,7 +20,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Random.h"
 #include "UI.h"
+
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -52,19 +56,39 @@ void SpaceportPanel::UpdateNews()
 		return;
 	
 	hasNews = true;
-	// Randomly pick which portrait is to be shown.
-	auto portrait = news->Portrait();
 	
-	// Ensure we only display one name for a given portrait.
-	const auto it = displayedProfessions.find(portrait);
-	auto name = string{};
-	if(it == displayedProfessions.end())
+	// Figure out what portraits are not allowed for this news
+	set<const Sprite *> usedPortraits;
+	set<const Sprite *> &newsPortraits=professionsByNews[news];
+	
+	for(const auto &it : displayedProfessions)
+		usedPortraits.emplace(it.first);
+	
+	// Randomly pick which portrait is to be shown, avoiding ones in the forbidden set:
+	auto portrait = news->Portrait(usedPortraits);
+	string name;
+	if(portrait)
 	{
+		// No news has used this portrait.
 		name = news->Name();
 		displayedProfessions.emplace(portrait, name);
+		professionsByNews[news].emplace(portrait);
+	}
+	else if(!newsPortraits.empty())
+	{
+		// There are no unused portraits available, but this news has some cached.
+		auto portraitIt = newsPortraits.begin();
+		advance(portraitIt, Random::Int(newsPortraits.size()));
+		portrait = *portraitIt;
+		name = displayedProfessions[portrait];
 	}
 	else
-		name = it->second;
+	{
+		// There are no unused portraits available, so somebody gets a second job.
+		usedPortraits.clear();
+		portrait = news->Portrait(usedPortraits);
+		name = news->Name();
+	}
 	
 	// Cache the randomly picked results until the next update is requested.
 	newsInfo.SetString("name", name + ':');

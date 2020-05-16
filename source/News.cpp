@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -112,9 +113,17 @@ string News::Name() const
 
 
 // Pick a portrait at random out of the possible options.
-const Sprite *News::Portrait() const
+const Sprite *News::Portrait(const std::set<const Sprite *> &forbidden) const
 {
-	return portraits.empty() ? nullptr : portraits[Random::Int(portraits.size())];
+	if(forbidden.empty())
+		return portraits.empty() ? nullptr : portraits[Random::Int(portraits.size())];
+
+	std::vector<const Sprite *> allowed;
+	for(const auto &it : portraits)
+		if(forbidden.find(it) == forbidden.end())
+			allowed.push_back(it);
+			
+	return allowed.empty() ? nullptr : allowed[Random::Int(allowed.size())];
 }
 
 

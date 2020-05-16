@@ -14,11 +14,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SPACEPORT_PANEL_H_
 
 #include "Panel.h"
+#include "News.h"
 
 #include "Information.h"
 #include "WrappedText.h"
 
 #include <map>
+#include <set>
 
 class PlayerInfo;
 class Sprite;
@@ -48,6 +50,7 @@ private:
 	// After displaying a portrait for a particular profession,
 	// only show it for that same profession.
 	std::map<const Sprite *, std::string> displayedProfessions;
+	std::map<const News *, std::set<const Sprite *> > professionsByNews;
 };
 
 

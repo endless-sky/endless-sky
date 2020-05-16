@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 #include <vector>
+#include <set>
 
 class DataNode;
 class Planet;
@@ -37,7 +38,7 @@ public:
 	// Get the speaker's name.
 	std::string Name() const;
 	// Pick a portrait at random out of the possible options.
-	const Sprite *Portrait() const;
+	const Sprite *Portrait(const std::set<const Sprite *> &forbidden) const;
 	// Get the speaker's message, chosen randomly.
 	std::string Message() const;
 	
