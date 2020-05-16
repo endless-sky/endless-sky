@@ -336,14 +336,14 @@ void Account::AddMortgage(int64_t principal)
 // Add a "fine" with a high, fixed interest rate and a short term.
 void Account::AddFine(int64_t amount)
 {
-       mortgages.emplace_back(amount, 0, 60);
+	mortgages.emplace_back(amount, 0, 60);
 }
 
 // General debt addition, specifying all parameters
 void Account::AddDebt(int64_t amount, int term, double interest, const string &type)
 {
 	double localCreditScore = creditScore;
-	if(term<=0)
+	if(term <= 0)
 	{
 		if(type == "Mortgage")
 			term = 365;

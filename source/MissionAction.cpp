@@ -247,7 +247,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 					grand.PrintTrace("Debt attributes must have 1 value (\""+grand.Token(0)+"\"):");
 				if(grand.Token(0) == "interest rate")
 				{
-					debtInterest = grand.Value(1)/100.0;
+					debtInterest = grand.Value(1) / 100.0;
 					if(debtInterest < 0)
 					{
 						grand.PrintTrace("Debt interest must be 0% or higher.");
@@ -511,7 +511,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		player.Accounts().AddCredits(payment);
 	
 	if(debt > 0)
-		player.Accounts().AddDebt(debt,debtTerm,debtInterest,debtType);
+		player.Accounts().AddDebt(debt, debtTerm, debtInterest, debtType);
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 	

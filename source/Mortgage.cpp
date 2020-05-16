@@ -42,12 +42,11 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 
 // Create a new mortgage of the given amount.
 Mortgage::Mortgage(int64_t principal, int creditScore, int term, const string &requestedType)
-	:type(requestedType),
+	: type(requestedType),
 	principal(principal),
 	interest((600 - creditScore / 2) / 100000.),
 	term(term)
 {
-	
 	if(type.empty())
 		type = creditScore <= 0 ? "Fine" : "Mortgage";
 	
