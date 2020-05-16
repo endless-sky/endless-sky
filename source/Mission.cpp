@@ -966,7 +966,7 @@ const MissionAction &Mission::GetAction(Trigger trigger) const
 Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	Mission result;
-	std::vector<std::pair<std::string,std::string>> missionSubs;
+	std::vector<std::pair<std::string, std::string>> missionSubs;
 	for(auto &it : missionSubPhrases)
 	{
 		const Phrase *phrase = GameData::Phrases().Get(it.second);
