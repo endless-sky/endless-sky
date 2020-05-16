@@ -165,7 +165,7 @@ tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
 tip "absolute threshold:"
-	`The remaining hull strength at which the ship becomes disabled. This attribute overrides any other effects that change the disabled threshold.`
+	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
 
 tip "hull threshold:"
 	`Alters the hull strength value at which the ship will become disabled.`
