@@ -167,8 +167,8 @@ tip "hull repair rate:"
 tip "repair delay:"
 	`How many seconds it takes for hull repairs to begin after taking hull damage. This delay does not elapse if the ship is disabled.`
 
-tip "disabled repair delay:"
-	`How many seconds it takes for hull repairs to begin after taking hull damage while the ship is disabled. This delay does not elapse if the ship is disabled.`
+tip "assisted repair delay:"
+	`How many seconds it takes for hull repairs to begin after being assisted from being disabled. This delay does not elapse if the ship is disabled.`
 
 tip "hull protection:"
 	`Protection against weapons that do hull damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hull damage, while a total value of 11 only results in a 10 percent reduction.`
