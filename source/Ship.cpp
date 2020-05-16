@@ -362,17 +362,17 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				const string &key = grand.Token(0);
-				if(key == "mission" && grand.Size()>3 && grand.IsNumber(3))
+				if(key == "mission" && grand.Size() > 3 && grand.IsNumber(3))
 				{
 					if(grand.Token(2) == "cargo")
-						missionCargoLoaded.emplace(grand.Token(2),int(grand.Value(3)));
+						missionCargoLoaded.emplace(grand.Token(2), int(grand.Value(3)));
 					if(grand.Token(2) == "passengers")
-						missionPassengersLoaded.emplace(grand.Token(2),int(grand.Value(3)));
+						missionPassengersLoaded.emplace(grand.Token(2), int(grand.Value(3)));
 				}
 				else if(key == "outfit" && grand.Size()>2 && grand.IsNumber(2))
-					outfitCargoLoaded.emplace(grand.Token(1),int(grand.Value(2)));
+					outfitCargoLoaded.emplace(grand.Token(1), int(grand.Value(2)));
 				else if(key == "commodities" && grand.Size()>2 && grand.IsNumber(2))
-					commoditiesLoaded.emplace(grand.Token(1),int(grand.Value(2)));
+					commoditiesLoaded.emplace(grand.Token(1), int(grand.Value(2)));
 				else
 					grand.PrintTrace("Skipping unrecognized cargo hold contents:");
 			}
@@ -621,7 +621,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	if(!missionCargoLoaded.empty() || !missionPassengersLoaded.empty() || !outfitCargoLoaded.empty() || !commoditiesLoaded.empty())
 	{
-		cargo.LoadFrom(missionCargoLoaded,missionPassengersLoaded,outfitCargoLoaded,commoditiesLoaded);
+		cargo.LoadFrom(missionCargoLoaded, missionPassengersLoaded, outfitCargoLoaded, commoditiesLoaded);
 		missionCargoLoaded.clear();
 		missionPassengersLoaded.clear();
 		outfitCargoLoaded.clear();
