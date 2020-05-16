@@ -232,6 +232,14 @@ string Format::Replace(const string &source, const map<string, string> keys)
 
 
 
+void Format::MergeReplacements(map<string,string> &target, const vector<pair<string, string>> &source)
+{
+	for(const auto &it : source)
+		target["<"+it.first+">"] = Format::Replace(it.second, target);
+}
+
+
+
 void Format::ReplaceAll(string &text, const string &target, const string &replacement)
 {
 	// If the searched string is an empty string, do nothing.

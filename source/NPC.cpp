@@ -405,7 +405,7 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
+NPC NPC::Instantiate(map<string, string> &subs, const vector<pair<string,string>> &missionSubs, const System *origin, const System *destination) const
 {
 	NPC result;
 	result.government = government;
@@ -468,8 +468,10 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	
 	// String replacement:
 	if(!result.ships.empty())
+	{
 		subs["<npc>"] = result.ships.front()->Name();
-	
+		Format::MergeReplacements(subs,missionSubs);
+	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
 		: (!dialogPhrase.Name().empty() ? dialogPhrase.Get()

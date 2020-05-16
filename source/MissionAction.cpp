@@ -478,7 +478,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const vector<pair<string, string>> &missionSubs, const System *origin, int jumps, int payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
@@ -502,6 +502,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	if(result.payment)
 		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
+	Format::MergeReplacements(subs, missionSubs);
 	
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
@@ -528,7 +529,9 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Restore the "<payment>" value from the "on complete" condition, for use
 	// in other parts of this mission.
 	if(result.payment && trigger != "complete")
+	{
 		subs["<payment>"] = previousPayment;
-	
+		Format::MergeReplacements(subs, missionSubs);
+	}
 	return result;
 }

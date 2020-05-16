@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
+#include <utility>
 
 class DataNode;
 class DataWriter;
@@ -63,7 +65,7 @@ public:
 	
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const std::vector<std::pair<std::string, std::string>> &missionSubs, const System *origin, const System *destination) const;
 	
 	
 private:

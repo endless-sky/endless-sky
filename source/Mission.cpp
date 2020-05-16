@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cmath>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -254,12 +255,42 @@ void Mission::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else if(child.Token(0) == "subs")
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() > 1 && grand.Token(0).find(">") != string::npos)
+					child.PrintTrace("No \">\" allowed in subs keys (\""+grand.Token(0)+"\"):");
+				else if(grand.Size() == 3 && grand.Token(1) == "phrase")
+					missionSubs.emplace_back(grand.Token(0), "phrase:"+grand.Token(2));
+				else if(grand.Size() == 3 && grand.Token(1) == "=")
+					missionSubs.emplace_back(grand.Token(0), "assign:"+grand.Token(2));
+				else
+					child.PrintTrace("Skipping unrecognized subs definition \""+grand.Token(0)+"\":");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	if(displayName.empty())
 		displayName = name;
+}
+
+
+
+void Mission::FinishLoading()
+{
+	for(auto &it : missionSubs)
+	{
+		if(it.second.find("assign:") != string::npos)
+			it.second=it.second.substr(7);
+		else if(it.second.find("phrase:") != string::npos)
+		{
+			const Phrase *phrase = GameData::Phrases().Get(it.second.substr(7));
+			it.second = phrase ? phrase->Get() : "";
+		}
+	}
 }
 
 
@@ -1122,6 +1153,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
+	Format::MergeReplacements(subs,missionSubs);
 	// Stopover and waypoint substitutions: iterate by reference to the
 	// pointers so we can check when we're at the very last one in the set.
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
@@ -1152,19 +1184,18 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		}
 		subs["<waypoints>"] = systems;
 	}
-	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, missionSubs, source, result.destination->GetSystem()));
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, missionSubs, source, jumps, payload);
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, missionSubs, source, jumps, payload);
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, missionSubs, source, jumps, payload));
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);

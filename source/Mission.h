@@ -24,6 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <set>
 #include <string>
+#include <utility>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -49,6 +51,8 @@ public:
 	
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);
+	// Expand phrases in subs
+	void FinishLoading();
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
@@ -220,6 +224,8 @@ private:
 	std::list<MissionAction> genericOnEnter;
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
+	// Mission-specific variables
+	std::vector<std::pair<std::string,std::string>> missionSubs;
 };
 
 
