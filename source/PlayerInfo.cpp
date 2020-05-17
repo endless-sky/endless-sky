@@ -200,11 +200,18 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "mission")
 		{
 			missions.emplace_back(child);
+			missions.back().EnsureUUID();
 		}
 		else if(child.Token(0) == "available job")
+		{
 			availableJobs.emplace_back(child);
+			availableJobs.back().EnsureUUID();
+		}
 		else if(child.Token(0) == "available mission")
+		{
 			availableMissions.emplace_back(child);
+			availableMissions.back().EnsureUUID();
+		}
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)

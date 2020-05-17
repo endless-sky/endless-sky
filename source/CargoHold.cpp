@@ -105,13 +105,13 @@ void CargoHold::FinishLoading(const list<Mission> &missions)
 {
 	for(const auto &it : missions)
 	{
-		const auto mc = loadedMissionCargo.find(it.Name());
+		const auto mc = loadedMissionCargo.find(it.UUID());
 		if(mc != loadedMissionCargo.end())
 		{
 			missionCargo[&it] = mc->second;
 			loadedMissionCargo.erase(mc);
 		}
-		const auto mp = loadedPassengers.find(it.Name());
+		const auto mp = loadedPassengers.find(it.UUID());
 		if(mp != loadedPassengers.end())
 		{
 			passengers[&it] = mp->second;
@@ -164,20 +164,20 @@ void CargoHold::Save(DataWriter &out) const
 	deactivateScope(innerActive);
 	
 	for(const auto &it : missionCargo)
-		if(it.second && it.first && !it.first->Name().empty())
+		if(it.second && it.first && !it.first->UUID().empty())
 		{
 			activateScope(outerActive, "cargo");
 			activateScope(innerActive, "mission cargo");
-			out.Write(it.first->Name(), it.second);
+			out.Write(it.first->UUID(), it.second);
 		}
 	deactivateScope(innerActive);
 	
 	for(const auto &it : passengers)
-		if(it.second && it.first && !it.first->Name().empty())
+		if(it.second && it.first && !it.first->UUID().empty())
 		{
 			activateScope(outerActive, "cargo");
 			activateScope(innerActive, "mission passengers");
-			out.Write(it.first->Name(), it.second);
+			out.Write(it.first->UUID(), it.second);
 		}
 	deactivateScope(innerActive);
 	

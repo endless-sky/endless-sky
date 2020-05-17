@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define RANDOM_H_
 
 #include <cstdint>
+#include <string>
 
 
 
@@ -41,6 +42,8 @@ public:
 	static uint32_t Binomial(uint32_t t, double p = .5);
 	// Get a normally distributed number (mean = 0, sigma= 1).
 	static double Normal();
+	// Get a random UUID
+	static std::string UUID();
 };
 
 
