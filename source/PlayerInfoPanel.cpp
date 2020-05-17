@@ -287,7 +287,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		{
 			const Ship &ship = *player.Ships()[i];
 			if(!ship.IsDisabled() && &ship != flagship 
-				&& ((shift && ship.GetSystem() == flagship->GetSystem()) || !shift))
+				&& (!shift || (shift && ship.GetSystem() == flagship->GetSystem())))
 				allParked &= ship.IsParked();
 		}
 		
@@ -295,7 +295,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		{
 			const Ship &ship = *player.Ships()[i];
 			if(!ship.IsDisabled() && &ship != flagship 
-				&& ((shift && ship.GetSystem() == flagship->GetSystem()) || !shift))
+				&& (!shift || (shift && ship.GetSystem() == flagship->GetSystem())))
 				player.ParkShip(&ship, !allParked);
 		}
 	}
@@ -306,12 +306,12 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		const Ship *flagship = player.Flagship();
 		for(const auto &it : player.Ships())
 			if(!it->IsDisabled() && it.get() != flagship 
-				&& ((shift && it->GetSystem() == flagship->GetSystem()) || !shift))
+				&& (!shift || (shift && it->GetSystem() == flagship->GetSystem())))
 				allParked &= it->IsParked();
 		
 		for(const auto &it : player.Ships())
 			if(!it->IsDisabled() && (allParked || it.get() != flagship) 
-				&& ((shift && it->GetSystem() == flagship->GetSystem()) || !shift))
+				&& (!shift || (shift && it->GetSystem() == flagship->GetSystem())))
 				player.ParkShip(it.get(), !allParked);
 	}
 	else if(command.Has(Command::MAP) || key == 'm')
