@@ -88,6 +88,7 @@ void PlayerInfo::New(const StartConditions &start)
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		ships.back()->NewUUID();
 	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
@@ -221,12 +222,19 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "mission")
 		{
 			missions.emplace_back(child);
+			missions.back().EnsureUUID();
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
+		{
 			availableJobs.emplace_back(child);
+			availableJobs.back().EnsureUUID();
+		}
 		else if(child.Token(0) == "available mission")
+		{
 			availableMissions.emplace_back(child);
+			availableMissions.back().EnsureUUID();
+		}
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
@@ -873,6 +881,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		ships.back()->NewUUID();
 		
 		accounts.AddCredits(-cost);
 		flagship.reset();
@@ -2407,6 +2416,7 @@ void PlayerInfo::ApplyChanges()
 		// Government changes may have changed the player's ship swizzles.
 		ship->SetGovernment(GameData::PlayerGovernment());
 		ship->FinishLoading(false);
+		ships.back()->EnsureUUID();
 	}
 }
 

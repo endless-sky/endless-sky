@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../source/Random.h"
 
 // ... and any system includes needed for the test file.
+#include <unordered_set>
+#include <string>
 
 namespace { // test namespace
 
@@ -25,8 +27,20 @@ namespace { // test namespace
 
 
 // #region unit tests
-TEST_CASE( "Random::Int", "[random]") {
+TEST_CASE( "Random::Int", "[random][int]") {
 	REQUIRE( Random::Int(1) == 0 );
+}
+
+TEST_CASE( "Random::UUID", "[random][uuid]" ) {
+	SECTION( "Generates reasonably unique values" ) {
+		constexpr size_t scale = 2000000;
+		auto results = std::unordered_set<std::string>{};
+		results.reserve(scale);
+		for(size_t count = 0; count < scale; ++count)
+			results.emplace(Random::UUID());
+		
+		CHECK( results.size() == scale );
+	}
 }
 // Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
 // WHEN, and THEN macros. (There will be cases where the more traditional TEST_CASE and SECTION macros
@@ -57,6 +71,11 @@ TEST_CASE( "Benchmark Random::Int", "[!benchmark][random]" ) {
 TEST_CASE( "Benchmark Random::Real", "[!benchmark][random]" ) {
 	BENCHMARK( "Random::Real" ) {
 		return Random::Real();
+	};
+}
+TEST_CASE( "Benchmark Random::UUID", "[!benchmark][random][uuid]" ) {
+	BENCHMARK( "Random::UUID" ) {
+		return Random::UUID();
 	};
 }
 #endif
