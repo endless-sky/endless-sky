@@ -84,6 +84,7 @@ void PlayerInfo::New()
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		ships.back()->NewUUID();
 	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
@@ -172,6 +173,7 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->SetIsSpecial();
 			ships.back()->FinishLoading(false);
 			ships.back()->SetIsYours();
+			ships.back()->EnsureUUID();
 		}
 		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
 			groups[ships.back().get()] = child.Value(1);
@@ -201,6 +203,7 @@ void PlayerInfo::Load(const string &path)
 		{
 			missions.emplace_back(child);
 			missions.back().EnsureUUID();
+			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
 		{
@@ -873,6 +876,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		ships.back()->NewUUID();
 		
 		accounts.AddCredits(-cost);
 		flagship.reset();

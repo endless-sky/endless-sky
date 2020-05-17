@@ -574,6 +574,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
+		ship->NewUUID();
 		
 		placed.push_back(ship);
 	}

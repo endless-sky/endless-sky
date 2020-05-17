@@ -225,7 +225,10 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
 		else if(child.Token(0) == "npc")
+		{
 			npcs.emplace_back(child);
+			npcs.back().EnsureUUID();
+		}
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -1127,6 +1130,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	
 	// Generate the substitutions map.
 	map<string, string> subs;
+	subs["<uuid>"] = result.uuid;
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
