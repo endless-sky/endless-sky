@@ -41,7 +41,7 @@ public:
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);
 	// Set variables in a replacement list. The second argument is pairs of the form (varname,string)
 	// The string will be expanded via Replace() to put the value "<varname>" in the target map/
-	static void MergeReplacements(std::map<std::string,std::string> &target, const std::vector<std::pair<std::string, std::string>> &source);
+	static void MergeReplacements(std::map<std::string, std::string> &target, const std::vector<std::pair<std::string, std::string>> &source);
 	// Replace all occurrences of "target" with "replacement" in-place.
 	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
 	
