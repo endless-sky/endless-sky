@@ -2517,31 +2517,6 @@ void PlayerInfo::StepMissions(UI *ui)
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}
-	// One mission's actions may influence another mission, so loop through
-	// to see if any mission is now completed or failed due to a change
-	// that happened in earlier passes.  For safety's sake, we limit the
-	// number of passes to 30.
-	bool modifiedMissions=true;
-	while(modifiedMissions)
-	{
-		modifiedMissions=false;
-		mit = missions.begin();
-		while(mit != missions.end())
-		{
-			Mission &mission = *mit;
-			++mit;
-			
-			if(mission.HasFailed(*this)) {
-				RemoveMission(Mission::FAIL, mission, ui);
-				modifiedMissions=true;
-			}
-			else if(mission.CanComplete(*this))
-			{
-				RemoveMission(Mission::COMPLETE, mission, ui);
-				modifiedMissions=true;
-			}
-		}
-	}
 	
 	// Search for any missions that have failed but for which we are still
 	// holding on to some cargo.
