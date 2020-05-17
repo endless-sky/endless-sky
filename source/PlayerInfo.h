@@ -164,7 +164,7 @@ public:
 	void ClearActiveBoardingMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
-	// show that message.  Returns true if such a mission was found, otherwise false
+	// show that message.
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
 	// Check missions to find one that can be completed or failed.
 	// If one is found, complete or fail that mission and return true.
