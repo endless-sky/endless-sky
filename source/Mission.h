@@ -24,7 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <set>
 #include <string>
-#include <utility>
+#include <tuple>
 #include <vector>
 
 class DataNode;
@@ -223,7 +223,7 @@ private:
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
 	// String substitution requests read in by Load()
-	std::vector<std::pair<std::string, std::string>> textSubstitutions;
+	std::vector<std::tuple<std::string, const Phrase *, std::string>> textSubstitutions;
 };
 
 
