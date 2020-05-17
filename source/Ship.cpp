@@ -749,6 +749,16 @@ void Ship::FinishLoading(bool isNewInstance)
 
 
 
+// Finishing loading the cargo requires the mission list.
+// This is only needed for the player's ships since the
+// NPCs should not have mission cargo.
+void Ship::FinishLoadingCargo(const PlayerInfo &player)
+{
+	cargo.FinishLoading(player.Missions());
+}
+
+
+
 // Check if this ship (model) and its outfits have been defined.
 bool Ship::IsValid() const
 {

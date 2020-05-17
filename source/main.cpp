@@ -320,7 +320,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
+	{
+		player.EnsureUUIDs();
 		player.Save();
+	}
 }
 
 

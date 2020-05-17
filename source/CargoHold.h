@@ -13,7 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CARGO_HOLD_H_
 #define CARGO_HOLD_H_
 
+#include "Mission.h"
+
 #include <cstdint>
+#include <list>
 #include <map>
 #include <string>
 
@@ -38,6 +41,7 @@ public:
 	// Load the cargo manifest from a DataFile. This must be done after the
 	// GameData is loaded, so that the sizes of any outfits are known.
 	void Load(const DataNode &node);
+	void FinishLoading(const std::list<Mission> &missions);
 	// Save the cargo manifest to a file.
 	void Save(DataWriter &out) const;
 	
@@ -115,6 +119,8 @@ private:
 	std::map<const Outfit *, int> outfits;
 	std::map<const Mission *, int> missionCargo;
 	std::map<const Mission *, int> passengers;
+	std::map<std::string, int> loadedMissionCargo;
+	std::map<std::string, int> loadedPassengers;
 };
 
 

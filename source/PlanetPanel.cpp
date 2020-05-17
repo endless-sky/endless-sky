@@ -343,6 +343,7 @@ void PlanetPanel::TakeOffIfReady()
 
 void PlanetPanel::TakeOff()
 {
+	player.EnsureUUIDs();
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{

@@ -510,6 +510,14 @@ bool Mission::IsMinor() const
 
 
 
+void Mission::EnsureUUID()
+{
+	if(uuid.empty())
+		uuid = Random::UUID();
+}
+
+
+
 bool Mission::IsAtLocation(Location location) const
 {
 	return (this->location == location);

@@ -79,6 +79,9 @@ public:
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
 	
+	// Generate a UUID if none is present.
+	void EnsureUUID();
+	
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
 	bool IsAtLocation(Location location) const;

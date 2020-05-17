@@ -125,6 +125,8 @@ public:
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
+	// Finishing loading the cargo has to happen in a third pass for player's ships.
+	void FinishLoadingCargo(const PlayerInfo &player);
 	// Check that this ship model and all its outfits have been loaded.
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
