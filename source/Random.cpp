@@ -27,6 +27,8 @@ namespace {
 	mt19937_64 gen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
+	uniform_real_distribution<> zeroToFifteen(0, 15);
+	uniform_real_distribution<> eightToEleven(8, 11);
 #else
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
