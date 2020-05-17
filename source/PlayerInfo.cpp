@@ -1554,11 +1554,11 @@ void PlayerInfo::ClearActiveBoardingMission()
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
-bool PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
-		return false;
+		return;
 	
 	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
@@ -1567,10 +1567,9 @@ bool PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			if(!message.empty())
 			{
 				ui->Push(new Dialog(message));
-				return true;
+				return;
 			}
 		}
-	return false;
 }
 
 
@@ -2523,7 +2522,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	// that happened in earlier passes.  For safety's sake, we limit the
 	// number of passes to 30.
 	bool modifiedMissions=true;
-	for(int i=0;i<30 && modifiedMissions;i++)
+	while(modifiedMissions)
 	{
 		modifiedMissions=false;
 		mit = missions.begin();
