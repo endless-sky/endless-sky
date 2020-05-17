@@ -214,6 +214,8 @@ private:
 	// NPCs:
 	std::list<NPC> npcs;
 	
+	std::vector<std::tuple<std::string, const Phrase *, std::string>> textSubstitutions;
+	
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
 	// "on enter" actions may name a specific system, or rely on matching a
@@ -222,8 +224,6 @@ private:
 	std::list<MissionAction> genericOnEnter;
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
-	// String substitution requests read in by Load()
-	std::vector<std::tuple<std::string, const Phrase *, std::string>> textSubstitutions;
 };
 
 
