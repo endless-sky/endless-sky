@@ -68,7 +68,7 @@ public:
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
 	
-	// For backward-compatibility to old saves, generate a UUID if none is present
+	// For backward-compatibility to old saves, generate a UUID if none is present.
 	void EnsureUUID();
 	
 	// Find out where this mission is offered.

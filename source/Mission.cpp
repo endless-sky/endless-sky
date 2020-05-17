@@ -432,7 +432,7 @@ bool Mission::IsMinor() const
 
 void Mission::EnsureUUID()
 {
-	if(uuid.size() < 1)
+	if(uuid.empty())
 		uuid = Random::UUID();
 }
 
@@ -1130,7 +1130,6 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	
 	// Generate the substitutions map.
 	map<string, string> subs;
-	subs["<uuid>"] = result.uuid;
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
