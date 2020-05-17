@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 
 #include <algorithm>
-#include <array>
 
 using namespace std;
 
@@ -332,29 +331,13 @@ double Weapon::TotalDamage(int index) const
 {
 	if(!calculatedDamage)
 	{
-		// To make infinite submunitions work, we need to break
-		// the infinite recursion. Do this by remembering up to
-		// 10 submunition instances, which should be enough for now.
-		static array<const Weapon *, 10> instancesSeen;
-		static size_t currentIndex;
-
-		instancesSeen[currentIndex++] = this;
-
+		calculatedDamage = true;
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
 			for(const auto &it : submunitions)
-			{
-				if(find(instancesSeen.begin(), instancesSeen.end(), it.first)
-						!= instancesSeen.end())
-					break;
 				damage[i] += it.first->TotalDamage(i) * it.second;
-			}
 			doesDamage |= (damage[i] > 0.);
 		}
-		
-		calculatedDamage = true;
-		instancesSeen.fill(nullptr);
-		currentIndex = 0;
 	}
 	return damage[index];
 }
