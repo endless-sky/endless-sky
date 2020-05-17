@@ -971,8 +971,6 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	{
 		const Phrase *phrase = std::get<1>(it);
 		missionSubs.emplace_back(std::get<0>(it), phrase ? phrase->Get() : std::get<2>(it));
-		else
-			missionSubs.emplace_back(std::get<0>(it), std::get<2>(it));
 	}
 	
 	// If anything goes wrong below, this mission should not be offered.
