@@ -470,7 +470,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const vector<pair<string,string>
 	if(!result.ships.empty())
 	{
 		subs["<npc>"] = result.ships.front()->Name();
-		Format::MergeReplacements(subs,missionSubs);
+		Format::MergeReplacements(subs, missionSubs);
 	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
