@@ -240,11 +240,11 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			{
 				if(grand.Size() < 2)
 				{
-					grand.PrintTrace("Skipping incomplete debt attribute \""+grand.Token(0)+"\":");
+					grand.PrintTrace("Skipping incomplete debt attribute:");
 					continue;
 				}
 				if(grand.Size() > 2)
-					grand.PrintTrace("Debt attributes must have 1 value (\""+grand.Token(0)+"\"):");
+					grand.PrintTrace("Debt attributes must have 1 value:");
 				if(grand.Token(0) == "interest rate")
 				{
 					debtInterest = grand.Value(1) / 100.0;
@@ -270,10 +270,10 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 					else if(grand.Token(1) == "fine")
 						debtType = "fine";
 					else
-						grand.PrintTrace("Skipping unrecognized debt type \""+grand.Token(1)+"\":");
+						grand.PrintTrace("Skipping unrecognized debt type:");
 				}
 				else
-					grand.PrintTrace("Skipping unrecognized debt attribute \""+grand.Token(0)+"\":");
+					grand.PrintTrace("Skipping unrecognized debt attribute:");
 			}
 		}
 		else if(key == "fail")
