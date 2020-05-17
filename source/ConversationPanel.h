@@ -39,7 +39,7 @@ class System;
 // the panel closes, to report the outcome of the conversation.
 class ConversationPanel : public Panel {
 public:
-	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
+	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr, int resumeIndex = -1, bool updateResumeIndex = false);
 	
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -58,7 +58,7 @@ protected:
 private:
 	// Go to the given conversation node. If a choice index is given, include
 	// the text of that choice in the conversation history.
-	void Goto(int index, int choice = -1);
+	void Goto(int index, int choice = -1, bool resuming = false);
 	// Exit this panel and do whatever needs to happen next, which includes
 	// possibly activating a callback function and, if docked with an NPC,
 	// destroying it or showing the BoardingPanel (if it is hostile).

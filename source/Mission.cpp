@@ -71,6 +71,27 @@ namespace {
 		if(node.HasChildren())
 			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
 	}
+	
+	const map<string, Trigger> mapNameToTrigger = {
+		{"complete", COMPLETE},
+		{"offer", OFFER},
+		{"accept", ACCEPT},
+		{"decline", DECLINE},
+		{"fail", FAIL},
+		{"defer", DEFER},
+		{"visit", VISIT},
+		{"stopover", STOPOVER}
+	};
+	const map<string, Trigger> mapTriggerToName = {
+		{COMPLETE, "complete"},
+		{OFFER, "offer"},
+		{ACCEPT, "accept"},
+		{DECLINE, "decline"},
+		{FAIL, "fail"},
+		{DEFER, "defer"},
+		{VISIT, "visit"},
+		{STOPOVER, "stopover"}
+	};
 }
 
 
@@ -243,16 +264,6 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
-			static const map<string, Trigger> trigger = {
-				{"complete", COMPLETE},
-				{"offer", OFFER},
-				{"accept", ACCEPT},
-				{"decline", DECLINE},
-				{"fail", FAIL},
-				{"defer", DEFER},
-				{"visit", VISIT},
-				{"stopover", STOPOVER}
-			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
 				actions[it->second].Load(child, name);
@@ -802,7 +813,7 @@ bool Mission::IsUnique() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip, int resumeIndex)
 {
 	if(trigger == STOPOVER)
 	{
@@ -829,25 +840,27 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
-	if(trigger == ACCEPT)
-	{
-		++player.Conditions()[name + ": offered"];
-		++player.Conditions()[name + ": active"];
-	}
-	else if(trigger == DECLINE)
-	{
-		++player.Conditions()[name + ": offered"];
-		++player.Conditions()[name + ": declined"];
-	}
-	else if(trigger == FAIL)
-	{
-		--player.Conditions()[name + ": active"];
-		++player.Conditions()[name + ": failed"];
-	}
-	else if(trigger == COMPLETE)
-	{
-		--player.Conditions()[name + ": active"];
-		++player.Conditions()[name + ": done"];
+	if(resumeIndex >= 0)
+		if(trigger == ACCEPT)
+		{
+			++player.Conditions()[name + ": offered"];
+			++player.Conditions()[name + ": active"];
+		}
+		else if(trigger == DECLINE)
+		{
+			++player.Conditions()[name + ": offered"];
+			++player.Conditions()[name + ": declined"];
+		}
+		else if(trigger == FAIL)
+		{
+			--player.Conditions()[name + ": active"];
+			++player.Conditions()[name + ": failed"];
+		}
+		else if(trigger == COMPLETE)
+		{
+			--player.Conditions()[name + ": active"];
+			++player.Conditions()[name + ": done"];
+		}
 	}
 	
 	// "Jobs" should never show dialogs when offered, nor should they call the
@@ -859,11 +872,45 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
+	{
+		if(ui)
+		{
+			EnsureUUID();
+			player.SetResumeUI(resumeIndex, uuid, NameOfTrigger(trigger));
+		}
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique(), resumeIndex);
+	}
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
 	return true;
+}
+
+
+
+const string &Mission::NameOfTrigger(Trigger trigger)
+{
+	auto it = mapTriggerToName.find(name);
+	if(it == mapTriggerToName.end())
+		return INVALID;
+	return it.second;
+}
+
+
+
+Trigger Mission::TriggerForName(const string &name)
+{
+	auto it = mapNameToTrigger.find(name);
+	if(it == mapNameToTrigger.end())
+		return INVALID;
+	return it.second;
+}
+
+
+
+bool Mission::IsValidTriggerName(const std::string &name)
+{
+	return TriggerForName(name) != INVALID;
 }
 
 

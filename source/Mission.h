@@ -105,7 +105,7 @@ public:
 	// check for whether you can offer a mission does not take available space
 	// into account, so before actually offering a mission you should also check
 	// if the player has enough space.
-	bool CanOffer(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	bool CanOffer(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr, int resumeIndex = -1) const;
 	bool HasSpace(const PlayerInfo &player) const;
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
@@ -131,8 +131,11 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER};
+	enum Trigger {INVALID = -1, COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
+	static const std::string &NameOfTrigger(Trigger trigger);
+	static Trigger TriggerForName(const std::string &name);
+	static bool IsValidTriggerName(const std::string &name);
 	
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.

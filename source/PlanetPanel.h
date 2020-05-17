@@ -36,6 +36,7 @@ public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
 	
 	virtual void Step() override;
+	virtual bool ConsiderResumingAI();
 	virtual void Draw() override;
 	
 	
@@ -65,6 +66,8 @@ private:
 	Panel *selectedPanel = nullptr;
 	
 	WrappedText text;
+	
+	bool haveConsideredResumingUI = false;
 };
 
 

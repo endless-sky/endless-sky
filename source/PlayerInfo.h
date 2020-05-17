@@ -177,6 +177,9 @@ public:
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
+	Mission *MissionForUUID(const std::string &uuid, bool checkAvailableJobs = true, bool checkAvailableMissions = true, bool checkMissions = true);
+	const Mission *MissionForUUID(const std::string &uuid, bool checkAvailableJobs = true, bool checkAvailableMissions = true, bool checkMissions = true) const;
+	
 	// Access the "condition" flags for this player.
 	int64_t GetCondition(const std::string &name) const;
 	std::map<std::string, int64_t> &Conditions();
@@ -270,6 +273,23 @@ private:
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
 	
+	// Store information about a conversation or dialog related to a mission trigger
+	// so it can be resumed after loading a game.
+	void ClearResumeUIMisson();
+	void SetResumeUIMission(int resumeIndex, const std::string &missionUUID, const std::string &missionTrigger);
+	void SetResumeUIIndex(int resumeIndex);
+	int ResumeUIIndex() const;
+	const std::string &ResumeUIMissionUUID() const;
+	const std::string &ResumeUITrigger() const;
+	
+	// Store the name of the panel to restore after loading the game.
+	void ClearResumeUIPanel();
+	void SetResumeUIPanel(const std::string &panelName);
+	const std::string &ResumeUIPanel() const;
+	
+	// Clear all information about resuming the UI.
+	void ClearResumeUI();
+	
 	
 private:
 	std::string firstName;
@@ -341,6 +361,11 @@ private:
 	
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
+	
+	int resumeUIIndex = -1;
+	std::string resumeUIMissionUUID = "";
+	std::string resumeUITrigger = "";
+	std::string resumeUIPanel = "";
 };
 
 

@@ -129,6 +129,20 @@ void PlayerInfo::Load(const string &path)
 			firstName = child.Token(1);
 			lastName = child.Token(2);
 		}
+		else if(child.Token(0) == "resume ui")
+		{
+			for(const auto &grand : child)
+				if(grand.Size() < 2)
+					continue;
+				else if(grand.Token(0) == "panel")
+					resumeUIPanel = grand.Token(1);
+				else if(grand.Token(0) == "mission uuid")
+					resumeUIMissionUUID = grand.Token(1);
+				else if(grand.Token(0) == "mission trigger")
+					resumeUITrigger = grand.Token(1)
+				else if(grand.Token(0) == "conversation index" && grand.IsNumber(1))
+					resumeUIIndex = grand.Value(1);
+		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
@@ -1598,6 +1612,8 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 // conversation ended.
 void PlayerInfo::MissionCallback(int response)
 {
+	ClearResumeUI();
+	
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(missionList.empty())
 		return;
@@ -1651,6 +1667,7 @@ void PlayerInfo::MissionCallback(int response)
 // planet without requiring a mission to offer.
 void PlayerInfo::BasicCallback(int response)
 {
+	ClearResumeUI();
 	// If landed, this conversation may require the player to immediately depart.
 	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
@@ -1711,6 +1728,44 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
+}
+
+
+
+Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions)
+{
+	if(checkAvailableJobs)
+		for(auto it : availableJobs)
+			if(it->uuid == uuid)
+				return *it;
+	if(checkAvailableMissions)
+		for(auto it : availableMissions)
+			if(it->uuid == uuid)
+				return *it;
+	if(checkMissions)
+		for(auto it : missions)
+			if(it->uuid == uuid)
+				return *it;
+	return nullptr;
+}
+
+
+
+const Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions) const
+{
+	if(checkAvailableJobs)
+		for(auto it : availableJobs)
+			if(it->uuid == uuid)
+				return *it;
+	if(checkAvailableMissions)
+		for(auto it : availableMissions)
+			if(it->uuid == uuid)
+				return *it;
+	if(checkMissions)
+		for(auto it : missions)
+			if(it->uuid == uuid)
+				return *it;
+	return nullptr;
 }
 
 
@@ -2566,6 +2621,7 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
+	out.Write("resume ui");
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(system)
 		out.Write("system", system->Name());
@@ -2581,6 +2637,16 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("travel", system->Name());
 	if(travelDestination)
 		out.Write("travel destination", travelDestination->TrueName());
+	
+	// Save information about the current UI state.
+	out.BeginChild();
+	{
+		out.Write("panel", resumeUIPanel);
+		out.Write("mission uuid", resumeUIMissionUUID);
+		out.Write("mission trigger", resumeUITrigger);
+		out.Write("conversation index", resumeUIIndex);
+	}
+	out.EndChild();
 	
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
@@ -2839,4 +2905,79 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 bool PlayerInfo::CanBeSaved() const
 {
 	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
+}
+
+
+
+void PlayerInfo::ClearResumeUIMission()
+{
+	resumeUIIndex = -1;
+	resumeUIMission = "";
+	resumeUITrigger = "";
+}
+
+
+
+void PlayerInfo::SetResumeUIMisson(int resumeIndex, const std::string &missionUUID, const std::string &missionTrigger)
+{
+	resumeUIIndex = resumeIndex;
+	resumeUIMission = missionUUID;
+	resumeUITrigger = missionTrigger;
+}
+
+
+
+void PlayerInfo::SetResumeUIIndex(int resumeIndex)
+{
+	resumeUIIndex = resumeIndex;
+}
+
+
+
+int PlayerInfo::ResumeUIIndex() const
+{
+	return resumeUIIndex;
+}
+
+
+
+const std::string &PlayerInfo::ResumeUIMissionUUID() const
+{
+	return resumeUIMission;
+}
+
+
+
+const std::string &PlayerInfo::ResumeUITrigger() const
+{
+	return resumeUITrigger;
+}
+
+
+
+void PlayerInfo::ClearResumeUIPanel()
+{
+	resumeUIPanel = "";
+}
+
+
+
+void PlayerInfo::SetResumeUIPanel(const std::string &panelName)
+{
+	resumeUIPanel = panelName;
+}
+
+
+
+const std::string &PlayerInfo::ResumeUIPanel() const
+{
+	return resumeUIPanel;
+}
+	
+void ClearResumeUI()
+{
+	resumeUIIndex = -1;
+	resumeUIMissionUUID = "";
+	resumeUITrigger = "";
+	resumeUIPanel = "";
 }

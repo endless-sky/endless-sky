@@ -55,7 +55,7 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship, int resumeIndex, bool updateResumeIndex)
 	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
@@ -70,8 +70,11 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
 	
-	// Begin at the start of the conversation.
-	Goto(0);
+	// Begin at the requested index, or none is available, at the start of the conversation.
+	if(resumeIndex >= 0)
+		Goto(resumeIndex, -1, true);
+	else
+		Goto(0);
 }
 
 
@@ -299,7 +302,7 @@ bool ConversationPanel::Scroll(double dx, double dy)
 
 
 // The player just selected the given choice.
-void ConversationPanel::Goto(int index, int choice)
+void ConversationPanel::Goto(int index, int choice, bool resuming)
 {
 	if(index)
 	{
@@ -332,6 +335,8 @@ void ConversationPanel::Goto(int index, int choice)
 		}
 		else if(conversation.IsApply(node))
 		{
+			if(resuming)
+				continue;
 			// Apply nodes alter the player's condition variables but do not
 			// display any conversation text of their own.
 			player.SetReputationConditions();

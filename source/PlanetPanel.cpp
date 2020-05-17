@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "Mission.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
@@ -36,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -74,9 +76,18 @@ void PlanetPanel::Step()
 		return;
 	}
 	
+	if(!haveConsideredResumingUI && ConsiderResumingUI())
+		return;
+	
+	if(GetUI()->IsTop(this))
+		player.SetResumeUIPanel("Planet");
+	
+	// The reason why IsTop(bank.get()) is here:
 	// If the player starts a new game, exits the shipyard without buying
 	// anything, clicks to the bank, then returns to the shipyard and buys a
 	// ship, make sure they are shown an intro mission.
+	//
+	// However, this "if" block handles all other per-step mission checks.
 	if(GetUI()->IsTop(this) || GetUI()->IsTop(bank.get()))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
@@ -85,6 +96,101 @@ void PlanetPanel::Step()
 		else
 			player.HandleBlockedMissions(Mission::LANDING, GetUI());
 	}
+}
+
+
+
+bool PlanetPanel::ConsiderResumingUI()
+{
+	cerr<<"consider resuming"<<endl;
+	haveConsideredResumingUI = true;
+	string resumePanel = player.ResumeUIPanel();
+	
+	if(resumePanel.empty() || resumePanel == "Planet")
+	{
+		// We're already in the correct panel
+	}
+	else if(resumePanel == "Trading")
+	{
+		if(hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
+		{
+			selectedPanel = trading.get();
+			GetUI()->Push(trading);
+		}
+	}
+	else if(resumePanel == "Bank")
+	{
+		if(hasAccess && planet.IsInhabited())
+		{
+			selectedPanel = bank.get();
+			GetUI()->Push(bank);
+		}
+	}
+	else if(resumePanel == "Spaceport")
+	{
+		if(hasAccess && flagship && planet.HasSpaceport())
+		{
+			selectedPanel = spaceport.get();
+			spaceport->UpdateNews();
+			GetUI()->Push(spaceport);
+		}
+	}
+	else if(resumePanel == "Shipyard")
+	{
+		if(hasAccess && planet.HasShipyard())
+			GetUI()->Push(new ShipyardPanel(player));
+	}
+	else if(resumePanel == "Outfitter")
+	{
+		if(hasAccess && planet.HasOutfitter())
+			for(const auto &it : player.Ships())
+				if(it->GetSystem() == &system && !it->IsDisabled())
+				{
+					GetUI()->Push(new OutfitterPanel(player));
+					break;
+				}
+	}
+	else if(resumePanel == "Jobs")
+	{
+		if(hasAccess && flagship && planet.IsInhabited())
+			GetUI()->Push(new MissionPanel(player));
+	}
+	else if(resumePanel == "Hiring")
+	{
+		if(hasAccess && flagship && planet.IsInhabited())
+		{
+			selectedPanel = hiring.get();
+			GetUI()->Push(hiring);
+		}
+	}
+	else if(resumePanel == "Map")
+		GetUI()->Push(new MapDetailPanel(player));
+	else if(resumePanel == "Info")
+		GetUI()->Push(new PlayerInfoPanel(player));
+	else
+		cerr<<"invalid panel "<<resumePanel<<endl;
+	
+	string missionUUID = player.ResumeUIMissionUUID();
+	string triggerName = player.ResumeUITrigger();
+	int resumeUIIndex = player.ResumeUIIndex();
+	
+	if(resumeUIIndex < 0 || missionUUID.empty() || !Mission::IsValidTriggerName(triggerName))
+	{
+		cerr<<"mission resume not requested"<<endl;
+		return false;
+	}
+	
+	Mission::Trigger trigger = Mission::TriggerForName(triggerName);
+	Mission *mission = player.MissionForUUID(missionUUID, true, true, false);
+	if(!mission)
+	{
+		cerr<<"no mission to resume"<<endl;
+		return false;
+	{
+	
+	cerr<<"resume mission"<<endl;
+	mission->Do(trigger, player, GetUI(), nullptr, resumeUIIndex);
+	return true;
 }
 
 
@@ -148,20 +254,24 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		requestedLaunch = true;
 	else if(key == 'l')
 	{
+		player.SetResumeUIPanel("Planet");
 		selectedPanel = nullptr;
 	}
 	else if(key == 't' && hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
 	{
+		player.SetResumeUIPanel("Trading");
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
 	else if(key == 'b' && hasAccess && planet.IsInhabited())
 	{
+		player.SetResumeUIPanel("Bank");
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
 	else if(key == 'p' && hasAccess && flagship && planet.HasSpaceport())
 	{
+		player.SetResumeUIPanel("Spaceport");
 		selectedPanel = spaceport.get();
 		if(isNewPress)
 			spaceport->UpdateNews();
@@ -169,11 +279,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 's' && hasAccess && planet.HasShipyard())
 	{
+		player.SetResumeUIPanel("Shipyard");
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
 	{
+		player.SetResumeUIPanel("Outfitter");
 		for(const auto &it : player.Ships())
 			if(it->GetSystem() == &system && !it->IsDisabled())
 			{
@@ -183,21 +295,25 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'j' && hasAccess && flagship && planet.IsInhabited())
 	{
+		player.SetResumeUIPanel("Jobs");
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
 	else if(key == 'h' && hasAccess && flagship && planet.IsInhabited())
 	{
+		player.SetResumeUIPanel("Hiring");
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
 	}
 	else if(command.Has(Command::MAP))
 	{
+		player.SetResumeUIPanel("Map");
 		GetUI()->Push(new MapDetailPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::INFO))
 	{
+		player.SetResumeUIPanel("Info");
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}

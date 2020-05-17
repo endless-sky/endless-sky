@@ -401,20 +401,21 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique, int resumeIndex) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation.IsEmpty() && ui)
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, conversation, destination, ship);
+		ConversationPanel *panel = new ConversationPanel(player, conversation, destination, ship, resumeIndex, true);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
 		// conversations.
 		else
 			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
+		player.SetResumeUIIndex(0);
 		ui->Push(panel);
 	}
 	else if(!dialogText.empty() && ui)
@@ -432,12 +433,21 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
 		if(isOffer)
+		{
+			player.SetResumeUIIndex(0);
 			ui->Push(new Dialog(text, player, destination));
+		}
 		else if(isUnique || trigger != "visit")
+		{
+			player.ClearResumeUI();
 			ui->Push(new Dialog(text));
+		}
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
+	
+	if(resumeIndex >= 0)
+		return;
 	
 	if(!logText.empty())
 		player.AddLogEntry(logText);

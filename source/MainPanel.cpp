@@ -66,6 +66,9 @@ void MainPanel::Step()
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 	
+	// Make sure we don't save the UI state.
+	player.ClearResumeUI();
+	
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
