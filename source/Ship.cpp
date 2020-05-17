@@ -40,7 +40,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -610,6 +609,7 @@ void Ship::FinishLoadingCargo(const PlayerInfo &player)
 {
 	cargo.FinishLoading(player.Missions());
 }
+
 
 
 // Save a full description of this ship, as currently configured.
