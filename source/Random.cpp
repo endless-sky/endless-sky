@@ -27,10 +27,14 @@ namespace {
 	mt19937_64 gen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
+	uniform_real_distribution<> zeroToFifteen(0, 15);
+	uniform_real_distribution<> eightToEleven(8, 11);
 #else
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
+	thread_local uniform_real_distribution<> zeroToFifteen(0, 15);
+	thread_local uniform_real_distribution<> eightToEleven(8, 11);
 #endif
 }
 
@@ -111,4 +115,37 @@ double Random::Normal()
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return normal(gen);
+}
+
+
+
+// Get a random UUID
+std::string Random::UUID()
+{
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	char uuid[37];
+	static const char * const hex="0123456789abcdef";
+	int i=0;
+	
+	for(int j = 0; j < 8; j++)
+		uuid[i++] = hex[static_cast<int>(zeroToFifteen(gen))];
+	uuid[i++] = '-';
+	for(int j = 0; j < 4; j++)
+		uuid[i++] = hex[static_cast<int>(zeroToFifteen(gen))];
+	uuid[i++] = '-';
+	uuid[i++] = '4';
+	for(int j = 0; j < 3; j++)
+		uuid[i++] = hex[static_cast<int>(zeroToFifteen(gen))];
+	uuid[i++] = '-';
+	uuid[i++] = hex[static_cast<int>(eightToEleven(gen))];
+	for(int j = 0; j < 3; j++)
+		uuid[i++] = hex[static_cast<int>(zeroToFifteen(gen))];
+	uuid[i++] = '-';
+	for(int j = 0; j < 12; j++)
+		uuid[i++] = hex[static_cast<int>(zeroToFifteen(gen))];
+	uuid[i++] = '\0';
+	
+	return uuid;
 }

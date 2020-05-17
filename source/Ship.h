@@ -127,6 +127,10 @@ public:
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	
+	const std::string &UUID() const;
+	void EnsureUUID();
+	void NewUUID();
+	
 	// Get the name of this particular ship.
 	const std::string &Name() const;
 	
@@ -417,6 +421,8 @@ private:
 	int swizzle;
 	const Government *government;
 	*/
+	
+	std::string uuid;
 	
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;

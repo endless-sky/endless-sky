@@ -54,6 +54,7 @@ public:
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
 	
 	// Basic mission information.
+	const std::string &UUID() const;
 	const std::string &Name() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
@@ -66,6 +67,9 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	
+	// For backward-compatibility to old saves, generate a UUID if none is present
+	void EnsureUUID();
 	
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
@@ -166,6 +170,8 @@ private:
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
+	
+	std::string uuid;
 	
 	bool hasFailed = false;
 	bool isVisible = true;
