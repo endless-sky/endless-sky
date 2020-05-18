@@ -1623,7 +1623,7 @@ bool PlayerInfo::RecheckMissions(UI *ui)
 			RemoveMission(Mission::FAIL, *it, ui);
 			return true;
 		}
-		if(it->CanComplete(*this))
+		else if(it->CanComplete(*this))
 		{
 			RemoveMission(Mission::COMPLETE, *it, ui);
 			return true;
