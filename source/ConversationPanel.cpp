@@ -308,6 +308,8 @@ bool ConversationPanel::Scroll(double dx, double dy)
 // The player just selected the given choice.
 void ConversationPanel::Goto(int index, int choice, bool resuming)
 {
+	if(updateResumeIndex)
+		player.SetResumeUIIndex(index);
 	if(index)
 	{
 		// Add the chosen option to the text.
@@ -339,14 +341,15 @@ void ConversationPanel::Goto(int index, int choice, bool resuming)
 		}
 		else if(conversation.IsApply(node))
 		{
-			if(resuming)
-				continue;
-			// Apply nodes alter the player's condition variables but do not
-			// display any conversation text of their own.
-			player.SetReputationConditions();
-			conversation.Conditions(node).Apply(player.Conditions());
-			// Update any altered government reputations.
-			player.CheckReputationConditions();
+			if(!resuming)
+			{
+				// Apply nodes alter the player's condition variables but do not
+				// display any conversation text of their own.
+				player.SetReputationConditions();
+				conversation.Conditions(node).Apply(player.Conditions());
+				// Update any altered government reputations.
+				player.CheckReputationConditions();
+			}
 		}
 		else
 		{
@@ -364,11 +367,7 @@ void ConversationPanel::Goto(int index, int choice, bool resuming)
 		choices.emplace_back(altered);
 	}
 	this->choice = 0;
-	if(updateResumeIndex)
-	{
-		cerr<<"resume index is now "<<node<<endl;
-		player.SetResumeUIIndex(node);
-	}
+	resuming = false;
 }
 
 
@@ -376,6 +375,11 @@ void ConversationPanel::Goto(int index, int choice, bool resuming)
 // Exit this panel and do whatever needs to happen next.
 void ConversationPanel::Exit()
 {
+	if(updateResumeIndex)
+	{
+		cerr<<"clear resume index in conversation panel exit"<<endl;
+		player.ClearResumeUIMission();
+	}
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
