@@ -67,7 +67,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
-	if(!haveConsideredResumingUI && ConsiderResumingUI())
+	if(!player.HasResumed() && ConsiderResumingUI())
 		return;
 	
 	// If the previous mission callback resulted in a "launch", take off now.
@@ -101,7 +101,7 @@ void PlanetPanel::Step()
 
 bool PlanetPanel::ConsiderResumingUI()
 {
-	haveConsideredResumingUI = true;
+	player.SetHasResumed(true);
 	string resumePanel = player.ResumeUIPanel();
 	
 	bool hasAccess = planet.CanUseServices();
@@ -177,7 +177,7 @@ bool PlanetPanel::ConsiderResumingUI()
 		return false;
 	
 	Mission::Trigger trigger = Mission::TriggerForName(triggerName);
-	Mission *mission = player.MissionForUUID(missionUUID);
+	Mission *mission = player.MissionForUUID(missionUUID,true,true,true,true);
 	if(!mission)
 		return false;
 	

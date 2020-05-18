@@ -66,8 +66,6 @@ private:
 	Panel *selectedPanel = nullptr;
 	
 	WrappedText text;
-	
-	bool haveConsideredResumingUI = false;
 };
 
 

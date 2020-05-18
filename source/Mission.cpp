@@ -815,7 +815,7 @@ bool Mission::IsUnique() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip, int resumeIndex)
 {
-	if(trigger == STOPOVER)
+	if(trigger == STOPOVER && resumeIndex < 0)
 	{
 		// If this is not one of this mission's stopover planets, or if it is
 		// not the very last one that must be visited, do nothing.

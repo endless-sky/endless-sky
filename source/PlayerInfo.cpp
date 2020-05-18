@@ -229,6 +229,11 @@ void PlayerInfo::Load(const string &path)
 			availableMissions.emplace_back(child);
 			availableMissions.back().EnsureUUID();
 		}
+		else if(child.Token(0) == "done mission")
+		{
+			doneMissions.emplace_back(child);
+			doneMissions.back().EnsureUUID();
+		}
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
@@ -1759,7 +1764,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 
 
 
-Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions)
+Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions, bool checkDoneMissions)
 {
 	if(checkAvailableJobs)
 		for(auto it = availableJobs.begin() ; it != availableJobs.end() ; it++)
@@ -1771,6 +1776,10 @@ Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs,
 				return &*it;
 	if(checkMissions)
 		for(auto it = missions.begin() ; it != missions.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
+	if(checkDoneMissions)
+		for(auto it = doneMissions.begin() ; it != doneMissions.end() ; it++)
 			if(it->UUID() == uuid)
 				return &*it;
 	return nullptr;
@@ -1778,7 +1787,7 @@ Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs,
 
 
 
-const Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions) const
+const Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions, bool checkDoneMissions) const
 {
 	if(checkAvailableJobs)
 		for(auto it = availableJobs.begin() ; it != availableJobs.end() ; it++)
@@ -1790,6 +1799,10 @@ const Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailabl
 				return &*it;
 	if(checkMissions)
 		for(auto it = missions.begin() ; it != missions.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
+	if(checkDoneMissions)
+		for(auto it = doneMissions.begin() ; it != doneMissions.end() ; it++)
 			if(it->UUID() == uuid)
 				return &*it;
 	return nullptr;
@@ -2744,6 +2757,10 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
+	if(!resumeUIMissionUUID.empty() && !resumeUITrigger.empty() && resumeUIIndex >= 0)
+		for(const Mission &mission : doneMissions)
+			if(mission.UUID() == resumeUIMissionUUID)
+				mission.Save(out, "done mission");
 	
 	// Save any "condition" flags that are set.
 	if(!conditions.empty())
@@ -2993,4 +3010,14 @@ void PlayerInfo::ClearResumeUI()
 	resumeUIMissionUUID = "";
 	resumeUITrigger = "";
 	resumeUIPanel = "";
+}
+	
+bool PlayerInfo::HasResumed() const
+{
+	return hasResumed;
+}
+
+void PlayerInfo::SetHasResumed(bool newHasResumed)
+{
+	hasResumed = newHasResumed;
 }

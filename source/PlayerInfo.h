@@ -181,8 +181,8 @@ public:
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
-	Mission *MissionForUUID(const std::string &uuid, bool checkAvailableJobs = true, bool checkAvailableMissions = true, bool checkMissions = true);
-	const Mission *MissionForUUID(const std::string &uuid, bool checkAvailableJobs = true, bool checkAvailableMissions = true, bool checkMissions = true) const;
+	Mission *MissionForUUID(const std::string &uuid, bool checkAvailableJobs = true, bool checkAvailableMissions = true, bool checkMissions = true, bool checkDoneMissions = false);
+	const Mission *MissionForUUID(const std::string &uuid, bool checkAvailableJobs = true, bool checkAvailableMissions = true, bool checkMissions = true, bool checkDoneMissions = false) const;
 	
 	// Access the "condition" flags for this player.
 	int64_t GetCondition(const std::string &name) const;
@@ -267,6 +267,10 @@ public:
 	
 	// Clear all information about resuming the UI.
 	void ClearResumeUI();
+	
+	// Set/get flag on whether we have finished resuming.
+	bool HasResumed() const;
+	void SetHasResumed(bool hasResumed);
 	
 	
 private:
@@ -366,10 +370,14 @@ private:
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
 	
+	// User interface state so we can load back to the right panel and mission convo or dialog.
 	int resumeUIIndex = -1;
 	std::string resumeUIMissionUUID = "";
 	std::string resumeUITrigger = "";
 	std::string resumeUIPanel = "";
+	
+	// Flag is true once we've either resume the UI state or decided not to.
+	bool hasResumed = false;
 };
 
 

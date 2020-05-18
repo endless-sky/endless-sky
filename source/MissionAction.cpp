@@ -415,7 +415,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		// conversations.
 		else
 			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
-		player.SetResumeUIIndex(0);
+		if(resumeIndex < 0)
+			player.SetResumeUIIndex(0);
 		ui->Push(panel);
 	}
 	else if(!dialogText.empty() && ui)
