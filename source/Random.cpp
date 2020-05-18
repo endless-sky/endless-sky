@@ -122,7 +122,7 @@ double Random::Normal()
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122)
 // which are hexidecimal strings like "2c8ab67c-e7cc-471a-a415-08a63ba52527"
 // and contain 121 bits of random data.
-std::string Random::UUID()
+string Random::UUID()
 {
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
