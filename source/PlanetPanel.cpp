@@ -93,7 +93,7 @@ void PlanetPanel::Step()
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
 			mission->Do(Mission::OFFER, player, GetUI());
-		else
+		else if(!player.RecheckMissions(GetUI()))
 			player.HandleBlockedMissions(Mission::LANDING, GetUI());
 	}
 }
@@ -354,6 +354,10 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
+	// Update the completion and failure status of missions:
+	if(player.RecheckMissions(GetUI()))
+		return;
+
 	// Check whether the player should be warned before taking off.
 	if(player.ShouldLaunch())
 	{

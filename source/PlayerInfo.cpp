@@ -1612,6 +1612,30 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 
+
+// Check if any missions have failed or completed.  Fail or complete
+// the first such mission found.  Return value is true iff such a
+// mission was found.
+bool PlayerInfo::RecheckMissions(UI *ui)
+{
+	for(auto it = missions.begin(); it != missions.end(); ++it)
+	{
+		if(it->HasFailed(*this))
+		{
+			RemoveMission(Mission::FAIL, *it, ui);
+			return true;
+		}
+		if(it->CanComplete(*this))
+		{
+			RemoveMission(Mission::COMPLETE, *it, ui);
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
 // Callback for accepting or declining whatever mission has been offered.
 // Responses which would kill the player are handled before the on offer
 // conversation ended.
@@ -2571,20 +2595,6 @@ void PlayerInfo::StepMissions(UI *ui)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
-	}
-	// One mission's actions may influence another mission, so loop through one
-	// more time to see if any mission is now completed or failed due to a change
-	// that happened in another mission the first time through.
-	mit = missions.begin();
-	while(mit != missions.end())
-	{
-		Mission &mission = *mit;
-		++mit;
-		
-		if(mission.HasFailed(*this))
-			RemoveMission(Mission::FAIL, mission, ui);
-		else if(mission.CanComplete(*this))
-			RemoveMission(Mission::COMPLETE, mission, ui);
 	}
 	
 	// Search for any missions that have failed but for which we are still
