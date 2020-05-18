@@ -2954,14 +2954,14 @@ int PlayerInfo::ResumeUIIndex() const
 
 
 
-const std::string &PlayerInfo::ResumeUIMissionUUID() const
+const string &PlayerInfo::ResumeUIMissionUUID() const
 {
 	return resumeUIMissionUUID;
 }
 
 
 
-const std::string &PlayerInfo::ResumeUITrigger() const
+const string &PlayerInfo::ResumeUITrigger() const
 {
 	return resumeUITrigger;
 }
@@ -2975,14 +2975,14 @@ void PlayerInfo::ClearResumeUIPanel()
 
 
 
-void PlayerInfo::SetResumeUIPanel(const std::string &panelName)
+void PlayerInfo::SetResumeUIPanel(const string &panelName)
 {
 	resumeUIPanel = panelName;
 }
 
 
 
-const std::string &PlayerInfo::ResumeUIPanel() const
+const string &PlayerInfo::ResumeUIPanel() const
 {
 	return resumeUIPanel;
 }

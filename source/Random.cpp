@@ -120,7 +120,7 @@ double Random::Normal()
 
 
 // Get a random UUID
-std::string Random::UUID()
+string Random::UUID()
 {
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);

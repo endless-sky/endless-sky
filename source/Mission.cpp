@@ -910,7 +910,7 @@ Mission::Trigger Mission::TriggerForName(const string &name)
 
 
 
-bool Mission::IsValidTriggerName(const std::string &name)
+bool Mission::IsValidTriggerName(const string &name)
 {
 	return TriggerForName(name) != INVALID;
 }
