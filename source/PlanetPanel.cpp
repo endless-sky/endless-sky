@@ -37,7 +37,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -102,14 +101,11 @@ void PlanetPanel::Step()
 
 bool PlanetPanel::ConsiderResumingUI()
 {
-	cerr<<"consider resuming"<<endl;
 	haveConsideredResumingUI = true;
 	string resumePanel = player.ResumeUIPanel();
 	
 	bool hasAccess = planet.CanUseServices();
 	const Ship *flagship = player.Flagship();
-	
-	cerr<<"resume panel is "<<resumePanel<<endl;
 	
 	if(resumePanel.empty() || resumePanel == "Planet")
 	{
@@ -172,28 +168,19 @@ bool PlanetPanel::ConsiderResumingUI()
 		GetUI()->Push(new MapDetailPanel(player));
 	else if(resumePanel == "Info")
 		GetUI()->Push(new PlayerInfoPanel(player));
-	else
-		cerr<<"invalid panel "<<resumePanel<<endl;
 	
 	string missionUUID = player.ResumeUIMissionUUID();
 	string triggerName = player.ResumeUITrigger();
 	int resumeUIIndex = player.ResumeUIIndex();
 	
 	if(resumeUIIndex < 0 || missionUUID.empty() || !Mission::IsValidTriggerName(triggerName))
-	{
-		cerr<<"mission resume not requested"<<endl;
 		return false;
-	}
 	
 	Mission::Trigger trigger = Mission::TriggerForName(triggerName);
 	Mission *mission = player.MissionForUUID(missionUUID);
 	if(!mission)
-	{
-		cerr<<"no mission to resume"<<endl;
 		return false;
-	}
 	
-	cerr<<"resume mission"<<endl;
 	mission->Do(trigger, player, GetUI(), nullptr, resumeUIIndex);
 	return true;
 }

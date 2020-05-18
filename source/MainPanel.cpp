@@ -45,7 +45,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <sstream>
 #include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -93,10 +92,7 @@ void MainPanel::Step()
 	
 	// Make sure we don't save the UI state.
 	if(isActive)
-	{
-		cerr<<"clear resume ui"<<endl;
 		player.ClearResumeUI();
-	}
 	
 	// Display any relevant help/tutorial messages.
 	const Ship *flagship = player.Flagship();

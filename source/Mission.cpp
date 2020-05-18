@@ -30,7 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cmath>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -816,7 +815,6 @@ bool Mission::IsUnique() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip, int resumeIndex)
 {
-	cerr<<"in Mission::Do, resume index is "<<resumeIndex<<endl;
 	if(trigger == STOPOVER)
 	{
 		// If this is not one of this mission's stopover planets, or if it is

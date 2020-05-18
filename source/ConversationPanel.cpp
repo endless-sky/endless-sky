@@ -39,7 +39,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 
 #include <iterator>
-#include <iostream>
 
 using namespace std;
 
@@ -73,10 +72,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	
 	// Begin at the requested index, or none is available, at the start of the conversation.
 	if(resumeIndex >= 0)
-	{
-		cerr<<"resuming from index "<<resumeIndex<<endl;
 		Goto(resumeIndex, -1, true);
-	}
 	else
 		Goto(0);
 }
@@ -376,10 +372,7 @@ void ConversationPanel::Goto(int index, int choice, bool resuming)
 void ConversationPanel::Exit()
 {
 	if(updateResumeIndex)
-	{
-		cerr<<"clear resume index in conversation panel exit"<<endl;
 		player.ClearResumeUIMission();
-	}
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC

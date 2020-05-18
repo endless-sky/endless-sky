@@ -42,7 +42,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <ctime>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -143,7 +142,6 @@ void PlayerInfo::Load(const string &path)
 					resumeUITrigger = grand.Token(1);
 				else if(grand.Token(0) == "conversation index" && grand.IsNumber(1))
 					resumeUIIndex = grand.Value(1);
-			cerr<<"resume ui read: panel=\""<<resumeUIPanel<<"\" mission uuid = \""<<resumeUIMissionUUID<<"\" trigger=\""<<resumeUITrigger<<"\" index=\""<<resumeUIIndex<<"\""<<endl;
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -2926,7 +2924,6 @@ bool PlayerInfo::CanBeSaved() const
 
 void PlayerInfo::ClearResumeUIMission()
 {
-	cerr<<"clear resume ui mission"<<endl;
 	resumeUIIndex = -1;
 	resumeUIMissionUUID = "";
 	resumeUITrigger = "";
@@ -2992,7 +2989,6 @@ const std::string &PlayerInfo::ResumeUIPanel() const
 	
 void PlayerInfo::ClearResumeUI()
 {
-	cerr<<"clear resume ui"<<endl;
 	resumeUIIndex = -1;
 	resumeUIMissionUUID = "";
 	resumeUITrigger = "";
