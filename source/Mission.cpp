@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cmath>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -72,25 +73,25 @@ namespace {
 			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
 	}
 	
-	const map<string, Trigger> mapNameToTrigger = {
-		{"complete", COMPLETE},
-		{"offer", OFFER},
-		{"accept", ACCEPT},
-		{"decline", DECLINE},
-		{"fail", FAIL},
-		{"defer", DEFER},
-		{"visit", VISIT},
-		{"stopover", STOPOVER}
+	const map<string, Mission::Trigger> mapNameToTrigger = {
+		{"complete", Mission::COMPLETE},
+		{"offer", Mission::OFFER},
+		{"accept", Mission::ACCEPT},
+		{"decline", Mission::DECLINE},
+		{"fail", Mission::FAIL},
+		{"defer", Mission::DEFER},
+		{"visit", Mission::VISIT},
+		{"stopover", Mission::STOPOVER}
 	};
-	const map<string, Trigger> mapTriggerToName = {
-		{COMPLETE, "complete"},
-		{OFFER, "offer"},
-		{ACCEPT, "accept"},
-		{DECLINE, "decline"},
-		{FAIL, "fail"},
-		{DEFER, "defer"},
-		{VISIT, "visit"},
-		{STOPOVER, "stopover"}
+	const map<Mission::Trigger, string> mapTriggerToName = {
+		{Mission::COMPLETE, "complete"},
+		{Mission::OFFER, "offer"},
+		{Mission::ACCEPT, "accept"},
+		{Mission::DECLINE, "decline"},
+		{Mission::FAIL, "fail"},
+		{Mission::DEFER, "defer"},
+		{Mission::VISIT, "visit"},
+		{Mission::STOPOVER, "stopover"}
 	};
 }
 
@@ -264,8 +265,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
-			auto it = trigger.find(child.Token(1));
-			if(it != trigger.end())
+			auto it = mapNameToTrigger.find(child.Token(1));
+			if(it != mapNameToTrigger.end())
 				actions[it->second].Load(child, name);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
@@ -815,6 +816,7 @@ bool Mission::IsUnique() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip, int resumeIndex)
 {
+	cerr<<"in Mission::Do, resume index is "<<resumeIndex<<endl;
 	if(trigger == STOPOVER)
 	{
 		// If this is not one of this mission's stopover planets, or if it is
@@ -840,7 +842,8 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
-	if(resumeIndex >= 0)
+	if(resumeIndex < 0)
+	{
 		if(trigger == ACCEPT)
 		{
 			++player.Conditions()[name + ": offered"];
@@ -876,7 +879,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		if(ui)
 		{
 			EnsureUUID();
-			player.SetResumeUI(resumeIndex, uuid, NameOfTrigger(trigger));
+			player.SetResumeUIMission(resumeIndex, uuid, NameForTrigger(trigger));
 		}
 		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique(), resumeIndex);
 	}
@@ -888,22 +891,23 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 
 
-const string &Mission::NameOfTrigger(Trigger trigger)
+const string &Mission::NameForTrigger(Trigger trigger)
 {
-	auto it = mapTriggerToName.find(name);
+	static const string badTrigger = "";
+	auto it = mapTriggerToName.find(trigger);
 	if(it == mapTriggerToName.end())
-		return INVALID;
-	return it.second;
+		return badTrigger;
+	return it->second;
 }
 
 
 
-Trigger Mission::TriggerForName(const string &name)
+Mission::Trigger Mission::TriggerForName(const string &name)
 {
 	auto it = mapNameToTrigger.find(name);
 	if(it == mapNameToTrigger.end())
 		return INVALID;
-	return it.second;
+	return it->second;
 }
 
 

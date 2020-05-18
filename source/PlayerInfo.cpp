@@ -42,6 +42,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <ctime>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -139,9 +140,10 @@ void PlayerInfo::Load(const string &path)
 				else if(grand.Token(0) == "mission uuid")
 					resumeUIMissionUUID = grand.Token(1);
 				else if(grand.Token(0) == "mission trigger")
-					resumeUITrigger = grand.Token(1)
+					resumeUITrigger = grand.Token(1);
 				else if(grand.Token(0) == "conversation index" && grand.IsNumber(1))
 					resumeUIIndex = grand.Value(1);
+			cerr<<"resume ui read: panel=\""<<resumeUIPanel<<"\" mission uuid = \""<<resumeUIMissionUUID<<"\" trigger=\""<<resumeUITrigger<<"\" index=\""<<resumeUIIndex<<"\""<<endl;
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -1512,7 +1514,10 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 		{
 			cargo.AddMissionCargo(&mission);
 			it->Do(Mission::OFFER, *this);
+			
+			SetResumeUIMission(-1, mission.UUID(), Mission::NameForTrigger(Mission::ACCEPT));
 			it->Do(Mission::ACCEPT, *this, ui);
+			
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
 			break;
@@ -1612,7 +1617,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 // conversation ended.
 void PlayerInfo::MissionCallback(int response)
 {
-	ClearResumeUI();
+	ClearResumeUIMission();
 	
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(missionList.empty())
@@ -1667,7 +1672,7 @@ void PlayerInfo::MissionCallback(int response)
 // planet without requiring a mission to offer.
 void PlayerInfo::BasicCallback(int response)
 {
-	ClearResumeUI();
+	ClearResumeUIMission();
 	// If landed, this conversation may require the player to immediately depart.
 	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
@@ -1735,17 +1740,17 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions)
 {
 	if(checkAvailableJobs)
-		for(auto it : availableJobs)
-			if(it->uuid == uuid)
-				return *it;
+		for(auto it = availableJobs.begin() ; it != availableJobs.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
 	if(checkAvailableMissions)
-		for(auto it : availableMissions)
-			if(it->uuid == uuid)
-				return *it;
+		for(auto it = availableMissions.begin() ; it != availableMissions.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
 	if(checkMissions)
-		for(auto it : missions)
-			if(it->uuid == uuid)
-				return *it;
+		for(auto it = missions.begin() ; it != missions.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
 	return nullptr;
 }
 
@@ -1754,17 +1759,17 @@ Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs,
 const Mission *PlayerInfo::MissionForUUID(const string &uuid, bool checkAvailableJobs, bool checkAvailableMissions, bool checkMissions) const
 {
 	if(checkAvailableJobs)
-		for(auto it : availableJobs)
-			if(it->uuid == uuid)
-				return *it;
+		for(auto it = availableJobs.begin() ; it != availableJobs.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
 	if(checkAvailableMissions)
-		for(auto it : availableMissions)
-			if(it->uuid == uuid)
-				return *it;
+		for(auto it = availableMissions.begin() ; it != availableMissions.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
 	if(checkMissions)
-		for(auto it : missions)
-			if(it->uuid == uuid)
-				return *it;
+		for(auto it = missions.begin() ; it != missions.end() ; it++)
+			if(it->UUID() == uuid)
+				return &*it;
 	return nullptr;
 }
 
@@ -2621,7 +2626,6 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
-	out.Write("resume ui");
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(system)
 		out.Write("system", system->Name());
@@ -2639,6 +2643,7 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("travel destination", travelDestination->TrueName());
 	
 	// Save information about the current UI state.
+	out.Write("resume ui");
 	out.BeginChild();
 	{
 		out.Write("panel", resumeUIPanel);
@@ -2911,17 +2916,18 @@ bool PlayerInfo::CanBeSaved() const
 
 void PlayerInfo::ClearResumeUIMission()
 {
+	cerr<<"clear resume ui mission"<<endl;
 	resumeUIIndex = -1;
-	resumeUIMission = "";
+	resumeUIMissionUUID = "";
 	resumeUITrigger = "";
 }
 
 
 
-void PlayerInfo::SetResumeUIMisson(int resumeIndex, const std::string &missionUUID, const std::string &missionTrigger)
+void PlayerInfo::SetResumeUIMission(int resumeIndex, const string &missionUUID, const string &missionTrigger)
 {
 	resumeUIIndex = resumeIndex;
-	resumeUIMission = missionUUID;
+	resumeUIMissionUUID = missionUUID;
 	resumeUITrigger = missionTrigger;
 }
 
@@ -2943,7 +2949,7 @@ int PlayerInfo::ResumeUIIndex() const
 
 const std::string &PlayerInfo::ResumeUIMissionUUID() const
 {
-	return resumeUIMission;
+	return resumeUIMissionUUID;
 }
 
 
@@ -2974,8 +2980,9 @@ const std::string &PlayerInfo::ResumeUIPanel() const
 	return resumeUIPanel;
 }
 	
-void ClearResumeUI()
+void PlayerInfo::ClearResumeUI()
 {
+	cerr<<"clear resume ui"<<endl;
 	resumeUIIndex = -1;
 	resumeUIMissionUUID = "";
 	resumeUITrigger = "";

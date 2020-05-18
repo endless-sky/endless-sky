@@ -68,6 +68,9 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	if(!haveConsideredResumingUI && ConsiderResumingUI())
+		return;
+	
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
@@ -75,9 +78,6 @@ void PlanetPanel::Step()
 		TakeOffIfReady();
 		return;
 	}
-	
-	if(!haveConsideredResumingUI && ConsiderResumingUI())
-		return;
 	
 	if(GetUI()->IsTop(this))
 		player.SetResumeUIPanel("Planet");
@@ -105,6 +105,11 @@ bool PlanetPanel::ConsiderResumingUI()
 	cerr<<"consider resuming"<<endl;
 	haveConsideredResumingUI = true;
 	string resumePanel = player.ResumeUIPanel();
+	
+	bool hasAccess = planet.CanUseServices();
+	const Ship *flagship = player.Flagship();
+	
+	cerr<<"resume panel is "<<resumePanel<<endl;
 	
 	if(resumePanel.empty() || resumePanel == "Planet")
 	{
@@ -181,12 +186,12 @@ bool PlanetPanel::ConsiderResumingUI()
 	}
 	
 	Mission::Trigger trigger = Mission::TriggerForName(triggerName);
-	Mission *mission = player.MissionForUUID(missionUUID, true, true, false);
+	Mission *mission = player.MissionForUUID(missionUUID);
 	if(!mission)
 	{
 		cerr<<"no mission to resume"<<endl;
 		return false;
-	{
+	}
 	
 	cerr<<"resume mission"<<endl;
 	mission->Do(trigger, player, GetUI(), nullptr, resumeUIIndex);

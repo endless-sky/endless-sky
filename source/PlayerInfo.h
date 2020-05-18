@@ -247,6 +247,23 @@ public:
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 	
+	// Store information about a conversation or dialog related to a mission trigger
+	// so it can be resumed after loading a game.
+	void ClearResumeUIMission();
+	void SetResumeUIMission(int resumeIndex, const std::string &missionUUID, const std::string &missionTrigger);
+	void SetResumeUIIndex(int resumeIndex);
+	int ResumeUIIndex() const;
+	const std::string &ResumeUIMissionUUID() const;
+	const std::string &ResumeUITrigger() const;
+	
+	// Store the name of the panel to restore after loading the game.
+	void ClearResumeUIPanel();
+	void SetResumeUIPanel(const std::string &panelName);
+	const std::string &ResumeUIPanel() const;
+	
+	// Clear all information about resuming the UI.
+	void ClearResumeUI();
+	
 	
 private:
 	// Don't allow anyone else to copy this class, because pointers won't get
@@ -272,23 +289,6 @@ private:
 	
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
-	
-	// Store information about a conversation or dialog related to a mission trigger
-	// so it can be resumed after loading a game.
-	void ClearResumeUIMisson();
-	void SetResumeUIMission(int resumeIndex, const std::string &missionUUID, const std::string &missionTrigger);
-	void SetResumeUIIndex(int resumeIndex);
-	int ResumeUIIndex() const;
-	const std::string &ResumeUIMissionUUID() const;
-	const std::string &ResumeUITrigger() const;
-	
-	// Store the name of the panel to restore after loading the game.
-	void ClearResumeUIPanel();
-	void SetResumeUIPanel(const std::string &panelName);
-	const std::string &ResumeUIPanel() const;
-	
-	// Clear all information about resuming the UI.
-	void ClearResumeUI();
 	
 	
 private:

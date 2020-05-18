@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 
 #include <iterator>
+#include <iostream>
 
 using namespace std;
 
@@ -56,7 +57,7 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship, int resumeIndex, bool updateResumeIndex)
-	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
+	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship), updateResumeIndex(updateResumeIndex)
 {
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
@@ -72,7 +73,10 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	
 	// Begin at the requested index, or none is available, at the start of the conversation.
 	if(resumeIndex >= 0)
+	{
+		cerr<<"resuming from index "<<resumeIndex<<endl;
 		Goto(resumeIndex, -1, true);
+	}
 	else
 		Goto(0);
 }
@@ -360,6 +364,11 @@ void ConversationPanel::Goto(int index, int choice, bool resuming)
 		choices.emplace_back(altered);
 	}
 	this->choice = 0;
+	if(updateResumeIndex)
+	{
+		cerr<<"resume index is now "<<node<<endl;
+		player.SetResumeUIIndex(node);
+	}
 }
 
 

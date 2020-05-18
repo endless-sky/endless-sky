@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstdlib>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -403,6 +404,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique, int resumeIndex) const
 {
+	cerr<<"in MissionAction::Do, resume index is "<<resumeIndex<<endl;
 	bool isOffer = (trigger == "offer");
 	if(!conversation.IsEmpty() && ui)
 	{
@@ -439,7 +441,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		}
 		else if(isUnique || trigger != "visit")
 		{
-			player.ClearResumeUI();
+			player.SetResumeUIIndex(0);
 			ui->Push(new Dialog(text));
 		}
 	}
@@ -447,7 +449,10 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		player.MissionCallback(Conversation::ACCEPT);
 	
 	if(resumeIndex >= 0)
+	{
+		cerr<<"skipping actions because resumeIndex = "<<resumeIndex<<endl;
 		return;
+	}
 	
 	if(!logText.empty())
 		player.AddLogEntry(logText);

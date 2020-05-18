@@ -752,6 +752,7 @@ void MissionPanel::Accept()
 	}
 	
 	++availableIt;
+	player.SetResumeUIPanel("Jobs");
 	player.AcceptJob(toAccept, GetUI());
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;

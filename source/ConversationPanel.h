@@ -129,6 +129,8 @@ private:
 	// acts upon (e.g. the ship failing a "flight check", or the NPC you
 	// have boarded).
 	std::shared_ptr<Ship> ship;
+	
+	bool updateResumeIndex = false;
 };
 
 

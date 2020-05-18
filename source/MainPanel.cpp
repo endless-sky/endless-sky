@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <sstream>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -65,9 +66,6 @@ void MainPanel::Step()
 	// Depending on what UI element is on top, the game is "paused." This
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
-	
-	// Make sure we don't save the UI state.
-	player.ClearResumeUI();
 	
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
@@ -91,6 +89,13 @@ void MainPanel::Step()
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
 		isActive = false;
+	}
+	
+	// Make sure we don't save the UI state.
+	if(isActive)
+	{
+		cerr<<"clear resume ui"<<endl;
+		player.ClearResumeUI();
 	}
 	
 	// Display any relevant help/tutorial messages.
