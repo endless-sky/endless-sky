@@ -27,20 +27,20 @@ class Visual;
 class Weather {
 public:
 	Weather() = default;
-	Weather(Hazard harzard, int lifetime, double strength, int totalLifetime = -1);
+	Weather(const Hazard *harzard, int lifetime, double strength, int totalLifetime = -1);
 	
 	// Whether the hazard of this weather deals damage or not.
 	bool HasWeapon() const;
 	// The probability of this weather dealing damage while active.
 	int Period() const;
-	const Hazard &GetHazard() const;
+	const Hazard *GetHazard() const;
 	// The current strength of this weather.
 	double GetStrength() const;
 	// Create and environmental effects and decrease the lifetime of this weather.
 	int Step(std::vector<Visual> &newVisuals);
 	
 private:
-	Hazard hazard;
+	const Hazard *hazard = nullptr;
 	int totalLifetime;
 	int lifetime;
 	double strength;

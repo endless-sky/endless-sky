@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-Weather::Weather(Hazard hazard, int lifetime, double strength, int totalLifetime)
+Weather::Weather(const Hazard *hazard, int lifetime, double strength, int totalLifetime)
 	: hazard(hazard), totalLifetime((totalLifetime > 0) ? totalLifetime : lifetime), lifetime(lifetime), strength(strength)
 {
 }
@@ -25,19 +25,19 @@ Weather::Weather(Hazard hazard, int lifetime, double strength, int totalLifetime
 
 bool Weather::HasWeapon() const
 {
-	return hazard.IsWeapon();
+	return hazard->IsWeapon();
 }
 
 
 
 int Weather::Period() const
 {
-	return hazard.Period();
+	return hazard->Period();
 }
 
 
 
-const Hazard &Weather::GetHazard() const
+const Hazard *Weather::GetHazard() const
 {
 	return hazard;
 }
@@ -46,7 +46,7 @@ const Hazard &Weather::GetHazard() const
 
 double Weather::GetStrength() const
 {
-	if(hazard.Deviates())
+	if(hazard->Deviates())
 	{
 		// Using a deviation of totalLifetime / 4.3 causes the strength of the weather to start and end at about 10% the maximum.
 		double DEVIATION = totalLifetime / 4.3;

@@ -1152,11 +1152,11 @@ void Engine::EnterSystem()
 		for(const System::HazardProbability &hazard : system->Hazards())
 			if(Random::Int(hazard.Period()) < 60)
 			{
-				Hazard weather = *hazard.Get();
-				int hazardLifetime = weather.Length();
+				const Hazard *weather = hazard.Get();
+				int hazardLifetime = weather->Length();
 				// Elapse this weather event by a random amount of time.
 				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
-				activeWeather.emplace_back(weather, elapsedLifetime, weather.Strength(), hazardLifetime);
+				activeWeather.emplace_back(weather, elapsedLifetime, weather->Strength(), hazardLifetime);
 			}
 	}
 	
@@ -1897,10 +1897,10 @@ void Engine::DoWeather()
 	{
 		if(!Random::Int(hazard.Period()))
 		{
-			Hazard weather = *hazard.Get();
+			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a length and strength of the
 			// resulting weather and place it in the list of active weather.
-			activeWeather.emplace_back(weather, weather.Length(), weather.Strength());
+			activeWeather.emplace_back(weather, weather->Length(), weather->Strength());
 		}
 	}
 	

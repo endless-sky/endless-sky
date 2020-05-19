@@ -2616,13 +2616,13 @@ double Ship::MaxReverseVelocity() const
 
 
 // Take environmental hazard damage from the current system.
-void Ship::DoHazard(vector<Visual> &visuals, const Hazard &hazard, double strength)
+void Ship::DoHazard(vector<Visual> &visuals, const Hazard *hazard, double strength)
 {
-	if(hazard.Range() > 0 && position.Length() > hazard.Range())
+	if(hazard->Range() > 0 && position.Length() > hazard->Range())
 		return;
 	
-	TakeDamage(hazard, strength, Point());
-	for(const auto &effect : hazard.HitEffects())
+	TakeDamage(*hazard, strength, Point());
+	for(const auto &effect : hazard->HitEffects())
 		CreateSparks(visuals, effect.first, effect.second * strength);
 }
 
