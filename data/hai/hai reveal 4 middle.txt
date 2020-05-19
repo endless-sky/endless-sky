@@ -83,11 +83,11 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			`	A Hai in a medical uniform explains, "The victims each have have thousands of microscale transmitter-receivers in their body, each the size of a single blood cell. We call them microtransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
 			`	"This technology is clearly not of human or Hai origin. It has some similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these  is significantly beyond our science and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology, a race that has mastered miniaturized technology and is comfortable with its principles."`
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
-#			branch "saved geocoris"
-#				not "Leaks Response 4a: failed"
-#					goto skip
-#			label "saved geocoris"
-#			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
+			branch "saved geocoris"
+				has "00 Hai Leaks Response 4B: declined"
+					goto skip
+			label "saved geocoris"
+			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
 			label skip
 				goto questions
 			label patterns

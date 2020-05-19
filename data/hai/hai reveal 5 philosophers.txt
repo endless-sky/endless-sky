@@ -427,7 +427,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 					goto room
 				`	(Admire the scenery.)`
 			`	The entire outer wall of the 200-meter-wide room is a transparent metal which lets you see the steel forest of buildings that coat Earth. You're at the top of the tallest structure ever built by the human race.  The high altitude of the Parliament Chamber symbolizes its status in society: the supreme elected authority that oversees billions of people.`
-			`	Beyond the chamber resides the Crystal Room, perhaps the most famous room in the galaxy. It was there that monumental treaties were signed: the end of the Alpha Wars, the formal declaration of the illegality of slavery, the Syndicate and Deep Sky joining the Republic, the peace treaty with the Free Worlds, and numerous others.`
+			`	Beyond the chamber resides the Crystal Room, perhaps the most famous room in the galaxy. It was there that monumental treaties were signed: the end of the Alpha Wars, the formal declaration of the illegality of slavery, the Syndicate and the Deep joining the Republic, the peace treaty with the Free Worlds, and numerous others.`
 			`	Teeneep looks back at you, waiting for you to rejoin her.`
 			choice
 				`	(Enter the room.)`

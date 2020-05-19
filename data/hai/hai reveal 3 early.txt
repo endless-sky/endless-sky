@@ -166,6 +166,7 @@ mission "Hai Building Mountaintop [1a] Construction Escorts"
 		ship Geocoris "Luf Sook Hey"
 		ship Geocoris "Du Eh"
 		ship Geocoris "Mon e Ow"
+		ship Geocoris "Eek lo Pok"
 
 mission "Hai Building Mountaintop [1b] Return"
 	landing
@@ -214,14 +215,14 @@ event "role-play station before construction"
 			distance 4208.63
 			period 2158.5
 			object Mountaintop
-				sprite "planet/station hai geocoris"
+				sprite "effect/flotsam yottrite"
 				distance 315
 				period 31.1964
 	planet Mountaintop
 		government "Hai"
 		attributes uninhabited
 		landscape land/station0
-		description `There's a partially-dismantled Hai Geocoris orbiting this wormhole.`
+		description `There's a construction site rapidly assembling a station from Hai Geocoris' orbiting this wormhole.`
 		security 0.2
 
 

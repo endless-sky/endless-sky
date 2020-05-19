@@ -824,7 +824,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 	turret "Electron Turret"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
-
+	
 
 
 ship "Dreadnought" "Dreadnought (Jump)"
