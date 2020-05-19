@@ -33,7 +33,7 @@ class DistanceMap {
 public:
 	// Find paths to the given system. The optional arguments put a limit on how
 	// many systems will be returned and how far away they are allowed to be.
-	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
+	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1, bool useWormholes = false);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.

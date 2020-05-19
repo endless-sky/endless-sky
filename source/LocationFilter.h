@@ -61,6 +61,10 @@ public:
 	const System *PickSystem(const System *origin) const;
 	const Planet *PickPlanet(const System *origin, bool hasClearance = false) const;
 	
+	// Should the distance calculations use wormholes.
+	bool UseWormholes() const;
+	void SetUseWormholes(bool);
+	
 	
 private:
 	// Load one particular line of conditions.
@@ -87,6 +91,8 @@ private:
 	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
+	
+	bool useWormholes = false;
 	
 	// At least one of the outfits from each set must be available
 	// (to purchase or plunder):

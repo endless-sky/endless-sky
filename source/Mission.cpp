@@ -179,6 +179,8 @@ void Mission::Load(const DataNode &node)
 			hasFullClearance = false;
 		else if(child.Token(0) == "failed")
 			hasFailed = true;
+		else if(child.Token(0) == "use wormholes")
+			useWormholes = true;
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
@@ -313,6 +315,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("failed");
 		if(repeat != 1)
 			out.Write("repeat", repeat);
+		if(useWormholes)
+			out.Write("use wormholes");
 		
 		if(!toOffer.IsEmpty())
 		{
@@ -1080,7 +1084,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path);
+		DistanceMap distance(path, -1, -1, useWormholes);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		for(++it; it != destinations.end(); ++it)
@@ -1091,7 +1095,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		jumps += distance.Days(*bestIt);
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(path);
+	DistanceMap distance(path, -1, -1, useWormholes);
 	jumps += distance.Days(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	

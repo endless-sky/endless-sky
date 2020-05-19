@@ -209,6 +209,8 @@ private:
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
 	
+	bool useWormholes = false;
+	
 	// NPCs:
 	std::list<NPC> npcs;
 	

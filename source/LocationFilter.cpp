@@ -65,7 +65,7 @@ namespace {
 	}
 	
 	// Check if the given system is within the given distance of the center.
-	int Distance(const System *center, const System *system, int maximum)
+	int Distance(const System *center, const System *system, int maximum, bool useWormholes)
 	{
 		// This function should only ever be called from the main thread, but
 		// just to be sure, use mutex protection on the static locals.
@@ -73,14 +73,14 @@ namespace {
 		lock_guard<mutex> lock(distanceMutex);
 		
 		static const System *previousCenter = center;
-		static DistanceMap distance(center, -1, maximum);
+		static DistanceMap distance(center, -1, maximum, useWormholes);
 		static int previousMaximum = maximum;
 		
 		if(center != previousCenter || maximum > previousMaximum)
 		{
 			previousCenter = center;
 			previousMaximum = maximum;
-			distance = DistanceMap(center, -1, maximum);
+			distance = DistanceMap(center, -1, maximum, useWormholes);
 		}
 		// If the distance is greater than the maximum, this is not a match.
 		int d = distance.Days(system);
@@ -327,7 +327,7 @@ bool LocationFilter::Matches(const Ship &ship) const
 	
 	// Check if this ship's current system meets a "near <system>" criterion.
 	// (Ships only offer missions, so no "distance" criteria need to be checked.)
-	if(center && Distance(center, origin, centerMaxDistance) < centerMinDistance)
+	if(center && Distance(center, origin, centerMaxDistance, useWormholes) < centerMinDistance)
 		return false;
 	
 	return true;
@@ -398,6 +398,25 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 			options.push_back(&planet);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
+bool LocationFilter::UseWormholes() const
+{
+	return useWormholes;
+}
+
+
+
+void LocationFilter::SetUseWormholes(bool use)
+{
+	// Update the useWormholes flag for this, and all descendants, recursively.
+	useWormholes = use;
+	for(auto &it : notFilters)
+		it.SetUseWormholes(use);
+	for(auto &it : neighborFilters)
+		it.SetUseWormholes(use);
 }
 
 
@@ -547,10 +566,10 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 	
 	// Check this system's distance from the desired reference system.
-	if(center && Distance(center, system, centerMaxDistance) < centerMinDistance)
+	if(center && Distance(center, system, centerMaxDistance, useWormholes) < centerMinDistance)
 		return false;
 	if(origin && originMaxDistance >= 0
-			&& Distance(origin, system, originMaxDistance) < originMinDistance)
+			&& Distance(origin, system, originMaxDistance, useWormholes) < originMinDistance)
 		return false;
 	
 	return true;
