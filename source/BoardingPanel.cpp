@@ -404,6 +404,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(command.Has(Command::INFO))
 		GetUI()->Push(new ShipInfoPanel(player));
+	else if(command.Has(Command::FASTFORWARD))
+		return false;
 	
 	// Trim the list of status messages.
 	while(messages.size() > 5)

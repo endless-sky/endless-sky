@@ -303,7 +303,9 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else
 			message = "I do not want your money.";
 	}
-	
+	else if(command.Has(Command::FASTFORWARD))
+		return false;
+
 	return true;
 }
 
