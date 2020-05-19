@@ -2622,7 +2622,7 @@ void Ship::DoHazard(vector<Visual> &visuals, const Hazard &hazard, double streng
 		return;
 	
 	TakeDamage(hazard, strength, Point());
-	for(const auto &effect : hazard.EnvironmentalEffects())
+	for(const auto &effect : hazard.HitEffects())
 		CreateSparks(visuals, effect.first, effect.second * strength);
 }
 
