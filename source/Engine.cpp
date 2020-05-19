@@ -1329,7 +1329,7 @@ void Engine::CalculateStep()
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
 	
-	// See if any new system weather had started and perform any active weather events.
+	// See if any new system weather has started and perform any active weather events.
 	DoWeather();
 	
 	// Check for flotsam collection (collisions with ships).
