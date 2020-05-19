@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
+#include "Hazard.h"
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
@@ -72,6 +73,7 @@ namespace {
 	Set<Fleet> fleets;
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
+	Set<Hazard> hazards;
 	Set<Interface> interfaces;
 	Set<Minable> minables;
 	Set<Mission> missions;
@@ -628,6 +630,13 @@ const Set<Government> &GameData::Governments()
 
 
 
+const Set<Hazard> &GameData::Hazards()
+{
+	return hazards;
+}
+
+
+
 const Set<Interface> &GameData::Interfaces()
 {
 	return interfaces;
@@ -933,6 +942,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)
 			governments.Get(node.Token(1))->Load(node);
+		else if(key == "hazard" && node.Size() >= 2)
+			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
 			interfaces.Get(node.Token(1))->Load(node);
 		else if(key == "minable" && node.Size() >= 2)

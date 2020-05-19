@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hazard.h"
 #include "Interface.h"
 #include "MapPanel.h"
 #include "Mask.h"
@@ -53,6 +54,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
+#include "Weather.h"
 #include "WrappedText.h"
 
 #include <algorithm>
@@ -1137,12 +1139,27 @@ void Engine::EnterSystem()
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
 	
-	// Place five seconds worth of fleets. Check for undefined fleets by not
-	// trying to create anything with no government set.
+	// Clear any active weather events
+	activeWeather.clear();
+	// Place five seconds worth of fleets and weather events. Check for
+	// undefined fleets by not trying to create anything with no
+	// government set.
 	for(int i = 0; i < 5; ++i)
+	{
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, newShips);
+		for(const System::HazardProbability &hazard : system->Hazards())
+			if(Random::Int(hazard.Period()) < 60)
+			{
+				Hazard weather = *hazard.Get();
+				int hazardLifetime = weather.Length();
+				// Elapse this weather event by a random amount of time.
+				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
+				activeWeather.emplace_back(weather, elapsedLifetime, weather.Strength(), hazardLifetime);
+			}
+	}
+	
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
@@ -1311,6 +1328,9 @@ void Engine::CalculateStep()
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
+	
+	// See if any new system weather had started and perform any active weather events.
+	DoWeather();
 	
 	// Check for flotsam collection (collisions with ships).
 	for(const shared_ptr<Flotsam> &it : flotsam)
@@ -1864,6 +1884,41 @@ void Engine::DoCollisions(Projectile &projectile)
 					projectile.Kill();
 					break;
 				}
+	}
+}
+
+
+
+void Engine::DoWeather()
+{
+	// If this system has any hazards, see if any have activted this frame.
+	const System *playerSystem = player.GetSystem();
+	for(const System::HazardProbability &hazard : playerSystem->Hazards())
+	{
+		if(!Random::Int(hazard.Period()))
+		{
+			Hazard weather = *hazard.Get();
+			// If a hazard has activated, generate a length and strength of the
+			// resulting weather and place it in the list of active weather.
+			activeWeather.emplace_back(weather, weather.Length(), weather.Strength());
+		}
+	}
+	
+	// Go through each active weather event to deal damage to ships and generate
+	// environmental effects.
+	for(auto it = activeWeather.begin(); it != activeWeather.end(); ++it)
+	{
+		if(it->HasWeapon() && !Random::Int(it->Period()))
+			for(const shared_ptr<Ship> &ship : ships)
+				if(ship->GetSystem() == playerSystem)
+					ship->DoHazard(visuals, it->GetHazard(), it->GetStrength());
+		
+		// If this weather event has ended, remove it from the list.
+		if(!it->Step(visuals))
+		{
+			activeWeather.erase(it);
+			--it;
+		}
 	}
 }
 

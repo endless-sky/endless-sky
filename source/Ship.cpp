@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hazard.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
@@ -1014,8 +1015,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Generate energy, heat, etc.
 	DoGeneration();
-	// Apply environmental damage from the current system.
-	DoHazard();
 
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -1720,17 +1719,6 @@ void Ship::DoGeneration()
 	fuel = max(0., fuel);
 	energy = max(0., energy);
 	heat = max(0., heat);
-}
-
-
-
-// Take environmental hazard damage from the current system.
-void Ship::DoHazard()
-{
-	if(currentSystem)
-		for(auto hazard : currentSystem->Hazards())
-			if(!Random::Int(hazard.Period()))
-				TakeDamage(*hazard.Get(), hazard.Strength());
 }
 
 
@@ -2627,6 +2615,19 @@ double Ship::MaxReverseVelocity() const
 
 
 
+// Take environmental hazard damage from the current system.
+void Ship::DoHazard(vector<Visual> &visuals, const Hazard &hazard, double strength)
+{
+	if(position.Length() <= hazard.Range())
+	{
+		TakeDamage(hazard, strength, Point());
+		for(const auto &effect : hazard.EnvironmentalEffects())
+			CreateSparks(visuals, effect.first, effect.second * strength);
+	}
+}
+
+
+
 // This ship just got hit by the given projectile. Take damage according to
 // what sort of weapon the projectile it.
 int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
@@ -2651,17 +2652,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
 	
-	double hitForce = weapon.HitForce() * damageScaling;
-	
-	if(hitForce)
-	{
-		Point d = position - projectile.Position();
-		double distance = d.Length();
-		if(distance)
-			ApplyForce((hitForce * damageScaling / distance) * d);
-	}
-	
-	type |= TakeDamage(weapon, damageScaling);
+	type |= TakeDamage(weapon, damageScaling, projectile.Position());
 	
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
@@ -2675,12 +2666,13 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 
 
 
-int Ship::TakeDamage(const Weapon &weapon, double damageScaling)
+int Ship::TakeDamage(const Weapon &weapon, double damageScaling, const Point &damagePosition)
 {
 	int type = 0;
 	
 	double shieldDamage = weapon.ShieldDamage() * damageScaling;
 	double hullDamage = weapon.HullDamage() * damageScaling;
+	double hitForce = weapon.HitForce() * damageScaling;
 	double fuelDamage = weapon.FuelDamage() * damageScaling;
 	double heatDamage = weapon.HeatDamage() * damageScaling;
 	double ionDamage = weapon.IonDamage() * damageScaling;
@@ -2707,6 +2699,14 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling)
 	ionization += ionDamage * leakage;
 	disruption += disruptionDamage * leakage;
 	slowness += slowingDamage * leakage;
+	
+	if(hitForce)
+	{
+		Point d = position - damagePosition;
+		double distance = d.Length();
+		if(distance)
+			ApplyForce((hitForce * damageScaling / distance) * d);
+	}
 	
 	// Recalculate the disabled ship check.
 	isDisabled = true;
@@ -3248,13 +3248,19 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 // Place a "spark" effect, like ionization or disruption.
 void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
 {
+	CreateSparks(visuals, GameData::Effects().Get(name), amount);
+}
+
+
+
+void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
+{
 	if(forget)
 		return;
 	
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
 	
-	const Effect *effect = GameData::Effects().Get(name);
 	while(true)
 	{
 		amount -= Random::Real();

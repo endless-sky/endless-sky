@@ -34,6 +34,7 @@ class DataWriter;
 class Effect;
 class Flotsam;
 class Government;
+class Hazard;
 class Minable;
 class Phrase;
 class Planet;
@@ -172,8 +173,6 @@ public:
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Generate energy, heat, etc. (This is called by Move().)
 	void DoGeneration();
-	// Take environmental hazard damage from the current system.
-	void DoHazard();
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -292,6 +291,9 @@ public:
 	double MaxVelocity() const;
 	double MaxReverseVelocity() const;
 	
+	// Take environmental hazard damage from the current system.
+	void DoHazard(std::vector<Visual> &visuals, const Hazard &hazard, double strength);
+	
 	// This ship just got hit by the given projectile. Take damage according to
 	// what sort of weapon the projectile it. The return value is a ShipEvent
 	// type, which may be a combination of PROVOKED, DISABLED, and DESTROYED.
@@ -299,7 +301,7 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
-	int TakeDamage(const Weapon &weapon, double damageScaling = 1.);
+	int TakeDamage(const Weapon &weapon, double damageScaling, const Point &damagePosition);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);
@@ -394,6 +396,7 @@ private:
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
+	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 	
 	
 private:

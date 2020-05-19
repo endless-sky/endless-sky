@@ -25,11 +25,11 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Hazard;
 class Minable;
 class Planet;
 class Ship;
 class Sprite;
-class Weapon;
 
 
 
@@ -71,19 +71,16 @@ public:
 		int period;
 	};
 	
-	class Hazard {
+	class HazardProbability {
 	public:
-	Hazard(const Weapon *weapon, int period, int minStrength, int maxStrength);
-	
-	const Weapon *Get() const;
-	int Period() const;
-	int Strength() const;
-	
+		HazardProbability(const Hazard *hazard, int period);
+		
+		const Hazard *Get() const;
+		int Period() const;
+		
 	private:
-		const Weapon *weapon = nullptr;
+		const Hazard *hazard;
 		int period;
-		int minStrength;
-		int maxStrength;
 	};
 	
 	
@@ -142,8 +139,6 @@ public:
 	const std::vector<Asteroid> &Asteroids() const;
 	// Get the background haze sprite for this system.
 	const Sprite *Haze() const;
-	// Get the hazards of this system.
-	const std::vector<Hazard> &Hazards() const;
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
@@ -156,6 +151,8 @@ public:
 	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;
+	// Get the probabilities of various hazards in this system.
+	const std::vector<HazardProbability> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
@@ -197,7 +194,7 @@ private:
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
 	std::vector<FleetProbability> fleets;
-	std::vector<Hazard> hazards;
+	std::vector<HazardProbability> hazards;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
 	double solarPower = 0.;
