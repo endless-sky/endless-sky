@@ -1891,7 +1891,7 @@ void Engine::DoCollisions(Projectile &projectile)
 
 void Engine::DoWeather()
 {
-	// If this system has any hazards, see if any have activted this frame.
+	// If this system has any hazards, see if any have activated this frame.
 	const System *playerSystem = player.GetSystem();
 	for(const System::HazardProbability &hazard : playerSystem->Hazards())
 	{

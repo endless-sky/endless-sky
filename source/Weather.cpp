@@ -32,7 +32,10 @@ bool Weather::HasWeapon() const
 
 int Weather::Period() const
 {
-	return hazard->Period();
+	if(hazard->Deviates())
+		return hazard->Period() / GetStrength();
+	else
+		return hazard->Period();
 }
 
 
@@ -51,7 +54,7 @@ double Weather::GetStrength() const
 		// Using a deviation of totalLifetime / 4.3 causes the strength of the weather to start and end at about 10% the maximum.
 		double DEVIATION = totalLifetime / 4.3;
 		// Modulate strength by the current lifetime. Strength follows a normal curve, peaking when the lifetime has reached half the totalLifetime.
-		return strength * exp(-pow(lifetime - totalLifetime / 2. , 2.) / (2. *pow(DEVIATION , 2.)));
+		return sqrt(strength * exp(-pow(lifetime - totalLifetime / 2. , 2.) / (2. *pow(DEVIATION , 2.))));
 	}
 	else
 		return strength;
