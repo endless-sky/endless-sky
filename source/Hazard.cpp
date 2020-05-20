@@ -31,7 +31,7 @@ void Hazard::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		if(key == "weapon")
 			LoadWeapon(child);
-		if(key == "no deviation")
+		else if(key == "no deviation")
 			deviates = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping hazard attribute with no value specified:");
