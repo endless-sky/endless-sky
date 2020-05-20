@@ -26,7 +26,7 @@ using namespace std;
 // it is a limit on how many systems should be returned. If it is below zero
 // it specifies the maximum distance away that paths should be found.
 DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance, bool useWormholes)
-	: center(center), maxCount(maxCount), maxDistance(maxDistance), useWormholes(true)
+	: center(center), maxCount(maxCount), maxDistance(maxDistance), useWormholes(useWormholes)
 {
 	Init();
 }

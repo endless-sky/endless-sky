@@ -484,3 +484,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	
 	return result;
 }
+
+void NPC::SetUseWormholes(bool use)
+{
+	location.SetUseWormholes(use);
+}

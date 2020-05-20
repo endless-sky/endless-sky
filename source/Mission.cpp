@@ -262,6 +262,16 @@ void Mission::Load(const DataNode &node)
 	
 	if(displayName.empty())
 		displayName = name;
+	
+	clearanceFilter.SetUseWormholes(useWormholes);
+	sourceFilter.SetUseWormholes(useWormholes);
+	destinationFilter.SetUseWormholes(useWormholes);
+	for(auto &it : waypointFilters)
+		it.SetUseWormholes(useWormholes);
+	for(auto &it : stopoverFilters)
+		it.SetUseWormholes(useWormholes);
+	for(auto &it : npcs)
+		it.SetUseWormholes(useWormholes);
 }
 
 
