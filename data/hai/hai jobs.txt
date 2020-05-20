@@ -8,6 +8,44 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission test
+	name test
+	job
+	repeat
+	description "test <destination> payment <payment> deadline <date>"
+	"use wormholes"
+	deadline
+	source
+		planet Allhome
+	destination
+		distance 3 20
+	on complete
+		payment
+		dialog "completion dialog"
+
+mission waypoint
+	name waypoint
+	job
+	repeat
+	description "waypoint test dest <destination> way <waypoints> payment <payment> deadline <date>"
+	deadline
+	"use wormholes"
+	source Allhome
+	waypoint
+		distance 10 20
+	destination
+		government "Republic"
+		distance 13 99
+	on complete
+		payment
+		dialog "completion dialog"
+
+	npc
+		government Drak
+		ship Archon
+		system
+			distance 10 20
+
 mission "Human Vacation [1]"
 	name "Human vacationer to <planet>"
 	job

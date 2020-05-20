@@ -76,7 +76,7 @@ namespace {
 		static DistanceMap distance(center, -1, maximum, useWormholes);
 		static int previousMaximum = maximum;
 		
-		if(center != previousCenter || maximum > previousMaximum)
+		if(center != previousCenter || maximum > previousMaximum || useWormholes != distance.UseWormholes())
 		{
 			previousCenter = center;
 			previousMaximum = maximum;

@@ -129,6 +129,13 @@ int DistanceMap::RequiredFuel(const System *system1, const System *system2) cons
 
 
 
+bool DistanceMap::UseWormholes() const
+{
+	return useWormholes;
+}
+
+
+
 DistanceMap::Edge::Edge(const System *system)
 	: next(system)
 {
