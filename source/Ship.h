@@ -301,7 +301,7 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
-	int TakeDamage(const Weapon &weapon, double damageScaling, const Point &damagePosition);
+	int TakeDamage(const Weapon &weapon, double damageScaling, const Point &damagePosition, bool isBlast);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);

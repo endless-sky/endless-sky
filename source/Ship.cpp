@@ -2621,7 +2621,7 @@ void Ship::DoHazard(vector<Visual> &visuals, const Hazard *hazard, double streng
 	if(hazard->Range() > 0 && position.Length() > hazard->Range())
 		return;
 	
-	TakeDamage(*hazard, strength, Point());
+	TakeDamage(*hazard, strength, Point(), hazard->BlastRadius() > 0.);
 	for(const auto &effect : hazard->HitEffects())
 		CreateSparks(visuals, effect.first, effect.second * strength);
 }
@@ -2634,25 +2634,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 {
 	int type = 0;
 	
-	double damageScaling = 1.;
 	const Weapon &weapon = projectile.GetWeapon();
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Scale blast damage based on the distance from the blast
-		// origin and if the projectile uses a trigger radius. The
-		// point of contact must be measured on the sprite outline.
-		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
-		double blastRadius = max(1., weapon.BlastRadius());
-		double radiusRatio = weapon.TriggerRadius() / blastRadius;
-		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
-		// Rather than exactly compute the distance between the explosion and
-		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (projectile.Position() - position).Length() - GetMask().Radius());
-		double rSquared = d * d / (blastRadius * blastRadius);
-		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
-	}
 	
-	type |= TakeDamage(weapon, damageScaling, projectile.Position());
+	type |= TakeDamage(weapon, 1., projectile.Position(), isBlast);
 	
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
@@ -2666,9 +2650,25 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 
 
 
-int Ship::TakeDamage(const Weapon &weapon, double damageScaling, const Point &damagePosition)
+int Ship::TakeDamage(const Weapon &weapon, double damageScaling, const Point &damagePosition, bool isBlast)
 {
 	int type = 0;
+	
+	if(isBlast && weapon.IsDamageScaled())
+	{
+		// Scale blast damage based on the distance from the blast
+		// origin and if the projectile uses a trigger radius. The
+		// point of contact must be measured on the sprite outline.
+		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
+		double blastRadius = max(1., weapon.BlastRadius());
+		double radiusRatio = weapon.TriggerRadius() / blastRadius;
+		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
+		// Rather than exactly compute the distance between the explosion and
+		// the closest point on the ship, estimate it using the mask's Radius.
+		double d = max(0., (damagePosition - position).Length() - GetMask().Radius());
+		double rSquared = d * d / (blastRadius * blastRadius);
+		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
+	}
 	
 	double shieldDamage = weapon.ShieldDamage() * damageScaling;
 	double hullDamage = weapon.HullDamage() * damageScaling;
