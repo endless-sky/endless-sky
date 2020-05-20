@@ -151,7 +151,7 @@ jobs:
           git push --tags --force
       - name: Setup continuous release
         run: |
-          DESCRIPTION="Triggered on $(date -u '+%Y-%m-%d %H:%M') by commit ${{ github.sha }} (@${{ github.actor }})
+          DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})
           \n
           \nThis is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
           \n
