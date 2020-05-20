@@ -2705,7 +2705,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, const Point &da
 		Point d = position - damagePosition;
 		double distance = d.Length();
 		if(distance)
-			ApplyForce((hitForce * damageScaling / distance) * d);
+			ApplyForce((hitForce / distance) * d);
 	}
 	
 	// Recalculate the disabled ship check.
