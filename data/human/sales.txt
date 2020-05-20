@@ -310,7 +310,7 @@ outfitter "Lovelace Security"
 	"Armageddon Core"
 	"Cargo Scanner"
 	"Outfit Scanner"
-	"Hyper Drive"
+	"Hyperdrive"
 
 outfitter "Delta V Basics"
 	"Chipmunk Plasma Thruster"
