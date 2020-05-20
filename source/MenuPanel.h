@@ -36,6 +36,9 @@ public:
 	// New player "conversation" callback.
 	void OnCallback(int value);
 	
+	// Allow fast-forward.
+	virtual bool AllowFastForward() const;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

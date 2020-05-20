@@ -177,6 +177,13 @@ void MenuPanel::OnCallback(int)
 
 
 
+bool MenuPanel::AllowFastForward() const
+{
+	return true;
+}
+
+
+
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!isReady)

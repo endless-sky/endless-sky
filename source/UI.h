@@ -75,6 +75,9 @@ public:
 	// Get the current mouse position.
 	static Point GetMouse();
 	
+	// Do all of the panels allow fast-forward to be on?
+	bool AllowFastForward() const;
+	
 	
 private:
 	// If a push or pop is queued, apply it.

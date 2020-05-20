@@ -117,6 +117,13 @@ bool Panel::ZoneClick(const Point &point)
 
 
 
+bool Panel::AllowFastForward() const
+{
+	return false;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {

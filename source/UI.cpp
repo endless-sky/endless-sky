@@ -32,6 +32,17 @@ UI::UI()
 
 
 
+bool UI::AllowFastForward() const
+{
+	int count=0;
+	for(const auto &it : stack)
+		if(!it->AllowFastForward())
+			count++;
+	return count==0;
+}
+
+
+
 // Handle an event. The event is handed to each panel on the stack until one
 // of them handles it. If none do, this returns false.
 bool UI::Handle(const SDL_Event &event)

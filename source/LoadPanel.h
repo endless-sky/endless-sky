@@ -47,6 +47,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	
+	// Allow fast-forward.
+	virtual bool AllowFastForward() const;
+	
 	
 private:
 	void UpdateLists();

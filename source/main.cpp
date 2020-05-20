@@ -47,6 +47,7 @@ using namespace std;
 void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode);
+void UpdateFastForward(UI &activeUI, bool &isFastForward);
 Conversation LoadConversation();
 #ifdef _WIN32
 void InitConsole();
@@ -206,6 +207,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
+				isFastForward = false;
 			}
 			else if(event.type == SDL_QUIT)
 			{
@@ -233,6 +235,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			{
 				isFastForward = !isFastForward;
 			}
+			UpdateFastForward(activeUI, isFastForward);
 		}
 		SDL_Keymod mod = SDL_GetModState();
 		Font::ShowUnderlines(mod & KMOD_ALT);
@@ -249,7 +252,9 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		}
 		
 		// Tell all the panels to step forward, then draw them.
-		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+		UI &stepUI = ((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels);
+		stepUI.StepAll();
+		UpdateFastForward(stepUI, isFastForward);
 		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
@@ -293,6 +298,17 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
 		player.Save();
+}
+
+
+
+void UpdateFastForward(UI &activeUI, bool &isFastForward)
+{
+	bool wasFastForward = isFastForward;
+	if(!activeUI.AllowFastForward())
+		isFastForward = false;
+	if(wasFastForward != isFastForward)
+		activeUI.DrawAll();
 }
 
 
