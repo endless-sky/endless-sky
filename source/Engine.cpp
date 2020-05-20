@@ -1911,7 +1911,7 @@ void Engine::DoWeather()
 		if(it->HasWeapon() && !Random::Int(it->Period()))
 			for(const shared_ptr<Ship> &ship : ships)
 				if(ship->GetSystem() == playerSystem)
-					ship->DoHazard(visuals, it->GetHazard(), it->GetStrength());
+					ship->DoHazard(visuals, it->GetHazard(), it->DamageMultiplier());
 		
 		// If this weather event has ended, remove it from the list.
 		if(!it->Step(visuals))
