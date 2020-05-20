@@ -1,12 +1,11 @@
 language: cpp
-sudo: required
 
 matrix:
     include:
-      - dist: trusty
       - dist: xenial
-        env: DIST_DEPS=scons
+      - dist: bionic
       - os: osx
+        osx_image: xcode10.3
         env: MODE=Release
 
 addons:
@@ -17,6 +16,18 @@ addons:
         - jpeg-turbo
         - sdl2
         update: true
+    apt:
+        packages:
+        - libsdl2-dev
+        - libpng-dev
+        - libjpeg-turbo8-dev
+        - libopenal-dev
+        - libmad0-dev
+        - libglew-dev
+        - libgl1-mesa-dev
+        - libegl1-mesa-dev
+        - libgles2-mesa-dev
+        - scons
 
 git:
     quiet: true
@@ -26,31 +37,16 @@ branches:
     except:
         - gh-pages
 
-before_install:
-    - |
-        if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-            sudo apt-get -qq update;
-            sudo apt-get install -y $DEP_ARGS $DIST_DEPS;
-        fi
-
-env:
-    global:
-        - DEP_ARGS="libsdl2-dev libpng12-dev libjpeg-turbo8-dev libglew-dev libopenal-dev libgl1-mesa-dev libmad0-dev libegl1-mesa-dev libgles2-mesa-dev"
-
 script:
     - |
         if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
             scons -j2;
-        elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-            xcodebuild -configuration $MODE install -quiet
-        fi
-    - |
-        if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
             es_path=./endless-sky;
         elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+            xcodebuild -configuration $MODE install -quiet
             es_path='/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky'
         fi
-        ./tests/test_parse.sh "$es_path"
+    - ./tests/test_parse.sh "$es_path"
 
 before_cache:
     - brew cleanup

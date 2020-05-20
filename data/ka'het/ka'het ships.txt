@@ -1,0 +1,324 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Maeri'het"
+	plural "Maeri'heta"
+	sprite "ship/maeri'het"
+	thumbnail "thumbnail/maeri'het"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 13800000
+		"shields" 17600
+		"hull" 23100
+		"required crew" 1
+		"bunks" 1
+		"mass" 390
+		"drag" 3.8
+		"heat dissipation" .4
+		"fuel capacity" 800
+		"ramscoop" 0.58
+		"cargo space" 43
+		"outfit space" 273
+		"weapon capacity" 184
+		"energy capacity" 10000
+		"energy generation" 28.3
+		"heat generation" 32
+		"hull repair" 0.3
+		"shield heat" 4.9
+		"cloak" .023
+		"cloaking energy" 11.8
+		"cloaking fuel" .08
+		"thrust" 39.2
+		"thrusting energy" 6.17
+		"thrusting heat" 1.8
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma small"
+		"turn" 1286.4
+		"turning energy" 3.44
+		"turning heat" 1.7
+		weapon
+			"blast radius" 180
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 2
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Support Cooling" 
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+
+		"Hyperdrive"
+
+	engine -20 66 0.6
+	engine -26.5 66 0.8
+	engine 20 66 0.6
+	engine 26.5 66 0.8
+	gun -9 -74 "Ka'het Ravager Beam"
+	gun 9 -74 "Ka'het Ravager Beam"
+	turret -13.5 -29 "Ka'het Annihilator Turret"
+	turret -14 -12.5 "Ka'het Ravager Turret"
+	turret 13.5 -29 "Ka'het Annihilator Turret"
+	turret 14 -12.5 "Ka'het Ravager Turret"
+	explode "tiny explosion" 5
+	explode "small explosion" 20
+	explode "medium explosion" 25
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description "The Maeri is the smallest Het ship created by the Builders' stations, a prime example of the genetic technology they once possessed. Its small size is compensated by the fact that it can hide its location from most types of sensors."
+
+ship "Maeri'het" "Maeri'het (Disable-able)"
+	"uncapturable"
+
+ship "Maeri'het" "Maeri'het (EMP)"
+	"never disabled"
+	outfits
+		"EMP Torpedo" 32
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"Ka'het Annihilator Turret" 3
+
+		"Ka'het Support Cooling"
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+
+		Hyperdrive
+
+ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
+	"uncapturable"
+	outfits
+		"EMP Torpedo" 32
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"Ka'het Annihilator Turret" 3
+
+		"Ka'het Support Cooling"
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+
+		Hyperdrive
+
+ship "Telis'het"
+	plural "Telis'heta"
+	sprite "ship/telis'het"
+	thumbnail "thumbnail/telis'het"
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		"cost" 32600000
+		"shields" 47000
+		"hull" 26300
+		"required crew" 1
+		"bunks" 1
+		"mass" 820
+		"drag" 6.9
+		"heat dissipation" .35
+		"fuel capacity" 800
+		"ramscoop" 0.82
+		"cargo space" 71
+		"outfit space" 513
+		"weapon capacity" 254
+		"energy capacity" 28000
+		"energy generation" 37.4
+		"heat generation" 40
+		"hull repair" 0.5
+		"shield energy" 0.3
+		"shield heat" 9.2
+		"thrust" 62.8
+		"thrusting energy" 11.4
+		"thrusting heat" 3.5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sprite" "effect/remnant flare/medium"
+			"frame rate" 4
+		"flare sound" "plasma medium"
+		"turn" 1931.7
+		"turning energy" 6.38
+		"turning heat" 2.9
+		weapon
+			"blast radius" 300
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Ka'het Annihilator Turret" 2
+		"Ka'het EMP Deployer" 2
+		"Ka'het Ravager Turret" 3
+		"EMP Torpedo" 32
+		"Ka'het Annihilator" 2
+
+		"Ka'het Shield Restorer" 7
+		"Ka'het Primary Cooling" 2
+
+		"Hyperdrive"
+
+	engine -27 75.5 0.6
+	engine -39.5 82.5 0.8
+	engine 27 75.5 0.6
+	engine 39.5 82.5 0.8
+	gun -11.5 -94 "Ka'het EMP Deployer"
+	gun -23.5 -87.5 "Ka'het Annihilator"
+	gun 11.5 -94 "Ka'het EMP Deployer"
+	gun 23.5 -87.5 "Ka'het Annihilator"
+	turret -27 -41 "Ka'het Annihilator Turret"
+	turret -41.5 -50.5 "Ka'het Ravager Turret"
+	turret 0 -53 "Ka'het Ravager Turret"
+	turret 27 -41 "Ka'het Annihilator Turret"
+	turret 41.5 -50.5 "Ka'het Ravager Turret"
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description "When the Builders designed the exoskeleton of the Telis, they came to the conclusion that it would have been impossible to make it resilient enough without compromising its agility and integrity. Instead, they focused heavily on improving their shield technology, giving the Telis many of their regenerators."
+
+ship "Telis'het" "Telis'het (Disable-able)"
+	"uncapturable"
+
+ship "Telis'het" "Telis'het (EMP)"
+	"never disabled"
+	outfits
+		"Ka'het EMP Deployer" 4
+		"Ka'het Annihilator Turret"
+		"Ka'het Ravager Turret" 4
+		"EMP Torpedo" 64
+
+		"Ka'het Shield Restorer" 11
+		"Ka'het Primary Cooling" 2
+
+		Hyperdrive
+
+ship "Telis'het" "Telis'het (EMP, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het EMP Deployer" 4
+		"Ka'het Annihilator Turret"
+		"Ka'het Ravager Turret" 4
+		"EMP Torpedo" 64
+
+		"Ka'het Shield Restorer" 11
+		"Ka'het Primary Cooling" 2
+
+		Hyperdrive
+
+ship "Telis'het" "Telis'het (Guns)"
+	"never disabled"
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 5
+
+		"Ka'het Shield Restorer" 10
+		"Ka'het Primary Cooling" 2
+		"Ka'het Support Cooling"
+
+		Hyperdrive
+
+ship "Telis'het" "Telis'het (Guns, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 5
+
+		"Ka'het Shield Restorer" 10
+		"Ka'het Primary Cooling" 2
+		"Ka'het Support Cooling"
+
+		Hyperdrive
+
+ship "Selii'mar"
+	sprite "ship/selii'mar"
+	thumbnail "thumbnail/selii'mar"
+	attributes
+		category "Drone"
+		"cost" 965000
+		"hull" 2800
+		"mass" 65
+		"drag" .8
+		"heat dissipation" 1.1
+		"cargo space" 14
+		"outfit space" 18
+		"weapon capacity" 18
+		"energy capacity" 1200
+		"energy generation" 6.3
+		"heat generation" 4
+		"thrust" 10.2
+		"thrusting energy" 2.03
+		"thrusting heat" 1.43
+		"turn" 189.4
+		"turning energy" 0.79
+		"turning heat" 0.5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		weapon
+			"blast radius" 48
+			"shield damage" 320
+			"hull damage" 160
+			"hit force" 480
+	outfits
+		"Ka'het Ravager Beam"
+	
+	gun 0 -32.5
+	engine 0 28 1.5
+	explode "tiny explosion" 16
+	description "The Selii'mar was a common Builder mining drone, one of the few automated ships they ever produced. The Het stations still produce them, in order to harvest the materials they need to keep working."
+
+ship "Faes'mar"
+	sprite "ship/faes'mar"
+	thumbnail "thumbnail/faes'mar"
+	attributes
+		category "Drone"
+		"cost" 1180000
+		"shields" 200
+		"hull" 1900
+		"mass" 6
+		"drag" .7
+		"heat dissipation" 1.05
+		"cargo space" 102
+		"outfit space" 38
+		"energy capacity" 800
+		"energy generation" 5.9
+		"heat generation" 3.2
+		"thrust" 10.2
+		"thrusting energy" 2.03
+		"thrusting heat" 1.23
+		"turn" 189.4
+		"turning energy" 0.79
+		"turning heat" 0.4
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		weapon
+			"blast radius" 52
+			"shield damage" 410
+			"hull damage" 180
+			"hit force" 520
+	outfits
+		"Ka'het Shield Restorer"
+		"Ka'het Support Cooling"
+	
+	engine -7.5 34.5
+	engine 7.5 34.5
+	explode "tiny explosion" 19
+	description "The Mar were the last and most successful ships of the Builders in their attempts at creating automatic drones. Today only the Het stations are still aware of their blueprints, and keep producing the Faes'mar to transport the resources mined to the station's cargo bay."
+
+ship "Faes'mar" "Faes'mar (Strong)"
+	outfits
+		"Ka'het Shield Restorer" 2
