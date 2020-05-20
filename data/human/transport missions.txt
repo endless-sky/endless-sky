@@ -3582,3 +3582,297 @@ mission "Hauler VI cargo prototype 3"
 			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
+
+
+
+mission "James Medicine [0]"
+	minor
+	name "Medicine from <planet>"
+	description "James's doctors have asked you to bring some newly-developed remedy from <planet> to <origin> as quickly as possible, even though they are not really sure what his illness is."
+	deadline
+	source "Hestia"
+	destination "Nimbus"
+	to offer
+		has "main plot completed"
+		or
+			has "Intro [3 Transport]: done"
+			has "Intro [3 Freighter]: done"
+			has "Intro [3 Interceptor]: done"
+	on offer
+		conversation
+			`Finding yourself on <origin>, you smile at the memory of having dropped James here after he gave you some basic spaceflight instructions. Do you wish to visit him and see how he has been faring?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			`	Unlike some other planets, where it is practically impossible to find a person without having contact information, <origin> has a planetary database. You eagerly walk over to the nearest information desk and wait for the operator to make a few calls. At last, you are directed to a small, respected establishment, the Pilot Veteran Clinic. You can only wonder what James is doing there.`
+			`	The clinic is housed in a small modern-looking building, which looks cunningly similar to a giant Firebird. Inside, the rooms are arranged to resemble bunk rooms on a spaceship, likely so that the patients would feel right at home.`
+			`	As it is currently lunch time, there is no one in sight at the clinic. Luckily, the operator gave you the room number, which you quickly reach after a few minutes.`
+			choice
+				`	(Wait for someone to show up.)`
+					goto wait
+				`	(Enter the room.)`
+			apply
+				set "james medicine: infected"
+			`	You enter the room and find that James is inside, lightly asleep. He wakes up just as you close the door.`
+			`	"<first>! Fancy meeting you here! I heard you became a war hero of sorts?", he adds with a wink.`
+			choice
+				`	"Nothing special, I just did what is right."`
+				`	"Indeed, seems like I saved the galaxy this time."`
+			`	"Yeah, yeah... You know, I am feeling pretty weak now, and while the doctors say that I will live through this illness, there is still a chance that it would be my last."`
+			`	"So, I wanted to tell you something..", he rambles on, " just to make sure that knowledge is not lost. While I was exploring the planets and systems reachable from human space, I stumbled upon Ultima Thule, due northeast of here. At the time I piloted just a small warship, so I couldn't brave myself to pass through it, but.. there is a wormhole there!"`
+			branch interesting
+				not "First Contact: Hai: offered"
+			choice
+				`	(Tell him about the Hai.)`
+				`	(Say nothing about it.)`
+					goto interesting
+			`	"I have actually been there," you say, "It leads to a nearby part of space inhabited by the Hai, an advanced alien civilization of squirrel-like creatures."`
+			`	"Indeed? Are they friendly?"`
+			choice
+				`	"Yes, they even offer humans to settle there or buy their technology."`
+					goto doctor
+				`	"Yes, though I'm worried they can conquer all of human space if they wish."`
+					goto doctor
+			label interesting
+			`	"Sounds interesting," you say, "Could it lead to some aliens, or perhaps to some worlds waiting to be settled?"`
+			`	"Not sure. It is located in a lawless barren of space, however, so I wouldn't be surprised if there pirates or even Alphas on the other side."`
+			label doctor
+			`	Just as the conversation hangs for a moment, the door opens and a doctor in protective clothing steps in.`
+			`	"Who are you? And why are you in this room?", the doctor inquires, in a soft but authoritative voice.`
+			choice
+				`	"I am <first> <last>, here to see this friend of mine."`
+				`	"I was.. just strolling around."`
+			`	"Nevermind what you were doing. I have to warn you that the patient here has a disease we do not know much about yet. It could potentially be some deadly, contagious disease. Now, please make haste and remove yourself from the room, so as to not risk catching it yourself."`
+			`	Following the doctor's instructions, you quickly exit the room. As you close the door, you can make something of a chuckle, probably from James.`
+				goto end
+			label wait
+			`	Soon enough, a doctor passes by, heading for the room.`
+			`	"Good day! How can I help you?", he inquires.`
+			`	"I just wanted to check on a friend of mine, James, who I heard is in this room. May I see him?"`
+			`	"Well, he is infected by some disease. We are not sure what it is exactly and if it is contagious or not. So I would recommend not seeing him in person, at least for the moment," he says just before entering James's room.`
+			label end
+			choice
+				`	(Wait outside the room.)`
+			`	Around half an hour later, the doctor finally exists the room.`
+			`	"I see you probably want to help," he says, "I need someone to quickly go to the spaceport and find a captain willing to bring some newly-discovered medication from <destination> as quickly as possible. Can you do that?"`
+			choice
+				`	"Actually I am a spaceship captain. I could do that."`
+				`	"Yes, I can find a capable spaceship captain."`
+					goto `second chance`
+				`	"What am I, a message-boy? Find someone yourself."`
+					decline
+			`	"Indeed? Superb! Come back as soon as possible. We wouldn't want to risk your friend's life for a minute delay."`
+				accept
+			label `second chance`
+			`	On the way to the spaceport you realize that you do not have to find another spaceship captain to bring medicine from <planet>. You could do it yourself!`
+			choice
+				`	(Take the job.)`
+					accept
+				`	(Find someone else.)`
+					decline
+	on accept
+		event "james medicine too slow" 20
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+			confusion 20
+		system "Alpha Hydri"
+		fleet "Small Northern Pirates"
+
+event "james medicine too slow"
+
+mission "James Medicine [1]"
+	landing
+	name "Medicine from <origin>"
+	description "James's doctors have asked you to bring some newly-developed remedy from <planet> to <origin> as quickly as possible, even though they are not really sure what his illness is."
+	cargo "Essential medicine" 1
+	deadline
+	source "Nimbus"
+	destination "Hestia"
+	to offer
+		has "James Medicine [0]: done"
+	blocked "You have reached <origin>, but you need <capacity> in order to take the medicine for James. Return here when you have the required space free."
+	on visit
+		dialog "generic cargo on visit"
+	on offer
+		dialog `You take the medicine from a newly-constructed section of the spaceport, as instructed. Now you just have to deliver it back to <planet>.`
+	on complete
+		conversation
+			`Landing again on <planet>, you hurry to the Pilot Veteran Clinic with the medicine from <origin>.`
+			branch slow
+				has "event: james medicine too slow"
+			`	The doctor that spoke to you earlier appears soon after you enter the building. "Back already? I can hardly believe the news!" he exclaims and adds with a smile, "I have no idea how you made the trip so fast, but this little box you brought might be life-saving for your friend."`
+			choice
+				`	"I did my best."`
+					goto end
+				`	"No help is too much for a friend."`
+					goto end
+			label slow
+			`	The doctor that spoke to you earlier appears soon after you enter the building. "Alas! Such is our fate, to slowly pass from this life to the next!", he exclaims, and adds "Unfortunately, the disease was more onerous than we could have anticipated. The medicine you brought would save James's life, but the damage already wrought would leave him unable to walk freely."`
+			apply
+				set "james medicine: james disabled"
+			choice
+				`	"I tried my best."`
+					goto end
+				`	"It's your fault, not delivering for the medicine earlier."`
+			`	The doctor seems amazed by your complaint, even though he does not reply to it in any way.`
+			label end
+			branch noname
+				not "james medicine: infected"
+			`	"Anyway, we have to pay for the services we receive. Here, take <payment>", he says and drops his voice to mention, "I would not recommend seeing James now, though I will surely tell him how helpful you have been, <last>."`
+				goto finish
+			label noname
+			`	"Anyway, we have to pay for the services we receive. Here, take <payment>", he says and drops his voice to mention, "I would not recommend seeing James now, but maybe after he is well again."`
+			choice
+				`	"Sure! Can you him that captain <last> was looking for him?"`
+				`	"Oh yeah? I am going to visit him regardless."`
+					goto visit
+			`	"Of course, at the first possible occasion."`
+				goto finish
+			label visit
+			`	The doctor doesn't look very happy, but lets you go as there is nothing in the rules which would prevent you visiting James.`
+			apply
+				set "james medicine: infected"
+			`	You enter James's room but find him tight asleep. Not wanting to wake him up, you leave a note urging him to contact you when he is well again.`
+			`	Just before you leave the room, you notice a note written by him on one of the chairs. It reads "The North; Ultima Thule", leaving the reader to decide what its meaning is.`
+			label finish
+		payment 150000
+	
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+			confusion 20
+		system "Alpha Hydri"
+		fleet "Small Northern Pirates"
+
+mission "James Medicine [1] Preventive"
+	# Name is important; it should be lexically ordered after "James Medicine [1]"
+	invisible
+	landing
+	source "Nimbus"
+	to offer
+		has "James Medicine [0]: done"
+		has "james medicine: infected"
+	on offer
+		dialog
+			`Thinking about what the doctor said, it might be wise to buy some of the medicine for yourself. Checking the receipt you got, this would cost you 10,000 credits.`
+	on accept
+		payment -10000
+		set "james medicine: medicine taken"
+		fail
+	on decline
+		fail
+
+mission "James Medicine [Fail disabled]"
+	invisible
+	landing
+	to offer
+		or
+			has "James Medicine [0]: failed"
+			has "James Medicine [0]: declined"
+			has "James Medicine [1]: failed"
+			has "James Medicine [1]: declined"
+		has "james medicine: infected"
+	on offer
+		set "james medicine: james disabled"
+		fail
+
+mission "James Medicine [Fail sick]"
+	invisible
+	landing
+	to offer
+		and
+			not "James Medicine [0]: active"
+			not "James Medicine [1]: active"
+		has "james medicine: infected"
+	on offer
+		event "james medicine sick" 60 100
+		fail
+
+event "james medicine sick"
+
+mission "James Medicine [2]"
+	invisible
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		near "Sol" 100
+		attributes spaceport
+	to offer
+		has "event: james medicine sick"
+	on offer
+		conversation
+			`As you gently lower your ship into <origin>'s atmosphere, you begin to feel tired, starting from the tips of your fingers and quickly spreading to your whole body. By the time you take notice of it, you are already drowsy and realize you might be unable to land before you fall completely asleep.`
+			branch medicineless
+				not "james medicine: medicine taken"
+			`	In the height of the moment, you remember that when you were buying medicine for James, you bought some for yourself as well. You reach for the box and open it. Inside are a dozen or so neatly-arranged amber-colored pills and a long list of instructions shouting "EXPERIMENTAL" and "UNTESTED" in bold red letters.`
+			choice
+				`	(Take a pill.)`
+				`	(Think of other solutions.)`
+					goto medicineless
+			`	You hastily take one of the pills and swallow it, as per the instructions on the box. You can already start feeling better, even though the dizziness does not go away immediately. Just in case, you switch the autopilot on. The last thing you see is the ship's display reading "Landing on <origin>" as you briefly close your eyes.`
+			`	When you wake up, spaceport workers on <origin> have just started refueling your ship.`
+				accept
+			label medicineless
+			branch crewless
+				"flagship crew" < 1
+			choice
+				`	(Ask crew members for help.)`
+					goto crew
+				`	(Turn on autopilot.)`
+					goto autopilot
+				`	(Send a distress signal.)`
+					goto distress
+			label crew
+			`	You decide to quickly call on your other crew members to take over the bridge. The few that reply report that they also feeling unwell  and are unable to help.`
+			label crewless
+			choice
+				`	(Turn on autopilot.)`
+					goto autopilot
+				`	(Send a distress signal.)`
+					goto distress
+			label autopilot
+			`	You switch the autopilot on. It goes through a series of troubling beeps, before it realizes that you are trying to land, not hyperspace. At last, "Landing on <origin>" lights up on the screen.`
+			label distress
+			`	Just before you are overcome by the inexplicable sleepiness, you reach over and hit the big "Distress" button. You can only hope that everything works alright.`
+			choice
+				`	(Continue.)`
+			branch poor
+				"net worth" < 30000000
+			`	You find yourself awake in a room, which is definitely not your own. It is lit by a luxurious glass chandelier hanging from a lofty groined ceiling. Looking around, there isn't much furniture, apart from the bed, a few scattered chairs, a row of cabinets to the left, and a large display taking nearly the whole wall in front. The floor is made of white and red marble tiles.`
+				goto doctor
+			label poor
+			`	You find yourself awake in a room, which is definitely not your own. It is lit solely by a few windows that reveal a bustling spaceport nearby. There isn't much furniture apart from the bed and a cabinet.`
+			label doctor
+			`	As you muse and wonder where you are, someone looking like a doctor or perhaps a nurse enters the room.`
+			`	"You are lucky to be still living", she says, "You barely survived an encounter with a recently discovered disease tentatively known as X-3625.".`
+			choice
+				`	"Can you tell me more this disease?"`
+				`	"Is there anything I should do about it?"`
+					goto do
+				`	"Yep, just like me. Missing every danger through sheer luck."`
+					goto luck
+			`	"The disease appears to be caused by a certain bacteria of unknown origin. It seems to be quite picky about its surroundings. It thrives best in low gravity environments, gradually spreading over the host's body. When exposed to an environment with higher gravity, such as during landing, the bacteria rapidly swell in size, effectively blocking most of the blood flow and causing a sensation of fatigue and sleepiness."`
+			choice
+				`	"Is there anything I should do about it?"`
+					goto do
+			label luck
+			branch poorluck
+				"net worth" < 10000000
+			`	"I wouldn't count on luck so much. A risk-averse way of life and a well-written will is worth more than any lucky star out there. But you are a spaceship captain, I guess you wouldn't understand."`
+			choice
+				`	"Is there anything I should do about this disease?"`
+					goto do
+			label poorluck
+			`	"I wouldn't count on luck so much. A modest way of life and an industrious mentality is worth more than any lucky star out there. But you are a spaceship captain, I guess you wouldn't understand."`
+			choice
+				`	"Is there anything I should do about this disease?"`
+			label do
+			`	"We already injected an ample amount of the proper medicine. It will not cure you instantly, but it contains certain compounds which inhibit the pathogen's reproduction cycle, causing it to die out soon. Naturally, the life-saving operation and medicine are not free. The cost totals to 100,000 credits."`
+				decline
+	on accept
+		fail
+	on decline
+		payment -100000
+		fail
