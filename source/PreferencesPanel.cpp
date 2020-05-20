@@ -276,13 +276,6 @@ void PreferencesPanel::EndEditing()
 
 
 
-bool PreferencesPanel::AllowFastForward() const
-{
-	return true;
-}
-
-
-
 void PreferencesPanel::DrawControls()
 {
 	const Color &back = *GameData::Colors().Get("faint");

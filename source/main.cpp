@@ -47,7 +47,7 @@ using namespace std;
 void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode);
-void UpdateFastForward(UI &activeUI, bool &isFastForward);
+void UpdateFastForward(UI &activeUI, bool &isFastForward, bool triedToEnableFastForward);
 Conversation LoadConversation();
 #ifdef _WIN32
 void InitConsole();
@@ -191,6 +191,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		while(SDL_PollEvent(&event))
 		{
 			UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
+			bool triedToEnableFastForward = false;
 			
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
@@ -234,8 +235,9 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
 			{
 				isFastForward = !isFastForward;
+				triedToEnableFastForward = isFastForward;
 			}
-			UpdateFastForward(activeUI, isFastForward);
+			UpdateFastForward(activeUI, isFastForward, triedToEnableFastForward);
 		}
 		SDL_Keymod mod = SDL_GetModState();
 		Font::ShowUnderlines(mod & KMOD_ALT);
@@ -254,7 +256,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		// Tell all the panels to step forward, then draw them.
 		UI &stepUI = ((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels);
 		stepUI.StepAll();
-		UpdateFastForward(stepUI, isFastForward);
+		UpdateFastForward(stepUI, isFastForward, false);
 		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
@@ -302,11 +304,19 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 
 
 
-void UpdateFastForward(UI &activeUI, bool &isFastForward)
+void UpdateFastForward(UI &activeUI, bool &isFastForward, bool triedToEnableFastForward)
 {
+	static bool warned = false;
 	bool wasFastForward = isFastForward;
 	if(!activeUI.AllowFastForward())
+	{
+		if(triedToEnableFastForward && !warned)
+		{
+			warned = true;
+			activeUI.Push(new Dialog("Fast-Forward is only available in space."));
+		}
 		isFastForward = false;
+	}
 	if(wasFastForward != isFastForward)
 		activeUI.DrawAll();
 }

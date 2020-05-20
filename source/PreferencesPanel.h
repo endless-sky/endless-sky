@@ -42,9 +42,6 @@ protected:
 	
 	virtual void EndEditing() override;
 	
-	// Allow fast-forward.
-	virtual bool AllowFastForward() const;
-	
 	
 private:
 	void DrawControls();
