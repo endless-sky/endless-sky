@@ -42,7 +42,7 @@ mission "HRF 01A Summoned to Mountaintop"
 		has "Wanderers: Alpha Surveillance J: done"
 		# Sets the right characters and ensures the Unfettered are well distracted out of the picture.
 	on offer
-		event "Cardax Site Chosen"
+		event "cardax site chosen"
 		conversation
 			#A message summons you for the treaty resolution.
 			`When you land at the spaceport you find a message waiting for you from Teneep in the system buffer.`
@@ -295,7 +295,7 @@ mission "HRF 04 Escort Republic Outfitters"
 			`	The call ends, leaving you to your own devices.`
 				decline
 			label escort
-			`	"Lovely, in that case the first convoy will be waiting for you on Maelstrom. I'll meet you on Mooncreek when you return."
+			`	"Lovely, in that case the first convoy will be waiting for you on Maelstrom. I'll meet you on Mooncreek when you return."`
 				accept
 	
 	
@@ -365,7 +365,7 @@ mission "HRF 06 Escort Syndicate Outfitters"
 			choice
 				`	"I understand."`
 				`	"As long as I get paid for it."`
-			`	Xilin nods.'
+			`	Xilin nods.`
 			`	"The Syndicate cohort will be waiting on Sunracer for the next one." He casts a look around, "With any luck you'll actually be able to get a drink around here by the time you return."`
 				accept
 
@@ -436,7 +436,7 @@ mission "HRF 08 Escort Hai Outfitters"
 			choice
 				`	"This seems mildly ridiculous."`
 				`	"Of course."`
-			`	"I hear the intent of this affair is to prevent the news cycle in human space from turning over before the big event," he says.'
+			`	"I hear the intent of this affair is to prevent the news cycle in human space from turning over before the big event," he says.`
 			`	"Well," you say, "at least I don't have to go very far."`
 				accept
 
@@ -676,7 +676,7 @@ mission "HRF 14 Hai-Human Treaty"
 			`	The speeches in the grand Borealis Chamber turn out to be rather long and dry. Teeneep makes an appearance along with one of the other Elder Hai whom you think you recognise from asking you strange questions once before. Only the Republic President makes a head of state address but the highest officer of the Navy also makes an address on the value of the Mooncreek station to the security of both nations and and the benefits of long-term cooperation with mutual friends.`
 			`	You are asked to stand for a great many photos, make occasional comments, and shake an absolutely endless series of hands. Xilin is kind enough to make sure you get some of the better hors d'oeuvres in between making nice.`
 			`	When it's over Xilin and Hiyamaharu quietly inform you that you have a reward of <payment> for your earlier efforts setting up Mooncreek. You're free to go back about your business now.`
-				fail
+				decline
 
 
 #The final conclusion event.
@@ -732,3 +732,25 @@ event "mooncreek realised"
 		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typically of military fare. There are few shops or other services catering to civilians, and a very busy section devoted to the fighter groups that mine the astroids here to keep the outfitters supplied with basic resources for manufacture.`
 		add shipyard "Cardax Miners"
 		security 0.9
+	system Moktar
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Volax
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Sumar
+		fleet "Small Northern Pirates" 4000
+		fleet "Large Northern Pirates" 8000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Danoa
+		fleet "Small Northern Pirates" 7000
+		fleet "Large Northern Pirates" 16000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 5000
+	system Hassaleh
+		fleet "Small Northern Pirates" 8000
+		fleet "Large Northern Pirates" 20000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 5000
+	system Rajak
+		fleet "Small Northern Pirates" 7000
+		fleet "Large Northern Pirates" 12000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Rigel
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 11000

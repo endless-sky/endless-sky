@@ -549,9 +549,13 @@ mission "Hai Leaks Response 2"
 			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
 			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
 			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, she will be accompanying you as the Syndicate representative."`
-			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You resolve not to get on her bad side if at all possible.`
-			`"Oh by the way," says Alastair, pausing briefly as he turns to depart, "The Navy and my security forces are working jointly to get some of our message relays up in the Far North to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."`
-			`After which he finally, actually, departs for good.`
+			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You're surprised that a woman would have made it this far in the Syndicate, but with your observation you resolve not to get on her bad side if at all possible.`
+			`	"Oh by the way," says Alastair, pausing briefly as he goes to depart, "The Navy and my security forces are working jointly to get some of our message relays up in the Far North to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."`
+			branch delayedretire
+				not "free worlds reconciliation"
+			`	He leans in close to you and says quietly, "I know I said I was retiring, Terry convinced me to clean up my mess first. I am atoning for my failures, do look after her, she's a very loyal colleague."`
+			label delayedretire
+			`	After which he finally, actually, departs for good.`
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
