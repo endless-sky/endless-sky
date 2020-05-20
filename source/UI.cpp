@@ -34,11 +34,10 @@ UI::UI()
 
 bool UI::AllowFastForward() const
 {
-	int count=0;
 	for(const auto &it : stack)
 		if(!it->AllowFastForward())
-			count++;
-	return count==0;
+			return false;
+	return true;
 }
 
 

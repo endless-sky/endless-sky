@@ -366,13 +366,6 @@ bool LoadPanel::Scroll(double dx, double dy)
 
 
 
-bool LoadPanel::AllowFastForward() const
-{
-	return true;
-}
-
-
-
 void LoadPanel::UpdateLists()
 {
 	files.clear();
