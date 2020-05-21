@@ -54,7 +54,7 @@ template <class Type>
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
-	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
+	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 	
 	// Allow the AI to track any events it is interested in.
 	void UpdateEvents(const std::list<ShipEvent> &events);

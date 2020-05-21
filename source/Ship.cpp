@@ -2430,11 +2430,21 @@ double Ship::DisabledHull() const
 
 
 
-int Ship::JumpsRemaining() const
+int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
 	// many jumps it can make.
-	double jumpFuel = JumpFuel(targetSystem);
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		auto p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
