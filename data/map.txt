@@ -25279,7 +25279,7 @@ planet Avalon
 planet Aventine
 	attributes remnant
 	landscape land/mountain17-harro
-	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant relies on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
+	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant rely on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
 	bribe 0
 	shipyard Remnant
