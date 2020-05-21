@@ -308,12 +308,14 @@ void UpdateFastForward(UI &activeUI, bool &isFastForward, bool triedToEnableFast
 {
 	static bool warned = false;
 	bool wasFastForward = isFastForward;
+	if(Preferences::Has("fast forward anywhere"))
+		return;
 	if(!activeUI.AllowFastForward())
 	{
 		if(triedToEnableFastForward && !warned)
 		{
 			warned = true;
-			activeUI.Push(new Dialog("Fast-Forward is only available in space."));
+			activeUI.Push(new Dialog("Fast-Forward is only available in space. This can be changed in the settings."));
 		}
 		isFastForward = false;
 	}

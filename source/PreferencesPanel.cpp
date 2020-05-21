@@ -52,6 +52,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string FAST_FORWARD_ANYWHERE = "Toggle fast-forward anywhere";
 }
 
 
@@ -184,6 +185,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			else if(zone.Value() == FAST_FORWARD_ANYWHERE)
+				Preferences::Set("fast forward anywhere", !Preferences::Has("fast forward anywhere"));
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
 			break;
@@ -448,7 +451,8 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
-		"Warning siren"
+		"Warning siren",
+		FAST_FORWARD_ANYWHERE
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
@@ -537,6 +541,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == FAST_FORWARD_ANYWHERE)
+		{
+			isOn = Preferences::Has("fast forward anywhere");
+			text = isOn ? "on" : "off";
 		}
 		else
 			text = isOn ? "on" : "off";
