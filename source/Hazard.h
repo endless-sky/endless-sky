@@ -33,7 +33,8 @@ public:
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double Strength() const;
 	// How far from this hazard's origin that it will have an effect.
-	double Range() const;
+	double MinRange() const;
+	double MaxRange() const;
 	
 	// Effects to be created while this hazard is active.
 	const std::map<const Effect *, int> &EnvironmentalEffects() const;
@@ -46,7 +47,8 @@ private:
 	int maxLength = 1;
 	double minStrength = 1.;
 	double maxStrength = 1.;
-	double range;
+	double minRange;
+	double maxRange;
 	bool deviates = true;
 	
 	std::map<const Effect *, int> environmentalEffects;

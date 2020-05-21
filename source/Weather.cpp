@@ -74,7 +74,7 @@ double Weather::DamageMultiplier() const
 
 
 
-int Weather::Step(vector<Visual> &newVisuals)
+int Weather::Step(vector<Visual> &visuals)
 {
 	// Create the environmental effects... somehow.
 	return --lifetime;

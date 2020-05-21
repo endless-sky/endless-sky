@@ -2618,7 +2618,9 @@ double Ship::MaxReverseVelocity() const
 // Take environmental hazard damage from the current system.
 void Ship::DoHazard(vector<Visual> &visuals, const Hazard *hazard, double strength)
 {
-	if(hazard->Range() > 0 && position.Length() > hazard->Range())
+	double distance = position.Length();
+	double maxRange = hazard->MaxRange();
+	if(maxRange > 0. && (distance > maxRange || distance < hazard->MinRange()))
 		return;
 	
 	TakeDamage(*hazard, strength, Point(), hazard->BlastRadius() > 0.);
