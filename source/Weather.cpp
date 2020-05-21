@@ -12,6 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Weather.h"
 
+#include "Angle.h"
+#include "Random.h"
+
 #include <cmath>
 
 using namespace std;
@@ -76,7 +79,21 @@ double Weather::DamageMultiplier() const
 
 int Weather::Step(vector<Visual> &visuals)
 {
-	// Create the environmental effects... somehow.
+	// Environmental effects are created by choosing a random angle and distance from
+	// the system center, then creating the effect there. If a hazard has no range,
+	// effects are only created out to the invisible fence.
+	double minRange = hazard->MinRange();
+	double maxRange = hazard->MaxRange();
+	if(!maxRange)
+		maxRange = 10000.;
+	for(const auto &effect : hazard->EnvironmentalEffects())
+		for(int i = 0; i < static_cast<int>(effect.second * Strength()); ++i)
+		{
+			Point angle = Angle::Random().Unit();
+			double magnitude = (maxRange - minRange) * Random::Real();
+			Point pos = (minRange + magnitude) * angle;
+			visuals.emplace_back(*effect.first, pos, Point(), Angle::Random());
+		}
 	return --lifetime;
 }
 
