@@ -46,6 +46,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isPhasing = true;
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
+		else if(key == "parallel")
+			isParallel = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -214,6 +216,13 @@ void Weapon::LoadWeapon(const DataNode &node)
 bool Weapon::IsWeapon() const
 {
 	return isWeapon;
+}
+
+
+
+bool Weapon::IsParallel() const
+{
+	return isParallel;
 }
 
 

@@ -288,7 +288,10 @@ void Hardpoint::Install(const Outfit *outfit)
 		if(!isTurret)
 		{
 			angle = baseAngle;
-			if(!isParallel)
+			// Weapons that fire in parallel beams don't get a harmonized angle.
+			// And some hardpoints/gunslots are configured not to get harmonized.
+			// So only harmonize when both the port and the outfit supports it.
+			if(!isParallel && !outfit->IsParallel())
 				angle += HarmonizedAngle();
 		}
 		else
