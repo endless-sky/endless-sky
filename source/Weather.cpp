@@ -90,7 +90,7 @@ int Weather::Step(vector<Visual> &visuals)
 		for(int i = 0; i < static_cast<int>(effect.second * Strength()); ++i)
 		{
 			Point angle = Angle::Random().Unit();
-			double magnitude = (maxRange - minRange) * Random::Real();
+			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
 			Point pos = (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, pos, Point(), Angle::Random());
 		}
