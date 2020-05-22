@@ -2413,8 +2413,8 @@ mission "Remnant: Crystal Research 6"
 		conversation
 			`You walk into the cafeteria and spot the outfitter halfway through an impressively large meal. He waves you over, and by the time you are seated a tray with a significantly smaller meal is waiting for you. While you have aclimitized to a few of the dishes, most of them are still very unappetizing.`
 			choice
-				`	"Remnant sure like to eat."`
-				`	"Why do Remnant eat so much?"`
+				`	"The Remnant sure like to eat."`
+				`	"Why do the Remnant eat so much?"`
 					goto foodvolume
 				`	"Maybe I should import some spices."`
 					goto spices
