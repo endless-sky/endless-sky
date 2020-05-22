@@ -127,17 +127,33 @@ mission "Kestrel Testing"
 			
 			label wolf
 			`	"Not bad," he says, "but all our other ships - the Falcon, the Osprey, the Hawk - they're all birds. Maybe a bird name?"`
+			branch wolf_final
+				has "kestrel: prevent circle conversation"
+			apply 
+				set "kestrel: prevent circle conversation"
 			choice
 				`	"The Grey Goose."`
 					goto goose
 				`	"The Kestrel."`
 					goto kestrel
+			label wolf_final
+			choice
+				`	"The Kestrel."`
+					goto kestrel
 			
 			label reaper
 			`	"I don't know," he says, "that sounds a little bit over the top. Any other suggestions?"`
+			branch reaper_final
+				has "kestrel: prevent circle conversation"
+			apply 
+				set "kestrel: prevent circle conversation"
 			choice
 				`	"The Wraith."`
 					goto wraith
+				`	"The Kestrel."`
+					goto kestrel
+			label reaper_final
+			choice
 				`	"The Kestrel."`
 					goto kestrel
 			
