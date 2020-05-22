@@ -3607,9 +3607,9 @@ mission "James Medicine [0]"
 					defer
 			`	Unlike some other planets, where it is practically impossible to find a person without having contact information, <origin> has a planetary database. You eagerly walk over to the nearest information desk and wait for the operator to make a few calls. At last, you are directed to a small, respected establishment, the Pilot Veteran Clinic. You can only wonder what James is doing there.`
 			`	The clinic is housed in a small, modern-looking building, which looks cunningly similar to a giant Firebird. Inside, the rooms are arranged to resemble bunk rooms on a spaceship, likely so that the patients would feel right at home.`
-			`	As it is currently lunch time, there is no one in sight at the clinic. Luckily, the operator gave you the room number, which you quickly reach after a few minutes.`
+			`	There is no one in sight at the clinic, probably because it is around lunch time. Luckily, the operator gave you the number of James's room, and you manage to find the correct door after a few minutes.`
 			choice
-				`	(Wait for someone to show up.)`
+				`	(Wait outside for someone to show up.)`
 					goto wait
 				`	(Enter the room.)`
 			apply
@@ -3618,17 +3618,17 @@ mission "James Medicine [0]"
 			`	"<first>! Fancy meeting you here! I heard you became a war hero of sorts?", he adds with a wink.`
 			choice
 				`	"Nothing special, I just did what is right."`
-				`	"Indeed, seems like I saved the galaxy this time."`
+				`	"Quite so! Seems like I saved the galaxy this time."`
 			`	"Yeah, yeah... You know, I am feeling pretty weak now, and while the doctors say that I will live through this illness, there is still a chance that it would be my last."`
 			`	"So, I wanted to tell you something..", he rambles on, " just to make sure that knowledge is not lost. While I was exploring the planets and systems reachable from human space, I stumbled upon Ultima Thule, due northeast of here. At the time I piloted just a small warship, so I couldn't muster the courage to pass through it, but.. there is a wormhole there!"`
 			branch interesting
 				not "First Contact: Hai: offered"
 			choice
 				`	(Tell him about the Hai.)`
-				`	(Say nothing about it.)`
+				`	(Do not mention the Hai.)`
 					goto interesting
 			`	"I have actually been there," you say, "It leads to a nearby part of space inhabited by the Hai, an advanced alien civilization of squirrel-like creatures."`
-			`	"Indeed? Are they friendly?"`
+			`	"Really? Are they friendly?"`
 			choice
 				`	"Yes, they even allow humans to settle there or buy their technology."`
 					goto doctor
@@ -3644,7 +3644,7 @@ mission "James Medicine [0]"
 				`	"I am <first> <last>, here to see this friend of mine."`
 				`	"I was.. just strolling around."`
 			`	"Nevermind what you were doing. I have to warn you that the patient here has a disease we do not know much about yet. It could potentially be some deadly, contagious disease. Now, please make haste and remove yourself from the room, so as to not risk catching it yourself."`
-			`	Following the doctor's instructions, you quickly exit the room. As you close the door, you hear something of a chuckle, probably from James.`
+			`	The doctor accompanies his words with a lot of vigorous movements, and you find yourself outside the room before realizing it. As the door swings shut, you hear something of a chuckle, probably from James.`
 				goto end
 			label wait
 			`	Soon enough, a doctor passes by, heading for the room.`
@@ -3655,14 +3655,14 @@ mission "James Medicine [0]"
 			choice
 				`	(Wait outside the room.)`
 			`	Around half an hour later, the doctor finally exists the room.`
-			`	"I see you probably want to help," he says, "I need someone to quickly go to the spaceport and find a captain willing to bring some newly-discovered medication from <destination> as quickly as possible. Can you do that?"`
+			`	"I see you probably want to help," he says, "I need someone to go to the spaceport and find a captain willing to bring some newly-discovered medication from <destination> as fast as possible. Can you do that?"`
 			choice
 				`	"Actually I am a spaceship captain. I could do that."`
 				`	"Yes, I can find a capable spaceship captain."`
 					goto `second chance`
-				`	"What am I, a message-boy? Find someone yourself."`
+				`	"I'm to busy to run errands. Ask someone else."`
 					decline
-			`	"Indeed? Superb! Come back as soon as possible. We wouldn't want to risk your friend's life for a minute delay."`
+			`	"You are? Superb! Come back as soon as possible. We wouldn't want to risk your friend's life for a minute delay."`
 				accept
 			label `second chance`
 			`	On the way to the spaceport you realize that you do not have to find another spaceship captain to bring medicine from <planet>. You could do it yourself!`
@@ -3709,14 +3709,14 @@ mission "James Medicine [1]"
 				`	"No help is too much for a friend."`
 					goto end
 			label slow
-			`	The doctor that spoke to you earlier appears soon after you enter the building. "Alas! Such is our fate, to slowly pass from this life to the next!", he exclaims, and adds "Unfortunately, the disease was more onerous than we could have anticipated. The medicine you brought would save James's life, but the damage already wrought would leave him unable to walk freely."`
+			`	The doctor that spoke to you earlier appears soon after you enter the building. "Alas! Such is our fate, to slowly pass from this life to the next!", he exclaims, and adds "Unfortunately, the disease was more onerous than we could have anticipated. The medicine you brought might save James's life, but the damage already wrought would leave him paralysed forever."`
 			apply
 				set "james medicine: james disabled"
 			choice
 				`	"I tried my best."`
 					goto end
 				`	"It's your fault, not ordering the medicine earlier."`
-			`	The doctor seems amazed by your complaint, even though he does not reply to it in any way.`
+			`	A heavy tear rolls down one side of the doctor's face. "How would I guess! He seemed quite well a few days ago, not showing any sign of the sickness spreading so fast!"`
 			label end
 			branch noname
 				not "james medicine: infected"
