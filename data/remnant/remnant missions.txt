@@ -2166,3 +2166,302 @@ mission "Remnant: Face to Maw 2B"
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
+
+
+
+mission "Remnant: Crystal Research 1"
+	name "Retrieve more Crystals"
+	description `Retrieve Crystals from Greenwater, and then Allhome.`
+	minor
+	source "Viminal"
+	destination "Greenwater"
+	stopover "Allhome"
+	cargo "Keystones" 2
+	to offer
+		random < 30
+		has "Remnant: Learn Sign 2: done"
+		has "Remnant: Technology Available: offered"
+		or
+			has "Remnant: Key Stones: done"
+			has "Remnant: Key Stones (Hai): done"
+			has "Remnant: Key Stones (Pre-Hai) 2: done"
+	on offer
+		conversation
+			`In the spaceport cafeteria you spot the outfitter who had you retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
+			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down."`
+			choice
+				`	(Ask how business is going)`
+				`	(Ask if there are more jobs like the last one you did for him.)`
+					goto crystaljobs
+			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved." He gestures appreciatively. "I am told that we have you to thank for some of that."`
+			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some interesting results." He notices your questioning expression. "Oh, you were expecting me to sell them, weren't you?" You nod affirmatively.`
+			`	He looks slightly embarassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "Firstly, security: Slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to being tracked. Secondly, research: Something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And thirdly, purpose."`
+			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, my purpose is to ensure that Remnant captains have the resources they need. What you see listed as the 'price', Remnant captains see listed instead as a 'logistics adjustment' that indicates how much resources are needed to supply that component. Every ship has allocated resources and budgets determining how much they can utilize for repairs, restocking, and improvements."`
+			choice
+				`	"Wait, you didn't sell any of that?"`
+				`	"OK, so that shipment you had me get?"`
+					goto crystaljobs
+			`	"You are correct. Despite what was said, none of it was sold - all of it was dismantled by researchers examining how it was made and what its properties are."`
+			label crystaljobs
+			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to demonstrate your willingness to help. While that shipment was definitely useful, we had to frame it in a way that didn't reveal what we were doing, and give you an explanation that would make sense for doing it."`
+			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
+			choice
+				`	(sign the affirmative)`
+				`	(decline)`
+					decline
+			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: Firstly, we would like you to pick them up from several different planets. And secondly, by the time you reach Hai space we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
+			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
+				accept
+	on stopover
+		dialog
+			`It takes a few minutes to contact the yardmaster, but once you do the Hai have the crates moved from the warehouse to your bay doors fairly promptly. Hai and Humans seem accustomed to working together here.`
+	on complete
+		payment 250000
+		dialog
+			`True to his word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message from Viminal has arrived. You also note that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
+
+
+
+mission "Remnant: Crystal Research 2"
+	name "Retrieve more Crystals"
+	description `Retrieve Crystals from several Hai worlds, ending on Newhome.`
+	landing
+	source "Greenwater"
+	destination "Newhome"
+	stopover "Makerplace"
+	stopover "Stonebreak"
+	stopover "Giverstone"
+	stopover "Cloudfire"
+	stopover "Snowfeather"
+	stopover "Icelake"
+	stopover "Heartvalley"
+	cargo "Keystones" 12
+	to offer
+		has "Remnant: Crystal Research 1: done"
+	on offer
+		dialog
+			`The message is brief and to the point. "Greetings, Captain <first>. Hopefully the shipments were waiting for you. We have arranged for samples to be acquired from Makerplace, Stonebreak, Giverstone, Cloudfire, Snowfeather, Icelake, and Heartvalley. Once you have collected all those, head to Newhome. There are a few other places that we are still working to setup, and we should have those ready by the time you reach Newhome."`
+				accept
+	on stopover
+		dialog
+			`On each stop you quickly locate and load the shipment of crystals. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to help your passengers have the smoothest flight!" reads one of the labels.`
+	on complete
+		payment 250000
+		dialog
+			`You are just checking in with the port authorities to locate your shipment when your commlink indicates a pair of messages incoming. While you wait for the second one to load, you glance through the first one which is a simple deposit statement indicating that a payment of <payment> has been deposited from a "Solar Winds Logistics Ltd."`
+
+
+
+mission "Remnant: Crystal Research 3"
+	name "Retrieve more Crystals"
+	description `Return the Crystals to Viminal.`
+	landing
+	source "Newhome"
+	destination "Viminal"
+	cargo "Keystones" 19
+	to offer
+		has "Remnant: Crystal Research 2: done"
+	on offer
+		dialog
+			`The last few crates are loaded. Look over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to simply be a confirmation that you have picked up 19 Keystones. While there are no new instructions, the subtext is clear: Time to head back.`
+				accept
+	on complete
+		payment 2000000
+		conversation
+			`As you descend through the clouds to Viminal you get the feeling someone is watching you, but your sensors keep showing nothing more than a smattering of gulls and a patrol squad in the distance. Looking down, you spot an extra battery of anti-air artillery next to the main entrance to the spaceport. You note the artillery tracking you and quickly tap in the recognition code to the IFF system. Within seconds, the large guns are swinging back to covering the initial approach.`
+			`	Passing through the cavernous opening into the great spaceport dome, there is a shimmer in the air next to you and a starling fades into view, settling onto the platform beside you. The pilot signs a quick "Greetings, anticipating talking with you." before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
+			`	As you finish your own shutdown routine your commlink informs you that your account has been updated with <payment>.`
+
+
+
+ship "Starling" "Starling (Keystone)"
+		sprite "ship/starling"
+		thumbnail "thumbnail/starling"
+		attributes
+			category "Light Warship"
+			licenses
+				Remnant
+			cost 8800000
+			"shields" 8800
+			"hull" 4900
+			"required crew" 6
+			"bunks" 15
+			"mass" 270
+			"drag" 3.8
+			"heat dissipation" 0.7
+			"fuel capacity" 900
+			"ramscoop" 1
+			"cargo space" 36
+			"outfit space" 312
+			"weapon capacity" 83
+			"engine capacity" 94
+			"shield generation" 1.8
+			"shield energy" 1.2
+			"hull repair rate" 0.8
+			"hull energy" 0.6
+			"cloak" .02
+			"cloaking energy" 5
+			"cloaking fuel" .1
+			"outfit scan power" 12
+			"outfit scan speed" 1
+			"tactical scan power" 26
+			weapon
+				"blast radius" 80
+				"shield damage" 800
+				"hull damage" 400
+				"hit force" 1200
+		outfits
+			"Inhibitor Cannon" 3
+			"Point Defense Turret"
+			
+			"Epoch Cell"
+			"Crystal Capacitor"
+			"Emergency Ramscoop" 2
+			"Quantum Keystone"
+			"Salvage Scanner"
+			
+			"Forge-Class Thruster"
+			"Forge-Class Steering"
+			"Crucible-Class Steering"
+			"Hyperdrive"
+
+		engine -16 82 0.7
+		engine 16 82 0.7
+		engine 0 90 1
+		gun 0 -99 "Inhibitor Cannon"
+		gun -12 -72 "Inhibitor Cannon"
+		gun 12 -72 "Inhibitor Cannon"
+		gun -18 -49
+		gun 18 -49
+		turret 0 2 "Point Defense Turret"
+		leak "remnant leak" 30 4
+		leak "remnant leak sparkle" 30 10
+		explode "tiny explosion" 40
+		explode "small explosion" 20
+		explode "medium explosion" 10
+		"final explode" "final explosion small" 1
+		description "One of the strangest and most useful things that the Remnant discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They designed their scout ships to be able to cloak when needed, in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
+		description "	The cloaking technology is built into the Starling's hull; it cannot be removed or transferred to another ship."
+
+
+
+mission "Remnant: Crystal Research 4"
+	name "Scan the <npc> in <waypoints>"
+	description `Go scan the <npc> to record the Keystone post-wormhole.`
+	landing
+	waypoint "Peragenor"
+	source "Viminal"
+	destination "Viminal"
+	npc "scan outfits" "save"
+		government "Remnant"
+		personality coward disables plunders staying surveillance target mining
+		system "Peragenor"
+		ship "Starling (Keystone)" "Winds of Light"
+	
+	to offer
+		has "Remnant: Crystal Research 3: done"
+	on offer
+		conversation
+			`You exit the ship to find the pilot marshalling a few dock workers with a number of wagons and lifters to unload the cargo.`
+			`	"Ah, <first>, thank you for retrieving all these Keystones." he pauses to stare at a crate bearing the image of a bunch of smiling Hai, then shakes his head and turns back to you.`
+			`	"Our researchers have decided that we need to test how a ship performs with one of these Keystones compared to a regular Key Stone. My ship has been outfitted with a keystone built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here, swap out the Quantum Key Stone built with Hai crystals for one made from our crystals. Then we go back to Peragenor and get scanned again. By using the same ships for both tests, we should be able to get the best data."`
+				accept
+	on visit
+		dialog `You land on <planet>, but you haven't scanned the Starling in <waypoints>. Make sure you scan the ship before returning.`
+	on complete
+		payment 150000
+		conversation
+			`When you and the <npc> settle back onto the landing pad there is already a dockworker waiting with a Key Stone. Once the starling is settled, the dockworker climbs up the outside of the ship, hooks the Keystone to a lift and disconnects it from the ship. As the Keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
+
+
+
+mission "Remnant: Crystal Research 5"
+	name "Scan the <npc> in <waypoints>"
+	description `Go scan the <npc> to record the Keystone post-wormhole.`
+	landing
+	waypoint "Peragenor"
+	source "Viminal"
+	destination "Viminal"
+	npc "scan outfits" "save"
+		government "Remnant"
+		personality coward disables plunders staying surveillance target mining
+		system "Peragenor"
+		ship "Starling" "Winds of Light"
+	to offer
+		has "Remnant: Crystal Research 4: done"
+	on offer
+		conversation
+			`	"Ready? Let's go!" signs the starling pilot as he fires up his systems and gestures an acknowledgement to the dockworker. The worker nimbly steps clear of the ship and watches as the two ships head back out of the dome.`
+				launch
+	on visit
+		dialog `You land on <planet>, but you haven't scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
+	on complete
+		payment 150000
+		conversation
+			`The scanning proceeds smoothly, and while it does note some differences between the two crystals, they both appear to function similarly. After you return to Viminal the pilot comes over to collect a copy of the data for the researchers.`
+			`	"Thanks for your help, Captain <first>. This information may be valuable in understanding how the wormholes work." He pauses, then continues thoughtfully "Perhaps more importantly, it may help understand how the wormholes of the Ember Waste are different from the wormholes elsewhere that require no such aids."`
+			`	He looks down at the data crystal. "Before I forget, the outfitter said he would like to meet you. He should be in the cafeteria waiting for you. May the Embers burn bright for you, Captain." He gives a wave that seems vaguely like a salute and heads off.`
+			`	As he disappears from sight you hear a faint chime from your commlink, which displays a message indicating that two payments of <payment> have been allocated to your account. You recall that you didn't get a message after the last mission, so they must have been combining them. You do find it odd, however, that they always seem to know exactly when you finish a delivery.`
+
+
+
+mission "Remnant: Crystal Research 6"
+	name "Deliver Data to <destination>"
+	description `A copy of the scanner data needs to be delivered to the researchers on <destination>.`
+	source "Viminal"
+	destination
+		government "Remnant"
+	to offer
+		has "Remnant: Crystal Research 5: done"
+	on offer
+		conversation
+			`You walk into the cafeteria and spot the outfitter halfway through an impressively large meal. He waves you over, and by the time you are seated a tray with a significantly smaller meal is waiting for you. While you have aclimitized to a few of the dishes, most of them are still very unappetizing.`
+			choice
+				`	"Remnant sure like to eat."`
+				`	"Why do Remnant eat so much?"`
+					goto foodvolume
+				`	"Maybe I should import some spices."`
+					goto spices
+			`	The outfitter chuckles and makes an amused gesture. "An army lives and dies by its food! A poorly fed soldier is but a short step away from being a deserter or even a traitor. While we have had lean years in the past, but these days we ensure everyone has plenty to eat."`
+				goto deliverdata
+			label foodvolume
+			branch capitallicense
+				"license: Remnant Capital" = 1
+			`	He looks at you appraisingly. "You are perceptive, but there are some things you cannot learn yet. Ask us again when you have earned more of our trust."`
+				goto deliverdata
+			label capitallicense
+			apply "remnant symbiotes info" += 1
+			`	He looks at you appraisingly "You are perceptive, and have earned our trust." He leans forward and holds up his hands. He pokes at the leather fingerless gloves he is wearing, and you note that they actually extend up under his sleaves. Looking closer, you note that the leather does not actually look like any leather you have seen - it has fine scales and rough ridges on it. What stands out the most, however, is that it appears to pulse faintly.`
+			`	"The truth is, when we eat, we are eating for two. You will have to ask someone else how they came to be or how it works, but suffice to say that we have developped a symbiotic relationship with a variety of creatures we found here. These ones." He holds up his hands. "Have a knack for precision and durability. With them, I am more precise than I would otherwise be, and much tougher. In exchange, they feed on us and require regular care and attention. Normally, this causes us no hardship; but if we do not eat enough we will consume our reserves far faster than we normally would."`
+			choice
+				`	"That is quite the revelation."`
+				`	"Thanks for the explanation."`
+				`	"Is that why some of the food tastes terrible?"`
+					goto terribleflavor
+				`	"Sounds creepy."`
+					goto creepy
+			`	The outfitter nods. "From what I have heard, humanity does not even seem to have much in the way of exoskeletons or cybernetics. Having living organisms we wear would certainly seem to be the realm of science-fiction. But education aside, there is work to do."`
+				goto deliverdata
+			label spices
+			`	He shakes his head. "I will not discourage you doing so - and I am sure some might appreciate them - but most of us like our food the way it is." He chuckles, then continues. "But there is still work to do."`
+				goto deliverdata
+			label terribleflavor
+			`	"I suppose it might. Our symbiotes have different dietary requirements, and such unusual compounds in our food inevitably change the flavor. We are all long since used to it, but it would definitely be different for an outsider." He seems amused by this. "But enough of food - there is work to do!"`
+				goto deliverdata
+			label creepy
+			`	"Creepy? I do not understand how something so useful and beneficial could be 'creepy,' but I suppose some might equate our symbiotes to being useful leeches. To each their own, I suppose." He shrugs, then continues. "But enough. We still have work to do."`
+			label deliverdata
+			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to our researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these crystals and the wormholes. Will you do it?"`
+			choice
+				`	"OK"`
+					accept
+				`	"Not right now"`
+					defer
+	on complete
+		payment 100000
+		conversation
+			`A young researcher is waiting for you when you exit the <ship>. "Thank you for your assistance, Captain." she signs with one hand as she accepts the briefcase with the other. "There has been a lot of concentrated study on the wormholes over the past several centuries. While we know much about them...." she makes a convoluted gesture that you think translates as "knowing that you don't know."`
+			`	"Now, thanks to your acquisitions, we have the opportunity to get some new insights. We are looking forward to learning more about these anomalies. May the Embers burn bright for you, Captain." With that, she turns and heads off towards a lab.`
+			`	As you contemplate your next mission, your commlink chimes with a notification of another payment being made to your account.`
+
+
