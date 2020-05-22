@@ -2181,10 +2181,6 @@ mission "Remnant: Crystal Research 1"
 		random < 30
 		has "Remnant: Learn Sign 2: done"
 		has "Remnant: Technology Available: offered"
-		or
-			has "Remnant: Key Stones: done"
-			has "Remnant: Key Stones (Hai): done"
-			has "Remnant: Key Stones (Pre-Hai) 2: done"
 	on offer
 		conversation
 			`In the spaceport cafeteria you spot the outfitter who had you retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
