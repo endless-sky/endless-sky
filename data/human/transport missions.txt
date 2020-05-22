@@ -3606,7 +3606,7 @@ mission "James Medicine [0]"
 				`	(Not right now.)`
 					defer
 			`	Unlike some other planets, where it is practically impossible to find a person without having contact information, <origin> has a planetary database. You eagerly walk over to the nearest information desk and wait for the operator to make a few calls. At last, you are directed to a small, respected establishment, the Pilot Veteran Clinic. You can only wonder what James is doing there.`
-			`	The clinic is housed in a small modern-looking building, which looks cunningly similar to a giant Firebird. Inside, the rooms are arranged to resemble bunk rooms on a spaceship, likely so that the patients would feel right at home.`
+			`	The clinic is housed in a small, modern-looking building, which looks cunningly similar to a giant Firebird. Inside, the rooms are arranged to resemble bunk rooms on a spaceship, likely so that the patients would feel right at home.`
 			`	As it is currently lunch time, there is no one in sight at the clinic. Luckily, the operator gave you the room number, which you quickly reach after a few minutes.`
 			choice
 				`	(Wait for someone to show up.)`
@@ -3620,7 +3620,7 @@ mission "James Medicine [0]"
 				`	"Nothing special, I just did what is right."`
 				`	"Indeed, seems like I saved the galaxy this time."`
 			`	"Yeah, yeah... You know, I am feeling pretty weak now, and while the doctors say that I will live through this illness, there is still a chance that it would be my last."`
-			`	"So, I wanted to tell you something..", he rambles on, " just to make sure that knowledge is not lost. While I was exploring the planets and systems reachable from human space, I stumbled upon Ultima Thule, due northeast of here. At the time I piloted just a small warship, so I couldn't brave myself to pass through it, but.. there is a wormhole there!"`
+			`	"So, I wanted to tell you something..", he rambles on, " just to make sure that knowledge is not lost. While I was exploring the planets and systems reachable from human space, I stumbled upon Ultima Thule, due northeast of here. At the time I piloted just a small warship, so I couldn't muster the courage to pass through it, but.. there is a wormhole there!"`
 			branch interesting
 				not "First Contact: Hai: offered"
 			choice
@@ -3630,13 +3630,13 @@ mission "James Medicine [0]"
 			`	"I have actually been there," you say, "It leads to a nearby part of space inhabited by the Hai, an advanced alien civilization of squirrel-like creatures."`
 			`	"Indeed? Are they friendly?"`
 			choice
-				`	"Yes, they even offer humans to settle there or buy their technology."`
+				`	"Yes, they even offer humans permission to settle there or buy their technology."`
 					goto doctor
 				`	"Yes, though I'm worried they can conquer all of human space if they wish."`
 					goto doctor
 			label interesting
 			`	"Sounds interesting," you say, "Could it lead to some aliens, or perhaps to some worlds waiting to be settled?"`
-			`	"Not sure. It is located in a lawless barren of space, however, so I wouldn't be surprised if there pirates or even Alphas on the other side."`
+			`	"Not sure. It is located in a lawless barren region of space, however, so I wouldn't be surprised if there pirates or even Alphas on the other side."`
 			label doctor
 			`	Just as the conversation hangs for a moment, the door opens and a doctor in protective clothing steps in.`
 			`	"Who are you? And why are you in this room?", the doctor inquires, in a soft but authoritative voice.`
@@ -3644,7 +3644,7 @@ mission "James Medicine [0]"
 				`	"I am <first> <last>, here to see this friend of mine."`
 				`	"I was.. just strolling around."`
 			`	"Nevermind what you were doing. I have to warn you that the patient here has a disease we do not know much about yet. It could potentially be some deadly, contagious disease. Now, please make haste and remove yourself from the room, so as to not risk catching it yourself."`
-			`	Following the doctor's instructions, you quickly exit the room. As you close the door, you can make something of a chuckle, probably from James.`
+			`	Following the doctor's instructions, you quickly exit the room. As you close the door, you hear something of a chuckle, probably from James.`
 				goto end
 			label wait
 			`	Soon enough, a doctor passes by, heading for the room.`
@@ -3715,12 +3715,12 @@ mission "James Medicine [1]"
 			choice
 				`	"I tried my best."`
 					goto end
-				`	"It's your fault, not delivering for the medicine earlier."`
+				`	"It's your fault, not ordering the medicine earlier."`
 			`	The doctor seems amazed by your complaint, even though he does not reply to it in any way.`
 			label end
 			branch noname
 				not "james medicine: infected"
-			`	"Anyway, we have to pay for the services we receive. Here, take <payment>", he says and drops his voice to mention, "I would not recommend seeing James now, though I will surely tell him how helpful you have been, <last>."`
+			`	"Anyway, we have to pay for the services we receive. Here, take <payment>", he says and drops his voice to mention, "I would not recommend seeing James now, though I will surely tell him how helpful you have been, Captain <last>."`
 				goto finish
 			label noname
 			`	"Anyway, we have to pay for the services we receive. Here, take <payment>", he says and drops his voice to mention, "I would not recommend seeing James now, but maybe after he is well again."`
@@ -3848,7 +3848,7 @@ mission "James Medicine [2]"
 			`	As you muse and wonder where you are, someone looking like a doctor or perhaps a nurse enters the room.`
 			`	"You are lucky to be still living", she says, "You barely survived an encounter with a recently discovered disease tentatively known as X-3625.".`
 			choice
-				`	"Can you tell me more this disease?"`
+				`	"Can you tell me more about this disease?"`
 				`	"Is there anything I should do about it?"`
 					goto do
 				`	"Yep, just like me. Missing every danger through sheer luck."`
