@@ -18,18 +18,20 @@ ship "Subsidurial"
 		"hull" 11600
 		"automaton" 1
 		"mass" 700
+		"cargo space" 70
 		"drag" 8.2
 		"heat dissipation" .8
-		"cargo space" 70
+		"fuel capacity" 100
+		"outfit space" 20
 		"thrust" 10
 		"turn" 800
 		"hull repair rate" 3
 		"energy capacity" 1
-		"fuel capacity" 100
 		"inscrutable" 1
 		"gaslining" 1
 	outfits
 		Mouthparts? 3
+		Hyperdrive
 	gun 0 -97 Mouthparts?
 	gun -23 -95 Mouthparts?
 	gun 23 -95 Mouthparts?
