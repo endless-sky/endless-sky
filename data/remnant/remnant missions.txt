@@ -2260,7 +2260,7 @@ mission "Remnant: Crystal Research 3"
 		has "Remnant: Crystal Research 2: done"
 	on offer
 		dialog
-			`The last few crates are loaded. Look over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to simply be a confirmation that you have picked up 19 Keystones. While there are no new instructions, the subtext is clear: Time to head back.`
+			`The last few crates are loaded. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to simply be a confirmation that you have picked up 19 Keystones. While there are no new instructions, the subtext is clear: Time to head back.`
 				accept
 	on complete
 		payment 2000000
@@ -2464,5 +2464,4 @@ mission "Remnant: Crystal Research 6"
 			`A young researcher is waiting for you when you exit the <ship>. "Thank you for your assistance, Captain." she signs with one hand as she accepts the briefcase with the other. "There has been a lot of concentrated study on the wormholes over the past several centuries. While we know much about them...." she makes a convoluted gesture that you think translates as "knowing that you don't know."`
 			`	"Now, thanks to your acquisitions, we have the opportunity to get some new insights. We are looking forward to learning more about these anomalies. May the Embers burn bright for you, Captain." With that, she turns and heads off towards a lab.`
 			`	As you contemplate the implications of the Remnant studying the wormholes, your commlink chimes with a notification of another payment being made to your account.`
-
 
