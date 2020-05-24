@@ -2378,7 +2378,7 @@ mission "Remnant: Crystal Research 4"
 
 mission "Remnant: Crystal Research 5"
 	name "Scan the <npc> in <waypoints>"
-	description `Go scan the <npc> to record the Keystone post-wormhole.`
+	description `Go scan the <npc> to record the Key Stone post-wormhole.`
 	landing
 	waypoint "Peragenor"
 	source "Viminal"
