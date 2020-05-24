@@ -2372,7 +2372,7 @@ mission "Remnant: Crystal Research 4"
 	on complete
 		payment 150000
 		conversation
-			`When you and the <npc> settle back onto the landing pad there is already a dockworker waiting with a Key Stone. Once the starling is settled, the dockworker climbs up the outside of the ship, hooks the Keystone to a lift and disconnects it from the ship. As the Keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
+			`When you and the <npc> settle back onto the landing pad there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the Keystone to a lift and disconnects it from the ship. As the Keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
 
 
 
@@ -2464,4 +2464,3 @@ mission "Remnant: Crystal Research 6"
 			`A young researcher is waiting for you when you exit the <ship>. "Thank you for your assistance, Captain." she signs with one hand as she accepts the briefcase with the other. "There has been a lot of concentrated study on the wormholes over the past several centuries. While we know much about them...." she makes a convoluted gesture that you think translates as "knowing that you don't know."`
 			`	"Now, thanks to your acquisitions, we have the opportunity to get some new insights. We are looking forward to learning more about these anomalies. May the Embers burn bright for you, Captain." With that, she turns and heads off towards a lab.`
 			`	As you contemplate the implications of the Remnant studying the wormholes, your commlink chimes with a notification of another payment being made to your account.`
-
