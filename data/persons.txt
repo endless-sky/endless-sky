@@ -10,7 +10,6 @@
 
 person "Michael Zahniser"
 	government "Author"
-	frequency 300
 	personality
 		plunders
 	phrase
@@ -28,7 +27,7 @@ person "Michael Zahniser"
 			"mass" 740
 			"drag" 12.5
 			"heat dissipation" 0.45
-			"fuel capacity" 150
+			"fuel capacity" 500
 			"cargo space" 200
 			"outfit space" 2400
 			"weapon capacity" 900
