@@ -43,6 +43,7 @@ mission "Pirate Occupation [0]"
 		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 100000
+		"reputation: Militia" ++
 		dialog phrase "generic pirate attack payment dialog"
 
 mission "Pirate Occupation [1]"
@@ -81,6 +82,7 @@ mission "Pirate Occupation [1]"
 		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 150000
+		"reputation: Militia" ++
 		dialog phrase "generic pirate attack payment dialog"
 
 mission "Pirate Occupation [2]"
@@ -119,6 +121,7 @@ mission "Pirate Occupation [2]"
 		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 200000
+		"reputation: Militia" ++
 		dialog phrase "generic pirate attack payment dialog"
 
 conversation "pirate occupation"

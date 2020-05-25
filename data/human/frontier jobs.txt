@@ -39,6 +39,7 @@ mission "Frontier delivery [0]"
 		fleet "Small Northern Pirates" 2
 	on complete
 		payment 4000 180
+		"reputation: Republic" ++
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -71,6 +72,7 @@ mission "Frontier delivery [1]"
 		fleet "Small Northern Pirates" 3
 	on complete
 		payment 4000 180
+		"reputation: Republic" ++
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -102,6 +104,7 @@ mission "Frontier delivery [2]"
 		fleet "Large Northern Pirates"
 	on complete
 		payment 4000 180
+		"reputation: Republic" ++
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -123,6 +126,7 @@ mission "Frontier Emigration [0]"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
+		"reputation: Republic" ++
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -144,6 +148,7 @@ mission "Frontier Emigration [1]"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
+		"reputation: Republic" ++
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -165,6 +170,7 @@ mission "Frontier Emigration [2]"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
+		"reputation: Republic" ++
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -187,6 +193,7 @@ mission "Disaster Relief"
 		not planet "Shangri-La"
 	on complete
 		payment 10000 160
+		"reputation: Republic" ++
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell."
 
 
@@ -210,6 +217,7 @@ mission "Instruct Novice Pilot"
 		dialog "You've returned to <planet>, but forgot to escort the <npc> to <stopovers> first! Better head there first."
 	on complete
 		payment 75000
+		"reputation: Merchant" ++
 		dialog "Your student thanks you for the instruction and for providing a guided view of some of the galaxy's rougher areas. You receive your payment of <payment>."
 	npc
 		government "Pirate"

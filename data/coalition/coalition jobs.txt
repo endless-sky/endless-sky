@@ -29,6 +29,7 @@ mission "Coalition: Ringworld Workers 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition ringworld workers"
@@ -50,6 +51,7 @@ mission "Coalition: Ringworld Workers 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 15000
 		dialog phrase "coalition ringworld workers"
@@ -71,6 +73,7 @@ mission "Coalition: Ringworld Workers 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 20000
 		dialog phrase "coalition ringworld workers"
@@ -97,6 +100,7 @@ mission "Coalition: Ringworld Volunteers 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 4000
 		dialog phrase "coalition ringworld volunteers"
@@ -118,6 +122,7 @@ mission "Coalition: Ringworld Volunteers 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 8000
 		dialog phrase "coalition ringworld volunteers"
@@ -139,6 +144,7 @@ mission "Coalition: Ringworld Volunteers 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 12000
 		dialog phrase "coalition ringworld volunteers"
@@ -166,6 +172,7 @@ mission "Coalition: Ringworld Materials 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 30000
 		dialog phrase "coalition ringworld materials"
@@ -188,6 +195,7 @@ mission "Coalition: Ringworld Materials 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 40000
 		dialog phrase "coalition ringworld materials"
@@ -210,6 +218,7 @@ mission "Coalition: Ringworld Materials 3"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 50000
 		dialog phrase "coalition ringworld materials"
@@ -236,6 +245,7 @@ mission "Coalition: Ringworld Supplies 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 2000
 		dialog phrase "coalition ringworld supplies"
@@ -257,6 +267,7 @@ mission "Coalition: Ringworld Supplies 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 4000
 		dialog phrase "coalition ringworld supplies"
@@ -278,6 +289,7 @@ mission "Coalition: Ringworld Supplies 3"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 6000
 		dialog phrase "coalition ringworld supplies"
@@ -301,6 +313,7 @@ mission "Coalition: Heliarch Candidate"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 50000
 		dialog `Heliarch agents meet your ship as soon as it docks and receive the candidate whom you have been transporting, in a small ceremony. A few minutes later you receive a transfer of <payment>.`
@@ -327,6 +340,7 @@ mission "Coalition: Interpreters 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 5000
 		dialog phrase "coalition interpreters dialog"
@@ -348,6 +362,7 @@ mission "Coalition: Interpreters 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition interpreters dialog"
@@ -369,6 +384,7 @@ mission "Coalition: Interpreters 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition interpreters dialog"
@@ -395,6 +411,7 @@ mission "Coalition: Peacekeepers 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 20000
 		dialog phrase "coalition peacekeepers dialog"
@@ -416,6 +433,7 @@ mission "Coalition: Peacekeepers 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 30000
 		dialog phrase "coalition peacekeepers dialog"
@@ -442,6 +460,7 @@ mission "Coalition: Saryd Interspecies 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition interspecies settlers"
@@ -463,6 +482,7 @@ mission "Coalition: Saryd Interspecies 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 15000
 		dialog phrase "coalition interspecies settlers"
@@ -484,6 +504,7 @@ mission "Coalition: Kimek Interspecies 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition interspecies settlers"
@@ -505,6 +526,7 @@ mission "Coalition: Kimek Interspecies 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 15000
 		dialog phrase "coalition interspecies settlers"
@@ -526,6 +548,7 @@ mission "Coalition: Arach Interspecies 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition interspecies settlers"
@@ -547,6 +570,7 @@ mission "Coalition: Arach Interspecies 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 15000
 		dialog phrase "coalition interspecies settlers"
@@ -575,6 +599,7 @@ mission "Coalition: Transfer 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 5000
 		dialog phrase "coalition transfer dialog"
@@ -598,6 +623,7 @@ mission "Coalition: Transfer 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition transfer dialog"
@@ -621,6 +647,7 @@ mission "Coalition: Transfer 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 15000
 		dialog phrase "coalition transfer dialog"
@@ -652,6 +679,7 @@ mission "Coalition: Tourists Out 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 22000 200
 		dialog phrase "coalition tourists outbound"
 
@@ -677,6 +705,7 @@ mission "Coalition: Tourists Out 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 32000 200
 		dialog phrase "coalition tourists outbound"
 
@@ -702,6 +731,7 @@ mission "Coalition: Tourists Out 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 42000 200
 		dialog phrase "coalition tourists outbound"
 
@@ -732,6 +762,7 @@ mission "Coalition: Tourists Home 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 22000 200
 		dialog phrase "coalition tourists homebound"
 
@@ -757,6 +788,7 @@ mission "Coalition: Tourists Home 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 32000 200
 		dialog phrase "coalition tourists homebound"
 
@@ -782,6 +814,7 @@ mission "Coalition: Tourists Home 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 42000 200
 		dialog phrase "coalition tourists homebound"
 
@@ -809,6 +842,7 @@ mission "Coalition: Fast Courier 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 30000
 		dialog phrase "coalition fast courier"
@@ -832,6 +866,7 @@ mission "Coalition: Fast Courier 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 40000
 		dialog phrase "coalition fast courier"
@@ -855,6 +890,7 @@ mission "Coalition: Fast Courier 3"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 50000
 		dialog phrase "coalition fast courier"
@@ -882,6 +918,7 @@ mission "Coalition: Cargo 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 2000
 		dialog phrase "coalition commodity delivery"
@@ -904,6 +941,7 @@ mission "Coalition: Cargo 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 4000
 		dialog phrase "coalition commodity delivery"
@@ -926,6 +964,7 @@ mission "Coalition: Cargo 3"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 6000
 		dialog phrase "coalition commodity delivery"
@@ -948,6 +987,7 @@ mission "Coalition: Cargo 4"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 8000
 		dialog phrase "coalition commodity delivery"
@@ -971,6 +1011,7 @@ mission "Coalition: Bulk 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition commodity delivery"
@@ -993,6 +1034,7 @@ mission "Coalition: Bulk 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 14000
 		dialog phrase "coalition commodity delivery"
@@ -1015,6 +1057,7 @@ mission "Coalition: Bulk 3"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 20000
 		dialog phrase "coalition commodity delivery"
@@ -1037,6 +1080,7 @@ mission "Coalition: Bulk 4"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 30000
 		dialog phrase "coalition commodity delivery"
@@ -1061,6 +1105,7 @@ mission "Coalition: Rush 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 32000
 		dialog phrase "coalition commodity delivery"
@@ -1084,6 +1129,7 @@ mission "Coalition: Rush 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 40000
 		dialog phrase "coalition commodity delivery"
@@ -1107,6 +1153,7 @@ mission "Coalition: Rush 3"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 50000
 		dialog phrase "coalition commodity delivery"
@@ -1131,6 +1178,7 @@ mission "Coalition: Doctors"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 50000
 		dialog `The doctors methodically pack up their equipment and leave your ship. From their lack of urgency, it appears that this is a routine event, not a crisis. A few minutes later you receive a transfer of <payment>.`
@@ -1157,6 +1205,7 @@ mission "Coalition: Cadets 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition cadets dialog"
@@ -1178,6 +1227,7 @@ mission "Coalition: Cadets 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 12000
 		dialog phrase "coalition cadets dialog"
@@ -1206,6 +1256,7 @@ mission "Coalition: To Games 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 10000 200
 		dialog phrase "coalition games dialog"
 
@@ -1228,6 +1279,7 @@ mission "Coalition: To Games 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 15000 200
 		dialog phrase "coalition games dialog"
 
@@ -1250,6 +1302,7 @@ mission "Coalition: To Games 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment 25000 200
 		dialog phrase "coalition games dialog"
 
@@ -1273,6 +1326,7 @@ mission "Coalition: From Games 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 10000
 		dialog phrase "coalition games dialog"
@@ -1296,6 +1350,7 @@ mission "Coalition: From Games 2"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 15000
 		dialog phrase "coalition games dialog"
@@ -1319,6 +1374,7 @@ mission "Coalition: From Games 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
+		"reputation: Wanderer" += 1
 		payment
 		payment 25000
 		dialog phrase "coalition games dialog"

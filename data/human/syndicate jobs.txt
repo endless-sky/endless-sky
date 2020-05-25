@@ -29,6 +29,7 @@ mission "Transport executive to <planet>"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 250
+		"reputation: Syndicate" ++
 		dialog "The executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
@@ -52,6 +53,7 @@ mission "Corporate retreat from <origin>"
 		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
 	on complete
 		payment 3000 160
+		"reputation: Syndicate" ++
 		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
 
 
@@ -78,6 +80,7 @@ mission "Corporate espionage"
 				"Bounder"
 		dialog "You manage to make the requested scans of the <npc>'s cargo. Time to head to <planet>."
 	on complete
+		"reputation: Syndicate" ++
 		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will save us months!" you hear someone say in the background as you close the audio link.`
 		payment 50000
 
@@ -99,6 +102,7 @@ mission "Document delivery to <planet>"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 170
+		"reputation: Syndicate" ++
 		dialog "Almost as soon as you open the cargo hatch, several silent and surprisingly well-dressed men feed the crates of documents onto a conveyor belt right next to your landing site that you hadn't noticed, where to your surprise they soon disappear into the flames of an industrial incinerator. You collect your payment of <payment>."
 
 
@@ -119,6 +123,7 @@ mission "Waste recycling on <planet>"
 	on complete
 		payment
 		payment 2000
+		"reputation: Syndicate" ++
 		dialog "You land on <planet> and drop off the exceptionally smelly shipment of <commodity> at a nondescript building, as instructed. Just as you take off, your rear camera catches sight of a burly Syndicate employee running out of the building shaking his fist. You notice that your payment of <payment> came from your contact on <origin>, not from anywhere on <planet>."
 
 
@@ -142,6 +147,7 @@ mission "Rush fuel Delivery"
 	on complete
 		payment
 		payment 20000
+		"reputation: Syndicate" ++
 		dialog "You drop off your cargo of <commodity> at the loading bay of a towering nuclear complex and collect your payment of <payment>."
 
 
@@ -164,6 +170,7 @@ mission "Rush equipment Delivery"
 	on complete
 		payment
 		payment 9000
+		"reputation: Syndicate" ++
 		dialog "You drop off your cargo of <commodity> at the loading bay of a towering nuclear complex and collect your payment of <payment>."
 
 
@@ -198,6 +205,7 @@ mission "Syndicate target practice [0]"
 		payment -40000
 	on complete
 		payment 20000
+		"reputation: Syndicate" ++
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -231,7 +239,8 @@ mission "Syndicate target practice [1]"
 		"reputation: Syndicate" --
 		payment -80000
 	on complete
-		payment 40000
+		payment 
+		"reputation: Syndicate" ++
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -266,6 +275,7 @@ mission "Syndicate target practice [2]"
 		payment -120000
 	on complete
 		payment 60000
+		"reputation: Syndicate" ++
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -299,6 +309,7 @@ mission "Syndicate target practice [3]"
 		payment -200000
 	on complete
 		payment 100000
+		"reputation: Syndicate" ++
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 ship "Berserker" "Berserker Test Dummy"
@@ -345,6 +356,7 @@ mission "Syndicate Prisoner Transport [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 200
+		"reputation: Syndicate" ++
 		dialog "The executive strolls off your ship with a sunny smile on his face. One of the lawyers hands you your payment of <payment> with muttered threats about libel lawsuits if you say anything about what you may or may not have overheard on your ship."
 
 
@@ -369,6 +381,7 @@ mission "Syndicate Prisoner Transport [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
+		"reputation: Syndicate" ++
 		dialog "A group of guards carry the prisoner off your ship more roughly than is strictly necessary. You receive your payment of <payment>."
 
 
@@ -393,6 +406,7 @@ mission "Syndicate Prisoner Transport [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 175
+		"reputation: Syndicate" ++
 		dialog "A group of guards lead the prisoners off your ship, chained together at the ankles. You receive your payment of <payment>."
 
 
@@ -418,6 +432,7 @@ mission "Syndicate Prisoner Transport [3]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 150
+		"reputation: Syndicate" ++
 		dialog "The prisoners are still wearing their civilian clothes, and you can see bruises from when they were arrested as the guards lead them inside. You receive your payment of <payment>."
 
 
@@ -443,6 +458,7 @@ mission "Syndicate Prisoner Transport [4]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 200
+		"reputation: Syndicate" ++
 		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors." You receive your payment of <payment>.`
 
 
@@ -469,6 +485,7 @@ mission "Return Syndicate Prisoners [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 20000 200
+		"reputation: Syndicate" ++
 		dialog "The executive strides toward the express customs entrance with a smug grin. A paperwork-laden lawyer gives you your payment of <payment>."
 
 
@@ -492,6 +509,7 @@ mission "Return Syndicate Prisoners [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 100
+		"reputation: Syndicate" ++
 		dialog "The protesters look around the spaceport nervously before disembarking. You receive your payment of <payment>."
 
 
@@ -515,4 +533,5 @@ mission "Return Syndicate Prisoners [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 100
+		"reputation: Syndicate" ++
 		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. You receive your payment of <payment>."

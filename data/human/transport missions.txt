@@ -63,7 +63,7 @@ mission "Pookie, Part 1"
 			"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the <system> system."
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
 
 
 
@@ -101,7 +101,7 @@ mission "Pookie, Part 2"
 			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
 	on complete
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
@@ -1327,7 +1327,7 @@ mission "Drug Running 1"
 	stealth
 	to offer
 		random < 10
-		"said no to drugs" < 4
+		"said no to drugs" < 10
 	
 	on offer
 		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
@@ -1343,6 +1343,7 @@ mission "Drug Running 1"
 		payment
 		payment 80000
 		"drug smuggler" ++
+		"reputation: Pirate" += 1
 		dialog `Some disreputable-looking locals unload the illegal drugs from your cargo bay, and hand you your payment of <payment>.`
 
 
@@ -1373,6 +1374,7 @@ mission "Drug Running 2"
 		payment
 		payment 100000
 		"drug smuggler" ++
+		"reputation: Pirate" += 1
 		dialog `Immediately after you land, some workers show up to unload the "stuff." They give you <payment>.`
 
 
@@ -1403,6 +1405,7 @@ mission "Drug Running 3"
 		payment
 		payment 120000
 		"drug smuggler" ++
+		"reputation: Pirate" += 1
 		dialog `You hand off the illegal "substances" to your contact on <planet>, who pays you <payment>.`
 
 
@@ -1506,7 +1509,7 @@ mission "Shady passenger transport 1"
 
 	to offer
 		random < 10
-		"rejected illegal jobs" < 3
+		"rejected illegal jobs" < 10
 
 	on offer
 		dialog `While having a drink at one of the spaceport's bars, a somewhat scruffy-looking man in a dark cloak pulls you aside and offers <payment> for discreet, no-questions-asked passage to <destination>, which is quite close by. This could be a quick and lucrative job. (It also sounds illegal, so you'll need to avoid getting scanned or landing on planets with high security.)`
@@ -1522,6 +1525,7 @@ mission "Shady passenger transport 1"
 	on complete
 		"getaway driver" ++
 		payment 50000
+		"reputation: Pirate" += 1
 		dialog `Your mysterious passenger has spoken hardly a word during the entire trip. As soon as you land, he hands you your payment of <payment> and disappears into a crowd.`
 
 
@@ -1561,6 +1565,7 @@ mission "Shady passenger transport 2"
 	on complete
 		"getaway driver" ++
 		payment 100000
+		"reputation: Pirate" += 1
 		dialog `Your passengers depart after paying you the agreed-upon sum of <payment>, off to make new lives for themselves doing who-knows-what.`
 
 	npc
@@ -1606,6 +1611,7 @@ mission "Shady passenger transport 3"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 350000
+		"reputation: Pirate" += 1
 		dialog `During the voyage, you've come to understand that your passengers are mercenaries whose latest exploits put them on the wrong side of the law. They pay you the agreed-upon sum of <payment> and disappear into a crowd, no doubt off to cause chaos and mayhem for some unsuspecting victims. Oh well, not your problem...`
 		"getaway driver" ++
 	npc
@@ -1824,6 +1830,7 @@ mission "Courier 1"
 	on complete
 		payment
 		payment 30000
+		"reputation: Merchant" += 1
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1891,6 +1898,7 @@ mission "Courier 2"
 	on complete
 		payment
 		payment 50000
+		"reputation: Merchant" += 1
 		dialog "You drop off the package and collect your payment of <payment>."
 
 
@@ -3383,7 +3391,7 @@ mission "Capture Smuggler"
 				die
 	npc board
 		conversation
-			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangely muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
+			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangly muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
 			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
 				launch
 		government "Merchant"

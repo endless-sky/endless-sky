@@ -113,7 +113,7 @@ outfit "Ka'het Annihilator Turret"
 		"firing heat" 16
 		"shield damage" 86
 		"hull damage" 24
-	description "The Builders mounted two Annihilators on this turret, making it highly efficient against enemy shields."
+	description "The Builders mounted two Annihilators on this turret, making it highly efficent against enemy shields."
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"

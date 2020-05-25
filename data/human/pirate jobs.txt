@@ -28,6 +28,7 @@ mission "Cargo Smuggling [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 4000 200
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Cargo Smuggling [1]"
@@ -51,6 +52,7 @@ mission "Cargo Smuggling [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 4000 200
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Cargo Smuggling [2]"
@@ -74,6 +76,7 @@ mission "Cargo Smuggling [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 200
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Cargo Smuggling [3]"
@@ -97,6 +100,7 @@ mission "Cargo Smuggling [3]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 6000 200
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 
@@ -122,6 +126,7 @@ mission "Drug Running [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 250
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Drug Running [1]"
@@ -145,6 +150,7 @@ mission "Drug Running [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 250
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Drug Running [2]"
@@ -168,6 +174,7 @@ mission "Drug Running [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 7000 250
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Drug Running [3]"
@@ -191,6 +198,7 @@ mission "Drug Running [3]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 9000 250
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 
@@ -216,6 +224,7 @@ mission "Bulk Cargo Smuggling [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 7000 200
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Cargo Smuggling [1]"
@@ -239,6 +248,7 @@ mission "Bulk Cargo Smuggling [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 10000 200
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Cargo Smuggling [2]"
@@ -262,6 +272,7 @@ mission "Bulk Cargo Smuggling [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 15000 200
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 
@@ -287,6 +298,7 @@ mission "Bulk Drug Running [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 10000 250
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Drug Running [1]"
@@ -310,6 +322,7 @@ mission "Bulk Drug Running [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 15000 250
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Bulk Drug Running [2]"
@@ -333,6 +346,7 @@ mission "Bulk Drug Running [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 20000 250
+		"reputation: Pirate" += 1
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 
@@ -1157,6 +1171,7 @@ mission "Wanted Passenger [0]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 30000 300
+		"reputation: Pirate" += 1
 		dialog "Your <passengers> insists that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 mission "Wanted Passengers [1]"
@@ -1181,6 +1196,7 @@ mission "Wanted Passengers [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 20000 300
+		"reputation: Pirate" += 1
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 	
 mission "Wanted Passengers [2]"
@@ -1205,6 +1221,7 @@ mission "Wanted Passengers [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 20000 300
+		"reputation: Pirate" += 1
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 mission "Wanted Passengers [3]"
@@ -1229,6 +1246,7 @@ mission "Wanted Passengers [3]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 20000 300
+		"reputation: Pirate" += 1
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 
@@ -1517,6 +1535,7 @@ mission "Slave Transport [0]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 75000 400
+		"reputation: Pirate" += 1
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [1]"
@@ -1541,6 +1560,7 @@ mission "Slave Transport [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 75000 400
+		"reputation: Pirate" += 1
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Slave Transport [2]"
@@ -1565,6 +1585,7 @@ mission "Slave Transport [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 75000 400
+		"reputation: Pirate" += 1
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 
@@ -1591,6 +1612,7 @@ mission "Bulk Slave Transport [0]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 100000 400
+		"reputation: Pirate" += 1
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 mission "Bulk Slave Transport [1]"
@@ -1615,6 +1637,7 @@ mission "Bulk Slave Transport [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 100000 400
+		"reputation: Pirate" += 1
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
 
 
@@ -1667,6 +1690,7 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 				"Corvette (Speedy)"
 	on complete
 		payment 180000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -1715,6 +1739,7 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 				"Leviathan"
 	on complete
 		payment 240000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -1762,6 +1787,7 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 				"Shuttle"
 	on complete
 		payment 375000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -1808,6 +1834,7 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 				"Quicksilver (Proton)"
 	on complete
 		payment 180000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -1851,7 +1878,8 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 			variant 1
 				"Splinter (Laser)" 2
 	on complete
-		payment 240000
+		payment 
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -1905,6 +1933,7 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 				"Heavy Shuttle"
 	on complete
 		payment 375000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -1951,6 +1980,7 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 				"Modified Argosy"
 	on complete
 		payment 180000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -1997,6 +2027,7 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 				"Bastion (Heavy)"
 	on complete
 		payment 240000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -2050,6 +2081,7 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 				"Heavy Shuttle"
 	on complete
 		payment 375000
+		"reputation: Pirate" += 1
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -2219,6 +2251,7 @@ mission "Eliminating Competition (North, Small)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 500000
+		"reputation: Pirate" += 1
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (North, Large)"
@@ -2242,6 +2275,7 @@ mission "Eliminating Competition (North, Large)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 750000
+		"reputation: Pirate" += 1
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (Core, Small)"
@@ -2264,6 +2298,7 @@ mission "Eliminating Competition (Core, Small)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 500000
+		"reputation: Pirate" += 1
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (Core, Large)"
@@ -2287,6 +2322,7 @@ mission "Eliminating Competition (Core, Large)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 750000
+		"reputation: Pirate" += 1
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (South, Small)"
@@ -2309,6 +2345,7 @@ mission "Eliminating Competition (South, Small)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 500000
+		"reputation: Pirate" += 1
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (South, Large)"
@@ -2332,6 +2369,7 @@ mission "Eliminating Competition (South, Large)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 750000
+		"reputation: Pirate" += 1
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 
@@ -2363,6 +2401,7 @@ mission "Raid on Merchants (North)"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
 		payment 150000
+		"reputation: Pirate" += 1
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
 mission "Raid on Merchants (Core)"
@@ -2392,6 +2431,7 @@ mission "Raid on Merchants (Core)"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
 		payment 150000
+		"reputation: Pirate" += 1
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
 mission "Raid on Merchants (South)"
@@ -2420,6 +2460,7 @@ mission "Raid on Merchants (South)"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
 		payment 150000
+		"reputation: Pirate" += 1
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
 
@@ -2449,6 +2490,7 @@ mission "Northern Pirate Defense"
 		conversation "northern pirate defense"
 	on complete
 		payment 200000
+		"reputation: Pirate" += 1
 		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy.`
 
 mission "Northern Pirate Defense [Unpaid]"
@@ -2476,6 +2518,7 @@ mission "Northern Pirate Defense [Unpaid]"
 	on offer
 		conversation "northern pirate defense"
 	on complete
+		"reputation: Pirate" += 1
 		dialog `Many locals of <planet> thank you for helping to drive off the Navy.`
 
 conversation "northern pirate defense"
@@ -2513,6 +2556,7 @@ mission "Core Pirate Defense"
 		conversation "core pirate defense"
 	on complete
 		payment 200000
+		"reputation: Pirate" += 1
 		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Syndicate.`
 
 mission "Core Pirate Defense [Unpaid]"
@@ -2539,6 +2583,7 @@ mission "Core Pirate Defense [Unpaid]"
 	on offer
 		conversation "core pirate defense"
 	on complete
+		"reputation: Pirate" += 1
 		dialog `Many locals of <planet> thank you for helping to drive off the Syndicate.`
 
 conversation "core pirate defense"
@@ -2576,6 +2621,7 @@ mission "Southern Pirate Defense"
 		conversation "southern pirate defense"
 	on complete
 		payment 200000
+		"reputation: Pirate" += 1
 		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the militia forces.`
 
 mission "Southern Pirate Defense [Unpaid]"
@@ -2602,6 +2648,7 @@ mission "Southern Pirate Defense [Unpaid]"
 	on offer
 		conversation "southern pirate defense"
 	on complete
+		"reputation: Pirate" += 1
 		dialog `Many locals of <planet> thank you for helping to drive off the militia forces.`
 
 conversation "southern pirate defense"
@@ -2652,6 +2699,7 @@ mission "Cargo Theft (North)"
 	on visit
 		dialog "You land on <planet>, but you don't have the secret cargo! Return to the <npc> and bring the cargo back to <planet>."
 	on complete
+		"reputation: Pirate" += 1
 		outfit "Secret Cargo" -1
 		payment 1500000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
@@ -2686,6 +2734,7 @@ mission "Cargo Theft (Core)"
 	on visit
 		dialog "You land on <planet>, but you don't have the secret cargo! Return to the <npc> and bring the cargo back to <planet>."
 	on complete
+		"reputation: Pirate" += 1
 		outfit "Secret Cargo" -1
 		payment 1500000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
@@ -2720,6 +2769,7 @@ mission "Cargo Theft (South)"
 	on visit
 		dialog "You land on <planet>, but you don't have the secret cargo! Return to the <npc> and bring the cargo back to <planet>."
 	on complete
+		"reputation: Pirate" += 1
 		outfit "Secret Cargo" -1
 		payment 1500000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."

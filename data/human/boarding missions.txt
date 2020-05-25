@@ -204,6 +204,7 @@ mission "Assisting Free Worlds"
 		fleet "Large Free Worlds"
 	on complete
 		payment 150000
+		"reputation: Free Worlds" ++
 		dialog phrase "generic pirate attack payment dialog"
 
 mission "Assisting Republic"
@@ -237,6 +238,7 @@ mission "Assisting Republic"
 		fleet "Small Republic" 2
 	on complete
 		payment 150000
+		"reputation: Republic" ++
 		dialog phrase "generic pirate attack payment dialog"
 
 mission "Assisting Deep Security"
@@ -270,6 +272,7 @@ mission "Assisting Deep Security"
 		fleet "Large Deep Security"
 	on complete
 		payment 150000
+		"reputation: Deep Security" ++
 		dialog phrase "generic pirate attack payment dialog"
 
 mission "Assisting Syndicate"
@@ -303,6 +306,7 @@ mission "Assisting Syndicate"
 		fleet "Large Syndicate"
 	on complete
 		payment 150000
+		"reputation: Syndicate" ++
 		dialog phrase "generic pirate attack payment dialog"
 
 

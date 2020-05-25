@@ -24,6 +24,7 @@ mission "Historical field trip to <planet>"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"reputation: Republic" ++
 		payment
 		payment 10000
 		dialog `The students excitedly rush off your ship, taking pictures of everything they see. The school deposits <payment> into your account.`

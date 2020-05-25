@@ -29,6 +29,7 @@ mission "Wanderer Workers [0]"
 	on complete
 		payment
 		payment 10000
+		"reputation: Wanderer" += 1
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Workers [1]"
@@ -51,6 +52,7 @@ mission "Wanderer Workers [1]"
 	on complete
 		payment
 		payment 15000
+		"reputation: Wanderer" += 1
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Farmers [0]"
@@ -74,6 +76,7 @@ mission "Wanderer Farmers [0]"
 	on complete
 		payment
 		payment 10000
+		"reputation: Wanderer" += 1
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Farmers [1]"
@@ -97,6 +100,7 @@ mission "Wanderer Farmers [1]"
 	on complete
 		payment
 		payment 15000
+		"reputation: Wanderer" += 1
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Younglings [0]"
@@ -119,6 +123,7 @@ mission "Wanderer Younglings [0]"
 	on complete
 		payment
 		payment 10000
+		"reputation: Wanderer" += 1
 		dialog `The younglings depart your ship and meet up with another group of Wanderers across the spaceport. Before following after the younglings, the adult Wanderer thanks you and hands you <payment>.`
 
 mission "Wanderer Younglings [1]"
@@ -141,6 +146,7 @@ mission "Wanderer Younglings [1]"
 	on complete
 		payment
 		payment 10000
+		"reputation: Wanderer" += 1
 		dialog `The younglings depart your ship and meet up with another group of Wanderers across the spaceport. Before following after the younglings, the adult Wanderer thanks you and hands you <payment>.`
 
 mission "Wanderer Scientists (Pollution) [0]"
@@ -165,6 +171,7 @@ mission "Wanderer Scientists (Pollution) [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 15000 180
+		"reputation: Wanderer" += 1
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Scientists (Pollution) [1]"
@@ -189,6 +196,7 @@ mission "Wanderer Scientists (Pollution) [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 20000 180
+		"reputation: Wanderer" += 1
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Scientists (Phenomenon) [0]"
@@ -212,6 +220,7 @@ mission "Wanderer Scientists (Phenomenon) [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 15000 180
+		"reputation: Wanderer" += 1
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Scientists (Phenomenon) [1]"
@@ -235,6 +244,7 @@ mission "Wanderer Scientists (Phenomenon) [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 20000 180
+		"reputation: Wanderer" += 1
 		dialog "You wish the scientists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Biologists [0]"
@@ -258,6 +268,7 @@ mission "Wanderer Biologists [0]"
 	on complete
 		payment
 		payment 15000
+		"reputation: Wanderer" += 1
 		dialog "You wish the biologists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Biologists [1]"
@@ -280,6 +291,7 @@ mission "Wanderer Biologists [1]"
 	on complete
 		payment
 		payment 20000
+		"reputation: Wanderer" += 1
 		dialog "You wish the biologists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Botanists [0]"
@@ -303,6 +315,7 @@ mission "Wanderer Botanists [0]"
 	on complete
 		payment
 		payment 15000
+		"reputation: Wanderer" += 1
 		dialog "You wish the botanists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Botanists [1]"
@@ -325,6 +338,7 @@ mission "Wanderer Botanists [1]"
 	on complete
 		payment
 		payment 20000
+		"reputation: Wanderer" += 1
 		dialog "You wish the botanists the best of luck on <planet> as they carry their scientific equipment off of your ship and hand you your payment of <payment>."
 
 mission "Wanderer Harvest [0]"
@@ -348,6 +362,7 @@ mission "Wanderer Harvest [0]"
 	on complete
 		payment
 		payment 15000
+		"reputation: Wanderer" += 1
 		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
 
 mission "Wanderer Harvest [1]"
@@ -371,6 +386,7 @@ mission "Wanderer Harvest [1]"
 	on complete
 		payment
 		payment 20000
+		"reputation: Wanderer" += 1
 		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
 
 mission "Wanderer Invasive Species [0]"
@@ -396,6 +412,7 @@ mission "Wanderer Invasive Species [0]"
 		dialog phrase "generic missing stopover or cargo and passengers"
 	on complete
 		payment 25000 200
+		"reputation: Wanderer" += 1
 		dialog `After releasing the animals, the <bunks> Wanderers each thank you for assisting them in returning the animals to <planet> and hand you <payment>.`
 
 mission "Wanderer Invasive Species [1]"
@@ -421,6 +438,7 @@ mission "Wanderer Invasive Species [1]"
 		dialog phrase "generic missing stopover or cargo and passengers"
 	on complete
 		payment 30000 200
+		"reputation: Wanderer" += 1
 		dialog `After handing the plants off to other Wanderers to plant elsewhere, the <bunks> Wanderers each thank you for assisting them in keeping the plants on <planet> and hand you <payment>.`
 
 
@@ -449,6 +467,7 @@ mission "Wanderer Cargo [0]"
 	on complete
 		payment
 		payment 2000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [1]"
@@ -471,6 +490,7 @@ mission "Wanderer Cargo [1]"
 	on complete
 		payment
 		payment 4000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [2]"
@@ -493,6 +513,7 @@ mission "Wanderer Cargo [2]"
 	on complete
 		payment
 		payment 6000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [3]"
@@ -514,6 +535,7 @@ mission "Wanderer Cargo [3]"
 	on complete
 		payment
 		payment 8000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [4]"
@@ -535,6 +557,7 @@ mission "Wanderer Cargo [4]"
 	on complete
 		payment
 		payment 10000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 
@@ -559,6 +582,7 @@ mission "Wanderer Rush Delivery [0]"
 	on complete
 		payment
 		payment 32000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Rush Delivery [1]"
@@ -582,6 +606,7 @@ mission "Wanderer Rush Delivery [1]"
 	on complete
 		payment
 		payment 40000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Rush Delivery [2]"
@@ -604,6 +629,7 @@ mission "Wanderer Rush Delivery [2]"
 	on complete
 		payment
 		payment 44000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Rush Delivery [3]"
@@ -626,6 +652,7 @@ mission "Wanderer Rush Delivery [3]"
 	on complete
 		payment
 		payment 50000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 
@@ -649,6 +676,7 @@ mission "Wanderer Bulk Delivery [0]"
 	on complete
 		payment
 		payment 10000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Bulk Delivery [1]"
@@ -671,6 +699,7 @@ mission "Wanderer Bulk Delivery [1]"
 	on complete
 		payment
 		payment 14000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Bulk Delivery [2]"
@@ -692,4 +721,5 @@ mission "Wanderer Bulk Delivery [2]"
 	on complete
 		payment
 		payment 20000
+		"reputation: Wanderer" += 1
 		dialog phrase "wanderer cargo delivery payment"

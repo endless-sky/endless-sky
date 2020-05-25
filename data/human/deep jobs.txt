@@ -54,7 +54,7 @@ phrase "deep mystery cube dropoff station payment"
 	word
 		`leave the mystery cube in the second supplies cabinet you come across.`
 		`leave the mystery cube in an unscrewed air vent.`
-		`hand the cube to the third tourist couple you see on the station. They accept it without a word.`
+		`hand the cube to the thrid tourist couple you see on the station. They accept it without a word.`
 		`drop the cube into a copper trash can in the spaceport.`
 		`drop the cube into a laundry chute.`
 	word
@@ -86,6 +86,7 @@ mission "Deep Mystery Cube [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
+		"reputation: Deep Security" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
 	npc
@@ -117,6 +118,7 @@ mission "Deep Mystery Cube [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
+		"reputation: Deep Security" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
 	npc
@@ -148,6 +150,7 @@ mission "Deep Mystery Cube [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
+		"reputation: Deep Security" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
 	npc
@@ -178,6 +181,7 @@ mission "Deep Mystery Cube [3]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
+		"reputation: Deep Security" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
 	npc
@@ -209,6 +213,7 @@ mission "Deep Mystery Cube Station"
 		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
+		"reputation: Deep Security" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff station payment"
 	npc
@@ -239,6 +244,7 @@ mission "Mystery retrieval"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		"mystery cube" ++
+		"reputation: Deep Security" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
 	npc
@@ -270,6 +276,7 @@ mission "Transport scientists"
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
 		payment
 		payment 30000
+		"reputation: Deep Security" ++
 
 
 mission "Escort science vessel"
@@ -310,6 +317,7 @@ mission "Escort science vessel"
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
 		payment
 		payment 60000
+		"reputation: Deep Security" ++
 
 phrase "academic conference recording payment"
 	word
@@ -340,3 +348,4 @@ mission "Record academic conference"
 	on complete
 		dialog phrase "academic conference recording payment"
 		payment 5000 1000
+		"reputation: Deep Security" ++
