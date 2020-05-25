@@ -3853,7 +3853,7 @@ mission "James Medicine [2]"
 					goto do
 				`	"Yep, just like me. Missing every danger through sheer luck."`
 					goto luck
-			`	"The disease appears to be caused by a certain bacteria of unknown origin. It seems to be quite picky about its surroundings. It thrives best in low gravity environments, gradually spreading over the host's body. When exposed to an environment with higher gravity, such as during landing, the bacteria rapidly swell in size, effectively blocking most of the blood flow and causing a sensation of fatigue and sleepiness."`
+			`	"The disease appears to be caused by a certain bacteria of unknown origin. It seems to be quite picky about its surroundings. It thrives best in low gravity environments, gradually spreading over the host's body. When entering a slowly-increasing magnetic field, such as during landing on a planet, the bacteria rapidly swell in size, effectively blocking most of the blood flow and causing a sensation of fatigue and sleepiness."`
 			choice
 				`	"Is there anything I should do about it?"`
 					goto do
