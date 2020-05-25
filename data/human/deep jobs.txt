@@ -54,7 +54,7 @@ phrase "deep mystery cube dropoff station payment"
 	word
 		`leave the mystery cube in the second supplies cabinet you come across.`
 		`leave the mystery cube in an unscrewed air vent.`
-		`hand the cube to the thrid tourist couple you see on the station. They accept it without a word.`
+		`hand the cube to the third tourist couple you see on the station. They accept it without a word.`
 		`drop the cube into a copper trash can in the spaceport.`
 		`drop the cube into a laundry chute.`
 	word
