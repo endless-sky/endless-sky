@@ -22,16 +22,15 @@ ship "Subsidurial"
 		"drag" 8.2
 		"heat dissipation" .8
 		"fuel capacity" 100
-		"outfit space" 20
 		"thrust" 10
 		"turn" 800
 		"hull repair rate" 3
 		"energy capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
+		"hyperdrive" 1
 	outfits
 		Mouthparts? 3
-		Hyperdrive
 	gun 0 -97 Mouthparts?
 	gun -23 -95 Mouthparts?
 	gun 23 -95 Mouthparts?
@@ -41,7 +40,7 @@ ship "Subsidurial"
 	explode "blood" 45
 	"final explode" "subsidurial death"
 	description "It is unclear what these creatures are, where they come from, or how they evolved. Scientists have dissected several, but so far the results have simply been that these creatures contain no materials or resources of value; are not even slightly edible, and are too big to be kept as pets."
-	description "	To date, none have demonstrated any sign of sapience, and the few captains who have seen them basically consider them to be the cows of space."
+	description "	To date, none have demonstrated any sign of sapience, and the few captains who have seen them basically consider them to be the bison of space."
 
 effect "subsidurial death"
 	sprite "effect/subsidurial death/subsidurial death"
