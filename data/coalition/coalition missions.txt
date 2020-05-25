@@ -350,7 +350,7 @@ mission "Coalition Outbreak 1"
 	minor
 	name "Transport Doctors"
 	description "Bring these <bunks> doctors, along with <cargo> to <destination> by <date>, where they will work  to adress a major viral outbreak"
-	deadline 
+	deadline
 	passengers 75
 	cargo "Medical Supplies" 90
 	to offer
