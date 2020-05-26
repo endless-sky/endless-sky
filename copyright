@@ -296,12 +296,17 @@ Files:
  images/ship/gull*
  images/ship/pelican*
  images/ship/riptide*
+ images/ship/auxiliary*
+ images/ship/dropship*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
  images/thumbnail/gull*
  images/thumbnail/pelican*
  images/thumbnail/riptide*
+ images/thumbnail/auxiliary*
+ images/thumbnail/dropship*
+ images/outfit/auxiliary?license*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
