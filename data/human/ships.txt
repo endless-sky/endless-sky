@@ -1349,7 +1349,7 @@ ship "Dropship"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description "Dropships were designed with the Navy's Auxiliary in mind. Auxiliaries often act as a forward operating base when landed on planets, so moving the entire Auxiliary isn't much of an option when a large number of troops need to be moved to a different sector. That's where the Dropship comes in, a small, fast, and cramped vessel able to move considerable numbers of troops at great speeds for its size."
+	description "Dropships were designed with the Navy's Auxiliary in mind. Landed Auxiliaries often act as forward operating bases, so troops needing transport to another sector rely on their Dropships. This cramped and uncomfortable vessel is able to move a squad number of Republic soldiers at great speed for its size."
 
 
 
