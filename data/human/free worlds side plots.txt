@@ -523,7 +523,7 @@ event "wolf pack mizar end"
 mission "FW Wolf Pack 4"
 	landing
 	name "Attack Food Convoy"
-	description "Destroy a Republic Bactrian freighter in the <waypoints> system that is carrying food, then report back to <planet> for payment."
+	description "Destroy a Republic Auxiliary freighter in the <waypoints> system that is carrying food, then report back to <planet> for payment."
 	source
 		government "Free Worlds"
 	destination "Solace"
@@ -537,7 +537,7 @@ mission "FW Wolf Pack 4"
 	
 	on offer
 		dialog
-			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?`
+			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: an Auxiliary freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?`
 	
 	on accept
 		event "wolf pack mizar start"
@@ -548,8 +548,8 @@ mission "FW Wolf Pack 4"
 		government "Republic"
 		system "Mizar"
 		personality timid staying target
-		ship "Bactrian" "Golden Fleece"
-		dialog "You have eliminated the Bactrian that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
+		ship "Auxiliary (Cargo)" "Golden Fleece"
+		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	
 	npc
 		government "Republic"
