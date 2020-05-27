@@ -126,6 +126,60 @@ namespace {
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
 	
+	// Issue deploy orders for the selected ships (or the full fleet if no ships are selected).
+	void IssueDeploy(const PlayerInfo &player)
+	{
+		// Figure out what carried ships we are giving orders to
+		vector<Ship *> ships;
+		bool fullFleet = player.SelectedShips().empty();
+		if(fullFleet)
+		{
+			for(const shared_ptr<Ship> &it : player.Ships())
+				if(it.get() != player.Flagship() && !it->IsParked() && it->CanBeCarried())
+					ships.push_back(it.get());
+		}
+		else
+			for(const weak_ptr<Ship> &it : player.SelectedShips())
+			{
+				shared_ptr<Ship> ship = it.lock();
+				if(ship)
+					ships.push_back(ship.get());
+			}
+		
+		// This should never happen, but just in case:
+		if(ships.empty())
+		{
+			if(fullFleet)
+				Messages::Add("No carried ships in the fleet to deploy.");
+			else
+				Messages::Add("No carried ships selected that can be deployed.");
+			
+			return;
+		}
+		
+		int nrDeployed = 0;
+
+		for(Ship *ship : ships)
+			if(!ship->IsDeploying())
+			{
+				ship->DoDeploy(true);
+				++nrDeployed;
+			}
+		
+		if(nrDeployed > 0)
+		{
+			Messages::Add("Deployed " + to_string(nrDeployed) + " carried ships.");
+			return;
+		}
+		
+		// If we get here, then we need to recall all selected ships
+		for(Ship *ship : ships)
+			ship->DoDeploy(false);
+
+		Messages::Add("Recalled " + to_string(ships.size()) + " carried ships.");
+		return;
+	}
+	
 	// Check if the ship contains a carried ship that needs to launch.
 	bool IsLaunching(const Ship &ship)
 	{
@@ -3627,58 +3681,7 @@ void AI::CacheShipLists()
 
 
 
-void AI::IssueDeploy(const PlayerInfo &player)
-{
-	// Figure out what carried ships we are giving orders to
-	vector<Ship *> ships;
-	bool fullFleet = player.SelectedShips().empty();
-	if(fullFleet)
-	{
-		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked() && it->CanBeCarried())
-				ships.push_back(it.get());
-	}
-	else
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
-		{
-			shared_ptr<Ship> ship = it.lock();
-			if(ship)
-				ships.push_back(ship.get());
-		}
-	
-	// This should never happen, but just in case:
-	if(ships.empty())
-	{
-		if(fullFleet)
-			Messages::Add("No carried ships in the fleet to deploy.");
-		else
-			Messages::Add("No carried ships selected that can be deployed.");
-		
-		return;
-	}
-	
-	int nrDeployed = 0;
 
-	for(Ship *ship : ships)
-		if(!ship->IsDeploying())
-		{
-			ship->DoDeploy(true);
-			nrDeployed++;
-		}
-	
-	if(nrDeployed > 0)
-	{
-		Messages::Add("Deployed " + to_string(nrDeployed) + " carried ships.");
-		return;
-	}
-	
-	// If we get here, then we need to recall all selected ships
-	for(Ship *ship : ships)
-		ship->DoDeploy(false);
-
-	Messages::Add("Recalled " + to_string(ships.size()) + " carried ships.");
-	return;
-}
 
 
 

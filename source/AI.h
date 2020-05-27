@@ -168,7 +168,6 @@ private:
 
 
 private:
-	void IssueDeploy(const PlayerInfo &player);
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
