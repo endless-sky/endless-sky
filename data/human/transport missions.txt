@@ -3585,6 +3585,7 @@ mission "Hauler VI cargo prototype 3"
 
 
 
+
 mission "Journalism 1"
 	name "Transport exposition to <planet>"
 	description `Transport expo equipment to <destination>.`
@@ -3625,7 +3626,7 @@ mission "Journalism 1"
 				`	"It's OK."`
 			`	"It's just as I imagined it. Well, I have an exam to cram for. Enjoy it! I think it closes soon," she says as she heads for the exit.`
 			`	You wander around the exhibit in awe. It's a bit disconcerting as the occasional hologram walks through you. Inside houses you see families frantically gathering their belongings and running for the Navy ships. It strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person. An officer slips in the snow and a young man helps him up.`
-			`	As you move on you're startled to realize your face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Before you can register whats going on the entire projection disappears in a disorienting flash, leaving you in a normal hanger bay. You are a little embarrassed to realize the exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though its a security risk."`
+			`	As you move on you're startled to realize you're face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Before you can register what's going on the entire projection disappears in a disorienting flash, leaving you in a normal hanger bay. You are a little embarrassed to realize the exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk."`
 			`	"How rude of me," she says. "My name is Mariel, I organize these expositions and act as a spokesperson so the members of Adelita can remain anonymous. And you are?"`
 			choice
 				`	"Captain <last>."`
@@ -3646,9 +3647,9 @@ mission "Journalism 1"
 		payment 80000
 		log `Saw an impressive exposition on the Hope evaluation and ended up with a job taking the whole thing to Moonshake.`
 		conversation
-			`	You guide your ship down to the indicated hanger where there is a motley looking crew waiting to unload your ship. One of them hands you a note. It reads: "Meet me at the Common Grounds cafe in the spaceport if your interested in doing a project with us. Make sure your not followed. -Adelita Zero"`
+			`	You guide your ship down to the indicated hanger where there is a motley looking crew waiting to unload your ship. One of them hands you a note. It reads: "Meet me at the Common Grounds cafe in the spaceport if you're interested in doing a project with us. Make sure you're not followed. -Adelita Zero"`
 
-
+######################################################################################################################
 
 mission "Journalism 2"
 	description "Participate in the guerrilla filming of a Syndicate sweatshop on <destination>."
@@ -3662,7 +3663,7 @@ mission "Journalism 2"
 
 	on offer
 		conversation
-			`You find the Common Grounds cafe. It has a funky vibe and it's quite busy. You don't seem to be recognized my anyone so you take a seat at a booth and order something to eat. Before your meal arrives a woman, maybe in her late thirties with dark hair, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of, or can even pronounce.`
+			`You find the Common Grounds cafe. It has a funky vibe and it's quite busy. You don't seem to be recognized by anyone so you take a seat at a booth and order something to eat. Before your meal arrives a woman, maybe in her late thirties with dark hair, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of, or can even pronounce.`
 			`	"Sorry for the cloak and dagger bit," she says to you finally. "We have enemies in high places. So, Captain <last> "What did you think of the exposition?"`
 			choice
 				`	"I found it quite moving."`
@@ -3673,18 +3674,18 @@ mission "Journalism 2"
 			`	"I'm glad you liked it," she says smiling.`
 				goto inorout
 			label wasok
-			`	"Not exactly a thrilling review, but your entitled to your opinion," she says smiling.`
+			`	"Not exactly a thrilling review, but you're entitled to your opinion," she says smiling.`
 				goto inorout
 			label political
 			`	"Oh. Well unfortunately for many, everything is political. It was political when the Republic tried to block the evacuation. And it was political when the Navy did it without permission. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one some day; wealthy, authoritative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installation," she says with a smile. She gets her smoothie to-go and walks out.`
 				decline
 			label inorout
-			`	Mariel said you saw me take the photos of the woman and her baby," you are surprised by the bluntness of her admission. "I really like that moment. Not many notice it. Your observant. Hopefully your kind too. We need a ship for our next project. We need you to transport a team to one planet, do a quick flyby of another, pickup the team and return here with everyone safe and sound. Nothing to dicey. But it's a dangerous universe, so who knows. Oh, and we have to leave today. I can't tell you more until you accept. It will pay, of course. 200000 credits. So what do ya say? Are you in or out?" Your orders are served and you eat in silence and consider her proposition while she drinks her smoothie.`
+			`	Mariel said you saw me take the photos of the woman and her baby," you are surprised by the bluntness of her admission. "I really like that moment. Not many notice it. You're observant. Hopefully you're kind too. We need a ship for our next project. We need you to transport a team to one planet, do a quick flyby of another, pickup the team and return here with everyone safe and sound. Nothing to dicey. But it's a dangerous universe, so who knows. Oh, and we have to leave today. I can't tell you more until you accept. It will pay, of course. 200000 credits. So what do ya say? Are you in or out?" Your orders are served and you eat in silence and consider her proposition while she drinks her smoothie.`
 			choice
 				`	"In."`
 				`	"Out."`
 					goto imout
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and two others off at Maker where we are going to film in 3D the conditions in a secrete Syndicate sweatshop. Thing is these aren't just poorly paid factory workers, but slaves. As you can imagine we can't get in as regular workers so with a bit of hacking we got ourselves jobs on site as private security. We know the Syndicate is getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories you and Bunker will spy on the Syndicate's rendezvous with the pirates on Hippocrates."`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and two others off at Maker where we are going to film in 3D the conditions in a secret Syndicate sweatshop. Thing is these aren't just poorly paid factory workers, but slaves. As you can imagine we can't get in as regular workers so with a bit of hacking we got ourselves jobs on site as private security. We know the Syndicate is getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories you and Bunker will spy on the Syndicate's rendezvous with the pirates on Hippocrates."`
 			`    "Don't worry," she reassures you, sensing your concern about spying on pirates and the Syndicate. "Bunker is a pro and we have an array of long range stealth drones that do the spying, you won't be anywhere near them. But pirates do frequent the system so be quick."`
 			`	See waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the hanger shortly."`
 			`	You go back to your ships hanger and sure enough there are three people with backpacks waiting for you with a few cases. They introduce themselves as Coya, River and Bunker.`
@@ -3702,7 +3703,7 @@ mission "Journalism 2"
 	on visit
 		dialog `The filming equipment is aboard an escort. Better take off and wait for it to arrive.`
 
-
+#######################################################################################################################
 
 mission "Journalism 3"
 	landing
@@ -3723,7 +3724,7 @@ mission "Journalism 3"
 	on visit
 		dialog `You realize that your escort carrying the drones hasn't entered the system yet. Better depart and wait for it.`
 
-
+####################################################################################################################
 
 mission "Journalism 4"
 	infiltrating
@@ -3813,7 +3814,7 @@ mission "Journalism 4"
 	on visit
 		dialog `You will want your escorts for this. Better take off and wait for them to enter the system.`
 
-
+############################################################################################################
 
 mission "Journalism 5"
 	name "Slave trade"
@@ -3844,9 +3845,9 @@ mission "Journalism 5"
 		conversation
 			`They seem glad to be home. "Ugh. We saw such horrible things", says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credits. "There is a bonus in there for you. We really couldn't have done it without you. We will let you know when it's done. And we will definitely need you for some projects in the future. We'll be in touch."`
 
-
-#Freedom Uprising missions
-
+######################################################################################################################
+#First Freedom Uprising missions
+####################################################################################################################
 
 mission "Journalism 6"
 	deadline 9
@@ -3870,7 +3871,7 @@ mission "Journalism 6"
 	on visit
 		dialog `You must wait for your escorts to reach this system.`
 
-
+#####################################################################################################################
 
 mission "Journalism 7 late"
 	source "Harmony"
@@ -3879,10 +3880,10 @@ mission "Journalism 7 late"
 		has "FW Southern Battle 1: active"
 	on offer
 		conversation
-			`You find the Old Order Cafe but it looks like your too late. Ale and Bunker are nowhere to be found.`
+			`You find the Old Order Cafe but it looks like you're too late. Ale and Bunker are nowhere to be found.`
 				decline
 
-
+#####################################################################################################################
 
 mission "Journalism 7"
 	name "War Journalism"
@@ -3915,6 +3916,7 @@ mission "Journalism 7"
 	on visit
 		dialog `You must wait for your escorts to reach this system.`
 
+#######################################################################################################
 
 
 mission "Journalism 8"
@@ -3935,6 +3937,7 @@ mission "Journalism 8"
 	on visit
 		dialog `You forgot to get the Dreadnoughts from Zug.`
 
+#################################################################################################################
 
 
 mission "Journalism 9"
@@ -3974,7 +3977,7 @@ mission "Journalism 9"
 				`	"Wouldn't miss it for the galaxy."`
 			`	"It's in the spaceport," says River. "Meet us there in a three hours or so, and wear these," they hand you a wig and some glasses. "Ah, and before I forget. Here is your payment"`
 
-
+###################################################################################################################
 
 mission "Journalism 10"
 	name "Syndicate Slavery exposition"
@@ -4019,7 +4022,8 @@ mission "Journalism 10"
 			`As you bring the <ship> down to the spaceport you see a dragon flying nearby and point it out to your passengers who 'ooo' and 'ahh'. They can hardly contain their excitement as they leave the ship. Each one gives you a hug and wishes you good luck.`
 			`	"We will definitely be in touch," says Ale as they leave.`
 
-
+################################################################################################
+############################################################################################################
 
 mission "Freedom Uprising 1"
 	landing
@@ -4036,7 +4040,7 @@ mission "Freedom Uprising 1"
 			`As you are powering down the <ship>, you receive a message from Ale: "Hey. We are nearly done with the Syndicate Slavery project but it will still be a while for the exposition is ready to tour. In the meantime we have another project, but as usual it's time sensitive. Meet up with us on Moonshake soon or we will leave without you. Same place as before. This message will self-encrypt and you wont be able to see it again, so don't forget!"`
 				accept
 
-
+##################################################################################################################
 
 mission "Freedom Uprising 2"
 	name "Road to Freedom"
@@ -4098,7 +4102,7 @@ mission "Freedom Uprising 2"
 			`	"I'm sure they will take their time," she says after a moment. "I'm going to explore for awhile. Let's meet up in the spaceport in a few hours."`
 				accept
 
-
+####################################################################################################################
 
 mission "Freedom Uprising 3"
 	name "Road to Freedom"
@@ -4166,7 +4170,7 @@ mission "Freedom Uprising 3"
 		ship "Quicksilver (FF)"	"Hammer"
 		ship "Quicksilver (FF)"	"Book"
 
-
+###################################################################################################################
 
 mission "Freedom Uprising 4"
 	name "Road to Freedom"
