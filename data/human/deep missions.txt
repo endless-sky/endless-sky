@@ -1519,7 +1519,7 @@ mission "Deep: Remnant 1C"
 
 
 
-# Branch D occurs when the player knows about the Remnant before the start of the mission and decided to not reveal it to the Deep researchers.
+# Branch D occurs when the player knew about the Remnant before the start of the mission and decided to not reveal it to the Deep researchers.
 mission "Deep: Remnant 1D"
 	landing
 	name `Analyze Series of Wormholes`
