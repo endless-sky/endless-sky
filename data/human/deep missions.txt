@@ -1314,8 +1314,22 @@ mission "Deep: Remnant 0"
 				goto end
 			
 			label friendly
+			choice
+				`	(Reveal the Remnant)`
+				`	(Talk about the dangers)`
+					goto secretdanger
 			`	You tell Ivan about how the region of space beyond the wormhole is known as the "Ember Waste" and that it is inhabited by a group of friendly humans who fled there during the Alpha Wars. These humans have advanced independently from the rest of humanity for centuries. You mention their strange culture, sharing what you can remember about the songs the Remnant people sang.`
-			
+				goto end
+			label secretdanger
+			apply
+				set "deep: did not reveal remnant"
+			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever present red glow, and how how the desolate nature of the area led to you calling it the 'Ember Waste.' You also mention how fuel was a constant concern, but there were a number of odd wormholes.`
+			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Oh, before I forget: we can pay you for half of the cost of the Keystones."`
+			choice
+				`	"I would be glad to help."`
+					accept
+				`	"Sorry, I don't want to help with this."`
+					decline
 			label end
 			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about these inhabitants you describe. Oh, before I forget: we can pay you for half of the cost of the Keystones."`
 			choice
@@ -1377,6 +1391,7 @@ mission "Deep: Remnant 1A"
 		has "Deep: Remnant: Keystone Research: done"
 		not "deep: knew of stones before scientists"
 		not "First Contact: Remnant: offered"
+		not "deep: did not reveal remnant"
 	
 	on offer
 		conversation "deep: remnant"
@@ -1440,6 +1455,7 @@ mission "Deep: Remnant 1B"
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
 		has "deep: knew of stones before scientists"
+		not "deep: did not reveal remnant"
 	
 	on offer
 		conversation "deep: remnant"
@@ -1477,6 +1493,7 @@ mission "Deep: Remnant 1C"
 		not "deep: knew of stones before scientists"
 		has "First Contact: Remnant: offered"
 		not "Deep: Remnant 1A: offered"
+		not "deep: did not reveal remnant"
 	
 	on offer
 		conversation "deep: remnant"
@@ -1501,6 +1518,44 @@ mission "Deep: Remnant 1C"
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
 
 
+
+# Branch D occurs when the player knows about the Remnant before the start of the mission and decided to not reveal it to the Deep researchers.
+mission "Deep: Remnant 1D"
+	landing
+	name `Analyze Series of Wormholes`
+	description `Scan the series of wormholes located in the Ember Waste`
+	source "Valhalla"
+	stopover "Cardea"
+	stopover "Insitor"
+	stopover "Segesta"
+	stopover "Aescolanus"
+	cargo "astronomical recorders" 5
+	to offer
+		has "Deep: Remnant: Keystone Research: done"
+		has "deep: knew of stones before scientists"
+		has "First Contact: Remnant: offered"
+		not "Deep: Remnant 1A: offered"
+		has "deep: did not reveal remnant"
+	on offer
+		conversation
+			`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
+			`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there was an odd series of wormholes?"`
+			`	"Yes. They kind of make a train of sorts."`
+			`	"Right, definitely noteworthy. Well, we've decided that we need to know more about this these wormholes, as they could be significant. Could you make the circuit around this loop while carrying a suite of astronomical instruments? "`
+			choice
+				`	"Sure, I'm willing to do it."`
+					accept
+				`	"Sorry, you'll need to find someone else."`
+					decline
+	on visit
+		dialog `You have returned to <planet>, but you have not yet visited each system in the wormhole series. Go back and complete the set.`
+	on complete
+		event "deep: scan log research" 14
+		log `Scanned a series of wormholes beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
+		dialog
+			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
+		
+	
 
 conversation "deep: remnant"
 	branch 2A1 ABC # Are we in mission 2A or any other mission?
@@ -1600,6 +1655,7 @@ mission "Deep: Remnant Technology"
 	destination "Valhalla"
 	to offer
 		has "event: deep: scan log research"
+		not "deep: did not reveal remnant"
 	
 	on offer
 		payment 250000
@@ -1608,6 +1664,24 @@ mission "Deep: Remnant Technology"
 		set "Deep: Remnant Research: done"
 	on fail
 		set "Deep: Remnant Research: done"
+
+
+
+mission "Deep: Wormhole Research"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system "Epsilon Leonis"
+	destination "Valhalla"
+	to offer
+		has "event: deep: scan log research"
+		has "deep: did not reveal remnant"
+	on offer
+		payment 250000
+		set "Deep: Remnant Research: done"
+		dialog `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries.`
+		`	"We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
+			decline
 
 
 
