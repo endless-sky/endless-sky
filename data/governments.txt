@@ -84,6 +84,19 @@ government "Escort"
 	swizzle 5
 	"fine" 0
 
+government "Freedom Fighters"
+	swizzle 6
+	color .78 .36 .36
+	
+	"player reputation" 10
+	"attitude toward"
+		"Pirate" -.01
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
+
 government "Free Worlds"
 	swizzle 2
 	color .06 .68 0
