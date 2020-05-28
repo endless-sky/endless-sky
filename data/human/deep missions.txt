@@ -1323,7 +1323,7 @@ mission "Deep: Remnant 0"
 			label secretdanger
 			apply
 				set "deep: did not reveal remnant"
-			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever present red glow, and how how the desolate nature of the area led to you calling it the 'Ember Waste.' You also mention how fuel was a constant concern, but there were a number of odd wormholes.`
+			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever present red glow, and how the desolate nature of the area led to you calling it the 'Ember Waste.' You also mention how fuel was a constant concern, but there were a number of odd wormholes.`
 			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Oh, before I forget: we can pay you for half of the cost of the Keystones."`
 			choice
 				`	"I would be glad to help."`
