@@ -1033,7 +1033,7 @@ mission "Remnant: Follow-up on Terminus Researchers B"
 	minor
 	source
 		government Remnant
-	destination "Valhala"
+	destination "Valhalla"
 	to offer
 		has "Remnant: Learning Sign 2: done"
 		has "Deep: Wormhole Research: done"

@@ -1525,10 +1525,10 @@ mission "Deep: Remnant 1D"
 	name `Analyze Series of Wormholes`
 	description `Scan the series of wormholes located in the Ember Waste`
 	source "Valhalla"
-	stopover "Cardea"
-	stopover "Insitor"
-	stopover "Segesta"
-	stopover "Aescolanus"
+	waypoint "Cardea"
+	waypoint "Insitor"
+	waypoint "Segesta"
+	waypoint "Aescolanus"
 	cargo "astronomical recorders" 5
 	to offer
 		has "Deep: Remnant: Keystone Research: done"
@@ -1678,10 +1678,10 @@ mission "Deep: Wormhole Research"
 		has "deep: did not reveal remnant"
 	on offer
 		payment 250000
-		set "Deep: Remnant Research: done"
-		dialog `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries.`
-		`	"We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
+		dialog `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
 			decline
+	on decline
+		set "Deep: Remnant Research: done"
 
 
 
