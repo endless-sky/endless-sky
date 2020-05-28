@@ -3161,3 +3161,110 @@ ship "Wasp"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "The Wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
+
+ship "Quicksilver (FF)"
+	sprite "ship/quicksilver"
+	thumbnail "thumbnail/quicksilver"
+	attributes
+		category "Light Warship"
+		"cost" 1100000
+		"shields" 3000
+		"hull" 800
+		"required crew" 3
+		"bunks" 4
+		"mass" 120
+		"drag" 2.7
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 2
+		"outfit space" 248
+		"weapon capacity" 60
+		"engine capacity" 70
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Particle Cannon" 2
+
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Fuel Pod"
+		"Fuel Pod"
+		"Ramscoop"
+
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+	engine -17 54
+	engine 17 54
+	gun -6 -38 "Particle Cannon"
+	gun 6 -38 "Particle Cannon"
+	leak "leak" 50 50
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	"final explode" "final explosion small"
+	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two particle cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed."
+
+	##########################################################################
+
+ship "Splinter (FF)"
+	sprite "ship/splinter"
+	thumbnail "thumbnail/splinter"
+	attributes
+		category "Medium Warship"
+		"cost" 3100000
+		"shields" 5200
+		"hull" 1700
+		"required crew" 7
+		"bunks" 21
+		"mass" 250
+		"drag" 4.0
+		"heat dissipation" .7
+		"fuel capacity" 900
+		"cargo space" 50
+		"outfit space" 400
+		"weapon capacity" 150
+		"engine capacity" 100
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Proton Gun" 2
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
+
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Small Radar Jammer" 2
+		"Water Coolant System"
+		"Ramscoop"
+		"Laser Rifle"
+
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+	engine -15 115
+	engine 15 115
+	gun -15 -80 "Proton Gun"
+	gun 15 -80 "Proton Gun"
+	turret -17 -28 "Blaster Turret"
+	turret 0 -28 "Anti-Missile Turret"
+	turret 17 -28 "Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "The Splinter is the largest warship produced by the Megaparsec shipyard. It is designed to be faster and more maneuverable than other ships of a similar size, in order to serve as a heavy escort ship or as part of a planetary defense and patrol fleet. Because of its intended use in merchant convoys, it also has a fair amount of cargo space."
