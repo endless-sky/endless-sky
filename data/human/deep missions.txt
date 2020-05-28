@@ -1541,7 +1541,7 @@ mission "Deep: Remnant 1D"
 			`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
 			`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there was an odd series of wormholes?"`
 			`	"Yes. They kind of make a train of sorts."`
-			`	"Right, definitely noteworthy. Well, we've decided that we need to know more about this these wormholes, as they could be significant. Could you make the circuit around this loop while carrying a suite of astronomical instruments? "`
+			`	"Right, definitely noteworthy. Well, we've decided that we need to know more about these wormholes, as they could be significant. Could you make the circuit around this loop while carrying a suite of astronomical instruments? "`
 			choice
 				`	"Sure, I'm willing to do it."`
 					accept
