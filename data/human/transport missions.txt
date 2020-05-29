@@ -3861,7 +3861,7 @@ mission "Journalism 6"
 	deadline 9
 	on offer
 		conversation
-			`After talking with Ferya you receive an encrypted message from Ale. 'Hello there. The exposition is finally finished! We decided to start the tour in the Free Worlds. You're invited of course.'`
+			`After talking with Freya you receive an encrypted message from Ale. 'Hello there. The exposition is finally finished! We decided to start the tour in the Free Worlds. You're invited of course.'`
 			branch noexslaves
 				not "Anarco Uprising 3: done"
 			`	'Adding all the extra content we got from the Freedom Fighters and ex-slaves took a lot of time but it was worth it. It adds so much more depth to the story.'`
