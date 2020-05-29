@@ -3645,7 +3645,7 @@ mission "Journalism 1"
 		dialog `You arrive on <planet>, but realize that your escort carrying the exposition has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment 80000
-		log `Saw an impressive exposition on the Hope evaluation and ended up with a job taking the whole thing to Moonshake.`
+		log `Saw an impressive exposition on the Hope evacuation and ended up with a job taking the whole thing to Moonshake.`
 		conversation
 			`	You guide your ship down to the indicated hanger where there is a motley looking crew waiting to unload your ship. One of them hands you a note. It reads: "Meet me at the Common Grounds cafe in the spaceport if you're interested in doing a project with us. Make sure you're not followed. -Adelita Zero"`
 
