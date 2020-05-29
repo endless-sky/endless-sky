@@ -3908,7 +3908,7 @@ mission "Journalism 7"
 				decline
 			label greatnews
 			`	"That's great news," says Ale. "How should we proceed?"`
-			`	You explain your current mission. "Ferya wouldn't be to happy to see me without those Dreadnoughts. Best to get them first. Let's go. We can get caught up on the trip."`
+			`	You explain your current mission. "Freya wouldn't be too happy to see me without those Dreadnoughts. Best to get them first. Let's go. We can get caught up on the trip."`
 				accept
 
 	to complete
