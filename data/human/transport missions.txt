@@ -3786,7 +3786,7 @@ mission "Journalism 4"
 			label plan
 			`	"Now you're talking! But it would take a lot of planing to do it without killing the people we are trying to liberate. You know they will use those poor people as human shields. Say we..." he is cut off by the proximity alert.`
 			label showtime
-			`	"Show time," he says rubbing his hands together. You both watch as a pirate capital ship lands near the security detail, probably deafening them. It's accompanied by a small fleet of small escorts. As soon as the loading ramp is down the security detail gets to work herding the slaves from one ship to another. You see them hit and shove anyone that moves to slowly for their liking. It's hard to watch.`
+			`	"Show time," he says rubbing his hands together. You both watch as a pirate capital ship lands near the security detail, probably deafening them. It's accompanied by a small fleet of Quicksilver escorts. As soon as the loading ramp is down the security detail gets to work herding the slaves from one ship to another. You see them hit and shove anyone that moves to slowly for their liking. It's hard to watch.`
 			`	"Pigs," blurts out Bunker. He zooms in on two men talking a few meters away from everyone else. "What do we have here?" he says. One is in a suit, the other a black hooded robe. "Must be the leaders," he whispers as if they can hear him. Just then, the hooded man looks up to the sky, as if he sees something. He motions and his escorts fire up their engines and begin taking off.`
 			` "I don't like the look of this," says Bunker."`
 			choice
