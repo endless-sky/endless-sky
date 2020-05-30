@@ -3586,6 +3586,39 @@ mission "Hauler VI cargo prototype 3"
 
 
 
+	name "Take family home to <planet>"
+	description "You meet a family worried about the potential destruction of war in the Free Worlds and want to cut their vacation short and go home to <destination>."
+	source
+		government "Free Worlds"
+		attributes "tourism"
+	destination "Mainsail"
+	passengers 3
+	cargo "personal belongings" 1
+	to offer
+		has "FW Katya 7C: done"
+	to fail
+		has "free worlds plot completed"
+	on offer
+		conversation
+			`After walking around the spaceport for awhile you head back to your ship to find and middle aged couple with their two grade school daughters waiting for you at your hanger. The man is busy trying to adjudicate a dispute between the girls but the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We were hoping you could get us back home to the paradise planets. This war caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little 'angels'," she gestures toward her daughters, now in a full blown fight. "If you can find the time to take us we will pay you very well."`
+			choice
+				`	"Sure, I'll take you."`
+				`	"OK. But it's pretty far. It better be worth it."`
+				`	"No. I don't think so. Sorry."`
+					decline
+			`	"Then it's a deal," she shakes your hand firmly. The whole family gets onto the <ship> without another word, leaving you to load their many bags and cases.`
+				accept
+
+	on complete
+		payment 66999
+		conversation
+			`You're not sure if you have ever met a more pretentious and entitled family. The girls fought non-stop and both they all complained constantly of the lack of luxury accommodation on your ship. You are very happy to finally be free of them. Although you feel you should have been paid more for how terrible they were.`
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
+
+
 mission "Journalism 1"
 	name "Transport exposition to <planet>"
 	description `Transport expo equipment to <destination>.`
@@ -3618,7 +3651,7 @@ mission "Journalism 1"
 					defer
 			`	"You're going to love it," she says. "No one knows who they really are but Adelita's work is what inspired me to study journalism. Their mixture of mediums, their eye for story telling... I just love it. I have seen a lot of their stuff but never this expo on Hope. I'm so excited!"`
 			`	You reach the entrance to the "expo" soon enough. Inside is a large room filled with photos, videos, interviews and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise planets that protested the evacuation. There is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and Navy. Some of them are quite crude and tasteless. Since you are on a Paradise planet it's a strong rebuke.`
-			` There are many, many photos but one especially catches your eye. It's of a woman standing in line to board a Navy destroyer. She is holding a baby at her hip and staring at the camera with a look of sad determination. Their cheeks, rosy and chapped, stand out in contrast with the cold blues in the background. It gives you goosebumps.`
+			` There are many, many photos but one especially catches your eye. It's of a woman standing in line to board a Navy Cruiser. She is holding a baby at her hip and staring at the camera with a look of sad determination. Their cheeks, rosy and chapped, stand out in contrast with the cold blues in the background. It gives you goosebumps.`
 			`	While good, you were hoping for a bit more as you head for the exit. As the automatic doors open you are hit with an unexpected arctic blast. Instead of back in the spaceport you find yourself in a life sized 3D recording of the evacuation of Hope, complete with refrigeration. The projection gives the illusion of a horizon. There are huge Navy Cruisers slowly collecting ash in a snowy field near a small town as hundreds of refugees slowly board. But what stands out most is the giant volcano erupting in the background.`
 			`	"It's more of a collage than an exact rendering," says the young woman you met in line. You were so distracted you didn't notice her approach. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops.  The volcano was actually on the other side of the planet for example. The magic of editing. So what do you think?"`
 			choice
@@ -3645,18 +3678,18 @@ mission "Journalism 1"
 		dialog `You arrive on <planet>, but realize that your escort carrying the exposition has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment 80000
-		log `Saw an impressive exposition on the Hope evacuation and ended up with a job taking the whole thing to Moonshake.`
+		log `Saw an impressive exposition on the Hope evaluation and ended up with a job taking the whole thing to Moonshake.`
 		conversation
 			`	You guide your ship down to the indicated hanger where there is a motley looking crew waiting to unload your ship. One of them hands you a note. It reads: "Meet me at the Common Grounds cafe in the spaceport if you're interested in doing a project with us. Make sure you're not followed. -Adelita Zero"`
 
-######################################################################################################################
+
 
 mission "Journalism 2"
 	description "Participate in the guerrilla filming of a Syndicate sweatshop on <destination>."
 	name "Film Sweatshop"
 	source "Moonshake"
 	destination "Maker"
-	passengers 4
+	passengers 3
 	cargo "stealth drones" 1
 	to offer
 		has "Journalism 1: done"
@@ -3680,15 +3713,15 @@ mission "Journalism 2"
 			`	"Oh. Well unfortunately for many, everything is political. It was political when the Republic tried to block the evacuation. And it was political when the Navy did it without permission. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one some day; wealthy, authoritative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installation," she says with a smile. She gets her smoothie to-go and walks out.`
 				decline
 			label inorout
-			`	Mariel said you saw me take the photos of the woman and her baby," you are surprised by the bluntness of her admission. "I really like that moment. Not many notice it. You're observant. Hopefully you're kind too. We need a ship for our next project. We need you to transport a team to one planet, do a quick flyby of another, pickup the team and return here with everyone safe and sound. Nothing to dicey. But it's a dangerous universe, so who knows. Oh, and we have to leave today. I can't tell you more until you accept. It will pay, of course. 200000 credits. So what do ya say? Are you in or out?" Your orders are served and you eat in silence and consider her proposition while she drinks her smoothie.`
+			`	Mariel said you saw me take the photos of the woman and her baby," you are surprised by the bluntness of her admission. "I really like that moment. Not many notice it. You're observant. Hopefully you're kind too. We need a ship for our next project. We need you to transport a team to one planet, quickly land on another, then pickup the team and return here with everyone safe and sound. Nothing to dicey. But it's a dangerous universe, so who knows. Oh, and we have to leave today. I can't tell you more until you accept. It will pay, of course. 200000 credits. So what do you say? Are you in or out?" Your orders are served and you eat in silence and consider her proposition while she drinks her smoothie.`
 			choice
 				`	"In."`
 				`	"Out."`
 					goto imout
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and two others off at Maker where we are going to film in 3D the conditions in a secret Syndicate sweatshop. Thing is these aren't just poorly paid factory workers, but slaves. As you can imagine we can't get in as regular workers so with a bit of hacking we got ourselves jobs on site as private security. We know the Syndicate is getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories you and Bunker will spy on the Syndicate's rendezvous with the pirates on Hippocrates."`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at Maker where we are going to film in 3D the conditions in a secret Syndicate sweatshop. Thing is these aren't just poorly paid factory workers, but slaves. As you can imagine we can't get in as regular workers so with a bit of hacking we got ourselves jobs on site as private security. We know the Syndicate is getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories you will be going with our associate Bunker to spy on the Syndicate's rendezvous with the pirates on Hippocrates."`
 			`    "Don't worry," she reassures you, sensing your concern about spying on pirates and the Syndicate. "Bunker is a pro and we have an array of long range stealth drones that do the spying, you won't be anywhere near them. But pirates do frequent the system so be quick."`
 			`	See waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the hanger shortly."`
-			`	You go back to your ships hanger and sure enough there are three people with backpacks waiting for you with a few cases. They introduce themselves as Coya, River and Bunker.`
+			`	You go back to your ships hanger and sure enough there are two people with backpacks waiting for you with a few cases. They introduce themselves as River and Bunker.`
 			choice
 				`	"I am Captain <first> <last>."`
 				`	"I'm <first>."`
@@ -3703,7 +3736,7 @@ mission "Journalism 2"
 	on visit
 		dialog `The filming equipment is aboard an escort. Better take off and wait for it to arrive.`
 
-#######################################################################################################################
+
 
 mission "Journalism 3"
 	landing
@@ -3712,22 +3745,22 @@ mission "Journalism 3"
 	minor
 	source "Maker"
 	destination "Hippocrates"
+	infiltrating
 	to offer
 		has "Journalism 2: done"
 	passengers 1
 	cargo "stealth drones" 1
 	on offer
 		conversation
-			`You drop off Ale, Coya and River at the spaceport and wish them luck. They are visibly embarrassed to be in security uniforms or perhaps uncomfortable with their disguises which make them virtually unrecognizable. Bunker can't stop laughing. Everyone exchanges wishes of good luck and they walk off into the spaceport. You and bunker go back to the <ship> and prepare to launch.`
+			`You drop off Ale and River at the spaceport and wish them luck. They are visibly embarrassed to be in security uniforms or perhaps uncomfortable with their disguises which make them virtually unrecognizable. Bunker can't stop laughing. Everyone exchanges wishes of good luck and they walk off into the spaceport. You and bunker go back to the <ship> and prepare to launch.`
 				accept
 
 	on visit
 		dialog `You realize that your escort carrying the drones hasn't entered the system yet. Better depart and wait for it.`
 
-####################################################################################################################
+
 
 mission "Journalism 4"
-	infiltrating
 	landing
 	name "Slave trade"
 	description "Pick up the team on <destination>."
@@ -3753,13 +3786,13 @@ mission "Journalism 4"
 			label plan
 			`	"Now you're talking! But it would take a lot of planing to do it without killing the people we are trying to liberate. You know they will use those poor people as human shields. Say we..." he is cut off by the proximity alert.`
 			label showtime
-			`	"Show time," he says rubbing his hands together. You both watch as a pirate Leviathan lands near the security detail, probably deafening them. It's accompanied by a small fleet of Quicksilver escorts. As soon as the loading ramp is down the security detail gets to work herding the slaves from one ship to another. You see them hit and shove anyone that moves to slowly for their liking. It's hard to watch.`
+			`	"Show time," he says rubbing his hands together. You both watch as a pirate capital ship lands near the security detail, probably deafening them. It's accompanied by a small fleet of small escorts. As soon as the loading ramp is down the security detail gets to work herding the slaves from one ship to another. You see them hit and shove anyone that moves to slowly for their liking. It's hard to watch.`
 			`	"Pigs," blurts out Bunker. He zooms in on two men talking a few meters away from everyone else. "What do we have here?" he says. One is in a suit, the other a black hooded robe. "Must be the leaders," he whispers as if they can hear him. Just then, the hooded man looks up to the sky, as if he sees something. He motions and his escorts fire up their engines and begin taking off.`
 			` "I don't like the look of this," says Bunker."`
 			choice
 				`	"I'm sure it has nothing to do with us. Keep filming."`
 				`	"Call back the drones immediately."`
-					goto escape
+					goto calldrones
 				`	"I'm sorry but we have to leave the drones behind."`
 					goto nocando
 				`	"Did he SEE us?"`
@@ -3770,12 +3803,12 @@ mission "Journalism 4"
 				`	"OK. Call the drones back."`
 					goto calldrones
 			`	"You're the captain," he responds giving up. You continue to watch the display. The last of the slaves are loaded followed by the security team. The two men are last to get to their ships. You notice a slight hum from outside before getting raked with fire from one of the pirate escorts. You try pull out to space but another escort appears, cutting you off and laying down a stream of fire. Your engines are hit and your ship falls from the sky, exploding on impact.`
-				die
+				explode
 			label seeus
 			`	"I have no idea! Right now we have bigger things to worry about."`
 			choice
 				`	"Call back the drones immediately."`
-					goto escape
+					goto calldrones
 				`	"I'm sorry but we have to leave the drones behind."`
 					goto nocando
 			label nocando
@@ -3794,7 +3827,7 @@ mission "Journalism 4"
 			`	"Aye aye captain," he says as he hits a button. "Drone ETA, two minutes, fifteen seconds."`
 			`	"Get to the cargo bay," you say. "Lock down the drones and get belted in. We will take off on your mark."`
 			label escape
-			`	"Less than a minute later you hear Bunker on comms, "Drones are locked down and ready to go."`
+			`	Less than a minute later you hear Bunker on comms, "Drones are locked down and ready to go."`
 			`	The moment you pull out of the canyon pirate fighters appear on your scanners. You accelerate into space at full speed with the fighters in hot pursuit.`
 				launch
 			label blaster
@@ -3806,36 +3839,36 @@ mission "Journalism 4"
 		government "Pirate"
 		ship "Quicksilver" "Don't Run"
 		ship "Quicksilver" "Obey"
-		ship "Quicksilver" "Work is Freedom"
-		ship "Quicksilver" "Falange"
+		ship "Quicksilver" "Work Is Freedom"
+		ship "Quicksilver" "Do As You're Told"
 		ship "Arrow" "Got You"
 		ship "Arrow" "Futile"
 
 	on visit
 		dialog `You will want your escorts for this. Better take off and wait for them to enter the system.`
 
-############################################################################################################
+
 
 mission "Journalism 5"
 	name "Slave trade"
-	description "Do a flyby of <destination> to spy on slave transaction."
+	description "Bring everyone back to <destination>."
 	minor
 	source "Maker"
 	destination "Moonshake"
 	landing
 	to offer
 		has "Journalism 4: done"
-	passengers 4
+	passengers 3
 	cargo "stealth drones" 1
 
 	on offer
 		conversation
 			branch experienced
 				"combat rating" > 100
-			`It was close but you make it back to Maker. Ale, River and Coya are excited to get on board and out of their uniforms and disguises. They are exhausted and eager to get home and process what they filmed, emotionally as well as literally. "That was horrible, but we got it done. Can we leave now," asks Ale.`
+			`It was close but you make it back to Maker. Ale and River are excited to get on board and out of their uniforms and disguises. They are exhausted and eager to get home and process what they filmed, emotionally as well as literally. "That was horrible, but we got it done. Can we leave now?" asks Ale.`
 				launch
 			label experienced
-			`The pirates were no match for you. Ale, River and Coya are excited to get on board and out of their uniforms and disguises. They seem exhausted and eager to get home and process what they filmed, as well as emotionally. "That was awful. Can we leave now?" asks Ale.`
+			`The pirates were no match for you. Ale and River are excited to get on board and out of their uniforms and disguises. They seem exhausted and eager to get home and process what they filmed, as well as emotionally. "That was awful. Can we leave now?" asks Ale.`
 				launch
 	on visit
 		dialog `You left the <cargo> behind. Better take off and wait for them to enter the system.`
@@ -3845,9 +3878,7 @@ mission "Journalism 5"
 		conversation
 			`They seem glad to be home. "Ugh. We saw such horrible things", says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credits. "There is a bonus in there for you. We really couldn't have done it without you. We will let you know when it's done. And we will definitely need you for some projects in the future. We'll be in touch."`
 
-######################################################################################################################
-#First Freedom Uprising missions
-####################################################################################################################
+
 
 mission "Journalism 6"
 	deadline 9
@@ -3861,7 +3892,7 @@ mission "Journalism 6"
 	deadline 9
 	on offer
 		conversation
-			`After talking with Freya you receive an encrypted message from Ale. 'Hello there. The exposition is finally finished! We decided to start the tour in the Free Worlds. You're invited of course.'`
+			`After talking with Ferya you receive an encrypted message from Ale. 'Hello there. The exposition is finally finished! We decided to start the tour in the Free Worlds. You're invited of course.'`
 			branch noexslaves
 				not "Anarco Uprising 3: done"
 			`	'Adding all the extra content we got from the Freedom Fighters and ex-slaves took a lot of time but it was worth it. It adds so much more depth to the story.'`
@@ -3871,7 +3902,7 @@ mission "Journalism 6"
 	on visit
 		dialog `You must wait for your escorts to reach this system.`
 
-#####################################################################################################################
+
 
 mission "Journalism 7 late"
 	source "Harmony"
@@ -3883,7 +3914,7 @@ mission "Journalism 7 late"
 			`You find the Old Order Cafe but it looks like you're too late. Ale and Bunker are nowhere to be found.`
 				decline
 
-#####################################################################################################################
+
 
 mission "Journalism 7"
 	name "War Journalism"
@@ -3908,7 +3939,7 @@ mission "Journalism 7"
 				decline
 			label greatnews
 			`	"That's great news," says Ale. "How should we proceed?"`
-			`	You explain your current mission. "Freya wouldn't be too happy to see me without those Dreadnoughts. Best to get them first. Let's go. We can get caught up on the trip."`
+			`	You explain your current mission. "Ferya wouldn't be to happy to see me without those Dreadnoughts. Best to get them first. Let's go. We can get caught up on the trip."`
 				accept
 
 	to complete
@@ -3916,7 +3947,6 @@ mission "Journalism 7"
 	on visit
 		dialog `You must wait for your escorts to reach this system.`
 
-#######################################################################################################
 
 
 mission "Journalism 8"
@@ -3937,7 +3967,6 @@ mission "Journalism 8"
 	on visit
 		dialog `You forgot to get the Dreadnoughts from Zug.`
 
-#################################################################################################################
 
 
 mission "Journalism 9"
@@ -3971,22 +4000,22 @@ mission "Journalism 9"
 	on complete
 		payment 100000
 		conversation
-			`Coya and River are waiting at your hanger when you land. They all take turns embracing, obviously happy to see each other. Apparently the exposition has already been installed for days, opening to hit reviews and long lines. "We haven't even seen it ourselves yet. We have been waiting for you to go together," says River as they pack up the few cameras that survived the battle.`
+			`River is waiting at your hanger when you land. They all take turns embracing, obviously happy to see each other. Apparently the exposition has already been installed for days, opening to hit reviews and long lines. "We haven't even seen it ourselves yet. We have been waiting for you to go together," says River as they pack up the few cameras that survived the battle.`
 			`	"Y'all are so sweet," says Bunker. "Let's go tonight after the expo is closed. <first> is coming, right?"`
 			choice
 				`	"Wouldn't miss it for the galaxy."`
 			`	"It's in the spaceport," says River. "Meet us there in a three hours or so, and wear these," they hand you a wig and some glasses. "Ah, and before I forget. Here is your payment"`
 
-###################################################################################################################
+
 
 mission "Journalism 10"
 	name "Syndicate Slavery exposition"
-	description "Take Ale, Bunker, Coya and River to <planet>."
+	description "Take Ale, Bunker and River to <planet>."
 	source "Bourne"
 	destination "Skymoot"
 	to offer
 		has "Journalism 9: done"
-	passengers 4
+	passengers 3
 	on offer
 		conversation
 			`The realities of interstellar travel means that spaceports never close and nothing in them is based on the light cycle of the planet it is on. The spaceport is as busy as any other hour when you get to the exposition.`
@@ -4022,12 +4051,10 @@ mission "Journalism 10"
 			`As you bring the <ship> down to the spaceport you see a dragon flying nearby and point it out to your passengers who 'ooo' and 'ahh'. They can hardly contain their excitement as they leave the ship. Each one gives you a hug and wishes you good luck.`
 			`	"We will definitely be in touch," says Ale as they leave.`
 
-################################################################################################
-############################################################################################################
+
 
 mission "Freedom Uprising 1"
 	landing
-	invisible
 	deadline 14
 	source
 		government "Syndicate"
@@ -4037,10 +4064,10 @@ mission "Freedom Uprising 1"
 		has "Journalism 5: done"
 	on offer
 		conversation
-			`As you are powering down the <ship>, you receive a message from Ale: "Hey. We are nearly done with the Syndicate Slavery project but it will still be a while for the exposition is ready to tour. In the meantime we have another project, but as usual it's time sensitive. Meet up with us on Moonshake soon or we will leave without you. Same place as before. This message will self-encrypt and you wont be able to see it again, so don't forget!"`
+			`	Back on your ship you notice a new message from Ale: "Hey. We are nearly done with the Syndicate Slavery project but it will still be a while for the exposition is ready to tour. In the meantime we have another project, but as usual it's time sensitive. Meet up with us on Moonshake soon or we will leave without you. Same place as before."`
 				accept
 
-##################################################################################################################
+
 
 mission "Freedom Uprising 2"
 	name "Road to Freedom"
@@ -4102,7 +4129,7 @@ mission "Freedom Uprising 2"
 			`	"I'm sure they will take their time," she says after a moment. "I'm going to explore for awhile. Let's meet up in the spaceport in a few hours."`
 				accept
 
-####################################################################################################################
+
 
 mission "Freedom Uprising 3"
 	name "Road to Freedom"
@@ -4121,8 +4148,9 @@ mission "Freedom Uprising 3"
 	passengers 3
 	on offer
 		conversation
-			`You meet up with everyone at what must be the seediest dive bar in the spaceport. "That didn't go exactly as expected," informs Beto. "The unions are to afraid to help us directly so we need to change the plan a bit. The good news is there are three small warships waiting for us in space, a great addition to our humble 'Freedom Fighters' defense force. Also, they are going to wire us one million credits to buy arms. But getting the factory equipment is going to be a little more complicated."`
-			`	"They can't give us the equipment outright," chimes in Bunker while nursing a beer. "But the union has put in an order for exactly what is needed for the factory on Freedom. They also arranged for union guys to do the transport. Unfortunately their ship, the 'Union Strong', will be "attacked" in transit in the Zaurk system, but luckily for them you will be there just in time to "save" them. After that we go to <destination> to do some interviews and pick up the rest of what we need before going to Freedom. It's a rough system but we should be safe once we land so hail the spaceport and Beto should be able to get us permission to land without paying protection."`
+			`You meet up with everyone at what must be the seediest dive bar in the spaceport. "That didn't go exactly as expected," informs Beto. "The unions are unable to help us directly so we need to change the plan a bit. The good news is there are three small warships waiting for us in space, a great addition to our humble 'Freedom Fighters' defense force. Also, they are going to wire us one million credits to buy arms. But getting the factory equipment is going to be a little more complicated."`
+			`	"They can't give us the equipment outright," chimes in Bunker while nursing a beer. "But the union has put in an order for exactly what is needed for the factory on Freedom. They also arranged for union guys to do the transport. Unfortunately their ship, the 'Union Strong', will be 'attacked' in transit. Luckily for them you will be there just in time to save them. And by save them I mean board their ship and offload the equipment. After that we go to <destination> to do some interviews and pick up the rest of what we need before going to Freedom. It's a rough system but we should be safe once we land so hail the spaceport and Beto should be able to get us permission to land without paying protection."`
+			`	"We are going to go though a lot of empty space soon so my contacts will have a Ramscoop waiting for us on Stormhold, but also consider installing more Fuel Pods here because they won't be available along the way."`
 
 			choice
 				`	"Sounds like a plan. Let's do it!"`
@@ -4145,7 +4173,7 @@ mission "Freedom Uprising 3"
 		payment 1000000
 		outfit "Ramscoop" +1
 		conversation
-			`	"So far so good," says Bunker. "Beto wants us to interview some allies and ex-slaves here on <planet>. While we do that can you go to the outfitter and buy 100 Laser Rifles and 10 boxes of Frag Grenades? Here's the credits. Keep the change. Let's meet up at 'The Giving Tree' when we're done."`
+			`	A few people are waiting with a Ramscoop when you land. "So far so good," says Bunker. "Beto wants us to interview some allies and ex-slaves here on <planet>. While we do that can you go to the outfitter and buy 100 Laser Rifles and 10 boxes of Frag Grenades? Here's the credits, keep the change. And can you make sure the Ramscoop is installed? Meet us at 'The Giving Tree' when we're done."`
 
 
 	npc assist
@@ -4155,22 +4183,17 @@ mission "Freedom Uprising 3"
 		ship "Hauler" "Union Strong"
 		conversation
 			`You are greeted by three union workers the moment you open the hatch to their ship. "Let's get this unloaded quickly before anyone sees," say one of the union men. Even in zero gravity it takes awhile to move all the equipment.`
-			`	"The logs will show that pirates attacked and robbed us, and you came by later to assist. Deleting your ship from our logs entirely would be to suspicious, so act casual if you get any recognition for "saving" us."`
+			`	"The logs will show that pirates attacked and robbed us, and you came by later to assist. Deleting your ship from our logs entirely would be too suspicious, so act casual if you get any recognition for "saving" us."`
 
 	npc accompany save
 		government "Freedom Fighters"
 		personality escort disables
-		ship "Splinter (FF)" "Solidarity"
-		ship "Splinter (FF)" "Tierra y Libertad"
+		fleet
+			names "ff constant"
+			variant
+				"Splinter (Far North)" 2
 
-	npc accompany
-		government "Freedom Fighters"
-		personality escort disables
-		ship "Quicksilver (FF)" "Plow"
-		ship "Quicksilver (FF)"	"Hammer"
-		ship "Quicksilver (FF)"	"Book"
 
-###################################################################################################################
 
 mission "Freedom Uprising 4"
 	name "Road to Freedom"
@@ -4200,13 +4223,13 @@ mission "Freedom Uprising 4"
 					goto smoke
 				`	(Refuse all together.)`
 			`	"Sorry. I'd rather get straight to business," you say.`
-			`	"Damn, talk about hashing a vibe. OK then. Did you get the weapons?"`
+			`	"Harsh. OK then. Did you get the weapons?"`
 				goto gotweapons
 
 			label smokefruit
 			apply
 				set "stoner"
-			`	You take a few puffs and then bite into the fleshy purple fruit. Its texture conflicts with its citrus taste, but then the flavor changes to more neutral and earthy like a mushroom before finally settling on a sweetness akin to the tropical fruits from Earth. They are all laughing hysterically, apparently your facial expressions were a hit.`
+			`	You take a few puffs and then bite into the fleshy purple fruit. Its texture conflicts with its citrus taste, but then the flavor changes to more neutral and earthy like a mushroom before finally settling on a sweetness akin to the tropical fruits from Earth. They are all laughing uncontrollably, apparently your facial expressions were a hit.`
 				goto backtobusi
 
 			label smoke
@@ -4236,7 +4259,7 @@ mission "Freedom Uprising 4"
 				`	"Yeah, I got them."`
 				`	"No. Not yet."`
 					goto notyet
-			`	"Great," says Beto. "It would be awful to get to Freedom only to realize we forgot something. It should go without saying that we will be in trouble if we get caught with all this stuff so we probably shouldn't go through Republic space. That means we are going to need a lot of spare fuel to make it through all of the uninhabited systems north of here. Some friends of mine got us a Ramscoop, so make sure to install it. Also, if you are using a Scram Drive you might want to consider switching it out for a normal one to save on fuel and space."`
+			`	"Great," says Beto. "It would be awful to get to Freedom only to realize we forgot something. It should go without saying that we will be in trouble if we get caught with all this stuff so we should avoid Republic space. That means we are need to go through the uninhabited systems north of here. My contacts got us the Ramscoop so make sure it's installed. Also, if you are using a Scram Drive you might want to consider switching it out for a normal one to save on fuel and space."`
 
 			`	"And we should resist the temptation of hanging around the Alnitak system. There is a Navy base on Farpoint and even though they are Oathkeepers they still might scan us. Lucky for us I know of an uninhabited system with good solar wind and few pirates.  Well, we better get moving or we may never leave this garden."`
 				accept
@@ -4259,11 +4282,11 @@ mission "Freedom Uprising 4"
 				`	"I really ought to be going."`
 					goto getgoing
 				`	"I would love to."`
-			`	They give you a tour of the factory as equipment is moved in piece by piece. Part of the factory has been converted into a kitchen and social space. The smell of their cooking makes your belly rumble. "Thanks to you we finally have some means of production," says Larisa. "We are starting off with making components for Megaparcec. The unions there are especially desperate for new trade partners. That will give them more leverage and autonomy from the Syndicate. And that's good for us because we need all the allies we can get."`
+			`	They give you a tours of the factory as equipment is moved in piece by piece. Part of the factory has been converted into a kitchen and social space. The smell of their cooking makes your belly rumble. "Thanks to you we finally have some means of production," says Larisa. "We are starting off with making components for Megaparcec. The unions there are especially desperate for new trade partners. That will give them more leverage and autonomy from the Syndicate. And that's good for us because we need all the allies we can get."`
 			`	"Food's ready!" calls out Lalo. In short order a few volunteers serve food to nearly a hundred people who take their plates outside and eat while conversing in small groups. The meal was simple but delicious. Larisa talks about plans to mine asteroids in the uninhabited systems you just passed through. Ale tells of when she and Bunker met Beto, Larisa and Lalo, agitating at a Megaparcec union strike. Lalo is pressured into talking about his part in the recent slave freeing raid and Bunker retells the story of when you and he filmed the Syndicate and the slavers. `
 
 			label getgoing
-			`	Ale and Bunker tell you they will be staying on Freedom for awhile to work on the project. "Don't worry about us. We will find transport back home when we are done here. We will be sure to let you know if we need you for more work," says Bunker as he hands you a fist full of credits. "Unfortunately the pirates control the side of town with the spaceport so you will have to bribe them and land again if you want to refuel or buy anything." You say goodbye to everyone, promising to visit again soon.`
+			`	Ale and Bunker tell you they will be staying on Freedom for awhile to work on the project. "Don't worry about us. We will find transport back home when we are done here. We will be sure to let you know if we need you for more work," says Bunker as he hands you fist full of credits. "Unfortunately the pirates control the side of town with the spaceport so you will have to bribe them and land again if you want to refuel or buy anything." You say goodbye to everyone, promising to visit again soon.`
 
 	on visit
 		dialog `You are either missing the weapons, equipment, escorts or any combination of the three. Better go back into orbit and figure it out.`
@@ -4284,12 +4307,7 @@ mission "Freedom Uprising 4"
 	npc accompany save
 		government "Freedom Fighters"
 		personality escort disables
-		ship "Splinter (FF)" "Solidarity"
-		ship "Splinter (FF)" "Tierra y Libertad"
-
-	npc accompany
-		government "Freedom Fighters"
-		personality escort disables
-		ship "Quicksilver (FF)" "Plow"
-		ship "Quicksilver (FF)"	"Hammer"
-		ship "Quicksilver (FF)"	"Book"
+		fleet
+			names "ff constant"
+			variant
+				"Splinter (Far North)" 2
