@@ -86,15 +86,15 @@ mission "Pookie, Part 2"
 					goto interrupt
 				"	(Wait to see if someone else shows up.)"
 					goto wait
-		
+
 			label interrupt
 			`	"Excuse me," you say. She looks up at you with a withering glare. "I'm looking for someone named Pookie."`
 				goto response
-		
+
 			label wait
 			`	Eventually she looks up from the paper and sees you standing there. "Are you Captain <last>?" she asks. You nod.`
 				goto response
-		
+
 			label response
 			`	"Thank heavens," she says. "She's all yours." She hands you the leash and a large bag that appears to be full of chew toys. "Here are her toys, her food, and her... outfits. Which she hates. Feed her twice a day, or she will go berserk. Do not feed her more than twice a day, or she will throw up..."`
 			`	As she continues rattling off instructions, you ask, "Wait, Pookie is the dog?"`
@@ -122,10 +122,10 @@ mission "Smuggler's Den, Part 1"
 				`	(Get out of here.)`
 				`	(Wait and see what they want.)`
 					goto meet
-			
+
 			`	You've heard too many stories of kidnappings and murders on this station to be willing to take any risks. You quickly get up and leave the bar, and walk down the passageway back toward your ship. Glancing behind you, you see that the hooded figures have decided not to follow you.`
 				decline
-			
+
 			label meet
 			`	The hooded figures turn out to be a boy and a girl, both perhaps thirteen or fourteen years old. The bundle in the girl's arms is a baby. "Are you a captain?" the boy asks.`
 			`	"Yes," you say.`
@@ -135,16 +135,16 @@ mission "Smuggler's Den, Part 1"
 					goto legal
 				`	"Well, how much would you be able to pay me?"`
 					goto payment
-			
+
 			label legal
 			`	The boy grins. "No, not at all. I mean, aside from the fact that we're pirates."`
 			`	Seeing the incredulous look on your face, the girl says, "Members of a pirate gang. Crew on a pirate ship. Captains are usually older, but most of the pirate ships you see out there are crewed by kids like us. It's a hard place to grow up. We want something better for our daughter."`
 				goto search
-			
+
 			label payment
 			`	They are silent for a long moment, looking down at the table. Finally, the boy says, "We're crew on a pirate ship, hardly better than slaves. The captain keeps our wages. We don't get paid anything unless they agree to let us go. But if you help us start a new life, we'll work hard and some day we'll pay you back."`
 			`	The girl adds, "You don't know what it's like for a little girl to grow up on a pirate ship. We want something better than that for our daughter."`
-			
+
 			label search
 			`	As you are conversing a bearded man and a rough-looking teenage boy enter the bar and begin looking around the room. "That's our captain," she says. "Please, you have to help us. There's a service tunnel that connects to the back entrance of the bar. We can escape through there."`
 			`	You've heard of these service passageways: the most dangerous part of this lawless station, dimly lit and seldom traveled, except by drug addicts and prostitutes. This whole thing might just be a ruse to lure you into one, where they can attack you without anyone interfering. "No," says the boy, "if we head for the service tunnel, they'll be sure to notice us. Let's just stay at the table until they go away."`
@@ -155,10 +155,10 @@ mission "Smuggler's Den, Part 1"
 				`	(Wait.)`
 					goto outside
 				`	"I'm sorry, this isn't worth risking my life for. I'm leaving."`
-	
+
 			`	You stand up and leave. The men in the doorway make no effort to stop you.`
 				decline
-			
+
 			label `tunnel`
 			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to the back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
 			`	Finally, you reach the back entrance, and she spins the wheel to unlock it. The hinges squeal, but it opens enough for you to squeeze through. You find yourselves in a narrow corridor lit only by flickering sodium lamps. In the yellow lamplight her face and hands look pale, jaundiced. The floor of the corridor is littered with beer bottles and discarded hypodermic needles. To one side of the door are several over-stuffed trash cans. As you step into the corridor, a rat scurries away into the darkness.`
@@ -166,14 +166,14 @@ mission "Smuggler's Den, Part 1"
 			`	You begin running down the corridor, in the direction of your ship. You pass a man, slumped over in a corner; there is no time to see if he is dead, or just sleeping. In places the lights have gone out, and it is so dim that you can barely see the floor beneath you. Your footsteps pounding on the metal decking ring terribly loud up and down the empty hallway.`
 			`	Eventually the passageway widens out into a maintenance room, full of humming equipment and large tanks. You duck behind one of them and listen for sounds of pursuit. "I think we're safe," says the boy. He walks over to another airlock door on the opposite wall and tugs it open. Light pours in, almost blinding at first. You are looking out into the rimway, the main passage in this ring of the station. Crowds of people are walking past, paying no attention to you. He glances quickly in both directions, then gestures for you to follow.`
 				goto ship
-			
+
 			label outside
 			`	You wait at the table, pretending that you are busy placing a drink order. The men at the door do not leave. Instead, they step into the room and begin circling around the edge of it. "What berth is your ship in?" asks the boy. You tell him. "Wait ten seconds, then follow," he says. He stands up and walks through the door. The searchers glance at him as he leaves, but they must be looking for two people together, because they ignore him.`
 			`	The searchers approach the bar and begin talking to one of the bartenders. You and the girl stand up. "Walk slowly," she hisses under her breath. "Saunter. Don't run." You put an arm around her shoulders and do your best to act like an ordinary bar patron headed home with a new friend after having a bit too much to drink. You don't dare to glance at the bar to see if you are being watched.`
 			`	Finally you reach the door. You are in the rimway, the main passage in this ring of the station. It is crowded and brightly lit. You quicken your pace slightly and begin walking toward your ship, still afraid that if you break into a run, you will attract attention. The girl keeps glancing at the shop windows that you pass by: checking the reflection to see if anyone is following you. "They're leaving the bar," she says. And then, "They're walking in the other direction. I think we're safe."`
 			`	You pass a narrow doorway, probably an entrance to one of the service tunnels. The boy is standing there, holding a gun by his side. His grim expression softens somewhat when he sees you approaching.`
 				goto ship
-			
+
 			label ship
 			`	You quickly make your way back to your ship. As soon as the door has closed behind you, all three of you breathe a sigh of relief. A second later, the baby begins to wail, loudly. As you show them to their bunks, they introduce themselves as Joe and Maria; the baby's name is Jesse. "I don't know how to thank you," says Maria.`
 			`	"Please don't take too long leaving the station," adds Joe. "But, I think we'll be safe here until you're ready to leave. There's no way they can search all the ships at the dock."`
@@ -200,7 +200,7 @@ mission "Smuggler's Den, Part 2"
 				`	(Volunteer to take them to <planet>.)`
 				`	(Leave them here and hope for the best.)`
 					decline
-			
+
 			`	Despite his shock and grief, Joe is quite grateful. "You know we can't pay you, right?"`
 			`	"Don't worry about it," you say. You return to your ship and tell the bad news to Maria.`
 				accept
@@ -224,7 +224,7 @@ mission "Smuggler's Den: Payment"
 		near Sol 100
 	to offer
 		has "event: smuggler's den: payment"
-	
+
 	on offer
 		payment 35000
 		conversation
@@ -239,7 +239,7 @@ mission "Smuggler's Den: Follow Up"
 	source Millrace
 	to offer
 		has "Smuggler's Den: Payment: offered"
-	
+
 	on offer
 		conversation
 			`As you're coming in for a landing, you realize that Millrace is where Joe and Maria live, the couple you transported from Smuggler's Den. They recently wrote to you thanking you for helping them to begin a new life. Do you want to stop by and see how they are doing?`
@@ -249,7 +249,7 @@ mission "Smuggler's Den: Follow Up"
 					decline
 			`	You contact Joe and Maria and they say they would definitely enjoy seeing you. On your way to the workers' barracks where they live, you stop by a small store and buy some chocolate, plus bread and fresh fruit and some canned goods you think they would be able to use. They thank you for coming and welcome you into their home. Jesse is continuing to grow up, and they have another baby too, now. Joe says the work in the factories is exhausting, and the hours are long, but they never need to worry about where their next meal will come from, or what they'll be required to do to earn it. You leave feeling very glad that you have been able to make such a difference in someone's life.`
 				accept
-				
+
 	on accept
 		log `Visited Joe and Maria on Millrace. Life is tough, but they are doing far better now than they were on a pirate ship. Jesse has grown and the couple already has another baby to look after.`
 		fail
@@ -268,7 +268,7 @@ mission "Expedition to Hope 1"
 		random < 40
 	cargo "scientific equipment" 4
 	passengers 4
-	
+
 	on offer
 		conversation
 			`A group of scientists approaches you and asks if you would be willing to take them to the abandoned planet of Hope, and then back home from there. "The transport we'd arranged for bailed out on us at the last moment," says their leader, a middle-aged man wearing thick-rimmed glasses.`
@@ -287,7 +287,7 @@ mission "Expedition to Hope 1"
 			label yes
 			`	"Thank you," he says. You help them to load their meteorological equipment onto your ship.`
 				accept
-	
+
 	on visit
 		dialog `You enter the atmosphere of <planet>, but realize that the scientists and their equipment were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
@@ -306,13 +306,13 @@ mission "Expedition to Hope 2"
 	to offer
 		has "Expedition to Hope 1: done"
 	passengers 4
-	
+
 	on offer
 		conversation
 			`You fly around the planet to several different sites that the scientists have identified as good places for their equipment. They also make some deep radar scans of the glaciers. "That's my old house, down there," says one of the scientists, pointing to the radar picture of one of the buried villages. "Under thirty meters of ice, now."`
 			`	The lead scientist hands you forty thousand credits, and says, "Here's the first part of your payment. Now we need to get home to <planet>. I'll pay you the rest once we get there."`
 				accept
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that the scientists and their equipment were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
@@ -334,10 +334,10 @@ mission "Transport Workers A"
 		random < 5
 	passengers 4
 	cargo "household goods" 2
-	
+
 	on offer
 		dialog `In one of the corners of the spaceport, you meet a family with two kids, and a pile of trunks and boxes spread out next to them. They tell you that they are trying to book passage to <planet>. "Work has gotten way too hard to come by here," explains the father. "I've had seven different jobs in the past year, and none of them lasted more than a month. So we thought we'd try our luck on a Syndicate world."`
-	
+
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -359,7 +359,7 @@ mission "Transport Workers B"
 	to offer
 		random < 5
 	passengers 1
-	
+
 	on offer
 		conversation
 			`As you are walking through the spaceport, a young man approaches you and says, "Excuse me, Captain. Is there any chance you're traveling towards the Core?" He's probably in his late teens, barely more than a kid.`
@@ -391,7 +391,7 @@ mission "Transport Workers B"
 			label thanks
 			`	"Thank you, Captain," he says, shaking your hand. You bring him aboard your ship and show him to one of the empty bunks.`
 				accept
-	
+
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -415,7 +415,7 @@ mission "Transport Workers C"
 		random < 15
 	passengers 5
 	cargo "farm animals" 10
-	
+
 	on offer
 		conversation
 			`On the dirt near your landing pad is parked a large wagon, hitched to a draft horse and loaded down with furniture and various farming implements. A family is gathered in the shade of the cart, and several goats and sheep are tied up behind it. Do you approach them and find out where they are headed?`
@@ -429,7 +429,7 @@ mission "Transport Workers C"
 					accept
 				`	"Sorry, that's way too far from here."`
 					decline
-	
+
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -451,10 +451,10 @@ mission "WR Star 1"
 		random < 20
 	passengers 3
 	cargo "sensors" 2
-	
+
 	on offer
 		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that the scientists and their equipment were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
@@ -475,7 +475,7 @@ mission "Deep Archaeology 1"
 		random < 15
 		"combat rating" > 15
 	passengers 1
-	
+
 	on offer
 		conversation
 			`As you are walking through the spaceport, a man in an expensive suit approaches you. "Pardon me, Captain," he says. "I wonder if you would be willing to talk privately about a very lucrative job opportunity."`
@@ -521,7 +521,7 @@ mission "Deep Archaeology 2"
 	destination Midgard
 	to offer
 		has "Deep Archaeology 1: done"
-	
+
 	on offer
 		conversation
 			`You drop off the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
@@ -537,7 +537,7 @@ mission "Deep Archaeology 3"
 	destination Vinci
 	to offer
 		has "Deep Archaeology 2: done"
-	
+
 	on offer
 		conversation
 			`Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
@@ -558,24 +558,24 @@ mission "Deep Archaeology 3"
 					decline
 			`	Pretending to pray, you kneel on the ground, take your pocket knife, and shave the tiniest sliver off the bottom corner of the pew in front of you. It leaves a small white scar in the dark weathered wood of the pew. You pocket the sample, wait a few more minutes, and then leave and walk back to the spaceport. Although you see no one following you, you cannot shake the feeling that you are being watched.`
 				accept
-	
+
 	npc
 		personality waiting
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
-	
+
 	npc
 		personality waiting
 		system Aspidiske
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
-	
+
 	npc
 		personality waiting
 		system Gomeisa
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
-	
+
 	on complete
 		payment 200000
 		log `Agreed to take a piece of wood from a church on Midgard for an archaeologist. Carbon dating suggests that the church was built many centuries before the discovery of the hyperdrive.`
@@ -602,7 +602,7 @@ mission "Deep Archaeology 4"
 		has "Deep Archaeology 3: done"
 	cargo "mapping equipment" 4
 	passengers 2
-	
+
 	on offer
 		log "People" "Albert Foster" `An archaeologist who is famous for using dubious methods: he has been banned from Quarg space for trying to collect an alloy sample from their ringworld, and is rumored to have also been involved in a scheme involving dinosaur fossils and an illegal genetic resequencer. He is currently based on Vinci, on the edge of the Paradise sector.`
 		conversation
@@ -629,7 +629,7 @@ mission "Deep Archaeology 5"
 		has "Deep Archaeology 4: done"
 	cargo "mapping equipment" 4
 	passengers 2
-	
+
 	on offer
 		conversation
 			`You cruise high above the surface of <origin> as John calibrates his instruments. "Sorry it's taking so long," he says, "there's some sort of glitch in the gravitational sensors, messing up my measurements."`
@@ -650,14 +650,14 @@ mission "Deep Archaeology 5"
 			label attack
 			`	Suddenly, a warning light flashes on your ship's radar. Three ships have taken off from the planet's surface and are headed straight towards you. "Let's get out of here," says Albert. "Head back to <planet>!"`
 				launch
-	
+
 	npc
 		personality heroic
 		government Deep
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Albert, John, and the mapping equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -699,7 +699,7 @@ mission "There Might Be Riots 1"
 	passengers 8
 	to offer
 		random < 15
-	
+
 	on offer
 		conversation
 			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. "My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
@@ -714,7 +714,7 @@ mission "There Might Be Riots 1"
 			`	"Oh," Ulrich says, "we call ourselves, 'There Might Be Riots.'"`
 			`	Eventually, the spaceport police arrive and disperse the crowd, and the band settles in for their trip to <destination>.`
 				accept
-	
+
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
@@ -748,7 +748,7 @@ mission "There Might Be Riots part 2"
 		has "There Might Be Riots 1: done"
 		has "Deep Archaeology 5: done"
 		random < 30
-	
+
 	on offer
 		conversation
 			`As you walk through the spaceport, you see a large crowd gathered outside a small pub, and hear the unmistakable music of There Might Be Riots from inside. The concert seems to be just winding down. Do you want to wait around and say hello to them?`
@@ -780,7 +780,7 @@ mission "There Might Be Riots part 2"
 			label transport
 			`	"Then I suggest you do your job and transport them. Immediately." The guards leave. As soon as the band is packed up, you leave the planet...`
 				launch
-	
+
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
@@ -821,7 +821,7 @@ mission "There Might Be Riots part 3A"
 		has "There Might Be Riots part 2: done"
 		has "First Contact: Hai: offered"
 		random < 30
-	
+
 	on offer
 		conversation
 			`As you walk through the spaceport, you see a distinctive group of people lugging a collection of instruments: the band There Might Be Riots. Would you like to see if there is anything more you can do for them?`
@@ -890,7 +890,7 @@ mission "There Might Be Riots part 3B"
 	passengers 8
 	to offer
 		has "There Might Be Riots part 3A: done"
-	
+
 	on offer
 		conversation
 			`You bring your ship to a gingerly landing in a section of the testing range that doesn't look too pockmarked with craters, and the band begins setting up their equipment and video cameras. "This is great," says Ulrich. "We'll be broadcasting live over the Net. It's time people started asking why the government thinks it needs all these weapons of war."`
@@ -910,7 +910,7 @@ mission "There Might Be Riots part 3B"
 			`	He swears, then shouts to the rest of the band, "Gentlemen, time to pack it up posthaste, before we get turned into a tragic industrial accident!"`
 			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But, their flight path is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
 				launch
-	
+
 	npc
 		government "Team Red"
 		personality heroic nemesis
@@ -929,7 +929,7 @@ mission "There Might Be Riots part 3B"
 		fleet
 			variant
 				"Combat Drone" 35
-	
+
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
@@ -993,7 +993,7 @@ mission "Sad Archie"
 	to offer
 		has "There Might Be Riots part 3B: done"
 	destination "Zug"
-	
+
 	npc disable
 		government "Test Dummy"
 		system "Ildaria"
@@ -1005,7 +1005,7 @@ mission "Sad Archie"
 			`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
 			`	Time speeds up, and you watch as the dragon cities grow and spread out. You see one city buried under a massive lava flow, starships buzzing around it like a cloud of flies to carry people and goods to safety. Other cities are destroyed by war, and then abruptly the dragon-people are all gone and their cities lie vacant. Buildings crumble, and the forests reclaim the land.`
 			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
-	
+
 	on complete
 		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
 		conversation
@@ -1022,7 +1022,7 @@ mission "Rim Archaeology 1"
 	passengers 1
 	to offer
 		has "Sad Archie: done"
-	
+
 	on offer
 		conversation
 			`This planet is where the archaeologist Albert Foster has his lab, the one who sent you on a mission to collect samples from a planet in the Deep. Would you like to try to convince him to look for signs of an ancient alien civilization in the Rim systems?`
@@ -1052,7 +1052,7 @@ mission "Rim Archaeology 1"
 			`	"It's feasible," he says. "We've heard rumors from the Quarg that an alien civilization used to exist in the Rim, a hundred thousand years ago. No signs of it, of course - any artifacts they left behind have been destroyed by the elements, or perhaps intentionally removed. But if a city were encased in lava, that could preserve signs of it even over such a long time frame."`
 			`	Foster makes a few phone calls to cancel his upcoming plans, and then shows up at your ship with a large collection of geological surveying tools. "Let's go check it out," he says.`
 				accept
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Albert hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -1078,7 +1078,7 @@ mission "Rim Archaeology 2A"
 	destination "Crossroads"
 	to offer
 		has "Rim Archaeology 1: done"
-	
+
 	on offer
 		conversation
 			`When you meet up with Foster, he tells you, "This is going to be tricky. We're going to have to dig through a twenty meter thick slab of solid basalt to get at those ruins. We have to work fast, or my competitors will catch wind of what we're doing and beat us to the punch. But we have to work delicately, too, or we'll damage what's underneath. Blasting won't work. I think some of the Syndicate's strip mining equipment could do the job, though. Would you be able to pick up maybe twenty or thirty tons of heavy machinery from <planet>?"`
@@ -1105,12 +1105,12 @@ mission "Rim Archaeology 2B"
 	to offer
 		has "Rim Archaeology 2A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 28 tons of space free."
-	
+
 	on offer
 		conversation
 			`When you arrive on <origin>, the excavation machines requested by Albert Foster are already waiting for you at the spaceport. They are some of the largest terrestrial vehicles you have ever seen: a truck with enormous toothed grinding wheels for cutting through stone, and a front-end loader for carrying the loose stone away. You are barely able to fit them through the entrance of your cargo bay.`
 				accept
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the excavation equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -1126,7 +1126,7 @@ mission "Rim Archaeology 3A"
 	destination "Asgard"
 	to offer
 		has "Rim Archaeology 2B: done"
-	
+
 	on offer
 		conversation
 			`You drop off the excavation machines at the dig site on Zug, and receive your payment of three hundred thousand credits. Foster has already marked out lines of where he wants to dig and has completed a much more detailed geological scan. "We'll be starting with a narrow trench," he tells you, "and expanding out from there. It'll need to be wide enough to include a ramp for the vehicles, of course, so we'll still need to move a lot of rock. And when we get within the last five meters or so, I'm worried that the vibration from the grinders may be too destructive. So, I need some laser excavation equipment from <planet>, next."`
@@ -1145,22 +1145,22 @@ mission "Rim Archaeology 3B"
 	to offer
 		has "Rim Archaeology 3A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have <capacity>."
-	
+
 	on offer
 		conversation
 			`Once again, the equipment that Foster needs is waiting for you when you land. It's a truck carrying a power generator and an articulated arm with a laser cannon mounted on the end. You can't help imagining what would happen if it malfunctioned and began firing while inside your cargo bay, but the engineer who delivers it assures you that it has many redundant safeties in place.`
 			`	Also waiting for you is an encrypted message from Foster: "Hi there, <first>. I've been told that one of my competitors, Sibyl Greythatch, has been asking around trying to figure out where my dig site is. She's an antiquities thief - robs archaeological sites and sells the artifacts on the black market. I think my equipment purchase on <origin> may have caught her attention. If so, her ship, the Oxyrhynchus, will be following you. Don't return to the dig site until you're certain you've shaken her."`
 				accept
-	
+
 	npc evade
 		government " Independent "
 		personality waiting
 		ship "Marauder Falcon (Engines)" "Oxyrhynchus"
-	
+
 	on visit
 		dialog
 			`As you are approaching Zug, you notice on your radar that the ship Foster warned you about has been following you: the Oxyrhynchus. You land in the main spaceport to avoid leading her to the dig site. You will need to shake her pursuit before delivering the equipment.`
-	
+
 	on complete
 		payment 300000
 
@@ -1174,7 +1174,7 @@ mission "Rim Archaeology 4A"
 	destination "Lagrange"
 	to offer
 		has "Rim Archaeology 3B: done"
-	
+
 	on offer
 		conversation
 			`When you return to the dig, Foster's trench is already almost ten meters deep. You tell him that you saw the Oxyrhynchus on your scanners, but you were able to evade it. "Good job," he says. "Now, we need a xenobiologist who can help us make sense of what we find. A friend of mine, Amelia Lee, has been living on the Quarg ringworld for the last decade or so, and she agreed to come visit the dig, and also to see what the Quarg can tell us about this old alien civilization. Also, here's your pay for transporting the laser cutter." He hands you another three hundred thousand credits.`
@@ -1193,7 +1193,7 @@ mission "Rim Archaeology 4B"
 	to offer
 		has "Rim Archaeology 4A: done"
 	blocked "You will need <capacity> to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
-	
+
 	on offer
 		conversation
 			`Amelia Lee meets you at the spaceport, along with a Quarg who is a bit shorter than normal, but still tall enough to tower over you. "Captain <last>?" she says. "Let me introduce my friend Yarthis Amorthee Dek-Farsook Nai," she says. "Yarthis will be accompanying us to the site."`
@@ -1205,13 +1205,13 @@ mission "Rim Archaeology 4B"
 			label welcome
 			`	As both of them board your ship, Amelia chats enthusiastically with you. "One ringworld can sustain a population in excess of a trillion," she says, "so the Quarg need long names in order to unambiguously identify themselves." She goes on to ask questions about the progress of the dig, using so much technical jargon that at times it almost sounds like she is speaking the Quarg language rather than your own. Clearly she is very knowledgeable about the study of alien societies, and you are surprised to learn that she was actually born in Hai space, as the granddaughter of some of the first humans who settled there.`
 				accept
-	
+
 	npc
 		government Merchant
 		personality waiting
 		system Dabih
 		ship "Marauder Arrow (Engines)" "Naukratis"
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Amelia and Yarthis hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -1226,7 +1226,7 @@ mission "Rim Archaeology 5A"
 	source "Zug"
 	to offer
 		has "Rim Archaeology 4B: done"
-	
+
 	on offer
 		conversation
 			`Foster greets Amelia enthusiastically when you land, but seems less enthusiastic about having Yarthis here as well. The dig has nearly reached the target depth, and at the deepest part of the trench they are now slicing out blocks of stone with the laser and hoisting them out of the pit rather than just grinding through the rock. "Thanks again, Captain," he says, as he hands you a chip worth two hundred thousand credits.`
@@ -1240,7 +1240,7 @@ mission "Rim Archaeology 5A"
 			label end
 			`	As you run for your ship, you see Yarthis pull out some sort of communication device and speak into it. Perhaps the Quarg will be joining in this fight as well...`
 				launch
-	
+
 	npc evade
 		government Pirate
 		personality heroic waiting
@@ -1252,17 +1252,17 @@ mission "Rim Archaeology 5A"
 		ship "Marauder Quicksilver (Weapons)" "Philae"
 		ship "Marauder Raven (Weapons)" "Esna"
 		dialog `The last of the pirate raiders have been driven off. Time to land and check if any damage was done to the dig.`
-	
+
 	npc
 		government Quarg
 		system "Gamma Corvi"
 		personality heroic
 		ship "Quarg Wardragon" "Gloref Esa Kurayi"
-	
+
 	on visit
 		dialog
 			`You try to land near the dig, but pirate ships are still circling nearby. Better deal with them before returning to check in on Foster.`
-	
+
 	on complete
 		payment 400000
 		event "rim archaeology results" 97
@@ -1328,15 +1328,15 @@ mission "Drug Running 1"
 	to offer
 		random < 10
 		"said no to drugs" < 4
-	
+
 	on offer
 		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
-	
+
 	on accept
 		"said no to drugs" --
 	on decline
 		"said no to drugs" ++
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1363,10 +1363,10 @@ mission "Drug Running 2"
 	to offer
 		random < 10
 		has "Drug Running 1: done"
-	
+
 	on offer
 		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you this will be a very lucrative operation. What do you say?"`
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1393,10 +1393,10 @@ mission "Drug Running 3"
 	to offer
 		random < 10
 		has "Drug Running 2: done"
-	
+
 	on offer
 		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet>.`
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1466,7 +1466,7 @@ mission "Hallucination"
 	to offer
 		has "Drug Running 2: active"
 		random < 50
-	
+
 	on offer
 		conversation
 			`During your brief stop on <origin>, it occurs to you that it really is a shame to have a cargo hold full of the finest of illegal drugs, and not to take even a small sample for yourself. There is no way the loss of a tiny bit of drugs could be noticed. Give it a try?`
@@ -1476,7 +1476,7 @@ mission "Hallucination"
 				`	(Sure, sounds like fun!)`
 			`	The room begins to spin, and strange things happen...`
 				launch
-	
+
 	npc kill
 		government "Bad Trip"
 		personality nemesis heroic
@@ -1484,7 +1484,7 @@ mission "Hallucination"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"
 		ship "Hallucination" "Shiny"
-		
+
 	on complete
 		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
 
@@ -1772,7 +1772,7 @@ mission "Rescue Miners 1"
 	cargo "emergency supplies" 15
 	to offer
 		random < 60
-	
+
 	on offer
 		dialog `You've just sat down in the spaceport bar and ordered a drink when someone in uniform runs into the room and shouts, "There's been a mine explosion on <planet>! We need all available ships to carry relief workers and supplies and to evacuate the injured to a world where there are better medical facilities." Do you volunteer?`
 	on visit
@@ -1791,10 +1791,10 @@ mission "Rescue Miners 2"
 	passengers 15
 	to offer
 		has "Rescue Miners 1: done"
-	
+
 	on offer
 		dialog `You drop off the medical personnel on <origin>. There are nearly a hundred injured miners waiting for medical evacuation to <planet>. Do you volunteer to carry some of them?`
-	
+
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1946,7 +1946,7 @@ mission "Courier 4"
 					decline
 			`	"Excellent!" he says. "Come, let me introduce you to your cargo." He leads you to a supply shed where an enormous lizard, taller than you and probably weighing several tons, is being held in a cage that looks far too flimsy for it. "I'll have my men load her aboard your ship at once," says the man, "along with some meat for her to eat on the journey. Watch out for your fingers when you feed her, by the way. Thank you!"`
 				accept
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1968,7 +1968,7 @@ mission "Migrant Workers 1"
 	destination Rand
 	to offer
 		random < 5
-	
+
 	on offer
 		conversation
 			`In the spaceport, you can't help but notice a group of six or seven men in ragged farm clothing, sitting by the edge of one of the launch pads. They are probably migrant workers looking for a lift.`
@@ -1982,7 +1982,7 @@ mission "Migrant Workers 1"
 					accept
 				`	"No, sorry, I'm not headed in that direction."`
 					decline
-	
+
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2006,7 +2006,7 @@ mission "Humanitarian 1"
 		government "Pirate"
 		distance 2 10
 	clearance
-	
+
 	on offer
 		conversation
 			`While you are sitting at a table in a local cafe, a woman sits down across from you and says, "Pardon me, Captain. I wonder if you would be interested in helping with a humanitarian mission."`
@@ -2021,7 +2021,7 @@ mission "Humanitarian 1"
 					decline
 			`	"Thank you," she says. "Your contact on <planet> will be a man named 'Raven Hunter.' Don't let anyone but him trick you into giving them the supplies."`
 				accept
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2046,7 +2046,7 @@ mission "Humanitarian 2"
 		government "Pirate"
 		distance 2 10
 	clearance
-	
+
 	on offer
 		conversation
 			`As you are walking through the local market, a man says, "Captain, do you have room in your hold to bring food to a starving planet?"`
@@ -2061,7 +2061,7 @@ mission "Humanitarian 2"
 				`	"Well, even so, no one deserves to starve to death. I'll help them."`
 			`	"Thank you," he says. "We'll load the food into your cargo hold immediately. The sooner you can drop it off on <planet>, the better."`
 				accept
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2079,7 +2079,7 @@ mission "Terraforming 1"
 	source "Rand"
 	destination "Glory"
 	passengers 2
-	
+
 	to offer
 		or
 			has "main plot completed"
@@ -2114,7 +2114,7 @@ mission "Terraforming 2"
 	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Terraforming 1: done"
-	
+
 	on offer
 		log `Brought Eric and Alaric to Glory, two managers of a mining corporation on Rand hoping to terraform the planet. Terraforming Rand would be immensely expensive, but a girl named Amy has a theory that may make the process cheap.`
 		conversation
@@ -2128,11 +2128,11 @@ mission "Terraforming 2"
 			choice
 				`	"Have a look at this poster. Maybe this student would help us. We could bill it as a sort of internship for her."`
 				`	"Indeed. They gave this student a failing grade just for suggesting it could be done more cheaply."`
-			
+
 			`	They look at the poster. "Sounds almost too good to be true," says Alaric. "Hang on, I'll look her up in the campus directory." A few minutes later, he is on the phone with the student who made the poster. Her name is Amy. It turns out she is about to flunk out anyway, and is more than willing to travel back to Rand with you when offered a tiny fraction of what the consultant would have received.`
 			`	An hour later, you meet up with Amy, and arrange for her to join you on your ship before it takes off. Eric and Alaric are very excited, but you are a bit worried about the wisdom of entrusting their planet's future to someone so young and inexperienced.`
 				accept
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Eric, Alaric, and Amy hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -2174,7 +2174,7 @@ mission "Terraforming 3"
 	source "Rand"
 	to offer
 		has "Terraforming 2: done"
-	
+
 	on offer
 		conversation
 			`Alaric, Eric, and Amy are having a heated conversation at a table in the bar. When they see you, Alaric says, "Okay, let's let Captain <last> be the tie breaker." He motions to you to join them.`
@@ -2202,12 +2202,12 @@ mission "Terraforming 3"
 			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
 			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
-	
+
 	npc assist
 		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
 		ship "Asteroid" "Target Asteroid"
-	
+
 	on visit
 		dialog `You return to the spaceport to the confused looks of Eric, Alaric, and Amy. "You didn't put the thrusters on the asteroid," Amy says. "Just board the asteroid to attach the thrusters." Amy begins pushing you back to your ship, clearly eager to see the results of this experiment.`
 	on complete
@@ -2226,7 +2226,7 @@ mission "Terraforming 4"
 	to offer
 		has "Terraforming 3: done"
 	passengers 1
-	
+
 	on offer
 		conversation
 			`By the time you meet up with Eric, Alaric, and Amy, the cloud cover already seems to have visibly increased. Amy is very enthusiastic. "Atmospheric water vapor is on the rise," she says. "The impact vaporized enough ice to form a small ocean. I wouldn't be surprised if we get a rainstorm here in a day or two."`
@@ -2237,7 +2237,7 @@ mission "Terraforming 4"
 					accept
 				`	"Sorry, I need to move on to some other work now."`
 					decline
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Amy hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -2254,7 +2254,7 @@ mission "Terraforming 5"
 		has "Terraforming 4: done"
 	passengers 1
 	cargo "seeds and plants" 10
-	
+
 	on offer
 		conversation
 			`You meet up with Amy, and load the seeds and plant cuttings onto your ship.`
@@ -2274,7 +2274,7 @@ mission "Terraforming 5"
 				`	"Wait, they're going to have to keep smashing asteroids into their world in perpetuity to maintain the new environment?"`
 			`	"For a century or so, yes," she says. "But that's a whole lot more economical than vaporizing the ice caps using traditional terraforming equipment. Come on, let's get back to <planet>."`
 				accept
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Amy and the seeds hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -2316,7 +2316,7 @@ mission "Terraforming 6"
 			and
 				not "event: pug invasion"
 				not "event: fwc pug invasion"
-	
+
 	on offer
 		conversation
 			`When you land on <origin> and exit your ship, you are stopped by a Navy officer with a group of guards. "Captain <last>. You are wanted for..." The officer pauses and looks down at the tablet in his hand. "The 'unlawful use of an asteroid.' You are to travel to <destination> immediately for questioning."`
@@ -2326,14 +2326,14 @@ mission "Terraforming 6"
 				`	"I'm wanted for what?"`
 				`	(Run away.)`
 					flee
-			
+
 			`	"The unlawful use of an asteroid, Captain. I'm not entirely sure what that means, but I've been told to send you to <planet> by <day>. Your compliance would be much appreciated."`
 			choice
 				`	"Alright. Hopefully I can get an answer as to what this is about."`
 					accept
 				`	(Run away.)`
 					flee
-			
+
 	on decline
 		"reputation: Republic" <?= -10
 	on fail
@@ -2347,9 +2347,9 @@ mission "Terraforming 6"
 				`	"What are we going to do?"`
 					goto lawyer
 				`	"Do you know what we're doing here?"`
-			
+
 			`	"Apparently someone had a problem with us terraforming Rand," Amy says, looking rather disappointed.`
-			
+
 			label lawyer
 			`	"Don't worry," Alaric says. "Our lawyer is on his way right now. We'll all be out of here by the end of the day."`
 			`	Alaric's optimism turns out to be justified, as the lawyer quickly finds that there are no actual laws on the books that define lawful or unlawful uses of an asteroid. Since no one was hurt by the asteroid impact and data that Amy had been collecting shows that Rand's climate has changed for the better so far, the case is quickly dropped and you are escorted back to your ship.`
@@ -2366,7 +2366,7 @@ mission "Terraforming 7"
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Terraforming 6: done"
-	
+
 	on offer
 		conversation
 			`You find Amy in heated discussion with someone about her academy project, "Affordable Terraforming through Equilibrium Mapping." She takes a sip of her drink and invites you to sit down with them.`
@@ -2376,9 +2376,9 @@ mission "Terraforming 7"
 				`	"Nice to meet you too."`
 					goto next
 				`	"I take it you're interested in Amy's ideas."`
-			
+
 			`	"Absolutely. It's an extraordinary concept, and no offense to you Amy, but it's spectacular that someone of such little experience would imagine such a method of terraforming."`
-			
+
 			label next
 			`	Amy continues. "Nolan wants to help pursue research of my terraforming techniques. Would you be able to give us a lift to <destination>? I'll pay you <payment>."`
 			choice
@@ -2386,7 +2386,7 @@ mission "Terraforming 7"
 					accept
 				`	"Sorry, I have other places to be."`
 					decline
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Amy and Nolan hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -2408,7 +2408,7 @@ mission "Terraforming 8"
 	destination "Valhalla"
 	to offer
 		has "event: terraforming research"
-	
+
 	on offer
 		dialog `You receive a message from Amy: "Hello, Captain <last>. I just wanted to tell you that Nolan and I have recently published our work on 'Reducing Terraforming Expenses Through Equilibrium Mapping,' and we've received a grant from the Deep for it! We're going to begin experiments with terraforming on a different world. Don't worry, the Republic has approved our experiment this time, so we won't get dragged off for any more cases of an 'unlawful use of an asteroid.' If you're interested in helping, pick us up on <destination>."`
 
@@ -2425,7 +2425,7 @@ mission "Terraforming 9"
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Terraforming 8: done"
-	
+
 	on offer
 		conversation
 			`The spaceport is crowded with ships and people when you land. Amy's publication must have stirred up quite the commotion among terraforming scientists.`
@@ -2434,11 +2434,11 @@ mission "Terraforming 9"
 			`	Amy introduces you to the four others that she brought on board. Two of them are terraforming experts who helped Amy and Nolan with their research. The other two are representatives: one sent by the Republic Parliament in order to oversee the project, and another from Tundra.`
 			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
 				accept
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the scientists and their equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		dialog 
+		dialog
 			`The journey to Tundra was spent by your passengers discussing the possible methods of terraforming the planet. The Republic representative was none too pleased when Nolan, perhaps jokingly, suggested crashing an asteroid into it.`
 			`	Everyone except for the Tundra native begins to shiver after stepping out of your ship onto the planet, even while inside a protective dome. "Meet us in the spaceport bar in a few hours. We need to finalize our plans of how we're going to execute this experiment."`
 
@@ -2452,7 +2452,7 @@ mission "Terraforming 10"
 	passengers 1
 	to offer
 		has "Terraforming 9: done"
-	
+
 	on offer
 		log `Began the process of trying to terraform Tundra with new research from Amy and Nolan. Nolan has suggested that another asteroid be used, but the representative for the Republic overseeing the project is displeased with this approach.`
 		conversation
@@ -2464,9 +2464,9 @@ mission "Terraforming 10"
 				`	"So are we going to wait ten thousand years for it to erupt?"`
 				`	"How does this help our situation?"`
 					goto situation
-			
+
 			`	The Republic representative scoffs at your comment. "If we were then we wouldn't be here, now would we, Captain?"`
-			
+
 			label situation
 			`	One of the other scientists responds, "What we plan to do is encourage the eruption of this volcano by making the crust above the volcano thinner. When the pressure of the magma is able to overcome the pressure of the crust, an eruption will occur."`
 			`	"How exactly do you plan to do that?" the Tundra representative responds. "And what will happen to the people who live near that area?"`
@@ -2478,7 +2478,7 @@ mission "Terraforming 10"
 				`	"I'll get my ship ready to launch."`
 				`	"Sorry, I have other things I could be doing."`
 					decline
-			
+
 			`	The representative leaves the bar. "We'll wait here," Amy says to you. "I'll speak with the Tundra government about evacuating the area around where the impact site will be so that we can start when you get back."`
 				accept
 	on visit
@@ -2495,12 +2495,12 @@ mission "Terraforming 11"
 	passengers 1
 	to offer
 		has "Terraforming 10: done"
-	
+
 	on offer
 		conversation
 			`"Wait here," the Republic representative says curtly. Several hours later, he returns, not looking very happy. "What a waste of time. Parliament has declined my request. I don't much agree with this, but you will need to crash an asteroid into Tundra if you wish to achieve your goal." Before you ready for launch, you send a message to Amy and Nolan telling them that an asteroid will be used after all. You don't receive an immediate response.`
 				accept
-	
+
 	on enter "Cebalrai"
 		dialog
 			`Your ship is targeted by pirate fleets when you enter the system. Before you engage, you receive a message from Amy.`
@@ -2530,7 +2530,7 @@ mission "Terraforming 12"
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Terraforming 11: done"
-	
+
 	on offer
 		payment 300000
 		conversation
@@ -2538,12 +2538,12 @@ mission "Terraforming 12"
 			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid," Amy says, and after only a short time of searching, she finds the perfect candidate. "Just like last time, Captain."`
 			`	 Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
-	
+
 	npc assist
 		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
 		ship "Asteroid" "Target Asteroid"
-	
+
 	on visit
 		dialog `You return to the spaceport to the confused looks of Amy and the rest of the scientists. "You didn't put the thrusters on the asteroid," Amy says. "Just board the asteroid to attach the thrusters." Amy begins pushing you back to your ship, clearly eager to see the results of this experiment.`
 	on complete
@@ -2560,13 +2560,13 @@ mission "Terraforming 12"
 				`	"What do we do now?"`
 					goto what
 				`	"It looks beautiful from up here."`
-			
+
 			`	"Yes it does, Captain," the Republic representative says. "Yes it does."`
 				goto end
-			
+
 			label what
 			`	"First we need to clear all this volcanic ash out of the atmosphere, as otherwise the planet's temperature will drop, then we wait," Amy says to you. "We should be able to tell how this will affect Tundra's climate in a year or two."`
-			
+
 			label end
 			`	You steer your ship back to the spaceport. Amy pays you <payment> after you land. "Thanks for your help, Captain. We're going to stay here and monitor Tundra's climate as it shifts, so there's nothing more that we need you for."`
 
@@ -2623,7 +2623,7 @@ mission "A wolf, a goat, and a cabbage"
 		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	cargo "wolf" 1
-	
+
 	on enter
 	on enter
 		dialog
@@ -2632,7 +2632,7 @@ mission "A wolf, a goat, and a cabbage"
 		dialog
 			`The worrisome munching sound in your ship's hold is followed by a horrific shrieking bleating noise and then an equally horrific silence. Turning on your cargo hold's security camera, you discover that there is nothing left of the goat and the cabbage that you were transporting except a few scraps of cabbage, some bones, and a lot of blood.`
 			`	Meanwhile, the wolf is calmly gnawing on what you suspect is the goat's femur, with a rather self-satisfied look in its eyes. Apparently the goat ate the cabbage, and shortly after that the wolf ate the goat.`
-	
+
 	on complete
 		payment 33000
 		dialog
@@ -2644,7 +2644,7 @@ mission "A wolf, a goat, and a cabbage"
 mission "Terminus exploration"
 	name "Missing drone"
 	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source 
+	source
 		planet "Memory" "Haze" "Nifel"
 	waypoint "Terminus"
 	destination "Bounty"
@@ -2692,7 +2692,7 @@ mission "Terminus exploration"
 			`	He says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't even sure if it's even a wormhole at all."`
 			`	You thank him for the information, and return to your ship.`
 				decline
-	
+
 ship "Science Drone"
 	sprite "ship/science drone"
 	attributes
@@ -2714,7 +2714,7 @@ mission "Lost Boy 1"
 	destination "Deadman's Cove"
 	to offer
 		"combat rating" > 100
-	
+
 	on offer
 		conversation
 			`Wandering around the spaceport to see what it has to offer, you make your way into one of the dimly lit restaurants to avoid the crowded streets and metallic-tasting air outside. The restaurant is mostly empty. One of its only inhabitants is a dirty looking woman crying with her head down in one of the booths.`
@@ -2722,21 +2722,21 @@ mission "Lost Boy 1"
 				`	(Approach the woman and ask why she is crying.)`
 				`	(Ignore her and leave the restaurant.)`
 					goto leave
-			
+
 			`	As you walk close to the woman, she raises her head from her arms and brushes her hair out of her face to look at you. Tears run down her cheeks and her nose is running. "Wh-wh-what do you w-want?" she asks in a quiet voice, trying to speak through sobs.`
 			choice
 				`	"Can I help you?"`
 				`	"Why are you crying?"`
-			
+
 			`	You ask the woman if she needs help. She wipes away the tears with the sleeve of her shirt and tells you that she is looking for her son, Tod. "I sent him away to a mining job on Placer because I don't have the money to support him myself, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it.`
 			`	"W-would you be able to help? Please do if you c-can."`
 			choice
 				`	"Alright, I'll help you. Where should I look for him?"`
 					goto accept
 				`	"Sorry, I'm not going to risk my life for someone I don't know."`
-			
+
 			`	The woman begins crying even louder than she was before. A waiter walks up to you and suggests that you leave before making the situation worse, and one of the few customers in the restaurant gives you a dirty look for making his meal experience even worse.`
-			
+
 			label leave
 			`	You wait for the streets to become less crowded before leaving the restaurant. As you look back through the windows of the restaurant, you catch a glimpse of the woman still crying in the booth before the crowd blocks your line of sight and you continue walking.`
 				decline
@@ -2755,7 +2755,7 @@ mission "Lost Boy 2"
 	destination "Moonshake"
 	to offer
 		has "Lost Boy 1: done"
-	
+
 	on offer
 		conversation
 			`The air in the <origin> spaceport smells of tobacco and tastes of the salt from the world's vast oceans. You receive sideways looks from rough-looking pirates, but none make a move to cause any trouble. As lawless as pirates can be, they still adhere to a form of honor code when in a planet's main spaceport. At least generally.`
@@ -2765,9 +2765,9 @@ mission "Lost Boy 2"
 				`	"I'm here to buy a slave."`
 					goto description
 				`	"Do you have a boy by the name of Tod Copper?"`
-			
+
 			`	Cygnet strokes his mustache. "Tod Copper. Tod Copper. Tell you what, that name doesn' ring a bell. Heck, I don' even keep track of names 'less I get someone impor'ant. If ya lookin' for someone in particular to buy, can I get a description?"`
-			
+
 			label description
 			`	You provide Cygnet with the description of Tod that his mother gave you, then explain to him that Tod would have been taken from a ship bound for Placer.`
 			`	"Oh yeah, that bugger! That little rebel was causin' me trouble so I sold him off soon as I could. If ya looking for him, then you're gonna need to look for a ship by the name of <npc>. They bought your boy Tod 'bout four days ago. Might be hangin' around a system nearby."`
@@ -2775,7 +2775,7 @@ mission "Lost Boy 2"
 				accept
 	on visit
 		dialog `You've landed on <planet>, but you haven't yet found Tod. Keep looking for the <npc> and then board the ship; it can't be far from Deadman's Cove.`
-	
+
 	npc board
 		personality staying nemesis target plunders
 		government "Bounty"
@@ -2789,10 +2789,10 @@ mission "Lost Boy 2"
 				`	"Get on my ship!"`
 					goto ship
 				`	"Are you Tod?"`
-			
+
 			`	"Yeah! Are you here to save me?"`
 			`	"Get on my ship!" you yell, motioning for him to come toward you.`
-			
+
 			label ship
 			`	The boy runs past you and into your ship. Following closely behind Tod is a large bearded man holding a laser rifle in one hand and a fragmentation grenade in the other.`
 			`	"That's my crew member, you no-good piece of sh-"`
@@ -2811,7 +2811,7 @@ mission "Lost Boy 3"
 	blocked "This mission requires that you have at least one free bunk. Return once you have the space."
 	to offer
 		has "Lost Boy 2: done"
-	
+
 	on offer
 		payment 952
 		conversation
@@ -2822,13 +2822,13 @@ mission "Lost Boy 3"
 				`	"Don't worry."`
 				`	"You're lucky I agreed to help you in the first place."`
 					goto money
-			
+
 			`	"This is just so wonderful. There aren't many people around here who would do such a thing for such little pay."`
 				goto end
-			
+
 			label money
 			`	"I know, I know, and I'm eternally grateful for that, Captain. There aren't many people around here who would do such a thing for such little pay."`
-			
+
 			label end
 			`	"Hold on," Tod chimes in. "I still need to get to <planet>."`
 			`	"Of course!" his mother yells out. "Captain, would you please make sure that Tod has a safe passage to <destination>?"`
@@ -2838,13 +2838,13 @@ mission "Lost Boy 3"
 					accept
 				`	"Sorry, I'm not headed in that direction."`
 					decline
-	
+
 	npc
 		government "Pirate"
 		personality staying plunders disables
 		system "Al Dhanab"
 		ship "Falcon (Heavy)" "Cygnet's Slaver"
-	
+
 	on visit
 		dialog `You land on <planet>, but remember that Tod is in one of your escorts that has yet to enter the system. Better depart and wait for it to arrive.`
 	on complete
@@ -2865,7 +2865,7 @@ mission "Paradise Fortune 1"
 	to offer
 		has "main plot completed"
 		random < 50
-	
+
 	on offer
 		conversation
 			`As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport. While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the <origin> shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
@@ -2874,10 +2874,10 @@ mission "Paradise Fortune 1"
 				`	(Let her onto my ship.)`
 					goto continue
 				`	(Ignore the scene.)`
-			
+
 			`	The girl looks you in the eyes as she approaches, expecting help that will never come. Air rushes past you as she and the security guards run by. After a few meters, the security guards catch up to the girl, tackling her to the ground and detaining her as they remove her backpack full of credit chips.`
 				decline
-			
+
 			label continue
 			`	You open the hatch to your ship and yell "Get on!" as the girl approaches. "Thank you, Captain," she says while getting closer, to much protest from the approaching security guards.`
 			`	As she enters your ship, she grabs your arm and pulls you in with her before closing the hatch. "Launch and go to <destination>, now! I'll explain when we get there."`
@@ -2897,7 +2897,7 @@ mission "Paradise Fortune 2"
 	passengers 1
 	to offer
 		has "Paradise Fortune 1: done"
-	
+
 	on offer
 		conversation
 			`"You need to explain what is going on here," you say just after setting your ship down.`
@@ -2906,9 +2906,9 @@ mission "Paradise Fortune 2"
 				`	"Why have you stolen all this?"`
 					goto story
 				`	"I'm calling the spaceport authorities."`
-			
+
 			`	"No, wait! Let me explain!" Diana protests.`
-			
+
 			label story
 			`	"All my life I've been fascinated with the world outside my little bubble of the Paradise Planets. My father met my mother on Heartland in the Cor Caroli system while he was on a business trip, so my mother would often take me on trips to the Dirt Belt. The last time I went was before the war though; my mother didn't want me anywhere near the 'Free Loafers', as she called them. Back then life in the Dirt Belt didn't seem anywhere near comparable to life in the Paradise Worlds, and I can only imagine how much worse it might be after being so close to a war, so I decided that I needed to do something to help.`
 			`	"Now, can you take me to <destination>? I wish to hand this over to the government there to help them. It may not seem like much in the grand scheme of how many credits go into running a planet, but it should be a huge boost to their economy."`
@@ -2918,21 +2918,21 @@ mission "Paradise Fortune 2"
 				`	"What makes you think they won't hand it over to your father?"`
 				`	"This is a crime. I don't want to get in trouble helping you."`
 					goto decline
-			
+
 			`	Diana pauses. "I hadn't thought of that," she says in a downtrodden tone, "but I at least have to try! Please just bring me to <planet>. Please!" Diana looks up at you with puppy dog eyes, quivering her lip with the backpack of credit chips held against her chest.`
 			choice
 				`	"Alright, I'll bring you to <planet>."`
 				`	"Sorry, but I'm not putting myself on the line for this."`
 					goto decline
-			
+
 			label accept
 			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
 				launch
-			
+
 			label decline
 			`	You call the spaceport authorities and tell them that Diana Howl is on your ship. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
 				decline
-			
+
 	on decline
 		payment 150000
 	on visit
@@ -2948,7 +2948,7 @@ mission "Paradise Fortune 3"
 	passengers 1
 	to offer
 		has "Paradise Fortune 2: done"
-	
+
 	on offer
 		conversation
 			`Diana is eager to get going as soon as you land. "This is going to be great! I'm going to do so much good with this! I can't wait to see the look on their faces when I open up my backpack in front of them!" Diana says rapidly as she bounces up and down with the backpack of credit chips on her back.`
@@ -2957,7 +2957,7 @@ mission "Paradise Fortune 3"
 				`	"What is it? What's happening?"`
 				`	(Launch immediately.)`
 					launch
-			
+
 			`	"Look outside," Diana says with a ghastly look on her face. You check your ship's external cameras, and roaming around your ship is a group of men in Navy uniforms. One of them raises a megaphone to their mouth.`
 			`	"Hand over the girl and her credits and we can all walk away from this peacefully, Captain."`
 			choice
@@ -2966,37 +2966,37 @@ mission "Paradise Fortune 3"
 					goto launch
 				`	"Alright, I'll bring her out."`
 					goto agree
-			
+
 			`	"In case you haven't noticed, Captain, that girl is in possession of over half a billion stolen credits. She's a criminal, and helping her makes you a criminal too. Given your status, Captain <last>, I'd appreciate it if you didn't make me the officer that put <first> <last> behind bars."`
 			choice
 				`	"I'm sorry officer, but I can't help you."`
 					goto launch
 				`	"Okay, I'll hand her over."`
-			
+
 			label agree
 			`	Diana looks to you in shock. "You wouldn't!" she screeches. "You can't! Fly me to <planet> right now!"`
 			choice
 				`	"I'm not going to become a criminal to fulfill your crazy dream."`
 				`	"Okay, we'll fly to <planet>."`
 					goto launch
-			
+
 			`	You allow the Navy officer and his troops onto your ship, where they apprehend Diana and her stolen credits. They take her kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover."`
 			`	"Thank you for not causing any more trouble, Captain," the officer says to you. He then hands you 500,000 credits for "playing nice" and leaves.`
 				decline
-			
+
 			label launch
 			`	You activate your repulsor engines, sending the Navy troops recoiling away from your ship. As you ascend into space, your computers detect multiple ships targeting you.`
 				launch
-			
+
 	on accept
 		"reputation: Republic" <?= -10
-	
+
 	on decline
 		payment 500000
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
-	
+
 	npc evade
 		government "Republic"
 		personality heroic
@@ -3012,24 +3012,24 @@ mission "Paradise Fortune 4"
 	destination "New Boston"
 	to offer
 		has "Paradise Fortune 3: done"
-	
+
 	on offer
 		conversation
 			`While in flight, Diana tells you the stories that she heard of the war. In the Paradise Planets region, they were told that declaring independence and bombing Geminus and Martini was the Free Worlds' first step in overthrowing the Republic.`
 			`	"We should talk to Alondo," Diana says. "He'll be able to handle this situation."`
-			
+
 			branch epilogue
 				has "FW Epilogue: Alondo: offered"
 			`	As you're coming in for a landing on Bourne, you receive a message from Alondo. "<first>!" he says. "I just heard that you were in system. Want to meet up for a drink and talk about old times?"`
 			choice
 				`	"I'd be glad to any other time, but I need your help at the moment."`
 					goto conversation
-			
+
 			label epilogue
 			`	As you're coming in for a landing, you contact Alondo, who is luckily on Bourne. "What have you gotten yourself into?" he responds after you mention that you need his help.`
 			choice
 				`	"I'll explain the situation when we meet."`
-			
+
 			label conversation
 			`	You meet with Alondo at his office in the Free Worlds Senate building. After he and Diana exchange greetings, you explain the situation to him.`
 			`	"You what?" Alondo responds. "You have to turn her in. The war may be over, Captain, but there is still tension between the Republic and Free Worlds that we can not have a situation like this exacerbating."`
@@ -3041,15 +3041,15 @@ mission "Paradise Fortune 4"
 				`	"Alright, I'll hand her over."`
 				`	"Sorry, Alondo, but I agree with her cause."`
 					goto agree
-			
+
 			apply
 				set "navy contacted"
 			`	Alondo breathes a sigh of relief. "You should probably go check on her. I'll message you where the Navy wants to pick her up."`
 				goto end
-			
+
 			label agree
 			`	"I understand. Please, just don't drag the Free Worlds into this."`
-			
+
 			label end
 			`	You say goodbye to Alondo and return to your ship. When you arrive and look around, Diana is notably absent. In your pilot's seat she has left her backpack and a written note. The paper has noticeable tear stains in one of the corners.`
 			``
@@ -3064,28 +3064,28 @@ mission "Paradise Fortune 4"
 				`	(Hand the credits over to the Navy.)`
 				`	(Steal the credits.)`
 					goto steal
-			
+
 			branch navy
 				has "navy contacted"
 			`	You fold the note and slip it into the backpack so that you can show it to the Navy to explain why Diana is not with you. You contact the Navy's crime report hotline and tell them that you have the stolen credits. A few minutes later, they respond telling you that a fleet is waiting on <destination> to retrieve the credits.`
 				accept
-			
+
 			label navy
 			apply
 				clear "navy contacted"
 			`	You fold the note and slip it into the backpack so that you can show it to the Navy to explain why Diana is not with you. Alondo sends you a message, telling you that the Navy says they are waiting on <destination> for the credits.`
 				accept
-			
+
 			label steal
 			`	You rip the note apart and begin counting the credits. In total, the backpack contains a whopping 525,894,400 credits. Over half a billion credits richer, you sit down and wonder what you will spend it on.`
 				decline
-	
+
 	on accept
 		"reputation: Republic" >?= 10
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
-	
+
 	on complete
 		payment 1000000
 		conversation
@@ -3106,7 +3106,7 @@ mission "Northern Blockade"
 		random < 20
 		"combat rating" > 200
 		"reputation: Republic" >= 0
-	
+
 	on offer
 		conversation
 			`You are approached by a Navy officer. "Are you Captain <last>?" You nod. "Would you be able to assist us? A sizable gang of pirates has occupied <system> and raided the spaceport. A Navy fleet is on its way to eliminate the pirates, but reports from the planet indicate that the spaceport of <planet> is in dire need of supplies. Any building above three stories was badly damaged and everything in the warehouses was either stolen or destroyed. We need a ship to bring <cargo> to them as soon as possible, but there are no available Navy ships capable of doing the job. Would you deliver the supplies for us, Captain?"`
@@ -3115,7 +3115,7 @@ mission "Northern Blockade"
 					accept
 				`	"Sorry, but I'm not traveling in that direction."`
 					decline
-	
+
 	npc
 		government "Pirate"
 		personality staying harvests plunders
@@ -3133,7 +3133,7 @@ mission "Northern Blockade"
 		system "Mirzam"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 3
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -3159,7 +3159,7 @@ mission "Southern Blockade"
 		"combat rating" > 150
 		not "event: Thule becomes independent"
 		"reputation: Free Worlds" >= 0
-	
+
 	on offer
 		conversation
 			`A captain in a Free Worlds uniform enters the spaceport and turns on a megaphone. "Attention! The Free Worlds are in need of volunteers able to carry <cargo> to <stopovers> for fortifying the spaceports nearest to the pirate system of Men. Free Worlds ships are currently preoccupied with fighting off a pirate incursion into those systems, and we are unable to spare enough ships for the job. Our hope is that these defenses will deter any future incursions. Payment will be <payment> for the first captain who accepts." The spaceport falls quiet as captains contemplate this offer.`
@@ -3167,10 +3167,10 @@ mission "Southern Blockade"
 				`	(Volunteer.)`
 				`	(Ignore.)`
 					decline
-			
+
 			`	The Free Worlds captain thanks you for offering your help. Spaceport workers load the turrets onto your ship, and the captain tells you to return to <origin> once you have dropped off the turrets for payment.`
 				accept
-	
+
 	npc
 		government "Pirate"
 		personality staying harvests plunders
@@ -3235,7 +3235,7 @@ mission "Core Blockade"
 	to offer
 		random < 20
 		"combat rating" > 400
-	
+
 	on offer
 		conversation
 			`In the <origin> spaceport, you are approached by a Syndicate employee. By the looks of his uniform, he works for Syndicated Security. "Hello, Captain. You're a competent pilot, correct?" You nod your head. "Excellent. The Syndicate needs <cargo> transported to <destination>. The pirate world has seen a particularly bad harvest this past season, so much of the population is without sufficient food. Pirate warlords have threatened to begin raiding our freighters and frontier worlds if we don't provide them with food. It's cheaper to do what they want, so we've agreed to the deal, but we don't want to risk any of our own ships being destroyed. The Syndicate will pay you <payment> should you accept and complete this job."`
@@ -3244,7 +3244,7 @@ mission "Core Blockade"
 					accept
 				`	"Sorry, but I have better things to be doing."`
 					decline
-	
+
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -3256,7 +3256,7 @@ mission "Core Blockade"
 		system "Schedar"
 		fleet "Large Core Pirates"
 		fleet "Small Core Pirates" 3
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -3275,7 +3275,7 @@ mission "Pirate Blockade"
 	passengers 19
 	to offer
 		"combat rating" > 500
-	
+
 	on offer
 		conversation
 			`It is dusk at the <origin> spaceport, and the setting sun casts long shadows across the spaceport deck. You take notice of a slim cloaked figure walking only a few feet behind you who seems to be keeping pace.`
@@ -3283,27 +3283,27 @@ mission "Pirate Blockade"
 				`	(Confront them.)`
 					goto confront
 				`	(Stop walking and see if they stop as well.)`
-			
+
 			`	You stop by the entrance to a store that claims to have "the best Polecats!" and lean against the building, trying not to draw attention to yourself. The figure keeps walking at the same pace, and as they pass you, a soft voice says, "Follow me," from under the cloak. The figure bolts off into a dark alleyway next to the building.`
 				goto choice
-			
+
 			label confront
 			`	You turn around and stare right at the figure, who stops within a foot of you. The shadows cast by the sun make it impossible for you to make out their face under the cloak. "Follow me," a soft voice says from under the cloak, before the figure bolts off into a dark alleyway next to the building.`
-			
+
 			label choice
 			choice
 				`	(Follow the figure.)`
 				`	(Return to my ship.)`
 					decline
-			
+
 			`	You step into the alleyway and find the figure standing under a lamp. The figure removes their cloak, revealing the face of a woman with short dark hair and a distinct, jagged scar across her right cheek. She begins whispering to you. "You're not from this world. I can tell. You're too clean and unscarred. Could you help me?"`
 			choice
 				`	"What do you want?"`
 					goto need
 				`	"Why would I help a pirate?"`
-			
+
 			`	The woman chuckles. "Not everyone who lives on a pirate world is a pirate, you know. Maybe you need to learn how not to stereotype. Regardless..." She trails off.`
-			
+
 			label need
 			`	"It isn't what I want, it's what I need," she whispers, putting heavy emphasis on the word "need."`
 			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves..." Her face twists into a hate filled scorn as she speaks of the Republic. It then returns to normal as she continues. "I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere.`
@@ -3312,16 +3312,16 @@ mission "Pirate Blockade"
 				`	"Anything for the freedom of the innocent."`
 				`	"Sorry, but I'm not going to risk my life for your cause."`
 					goto decline
-			
+
 			`	"Good choice, Captain. We'll wait till the sun has fully set, then I will bring the people to your ship. I'll be traveling in my own ship and launch ahead of you, which should hopefully distract the pirates looking for their warlord's assassin and give you enough room to escape. Wait for me after you land on <planet>."`
 				accept
-			
+
 			label decline
 			apply
 				set "denied freeing slaves"
 			`	"Poor choice, Captain." The woman pulls a knife from under her cloak and tilts it to blind you with the glare of the lamp above her. You stumble backward in anticipation of an attack, but the woman does not move. "I'll remember this, Captain," she hisses at you. The woman puts her cloak back up and sprints down the alleyway into darkness.`
 				decline
-	
+
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -3336,7 +3336,7 @@ mission "Pirate Blockade"
 		government "Pirate"
 		personality nemesis staying harvests plunders
 		fleet "Large Core Pirates"
-	
+
 	on visit
 		dialog `You land on <planet> and begin looking around for the man you are suppose to meet, but then you realize that not all of the escaped slaves are here. Better depart and wait for your escorts holding the rest to arrive.`
 	on complete
@@ -3548,7 +3548,7 @@ mission "Hauler VI cargo prototype 2"
 	destination "Zug"
 	landing
 	to offer
-		has "Hauler VI cargo prototype 1: done"	
+		has "Hauler VI cargo prototype 1: done"
 	npc accompany
 		government "Merchant"
 		personality escort timid
@@ -3713,7 +3713,7 @@ mission "Journalism 2"
 			`	"Oh. Well unfortunately for many, everything is political. It was political when the Republic tried to block the evacuation. And it was political when the Navy did it without permission. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one some day; wealthy, authoritative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installation," she says with a smile. She gets her smoothie to-go and walks out.`
 				decline
 			label inorout
-			`	Mariel said you saw me take the photos of the woman and her baby," you are surprised by the bluntness of her admission. "I really like that moment. Not many notice it. You're observant. Hopefully you're kind too. We need a ship for our next project. We need you to transport a team to one planet, quickly land on another, then pickup the team and return here with everyone safe and sound. Nothing to dicey. But it's a dangerous universe, so who knows. Oh, and we have to leave today. I can't tell you more until you accept. It will pay, of course. 200000 credits. So what do you say? Are you in or out?" Your orders are served and you eat in silence and consider her proposition while she drinks her smoothie.`
+			`	Mariel said you saw me take the photos of the woman and her baby," you are surprised by the bluntness of her admission. "I really like that moment; not many notice it. You're observant but are you kind? We need a ship for our next project but I can't tell you much until you accept. We need you to transport a team to one planet, quickly land on another, then pickup the team and return here with everyone safe and sound. Nothing to dicey. But it's a dangerous universe, so who knows. Oh, and we have to leave today. It will pay, of course. 200000 credits. So what do you say? Are you in or out?" Your orders are served and you eat in silence and consider her proposition while she drinks her smoothie.`
 			choice
 				`	"In."`
 				`	"Out."`
