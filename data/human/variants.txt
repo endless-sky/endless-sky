@@ -2163,3 +2163,34 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+
+
+ship "Quicksilver" "Quicksilver (Far North)"
+	outfits
+		"Particle Cannon" 2
+		"Dwarf Core"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Water Coolant System"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
+		"Fuel Pod" 4
+		"Ramscoop"
+
+
+ship "Splinter" "Splinter (Far North)"
+	outfits
+		"Particle Cannon" 2
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
+		"Fusion Reactor"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Water Coolant System" 2
+		"Laser Rifle" 3
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		"Ramscoop"
+		"Fuel Pod"3
