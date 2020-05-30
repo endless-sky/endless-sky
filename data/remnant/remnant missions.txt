@@ -2175,15 +2175,14 @@ mission "Remnant: Crystal Research 1"
 	minor
 	source "Viminal"
 	destination "Greenwater"
-	stopover "Allhome"
-	cargo "Keystones" 2
+	cargo "(reserved)" 2
 	to offer
 		random < 30
 		has "Remnant: Learn Sign 2: done"
 		has "Remnant: Technology Available: offered"
 	on offer
+		log "People" "Aeolus" `As an outfitter, Aeolus is responsible for managing the logistics that supply the Remnant with materials, equipment, and resources. In contrast to conventional outfitters in the rest of human space, he is focused on ensuring the efficient optimization of Remnant ships, not making a profit.`
 		conversation
-			log "People" "Aeolus" `As an outfitter, Aeolus is responsible for managing the logistics that supply the Remnant with materials, equipment, and resources. In contrast to conventional outfitters in the rest of human space, he is focused on ensuring the efficient optimization of Remnant ships, not making a profit.`
 			`In the spaceport cafeteria you spot the outfitter who had you retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
 			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful. I never introduced myself before. My name is Aeolus. How can I help you today?"`
 			choice
@@ -2191,7 +2190,10 @@ mission "Remnant: Crystal Research 1"
 				`	(Ask if there are more jobs like the last one you did for him.)`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved." He gestures appreciatively. "I am told that we have you to thank for some of that.`
-			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some interesting results." He notices your questioning expression. "Oh, you were expecting me to sell them, weren't you?" You nod affirmatively.`
+			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some interesting results." He notices your questioning expression. "Oh, you were expecting me to sell them, weren't you?"`
+			choice
+				`	(Nod affirmatively.)`
+				`	(Shrug noncommittally.)`
 			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "Firstly, security: Slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to being tracked. Secondly, research: Something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And thirdly, purpose."`
 			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, my purpose is to ensure that Remnant captains have the resources they need. What you see listed as the 'price', Remnant captains see listed instead as a 'logistics adjustment' that indicates how much resources are needed to supply that component. Every ship has allocated resources and budgets determining how much they can utilize for repairs, restocking, and improvements."`
 			choice
@@ -2209,17 +2211,28 @@ mission "Remnant: Crystal Research 1"
 			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: Firstly, we would like you to pick them up from several different planets. And secondly, by the time you reach Hai space we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
 			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 				accept
-	on stopover
+	on complete
 		dialog
 			`It takes a few minutes to contact the yardmaster, but once you do the Hai have the crates moved from the warehouse to your bay doors fairly promptly. Hai and Humans seem accustomed to working together here.`
+
+
+
+mission "Remnant: Crystal Research 2"
+	name "Retrieve more Crystals"
+	description `Retrieve Crystals from Greenwater, and then Allhome.`
+	landing
+	source "Greenwater"
+	destination "Allhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 1: done"
 	on complete
 		payment 250000
 		dialog
 			`True to his word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message from Viminal has arrived. You also note that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
 
 
-
-mission "Remnant: Crystal Research 2"
+mission "Remnant: Crystal Research 3"
 	name "Retrieve more Crystals"
 	description `Retrieve Crystals from several Hai worlds, ending on Newhome.`
 	landing
@@ -2234,7 +2247,7 @@ mission "Remnant: Crystal Research 2"
 	stopover "Heartvalley"
 	cargo "Keystones" 12
 	to offer
-		has "Remnant: Crystal Research 1: done"
+		has "Remnant: Crystal Research 2: done"
 	on offer
 		dialog
 			`The message is brief and to the point. "Greetings, Captain <first>. Hopefully the shipments were waiting for you. We have arranged for samples to be acquired from Makerplace, Stonebreak, Giverstone, Cloudfire, Snowfeather, Icelake, and Heartvalley. Once you have collected all those, head to Newhome. There are a few other places that we are still working to setup, and we should have those ready by the time you reach Newhome."`
@@ -2249,7 +2262,7 @@ mission "Remnant: Crystal Research 2"
 
 
 
-mission "Remnant: Crystal Research 3"
+mission "Remnant: Crystal Research 4"
 	name "Retrieve more Crystals"
 	description `Return the Crystals to Viminal.`
 	landing
@@ -2257,7 +2270,7 @@ mission "Remnant: Crystal Research 3"
 	destination "Viminal"
 	cargo "Keystones" 19
 	to offer
-		has "Remnant: Crystal Research 2: done"
+		has "Remnant: Crystal Research 3: done"
 	on offer
 		dialog
 			`The last few crates are loaded. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to simply be a confirmation that you have picked up 19 Keystones. While there are no new instructions, the subtext is clear: Time to head back.`
@@ -2342,7 +2355,7 @@ ship "Starling" "Starling (Keystone)"
 
 
 
-mission "Remnant: Crystal Research 4"
+mission "Remnant: Crystal Research 5"
 	name "Scan the <npc> in <waypoints>"
 	description `Go scan the <npc> to record the Keystone post-wormhole.`
 	landing
@@ -2356,7 +2369,7 @@ mission "Remnant: Crystal Research 4"
 		ship "Starling (Keystone)" "Winds of Light"
 	
 	to offer
-		has "Remnant: Crystal Research 3: done"
+		has "Remnant: Crystal Research 4: done"
 	on offer
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, and he has already marshalled a few dock workers with a number of wagons and lifters to unload the cargo.`
@@ -2376,7 +2389,7 @@ mission "Remnant: Crystal Research 4"
 
 
 
-mission "Remnant: Crystal Research 5"
+mission "Remnant: Crystal Research 6"
 	name "Scan the <npc> in <waypoints>"
 	description `Go scan the <npc> to record the Key Stone post-wormhole.`
 	landing
@@ -2389,7 +2402,7 @@ mission "Remnant: Crystal Research 5"
 		system "Peragenor"
 		ship "Starling" "Winds of Light"
 	to offer
-		has "Remnant: Crystal Research 4: done"
+		has "Remnant: Crystal Research 5: done"
 	on offer
 		conversation
 			`	"Ready? Let's go!" signs Aeolus as he fires up his systems and gestures an acknowledgement to the dockworker. The worker nimbly steps clear of the ship and watches as the two ships head back out of the dome.`
@@ -2406,14 +2419,14 @@ mission "Remnant: Crystal Research 5"
 
 
 
-mission "Remnant: Crystal Research 6"
+mission "Remnant: Crystal Research 7"
 	name "Deliver Data to <destination>"
 	description `A copy of the scanner data needs to be delivered to the researchers on <destination>.`
 	source "Viminal"
 	destination
 		government "Remnant"
 	to offer
-		has "Remnant: Crystal Research 5: done"
+		has "Remnant: Crystal Research 6: done"
 	on offer
 		conversation
 			`You walk into the cafeteria and spot Aeolus halfway through an impressively large meal. He waves you over, and by the time you are seated a tray with a significantly smaller meal is waiting for you. While you have acclimatized to a few of the dishes, most of them are still very unappetizing.`
