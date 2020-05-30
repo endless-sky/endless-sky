@@ -3845,7 +3845,7 @@ mission "Journalism 4"
 		ship "Arrow" "Futile"
 
 	on visit
-		dialog `You will want your escorts for this. Better take off and wait for them to enter the system.`
+		dialog `Your escort carrying the spy drones was left behind. Better take off and wait for them to enter the system.`
 
 
 
