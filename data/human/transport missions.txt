@@ -3835,14 +3835,14 @@ mission "Journalism 4"
 				explode
 
 	npc
-		personality heroic nemesis
+		personality heroic nemesis vindictive launching
 		government "Pirate"
 		ship "Quicksilver" "Don't Run"
 		ship "Quicksilver" "Obey"
 		ship "Quicksilver" "Work Is Freedom"
 		ship "Quicksilver" "Do As You're Told"
-		ship "Arrow" "Got You"
-		ship "Arrow" "Futile"
+		ship "Quicksilver" "Got You"
+		ship "Quicksilver" "Futile"
 
 	on visit
 		dialog `Your escort carrying the spy drones was left behind. Better take off and wait for them to enter the system.`
