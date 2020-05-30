@@ -4298,7 +4298,7 @@ mission "Freedom Uprising 4"
 			label stonedinspace
 			"You try to fly casual but you can't help but to feel a bit paranoid. It was nice in the garden but now you're starting to think flying around high in pirate territory was a mistake."
 
-.	on enter "Moktar"
+	on enter "Moktar"
 		dialog
 			`	"This is a good system to safely recharge a bit."`
 
