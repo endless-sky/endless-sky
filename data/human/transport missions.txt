@@ -4188,10 +4188,8 @@ mission "Freedom Uprising 3"
 	npc accompany save
 		government "Freedom Fighters"
 		personality escort disables
-		fleet
-			names "ff constant"
-			variant
-				"Splinter (Far North)" 2
+		ship "Splinter (Far North)" "Tierra y Libertad"
+		ship "Splinter (Far North)" "Solidarity"
 
 
 
@@ -4300,6 +4298,10 @@ mission "Freedom Uprising 4"
 			label stonedinspace
 			"You try to fly casual but you can't help but to feel a bit paranoid. It was nice in the garden but now you're starting to think flying around high in pirate territory was a mistake."
 
+.	on enter "Moktar"
+		dialog
+			`	"This is a good system to safely recharge a bit."`
+
 	on enter "Hassaleh"
 		dialog
 			` "We should stay in this system for a bit. There is good solar wind and not too many pirates. But if one happens by try to disable it so we can board and take their fuel."`
@@ -4307,7 +4309,5 @@ mission "Freedom Uprising 4"
 	npc accompany save
 		government "Freedom Fighters"
 		personality escort disables
-		fleet
-			names "ff constant"
-			variant
-				"Splinter (Far North)" 2
+		ship "Splinter (Far North)" "Tierra y Libertad"
+		ship "Splinter (Far North)" "Solidarity"
