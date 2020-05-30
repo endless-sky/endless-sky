@@ -3815,7 +3815,7 @@ mission "Journalism 4"
 			`	Bunker hits the recall button for the drones anyways. "This display is a low resolution proxy," explains Bunker. "If we leave the drones we lose all the footage we need. It looks like the fighters aren't coming straight for us. We have time. The drones are less than two minutes out."`
 			choice
 				`	"We're leaving. Now!"`
-				`	"Fine. Get to the cargo bay lock down the drones. We take off on your mark."`
+				`	"Fine. Get to the cargo bay and lock down the drones as soon as they land. We take off on your mark."`
 					goto escape
 			`	"I can't let you do that <first>," says Bunker stepping in between you and the controls. "The drones are almost here. Just let me go to the cargo bay to lock them down and we're out of here.`
 			choice
