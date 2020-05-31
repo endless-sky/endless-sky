@@ -4259,13 +4259,13 @@ mission "Freedom Uprising 4"
 					goto notyet
 			`	"Great," says Beto. "It would be awful to get to Freedom only to realize we forgot something. It should go without saying that we will be in trouble if we get caught with all this stuff so we should avoid Republic space. That means we are need to go through the uninhabited systems north of here. My contacts got us the Ramscoop so make sure it's installed. Also, if you are using a Scram Drive you might want to consider switching it out for a normal one to save on fuel and space."`
 
-			`	"And we should resist the temptation of hanging around the Alnitak system. There is a Navy base on Farpoint and even though they are Oathkeepers they still might scan us. Lucky for us I know of an uninhabited system with good solar wind and few pirates.  Well, we better get moving or we may never leave this garden."`
+			`	"And we should resist the temptation of hanging around the Alnitak system. There is a Navy base on Farpoint and even though they are Oathkeepers they still might scan us. Lucky for us I know a couple uninhabited systems with good solar wind and few pirates.  Well, we better get moving or we may never leave this garden."`
 				accept
 
 			label notyet
 			`	"We definitely need to do that before we go. Imagine if we got to Freedom only to realize we forgot something. Remember, we need one hundred Laser Rifles and ten boxes of Fragmentation Grenades. It should go without saying that we will be in trouble if we get caught with all this stuff so we probably shouldn't go through Republic space. That means we are going to need a lot of spare fuel to make it through all of the uninhabited systems north of here. Some friends of mine got us a Ramscoop, so make sure to install it. Also, if you are using a Scram Drive you might want to consider switching it out for a normal one to save on fuel and space."`
 
-			`	"And we should resist the temptation of hanging around Alnitak. There is a Navy base on Farpoint and even though they are Oathkeepers they still might scan us. Lucky for us I know of a system with good solar wind and few pirates.  Well, we better get moving or we will get stuck in this garden forever."`
+			`	"And we should resist the temptation of hanging around Alnitak. There is a Navy base on Farpoint and even though they are Oathkeepers they still might scan us. Lucky for us I know a couple of systems with good solar wind and few pirates.  Well, we better get moving or we will get stuck in this garden forever."`
 				accept
 
 
@@ -4300,11 +4300,11 @@ mission "Freedom Uprising 4"
 
 	on enter "Moktar"
 		dialog
-			`	"This is a good system to safely recharge a bit."`
+			`	"We should stay in this system for a bit," says Beto. "There is good solar wind and not too many pirates. But if one happens by try to disable it so we can board and take their fuel."`
 
 	on enter "Hassaleh"
 		dialog
-			` "We should stay in this system for a bit. There is good solar wind and not too many pirates. But if one happens by try to disable it so we can board and take their fuel."`
+			` "This is another, somewhat safe, system to recharge a bit," Beto tells you.`
 
 	npc accompany save
 		government "Freedom Fighters"
