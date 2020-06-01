@@ -2229,14 +2229,14 @@ mission "Remnant: Crystal Research 2"
 	on complete
 		payment 250000
 		dialog
-			`True to his word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message from Viminal has arrived. You also note that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
+			`True to his word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message from Viminal has arrived. It appears to be a notificatoin that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
 
 
 mission "Remnant: Crystal Research 3"
 	name "Retrieve more Crystals"
 	description `Retrieve Crystals from several Hai worlds, ending on Newhome.`
 	landing
-	source "Greenwater"
+	source "Allhome"
 	destination "Newhome"
 	stopover "Makerplace"
 	stopover "Stonebreak"
@@ -2245,13 +2245,12 @@ mission "Remnant: Crystal Research 3"
 	stopover "Snowfeather"
 	stopover "Icelake"
 	stopover "Heartvalley"
-	cargo "Keystones" 12
+	cargo "Keystones" 4
 	to offer
 		has "Remnant: Crystal Research 2: done"
 	on offer
 		dialog
 			`The message is brief and to the point. "Greetings, Captain <first>. Hopefully the shipments were waiting for you. We have arranged for samples to be acquired from Makerplace, Stonebreak, Giverstone, Cloudfire, Snowfeather, Icelake, and Heartvalley. Once you have collected all those, head to Newhome. There are a few other places that we are still working to setup, and we should have those ready by the time you reach Newhome."`
-				accept
 	on stopover
 		dialog
 			`On each stop you quickly locate and load the shipment of crystals. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to help your passengers have the smoothest flight!" reads one of the labels.`
@@ -2259,6 +2258,85 @@ mission "Remnant: Crystal Research 3"
 		payment 250000
 		dialog
 			`You are just checking in with the port authorities to locate your shipment when your commlink indicates a pair of messages incoming. While you wait for the second one to load, you glance through the first one which is a simple deposit statement indicating that a payment of <payment> has been deposited from a "Solar Winds Logistics Ltd."`
+
+
+
+mission "Remnant: Crystal Research 3A"
+	invisible
+	landing
+	source "Makerplace"
+	destination "Newhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 3: active"
+	on offer
+		dialog `Sure enough, there is a pair of crates waiting for you. This one features pictures of a pair of elderly and you suppose probably distinguished looking Hai in a fairly generic scene.`
+
+
+
+mission "Remnant: Crystal Research 3B"
+	invisible
+	landing
+	source "Stonebreak"
+	destination "Newhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 3: active"
+
+
+
+mission "Remnant: Crystal Research 3C"
+	invisible
+	landing
+	source "Giverstone"
+	destination "Newhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 3: active"
+
+
+
+mission "Remnant: Crystal Research 3D"
+	invisible
+	landing
+	source "Cloudfire"
+	destination "Newhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 3: active"
+
+
+
+mission "Remnant: Crystal Research 3E"
+	invisible
+	landing
+	source "Snowfeather"
+	destination "Newhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 3: active"
+
+
+
+mission "Remnant: Crystal Research 3F"
+	invisible
+	landing
+	source "Icelake"
+	destination "Newhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 3: active"
+
+
+
+mission "Remnant: Crystal Research 3G"
+	invisible
+	landing
+	source "Heartvalley"
+	destination "Newhome"
+	cargo "Keystones" 2
+	to offer
+		has "Remnant: Crystal Research 3: active"
 
 
 
@@ -2274,7 +2352,6 @@ mission "Remnant: Crystal Research 4"
 	on offer
 		dialog
 			`The last few crates are loaded. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to simply be a confirmation that you have picked up 19 Keystones. While there are no new instructions, the subtext is clear: Time to head back.`
-				accept
 	on complete
 		payment 2000000
 		conversation
@@ -2367,7 +2444,6 @@ mission "Remnant: Crystal Research 5"
 		personality coward disables plunders staying surveillance target mining
 		system "Peragenor"
 		ship "Starling (Keystone)" "Winds of Light"
-	
 	to offer
 		has "Remnant: Crystal Research 4: done"
 	on offer
@@ -2380,6 +2456,7 @@ mission "Remnant: Crystal Research 5"
 				`	"OK"`
 					accept
 			`	"Oh, yes. It is actually quite a common skill among the Remnant. I am not a particularly good pilot, but it is sufficiently important that it is taught to almost everyone as a general skill. Especially those of us who work directly with ships on a daily basis and may be called upon to move or fly one at a moment's notice." His gestures carry tones of both pride and depreciation as he talks about his piloting skills. "Anyway, let's go"`
+				accept
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the Starling in <waypoints>. Make sure you scan the ship before returning.`
 	on complete
