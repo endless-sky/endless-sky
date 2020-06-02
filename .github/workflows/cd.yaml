@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - actions-update
   pull_request:
     types: 
       - synchronize # New commit has been pushed
