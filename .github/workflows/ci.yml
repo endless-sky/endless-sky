@@ -3,6 +3,7 @@ name: Build & Parse
 # TODO:
 # - Reduce duplicate code (Blocking: https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 # - Investigate using scoop as package manager on windows
+# - MacOS artifact uploads are still slow (https://github.com/actions/upload-artifact/issues/69)
 # - Cache build files on all systems (Looking at you OSX)
 # - Cache development libraries on windows
 # - Run windows builds as matrix with different mingw versions
