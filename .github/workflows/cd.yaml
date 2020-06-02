@@ -30,7 +30,7 @@ jobs:
       - name: Package Application
         run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -52,7 +52,7 @@ jobs:
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -84,7 +84,7 @@ jobs:
       - name: Package Application
         run: 7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -115,7 +115,7 @@ jobs:
           cd build/Release
           7z a ${{ github.workspace }}/${{ env.OUTPUT }} Endless\ Sky.app
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -168,52 +168,36 @@ jobs:
               --description "$DESCRIPTION" \
               --pre-release
           fi
-      - name: Download ${{ env.OUTPUT_UBUNTU }}
-        uses: actions/download-artifact@v1
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
         with:
-          name: ${{ env.OUTPUT_UBUNTU }}
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
       - name: Add ${{ env.OUTPUT_UBUNTU }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_UBUNTU }} \
-            --file ${{ env.OUTPUT_UBUNTU }}
-      - name: Download ${{ env.OUTPUT_APPIMAGE }}
-        uses: actions/download-artifact@v1
-        with:
-          name: ${{ env.OUTPUT_APPIMAGE }}
-          path: ${{ github.workspace }}
+            --file ${{ env.OUTPUT_UBUNTU }}/${{ env.OUTPUT_UBUNTU }}
       - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_APPIMAGE }} \
-            --file ${{ env.OUTPUT_APPIMAGE }}
-      - name: Download ${{ env.OUTPUT_WINDOWS }}
-        uses: actions/download-artifact@v1
-        with:
-          name: ${{ env.OUTPUT_WINDOWS }}
-          path: ${{ github.workspace }}
+            --file ${{ env.OUTPUT_APPIMAGE }}/${{ env.OUTPUT_APPIMAGE }}
       - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_WINDOWS }} \
-            --file ${{ env.OUTPUT_WINDOWS }}
-      - name: Download ${{ env.OUTPUT_MACOS }}
-        uses: actions/download-artifact@v1
-        with:
-          name: ${{ env.OUTPUT_MACOS }}
-          path: ${{ github.workspace }}
+            --file ${{ env.OUTPUT_WINDOWS }}/${{ env.OUTPUT_WINDOWS }}
       - name: Add ${{ env.OUTPUT_MACOS }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_MACOS }} \
-            --file ${{ env.OUTPUT_MACOS }}
+            --file ${{ env.OUTPUT_MACOS }}/${{ env.OUTPUT_MACOS }}
     
