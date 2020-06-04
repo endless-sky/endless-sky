@@ -54,6 +54,7 @@ namespace {
 void SpriteShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex sprite shader\n"
 		"uniform vec2 scale;\n"
 		"uniform vec2 position;\n"
 		"uniform mat2 transform;\n"
@@ -71,6 +72,7 @@ void SpriteShader::Init()
 		"}\n";
 	
 	static const char *fragmentCode =
+		"// fragment sprite shader\n"
 		"uniform sampler2DArray tex;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"

@@ -5,7 +5,7 @@ root = true
 insert_final_newline = true
 
 # Data files
-[data/*.txt]
+[data/**.txt]
 trim_trailing_whitespace = false
 indent_style = tab
 
