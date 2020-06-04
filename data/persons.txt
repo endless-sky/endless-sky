@@ -788,7 +788,8 @@ ship "Ursa Polaris"
 		"Korath Disruptor" 5
 		"Quarg Anti-Missile" 5
 		Hyperdrive
-		"Korath Heat Shunt"
+		"Large Heat Shunt"
+		"Small Heat Shunt" 2
 		"Systems Core (Large)" 2
 		"Korath Repeater Rifle" 600
 		"Thruster (Stellar Class)"
@@ -817,7 +818,7 @@ ship "Ursa Polaris"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 50
 
 

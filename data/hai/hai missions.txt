@@ -1266,7 +1266,7 @@ event "scar's hideout"
 planet "Scar's Hideout"
 	attributes uninhabited
 	landscape land/loc1
-	description "Scar's Hideout is a hollowed out asteroids used by Scar's Legion as their main base of operations. From here they harrass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
+	description "Scar's Hideout is a hollowed out asteroids used by Scar's Legion as their main base of operations. From here they harass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
 	spaceport "The spaceport of Scar's Hideout is a massive hangar dug into the core of the asteroid, accessible only by a single blast door on the ceiling. Judging by the size of the hangar, you'd guess that about a third of the entire asteroid was hollowed out for the spaceport alone."
 	security 0
 	government "Scar's Legion"
@@ -1441,7 +1441,7 @@ mission "Pirate Troubles [4]"
 				`	"There's no guarantee that they will not attack again, but they promised that they would focus elsewhere."`
 					goto guarantee
 				`	"I could return to them and defeat them if you desire."`
-			`	"No," says the elder. "We are not interested in condeming these humans to death if all they ask is for technology."`
+			`	"No," says the elder. "We are not interested in condemning these humans to death if all they ask is for technology."`
 			
 			label guarantee
 			`	"I believe a bigger issue here is how this will impact our human friends beyond the wormhole," an elder says. "If these pirates are not attacking us, then who will they be attacking? Will we not simply become weapons dealers for a far off war?"`
@@ -1560,7 +1560,7 @@ mission "Nanachi 2"
 		has "Nanachi 1: done"
 	on offer
 		conversation
-			`You meet up with Nanachi in the spaceport, give her some tips to try and persuade someone into hiring her, and tell her you'll be nearby if she still has trouble getting a job. You watch her go around the spaceport and approach some groups of humans and even other Hai to no avail. Maybe since this is a world seeing combat often, they're too busy with military related activites to help a new pilot. She manages to grab the attention of a Hai family leaving a restaurant carrying way too much luggage, most likely tourists looking for a ride back home. Everything seems to be going well until the parents start to look worried. It seems as if they might go away if you don't step in.`
+			`You meet up with Nanachi in the spaceport, give her some tips to try and persuade someone into hiring her, and tell her you'll be nearby if she still has trouble getting a job. You watch her go around the spaceport and approach some groups of humans and even other Hai to no avail. Maybe since this is a world seeing combat often, they're too busy with military related activities to help a new pilot. She manages to grab the attention of a Hai family leaving a restaurant carrying way too much luggage, most likely tourists looking for a ride back home. Everything seems to be going well until the parents start to look worried. It seems as if they might go away if you don't step in.`
 			`	You walk over to the group to help her, and get a better look at the family: a Hai couple carrying a baby, and three older children who aren't doing much to help their father carry their ludicrous number of bags.`
 			choice
 				`	"Hey, what's going on?"`
@@ -1619,11 +1619,11 @@ mission "Nanachi 3"
 			label unfettered
 			choice
 				`	"I guess it isn't too unlike how the Unfettered have treated their worlds."`
-			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planing and preparing for adverse events."`
+			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planning and preparing for adverse events."`
 					goto end
 			label end
 			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
-			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species chould be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
+			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
 					goto board
 			label board
 			`	You two reach the job board and decide to start looking for jobs suited for Nanachi's ship.`
