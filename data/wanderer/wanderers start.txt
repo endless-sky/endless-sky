@@ -604,7 +604,7 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 			`	It takes several hours for the massive Wanderer freighter to be loaded. Rek explains that they have kept track of which kinds of food the Unfettered prefer to steal, so they know what will be edible for them. He says, "Our destination is called <planet>. Sayari tells me that all Hai share a [custom, taboo] concerning guests, so once we land on their planet we will be able to [speak, parley] with them in safety."`
 				accept
 	on visit
-		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -638,7 +638,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 	on accept
 		event "wanderer / unfettered peace"
 	on visit
-		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
