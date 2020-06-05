@@ -250,7 +250,7 @@ ship "Auxiliary"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
-	description "	The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or more bunk space depending on the mission, but this modularity makes the ship rather expensive to build, and therefore a rare sight to see."
+	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 ship "Auxiliary" "Auxiliary (Cargo)"
 	sprite "ship/auxiliaryc"
@@ -1348,8 +1348,7 @@ ship "Dropship"
 	gun -2 -27 "Beam Laser"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	explode "small explosion" 5
-	description "Dropships were designed with the Navy's Auxiliary in mind. Landed Auxiliaries often act as forward operating bases, so troops needing transport to another sector rely on their Dropships. This cramped and uncomfortable vessel is able to move a squad of Republic soldiers at great speed for its size."
+	explode "small explosion" 5description "Dropships were designed with the Navy's Auxiliary in mind. Landed Auxiliaries often act as forward operating bases, so troops needing transport to another area often rely on their Dropships. This cramped and uncomfortable vessel is able to move a squad of Republic soldiers at great speed for its size."
 
 
 
