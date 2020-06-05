@@ -157,7 +157,7 @@ ship "Ember Waste Node"
 		"heat dissipation" 1
 		"fuel capacity" 250
 		"cargo space" 39
-		"outfit space" 1
+		"outfit space" 0
 		"thrust" 80
 		"turn" 3500
 		"hull repair rate" 3
@@ -167,6 +167,8 @@ ship "Ember Waste Node"
 		"ramscoop" 5
 		"shield generation" 5.2
 		"hull repair rate" 5.0
+		"cloak" .05
+		"quantum keystone" 1
 		"outfit scan power" 12
 		"outfit scan speed" 1
 		"tactical scan power" 50
@@ -178,7 +180,6 @@ ship "Ember Waste Node"
 		"jump drive" 1
 	outfits
 		Mouthparts? 5
-		"Quantum Key Stone"
 	gun 3 -83.5 Mouthparts?
 	gun -3 -83.5 Mouthparts?
 	gun 9 -104 Mouthparts?
@@ -187,7 +188,8 @@ ship "Ember Waste Node"
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
-	description "This is an unusual form of void sprite that seems to be outside their typical maturation pattern. These void sprites demonstrate an ability to manipulate energy fields to create shield-like structures. Most remarkably, these 'Elders' have been seen appearing and disapearing with an energy signature reminiscent of jump drives."
+	description "This unusual creature, first spotted in Postverta, seem to have an affinity for void sprites and is usually found with them, albeit bearing only superficial resemblance to them. This 'Ember Waste Node,' as it is being called, demonstrates an ability to manipulate energy fields to create shield-like structures around itself. Most remarkably, however, is that it has been seen appearing and disappearing with an energy signature reminiscent of jump drives."
+	description "Although its ability to cloak is believed to be connected to its other energy manipulation abilities, the exact method is unknown."
 
 
 
@@ -255,7 +257,7 @@ fleet "Void Sprites"
 
 
 fleet "Ember Waste Node"
-	government "Void Sprite"
+	government "Ember Waste"
 	cargo 0
 	personality
 		timid mining harvests mute

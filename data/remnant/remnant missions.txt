@@ -2257,7 +2257,7 @@ event "korath hunting"
 	government "Korath"
 		"attitude toward"
 			"Indigenous Lifeform" -.01
-			"Void Sprite" -.01
+			"Ember Waste" -.01
 
 
 
@@ -2661,7 +2661,7 @@ mission "Remnant: Cognizance 12b"
 	to offer
 		has "Remnant: Cognizance 12: active"
 	npc accompany
-		government "Indigenous Lifeform"
+		government "Ember Waste"
 		personality waiting mute
 		ship "Ember Waste Node" "Unknown Entity"
 	
@@ -2686,7 +2686,7 @@ mission "Remnant: Cognizance 13"
 			`	Plume chimes in "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating it wants you to go. Please give it a try."`
 				accept
 	npc accompany
-		government "Indigenous Lifeform"
+		government "Ember Waste"
 		personality mute
 		ship "Ember Waste Node" "Unknown Entity"
 	on enter Peragenor
