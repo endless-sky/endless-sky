@@ -1209,12 +1209,14 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"take on bounty jobs."
-		"transport illegal goods."
-		"hunt down pirates."
-		"transport fugitives."
-		"board and capture pirates."
-		"mine asteroids at the edges of human space."
+		"take on bounty jobs"
+		"transport illegal goods"
+		"hunt down pirates"
+		"transport fugitives"
+		"board and capture pirates"
+		"mine asteroids at the edges of human space"
+	word
+		"."
 
 phrase "friendly civilian"
 	word
