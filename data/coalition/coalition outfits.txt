@@ -233,6 +233,9 @@ outfit "Small Steering Module"
 	"turn" 178.8
 	"turning energy" 0.26
 	"turning heat" 1.8
+	"steering flare sprite" "effect/coalition flare/small"
+		"frame rate" 4.8
+	"steering flare sound" "atomic tiny"
 	description "Despite its high efficiency, this module is not sufficient for any but the tiniest of ships. Instead, the modules are designed with the expectation that ships may use two or three of them in tandem."
 
 outfit "Large Steering Module"
@@ -247,6 +250,9 @@ outfit "Large Steering Module"
 	"turn" 711.9
 	"turning energy" 1.0
 	"turning heat" 6.5
+	"steering flare sprite" "effect/coalition flare/large"
+		"frame rate" 3.5
+	"steering flare sound" "atomic small"
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 
 outfit "Enforcer Confrontation Gear"
