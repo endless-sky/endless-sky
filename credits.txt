@@ -1,16 +1,79 @@
 Welcome to Endless Sky!
-version 0.9.11
+version 0.9.12
 
 This game is open source.
 To report bugs, give feedback,
 or contribute to story writing,
 artwork, or programming, visit:
-https://endless-sky.github.io
-The game's Steam forums
-Discord (invite: ZeuASSx)
+- https://endless-sky.github.io
+- The game's Steam forums
+- Discord (invite: ZeuASSx)
 
-Programming
+Creator and Lead Programmer
   Michael Zahniser
+
+Developers
+  Amazinite
+  Pointedstick
+  tehhowch
+
+Major Programming
+  AdamKauffman
+  Amazinite
+  comnom
+  CyberShadow
+  db47h
+  Elyssaen
+  EndrosG
+  flaviojs
+  guillochon
+  Hadron1776
+  kozbot
+  MarcelineVQ
+  NomadicVolcano
+  oo13
+  petervdmeer
+  tehhowch
+
+Storyline & Faction Authors
+  Amazinite
+  Arachi-Lover
+  beccabunny
+  LocalGod79
+  Petervdmeer
+  Pointedstick
+  TheUnfetteredOne
+  Zitchas
+
+Editors & Proofreaders
+  Arrow2thekn33
+  Bladewood
+  Fzzr
+  jafdy
+  Janaszar
+  LocalGod79
+  MCOfficer
+  Moonbeam
+  RecursiveParadox
+  Tadrix
+  temtemy
+  Zearth Goh aka TheMarksman
+
+Artwork
+  Michael Zahniser (CC-BY-SA 4.0)
+  Maximilian Korber (CC-BY-SA 4.0)
+  Iaz Poolar (CC-BY-SA 4.0)
+  Matthew Smestad (CC-BY-SA 4.0)
+  Jonathan Steck (CC-BY-SA 4.0)
+  Nate Graham (CC-BY-SA 4.0)
+  Evan Fluharty (CC-BY-SA 4.0)
+  Nick Barry (CC-BY-SA 3.0)
+  ESO / L. Calcada (CC-BY-4.0)
+  Becca Tommaso (CC-BY-SA 4.0)
+  Frederick Goy IV (CC-BY-SA 4.0)
+  Zachary Siple (CC-BY-SA 4.0)
+  Darcy Manoel (CC-BY-SA 4.0)
+  Lia Gerty (CC-BY-SA 4.0)
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
@@ -31,21 +94,6 @@ and from public domain sources
   morguefile.com
   unsplash.com
 
-Other Artwork
-  Michael Zahniser (CC-BY-SA 4.0)
-  Maximilian Korber (CC-BY-SA 4.0)
-  Iaz Poolar (CC-BY-SA 4.0)
-  Matthew Smestad (CC-BY-SA 4.0)
-  Jonathan Steck (CC-BY-SA 4.0)
-  Nate Graham (CC-BY-SA 4.0)
-  Evan Fluharty (CC-BY-SA 4.0)
-  Nick Barry (CC-BY-SA 3.0)
-  ESO / L. Calcada (CC-BY-4.0)
-  Becca Tommaso (CC-BY-SA 4.0)
-  Frederick Goy IV (CC-BY-SA 4.0)
-  Zachary Siple (CC-BY-SA 4.0)
-  Darcy Manoel (CC-BY-SA 4.0)
-
 Sounds from public domain sources
   freesound.org
 
@@ -61,3 +109,165 @@ Beta Testers
   Sean Fahey
   Mauricio Gomes
   Iaz Poolar
+
+Thank you to all the following
+people on GitHub who have
+contributed to Endless Sky:
+  7even
+  abenkovskii
+  AdamKauffman
+  akien-mga
+  AlbertNewton
+  AlexBassett
+  alextd
+  Alkallid
+  Amazinite
+  AMDmi3
+  anarcat
+  Anarchist2
+  Arachi-Lover
+  Aurelite
+  barthalion
+  beccabunny
+  BlackVegetable
+  Bladewood
+  bojidar-bg
+  Brick63
+  ChamEV
+  colbygallup
+  comnom
+  corecontingency
+  CyberShadow
+  czartrak
+  Darcman99
+  davidarcher
+  davidwhitman
+  db47h
+  DingusShingleton
+  Disiuze
+  dplepage
+  DrBlight
+  dreness
+  dufferzafar
+  dzhu
+  eflyon
+  elgeonmb
+  Elyssaen
+  endless-sky
+  EndrosG
+  fcfort
+  Ferociousfeind
+  flaviojs
+  Fzzr
+  gecko-locator
+  Gods-Righthand
+  guillochon
+  gunqqer
+  Hacklin
+  Hadron1776
+  har9862
+  Hyugat
+  ItsNickBarry
+  jafdy
+  Janaszar
+  jjhankins
+  jmhorjus
+  jostephd
+  jozef-mitro
+  Jugosloven1612
+  KevinKorzekwa
+  kilobyte
+  kkuchta
+  kozbot
+  Kryes-Omega
+  lheckemann
+  Lineth
+  LocalGod79
+  Lorantine
+  LordInsane
+  Luckz
+  luiges90
+  macfreek
+  MageKing17
+  Mailaender
+  MarcelineVQ
+  MasterOfGrey
+  mattsoulanille
+  maxrd2
+  MCOfficer
+  MessyMix
+  MillerNerd
+  mimirzero
+  mootootwo
+  naehc
+  Naminson
+  Nescio0
+  nobodywasishere
+  NomadicVolcano
+  oo13
+  OverYrPaygrade
+  PaulBlay
+  perey
+  petervdmeer
+  ph2000
+  ph2000bis
+  PhaedrusES
+  pkubaj
+  plague006
+  Pointedstick
+  pscamman
+  Rakete1111
+  ravenshining
+  realityforge
+  redschalken
+  reizbar
+  RestingImmortal
+  retrue
+  rlane
+  Rob59er
+  rugk
+  rzahniser
+  schrauger
+  sdennie
+  seanfahey
+  sfiera
+  solardawning
+  SolraBizna
+  starscollide5
+  StrawberryDelite
+  strollcata
+  Tadrix
+  tboby
+  tehhowch
+  temtemy
+  TheMarksman-ES
+  thenerdfreak
+  TheUnfetteredOne
+  thomasballinger
+  Thunderforge
+  tiennou
+  timbennett
+  TJesionowski
+  tmbutterworth
+  toilethinges
+  TurkeyMcMac
+  Turtleroku
+  Vilhelm16
+  Waffleship
+  Waladil
+  warp-core
+  waterhouse
+  whismerhill
+  willbeason
+  wjp
+  Wrzlprnft
+  YellowApple
+  ZBok
+  Zitchas
+  zwparchman
+
+Special thanks to MCOfficer for
+creating, managing, and hosting
+the nightly & continuous builds
+that make so much of this work
+possible.

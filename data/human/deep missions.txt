@@ -371,7 +371,6 @@ event "deep: warlord detected"
 
 
 mission "Deep: Mystery Cubes 1"
-	minor
 	landing
 	name `Travel to <planet>`
 	description `Travel to <destination> to learn more about the situation with the warlord Beelzebub.`
@@ -642,7 +641,7 @@ mission "Deep: Mystery Cubes 4"
 			`	"That's good news then. All we have to do is wait Beelzebub out until he decides to poke his little head back out.`
 			
 			label core
-			`	"Luckily, all six stolen Cruisers are accounted for, albeit destroyed. Deep Security forces have begun to collect the stolen sensor cubes. We can confirm that Beelzebub was watching our every move, since the cubes are being found all over the Paradise Worlds and Core. They should all be retrieved within the next week." The admiral then turns to the merchant captains. "Now that Beelzebub doesn't have the upper hand anymore, you are no longer needed. As promised, <payment> will be transfered to each of your accounts for your services."`
+			`	"Luckily, all six stolen Cruisers are accounted for, albeit destroyed. Deep Security forces have begun to collect the stolen sensor cubes. We can confirm that Beelzebub was watching our every move, since the cubes are being found all over the Paradise Worlds and Core. They should all be retrieved within the next week." The admiral then turns to the merchant captains. "Now that Beelzebub doesn't have the upper hand anymore, you are no longer needed. As promised, <payment> will be transferred to each of your accounts for your services."`
 			`	"Thank you, Admiral," one of the captains replies.`
 			`	"No, thank you. All of you. You didn't have to accept this risk but you did, and I speak for the whole Navy when I say that we are grateful for that."`
 
@@ -1110,7 +1109,7 @@ mission "Deep: Project Hawking"
 			`	No one is able to hear you over the low rumble of the shaking ground and the rustling of the forest around the complex. The building, already scarred and torn open by weapons fire, crumbles under the new stresses leaving only a pile of rubble. A minute after the tremor began, the vibrations stop, leaving the air silent; not even the rustle of the leaves or the tweet of a bird can be heard.`
 			`	Everyone is clearly startled by the experience as they slowly raise themselves from the ground. You spot Garrison helping up Pierre and Hannah. Lieutenant Paris and Laura are in a tight embrace, but quickly release each other when they notice you looking.`
 			`	A few Deep Security ships begin to land, dropping off medics and cleanup crews to take care of the destroyed building. One of the ships flies in the direction of the fire. Paris says to you, "Captain, I think you should leave. Deep Security will handle the situation here."`
-			`	You say goodbye to the scientists, who thank you for helping them, even if much of the cargo was destroyed. You board your ship and fly toward the spaceport. Upon landing, you find that <payment> have been transfered to your account from Deep Security.`
+			`	You say goodbye to the scientists, who thank you for helping them, even if much of the cargo was destroyed. You board your ship and fly toward the spaceport. Upon landing, you find that <payment> have been transferred to your account from Deep Security.`
 
 
 
@@ -1604,7 +1603,7 @@ mission "Deep: Remnant Technology"
 	
 	on offer
 		payment 250000
-		dialog `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transfered <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. Please meet us on <destination> if you wish to assist us further. Your help would be appreciated, but we will make progress even if you're a bit busy at the moment."`
+		dialog `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. Please meet us on <destination> if you wish to assist us further. Your help would be appreciated, but we will make progress even if you're a bit busy at the moment."`
 	on decline
 		set "Deep: Remnant Research: done"
 	on fail
@@ -1823,7 +1822,6 @@ mission "Deep: Remnant Surveillance - Aventine"
 
 
 mission "Deep: Scientist Rescue Timer"
-	minor
 	landing
 	invisible
 	to offer

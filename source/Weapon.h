@@ -71,6 +71,7 @@ public:
 	
 	double Velocity() const;
 	double RandomVelocity() const;
+	double WeightedVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
 	const Point &HardpointOffset() const;
@@ -204,6 +205,9 @@ private:
 	
 	double piercing = 0.;
 	
+	double rangeOverride = 0.;
+	double velocityOverride = 0.;
+	
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
@@ -226,6 +230,7 @@ inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
+inline double Weapon::WeightedVelocity() const { return (velocityOverride > 0.) ? velocityOverride : velocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
