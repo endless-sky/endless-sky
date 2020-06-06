@@ -1203,7 +1203,7 @@ phrase "friendly civilian"
 	word
 		"if I'm low on cash, I"
 		"I like to"
-		"my prefered profit method is to"
+		"my preferred profit method is to"
 		"I think the best way to make money is if you"
 		"it's quick to make money if you"
 	word
