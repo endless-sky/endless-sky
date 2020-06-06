@@ -63,7 +63,7 @@ mission "Pookie, Part 1"
 			"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the <system> system."
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
+		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 
 
 
@@ -101,7 +101,7 @@ mission "Pookie, Part 2"
 			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
+		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
@@ -3383,7 +3383,7 @@ mission "Capture Smuggler"
 				die
 	npc board
 		conversation
-			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangly muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
+			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangely muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
 			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
 				launch
 		government "Merchant"
