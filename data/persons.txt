@@ -82,11 +82,11 @@ person "Michael Zahniser"
 ship "Finch" "Finch (MZ)"
 		"never disabled"
 		add attributes
-			"weapon capacity" 22
-			"engine capacity" 22
-			"outfit space" 140
 			"shields" 900
 			"hull" 1800
+			"outfit space" 140
+			"weapon capacity" 22
+			"engine capacity" 22
 		outfits
 			"Electron Beam" 2
 			
@@ -102,8 +102,6 @@ ship "Finch" "Finch (MZ)"
 			"A125 Atomic Steering"
 			"A120 Atomic Thruster"
 			"Ionic Afterburner"
-		gun -7 -14 "Electron Beam"
-		gun 7 -14 "Electron Beam"
 
 
 
