@@ -2486,7 +2486,7 @@ mission "Remnant: Cognizance 8"
 				`	"What do you mean?"`
 				`	"Let's get on with it."`
 					goto skipinfo
-			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for them to get cloaks to the point where they are feasible on large ships." We had plenty of gascrafts back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no-one will look, right?." With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
+			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for them to get cloaks to the point where they are feasible on large ships." We had plenty of puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no-one will look, right?." With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
 			label skipinfo
 			`	"The station should be pressurized with a normal atmosphere, but it has been running on standby for ages with just yearly maintenance. It is time to get this place up and running again." With two of you running the equipment, everything is unloaded in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. It looks like he is planning on living rough for a while.`
 			`	As he heads off deeper into the station, you receive a notification that 'Remnant Logistics' has made a deposit of <payment> to your account.`
@@ -2553,12 +2553,12 @@ mission "Remnant: Cognizance 11"
 			cargo 8 equipment
 			variant
 				Pelican
-				Gascraft 4
+				Puffin 4
 	to offer
 		has "Remnant: Cognizance 10: done"
 	on offer
 		conversation
-			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with a cargo of equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the gascrafts will collect, compress, and store the gas, which you can offload to specially prepared tanks on the pelican. Then proceed to Esquiline and offload what you have collected to the station.`
+			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with a cargo of equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the pelican. Then proceed to Esquiline and offload what you have collected to the station.`
 				accept
 	on stopover
 		dialog
@@ -2566,7 +2566,7 @@ mission "Remnant: Cognizance 11"
 	on complete
 		event "remnant: postverta reveal"
 		conversation
-			`You arrive at the hidden station on Esquiline, where Gavriil is waiting to offload the atmospherice gasses. His team quickly hooks up the gascraft up to ports on the bay walls and the equipment starts ejecting its contents into the system. After a few minutes, they disconnect the ships, and you and the gascrafts head up to the pelican to refill your reservoirs and ferry it down to the station.`
+			`You arrive at the hidden station on Esquiline, where Gavriil is waiting to offload the atmospherice gasses. His team quickly hooks up the puffin up to ports on the bay walls and the equipment starts ejecting its contents into the system. After a few minutes, they disconnect the ships, and you and the puffins head up to the pelican to refill your reservoirs and ferry it down to the station.`
 			`	As the last load starts to empty into the station another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
 
 
