@@ -817,9 +817,7 @@ phrase "friendly civilian"
 		"scientists"
 		"tourists"
 	word
-		" are willing to pay for"
-	word
-		" "
+		" are willing to pay for "
 	word
 		"antique swords"
 		"bawdy magazines"
