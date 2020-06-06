@@ -812,6 +812,18 @@ event "remnant: void sprite research"
 
 
 
+mission "Remnant: Gascraft-Puffin Compatibility"
+	landing
+	invisible
+	to offer
+		has "event: remnant: gascraft"
+	on offer
+		event "remnant: puffin"
+		clear "event: remnant: gascraft"
+		fail
+
+
+
 mission "Remnant: Technology Available"
 	landing
 	invisible
