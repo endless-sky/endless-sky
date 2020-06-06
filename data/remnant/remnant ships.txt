@@ -518,7 +518,7 @@ ship "Pelican"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
-	description "The Pelican is closely based on the original semi-organic materials the Remnant found in the Ember Waste. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. One key feature of this living resemblence is the innate sensory capabilities they posses, akin to sensor suites less advanced ships require for detailed scanning. These ships serve as the backbone of Remnant bulk salvage efforts, as well as their fast-logistics distribution network."
+	description "The Pelican is closely based on the original semi-organic materials the Remnant found in the Ember Waste. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. One key feature of this living resemblance is the innate sensory capabilities they possess, akin to sensor suites less advanced ships require for detailed scanning. These ships serve as the backbone of Remnant bulk salvage efforts, as well as their fast-logistics distribution network."
 
 
 
@@ -560,6 +560,9 @@ ship "Penguin"
 		"reverse thrust" 16
 		"reverse thrusting energy" 2.5
 		"reverse thrusting heat" 2.0
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
 		weapon
 			"blast radius" 20
 			"shield damage" 260
@@ -576,6 +579,32 @@ ship "Penguin"
 		"Hyperdrive"
 	
 	engine 0 30
+	"reverse engine" -11 -17
+		zoom 0.25
+		angle 350
+	"reverse engine" 11 -17
+		zoom 0.25
+		angle 10
+	"steering engine" -11 -17
+		"zoom" 0.15
+		"angle" 90
+		under
+		right
+	"steering engine" 11 -17
+		"zoom" 0.15
+		"angle" 270
+		under
+		left
+	"steering engine" -11 17
+		"zoom" 0.15
+		"angle" 90
+		under
+		left
+	"steering engine" 11 17
+		"zoom" 0.15
+		"angle" 270
+		under
+		right
 	gun 0 -33
 	turret 0 5.5
 	leak "remnant leak sparkle" 30 2
