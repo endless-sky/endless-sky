@@ -143,7 +143,7 @@ outfit "Finisher Storage Tube"
 	"energy capacity" 120
 	"finisher capacity" 20
 	ammo "Finisher Torpedo"
-	description "In order to allow Heliarch ships to install more Finisher storage tubes, Heliarch engineers have implemented a tiny battery pack into each module. This allows for Heliarch ships to have a respectable energy capacity while also carrying a fearsome number of Finishers."
+	description "In order to allow Heliarch ships to install more Finisher storage tubes, Heliarch engineers have incorporated a tiny battery pack into each module. This allows for Heliarch ships to have a respectable energy capacity while also carrying a fearsome number of Finishers."
 
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
