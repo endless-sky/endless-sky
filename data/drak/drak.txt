@@ -42,12 +42,12 @@ outfit "Drak Draining Field"
 	"weapon capacity" -84
 	"turret mounts" -1
 	weapon
-		"turret turn" 180 # instant turret tracking
+		"turret turn" 180
 		"velocity" 1
 		"lifetime" 1
 		"range override" 1100
-		"blast radius" 1100 # blast radius so that all nearby ships are impacted
-		"trigger radius" 1250 # trigger radius equal to the range for instant trigger
+		"blast radius" 1100
+		"trigger radius" 1100
 		"reload" 1
 		"firing energy" 20
 		"firing heat" 5
@@ -56,7 +56,7 @@ outfit "Drak Draining Field"
 		"shield damage" 50
 		"ion damage" .5
 		"disruption damage" 1
-		"safe" # makes sure the Archon isn't hurting itself or sprites
+		"safe"
 	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
 
 outfit "Drak Anti-Missile Field"
