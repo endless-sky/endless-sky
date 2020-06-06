@@ -224,5 +224,3 @@ mission "Navy Carrier License Compatibility"
 	on offer
 		set "license: Navy Carrier"
 		fail
-
-
