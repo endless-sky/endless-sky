@@ -1835,7 +1835,7 @@ phrase "friendly syndicate"
 		"!"
 		", the guarantee of quality!"
 		", the gold standard for reliability!"
-		", the epitomy of affordability!"
+		", the epitome of affordability!"
 	
 
 phrase "friendly syndicate"
