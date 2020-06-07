@@ -1,3 +1,38 @@
+Version 0.9.13:
+	* Bug fixes:
+		* Typo fixes. (@Anarchist2, @michel-slm, @pega3, @Rakete1111, @Zitchas)
+		* Missions with illegal cargo that fail when scanned can no longer be scanned twice before landing. (@Amazinite)
+		* The outfitter will no longer allow purchasing licensed outfits under certain circumstances where the player didn't have a license. (@Rakete1111)
+		* Planets without a spaceport but with a jobs board will no longer skip generating jobs. (@Amazinite)
+		* The Subsidurial person ship can now appear in uninhabited systems. (@Zitchas)
+	* Game content:
+		* New content:
+			* The Penguin now uses the new engine flare mechanics. (@Zitchas)
+			* Created a storage outfit for the Finisher Torpedo. (@Arachi-Lover)
+		* Missions:
+			* FW Hope Recon 1C now refers to the proper number of crew on a Gunboat. (@Beccabunny)
+			* Rewrote some of the conversation for Wanderers: Defend Vara Ke'sok Hint. (@Anarchist2)
+		* Balance:
+			* Buffed the Heliarch reactors and Coalition engines. (@Arachi-Lover)
+			* Buffed the Drak Draining Field and Antimatter Cannon. (@Zitchas)
+			* Gave the Kestrel two fighter bays. (@Zitchas)
+			* Increase the heat dissipation on the Kestrel (More Shields) to strength it against heat damage. (@finite-galaxy)
+		* Other:
+			* Renamed the Gascraft to the Puffin so that all Remnant ships are named after birds. (@Zitchas)
+	* Game mechanics:
+		* Certain attributes are now capable of being made negative in the outfitter. (@Amazinite)
+		* Fines for illegal mission cargo are now added together instead of only the worst being applied. (@Amazinite)
+		* New weapon attributes to override the range and velocity values used by the AI to determine where the aim and when to fire. (@Amazinite)
+		* New multiplier attributes for various shield and hull related attributes. (@Amazinite)
+		* New "protection" attributes that reduce the effect of incoming damage types. (@Amazinite)
+		* Added a resistance attribute for piercing that subtracts from the piercing of incoming projectiles. (@Amazinite)
+		* Escorts of a person ship can now have names that do not match the person ship. (@tehhowch)
+		* New engine flares for reverse and steering engines. (@Amazinite)
+		* Engine flares can now be angled. (@Amazinite)
+		* Effects can now have a random lifetime. (@Amazinite)
+	* User interface:
+	* Under the hood:
+
 Version 0.9.12:
   * Bug fixes:
     * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @MCOfficer, Mr. Doom, @Naminson, @NomadicVolcano, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
