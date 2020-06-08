@@ -3478,7 +3478,7 @@ mission "Inheritance Redirection"
 		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
 		log "People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to receive a rich inheritance from the deceased warlord Limping Pappa, but was then proven to be a scam.`
 	on decline
-		log "People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to receive a rich inheritance from the deceased warlord Limping Pappa. You presume he was a scammer and had no part in it.`
+		log "People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa. You presume he was a scammer and had no part in it.`
 
 
 
