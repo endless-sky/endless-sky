@@ -1081,7 +1081,7 @@ mission "Hai Honeymoon"
 	on complete
 		payment 100000
 		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
-		log "People" "Anaya and Touhar" `An Hai-human interspecies couple that you transported to their secluded honeymoon on Featherweight in human space.`
+		log "People" "Anaya and Touhar" `A Hai-human interspecies couple that you transported to their secluded honeymoon on Featherweight in human space.`
 
 
 
