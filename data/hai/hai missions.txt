@@ -775,10 +775,12 @@ mission "Expanding Business [4]"
 	
 	on complete
 		event "outfitter on greenwater" 95
+		log "People" "David Turner" `An entrepreneur with a sharp mind, he was instrumental in the creation of a human outfitter in Hai space, allowing merchants to arm themselves for the dangerous trip back to human space.`
 		conversation
 			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
 			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end.`
 			`	"The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day." Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
+
 
 event "outfitter on greenwater"
 	planet "Greenwater"
@@ -1028,6 +1030,7 @@ mission "Hiding in Plain Sight"
 	on complete
 		payment 75000
 		dialog `Arthur and Kiru pay you <payment> before running off to the convention center. As they run away, you notice that Kiru is drawing a number of eyes from the crowd, but no one seems to suspect that he is an actual alien.`
+		log "People" "Arthur and Kiru" `Human and Hai respectively, both attended the Vinci cosplay convention without a costume, gaining much attention.`
 
 
 
@@ -1078,6 +1081,7 @@ mission "Hai Honeymoon"
 	on complete
 		payment 100000
 		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
+		log "People" "Anaya and Touhar" `An Hai-human interspecies couple that you transported to their secluded honeymoon on Featherweight in human space.`
 
 
 

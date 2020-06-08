@@ -25856,7 +25856,7 @@ planet Dune
 planet "Dusk Companion"
 	attributes kimek oil
 	landscape land/mountain9
-	description `Dusk Companion's moon is so large and orbits so close to the planet that the tidal forces even affect the planet's plate tectonics. The skies here are frequently blanketed in a volcanic haze. This world is rich in oil deposits, a relic of a past when more life flourished here, but drilling for oil is costly because the shifting ground can damage drills or seal up previously productive bore-holes.`
+	description `Dusk Companion's moon is so large and orbits so close to the planet that the tidal forces even affect the planet's plate tectonics. The skies here are frequently blanketed in a volcanic haze. This world is rich in oil deposits, a relic of a past when more life flourished here, but drilling for oil is costly because the shifting ground can damage drills or seal up previously productive bore-holes. For this reason the oil is exported off-world for processing into plastics, instead of having the manufacturing performed locally.`
 	spaceport `The spaceport is in a particularly dingy corner of Dusk Companion's largest city. The windows are caked with soot and grime, and the few plants that grow here have a thin layer of volcanic ash on their leaves. The thick clouds overhead cloak the city in a perpetual twilight, and the streetlights remain lit even at midday.`
 	"required reputation" 15
 
@@ -27655,7 +27655,7 @@ planet "Sandy Two"
 	landscape land/badlands1
 	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
-	outfitter "Coalition Basics"
+	outfitter "Coalition Advanced"
 
 planet "Sapira Mereti"
 	attributes korath

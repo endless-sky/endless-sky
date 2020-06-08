@@ -631,6 +631,7 @@ mission "Deep: Mystery Cubes 4"
 		event "assisted the deep" 7
 		payment 1000000
 		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but he has escaped. The Navy is still searching, but is no longer asking for help from merchants.`
+		log "People" "Beelzebub" `Beelzebub, as many call them, is one of the most notorious pirates in Human space. They're responsible for committing countless acts of crimes against both Humanity and the Republic government and are still at large somewhere in the galaxy despite a major setback.`
 		conversation
 			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up to tend to the wounded and multiple ships are being repaired. You are directed to an unscathed building in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and your fellow merchant captains have convened. After you enter the room and get settled down, the admiral begins to speak.`
 			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
@@ -2286,6 +2287,7 @@ mission "Deep: Scientist Rescue 3A"
 		set "license: City-Ship"
 		event "battle in arneb end"
 		log `Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen and was given a city-ship license by Paris.`
+		log "People" "Beelzebub" `A pirate Bactrian you were responsible for destroying may have been captained by the mysterious Beelzebub whom you have thwarted once before. The Bactrian was destroyed, but you received a message afterwwards suggesting he may still not be gone for good, if it was even truly him...`
 		conversation
 			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
