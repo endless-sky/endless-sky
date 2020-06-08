@@ -254,7 +254,7 @@ mission "Smuggler's Den: Follow Up"
 				
 	on accept
 		log `Visited Joe and Maria on Millrace. Life is tough, but they are doing far better now than they were on a pirate ship. Jesse has grown and the couple already has another baby to look after.`
-		log "People" "Joe and Maria" `Two teenagers who were under the employs of pirates, the couple wanted an escape from their lives and with your aid have informed you that they are now living on Millrace in relative peace.`
+		log "People" "Joe and Maria" `Two teenagers who were under the employs of pirates, the couple wanted your aid with an escape from their lives and after a time have informed you that they are now living in relative peace where you left them on Millrace.`
 		fail
 
 
@@ -3091,7 +3091,7 @@ mission "Paradise Fortune 4"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
-		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the paradise planets and you decided to pocket the substantial fortune she left behind to avioid being hunted down.`
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the paradise planets and you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
 	on complete
 		payment 1000000
 		conversation
