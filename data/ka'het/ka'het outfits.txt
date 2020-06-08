@@ -203,7 +203,7 @@ outfit "Ka'het MHD Generator"
 	"outfit space" -22
 	"energy generation" 3.8
 	"heat generation" 5.8
-	description "The Builders originally created this magnetohydrodynamic generator as the Ka'mar main power source. Similarly to what happened with many Mar devices, it was later reused in the Het ships as a secondary energy generator, supplying their integrated power systems when these proved to be unsatisfactory."
+	description "The Builders originally created this magnetohydrodynamic generator as the Ka'mar main power source. Similarly to what happened with many Mar devices, it was later reused in the Het ships as a secondary energy generator, supplementing their integrated power systems when they proved to be unsatisfactory."
 
 outfit "Ka'het Reserve Accumulator"
 	category "Power"
