@@ -133,7 +133,7 @@ ship "Telis'het"
 		"fuel capacity" 800
 		"ramscoop" 0.82
 		"cargo space" 71
-		"outfit space" 513
+		"outfit space" 528
 		"weapon capacity" 254
 		"energy capacity" 28000
 		"energy generation" 37.4
@@ -207,7 +207,6 @@ ship "Telis'het" "Telis'het (EMP)"
 		"Ka'het Support Cooling"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 3
-		"Outfits Expansion"
 
 		Hyperdrive
 
@@ -224,7 +223,6 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 		"Ka'het Support Cooling"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 3
-		"Outfits Expansion"
 
 		Hyperdrive
 
@@ -237,7 +235,6 @@ ship "Telis'het" "Telis'het (Guns)"
 		"Ka'het Shield Restorer" 10
 		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
-		"Outfits Expansion"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 6
 
@@ -252,7 +249,6 @@ ship "Telis'het" "Telis'het (Guns, Disable-able)"
 		"Ka'het Shield Restorer" 10
 		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
-		"Outfits Expansion"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 6
 
