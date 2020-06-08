@@ -78,7 +78,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		
 	engine -10 57
 	engine 10 57
-	description "With a third engine mount, this Arrow seems more like an oversized missile than a ship. The beefed-up engines, a little extra outfit capacity, extra shield emitters, and thicker hull plating make this vessel a very competent interceptor."
+	description "With expanded engine mounts, this Arrow seems more like an oversized missile than a ship. The beefed-up engines, a little extra outfit capacity, extra shield emitters, and thicker hull plating make this vessel a very competent interceptor."
 
 
 ship "Marauder Arrow" "Marauder Arrow (Weapons)"
@@ -871,7 +871,7 @@ ship "Marauder Raven"
 	explode "tiny explosion" 28
 	explode "small explosion" 40
 	"final explode" "final explosion small"
-	description "Whoever modified this Raven has given more heft to an agile and elegant vessel. They've added a turret and some apparently-flimsy bulkheads over extra shield emitters and outfit space. If it weren't for the wings, the central hull would barely be recognizeable as Lionheart's original under the patchwork that you expect has made an already deadly warship even more so."
+	description "Whoever modified this Raven has given more heft to an agile and elegant vessel. They've added a turret and some apparently-flimsy bulkheads over extra shield emitters and outfit space. If it weren't for the wings, the central hull would barely be recognizable as Lionheart's original under the patchwork that you expect has made an already deadly warship even more so."
 
 
 ship "Marauder Raven" "Marauder Raven (Engines)"

@@ -308,6 +308,8 @@ ship "Kestrel"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
+	fighter -46 106 under
+	fighter 46 106 under
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
 	gun -53 61 "Particle Cannon"
@@ -336,6 +338,7 @@ ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
 		"shields" 3000
 		"hull" 1500
+		"heat dissipation" .06
 
 ship "Kestrel" "Kestrel (More Weapons)"
 	add attributes

@@ -107,6 +107,7 @@ public:
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
+	bool IsFailed() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered

@@ -366,7 +366,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 outfit "Quantum Key Stone"
 	category "Systems"
@@ -508,6 +508,9 @@ outfit "Crucible-Class Steering"
 	"turn" 448.0
 	"turning energy" 1.32
 	"turning heat" 1.4
+	"steering flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
 	description "This steering system is tiny enough to fit in even an interceptor, but the Remnant mostly use them to provide an extra bit of maneuverability for their larger ships."
 
 outfit "Forge-Class Steering"
@@ -522,6 +525,9 @@ outfit "Forge-Class Steering"
 	"turn" 952.0
 	"turning energy" 2.64
 	"turning heat" 3.0
+	"steering flare sprite" "effect/remnant flare/medium"
+		"frame rate" 4
+	"steering flare sound" "plasma small"
 	description "This unusually power-hungry steering system packs a lot of power into a relatively small space. It seems that engine technology has progressed more rapidly for the Remnant than it has for the rest of humanity."
 
 outfit "Smelter-Class Steering"
@@ -536,6 +542,9 @@ outfit "Smelter-Class Steering"
 	"turn" 1980.0
 	"turning energy" 5.21
 	"turning heat" 6.2
+	"steering flare sprite" "effect/remnant flare/large"
+		"frame rate" 3
+	"steering flare sound" "plasma medium"
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
 
 outfit "Tuning Rifle"

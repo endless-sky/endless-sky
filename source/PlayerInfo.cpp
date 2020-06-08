@@ -767,7 +767,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 // Inspect the flightworthiness of the player's active fleet, individually and
 // as a whole, to determine which ships cannot travel with the group.
 // Returns a mapping of ships to the reason their flight check failed.
-std::map<const shared_ptr<Ship>, const string> PlayerInfo::FlightCheck() const
+map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 {
 	// Count of all bay types in the active fleet.
 	auto bayCount = map<string, size_t>{
@@ -777,13 +777,13 @@ std::map<const shared_ptr<Ship>, const string> PlayerInfo::FlightCheck() const
 	// Classification of the present ships by category. Parked ships are ignored.
 	auto categoryCount = map<string, vector<shared_ptr<Ship>>>{};
 	
-	auto flightChecks = map<const shared_ptr<Ship>, const string>{};
+	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
 		{
-			string check = ship->FlightCheck();
-			if(!check.empty())
-				flightChecks.emplace(ship, check);
+			auto checks = ship->FlightCheck();
+			if(!checks.empty())
+				flightChecks.emplace(ship, checks);
 			
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
 			if(ship->CanBeCarried() || ship->Bays().empty())
@@ -817,7 +817,16 @@ std::map<const shared_ptr<Ship>, const string> PlayerInfo::FlightCheck() const
 			else if(bayType.second > 0)
 				--bayType.second;
 			else
-				flightChecks.emplace(carriable, "no bays?");
+			{
+				// Include the lack of bay availability amongst any other
+				// warnings for this carriable ship.
+				auto it = flightChecks.find(carriable);
+				string warning = "no bays?";
+				if(it != flightChecks.end())
+					it->second.emplace_back(warning);
+				else
+					flightChecks.emplace(carriable, vector<string>{warning});
+			}
 		}
 	}
 	return flightChecks;
@@ -2377,7 +2386,7 @@ void PlayerInfo::CreateMissions()
 	boardingMissions.clear();
 	
 	// Check for available missions.
-	bool skipJobs = planet && !planet->HasSpaceport();
+	bool skipJobs = planet && !planet->IsInhabited();
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
