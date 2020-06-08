@@ -420,13 +420,13 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you perform [charitable, heroic] acts. Is this correct?"`
+			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you are capable of [providing, gifting] help. Is this correct?"`
 			choice
 				`	"Yes it is. What do you need?"`
 					goto proposal
 				`	"Depends on how much you are willing to pay."`
 					goto jerk
-				`	"Where did you hear that from?"`
+				`	"What do you mean?"`
 			branch hai
 				"reputation: Hai" > 100
 			branch war
@@ -459,7 +459,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				`	"I'd be happy to do that."`
 				`	"Sorry, but I have more important matters to attend to."`
 					defer
-			`	When the Wanderer hears your translated response, they chatter to their friend, who nods in glee and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
+			`	When the Wanderer hears your translated response, they chatter in the Wanderer language to their friend, who nods and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
 				accept
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -487,7 +487,12 @@ mission "Wanderers: Defend Vara Ke'sok"
 			label hint
 			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air.`
 			`	Looking around, you suddenly see a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
-			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
+			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. [Understand, empathise]?"`
+			choice
+				`	"I will help drive the Unfettered away."`
+					goto yes
+				`	"Why do I need to help? I only accepted a transport mission."`
+			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failure] if you do not help. Will you aid us now?"`
 			label choice
 			choice
 				`	"Yes, I will help drive the Unfettered away."`
@@ -635,7 +640,7 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 			`	It takes several hours for the massive Wanderer freighter to be loaded. Rek explains that they have kept track of which kinds of food the Unfettered prefer to steal, so they know what will be edible for them. He says, "Our destination is called <planet>. Sayari tells me that all Hai share a [custom, taboo] concerning guests, so once we land on their planet we will be able to [speak, parley] with them in safety."`
 				accept
 	on visit
-		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -669,7 +674,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 	on accept
 		event "wanderer / unfettered peace"
 	on visit
-		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort

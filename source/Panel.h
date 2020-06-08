@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <functional>
 #include <list>
+#include <string>
 
 #include <SDL2/SDL.h>
 

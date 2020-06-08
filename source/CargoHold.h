@@ -99,8 +99,9 @@ public:
 	int64_t Value(const System *system) const;
 	
 	// If anything you are carrying is illegal, return the maximum fine you can
-	// be charged. If the returned value is negative, you are carrying something
-	// so bad that it warrants a death sentence.
+	// be charged for any illegal outfits plus the sum of the fines for all
+	// missions. If the returned value is negative, you are carrying something so
+	// bad that it warrants a death sentence.
 	int IllegalCargoFine() const;
 	
 	
