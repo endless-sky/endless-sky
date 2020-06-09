@@ -4154,7 +4154,7 @@ mission "Freedom Uprising 3"
 			choice
 				`	"Sounds like a plan. Let's do it!"`
 					accept
-				`	"I though you all were against piracy?"`
+				`	"I thought you all were against piracy?"`
 			`	"We aren't against piracy per se," says Beto. "There is nothing wrong about stealing from your oppressor. But many pirates are individualists who will rob, kill or enslave anyone for their own self gain. That we can not abide by."`
 
 			choice
