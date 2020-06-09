@@ -3999,7 +3999,7 @@ mission "Journalism 9"
 	on complete
 		payment 100000
 		conversation
-			`River is waiting at your hanger when you land. They all take turns embracing, obviously happy to see each other. Apparently the exposition has already been installed for days, opening to hit reviews and long lines. "We haven't even seen it ourselves yet. We have been waiting for you to go together," says River as they pack up the few cameras that survived the battle.`
+			`River is waiting at your hanger when you land. They all take turns embracing, obviously happy to see each other. Apparently the exposition has already been installed for days, opening to hit reviews and long lines. "We haven't even seen it ourselves yet. We have been waiting for you so we can all go together," says River as they pack up the few cameras that survived the battle.`
 			`	"Y'all are so sweet," says Bunker. "Let's go tonight after the expo is closed. <first> is coming, right?"`
 			choice
 				`	"Wouldn't miss it for the galaxy."`
