@@ -4299,7 +4299,7 @@ mission "Freedom Uprising 4"
 
 	on enter "Moktar"
 		dialog
-			`	"We should stay in this system for a bit," says Beto. "There is good solar wind and not too many pirates. But if one happens by try to disable it so we can board and take their fuel."`
+			`	"We should stay in this system for a bit," says Beto. "There is good solar wind and not too many pirates. But if you disable one we can board and take their fuel."`
 
 	on enter "Hassaleh"
 		dialog
