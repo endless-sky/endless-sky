@@ -3587,7 +3587,7 @@ mission "Hauler VI cargo prototype 3"
 
 
 	name "Take family home to <planet>"
-	description "You meet a family worried about the potential destruction of war in the Free Worlds and want to cut their vacation short and go home to <destination>."
+	description "A family worried about the potential destruction in the Free Worlds wants to cut their vacation short and go home to <destination>."
 	source
 		government "Free Worlds"
 		attributes "tourism"
@@ -3600,13 +3600,13 @@ mission "Hauler VI cargo prototype 3"
 		has "free worlds plot completed"
 	on offer
 		conversation
-			`After walking around the spaceport for awhile you head back to your ship to find and middle aged couple with their two grade school daughters waiting for you at your hanger. The man is busy trying to adjudicate a dispute between the girls but the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We were hoping you could get us back home to the paradise planets. This war caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little 'angels'," she gestures toward her daughters, now in a full blown fight. "If you can find the time to take us we will pay you very well."`
+			`After walking around the spaceport for awhile you head back to your ship to find and middle aged couple with what appear to be their two grade school daughters waiting for you at your hanger. The man is busy trying to adjudicate a dispute between the girls but the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We have been going from ship to ship looking for transport back home to the paradise planets. This war caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little 'angels'," she gestures toward her daughters, now in a full blown fight. "If you can find the time to take us we will pay you very well."`
 			choice
 				`	"Sure, I'll take you."`
 				`	"OK. But it's pretty far. It better be worth it."`
 				`	"No. I don't think so. Sorry."`
 					decline
-			`	"Then it's a deal," she shakes your hand firmly. The whole family gets onto the <ship> without another word, leaving you to load their many bags and cases.`
+			`	"Then it's a deal," she shakes your hand firmly. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
 				accept
 
 	on complete
@@ -3638,13 +3638,12 @@ mission "Journalism 1"
 
 	on offer
 		conversation
-			`As you explore the luxurious spaceport you notice a large group of people around one of the larger hangers.`
+			`As you explore the luxurious spaceport you notice a large group of people around one of the larger hangers. There are large signs that say "The Evacuation of Hope" in bold letters. It must be some sort of exposition.`
 			choice
 				`	(Check it out.)`
 				`	(Not right now.)`
 					defer
-			`	You approach some of the people at the end of the line and ask what's going on. "It's the last day of Adelita's exposition on the evacuation of Hope," says an excited young woman. "It was their first work that really got them famous. The last week of their expositions are always free. This is a great chance to see it if you haven't already."`
-			`	The line seems to be moving pretty quickly.`
+			`	You approach some of the people at the end of the line and ask what's going on. "It's the last day of Adelita's exposition on the evacuation of Hope," says an excited young woman. "It was their first work that really got them famous. The last week of their expositions are always free so this is a great chance to see it if you haven't already."`
 			choice
 				`	"Sure, why not."`
 				` 	"Maybe some other time."`
@@ -3959,7 +3958,7 @@ mission "Journalism 8"
 	passengers 2
 	on offer
 		conversation
-			`"One more thing, if I may," you ask before leaving. "I would like to meet a couple of journalists who want to get embedded with the fleet and cover the war. You call in Ale and Bunker, introducing them and vouching for their trustworthiness. They make it clear to Freya that this will not be a pro-Free Worlds propaganda piece nor will the Free Worlds have any input on how the footage is used. But they promise to be very responsible with the recordings and not release anything that will be of use to the Navy. "The Navy's scans will be much more detailed than anything we record," reiterates Ale.`
+			`"One more thing, if I may," you ask before leaving. "I would like you to meet a couple of journalists who want to get embedded with the fleet and cover the war. You call in Ale and Bunker, introducing them and vouching for their trustworthiness. They make it clear to Freya that this will not be a pro-Free Worlds propaganda piece nor will the Free Worlds have any input on how the footage is used. But they promise to be very responsible with the recordings and not release anything that will be of use to the Navy. "The Navy's scans will be much more detailed than anything we record," reiterates Ale.`
 			`	"I have heard of Adelita," says Freya. "When the Hope exposition came through the Deep a few months back Katya insisted I go with her. She was so excited to find "herself" and her family. It was really touching," she paces for a moment, collecting her thoughts. "If Tomek was here I'm sure he would reject you outright. But Tomek thinks in purely military terms and that's not the only way to win a war. It's also the reason he's under court marshal and I'm here."`
 			`	"You will be on Captain <last>'s ship and under his command," she says to them. "Understood?" They say "yes" in unison. "Now hurry straight to Rastaban, or else you will arrive late to the fight. Good luck."`
 			`	Ale and Bunker work quickly. Using semi-automated drones they attach a number of 3D cameras to your ship and the dreadnoughts as well. "The more perspectives we have the more detail and content," explains Bunker. The drones are done in short order and you go through your pre-flight checks while mentally preparing for the coming battle."`
@@ -3979,8 +3978,8 @@ mission "Journalism 9"
 	passengers 2
 	on offer
 		conversation
-			`You find Ale and Bunker in the spaceport interviewing the injured. "Kinda makes you feel alive, don't it?" says Bunker. Ale is less enthused. "Unless you're dead," she says bitterly.`
-			`	"May they rest in peace but we are alive," counters Bunker. "And that footage is beyond intense," he turns to you, "Listen. Can we stick with you awhile longer? 'Syndicate Slavery' is going to premier soon on Bourne. We usually go to the premiers, in disguises of course. We would be honored if you could take us there and attend the opening."`
+			`You find Ale and Bunker in the spaceport interviewing the injured. "Kinda makes you feel alive, don't it?" asks Bunker. Ale is less enthused. "Unless you're dead," she says bitterly.`
+			`	"May they rest in peace but we are alive," counters Bunker. "And that footage is beyond intense." He turns to you, "Listen. Can we stick with you awhile longer? 'Syndicate Slavery' is going to premier soon on Bourne. We usually go to the premiers, in disguises of course. We would be honored if you could take us there and attend the opening."`
 			choice
 				`	"The honor is mine."`
 					goto honor
