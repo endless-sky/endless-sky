@@ -4093,7 +4093,7 @@ mission "Freedom Uprising 2"
 			choice
 				`	"You attacked the pirates on their own planet?"`
 
-			`	"It's not their planet," exclaims Beto. "And were forced into action. They kidnapped and were about to sell some of our comrades as retribution for our activism. It was our first act of armed struggle. Until this point we have mostly been focused on opening a collectively owned and managed factory to provide options other than piracy or wage slavery. We had just inaugurated the first section of the factory when the slavers attacked."`
+			`	"It's not their planet," exclaims Beto. "And we were forced into action. They kidnapped and were about to sell some of our comrades as retribution for our activism. It was our first act of armed struggle. Until this point we have mostly been focused on opening a collectively owned and managed factory to provide options other than piracy or wage slavery. We had just inaugurated the first section of the factory when the slavers attacked."`
 			`	"You see, half of my home town has been controlled by pirates since before I was born. The anti-slavery assemblies of West Mesa have maintained a tenuous peace with the pro-slavery pirates occupying East Mesa, but our efforts are raising tensions faster then anticipated. Even though we managed to liberate not only our comrades but all the slaves for sale that day, we have been woefully unprepared for the pirate reaction. In the last weeks a number of our comrades have been disappeared. Many in the movement have gone underground. We need guns, ships, equipment and most of all allies if we are to stand a chance of achieving our goals."`
 			`	"That's where we come in," says Ale. "`
 
