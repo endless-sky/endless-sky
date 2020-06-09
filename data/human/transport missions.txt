@@ -4104,7 +4104,7 @@ mission "Freedom Uprising 2"
 			`	"Just hear us out," she says.`
 
 			label hearit
-			`	"While their daring raid has brought them the ire of the pirates it has also gained them support in some unlikely places. We want to amplify that by going up to Freedom to interview fighters and freed slaves for an exposition. Of course they will be more likely to participate in the project if we help them, which is something we want to do anyways. So what we need from you is to pick up some supplies from near here and take it all to Freedom, along with us. Oh, and there will almost definitely be combat involved," she says with an innocent smile. "I really shouldn't tell you more until you accept."`
+			`	"While their daring raid has brought them the ire of the pirates, it has also gained them support in some unlikely places. We want to amplify that by going up to Freedom to interview fighters and freed slaves for an exposition. Of course they will be more likely to participate in the project if we help them, which is something we want to do anyways. So what we need from you is to pick up some supplies from near here and take it all to Freedom, along with us. Oh, and there will almost definitely be combat involved," she says with an innocent smile. "I really shouldn't tell you more until you accept."`
 
 			choice
 				`	"Sounds like a worthy cause. I'm in."`
