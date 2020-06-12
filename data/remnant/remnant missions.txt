@@ -730,7 +730,7 @@ event "remnant: nenia restored"
 mission "Remnant: Void Sprites 3"
 	landing
 	name "Visit void sprite planets"
-	description `Purchase a "gascraft" ship from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
+	description `Purchase a "Puffin" from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
 	source "Aventine"
 	stopover "Viminal"
 	stopover "Nasqueron"
@@ -764,7 +764,7 @@ mission "Remnant: Void Sprites 3"
 			`	"Excellent," he says. "This ship is an antique, so be careful with the shields. They are projected around the ship and are unable to adapt to new obstacles. Hard-shell shields, I believe they were called at the time of the Exodus, as opposed to the skin shields of today that fit close to the hull." He pauses and looks thoughtful, then continues. "Just make sure nothing valuable is near the hull when the shields activate - it will either be sheared in two or break the shields. And it is important to know that the pressure suit included with the ship is able to remotely activate and deactivate the shields and other ship systems. Good luck."`
 				accept
 	on accept
-		event "remnant: gascraft"
+		event "remnant: puffin"
 	npc
 		government " Drak "
 		system "Nenia"
@@ -797,9 +797,9 @@ mission "Remnant: Void Sprites 3"
 			`	He says, "As long as you did not harm any of the void sprites, I doubt they will bear you a permanent grudge. The Archons are thinking creatures, after all; they cannot blame you for your curiosity."`
 			`	You thank him for the information and tell him that you will look forward to reading the results of his study (and, getting paid for your help) once it is complete.`
 
-event "remnant: gascraft"
+event "remnant: puffin"
 	planet "Viminal"
-		add shipyard "Remnant Gascraft"
+		add shipyard "Remnant Puffin"
 
 government " Drak "
 	"display name" "Drak"
@@ -809,6 +809,18 @@ government " Drak "
 		"Indigenous Lifeform" 1
 
 event "remnant: void sprite research"
+
+
+
+mission "Remnant: Gascraft-Puffin Compatibility"
+	landing
+	invisible
+	to offer
+		has "event: remnant: gascraft"
+	on offer
+		event "remnant: puffin"
+		clear "event: remnant: gascraft"
+		fail
 
 
 
@@ -946,12 +958,12 @@ mission "Remnant: Tech Retrieval"
 				`	"I don't know who that is."`
 			`	She looks at you with an inscrutable expression for a moment. "Trying to be inconspicuous is admirable. Being oblivious to the fact that you stand out like a star in empty space is not."`
 			label admit
-			`	"I have an opportunity for you, if you are interested in being helpful to the Remnant." When you express your interest she leads you over to a balcony overlooking the primary shipyards. As she leans on the railing a cold breeze makes you shiver, but she seems oblivious to it. "I am known as Taely. As a prefect among the Remnant, I am responsible for this." She gestures at the shipyards, where you can see a myriad of the Remnant's alien-looking ships in various stages of construction or repair. "The ships we have serve us well, but they are old designs. Only the Gull is comparatively new. We need new ideas, new inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a gascraft.`
+			`	"I have an opportunity for you, if you are interested in being helpful to the Remnant." When you express your interest she leads you over to a balcony overlooking the primary shipyards. As she leans on the railing a cold breeze makes you shiver, but she seems oblivious to it. "I am known as Taely. As a prefect among the Remnant, I am responsible for this." She gestures at the shipyards, where you can see a myriad of the Remnant's alien-looking ships in various stages of construction or repair. "The ships we have serve us well, but they are old designs. Only the Gull is comparatively new. We need new ideas, new inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a Puffin.`
 			choice
 				`	"So, what are you asking?"`
 					goto request
 				`	"What are they doing?"`
-			`	"Oh, those are apprentices," she trills with a touch of amusement. "They need to learn how to handle unusual tech. One of the first steps is to deal with old tech. Like salvaging an obsolete supercapacitor out of that gascraft so it can be reprocessed into something useful, and replacing it with newer integrated energy storage." She glances at you in amusement. "You've flown the gascraft, you know how old that ship is: primitive energy systems, antique 'hard-shell' shields that have to be manually raised and lowered..." She trails off into momentary silence. "Be glad that you got one that had already been refurbished prior to your visit to Nenia. At least it had modern engines and an updated sensor array."`
+			`	"Oh, those are apprentices," she trills with a touch of amusement. "They need to learn how to handle unusual tech. One of the first steps is to deal with old tech. Like salvaging an obsolete supercapacitor out of that Puffin so it can be reprocessed into something useful, and replacing it with newer integrated energy storage." She glances at you in amusement. "You've flown the Puffin, you know how old that ship is: primitive energy systems, antique 'hard-shell' shields that have to be manually raised and lowered..." She trails off into momentary silence. "Be glad that you got one that had already been refurbished prior to your visit to Nenia. At least it had modern engines and an updated sensor array."`
 			label request
 			`	"To the point," her tone shifts to a more martial cadence. "We want to know how humanity has advanced in the past five and a half centuries. If you found us, I am sure it is only a matter of time until the Alphas, their servants, or others intent on galactic domination discover us. We need to know what sort of weapons they will be wielding, how their ships will be protected, and how fast they can travel in deep space."`
 			choice
@@ -1251,7 +1263,7 @@ mission "Remnant: Return the Samples"
 					decline
 
 			`	"Thank you. Since we are continuing to work together, I would like to introduce myself again." He takes a breath, thinks for a second, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is that his name is "Plume."`
-			`	"Just remember: you will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
+			`	"Just remember: you will need to use a Puffin to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
 		government " Drak "
@@ -1707,7 +1719,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 		dialog `You've landed on <planet>, but you haven't yet scanned the <npc>'s. Depart and use an outfit scanner to scan the ship.`
 	on complete
 		conversation
-			`The Remnant researcher's attention to detail is impressive. They carefully quantify every aspect of the scans, including notes about the ship's behaviors. By the time you are on the ground again, they have amassed quite a collection of data crystals filled with analysis. You note that they are careful to ensure everything they collect is backed up in multiple places, including what appears to be a small lead lined box.`
+			`The Remnant researchers' attention to detail is impressive. They carefully quantify every aspect of the scans, including notes about the ship's behaviors. By the time you are on the ground again, they have amassed quite a collection of data crystals filled with analysis. You note that they are careful to ensure everything they collect is backed up in multiple places, including what appears to be a small lead lined box.`
 			`	Dawn does some follow-up scans of idle Quarg ships, and her fellow researchers take some time to make sure all their pictures are crisp and detailed. They let you know that they will meet you back in the spaceport bar once they are done.`
 
 
@@ -2116,12 +2128,12 @@ mission "Remnant: Face to Maw 2"
 				`	"That's good. Any chance of a bonus for me?"`
 			`	The machine dings, and she looks over the results and then trills excitedly. "Yes, it matches! So it is time to begin the final activation." She strides over to a central console and taps in a series of commands, followed by an iris scan and a blood prick. The industrial hum of the room suddenly ramps up to a crescendo as your nose is assaulted by what you can only describe as the smell of a thunderstorm in a swamp. A few seconds later the noise softens, and the tank starts lowering into the floor as a shape emerges from the liquid.`
 			label skip
-			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
+			`	The ship before you has some faint traces of the Puffin you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
 			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the Penguin and it makes a whooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
 
 event "remnant: penguin"
-	shipyard "Remnant Gascraft"
+	shipyard "Remnant Puffin"
 		"Penguin"
 
 
