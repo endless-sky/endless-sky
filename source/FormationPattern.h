@@ -38,10 +38,10 @@ public:
 	// Calculate a position based on the current ring, line and slot on the line.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot) const;
 	
-	// Symmetry information.
-	int SymmetryRotational() const;
-	bool SymmetryLongitudinal() const;
-	bool SymmetryTransverse() const;
+	// Information about allowed rotating and mirroring that still results in the same formation.
+	int Rotatable() const;
+	bool FlippableY() const;
+	bool FlippableX() const;
 	
 	
 protected:
@@ -74,9 +74,11 @@ protected:
 	
 private:
 	std::string name;
-	int symmetry_rotational = -1;
-	bool symmetry_longitudinal = false;
-	bool symmetry_transverse = false;
+	int rotatable = -1;
+	// Indicates if the formation is flippable along the longitudinal axis.
+	bool flippable_y = false;
+	// Indicates if the formation is flippable along the transverse axis.
+	bool flippable_x = false;
 };
 
 

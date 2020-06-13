@@ -11,7 +11,7 @@
 
 # Triangle forming behind the formation leader with each alternating line getting filled from the other direction.
 formation "Delta (tailing)"
-	symmetry longitudinal
+	flippable y
 	line -1 2 2 90
 		repeat -2 4
 			increase 2
@@ -23,8 +23,8 @@ formation "Delta (tailing)"
 
 # Regular triangle with the formation leader as center of the formation and the point of the triangle facing forward.
 formation "Delta (centered)"
-	symmetry longitudinal
-		rotational 120
+	flippable y
+	rotatable 120
 	line 2 0 3 330
 		spacing 2
 		repeat 3 1.732
@@ -42,7 +42,7 @@ formation "Delta (centered)"
 
 # Regular triangle with the formation leader near the front and the point of the triangle facing backwards.
 formation "Nabla"
-	symmetry longitudinal
+	flippable y
 	line 1 -1.732 2 270
 		spacing 2
 	line -3 -1.732 3 150
@@ -66,7 +66,7 @@ formation "Nabla"
 
 # Triangular (arrowhead) forming in front of the formation leader.
 formation "Wedge"
-	symmetry longitudinal
+	flippable y
 	line -2 0 1 45
 		spacing 2.8284
 		repeat -4 0
@@ -88,8 +88,8 @@ formation "Wedge"
 
 # Diamond (tilted square) formation around the formation leader.
 formation "Diamond"
-	symmetry longitudinal transverse
-		rotational 90
+	flippable x y
+	rotatable 90
 	line -1 1 1 135
 		spacing 1.414
 		repeat -2 0
@@ -111,8 +111,8 @@ formation "Diamond"
 
 # Hexagon around the formation leader.
 formation "Hexagon"
-	symmetry longitudinal
-		rotational 60
+	flippable y
+	rotatable 60
 	line -1 1.732 1 330
 		spacing 2
 		repeat -1 1.732
@@ -142,7 +142,7 @@ formation "Hexagon"
 
 # A (hexagonal grid based) block of ships in front of the lead ship.
 formation "Block"
-	symmetry longitudinal
+	flippable y
 	line 0 -6.928 2 180
 		spacing 3.464
 	line 1 -5.196 2 180
@@ -165,7 +165,7 @@ formation "Block"
 # is realatively easy to fly for pilots, since they just look at 1 ship in
 # front of them.
 formation "Vee"
-	symmetry longitudinal
+	flippable y
 	line -2 2 1 225
 		repeat -2 2
 	line  2 2 1 135
@@ -175,7 +175,7 @@ formation "Vee"
 
 # Formation where ships form a line right of the formation leader.
 formation "Line (right)"
-	symmetry transverse
+	flippable x
 	line 1.5 0 1 90
 		repeat 1.5 0
 
@@ -183,7 +183,7 @@ formation "Line (right)"
 
 # Formation where ships form a line left of the formation leader.
 formation "Line (left)"
-	symmetry transverse
+	flippable x
 	line -1.5 0 1 270
 		repeat -1.5 0
 
@@ -191,7 +191,7 @@ formation "Line (left)"
 
 # Formation where ships form a line behind the formation leader.
 formation "Line (back)"
-	symmetry longitudinal
+	flippable y
 	line 0 1.5 5 180
 		repeat 0 9
 
@@ -201,8 +201,8 @@ formation "Line (back)"
 # Using repeating segments of 3 so that the formation doesn't collapse and expand if a single ship leaves.
 # (The collapse and expand still happens when 3 ships leave on one side.)
 formation "Line (center)"
-	symmetry longitudinal transverse
-		rotational 180
+	flippable x y
+	rotatable 180
 	line -1.5 0 2 270
 	line 1.5 0 2 90
 	line -4.5 0 3 270
@@ -215,7 +215,7 @@ formation "Line (center)"
 # Formation where ships form a line right and left in front of the formation leader.
 # Same segmenting as for "Line (center)".
 formation "Frontline"
-	symmetry longitudinal
+	flippable y
 	line 0 -3 1 180
 	line -1.5 -3 2 270
 	line 1.5 -3 2 90
@@ -229,7 +229,7 @@ formation "Frontline"
 # Formation where ships form a line right and left behind of the formation leader.
 # Same segmenting as for "Line (center)".
 formation "Rearline"
-	symmetry longitudinal
+	flippable y
 	line 0 3 1 180
 	line -1.5 3 2 270
 	line 1.5 3 2 90
@@ -242,7 +242,7 @@ formation "Rearline"
 
 # Formation which is small at the center and expands outwards left-forward and right-forward.
 formation "Claw"
-	symmetry longitudinal
+	flippable y
 	line -1 -0.5 0 0
 		spacing 1
 		repeat -1 -0.5
@@ -256,8 +256,8 @@ formation "Claw"
 
 # Formation which is small at the center and expands outwards left and right.
 formation "Bowtie"
-	symmetry longitudinal transverse
-		rotational 180
+	flippable x y
+	rotatable 180
 	line -1 -0.5 2 180
 		spacing 1
 		repeat -1 -0.5
@@ -286,8 +286,8 @@ formation "Echelon (left)"
 
 # Formation that forms an X around the formation leader.
 formation "X"
-	symmetry longitudinal transverse
-		rotational 90
+	flippable x y
+	rotatable 90
 	line 2 -2 1 45
 		repeat 2 -2
 	line -2 -2 1 315

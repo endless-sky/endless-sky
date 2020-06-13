@@ -29,20 +29,16 @@ void FormationPattern::Load(const DataNode &node)
 		name = node.Token(1);
 	
 	for(const DataNode &child : node)
-		if(child.Token(0) == "symmetry")
-		{
-			if(child.Size()>=2)
-				for(int i=1; i<child.Size(); i++)
-				{
-					if(child.Token(i) == "transverse")
-						symmetry_transverse = true;
-					else if(child.Token(i) == "longitudinal")
-						symmetry_longitudinal = true;
-				}
-			for(const DataNode &grand : child)
-				if(grand.Size() >= 2 && grand.Token(0) == "rotational")
-					symmetry_rotational = grand.Value(1);
-		}
+		if(child.Token(0) == "flippable" && child.Size()>=2)
+			for(int i=1; i<child.Size(); i++)
+			{
+				if(child.Token(i) == "x")
+					flippable_x = true;
+				else if(child.Token(i) == "y")
+					flippable_y = true;
+			}
+		else if(child.Token(0) == "rotational" && child.Size() >= 2)
+			rotatable = child.Value(1);
 		else if(child.Size() >= 5 && child.Token(0) == "line")
 		{
 			lines.emplace_back(Point(child.Value(1), child.Value(2)), static_cast<int>(child.Value(3) + 0.5), Angle(child.Value(4)));
@@ -127,21 +123,21 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 
 
 
-int FormationPattern::SymmetryRotational() const
+int FormationPattern::Rotatable() const
 {
-	return symmetry_rotational;
+	return rotatable;
 }
 
 
 
-bool FormationPattern::SymmetryLongitudinal() const
+bool FormationPattern::FlippableY() const
 {
-	return symmetry_longitudinal;
+	return flippable_y;
 }
 
 
 
-bool FormationPattern::SymmetryTransverse() const
+bool FormationPattern::FlippableX() const
 {
-	return symmetry_transverse;
+	return flippable_x;
 }

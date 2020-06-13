@@ -58,8 +58,8 @@ void FormationPositioner::Start()
 	
 	Angle deltaDir = desiredDir - direction;
 	
-	// Change the desired direction according to rotational symmetry if that fits better.
-	double symRot = pattern->SymmetryRotational();
+	// Change the desired direction according to rotational settings if that fits better.
+	double symRot = pattern->Rotatable();
 	if(symRot > 0 && fabs(deltaDir.Degrees()) > (symRot/2))
 	{
 		if(deltaDir.Degrees() > 0)
@@ -77,13 +77,13 @@ void FormationPositioner::Start()
 	
 	// If we are beyond the triggers for flipping, then immediately go to the desired direction.
 	if(fabs(deltaDir.Degrees()) >= MIN_FLIP_TRIGGER &&
-		(pattern->SymmetryLongitudinal() || pattern->SymmetryTransverse()))
+		(pattern->FlippableY() || pattern->FlippableX()))
 	{
 		direction = desiredDir;
 		deltaDir = Angle(0.);
-		if(pattern->SymmetryLongitudinal())
+		if(pattern->FlippableY())
 			mirroredLongitudinal = !mirroredLongitudinal;
-		if(pattern->SymmetryTransverse())
+		if(pattern->FlippableX())
 			mirroredTransverse = !mirroredTransverse;
 	}
 	else
