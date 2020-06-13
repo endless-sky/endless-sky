@@ -258,8 +258,32 @@ fleet "Void Sprites"
 
 fleet "Ember Waste Node"
 	government "Ember Waste"
+	names "unknown entity"
 	cargo 0
 	personality
 		timid mining harvests mute
 	variant
 		"Ember Waste Node"
+
+
+
+phrase "unknown entity"
+	word
+		"Unknown"
+		"Strange"
+		"Novel"
+		"Unrecognized"
+		"Exotic"
+		"Unidentified"
+		"Unnamed"
+		"Nameless"
+		"Unresolved"
+	word
+		" "
+	word
+		"Entity"
+		"Creature"
+		"Being"
+		"Lifeform"
+		"Organism"
+		"Thing"
