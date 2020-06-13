@@ -37,7 +37,7 @@ void FormationPattern::Load(const DataNode &node)
 				else if(child.Token(i) == "y")
 					flippable_y = true;
 			}
-		else if(child.Token(0) == "rotational" && child.Size() >= 2)
+		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
 		else if(child.Size() >= 5 && child.Token(0) == "line")
 		{
