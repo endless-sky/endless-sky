@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FLEET_H_
 #define FLEET_H_
 
-#include "FormationPattern.h"
 #include "Personality.h"
 #include "Sale.h"
 
@@ -25,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class DataNode;
+class FormationPattern;
 class Government;
 class Outfit;
 class Phrase;

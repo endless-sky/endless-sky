@@ -27,7 +27,6 @@ class Angle;
 class AsteroidField;
 class Body;
 class Flotsam;
-class Formation;
 class Government;
 class Minable;
 class PlayerInfo;

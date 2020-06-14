@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FormationPositioner.h"
 
 #include "Angle.h"
+#include "Body.h"
+#include "FormationPattern.h"
 #include "Point.h"
 #include "Ship.h"
 

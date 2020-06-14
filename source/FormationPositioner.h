@@ -13,11 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FORMATION_POSITIONER_H_
 #define FORMATION_POSITIONER_H_
 
-#include "Body.h"
-#include "FormationPattern.h"
+#include "Angle.h"
 
 #include <map>
 
+class Body;
+class FormationPattern;
 class Ship;
 
 

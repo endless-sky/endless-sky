@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
-#include "FormationPattern.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -34,6 +33,7 @@ class DataNode;
 class DataWriter;
 class Effect;
 class Flotsam;
+class FormationPattern;
 class Government;
 class Minable;
 class Phrase;
