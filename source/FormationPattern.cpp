@@ -49,7 +49,7 @@ void FormationPattern::Load(const DataNode &node)
 			// This backwards compatiblity section should be removed before merging of the formation PR to master.
 			if(child.Size() >= 5)
 			{
-				line.anchor = Point(child.Value(1), child.Value(2));
+				line.anchor.Add(MultiAxisPoint::DIAMETERS, Point(child.Value(1), child.Value(2)));
 				line.initialSlots = static_cast<int>(child.Value(3) + 0.5);
 				line.direction = Angle(child.Value(4));
 			}
@@ -59,7 +59,7 @@ void FormationPattern::Load(const DataNode &node)
 				if(grand.Size() >= 2 && grand.Token(0) == "spacing")
 					line.spacing = grand.Value(1);
 				else if(grand.Token(0) == "start" && grand.Size() >= 3)
-					line.anchor = Point(grand.Value(grand.Size() - 2), grand.Value(grand.Size() - 1));
+					line.anchor.AddLoad(grand);
 				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
 					line.initialSlots = static_cast<int>(grand.Value(1) + 0.5);
 				else if(grand.Token(0) == "repeat")
@@ -67,13 +67,13 @@ void FormationPattern::Load(const DataNode &node)
 					// Another backwards compatiblity if-section that is to be removed before merging the formation PR to master.
 					if(grand.Size() >= 3)
 					{
-						line.repeatVector = Point(grand.Value(1), grand.Value(2));
+						line.repeatVector.Add(MultiAxisPoint::DIAMETERS, Point(grand.Value(1), grand.Value(2)));
 					}
 					
 					line.slotsIncrease = 0;
 					for(const DataNode &grandGrand : grand)
 						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
-							line.repeatVector = Point(grandGrand.Value(grandGrand.Size() - 2), grandGrand.Value(grandGrand.Size() - 1));
+							line.repeatVector.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
 							line.slotsIncrease = static_cast<int>(grandGrand.Value(1) + 0.5);
 				}
@@ -138,8 +138,8 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	
 	// Calculate position based on the initial anchor, the ring on which we are, the
 	// line-position on the current line and the rotation of the current line.
-	return line.anchor * diameterToPx +
-		line.repeatVector * ring * diameterToPx +
+	return line.anchor.GetPx(diameterToPx, widthToPx, heightToPx) +
+		line.repeatVector.GetPx(diameterToPx, widthToPx, heightToPx) * ring +
 		line.direction.Rotate(Point(0, -line.spacing * diameterToPx * lineSlot));
 }
 
@@ -162,4 +162,70 @@ bool FormationPattern::FlippableY() const
 bool FormationPattern::FlippableX() const
 {
 	return flippable_x;
+}
+
+
+void FormationPattern::MultiAxisPoint::Add(Axis axis, const Point& toAdd)
+{
+	position[axis] += toAdd;
+}
+
+
+
+void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
+{
+	// We need at least the slot-name keyword and 2 coordinate numbers.
+	if(node.Size() < 3)
+		return;
+
+	// Track if we are parsing a polar coordinate.
+	bool parsePolar = false;
+
+	// By default we parse for pixels.
+	Axis axis = PIXELS;
+	double scalingFactor = 1.;
+
+	// Parse all the keywords before the coordinate
+	for(int i=1; i < node.Size() - 2; i++)
+	{
+		if(node.Token(i) == "polar")
+			parsePolar = true;
+		else if(node.Token(i) == "px")
+			axis = PIXELS;
+		else if(node.Token(i) == "diameter")
+			axis = DIAMETERS;
+		else if(node.Token(i) == "radius")
+		{
+			scalingFactor = 2.;
+			axis = DIAMETERS;
+		}
+		else if(node.Token(i) == "width")
+			axis = WIDTHS;
+		else if(node.Token(i) == "height")
+			axis = HEIGHTS;
+	}
+
+	// The last 2 numbers are always the coordinate.
+	if(parsePolar)
+	{
+		Angle dir = Angle(node.Value(node.Size() - 2));
+		double len = node.Value(node.Size() - 1) * scalingFactor;
+		Add(axis, dir.Unit() * len);
+	}
+	else
+	{
+		double x = node.Value(node.Size() - 2);
+		double y = node.Value(node.Size() - 1);
+		Add(axis, Point(x, y) * scalingFactor);
+	}
+}
+
+
+
+Point FormationPattern::MultiAxisPoint::GetPx(double diameterToPx, double widthToPx, double heightToPx)
+{
+	return position[PIXELS] +
+		position[DIAMETERS] * diameterToPx +
+		position[WIDTHS] * widthToPx +
+		position[HEIGHTS] * heightToPx;
 }

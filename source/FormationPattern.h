@@ -45,12 +45,29 @@ public:
 	
 	
 protected:
+	class MultiAxisPoint {
+	public:
+		// Coordinate axises for formations; Pixels (default) and heights, widths and diameters of the biggest ship in a formation.
+		enum Axis { PIXELS, DIAMETERS, WIDTHS, HEIGHTS };
+		// Position based on the 4 possible axises.
+		Point position[4];
+		
+		// Add a point to one of the internal tracked points.
+		void Add(Axis axis, const Point& toAdd);
+		
+		// Parse position from node and add the values to this slot-pos.
+		void AddLoad(const DataNode &node);
+		
+		// Get a point in pixel coordinates based on the conversion factors given.
+		Point GetPx(double diameterToPx, double widthToPx, double heightToPx);
+	};
+
 	class Line {
 	public:
 		// The initial anchor point for this line.
-		Point anchor;
+		MultiAxisPoint anchor;
 		// Vector to apply to get to the next anchor point for the next iteration.
-		Point repeatVector;
+		MultiAxisPoint repeatVector;
 		
 		// The number of initial positions for this line and the amount of additional
 		// positions each iteration. slotsIncrease -1 is for lines that don't repeat.
