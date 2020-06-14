@@ -174,24 +174,38 @@ formation "Hexagon"
 # A (hexagonal grid based) block of ships in front of the lead ship.
 formation "Block"
 	flippable y
-	line 0 -6.928 2 180
-		spacing 3.464
-	line 1 -5.196 2 180
-		spacing 3.464
+	line
+		start diameter 0 -6.928
+		end diameter 0 -3.464
+		slots 2
+	line
+		start diameter 1 -5.196
+		end diameter 1 -1.732
+		slots 2
 		repeat
 			start diameter 2 0
-	line -1 -5.196 2 180
-		spacing 3.464
+			end diameter 2 0
+	line
+		start diameter -1 -5.196
+		end diameter -1 -1.732
+		slots 2
 		repeat
 			start diameter -2 0
-	line -2 -6.928 2 180
-		spacing 3.464
+			end diameter -2 0
+	line
+		start diameter -2 -6.928
+		end diameter -2 -3.464
+		slots 2
 		repeat
 			start diameter -2 0
-	line 2 -6.928 2 180
-		spacing 3.464
+			end diameter -2 0
+	line
+		start diameter 2 -6.928
+		end diameter 2 -3.464
+		slots 2
 		repeat
 			start diameter 2 0
+			end diameter 2 0
 
 
 
