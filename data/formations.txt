@@ -339,7 +339,6 @@ formation "Wing"
 		start diameter -1 0.5
 		end diameter -1 1.5
 		slots 2
-		spacing 1
 		repeat
 			start diameter -1 0.5
 			end diameter -1 0.5
@@ -347,7 +346,6 @@ formation "Wing"
 		start diameter 1 0.5
 		end diameter 1 1.5
 		slots 2
-		spacing 1
 		repeat
 			start diameter 1 0.5
 			end diameter 1 0.5
