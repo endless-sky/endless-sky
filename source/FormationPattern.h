@@ -64,15 +64,15 @@ protected:
 
 	class Line {
 	public:
-		// The initial anchor point for this line.
-		MultiAxisPoint anchor;
-		// Vector to apply to get to the next anchor point for the next iteration.
-		MultiAxisPoint repeatVector;
+		// The starting point for this line.
+		MultiAxisPoint start;
+		// Vector to apply to get to the next start point for the next iteration.
+		MultiAxisPoint repeatStart;
 		
 		// The number of initial positions for this line and the amount of additional
 		// positions each iteration. slotsIncrease -1 is for lines that don't repeat.
-		int initialSlots;
-		int slotsIncrease = -1;
+		int slots;
+		int repeatSlots = -1;
 
 		// The direction angle in which this line extends and space between any
 		// 2 ship slots on the line. (Defaults to 2.)

@@ -49,8 +49,8 @@ void FormationPattern::Load(const DataNode &node)
 			// This backwards compatiblity section should be removed before merging of the formation PR to master.
 			if(child.Size() >= 5)
 			{
-				line.anchor.Add(MultiAxisPoint::DIAMETERS, Point(child.Value(1), child.Value(2)));
-				line.initialSlots = static_cast<int>(child.Value(3) + 0.5);
+				line.start.Add(MultiAxisPoint::DIAMETERS, Point(child.Value(1), child.Value(2)));
+				line.slots = static_cast<int>(child.Value(3) + 0.5);
 				line.direction = Angle(child.Value(4));
 			}
 			
@@ -59,23 +59,23 @@ void FormationPattern::Load(const DataNode &node)
 				if(grand.Size() >= 2 && grand.Token(0) == "spacing")
 					line.spacing = grand.Value(1);
 				else if(grand.Token(0) == "start" && grand.Size() >= 3)
-					line.anchor.AddLoad(grand);
+					line.start.AddLoad(grand);
 				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
-					line.initialSlots = static_cast<int>(grand.Value(1) + 0.5);
+					line.slots = static_cast<int>(grand.Value(1) + 0.5);
 				else if(grand.Token(0) == "repeat")
 				{
 					// Another backwards compatiblity if-section that is to be removed before merging the formation PR to master.
 					if(grand.Size() >= 3)
 					{
-						line.repeatVector.Add(MultiAxisPoint::DIAMETERS, Point(grand.Value(1), grand.Value(2)));
+						line.repeatStart.Add(MultiAxisPoint::DIAMETERS, Point(grand.Value(1), grand.Value(2)));
 					}
 					
-					line.slotsIncrease = 0;
+					line.repeatSlots = 0;
 					for(const DataNode &grandGrand : grand)
 						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
-							line.repeatVector.AddLoad(grandGrand);
+							line.repeatStart.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
-							line.slotsIncrease = static_cast<int>(grandGrand.Value(1) + 0.5);
+							line.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
 				}
 			}
 		}
@@ -95,7 +95,7 @@ int FormationPattern::NextLine(unsigned int ring, unsigned int lineNr) const
 	while(linesScanned <= lines.size())
 	{
 		lineNr = (lineNr + 1) % lines.size();
-		if((lines[lineNr]).slotsIncrease >= 0)
+		if((lines[lineNr]).repeatSlots >= 0)
 			return lineNr;
 		
 		// Safety mechanism to avoid endless loops if the formation has a limited size.
@@ -117,13 +117,13 @@ int FormationPattern::LineSlots(unsigned int ring, unsigned int lineNr) const
 	
 	// For the first ring, only the initial positions are relevant.
 	if(ring == 0)
-		return line.initialSlots;
+		return line.slots;
 	
 	// If we are in a later ring, then skip lines that don't repeat.
-	if(line.slotsIncrease < 0)
+	if(line.repeatSlots < 0)
 		return 0;
 	
-	return line.initialSlots + line.slotsIncrease * ring;
+	return line.slots + line.repeatSlots * ring;
 }
 
 
@@ -136,10 +136,10 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	
 	Line line = lines[lineNr];
 	
-	// Calculate position based on the initial anchor, the ring on which we are, the
+	// Calculate position based on the initial start-coordinate, the ring on which we are, the
 	// line-position on the current line and the rotation of the current line.
-	return line.anchor.GetPx(diameterToPx, widthToPx, heightToPx) +
-		line.repeatVector.GetPx(diameterToPx, widthToPx, heightToPx) * ring +
+	return line.start.GetPx(diameterToPx, widthToPx, heightToPx) +
+		line.repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring +
 		line.direction.Rotate(Point(0, -line.spacing * diameterToPx * lineSlot));
 }
 
