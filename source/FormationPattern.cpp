@@ -39,20 +39,42 @@ void FormationPattern::Load(const DataNode &node)
 			}
 		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
-		else if(child.Size() >= 5 && child.Token(0) == "line")
+		else if(child.Token(0) == "line")
 		{
-			lines.emplace_back(Point(child.Value(1), child.Value(2)), static_cast<int>(child.Value(3) + 0.5), Angle(child.Value(4)));
+			lines.emplace_back();
 			Line &line = lines[lines.size()-1];
+			
+			// This if-section contains some temporary backwards compatiblity code for the "old" format.
+			// Keeping this until the definitions are rewritten to the new format as described in the RFC.
+			// This backwards compatiblity section should be removed before merging of the formation PR to master.
+			if(child.Size() >= 5)
+			{
+				line.anchor = Point(child.Value(1), child.Value(2));
+				line.initialSlots = static_cast<int>(child.Value(3) + 0.5);
+				line.direction = Angle(child.Value(4));
+			}
+			
 			for(const DataNode &grand : child)
 			{
 				if(grand.Size() >= 2 && grand.Token(0) == "spacing")
 					line.spacing = grand.Value(1);
-				else if(grand.Size() >= 3 && grand.Token(0) == "repeat")
+				else if(grand.Token(0) == "start" && grand.Size() >= 3)
+					line.anchor = Point(grand.Value(1), grand.Value(2));
+				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
+					line.initialSlots = static_cast<int>(grand.Value(1) + 0.5);
+				else if(grand.Token(0) == "repeat")
 				{
-					line.repeatVector = Point(grand.Value(1), grand.Value(2));
+					// Another backwards compatiblity if-section that is to be removed before merging the formation PR to master.
+					if(grand.Size() >= 3)
+					{
+						line.repeatVector = Point(grand.Value(1), grand.Value(2));
+					}
+					
 					line.slotsIncrease = 0;
 					for(const DataNode &grandGrand : grand)
-						if(grandGrand.Size() >= 2 && grandGrand.Token(0) == "increase")
+						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
+							line.repeatVector = Point(grandGrand.Value(1), grandGrand.Value(2));
+						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
 							line.slotsIncrease = static_cast<int>(grandGrand.Value(1) + 0.5);
 				}
 			}

@@ -47,9 +47,6 @@ public:
 protected:
 	class Line {
 	public:
-		Line(Point anchor, int slots, Angle direction) : anchor(anchor), initialSlots(slots), direction(direction) {}
-		
-	public:
 		// The initial anchor point for this line.
 		Point anchor;
 		// Vector to apply to get to the next anchor point for the next iteration.
