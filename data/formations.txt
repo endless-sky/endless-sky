@@ -138,35 +138,94 @@ formation "Diamond"
 formation "Hexagon"
 	flippable y
 	rotatable 60
-	line -1 1.732 1 330
-		spacing 2
+	line
+		start polar diameter 330 1
+		start polar 330 40
+		end polar diameter 30 1
+		end polar 30 40
+		skip first
+		centered
+		slots 2
 		repeat
-			start diameter -1 1.732
+			start polar diameter 330 1
+			start polar 330 40
+			end polar diameter 30 1
+			end polar 30 40
 			slots 1
-	line -2 0 1 30
-		spacing 2
+
+	line
+		start polar diameter 30 1
+		start polar 30 40
+		end polar diameter 90 1
+		end polar 90 40
+		skip first
+		centered
+		slots 2
 		repeat
-			start diameter -2 0
+			start polar diameter 30 1
+			start polar 30 40
+			end polar diameter 90 1
+			end polar 90 40
 			slots 1
-	line -1 -1.732 1 90
-		spacing 2
+
+	line
+		start polar diameter 90 1
+		start polar 90 40
+		end polar diameter 150 1
+		end polar 150 40
+		skip first
+		centered
+		slots 2
 		repeat
-			start diameter -1 -1.732
+			start polar diameter 90 1
+			start polar 90 40
+			end polar diameter 150 1
+			end polar 150 40
 			slots 1
-	line 1 -1.732 1 150
-		spacing 2
+
+	line
+		start polar diameter 150 1
+		start polar 150 40
+		end polar diameter 210 1
+		end polar 210 40
+		skip first
+		centered		
+		slots 2
 		repeat
-			start diameter 1 -1.732
+			start polar diameter 150 1
+			start polar 150 40
+			end polar diameter 210 1
+			end polar 210 40
 			slots 1
-	line 2 0 1 210
-		spacing 2
+
+	line
+		start polar diameter 210 1
+		start polar 210 40
+		end polar diameter 270 1
+		end polar 270 40
+		skip first
+		centered
+		slots 2
 		repeat
-			start diameter 2 0
+			start polar diameter 210 1
+			start polar 210 40
+			end polar diameter 270 1
+			end polar 270 40
 			slots 1
-	line 1 1.732 1 270
-		spacing 2
+
+	line
+		start polar diameter 270 1
+		start polar 270 40
+		end polar diameter 330 1
+		end polar 330 40
+		skip first
+		centered
+		slots 2
 		repeat
-			start diameter 1 1.732
+			start polar diameter 270 1
+			start polar 270 40
+			end polar diameter 330 1
+			end polar 330 40
 			slots 1
 
 
