@@ -59,7 +59,7 @@ void FormationPattern::Load(const DataNode &node)
 				if(grand.Size() >= 2 && grand.Token(0) == "spacing")
 					line.spacing = grand.Value(1);
 				else if(grand.Token(0) == "start" && grand.Size() >= 3)
-					line.anchor = Point(grand.Value(1), grand.Value(2));
+					line.anchor = Point(grand.Value(grand.Size() - 2), grand.Value(grand.Size() - 1));
 				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
 					line.initialSlots = static_cast<int>(grand.Value(1) + 0.5);
 				else if(grand.Token(0) == "repeat")
@@ -73,7 +73,7 @@ void FormationPattern::Load(const DataNode &node)
 					line.slotsIncrease = 0;
 					for(const DataNode &grandGrand : grand)
 						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
-							line.repeatVector = Point(grandGrand.Value(1), grandGrand.Value(2));
+							line.repeatVector = Point(grandGrand.Value(grandGrand.Size() - 2), grandGrand.Value(grandGrand.Size() - 1));
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
 							line.slotsIncrease = static_cast<int>(grandGrand.Value(1) + 0.5);
 				}

@@ -13,10 +13,12 @@
 formation "Delta (tailing)"
 	flippable y
 	line -1 2 2 90
-		repeat -2 4
+		repeat
+			start diameter -2 4
 			slots 2
 	line 2 4 3 270
-		repeat 2 4
+		repeat
+			start diameter 2 4
 			slots 2
 
 
@@ -27,15 +29,18 @@ formation "Delta (centered)"
 	rotatable 120
 	line 2 0 3 330
 		spacing 2
-		repeat 3 1.732
+		repeat
+			start diameter 3 1.732
 			slots 3
 	line -1 -1.732 3 210
 		spacing 2
-		repeat 0 -3.464
+		repeat
+			start diameter 0 -3.464
 			slots 3
 	line -1 1.732 3 90
 		spacing 2
-		repeat -3 1.732
+		repeat
+			start diameter -3 1.732
 			slots 3
 
 
@@ -47,19 +52,23 @@ formation "Nabla"
 		spacing 2
 	line -3 -1.732 3 150
 		spacing 2
-		repeat -4 0
+		repeat
+			start diameter -4 0
 			slots 4
 	line 0 3.464 4 30
 		spacing 2
-		repeat 0 6.928
+		repeat
+			start diameter 0 6.928
 			slots 4
 	line 5 -1.732 5 210
 		spacing 2
-		repeat 4 0
+		repeat
+			start diameter 4 0
 			slots 4
 	line 0 6.928 6 330
 		spacing 2
-		repeat 0 6.928
+		repeat
+			start diameter 0 6.928
 			slots 4
 
 
@@ -69,19 +78,23 @@ formation "Wedge"
 	flippable y
 	line -2 0 1 45
 		spacing 2.8284
-		repeat -4 0
+		repeat
+			start diameter -4 0
 			slots 2
 	line 0 -2 2 135
 		spacing 2.8284
-		repeat 0 -4
+		repeat
+			start diameter 0 -4
 			slots 2
 	line 4 0 2 315
 		spacing 2.8284
-		repeat 4 0
+		repeat
+			start diameter 4 0
 			slots 2
 	line 0 -4 3 225
 		spacing 2.8284
-		repeat 0 -4
+		repeat
+			start diameter 0 -4
 			slots 2
 
 
@@ -92,19 +105,23 @@ formation "Diamond"
 	rotatable 90
 	line -1 1 1 135
 		spacing 1.414
-		repeat -2 0
+		repeat
+			start diameter -2 0
 			slots 2
 	line 0 2 3 45
 		spacing 1.414
-		repeat 0 2
+		repeat
+			start diameter 0 2
 			slots 2
 	line 1 -1 1 315
 		spacing 1.414
-		repeat 2 0
+		repeat
+			start diameter 2 0
 			slots 2
 	line 0 -2 3 225
 		spacing 1.414
-		repeat 0 -2
+		repeat
+			start diameter 0 -2
 			slots 2
 
 
@@ -115,27 +132,33 @@ formation "Hexagon"
 	rotatable 60
 	line -1 1.732 1 330
 		spacing 2
-		repeat -1 1.732
+		repeat
+			start diameter -1 1.732
 			slots 1
 	line -2 0 1 30
 		spacing 2
-		repeat -2 0
+		repeat
+			start diameter -2 0
 			slots 1
 	line -1 -1.732 1 90
 		spacing 2
-		repeat -1 -1.732
+		repeat
+			start diameter -1 -1.732
 			slots 1
 	line 1 -1.732 1 150
 		spacing 2
-		repeat 1 -1.732
+		repeat
+			start diameter 1 -1.732
 			slots 1
 	line 2 0 1 210
 		spacing 2
-		repeat 2 0
+		repeat
+			start diameter 2 0
 			slots 1
 	line 1 1.732 1 270
 		spacing 2
-		repeat 1 1.732
+		repeat
+			start diameter 1 1.732
 			slots 1
 
 
@@ -147,16 +170,20 @@ formation "Block"
 		spacing 3.464
 	line 1 -5.196 2 180
 		spacing 3.464
-		repeat 2 0
+		repeat
+			start diameter 2 0
 	line -1 -5.196 2 180
 		spacing 3.464
-		repeat -2 0
+		repeat
+			start diameter -2 0
 	line -2 -6.928 2 180
 		spacing 3.464
-		repeat -2 0
+		repeat
+			start diameter -2 0
 	line 2 -6.928 2 180
 		spacing 3.464
-		repeat 2 0
+		repeat
+			start diameter 2 0
 
 
 
@@ -167,9 +194,11 @@ formation "Block"
 formation "Vee"
 	flippable y
 	line -2 2 1 225
-		repeat -2 2
+		repeat
+			start diameter -2 2
 	line  2 2 1 135
-		repeat  2 2
+		repeat
+			start diameter 2 2
 
 
 
@@ -177,7 +206,8 @@ formation "Vee"
 formation "Line (right)"
 	flippable x
 	line 1.5 0 1 90
-		repeat 1.5 0
+		repeat
+			start diameter 1.5 0
 
 
 
@@ -185,7 +215,8 @@ formation "Line (right)"
 formation "Line (left)"
 	flippable x
 	line -1.5 0 1 270
-		repeat -1.5 0
+		repeat
+			start diameter -1.5 0
 
 
 
@@ -193,7 +224,8 @@ formation "Line (left)"
 formation "Line (back)"
 	flippable y
 	line 0 1.5 5 180
-		repeat 0 9
+		repeat
+			start diameter 0 9
 
 
 
@@ -206,9 +238,11 @@ formation "Line (center)"
 	line -1.5 0 2 270
 	line 1.5 0 2 90
 	line -4.5 0 3 270
-		repeat -6 0
+		repeat
+			start diameter -6 0
 	line 4.5 0 3 90
-		repeat 6 0
+		repeat
+			start diameter 6 0
 
 
 
@@ -220,9 +254,11 @@ formation "Frontline"
 	line -1.5 -3 2 270
 	line 1.5 -3 2 90
 	line -4.5 -3 3 270
-		repeat -6 0
+		repeat
+			start diameter -6 0
 	line 4.5 -3 3 90
-		repeat 6 0
+		repeat
+			start diameter 6 0
 
 
 
@@ -234,9 +270,11 @@ formation "Rearline"
 	line -1.5 3 2 270
 	line 1.5 3 2 90
 	line -4.5 3 3 270
-		repeat -6 0
+		repeat
+			start diameter -6 0
 	line 4.5 3 3 90
-		repeat 6 0
+		repeat
+			start diameter 6 0
 
 
 
@@ -245,11 +283,13 @@ formation "Claw"
 	flippable y
 	line -1 -0.5 0 0
 		spacing 1
-		repeat -1 -0.5
+		repeat
+			start diameter -1 -0.5
 			slots 1
 	line 1 -0.5 0 0
 		spacing 1
-		repeat 1 -0.5
+		repeat
+			start diameter 1 -0.5
 			slots 1
 
 
@@ -260,11 +300,13 @@ formation "Bowtie"
 	rotatable 180
 	line -1 -0.5 2 180
 		spacing 1
-		repeat -1 -0.5
+		repeat
+			start diameter -1 -0.5
 			slots 1
 	line 1 -0.5 2 180
 		spacing 1
-		repeat 1 -0.5
+		repeat
+			start diameter 1 -0.5
 			slots 1
 
 
@@ -274,24 +316,28 @@ formation "Wing"
 	flippable y
 	line -1 -0.5 2 180
 		spacing 1
-		repeat -1 -0.5
+		repeat
+			start diameter -1 -0.5
 	line 1 -0.5 2 180
 		spacing 1
-		repeat 1 -0.5
+		repeat
+			start diameter 1 -0.5
 
 
 
 # Formation where ships fly in a diagonal line right behind the formation leader.
 formation "Echelon (right)"
 	line 2 2 1 135
-		repeat 2 2
+		repeat
+			start diameter 2 2
 
 
 
 # Formation where ships fly in a diagonal line left behind the formation leader.
 formation "Echelon (left)"
 	line -2 2 1 225
-		repeat -2 2
+		repeat
+			start diameter -2 2
 
 
 
@@ -300,10 +346,14 @@ formation "X"
 	flippable x y
 	rotatable 90
 	line 2 -2 1 45
-		repeat 2 -2
+		repeat
+			start diameter 2 -2
 	line -2 -2 1 315
-		repeat -2 -2
+		repeat
+			start diameter -2 -2
 	line -2 2 1 225
-		repeat -2 2
+		repeat
+			start diameter -2 2
 	line 2 2 1 135
-		repeat 2 2
+		repeat
+			start diameter 2 2
