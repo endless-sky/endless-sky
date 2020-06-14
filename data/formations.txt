@@ -314,14 +314,14 @@ formation "Bowtie"
 # Formation which looks like the wings of an airplane.
 formation "Wing"
 	flippable y
-	line -1 -0.5 2 180
+	line -1 0.5 2 180
 		spacing 1
 		repeat
-			start diameter -1 -0.5
-	line 1 -0.5 2 180
+			start diameter -1 0.5
+	line 1 0.5 2 180
 		spacing 1
 		repeat
-			start diameter 1 -0.5
+			start diameter 1 0.5
 
 
 
