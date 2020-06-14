@@ -89,9 +89,9 @@ void FormationPositioner::Start()
 		direction = desiredDir;
 		deltaDir = Angle(0.);
 		if(pattern->FlippableY())
-			mirroredLongitudinal = !mirroredLongitudinal;
+			flippedY = !flippedY;
 		if(pattern->FlippableX())
-			mirroredTransverse = !mirroredTransverse;
+			flippedX = !flippedX;
 	}
 	else
 	{
@@ -149,9 +149,9 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 	
 	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot, rPos.maxDiameter, rPos.maxWidth, rPos.maxHeight);
 	
-	if(mirroredLongitudinal)
+	if(flippedY)
 		relPos.Set(-relPos.X(), relPos.Y());
-	if(mirroredTransverse)
+	if(flippedX)
 		relPos.Set(relPos.X(), -relPos.Y());
 	
 	// Set values for next ring.

@@ -69,10 +69,9 @@ private:
 	// The formation facing direction.
 	Angle direction;
 	
-	// Symmetry correction settings.
-	// The amount of rotation applied to the current positioner.
-	bool mirroredTransverse = false;
-	bool mirroredLongitudinal = false;
+	// Settings for flipping/mirroring of the pattern.
+	bool flippedX = false;
+	bool flippedY = false;
 };
 
 
