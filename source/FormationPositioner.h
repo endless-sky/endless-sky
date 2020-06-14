@@ -43,8 +43,12 @@ private:
 	class RingPositioner{
 		public:
 			// The scaling factors being used for this ring.
-			double activeScalingFactor = 1.;
-			double nextScalingFactor = 1.;
+			double maxDiameter = 1.;
+			double maxWidth = 1.;
+			double maxHeight = 1.;
+			double nextMaxDiameter = 1.;
+			double nextMaxWidth = 1.;
+			double nextMaxHeight = 1.;
 
 			// Values used during ship position calculation iterations.
 			int ring = 0;

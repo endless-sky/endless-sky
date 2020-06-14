@@ -129,7 +129,7 @@ int FormationPattern::LineSlots(unsigned int ring, unsigned int lineNr) const
 
 
 // Get a formation position based on ring, line-number and position on the line.
-Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot) const
+Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const
 {
 	if(lineNr >= lines.size())
 		return Point();
@@ -138,9 +138,9 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	
 	// Calculate position based on the initial anchor, the ring on which we are, the
 	// line-position on the current line and the rotation of the current line.
-	return line.anchor +
-		line.repeatVector * ring +
-		line.direction.Rotate(Point(0, -line.spacing * lineSlot));
+	return line.anchor * diameterToPx +
+		line.repeatVector * ring * diameterToPx +
+		line.direction.Rotate(Point(0, -line.spacing * diameterToPx * lineSlot));
 }
 
 

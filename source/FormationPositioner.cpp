@@ -42,8 +42,12 @@ void FormationPositioner::Start()
 		it.second.lineSlots = -1;
 		
 		// Set scaling based on results from previous run.
-		it.second.activeScalingFactor = it.second.nextScalingFactor;
-		it.second.nextScalingFactor = 1.;
+		it.second.maxDiameter = it.second.nextMaxDiameter;
+		it.second.maxHeight = it.second.nextMaxHeight;
+		it.second.maxWidth = it.second.nextMaxWidth;
+		it.second.nextMaxDiameter = 1.;
+		it.second.nextMaxHeight = 1.;
+		it.second.nextMaxWidth = 1.;
 	}
 	
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
@@ -112,8 +116,9 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 	RingPositioner &rPos = ringPos[ship->GetFormationRing()];
 	
 	// Set scaling for next round based on the sizes of the participating ships.
-	// TODO: should use radius here, not diameter (according to spec)
-	rPos.nextScalingFactor = max(rPos.nextScalingFactor, ship->Radius() * 2.);
+	rPos.nextMaxDiameter = max(rPos.nextMaxDiameter, ship->Radius() * 2.);
+	rPos.nextMaxHeight = max(rPos.nextMaxHeight, ship->Height());
+	rPos.nextMaxWidth = max(rPos.nextMaxWidth, ship->Width());
 	
 	// If there are no active lines, then just return center point.
 	if(rPos.activeLine < 0)
@@ -142,7 +147,7 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 		rPos.lineSlots = pattern->LineSlots(rPos.ring, rPos.activeLine);
 	}
 	
-	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot) * rPos.activeScalingFactor;
+	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot, rPos.maxDiameter, rPos.maxWidth, rPos.maxHeight);
 	
 	if(mirroredLongitudinal)
 		relPos.Set(-relPos.X(), relPos.Y());

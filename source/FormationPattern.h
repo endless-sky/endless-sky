@@ -36,7 +36,7 @@ public:
 	int LineSlots(unsigned int ring, unsigned int lineNr) const;
 	
 	// Calculate a position based on the current ring, line and slot on the line.
-	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot) const;
+	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const;
 	
 	// Information about allowed rotating and mirroring that still results in the same formation.
 	int Rotatable() const;
