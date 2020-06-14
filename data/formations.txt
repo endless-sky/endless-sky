@@ -111,25 +111,53 @@ formation "Wedge"
 formation "Diamond"
 	flippable x y
 	rotatable 90
-	line -1 1 1 135
-		spacing 1.414
+	line
+		start polar diameter 45 1
+		start polar 45 40
+		end polar diameter 45 1
+		end polar 45 40
+		slots 1
 		repeat
-			start diameter -2 0
+			start polar diameter 0 1.414
+			start polar 0 56.569
+			end polar diameter 90 1.414
+			end polar 90 56.569
 			slots 2
-	line 0 2 3 45
-		spacing 1.414
+	line
+		start polar diameter 90 1.414
+		start polar 90 56.569
+		end polar diameter 180 1.414
+		end polar 180 56.569
+		slots 3
 		repeat
-			start diameter 0 2
+			start polar diameter 90 1.414
+			start polar 90 56.569
+			end polar diameter 180 1.414
+			end polar 180 56.569
 			slots 2
-	line 1 -1 1 315
-		spacing 1.414
+	line
+		start polar diameter 225 1
+		start polar 225 40
+		end polar diameter 225 1
+		end polar 225 40
+		slots 1
 		repeat
-			start diameter 2 0
+			start polar diameter 180 1.414
+			start polar 180 56.569
+			end polar diameter 270 1.414
+			end polar 270 56.569
 			slots 2
-	line 0 -2 3 225
-		spacing 1.414
+	line
+		start polar diameter 270 1.414
+		start polar 270 56.569
+		end polar diameter 0 1.414
+		end polar 0 56.569
+		slots 3
 		repeat
-			start diameter 0 -2
+			start polar diameter 270 1.414
+			start polar 270 56.569
+			end polar diameter 0 1.414
+			end polar 0 56.569
 			slots 2
 
 
