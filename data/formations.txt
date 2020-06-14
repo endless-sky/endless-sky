@@ -12,13 +12,21 @@
 # Triangle forming behind the formation leader with each alternating line getting filled from the other direction.
 formation "Delta (tailing)"
 	flippable y
-	line -1 2 2 90
+	line
+		start diameter -1 2
+		end diameter 1 2
+		slots 2
 		repeat
 			start diameter -2 4
+			end diameter 2 4
 			slots 2
-	line 2 4 3 270
+	line
+		start diameter 2 4
+		end diameter -2 4
+		slots 3
 		repeat
 			start diameter 2 4
+			end diameter -2 4
 			slots 2
 
 
@@ -193,10 +201,12 @@ formation "Block"
 # front of them.
 formation "Vee"
 	flippable y
-	line -2 2 1 225
+	line
+		start diameter -2 2
 		repeat
 			start diameter -2 2
-	line  2 2 1 135
+	line
+		start diameter 2 2
 		repeat
 			start diameter 2 2
 
@@ -205,7 +215,8 @@ formation "Vee"
 # Formation where ships form a line right of the formation leader.
 formation "Line (right)"
 	flippable x
-	line 1.5 0 1 90
+	line
+		start diameter 1.5 0
 		repeat
 			start diameter 1.5 0
 
@@ -214,7 +225,8 @@ formation "Line (right)"
 # Formation where ships form a line left of the formation leader.
 formation "Line (left)"
 	flippable x
-	line -1.5 0 1 270
+	line
+		start diameter -1.5 0
 		repeat
 			start diameter -1.5 0
 
@@ -223,9 +235,10 @@ formation "Line (left)"
 # Formation where ships form a line behind the formation leader.
 formation "Line (back)"
 	flippable y
-	line 0 1.5 5 180
+	line
+		start diameter 0 1.5
 		repeat
-			start diameter 0 9
+			start diameter 0 1.5
 
 
 
@@ -235,61 +248,63 @@ formation "Line (back)"
 formation "Line (center)"
 	flippable x y
 	rotatable 180
-	line -1.5 0 2 270
-	line 1.5 0 2 90
-	line -4.5 0 3 270
+	line
+		start diameter -1 0
 		repeat
-			start diameter -6 0
-	line 4.5 0 3 90
+			start diameter -1 0
+	line
+		start diameter 1 0
 		repeat
-			start diameter 6 0
+			start diameter 1 0
 
 
 
 # Formation where ships form a line right and left in front of the formation leader.
-# Same segmenting as for "Line (center)".
 formation "Frontline"
 	flippable y
-	line 0 -3 1 180
-	line -1.5 -3 2 270
-	line 1.5 -3 2 90
-	line -4.5 -3 3 270
+	line
+		start diameter 0 -3
 		repeat
-			start diameter -6 0
-	line 4.5 -3 3 90
+			start diameter -1 0
+	line
+		start diameter 1 -3
 		repeat
-			start diameter 6 0
+			start diameter 1 0
 
 
 
-# Formation where ships form a line right and left behind of the formation leader.
-# Same segmenting as for "Line (center)".
+# Formation where ships form a line right and left behind the formation leader.
 formation "Rearline"
 	flippable y
-	line 0 3 1 180
-	line -1.5 3 2 270
-	line 1.5 3 2 90
-	line -4.5 3 3 270
+	line
+		start diameter 0 3
 		repeat
-			start diameter -6 0
-	line 4.5 3 3 90
+			start diameter -1 0
+	line
+		start diameter 1 3
 		repeat
-			start diameter 6 0
+			start diameter 1 0
 
 
 
 # Formation which is small at the center and expands outwards left-forward and right-forward.
 formation "Claw"
 	flippable y
-	line -1 -0.5 0 0
-		spacing 1
+	line
+		start diameter -1 -0.5
+		end diameter -1 -1.5
+		slots 2
 		repeat
 			start diameter -1 -0.5
+			end diameter -1 -1.5
 			slots 1
-	line 1 -0.5 0 0
-		spacing 1
+	line
+		start diameter 1 -0.5
+		end diameter 1 -1.5
+		slots 2
 		repeat
 			start diameter 1 -0.5
+			end diameter 1 -1.5
 			slots 1
 
 
@@ -298,15 +313,21 @@ formation "Claw"
 formation "Bowtie"
 	flippable x y
 	rotatable 180
-	line -1 -0.5 2 180
-		spacing 1
+	line
+		start diameter -1 -0.5
+		end diameter -1 0.5
+		slots 2
 		repeat
 			start diameter -1 -0.5
+			end diameter -1 0.5
 			slots 1
-	line 1 -0.5 2 180
-		spacing 1
+	line
+		start diameter 1 -0.5
+		end diameter 1 0.5
+		slots 2
 		repeat
 			start diameter 1 -0.5
+			end diameter 1 0.5
 			slots 1
 
 
@@ -314,20 +335,29 @@ formation "Bowtie"
 # Formation which looks like the wings of an airplane.
 formation "Wing"
 	flippable y
-	line -1 0.5 2 180
+	line
+		start diameter -1 0.5
+		end diameter -1 1.5
+		slots 2
 		spacing 1
 		repeat
 			start diameter -1 0.5
-	line 1 0.5 2 180
+			end diameter -1 0.5
+	line
+		start diameter 1 0.5
+		end diameter 1 1.5
+		slots 2
 		spacing 1
 		repeat
 			start diameter 1 0.5
+			end diameter 1 0.5
 
 
 
 # Formation where ships fly in a diagonal line right behind the formation leader.
 formation "Echelon (right)"
-	line 2 2 1 135
+	line
+		start diameter 2 2
 		repeat
 			start diameter 2 2
 
@@ -335,7 +365,8 @@ formation "Echelon (right)"
 
 # Formation where ships fly in a diagonal line left behind the formation leader.
 formation "Echelon (left)"
-	line -2 2 1 225
+	line
+		start diameter -2 2
 		repeat
 			start diameter -2 2
 
@@ -345,15 +376,19 @@ formation "Echelon (left)"
 formation "X"
 	flippable x y
 	rotatable 90
-	line 2 -2 1 45
+	line
+		start diameter 2 -2
 		repeat
 			start diameter 2 -2
-	line -2 -2 1 315
+	line
+		start diameter -2 -2
 		repeat
 			start diameter -2 -2
-	line -2 2 1 225
+	line
+		start diameter -2 2
 		repeat
 			start diameter -2 2
-	line 2 2 1 135
+	line
+		start diameter 2 2
 		repeat
 			start diameter 2 2

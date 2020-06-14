@@ -51,15 +51,14 @@ void FormationPattern::Load(const DataNode &node)
 			{
 				line.start.Add(MultiAxisPoint::DIAMETERS, Point(child.Value(1), child.Value(2)));
 				line.slots = static_cast<int>(child.Value(3) + 0.5);
-				line.direction = Angle(child.Value(4));
 			}
 			
 			for(const DataNode &grand : child)
 			{
-				if(grand.Size() >= 2 && grand.Token(0) == "spacing")
-					line.spacing = grand.Value(1);
-				else if(grand.Token(0) == "start" && grand.Size() >= 3)
+				if(grand.Token(0) == "start" && grand.Size() >= 3)
 					line.start.AddLoad(grand);
+				else if(grand.Token(0) == "end" && grand.Size() >= 3)
+					line.end.AddLoad(grand);
 				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
 					line.slots = static_cast<int>(grand.Value(1) + 0.5);
 				else if(grand.Token(0) == "repeat")
@@ -74,6 +73,8 @@ void FormationPattern::Load(const DataNode &node)
 					for(const DataNode &grandGrand : grand)
 						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
 							line.repeatStart.AddLoad(grandGrand);
+						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3)
+							line.repeatEnd.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
 							line.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
 				}
@@ -136,11 +137,22 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	
 	Line line = lines[lineNr];
 	
-	// Calculate position based on the initial start-coordinate, the ring on which we are, the
-	// line-position on the current line and the rotation of the current line.
-	return line.start.GetPx(diameterToPx, widthToPx, heightToPx) +
-		line.repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring +
-		line.direction.Rotate(Point(0, -line.spacing * diameterToPx * lineSlot));
+	// Calculate the start and end positions in pixels (based on the current ring).
+	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx) +
+		line.repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+	Point endPx = line.end.GetPx(diameterToPx, widthToPx, heightToPx) +
+		line.repeatEnd.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+		
+	// Calculate the step from each slot between start and end.
+	Point slotPx = endPx - startPx;
+
+	// Divide by slots, but don't count the first (since it is at position 0, not at position 1).
+	int slots = line.slots + line.repeatSlots * ring - 1;
+	if(slots > 0)
+		slotPx = slotPx / static_cast<double>(slots);
+		
+	// Calculate position of the current slot.
+	return startPx + slotPx * lineSlot;
 }
 
 
