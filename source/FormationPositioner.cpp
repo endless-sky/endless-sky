@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Point.h"
+#include "Ship.h"
 
 #include <cmath>
 
@@ -103,13 +104,14 @@ void FormationPositioner::Start()
 
 
 
-Point FormationPositioner::NextPosition(int minimumRing, double scalingFactor)
+Point FormationPositioner::NextPosition(const Ship * ship)
 {
 	// Retrieve the correct ring-positioner.
-	RingPositioner &rPos = ringPos[minimumRing];
+	RingPositioner &rPos = ringPos[ship->GetFormationRing()];
 	
 	// Set scaling for next round based on the sizes of the participating ships.
-	rPos.nextScalingFactor = max(rPos.nextScalingFactor, scalingFactor);
+	// TODO: should use radius here, not diameter (according to spec)
+	rPos.nextScalingFactor = max(rPos.nextScalingFactor, ship->Radius() * 2.);
 	
 	// If there are no active lines, then just return center point.
 	if(rPos.activeLine < 0)

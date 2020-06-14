@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 
+class Ship;
+
 
 
 // Represents an active formation for a set of spaceships. Assigns each ship
@@ -33,7 +35,7 @@ public:
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
-	Point NextPosition(int minimumRing, double scalingFactor);
+	Point NextPosition(const Ship* ship);
 
 
 private:
