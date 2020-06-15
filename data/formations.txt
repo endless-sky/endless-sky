@@ -35,20 +35,61 @@ formation "Delta (tailing)"
 formation "Delta (centered)"
 	flippable y
 	rotatable 120
-	line 2 0 3 330
-		spacing 2
+	line
+		start polar diameter 30 1
+		start polar 30 40
+		# Combine two end coordinates into one (walking the "triangular grid" one step "right" one step "right-down").
+		# This is simpler than performing the Pythagoras type calculations for the final coordinate and lenghts.
+		end polar diameter 90 1
+		end polar diameter 150 1
+		end polar 90 40
+		end polar 150 40
+		slots 3
 		repeat
-			start diameter 3 1.732
+			start polar diameter 30 1
+			start polar diameter 330 1
+			start polar 30 40
+			start polar 330 40
+			end polar diameter 90 1
+			end polar diameter 150 1
+			end polar 90 40
+			end polar 150 40
 			slots 3
-	line -1 -1.732 3 210
-		spacing 2
+	line
+		start polar diameter 150 1
+		start polar 150 40
+		end polar diameter 210 1
+		end polar diameter 270 1
+		end polar 210 40
+		end polar 270 40
+		slots 3
 		repeat
-			start diameter 0 -3.464
+			start polar diameter 90 1
+			start polar diameter 150 1
+			start polar 90 40
+			start polar 150 40
+			end polar diameter 210 1
+			end polar diameter 270 1
+			end polar 210 40
+			end polar 270 40
 			slots 3
-	line -1 1.732 3 90
-		spacing 2
+	line
+		start polar diameter 270 1
+		start polar 270 40
+		end polar diameter 30 1
+		end polar 30 40
+		end polar diameter 330 1
+		end polar 330 40
+		slots 3
 		repeat
-			start diameter -3 1.732
+			start polar diameter 210 1
+			start polar diameter 270 1
+			start polar 210 40
+			start polar 270 40
+			end polar diameter 330 1
+			end polar diameter 30 1
+			end polar 330 40
+			end polar 30 40
 			slots 3
 
 
@@ -56,27 +97,81 @@ formation "Delta (centered)"
 # Regular triangle with the formation leader near the front and the point of the triangle facing backwards.
 formation "Nabla"
 	flippable y
-	line 1 -1.732 2 270
-		spacing 2
-	line -3 -1.732 3 150
-		spacing 2
+	line
+		start polar diameter 330 1
+		start polar 330 40
+		end polar diameter 30 1
+		end polar 30 40
+		slots 2
+	line
+		start polar diameter 30 1
+		start polar diameter 90 1
+		start polar 30 40
+		start polar 90 40
+		end polar diameter 150 1
+		end polar 150 40
+		slots 3
 		repeat
-			start diameter -4 0
+			start polar diameter 90 2
+			start polar 90 80
+			end polar diameter 150 2
+			end polar diameter 210 2
+			end polar 150 80
+			end polar 210 80
 			slots 4
-	line 0 3.464 4 30
-		spacing 2
+	line
+		start polar diameter 150 1
+		start polar diameter 210 1
+		start polar 150 40
+		start polar 210 40
+		end polar diameter 270 1
+		end polar diameter 330 1
+		end polar 270 40
+		end polar 330 40
+		slots 4
 		repeat
-			start diameter 0 6.928
+			start polar diameter 150 2
+			start polar diameter 210 2
+			start polar 150 80
+			start polar 210 80
+			end polar diameter 270 2
+			end polar 270 80
 			slots 4
-	line 5 -1.732 5 210
-		spacing 2
+	line
+		start polar diameter 330 1
+		start polar diameter 270 2
+		start polar 330 40
+		start polar 270 80
+		end polar diameter 210 2
+		end polar diameter 150 1
+		end polar 210 80
+		end polar 150 40
+		slots 5
 		repeat
-			start diameter 4 0
+			start polar diameter 270 2
+			start polar 270 80
+			end polar diameter 150 2
+			end polar diameter 210 2
+			end polar 150 80
+			end polar 210 80
 			slots 4
-	line 0 6.928 6 330
-		spacing 2
+	line
+		start polar diameter 210 2
+		start polar diameter 150 2
+		start polar 210 80
+		start polar 150 80
+		end polar diameter 30 1
+		end polar diameter 90 2
+		end polar 30 40
+		end polar 90 80
+		slots 6
 		repeat
-			start diameter 0 6.928
+			start polar diameter 150 2
+			start polar diameter 210 2
+			start polar 150 80
+			start polar 210 80
+			end polar diameter 90 2
+			end polar 90 80
 			slots 4
 
 
@@ -84,25 +179,53 @@ formation "Nabla"
 # Triangular (arrowhead) forming in front of the formation leader.
 formation "Wedge"
 	flippable y
-	line -2 0 1 45
-		spacing 2.8284
+	line
+		start diameter -1 0
+		end diameter -1 0
+		start -10 0
+		end -10 0
+		slots 1
 		repeat
-			start diameter -4 0
+			start diameter -2 0
+			end diameter 0 -2
+			start -20 0
+			end 0 -20
 			slots 2
-	line 0 -2 2 135
-		spacing 2.8284
+	line
+		start diameter 0 -1
+		end diameter 1 0
+		start 0 -10
+		end 10 0
+		slots 2
 		repeat
-			start diameter 0 -4
+			start diameter 0 -2
+			end diameter 2 0
+			start 0 -20
+			end 20 0
 			slots 2
-	line 4 0 2 315
-		spacing 2.8284
+	line
+		start diameter 2 0
+		end diameter 1 -1
+		start 20 0
+		end 10 -10
+		slots 2
 		repeat
-			start diameter 4 0
+			start diameter 2 0
+			end diameter 0 -2
+			start 20 0
+			end 0 -20
 			slots 2
-	line 0 -4 3 225
-		spacing 2.8284
+	line
+		start diameter 0 -2
+		end diameter -2 0
+		start 0 -20
+		end -20 0
+		slots 3
 		repeat
-			start diameter 0 -4
+			start diameter 0 -2
+			end diameter -2 0
+			start 0 -20
+			end -20 0
 			slots 2
 
 
@@ -169,91 +292,80 @@ formation "Hexagon"
 	line
 		start polar diameter 330 1
 		start polar 330 40
+		end polar diameter 330 1
+		end polar 330 40
+		centered
+		slots 1
+		repeat
+			start polar diameter 270 1
+			start polar 270 40
+			end polar diameter 330 1
+			end polar 330 40
+			slots 1
+	line
+		start polar diameter 30 1
+		start polar 30 40
 		end polar diameter 30 1
 		end polar 30 40
-		skip first
 		centered
-		slots 2
+		slots 1
 		repeat
 			start polar diameter 330 1
 			start polar 330 40
 			end polar diameter 30 1
 			end polar 30 40
 			slots 1
-
 	line
-		start polar diameter 30 1
-		start polar 30 40
+		start polar diameter 90 1
+		start polar 90 40
 		end polar diameter 90 1
 		end polar 90 40
-		skip first
 		centered
-		slots 2
+		slots 1
 		repeat
 			start polar diameter 30 1
 			start polar 30 40
 			end polar diameter 90 1
 			end polar 90 40
 			slots 1
-
 	line
-		start polar diameter 90 1
-		start polar 90 40
+		start polar diameter 150 1
+		start polar 150 40
 		end polar diameter 150 1
 		end polar 150 40
-		skip first
 		centered
-		slots 2
+		slots 1
 		repeat
 			start polar diameter 90 1
 			start polar 90 40
 			end polar diameter 150 1
 			end polar 150 40
 			slots 1
-
 	line
-		start polar diameter 150 1
-		start polar 150 40
+		start polar diameter 210 1
+		start polar 210 40
 		end polar diameter 210 1
 		end polar 210 40
-		skip first
-		centered		
-		slots 2
+		centered
+		slots 1
 		repeat
 			start polar diameter 150 1
 			start polar 150 40
 			end polar diameter 210 1
 			end polar 210 40
 			slots 1
-
 	line
-		start polar diameter 210 1
-		start polar 210 40
+		start polar diameter 270 1
+		start polar 270 40
 		end polar diameter 270 1
 		end polar 270 40
-		skip first
 		centered
-		slots 2
+		slots 1
 		repeat
 			start polar diameter 210 1
 			start polar 210 40
 			end polar diameter 270 1
 			end polar 270 40
-			slots 1
-
-	line
-		start polar diameter 270 1
-		start polar 270 40
-		end polar diameter 330 1
-		end polar 330 40
-		skip first
-		centered
-		slots 2
-		repeat
-			start polar diameter 270 1
-			start polar 270 40
-			end polar diameter 330 1
-			end polar 330 40
 			slots 1
 
 
