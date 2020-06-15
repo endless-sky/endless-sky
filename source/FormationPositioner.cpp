@@ -59,10 +59,6 @@ void FormationPositioner::Start()
 	else
 		desiredDir = formationLead->Facing();
 	
-	// If we don't have any rings (from previous iterations), then align the direction directly with the lead.
-	if(ringPos.size() == 0)
-		direction = desiredDir;
-	
 	Angle deltaDir = desiredDir - direction;
 	
 	// Change the desired direction according to rotational settings if that fits better.

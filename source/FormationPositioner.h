@@ -14,10 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FORMATION_POSITIONER_H_
 
 #include "Angle.h"
+#include "Body.h"
 
 #include <map>
 
-class Body;
 class FormationPattern;
 class Ship;
 
@@ -28,7 +28,7 @@ class Ship;
 class FormationPositioner{
 public:
 	// Initializer based on the formation pattern to follow.
-	FormationPositioner(const Body * formationLead, const FormationPattern * pattern): formationLead(formationLead), pattern(pattern) {}
+	FormationPositioner(const Body * formationLead, const FormationPattern * pattern): formationLead(formationLead), pattern(pattern), direction(formationLead->Facing()) {}
 	
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.

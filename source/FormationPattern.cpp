@@ -44,15 +44,6 @@ void FormationPattern::Load(const DataNode &node)
 			lines.emplace_back();
 			Line &line = lines[lines.size()-1];
 			
-			// This if-section contains some temporary backwards compatiblity code for the "old" format.
-			// Keeping this until the definitions are rewritten to the new format as described in the RFC.
-			// This backwards compatiblity section should be removed before merging of the formation PR to master.
-			if(child.Size() >= 5)
-			{
-				line.start.Add(MultiAxisPoint::DIAMETERS, Point(child.Value(1), child.Value(2)));
-				line.slots = static_cast<int>(child.Value(3) + 0.5);
-			}
-			
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "start" && grand.Size() >= 3)
@@ -63,12 +54,6 @@ void FormationPattern::Load(const DataNode &node)
 					line.slots = static_cast<int>(grand.Value(1) + 0.5);
 				else if(grand.Token(0) == "repeat")
 				{
-					// Another backwards compatiblity if-section that is to be removed before merging the formation PR to master.
-					if(grand.Size() >= 3)
-					{
-						line.repeatStart.Add(MultiAxisPoint::DIAMETERS, Point(grand.Value(1), grand.Value(2)));
-					}
-					
 					line.repeatSlots = 0;
 					for(const DataNode &grandGrand : grand)
 						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
