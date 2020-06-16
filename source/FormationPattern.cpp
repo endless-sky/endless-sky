@@ -62,9 +62,15 @@ void FormationPattern::Load(const DataNode &node)
 							line.repeatEnd.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
 							line.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
+						else
+							grandGrand.PrintTrace("Skipping unrecognized attribute:");
 				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 }
 
 
