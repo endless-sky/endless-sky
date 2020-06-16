@@ -34,6 +34,7 @@ public:
 	// Calculate next line and amount of positions on a line.
 	int NextLine(unsigned int ring, unsigned int lineNr) const;
 	int LineSlots(unsigned int ring, unsigned int lineNr) const;
+	bool IsCentered(unsigned int lineNr) const;
 	
 	// Calculate a position based on the current ring, line and slot on the line.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const;
@@ -75,6 +76,9 @@ protected:
 		// positions each iteration. slotsIncrease -1 is for lines that don't repeat.
 		int slots = 1;
 		int repeatSlots = -1;
+		
+		// Properties of how the line behaves
+		bool centered = false;
 	};
 	
 	

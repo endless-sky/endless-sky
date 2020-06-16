@@ -36,6 +36,10 @@ void FormationPositioner::Start()
 		// Store starting ring for next ring-positioner.
 		startRing = endRing + 1;
 		
+		// Track the amount of positions in the ring
+		it.second.lastPos = it.second.nextLastPos;
+		it.second.nextLastPos = 0;
+		
 		// Reset all other iterator values to start of ring.
 		it.second.activeLine = 0;
 		it.second.lineSlot = 0;
@@ -116,6 +120,9 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 	nextMaxHeight = max(nextMaxHeight, ship->Height());
 	nextMaxWidth = max(nextMaxWidth, ship->Width());
 	
+	// Count the number of positions on the line.
+	++(rPos.nextLastPos);
+	
 	// If there are no active lines, then just return center point.
 	if(rPos.activeLine < 0)
 		return Point();
@@ -141,6 +148,15 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 		rPos.lineSlot = 0;
 		rPos.activeLine = nextLine;
 		rPos.lineSlots = pattern->LineSlots(rPos.ring, rPos.activeLine);
+	}
+	
+	// Estimate how many positions still to fill and do centering if required.
+	int remainingToFill = rPos.lastPos - rPos.nextLastPos;
+	if(rPos.lineSlot == 0 && remainingToFill > 0 && remainingToFill < rPos.lineSlots-1 && pattern->IsCentered(rPos.activeLine))
+	{
+		// Determine the amount to skip for centering and skip those.
+		int toSkip = (rPos.lineSlots - remainingToFill) / 2;
+		rPos.lineSlot += toSkip;
 	}
 	
 	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot, maxDiameter, maxWidth, maxHeight);

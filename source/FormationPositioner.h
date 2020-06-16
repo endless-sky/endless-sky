@@ -47,6 +47,10 @@ private:
 			int activeLine = 0;
 			int lineSlot = 0;
 			int lineSlots = -1;
+			
+			// Track the last position in the ring to allow tracking if the last line is incomplete (for centering)
+			int lastPos = 0;
+			int nextLastPos = 0;
 	};
 
 

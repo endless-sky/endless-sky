@@ -16,6 +16,7 @@ formation "Delta (tailing)"
 		start diameter -1 2
 		end diameter 1 2
 		slots 2
+		centered
 		repeat
 			start diameter -2 4
 			end diameter 2 4
@@ -24,6 +25,7 @@ formation "Delta (tailing)"
 		start diameter 2 4
 		end diameter -2 4
 		slots 3
+		centered
 		repeat
 			start diameter 2 4
 			end diameter -2 4
@@ -294,7 +296,6 @@ formation "Hexagon"
 		start polar 330 40
 		end polar diameter 330 1
 		end polar 330 40
-		centered
 		slots 1
 		repeat
 			start polar diameter 270 1
@@ -307,7 +308,6 @@ formation "Hexagon"
 		start polar 30 40
 		end polar diameter 30 1
 		end polar 30 40
-		centered
 		slots 1
 		repeat
 			start polar diameter 330 1
@@ -320,7 +320,6 @@ formation "Hexagon"
 		start polar 90 40
 		end polar diameter 90 1
 		end polar 90 40
-		centered
 		slots 1
 		repeat
 			start polar diameter 30 1
@@ -333,7 +332,6 @@ formation "Hexagon"
 		start polar 150 40
 		end polar diameter 150 1
 		end polar 150 40
-		centered
 		slots 1
 		repeat
 			start polar diameter 90 1
@@ -346,7 +344,6 @@ formation "Hexagon"
 		start polar 210 40
 		end polar diameter 210 1
 		end polar 210 40
-		centered
 		slots 1
 		repeat
 			start polar diameter 150 1
@@ -359,7 +356,6 @@ formation "Hexagon"
 		start polar 270 40
 		end polar diameter 270 1
 		end polar 270 40
-		centered
 		slots 1
 		repeat
 			start polar diameter 210 1

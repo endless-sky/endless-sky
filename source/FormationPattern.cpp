@@ -52,6 +52,8 @@ void FormationPattern::Load(const DataNode &node)
 					line.end.AddLoad(grand);
 				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
 					line.slots = static_cast<int>(grand.Value(1) + 0.5);
+				else if(grand.Token(0) == "centered")
+					line.centered = true;
 				else if(grand.Token(0) == "repeat")
 				{
 					line.repeatSlots = 0;
@@ -116,6 +118,15 @@ int FormationPattern::LineSlots(unsigned int ring, unsigned int lineNr) const
 		return 0;
 	
 	return line.slots + line.repeatSlots * ring;
+}
+
+
+
+// Check if a certain line is centered.
+bool FormationPattern::IsCentered(unsigned int lineNr) const
+{
+	// Returns false if we have an invalid lineNr or when the line is not centered.
+	return lineNr >= 0 && lineNr < lines.size() && lines[lineNr].centered;
 }
 
 
