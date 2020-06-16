@@ -120,7 +120,7 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 	nextMaxHeight = max(nextMaxHeight, ship->Height());
 	nextMaxWidth = max(nextMaxWidth, ship->Width());
 	
-	// Count the number of positions on the line.
+	// Count the number of positions on the ring.
 	++(rPos.nextLastPos);
 	
 	// If there are no active lines, then just return center point.
