@@ -42,14 +42,6 @@ public:
 private:
 	class RingPositioner{
 		public:
-			// The scaling factors being used for this ring.
-			double maxDiameter = 1.;
-			double maxWidth = 1.;
-			double maxHeight = 1.;
-			double nextMaxDiameter = 1.;
-			double nextMaxWidth = 1.;
-			double nextMaxHeight = 1.;
-
 			// Values used during ship position calculation iterations.
 			int ring = 0;
 			int activeLine = 0;
@@ -61,6 +53,14 @@ private:
 private:
 	// The actual positioners based on the desired ring-numbers.
 	std::map<int, RingPositioner> ringPos;
+
+	// The scaling factors being used for this formation.
+	double maxDiameter = 1.;
+	double maxWidth = 1.;
+	double maxHeight = 1.;
+	double nextMaxDiameter = 1.;
+	double nextMaxWidth = 1.;
+	double nextMaxHeight = 1.;
 
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body * formationLead;
