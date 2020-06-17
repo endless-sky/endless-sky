@@ -753,7 +753,7 @@ void Ship::Save(DataWriter &out) const
 			double y = 2. * bay.point.Y();
 
 			out.Write("bay", bay.category, x, y);
-
+			
 			if(!bay.launchEffects.empty() || bay.facing.Degrees() || bay.side)
 			{
 				out.BeginChild();
