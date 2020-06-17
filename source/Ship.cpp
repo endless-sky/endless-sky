@@ -49,6 +49,9 @@ namespace {
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
 	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
 	
+	const vector<string> ENGINE_SIDE = {"under", "over"};
+	const vector<string> STEERING_FACING = {"none", "left", "right"};
+	
 	const double MAXIMUM_TEMPERATURE = 100.;
 	
 	const double SCAN_TIME = 60.;
@@ -174,15 +177,43 @@ void Ship::Load(const DataNode &node)
 				attributes.Load(child);
 			}
 		}
-		else if(key == "engine" && child.Size() >= 3)
+		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
 		{
 			if(!hasEngine)
 			{
 				enginePoints.clear();
+				reverseEnginePoints.clear();
+				steeringEnginePoints.clear();
 				hasEngine = true;
 			}
-			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
+			bool reverse = (key == "reverse engine");
+			bool steering = (key == "steering engine");
+			
+			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints : 
+				(reverse ? reverseEnginePoints : steeringEnginePoints); 
+			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
+			EnginePoint &engine = editPoints.back();
+			if(reverse)
+				engine.facing = Angle(180.);
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "zoom" && grand.Size() >= 2)
+					engine.zoom = grand.Value(1);
+				else if(grandKey == "angle" && grand.Size() >= 2)
+					engine.facing += Angle(grand.Value(1));
+				else
+				{
+					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
+						if(grandKey == ENGINE_SIDE[j])
+							engine.side = j;
+					if(steering)
+						for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
+							if(grandKey == STEERING_FACING[j])
+								engine.steering = j;
+				}
+			}
 		}
 		else if(key == "gun" || key == "turret")
 		{
@@ -394,6 +425,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			bays = base->bays;
 		if(enginePoints.empty())
 			enginePoints = base->enginePoints;
+		if(reverseEnginePoints.empty())
+			reverseEnginePoints = base->reverseEnginePoints;
+		if(steeringEnginePoints.empty())
+			steeringEnginePoints = base->steeringEnginePoints;
 		if(explosionEffects.empty())
 		{
 			explosionEffects = base->explosionEffects;
@@ -657,7 +692,34 @@ void Ship::Save(DataWriter &out) const
 		out.Write("position", position.X(), position.Y());
 		
 		for(const EnginePoint &point : enginePoints)
-			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
+		{
+			out.Write("engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.facing.Degrees());
+			out.Write(ENGINE_SIDE[point.side]);
+			out.EndChild();
+				
+		}
+		for(const EnginePoint &point : reverseEnginePoints)
+		{
+			out.Write("reverse engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.facing.Degrees() - 180.);
+			out.Write(ENGINE_SIDE[point.side]);
+			out.EndChild();
+		}
+		for(const EnginePoint &point : steeringEnginePoints)
+		{
+			out.Write("steering engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.facing.Degrees());
+			out.Write(ENGINE_SIDE[point.side]);
+			out.Write(STEERING_FACING[point.steering]);
+			out.EndChild();
+		}
 		for(const Hardpoint &hardpoint : armament.Get())
 		{
 			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
@@ -1033,6 +1095,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// system set because they just entered a fighter bay.
 	forget += !isInSystem;
 	isThrusting = false;
+	isReversing = false;
+	isSteering = false;
+	steeringDirection = 0.;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 	{
 		MarkForRemoval();
@@ -1406,6 +1471,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			
 			if(commands.Turn())
 			{
+				isSteering = true;
+				steeringDirection = commands.Turn();
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -1430,6 +1497,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
+				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 				if(thrust)
 				{
@@ -2214,10 +2282,45 @@ bool Ship::IsThrusting() const
 
 
 
+bool Ship::IsReversing() const
+{
+	return isReversing;
+}
+
+
+
+bool Ship::IsSteering() const
+{
+	return isSteering;
+}
+
+
+
+double Ship::SteeringDirection() const
+{
+	return steeringDirection;
+}
+
+
+
 // Get the points from which engine flares should be drawn.
 const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
 	return enginePoints;
+}
+
+
+
+const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
+{
+	return reverseEnginePoints;
+}
+
+
+
+const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
+{
+	return steeringEnginePoints;
 }
 
 
@@ -2674,18 +2777,18 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
-	double shieldDamage = weapon.ShieldDamage() * damageScaling;
-	double hullDamage = weapon.HullDamage() * damageScaling;
-	double hitForce = weapon.HitForce() * damageScaling;
-	double fuelDamage = weapon.FuelDamage() * damageScaling;
-	double heatDamage = weapon.HeatDamage() * damageScaling;
-	double ionDamage = weapon.IonDamage() * damageScaling;
-	double disruptionDamage = weapon.DisruptionDamage() * damageScaling;
-	double slowingDamage = weapon.SlowingDamage() * damageScaling;
+	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
+	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
+	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
+	double fuelDamage = weapon.FuelDamage() * damageScaling / (1. + attributes.Get("fuel protection"));
+	double heatDamage = weapon.HeatDamage() * damageScaling / (1. + attributes.Get("heat protection"));
+	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
+	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
+	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - weapon.Piercing();
+	double shieldFraction = 1. - max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
@@ -2826,6 +2929,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetTargetStellar(nullptr);
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
+			ship->isReversing = false;
+			ship->isSteering = false;
 			ship->commands.Clear();
 			// If this fighter collected anything in space, try to store it
 			// (unless this is a player-owned ship).
