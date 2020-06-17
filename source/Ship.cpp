@@ -664,26 +664,16 @@ void Ship::Save(DataWriter &out) const
 		{
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
-			int facing_name_index = 0;
-			for(unsigned i = 1; i < BAY_FACING.size(); ++i)
-				if(bay.facing == BAY_ANGLE[i])
-					facing_name_index = i;
+			out.Write(BAY_TYPE[bay.isFighter], x, y);
 			
-			if(bay.side && facing_name_index)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side], BAY_FACING[facing_name_index]);
-			else if(bay.side)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side]);
-			else if(facing_name_index)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[facing_name_index]);
-			else
-				out.Write(BAY_TYPE[bay.isFighter], x, y);
-			bool writeFacing = !facing_name_index && bay.facing.Degrees();
-			if(!bay.launchEffects.empty() || writeFacing)
+			if(!bay.launchEffects.empty() || bay.facing.Degrees() || bay.side)
 			{
 				out.BeginChild();
 				{
-					if(writeFacing)
+					if(bay.facing.Degrees())
 						out.Write("angle", bay.facing.Degrees());
+					if(bay.side)
+						out.Write(BAY_SIDE[bay.side]);
 					for(const Effect *effect : bay.launchEffects)
 						out.Write("launch effect", effect->Name());
 				}

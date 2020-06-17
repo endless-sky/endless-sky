@@ -125,16 +125,6 @@ Angle Angle::operator-() const
 
 
 
-bool Angle::operator==(const Angle &other) const
-{
-	// The angle is internally stored as an integer value between 0 and 2^16 - 1
-	// We can compare for equality using this very high precission by just comparing
-	// the internal values.
-	return angle==other.angle;
-}
-
-
-
 // Get a unit vector in the direction of this angle.
 Point Angle::Unit() const
 {
