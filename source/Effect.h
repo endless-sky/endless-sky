@@ -58,6 +58,7 @@ private:
 	double randomFrameRate = 0.;
 	
 	int lifetime = 0;
+	int randomLifetime = 0;
 	
 	// Allow the Visual class to access all these private members.
 	friend class Visual;

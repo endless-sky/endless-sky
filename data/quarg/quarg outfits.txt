@@ -122,6 +122,7 @@ outfit "Medium Graviton Steering"
 	"turn" 1600
 	"turning energy" 10
 	"turning heat" 5
+	"steering flare sprite" "effect/medium graviton flare"
 
 outfit "Quantum Shield Generator"
 	category "Systems"

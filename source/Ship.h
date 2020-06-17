@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <list>
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -54,16 +55,18 @@ class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	// These are all the possible category strings for ships.
 	static const std::vector<std::string> CATEGORIES;
+	// Allow retrieving the available bay types for the current game;
+	static const std::set<std::string> BAY_TYPES;
 	
 	class Bay {
 	public:
-		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
+		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
-		bool isFighter = false;
+		std::string category;
 		
 		uint8_t side = 0;
 		static const uint8_t INSIDE = 0;
@@ -83,10 +86,18 @@ public:
 	class EnginePoint : public Point {
 	public:
 		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
-		double Zoom() const { return zoom; }
 		
-	private:
+		uint8_t side = 0;
+		static const uint8_t UNDER = 0;
+		static const uint8_t OVER = 1;
+		
+		uint8_t steering = 0;
+		static const uint8_t NONE = 0;
+		static const uint8_t LEFT = 1;
+		static const uint8_t RIGHT = 2;
+		
 		double zoom;
+		Angle facing;
 	};
 	
 	
@@ -225,8 +236,15 @@ public:
 	
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
+	bool IsReversing() const;
+	bool IsSteering() const;
+	// The direction that the ship is steering. If positive, the ship is steering right. 
+	// If negative, the ship is steering left.
+	double SteeringDirection() const;
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
+	const std::vector<EnginePoint> &ReverseEnginePoints() const;
+	const std::vector<EnginePoint> &SteeringEnginePoints() const;
 	
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
@@ -301,19 +319,21 @@ public:
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);
 	
-	// Check if this ship has fighter or drone bays.
+	// Check if this ship has bays to carry other ships.
 	bool HasBays() const;
-	// Check how many fighter and drone bays are not occupied at present. This
-	// does not check whether one of your escorts plans to use that bay.
-	int BaysFree(bool isFighter) const;
-	// Check if this ship has a bay free for the given fighter, and the bay is
-	// not reserved for one of its existing escorts.
+	// Check how many bays are not occupied at present. This does not check
+	// whether one of your escorts plans to use that bay.
+	int BaysFree(const std::string &category) const;
+	// Check how many bays this ship has of a given category.
+	int BaysTotal(const std::string &category) const;
+	// Check if this ship has a bay free for the given other ship, and the
+	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
-	// Check if this is a ship of a type that can be carried (fighter or drone).
+	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
-	// Move the given ship into one of the fighter or drone bays, if possible.
+	// Move the given ship into one of the bays, if possible.
 	bool Carry(const std::shared_ptr<Ship> &ship);
-	// Empty the fighter bays. If the fighters are not special ships that are
+	// Empty the bays. If the carried ships are not special ships that are
 	// saved in the player data, they will be deleted. Otherwise, they become
 	// visible as ships landed on the same planet as their parent.
 	void UnloadBays();
@@ -426,6 +446,9 @@ private:
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	bool isThrusting = false;
+	bool isReversing = false;
+	bool isSteering = false;
+	double steeringDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
@@ -458,6 +481,8 @@ private:
 	double carriedMass = 0.;
 	
 	std::vector<EnginePoint> enginePoints;
+	std::vector<EnginePoint> reverseEnginePoints;
+	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 	// While loading, keep track of which outfits already have been equipped.
 	// (That is, they were specified as linked to a given gun or turret point.)
