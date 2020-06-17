@@ -251,7 +251,7 @@ void GameData::CheckReferences()
 		if(!it.second.GetGovernment() && !deferred["fleet"].count(it.first))
 			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : governments)
-		if(it.second.GetName().empty() && !deferred["government"].count(it.first))
+		if(it.second.GetTrueName().empty() && !deferred["government"].count(it.first))
 			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : minables)
 		if(it.second.Name().empty())
@@ -269,7 +269,7 @@ void GameData::CheckReferences()
 		if(it.second.Name().empty())
 			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : planets)
-		if(it.second.Name().empty() && !deferred["planet"].count(it.first))
+		if(it.second.TrueName().empty() && !deferred["planet"].count(it.first))
 			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : ships)
 		if(it.second.ModelName().empty())

@@ -72,6 +72,8 @@ private:
 	std::vector<std::string> tokens;
 	// The parent pointer is used only for printing stack traces.
 	const DataNode *parent = nullptr;
+	// The line number in the given file that produced this node.
+	size_t lineNumber = 0;
 	
 	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;
