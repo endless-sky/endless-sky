@@ -43,20 +43,21 @@ private:
 	class RingPositioner{
 		public:
 			// Values used during ship position calculation iterations.
-			int ring = 0;
-			int activeLine = 0;
-			int lineSlot = 0;
-			int lineSlots = -1;
+			bool morePositions = true;
+			unsigned int ring = 0;
+			unsigned int activeLine = 0;
+			unsigned int activeRepeat = 0;
+			unsigned int lineSlot = 0;
 			
 			// Track the last position in the ring to allow tracking if the last line is incomplete (for centering)
 			int lastPos = 0;
-			int nextLastPos = 0;
+			int prevLastPos = 0;
 	};
 
 
 private:
 	// The actual positioners based on the desired ring-numbers.
-	std::map<int, RingPositioner> ringPos;
+	std::map<unsigned int, RingPositioner> ringPos;
 
 	// The scaling factors being used for this formation.
 	double maxDiameter = 1.;

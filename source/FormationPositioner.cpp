@@ -26,24 +26,25 @@ using namespace std;
 
 void FormationPositioner::Start()
 {
-	int startRing = 0;
+	unsigned int startRing = 0;
 	for(auto &it : ringPos)
 	{
 		// Track in which ring the ring-positioner ended in last run.
-		int endRing = it.second.ring;
+		unsigned int endRing = it.second.ring;
 		// Set starting ring for current ring-positioner.
 		it.second.ring = max(startRing, it.first);
 		// Store starting ring for next ring-positioner.
 		startRing = endRing + 1;
 		
 		// Track the amount of positions in the ring
-		it.second.lastPos = it.second.nextLastPos;
-		it.second.nextLastPos = 0;
+		it.second.prevLastPos = it.second.lastPos;
+		it.second.lastPos = 0;
 		
 		// Reset all other iterator values to start of ring.
 		it.second.activeLine = 0;
+		it.second.activeRepeat = 0;
 		it.second.lineSlot = 0;
-		it.second.lineSlots = -1;
+		it.second.morePositions = true;
 	}
 
 	// Set scaling based on results from previous run.
@@ -121,52 +122,87 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 	nextMaxWidth = max(nextMaxWidth, ship->Width());
 	
 	// Count the number of positions on the ring.
-	++(rPos.nextLastPos);
+	++(rPos.lastPos);
 	
-	// If there are no active lines, then just return center point.
-	if(rPos.activeLine < 0)
+	// If there are no more positions to fill, then just return center point.
+	if(!rPos.morePositions)
 		return Point();
 	
-	// Handle trigger to initialize lineSlots if required.
-	if(rPos.lineSlots < 0)
-		rPos.lineSlots = pattern->LineSlots(rPos.ring, rPos.activeLine);
-	
-	// Iterate to next line if the current line is full.
-	if(rPos.lineSlot >= rPos.lineSlots)
+	// Check how many lines are available.
+	unsigned int lines = pattern->Lines();
+	if(lines < 1)
 	{
-		int nextLine = pattern->NextLine(rPos.ring, rPos.activeLine);
-		// If no new active line, just return center point.
-		if(nextLine < 0)
-		{
-			rPos.activeLine = -1;
-			return Point();
-		}
-		// If we get back to an earlier line, then we moved a ring up.
-		if(nextLine <= rPos.activeLine)
-			rPos.ring++;
-		
-		rPos.lineSlot = 0;
-		rPos.activeLine = nextLine;
-		rPos.lineSlots = pattern->LineSlots(rPos.ring, rPos.activeLine);
+		rPos.morePositions = false;
+		return Point();
 	}
+	
+	unsigned int ringsScanned = 0;
+	unsigned int startingRing = rPos.ring;
+	unsigned int lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+	
+	while(rPos.lineSlot >= lineRepeatSlots && rPos.morePositions)
+	{
+		unsigned int patternRepeats = pattern->Repeats(rPos.activeLine);
+		// LineSlot number is beyond the amount of slots available.
+		// Need to move a ring, a line or a repeat-section forward.
+		if(rPos.ring > 0 && rPos.activeLine < lines && patternRepeats > 0 && rPos.activeRepeat < patternRepeats - 1 )
+		{
+			// First check if we are on a valid line and have another repeat section.
+			++(rPos.activeRepeat);
+			rPos.lineSlot = 0;
+			lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+		}
+		else if(rPos.activeLine < lines - 1)
+		{
+			// If we don't have another repeat section, then check for a next line.
+			++(rPos.activeLine);
+			rPos.activeRepeat = 0;
+			rPos.lineSlot = 0;
+			lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+		}
+		else
+		{
+			// If we checked all lines and repeat sections, then go for the next ring.
+			++(rPos.ring);
+			rPos.activeLine = 0;
+			rPos.activeRepeat = 0;
+			rPos.lineSlot = 0;
+			lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+			
+			// If we scanned more than 1 rings without finding a slot, then we have an empty pattern.
+			++ringsScanned;
+			if(ringsScanned > 1)
+			{
+				// Restore starting ring and indicate that there are no more positions.
+				rPos.ring = startingRing;
+				rPos.morePositions = false;
+			}
+		}
+	}
+	// No position(s) found
+	if(!rPos.morePositions)
+		return Point();
 	
 	// Estimate how many positions still to fill and do centering if required.
-	int remainingToFill = rPos.lastPos - rPos.nextLastPos;
-	if(rPos.lineSlot == 0 && remainingToFill > 0 && remainingToFill < rPos.lineSlots-1 && pattern->IsCentered(rPos.activeLine))
+	if(rPos.lineSlot == 0 && rPos.lastPos < rPos.prevLastPos)
 	{
-		// Determine the amount to skip for centering and skip those.
-		int toSkip = (rPos.lineSlots - remainingToFill) / 2;
-		rPos.lineSlot += toSkip;
+		unsigned int remainingToFill = rPos.prevLastPos - rPos.lastPos;
+		if(remainingToFill < lineRepeatSlots - 1 &&	pattern->IsCentered(rPos.activeLine))
+		{
+			// Determine the amount to skip for centering and skip those.
+			int toSkip = (lineRepeatSlots - remainingToFill) / 2;
+			rPos.lineSlot += toSkip;
+		}
 	}
 	
-	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.lineSlot, maxDiameter, maxWidth, maxHeight);
+	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.activeRepeat, rPos.lineSlot, maxDiameter, maxWidth, maxHeight);
 	
 	if(flippedY)
 		relPos.Set(-relPos.X(), relPos.Y());
 	if(flippedX)
 		relPos.Set(relPos.X(), -relPos.Y());
 	
-	// Set values for next ring.
+	// Set values for next ship to place.
 	rPos.lineSlot++;
 
 	return formationLead->Position() + direction.Rotate(relPos);

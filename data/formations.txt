@@ -373,6 +373,12 @@ formation "Block"
 		start diameter 0 -6.928
 		end diameter 0 -3.464
 		slots 2
+		repeat
+			start diameter -2 0
+			end diameter -2 0
+		repeat
+			start diameter 2 0
+			end diameter 2 0
 	line
 		start diameter 1 -5.196
 		end diameter 1 -1.732
@@ -387,20 +393,6 @@ formation "Block"
 		repeat
 			start diameter -2 0
 			end diameter -2 0
-	line
-		start diameter -2 -6.928
-		end diameter -2 -3.464
-		slots 2
-		repeat
-			start diameter -2 0
-			end diameter -2 0
-	line
-		start diameter 2 -6.928
-		end diameter 2 -3.464
-		slots 2
-		repeat
-			start diameter 2 0
-			end diameter 2 0
 
 
 
@@ -475,8 +467,6 @@ formation "Frontline"
 		start diameter 0 -3
 		repeat
 			start diameter -1 0
-	line
-		start diameter 1 -3
 		repeat
 			start diameter 1 0
 
@@ -489,8 +479,6 @@ formation "Rearline"
 		start diameter 0 3
 		repeat
 			start diameter -1 0
-	line
-		start diameter 1 3
 		repeat
 			start diameter 1 0
 

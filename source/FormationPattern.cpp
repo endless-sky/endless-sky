@@ -42,7 +42,7 @@ void FormationPattern::Load(const DataNode &node)
 		else if(child.Token(0) == "line")
 		{
 			lines.emplace_back();
-			Line &line = lines[lines.size()-1];
+			Line &line = lines[lines.size() - 1];
 			
 			for(const DataNode &grand : child)
 			{
@@ -56,14 +56,15 @@ void FormationPattern::Load(const DataNode &node)
 					line.centered = true;
 				else if(grand.Token(0) == "repeat")
 				{
-					line.repeatSlots = 0;
+					line.repeats.emplace_back();
+					LineRepeat &repeat = line.repeats[line.repeats.size() - 1];
 					for(const DataNode &grandGrand : grand)
 						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
-							line.repeatStart.AddLoad(grandGrand);
+							repeat.repeatStart.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3)
-							line.repeatEnd.AddLoad(grandGrand);
+							repeat.repeatEnd.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
-							line.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
+							repeat.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
 						else
 							grandGrand.PrintTrace("Skipping unrecognized attribute:");
 				}
@@ -77,31 +78,26 @@ void FormationPattern::Load(const DataNode &node)
 
 
 
-// Get the next line that has space for placement of ships. Returns -1 if none found/available.
-int FormationPattern::NextLine(unsigned int ring, unsigned int lineNr) const
+// Get the number of lines in this formation.
+unsigned int FormationPattern::Lines() const
 {
-	// All lines participate in the first initial ring.
-	if(ring == 0 && lineNr < (lines.size()-1))
-		return lineNr + 1;
-	
-	// For later rings only lines that repeat will participate.
-	unsigned int linesScanned = 0;
-	while(linesScanned <= lines.size())
-	{
-		lineNr = (lineNr + 1) % lines.size();
-		if((lines[lineNr]).repeatSlots >= 0)
-			return lineNr;
-		
-		// Safety mechanism to avoid endless loops if the formation has a limited size.
-		linesScanned++;
-	}
-	return -1;
+	return lines.size();
+}
+
+
+
+// Get the number of repeat sections for this line.
+unsigned int FormationPattern::Repeats(unsigned int lineNr) const
+{
+	if(lineNr >= lines.size())
+		return 0;
+	return lines[lineNr].repeats.size();
 }
 
 
 
 // Get the number of positions on a line for the given ring.
-int FormationPattern::LineSlots(unsigned int ring, unsigned int lineNr) const
+unsigned int FormationPattern::LineRepeatSlots(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const
 {
 	if(lineNr >= lines.size())
 		return 0;
@@ -109,15 +105,21 @@ int FormationPattern::LineSlots(unsigned int ring, unsigned int lineNr) const
 	// Retrieve the relevant line.
 	Line line = lines[lineNr];
 	
-	// For the first ring, only the initial positions are relevant.
+	// For the very first ring, only the initial positions are relevant.
 	if(ring == 0)
 		return line.slots;
 	
-	// If we are in a later ring, then skip lines that don't repeat.
-	if(line.repeatSlots < 0)
+	// For later rings we need to have repeat sections to perform repeating.
+	if(repeatNr >= line.repeats.size())
 		return 0;
 	
-	return line.slots + line.repeatSlots * ring;
+	int lineRepeatSlots = line.slots + line.repeats[repeatNr].repeatSlots * ring;
+	
+	// If we are in a later ring, then skip lines that don't repeat.
+	if(lineRepeatSlots < 0)
+		return 0;
+	
+	return lineRepeatSlots;
 }
 
 
@@ -132,27 +134,35 @@ bool FormationPattern::IsCentered(unsigned int lineNr) const
 
 
 // Get a formation position based on ring, line-number and position on the line.
-Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const
+Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const
 {
 	if(lineNr >= lines.size())
 		return Point();
+	const Line &line = lines[lineNr];
 	
-	Line line = lines[lineNr];
+	if(ring > 0 && repeatNr >= line.repeats.size())
+		return Point();
+
+	// Calculate the start and end positions in pixels.
+	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx);
+	Point endPx = line.end.GetPx(diameterToPx, widthToPx, heightToPx);
 	
-	// Calculate the start and end positions in pixels (based on the current ring).
-	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx) +
-		line.repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
-	Point endPx = line.end.GetPx(diameterToPx, widthToPx, heightToPx) +
-		line.repeatEnd.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
-		
+	// Apply repeat section if it is relevant.
+	if(ring > 0 && repeatNr < line.repeats.size())
+	{
+		const LineRepeat &repeat = line.repeats[repeatNr];
+		startPx += repeat.repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+		endPx += repeat.repeatEnd.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+	}
+	
 	// Calculate the step from each slot between start and end.
 	Point slotPx = endPx - startPx;
-
+	
 	// Divide by slots, but don't count the first (since it is at position 0, not at position 1).
-	int slots = line.slots + line.repeatSlots * ring - 1;
-	if(slots > 0)
-		slotPx = slotPx / static_cast<double>(slots);
-		
+	int slots = LineRepeatSlots(ring, lineNr, repeatNr);
+	if(slots > 1)
+		slotPx = slotPx / static_cast<double>(slots - 1);
+	
 	// Calculate position of the current slot.
 	return startPx + slotPx * lineSlot;
 }
@@ -236,7 +246,7 @@ void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
 
 
 
-Point FormationPattern::MultiAxisPoint::GetPx(double diameterToPx, double widthToPx, double heightToPx)
+Point FormationPattern::MultiAxisPoint::GetPx(double diameterToPx, double widthToPx, double heightToPx) const
 {
 	return position[PIXELS] +
 		position[DIAMETERS] * diameterToPx +

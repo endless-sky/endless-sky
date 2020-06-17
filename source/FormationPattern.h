@@ -31,13 +31,14 @@ public:
 	// Load formation from a datafile.
 	void Load(const DataNode &node);
 	
-	// Calculate next line and amount of positions on a line.
-	int NextLine(unsigned int ring, unsigned int lineNr) const;
-	int LineSlots(unsigned int ring, unsigned int lineNr) const;
+	// Retrieve properties like number of lines, number of repeat sections and number of positions.
+	unsigned int Lines() const;
+	unsigned int Repeats(unsigned int LineNr) const;
+	unsigned int LineRepeatSlots(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const;
 	bool IsCentered(unsigned int lineNr) const;
 	
 	// Calculate a position based on the current ring, line and slot on the line.
-	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const;
+	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const;
 	
 	// Information about allowed rotating and mirroring that still results in the same formation.
 	int Rotatable() const;
@@ -60,7 +61,17 @@ protected:
 		void AddLoad(const DataNode &node);
 		
 		// Get a point in pixel coordinates based on the conversion factors given.
-		Point GetPx(double diameterToPx, double widthToPx, double heightToPx);
+		Point GetPx(double diameterToPx, double widthToPx, double heightToPx) const;
+	};
+	
+	class LineRepeat {
+	public:
+		// Vector to apply to get to the next start point for the next iteration.
+		MultiAxisPoint repeatStart;
+		MultiAxisPoint repeatEnd;
+
+		// Slots to add or remove in this repeat section
+		int repeatSlots = 0;
 	};
 
 	class Line {
@@ -68,14 +79,13 @@ protected:
 		// The starting point for this line.
 		MultiAxisPoint start;
 		MultiAxisPoint end;
-		// Vector to apply to get to the next start point for the next iteration.
-		MultiAxisPoint repeatStart;
-		MultiAxisPoint repeatEnd;
+		
+		// Sections of the line that repeat.
+		std::vector<LineRepeat> repeats;
 		
 		// The number of initial positions for this line and the amount of additional
 		// positions each iteration. slotsIncrease -1 is for lines that don't repeat.
 		int slots = 1;
-		int repeatSlots = -1;
 		
 		// Properties of how the line behaves
 		bool centered = false;
