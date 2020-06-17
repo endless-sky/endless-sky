@@ -255,7 +255,7 @@ void Ship::Load(const DataNode &node)
 								handled = true;
 							}
 						if(!handled)
-							grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\", angle-keywords or facing keywords:");
+							grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\", \"angle\", or a facing keyword:");
 					}
 				}
 		}
