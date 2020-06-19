@@ -1025,7 +1025,7 @@ mission "Remnant: Follow-up on Terminus Researchers 3A"
 	on offer
 		conversation
 			`Back on board <ship>, you take a moment to flip through the papers. You quickly realize that little beyond the summary is understandable to someone without a good theoretical understanding of physics. Even with your first-hand experience of wormholes, most of what they are discussing doesn't make much sense.`
-			`	All the academic stuff aside, the summary on the most recent paper confirms that the researchers are making progress: They have determined that the spatial anomaly in the Terminus system is in fact a wormhole with some kind of instability. They also speculate that it may be possible for a ship to artificially stabilize the wormhole enough for it to pass through unharmed.`
+			`	All the academic stuff aside, the summary on the most recent paper confirms that the researchers are making progress: they have determined that the spatial anomaly in the Terminus system is in fact a wormhole with some kind of instability. They also speculate that it may be possible for a ship to artificially stabilize the wormhole enough for it to pass through unharmed.`
 			`	Prefect Torza is definitely going to be interested in seeing this.`
 				accept
 	on complete
