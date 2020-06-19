@@ -950,9 +950,7 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 	to offer
 		has "Remnant: Learning Sign 2: done"
 		has "Terminus exploration: done"
-		not "Deep: Wormhole Research: done"
-		not "Remnant: Follow-up on Terminus Researchers B: done"
-		not "Remnant: Follow-up on Terminus Researchers B: active"
+		not "Deep: Remnant 0: offered"
 		random < 40
 	on offer
 		conversation
