@@ -614,22 +614,21 @@ mission "Remnant: Key Stones"
 					decline
 			
 			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-			`	"We look forward to receiving this shipment" he sings. "Just so we are clear, however: You do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
+			`	"We look forward to receiving this shipment" he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
 			choice
 				`	"I can purchase outfits into my cargo bay?"`
 				`	"Why would you even need to specify that?"`
 					goto whymention
-				`	"OK"`
-					goto noquestion
+				`	"Okay."`
+					accept
 			`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
 			`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
 			`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
 			`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
-			`	He glances at his commlink and starts tapping at something. "We look forward to your return." He trills, before striding away still looking at his display.`
-				goto noquestion
+			`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
+				accept
 			label whymention
 			`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
-			label noquestion
 				accept
 	
 	on visit
