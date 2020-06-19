@@ -482,7 +482,7 @@ conversation "remnant key stones"
 		`	"I can purchase outfits into my cargo bay?"`
 		`	"Why would you even need to specify that?"`
 			goto whymention
-		`	"OK"`
+		`	"Okay."`
 			accept
 	`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
 	`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
