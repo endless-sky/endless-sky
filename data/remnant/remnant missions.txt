@@ -975,7 +975,7 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system. He quickly picks up on the potential threat if someone figures out the key to using them, especially since you have demonstrated that it only takes one curious human to figure it out.`
 			goto investigatechoice
 			label confirmation
-			`	You give him some background about the current state of Human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system and now know that quantum keystones can stabilize it. He quickly picks up on the potential threat that this development represents.`
+			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system and now know that quantum keystones can stabilize it. He quickly picks up on the potential threat that this development represents.`
 			`	Thinking carefully, he asks, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
 			choice
 				`	"I'd be happy to."`
