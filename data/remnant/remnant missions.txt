@@ -968,7 +968,7 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 				`	(Find a prefect.)`
 				`	(Forget about it.)`
 					decline
-			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons, then give you directions down a hallway. You quickly find yourself in an armory where several remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
+			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons, then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
 			`	"Greetings Captain, I am Prefect Torza. I was told you had some information that could be important?" He takes a seat on a bench on the far side of the room from the other Remnant, and gestures for you to take a seat with him.`
 			branch confirmation
 				has "deep: did not reveal remnant"
