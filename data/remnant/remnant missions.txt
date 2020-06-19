@@ -945,8 +945,8 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 	description "Return to Bounty to check up on a group of wormhole researchers you met some time ago."
 	minor
 	source
-		government Remnant
-	destination Bounty
+		government "Remnant"
+	destination "Bounty"
 	to offer
 		has "Remnant: Learning Sign 2: done"
 		has "Terminus exploration: done"
