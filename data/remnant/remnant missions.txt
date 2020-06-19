@@ -492,7 +492,6 @@ conversation "remnant key stones"
 		goto noquestion
 	label whymention
 	`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
-	label noquestion
 		accept
 
 
