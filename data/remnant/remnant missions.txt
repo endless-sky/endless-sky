@@ -1045,7 +1045,7 @@ mission "Remnant: Follow-up on Terminus Researchers B"
 	destination "Valhalla"
 	to offer
 		has "Remnant: Learning Sign 2: done"
-		has "Deep: Wormhole Research: done"
+		has "Deep: Wormhole Research: offered"
 		not "Remnant: Follow-up on Terminus Researchers A: done"
 		not "Remnant: Follow-up on Terminus Researchers B: active"
 		random < 40
