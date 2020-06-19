@@ -972,7 +972,7 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 			`	"Greetings Captain, I am Prefect Torza. I was told you had some information that could be important?" He takes a seat on a bench on the far side of the room from the other Remnant, and gestures for you to take a seat with him.`
 			branch confirmation
 				has "deep: did not reveal remnant"
-			`	You give him some background about the current state of Human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system. He quickly picks up on the potential threat if someone figures out the key to using them, especially since you have demonstrated that it only takes one curious human to figure it out.`
+			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system. He quickly picks up on the potential threat if someone figures out the key to using them, especially since you have demonstrated that it only takes one curious human to figure it out.`
 			goto investigatechoice
 			label confirmation
 			`	You give him some background about the current state of Human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system and now know that quantum keystones can stabilize it. He quickly picks up on the potential threat that this development represents.`
