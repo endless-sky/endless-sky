@@ -82,7 +82,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 				`	"Wait, why did you call them 'shells' and not ships?"`
 					goto shells
 			label tech
-			`	"Back then we found large numbers of their EMP torpedoes, most of which were in nearly pristine condition; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We didn't find any other surviving systems in the shells to do the same, but their tech has been a source of inspiration for centuries."`
+			`	"Back then we found large numbers of their EMP torpedoes, most of which were in nearly pristine condition; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We couldn't do the same with the other surviving systems in the shells, but their tech has been a source of inspiration for centuries."`
 			choice
 				`	"Wait, why did you call them 'shells' and not ships?"`
 			label shells
