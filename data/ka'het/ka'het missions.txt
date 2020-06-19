@@ -95,12 +95,11 @@ mission "First Contact: Ka'het: Remnant 1B"
 mission "Ringworld Debris"
 	invisible
 	landing
-	on enter Queri
+	on enter "Queri"
 		set "ringworld debris"
 		conversation
-			`When you enter this suspiciously empty system, your attention is drawn to your ships' scanners, which picked up some odd thermal waves close to your ship.`
-			`	You're then notified that whatever the signal is, it is rotating extremely slowly in place, though you can't see it as you look out your cockpit.`
-			`	You turn your ship around and open the hatch of your cargo hold, catching the object. When you go there to inspect it, you see a small, dark piece of debris, just a bit smaller than your head, but it doesn't resemble any alloy you've seen on a spaceship or station, bearing semblance to both a crystal and a metallic structure.`
+			`When you enter this suspiciously empty system, your attention is drawn to your ship's scanners. The proximity detection system is going off, suggesting that something sizable is close to your ship, although whatever it is you can't see it as you look out your cockpit.`
+			`	You turn your ship around and open the hatch of your cargo hold, catching the object. When you go to inspect it, you see a small, extremely dark piece of debris that almost looks to be covered in vantablack, but it doesn't resemble any alloy you've seen on a spaceship or station, bearing semblance to both a crystal and a metallic structure.`
 			`	In one particular corner you see that there is a small, barely recognizable tube, badly damaged but with a few intact wires creeping out. After tinkering a bit with the wires you manage to connect the debris to your ship's secondary power systems. It barely uses any energy at all, but you can feel the air around it starting to get slightly colder.`
 			`	You unplug it and store the debris in a separate part of your ship. Maybe some alien species could tell you about it, if you were to bring it to them.`
 
@@ -111,7 +110,7 @@ mission "Ringworld Debris: Remnant"
 		government "Remnant"
 	to offer
 		has "ringworld debris"
-		has "First Contact: Ka'het: Remnant 1B"
+		has "First Contact: Ka'het: Remnant 1B: offered"
 	on offer
 		conversation
 			`Do you want to show the Remnant the piece of debris you found in the abandoned, empty system, and ask them what they know about it?`
@@ -160,11 +159,9 @@ mission "Ringworld Debris: Coalition"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			`	After asking around, you're directed to a large Heliarch building, where several of them are standing guard, weapons on hand, while others are performing maintenance on a chunk of hull plating. Judging by its size, it may be a warehouse for their weapons and outfits. "Of assistance how may we be, kind visitor?" One of the agents asks.`
-			`	You show them the debris, and explain where you've found it. They are shocked when they see it, but don't attempt to perform any tests on it.`
-			`	"A piece of Quarg technology, this is!" they say, asking again for you to explain where exactly you found it, as they make sure to write it all down this time.`
-			`	They then say that they have experienced with technology they managed to steal from the Quarg during their war, and that the debris is the remnant of a somewhat common component of Quarg equipment.`
-			`	 They also note that what you've found has deteriorated much compared to what they have acquired for themselves, and that it most likely can't even reach a fraction of its optimal cooling output.`
+			`	After asking around, you're directed to a large Heliarch building, where several of them are standing guard, weapons in hand, while others are performing maintenance on a chunk of hull plating. Judging by its size, it may be a warehouse for their weapons and outfits. "Of assistance how may we be, kind visitor?" One of the agents asks.`
+			`	You show them the debris, and explain where you've found it. They are shocked when they see it, but don't attempt to perform any tests on it. "A piece of Quarg technology, this is!" they say, asking again for you to explain where exactly you found it, as they make sure to write it all down this time.`
+			`	They then say that they have experienced with technology they managed to steal from the Quarg during their war, and that the debris is the remnant of a somewhat common component of Quarg equipment. They also note that what you've found has deteriorated much compared to what they have acquired for themselves, and that it most likely can't even reach a fraction of its optimal cooling output.`
 			`	You thank them for their time and the explanation, and head back to your ship.`
 				decline
 
@@ -188,10 +185,8 @@ mission "Ringworld Debris: Quarg"
 					defer
 			apply
 				clear "ringworld debris"
-			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You show it the piece of debris, and ask what it knows about it.`
-			`	It is momentarily stunned when you show the dark piece of technology, calmly taking it into its own hands after recovering.`
-			`	"A fragment of our ships, is what it is. A remnant of part of our equipment, thank you for returning it to us."`
-			`	You continue by telling it about your travels in that section of the galaxy, and asking what it knows of the place and the hostiles that inhabit it.`
+			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You show it the piece of debris, and ask what it knows about it. It is momentarily stunned when you show the dark piece of technology, calmly taking it into its own hands after recovering. "A fragment of our ships, is what it is. A remnant of part of our equipment. Thank you for returning it to us."`
+			`	You continue by telling it about your travels in the section of the galaxy where you found the debris, and asking what it knows of the place and the hostiles that inhabit it.`
 			`	"Ah, you encountered the remains of the Builders. Millennia ago, they were a flourishing and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate a greater distance from us and our ringworld there, in worlds easier to maintain than ones they were closer to."`
 			choice
 				`	"Who were these hostile contacts?"`
