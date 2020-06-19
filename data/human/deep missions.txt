@@ -1315,8 +1315,8 @@ mission "Deep: Remnant 0"
 			
 			label friendly
 			choice
-				`	(Reveal the Remnant)`
-				`	(Talk about the dangers)`
+				`	(Reveal the existence of the Remnant.)`
+				`	(Don't reveal the existence of the Remnant.)`
 					goto secretdanger
 			`	You tell Ivan about how the region of space beyond the wormhole is known as the "Ember Waste" and that it is inhabited by a group of friendly humans who fled there during the Alpha Wars. These humans have advanced independently from the rest of humanity for centuries. You mention their strange culture, sharing what you can remember about the songs the Remnant people sang.`
 				goto end
