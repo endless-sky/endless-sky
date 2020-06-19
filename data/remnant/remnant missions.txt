@@ -489,7 +489,7 @@ conversation "remnant key stones"
 	`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
 	`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
 	`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
-		goto noquestion
+		accept
 	label whymention
 	`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
 		accept
