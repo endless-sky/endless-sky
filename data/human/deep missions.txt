@@ -1523,7 +1523,7 @@ mission "Deep: Remnant 1C"
 mission "Deep: Remnant 1D"
 	landing
 	name `Analyze Series of Wormholes`
-	description `Scan the series of wormholes located in the Ember Waste`
+	description `Scan the series of wormholes located in the Ember Waste.`
 	source "Valhalla"
 	waypoint "Cardea"
 	waypoint "Insitor"
