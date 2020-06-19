@@ -1041,7 +1041,7 @@ mission "Remnant: Follow-up on Terminus Researchers B"
 	description "Return to Bounty to check up on a group of wormhole researchers you met some time ago."
 	minor
 	source
-		government Remnant
+		government "Remnant"
 	destination "Valhalla"
 	to offer
 		has "Remnant: Learning Sign 2: done"
