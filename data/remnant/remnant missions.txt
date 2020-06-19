@@ -483,7 +483,7 @@ conversation "remnant key stones"
 		`	"Why would you even need to specify that?"`
 			goto whymention
 		`	"OK"`
-			goto noquestion
+			accept
 	`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
 	`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
 	`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
