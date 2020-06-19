@@ -1007,7 +1007,7 @@ mission "Remnant: Follow-up on Terminus Researchers 2A"
 					accept
 	on complete
 		conversation
-			`	Once you've landed on <planet> you look up the local university and pay it a visit. After thinking about it for a minute, you decide that probably the best source of information would be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief research, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here in the Deep, and transfer copies of each to you for free.`
+			`Once you've landed on <planet> you look up the local university and pay it a visit. After thinking about it for a minute, you decide that probably the best source of information would be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief research, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here in the Deep, and transfer copies of each to you for free.`
 
 
 
