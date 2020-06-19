@@ -1678,7 +1678,7 @@ mission "Deep: Wormhole Research"
 		has "deep: did not reveal remnant"
 	on offer
 		payment 250000
-		dialog `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
+		conversation `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
 			decline
 	on decline
 		set "Deep: Remnant Research: done"

@@ -970,7 +970,7 @@ mission "Remnant: Learn Sign Follow Up"
 
 
 
-mission "Remnant: Follow-up on Terminus Researchers A"
+mission "Remnant: Follow-up on Terminus Researchers A-1"
 	name "Check up on Wormhole Researchers"
 	description "Return to Bounty to check up on a group of wormhole researchers you met some time ago."
 	minor
@@ -984,7 +984,7 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 		random < 40
 	on offer
 		conversation
-			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you earned your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants. (and on your darker days - contemplating being a pirate).`
+			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you earned your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants.`
 			branch secrets
 				has "deep: did not reveal remnant"
 			`	Thinking back, it suddenly occurs to you that you helped retrieve a science drone for some researchers on Bounty - researchers who were studying the wormhole in Terminus. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes. It would only be a matter of time until someone figures out how to use the key stones - either by luck or by research, and then the Remnant's secrecy would vanish.`
@@ -1017,14 +1017,14 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 
 
 
-mission "Remnant: Follow-up on Terminus Researchers 2A"
+mission "Remnant: Follow-up on Terminus Researchers A-2"
 	name "Check up on Terminus Researchers"
 	description "Tracking down the wormhole researchers."
 	source "Bounty"
 	destination
 		government "Deep"
 	to offer
-		has "Remnant: Follow-up on Terminus Researchers: done"
+		has "Remnant: Follow-up on Terminus Researchers A-1: done"
 	on offer
 		conversation
 			`A few hours of searching later, you find a lead: It seems that launching probes into the Terminus system isn't exactly a common activity, so their permits stand out from the rest. A helpful clerk in the spaceport office pulled up their application and found that they are listed as part of a university in the Deep, although it doesn't mention which planet their specific campus is on. A quick check of the directory lists a number of planets where they could be found.`
@@ -1039,7 +1039,7 @@ mission "Remnant: Follow-up on Terminus Researchers 2A"
 
 
 
-mission "Remnant: Follow-up on Terminus Researchers 3A"
+mission "Remnant: Follow-up on Terminus Researchers AB-3"
 	name "Check up on Terminus Researchers"
 	description "Returning with information on the wormhole researchers."
 	source
@@ -1048,7 +1048,7 @@ mission "Remnant: Follow-up on Terminus Researchers 3A"
 		government "Remnant"
 	to offer
 		or
-			has "Remnant: Follow-up on Terminus Researchers 2: done"
+			has "Remnant: Follow-up on Terminus Researchers A-2: done"
 			has "Remnant: Follow-up on Terminus Researchers B: done"
 	on offer
 		conversation
