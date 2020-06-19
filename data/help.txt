@@ -74,11 +74,18 @@ help "navigation"
 	`When you reach a new system, you can press <Land on planet / station> to land on any inhabited planets that are there.`
 	`Also, don't worry about crashing into asteroids or other ships; your ship will fly safely below or above them.`
 
-help "outfitter"
+help "outfitter 1"
 	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
 	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
 	`Use your scroll wheel, or click and drag, to scroll the view.`
 	`As in the trading panel, you can hold down Shift or Control to buy 5 or 20 of an outfit at once, or both keys to buy 100.`
+
+help "outfitter 2"
+	`Sometimes you may want to carry some outfits in your cargo hold instead of installed. Perhaps a mission has asked you to retrieve some outfits; or maybe you just want to swap out something to test out an alternative. There are several ways you can do so:`
+	`1) The outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
+	`2) If you do not have any ships selected in the outfitter control panel when you make a purchase, the outfitter will assign it for delivery to your cargo hold instead of scheduling an installation.`
+	`3) If you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold.`
+	`Outfits that are in your cargo hold can be installed in any outfitter without cost. They can also be sold from the Trade Center.`
 
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
