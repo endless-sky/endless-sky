@@ -65,6 +65,8 @@ void FormationPattern::Load(const DataNode &node)
 							repeat.repeatEnd.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
 							repeat.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
+						else if(grandGrand.Token(0) == "alternating")
+							repeat.alternating = true;
 						else
 							grandGrand.PrintTrace("Skipping unrecognized attribute:");
 				}
@@ -99,11 +101,10 @@ unsigned int FormationPattern::Repeats(unsigned int lineNr) const
 // Get the number of positions on a line for the given ring.
 unsigned int FormationPattern::LineRepeatSlots(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const
 {
+	// Retrieve the relevant line.
 	if(lineNr >= lines.size())
 		return 0;
-	
-	// Retrieve the relevant line.
-	Line line = lines[lineNr];
+	const Line &line = lines[lineNr];
 	
 	// For the very first ring, only the initial positions are relevant.
 	if(ring == 0)
@@ -153,6 +154,14 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		const LineRepeat &repeat = line.repeats[repeatNr];
 		startPx += repeat.repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
 		endPx += repeat.repeatEnd.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+		
+		// Swap start and end if we need to alternate.
+		if(ring % 2 && repeat.alternating)
+		{
+			Point tmpPx = endPx;
+			endPx = startPx;
+			startPx = tmpPx;
+		}
 	}
 	
 	// Calculate the step from each slot between start and end.

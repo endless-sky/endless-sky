@@ -70,8 +70,11 @@ protected:
 		MultiAxisPoint repeatStart;
 		MultiAxisPoint repeatEnd;
 
-		// Slots to add or remove in this repeat section
+		// Slots to add or remove in this repeat section.
 		int repeatSlots = 0;
+		
+		// Indicates if each odd repeat section should start from the end instead of the start.
+		bool alternating = false;
 	};
 
 	class Line {

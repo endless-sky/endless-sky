@@ -18,18 +18,10 @@ formation "Delta (tailing)"
 		slots 2
 		centered
 		repeat
-			start diameter -2 4
-			end diameter 2 4
-			slots 2
-	line
-		start diameter 2 4
-		end diameter -2 4
-		slots 3
-		centered
-		repeat
-			start diameter 2 4
-			end diameter -2 4
-			slots 2
+			start diameter -1 2
+			end diameter 1 2
+			alternating
+			slots 1
 
 
 
