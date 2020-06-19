@@ -992,9 +992,9 @@ mission "Remnant: Follow-up on Terminus Researchers A"
 mission "Remnant: Follow-up on Terminus Researchers 2A"
 	name "Check up on Terminus Researchers"
 	description "Tracking down the wormhole researchers."
-	source Bounty
+	source "Bounty"
 	destination
-		government Deep
+		government "Deep"
 	to offer
 		has "Remnant: Follow-up on Terminus Researchers: done"
 	on offer
