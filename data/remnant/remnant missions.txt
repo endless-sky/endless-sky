@@ -1015,9 +1015,9 @@ mission "Remnant: Follow-up on Terminus Researchers 3A"
 	name "Check up on Terminus Researchers"
 	description "Returning with information on the wormhole researchers"
 	source
-		government Deep
+		government "Deep"
 	destination
-		government Remnant
+		government "Remnant"
 	to offer
 		or
 			has "Remnant: Follow-up on Terminus Researchers 2: done"
