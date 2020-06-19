@@ -1013,7 +1013,7 @@ mission "Remnant: Follow-up on Terminus Researchers 2A"
 
 mission "Remnant: Follow-up on Terminus Researchers 3A"
 	name "Check up on Terminus Researchers"
-	description "Returning with information on the wormhole researchers"
+	description "Returning with information on the wormhole researchers."
 	source
 		government "Deep"
 	destination
