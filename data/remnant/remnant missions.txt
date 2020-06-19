@@ -1032,7 +1032,7 @@ mission "Remnant: Follow-up on Terminus Researchers 3A"
 		payment 2000000
 		conversation
 			`The trip back to the Ember Wastes is long, and it gave you plenty of opportunities to think about what this research could lead to. You also wondered about what the Remnant will do, as it seems obvious that their current isolation is about to fail.`
-			`	Torza seems grimly optimistic on receiving your report "If this had happened without us being aware, it could have gone badly. Fortunately for us, you were in the right place at the right time, and have proven yourself loyal to us. So we are now forewarned and can use this time to plan and prepare for it. Perhaps re-establishing contact with the rest of humanity could even be to our benefit, but that will be for the council to decide."`
+			`	Torza seems grimly optimistic on receiving your report. "If this had happened without us being aware, it could have gone badly. Fortunately for us, you were in the right place at the right time, and have proven yourself loyal to us. So we are now forewarned and can use this time to plan and prepare for it. Perhaps re-establishing contact with the rest of humanity could even be to our benefit, but that will be for the council to decide.`
 			`	"Thank you, Captain. If you ever come across any other interesting information like this, don't hesitate to bring it to me."`
 
 
