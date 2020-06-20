@@ -19343,7 +19343,7 @@ system Queri
 	fleet "Ka'het" 4000
 	fleet "Ka'het Aggressive" 11000
 	object
-		sprite star/g5
+		sprite star/g5-old
 		period 10
 
 system Rajak
