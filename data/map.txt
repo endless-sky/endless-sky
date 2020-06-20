@@ -19338,14 +19338,6 @@ system Queri
 	habitable 135
 	link Esix
 	link Ritilas
-	asteroids "large metal" 6 2
-	asteroids "large rock" 4 3
-	asteroids "medium metal" 13 2
-	asteroids "medium rock" 4 3
-	asteroids "small metal" 12 3
-	asteroids "small rock" 7 4
-	minables lead 4 4
-	minables silicon 3 5
 	trade Clothing 292
 	trade Electronics 793
 	trade Equipment 421
@@ -19359,101 +19351,8 @@ system Queri
 	fleet "Ka'het" 4000
 	fleet "Ka'het Aggressive" 11000
 	object
-		sprite star/a5
+		sprite star/g5-old
 		period 10
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 20
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 40
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 60
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 80
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 100
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 120
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 140
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 160
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 180
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 200
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 220
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 240
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 260
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 280
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 300
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 320
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 340
-	object
-		sprite planet/gas11
-		distance 2417.94
-		period 4093.19
 
 system Rajak
 	pos -270 -236
@@ -27482,11 +27381,6 @@ planet Pugglequat
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
 	"required reputation" 2
 	security 1
-
-planet Querii'ka
-	attributes ka'het
-	landscape land/station2
-	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'het passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
 
 planet Quicksilver
 	attributes core volcanic mining
