@@ -901,17 +901,16 @@ mission "House Bebliss 2"
 				`	"Yeah, they are called the Pug."`
 					goto pug
 				`	"Wait, how do you know of this?"`
-					goto how
-			label how
 			`	"Know it, the Heliarchs do, so learned about it, we have."`
 			`	"Many resources, the great Arach Houses posess. Such information, trivial it is to collect."`
 			choice
 				`	"I see. Well, yes, we were invaded by aliens known as the Pug."`
 					goto pug
 				`	"And how did the Heliarch know?"`
-			`	"In "their" space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were."`
-				goto pug
+			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were."`
 			label pug
+			`	Thankfully, the ones that were downing drinks weren't too close when you said the word "Pug," or else you'd need a new set of clothes.`
+			`	"What said you the aliens were called? 'Pug' were they called?" One of them asks, still cleaning the mess their drinks made on the floor. They call for a servant, and speak close to their head, whispering something your translation device can't pick up. "Forgive me Captain, merely surprised I was. We all were," one says. "Now, telling us about the events, continue would you?"`
 			`	You give them a brief rundown of the Pug invasion, as they ask you to further detail the moments where you had to fight off waves of Pug as Freya worked the graviton transmitters and reflectors to link systems together.`
 			`	"Promising, this Freya woman sounds. Know her location, do you, Captain?"`
 			`	You say that she is probably still on <destination>, and that was where you saw her last.`
