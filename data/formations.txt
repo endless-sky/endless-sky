@@ -592,7 +592,9 @@ formation "Sphere"
 		start polar diameter 180 1
 		start polar 180 40
 		angle 360
-		# Double start/end, needs to change to skip-first or skip-last and 6 slots
+		centered
+		# start and end positions overlap, so need to specify 7 instead of 6 and use skip first or skip last.
+		skip last
 		slots 7
 		repeat
 			start polar diameter 180 1

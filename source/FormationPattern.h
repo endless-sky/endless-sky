@@ -97,6 +97,8 @@ protected:
 		// Properties of how the line behaves
 		bool centered = false;
 		bool isArc = false;
+		bool skipFirst = false;
+		bool skipLast = false;
 	};
 	
 	
