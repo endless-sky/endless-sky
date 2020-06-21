@@ -590,11 +590,44 @@ formation "Sphere"
 	rotatable 60
 	arc
 		start polar diameter 180 1
-		start polar 180 10
+		start polar 180 40
 		angle 360
 		# Double start/end, needs to change to skip-first or skip-last and 6 slots
 		slots 7
 		repeat
 			start polar diameter 180 1
-			start polar 180 10
+			start polar 180 40
 			slots 6
+
+
+
+formation "Atomic"
+	flippable x
+	rotatable 120
+	arc
+		start polar diameter 330 1
+		start polar 330 40
+		angle 60
+		slots 2
+		repeat
+			start polar diameter 330 1
+			start polar 330 40
+			slots 1
+	arc
+		start polar diameter 90 1
+		start polar 90 40
+		angle 60
+		slots 2
+		repeat
+			start polar diameter 90 1
+			start polar 90 40
+			slots 1
+	arc
+		start polar diameter 210 1
+		start polar 210 40
+		angle 60
+		slots 2
+		repeat
+			start polar diameter 210 1
+			start polar 210 40
+			slots 1
