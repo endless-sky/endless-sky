@@ -835,7 +835,7 @@ mission "Heliarch Recon 2-A"
 
 mission "Heliarch Recon 2-B"
 	name "Silent Scan"
-	description "Now that the Heliarchs have altered your Outfit Scanner, head to <waypoint> and scan some Quarg ships there, then report back to <destination>."
+	description "Now that the Heliarchs have altered your Outfit Scanner, head to <waypoints> and scan some Quarg ships there, then report back to <destination>."
 	landing
 	source "Ring of Wisdom"
 	destination "Ring of Wisdom"
@@ -1046,8 +1046,8 @@ mission "Heliarch Expedition 1"
 		has "event: heliarch intel break"
 	on offer
 		conversation
-			`As you land on <origin>, a world under Heliarch rule, you remember the several missions they had you perform, scanning Quarg ships and landing on their worlds.`
-			`	It then clicks that, although you have seen many Ringworlds, complete and in construction, the only damaged one you could find was the one through the wormhole in Deneb. Would you like to tell the Heliarch about it?`
+			`As you land on <origin>, a ringworld under Heliarch rule, you remember the several missions they had you perform, scanning Quarg ships and landing on their worlds.`
+			`	It then clicks that, although you have seen many ringworlds, complete and in construction, the only damaged one you could find was the one through the wormhole in Deneb. Would you like to tell the Heliarch about it?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
@@ -1073,10 +1073,10 @@ mission "Heliarch Expedition 1"
 			choice
 				`	"I didn't say incomplete, I said broken. I know the difference."`
 				`	"Is this some joke? If you don't care about the broken ringworld, just tell me, don't waste my time."`
-			`	You explain in detail about where the wormhole is, giving a bit of context about the Pug and the Deneb system. You speak of the odd planet on the other side, and the nearby system with the ringworld. He remains silent for the whole thing, yet again.`
+			`	You explain in detail about where the wormhole is, giving a bit of context about the Pug and the Deneb system. You speak of the odd planet on the other side, and the nearby system with the ringworld. He remains mostly silent while you explain, save for when he lets out a grunt and briefly breaks the poker face with a shocked expression when you first utter the word "Pug".`
 			`	You were too focused on this elder Aulori to notice before, but all over the table the other Heliarchs are engaged in a rather heated, though mostly quiet, discussion, as they gesticulate and tilt the table with their body weight amidst whispers.`
 			`	Aulori stands up, and the others stop talking, looking at him.`
-			`	"Broken?" He stares right at you. "Impossible, such a thing should be... Absolutely sure, are you, Captain?"`
+			`	"Broken?" He stares right at you. "Impossible, such a thing should be... And Pug, you spoke of? Absolutely sure, are you, Captain?"`
 			`	You nod, and after talking among themselves, you're asked to wait outside the room for a while. The whispering discussion from earlier now becomes a fully fledged debate, as you can hear shouting coming from inside, in multiple Coalition languages. After half an hour, you also hear what must have been the table being knocked over, and louder yelling.`
 			`	It all grows quiet for a while, and then the door opens again, the table and everything else is in order. Everyone leaves, and Aulori comes over to you.`
 			`	"Adjusted, your ship's sensors will be. Better programmed, we will make them, for more detailed tridimensional projections," he says, and you're brought back to the ship.`
@@ -1202,7 +1202,7 @@ mission "Heliarch Expedition 5"
 				`	"Alright, what is it that you need?"`
 					goto needs
 			label nosupply
-			`	"Decide it, I did not. Determined it to be the best course of action, the elders have," he explains. "Completely overhaul our understanding of the ringworlds, this project could."`
+			`	"Decide it, I did not. Determined it to be the best course of action, the elders have," he explains. "Completely overhaul our understanding of the ringworlds, and maybe about these 'Pug' more information uncover, this project could."`
 			label needs
 			`	He says that the group will need a way to generate energy, and a sizeable battery too, to power up the facilities that will be mounted on the planet. He also mentions that they will need something to make sure the water they get from the nearby river is in a drinkable state.`
 			`	"Compensated for your expenses, you would be, of course," he says after finishing the list.`
