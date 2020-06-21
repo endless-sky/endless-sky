@@ -12,6 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FormationPattern.h"
 
+#include <iostream>
+#include <cmath>
+
 using namespace std;
 
 
@@ -39,17 +42,24 @@ void FormationPattern::Load(const DataNode &node)
 			}
 		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
-		else if(child.Token(0) == "line")
+		else if(child.Token(0) == "line" || child.Token(0) == "arc")
 		{
 			lines.emplace_back();
 			Line &line = lines[lines.size() - 1];
+			
+			if(child.Token(0) == "arc")
+				line.isArc = true;
 			
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "start" && grand.Size() >= 3)
 					line.start.AddLoad(grand);
-				else if(grand.Token(0) == "end" && grand.Size() >= 3)
-					line.end.AddLoad(grand);
+				else if(grand.Token(0) == "end" && grand.Size() >= 3 && !line.isArc)
+					line.endOrAnchor.AddLoad(grand);
+				else if(grand.Token(0) == "anchor" && grand.Size() >= 3 && line.isArc)
+					line.endOrAnchor.AddLoad(grand);
+				else if(grand.Token(0) == "angle" && grand.Size() >= 2 && line.isArc)
+					line.angle = grand.Value(1);
 				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
 					line.slots = static_cast<int>(grand.Value(1) + 0.5);
 				else if(grand.Token(0) == "centered")
@@ -61,8 +71,12 @@ void FormationPattern::Load(const DataNode &node)
 					for(const DataNode &grandGrand : grand)
 						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
 							repeat.repeatStart.AddLoad(grandGrand);
-						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3)
-							repeat.repeatEnd.AddLoad(grandGrand);
+						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3 && !line.isArc)
+							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
+						else if(grandGrand.Token(0) == "anchor" && grandGrand.Size() >= 3 && line.isArc)
+							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
+						else if(grandGrand.Token(0) == "angle" && grandGrand.Size() >= 2 && line.isArc)
+							repeat.repeatAngle = grandGrand.Value(1);
 						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
 							repeat.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
 						else if(grandGrand.Token(0) == "alternating")
@@ -80,7 +94,7 @@ void FormationPattern::Load(const DataNode &node)
 
 
 
-// Get the number of lines in this formation.
+// Get the number of lines (and arcs) in this formation.
 unsigned int FormationPattern::Lines() const
 {
 	return lines.size();
@@ -88,7 +102,7 @@ unsigned int FormationPattern::Lines() const
 
 
 
-// Get the number of repeat sections for this line.
+// Get the number of repeat sections for the given arc or line.
 unsigned int FormationPattern::Repeats(unsigned int lineNr) const
 {
 	if(lineNr >= lines.size())
@@ -98,8 +112,8 @@ unsigned int FormationPattern::Repeats(unsigned int lineNr) const
 
 
 
-// Get the number of positions on a line for the given ring.
-unsigned int FormationPattern::LineRepeatSlots(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const
+// Get the number of positions on an arc or line.
+unsigned int FormationPattern::Slots(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const
 {
 	// Retrieve the relevant line.
 	if(lineNr >= lines.size())
@@ -125,7 +139,7 @@ unsigned int FormationPattern::LineRepeatSlots(unsigned int ring, unsigned int l
 
 
 
-// Check if a certain line is centered.
+// Check if a certain arc or line is centered.
 bool FormationPattern::IsCentered(unsigned int lineNr) const
 {
 	// Returns false if we have an invalid lineNr or when the line is not centered.
@@ -134,41 +148,83 @@ bool FormationPattern::IsCentered(unsigned int lineNr) const
 
 
 
-// Get a formation position based on ring, line-number and position on the line.
+// Get a formation position based on ring, line(or arc)-number and position on the line.
 Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const
 {
+	// First check if the inputs result in a valid line or arc position.
 	if(lineNr >= lines.size())
 		return Point();
 	const Line &line = lines[lineNr];
-	
 	if(ring > 0 && repeatNr >= line.repeats.size())
 		return Point();
-
-	// Calculate the start and end positions in pixels.
-	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx);
-	Point endPx = line.end.GetPx(diameterToPx, widthToPx, heightToPx);
 	
-	// Apply repeat section if it is relevant.
+	// Perform common start and end/anchor position calculations in pixels.
+	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx);
+	Point endOrAnchorPx = line.endOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx);
+	
+	// Check if we have a valid repeat section and apply it to the common calculations if we have it.
+	const LineRepeat *repeat = nullptr;
 	if(ring > 0 && repeatNr < line.repeats.size())
 	{
-		const LineRepeat &repeat = line.repeats[repeatNr];
-		startPx += repeat.repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
-		endPx += repeat.repeatEnd.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+		repeat = &(line.repeats[repeatNr]);
+		startPx += repeat->repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+		endOrAnchorPx += repeat->repeatEndOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+	}
+	
+	// Get the number of slots for this line or arc.
+	int slots = Slots(ring, lineNr, repeatNr);
+	
+	// Switch to arc-specific calculations if this line is an arc.
+	if(line.isArc)
+	{
+		// Calculate angles and radius from anchor to start.
+		double startAngle = Angle(startPx).Degrees();
+		double endAngle = line.angle;
+		double radius = startPx.Length();
 		
-		// Swap start and end if we need to alternate.
-		if(ring % 2 && repeat.alternating)
+		// Apply repeat section for endAngle, startAngle and anchor were already done before.
+		if(repeat)
 		{
-			Point tmpPx = endPx;
-			endPx = startPx;
-			startPx = tmpPx;
+			endAngle += repeat->repeatAngle * ring;
+			
+			// Calculate new start and turn end angle if we need to alternate this repeat.
+			if(ring % 2 && repeat->alternating && slots > 0)
+			{
+				startAngle += endAngle * (slots - 1);
+				endAngle = -endAngle;
+			}
 		}
+		
+		// Apply slots to get the correct slot-angle.
+		if(slots > 1)
+			endAngle = endAngle / static_cast<double>(slots - 1);
+		double slotAngle = startAngle + endAngle * lineSlot;
+		
+		// Get into the range of 0 to 360 for conversion to angle)
+		if(slotAngle < 0)
+			slotAngle = -fmod(-slotAngle, 360) + 360;
+		else
+			slotAngle = fmod(slotAngle, 360);
+		
+		// Combine anchor with the slot-position and return the result.
+		return endOrAnchorPx + Angle(slotAngle).Unit() * radius;
+	}
+	
+	// This is not an arc, perform the line-based calculations.
+	
+	// Swap start and end if we need to alternate in the repeat section.
+	// Apply repeat section if it is relevant.
+	if(ring % 2 && repeat && repeat->alternating)
+	{
+		Point tmpPx = endOrAnchorPx;
+		endOrAnchorPx = startPx;
+		startPx = tmpPx;
 	}
 	
 	// Calculate the step from each slot between start and end.
-	Point slotPx = endPx - startPx;
+	Point slotPx = endOrAnchorPx - startPx;
 	
 	// Divide by slots, but don't count the first (since it is at position 0, not at position 1).
-	int slots = LineRepeatSlots(ring, lineNr, repeatNr);
 	if(slots > 1)
 		slotPx = slotPx / static_cast<double>(slots - 1);
 	

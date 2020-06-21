@@ -138,7 +138,7 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 	
 	unsigned int ringsScanned = 0;
 	unsigned int startingRing = rPos.ring;
-	unsigned int lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+	unsigned int lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
 	
 	while(rPos.lineSlot >= lineRepeatSlots && rPos.morePositions)
 	{
@@ -150,7 +150,7 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 			// First check if we are on a valid line and have another repeat section.
 			++(rPos.activeRepeat);
 			rPos.lineSlot = 0;
-			lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+			lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
 		}
 		else if(rPos.activeLine < lines - 1)
 		{
@@ -158,7 +158,7 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 			++(rPos.activeLine);
 			rPos.activeRepeat = 0;
 			rPos.lineSlot = 0;
-			lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+			lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
 		}
 		else
 		{
@@ -167,7 +167,7 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 			rPos.activeLine = 0;
 			rPos.activeRepeat = 0;
 			rPos.lineSlot = 0;
-			lineRepeatSlots = pattern->LineRepeatSlots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
+			lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
 			
 			// If we scanned more than 1 rings without finding a slot, then we have an empty pattern.
 			++ringsScanned;

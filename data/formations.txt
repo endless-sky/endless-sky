@@ -579,3 +579,22 @@ formation "X"
 		start diameter 2 2
 		repeat
 			start diameter 2 2
+
+
+
+# A sphere (or circle if one ring is used).
+# Built in six segment sections using the same layouting as the hexagon shape.
+formation "Sphere"
+	flippable x y
+	# Could also be set to 1 or smaller.
+	rotatable 60
+	arc
+		start polar diameter 180 1
+		start polar 180 10
+		angle 360
+		# Double start/end, needs to change to skip-first or skip-last and 6 slots
+		slots 7
+		repeat
+			start polar diameter 180 1
+			start polar 180 10
+			slots 6
