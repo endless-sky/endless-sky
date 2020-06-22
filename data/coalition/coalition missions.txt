@@ -768,24 +768,34 @@ mission "Saryd Couple 4"
 		dialog `You have reached <planet>, but Inturi's ship hasn't arrived yet. Better depart and wait for it to get here.`
 	on complete
 		"coalition jobs" ++
-		event "saryd couple payment" 51 96
+		event "saryd couple follow-up" 51 96
 		conversation
 			`You help Inturi park the ship on the plot of land, but since the Arach Courier takes up almost the entire area, your own ship has to land on a regular landing pad.`
 			`	After taking a transport up the mountain, you see that some workers are already there, and are starting to remove ship components that won't be needed, like its engines and the hyperdrive. A house doesn't need to be able to traverse the void of space, after all.`
-			`	Inturi and Aunaris thank you again, and promise to pay you once they've finished settling in their new home, and gotten the money for it.`
-			`	You wish them luck and head back to your ship.`
+			`	The couple comes meet up with you, "In a day or two, after some shopping we do, fully furnished the house will be," Aunaris says, looking at the ship.`
+			`	"Helped us a lot in getting it all sorted out you have, Captain <last>. Focus on working hard to pay you back in full, we will," Inturi adds.`
+			choice
+				`	"You don't need to worry about paying me, I helped because I wanted to, not for payday."`
+					apply
+						set "refused saryd couple payment"
+				`	"Well, I hope everything goes well. Best of luck to you two!"`
+					goto end
+			`	They look at you confused and then try to insist on paying you, but after some minutes they agree. "Too kind a heart you are, Captain," Aunaris says.`
+			label end
+			`	They thank you again, and you head back to your ship.`
 
 
 
-event "saryd couple payment"
+event "saryd couple follow-up"
 
 
 
-mission "Saryd Couple Payment"
+mission "Saryd Couple Follow-Up A"
 	invisible
 	landing
 	to offer
-		has "event: saryd couple payment"
+		has "event: saryd couple follow-up"
+		not "refused saryd couple payment"
 	source
 		government "Coalition" "Heliarch"
 	on offer
@@ -794,6 +804,22 @@ mission "Saryd Couple Payment"
 			`When you land, you're notified of <payment> being transferred to your account.`
 			`	With it, there's a message. It's from Inturi and Aunaris, the Saryd couple who you helped move out to their very own home.`
 			`	In the message, they apologize for taking so long to pay you, and go on to tell you about how they've been doing there. Aunaris has been working in a school there, while Inturi has been helping other residents set up their own "ship-houses", as he calls them. Apparently it's become somewhat popular there, after people saw their home was a spaceship.`
+			`	They thank you again, and say you're welcome to visit anytime.`
+
+
+
+mission "Saryd Couple Follow-Up B"
+	invisible
+	landing
+	to offer
+		has "event: saryd couple follow-up"
+		has "refused saryd couple payment"
+	source
+		government "Coalition" "Heliarch"
+	on offer
+		conversation
+			`When you land, see you've received a message. It's from Inturi and Aunaris, the Saryd couple who you helped move out to their very own home.`
+			`	Along with the message, they've sent a picture of them both tending to some flowers and short trees in a little garden they've started up near the ship. In the message they go on to tell you about how they've been doing there. Aunaris has been working in a school there, while Inturi has been helping other residents set up their own "ship-houses", as he calls them. Apparently it's become somewhat popular there, after people saw their home was a spaceship.`
 			`	They thank you again, and say you're welcome to visit anytime.`
 
 
