@@ -1173,7 +1173,7 @@ mission "Remnant: Electron Beam"
 			label familiar
 			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around trying to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
 			label next
-			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon.`
+			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon."`
 				accept
 	on visit
 		dialog `You have returned to <planet>, but you don't have the two electron beams that Taely requested. Go buy two electron beams before returning.`
@@ -1249,7 +1249,7 @@ mission "Remnant: S-970 Regenerator"
 			label familiar
 			`	Taely seems like the sort of person who spends most of their time working directly on ships, so finding people repairing ships seems the most likely place to find her. As you enter the maintenance section, you spot an engineer waiting for you. She quickly introduces herself as an engineer who works with Taely. "She was not able to be here, so she sent me to see what you have brought" chants the engineer.`
 			label next
-			`	You nod in the agreement and lead her back to your ship, where she does a cursory scan of the S-970 Regenerator. "Hmm," she murmurs as she peers at the readings on her instrument as she waves it up and down the regenerator. "This looks like they may have found a few techniques that would be beneficial for us to study. If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
+			`	You nod in the agreement and lead her back to your ship, where she does a cursory scan of the S-970 Regenerator. "Hmm," she murmurs as she peers at the readings on her instrument as she waves it up and down the regenerator. "This looks like they may have found a few techniques that would be beneficial for us to study. If you could deliver two of these to a lab on <planet> we could compensate you with <payment>."`
 				accept
 	on visit
 		dialog `You have returned to <planet>, but you don't have the two S-970 Regenerator that Taely requested. Go buy the two shield regenerators before returning.`
