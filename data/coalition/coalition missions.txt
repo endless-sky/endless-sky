@@ -776,10 +776,10 @@ mission "Saryd Couple 4"
 			`	"Helped us a lot in getting it all sorted out you have, Captain <last>. Focus on working hard to pay you back in full, we will," Inturi adds.`
 			choice
 				`	"You don't need to worry about paying me, I helped because I wanted to, not for payday."`
-					apply
-						set "refused saryd couple payment"
 				`	"Well, I hope everything goes well. Best of luck to you two!"`
 					goto end
+			apply
+				set "refused saryd couple payment"
 			`	They look at you confused and then try to insist on paying you, but after some minutes they agree. "Too kind a heart you are, Captain," Aunaris says.`
 			label end
 			`	They thank you again, and you head back to your ship.`
