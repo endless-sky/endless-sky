@@ -485,8 +485,8 @@ mission "Kimek Gift"
 		require "Jump Drive"
 		conversation
 			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package, with some papers attached.`
-			`	Once she spots you, she quickly comes to you and says, "Human! The visitor I've heard about, you are! From the outside! A Jump Drive you have, if our space you've reached, yes?"`
-			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your Jump Drive, get there in a day you could. Help me would you, Captain?"`
+			`	As soon as she spots you, she quickly comes to you and says, "Human! The visitor I've heard about, you are! From the outside! A Jump Drive you have, if our space you've reached, yes?"`
+			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work, I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your Jump Drive, get there in a day you could. Help me would you, Captain?"`
 			choice
 				`	"Just that small package? Easy enough, I'll do it."`
 					accept
@@ -497,9 +497,9 @@ mission "Kimek Gift"
 		"coalition jobs" ++
 		conversation
 			`Apparently this Saryd in question doesn't live here on the spaceport village, so you must take a train to go to his home. Thankfully a train ticket was attached to the package, so you waste no time and get on the next train there.`
-			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and glance at the sights of the seemingly infinite winter forest.`
-			`	Halfway through a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now serving something akin to hot chocolate, only it is a blue, creamy substance.`
-			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included, and deliver the present to her Saryd friend. Apparently his birthday just started.`
+			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and gaze at the sights of the seemingly infinite winter forest.`
+			`	Halfway through a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now serving something akin to hot chocolate, only it is instead a blue, creamy substance.`
+			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included, and deliver the present to her Saryd friend. Apparently his birthday had just started.`
 			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
 
 
@@ -678,7 +678,7 @@ mission "Saryd Couple 1"
 			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
 			`	"Much too far away, his old job took him, and well paid crewmembers are not," Aunaris says, bringing up the map again and showing it to you. "Offered a job in Starlit University, on <destination>, I was. Not too distant from <origin>, it is, and a higher pay, it offers. Transport me there, would you, Captain?"`
 			choice
-				`	"Of course, just come to my ship when you've prepared your luggage."`
+				`	"Of course, just come to my ship when you've finished preparing your luggage."`
 				`	"Sorry, I'm headed elsewhere now."`
 					decline
 			`	They both thank you, and you head back to your ship.`
@@ -689,7 +689,7 @@ mission "Saryd Couple 1"
 		event "saryd couple has money" 42 86
 		conversation
 			`Aunaris thanks you for bringing her here, and apologizes for not being able to pay you right away, but promises once she and Inturi have figured out their home, they will work hard to pay you.`
-			`	"Stay here for a few months, I probably will, before the remaining funds I have," she says, before saying goodbye and taking a cable car to her new workplace.`
+			`	"Stay here for a few months, I probably will, before the remaining funds I have acquired," she says, before saying goodbye and taking a cable car to her new workplace.`
 
 
 
@@ -943,13 +943,13 @@ mission "Arachi Cartoonist 2"
 		payment 75940
 		conversation
 			`Drugub is excitedly waiting for you when you return. However simple a piece of paper it may seem to you, he grabs the flyer as if it's some scroll of knowledge.`
-			`	He hands you your payment of <payment>, and spends some time with you still, asking you all questions he can think of about each ship.`
+			`	He hands you your payment of <payment>, and spends some time with you still, asking you all the questions he can think of about each ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
 			`	He spends some more minutes listening to you after he asks that you describe how you've seen each of the ships perform, thanks you again, and prepares to leave.`
 			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan', may I? Just as a small thank you."`
 			choice
 				`	"Of course! It's called <ship>."`
-				`	"The name is nothing special, I wouldn't even get the reference it if I read your comic in the future honestly."`
+				`	"The name is nothing special, I wouldn't even get the reference of it if I read your comic in the future honestly."`
 					goto noship
 			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
 				accept
