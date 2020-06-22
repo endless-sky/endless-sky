@@ -631,7 +631,7 @@ mission "Deep: Mystery Cubes 4"
 		event "assisted the deep" 7
 		payment 1000000
 		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but he has escaped. The Navy is still searching, but is no longer asking for help from merchants.`
-		log "People" "Beelzebub" `Beelzebub, as many call them, is one of the most notorious pirates in Human space. They're responsible for committing countless acts of crimes against both Humanity and the Republic government and are still at large somewhere in the galaxy despite a major setback.`
+		log "People" "Beelzebub" `Beelzebub, as many call them, is one of the most notorious pirates in human space. They're responsible for committing countless acts of crimes against both humanity and the Republic government and are still at large somewhere in the galaxy despite a major setback.`
 		conversation
 			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up to tend to the wounded and multiple ships are being repaired. You are directed to an unscathed building in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and your fellow merchant captains have convened. After you enter the room and get settled down, the admiral begins to speak.`
 			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
