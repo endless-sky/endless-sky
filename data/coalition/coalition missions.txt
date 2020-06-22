@@ -712,6 +712,7 @@ mission "Saryd Couple 2"
 			`	"Sleeping well, I have not been, but helped much with the campus administration, I have. A bonus, I was given," Aunaris tells you.`
 			`	They say they just need a transport to <destination>, the world they have chosen to put down roots, and after everything is done, they will work on getting you your payment.`
 			`	You show them to their bunks, and prepare for the trip.`
+				accept
 	on complete
 		"coalition jobs" ++
 
@@ -775,7 +776,7 @@ mission "Saryd Couple 4"
 			`	The couple comes meet up with you, "In a day or two, after some shopping we do, fully furnished the house will be," Aunaris says, looking at the ship.`
 			`	"Helped us a lot in getting it all sorted out you have, Captain <last>. Focus on working hard to pay you back in full, we will," Inturi adds.`
 			choice
-				`	"You don't need to worry about paying me, I helped because I wanted to, not for payday."`
+				`	"You don't need to worry about paying me, I helped because I wanted to, not for a payday."`
 				`	"Well, I hope everything goes well. Best of luck to you two!"`
 					goto end
 			apply
