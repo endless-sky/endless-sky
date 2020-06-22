@@ -537,7 +537,7 @@ mission "FW Wolf Pack 4"
 	
 	on offer
 		dialog
-			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?`
+			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?"`
 	
 	on accept
 		event "wolf pack mizar start"
