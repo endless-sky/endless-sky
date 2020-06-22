@@ -2347,6 +2347,7 @@ mission "FWC End"
 	on offer
 		log "Parliament has agreed to a peace treaty, because the threat of alien invasion now seems much more pressing than the civil war with the Free Worlds. Whatever the true intention of the Pug was, the result of their interference is that humanity is at peace once more. There has been great loss of life, but nothing compared to what would have happened if the Free Worlds had tried to conquer Earth."
 		log "It may be a while before members of the Free Worlds manage to re-earn the trust of the rest of humanity, however."
+		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds, culminating in a series of military confrontations, that ended when the Pug invaded human space. After humanity united to drive out the Pug invaders, the Republic officially granted the Free Worlds autonomy.`
 		"reputation: Republic" += 20
 		conversation
 			`You find Admiral Danforth inspecting the Pug spaceport. "This is all very odd," he says. "I'm glad the aliens appear to have left, but I wish we knew where they came from and whether they're likely to return."`

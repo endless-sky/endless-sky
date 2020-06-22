@@ -2540,6 +2540,8 @@ mission "FW Syndicate Extremists 1C"
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
+		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds, culminating in a series of military confrontations, that ended when the Free Worlds were able to present credible evidence denying any involvement in the terrorist attacks. After the Free Worlds joined the effort to drive out the Pug invaders, the Republic officially recognized the Free Worlds and diplomatic relations were established.`
+		log "Factions" "Syndicate" `The reputation of the Syndicate took further damage when it became appearant that a group of top management executives had conspired with the Alphas in an attempt to create a war between the Republic and the Free Worlds.`
 		payment 5000000
 		event "stack core for sale"
 		set "main plot completed"
