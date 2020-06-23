@@ -701,7 +701,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
-			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category() == "Fighter");
+			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
 			{
 				// Find the possible parents for orphaned fighters and drones.
@@ -785,7 +785,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
 				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
-						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category() == "Fighter"))
+						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
 				{
 					mustRecall = true;
 					break;
