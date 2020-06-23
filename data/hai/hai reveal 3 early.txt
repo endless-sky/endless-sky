@@ -223,6 +223,7 @@ event "role-play station before construction"
 		attributes uninhabited
 		landscape land/station0
 		description `There's a construction site rapidly assembling a station from Hai Geocoris' orbiting this wormhole.`
+		"required reputation" -10
 		security 0.2
 
 
