@@ -3584,8 +3584,7 @@ mission "Hauler VI cargo prototype 3"
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
 
 
-
-mission "Family back to Paradise"
+mission "Family back to Paradise - no luxury"
 	name "Take family home to <planet>"
 	description "A family worried about the potential destruction in the Free Worlds wants to cut their vacation short and go home to <destination>."
 	source
@@ -3599,6 +3598,7 @@ mission "Family back to Paradise"
 	to fail
 		has "free worlds plot completed"
 	on offer
+		require "Luxury Accommodations" 0
 		conversation
 			`After walking around the spaceport for awhile you head back to your ship to find and middle aged couple with what appear to be their two grade school daughters waiting for you at your hanger. The man is busy trying to adjudicate a dispute between the girls but the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We have been going from ship to ship looking for transport back home to the paradise planets. This war caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little 'angels'," she gestures toward her daughters, now in a full blown fight. "If you can find the time to take us we will pay you very well."`
 			choice
@@ -3612,11 +3612,43 @@ mission "Family back to Paradise"
 	on complete
 		payment 66999
 		conversation
-			`You're not sure if you have ever met a more pretentious and entitled family. The girls fought non-stop and both they all complained constantly of the lack of luxury accommodation on your ship. You are very happy to finally be free of them. Although you feel you should have been paid more for how terrible they were.`
+			`You're not sure if you have ever met a more pretentious and entitled family. The girls fought non-stop and they all complained constantly of the lack of luxury accommodation on your ship. The lady gives you <payment> and they leave without a word. They never even told you their names. You are glad to finally be free of them. Although you feel you should have been paid more for how terrible they were.`
 
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 
+
+mission "Family back to Paradise - with luxury"
+	name "Take family home to <planet>"
+	description "A family worried about the potential destruction in the Free Worlds wants to cut their vacation short and go home to <destination>."
+	source
+		government "Free Worlds"
+		attributes "tourism"
+	destination "Mainsail"
+	passengers 3
+	cargo "personal belongings" 1
+	to offer
+		has "FW Katya 7C: done"
+	to fail
+		has "free worlds plot completed"
+	on offer
+		require "Luxury Accommodations"
+		conversation
+			`After walking around the spaceport for awhile you head back to your ship to find and middle aged couple with what appear to be their two grade school daughters waiting for you at your hanger. The man is busy trying to adjudicate a dispute between the girls but the lady notices you immediately and begins approaching. "Thank goodness you're here," she says. "We have been going from ship to ship looking for transport back home to the paradise planets. This war caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little 'angels'," she gestures toward her daughters, now in a full blown fight. "If you can find the time to take us we will pay you very well."`
+			choice
+				`	"Sure, I'll take you."`
+				`	"No. I don't think so. Sorry."`
+					decline
+			`	"Then it's a deal," she shakes your hand firmly. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
+				accept
+
+	on complete
+		payment 120000
+		conversation
+			`You're not sure if you have ever met a more pretentious and entitled family. The girls fought non-stop but they were all happy with the luxury accommodation on your ship. You are glad to finally be free of them. The lady gives you <payment> and they leave without a word. They never even told you their names.`
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 
 
 mission "Journalism 1"
@@ -3638,7 +3670,7 @@ mission "Journalism 1"
 
 	on offer
 		conversation
-			`As you explore the luxurious spaceport you notice a large group of people around one of the larger hangers. There are large signs that say "The Evacuation of Hope" in bold letters. It must be some sort of exposition.`
+			`As you explore the luxurious spaceport you notice a large group of people around one of the larger hangers. There are large signs that says, "The Evacuation of Hope" in bold letters. It must be some sort of exposition.`
 			choice
 				`	(Check it out.)`
 				`	(Not right now.)`
@@ -3648,8 +3680,8 @@ mission "Journalism 1"
 				`	"Sure, why not."`
 				` 	"Maybe some other time."`
 					defer
-			`	"You're going to love it," she says. "No one knows who they really are but Adelita's work is what inspired me to study journalism. Their mixture of mediums, their eye for story telling... I just love it. I have seen a lot of their stuff but never this expo on Hope. I'm so excited!"`
-			`	You reach the entrance to the "expo" soon enough. Inside is a large room filled with photos, videos, interviews and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise planets that protested the evacuation. There is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and Navy. Some of them are quite crude and tasteless. Since you are on a Paradise planet it's a strong rebuke.`
+			`	"You're going to love it," she says. "No one knows who they really are but Adelita's work is what inspired me to study journalism. Their mixture of mediums, their eye for story telling... I just love it."`
+			`	You reach the entrance to the expo soon enough. Inside is a large room filled with photos, videos, interviews and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise planets that protested the evacuation. There is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and Navy. Some of them are quite crude and tasteless. Since you are on a Paradise planet it's a strong rebuke.`
 			` There are many, many photos but one especially catches your eye. It's of a woman standing in line to board a Navy Cruiser. She is holding a baby at her hip and staring at the camera with a look of sad determination. Their cheeks, rosy and chapped, stand out in contrast with the cold blues in the background. It gives you goosebumps.`
 			`	While good, you were hoping for a bit more as you head for the exit. As the automatic doors open you are hit with an unexpected arctic blast. Instead of back in the spaceport you find yourself in a life sized 3D recording of the evacuation of Hope, complete with refrigeration. The projection gives the illusion of a horizon. There are huge Navy Cruisers slowly collecting ash in a snowy field near a small town as hundreds of refugees slowly board. But what stands out most is the giant volcano erupting in the background.`
 			`	"It's more of a collage than an exact rendering," says the young woman you met in line. You were so distracted by the experience you didn't notice her approach. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops. The volcano was actually on the other side of the planet for example. The magic of editing. So what do you think?"`
@@ -3658,8 +3690,8 @@ mission "Journalism 1"
 				`	"It's OK."`
 			`	"It's just as I imagined it. Well, I have an exam to cram for. Enjoy the expo! I think it closes soon," she says as she heads for the exit.`
 			`	You wander around the exhibit in awe. It's a bit disconcerting as the occasional hologram walks through you. Inside houses you see families frantically gathering their belongings and running for the Navy ships. It strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person. An officer slips in the snow and a young man helps him up.`
-			`	As you move on you're startled to realize you're face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Before you can register what's going on the entire projection disappears in a disorienting flash, leaving you in a normal hanger bay. You are a little embarrassed to realize the exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk."`
-			`	"How rude of me," she says. "My name is Mariel, I organize these expositions and act as a spokesperson so the members of Adelita can remain anonymous. And you are?"`
+			`	As you move on you're startled to realize that you're face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Before you can register what's going on the entire projection disappears in a disorienting flash, leaving you in a normal hanger bay. You are a little embarrassed to realize the exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk."`
+			`	"How rude of me," she says. "My name is Mariel, I organize these expositions and act as a spokesperson for Adelita. And you are?"`
 			choice
 				`	"Captain <last>."`
 			`	"Captain," she says, her eyes lighting up. "Well, as you may know this is the last day of the expo. The captain I hired to transport everything back to <destination> is not only rude but now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60000, but will pay you 80000. What do you say?"`
@@ -3680,8 +3712,6 @@ mission "Journalism 1"
 		log `Saw an impressive exposition on the Hope evaluation and ended up with a job taking the whole thing to Moonshake.`
 		conversation
 			`	You guide your ship down to the indicated hanger where there is a motley looking crew waiting to unload your ship. One of them hands you a note. It reads: "Meet me at the Common Grounds cafe in the spaceport if you're interested in doing a project with us. Make sure you're not followed. -Adelita Zero"`
-
-
 
 mission "Journalism 2"
 	description "Participate in the guerrilla filming of a Syndicate sweatshop on <destination>."
@@ -3736,7 +3766,6 @@ mission "Journalism 2"
 		dialog `The filming equipment is aboard an escort. Better take off and wait for it to arrive.`
 
 
-
 mission "Journalism 3"
 	landing
 	name "Slave trade"
@@ -3756,7 +3785,6 @@ mission "Journalism 3"
 
 	on visit
 		dialog `You realize that your escort carrying the drones hasn't entered the system yet. Better depart and wait for it.`
-
 
 
 mission "Journalism 4"
@@ -3847,7 +3875,6 @@ mission "Journalism 4"
 		dialog `Your escort carrying the spy drones was left behind. Better take off and wait for them to enter the system.`
 
 
-
 mission "Journalism 5"
 	name "Slave trade"
 	description "Bring everyone back to <destination>."
@@ -3878,7 +3905,6 @@ mission "Journalism 5"
 			`They seem glad to be home. "Ugh. We saw such horrible things", says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credits. "There is a bonus in there for you. We really couldn't have done it without you. We will let you know when it's done. And we will definitely need you for some projects in the future. We'll be in touch."`
 
 
-
 mission "Journalism 6"
 	deadline 9
 	source "Trinket"
@@ -3902,7 +3928,6 @@ mission "Journalism 6"
 		dialog `You must wait for your escorts to reach this system.`
 
 
-
 mission "Journalism 7 late"
 	source "Harmony"
 	to offer
@@ -3912,7 +3937,6 @@ mission "Journalism 7 late"
 		conversation
 			`You find the Old Order Cafe but it looks like you're too late. Ale and Bunker are nowhere to be found.`
 				decline
-
 
 
 mission "Journalism 7"
@@ -3947,7 +3971,6 @@ mission "Journalism 7"
 		dialog `You must wait for your escorts to reach this system.`
 
 
-
 mission "Journalism 8"
 	name "War Journalism"
 	description "Take Ale and Bunker into the battle for Dancer."
@@ -3965,7 +3988,6 @@ mission "Journalism 8"
 				accept
 	on visit
 		dialog `You forgot to get the Dreadnoughts from Zug.`
-
 
 
 mission "Journalism 9"
@@ -4004,7 +4026,6 @@ mission "Journalism 9"
 			choice
 				`	"Wouldn't miss it for the galaxy."`
 			`	"It's in the spaceport," says River. "Meet us there in a three hours or so, and wear these," they hand you a wig and some glasses. "Ah, and before I forget. Here is your payment"`
-
 
 
 mission "Journalism 10"
@@ -4051,7 +4072,6 @@ mission "Journalism 10"
 			`	"We will definitely be in touch," says Ale as they leave.`
 
 
-
 mission "Freedom Uprising 1"
 	landing
 	deadline 14
@@ -4065,7 +4085,6 @@ mission "Freedom Uprising 1"
 		conversation
 			`	Back on your ship you notice a new message from Ale: "Hey. We are nearly done with the Syndicate Slavery project but it will still be a while for the exposition is ready to tour. In the meantime we have another project, but as usual it's time sensitive. Meet up with us on Moonshake soon or we will leave without you. Same place as before."`
 				accept
-
 
 
 mission "Freedom Uprising 2"
@@ -4129,7 +4148,6 @@ mission "Freedom Uprising 2"
 				accept
 
 
-
 mission "Freedom Uprising 3"
 	name "Road to Freedom"
 	description "Take Ale, Beto and Bunker to <destination>. Make sure to have plenty of cargo space and fuel capacity."
@@ -4174,7 +4192,6 @@ mission "Freedom Uprising 3"
 		conversation
 			`	A few people are waiting with a Ramscoop when you land. "So far so good," says Bunker. "Beto wants us to interview some allies and ex-slaves here on <planet>. While we do that can you go to the outfitter and buy 100 Laser Rifles and 10 boxes of Frag Grenades? Here's the credits, keep the change. And can you make sure the Ramscoop is installed? Meet us at 'The Giving Tree' when we're done."`
 
-
 	npc assist
 		personality staying derelict
 		government "Merchant"
@@ -4189,7 +4206,6 @@ mission "Freedom Uprising 3"
 		personality escort disables
 		ship "Splinter (Far North)" "Tierra y Libertad"
 		ship "Splinter (Far North)" "Solidarity"
-
 
 
 mission "Freedom Uprising 4"
@@ -4210,7 +4226,6 @@ mission "Freedom Uprising 4"
 			`It takes some time for you to find 'The Giving Tree', which turns out to be a cannabis garden. You find Ale, Beto and Bunker under the strangest fruit tree you have ever seen, smoking and laughing about something.`
 			`	"You have to try this fruit. It changes flavor three times as you eat it," says Ale.`
 			`	"It's a lot better if you smoke first," interjects Bunker, eyes reddening by the second.`
-
 			choice
 				`	(Smoke then try the fruit.)`
 					goto smokefruit
@@ -4257,16 +4272,13 @@ mission "Freedom Uprising 4"
 				`	"No. Not yet."`
 					goto notyet
 			`	"Great," says Beto. "It would be awful to get to Freedom only to realize we forgot something. It should go without saying that we will be in trouble if we get caught with all this stuff so we should avoid Republic space. That means we are need to go through the uninhabited systems north of here. My contacts got us the Ramscoop so make sure it's installed. Also, if you are using a Scram Drive you might want to consider switching it out for a normal one to save on fuel and space."`
-
 			`	"And we should resist the temptation of hanging around the Alnitak system. There is a Navy base on Farpoint and even though they are Oathkeepers they still might scan us. Lucky for us I know a couple uninhabited systems with good solar wind and few pirates.  Well, we better get moving or we may never leave this garden."`
 				accept
 
 			label notyet
 			`	"We definitely need to do that before we go. Imagine if we got to Freedom only to realize we forgot something. Remember, we need one hundred Laser Rifles and ten boxes of Fragmentation Grenades. It should go without saying that we will be in trouble if we get caught with all this stuff so we probably shouldn't go through Republic space. That means we are going to need a lot of spare fuel to make it through all of the uninhabited systems north of here. Some friends of mine got us a Ramscoop, so make sure to install it. Also, if you are using a Scram Drive you might want to consider switching it out for a normal one to save on fuel and space."`
-
 			`	"And we should resist the temptation of hanging around Alnitak. There is a Navy base on Farpoint and even though they are Oathkeepers they still might scan us. Lucky for us I know a couple of systems with good solar wind and few pirates.  Well, we better get moving or we will get stuck in this garden forever."`
 				accept
-
 
 	on complete
 		outfit "Laser Rifle" -100
