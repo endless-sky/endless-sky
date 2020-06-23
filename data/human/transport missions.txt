@@ -3585,7 +3585,7 @@ mission "Hauler VI cargo prototype 3"
 
 
 
-
+mission "Family back to Paradise"
 	name "Take family home to <planet>"
 	description "A family worried about the potential destruction in the Free Worlds wants to cut their vacation short and go home to <destination>."
 	source
