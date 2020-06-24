@@ -633,3 +633,17 @@ formation "Atomic"
 			start polar diameter 210 1
 			start polar 210 40
 			slots 1
+
+
+
+# Formation with five trailing lines behind the lead-ship.
+formation "Trails"
+	flippable y
+	arc
+		anchor diameter 0 -3
+		start polar diameter 194 5
+		angle -28
+		slots 5
+		repeat
+			alternating
+			start polar diameter 194 1.05

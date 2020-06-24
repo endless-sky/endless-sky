@@ -215,7 +215,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 			// Calculate new start and turn end angle if we need to alternate this repeat.
 			if(ring % 2 && repeat->alternating && slots > 0)
 			{
-				startAngle += endAngle * (slots - 1);
+				startAngle += endAngle;
 				endAngle = -endAngle;
 			}
 		}
