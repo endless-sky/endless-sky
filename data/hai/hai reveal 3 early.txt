@@ -50,6 +50,7 @@ event "secret mountaintop"
 		# Placeholder description; you can't actually land.
 		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
 		"required reputation" 1000
+		bribe 0
 
 mission "Hai Building Mountaintop [1] Construction Fleet"
 	name "Escort construction fleet to Ultima Thule"
@@ -60,8 +61,6 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 	stopover "Makerplace"
 	destination "Mountaintop"
 	clearance
-	on visit
-		dialog `You must escort the seven Geocoris from <stopovers> to <destination> to finish this mission.`
 	to offer
 		has "Hai Leaks Response 6: done"
 	on offer
@@ -88,15 +87,14 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"If you're willing, there will be a council meeting in an hour, I can put you first on the agenda. Will you do this?" asks Sayari.`
 			choice
 				`	"I suppose I must."`
-					accept
+					goto council
 				`	"Someone better be paying me for this."`
-					accept
+					goto council
 				`	"Of course, let's do it."`
-					accept
-	on accept
-		event "role-play station before construction"
-		log `The diplomats have elected to double-down on the role-play community angle, citing it's success. However, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. You have been asked to fulfill the role of supervisor as a result. The Elders asked you some odd questions, but agreed that you were an acceptable individual for the task.`
-		conversation
+					goto council
+				`	"Maybe in a bit, I should do something else first."`
+					defer
+			label council
 			`Following Sayari you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another hai doing administrative work for a moment before gesturing you to a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she glances at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
 			choice
@@ -143,6 +141,9 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	When you meet Sayari afterwards a touch of her usual enthusiasm has returned.`
 			`	"This is fantastic news, now all that remains to be done is for you to escort the construction fleet from Makerplace to Ultima Thule and observe the initial stages. They'll be waiting for your arrival on Makerplace."`
 				accept
+	on accept
+		event "role-play station before construction"
+		log `The diplomats have elected to double-down on the role-play community angle, citing it's success. However, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. You have been asked to fulfill the role of supervisor as a result. The Elders asked you some odd questions, but agreed that you were an acceptable individual for the task.`
 	on stopover
 		dialog `A fleet of seven Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come into land. They will follow you to the site where the new station will be built.`
 	on complete
@@ -157,6 +158,8 @@ mission "Hai Building Mountaintop [1a] Construction Escorts"
 	clearance
 	to offer
 		has "Hai Building Mountaintop [1] Construction Fleet: active"
+	on visit
+		dialog `You have arrived without the seven Geocoris you are escorting from <origin> to <destination>. You must take off and wait for them to finish this mission.`
 	npc accompany save
 		personality escort timid
 		government " Hai "

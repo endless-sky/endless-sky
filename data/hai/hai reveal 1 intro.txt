@@ -543,19 +543,6 @@ mission "Hai Leaks Response 2"
 			`	You indicate as such.`
 			`	"Excellent, in that case we should go to Deep first for speed, shall we be off?"`
 				accept
-	on stopover
-		log "People" "Terry Adrianopolous" `Protege to the CEO, Terry Adrianopolous has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder, including an ability to act with apparently genuine friendliness to people whom she may consider her opponents.`
-		conversation
-			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
-			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
-			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, she will be accompanying you as the Syndicate representative."`
-			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You're surprised that a woman would have made it this far in the Syndicate, but with your observation you resolve not to get on her bad side if at all possible.`
-			`	"Oh by the way," says Alastair, pausing briefly as he goes to depart, "The Navy and my security forces are working jointly to get some of our message relays up in the Far North to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."`
-			branch delayedretire
-				not "free worlds reconciliation"
-			`	He leans in close to you and says quietly, "I know I said I was retiring, Terry convinced me to clean up my mess first. I am atoning for my failures, do look after her, she's a very loyal colleague."`
-			label delayedretire
-			`	After which he finally, actually, departs for good.`
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
@@ -636,6 +623,27 @@ mission "Hai Leaks Response 2B"
 	on offer
 		conversation
 			`While refuelling on <origin> you see that the media circus is continuing uabated. Apparently pirates have started making renewed attacks on trade lanes in the north, utilising some of the strange weapons observed in the recorded clip of Hai ships fighting each other. Goodness knows how they got their hands on them, but it can't be good news.`
+				decline
+
+mission "Hai Leaks Response 2C"
+	landing
+	invisible
+	source Foundry
+	to offer
+		has "Hai Leaks Response 2: active"
+	on offer
+		log "People" "Terry Adrianopolous" `Protege to the CEO, Terry Adrianopolous has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder, including an ability to act with apparently genuine friendliness to people whom she may consider her opponents.`
+		conversation
+			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
+			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
+			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, she will be accompanying you as the Syndicate representative."`
+			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You're surprised that a woman would have made it this far in the Syndicate, but with your observation you resolve not to get on her bad side if at all possible.`
+			`	"Oh by the way," says Alastair, pausing briefly as he goes to depart, "The Navy and my security forces are working jointly to get some of our message relays up in the Far North to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."`
+			branch delayedretire
+				not "free worlds reconciliation"
+			`	He leans in close to you and says quietly, "I know I said I was retiring, Terry convinced me to clean up my mess first. I am atoning for my failures, do look after her, she's a very loyal colleague."`
+			label delayedretire
+			`	After which he finally, actually, departs for good.`
 				decline
 
 #This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
@@ -864,7 +872,7 @@ mission "Hai Leaks Response 5"
 
 mission "Hai Leaks Response 6"
 	name "Investigate rumours of kidnapped Hai."
-	description "It's a statistical oddity, but Sayuri's friend thinks someone is kidnapping Hai. Check spaceports in nearby parts of Hai and human space for evidence of a Hai trafficking operation."
+	description "It's a statistical oddity, but Sayari's friend thinks someone is kidnapping Hai. Check spaceports in nearby parts of Hai and human space for evidence of a Hai trafficking operation."
 	autosave
 	landing
 	source "Hai-home"
@@ -879,7 +887,7 @@ mission "Hai Leaks Response 6"
 		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act as an isolated furry role-play community. This is only a short-term solution. While they are working on a longer-term solution Sayari has quietly asked you to look into a rumour about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist and so she would like you to be sure there's no issues lurking while the diplomatic process is working.`
 		conversation
 			`When you return to Hai-home you are met by a group of relieved diplomats.`
-			`	Of all of them Alondo seems to be the least tired and takes the time to let you know what's been going on, "Captain <last>! You've missed quite the palava. Still, I doubt you lost much by missing out on trying to explain to Sayuri what a 'furry' is."`
+			`	Of all of them Alondo seems to be the least tired and takes the time to let you know what's been going on, "Captain <last>! You've missed quite the palava. Still, I doubt you lost much by missing out on trying to explain to Sayari what a 'furry' is."`
 			choice
 				`	"Oh I don't know, could've been entertaining."`
 				`	"Hmm, yes, no probably not."`
@@ -891,7 +899,7 @@ mission "Hai Leaks Response 6"
 				`	(Keep walking.)`
 				`	(Ask them who they are.)`
 			`	"Sssshhhh!" says the voice at your elbow, "do not react, and do not be alarmed, it is merely I."`
-			`	You look at the figure out of the corner of your eye and connect the whispered voice to the squirrelly muzzle poking out. To your surprise it is Sayuri.`
+			`	You look at the figure out of the corner of your eye and connect the whispered voice to the squirrelly muzzle poking out. To your surprise it is Sayari.`
 			`	"I should not be coming to you with this, so you must promise to say nothing of this to anyone just yet."`
 			choice
 				`	"Of course."`
@@ -909,7 +917,7 @@ mission "Hai Leaks Response 6"
 					accept	
 			label "about that"
 			`	"Well, about that," you say, "I think I might have already come across some evidence of this before."`
-			`	Sayuri's hood nearly slips off as she looks up at you with a horrified expression, "Surely not?!"`
+			`	Sayari's hood nearly slips off as she looks up at you with a horrified expression, "Surely not?!"`
 			`	You rush to reassure her, "Nothing concrete, of course I shall go and have a look to be sure."`
 				accept
 	to complete

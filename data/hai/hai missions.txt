@@ -1115,10 +1115,11 @@ mission "Pirate Troubles [0]"
 		not planet "Allhome"
 	to offer
 		has "First Contact: Unfettered: offered"
-		"combat rating" > 1100
 		or
-			random < 10
 			has "event: pirates respond to leaks"
+			and
+				"combat rating" > 1100
+				random < 10
 	on offer
 		conversation
 			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but the Unfettered Hai never reach this far south. A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
