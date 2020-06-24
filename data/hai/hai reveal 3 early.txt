@@ -142,6 +142,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"You may act as the oversight for the human governments in this project. Proposal D-86513-7P4 is approved. Council adjourned."`
 			`	When you meet Sayari afterwards a touch of her usual enthusiasm has returned.`
 			`	"This is fantastic news, now all that remains to be done is for you to escort the construction fleet from Makerplace to Ultima Thule and observe the initial stages. They'll be waiting for your arrival on Makerplace."`
+				accept
 	on stopover
 		dialog `A fleet of seven Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come into land. They will follow you to the site where the new station will be built.`
 	on complete
@@ -322,7 +323,8 @@ mission "Hai Building Mountaintop [2] Recruits"
 				accept
 	on stopover
 		conversation
-			`	You have finally visited every world in Hai space and sold the pitch to the people. With any luck enough people will sign up to make it work. Take Terry to Mountaintop now.`
+			`You have finally visited every world in Hai space and sold the pitch to the people. With any luck enough people will sign up to make it work.`
+			`	Terry indicates that you may now take her to Mountaintop without further stops, but she has some leftover materials so she'll get you to do some final spruiking if you stop anywhere else along the way.`
 	on complete
 		log `You had to go on a lengthy promotional tour to rustle up volunteers for the new station. Terry took care of all the details and seemed especially keen. Presumably she has some marketing background, which may explain her success within the Syndicate.`
 		payment 10000000

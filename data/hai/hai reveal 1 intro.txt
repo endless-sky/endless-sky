@@ -144,7 +144,7 @@ conversation "What is going on in Hai space? (Have not met Unfettered.)"
 		`	"Why does everyone seem so afraid?"`
 	`	She shakes her head and wrinkles her nose with a look of distaste, "Within about three days of hearing that the Hai were being splashed all over major news networks back home a whole heap of curious pirates have chanced the wormhole en mass. The local security forces on patrol at the time got blown out of the sky by a surprise attack and everyone has been a bit shaken up since."`
 	`	"Oh that's awful!" you say.`
-	`	She nods, "Unfortunately, these pirates are increasing in number by the day and it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
+	`	She nods, "Unfortunately, these pirates are increasing in number by the day and it's taking a while for the government to redistribute an appropriately resourced security force thanks to the Unfettered."`
 	choice
 		# Rewrote question so it makes sense whether you met them or not
 		`	"Who are the Unfettered?"`
@@ -928,7 +928,7 @@ mission "Hai Leaks Response 7"
 		"hai slave prereq" >= 3
 	on offer
 		conversation
-			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you have enough information for Sayuri.`
+			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you have enough information for Sayari.`
 				decline
 
 event "role-play fleet deception"
