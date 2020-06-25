@@ -147,7 +147,7 @@ mission "Wanderers: Diplomacy"
 		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
 		conversation
 			`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
-			`	"Good to see you again Captain <Last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
+			`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
 			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realise that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
 			`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
 			choice

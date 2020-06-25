@@ -172,8 +172,8 @@ mission "Hai Reveal [D03] Cleanup"
 		event "lofty spawn"
 		log `With the Hai safely recovered you have a hunch about the loose end that left them there. It doesn't make a lot of sense yet, but you're sure you'll find answers on Freedom.`
 		conversation
-			`An all-hai greeting party are waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer when you return to Mountaintop. It appears to have avoided media attention, and the summit is progressing towards a resolution at an acceptable rate. It's been slow going, since the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
-			`	You've had time to consider for a couple of days on the return the events that led to you hauling a group of spontaneously abandoned hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
+			`An all-Hai greeting party are waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer when you return to Mountaintop. It appears to have avoided media attention, and the summit is progressing towards a resolution at an acceptable rate. It's been slow going, since the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
+			`	You've had time to consider for a couple of days on the return the events that led to you hauling a group of spontaneously abandoned Hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
 			`	While your passengers are quietly loaded onto a handful of transports to be quietly taken home, Sayari and Xilin find you somewhere quiet.`
 			`	"Thank you, <last>, you had all the necessary discretion at this sensitive time," says Sayari.`
 			`	Xilin is more direct, "I'll certainly thank you for saving me from another headache. Was there anything else you found? It seems so odd."`
@@ -223,7 +223,7 @@ mission "Hai Reveal [D04] Cleanup"
 			`	"Oh I know very well who you're looking for captain," she says, "my question has more to do with the why."`
 			choice
 				`	"I need to tie up some loose ends."`
-				`	"I need to know the answer a question."`
+				`	"I need to know the answer to a question."`
 					goto question
 			`	She shakes her head, "The only loose end here is you."`
 			`	The people in the windows open fire.`
@@ -357,7 +357,7 @@ mission "Hai Reveal [D05] Cleanup"
 			`	Before you can even respond he's dashed away.`
 			choice
 				`	(Go to the bluff.)`
-			`	When you get out to the bluff there is a single individual standing on a level section with scrubby grass tufting between bare rock. The city is obscured from here, and you could believe you were isolated from all of civilisation. Upon closer inspection the individual does indeed turn out to be Terry. The wind whips her hair around her constnatly and there is a chill here that is only partly the fault of the wind. All of this trouble, all of this death and suffering, everything that was risked between the hai and humanity. Could this one young woman really have been behind all of it?`
+			`	When you get out to the bluff there is a single individual standing on a level section with scrubby grass tufting between bare rock. The city is obscured from here, and you could believe you were isolated from all of civilisation. Upon closer inspection the individual does indeed turn out to be Terry. The wind whips her hair around her constantly and there is a chill here that is only partly the fault of the wind. All of this trouble, all of this death and suffering, everything that was risked between the Hai and humanity. Could this one young woman really have been behind all of it?`
 			`	As you approach she turns and you can see she has been crying. "You know you ruined everything," she says, "we were so close."`
 			`	The wind almost steals her last word and you unconciously step closer to hear her better, which causes her to tense.`
 			choice
