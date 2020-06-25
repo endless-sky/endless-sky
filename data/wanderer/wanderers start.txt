@@ -2612,7 +2612,7 @@ mission "Wanderers Ap'arak 3"
 		has "Wanderers Ap'arak 2: done"
 	on offer
 		log `The Wanderers have begun producing even larger warships, and have succeeded in driving off yet another Unfettered assault. Afterwards the Pug, whom the Wanderers refer to as the "Keepers," finally sent assistance... in the form of two ships, which they claim are powerful enough to keep the entire Unfettered fleet at bay.`
-		log "Factions" "Unfettered Hai" `After obtaining a sufficient number of Jump Drives, the Unfettered expanded into Wanderer space and managed to conquer 3 worlds from the Wanderers until their advance was stopped by the interference of the Pug.`
+		log "Factions" "Unfettered Hai" `After obtaining a sufficient number of Jump Drives, the Unfettered expanded into Wanderer space and managed to conquer 3 worlds from the Wanderers before their advance was stopped due to Pug interference.`
 		conversation
 			`The Wanderers here seem incredulous that they managed to drive off such a powerful Unfettered attack force. As you walk through the spaceport, many of them stop to thank you for your assistance in defending their home.`
 			`	Just as you reach the pavilion where the military leaders are gathering, a shadow falls over you, and you look up to see two ships approaching with the unmistakable horned silhouettes of Pug warships. Throughout the spaceport you hear Wanderer voices raised in excitement, and hundreds of them leap into the air to accompany the Pug ships to the landing pad. Sobari Tele'ek says to you, "It is a [visitation, appearance] of the Keepers! In our hour of [need, desperation] they make themselves known at last." A small delegation of Pug disembarks from the ships and approaches the pavilion on foot.`
