@@ -821,8 +821,7 @@ ship "Carrier"
 	attributes
 		category "Heavy Warship"
 		licenses
-			Navy
-			Carrier
+			"Navy Carrier"
 		"cost" 15200000
 		"shields" 21400
 		"hull" 8300
@@ -1125,8 +1124,7 @@ ship "Cruiser"
 	attributes
 		category "Heavy Warship"
 		licenses
-			Navy
-			Cruiser
+			"Navy Cruiser"
 		"cost" 11200000
 		"shields" 19600
 		"hull" 6400

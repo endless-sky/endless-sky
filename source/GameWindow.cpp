@@ -53,7 +53,7 @@ namespace {
 bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
 		checkSDLerror();
 		return false;
 	}
@@ -164,12 +164,11 @@ bool GameWindow::Init()
 	glDisable(GL_DEPTH_TEST);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	
-	// Set Adaptive VSync or fail to normal VSync
-	if(SDL_GL_SetSwapInterval(-1) == -1)
-	{
-		checkSDLerror();	
-		SDL_GL_SetSwapInterval(1);
-	}
+	// Enable standard VSync. (Attempting to set VSync to an unsupported value, such
+	// as -1 for "Adaptive VSync", can crash older drivers.)
+	// TODO: Export control of VSync setting to Preferences for user-controlled VSync.
+	if(SDL_GL_SetSwapInterval(1) == -1)
+		checkSDLerror();
 	
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();

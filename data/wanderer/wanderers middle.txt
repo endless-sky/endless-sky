@@ -2918,7 +2918,7 @@ mission "Wanderers: Sestor: Scan Drones"
 				`	"Do you think they are weakened enough that we can destroy them?"`
 				`	"Do you think there is any way we could regain control of them?"`
 					goto control
-			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?`
+			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?"`
 				goto end
 			label control
 			`	"That is our [hope, desire]," he says. "Or, barring that, at least we may [disable, shut down] the factories. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] on the drones?"`

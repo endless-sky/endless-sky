@@ -18,7 +18,7 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |---|----:|----:|
 |RAM | 350 MB | 750 MB |
 |Graphics | OpenGL 3.0 | OpenGL 3.3 |
-|Storage Free | 65 MB | 170 MB |
+|Storage Free | 120 MB | 300 MB |
 
 ### Building from source
 While most development is done on Linux using the [SCons](https://scons.org/) build tool to compile the project, IDE-specific files are provided for [XCode](https://developer.apple.com/xcode/) and [Code::Blocks](http://www.codeblocks.org/) to simplify the installation on Mac OS and Windows. It is possible to use other IDEs or build systems to compile the game, but support is not provided.

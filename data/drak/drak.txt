@@ -35,24 +35,29 @@ effect "distancer flare"
 
 outfit "Drak Draining Field"
 	category "Turrets"
-	cost 1000000
+	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 84
 	"outfit space" -84
 	"weapon capacity" -84
 	"turret mounts" -1
 	weapon
-		"turret turn" 4.
-		"velocity" 400
+		"turret turn" 180
+		"velocity" 1
 		"lifetime" 1
+		"range override" 1100
+		"blast radius" 1100
+		"trigger radius" 1100
 		"reload" 1
 		"firing energy" 20
 		"firing heat" 5
 		"firing force" 30
-		"hit force" 60
+		"hit force" 500
 		"shield damage" 50
 		"ion damage" .5
-	description "This device produces a field that drains energy from any ship within it."
+		"disruption damage" 1
+		"safe"
+	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
 
 outfit "Drak Anti-Missile Field"
 	category "Turrets"
@@ -143,6 +148,8 @@ outfit "Drak Antimatter Fragment"
 		"inaccuracy" 1
 		"lifetime" 499
 		"hit force" 1000
+		"disruption damage" 300
+		"heat damage" 500
 		"shield damage" 5610
 		"hull damage" 5610
 		"blast radius" 100
