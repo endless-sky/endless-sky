@@ -181,6 +181,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 void StarField::SetUpGraphics()
 {
 	static const char *vertexCode =
+		"// vertex starfield shader\n"
 		"uniform mat2 rotate;\n"
 		"uniform vec2 translate;\n"
 		"uniform vec2 scale;\n"
@@ -201,6 +202,7 @@ void StarField::SetUpGraphics()
 		"}\n";
 
 	static const char *fragmentCode =
+		"// fragment starfield shader\n"
 		"in float fragmentAlpha;\n"
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"

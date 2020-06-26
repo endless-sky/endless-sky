@@ -337,7 +337,7 @@ mission "Intro [1 Interceptor]"
 				`	"Of course!"`
 				`	"No, sounds a bit too risky for me."`
 					decline
-			`	"Great," he says. Whenever we're ready to leave the planet, they'll take off behind us and follow us to <planet>." As you begin walking away together, he adds in a quieter voice, "Normally a fresh pilot like you with no combat reputation would never be offered a mission like this, so try not to mess things up. Remember that we don't have to kill the pirates, all we have to do is make sure the convoy isn't destroyed. But freighters are slow, so you can't just go skipping through hyperspace as fast as you want; you need to stick around and make sure they're behind you."`
+			`	"Great," he says. "Whenever we're ready to leave the planet, they'll take off behind us and follow us to <planet>." As you begin walking away together, he adds in a quieter voice, "Normally a fresh pilot like you with no combat reputation would never be offered a mission like this, so try not to mess things up. Remember that we don't have to kill the pirates, all we have to do is make sure the convoy isn't destroyed. But freighters are slow, so you can't just go skipping through hyperspace as fast as you want; you need to stick around and make sure they're behind you."`
 				accept
 	
 	on complete
@@ -382,7 +382,7 @@ mission "Intro [2 Interceptor]"
 				`	"Got it."`
 					accept
 				`	"I really shouldn't try to fight?"`
-			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one heavy rocket hit could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recgonize what your enemy's strengths and weaknesses are, as well as your own."`
+			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one heavy rocket hit could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recognize what your enemy's strengths and weaknesses are, as well as your own."`
 				accept
 	
 	on complete

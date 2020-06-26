@@ -701,7 +701,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
-			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category() == "Fighter");
+			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
 			{
 				// Find the possible parents for orphaned fighters and drones.
@@ -785,7 +785,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
 				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
-						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category() == "Fighter"))
+						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
 				{
 					mustRecall = true;
 					break;
@@ -2582,7 +2582,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
-		double steps = RendezvousTime(p, v, weapon->Velocity() + .5 * weapon->RandomVelocity());
+		double steps = RendezvousTime(p, v, weapon->WeightedVelocity() + .5 * weapon->RandomVelocity());
 		if(std::isnan(steps))
 			continue;
 		
@@ -2683,7 +2683,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			Angle aim = ship.Facing() + hardpoint.GetAngle();
 			// Get this projectile's average velocity.
 			const Weapon *weapon = hardpoint.GetOutfit();
-			double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+			double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 			// Loop through each body this hardpoint could shoot at. Find the
 			// one that is the "best" in terms of how many frames it will take
 			// to aim at it and for a projectile to hit it.
@@ -2843,7 +2843,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		start += person.Confusion();
 		
-		double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+		double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 		double lifetime = weapon->TotalLifetime();
 		
 		// Homing weapons revert to "dumb firing" if they have no target.
@@ -2936,7 +2936,7 @@ void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 		start += ship.GetPersonality().Confusion();
 		
 		const Weapon *weapon = hardpoint.GetOutfit();
-		double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+		double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 		double lifetime = weapon->TotalLifetime();
 		
 		Point p = target.Position() - start;
