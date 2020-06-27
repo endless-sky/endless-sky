@@ -1876,6 +1876,7 @@ system Achernar
 	fleet "Small Syndicate" 500
 	fleet "Small Core Merchants" 300
 	fleet "Human Miners" 3000
+	fleet "Republic Logistics" 6000
 	object
 		sprite star/g5
 		period 10
@@ -2185,6 +2186,7 @@ system "Al Dhanab"
 	fleet "Large Core Merchants" 400
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 800
+	fleet "Republic Logistics" 5300
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 3000
 	fleet "Human Miners" 2000
@@ -2857,8 +2859,9 @@ system Alheka
 	trade Plastic 477
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 3000
-	fleet "Small Republic" 1200
-	fleet "Large Republic" 4000
+	fleet "Small Republic" 1500
+	fleet "Large Republic" 4400
+	fleet "Republic Logistics" 4600
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 2000
 	fleet "Human Miners" 3000
@@ -2913,8 +2916,9 @@ system Alhena
 	trade Plastic 415
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 700
-	fleet "Small Republic" 900
-	fleet "Large Republic" 1400
+	fleet "Small Republic" 1100
+	fleet "Large Republic" 1600
+	fleet "Republic Logistics" 3000
 	object
 		sprite star/g5
 		distance 32.1693
@@ -3407,8 +3411,9 @@ system Alnitak
 	trade Plastic 452
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
-	fleet "Small Republic" 2000
+	fleet "Small Republic" 3000
 	fleet "Large Republic" 4000
+	fleet "Republic Logistics" 6000
 	object
 		sprite star/m0
 		distance 31.1055
@@ -3722,8 +3727,9 @@ system Alphard
 	fleet "Large Northern Merchants" 900
 	fleet "Paradise Merchants" 1500
 	fleet "Small Deep Merchants" 2000
-	fleet "Small Republic" 2400
+	fleet "Small Republic" 3000
 	fleet "Large Republic" 6000
+	fleet "Republic Logistics" 6000
 	fleet "Human Miners" 2000
 	object
 		sprite star/g5
@@ -3894,8 +3900,9 @@ system Altair
 	fleet "Large Core Merchants" 600
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 3000
-	fleet "Small Republic" 2000
+	fleet "Small Republic" 3000
 	fleet "Large Republic" 6000
+	fleet "Republic Logistics" 6000
 	fleet "Small Syndicate" 9000
 	object
 		sprite star/g5
@@ -5318,8 +5325,9 @@ system Betelgeuse
 	trade Plastic 470
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 800
-	fleet "Small Republic" 2000
-	fleet "Large Republic" 3000
+	fleet "Small Republic" 2500
+	fleet "Large Republic" 3500
+	fleet "Republic Logistics" 6000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
 	object
@@ -5987,8 +5995,9 @@ system Canopus
 	trade Plastic 485
 	fleet "Small Northern Merchants" 900
 	fleet "Large Northern Merchants" 700
-	fleet "Small Republic" 1000
-	fleet "Large Republic" 2000
+	fleet "Small Republic" 1100
+	fleet "Large Republic" 2500
+	fleet "Republic Logistics" 4500
 	object
 		sprite star/m0
 		period 10
@@ -6299,6 +6308,7 @@ system Castor
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 500
+	fleet "Republic Logistics" 2000
 	object
 		sprite star/g5
 		distance 52.9147
@@ -9073,6 +9083,7 @@ system "Epsilon Leonis"
 	fleet "Small Deep Merchants" 1600
 	fleet "Large Deep Security" 6000
 	fleet "Large Deep Merchants" 2500
+	fleet "Republic Logistics" 6000
 	object
 		sprite star/g0
 		distance 25.8286
@@ -10448,6 +10459,7 @@ system Fomalhaut
 	fleet "Large Core Merchants" 1200
 	fleet "Small Syndicate" 5000
 	fleet "Large Syndicate" 10000
+	fleet "Republic Logistics" 3300
 	object
 		sprite star/k0
 		period 10
@@ -11215,6 +11227,7 @@ system Gomeisa
 	fleet "Small Deep Merchants" 3000
 	fleet "Large Deep Security" 4000
 	fleet "Large Deep Merchants" 5000
+	fleet "Republic Logistics" 5000
 	object
 		sprite star/k0
 		distance 55.5
@@ -15227,6 +15240,7 @@ system Markab
 	fleet "Small Syndicate" 600
 	fleet "Large Syndicate" 800
 	fleet "Human Miners" 3000
+	fleet "Republic Logistics" 4000
 	object
 		sprite star/g5
 		period 10
@@ -15868,8 +15882,9 @@ system Menkalinan
 	trade Plastic 472
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
-	fleet "Small Republic" 700
-	fleet "Large Republic" 1500
+	fleet "Small Republic" 800
+	fleet "Large Republic" 2000
+	fleet "Republic Logistics" 2000
 	object
 		sprite star/f5-old
 		distance 58.5
@@ -18300,8 +18315,9 @@ system Phact
 	trade Plastic 460
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 2000
-	fleet "Small Republic" 4000
-	fleet "Large Republic" 8000
+	fleet "Small Republic" 6000
+	fleet "Large Republic" 9000
+	fleet "Republic Logistics" 6000
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 5000
@@ -18761,8 +18777,9 @@ system Pollux
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
 	fleet "Paradise Merchants" 600
-	fleet "Small Republic" 1000
-	fleet "Large Republic" 2000
+	fleet "Small Republic" 1500
+	fleet "Large Republic" 4500
+	fleet "Republic Logistics" 4500
 	object
 		sprite star/g0
 		period 10
@@ -18961,6 +18978,7 @@ system Procyon
 	fleet "Paradise Merchants" 900
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 3000
+	fleet "Republic Logistics" 1500
 	object
 		sprite star/k0
 		period 10
@@ -19888,8 +19906,9 @@ system Rigel
 	trade Plastic 472
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 4000
-	fleet "Small Republic" 3000
-	fleet "Large Republic" 5000
+	fleet "Small Republic" 3500
+	fleet "Large Republic" 7000
+	fleet "Republic Logistics" 7000
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 2000
@@ -20733,6 +20752,7 @@ system Scheat
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
+	fleet "Republic Logistics" 4700
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
 	object
@@ -21707,7 +21727,8 @@ system Sirius
 	fleet "Large Northern Merchants" 700
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
-	fleet "Large Republic" 1500
+	fleet "Large Republic" 2500
+	fleet "Republic Logistics" 2500
 	object
 		sprite star/f5
 		distance 3.94301
@@ -21931,6 +21952,7 @@ system Sol
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 600
 	fleet "Large Republic" 900
+	fleet "Republic Logistics" 2000
 	fleet "Small Core Merchants" 1000
 	fleet "Large Core Merchants" 2000
 	object
@@ -22849,7 +22871,8 @@ system Talita
 	fleet "Large Northern Merchants" 900
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
-	fleet "Large Republic" 2000
+	fleet "Large Republic" 4000
+	fleet "Republic Logistics" 4000
 	fleet "Human Miners" 3000
 	object
 		sprite star/g0
@@ -24233,8 +24256,9 @@ system Wazn
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1500
 	fleet "Paradise Merchants" 1800
-	fleet "Small Republic" 2000
-	fleet "Large Republic" 4000
+	fleet "Small Republic" 2500
+	fleet "Large Republic" 5000
+	fleet "Republic Logistics" 5000
 	object
 		sprite star/k5
 		distance 45.5327
@@ -24754,6 +24778,7 @@ system Zosma
 	fleet "Large Deep Security" 2000
 	fleet "Large Deep Merchants" 8000
 	fleet "Small Republic" 4000
+	fleet "Republic Logistics" 4000
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
 	object
