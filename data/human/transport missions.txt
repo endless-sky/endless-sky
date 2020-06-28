@@ -3607,7 +3607,7 @@ mission "Antibiotics To South"
 				`	"Do you know anything about these pirates?"`
 				`	"Sounds too risky for me."`
 					decline
-			`	He is silent for a moment, and he seems to be having a hard time figuring out what to say to you. "Well, I don't know much. We've been hit by a number of them, but the one that's been giving us the most trouble is something called the 'Australis'. As you can imagine, the last convoys had higher priorities than scanning it." He chuckles to himself, and then says that "So, all I can say for sure is that it's an unusually fast medium warship, so you can't outrun it. Believe me, we've tried."`
+			`	He is silent for a moment, and he seems to be having a hard time figuring out what to say to you. "Well, I don't know much. We've been hit by a number of them, but the one that's been giving us the most trouble is something called the 'Australis.' As you can imagine, the last convoys had higher priorities than scanning it." He chuckles to himself, and then says, "All I can say for sure is that it's an unusually fast medium warship, so you can't outrun it. Believe me, we've tried."`
 			choice
 				`	"I think I can handle that."`
 				`	"Count me out."`
