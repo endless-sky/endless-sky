@@ -3585,7 +3585,7 @@ mission "Hauler VI cargo prototype 3"
 
 mission "Antibiotics To South"
 	name "Antibiotics shipment to <planet>"
-	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the 'Australis'.`
+	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
 	minor
 	source
 		attributes medical
