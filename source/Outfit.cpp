@@ -27,13 +27,11 @@ using namespace std;
 namespace {
 	const double EPS = 0.0000000001;
 	
-	// A whitelist of attributes which do not have minimum values of 0.
-	// The key is the attribute name and the value is the minimum value
-	// that the attribute is allowed to have. A value of 0 means that the
-	// attribute can have any value. Non-zero values mean that the attributes
-	// cannot be allowed to go below that value when installing or selling
-	// outfits.
-	const map<string, double> WHITELIST = {
+	// A mapping of attribute names to specifically-allowed minimum values. Based on the
+	// specific usage of the attribute, the allowed minimum value is chosen to avoid
+	// disallowed or undesirable behaviors (such as dividing by zero).
+	const auto MINIMUM_OVERRIDES = map<string, double>{
+		// Attributes which are present and map to zero may have any value.
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
@@ -41,6 +39,7 @@ namespace {
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
 		
+		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
 		{"force protection", -0.99},
 		{"fuel protection", -0.99},
@@ -50,7 +49,8 @@ namespace {
 		{"piercing protection", -0.99},
 		{"shield protection", -0.99},
 		{"slowing protection", -0.99},
-    
+		
+		// "Multiplier" attributes appear in numerators and are incremented by 1.
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
@@ -268,11 +268,11 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
 		double minimum = 0.;
-		auto it = WHITELIST.find(at.first);
-		if(it != WHITELIST.end())
+		auto it = MINIMUM_OVERRIDES.find(at.first);
+		if(it != MINIMUM_OVERRIDES.end())
 		{
 			minimum = it->second;
-			// Whitelisted attributes with a value of 0 can have any value.
+			// An override of exactly 0 means the attribute may have any value.
 			if(!minimum)
 				continue;
 		}
