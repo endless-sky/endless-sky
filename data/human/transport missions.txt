@@ -3584,7 +3584,7 @@ mission "Hauler VI cargo prototype 3"
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
 
 mission "Antibiotics To South"
-	name "Antibiotics shipment to <destination>"
+	name "Antibiotics shipment to <planet>"
 	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the 'Australis'.`
 	minor
 	source
