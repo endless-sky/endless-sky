@@ -192,3 +192,24 @@ outfit "Ka'het Shield Restorer"
 	"shield generation" 1.02
 	"shield energy" 2.04
 	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders to develop strong shield technology, leading to some Het vessels making extensive use of this module."
+
+# Power:
+
+outfit "Ka'het MHD Generator"
+	category "Power"
+	cost 1263000
+	thumbnail "outfit/ka'het mhd generator"
+	"mass" 20
+	"outfit space" -22
+	"energy generation" 3.8
+	"heat generation" 5.8
+	description "The Builders originally created this magnetohydrodynamic generator as the Ka'mar main power source. Similarly to what happened with many Mar devices, it was later reused in the Het ships as a secondary energy generator, supplementing their integrated power systems when they proved to be unsatisfactory."
+
+outfit "Ka'het Reserve Accumulator"
+	category "Power"
+	cost 27000
+	thumbnail "outfit/ka'het reserve accumulator"
+	"mass" 2
+	"outfit space" -3
+	"energy capacity" 600
+	description "This tiny battery was developed for use by the Ka'mar drones as an emergency energy storage, in case their generators can't quite suffice for the high power demand of most Builder systems."

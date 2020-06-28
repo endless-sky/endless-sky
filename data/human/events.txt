@@ -98,26 +98,31 @@ event "war begins"
 		fleet "Large Northern Merchants" 1100
 		fleet "Small Republic" 800
 		fleet "Large Republic" 400
+		fleet "Republic Logistics" 1000
 	system "Pollux"
 		fleet "Small Northern Merchants" 700
 		fleet "Large Northern Merchants" 1100
 		fleet "Small Republic" 700
 		fleet "Large Republic" 900
+		fleet "Republic Logistics" 1200
 	system Vega
 		fleet "Small Northern Merchants" 1000
 		fleet "Large Northern Merchants" 4000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1000
+		fleet "Republic Logistics" 6000
 	system Denebola
 		fleet "Small Northern Merchants" 1000
 		fleet "Large Northern Merchants" 3000
 		fleet "Small Republic" 700
 		fleet "Large Republic" 900
+		fleet "Republic Logistics" 2500
 	system Merak
 		fleet "Small Northern Merchants" 1500
 		fleet "Large Northern Merchants" 4000
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 1300
+		fleet "Republic Logistics" 3000
 	planet "Geminus"
 		description `Until recently, Geminus was home to the Republic Navy Yard, the largest shipyard in human space. Now, there is nothing left of the shipyard but a gaping crater in the ground, from the recent terrorist bombing.`
 		spaceport `Fortunately, the spaceport and residential areas survived the bombing, which was focused only on the Navy yard and happened early in the morning, when very few people were at work.`
@@ -184,6 +189,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 600
 		fleet "Large Republic" 400
 		fleet "Navy Surveillance" 2000
+		fleet "Republic Logistics" 4000
 	planet "Ingot"
 		description `Ingot is a volcanic moon, totally unsuitable for life but rich in metal. The miners who work here must spend all their time inside pressurized buildings. Because Ingot has almost no atmosphere to slow them down, meteorites are a constant danger to the colonists. The shells of the buildings have multiple layers, designed to be self-sealing in any but the largest of impacts. Most of the mining is done remotely by robotic vehicles, but someone still needs to be present to control them and to make repairs when something goes wrong.`
 		description `Ingot is also now home to a burgeoning Navy base, although since the planet is so unlivable most of the troops are just living in ships in orbit.`
@@ -201,6 +207,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
 		fleet "Navy Surveillance" 2000
+		fleet "Republic Logistics" 3500
 	system "Algorel"
 		fleet "Small Southern Merchants" 800
 		fleet "Large Southern Merchants" 1200
@@ -209,6 +216,7 @@ event "initial deployment 1"
 		fleet "Small Southern Pirates" 2500
 		fleet "Large Southern Pirates" 8000
 		fleet "Navy Surveillance" 2000
+		fleet "Republic Logistics" 4000
 	planet "New Wales"
 		description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals. Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
 		description `The Republic Navy has planted a base on New Wales: so far, just a densely packed cluster of prefabricated barracks and infirmary buildings on the outskirts of one of the mining colonies.`
@@ -246,6 +254,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 500
 		fleet "Large Republic" 600
 		fleet "Navy Surveillance" 2000
+		fleet "Republic Logistics" 10000
 		fleet "Human Miners" 2000
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
@@ -786,6 +795,18 @@ event "capture of Kornephoros"
 		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 		spaceport `	There are hundreds of Navy officers patrolling this small spaceport, looking for any signs of local resistance.`
 		security 1
+	system "Altair"
+		remove fleet "Republic Logistics"
+	system "Fomalhaut"
+		remove fleet "Republic Logistics"
+	system "Markab"
+		remove fleet "Republic Logistics"
+	system "Scheat"
+		remove fleet "Republic Logistics"
+	system "Al Dhanab"
+		remove fleet "Republic Logistics"
+	system "Achernar"
+		remove fleet "Republic Logistics"
 
 
 
@@ -876,12 +897,14 @@ event "oathkeepers founded"
 		fleet "Large Northern Merchants" 800
 		fleet "Small Oathkeeper" 1000
 		fleet "Large Oathkeeper" 2000
+		fleet "Republic Logistics" 4900
 		fleet "Large Northern Pirates" 4000
 	system Rigel
 		fleet "Small Northern Merchants" 2000
 		fleet "Large Northern Merchants" 4000
 		fleet "Small Oathkeeper" 1000
 		fleet "Large Oathkeeper" 2000
+		fleet "Republic Logistics" 5400
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
 	system Alnitak
@@ -889,6 +912,7 @@ event "oathkeepers founded"
 		fleet "Large Northern Pirates" 5000
 		fleet "Small Oathkeeper" 500
 		fleet "Large Oathkeeper" 1000
+		fleet "Republic Logistics" 6000
 	system Saiph
 		fleet "Small Northern Merchants" 1200
 		fleet "Large Northern Merchants" 2000
@@ -1259,11 +1283,21 @@ event "fw southern expansion"
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 3000
+	system "Vega"
+		remove fleet "Republic Logistics"
+		add fleet "Republic Logistics" 2500
+	system "Menkent"
+		remove fleet "Republic Logistics"
+		add fleet "Republic Logistics" 3000
+	system "Cebalrai"
+		remove fleet "Republic Logistics"
+		add fleet "Republic Logistics" 3500
 	system "Kaus Borealis"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 4000
 		fleet "Small Republic" 400
 		fleet "Large Republic" 500
+		fleet "Republic Logistics" 4000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
@@ -1581,6 +1615,8 @@ event "fw armistice"
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
 		fleet "Navy Surveillance" 1600
+	system "Kaus Broealis"
+		remove fleet "Republic Logistics"
 
 
 
@@ -1752,6 +1788,8 @@ event "pug invasion 2"
 	"tribute: Silver" /= 700
 	"tribute: Shiver" /= 300
 	"tribute: Millrace" /= 1400
+	system "Menkent"
+		remove fleet "Republic Logistics"
 	system Vega
 		government Pug
 		fleet "Small Northern Merchants" 800
@@ -1856,6 +1894,7 @@ event "pug invasion 4"
 		fleet "Large Northern Merchants" 500
 		fleet "Small Republic" 600
 		fleet "Large Republic" 900
+		fleet "Republic Logistics" 2000
 		fleet "Small Core Merchants" 1000
 		fleet "Large Core Merchants" 2000
 	system Diphda
