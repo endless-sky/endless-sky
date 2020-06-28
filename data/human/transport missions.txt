@@ -3588,7 +3588,7 @@ mission "Hauler VI cargo prototype 3"
 mission "James Medicine [0]"
 	minor
 	name "Medicine from <planet>"
-	description "James's doctors have asked you to bring some newly-developed remedy from <planet> to <origin> as quickly as possible, even though they are not really sure what his illness is."
+	description "James' doctors have asked you to bring some newly-developed remedy from <planet> to <origin> as quickly as possible, even though they are not really sure what his illness is."
 	deadline
 	source "Hestia"
 	destination "Nimbus"
@@ -3607,7 +3607,7 @@ mission "James Medicine [0]"
 					defer
 			`	Unlike some other planets, where it is practically impossible to find a person without having contact information, <origin> has a planetary database. You eagerly walk over to the nearest information desk and wait for the operator to make a few calls. At last, you are directed to a small, respected establishment, the Pilot Veteran Clinic. You can only wonder what James is doing there.`
 			`	The clinic is housed in a small, modern-looking building, which looks cunningly similar to a giant Firebird. Inside, the rooms are arranged to resemble bunk rooms on a spaceship, likely so that the patients would feel right at home.`
-			`	There is no one in sight at the clinic, probably because it is around lunch time. Luckily, the operator gave you the number of James's room, and you manage to find the correct door after a few minutes.`
+			`	There is no one in sight at the clinic, probably because it is around lunch time. Luckily, the operator gave you the number of James' room, and you manage to find the correct door after a few minutes.`
 			choice
 				`	(Wait outside for someone to show up.)`
 					goto wait
@@ -3615,12 +3615,12 @@ mission "James Medicine [0]"
 			apply
 				set "james medicine: infected"
 			`	You enter the room and find that James is inside, lightly asleep. He wakes up just as you close the door.`
-			`	"<first>! Fancy meeting you here! I heard you became a war hero of sorts?", he adds with a wink.`
+			`	"<first>! Fancy meeting you here! I heard you became a war hero of sorts?" he adds with a wink.`
 			choice
 				`	"Nothing special, I just did what is right."`
 				`	"Quite so! Seems like I saved the galaxy this time."`
 			`	"Yeah, yeah... You know, I am feeling pretty weak now, and while the doctors say that I will live through this illness, there is still a chance that it would be my last."`
-			`	"So, I wanted to tell you something..", he rambles on, " just to make sure that knowledge is not lost. While I was exploring the planets and systems reachable from human space, I stumbled upon Ultima Thule, due northeast of here. At the time I piloted just a small warship, so I couldn't muster the courage to pass through it, but.. there is a wormhole there!"`
+			`	"So, I wanted to tell you something..." he rambles on, "just to make sure that knowledge is not lost. While I was exploring the planets and systems reachable from human space, I stumbled upon Ultima Thule, due northeast of here. At the time I piloted just a small warship, so I couldn't muster the courage to pass through it, but... there is a wormhole there!"`
 			branch interesting
 				not "First Contact: Hai: offered"
 			choice
@@ -3639,18 +3639,18 @@ mission "James Medicine [0]"
 			`	"Not sure. It is located in a lawless barren region of space, however, so I wouldn't be surprised if there are pirates or even Alphas on the other side."`
 			label doctor
 			`	Just as the conversation hangs for a moment, the door opens and a doctor in protective clothing steps in.`
-			`	"Who are you? And why are you in this room?", the doctor inquires, in a soft but authoritative voice.`
+			`	"Who are you? And why are you in this room?" the doctor inquires, in a soft but authoritative voice.`
 			choice
 				`	"I am <first> <last>, here to see this friend of mine."`
-				`	"I was.. just strolling around."`
+				`	"I was... just strolling around."`
 			`	"Nevermind what you were doing. I have to warn you that the patient here has a disease we do not know much about yet. It could potentially be some deadly, contagious disease. Now, please make haste and remove yourself from the room, so as to not risk catching it yourself."`
 			`	The doctor accompanies his words with a lot of vigorous movements, and you find yourself outside the room before realizing it. As the door swings shut, you hear something of a chuckle, probably from James.`
 				goto end
 			label wait
 			`	Soon enough, a doctor passes by, heading for the room.`
-			`	"Good day! How can I help you?", he inquires.`
+			`	"Good day! How can I help you?" he inquires.`
 			`	"I just wanted to check on a friend of mine, James, who I heard is in this room. May I see him?"`
-			`	"Well, he is infected with some disease. We are not sure what it is exactly and if it is contagious or not. So I would recommend not seeing him in person, at least for the moment," he says just before entering James's room.`
+			`	"Well, he is infected with some disease. We are not sure what it is exactly and if it is contagious or not. So I would recommend not seeing him in person, at least for the moment," he says just before entering James' room.`
 			label end
 			choice
 				`	(Wait outside the room.)`
@@ -3660,7 +3660,7 @@ mission "James Medicine [0]"
 				`	"Actually I am a spaceship captain. I could do that."`
 				`	"Yes, I can find a capable spaceship captain."`
 					goto `second chance`
-				`	"I'm to busy to run errands. Ask someone else."`
+				`	"I'm too busy to run errands. Ask someone else."`
 					decline
 			`	"You are? Superb! Come back as soon as possible. We wouldn't want to risk your friend's life for a minute delay."`
 				accept
@@ -3685,7 +3685,7 @@ event "james medicine too slow"
 mission "James Medicine [1]"
 	landing
 	name "Medicine from <origin>"
-	description "James's doctors have asked you to bring some newly-developed remedy from <planet> to <origin> as quickly as possible, even though they are not really sure what his illness is."
+	description "James' doctors have asked you to bring some newly-developed remedy from <origin> to <planet> as quickly as possible, even though they are not really sure what his illness is."
 	cargo "Essential medicine" 1
 	deadline
 	source "Nimbus"
@@ -3709,7 +3709,7 @@ mission "James Medicine [1]"
 				`	"No help is too much for a friend."`
 					goto end
 			label slow
-			`	The doctor that spoke to you earlier appears soon after you enter the building. "Alas! Such is our fate, to slowly pass from this life to the next!", he exclaims, and adds "Unfortunately, the disease was more onerous than we could have anticipated. The medicine you brought might save James's life, but the damage already wrought would leave him paralysed forever."`
+			`	The doctor that spoke to you earlier appears soon after you enter the building. "Alas! Such is our fate, to slowly pass from this life to the next!" he exclaims, and adds, "Unfortunately, the disease was more onerous than we could have anticipated. The medicine you brought might save James's life, but the damage already wrought would leave him paralysed forever."`
 			apply
 				set "james medicine: james disabled"
 			choice
@@ -3720,12 +3720,12 @@ mission "James Medicine [1]"
 			label end
 			branch noname
 				not "james medicine: infected"
-			`	"Anyway, we have to pay for the services we receive. Here, take <payment>", he says and drops his voice to mention, "I would not recommend seeing James now, though I will surely tell him how helpful you have been, Captain <last>."`
+			`	"Anyway, we have to pay for the services we receive. Here, take <payment>," he says and drops his voice to mention, "I would not recommend seeing James now, though I will surely tell him how helpful you have been, Captain <last>."`
 				goto finish
 			label noname
-			`	"Anyway, we have to pay for the services we receive. Here, take <payment>", he says and drops his voice to mention, "I would not recommend seeing James now, but maybe after he is well again."`
+			`	"Anyway, we have to pay for the services we receive. Here, take <payment>," he says and drops his voice to mention, "I would not recommend seeing James now, but maybe after he is well again."`
 			choice
-				`	"Sure! Can you him that captain <last> was looking for him?"`
+				`	"Sure! Can you tell him that Captain <last> was looking for him?"`
 				`	"Oh yeah? I am going to visit him regardless."`
 					goto visit
 			`	"Of course, at the first possible occasion."`
@@ -3735,7 +3735,7 @@ mission "James Medicine [1]"
 			apply
 				set "james medicine: infected"
 			`	You enter James's room but find him tight asleep. Not wanting to wake him up, you leave a note urging him to contact you when he is well again.`
-			`	Just before you leave the room, you notice a note written by him on one of the chairs. It reads "The North; Ultima Thule", leaving the reader to decide what its meaning is.`
+			`	Just before you leave the room, you notice a note written by him on one of the chairs. It reads "The North; Ultima Thule," leaving the reader to decide what its meaning is.`
 			label finish
 		payment 150000
 	
@@ -3760,8 +3760,6 @@ mission "James Medicine [1] Preventive"
 	on accept
 		payment -10000
 		set "james medicine: medicine taken"
-		fail
-	on decline
 		fail
 
 mission "James Medicine [Fail disabled]"
