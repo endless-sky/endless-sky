@@ -78,8 +78,10 @@ void OutfitterPanel::Step()
 	string message = "outfitter 1";
 	message.back() += outfithelp;
 	++outfithelp;
-	DoHelp("outfitter");
-
+	if( outfithelp < 4) {
+	GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+	DoHelp("outfithelp");
+	}
 }
 
 
