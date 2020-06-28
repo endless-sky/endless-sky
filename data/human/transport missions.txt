@@ -3619,31 +3619,31 @@ mission "James Medicine [0]"
 			choice
 				`	"Nothing special, I just did what is right."`
 				`	"Quite so! Seems like I saved the galaxy this time."`
-			`	"Yeah, yeah... You know, I am feeling pretty weak now, and while the doctors say that I will live through this illness, there is still a chance that it would be my last."`
-			`	"So, I wanted to tell you something..." he rambles on, "just to make sure that knowledge is not lost. While I was exploring the planets and systems reachable from human space, I stumbled upon Ultima Thule, due northeast of here. At the time I piloted just a small warship, so I couldn't muster the courage to pass through it, but... there is a wormhole there!"`
+			`	"Now, now, you were a hero alright. You took the chance to stand for what is good, and in return got to save human civilization."`
+			`	He wanders off for a moment, and then suddenly starts talking again, "I actually wanted to see you, it was very lucky that you came by. Especially in light of me getting sick. You see, while I was an independent explorer, going through all parts of human space, I stumbled upon Ultima Thule, due northeast of here. In there, I saw a swirling purple mass, perhaps a wormhole or a portal to another place or time, a bridge to another dimension. I didn't dare to go near it, and everyone I told about it has dismissed it as a fabrication, but I trust you to believe my story."`
 			branch interesting
 				not "First Contact: Hai: offered"
 			choice
 				`	(Tell him about the Hai.)`
 				`	(Do not mention the Hai.)`
 					goto interesting
-			`	"I have actually been there," you say, "It leads to a nearby part of space inhabited by the Hai, an advanced alien civilization of squirrel-like creatures."`
+			`	"I have actually been there," you say. "It is a wormhole that leads to a nearby part of space inhabited by the Hai, an advanced alien civilization of squirrel-like creatures."`
 			`	"Really? Are they friendly?"`
 			choice
 				`	"Yes, they even allow humans to settle there or buy their technology."`
-					goto doctor
 				`	"Yes, though I'm worried they can conquer all of human space if they wish."`
-					goto doctor
+			`	"Oh. I guess that's why the Navy didn't want to listen to me. They are keeping it a secret!"`
+				goto doctor
 			label interesting
-			`	"Sounds interesting," you say, "Could it lead to some aliens, or perhaps to some worlds waiting to be colonized?"`
-			`	"Not sure. It is located in a lawless barren region of space, however, so I wouldn't be surprised if there are pirates or even Alphas on the other side."`
+			`	"Sounds interesting," you say. "An eldritch creature or a wormhole, I sure hope it does not lead to the destruction of humanity!"`
+			`	"I don't think it is that dangerous, actually. It is located in a lawless barren region of space, so I wouldn't be surprised if pirates or other outlaws have tried to approach it more closely."`
 			label doctor
-			`	Just as the conversation hangs for a moment, the door opens and a doctor in protective clothing steps in.`
+			`	Just as you are about to say something, the door opens and a doctor in protective clothing steps in.`
 			`	"Who are you? And why are you in this room?" the doctor inquires, in a soft but authoritative voice.`
 			choice
 				`	"I am <first> <last>, here to see this friend of mine."`
 				`	"I was... just strolling around."`
-			`	"Nevermind what you were doing. I have to warn you that the patient here has a disease we do not know much about yet. It could potentially be some deadly, contagious disease. Now, please make haste and remove yourself from the room, so as to not risk catching it yourself."`
+			`	"Nevermind what you were doing. I have to warn you that the patient here has a disease we do not know much about yet. It could just as well be an awful, contagious, deadly plague. Now, please make haste and leave the room, so as to not risk your own health."`
 			`	The doctor accompanies his words with a lot of vigorous movements, and you find yourself outside the room before realizing it. As the door swings shut, you hear something of a chuckle, probably from James.`
 				goto end
 			label wait
@@ -3658,19 +3658,10 @@ mission "James Medicine [0]"
 			`	"I see you probably want to help," he says, "I need someone to go to the spaceport and find a captain willing to bring some newly-discovered medication from <destination> as fast as possible. Can you do that?"`
 			choice
 				`	"Actually I am a spaceship captain. I could do that."`
-				`	"Yes, I can find a capable spaceship captain."`
-					goto `second chance`
 				`	"I'm too busy to run errands. Ask someone else."`
 					decline
 			`	"You are? Superb! Come back as soon as possible. We wouldn't want to risk your friend's life for a minute delay."`
 				accept
-			label `second chance`
-			`	On the way to the spaceport you realize that you do not have to find another spaceship captain to bring medicine from <planet>. You could do it yourself!`
-			choice
-				`	(Take the job.)`
-					accept
-				`	(Find someone else.)`
-					decline
 	on accept
 		event "james medicine too slow" 20
 	npc
@@ -3696,20 +3687,23 @@ mission "James Medicine [1]"
 	on visit
 		dialog "generic cargo on visit"
 	on offer
-		dialog `You take the medicine from a newly-constructed section of the spaceport, as instructed. Now you just have to deliver it back to <planet>.`
+		conversation
+			`You take the medicine from a newly-constructed section of the spaceport, as instructed. Now you just have to deliver it back to <planet>.`
+				accept
 	on complete
+		payment 150000
 		conversation
 			`Landing again on <planet>, you hurry to the Pilot Veteran Clinic with the medicine from <origin>.`
 			branch slow
 				has "event: james medicine too slow"
-			`	The doctor that spoke to you earlier appears soon after you enter the building. "Back already? I can hardly believe the news!" he exclaims and adds with a smile, "I have no idea how you made the trip so fast, but this little box you brought might be life-saving for your friend."`
+			`	The doctor that spoke to you earlier appears soon after you enter the building. "Back already? I can hardly believe the news!" he exclaims. "I have no idea how you made the trip so fast, but this little box you brought might be life-saving for your friend."`
 			choice
 				`	"I did my best."`
 					goto end
 				`	"No help is too much for a friend."`
 					goto end
 			label slow
-			`	The doctor that spoke to you earlier appears soon after you enter the building. "Alas! Such is our fate, to slowly pass from this life to the next!" he exclaims, and adds, "Unfortunately, the disease was more onerous than we could have anticipated. The medicine you brought might save James's life, but the damage already wrought would leave him paralysed forever."`
+			`	The doctor that spoke to you earlier appears soon after you enter the building. "Alas! Such is our fate, to slowly pass from this life to the next!" he exclaims. "Unfortunately, the disease was more onerous than we could have anticipated. The medicine you brought might save James's life, but the damage already wrought would leave him paralysed forever."`
 			apply
 				set "james medicine: james disabled"
 			choice
@@ -3721,23 +3715,20 @@ mission "James Medicine [1]"
 			branch noname
 				not "james medicine: infected"
 			`	"Anyway, we have to pay for the services we receive. Here, take <payment>," he says and drops his voice to mention, "I would not recommend seeing James now, though I will surely tell him how helpful you have been, Captain <last>."`
-				goto finish
+				accept
 			label noname
 			`	"Anyway, we have to pay for the services we receive. Here, take <payment>," he says and drops his voice to mention, "I would not recommend seeing James now, but maybe after he is well again."`
 			choice
 				`	"Sure! Can you tell him that Captain <last> was looking for him?"`
-				`	"Oh yeah? I am going to visit him regardless."`
+				`	(Visit James regardless)`
 					goto visit
 			`	"Of course, at the first possible occasion."`
-				goto finish
+				accept
 			label visit
-			`	The doctor doesn't look very happy, but lets you go as there is nothing in the rules which would prevent you visiting James.`
 			apply
 				set "james medicine: infected"
-			`	You enter James's room but find him tight asleep. Not wanting to wake him up, you leave a note urging him to contact you when he is well again.`
-			`	Just before you leave the room, you notice a note written by him on one of the chairs. It reads "The North; Ultima Thule," leaving the reader to decide what its meaning is.`
-			label finish
-		payment 150000
+			`	Immediatelly after the doctor goes away, you sneak by and go to James' room, but find it empty. Just in case he comes back, you leave a note urging him to contact you when he is well again.`
+			`	On your way out of the room, you notice a quickly scrawled note on top of a chair. It reads "North, Ultima Thule," leaving the reader to decide what it entails.`
 	
 	npc
 		government "Pirate"
