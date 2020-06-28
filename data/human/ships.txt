@@ -190,7 +190,6 @@ ship "Auxiliary"
 	attributes
 		category "Transport"
 		licenses
-			Navy
 			Navy Auxiliary
 		"cost" 13720000
 		"shields" 17100
