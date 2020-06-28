@@ -3612,7 +3612,7 @@ mission "Antibiotics To South"
 				`	"I think I can handle that."`
 				`	"Count me out."`
 					decline
-			`"Thank you very much, captain." he says. "I'll take care of everything else from here."`
+			`	"Thank you very much, Captain." he says. "I'll take care of everything else from here."`
 				accept
 	npc
 		government "Bounty Hunter"
