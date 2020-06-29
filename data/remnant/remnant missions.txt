@@ -2271,7 +2271,7 @@ mission "Remnant: Crystal Research 2"
 	on complete
 		payment 250000
 		dialog
-			`True to his word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message from Viminal has arrived. It appears to be a notificatoin that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
+			`True to his word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message from Viminal has arrived. It appears to be a notification that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
 
 
 mission "Remnant: Crystal Research 3"
