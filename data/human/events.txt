@@ -1615,7 +1615,7 @@ event "fw armistice"
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
 		fleet "Navy Surveillance" 1600
-	system "Kaus Broealis"
+	system "Kaus Borealis"
 		remove fleet "Republic Logistics"
 
 
