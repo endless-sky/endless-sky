@@ -84,11 +84,11 @@ help "outfitter 2"
 	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits; or you want to carry extra ammunition to refill your ships; There are several ways you can do so:`
 	`1) The outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
 	`2) If you do not have any ships selected in the outfitter control panel when you make a purchase, the outfitter will assign it for delivery to your cargo hold instead of scheduling an installation.`
-	`Outfits that are in your cargo hold can be installed in any outfitter without cost. They can also be sold from the Trade Center.`
 
 help "outfitter 3"
-	`You may want to uninstall an outfit in order to switch out your load out, perhaps so you can test out an alternative. `
+	`Eventually you may want to uninstall an outfit in order to switch out your load out, perhaps so you can test out an alternative. `
 	`If you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold.`
+	`Outfits that are in your cargo hold can be installed in any outfitter without cost. They can also be sold from the Trade Center.`
 
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`

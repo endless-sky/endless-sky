@@ -75,13 +75,14 @@ void OutfitterPanel::Step()
 	CheckRefill();
 	ShopPanel::Step();
 		
-	string message = "outfitter 1";
-	message.back() += outfithelp;
-	++outfithelp;
-	if( outfithelp < 4) {
-	GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
-	DoHelp("outfithelp");
-	}
+	if( outfithelp >= 0) {    
+		string message = "outfitter 1";
+		message.back() += outfithelp;
+		--outfithelp;
+		
+		GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+		DoHelp("outfithelp");
+		}
 }
 
 

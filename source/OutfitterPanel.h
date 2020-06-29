@@ -90,7 +90,7 @@ private:
 	Sale<Outfit> outfitter;
 	
 	// Keep track of how many of the outfitter help screens have been shown
-	int outfithelp = 0;
+	int outfithelp = 2;
 };
 
 
