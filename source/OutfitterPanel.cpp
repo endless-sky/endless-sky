@@ -74,17 +74,16 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
-	if(GetUI()->IsTop(this))
-	if(checkedhelp == 0) {
-		if(outfithelp >= 0) {    
-			string message = "outfitter 1";
-			message.back() += outfithelp;
-			++outfithelp;
-			if(DoHelp(message) == false) {
-				DoHelp(message);
-				++checkedhelp;
-				}
-			}
+	if(GetUI()->IsTop(this)) {
+		if(checkedhelp == false) {
+			if(DoHelp("outfitter 1") == true) {
+				checkedhelp = true;
+				} else if(DoHelp("outfitter 2") == true) {
+					checkedhelp = true;
+					} else if(DoHelp("outfitter 3") == true) {
+						checkedhelp = true;
+						}
+		}
 	}
 }
 
