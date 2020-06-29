@@ -16,6 +16,7 @@ Release/
 *.layout
 *.depend
 .sconsign.dblite
+/*.d
 
 # User-installed plugins
 plugins/

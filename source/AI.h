@@ -54,7 +54,7 @@ template <class Type>
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
-	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
+	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 	
 	// Allow the AI to track any events it is interested in.
 	void UpdateEvents(const std::list<ShipEvent> &events);
@@ -97,9 +97,9 @@ private:
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
-	static void CircleAround(Ship &ship, Command &command, const Ship &target);
-	static void Swarm(Ship &ship, Command &command, const Ship &target);
-	static void KeepStation(Ship &ship, Command &command, const Ship &target);
+	static void CircleAround(Ship &ship, Command &command, const Body &target);
+	static void Swarm(Ship &ship, Command &command, const Body &target);
+	static void KeepStation(Ship &ship, Command &command, const Body &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
@@ -187,8 +187,6 @@ private:
 	Command autoPilot;
 	
 	bool isCloaking = false;
-	// Whether the `Shift` modifier key was pressed for this step.
-	bool shift = false;
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
