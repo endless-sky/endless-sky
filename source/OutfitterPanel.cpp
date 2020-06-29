@@ -80,8 +80,7 @@ void OutfitterPanel::Step()
 		message.back() += outfithelp;
 		--outfithelp;
 		
-		GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
-		DoHelp("outfithelp");
+		DoHelp(message);
 		}
 }
 
