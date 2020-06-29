@@ -3692,10 +3692,6 @@ void AI::CacheShipLists()
 
 
 
-
-
-
-
 void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const string &description)
 {
 	string who;
