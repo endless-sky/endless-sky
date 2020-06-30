@@ -3600,7 +3600,7 @@ mission "Antibiotics To South"
 	
 	on offer
 		conversation
-			`As you wander around the spaceport, you spot a well dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
+			`As you wander around the spaceport, you spot a well dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks, "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
 			choice
 				`	"It is. Why?"`
 			`	The stranger begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last two merchants I've sent down there have been attacked by pirate ships. My company won't give the budget for an escort, so anyone I send down there has to be alone. Fortunately, I do have the budget for a high risk contract, so if you can take one of these shipments to <destination>, I can arrange a payment of <payment>. Does this sound fair so far?"`
