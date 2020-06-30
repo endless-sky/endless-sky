@@ -3582,3 +3582,52 @@ mission "Hauler VI cargo prototype 3"
 			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
+
+mission "Antibiotics To South"
+	name "Antibiotics shipment to <planet>"
+	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
+	minor
+	source
+		attributes medical
+		not attributes south rim
+	destination
+		attributes south
+	to offer
+		"combat rating" > 10
+		"armament deterrence" > 2
+		random < 5
+	cargo "antibiotics" 25 2 .05
+	
+	on offer
+		conversation
+			`As you wander around the spaceport, you spot a well dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks, "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
+			choice
+				`	"It is. Why?"`
+				`	"Sorry, I think you're mistaken."`
+					decline
+			`	The man begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last two merchants I've sent down there have been attacked by pirate ships. My company won't give the budget for an escort, so anyone I send down there has to be alone. Fortunately, I do have the budget for a high risk contract, so if you can take one of these shipments to <destination>, I can arrange a payment of <payment>. Does this sound fair so far?"`
+			choice
+				`	"Sure, but do you know anything about these pirates?"`
+				`	"No thanks, that sounds too risky for me."`
+					decline
+			`	He seems to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the '<npc>'. It's faster than a Bounder and persistent beyond any reasonable measure. Which is, of course, why I'm talking to you. There is no way you're going to avoid a fight with it. However, I think your ship is a match for it. So, is this acceptable?"`
+			choice
+				`	"Of course."`
+				`	"No thanks, that sounds like too much of a risk."`
+					decline
+			`	"Thank you very much, Captain," he says. "I'll take care of everything else from here."`
+				accept
+	npc
+		government "Bounty Hunter"
+		personality nemesis heroic disables harvests plunders
+			confusion 20
+		system
+			distance 2 3
+		ship "Marauder Manta (Engines)" "Australis"
+	
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 20000
+		dialog phrase "generic cargo delivery payment"
