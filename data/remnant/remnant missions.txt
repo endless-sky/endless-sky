@@ -477,6 +477,21 @@ conversation "remnant key stones"
 			decline
 	
 	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+	`	"We look forward to receiving this shipment" he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
+	choice
+		`	"I can purchase outfits into my cargo bay?"`
+		`	"Why would you even need to specify that?"`
+			goto whymention
+		`	"Okay."`
+			accept
+	`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
+	`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
+	`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
+	`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
+	`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
+		accept
+	label whymention
+	`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
 		accept
 
 
@@ -599,6 +614,21 @@ mission "Remnant: Key Stones"
 					decline
 			
 			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+			`	"We look forward to receiving this shipment" he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
+			choice
+				`	"I can purchase outfits into my cargo bay?"`
+				`	"Why would you even need to specify that?"`
+					goto whymention
+				`	"Okay."`
+					accept
+			`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
+			`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
+			`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
+			`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
+			`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
+				accept
+			label whymention
+			`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
 				accept
 	
 	on visit
@@ -1143,7 +1173,7 @@ mission "Remnant: Electron Beam"
 			label familiar
 			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around trying to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
 			label next
-			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon.`
+			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon."`
 				accept
 	on visit
 		dialog `You have returned to <planet>, but you don't have the two electron beams that Taely requested. Go buy two electron beams before returning.`
@@ -1219,7 +1249,7 @@ mission "Remnant: S-970 Regenerator"
 			label familiar
 			`	Taely seems like the sort of person who spends most of their time working directly on ships, so finding people repairing ships seems the most likely place to find her. As you enter the maintenance section, you spot an engineer waiting for you. She quickly introduces herself as an engineer who works with Taely. "She was not able to be here, so she sent me to see what you have brought" chants the engineer.`
 			label next
-			`	You nod in the agreement and lead her back to your ship, where she does a cursory scan of the S-970 Regenerator. "Hmm," she murmurs as she peers at the readings on her instrument as she waves it up and down the regenerator. "This looks like they may have found a few techniques that would be beneficial for us to study. If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
+			`	You nod in the agreement and lead her back to your ship, where she does a cursory scan of the S-970 Regenerator. "Hmm," she murmurs as she peers at the readings on her instrument as she waves it up and down the regenerator. "This looks like they may have found a few techniques that would be beneficial for us to study. If you could deliver two of these to a lab on <planet> we could compensate you with <payment>."`
 				accept
 	on visit
 		dialog `You have returned to <planet>, but you don't have the two S-970 Regenerator that Taely requested. Go buy the two shield regenerators before returning.`
