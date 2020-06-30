@@ -3593,23 +3593,24 @@ mission "Antibiotics To South"
 	destination
 		attributes south
 	to offer
-		"armament deterrence" > 2.1
+		"combat rating" > 10
+		"armament deterrence" > 2
 		random < 5
 	cargo "antibiotics" 25 2 .05
 	
 	on offer
 		conversation
-			`You spot a well dressed man eyeing your ship. When you approach him, he turns to you and asks "Is this your ship? I'm looking for someone with a heavily armed fleet."`
+			`As you wander around the spaceport, you spot a well dressed man who seesm to be eyeing your ship. When you approach him, he turns to you and asks "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
 			choice
 				`	"It is. Why?"`
-			`	The stranger begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last couple convoys that have gone down there have all been attacked by pirate ships. I don't have the budget for an escort, so anyone I send down there has to be alone. If you can take one of these shipments to <destination>, I can arrange a payment of <payment>."`
+			`	The stranger begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last two merchants I've sent down there have been attacked by pirate ships. My company won't give the budget for an escort, so anyone I send down there has to be alone. Fortunetly, I do have the budget for a high risk contract, so if you can take one of these shipments to <destination>, I can arrange a payment of <payment>. Does this sound fair so far?"`
 			choice
-				`	"Do you know anything about these pirates?"`
-				`	"Sounds too risky for me."`
+				`	"Sure, but do you know anything about these pirates?"`
+				`	"No thanks, that sounds too risky for me."`
 					decline
-			`	He is silent for a moment, and he seems to be having a hard time figuring out what to say to you. "Well, I don't know much. We've been hit by a number of them, but the one that's been giving us the most trouble is something called the 'Australis.' As you can imagine, the last convoys had higher priorities than scanning it." He chuckles to himself, and then says, "All I can say for sure is that it's an unusually fast medium warship, so you can't outrun it. Believe me, we've tried."`
+			`	He seens to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the '<npc>'. It's faster than a Bounder and persistant beyond any reasonable measure. Which is, of course, why I'm resorting to this. There is no way you're going to avoid a fight with it. But, I think yours could get our shipment there and even solve my pirate problem fairly soundly. So, do you think you can handle it?"`
 			choice
-				`	"I think I can handle that."`
+				`	"I think I could do that."`
 				`	"Count me out."`
 					decline
 			`	"Thank you very much, Captain." he says. "I'll take care of everything else from here."`
@@ -3625,5 +3626,6 @@ mission "Antibiotics To South"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 40000
+		payment
+		payment 20000
 		dialog phrase "generic cargo delivery payment"
