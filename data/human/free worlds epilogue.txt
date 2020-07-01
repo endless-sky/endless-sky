@@ -34,7 +34,7 @@ mission "FW Epilogue: Ijs and Katya"
 					goto game
 			
 			label excitement
-			`	"I understand that feeling," says Katya. "But, just remind yourself, this is what we fought for. For peace. For a world where no one has to fear for their lives.`
+			`	"I understand that feeling," says Katya. "But, just remind yourself, this is what we fought for. For peace. For a world where no one has to fear for their lives."`
 				goto end
 			
 			label adjust
