@@ -102,18 +102,28 @@ outfit "Ka'het Annihilator Turret"
 			"frame rate" 7
 		"hardpoint sprite" "hardpoint/annihilator turret"
 		"hardpoint offset" 15.
-		sound "inhibitor"
 		"hit effect" "bullet impact"
-		"inaccuracy" 3
+		"inaccuracy" 1
 		"turret turn" 2.3
-		"velocity" 18
-		"lifetime" 35
+		"range override" 630
+		"velocity override" 18
 		"reload" 10
 		"firing energy" 62
 		"firing heat" 16
-		"shield damage" 86
-		"hull damage" 24
+		"submunition" "Annihilator Projectile"
 	description "The Builders mounted two Annihilators on this turret, making it highly efficient against enemy shields."
+
+outfit "Annihilator Projectile"
+	weapon
+		sprite "projectile/annihilator"
+			"frame rate" 7
+		sound "inhibitor"
+		"hit effect" "bullet impact"
+		"inaccuracy" 2
+		"velocity" 18
+		"lifetime" 35
+		"shield damage" 43
+		"hull damage" 12
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"
