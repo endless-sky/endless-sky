@@ -333,7 +333,8 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor. This will include any nearby linked systems.
-	for(const auto &it : systems) {
+	for(const auto &it : systems)
+	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
