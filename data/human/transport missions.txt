@@ -3612,6 +3612,7 @@ mission "Earth Retirement"
 				`	"I'm sorry, but I'm not headed to Earth right now."`
 					decline
 			`	You show Charles and Donna to their bunks, and they both thank you in advance.`
+				accept
 	
 	on visit
 		dialog phrase "generic passenger on visit"
