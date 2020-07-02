@@ -129,29 +129,23 @@ namespace {
 	{
 		// Figure out what carried ships we are giving orders to
 		vector<Ship *> ships;
-		bool fullFleet = player.SelectedShips().empty();
-		if(fullFleet)
+		// First check if the player selected any ships that can deploy.
+		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
-			for(const shared_ptr<Ship> &it : player.Ships())
-				if(it.get() != player.Flagship() && !it->IsParked() && it->CanBeCarried())
-					ships.push_back(it.get());
+			shared_ptr<Ship> ship = it.lock();
+			if(ship && !ship->IsParked() && !ship->IsDestroyed() && ship->CanBeCarried())
+				ships.push_back(ship.get());
 		}
-		else
-			for(const weak_ptr<Ship> &it : player.SelectedShips())
-			{
-				shared_ptr<Ship> ship = it.lock();
-				if(ship)
-					ships.push_back(ship.get());
-			}
+		// No ships in the selection at all, or no ships that can be deployed, check for deployable ships in the fleet.
+		if(ships.empty())
+			for(const shared_ptr<Ship> &it : player.Ships())
+				if(it.get() != player.Flagship() && !it->IsParked() && !it->IsDestroyed() && it->CanBeCarried())
+					ships.push_back(it.get());
 		
-		// This should never happen, but just in case:
+		// Inform the player that there just isn't any ship to deploy.
 		if(ships.empty())
 		{
-			if(fullFleet)
-				Messages::Add("No carried ships in the fleet to deploy.");
-			else
-				Messages::Add("No carried ships selected that can be deployed.");
-			
+			Messages::Add("No carried ships in the fleet to deploy.");
 			return;
 		}
 		
@@ -179,7 +173,7 @@ namespace {
 	}
 	
 	// Check if the ship contains a carried ship that needs to launch.
-	bool IsLaunching(const Ship &ship)
+	bool HasDeployments(const Ship &ship)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.ship && bay.ship->IsDeploying())
@@ -530,7 +524,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		double healthRemaining = it->Health();
 		bool isPresent = (it->GetSystem() == playerSystem);
 		bool isStranded = IsStranded(*it);
-		bool thisIsLaunching = (isPresent && IsLaunching(*it));
+		bool thisIsLaunching = (isPresent && HasDeployments(*it));
 		if(isStranded || it->IsDisabled())
 		{
 			// Derelicts never ask for help (only the player should repair them).
@@ -1657,7 +1651,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 
 
 
-// Determine if a fighter meets any of the criteria for returning to its parent.
+// Determine if a carried ship meets any of the criteria for returning to its parent.
 bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const
 {
 	// If your parent is disabled, you should not attempt to board it.
@@ -1665,14 +1659,18 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	if(parent.IsDisabled())
 		return false;
 	
-	// A fighter should retreat if its parent is calling it back, or it is
-	// a player's ship and is not in the current system.
-	if(!parent.Commands().Has(Command::DEPLOY) && !ship.IsYours())
-		return true;
-	if (ship.IsYours() && (!ship.IsDeploying() || ship.GetSystem() != playerSystem))
+	// A player-owned carried ship should return to its carrier when the player
+	// has ordered it to "no longer deploy" or when it is not in the current system.
+	// A non-player-owned carried ship should retreat if its parent is calling it back.
+	if(ship.IsYours())
+	{
+		if(!ship.IsDeploying() || ship.GetSystem() != playerSystem)
+			return true;
+	}
+	else if(!parent.Commands().Has(Command::DEPLOY))
 		return true;
 	
-	// If a fighter has repair abilities, avoid having it get stuck oscillating between
+	// If a carried ship has repair abilities, avoid having it get stuck oscillating between
 	// retreating and attacking when at exactly 25% health by adding hysteresis to the check.
 	double minHealth = RETREAT_HEALTH + .1 * !ship.Commands().Has(Command::DEPLOY);
 	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
@@ -1680,14 +1678,14 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	
 	// TODO: Reboard if in need of ammo.
 	
-	// If a fighter has fuel capacity but is very low, it should return if
+	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
 	double maxFuel = ship.Attributes().Get("fuel capacity");
 	if(maxFuel && ship.Fuel() < .005 && parent.JumpFuel() < parent.Fuel() *
 			parent.Attributes().Get("fuel capacity") - maxFuel)
 		return true;
 	
-	// If an out-of-combat NPC fighter is carrying a significant cargo
+	// If an out-of-combat NPC carried ship is carrying a significant cargo
 	// load and can transfer some of it to the parent, it should do so.
 	if(!ship.IsYours())
 	{
@@ -1695,7 +1693,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 		if(!hasEnemy)
 		{
 			const CargoHold &cargo = ship.Cargo();
-			// Mining ships only mine while they have 5 or more free space. While mining, fighters
+			// Mining ships only mine while they have 5 or more free space. While mining, carried ships
 			// do not consider docking unless their parent is far from a targetable asteroid.
 			if(parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
 				return true;
@@ -3549,7 +3547,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 	}
 	
-	if(ship.HasBays() && IsLaunching(ship))
+	if(ship.HasBays() && HasDeployments(ship))
 	{
 		command |= Command::DEPLOY;
 		Deploy(ship, !Preferences::Has("Damaged fighters retreat"));
