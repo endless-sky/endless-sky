@@ -18,6 +18,7 @@ government "Alpha"
 government "Author"
 	"player reputation" 1
 	"bribe" 0
+	fine 0
 
 government "Builder"
 	# While when you attack the drones they will try to defend themselves, when you come back 
@@ -373,6 +374,7 @@ government "Parrot"
 	swizzle 2
 	"player reputation" 1
 	"bribe" 0
+	fine 0
 
 government "Pirate"
 	swizzle 6
