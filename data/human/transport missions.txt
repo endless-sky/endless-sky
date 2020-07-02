@@ -3609,7 +3609,6 @@ mission "Earth Retirement"
 			`	Donna talks to you again. "I'm sorry about that. As you can tell, we're under a lot of stress right now. Can you help us? We'll pay you <payment> if you do."`
 			choice
 				`	"I can handle two passengers."`
-					accept
 				`	"I'm sorry, but I'm not headed to Earth right now."`
 					decline
 			`	You show Charles and Donna to their bunks, and they both thank you in advance.`
