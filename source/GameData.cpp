@@ -553,7 +553,8 @@ void GameData::Change(const DataNode &node)
 // that a change creates or moves a system.
 void GameData::UpdateNeighbors()
 {
-	for(auto &it : systems) {
+	for(auto &it : systems)
+	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
