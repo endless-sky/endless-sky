@@ -283,7 +283,7 @@ void Ship::Load(const DataNode &node)
 						bay.side = j;
 				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
 					if(child.Token(i) == BAY_FACING[j])
-						bay.facing = j;
+						bay.facing = BAY_ANGLE[j];
 			}
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
@@ -295,8 +295,26 @@ void Ship::Load(const DataNode &node)
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
 					}
+					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
+						bay.facing = Angle(grand.Value(1));
 					else
-						grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
+					{
+						bool handled = false;
+						for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
+							if(grand.Token(0) == BAY_SIDE[i])
+							{
+								bay.side = i;
+								handled = true;
+							}
+						for(unsigned i = 1; i < BAY_FACING.size(); ++i)
+							if(grand.Token(0) == BAY_FACING[i])
+							{
+								bay.facing = BAY_ANGLE[i];
+								handled = true;
+							}
+						if(!handled)
+							grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\", \"angle\", or a facing keyword:");
+					}
 				}
 		}
 		else if(key == "leak" && child.Size() >= 2)
@@ -733,18 +751,17 @@ void Ship::Save(DataWriter &out) const
 		{
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
-			if(bay.side && bay.facing)
-				out.Write("bay", bay.category, x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
-			else if(bay.side)
-				out.Write("bay", bay.category, x, y, BAY_SIDE[bay.side]);
-			else if(bay.facing)
-				out.Write("bay", bay.category, x, y, BAY_FACING[bay.facing]);
-			else
-				out.Write("bay", bay.category, x, y);
-			if(!bay.launchEffects.empty())
+
+			out.Write("bay", bay.category, x, y);
+			
+			if(!bay.launchEffects.empty() || bay.facing.Degrees() || bay.side)
 			{
 				out.BeginChild();
 				{
+					if(bay.facing.Degrees())
+						out.Write("angle", bay.facing.Degrees());
+					if(bay.side)
+						out.Write(BAY_SIDE[bay.side]);
 					for(const Effect *effect : bay.launchEffects)
 						out.Write("launch effect", effect->Name());
 				}
@@ -1870,7 +1887,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
 			Point exitPoint = position + angle.Rotate(bay.point);
 			// When ejected, ships depart haphazardly.
-			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + BAY_ANGLE[bay.facing];
+			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + bay.facing;
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(exitPoint, v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
@@ -2980,7 +2997,7 @@ bool Ship::PositionFighters() const
 			hasVisible = true;
 			bay.ship->position = angle.Rotate(bay.point) * Zoom() + position;
 			bay.ship->velocity = velocity;
-			bay.ship->angle = angle + BAY_ANGLE[bay.facing];
+			bay.ship->angle = angle + bay.facing;
 			bay.ship->zoom = zoom;
 		}
 	return hasVisible;
