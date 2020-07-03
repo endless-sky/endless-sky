@@ -197,6 +197,8 @@
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = "endless-sky.iconset"; path = "icons/endless-sky.iconset"; sourceTree = "<group>"; };
 		A966A5A91B964E6300DFF69C /* Person.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Person.cpp; path = source/Person.cpp; sourceTree = "<group>"; };
 		A966A5AA1B964E6300DFF69C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = source/Person.h; sourceTree = "<group>"; };
+		DFAAE2A81FD4A27B0073C0A8 /* Legality.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Legality.cpp; path = source/Legality.cpp; sourceTree = "<group>"; };
+		DFAAE2A81FD4A27B0074C0A8 /* Legality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Legality.h; path = source/Legality.h; sourceTree = "<group>"; };
 		A96862CD1AE6FD0A004FE1FE /* Account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Account.cpp; path = source/Account.cpp; sourceTree = "<group>"; };
 		A96862CE1AE6FD0A004FE1FE /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account.h; path = source/Account.h; sourceTree = "<group>"; };
 		A96862CF1AE6FD0A004FE1FE /* AI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AI.cpp; path = source/AI.cpp; sourceTree = "<group>"; };
@@ -446,8 +448,6 @@
 		DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchShader.h; path = source/BatchShader.h; sourceTree = "<group>"; };
 		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
 		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
-		DFAAE2A81FD4A27B0073C0A8 /* Legality.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Legality.cpp; path = source/Legality.cpp; sourceTree = "<group>"; };
-		DFAAE2A81FD4A27B0074C0A8 /* Legality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Legality.h; path = source/Legality.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
