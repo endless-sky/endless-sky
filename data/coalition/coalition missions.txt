@@ -109,6 +109,8 @@ mission "Heliarch Watchers"
 		not "Heliarch Watchers: active"
 	to fail
 		"armament deterrence" == 0
+	to complete
+		never
 	npc
 		personality heroic opportunistic
 		government "Heliarch"
