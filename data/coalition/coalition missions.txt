@@ -98,8 +98,22 @@ event "label coalition space"
 	galaxy "label arachi"
 		sprite "label/arachi"
 
-
-
+mission "Heliarch Watchers"
+	repeat
+	landing
+	invisible
+	source
+		government "Coalition"
+	to offer
+		"armament deterrence" > 0
+		not "Heliarch Watchers: active"
+	to fail
+		"armament deterrence" == 0
+	npc
+		personality heroic opportunistic
+		government "Heliarch"
+		fleet "Heliarch" 2
+	
 mission "Coalition: Contributor"
 	landing
 	name "Return to the <planet>"
