@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "System.h"
 #include "UI.h"
+#include "Legality.h"
 
 #include <cmath>
 #include <sstream>
@@ -282,8 +283,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
 			out.Write("passengers", passengers);
-		if(illegalCargoFine)
-			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+		if(legality)
+			out.Write("illegal", legality->Name(), illegalCargoMessage);
 		if(failIfDiscovered)
 			out.Write("stealth");
 		if(!isVisible)
@@ -473,9 +474,10 @@ int Mission::CargoSize() const
 
 
 
-int Mission::IllegalCargoFine() const
+int Mission::IllegalCargoFine(const Government* gov) const
 {
-	return illegalCargoFine;
+	if(!legality) return 0;
+	return legality->GetFine(gov);
 }
 
 
@@ -1062,7 +1064,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		else
 			result.passengers = passengers;
 	}
-	result.illegalCargoFine = illegalCargoFine;
+	result.legality = legality;
 	result.illegalCargoMessage = illegalCargoMessage;
 	result.failIfDiscovered = failIfDiscovered;
 	
@@ -1208,10 +1210,10 @@ void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 bool Mission::ParseContraband(const DataNode &node)
 {
 	if(node.Token(0) == "illegal" && node.Size() == 2)
-		illegalCargoFine = node.Value(1);
+		legality = GameData::GetLegality(node.Token(1));
 	else if(node.Token(0) == "illegal" && node.Size() == 3)
 	{
-		illegalCargoFine = node.Value(1);
+		legality = GameData::GetLegality(node.Token(1));
 		illegalCargoMessage = node.Token(2);
 	}
 	else if(node.Token(0) == "stealth")

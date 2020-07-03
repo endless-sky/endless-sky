@@ -47,6 +47,7 @@ class Sprite;
 class StarField;
 class StartConditions;
 class System;
+class Legality;
 
 
 
@@ -109,6 +110,7 @@ public:
 	static const Set<Ship> &Ships();
 	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
+	static const Legality* GetLegality(const std::string &name);
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

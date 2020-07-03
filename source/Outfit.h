@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Weapon.h"
 
 #include "Dictionary.h"
+#include "Legality.h"
 
 #include <map>
 #include <string>
@@ -27,7 +28,7 @@ class DataNode;
 class Effect;
 class Sound;
 class Sprite;
-
+class Government;
 
 
 // Class representing an outfit that can be installed in a ship. A ship's
@@ -71,6 +72,8 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+
+	int64_t IllegalOutfitFine(const Government* gov) const;
 	
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
@@ -106,6 +109,7 @@ private:
 	std::map<const Sound *, int> steeringFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
 	const Sprite *flotsamSprite = nullptr;
+	const Legality *legality = nullptr;
 };
 
 

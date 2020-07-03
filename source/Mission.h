@@ -33,6 +33,7 @@ class Ship;
 class ShipEvent;
 class System;
 class UI;
+class Legality;
 
 
 
@@ -79,7 +80,7 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
-	int IllegalCargoFine() const;
+	int IllegalCargoFine(const Government* gov) const;
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
@@ -185,7 +186,7 @@ private:
 	// Parameters for generating random cargo amounts:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
-	int illegalCargoFine = 0;
+	const Legality* legality = nullptr;
 	std::string illegalCargoMessage;
 	bool failIfDiscovered = false;
 	int passengers = 0;

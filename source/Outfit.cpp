@@ -154,6 +154,21 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "illegal" && child.Size()>2)
+		{
+			legality = GameData::GetLegality(child.Token(1));
+			// Duplicated for outfitter display.
+			attributes[child.Token(0)] = legality->GetFine(nullptr);
+		}
+		else if(child.Token(0) == "atrocity")
+		{
+			if(child.IsNumber(1))
+				legality = GameData::GetLegality("-1");
+			else
+				legality = GameData::GetLegality(child.Token(1));
+			// Duplicated for outfitter display.
+			attributes[child.Token(0)] = 1;
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -324,7 +339,11 @@ void Outfit::Set(const char *attribute, double value)
 	attributes[attribute] = value;
 }
 
-
+int64_t Outfit::IllegalOutfitFine(const Government* gov) const
+{
+	if(!legality) return 0;
+	return legality->GetFine(gov);
+}
 	
 // Get this outfit's engine flare sprite, if any.
 const vector<pair<Body, int>> &Outfit::FlareSprites() const

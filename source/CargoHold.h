@@ -22,7 +22,7 @@ class DataWriter;
 class Mission;
 class Outfit;
 class System;
-
+class Government;
 
 
 // This class represents the cargo and passengers that a ship can carry. That
@@ -102,7 +102,7 @@ public:
 	// be charged for any illegal outfits plus the sum of the fines for all
 	// missions. If the returned value is negative, you are carrying something so
 	// bad that it warrants a death sentence.
-	int IllegalCargoFine() const;
+	int IllegalCargoFine(const Government* gov) const;
 	
 	
 private:

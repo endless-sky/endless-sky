@@ -53,6 +53,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "Legality.h"
 
 #include <algorithm>
 #include <iostream>
@@ -81,6 +82,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	Set<Legality> legalities;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -280,6 +282,9 @@ void GameData::CheckReferences()
 	for(const auto &it : systems)
 		if(it.second.Name().empty() && !deferred["system"].count(it.first))
 			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : legalities)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: legality \"" + it.first + "\" is referred to, but never defined.");
 }
 
 
@@ -704,7 +709,13 @@ const Set<System> &GameData::Systems()
 	return systems;
 }
 
-
+const Legality *GameData::GetLegality(const std::string &name)
+{
+	Legality *leg = legalities.Get(name);
+	if(DataNode::IsNumber(name))
+		leg->SetNumeric(name);
+	return leg;
+}
 
 const Government *GameData::PlayerGovernment()
 {
@@ -1005,6 +1016,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				text += child.Token(0);
 			}
 		}
+		else if(key == "legality")
+			legalities.Get(node.Token(1))->Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
