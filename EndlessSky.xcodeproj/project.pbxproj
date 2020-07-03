@@ -447,7 +447,7 @@
 		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
 		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
 		DFAAE2A81FD4A27B0073C0A8 /* Legality.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Legality.cpp; path = source/Legality.cpp; sourceTree = "<group>"; };
-		DFAAE2A81FD4A27B0073C0A8 /* Legality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Legality.h; path = source/Legality.h; sourceTree = "<group>"; };
+		DFAAE2A81FD4A27B0074C0A8 /* Legality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Legality.h; path = source/Legality.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
