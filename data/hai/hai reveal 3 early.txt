@@ -116,6 +116,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			label trust
 			apply
 				set haitrust
+			label continue
 				goto return
 			label caution
 			apply
