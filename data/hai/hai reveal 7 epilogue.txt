@@ -190,6 +190,8 @@ event "cardax pirates waiting"
 		remove fleet "Small Northern Pirates"
 		remove fleet "Large Northern Pirates"
 		remove fleet "Small Core Pirates"
+	planet Mooncreek
+		"required reputation" -10
 	
 	
 mission "HRF 03 Defend Mooncreek Construction Site"

@@ -193,7 +193,7 @@ event "devil-run smugglers visible"
 		add fleet "Smuggler (Hai Traffickers)" 5000
 	system "Unagi"
 		add fleet "Smuggler (Hai Traffickers)" 7000
-	system "Hatyasa"
+	system "Hatysa"
 		add fleet "Smuggler (Hai Traffickers)" 5000
 	
 	# Route to Almach

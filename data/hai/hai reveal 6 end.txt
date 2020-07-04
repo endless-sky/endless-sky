@@ -397,13 +397,13 @@ mission "Hai Reveal [D05] Cleanup"
 			label spare
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
 			apply
-				set "Hai Reveal [D05B] End Terry: failed"
+				set "spared terry"
 			`	The holster clicks as you put the weapon away.`
 				goto return
 			label end
 			`	You draw your weapon and point it at her, your thumb on the safety. Some prices are too high to pay for a better future.`
 			apply
-				set "Hai Reveal [D05B] Spare Terry: failed"
+				set "ended terry"
 			`	The retort of the weapon is taken away on the wind.`
 				goto return
 			label judge
@@ -442,6 +442,10 @@ mission "Hai Reveal [D05A] Spare Terry"
 	destination "Mountaintop"
 	to offer
 		has "Hai Reveal [D04] Cleanup: done"
+	to fail
+		has "ended terry"
+	to complete
+		not "spared terry"
 	on complete
 		log `You hunted down Terry on Aspiration and confronted her about the events that led you here. You learned that the remnants of the anarcho-syndicalist, anti-Syndicate organisation called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community seems to have been built in isolation with people who believed in the principles of anarcho-syndicalism. Terry threw herself on your mercy, you had destroyed her plans, her livelihood, and forced her to abandon her ambitions. You allowed her to live, but nevertheless this loose end is thoroughly tied up.`
 		log "People" "Terry Adrianopolous" `During the crisis Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and re-making the government into a less corrupt structure. Unfortunately she dealt with people of the worst sort and condoned kidnapping and exploitation to achieve it. With her life in ruins though, and her goals noble, you were merciful. She continues to live on the world of Aspiration, far from civilisation.`
@@ -453,6 +457,10 @@ mission "Hai Reveal [D05B] End Terry"
 	destination "Mountaintop"
 	to offer
 		has "Hai Reveal [D04] Cleanup: done"
+	to fail
+		has "spared terry"
+	to complete
+		not "ended terry"
 	on complete
 		log `You hunted down Terry on Aspiration and confronted her about the events that led you here. You learned that the remnants of the anarcho-syndicalist, anti-Syndicate organisation called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community seems to have been built in isolation with people who believed in the principles of anarcho-syndicalism. Terry threw herself on your mercy, you had destroyed her plans, her livelihood, and forced her to abandon her ambitions. When she pleaded her case you became her executioner; this loose end is thoroughly tied up.`
 		log "People" "Terry Adrianopolous" `During the crisis Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and re-making the government into a less corrupt structure. Unfortunately she dealt with people of the worst sort and condoned kidnapping and exploitation to achieve it. Despite her noble intentions her crimes were unconscionable. Her story ended on the bluffs of Aspiration, though no one may ever know it.`
@@ -636,7 +644,7 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Unagi"
 		remove fleet "Smuggler (Hai Traffickers)"
-	system "Hatyasa"
+	system "Hatysa"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Zaurak"
 		remove fleet "Smuggler (Hai Traffickers)"
