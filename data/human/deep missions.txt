@@ -760,7 +760,7 @@ mission "Deep: TMBR 1"
 			branch public
 				has "event: hai-human resolution announced"
 			`	"Maybe we've been away long enough. I thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a pretty well-kept secret, so perhaps not. Maybe it's time to go back to the land of the humans."`
-			goto return
+				goto return
 			label public
 			`	"Maybe we've been away long enough. With recent events I suppose it's only a matter of time until our presence here becomes known more widely to the Republic anyway so we don't exactly gain much by staying. Maybe it's time to go back to the land of the humans."`
 			label return

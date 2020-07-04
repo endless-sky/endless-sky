@@ -116,7 +116,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			label trust
 			apply
 				set haitrust
-			goto return
+				goto return
 			label caution
 			apply
 				set haicaution
@@ -132,7 +132,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	There is a collection of chittering laughs from the various council members. You're not sure if there was something wrong with what you said but you aren't left long to ponder.`
 			`	"It seems the human agent is an honest fool, but an honest fool can at least be trusted to be foolish honestly on all fronts."`
 			`	You're pretty sure you should be offended by that, but the councilmembers are smiling and don't look like they're about to evict you.`
-			goto end
+				goto end
 			label wise
 			`	"It seems you learnt the correct lesson from the crisis of your species," he says.`
 			`	You see several appreciative nods happening around the room out of the corner of your eyes.`
