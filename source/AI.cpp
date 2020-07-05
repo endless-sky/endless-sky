@@ -120,63 +120,62 @@ namespace {
 	{
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) &&
-					(!bay.ship->IsYours() || bay.ship->IsDeploying()))
+					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
 	
 	// Issue deploy orders for the selected ships (or the full fleet if no ships are selected).
 	void IssueDeploy(const PlayerInfo &player)
 	{
-		// Figure out what carried ships we are giving orders to
-		vector<Ship *> ships;
-		// First check if the player selected any ships that can deploy.
+		// Lay out the rules for what constitutes a deployable ship. (Since player ships are not
+		// deleted from memory until the next landing, check both parked and destroyed states.)
+		auto isCandidate = [](const shared_ptr<Ship> &ship) -> bool
+		{
+			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed();
+		};
+		
+		auto toDeploy = vector<Ship *> {};
+		auto toRecall = vector<Ship *> {};
+		{
+			auto maxCount = player.Ships().size() / 2;
+			toDeploy.reserve(maxCount);
+			toRecall.reserve(maxCount);
+		}
+		
+		// First, check if the player selected any carreid ships.
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			if(ship && !ship->IsParked() && !ship->IsDestroyed() && ship->CanBeCarried())
-				ships.push_back(ship.get());
+			if(ship && ship->IsYours() && isCandidate(ship))
+				(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
 		}
-		// No ships in the selection at all, or no ships that can be deployed, check for deployable ships in the fleet.
-		if(ships.empty())
-			for(const shared_ptr<Ship> &it : player.Ships())
-				if(it.get() != player.Flagship() && !it->IsParked() && !it->IsDestroyed() && it->CanBeCarried())
-					ships.push_back(it.get());
+		// If needed, check the player's fleet for deployable ships.
+		if(toDeploy.empty() && toRecall.empty())
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(isCandidate(ship) && ship.get() != player.Flagship())
+					(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
 		
-		// Inform the player that there just isn't any ship to deploy.
-		if(ships.empty())
+		// If any ships were not yet ordered to deployed, deploy them.
+		if(!toDeploy.empty())
 		{
-			Messages::Add("No carried ships in the fleet to deploy.");
-			return;
+			for(Ship *ship : toDeploy)
+				ship->SetDeployOrder(true);
+			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.");
 		}
-		
-		int nrDeployed = 0;
-
-		for(Ship *ship : ships)
-			if(!ship->IsDeploying())
-			{
-				ship->DoDeploy(true);
-				++nrDeployed;
-			}
-		
-		if(nrDeployed > 0)
+		// Otherwise, instruct the carried ships to return to their berth.
+		else if(!toRecall.empty())
 		{
-			Messages::Add("Deployed " + to_string(nrDeployed) + " carried ships.");
-			return;
+			for(Ship *ship : toRecall)
+				ship->SetDeployOrder(false);
+			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships");
 		}
-		
-		// If we get here, then we need to recall all selected ships
-		for(Ship *ship : ships)
-			ship->DoDeploy(false);
-
-		Messages::Add("Recalled " + to_string(ships.size()) + " carried ships.");
-		return;
 	}
 	
 	// Check if the ship contains a carried ship that needs to launch.
 	bool HasDeployments(const Ship &ship)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && bay.ship->IsDeploying())
+			if(bay.ship && bay.ship->HasDeployOrder())
 				return true;
 		return false;
 	}
@@ -836,7 +835,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			for(const weak_ptr<Ship> &ptr : it->GetEscorts())
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
-				if(escort && escort->CanBeCarried() && !escort->IsDeploying() && escort->GetSystem() == it->GetSystem()
+				// Note: HasDeployOrder is always `false` for NPC ships, as it is solely used for player ships.
+				if(escort && escort->CanBeCarried() && !escort->HasDeployOrder() && escort->GetSystem() == it->GetSystem()
 						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
 				{
 					mustRecall = true;
@@ -1664,7 +1664,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// A non-player-owned carried ship should retreat if its parent is calling it back.
 	if(ship.IsYours())
 	{
-		if(!ship.IsDeploying() || ship.GetSystem() != playerSystem)
+		if(!ship.HasDeployOrder() || ship.GetSystem() != playerSystem)
 			return true;
 	}
 	else if(!parent.Commands().Has(Command::DEPLOY))

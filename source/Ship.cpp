@@ -1029,6 +1029,20 @@ bool Ship::IsParked() const
 
 
 
+bool Ship::HasDeployOrder() const
+{
+	return shouldDeploy;
+}
+
+
+
+void Ship::SetDeployOrder(bool shouldDeploy)
+{
+	this->shouldDeploy = shouldDeploy;
+}
+
+
+
 const Personality &Ship::GetPersonality() const
 {
 	return personality;
@@ -2166,21 +2180,6 @@ bool Ship::IsBoarding() const
 bool Ship::IsLanding() const
 {
 	return landingPlanet;
-}
-
-
-
-
-bool Ship::IsDeploying() const
-{
-	return doDeploy;
-}
-
-
-
-void Ship::DoDeploy(bool shouldDeploy)
-{
-	doDeploy = shouldDeploy;
 }
 
 
