@@ -956,6 +956,7 @@ mission "There Might Be Riots part 3B"
 
 ship "Timer Ship"
 	attributes
+		"heat dissipation" 1
 		"hull" 3
 		"hull repair rate" .001
 		"mass" 100
