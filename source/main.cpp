@@ -247,6 +247,11 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
+		// Switch off fast-forward if the player is not in flight (for example when the
+		// boarding dialog shows up or when the player lands or opens the map). The player
+		// can switch fast-forward on again when flight is resumed.
+		if(!inFlight && isFastForward)
+			isFastForward = false;
 		
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
