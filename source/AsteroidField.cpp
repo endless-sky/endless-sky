@@ -12,13 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AsteroidField.h"
 
-#include "SpriteSet.h"
 #include "DrawList.h"
 #include "Mask.h"
 #include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Screen.h"
+#include "SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>

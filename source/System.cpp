@@ -294,9 +294,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		double fraction = root->distance / habitable;
 		if(object.IsStar())
 			object.message = &STAR;
-		else if (object.IsStation())
+		else if(object.IsStation())
 			object.message = &STATION;
-		else if (object.IsMoon())
+		else if(object.IsMoon())
 		{
 			if(fraction < .5)
 				object.message = &HOTMOON;
@@ -334,8 +334,14 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor. This will include any nearby linked systems.
 	for(const auto &it : systems)
+	{
+		// Skip systems that have no name.
+		if(it.first.empty() || it.second.Name().empty())
+			continue;
+
 		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
 			neighbors.insert(&it.second);
+	}
 	
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;

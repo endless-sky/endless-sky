@@ -50,6 +50,8 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
+		fighter -46 106 under
+		fighter 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -74,6 +76,32 @@ person "Michael Zahniser"
 		explode "medium explosion" 80
 		explode "large explosion" 120
 		explode "huge explosion" 60
+	ship "Finch (MZ)" "Vapor"
+	ship "Finch (MZ)" "Cipher"
+
+ship "Finch" "Finch (MZ)"
+		"never disabled"
+		add attributes
+			"shields" 900
+			"hull" 1800
+			"outfit space" 140
+			"weapon capacity" 22
+			"engine capacity" 22
+		outfits
+			"Electron Beam" 2
+			
+			"Fuel Pod"
+			"Liquid Nitrogen Cooler"
+			"Large Radar Jammer"
+			"Ramscoop"
+			"S-270 Regenerator"
+			
+			"LP036a Battery Pack"
+			"Fission Reactor"
+			
+			"A125 Atomic Steering"
+			"A120 Atomic Thruster"
+			"Ionic Afterburner"
 
 
 
@@ -107,14 +135,29 @@ person "Cap'n Pester"
 
 
 
-person "Marauding Max K"
-	government "Author"
-	frequency 300
+person "Marauding Max"
+	government "Marauder"
+	frequency 400
 	personality
-		surveillance
+		surveillance unconstrained harvests
 	phrase
-		phrase
-			"friendly author"
+		word
+			"Do you think you "
+			"Ever wondered if you "
+			"Think you'll also need some luck if you "
+		word
+			"got what it takes to "
+			"got the gumption to "
+			"could "
+			"are capable of "
+			"have the guramba to "
+			"are good enough to "
+		word
+			"capture "
+			"collect "
+			"gather "
+		word
+			"all 28 Marauder models?"
 	phrase
 		word
 			"Have you "
@@ -144,10 +187,10 @@ person "Marauding Max K"
 			"lately?"
 			"recently?"
 			"in the past couple of days?"
-	# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter...(there is no shop).
+	# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter that encourages the player to explore...(there is no shop).
 	phrase
 		word
-			"If you can find me or my crew within the community, we'll help you turning that "
+			"If you can find my crew, we'll help you turn that "
 		word
 			"trash heap "
 			"rust bucket "
@@ -167,6 +210,7 @@ person "Marauding Max K"
 ship "Marauder Fury"
 	plural "Marauder Furies"
 	sprite "ship/mfury"
+	thumbnail "thumbnail/mfury"
 	attributes
 		category "Interceptor"
 		"cost" 750000
@@ -193,20 +237,19 @@ ship "Marauder Fury"
 		"Meteor Missile Launcher" 4
 		"Hai Tracker" 112
 		"Meteor Missile" 140
-		
-		"Pebble Core"
-		"Small Biochemical Cell"
-		"Hai Williwaw Cooling"
-		"Hai Corundum Regenerator"
+
+		"Systems Core (Small)"
+		"Red Sun Reactor"
 		"Intrusion Countermeasures" 3
-		
+		"Nerve Gas"
+
 		`"Biroo" Atomic Thruster`
-		"A255 Atomic Steering"
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42
+	engine -21 42 .9
 	engine 0 48
-	engine 21 42
+	engine 21 42 .9
 	gun -12 -33 "Meteor Missile Launcher"
 	gun 12 -33 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
@@ -216,7 +259,7 @@ ship "Marauder Fury"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	"final explode" "final explosion small"
-	description "You're sure there's a Southbound Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single pilot warship ever. Upon closer inspection, you're inclined to believe he may have succeeded."
+	description "You're sure there's a Southbound Shipyards Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single-pilot warship ever; after close inspection, you're inclined to believe he may have succeeded."
 
 
 
@@ -375,6 +418,7 @@ person "Tranquility"
 
 ship "Lampyrid-Class Transport"
 	sprite "ship/lampyrid"
+	thumbnail "thumbnail/lampyrid"
 	attributes
 		category "Heavy Freighter"
 		cost 2760000
@@ -595,3 +639,171 @@ ship "Modified Osprey"
 	explode "small explosion" 40
 	explode "tiny explosion" 28
 	"final explode" "final explosion large" 1
+
+
+person "Local God"
+	government "Author"
+	frequency 200
+	personality
+		mining harvests surveillance unconstrained forbearing
+	phrase
+		phrase
+			"friendly author"
+	phrase
+		word
+			"Search for Ursa Polaris Station!"
+	phrase
+		word
+			"Someday"
+			"One day"
+			"Eventually"
+		word
+			", "
+		word
+			"maybe I should "
+			"I might "
+			"I will "
+			"I'm going to "
+		word
+			"park this heap"
+			"moor this beast"
+			"put down roots"
+			"find a cozy orbit"
+		word
+			" and "
+		word
+			"retire as an outfit dealer."
+			"open a univeral outfitter."
+			"start dealing exotic outfits."
+			"sell outfits from everywhere."
+			"stock outfits from all over the place."
+	phrase
+		word
+			"If only "
+			"I wish "
+			"Reputable Captains wish "
+		word
+			"someone "
+			"a rich Captain "
+			"an entrepreneurial spirited individual "
+			"a Captain with wealthy friends "
+		word
+			"would "
+		word
+			"build "
+			"construct "
+			"put together "
+			"cobble together "
+			"make "
+		word
+			"and stock "
+		word
+			"a universal outfitter space station."
+			"a place you could buy any outfit."
+			"somewhere you could optimize your ships, without cris-crossing the known galaxy."
+			"a space station out of asteroids - that carried all the outfits."
+	phrase
+		word
+			"I "
+		word
+			"stole "
+			"captured "
+			"restored "
+			"found "
+			"got a hold of "
+			"appropriated "
+			"procured "
+		word
+			"this very old Korath World Ship and "
+		word
+			"made it my own"
+			"customized it"
+			"made some modifications"
+			"made a few modifications"
+		word
+			", with a little help, of course."
+	ship "Ursa Polaris" "Local God"
+		"never disabled"
+
+ship "Ursa Polaris"
+	sprite "ship/localworldship"
+	attributes
+		category "Heavy Warship"
+		cost 142857
+		shields 39000
+		hull 27000
+		"required crew" 559
+		"bunks" 972
+		"mass" 1839
+		"drag" 12
+		"heat dissipation" .9
+		"fuel capacity" 600
+		"solar collection" 15
+		"afterburner thrust" 200
+		"turn" 4005.0
+		"ramscoop" 20
+		"hull repair rate" 7
+		"energy generation" 200
+		"outfit scan power" 186
+		"outfit scan speed" 1
+		"tactical scan power" 99
+		"asteroid scan power" 69
+		"cargo space" 1408
+		"outfit space" 1768	
+		"weapon capacity" 861
+		"engine capacity" 301
+		weapon
+			"blast radius" 1000
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Quarg Skylance"
+		"Pug Gridfire Turret" 3
+		"Plasma Turret"
+		"Korath Disruptor" 5
+		"Quarg Anti-Missile" 5
+		Hyperdrive
+		"Large Heat Shunt"
+		"Small Heat Shunt" 2
+		"Systems Core (Large)" 2
+		"Korath Repeater Rifle" 600
+		"Thruster (Stellar Class)"
+		"Smelter-Class Thruster"
+		`"Basrem" Atomic Thruster`
+	engine 26 219 0.9
+	engine 59.5 205.5 0.6
+	engine -7 205.5 0.6
+	engine -82 80.5 0.4
+	engine -106.5 80.5 0.4
+	turret 27 -162 "Quarg Anti-Missile"
+	turret 27 -162 "Quarg Skylance"
+	turret 27 -162 "Korath Disruptor"
+	turret 94.5 -52.5 "Quarg Anti-Missile"
+	turret 94.5 -52.5 "Pug Gridfire Turret"
+	turret 94.5 -52.5 "Korath Disruptor"
+	turret 80.5 53 "Quarg Anti-Missile"
+	turret 80.5 53 "Pug Gridfire Turret"
+	turret 80.5 53 "Korath Disruptor"
+	turret 21 25.5 "Quarg Anti-Missile"
+	turret 21 25.5 "Pug Gridfire Turret"
+	turret 21 25.5 "Korath Disruptor"
+	turret -69.5 -43 "Quarg Anti-Missile"
+	turret -69.5 -43 "Plasma Turret"
+	turret -69.5 -43 "Korath Disruptor"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+
+
+person "Subsidurial"
+	government "Indigenous Lifeform"
+	frequency 100
+	personality
+		timid unconstrained coward appeasing uninterested mining harvests mute
+	ship "Subsidurial"
+		"never disabled"
+	system
+		government "Uninhabited"

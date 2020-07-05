@@ -1,4 +1,4 @@
-/* CargoHold.h
+/* CargoHold.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -393,7 +393,7 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold &to)
 	if(amount && !existing)
 		return 0;
 	amount = min(amount, existing);
-	if(to.size)
+	if(to.size >= 0)
 		amount = max(0, min(amount, to.Free()));
 	// Don't transfer 0 tons unless that's all that exists.
 	if(existing && !amount)
@@ -551,28 +551,34 @@ int64_t CargoHold::Value(const System *system) const
 }
 
 
-	
+
 // If anything you are carrying is illegal, return the maximum fine you can
-// be charged. If the returned value is negative, you are carrying something
-// so bad that it warrants a death sentence.
+// be charged for any illegal outfits plus the sum of the fines for all
+// missions. If the returned value is negative, you are carrying something so
+// bad that it warrants a death sentence.
 int CargoHold::IllegalCargoFine() const
 {
-	int worst = 0;
+	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
+	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
 		int fine = it.first->Get("illegal");
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine / 2);
+		totalFine = max(totalFine, fine / 2);
 	}
 	
+	// Fines for illegal mission cargo and passengers are added together to
+	// avoid the player being able to stack multiple illegal jobs at once
+	// and avoid the bulk of the penalties when fined.
 	for(const auto &it : missionCargo)
 	{
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine);
+		if(!it.first->IsFailed())
+			totalFine += fine;
 	}
 	
 	for(const auto &it : passengers)
@@ -580,8 +586,9 @@ int CargoHold::IllegalCargoFine() const
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine);
+		if(!it.first->IsFailed())
+			totalFine += fine;
 	}
 	
-	return worst;
+	return totalFine;
 }

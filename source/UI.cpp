@@ -240,7 +240,10 @@ bool UI::IsDone() const
 
 
 
-// Check if it is time to quit.
+// Check if there are no panels left. No panels left on the gamePanels-
+// stack usually means that it is time for the game to quit, while no
+// panels left on the menuPanels-stack is a normal state for a running
+// game.
 bool UI::IsEmpty() const
 {
 	return stack.empty() && toPush.empty();
