@@ -1046,6 +1046,20 @@ bool Ship::IsParked() const
 
 
 
+bool Ship::HasDeployOrder() const
+{
+	return shouldDeploy;
+}
+
+
+
+void Ship::SetDeployOrder(bool shouldDeploy)
+{
+	this->shouldDeploy = shouldDeploy;
+}
+
+
+
 const Personality &Ship::GetPersonality() const
 {
 	return personality;

@@ -88,7 +88,7 @@ private:
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
-	bool ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const;
+	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 	
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
@@ -186,7 +186,6 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	
-	bool isLaunching = false;
 	bool isCloaking = false;
 	
 	bool escortsAreFrugal = true;

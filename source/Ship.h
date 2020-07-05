@@ -163,6 +163,9 @@ public:
 	// A parked ship stays on a planet and requires no daily salary payments.
 	void SetIsParked(bool parked = true);
 	bool IsParked() const;
+	// The player can selectively deploy their carried ships, rather than just all / none.
+	void SetDeployOrder(bool shouldDeploy = true);
+	bool HasDeployOrder() const;
 	
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
@@ -438,6 +441,7 @@ private:
 	bool isSpecial = false;
 	bool isYours = false;
 	bool isParked = false;
+	bool shouldDeploy = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
 	bool isBoarding = false;
