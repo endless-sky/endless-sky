@@ -237,8 +237,6 @@ namespace {
 			png_set_expand_gray_1_2_4_to_8(png);
 		if(colorType == PNG_COLOR_TYPE_GRAY || colorType == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png);
-		if(colorType & PNG_COLOR_MASK_COLOR)
-			png_set_bgr(png);
 		// Let libpng handle any interlaced image decoding.
 		png_set_interlace_handling(png);
 		png_read_update_info(png, info);
@@ -271,7 +269,7 @@ namespace {
 		
 		jpeg_stdio_src(&cinfo, file);
 		jpeg_read_header(&cinfo, true);
-		cinfo.out_color_space = JCS_EXT_BGRA;
+		cinfo.out_color_space = JCS_RGB;
 		
 		jpeg_start_decompress(&cinfo);
 		int width = cinfo.image_width;
@@ -296,7 +294,21 @@ namespace {
 		
 		jpeg_finish_decompress(&cinfo);
 		jpeg_destroy_decompress(&cinfo);
-		
+
+		// Expand RGB to RGBA
+		for (unsigned int y = 0; y < cinfo.image_height; y++)
+		{
+			auto pptr = reinterpret_cast<uint8_t*>(buffer.Begin(y, frame));
+			for(int idx = width - 1; idx >= 0; --idx)
+			//for(int idx = 0; idx < width; ++idx)
+			{
+				pptr[idx * 4 + 0] = pptr[idx * 3 + 0];
+				pptr[idx * 4 + 1] = pptr[idx * 3 + 1];
+				pptr[idx * 4 + 2] = pptr[idx * 3 + 2];
+				pptr[idx * 4 + 3] = static_cast<unsigned char>(0xFF);
+			}
+		}
+
 		return true;
 	}
 	
