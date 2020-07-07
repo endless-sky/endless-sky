@@ -39,7 +39,7 @@ namespace {
 		// The glyph to draw. (ASCII value - 32).
 		"uniform int glyph;\n"
 		// Aspect ratio of rendered glyph (unity by default).
-		"uniform float aspect = 1.f;\n"
+		"uniform float aspect;\n"
 		
 		// Inputs from the VBO.
 		"in vec2 vert;\n"
@@ -50,15 +50,16 @@ namespace {
 		
 		// Pick the proper glyph out of the texture.
 		"void main() {\n"
-		"  texCoord = vec2((glyph + corner.x) / 98.f, corner.y);\n"
-		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0, 1);\n"
+		"  texCoord = vec2((float(glyph) + corner.x) / 98.f, corner.y);\n"
+		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0.f, 1.f);\n"
 		"}\n";
 	
 	const char *fragmentCode =
 		"// fragment font shader\n"
+		"precision mediump float;\n"
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"uniform vec4 color;\n"
 		
 		// This comes from the vertex shader.
 		"in vec2 texCoord;\n"
