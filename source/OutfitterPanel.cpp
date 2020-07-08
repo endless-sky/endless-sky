@@ -263,7 +263,7 @@ bool OutfitterPanel::CanBuy() const
 	if(!playerShip)
 	{
 		double mass = selectedOutfit->Mass();
-		return (!mass || player.Cargo().Free() >= mass || player.Storage());
+		return (!mass || player.Cargo().Free() >= mass);
 	}
 	
 	for(const Ship *ship : playerShips)
