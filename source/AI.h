@@ -88,7 +88,7 @@ private:
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
-	bool ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const;
+	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 	
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
@@ -97,9 +97,9 @@ private:
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
-	static void CircleAround(Ship &ship, Command &command, const Ship &target);
-	static void Swarm(Ship &ship, Command &command, const Ship &target);
-	static void KeepStation(Ship &ship, Command &command, const Ship &target);
+	static void CircleAround(Ship &ship, Command &command, const Body &target);
+	static void Swarm(Ship &ship, Command &command, const Body &target);
+	static void KeepStation(Ship &ship, Command &command, const Body &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
@@ -186,10 +186,7 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	
-	bool isLaunching = false;
 	bool isCloaking = false;
-	// Whether the `Shift` modifier key was pressed for this step.
-	bool shift = false;
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;

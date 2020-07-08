@@ -633,7 +633,7 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 
 
 // This function dictates whether missions on the player's map are shown in
-// bright or dim text colors.
+// bright or dim text colors, and may be called while in-flight or landed.
 bool Mission::IsSatisfied(const PlayerInfo &player) const
 {
 	if(!waypoints.empty() || !stopovers.empty())
@@ -657,8 +657,19 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	// If any of the cargo for this mission is being carried by a ship that is
 	// not in this system, the mission cannot be completed right now.
 	for(const auto &ship : player.Ships())
-		if(ship->GetSystem() != player.GetSystem() && ship->Cargo().Get(this))
+	{
+		// Skip in-system ships, and carried ships whose parent is in-system.
+		if(ship->GetSystem() == player.GetSystem() || (!ship->GetSystem() && ship->CanBeCarried()
+				&& ship->GetParent() && ship->GetParent()->GetSystem() == player.GetSystem()))
+			continue;
+		
+		if(ship->Cargo().GetPassengers(this))
 			return false;
+		// Check for all mission cargo, including that which has 0 mass.
+		auto &cargo = ship->Cargo().MissionCargo();
+		if(cargo.find(this) != cargo.end())
+			return false;
+	}
 	
 	return true;
 }
@@ -674,6 +685,13 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 		if(npc.HasFailed())
 			return true;
 	
+	return hasFailed;
+}
+
+
+
+bool Mission::IsFailed() const
+{
 	return hasFailed;
 }
 
@@ -915,7 +933,7 @@ const string &Mission::Identifier() const
 
 
 // Get a specific mission action from this mission.
-// If a mission action is not found for the given trigger, returns an empty 
+// If a mission action is not found for the given trigger, returns an empty
 // mission action.
 const MissionAction &Mission::GetAction(Trigger trigger) const
 {

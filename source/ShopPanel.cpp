@@ -230,7 +230,7 @@ void ShopPanel::DrawSidebar()
 		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
 		{
-			const string &check = (*checkIt).second;
+			const string &check = (*checkIt).second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(zones.back().Contains(mouse))
@@ -822,10 +822,10 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 {
-	// Don't require a license for an outfit that you have in cargo or that you
-	// just sold to the outfitter. (Otherwise, there would be no way to transfer
-	// a restricted plundered outfit between ships or from cargo to a ship.)
-	if(player.Cargo().Get(outfit) || player.Stock(outfit) > 0)
+	// If the player is attempting to install an outfit from cargo or that they just
+	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
+	// would be no way to use or transfer license-restricted outfits between ships.)
+	if((player.Cargo().Get(outfit) && playerShip) || player.Stock(outfit) > 0)
 		return 0;
 	
 	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
@@ -953,7 +953,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
-			if(!CanShowInSidebar(*ship, here))
+			if(!CanShowInSidebar(*other, here))
 				continue;
 			
 			if(other.get() == ship || other.get() == playerShip)
