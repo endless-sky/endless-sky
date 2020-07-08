@@ -102,18 +102,28 @@ outfit "Ka'het Annihilator Turret"
 			"frame rate" 7
 		"hardpoint sprite" "hardpoint/annihilator turret"
 		"hardpoint offset" 15.
-		sound "inhibitor"
 		"hit effect" "bullet impact"
-		"inaccuracy" 3
+		"inaccuracy" 1
 		"turret turn" 2.3
-		"velocity" 18
-		"lifetime" 35
+		"range override" 630
+		"velocity override" 18
 		"reload" 10
 		"firing energy" 62
 		"firing heat" 16
-		"shield damage" 86
-		"hull damage" 24
-	description "The Builders mounted two Annihilators on this turret, making it highly efficent against enemy shields."
+		"submunition" "Annihilator Projectile"
+	description "The Builders mounted two Annihilators on this turret, making it highly efficient against enemy shields."
+
+outfit "Annihilator Projectile"
+	weapon
+		sprite "projectile/annihilator"
+			"frame rate" 7
+		sound "inhibitor"
+		"hit effect" "bullet impact"
+		"inaccuracy" 2
+		"velocity" 18
+		"lifetime" 35
+		"shield damage" 43
+		"hull damage" 12
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"
@@ -192,3 +202,24 @@ outfit "Ka'het Shield Restorer"
 	"shield generation" 1.02
 	"shield energy" 2.04
 	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders to develop strong shield technology, leading to some Het vessels making extensive use of this module."
+
+# Power:
+
+outfit "Ka'het MHD Generator"
+	category "Power"
+	cost 1263000
+	thumbnail "outfit/ka'het mhd generator"
+	"mass" 20
+	"outfit space" -22
+	"energy generation" 3.8
+	"heat generation" 5.8
+	description "The Builders originally created this magnetohydrodynamic generator as the Ka'mar main power source. Similarly to what happened with many Mar devices, it was later reused in the Het ships as a secondary energy generator, supplementing their integrated power systems when they proved to be unsatisfactory."
+
+outfit "Ka'het Reserve Accumulator"
+	category "Power"
+	cost 27000
+	thumbnail "outfit/ka'het reserve accumulator"
+	"mass" 2
+	"outfit space" -3
+	"energy capacity" 600
+	description "This tiny battery was developed for use by the Ka'mar drones as an emergency energy storage, in case their generators can't quite suffice for the high power demand of most Builder systems."

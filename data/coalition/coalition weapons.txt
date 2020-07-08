@@ -134,6 +134,17 @@ outfit "Active Finisher"
 		"hull damage" 1900
 		"hit force" 750
 
+outfit "Finisher Storage Tube"
+	category "Ammunition"
+	cost 58800
+	thumbnail "outfit/finisher storage"
+	"mass" 4
+	"outfit space" -15
+	"energy capacity" 120
+	"finisher capacity" 20
+	ammo "Finisher Torpedo"
+	description "In order to allow Heliarch ships to install more Finisher storage tubes, Heliarch engineers have incorporated a tiny battery pack into each module. This allows for Heliarch ships to have a respectable energy capacity while also carrying a fearsome number of Finishers."
+
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
@@ -266,6 +277,48 @@ effect "repulsor impact"
 	"random spin" 10
 	"random velocity" 4
 	"velocity scale" .01
+
+
+outfit "Ion Hail Turret"
+	category "Turrets"
+	licenses
+		Heliarch
+	cost 1268000
+	thumbnail "outfit/ion hail turret"
+	"mass" 26
+	"outfit space" -26
+	"weapon capacity" -26
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/ion hail turret"
+		"hardpoint offset" 10.
+		sound "ion rain"
+		"inaccuracy" 3
+		"turret turn" 4.2
+		"velocity" 12
+		"reload" 15
+		"burst reload" 3
+		"burst count" 5
+		"firing energy" 48
+		"firing heat" 24
+		"submunition" "ion hail" 4
+	description "Instead of just placing an Ion Rain Gun on a turret mount, the Heliarch tweaked the cycles of shots, having each shot be significantly more effective and seeing an overall increase to the weapon's range, but at the cost of a reload period."
+
+outfit "ion hail"
+	weapon
+		sprite "projectile/ion rain"
+			"frame rate" 7
+			"random start frame"
+		"hit effect" "ion rain impact"
+		"inaccuracy" 1
+		"random velocity" 3
+		"lifetime" 40
+		"random lifetime" 4
+		"hit force" 1
+		"shield damage" 12
+		"hull damage" 5
+		"ion damage" .32
 
 
 outfit "Ion Rain Gun"

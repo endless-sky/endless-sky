@@ -63,7 +63,7 @@ mission "Pookie, Part 1"
 			"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the <system> system."
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
+		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 
 
 
@@ -101,7 +101,7 @@ mission "Pookie, Part 2"
 			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
+		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
@@ -956,6 +956,7 @@ mission "There Might Be Riots part 3B"
 
 ship "Timer Ship"
 	attributes
+		"heat dissipation" 1
 		"hull" 3
 		"hull repair rate" .001
 		"mass" 100
@@ -1551,7 +1552,7 @@ mission "Shady passenger transport 2"
 	on accept
 		"rejected illegal jobs" --
 		"getaway driver" ++
-		dialog `You bundle the men onto your ship before anyone sees them. As you're helping unpack their luggage, one of them casually mentions that they may have attracted the attention of some bounty hunters, and would prefer not to be captured. You should probably avoid being scanned, too."`
+		dialog `You bundle the men onto your ship before anyone sees them. As you're helping unpack their luggage, one of them casually mentions that they may have attracted the attention of some bounty hunters, and would prefer not to be captured. You should probably avoid being scanned, too.`
 
 	on decline
 		"rejected illegal jobs" ++
@@ -3383,7 +3384,7 @@ mission "Capture Smuggler"
 				die
 	npc board
 		conversation
-			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangly muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
+			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangely muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
 			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
 				launch
 		government "Merchant"
@@ -3408,6 +3409,7 @@ mission "Capture Smuggler"
 
 mission "Inheritance Redirection"
 	description "Travel to <destination> to act as heir for the late warlord Limping Pappa."
+	minor
 	source
 		attributes "frontier"
 	destination
@@ -3474,6 +3476,7 @@ mission "Inheritance Redirection"
 mission "Hauler VI cargo prototype 1"
 	name "Escort Hauler prototype to formal dinner"
 	description "Escort the <npc> to <destination> to deliver sushi for a formal dinner."
+	minor
 	source
 		planet "Deep"
 	destination "Skymoot"
@@ -3503,12 +3506,22 @@ mission "Hauler VI cargo prototype 1"
 			`	Veronica pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
 			choice
 				`	"Isn't it a bit risky to transport food using a refrigeration system that hasn't been tested yet?"`
+					goto refrigerate
 				`	"Am I also invited for the dinner?"`
 					goto invited
 				`	"Why do you need me to escort the ship?"`
 					goto internal
+				`	"Shouldn't you be making the Hauler IV first?"`
 				`	"Sure, I'll help you."`
 					accept
+			`	Veronica softly chuckles. "That would be the obvious choice, wouldn't it be? But this isn't just a case of slapping another cargo pod between the cockpit and engines. We've modified the design to have the optimal amount of cargo pods without compromising the integrity of the vessel, or making it difficult to build in our existing shipyards. And besides, our marketing department has found that captains willing to buy a Hauler IV are just as willing to buy larger Haulers."`
+			choice
+				`	"Isn't it a bit risky to transport food using a refrigeration system that hasn't been tested yet?"`
+				`	"Am I also invited for the dinner?"`
+					goto invited
+				`	"Why do you need me to escort the ship?"`
+					goto internal
+			label "refrigerate"
 			`	"Risky, why? I don't see what can go wrong. The system is quite well designed. I'm so proud of my team."`
 			choice
 				`	"Am I also invited for the dinner?"`
@@ -3570,3 +3583,53 @@ mission "Hauler VI cargo prototype 3"
 			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
+
+mission "Antibiotics To South"
+	name "Antibiotics shipment to <planet>"
+	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
+	minor
+	source
+		attributes "medical"
+		not attributes "south" "rim"
+		near "Sol" 100
+	destination
+		attributes "south"
+	to offer
+		"combat rating" > 10
+		"armament deterrence" > 2
+		random < 5
+	cargo "antibiotics" 25 2 .05
+	
+	on offer
+		conversation
+			`As you wander around the spaceport, you spot a well dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks, "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
+			choice
+				`	"It is. Why?"`
+				`	"Sorry, I think you're mistaken."`
+					decline
+			`	The man begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last two merchants I've sent down there have been attacked by pirate ships. My company won't give the budget for an escort, so anyone I send down there has to be alone. Fortunately, I do have the budget for a high risk contract, so if you can take one of these shipments to <destination>, I can arrange a payment of <payment>. Does this sound fair so far?"`
+			choice
+				`	"Sure, but do you know anything about these pirates?"`
+				`	"No thanks, that sounds too risky for me."`
+					decline
+			`	He seems to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the '<npc>'. It's faster than a Bounder and persistent beyond any reasonable measure. Which is, of course, why I'm talking to you. There is no way you're going to avoid a fight with it. However, I think your ship is a match for it. So, is this acceptable?"`
+			choice
+				`	"Of course."`
+				`	"No thanks, that sounds like too much of a risk."`
+					decline
+			`	"Thank you very much, Captain," he says. "I'll take care of everything else from here."`
+				accept
+	npc
+		government "Bounty Hunter"
+		personality nemesis heroic disables harvests plunders
+			confusion 20
+		system
+			distance 2 3
+		ship "Marauder Manta (Engines)" "Australis"
+	
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 20000
+		dialog phrase "generic cargo delivery payment"
