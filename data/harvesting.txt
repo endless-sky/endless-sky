@@ -234,3 +234,22 @@ outfit "Uranium"
 	"mass" 1
 	"installable" -1
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
+
+
+minable "yottrite"
+	sprite "asteroid/yottrite/spin"
+	hull 20000
+	payload "Yottrite" 7
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
+
+outfit "Yottrite"
+	plural "Yottrite"
+	category "Special"
+	cost 200000
+	thumbnail "outfit/harvested yottrite"
+	"flotsam sprite" "effect/flotsam yottrite"
+	"mass" 3.14
+	"installable" -1
+	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate Yottrite in an alloy."
