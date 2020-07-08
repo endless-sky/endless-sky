@@ -25,6 +25,52 @@ test "Test-Framework - Load only"
 
 
 
+test "Test-Framework - UI controls"
+	status "Active"
+	description "Tests if the in-game panels can be controlled by keypresses"
+	sequence
+		inject "commodity barges"
+		load "commodity barges.txt"
+		# Enter and leave jobs
+		"ui key" "j"
+		"ui key" "d"
+		# Enter trading
+		"ui key" "t"
+		# Enter bank
+		"ui key" "b"
+		# Enter spaceport
+		"ui key" "p"
+		# Enter and leave shipyard
+		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
+		#"ui key" "s"
+		#"ui key" "l"
+		# Enter and leave outfitter
+		"ui key" "o"
+		"ui key" "l"
+		# Enter hire-crew section
+		"ui key" "h"
+		# Depart
+		"ui key" "d"
+
+
+test "Test-Framework - Menu controls"
+	status "Known Failure"
+	bug-id "None yet"
+	description "Tests if the in-game panels can be controlled by keypresses"
+	sequence
+		inject "commodity barges"
+		load "commodity barges.txt"
+		# Go to menu
+		"ui key" "escape"
+		# Go to settings
+		"ui key" "s"
+		# Go to controls
+		"ui key" "c"
+		# Enter ships
+		"ui key" "e"
+
+
+
 test "Test-Framework - Load and depart"
 	status "Active"
 	description "Test with only a departure. Mostly tests the testframework itself."

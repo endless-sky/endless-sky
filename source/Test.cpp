@@ -93,6 +93,9 @@ namespace {
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
+		event.type = SDL_KEYDOWN;
+		event.key.state = SDL_PRESSED;
+		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		event.key.keysym.mod = KMOD_NONE;
 		if(shift)
@@ -102,6 +105,8 @@ namespace {
 		if(alt)
 			event.key.keysym.mod |= KMOD_ALT;
 		
+		// Sending directly as event to the UI. We might want to switch to
+		// SDL_PushEvent in the future to use the regular SDL event-handling loops.
 		return EventToUI(menuOrGamePanels, event);
 	}
 
@@ -513,9 +518,15 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 				if(stepInputString.empty())
 					return RESULT_FAIL;
 
-				char inputChar = stepInputString[0];
-				if(KeyInputToUI(gamePanels, &inputChar))
+				const char* inputChar = stepInputString.c_str();
+				if(PlayerMenuIsActive(menuPanels))
+				{
+					if(KeyInputToUI(menuPanels, inputChar))
+						return RESULT_DONE;
+				}
+				else if(KeyInputToUI(gamePanels, inputChar))
 					return RESULT_DONE;
+				
 				return RESULT_FAIL;
 			}
 			
