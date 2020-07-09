@@ -3660,12 +3660,12 @@ mission "Pirate Duel"
 	
 	on offer
 		conversation
-			`While you are walking around the spaceport, you accidentally bump into a sturdily-built man. "Oh, I'm sorry," he responds in a gruff voice. When they take a closer look at you, his expression changes to shock. "Oh! You're Captain <last>!"`
+			`While you are walking around the spaceport, you accidentally bump into a sturdily-built man. "Oh, I'm sorry," he responds in a gruff voice. When he takes a closer look at you, his expression changes to shock. "Oh! You're Captain <last>!"`
 			choice
 				`	"How did you know my name?"`
 					goto offer
 				`	"I don't know who you're talking about."`
-			`	The man's expression changes to one of slight dissapointment. "Oh. I see." They walk away without another word.`
+			`	The man's expression changes to one of slight dissapointment. "Oh. I see." He walks away without another word.`
 				decline
 			label offer
 			`	"I happen to take an interest in young pioneering privateers, and your performance, even in a small vessel like the <ship>, has impressed me greatly. I'll tell you more if you let me take you somewhere."`
@@ -3684,7 +3684,7 @@ mission "Pirate Duel"
 				`	"What sort of vessel is the Esca?"`
 					goto vessel
 				`	"Why did you need to bring me to here? Couldn't you have made this offer in the spaceport?"`
-			`	The man hesiates for a moment. "Well, being in the open when admitting that you're the leader of the group that is actively opposed against you isn't a good idea. You can't ever be too sure about who's listening.`
+			`	The man hesiates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
 				goto end
 			label vessel
 			`	The man hesiates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you.`
@@ -3751,4 +3751,4 @@ mission "Pirate Duel Payment"
 				`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you 250,000 credits for your effort.`
 					decline
 				label more
-				`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also the curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship. You go to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you 250,000 credits for the effort.`
+				`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also had a curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship. You go to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you 250,000 credits for the effort.`
