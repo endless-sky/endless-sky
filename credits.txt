@@ -20,12 +20,12 @@ Developers
 Major Programming
   AdamKauffman
   Amazinite
-  Frederick Goy IV
   CyberShadow
   db47h
   Elyssaen
   EndrosG
   flaviojs
+  Frederick Goy IV
   guillochon
   Hadron1776
   kozbot
