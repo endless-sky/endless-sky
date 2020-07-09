@@ -61,9 +61,11 @@ private:
 	bool hasNewFile = false;
 	bool done = false;
 	
+#ifndef ES_NO_THREADS
 	std::thread thread;
 	std::mutex decodeMutex;
 	std::condition_variable condition;
+#endif // ES_NO_THREADS
 };
 
 

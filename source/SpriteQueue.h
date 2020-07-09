@@ -57,20 +57,28 @@ public:
 	
 	
 private:
+#ifndef ES_NO_THREADS
 	double DoLoad(std::unique_lock<std::mutex> &lock);
-	
-	
+#else
+	double DoLoad();
+#endif // ES_NO_THREADS
+
+
 private:
 	// These are the image sets that need to be loaded from disk.
 	std::queue<std::shared_ptr<ImageSet>> toRead;
+#ifndef ES_NO_THREADS
 	std::mutex readMutex;
 	std::condition_variable readCondition;
+#endif // ES_NO_THREADS
 	int added = 0;
 	
 	// These image sets have been loaded from disk but have not been uplodaed.
 	std::queue<std::shared_ptr<ImageSet>> toLoad;
+#ifndef ES_NO_THREADS
 	std::mutex loadMutex;
 	std::condition_variable loadCondition;
+#endif // ES_NO_THREADS
 	int completed = 0;
 	
 	// These sprites must be unloaded to reclaim GPU memory.
