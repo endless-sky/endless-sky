@@ -3709,7 +3709,7 @@ mission "Pirate Duel"
 		government "Independent (Friendly before duel)"
 		personality heroic vindictive unconstrained launching
 			confusion 20
-		ship "Vanguard (Boss Fight)" "Anglerfish"
+		ship "Vanguard (Plasma Slow)" "Anglerfish"
 		dialog `The Anglerfish and "The captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
 
 government "Independent (Friendly before duel)"
@@ -3717,7 +3717,7 @@ government "Independent (Friendly before duel)"
 	swizzle 6
 	"hostile hail" "hostile bounty hunter"
 
-ship "Vanguard" "Vanguard (Boss Fight)"
+ship "Vanguard" "Vanguard (Plasma Slow)"
 	outfits
 		"Plasma Cannon" 7
 		"Heavy Anti-Missile Turret"
