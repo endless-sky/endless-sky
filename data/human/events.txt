@@ -2142,6 +2142,7 @@ event "pug territory liberated"
 	"tribute: Furnace" *= 1200
 	"tribute: Reunion" *= 2900
 	"tribute: Kraken Station" *= 500
+	"tribute: Tinker" *= 1100
 	system Deneb
 		government Neutral
 		fleet "Small Core Merchants" 400
