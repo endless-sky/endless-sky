@@ -956,6 +956,7 @@ mission "There Might Be Riots part 3B"
 
 ship "Timer Ship"
 	attributes
+		"heat dissipation" 1
 		"hull" 3
 		"hull repair rate" .001
 		"mass" 100
@@ -3588,10 +3589,11 @@ mission "Antibiotics To South"
 	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
 	minor
 	source
-		attributes medical
-		not attributes south rim
+		attributes "medical"
+		not attributes "south" "rim"
+		near "Sol" 100
 	destination
-		attributes south
+		attributes "south"
 	to offer
 		"combat rating" > 10
 		"armament deterrence" > 2
