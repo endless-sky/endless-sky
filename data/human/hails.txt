@@ -1183,7 +1183,7 @@ phrase "friendly civilian"
 		"escorting the big freighters armed with anti-missile defenses."
 		"disabling small isolated pirate ships and selling their equipment."
 		"looking for jobs in the spaceport."
-		"helping out the local goverment."
+		"helping out the local government."
 
 phrase "friendly civilian"
 	word

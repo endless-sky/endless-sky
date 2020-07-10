@@ -73,11 +73,8 @@ public:
 		static const uint8_t OVER = 1;
 		static const uint8_t UNDER = 2;
 		
-		uint8_t facing = 0;
-		static const uint8_t FORWARD = 0;
-		static const uint8_t LEFT = 1;
-		static const uint8_t RIGHT = 2;
-		static const uint8_t BACK = 3;
+		// The angle at which the carried ship will depart, relative to the carrying ship.
+		Angle facing;
 		
 		// The launch effect(s) to be simultaneously played when the bay's ship launches.
 		std::vector<const Effect *> launchEffects;
@@ -166,6 +163,9 @@ public:
 	// A parked ship stays on a planet and requires no daily salary payments.
 	void SetIsParked(bool parked = true);
 	bool IsParked() const;
+	// The player can selectively deploy their carried ships, rather than just all / none.
+	void SetDeployOrder(bool shouldDeploy = true);
+	bool HasDeployOrder() const;
 	
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
@@ -441,6 +441,7 @@ private:
 	bool isSpecial = false;
 	bool isYours = false;
 	bool isParked = false;
+	bool shouldDeploy = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
 	bool isBoarding = false;
