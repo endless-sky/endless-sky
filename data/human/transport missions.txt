@@ -3091,7 +3091,7 @@ mission "Paradise Fortune 4"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
-		log "Minor People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
 	on complete
 		payment 1000000
 		conversation
