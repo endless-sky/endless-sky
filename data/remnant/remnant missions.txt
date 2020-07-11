@@ -2223,10 +2223,10 @@ mission "Remnant: Crystal Research 1"
 		has "Remnant: Learn Sign 2: done"
 		has "Remnant: Technology Available: offered"
 	on offer
-		log "People" "Aeolus" `As an outfitter, Aeolus is responsible for managing the logistics that supply the Remnant with materials, equipment, and resources. In contrast to conventional outfitters in the rest of human space, he is focused on ensuring the efficient optimization of Remnant ships, not making a profit.`
+		log "People" "Aeolus" `As an outfitter, Aeolus is responsible for managing the logistics that supply the Remnant with materials, equipment, and resources. In contrast to outfitters in what the Remnant term 'ancestral space,' he is focused on ensuring the efficient optimization of Remnant ships, not making a profit.`
 		conversation
 			`In the spaceport cafeteria you spot the outfitter who had you retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
-			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful. I never introduced myself before. My name is Aeolus. How can I help you today?"`
+			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful." He pauses, then continues, "I never introduced myself before. My name is Aeolus, and I help manage resource logistics for our fleets." He eyes you for a moment, then ventures, "you came in here looking like you were watching for something. Anything on your mind?"`
 			choice
 				`	(Ask how business is going)`
 				`	(Ask if there are more jobs like the last one you did for him.)`
@@ -2236,26 +2236,36 @@ mission "Remnant: Crystal Research 1"
 			choice
 				`	(Nod affirmatively.)`
 				`	(Shrug noncommittally.)`
-			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "Firstly, security: Slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to being tracked. Secondly, research: Something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And thirdly, purpose."`
-			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, my purpose is to ensure that Remnant captains have the resources they need. What you see listed as the 'price', Remnant captains see listed instead as a 'logistics adjustment' that indicates how much resources are needed to supply that component. Every ship has allocated resources and budgets determining how much they can utilize for repairs, restocking, and improvements."`
+			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: Slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to being tracked. Second, research: Something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
+			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, I ensure that Remnant captains have the resources they need. What you see listed as the 'price', Remnant captains see listed instead as a 'logistics adjustment' that indicates how much resources are needed to supply that component. Every ship has allocated resources and budgets determining how much they can utilize for repairs, restocking, and improvements."`
 			choice
 				`	"Wait, you didn't sell any of that?"`
 				`	"OK, so that shipment you had me get?"`
 					goto crystaljobs
 			`	"You are correct. Despite what was said, none of it was sold - all of it was dismantled by researchers examining how it was made and what its properties are." He pauses to finish one plate before continuing.`
 			label crystaljobs
-			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to demonstrate your willingness to help. While that shipment was definitely useful, we had to frame it in a way that didn't reveal what we were doing, and give you an explanation that would make sense for doing it.`
+			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to guage your willingness to help. Your shipment was definitely useful, but we had to ensure we framed your job in a way that made sense without revealing what we were actually doing.`
 			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
 			choice
 				`	(Sign the affirmative.)`
 				`	(Decline.)`
 					decline
-			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: Firstly, we would like you to pick them up from several different planets. And secondly, by the time you reach Hai space we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
+			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: First, we would like you to pick them up from several different planets. And second, by the time you reach Hai space we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
 			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
+			choice
+				`	"Wait, how will you get this all set up?"`
+				`	"Sounds good."`
+					accept
+			branch remnantuntrusted
+				"remnantuntrusted" >= 1 # This attribute is currently not used, but will be set by some of the "consequence" missions as a result of spying for the Deep.
+			`	Aeolus looks faintly amused "While you are certainly adventurous, you are not the only one to have traveled widely. We mapped the Hai systems long ago with cloaked ships, but never landed or contacted any of them. So we never knew anything more than what we could observe from orbit or from scanning ships. But you are known to them, and have a fairly public reputation. By using your transponder codes, we can place and pay for orders through hyperspace relays. All we need is a ship in position to feed the signal into the network.`
+				accept
+			label remnantuntrusted
+			`	Aeolus smiles mysteriously at you. "Let's just say that you are not the only resourceful person working for us. We will share more with you once you have demonstrated your loyalty."`
 				accept
 	on complete
 		dialog
-			`It takes a few minutes to contact the yardmaster, but once you do the Hai have the crates moved from the warehouse to your bay doors fairly promptly. Hai and Humans seem accustomed to working together here.`
+			`It takes a few minutes to contact the yardmaster, but once you do the Hai have the crates moved promptly from the warehouse to your bay doors. Hai and Humans seem accustomed to working together here.`
 
 
 
