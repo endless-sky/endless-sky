@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CONVERSATION_H_
 
 #include "ConditionSet.h"
+#include "GameEvent.h"
 
 #include <map>
 #include <string>
@@ -70,7 +71,11 @@ public:
 	int Choices(int node) const;
 	bool IsBranch(int node) const;
 	bool IsApply(int node) const;
+	bool IsPayment(int node) const;
+	bool IsEvent(int node) const;
 	const ConditionSet &Conditions(int node) const;
+	const int64_t &Payment(int node) const;
+	const std::map<const GameEvent *, std::pair<int, int>> &Event(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
@@ -88,6 +93,10 @@ private:
 		
 		// For applying condition changes or branching based on conditions:
 		ConditionSet conditions;
+		// For granting payment.
+		int64_t payment = 0;
+		// For triggering events.
+		std::map<const GameEvent *, std::pair<int, int>> event;
 		// The actual conversation text. If this node is not a choice, there
 		// will only be one entry in the vector. Each entry also stores the
 		// number of the node to go to next.

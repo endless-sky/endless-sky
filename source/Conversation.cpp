@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Format.h"
+#include "GameData.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -173,6 +174,23 @@ void Conversation::Load(const DataNode &node)
 			nodes.back().canMergeOnto = false;
 			nodes.back().conditions.Load(child);
 		}
+		else if(child.Token(0) == "payment" && child.Size() > 1)
+		{
+			AddNode();
+			nodes.back().canMergeOnto = false;
+			nodes.back().payment = child.Value(1);
+		}
+		else if(child.Token(0) == "event" && child.Size() > 1)
+		{
+			AddNode();
+			nodes.back().canMergeOnto = false;
+			
+			int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
+			int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
+			if(maxDays < minDays)
+				swap(minDays, maxDays);
+			nodes.back().event[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
+		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)
 			child.PrintTrace("Conversation text should be a single token:");
@@ -255,6 +273,15 @@ void Conversation::Save(DataWriter &out) const
 				}
 				out.EndChild();
 				continue;
+			}
+			if(node.payment != 0)
+				out.Write("payment", node.payment);
+			for(const auto &it : node.event)
+			{
+				if(it.second.first == it.second.second)
+					out.Write("event", it.first->Name(), it.second.first);
+				else
+					out.Write("event", it.first->Name(), it.second.first, it.second.second);
 			}
 			if(node.isChoice)
 			{
@@ -348,6 +375,30 @@ bool Conversation::IsApply(int node) const
 
 
 
+
+// Check if the given converation node grants a payment.
+bool Conversation::IsPayment(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return false;
+	
+	return nodes[node].payment != 0;
+}
+
+
+
+
+// Check if the given converation node triggers an event.
+bool Conversation::IsEvent(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return false;
+	
+	return !nodes[node].event.empty();
+}
+
+
+
 // Get the list of conditions that the given node tests or applies.
 const ConditionSet &Conversation::Conditions(int node) const
 {
@@ -356,6 +407,27 @@ const ConditionSet &Conversation::Conditions(int node) const
 		return empty;
 	
 	return nodes[node].conditions;
+}
+
+
+// Get the payment that the given node applies.
+const int64_t &Conversation::Payment(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return 0;
+	
+	return nodes[node].payment;
+}
+
+
+// Get the event that the given node applies.
+const map<const GameEvent *, pair<int, int>> &Conversation::Event(int node) const
+{
+	static map<const GameEvent *, pair<int, int>> empty;
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return empty;
+	
+	return nodes[node].event;
 }
 
 

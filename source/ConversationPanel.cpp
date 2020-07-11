@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
+#include "Random.h"
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
@@ -338,6 +339,18 @@ void ConversationPanel::Goto(int index, int choice)
 			conversation.Conditions(node).Apply(player.Conditions());
 			// Update any altered government reputations.
 			player.CheckReputationConditions();
+		}
+		else if(conversation.IsPayment(node))
+			player.Accounts().AddCredits(conversation.Payment(node));
+		else if(conversation.IsEvent(node))
+		{
+			map<const GameEvent *, pair<int, int>> event = conversation.Event(node);
+			for(const auto &it : event)
+			{
+				int delay = (it.second.first == it.second.second) ? it.second.first 
+					: (it.second.first + Random::Int(it.second.second - it.second.first));
+				player.AddEvent(*it.first, player.GetDate() + delay);
+			}
 		}
 		else
 		{
