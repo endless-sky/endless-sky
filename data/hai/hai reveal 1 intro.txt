@@ -107,12 +107,12 @@ conversation "hai reveal free worlds news"
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
-	`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
+	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 		accept
 	label "hai knowledge"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
-	`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
+	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 	`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
 		accept
 
@@ -167,7 +167,7 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 	label pink
 	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."`
 	label main
-	`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
+	`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
 	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
 	`	"Are you Captain <last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
 	`	You nod your affirmation.`
@@ -536,7 +536,7 @@ mission "Hai Leaks Response 2"
 			`	For a moment his expression falters and then he seems almost relieved, "You may be a better man than I expected to meet."`
 			`	He offers you a genuine smile as he takes his seat.`
 			label sit
-			`	You take your seat opposite him and you get down to business. You explain how the Hai have proposed you be their official contact point for humanity on account of your fame from the war.`
+			`	You take your seat opposite him and you get down to business. You explain how the Hai have proposed that you be their official contact point for humanity on account of your fame from the war.`
 			`	He asks a few questions for clarity and when you're done he requests if you'd kindly wait for a moment while he makes a call. It is a lengthy wait, and at one point an aide comes in and offers you refreshments while deliberations continue elsewhere. Much to your surprise the fruity beverage is actually quite light and not too sweet, reminding you briefly that this is actually the world where your major foods originally evolved.`
 			`	Eventually Mr Yang returns, "So sorry for that, I hope you were looked after suitably while you waited."`
 			`	Once you nod your assent he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official line is that the government does not trade in rumours. However, clearly an appropriate response is needed. I have been informed that Republic Intelligence has gone through official channels to brief the Free Worlds Council just yesterday. They have demanded that they have a trained diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you, and we shall meet two individuals known as Katya and Alastair on Deep and Foundry respectively. I believe you already know them?"`
@@ -561,10 +561,10 @@ mission "Hai Leaks Response 2"
 			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
 			`	A series of charts are thrown up on the screen. You're not an expert at reading this sort of data but highlighted percentages ranging from as low as 4% to only as high as 39% do not look promising. The final graphic is a map of stages of what is labelled as 'artifact penetration'.`
 			`	"Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr Yang.`
-			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."`
+			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise electoral stability, the actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release."`
+			`	"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release," says Yang.`
 			`	Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
@@ -634,7 +634,7 @@ mission "Hai Leaks Response 2C"
 	on offer
 		log "People" "Terry Adrianopolous" `Protege to the CEO, Terry Adrianopolous has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder, including an ability to act with apparently genuine friendliness to people whom she may consider her opponents.`
 		conversation
-			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
+			`Approaching Foundry you are hailed on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
 			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
 			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, she will be accompanying you as the Syndicate representative."`
 			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You're surprised that a woman would have made it this far in the Syndicate, but with your observation you resolve not to get on her bad side if at all possible.`
@@ -677,7 +677,7 @@ mission "Hai Leaks Response 4"
 			`	"Uh well, yes. I presume you saw the pirates on your way in? They've been appearing en masse and overhwelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet and capturing Hai, taking them away to goodness only knows where."`
 			choice
 				`	"I had heard about the kidnapping."`
-			`	He nods, "Unfortunately it's taking a while for them to redistribute an appropriately resourced defence force thanks to the Unfettered."`
+			`	He nods, "Unfortunately, it's taking a while for them to redistribute an appropriately resourced defence force thanks to the Unfettered."`
 			`	"Even more unfortunately," he continues, "it seems that the overabundance of these pirates is a result of one particular individual's success. His ship, called the Black Lich, is hanging out in Waypoint with the stolen Geocoris that we hear might have been converted into some kind of semi-stable weapons platform and now be being used as a temporary base."`
 			`	"Fortunately this gives us an opportunity though. If the kidnapped Hai are still on board we might be able to rescue them, and if we can defeat the Black Lich we may stem the tide of opportunists that are swarming through the wormhole."`
 			`	"What do you say?"`

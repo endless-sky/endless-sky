@@ -249,8 +249,39 @@ mission "HRF 03 Defend Mooncreek Construction Site"
 # Update sprite & planet, and restore regular pirates.
 event "mooncreek founded"
 	system Cardax
-		object Mooncreek
-			sprite "planet/station hai geocoris"
+		object
+			sprite star/g0
+			distance 45.4545
+			period 13.3761
+			offset 180
+		object
+			sprite star/g5
+			distance 78.5455
+			period 13.3761
+		object
+			sprite planet/rock8-b
+			distance 315.795
+			period 54.3634
+		object
+			sprite planet/io
+			distance 667.205
+			period 166.95
+			object Mooncreek
+				sprite "planet/station hai geocoris"
+				distance 212
+				period 31.1964
+		object
+			sprite planet/ice8
+			distance 1271.3
+			period 439.104
+		object
+			sprite planet/gas1
+			distance 2131.94
+			period 953.584
+			object
+				sprite planet/rock0
+				distance 244
+				period 13.4426
 		add fleet "Small Northern Pirates" 1000
 		add fleet "Large Northern Pirates" 3000
 		add fleet "Small Core Pirates" 2000
@@ -304,8 +335,39 @@ mission "HRF 04 Escort Republic Outfitters"
 # Update sprite & planet, and add security patrol to counter regular pirates.
 event "mooncreek operational"
 	system Cardax
-		object Mooncreek
-			sprite "planet/station hai eight geocoris"
+		object
+			sprite star/g0
+			distance 45.4545
+			period 13.3761
+			offset 180
+		object
+			sprite star/g5
+			distance 78.5455
+			period 13.3761
+		object
+			sprite planet/rock8-b
+			distance 315.795
+			period 54.3634
+		object
+			sprite planet/io
+			distance 667.205
+			period 166.95
+			object Mooncreek
+				sprite "planet/station hai eight geocoris"
+				distance 212
+				period 31.1964
+		object
+			sprite planet/ice8
+			distance 1271.3
+			period 439.104
+		object
+			sprite planet/gas1
+			distance 2131.94
+			period 953.584
+			object
+				sprite planet/rock0
+				distance 244
+				period 13.4426
 		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
 	planet Mooncreek
 		government "Hai"
