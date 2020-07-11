@@ -2867,7 +2867,7 @@ mission "Paradise Fortune 1"
 		distance 1 1
 	passengers 1
 	to offer
-		has "free worlds plot completed"
+		has "main plot completed"
 		random < 50
 	
 	on offer
