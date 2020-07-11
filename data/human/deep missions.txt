@@ -2287,7 +2287,7 @@ mission "Deep: Scientist Rescue 3A"
 		set "license: City-Ship"
 		event "battle in arneb end"
 		log `Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen and was given a city-ship license by Paris.`
-		log "People" "Beelzebub" `A pirate Bactrian you were responsible for destroying may have been captained by the mysterious Beelzebub whom you have thwarted once before. The Bactrian was destroyed, but you received a message afterwards suggesting they may still not be gone for good, if it was even truly them...`
+		log "People" "Beelzebub" `Deep Security suspect that Beelzebub was behind the kidnapping of a Star Queen full of Deep scientists. In the attempt to rescue the scientists, a pirate owned Bactrian known as the "Cosmic Devil" was destroyed, although it would appear that either Beelzebub was not on the ship, or escaped the ship before it was destroyed.`
 		conversation
 			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
