@@ -406,7 +406,7 @@ mission "Coalition Outbreak 2"
 				`	"You want me to go there retrieve the vaccines?"`
 					goto vaccines
 			`	He looks puzzles by your question.`
-			`"That some weeks have already passed, true it is, but hard at work, the researchers have been," he says. "Blame them for taking a few days more than usual, we cannot. Intricate, this virus is."`
+			`	"That some weeks have already passed, true it is, but hard at work, the researchers have been," he says. "Blame them for taking a few days more than usual, we cannot. Intricate, this virus is."`
 			`	However unaware they may be of it, clearly the Coalition's standards for public health are much more advanced than in other parts of the galaxy you've visited.`
 			label vaccines
 			`	He shows you to a detailed map of Kimek space, explaining that most of the confirmed and suspected cases have been there, as one would expect given that the Kimek population is more than double that of the Arachi and the Saryds combined.`
