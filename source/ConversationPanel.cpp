@@ -347,7 +347,7 @@ void ConversationPanel::Goto(int index, int choice)
 			// If the payment is negative and the player doesn't have enough
 			// in their account, then the player's credits are reduced to 0.
 			if(account + payment >= 0)
-				player.Accounts().AddCredits(conversation.Payment(node));
+				player.Accounts().AddCredits(payment);
 			else
 				player.Accounts().AddCredits(-account);
 		}
