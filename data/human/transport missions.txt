@@ -23,7 +23,7 @@ mission "Immigrant Workers"
 		payment
 		payment 10000
 		dialog "The young couple from <origin> pays you and thanks you profusely as they gather up their goods and depart. You wish them the best of luck in their new life on <planet>."
-		log "People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha’s conditions.`
+		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha’s conditions.`
 	on offer
 		conversation
 			"As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
@@ -106,7 +106,7 @@ mission "Pookie, Part 2"
 	on complete
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
-		log "People" "Pocahontas (Pookie)" `A dog...`
+		log "Minor People" "Pocahontas (Pookie)" `A dog...`
 		
 
 
@@ -254,7 +254,7 @@ mission "Smuggler's Den: Follow Up"
 				
 	on accept
 		log `Visited Joe and Maria on Millrace. Life is tough, but they are doing far better now than they were on a pirate ship. Jesse has grown and the couple already has another baby to look after.`
-		log "People" "Joe and Maria" `Two teenagers who were under the employs of pirates, the couple wanted your aid with an escape from their lives and after a time have informed you that they are now living in relative peace where you left them on Millrace.`
+		log "Minor People" "Joe and Maria" `Two teenagers who were under the employs of pirates, the couple wanted your aid with an escape from their lives and after a time have informed you that they are now living in relative peace where you left them on Millrace.`
 		fail
 
 
@@ -439,7 +439,7 @@ mission "Transport Workers C"
 		payment
 		payment 10000
 		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
-		log "People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizeable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
+		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizeable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
 
 
 
@@ -3091,7 +3091,7 @@ mission "Paradise Fortune 4"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
-		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets and you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
+		log "Minor People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
 	on complete
 		payment 1000000
 		conversation
@@ -3476,9 +3476,9 @@ mission "Inheritance Redirection"
 				decline
 	on complete
 		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
-		log "People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa, but was then proven to be a scam.`
+		log "Minor People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa, but was then proven to be a scam.`
 	on decline
-		log "People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa. You presume he was a scammer and had no part in it.`
+		log "Minor People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa. You presume he was a scammer and had no part in it.`
 
 
 
