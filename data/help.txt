@@ -78,16 +78,15 @@ help "outfitter"
 	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
 	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
 	`Use your scroll wheel, or click and drag, to scroll the view.`
-	`As in the trading panel, you can hold down Shift or Control to buy 5 or 20 of an outfit at once, or both keys to buy 100.`
+	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5 or 20 or 500 of an outfit at once, or multiple keys for larger amounts.`
 
 help "outfitter 2"
 	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by either checking the "show outfits in cargo" box at the bottom right, or control-clicking on your selected ship to deselect it.`
 	`When you are in 'purchase to cargo' mode, your ship information on the right hand side will be replaced by information on how much cargo space you currently have available.`
 
 help "outfitter 3"
-	`Eventually you may want to uninstall an outfit in order to change your load out.`
-	`To do this, select the outfit, and tap the “U” key to uninstall it. Removed outfits will be placed in your cargo hold.`
-	`Outfits that are in your cargo hold can be installed at any outfitter without cost. They can also be sold from the Trade Center.`
+	`You can also uninstall outfits directly into your cargo hold by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships or simply try on different outfits. Outfits that are in your cargo hold can be installed at any outfitter without cost.`
+	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into cargo when you are changing outfits around.`
 
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
@@ -95,7 +94,7 @@ help "stranded"
 
 help "trading"
 	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
-	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, or 100 at a time by holding down both.`
+	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by hold down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
