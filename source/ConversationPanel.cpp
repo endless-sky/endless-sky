@@ -341,7 +341,16 @@ void ConversationPanel::Goto(int index, int choice)
 			player.CheckReputationConditions();
 		}
 		else if(conversation.IsPayment(node))
-			player.Accounts().AddCredits(conversation.Payment(node));
+		{
+			int64_t payment = conversation.Payment(node);
+			int64_t account = player.Accounts().Credits();
+			// If the payment is negative and the player doesn't have enough
+			// in their account, then the player's credits are reduced to 0.
+			if(account + payment >= 0)
+				player.Accounts().AddCredits(conversation.Payment(node));
+			else
+				player.Accounts().AddCredits(-account);
+		}
 		else if(conversation.IsEvent(node))
 		{
 			map<const GameEvent *, pair<int, int>> event = conversation.Event(node);
