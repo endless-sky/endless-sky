@@ -3902,7 +3902,7 @@ mission "Journalism 5"
 		payment 220000
 		log `Helped the Adelita collective gather video evidence of Syndicate participation in the slave trade.`
 		conversation
-			`They seem glad to be home. "Ugh. We saw such horrible things", says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credits. "There is a bonus in there for you. We really couldn't have done it without you. We will let you know when it's done. And we will definitely need you for some projects in the future. We'll be in touch."`
+			`They seem glad to be home. "Ugh. We saw such horrible things", says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credits. "There's a bonus in there for you. We really couldn't have done it without you. We'll let you know when it's done. Also, we might need you for some future projects, so expect us to be in touch." The group leaves your ship.`
 
 
 mission "Journalism 6"
