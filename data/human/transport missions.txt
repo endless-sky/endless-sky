@@ -4059,7 +4059,7 @@ mission "Journalism 10"
 				`	"I would be happy to."`
 					goto happyto
 				`	"I should really be getting back to the war."`
-			`	"It's on the way but I can see you are busy. We will be in touch," she says, smiling.`
+			`	"It's on the way, but I can see you are busy. Until next time," she says, smiling.`
 				decline
 			label happyto
 			`	"Wonderful. We'll get our stuff and meet you at your ship," she says, smiling.`
