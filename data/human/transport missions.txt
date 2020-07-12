@@ -3854,7 +3854,7 @@ mission "Journalism 4"
 			`	"Aye aye captain," he says as he hits a button. "Drone ETA: two minutes, fifteen seconds."`
 			`	"Get to the cargo bay," you say. "Lock down the drones as soon as they arrive and get belted in. We'll take off on your mark."`
 			label escape
-			`	Less than a minute later you hear Bunker on comms, "Drones are locked down and ready to go."`
+			`	Less than a minute later, you hear Bunker on comms. "Drones are locked down and ready to go."`
 			`	The moment you pull out of the canyon pirate fighters appear on your scanners. You accelerate into space at full speed with the fighters in hot pursuit.`
 				launch
 			label blaster
