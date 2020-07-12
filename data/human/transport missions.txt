@@ -3891,7 +3891,7 @@ mission "Journalism 5"
 		conversation
 			branch experienced
 				"combat rating" > 100
-			`It was close but you make it back to Maker. Ale and River are excited to get on board and out of their uniforms and disguises. They are exhausted and eager to get home and process what they filmed, emotionally as well as literally. "That was horrible, but we got it done. Can we leave now?" asks Ale.`
+			`It was close, but you make it back to Maker. Ale and River are soon on board and excited to be out of their disguises. Although exhausted, both are eager to get back and process what they filmed- both emotionally and literally. "That was horrible, but we got it done. Can we leave now?" asks Ale.`
 				launch
 			label experienced
 			`The pirates were no match for you. Ale and River are excited to get on board and out of their uniforms and disguises. They seem exhausted and eager to get home and process what they filmed, as well as emotionally. "That was awful. Can we leave now?" asks Ale.`
