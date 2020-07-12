@@ -4062,7 +4062,7 @@ mission "Journalism 10"
 			`	"It's on the way but I can see you are busy. We will be in touch," she says, smiling.`
 				decline
 			label happyto
-			`	"Wonderful. We will get our stuff and meet you at the <ship>," she says, smiling.`
+			`	"Wonderful. We'll get our stuff and meet you at your ship," she says, smiling.`
 				accept
 	on visit
 		dialog `You must wait for your escorts to reach this system.`
