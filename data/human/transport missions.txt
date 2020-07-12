@@ -3858,7 +3858,7 @@ mission "Journalism 4"
 			`	The moment you pull out of the canyon pirate fighters appear on your scanners. You accelerate into space at full speed with the fighters in hot pursuit.`
 				launch
 			label blaster
-			`	You pull your blaster and order him to stand down. "Don't do this," he says. You're looking for the handcuffs when you notice a hum coming from outside. Suddenly you are raked with fire from one of the pirate escorts. You drop your blaster and try to lift off into space but another another escort appears, cutting you off and laying down a stream of fire. Your engines are hit and your ship falls from the sky and explodes on impact.`
+			`	You pull your blaster and order him to stand down. "Don't do this," he says. You're looking for the handcuffs when you notice a hum coming from outside. Suddenly, you are raked with fire from one of the pirate escorts. You drop your blaster and try to lift off into space but another escort appears, cutting you off and laying down a stream of fire. Your engines are hit and your ship falls from the sky, exploding on impact.`
 				explode
 
 	npc
