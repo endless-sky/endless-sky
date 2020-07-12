@@ -3603,7 +3603,7 @@ mission "Family back to Paradise - no luxury"
 			`After walking around the spaceport for awhile you head back to your ship to find and middle aged couple with what appear to be their two grade school daughters waiting for you at your hanger. The man is busy trying to adjudicate a dispute between the girls but the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We have been going from ship to ship looking for transport back home to the paradise planets. This war caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little 'angels'," she gestures toward her daughters, now in a full blown fight. "If you can find the time to take us we will pay you very well."`
 			choice
 				`	"Sure, I'll take you."`
-				`	"OK. But it's pretty far. It better be worth it."`
+				`	"Okay, but that's pretty far. This better be worth it."`
 				`	"No. I don't think so. Sorry."`
 					decline
 			`	"Then it's a deal," she shakes your hand firmly. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
