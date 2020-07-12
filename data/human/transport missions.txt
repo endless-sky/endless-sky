@@ -3604,7 +3604,7 @@ mission "Family back to Paradise - no luxury"
 			choice
 				`	"Sure, I'll take you."`
 				`	"Okay, but that's pretty far. This better be worth it."`
-				`	"No. I don't think so. Sorry."`
+				`	"No, I don't think so. Sorry."`
 					decline
 			`	"Then it's a deal," she shakes your hand firmly. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
 				accept
