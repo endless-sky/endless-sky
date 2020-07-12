@@ -4068,7 +4068,7 @@ mission "Journalism 10"
 		dialog `You must wait for your escorts to reach this system.`
 	on complete
 		conversation
-			`As you bring the <ship> down to the spaceport you see a dragon flying nearby and point it out to your passengers who 'ooo' and 'ahh'. They can hardly contain their excitement as they leave the ship. Each one gives you a hug and wishes you good luck.`
+			`As you land at the spaceport, you see a dragon flying nearby and point it out to your passengers. They can hardly contain their excitement as they leave the ship. Each one gives you a hug and wishes you good luck.`
 			`	"We will definitely be in touch," says Ale as they leave.`
 
 
