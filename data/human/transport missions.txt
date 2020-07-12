@@ -4054,7 +4054,7 @@ mission "Journalism 10"
 			` Your contribution to the project is front and center. A stream of slaves passes from the pirate to the Syndicate ship. It's much more visceral in life size than the little projector Bunker had. As a guard brings down a baton on a woman's head you find yourself trying to stop him, only to stumble through the hologram. Your heart is pounding.`
 			`	"I must have seen a hundred people do that just today," says Mariel. "Everyone either leaves crying or with their fists clenched. It definitely gets people emotional." Shes right. Even though you were out gunned and didn't have a choice, you still find yourself deeply regretting not trying to help these people. You see Ale and River are crying.`
 			`	"We are out of time. We need to reopen," says Mariel, pushing you toward the exit.`
-			`	"Wow, that's really intense," says Ale as everyone leaves. "We really deserve a vacation. Hey <first>, we have always wanted to go to Skymoot to see the dragons, do you think you could take us?"`
+			`	"Wow, that's really intense," says Ale as everyone leaves. "We really deserve a vacation. Hey <first>, we've always wanted to go to Skymoot to see the dragons. Do you think you could take us?"`
 			choice
 				`	"I would be happy to."`
 					goto happyto
