@@ -2322,7 +2322,7 @@ mission "Remnant: Crystal Research 3A"
 	to offer
 		has "Remnant: Crystal Research 3: active"
 	on offer
-		dialog `Sure enough, there is a pair of crates waiting for you. This one features pictures of a pair of elderly and distinguished looking Hai in a generic scene.`
+		dialog `Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
 
 
 
