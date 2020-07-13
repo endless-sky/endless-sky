@@ -2594,7 +2594,7 @@ mission "Remnant: Crystal Research 7"
 			label creepy
 			`	"Creepy? I do not understand how something so useful and beneficial could be 'creepy,' but I suppose some might equate our symbionts to being useful leeches. To each their own, I suppose." He shrugs, then continues. "But enough. We still have work to do."`
 			label deliverdata
-			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to our researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these crystals and the wormholes. Will you do it?"`
+			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to some researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these crystals and the wormholes. Will you do it?"`
 			choice
 				`	"Okay."`
 					accept
