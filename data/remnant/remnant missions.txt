@@ -2309,7 +2309,7 @@ mission "Remnant: Crystal Research 3"
 	on complete
 		payment 250000
 		dialog
-			`You are just checking in with the port authorities to locate your shipment when your commlink indicates a pair of messages incoming. While you wait for the second one to load, you glance through the first one which is a simple deposit statement indicating that a payment of <payment> has been deposited from a "Solar Winds Logistics Ltd."`
+			`You are just checking in with the port authorities to locate your shipment when your commlink indicates a pair of messages incoming. While you wait for the second one to load, you see the first message is a deposit statement indicating that a payment of <payment> has been deposited from a "Solar Winds Logistics Ltd."`
 
 
 
