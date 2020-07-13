@@ -770,10 +770,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 {
 	// Count of all bay types in the active fleet.
-	auto bayCount = map<string, size_t>{
-		{"Fighter", 0},
-		{"Drone", 0},
-	};
+	auto bayCount = map<string, size_t>{};
 	// Classification of the present ships by category. Parked ships are ignored.
 	auto categoryCount = map<string, vector<shared_ptr<Ship>>>{};
 	
@@ -791,7 +788,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			
 			for(auto &bay : ship->Bays())
 			{
-				++(bay.isFighter ? bayCount["Fighter"] : bayCount["Drone"]);
+				++bayCount[bay.category];
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
@@ -2386,7 +2383,7 @@ void PlayerInfo::CreateMissions()
 	boardingMissions.clear();
 	
 	// Check for available missions.
-	bool skipJobs = planet && !planet->HasSpaceport();
+	bool skipJobs = planet && !planet->IsInhabited();
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{

@@ -39,6 +39,7 @@ namespace {
 void OutlineShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex outline shader\n"
 		"uniform vec2 scale;\n"
 		"uniform vec2 position;\n"
 		"uniform mat2 transform;\n"
@@ -64,6 +65,7 @@ void OutlineShader::Init()
 	// of the Sobel neighborhood (i.e. the golden ratio) to minimize any
 	// aliasing effects between the two.
 	static const char *fragmentCode =
+		"// fragment outline shader\n"
 		"uniform sampler2DArray tex;\n"
 		"uniform float frame = 0;\n"
 		"uniform float frameCount = 0;\n"

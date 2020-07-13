@@ -2456,6 +2456,7 @@ phrase "republic small"
 		Lachlan
 		Macquarie
 		Waikato
+		Tauranga
 		Yarra
 		Avon
 		Boyne

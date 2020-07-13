@@ -172,6 +172,7 @@ mission "Deep Mystery Cube [3]"
 	destination
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		not attributes "station"
 	on accept
 		dialog phrase "deep mystery cube pickup"
 	on visit
