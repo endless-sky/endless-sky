@@ -519,7 +519,7 @@ mission "Saryd Students 1"
 			`	He helps you up, apologizing. A couple others that were with him entered the shop without even noticing you, but almost immediately come back out.`
 			`	"No luck?" the translation machine used by the one who bumped into you translates, still active.`
 			`	His colleagues shake their heads, "Shipping here, the Arachi no longer are."`
-			`	Noticing you're still there, the Saryd decides to ask, "Human, a merchant Captain you are, correct? Looking for work, are you?"`
+			`	Noticing you're still there, the Saryd decides to ask, "Human, a merchant captain you are, correct? Looking for work, are you?"`
 			choice
 				`	"What kind of work?"`
 					goto work
@@ -960,7 +960,7 @@ mission "Arachi Cartoonist 2"
 	destination "Mebla's Portion"
 	on offer
 		conversation
-			`When you ask the shipyard clerk if you could have something that detailed their ship models to "show a friend who is new to spaceships", she hands you a flyer. Inside, all of Betelgeuse's ships are depicted, with some details on each (along with the pricing, of course).`
+			`When you ask the shipyard clerk if you could have something that detailed their ship models to "show a friend who is new to spaceships", she hands you a flyer. Inside, all of Betelgeuse's ships are depicted with some details on each (along with the pricing, of course).`
 			`	"Usually we show these to first time buyers, but you can take one if you want. Are you here for a friend like that? Maybe I could help you figure out what ship would best suit them."`
 			`	You thank her, saying that your friend does not have the funds for any of the ships and just wants some info, then head back to your ship.`
 			`	Hopefully a small pamphlet will do for Drugub to get some ideas.`
