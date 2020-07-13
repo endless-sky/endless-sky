@@ -2225,7 +2225,7 @@ mission "Remnant: Crystal Research 1"
 	on offer
 		log "People" "Aeolus" `As an outfitter, Aeolus is responsible for managing the logistics that supply the Remnant with materials, equipment, and resources. In contrast to outfitters in what the Remnant term 'ancestral space,' he is focused on ensuring the efficient optimization of Remnant ships, not making a profit.`
 		conversation
-			`In the spaceport cafeteria you spot the outfitter who had you retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
+			`In the spaceport cafeteria you spot the outfitter who asked you to retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
 			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful." He pauses, then continues, "I never introduced myself before. My name is Aeolus, and I help manage resource logistics for our fleets." He eyes you for a moment, then ventures, "You came in here looking like you were watching for something. Anything on your mind?"`
 			choice
 				`	(Ask how business is going)`
