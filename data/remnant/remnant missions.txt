@@ -2247,7 +2247,7 @@ mission "Remnant: Crystal Research 1"
 			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to guage your willingness to help. Your shipment was definitely useful, but we had to ensure we framed your job in a way that made sense without revealing what we were actually doing.`
 			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
 			choice
-				`	(Sign the affirmative.)`
+				`	(Sign in the affirmative.)`
 				`	(Decline.)`
 					decline
 			`	"Great. They would like you to pick up another 19 Keystones. Two differences this time: First, we would like you to pick them up from several different planets. And second, by the time you reach Hai space we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
