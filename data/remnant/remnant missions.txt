@@ -2500,7 +2500,7 @@ mission "Remnant: Crystal Research 5"
 		has "Remnant: Crystal Research 4: done"
 	on offer
 		conversation
-			`You exit the ship to find that the pilot is actually Aeolus, and he has already marshalled a few dock workers with a number of wagons and lifters to unload the cargo.`
+			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
 			`	"Ah, <first>, thank you for retrieving all these Keystones." he pauses to stare at a crate bearing the image of a bunch of smiling Hai, then shakes his head and turns back to you.`
 			`	"Our researchers have decided that we need to test how a ship performs with one of these Keystones compared to a regular Key Stone. My ship has been outfitted with a keystone built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the Quantum Keystone built with Hai crystals for a Quantum Key Stone made from our crystals. Then we will go back to Peragenor and get scanned again. By using the same ships for both tests, we should be able to get the best data."`
 			choice
