@@ -2507,7 +2507,7 @@ mission "Remnant: Crystal Research 5"
 				`	"Wait, you are a pilot?"`
 				`	"Okay."`
 					accept
-			`	"Oh, yes. It is actually quite a common skill among the Remnant. I am not a particularly good pilot, but it is considered an important skill that is taught to almost everyone as a general part of general education. It is especially worthwhile for those of us who work directly with ships on a daily basis and may be called upon to move or fly one at a moment's notice." His gestures carry tones of both pride and humility as he talks about his piloting skills. "Anyway, let's go"`
+			`	"Oh, yes. It is actually quite common among the Remnant. I am not a particularly good pilot, but it is considered an important skill that is taught to almost everyone as a part of general education. It is especially worthwhile for those of us who work directly with ships on a daily basis and may be called upon to move or fly one at a moment's notice." His gestures carry tones of both pride and humility as he talks about his piloting skills. "Anyway, let's go!"`
 				accept
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the Starling in <waypoints>. Make sure you scan the ship before returning.`
