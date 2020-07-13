@@ -2541,7 +2541,7 @@ mission "Remnant: Crystal Research 6"
 	on complete
 		payment 150000
 		conversation
-			`The scanning proceeds smoothly, and while it does note some differences between the two crystals, they both appear to function similarly. After you return to Viminal, Aeolus comes over to collect a copy of the data for the researchers.`
+			`The scanning has proceeded smoothly. While in transit, you took the opportunity to examine the preliminary results: a few differences between the two crystals, but both appear to have functioned similarly. Upon landing on Viminal, Aeolus comes over to collect a copy of the data for the researchers.`
 			`	"Thanks for your help, Captain <first>. This information may be valuable in understanding how the wormholes work." He pauses, then continues thoughtfully: "Perhaps more importantly, it may help us understand how the wormholes of the Ember Waste are different from the wormholes elsewhere that require no such aid."`
 			`	He looks down at the data crystal. "I have one more task to ask of you. Meet me in the cafeteria in an hour to discuss it. May the Embers burn bright for you, Captain." He gives a wave that seems vaguely like a salute and heads off.`
 			`	As he disappears from sight you hear a faint chime from your commlink, which displays a message indicating that two payments of <payment> have been allocated to your account. You recall that you didn't get a message after the last mission, so they must have combined them. You do find it odd, however, that they always seem to know exactly when you finish a delivery.`
