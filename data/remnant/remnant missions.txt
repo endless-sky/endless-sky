@@ -2228,7 +2228,7 @@ mission "Remnant: Crystal Research 1"
 			`In the spaceport cafeteria you spot the outfitter who asked you to retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
 			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful." He pauses, then continues, "I never introduced myself before. My name is Aeolus, and I help manage resource logistics for our fleets." He eyes you for a moment, then ventures, "You came in here with the appearance of looking for something. is there anything on your mind?"`
 			choice
-				`	(Ask how business is going)`
+				`	(Ask how business is going.)`
 				`	(Ask if there are more jobs like the last one you did for him.)`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved." He gestures appreciatively. "I am told that we have you to thank for some of that.`
