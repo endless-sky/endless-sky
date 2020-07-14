@@ -1134,6 +1134,7 @@ void PlayerInfo::Land(UI *ui)
 	UpdateAutoConditions();
 	
 	// Update missions that are completed, or should be failed.
+	UpdateMissionNPCs();
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	

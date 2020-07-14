@@ -931,6 +931,10 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		
 		// Perform an "on enter" action for this system, if possible.
 		Enter(system, player, ui);
+		
+		// Update any potential NPCs for this mission, as an "on enter" action may have
+		// changed the player's conditions.
+		UpdateNPCs(player);
 	}
 	
 	for(NPC &npc : npcs)
