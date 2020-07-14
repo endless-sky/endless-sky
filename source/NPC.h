@@ -94,8 +94,7 @@ private:
 	const Conversation *stockConversation = nullptr;
 	
 	// Conditions that must be met in order for this NPC to be placed or despawned:
-	bool checkedSpawnConditions = false;
-	bool passedSpawnConditions = true;
+	bool passedSpawnConditions = false;
 	bool passedDespawnConditions = false;
 	ConditionSet toSpawn;
 	ConditionSet toDespawn;

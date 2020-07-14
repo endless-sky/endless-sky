@@ -212,11 +212,11 @@ void NPC::Save(DataWriter &out) const
 		if(mustAccompany)
 			out.Write("accompany");
 		
-		// Only save out spawn conditions if they have yet to be evaluated.
+		// Only save out spawn conditions if they have yet to be met.
 		// This is so that if a player quits the game and returns, NPCs that
 		// were spawned do not then become despawned because they no longer
 		// pass the spawn conditions.
-		if(!toSpawn.IsEmpty() && !checkedSpawnConditions)
+		if(!toSpawn.IsEmpty() && !passedSpawnConditions)
 		{
 			out.Write("to", "spawn");
 			out.BeginChild();
@@ -276,12 +276,9 @@ void NPC::Save(DataWriter &out) const
 // Update to spawn conditions for if this NPC can be placed.
 void NPC::CanSpawn(const PlayerInfo &player)
 {
-	// Only check the toSpawn conditions the first time this function is called.
-	if(!toSpawn.IsEmpty() && !checkedSpawnConditions)
-	{
-		checkedSpawnConditions = true;
+	// Check the toSpawn conditions each time this function is called until they pass.
+	if(!passedSpawnConditions)
 		passedSpawnConditions = toSpawn.Test(player.Conditions());
-	}
 }
 
 
@@ -498,7 +495,6 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.mustEvade = mustEvade;
 	result.mustAccompany = mustAccompany;
 	
-	result.checkedSpawnConditions = checkedSpawnConditions;
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.passedDespawnConditions = passedDespawnConditions;
 	result.toSpawn = toSpawn;

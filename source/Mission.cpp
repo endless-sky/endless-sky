@@ -353,8 +353,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		for(const Planet *planet : visitedStopovers)
 			out.Write("stopover", planet->Name(), "visited");
 		
+		// Save all NPCs, except those that have despawned.
 		for(const NPC &npc : npcs)
-			if(npc.PassedSpawn() && !npc.PassedDespawn())
+			if(!npc.PassedDespawn())
 				npc.Save(out);
 		
 		// Save all the actions, because this might be an "available mission" that
