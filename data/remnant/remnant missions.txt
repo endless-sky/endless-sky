@@ -2226,23 +2226,39 @@ mission "Remnant: Crystal Research 1"
 		log "People" "Aeolus" `As an outfitter, Aeolus is responsible for managing the logistics that supply the Remnant with materials, equipment, and resources. In contrast to outfitters in what the Remnant term 'ancestral space,' he is focused on ensuring the efficient optimization of Remnant ships, not making a profit.`
 		conversation
 			`In the spaceport cafeteria you spot the outfitter who asked you to retrieve a shipment of Hai Keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
-			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful." He pauses, then continues, "I never introduced myself before. My name is Aeolus, and I help manage resource logistics for our fleets." He eyes you for a moment, then ventures, "You came in here with the appearance of looking for something. is there anything on your mind?"`
+			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful." He pauses, then continues, "I never introduced myself before. My name is Aeolus, and I help manage resource logistics for our fleets." He eyes you for a moment, then ventures, "You came in here with the appearance of looking for something. Is there something on your mind?"`
 			choice
 				`	(Ask how business is going.)`
 				`	(Ask if there are more jobs like the last one you did for him.)`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved." He gestures appreciatively. "I am told that we have you to thank for some of that.`
-			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some interesting results." He notices your questioning expression. "Oh, you were expecting me to sell them, weren't you?"`
+			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some interesting results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
 			choice
 				`	(Nod affirmatively.)`
+					goto notforsale
 				`	(Shrug noncommittally.)`
+					goto notforsale
+				`	"No, there are better uses for them."`
+					goto notreally
+				`	"What does 'outfits in the current' mean?"`
+			`	"Oh, that's just an expression. 'Current' refers to a current of air or water as a metaphor for the development process. It means that there are outfits that are progressing in the development process." He taps at his commlink for a moment. "Back before the exodus, there was a saying: 'products in the pipeline.' I think that has a comparable meaning to us having 'something in the current.' I am curious, though. Were you expecting me to sell them?"`
+			choice
+				`	(Nod affirmatively.)`
+					goto notforsale
+				`	(Shrug noncommittally.)`
+					goto notforsale
+				`	"No, there are better uses for them."`
+			label notreally
+			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the Quantum Key Stone does without being identical to it is clearly much more valuable as a subject of research than as a miscelaneous commodity. Add the security implications of slapping an alience device on a ship without throughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfiting inventory."`
+			goto clarification
+			label notforsale
 			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: Slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: Something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
 			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, I ensure that Remnant captains have the resources they need. What you see listed as the 'price', Remnant captains see listed instead as a 'logistics adjustment' that indicates the amount of resources are needed to supply that component. Every ship has a resource budget allocated io it, determining how much is can utilize for repairs, restocking, and improvements."`
+			label clarification
 			choice
 				`	"Wait, you didn't sell any of that?"`
 				`	"Okay, so that shipment you had me get?"`
 					goto crystaljobs
-			`	"You are correct. Despite what was said, none of it was sold - all of it was dismantled by researchers examining how it was made and what its properties are." He pauses to finish one plate before continuing.`
 			label crystaljobs
 			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to guage your willingness to help. Your shipment was definitely useful, but we had to ensure we framed your job in a way that made sense without revealing what we were actually doing.`
 			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
@@ -2265,7 +2281,7 @@ mission "Remnant: Crystal Research 1"
 				accept
 	on complete
 		dialog
-			`It takes a few minutes to contact the yardmaster, but once you do the Hai have the crates moved promptly from the warehouse to your bay doors. Hai and Humans seem accustomed to working together here.`
+			`It takes a few minutes to contact the yardmaster, but once you do, a mixed crew of Hai and Human dockworkers have the crates moved promptly from the warehouse to your cargo bay. Hai and Humans seem accustomed to working together here.`
 
 
 
@@ -2281,7 +2297,7 @@ mission "Remnant: Crystal Research 2"
 	on complete
 		payment 250000
 		dialog
-			`True to Aeolus' word, there are crates of Hai Quantum Keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message from Viminal has arrived. It is a notification that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
+			`True to Aeolus' word, there are crates of Hai Quantum Keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message has arrived. It has no indication of provenance, but appears to be a notification that a payment of <payment> has been made to your account, with a note attached that simply states "on-assignment allowance."`
 
 
 mission "Remnant: Crystal Research 3"
@@ -2502,7 +2518,7 @@ mission "Remnant: Crystal Research 5"
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
 			`	"Ah, <first>, thank you for retrieving all these Keystones." he pauses to stare at a crate bearing the image of a bunch of smiling Hai, then shakes his head and turns back to you.`
-			`	"Our researchers have decided that we need to test how a ship performs with one of these Keystones compared to a regular Key Stone. My ship has been outfitted with a keystone built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the Quantum Keystone built with Hai crystals for a Quantum Key Stone made from our crystals. Then we will go back to Peragenor and get scanned again. By using the same ships for both tests, we should be able to get the best data."`
+			`	"Our researchers have decided that we need to test how a ship performs with one of these Keystones compared to a regular Key Stone. My ship has been outfitted with a keystone built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the Quantum Keystone built with Hai crystals for a Quantum Key Stone made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
 				`	"Wait, you are a pilot?"`
 				`	"Okay."`
