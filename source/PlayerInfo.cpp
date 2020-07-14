@@ -1477,6 +1477,15 @@ const Mission *PlayerInfo::ActiveBoardingMission() const
 
 
 
+// Update mission NPCs with the player's current conditions.
+void PlayerInfo::UpdateMissionNPCs()
+{
+	for(Mission &mission : missions)
+		mission.UpdateNPCs(*this);
+}
+
+
+
 // Accept the given job.
 void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 {

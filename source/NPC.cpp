@@ -126,6 +126,15 @@ void NPC::Load(const DataNode &node)
 			conversation.Load(child);
 		else if(child.Token(0) == "conversation" && child.Size() > 1)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
+		else if(child.Token(0) == "to" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "spawn")
+				toSpawn.Load(child);
+			else if(child.Token(1) == "despawn")
+				toDespawn.Load(child);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
 		else if(child.Token(0) == "ship")
 		{
 			if(child.HasChildren() && child.Size() == 2)
@@ -203,6 +212,25 @@ void NPC::Save(DataWriter &out) const
 		if(mustAccompany)
 			out.Write("accompany");
 		
+		if(!toSpawn.IsEmpty())
+		{
+			out.Write("to", "spawn");
+			out.BeginChild();
+			{
+				toSpawn.Save(out);
+			}
+			out.EndChild();
+		}
+		if(!toDespawn.IsEmpty())
+		{
+			out.Write("to", "despawn");
+			out.BeginChild();
+			{
+				toDespawn.Save(out);
+			}
+			out.EndChild();
+		}
+		
 		if(government)
 			out.Write("government", government->GetTrueName());
 		personality.Save(out);
@@ -237,6 +265,45 @@ void NPC::Save(DataWriter &out) const
 		}
 	}
 	out.EndChild();
+}
+
+
+
+// Update to spawn conditions for if this NPC can be placed.
+void NPC::CanSpawn(const PlayerInfo &player)
+{
+	// Only check the toSpawn conditions the first time this function is called.
+	if(!toSpawn.IsEmpty() && !checkedSpawnConditions)
+	{
+		checkedSpawnConditions = true;
+		passedSpawnConditions = toSpawn.Test(player.Conditions());
+	}
+}
+
+
+
+// Return if spawned conditions have passed, without updating.
+bool NPC::PassedSpawn() const
+{
+	return passedSpawnConditions;
+}
+
+
+
+// Update the to despawn conditions for if this NPC should be removed.
+void NPC::CanDespawn(const PlayerInfo &player)
+{
+	// Check the toDepsawn conditions each time this function is called until they pass.
+	if(!toDespawn.IsEmpty() && !passedDespawnConditions)
+		passedDespawnConditions = toDespawn.Test(player.Conditions());
+}
+
+
+
+// Return if despawned conditions have passed, without updating.
+bool NPC::PassedDespawn() const
+{
+	return passedDespawnConditions;
 }
 
 
@@ -319,6 +386,11 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 
 bool NPC::HasSucceeded(const System *playerSystem) const
 {
+	// If this NPC has been despawned or was never spawned in the first place
+	// then ignore its objectives.
+	if(!passedSpawnConditions || passedDespawnConditions)
+		return true;
+	
 	if(HasFailed())
 		return false;
 	
@@ -386,7 +458,12 @@ bool NPC::IsLeftBehind(const System *playerSystem) const
 
 
 bool NPC::HasFailed() const
-{					
+{
+	// If this NPC has been despawned or was never spawned in the first place
+	// then ignore its objectives.
+	if(!passedSpawnConditions || passedDespawnConditions)
+		return false;
+	
 	for(const auto &it : actions)
 	{
 		if(it.second & failIf)
@@ -416,6 +493,12 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.failIf = failIf;
 	result.mustEvade = mustEvade;
 	result.mustAccompany = mustAccompany;
+	
+	result.checkedSpawnConditions = checkedSpawnConditions;
+	result.passedSpawnConditions = passedSpawnConditions;
+	result.passedDespawnConditions = passedDespawnConditions;
+	result.toSpawn = toSpawn;
+	result.toDespawn = toDespawn;
 	
 	// Pick the system for this NPC to start out in.
 	result.system = system;

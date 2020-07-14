@@ -354,7 +354,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("stopover", planet->Name(), "visited");
 		
 		for(const NPC &npc : npcs)
-			npc.Save(out);
+			if(npc.PassedSpawn() && !npc.PassedDespawn())
+				npc.Save(out);
 		
 		// Save all the actions, because this might be an "available mission" that
 		// has not been received yet but must still be included in the saved game.
@@ -811,6 +812,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": active"];
+		// Any potential on offer conversation has been finished, so update
+		// the active NPCs for the first time.
+		UpdateNPCs(player);
 	}
 	else if(trigger == DECLINE)
 	{
@@ -851,6 +855,18 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 const list<NPC> &Mission::NPCs() const
 {
 	return npcs;
+}
+
+
+
+// Update which NPCs are active based on their spawn and despawn conditions.
+void Mission::UpdateNPCs(const PlayerInfo &player)
+{
+	for(auto &npc : npcs)
+	{
+		npc.CanSpawn(player);
+		npc.CanDespawn(player);
+	}
 }
 
 

@@ -261,6 +261,9 @@ void Engine::Place()
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
 	shared_ptr<Ship> flagship = player.FlagshipPtr();
+	
+	// Update the active NPCs for missions based on the player's conditions.
+	player.UpdateMissionNPCs();
 	for(const Mission &mission : player.Missions())
 		Place(mission.NPCs(), flagship);
 	
@@ -338,6 +341,11 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 {
 	for(const NPC &npc : npcs)
 	{
+		// If this NPC has failed its spawn conditions or passed its despawn
+		// conditions, don't place it.
+		if(!npc.PassedSpawn() || npc.PassedDespawn())
+			continue;
+		
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
