@@ -212,7 +212,11 @@ void NPC::Save(DataWriter &out) const
 		if(mustAccompany)
 			out.Write("accompany");
 		
-		if(!toSpawn.IsEmpty())
+		// Only save out spawn conditions if they have yet to be evaluated.
+		// This is so that if a player quits the game and returns, NPCs that
+		// were spawned do not then become despawned because they no longer
+		// pass the spawn conditions.
+		if(!toSpawn.IsEmpty() && !checkedSpawnConditions)
 		{
 			out.Write("to", "spawn");
 			out.BeginChild();
