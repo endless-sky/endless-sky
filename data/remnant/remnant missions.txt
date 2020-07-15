@@ -2529,8 +2529,6 @@ mission "Remnant: Crystal Research 5"
 		dialog `You land on <planet>, but you haven't scanned the Starling in <waypoints>. Make sure you scan the ship before returning.`
 	on complete
 		payment 150000
-		conversation
-			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the Keystone to a lift and disconnects it from the ship. As the Keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
 
 
 
@@ -2550,6 +2548,7 @@ mission "Remnant: Crystal Research 6"
 		has "Remnant: Crystal Research 5: done"
 	on offer
 		conversation
+			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the Keystone to a lift and disconnects it from the ship. As the Keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
 			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. The worker nimbly steps clear and watches as the two ships head back out of the dome.`
 				launch
 	on visit
