@@ -2570,6 +2570,7 @@ mission "Remnant: Crystal Research 7"
 	source "Viminal"
 	destination
 		government "Remnant"
+		not planet "Viminal"
 	to offer
 		has "Remnant: Crystal Research 6: done"
 	on offer
@@ -2581,6 +2582,8 @@ mission "Remnant: Crystal Research 7"
 					goto foodvolume
 				`	"Maybe I should import some spices."`
 					goto spices
+				`	"What is our next step?"`
+					goto deliverdata
 			`	Aeolus chuckles and makes an amused gesture. "An army lives and dies by its food! A poorly fed soldier is but a short step away from being a deserter, or even a traitor. While we have had lean years in the past, these days we ensure everyone is well fed."`
 				goto deliverdata
 			label foodvolume
