@@ -2425,7 +2425,7 @@ mission "Remnant: Crystal Research 4"
 		payment 2000000
 		conversation
 			`As you descend through the clouds to Viminal, you get the feeling someone is watching you, but your sensors show nothing more than a smattering of Gulls and a patrol squad in the distance. Looking down, you spot an extra battery of anti-air artillery next to the main entrance to the spaceport. You note the artillery tracking you and quickly tap in the recognition code to the IFF system. Within seconds, the large guns are swinging back to covering the initial approach.`
-			`	Passing through the cavernous opening into the great spaceport dome, there is a shimmer in the air next to you and a starling fades into view, settling onto the platform beside you. The pilot signs a quick "Greetings, anticipating talking with you." before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
+			`	Passing through the cavernous opening into the great spaceport dome, there is a shimmer in the air next to you and a Starling fades into view, settling onto the platform beside you. The pilot signs a quick "Greetings, anticipating talking with you." before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
 			`	As you finish your own shutdown routine, your commlink informs you that your account has been updated with <payment>.`
 
 
