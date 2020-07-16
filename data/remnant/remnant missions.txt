@@ -2266,7 +2266,7 @@ mission "Remnant: Crystal Research 1"
 				`	(Sign in the affirmative.)`
 				`	(Decline.)`
 					decline
-			`	"Great. They would like you to pick up another 19 Keystones. Two differences this time: First, we would like you to pick them up from several different planets. And second, by the time you reach Hai space we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
+			`	"Great. They would like you to pick up another 19 Keystones. Two differences this time: First, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
 			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
