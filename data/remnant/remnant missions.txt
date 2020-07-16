@@ -2420,7 +2420,7 @@ mission "Remnant: Crystal Research 4"
 		has "Remnant: Crystal Research 3: done"
 	on offer
 		dialog
-			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts loading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 Keystones. While there are no new instructions, the subtext is clear: Time to head back.`
+			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 Keystones. While there are no new instructions, the subtext is clear: Time to head back.`
 	on complete
 		payment 2000000
 		conversation
