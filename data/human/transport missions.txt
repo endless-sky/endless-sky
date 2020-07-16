@@ -107,7 +107,7 @@ mission "Pookie, Part 2"
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
 		log "Minor People" "Pocahontas (Pookie)" `A dog...`
-		
+
 
 
 mission "Smuggler's Den, Part 1"
@@ -3000,7 +3000,7 @@ mission "Paradise Fortune 3"
 	on decline
 		payment 500000
 		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, you turned her in to the authorities for a moderate reward.`
-	
+
 	on visit
 		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -4334,7 +4334,8 @@ mission "Freedom Uprising 4"
 		personality escort disables
 		ship "Splinter (Far North)" "Tierra y Libertad"
 		ship "Splinter (Far North)" "Solidarity"
-=======
+
+
 mission "Antibiotics To South"
 	name "Antibiotics shipment to <planet>"
 	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
@@ -4350,7 +4351,7 @@ mission "Antibiotics To South"
 		"armament deterrence" > 2
 		random < 5
 	cargo "antibiotics" 25 2 .05
-	
+
 	on offer
 		conversation
 			`As you wander around the spaceport, you spot a well dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks, "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
@@ -4377,7 +4378,7 @@ mission "Antibiotics To South"
 		system
 			distance 2 3
 		ship "Marauder Manta (Engines)" "Australis"
-	
+
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
