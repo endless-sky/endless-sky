@@ -2249,7 +2249,7 @@ mission "Remnant: Crystal Research 1"
 					goto notforsale
 				`	"No, there are better uses for them."`
 			label notreally
-			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the Quantum Key Stone does without being identical to it is clearly much more valuable as a subject of research than as a miscelaneous commodity. Add the security implications of slapping an alience device on a ship without throughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfiting inventory."`
+			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the Quantum Key Stone does without being identical to it is clearly much more valuable as a subject of research than as a miscellaneous commodity. Add the security implications of slapping an alien device on a ship without thoroughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfiting inventory."`
 				goto clarification
 			label notforsale
 			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: Slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: Something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
