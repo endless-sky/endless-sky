@@ -2274,7 +2274,7 @@ mission "Remnant: Crystal Research 1"
 					accept
 			branch remnantuntrusted
 				"remnantuntrusted" >= 1 # This attribute is currently not used, but will be set by some of the "consequence" missions as a result of spying for the Deep.
-			`	Aeolus looks faintly amused "While you are certainly adventurous, you are not the only one to have traveled widely. We mapped the Hai systems long ago with cloaked ships, but never landed or contacted any of them. So we never knew anything more than what we could observe from orbit or from scanning ships. But you are known to them, and have a fairly public reputation. By using your transponder codes, we can place and pay for orders through hyperspace relays. All we need is a ship in position to feed the signal into the network.`
+			`	Aeolus looks faintly amused. "While you are certainly adventurous, you are not the only one to have traveled widely. We mapped the Hai systems long ago with cloaked ships, but never landed or contacted any of them. So we never knew anything more than what we could observe from orbit or from scanning ships. But you are known to them, and have a fairly public reputation. By using your transponder codes, we can place and pay for orders through hyperspace relays. All we need is a ship in position to feed the signal into the network.`
 				accept
 			label remnantuntrusted
 			`	Aeolus smiles mysteriously at you. "Let's just say that you are not the only resourceful person working for us. We will share more with you once you have demonstrated your loyalty."`
