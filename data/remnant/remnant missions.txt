@@ -2317,7 +2317,7 @@ mission "Remnant: Crystal Research 3"
 		has "Remnant: Crystal Research 2: done"
 	on offer
 		conversation
-			`True to Aeolus' word, there are crates of Hai Quantum Keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message has arrived. It has no indication of provenance, but appears to be a notification that a payment of 250000 marked 'on-assignment allowance' has been made to your account.`
+			`True to Aeolus' word, there are crates of Hai Quantum Keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message has arrived. It has no indication of provenance, but appears to be a notification that a payment of 250,000 marked 'on-assignment allowance' has been made to your account.`
 			`	The attached message is brief and to the point. "Greetings, Captain <first>. Hopefully the shipments were waiting for you. We have made arrangements for samples to be acquired from Makerplace, Stonebreak, Giverstone, Cloudfire, Snowfeather, Icelake, and Heartvalley. Once you have collected all those, head to Newhome. There are a few other places that we are still working to set up, and we should have those ready by the time you reach Newhome."`
 				accept
 	on stopover
