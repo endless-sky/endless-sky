@@ -26778,7 +26778,7 @@ planet "Into White"
 planet Janiculum
 	attributes uninhabited
 	landscape land/enceladus_3
-	description `As you pass low over Janiculum, you see the surface is little more than a gravitational graveyard for asteroids and debris. Impact craters liter the surface, and some even seem to be fairly recent.`
+	description `As you pass low over Janiculum, you see that its surface is little more than a gravitational graveyard for asteroids and debris. Impact craters liter the surface, with some looking fairly recent.`
 	description `	Janiculum is the subject of regular surveillance by the Remnant, who track impacts and investigate them whenever they occur. While it is not clear what the Remnant are recovering from these investigations, they continue to do them with meticulous regularity.`
 	security 0
 	government Uninhabited
