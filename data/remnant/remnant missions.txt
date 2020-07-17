@@ -2425,7 +2425,7 @@ mission "Remnant: Cognizance 5"
 	on complete
 		payment 100000
 		conversation
-			`As soon as you land Plume scurries off to find Chilia. By the time you finish your shutdown checks and find where the meeting is taking place, Plume is finishing his briefing. You catch the last few minutes summarizing what materials might be concentrated within the void sprites and his speculation that the Korath may have decided that these semi-processed resources are useful to their survival, despite the hostility of the Archon.`
+			`As soon as you land, Plume scurries off to find Chilia. By the time you finish your shutdown checks and head to where the meeting is taking place, you find that Plume has almost finishing the briefing already. You catch the last few minutes summarizing what materials might be concentrated within the void sprites and his speculation that the Korath may have decided that these semi-processed resources are useful to their survival, despite the hostility of the Archon.`
 			`	After a few minutes of questions and answers about void sprite physiology and speculation by the assembled Remnant pilots, Chilia calls for a recess. "We will reconvene shortly to discuss the implications of this, but there are tasks to be done in the meantime. Captain <first>, meet me in the spaceport." As everyone disperses towards the spaceport, your commlink notifies you that you have received what the message terms 'a resource offset allotment of <payment> from Remnant Logistics.'`
 
 
