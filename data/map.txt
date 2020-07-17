@@ -26082,7 +26082,7 @@ planet "Ember Wormhole"
 planet Eminonu
 	attributes uninhabited
 	landscape land/canyon4
-	description `The notably green rocks of Eminonu shows off their remarkably high copper content and the historic presence of atmospheric water. Scattered vegetal debris suggests that this world was, until recently, some variety of garden world, albeit likely a cold one. Now, however, the vast majority of moisture is locked in icefields and the ambient temperatures are far too cold for even these hardy lichens to persist.`
+	description `The notably green rocks of Eminonu show a remarkably high copper content and the historic presence of atmospheric water. Scattered vegetative debris suggests that this world was, until recently, some variety of garden world, albeit likely a cold one. However,  the vast majority of moisture is now locked up in icefields and the ambient temperatures are far too cold for even hardy lichens to survive.`
 	security 0
 	government Uninhabited
 
