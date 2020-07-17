@@ -34,6 +34,7 @@ if 'steamrt' in chroot_name:
 opts = Variables()
 opts.AddVariables(
 	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
+	EnumVariable("music", "Whether to use music", "on", allowed_values=("on", "off")),
 	PathVariable("BUILDDIR", "Directory to store compiled object files in", "build", PathVariable.PathIsDirCreate),
 	PathVariable("BIN_DIR", "Directory to store binaries in", ".", PathVariable.PathIsDirCreate),
 	PathVariable("DESTDIR", "Destination root directory, e.g. if building a package", "", PathVariable.PathAccept),
@@ -69,7 +70,6 @@ game_libs = [
 	"png.dll",
 	"turbojpeg.dll",
 	"jpeg.dll",
-	"mad.dll",
 	"openal32.dll",
 	"glew32.dll",
 	"opengl32",
@@ -84,13 +84,19 @@ game_libs = [
 ]
 env.Append(LIBS = game_libs)
 
-# libmad is not in the Steam runtime, so link it statically:
-if 'steamrt_scout_i386' in chroot_name:
-	env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))
-elif 'steamrt_scout_amd64' in chroot_name:
-	env.Append(LIBS = File("/usr/lib/x86_64-linux-gnu/libmad.a"))
-else:
-	env.Append(LIBS = "mad")
+if env["music"] == "off":
+	flags += ["-DES_NO_MUSIC"]
+
+if env["music"] == "on":
+	# libmad is not in the Steam runtime, so link it statically:
+	if 'steamrt_scout_i386' in chroot_name:
+		env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))
+	elif 'steamrt_scout_amd64' in chroot_name:
+		env.Append(LIBS = File("/usr/lib/x86_64-linux-gnu/libmad.a"))
+	elif is_windows_host:
+		env.Append(LIBS = "mad.dll")
+	else:
+		env.Append(LIBS = "mad")
 
 
 binDirectory = '' if env["BIN_DIR"] == '.' else pathjoin(env["BIN_DIR"], env["mode"])
