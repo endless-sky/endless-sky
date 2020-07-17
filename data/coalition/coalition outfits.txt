@@ -269,8 +269,8 @@ outfit "Decoy Plating"
 	"outfit space" -7
 	"scan interference" 1.2
 	"radar jamming" 4
-	description "This plating takes advantage of a ship's scan logs, reproducing the data of other ships close by, effectively deflecting attempts to scan a ship's true cargo and equipment."
-	description "	Out of a necessity to protect themselves against the destructive Heliarch torpedoes, the Resistance made sure to also incorporate a radar jamming system in it, if only to provide the ship with a final line of defense."
+	description "This plating takes advantage of a ship's scan logs, reproducing the data of other ships close by and effectively deflecting attempts to scan a ship's true cargo and equipment."
+	description "	To protect themselves against the destructive Heliarch torpedoes, the Resistance made sure to also incorporate a radar jamming system in it, if only to provide the ship with a final line of defense."
 
 outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"
