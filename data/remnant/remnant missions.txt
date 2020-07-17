@@ -2256,7 +2256,7 @@ mission "Remnant: Cognizance 1"
 	on enter "Nenia"
 		dialog
 			`As you scan the system the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and disappearing into the clouds whenever your ship moves towards them.`
-			`	After several minutes of recording the illusive void sprites you decide to try on a gas giant. You remember that Plume will want footage from both giants.`
+			`	After several minutes of recording the illusive void sprites you decide to try on a gas giant, recalling that Plume will want footage from both giants.`
 	on stopover
 		conversation
 			`Here you find the same behaviour as before: Void sprites that have suddenly become timid and prone to diving into the shrouded depths of their world at the slightest quick movement.`
