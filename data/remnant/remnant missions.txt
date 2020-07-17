@@ -2409,7 +2409,7 @@ mission "Remnant: Cognizance 5"
 		has "Remnant: Cognizance 4: done"
 	on offer
 		conversation
-			`You find Prefect Chilia and the rest of the captains gathered in a small side room off the main cafeteria. Everyone appears to be digging into a large meal while the prefect works through the room talking with everyone. As you pull up a chair, Prefect Chilia appears next to you and slides a tray in front of you. "It might not be the sort of fare you are used to from the ancestral worlds, but it is what we have to offer." He looks around at everyone eating in muted conversation. "It is something of a tradition to eat a meal together when returning from battle. Share memories of those who fall, talk about why they fell, and what we must do differently next time." He eats a few bites from his own plate.`
+			`You find Prefect Chilia and the rest of the captains gathered in a small side room off the main cafeteria. Everyone is digging into their customarily enormous meals while the prefect works the room talking with everyone. As you pull up a chair, Chilia appears next to you and slides a tray in front of you. "It might not be the sort of fare you are used to from the ancestral worlds," he says, "but it is what we have to offer." Chilia looks around at everyone eating in muted conversation. "It is something of a tradition to eat a meal together when returning from battle. Share memories of those who fall, talk about why they fell, and what we must do differently next time." He eats a few bites from his own plate.`
 			`	"So, what should we do differently next time?"`
 			choice
 				`	"A few more Albatrosses would have been great."`
