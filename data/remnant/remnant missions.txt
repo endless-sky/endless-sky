@@ -2816,7 +2816,7 @@ mission "Remnant: Cognizance 14"
 		event "remnant: pantica void sprites"
 		event "remnant: cognizance timer" 30
 		conversation
-			`	Moments later a ping comes in on the comlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in" concludes Plume.`
+			`	Moments later a ping comes in on the comlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
 			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintnance, and upgrading costs. A larger one time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred in this mission."`
 
 
