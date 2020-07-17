@@ -2487,7 +2487,7 @@ mission "Remnant: Cognizance 7"
 				"Korath Raider (Ember)" 3
 	on complete
 		conversation
-			`As you descend on Aventine, Plume gestures towards the pad closest to his lab. "You might as well set down there. If the samples in my lab check out, I will have another mission for you right away. You will need to keep your high-pressure ship active for this one. Stop by the lab in an hour or two and we will be ready to start loading."`
+			`As you approach Aventine, Plume gestures towards the pad closest to his lab. "You might as well set down there. If the samples in my lab check out, I will have another mission for you right away. You will need to keep your high-pressure ship active for this one. Stop by the lab in an hour or two and we will be ready to start loading."`
 
 
 
