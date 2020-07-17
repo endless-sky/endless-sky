@@ -2446,7 +2446,7 @@ mission "Remnant: Cognizance 6"
 					goto action
 			`	"Recordings and sensor readings are useful data, but they don't really compare to actually seeing what is going on and experiencing the data first-hand." says Plume. "There aren't too many opportunities to do it in my line of work - especially when my expertise is needed by others who would rather not spend their time watching wildlife. But I digress."`
 			label action
-			`	With a respectful bow to Chilia (who returns it respectfully), Plume heads for your ship. "I will be waiting onboard for you, Captain."`
+			`	With a respectful bow to Chilia (who returns it equally as respectfully), Plume heads for your ship. "I will be waiting onboard for you, Captain."`
 				accept
 	npc
 		government "Korath"
