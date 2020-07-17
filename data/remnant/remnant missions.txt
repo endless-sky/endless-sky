@@ -2432,7 +2432,7 @@ mission "Remnant: Cognizance 5"
 
 mission "Remnant: Cognizance 6"
 	name "Take Plume to Nasqueron"
-	description "Plume wants to witness first hand what is going on in Nenia."
+	description "Plume wants to witness firsthand what is going on in Nenia."
 	source "Caelian"
 	destination "Nasqueron"
 	to offer
