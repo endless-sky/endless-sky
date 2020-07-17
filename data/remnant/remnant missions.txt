@@ -2505,7 +2505,7 @@ mission "Remnant: Cognizance 8"
 		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed esquiline station.`
 		conversation
 			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another remnant are gathered around the stack checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer, "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. He will be going with you."`
-			`	"It will be a pleasure to work with you" sings Gavrill, making a short bow. "We will be traveling to a research station on Esquiline. Yes, it is a gas-world." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
+			`	"It will be a pleasure to work with you," sings Gavrill, making a short bow. "We will be traveling to a research station on Esquiline. Yes, it is a gas-world." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
 				accept
 	on complete
 		payment 100000
