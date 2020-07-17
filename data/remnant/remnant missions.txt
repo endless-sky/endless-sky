@@ -2395,7 +2395,7 @@ mission "Remnant: Cognizance 4"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
 	on complete
 		conversation
-			`The task force streams back into Caelian without fanfare, Its ships settle onto their respective pads with a sense of satisfaction. Within seconds mechanics climbing the hull and engineers are dropping from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines hooked up, and carts with replacement weaponry roll in. As always, no matter what they did, the first responsibility of every captain is to ensure their ship is ready to head out. As the first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
+			`The task force streams back into Caelian without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to head out. As first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
 
 
 
