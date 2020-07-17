@@ -2439,7 +2439,7 @@ mission "Remnant: Cognizance 6"
 		has "Remnant: Cognizance 5: done"
 	on offer
 		conversation
-			`In the starport Prefect Chilia and Plume are gesturing at some details on a datapad when you approach. Chilia notices you first and waves you over. "Thank you for joining us. While I put together some more long-term plans, could you take Plume to Nasqueron?"`
+			`In the starport, Prefect Chilia and Plume are gesturing at some details on a datapad when you approach. Chilia notices you first and waves you over. "Thank you for joining us. While I put together some more long-term plans, could you take Plume to Nasqueron?"`
 			choice
 				`	"Why do we need to go back?"`
 				`	"Let's go."`
