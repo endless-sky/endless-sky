@@ -28832,7 +28832,7 @@ planet "Wyvern Station"
 planet Xerolophos
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa10
-	description `According to astrophysicists, Xerolophos appears to be a former dwarf star. Its internal reaction was snuffed out at the same time as it lost a significant amount of mass. No known stellar event could have caused this, causing it to be a constant subject of much discussion.`
+	description `According to astrophysicists, Xerolophos appears to be a former dwarf star. Its internal reaction was snuffed out at the same time as it lost a significant amount of mass. No known stellar event could have caused this, causing it to be a constant subject of discussion.`
 	security 0
 	government Uninhabited
 
