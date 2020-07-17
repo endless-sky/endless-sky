@@ -27964,7 +27964,7 @@ planet "Septar Lorku"
 planet Seraglio
 	attributes "ice giant" uninhabited
 	landscape land/enceladus_1
-	description `The vast icefields of Seraglio hints at a variety of mysteries, most notably the chasms that suggest that the planet was somehow subjected to massive compressive forces at some point in its fairly recent geological history.`
+	description `The vast icefields of Seraglio hint at a variety of mysteries, most notably chasms that suggest that the planet was somehow subjected to massive compressive forces at some point in its recent geological history.`
 	description `At present, Seraglio is the focus of considerable attention from researchers searching for clues as to the planet's history.`
 	security 0
 	government Uninhabited
