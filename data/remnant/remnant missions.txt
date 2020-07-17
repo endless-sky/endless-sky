@@ -2213,7 +2213,7 @@ mission "Remnant: Face to Maw 2B"
 
 mission "Remnant: Cognizance 1"
 	name "Follow-up Observations"
-	description "Plume would like you to do a follow up visit to the planets in <system>"
+	description "Plume would like you to do a follow up visit to the planets in <system>."
 	minor
 	source "Aventine"
 	stopover "Nasqueron"
