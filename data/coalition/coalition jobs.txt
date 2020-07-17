@@ -1328,7 +1328,7 @@ mission "Hely Contain True"
 	job
 	repeat
 	name `Contain Resistance`
-	description `Fly to <destination>, so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
+	description `Fly to <destination> so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
 	deadline
 	passengers 8 23
 	to offer
@@ -1344,13 +1344,13 @@ mission "Hely Contain True"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 21000 300
-		dialog `You and the other agents head to the marked area and trade a few shots with the Resistance members. They surrender shortly after and you call for a Heliarch ship to pick them up. You bid your Heliarch colleagues farewell as you leave, finding out later that you've received <payment>.`
+		dialog `You and the other agents head to the marked area and trade a few shots with the Resistance members. They surrender shortly after, and you call for a Heliarch ship to pick them up. You bid your Heliarch colleagues farewell as you leave, finding out later that you've received <payment>.`
 
 mission "Hely Contain Fake"
 	job
 	repeat
 	name `Contain Resistance`
-	description `Fly to <destination>, so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
+	description `Fly to <destination> so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
 	deadline
 	passengers 8 23
 	to offer
@@ -1365,7 +1365,7 @@ mission "Hely Contain Fake"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		dialog `You and the other agents head to the marked area, but when you arrive, it becomes evidently clear that whoever occupied the place had managed to escape. You bring the other agents to the spaceport, as they lament the failed job.`
+		dialog `You and the other agents head to the marked area, but when you arrive, it becomes evident that whoever occupied the place had managed to escape. You bring the other agents to the spaceport as they lament the failed job.`
 
 
 mission "Hely Prisoner Transport"
@@ -1395,7 +1395,7 @@ mission "Hely Investigate"
 	job
 	repeat
 	name `Investigate signs of Resistance activity`
-	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reportedly seen. Payment is <payment>`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>`
 	passengers 2 5
 	to offer
 		random < 20
@@ -1407,11 +1407,11 @@ mission "Hely Investigate"
 	on visit
 		dialog phrase"generic passenger on visit"
 	on stopover
-		dialog `You and the other agents head to the reported area, looking for anything out of place. You don't find anything prominent, but there are clear signs that the place was recently used. You spend a few hours collecting evidence before heading back to your ship.`
+		dialog `You and the other agents head to the reported area looking for anything out of place. You don't find anything prominent, but there are clear signs that the place was recently used. You spend a few hours collecting evidence before heading back to your ship.`
 	on complete
 		payment
 		payment 90000
-		dialog `The agents thank you for transporting them in your ship before wishing you safe travels, heading off to deliver your findings to their superiors. You're transferred <payment> a few moments later.`
+		dialog `The agents thank you for transporting them in your ship, then wish you safe travels and head off to deliver the findings to their superiors. You're transferred <payment> a few moments later.`
 
 
 mission "Evacuate Resistance True"
@@ -1441,7 +1441,7 @@ mission "Evacuate Resistance True"
 		government "Coalition"
 		distance 3 5
 	on offer
-		dialog `You wander around the spaceport for a bit, without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them on <stopovers>, where the Heliarchs are investigating, and transport them to <destination>.`
+		dialog `You wander around the spaceport for a bit without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them on <stopovers>, where the Heliarchs are investigating, and transport them to <destination>.`
 	on stopover
 		dialog `The Resistance members rush inside your ship, urging you to take off quickly.`
 	on visit
@@ -1477,15 +1477,15 @@ mission "Evacuate Resistance Fake"
 		government "Coalition"
 		distance 3 5
 	on offer
-		dialog `You wander around the spaceport for a bit, without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them on <stopovers>, where the Heliarchs are investigating, and transport them to <destination>.`
+		dialog `You wander around the spaceport for a bit without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them on <stopovers>, where the Heliarchs are investigating, and transport them to <destination>.`
 	on stopover
-		dialog `You land at the meeting spot, waiting for the Resistance members to arrive. As time passes, and no one shows up, it's clear that the Heliarchs got to them before you did.`
+		dialog `You land at the meeting spot, waiting for the Resistance members to arrive. As time passes and no one shows up, it's clear that the Heliarchs got to them before you did.`
 		fail
 
 
 mission "Resistance: Armageddon Core Delivery"
 	name "Armageddon Core Delivery"
-	description "Resistance members are offering <payment> for you to deliver an Armageddon Core to <destination>"
+	description "Resistance members are offering <payment> for you to deliver an Armageddon Core to <destination>."
 	repeat
 	minor
 	to offer
@@ -1504,19 +1504,19 @@ mission "Resistance: Armageddon Core Delivery"
 		distance 5 12
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated part by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested an Armageddon Core."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated part by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested an Armageddon Core."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		"supplied resistance" ++
 		outfit "Armageddon Core" -1
 		payment 9000000
-		dialog `Some Resistance members unload the Armageddon Core after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the Core away.`
+		dialog `Some Resistance members unload the Armageddon Core after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the Core away.`
 
 
 mission "Resistance: Fusion Reactor Delivery"
 	name "Fusion Reactor Delivery"
-	description "Resistance members are offering <payment> for you to deliver a Fusion Reactor to <destination>"
+	description "Resistance members are offering <payment> for you to deliver a Fusion Reactor to <destination>."
 	repeat
 	minor
 	to offer
@@ -1535,19 +1535,19 @@ mission "Resistance: Fusion Reactor Delivery"
 		distance 3 8
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Fusion Reactor."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested a Fusion Reactor."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		"supplied resistance" ++
 		outfit "Fusion Reactor" -1
 		payment 5000000
-		dialog `Some Resistance members unload the Fusion Reactor after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the Reactor away.`
+		dialog `Some Resistance members unload the Fusion Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the Reactor away.`
 
 
 mission "Resistance: Breeder Reactor Delivery"
 	name "Breeder Reactor Delivery"
-	description "Resistance members are offering <payment> for you to deliver a Breeder Reactor to <destination>"
+	description "Resistance members are offering <payment> for you to deliver a Breeder Reactor to <destination>."
 	repeat
 	minor
 	to offer
@@ -1566,19 +1566,19 @@ mission "Resistance: Breeder Reactor Delivery"
 		distance 3 6
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Breeder Reactor."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested a Breeder Reactor."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		"supplied resistance" ++
 		outfit "Breeder Reactor" -1
 		payment 2500000
-		dialog `Some Resistance members unload the Breeder Reactor after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the Reactor away.`
+		dialog `Some Resistance members unload the Breeder Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the Reactor away.`
 
 
 mission "Resistance: Torpedo Delivery"
 	name "Torpedo Delivery"
-	description "Resistance members are offering <payment> for you to deliver a Torpedo Launcher, complete with ammunition, to <destination>."
+	description "Resistance members are offering <payment> for you to deliver a Torpedo Launcher, complete with 30 Torpedoes, to <destination>."
 	repeat
 	minor
 	to offer
@@ -1597,7 +1597,7 @@ mission "Resistance: Torpedo Delivery"
 		distance 6 12
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Torpedo Launcher and ammunition for it."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested a Torpedo Launcher and ammunition for it."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1605,12 +1605,12 @@ mission "Resistance: Torpedo Delivery"
 		outfit "Torpedo Launcher" -1
 		outfit "Torpedo" -30
 		payment 122000
-		dialog `Some Resistance members unload the Torpedo Launcher and it's ammunition after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the cargo away.`
+		dialog `Some Resistance members unload the Torpedo Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
 
 
 mission "Resistance: Typhoon Delivery"
 	name "Typhoon Delivery"
-	description "Resistance members are offering <payment> for you to deliver a Typhoon Launcher, complete with ammunition, to <destination>."
+	description "Resistance members are offering <payment> for you to deliver a Typhoon Launcher, complete with 30 Typhoon Torpedoes, to <destination>."
 	repeat
 	minor
 	to offer
@@ -1629,13 +1629,13 @@ mission "Resistance: Typhoon Delivery"
 		distance 6 12
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Typhoon Launcher and ammunition for it."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested a Typhoon Launcher and ammunition for it."`
 	on complete
 		"supplied resistance" ++
 		outfit "Typhoon Launcher" -1
 		outfit "Typhoon Torpedo" -30
 		payment 341000
-		dialog `Some Resistance members unload the Typhoon Launcher and it's ammunition after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the cargo away.`
+		dialog `Some Resistance members unload the Typhoon Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
 
 
 mission "Resistance: Plasma Delivery"
@@ -1659,12 +1659,12 @@ mission "Resistance: Plasma Delivery"
 		distance 4 9
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Plasma Turret."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested a Plasma Turret."`
 	on complete
 		"supplied resistance" ++
 		outfit "Plasma Turret" -1
 		payment 520000
-		dialog `Some Resistance members unload the Plasma Turret after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the Turret away.`
+		dialog `Some Resistance members unload the Plasma Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
 
 
 mission "Resistance: Flamethrower Delivery"
@@ -1688,12 +1688,12 @@ mission "Resistance: Flamethrower Delivery"
 		distance 2 6
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a pair of Flamethrowers."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested a pair of Flamethrowers."`
 	on complete
 		"supplied resistance" ++
 		outfit "Flamethrower" -2
 		payment 456000
-		dialog `Some Resistance members unload the Flamethrowers after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the Flamethrowers away.`
+		dialog `Some Resistance members unload the Flamethrowers after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the Flamethrowers away.`
 
 
 mission "Resistance: Grenade Delivery"
@@ -1716,12 +1716,12 @@ mission "Resistance: Grenade Delivery"
 		distance 7 13
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested half a dozen Fragmentation Grenades."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested half a dozen Fragmentation Grenades."`
 	on complete
 		"supplied resistance" ++
 		outfit "Fragmentation Grenades" -6
 		payment 102000
-		dialog `Some Resistance members unload the Fragmentation Grenades after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the Grenades away.`
+		dialog `Some Resistance members unload the Fragmentation Grenades after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the grenades away.`
 
 
 mission "Resistance: Anti-Missile Delivery"
@@ -1745,9 +1745,9 @@ mission "Resistance: Anti-Missile Delivery"
 		distance 9 14
 		not government "Heliarch"
 	on offer
-		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Heavy Anti-Missile Turret."`
+		dialog `As you enter the spaceport, you're dragged away to an isolated area by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades on <destination> have requested a Heavy Anti-Missile Turret."`
 	on complete
 		"supplied resistance" ++
 		outfit "Heavy Anti-Missile Turret" -1
 		payment 150000
-		dialog `Some Resistance members unload the Heavy Anti-Missile Turret after you land on an isolated part of <planet>, as instructed. They hand you <payment> before quietly transporting the Turret away.`
+		dialog `Some Resistance members unload the Heavy Anti-Missile Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
