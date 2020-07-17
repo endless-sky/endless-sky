@@ -2474,7 +2474,7 @@ mission "Remnant: Cognizance 7"
 		has "Remnant: Cognizance 6: done"
 	on offer
 		conversation
-			`After several hours Plume returns to the ship, spurred by the alarms in the suit warning him about his air levels. As you help him out of the suit he looks like he is having trouble deciding if he should be thrilled or worried.`
+			`Plume returns to the ship after several hours, spurred by alarms in his suit warning both of you about low oxygen levels. As you help him out of the pressure suit, he looks like he is having trouble deciding if he should be thrilled or worried.`
 			`	"It is wonderful to be here, watching them from a distance. A few did venture close, too. But I'm worried about them. Most of the void sprites out there have scorch marks similar to the scoring left by Korath weapons. And we already noticed that they are hiding much deeper in the atmosphere than normal." He glances down at his datapad then back up at you. "It looks like I will need to double-check my records and samples back on Aventine. Once we are back into the chaos of the Ember Waste I will send Chilia a signal."`
 				accept
 	npc
