@@ -2319,7 +2319,7 @@ mission "Remnant: Cognizance 3"
 			branch chilia
 				"remnant chilia" > 1
 			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A glance at the viewscreen shows a fit young man with a military bearing standing at your airlock. You quickly check with the starport control and confirm that the prefect in charge of Remnant military activities is indeed waiting to board your ship. You hit the unlock button and watch as Prefect Chilia strides onboard.`
-			`	"Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly. "I say 'nominal' as virtually all our activities are militaristic in some way, but usually fall under the purview of those who better understand them.`
+			`	"Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly. "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them.`
 				goto main
 			label chilia
 			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A quick glance at the viewscreen shows Prefect Chilia standing at your airlock. You quickly hit the unlock button and watch as he strides onboard.`
