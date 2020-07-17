@@ -2783,7 +2783,7 @@ mission "Remnant: Cognizance 14"
 			label goodidea
 			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs, "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect to have them talking to you. That is, if they do not simply start shooting, anyway."`
 			label letsgo
-			`	Chilia continues "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, loadup, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of pelicans are warming up, each one connecting in to your IFF and confirming their status."`
+			`	Chilia continues "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, loadup, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of pelicans are warming up, each one synchronizing to your IFF and confirming their status."`
 				accept
 	npc save accompany
 		government "Remnant"
@@ -2836,5 +2836,4 @@ event "remnant: pantica void sprites"
 event "remnant: cognizance timer"
 	system "Nenia"
 		fleet "Ember Waste Node" 6000
-
 
