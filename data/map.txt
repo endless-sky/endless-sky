@@ -27591,7 +27591,7 @@ planet Pilot
 planet Pincian
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa8
-	description `The swirling atmosphere of Pincian are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `The swirling atmosphere of Pincian is filled with strange compounds and colorful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
 	description `At present, Pincian is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
 	security 0
 
