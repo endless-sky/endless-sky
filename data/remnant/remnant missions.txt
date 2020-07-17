@@ -2363,7 +2363,7 @@ mission "Remnant: Cognizance 4"
 		has "Remnant: Cognizance 3: done"
 	on offer
 		conversation
-			`When you arrive in the spaceport you find Prefect Chilia surrounded by a group of Remnant. He is in the midst of a briefing, and waves you forward as soon as you approach. "Everyone, this is Captain <last>. They have located the Korath hunters twice now, so they will take the lead on tracking for this mission."`
+			`When you arrive in the spaceport you find Prefect Chilia in the middle of briefing a group of Remnant [soldiers? pilots? politicians? garbage collectors?], and waves you forward as soon as you approach. "Everyone, this is Captain <last>, who has located the Korath hunters twice now, and will take the lead on tracking the rest for this mission."`
 			`	He turns to you. "These are the captains who will be following your lead. You will have two Albatrosses, two Ibises with full complements, and 6 starlings. One of the Albatrosses is outfitted to be a shield to take the brunt of attacks." He pauses, looking around at the group. "This task force would be overkill for the intended target, but we are not taking any chances: Make sure every Korath there is killed. Salvage is secondary, and there should be no escapees."`
 			`	He steps back and looks at the group. "May the Embers burn bright for you." With that, he gives the group a respectful nod and walks away. The captains all look around, make various signs you think are probably encouraging combat pilot slang, and variations on Prefect Chilia's parting words. As they disperse to their ships, one gestures to you. "Lead on, Captain."`
 				accept
