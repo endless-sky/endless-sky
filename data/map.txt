@@ -27982,7 +27982,7 @@ planet Serpens
 planet Servian
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa18
-	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the system. Underneath the peaceful exterior, violent storms and extreme turbulence are the norm. While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early gascrafts. While every ship was destroyed before reaching the depths of the planet, it nontheless proved a valuable testing ground for their early hulls, and helped refine their ship technology.`
+	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the planet. Underneath the peaceful exterior, violent storms and extreme turbulence are the norm. While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early gascrafts. Every ship was destroyed before reaching the depths of the planet, but it nonetheless proved a valuable testing ground for their early ship hulls and helped to refine the technology.`
 	description `At present, Servian is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.`
 	security 0
 	government Uninhabited
