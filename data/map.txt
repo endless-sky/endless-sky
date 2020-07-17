@@ -28228,7 +28228,7 @@ planet Splashdown
 planet "Ssil Vida"
 	attributes sheragi uninhabited emitter
 	landscape land/station0
-	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and there are patches of green and purple stuff that resembles fungus growing through the walls. Whoever built this station originally meant it for people much larger than you. Either that, or they liked spacious environments. Even the shortest doorway that you see is easily double your height.`
+	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station originally meant it for people much larger than you. Either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height.`
 	spaceport `Exploring beyond the docks reveals that most of this facility appears to be centered around a massive emitter. It is not clear exactly what it is supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
 
 planet Starcross
