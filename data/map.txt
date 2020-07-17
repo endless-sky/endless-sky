@@ -28839,7 +28839,7 @@ planet Xerolophos
 planet Yedikule
 	attributes  "requires: gaslining" "gas" "moon" uninhabited
 	landscape land/nasa16
-	description `The swirling atmosphere of Yedikule is heavily dominated by the presence of xenon and certain other chemicals, lending the gas giant its blue coloration. It is a useful source of gases for the Remnant.`
+	description `The swirling atmosphere of Yedikule is dominated by the presence of xenon and other chemicals which lend the gas giant its blue coloration. It is a useful source of gases for the Remnant.`
 	description `At present, Yedikule is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in to collect xenon for use in research projects on Viminal.`
 	security 0
 	government Uninhabited
