@@ -2460,7 +2460,7 @@ mission "Remnant: Cognizance 6"
 		conversation
 			`Descending into the clouds of Nasqueron is becoming almost familiar to you. Wispy layers of gas give way to more voluminous formations and the occasional turbulent storm. Beside you, Plume is eagerly peering out the window, and you remind yourself that this may well be his first time actually seeing void sprites on their world.`
 			`	You reach the altitude where void sprites have previously been found in the greatest concentration before activating your ship's sensors. Plume looks around, peering out the windows. "Where are they? Aren't there usually some around? They always seemed plentiful in the recordings." You focus on the sensors, and after a few minutes pick up some distant contacts. You follow them down into the lower atmosphere and eventually begin to detect some void sprites."`
-			`	"That's close enough, captain. I'll go outside and watch them from the hull." You help him into the pressure suit and cycle the airlock behind him. A brief feeling of disappointment  flares within you, but you quickly suppress it. "This is, after all, Plume's job" you say to yourself as you settle back into your chair to wait for Plume to return.`
+			`	"That's close enough, captain," says Plume. "I'll go outside and watch them from the hull." You help him into a pressure suit and cycle the airlock behind him. You quickly suppress a brief feeling of disappointment. "This is, after all, Plume's job," you say to yourself as you settle back into your chair to wait for him to return.`
 
 
 
