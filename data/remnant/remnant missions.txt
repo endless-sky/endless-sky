@@ -2806,7 +2806,7 @@ mission "Remnant: Cognizance 14"
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 3
 	on enter "Nenia"
-		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. The Korath hunting party, however, is clearly waiting for you and moves to attack. As they do so, the pelicans immediatley set to work collecting void sprites. As the last one closes its hold again, the confirmation codes flash across your tactical screen. "Good to go."`
+		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the pelicans immediately set to work collecting void sprites. As the last one closes its hold again, a confirmation codes flash across your tactical screen. "Good to go."`
 	on enter "Pantica"
 		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 	on complete
@@ -2836,4 +2836,3 @@ event "remnant: pantica void sprites"
 event "remnant: cognizance timer"
 	system "Nenia"
 		fleet "Ember Waste Node" 6000
-
