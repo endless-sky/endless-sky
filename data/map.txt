@@ -28402,7 +28402,7 @@ planet Thunder
 planet Tibernia
 	attributes "ice moon" uninhabited
 	landscape land/enceladus_3
-	description `Tibernia is notable for being a perfect example of a classic ice planet. Unlike most planets, it is nearly a perfect sphere; and its surface is remarkably smooth with little more than minor surface craters. Many have speculated that it is artificial, but so far no one has found conclusive evidence of this.`
+	description `Tibernia is a classic ice planet, but unlike most, it is nearly a perfect sphere with a remarkably smooth surface blemished by few craters. Many have speculated that it is artificial, but so far no one has found conclusive evidence of this.`
 	security 0
 	government Uninhabited
 
