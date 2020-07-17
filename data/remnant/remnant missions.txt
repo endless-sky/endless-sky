@@ -2280,6 +2280,29 @@ mission "Remnant: Cognizance 2"
 		conversation
 			`You arrive in the spaceport to find Plume pacing quickly along a walkway. He gestures a quick greeting and jumps straight to the point. "We have never seen marks like these naturally appear on void sprites, but they match the weapon scoring patterns we have seen delivered by Korath ships. As such, we believe the Korath are hunting the void sprites."`
 			`	He looks at you with a surprising amount of vigor. "I will not have our work ruined by reptilian warmongers. Destroy the Korath ship, then we can continue the research."`
+			choice
+				`	"Okay, I will destroy the Korath ship."`
+					goto acceptance
+				`	"Do you have the authority to order that?"`
+			`	He nods curtly. "I do not have the authority to raise a fleet or order a captain to kill the ship, but I do have the authority to declare this Korath a threat to Remnant interests. It is up to you to decide how you want to respond to the identification of that threat."`
+			choice
+				`	(Accept his explanation.)`
+					goto acceptance
+				`	(Ask him to clarify.)`
+			`	"While the Remnant have an all-encompassing hierarchy to ensure everyone answers to someone, we saw fit to keep all facets of our society merged to prevent fragmentation into 'civilian' or 'military' branches. Two aspects of this merging is the decision of when to invoke military force, and what amount of force is worthwhile. According to my position as a researcher, I have the authority to designate something a threat to my projects and/or to the Remnant as a whole. I could even order someone to act on it. However, given that I am of low status in terms of military proficiency, I cannot dictate the magnitude of the military response, and I am subject to being overruled by those with higher military qualifications."`
+			`	In our particular situation, I have higher xenobiology qualifications than you, so I can dictate to you, and most other xenobiologists, for that matter, that protecting the Void Sprites is a priority and something that must happen. However, you are more skilled at combat and military matters than I am, therefore it is your decision as to how important it is relative to other military tasks. Likewise, it is your decision as to what amount of force is required, tactics used, or other such military considerations."`
+			`	This is one of the aspects that set prefects apart: They are Remnant who have demonstrated excellence in their field, sound judgment across a variety of fields, and an affinity for balancing a multitude of demands on Remnant resources. Humility is also a requirement, as they must always recognize that while their particular combination of skills may be unique, there is always someone else who is better than them at any one thing. As such, Prefects are the adjudicators in determining the priority of our various tasks, and the leaders who keep the Remnant unified.`
+			choice
+				`	"Thanks for the explanation!"`
+					goto acceptance
+				`	"I thought prefects were specialists?"`
+			`	"Well, they are and are not. Most prefects are assigned particular tasks that they are expected to devote themselves to. Often, this task relates to their area of expertise, but it is not always the case. Generally speaking, a prefect is considered to be the ultimate authority on tasks that they have been assigned to, but they are expected to take into account the information and suggestions from other prefects and especially the specialists in the field or fields relevant to the task.`
+			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia who has the task of co-ordinating the military defense of the Remnant; and Prefect Taely who has the task of integrating our latest innovations into usable ships."`
+			choice
+				`	"Thanks! That was more detail than I was expecting."`
+				`	"Okay, that satisfied my curiosity for now."`
+			label acceptance
+			`	"Excellent. You deal with the Korath, and I will file a report about this threat. Please inform me immediately once you have dealt with the threat." He pauses, then continues, "Oh, and remember to record the battle. It may be useful to help understand what they are doing there."`
 				accept
 	npc kill
 		government "Korath"
@@ -2425,7 +2448,7 @@ mission "Remnant: Cognizance 5"
 	on complete
 		payment 100000
 		conversation
-			`As soon as you land, Plume scurries off to find Chilia. By the time you finish your shutdown checks and head to where the meeting is taking place, you find that Plume has almost finishing the briefing already. You catch the last few minutes summarizing what materials might be concentrated within the void sprites and his speculation that the Korath may have decided that these semi-processed resources are useful to their survival, despite the hostility of the Archon.`
+			`As soon as you land, Plume scurries off to find Chilia. By the time you finish your shutdown checks and head to where the meeting is taking place, you find that Plume has almost finished the briefing already. You catch the last few minutes summarizing what materials might be concentrated within the void sprites and his speculation that the Korath may have decided that these semi-processed resources are useful to their survival, despite the hostility of the Archon.`
 			`	After a few minutes of questions and answers about void sprite physiology and speculation by the assembled Remnant pilots, Chilia calls for a recess. "We will reconvene shortly to discuss the implications of this, but there are tasks to be done in the meantime. Captain <first>, meet me in the spaceport." As everyone disperses towards the spaceport, your commlink notifies you that you have received what the message terms 'a resource offset allotment of <payment> from Remnant Logistics.'`
 
 
