@@ -148,7 +148,7 @@ mission "Coalition License Patch"
 
 mission "Coalition Yottrite 1"
 	name "More Yottrite"
-	description "You were offered great payment for bringing more of the rare mineral Yottrite to <destination>."
+	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
 	minor
 	landing
 	to offer
@@ -156,25 +156,23 @@ mission "Coalition Yottrite 1"
 	to complete
 		has "Coalition Yottrite 2: offered"
 	source
-		government "Coalition" "Heliarch"
-		not planet "Bloptab's Furnace"
+		near Bloptab 1 100
 	destination "Bloptab's Furnace"
 	on offer
 		conversation
-			`Some Coalition citizens, most of which are Arachi, start surrounding your ship after you land, talking among themselves while also glancing at a Heliarch Neutralizer that followed you as you made your way down the atmosphere.`
-			`	The Heliarch agents step off their ship and speak with an Arach of the civilian group. They head back inside their ship after a while and hail you: it seems they've noticed you're carrying samples of the exotic Yottrite, and would like to know if you're willing to sell it to them.`
+			`Some Coalition citizens, most of which are Arachi, start surrounding your ship after you land, talking among themselves while also glancing at a Heliarch Neutralizer that followed you as you prepared to land on <origin>. The Heliarch agents step off their ship and speak with an Arach of the civilian group. They head back inside their ship after a while and hail you: it seems they've noticed you're carrying samples of the exotic yottrite, and would like to know if you're willing to sell it to them.`
 			choice
+				`	(Yes.)`
 				`	(No.)`
 					defer
-				`	(Yes.)`
-			`	When you approach them, the Arach explains that he is one of the people that oversee the mining operations on <planet> and that he would like to bring the Yottrite there so that they can attempt to study it with their most advanced equipment.`
-			`	"Few entries on Yottrite, my predecessors managed to catalog," he says. "Naturally occur in our territory, it does not. Few opportunities to study it, we've had."`
+			`	When you approach them, the Arach explains that he is one of the people that oversee the mining operations on <planet> and that he would like to bring the yottrite there so that they can attempt to study it with their most advanced equipment.`
+			`	"Few entries on yottrite, my predecessors managed to catalog," he says. "Naturally occur in our territory, it does not. Few opportunities to study it, we've had."`
 			`	After discussing with his colleagues for a bit, he announces that he is willing to pay you 220,000 credits for the mineral sample.`
 			choice
-				`	"Sounds like a fair deal to me, sold."`
+				`	"Sounds like a fair deal to me. Sold."`
 				`	"Sorry, but I think I'll hold on to it. It was very hard to get it in the first place."`
-					decline
-			`	He thanks you and transfers the Yottrite from your ship to his own, an Arach Spindle, with the help of some spaceport workers. Right before departing, he hands you the credits, and says that you should bring a few more samples to <destination>, "Three more, you should bring, if interested you are."`
+					defer
+			`	He thanks you and transfers the yottrite from your ship to his own, an Arach Spindle, with the help of some spaceport workers. Right before departing he hands you the credits and says that you should bring a few more samples to <destination>. "Three more, you should bring, if interested you are."`
 				accept
 	on accept
 		outfit "Yottrite" -1
@@ -184,7 +182,7 @@ mission "Coalition Yottrite 1"
 
 mission "Coalition Yottrite 2"
 	name "Even More Yottrite"
-	description "You were once again asked to bring several samples of the rare mineral Yottrite to <destination>."
+	description "You were once again asked to bring seven samples of the rare mineral yottrite to <destination>."
 	landing
 	to offer
 		has "Coalition Yottrite 1: offered"
@@ -194,29 +192,29 @@ mission "Coalition Yottrite 2"
 	on offer
 		fail "Coalition Yottrite 1"
 		conversation
-			`Coming down the atmosphere of <origin>, you're contacted by the Arachi you sold some Yottrite to. He asks if you have any more samples to sell him.`
+			`As you land on <origin>, you're contacted by the Arach you sold some yottrite to. He asks if you have any more samples to sell him.`
 			choice
 				`	"Not right now, sorry."`
 					defer
 				`	"I have some, yeah. Where should I bring them to?"`
-			`	He tells you to land as usual. Once your ship is brought to the underground area, some workers help unload the Yottrite, and you follow them into a restricted section of the complex, the guards at the entrance watching closely as your group passes by.`
+			`	He tells you to land as usual. Once your ship is brought to the underground area, some workers help unload the yottrite, and ask you to follow them into a restricted section of the complex to get your payment. The guards at the entrance watch closely as your group passes by.`
 			`	You walk along extremely wide industrial catwalks overlooking endless smelters and forges of various sizes. Though the heat of the place may be influencing your perception, you're almost certain the largest smelters must be around the size of a light warship.`
-			`	After walking for too long in the uncomfortably hot and stuffy interiors of the underground compound, you and the several tons of Yottrite are finally brought to a large area similar to a warehouse. Several workers are operating machinery and making sure ore pieces are brought to specific conveyor belts.`
-			`	As the workers leave you to bring the Yottrite to a separate section of the place, you're greeted by the Arach who contacted you. "In your debt, we are, Captain <last>," he says, handing you 660,000 credits. "Achieved, much will be, if significant progress with the samples we make."`
+			`	After walking for too long in the uncomfortably hot and stuffy interiors of the underground compound, you and the several tons of yottrite are finally brought to a large area similar to a warehouse. Several workers are operating machinery and making sure ore pieces are brought to specific conveyor belts.`
+			`	As the workers leave you to bring the yottrite to a separate section of the facility, you're greeted by the Arach who contacted you. "In your debt, we are, Captain <last>," he says, handing you 660,000 credits. "Much will be achieved, if significant progress with the samples we make."`
 			choice
 				`	"What sort of progress?"`
 					goto progress
 				`	"What are you hoping to achieve?"`
 					goto achieve
 			label progress
-			`	"Non-standard thermodynamic properties, Yottrite has. Absorb heat around them, the crystals do. Difficult to mix it into a compound, it is," he explains. "If how to overcome this obstacle, we learn, many applications, the element could have."`
+			`	"Non-standard thermodynamic properties, yottrite has. Absorb heat around them, the crystals do. Difficult to mix it into a compound, it is," he explains. "If how to overcome this obstacle, we learn, many applications, the element could have."`
 				goto end
 			label achieve
-			`	"Run several tests on the Quarg equipment, for centuries, our Coalition has. React similarly to Yottrite, some of their equipment does. A material involved in the making of their outfits, it is," he explains. "If how to do such a thing ourselves, we learn, maybe replicate their technology, or resume construction of the ringworlds, we could."`
+			`	"Run several tests on the Quarg equipment, for centuries, our Coalition has. React similarly to yottrite, some of their equipment does. A material involved in the making of their outfits, it is," he explains. "If how to do such a thing ourselves, we learn, maybe replicate their technology, or resume construction of the ringworlds, we could."`
 			label end
-			`	A worker by the Yottrite crates shouts something, and the Arach signals he will be heading there shortly.`
-			`	"Once again, if any more Yottrite, you acquire, bring it here, you may," he says before leaving. "Tirelessly researching it, we are. If in a larger batch, you could bring them, progress quicker, we might."`
-			`	He says that about 7 samples of the mineral should do for next time and finally leaves. Some workers come shortly after to escort you back to your ship through the maze of smelters.`
+			`	A worker by the yottrite crates shouts something, and the Arach signals he will be heading there shortly.`
+			`	"Once again, if any more yottrite, you acquire, bring it here, you may," he says before leaving. "Tirelessly researching it, we are. If in a larger batch, you could bring them, progress quicker, we might."`
+			`	He says that about seven samples of the mineral should do for next time and finally leaves. Some workers come shortly after to escort you back to your ship through the maze of smelters.`
 				accept
 	on accept
 		outfit "Yottrite" -3
@@ -236,14 +234,14 @@ mission "Coalition Yottrite 3"
 	on offer
 		fail "Coalition Yottrite 2"
 		conversation
-			`Once again, you arrive at <origin> with a supply of Yottrite and are contacted by the Arachi here. They ask if you're ready to sell what samples you've brought them.`
+			`Once again, you arrive at <origin> with a supply of yottrite and are contacted by the Arachi here. They ask if you're ready to sell what samples you've brought them.`
 			choice
 				`	"Maybe some other time."`
 					defer
 				`	"Sure am. Have some people wait by the docking area to help me unload the samples."`
 			`	As the workers get the ore samples out of your ship, you realize that this time the Arach that asked for your help wasn't the one to contact you, nor was he waiting for you on the ground.`
-			`	The workers say they will bring the Yottrite to the warehouse on their own, and you're told to wait. When they return, they're accompanied by other workers with different crates. They hand you 1,540,000 credits, and ask for permission to load the crates onto your ship.`
-			`	"Roughly 5 tons, they weigh. To <destination>, this planet's neighboring world, you must bring them. Requested it so, the boss has," they say.`
+			`	The workers say they will bring the yottrite to the warehouse on their own, and you're told to wait. When they return, they're accompanied by other workers with different crates. They hand you 1,540,000 credits, and ask for permission to load the crates onto your ship.`
+			`	"Roughly 5 tons, they weigh. To <destination>, this planet's neighboring world, you must bring them. Requested it so, the overseer has," they say.`
 			choice
 				`	"What's in the crates?"`
 					goto insidecrate
@@ -253,7 +251,7 @@ mission "Coalition Yottrite 3"
 			`	"Older samples that you've brought to us, they contain. Experimented with, the Yottrite was. Unsure of the details, I am."`
 				goto end
 			label soitwouldseem
-			`	"For you to carry them, the boss asked. Why you in particular, unsure, I am."`
+			`	"For you to carry them, the overseer asked. Why you in particular, unsure I am."`
 			label end
 			`	You figure that since it's so little cargo and to a planet in this very system, there's no harm in delivering the crates. They place them in your ship.`
 				accept
@@ -264,7 +262,7 @@ mission "Coalition Yottrite 3"
 		conversation
 			`Though on <origin> you weren't greeted by him, the same Arach from the other trips now contacts you as you prepare to land on <planet>.`
 			`	"Captain <last>! Forgive me for my absence in our latest deal, you must. Sort out some business here, I had to," he says.`
-			`	He directs you to land on a separate area of the planet, and halfway there little by little a Heliarch fleet starts tailing your ship. You spend a few minutes hovering over the area until they finally give you permission to land. Some of the ships land along with you while others remain in flight, as you come to a massive warehouse complex on a large valley. The place is walled with some odd kind of barbed wire on top of the walls and fences, and several armed Heliarch agents are patrolling the place.`
+			`	He directs you to land on a separate area of the planet, and halfway there little by little a Heliarch fleet starts tailing your ship. You spend a few minutes hovering over the area until they finally give you permission to land. Some of the ships land along with you while others remain in flight, as you come to a massive warehouse complex on a large valley. The facility is walled with some odd kind of barbed wire on top of the walls and fences, and several armed Heliarch agents are patrolling the area.`
 			`	As you leave your ship, the Arach is waiting for you alongside some Heliarch officers. They have the cargo removed from your ship without saying much.`
 			`	Right before the Heliarch ships prepare to escort you back to the standard docking area, he says, "In the spaceport, meet you I will."`
 
@@ -279,14 +277,12 @@ mission "Coalition Yottrite 4"
 	destination "Shadowed Valley"
 	on offer
 		conversation
-			`You wait around the spaceport for some minutes before finally spotting the Arach. He invites you to his office there.`
+			`You wait around the spaceport for some minutes before finally spotting the Arach. He invites you to his office.`
 			`	"Responsible for overseeing deliveries of such exotic materials to the warehouses here, I also am. For the inconvenience and bureaucracy, I apologize," he says. "Forget to properly introduce myself, I often do. Lugglop, I am called."`
 			choice
 				`	"Nice to meet you, I suppose."`
 				`	"Do you need more samples? Is that why you called me here?"`
-			`	"The harder to keep track of the samples, it becomes, the more samples there are," he says. "Notified by the Heliarchs, I was. No more samples, for now, I can request. Risk letting them be stolen, they cannot."`
-			`	He then shows you a map of the Coalition, pointing to a system in Saryd space.`
-			`	"Use more delicate procedures and research, to study the samples we must. For that, friends of mine on <destination>, waiting will be," he says. "Bring them here, would you, Captain?"`
+			`	"Harder to keep track of them, it becomes, the more samples there are," he says. "Notified by the Heliarchs, I was. No more samples, for now, I can request. Risk letting them be stolen, they cannot." He then shows you a map of the Coalition, pointing to a system in Saryd space. "Use more delicate procedures and research, to study the samples we must. For that, friends of mine on <destination>, will be waiting," he says. "Bring them here, would you, Captain?"`
 			choice
 				`	"Of course, they'll be here soon."`
 					accept
@@ -310,8 +306,8 @@ mission "Coalition Yottrite 5"
 		conversation
 			`A Saryd wearing their version of a lab coat is waiting for you when you enter the spaceport.`
 			`	"Working with Lugglop, you are?" He asks, and you nod. "Nasilor, my name is. Packing up our belongings, my sister is. Bring you to our laboratory, I shall."`
-			`	You follow him deep into the underground spaceport to the "residential" section, which, to you, is indistinguishable from a research compound. The endless doors to your left and right occasionally give space for massive glass panels, giving you a nice view of the massive crystal formations here.`
-			`	Nasilor stops by a door immediately after one of these "viewing sites" and opens it. He introduces you to his sister and you two start helping her pack what remains. Most of what they're bringing are several research papers, though you can't figure out what's written on them.`
+			`	You follow him deep into the underground spaceport to the "residential" section, which, to you, is indistinguishable from a research compound. The endless doors to your left and right occasionally give space for large glass panels, giving you a nice view of the massive crystal formations here.`
+			`	Nasilor stops by a door immediately after one of these "viewing sites" and opens it. He introduces you to his sister, Alituri, and you two start helping her pack what remains. Most of what they're bringing are several research papers, though you can't figure out what's written on them.`
 			`	Finally, you start heading back to your ship. Noticing your interest in the beauty of the gypsum caves, the two Saryd researchers slow down their pace and start to tell you more about themselves. They are twins, both born on Saros, but have been working here for decades. Though you don't understand much of the technical jargon, you figure out that Nasilor specializes in cryptocrystalline compounds, while Alituri focuses her studies on planetary and cosmic conditions that lead to the formation of the gypsum caves here.`
 			`	With the little "tour" over, when you three reach your ship, you show them to their bunks and prepare to head back to <planet>.`
 				accept
@@ -331,7 +327,7 @@ mission "Coalition Yottrite 6"
 			`Lugglop is waiting for you when you land and greets the two researchers as you help them get their things out of the ship.`
 			`	He points them to a hotel where he had a room prepared for them, and asks you to follow him to his office again.`
 			`	"Filled to the brim with cutting edge equipment, our facilities here and on the neighbor planet are. Alas, venture much into the theoretical field needed to study such rare elements, our personnel here does not."`
-			`	He shows you to his map again, this time pointing to a nearby Arachi world. "Once cracked down some aspects of Yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
+			`	He shows you to his map again, this time pointing to a nearby Arachi world. "Once cracked some aspects of yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
 			`	You're about to head back to your ship when he hands you 200,000 credits. "Nearly forgot to pay you for this last service, I did."`
 				accept
 	on accept
@@ -350,10 +346,9 @@ mission "Coalition Yottrite 7"
 	destination "Delve of Bloptab"
 	on offer
 		conversation
-			`You're immediately hailed by House Mallob when your ship is descending the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive, castle-like structure, which appears to be made out of a similar material to that of Arach ships, sitting at the base of a mountain.`
-			`	Other buildings are around as well, and you can see other ships landing close to your own. A dedicated docking area was built here, and you're almost certain the building closest to it is something of an outfitter. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
-			`	You're greeted by an Arach, who came in what you believe to be their version of a car, though you gave up on trying to guess the exact purpose of each pipe and plating, why some wheels weren't touching the ground, while pondering if you would comfortably fit inside one.`
-			`	The Arach takes a translation device out of his pocket and formally greets you, "Honored to have you as a guest, the great House Mallob is, Captain <first> <last>."`
+			`You're immediately hailed by House Mallob when your ship is entering the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive, castle-like structure, which appears to be made out of a similar material to that of Arach ships, sitting at the base of a mountain.`
+			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakingly an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
+			`	Shortly after landing you're greeted by an Arach wearing what you judge to be some sort of uniform. He takes a translation device out of his pocket and formally greets you. "Honored to have you as a guest, the great House Mallob is, Captain <first> <last>."`
 			choice
 				`	"Are you the shipwright I'll be taking to Lugglop?"`
 					goto servant
@@ -363,19 +358,17 @@ mission "Coalition Yottrite 7"
 			`	"Mountains, no! But a servant of House Mallob, I am. Mostly as a chauffeur, I work."`
 				goto mistress
 			label property
-			`	"No mere mansion, the private property of House Mallob is," he says as he starts pointing to different areas. "A museum, there we have, detailing the history of Arachi ships. To the left, a shopping center is. To the right, House Mallob's private university is, where study the advanced methods of ship making, honor students from all over the Coalition do."`
+			`	"No mere mansion, the private property of House Mallob is," he says as he starts pointing to different areas. "A museum, there we have, detailing the history of Arach ships. To the left, a marketplace is. To the right, House Mallob's private university is, where study the advanced methods of ship making, honor students from all over the Coalition do."`
 			label mistress
-			`	He asks that you enter the vehicle, saying, "Assist Lugglop in his research, my mistress will. Meet her in the mansion, you must."`
-			`	The short trip is uneventful, with you managing to have a seat without much discomfort in the Arachi vessel, though you still don't know what the extra wheels are for.`
-			`	The entrance to the mansion isn't as castle-like as the walls, though it all still looks strangely pompous. Up close it almost looks like all the several parts and pods of an Arach Hulk or two were crumpled together into one single building.`
-			`	He guides you through the mansion. You pass through several other servants, notice rooms where he mentions that members of House Mallob are having meetings, and even meet a group of Saryd and Kimek students who came here to study with the shipwrights of House Mallob.`
+			`	He then asks that you follow him, saying, "Assist Lugglop in his research, my mistress will. Meet her in the mansion, you must." You follow him along the path, he gives a bit more detail on some of the buildings as you walk near them. What really piques your interest though is that one of the buildings, which he seemed to willingly ignore, had armed guards at the door, with no indication of being members of the Heliarch.`
+			`	Reaching the entrance of the mansion, it isn't as castle-like as the walls, but it all still looks strangely pompous. Up close it almost looks like all the several parts and pods of an Arach Hulk or two were crumpled together into one single building.`
+			`	He guides you through the mansion. You pass by several other servants, notice rooms where he mentions that members of House Mallob are having meetings, and even meet a group of Saryd and Kimek students who came here to study with the shipwrights of House Mallob.`
 			`	Finally, he brings you to a room on the third floor, claiming that your passenger is waiting inside. You enter, only to see a Kimek glancing out the window.`
 			choice
 				`	"So, is my passenger crawling around somewhere? In some corner hidden in a web?"`
 				`	"A Kimek? I thought this was an Arach House."`
-			`	The butler ignores what you said and introduces you to the Kimek in question. "Marry into House Mallob at a young age, miss Pichiie did. A former student on the university here, she was."`
-			`	Finally, the reason why you had to come all the way to this part of <origin> becomes clear; Pichiie mentions she would like to hear your stories about where you first got the Yottrite in the first place before boarding your ship to head to <planet>. You do your best to keep it as brief as possible, but she keeps asking more and more questions ranging from how you acquired a Jump Drive to all the places you've been.`
-			`	About an hour after the sun sets, she's finally satisfied, and after saying her goodbyes to other members of the House, you're both brought to your ship.`
+			`	The butler ignores what you said and introduces you to the Kimek in question. "Marry into House Mallob at a young age, miss Pichiie did. A former student at the university here, she was."`
+			`	Finally, the reason why you had to come all the way to this part of <origin> becomes clear; Pichiie mentions she would like to hear your stories about where you first got the yottrite in the first place before boarding your ship to head to <planet>. You tell her all samples you've come across were found in systems where the star had gone supernova. It's a short explanation, but she appears to be satisfied, and after saying her goodbyes to other members of the House, you're both brought to your ship.`
 				accept
 	on complete
 		event "yottrite research break" 165
@@ -393,19 +386,19 @@ event "yottrite research break"
 
 mission "Coalition Yottrite 8"
 	name "One Last Sample"
-	description "Acquire one sample of Yottrite and deliver it to <destination> so that Lugglop has some for his presentation to the Coalition's scientific community."
+	description "Acquire one sample of yottrite and deliver it to <destination> so that Lugglop has some for his presentation to the Coalition's scientific community."
 	landing
 	to offer
 		has "event: yottrite research break"
 	source
-		government "Coalition" "Heliarch"
+		near Pelubta 1 100
 	destination "Pelubta Station"
 	on offer
 		conversation
 			`When you land, you receive a message from Lugglop, the Arach who you brought several Yottrite samples to.`
 			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you?"`
 			choice
-				`	"Okay, I'll bring you a piece of Yottrite once again."`
+				`	"Okay, I'll bring you a piece of yottrite once again."`
 				`	"Sorry, but I'm not mining that any more."`
 					decline
 			`	He thanks you and says he and the rest of the team will be waiting in <destination>. "Moved here about halfway through the project, we did, to make use of the station's facilities."`
@@ -413,9 +406,7 @@ mission "Coalition Yottrite 8"
 	on complete
 		outfit "Yottrite" -1
 		payment 220000
-		conversation
-			`Lugglop pays you <payment> as you deliver the Yottrite, accompanied by a Heliarch agent.`
-			`	"Finish preparing our presentation, we now must. If to help us further, you wish, in the spaceport meet us you must."`
+		dialog	`Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
 
 
 
@@ -430,9 +421,9 @@ mission "Coalition Yottrite 9"
 	destination "Ring of Wisdom"
 	on offer
 		conversation
-			`You meet Lugglop in the spaceport and follow him to where his team is. You meet again with Nasilor, Alituri and Pichiie as the three of them oversee some workers place a few sealed metal crates inside a container and the Yottrite sample you just brought here into another.`
+			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another.`
 			`	They detail how they have prepared all the material they needed and now just need a transport to <destination>.`
-			`	"If with us, you come, Captain, perhaps a better detailed description of the systems where the Yottrite was found, you could provide," Nasilor says.`
+			`	"If with us, you come, Captain, perhaps a better detailed description of the systems where the yottrite was found, you could provide," Nasilor says.`
 			`	"<payment>, I would pay you," Lugglop says.`
 			choice
 				`	"Of course I'll take you there. Have the containers loaded into my ship."`
@@ -441,17 +432,18 @@ mission "Coalition Yottrite 9"
 					goto findings
 			label findings
 			`	"To share our findings with you, allowed we are not," Pichiie says.`
-			`	"Forgive us you must, Captain, but told to keep everything a secret, we were," Lugglop continues. "Perhaps after our presentation, public our findings could be made, though."`
+			`	"Forgive us you must, Captain, but told to keep everything a secret, we were," Lugglop continues. "Perhaps after our presentation, public our findings could be made."`
 			label accept
 			`	They all follow you to your ship after the containers are ready to be loaded.`
-			`	After they are put into your cargo, Nasilor, Alituri and Pichiie head to their bunks, but as Lugglop is coming on board, you see that two Heliarch agents are accompanying him. He introduces you to the two of them, both Kimek, though you can't quite catch their names.`
+			`	After they are put into your cargo, Nasilor, Alituri and Pichiie head to their bunks, but as Lugglop is coming on board, you see that two Heliarch agents, both Kimek, are accompanying him.`
 			`	"Here to ensure the secrecy of our discoveries, they are," he says. Seeing as they are only two more passengers, you agree to carry them to <planet>, and they all board your ship.`
 				accept
 	on complete
 		payment 310000
 		conversation
-			`	Immediately when you land, Lugglop gives you your payment of <payment>. You and the four researchers then follow some Heliarch agents that were waiting for you at the landing area.`
-			`	You five are brought to an area akin to a theater with some type of podium on the stage. The seats are all taken by Heliarch agents.`
-			`	Lugglop's team apparently will wait until the contents of the two containers are brought here, so you're asked to describe the systems with supernovae where you encountered Yottrite asteroids.`
-			`	This only lasts a few minutes, as the audience doesn't seem too keen on inquiring about details, though one particular Saryd did puzzle you when they asked if the all the supernovas you visited "were natural occurrences, or artificially produced."`
-			`	After you finish, and right as the materials for Lugglop's presentation arrives, you're escorted back to your ship by some agents.`
+			`	Immediately when you land, Lugglop gives you your payment of <payment>. You and the four researchers then follow some Heliarch agents that were waiting for you at the docks. You five are brought to an area akin to a theater with some type of podium on the stage. The seats are all taken by Heliarch agents.`
+			`	Lugglop's team apparently will wait until the contents of the two containers are brought here, so you're asked to describe the systems with supernovae where you encountered yottrite asteroids. This only lasts a few minutes, as the audience doesn't seem too keen on inquiring about details, though one particular Saryd did puzzle you when they asked if the all the supernovas you visited "were natural occurrences, or artificially produced."`
+			`	After you finish, and right as the materials for Lugglop's presentation arrives, you're escorted back to your ship by some agents. Several hours later, you're contacted by Lugglop, who says the prpesentation is finished, and his group is coming back to your ship. When they arrive, they each thank you for providing the means to perform their experiments. "Officially commended for our efforts, we were!" He says.` 
+			`	"Though to publicly share our findings, allowed we are not still, invited to be part of the team here that will continue the research, we were," Pichiie adds. The Saryd twins say they will reside here for as long as the project continues, while Pichiie comments on how she'll often be taking trips to visit her family in House Mallob's property.`
+			`	"As for me, a job as overseer, I still have to perform," Lugglop says. "Stay here for a few days I will, but even with all the advanced equipment of this ring, still our Coalition's most capable, the smelters of Bloptab's Furnace are. In their optimal state they must be, if to deepen our knowledge on yottrite, we are. Return there shortly, I will."`
+			`	They thank you again for all your help, and wish you safe travels as you continue exploring.`
