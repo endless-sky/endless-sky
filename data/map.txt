@@ -9899,6 +9899,7 @@ system Faronektu
 system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
+	attributes "Archon"
 	habitable 100
 	belt 1670
 	asteroids "small rock" 24 7.722
@@ -13278,6 +13279,7 @@ system Kashikt
 system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
+	attributes "Archon"
 	habitable 100
 	belt 1539
 	asteroids "small rock" 4 3.8019
@@ -17128,7 +17130,7 @@ system Naper
 system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
-	attributes "The Ember Waste" "Void Sprites"
+	attributes "The Ember Waste" "Void Sprites" "Archon"
 	habitable 2340
 	belt 1343
 	haze _menu/haze-red
@@ -18128,6 +18130,7 @@ system Peragenor
 system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
+	attributes "Archon"
 	habitable 100
 	belt 1065
 	asteroids "small rock" 49 1.403
@@ -20711,6 +20714,7 @@ system Sarin
 system Sayaiban
 	pos 250.431 -274.812
 	government Drak
+	attributes "Archon"
 	habitable 2035
 	belt 1803
 	asteroids "small rock" 13 2.106
