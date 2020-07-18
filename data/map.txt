@@ -2062,7 +2062,7 @@ system Adhara
 system Aescolanus
 	pos -15 340
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 233.28
 	belt 1323
 	haze _menu/haze-red
@@ -6220,7 +6220,7 @@ system Cardax
 system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 851.84
 	belt 1725
 	haze _menu/haze-red
@@ -6836,7 +6836,7 @@ system Cinxia
 system Coluber
 	pos 149.504 197.389
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 659.2
 	belt 1590
 	haze _menu/haze-red
@@ -8444,7 +8444,7 @@ system Eblumab
 system Edusa
 	pos 273.87 347.242
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 2372.76
 	belt 1167
 	haze _menu/haze-red
@@ -9273,7 +9273,7 @@ system Eshkoshtar
 system Esix
 	pos 142 532
 	government Uninhabited
-	attributes "The Ember Waste" "The Graveyard"
+	attributes "The Ember Waste" "The Graveyard" "Wormhole"
 	haze _menu/haze-red
 	habitable 8640
 	link Gerenus
@@ -9944,7 +9944,7 @@ system Fasitopfar
 system Fearis
 	pos -16 643
 	government Uninhabited
-	attributes "The Ember Waste" "The Graveyard"
+	attributes "The Ember Waste" "The Graveyard" "Wormhole"
 	haze _menu/haze-red
 	habitable 486.68
 	link Feraticus
@@ -12587,7 +12587,7 @@ system "Imo Dep"
 system Insitor
 	pos -28.1296 400.242
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 553.28
 	belt 1170
 	haze _menu/haze-red
@@ -17657,7 +17657,7 @@ system Orvala
 system Ossipago
 	pos 6.87033 429.242
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 1948.28
 	belt 1803
 	haze _menu/haze-red
@@ -17723,7 +17723,7 @@ system Ossipago
 system Paeli
 	pos 129 497
 	government Uninhabited
-	attributes "The Ember Waste" "The Graveyard"
+	attributes "The Ember Waste" "The Graveyard" "Wormhole"
 	haze _menu/haze-red
 	habitable 425.92
 	link Esix
@@ -19778,7 +19778,7 @@ system Regulus
 system Relifer
 	pos 19 603
 	government Uninhabited
-	attributes "The Ember Waste" "The Graveyard"
+	attributes "The Ember Waste" "The Graveyard" "Wormhole"
 	haze _menu/haze-red
 	habitable 625
 	link Feraticus
@@ -19992,7 +19992,7 @@ system Rigel
 system Ritilas
 	pos 11 523
 	government Uninhabited
-	attributes "The Ember Waste" "The Graveyard"
+	attributes "The Ember Waste" "The Graveyard" "Wormhole"
 	haze _menu/haze-red
 	habitable 135
 	link Queri
@@ -20892,7 +20892,7 @@ system Schedar
 system Segesta
 	pos 111.87 294.242
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 425.92
 	belt 1120
 	haze _menu/haze-red
@@ -22582,7 +22582,7 @@ system "Steep Roof"
 system Stercutus
 	pos 140.87 320.242
 	government Uninhabited
-	attributes "The Ember Waste"
+	attributes "The Ember Waste" "Wormhole"
 	habitable 945
 	belt 1492
 	haze _menu/haze-red
@@ -23220,6 +23220,7 @@ system Tejat
 system Terminus
 	pos -727.99 -23.2491
 	government Republic
+	attributes "Wormhole"
 	habitable 425.92
 	belt 1221
 	link Limen
@@ -23542,6 +23543,7 @@ system "Ula Mon"
 system "Ultima Thule"
 	pos -336 -211
 	government Republic
+	attributes "Wormhole"
 	habitable 2560
 	belt 1635
 	link Rajak
@@ -24217,6 +24219,7 @@ system "Wah Yoot"
 system Waypoint
 	pos -184 -515
 	government Hai
+	attributes "Wormhole"
 	habitable 78.125
 	belt 1610
 	link "Heia Due"
