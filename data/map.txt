@@ -12,6 +12,10 @@ galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
 
+galaxy "pug empty galaxy"
+	pos 10000 7000
+	sprite ui/pleiades
+
 galaxy "label core"
 	pos -136 130
 	sprite label/core
@@ -17692,6 +17696,37 @@ system Ossipago
 			distance 221
 			period 17.2936
 
+system "Over the Rainbow"
+	pos 9904 7176
+	government Uninhabited
+	link "Terra Incognita"
+	habitable 1215
+	asteroids "small rock" 1 3.3098
+	asteroids "medium rock" 8 3.3345
+	asteroids "large rock" 2 2.1242
+	asteroids "small metal" 5 2.9887
+	asteroids "medium metal" 11 3.6556
+	asteroids "large metal" 7 2.0007
+	object "Pug Wormhole"
+		sprite planet/wormhole
+	object
+		sprite star/k5
+		distance 1455.1
+		period 875.481048
+		offset 180
+		object
+			sprite star/m4
+			distance 75
+			period 12.179969
+	object
+		sprite star/g0
+		distance 544.9
+		period 875.481048
+		object
+			sprite star/m4
+			distance 107
+			period 12.701281
+
 system Paeli
 	pos 129 497
 	government Uninhabited
@@ -23227,6 +23262,49 @@ system Terminus
 		distance 2077.64
 		period 1835.49
 
+system "Terra Incognita"
+	pos 9921.5 7086.5
+	government Uninhabited
+	link "Over the Rainbow"
+	habitable 455.625
+	asteroids "small rock" 8 1.8432
+	asteroids "medium rock" 1 1.8144
+	asteroids "large rock" 31 3.2544
+	asteroids "small metal" 1 4.1472
+	asteroids "medium metal" 24 3.9744
+	asteroids "large metal" 11 4.2624
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava4
+		distance 174.59
+		period 43.230003
+	object Ruin
+		sprite planet/ocean9
+		distance 461.84
+		period 185.99169
+	object
+		sprite planet/cloud8
+		distance 862.65
+		period 474.79721
+	object
+		sprite planet/gas2
+		distance 2203.49
+		period 1938.3083
+		object
+			sprite planet/ganymede
+			distance 280
+			period 12.134831
+		object
+			sprite planet/dust5
+			distance 439
+			period 23.822836
+		object
+			sprite planet/oberon
+			distance 543
+			period 32.771508
+
 system Torbab
 	pos -949.587 490.051
 	government Coalition
@@ -24430,6 +24508,64 @@ system Wezen
 			sprite planet/tethys
 			distance 496
 			period 38.9601
+
+system "World's End"
+	pos 9966.5 7017.5
+	government Uninhabited
+	habitable 700
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 0
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 20
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 50
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 70
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 140
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 160
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 180
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 200
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 270
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 290
 
 system "Ya Hai"
 	pos -24.9453 -505.571
@@ -27407,6 +27543,8 @@ planet Pugglequat
 	"required reputation" 2
 	security 1
 
+planet "Pug Wormhole"
+
 planet Quicksilver
 	attributes core volcanic mining
 	landscape land/snow0
@@ -27526,6 +27664,14 @@ planet "Ring of Wisdom"
 	spaceport `Most of this ringworld is off-limits to everyone but the Heliarch scientists, not just for the sake of secrecy but also for safety. When the Heliarchs first began exploring the machinery of this ringworld, hundreds of them died in explosions, gas leaks, and power discharges after trying to cut their way into inaccessible areas. More recently, an entire team of scientists vanished from one of the main hangars without a trace and without any sign of resistance.`
 	"required reputation" 25
 	bribe 0
+
+planet Ruin
+	attributes uninhabited
+	landscape land/hills3
+	description `This is a stormy, cloud-covered planet, where fog banks flow through the valleys like dark, cold, slow-moving rivers, and the sun is seldom visible. Aside from some dull blue-grey moss and lichen, there are few living things here. The ground is warmer than the air above it, due to an abundance of radioactive elements in the planet's crust.`
+	description `	Most of the surface is ocean, but atop one of the higher mountains is an odd, abandoned spaceport.`
+	spaceport `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not cement or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
+	spaceport `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
 
 planet Rust
 	attributes rim farming factory
