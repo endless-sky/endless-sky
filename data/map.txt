@@ -17130,7 +17130,7 @@ system Naper
 system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
-	attributes "ember waste" "Void Sprites" "archon"
+	attributes "ember waste" "void sprites" "archon"
 	habitable 2340
 	belt 1343
 	haze _menu/haze-red
