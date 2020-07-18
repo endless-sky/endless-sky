@@ -2711,7 +2711,8 @@ mission "Remnant: Cognizance 12"
 			`As your ship's sensors re-establish their depiction of the system around you, an alien space station comes into view. It appears to be old and mostly inactive, but your sensors do pick up occasional bursts of energy - and, oddly, faint signs of life almost everywhere.`
 	on stopover
 		dialog
-			`The station is surprisingly still active, despite its apparent age. You poke around a bit, but its mysteries remain just that.`
+			`The station is surprisingly still active, despite its apparent age. Ancient environmental controls still maintain a breathable atmosphere, although it is thinner than you find comfortable. Likewise, the station is cool - but not dangerously so. Everywhere you look you continually feel like you have stumbled upon a space station built by giants: The doors are massive, controls tend to be fairly high up the walls, and displays seem to be angled for a view height significantly higher than yours. Most unusually, larger rooms often have what look to be benches and tables placed halfway up walls.`
+			`	The engineering of the station points to a dedicated construction program aimed at a single purpose. You trace some of the more obvious set of cables and discover a large spherical chamber filled with machinery. Unfortunately, it is still emiting significant amounts of energy - enough that your suit's medical systems emphatically warn you to turn back. So while the large sphere appears to be central to this station's purpose, it will have to remain a mystery for now. Clearly, this is the sort of thing that the Remnant sent you out to find.`
 	on complete
 		dialog
 			`As you arrive back at Viminal, you broadcast a warning to the port authorities that something is following you. You inform them that it is not hostile, but it is an unknown entity that originated in the new system.`
