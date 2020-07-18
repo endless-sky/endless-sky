@@ -984,10 +984,10 @@ mission "Remnant: Follow-up on Terminus Researchers A-1"
 		random < 40
 	on offer
 		conversation
-			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you earned your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants.`
+			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you first got your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants.`
 			branch secrets
 				has "deep: did not reveal remnant"
-			`	Thinking back, it suddenly occurs to you that you helped retrieve a science drone for some researchers on Bounty - researchers who were studying the wormhole in Terminus. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes. It would only be a matter of time until someone figures out how to use the key stones - either by luck or by research, and then the Remnant's secrecy would vanish.`
+			`	Thinking back, it suddenly occurs to you that you helped retrieve a science drone for some researchers on Bounty - researchers who were studying the wormhole in Terminus. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes. It would only be a matter of time until someone figures out how to use the key stones either by luck or by research, and then the Remnant's secrecy would vanish.`
 				goto terminuschoice
 			label secrets
 			`	Thinking back, you recall how you helped Ivan and a team of researchers from the Deep study the Ember Waste threshold wormhole. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes.`
@@ -996,15 +996,15 @@ mission "Remnant: Follow-up on Terminus Researchers A-1"
 				`	(Find a prefect.)`
 				`	(Forget about it.)`
 					decline
-			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons, then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
-			`	"Greetings Captain, I am Prefect Torza. I was told you had some information that could be important?" He takes a seat on a bench on the far side of the room from the other Remnant, and gestures for you to take a seat with him.`
+			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
+			`	"Greetings Captain; I am Prefect Torza. I was told you had some information that could be important?" He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same.`
 			branch confirmation
 				has "deep: did not reveal remnant"
 			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system. He quickly picks up on the potential threat if someone figures out the key to using them, especially since you have demonstrated that it only takes one curious human to figure it out.`
 			goto investigatechoice
 			label confirmation
 			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system and now know that quantum keystones can stabilize it. He quickly picks up on the potential threat that this development represents.`
-			`	Thinking carefully, he asks, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
+			`	Thinking carefully, he says, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
 			choice
 				`	"I'd be happy to."`
 				`	"I'd prefer not to."`
@@ -1035,7 +1035,7 @@ mission "Remnant: Follow-up on Terminus Researchers A-2"
 					accept
 	on complete
 		conversation
-			`Once you've landed on <planet> you look up the local university and pay it a visit. After thinking about it for a minute, you decide that probably the best source of information would be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief research, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here in the Deep, and transfer copies of each to you for free.`
+			`Once you've landed on <planet>, you look up the local university and pay it a visit. After thinking about it for a minute, you decide that the best source of information would probably be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief searching, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here in the Deep, and transfer copies of each to you for free.`
 
 
 
@@ -1059,8 +1059,8 @@ mission "Remnant: Follow-up on Terminus Researchers AB-3"
 	on complete
 		payment 2000000
 		conversation
-			`The trip back to the Ember Wastes is long, and it gave you plenty of opportunities to think about what this research could lead to. You also wondered about what the Remnant will do, as it seems obvious that their current isolation is about to fail.`
-			`	Torza seems grimly optimistic on receiving your report. "If this had happened without us being aware, it could have gone badly. Fortunately for us, you were in the right place at the right time, and have proven yourself loyal to us. So we are now forewarned and can use this time to plan and prepare for it. Perhaps re-establishing contact with the rest of humanity could even be to our benefit, but that will be for the council to decide.`
+			`The trip back to the Ember Wastes is long, and it gave you plenty of opportunities to think about what this research could lead to. You also wondered about what the Remnant will do, as it seems obvious that their current isolation plan is about to fail.`
+			`	Torza seems grimly optimistic on receiving your report. "If this had happened without us being aware, it could have gone badly. Fortunately for us, you were in the right place at the right time and have proven yourself loyal to us. We are now forewarned and can use this time to plan and prepare for it. Perhaps re-establishing contact with the rest of humanity could even be to our benefit, but that will be for the council to decide.`
 			`	"Thank you, Captain. If you ever come across any other interesting information like this, don't hesitate to bring it to me."`
 
 
@@ -1081,17 +1081,17 @@ mission "Remnant: Follow-up on Terminus Researchers B"
 		random < 40
 	on offer
 		conversation
-			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you earned your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants. (and on your darker days - contemplating being a pirate).`
-			`	Thinking back, you recall how you helped Ivan and a team of researchers from the Deep study the Ember Waste threshold wormhole. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes.`
+			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you first got your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants (and on your darker days - contemplating being a pirate).`
+			`	Thinking back, you recall how you helped Ivan and a team of researchers from the Deep study the Ember Waste threshold wormhole. Research like that might be of interest to the Remnant, seeing as it could open the door to new vessels venturing into the Ember Wastes.`
 			choice
 				`	(Find a prefect.)`
 				`	(Forget about it.)`
 					decline
-			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons, then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
-			`	"Greetings Captain, I am Prefect Torza. I was told you had some information that could be important?"`
-			`	He takes a seat on a bench on the far side of the room from the other Remnant, and gestures for you to take a seat with him.`
+			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
+			`	"Greetings Captain. I am Prefect Torza. I was told you had some information that could be important?"`
+			`	He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same.`
 			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers studying the wormhole. He appreciates that you kept them focused on the wormhole train instead of revealing the Remnant, but still appears concerned.`
-			`	Thinking carefully, he asks, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
+			`	Thinking carefully, he says, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
 			choice
 				`	"I'd be happy to."`
 				`	"I'd prefer not to."`
@@ -1100,7 +1100,7 @@ mission "Remnant: Follow-up on Terminus Researchers B"
 				accept
 	on complete
 		conversation
-			`Once you've landed on <planet> you look up the university that Ivan worked for. After thinking about it for a minute, you decide that probably the best source of information would be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief research, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here at their university. They proudly give you copies and wish you good luck in your studies.`
+			`Once you've landed on <planet>, you look up the university that Ivan worked for. After thinking about it for a minute, you decide that the best source of information would probably be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief research, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here at their university. They proudly give you copies and wish you good luck in your studies.`
 
 
 

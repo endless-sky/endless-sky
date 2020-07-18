@@ -1323,8 +1323,8 @@ mission "Deep: Remnant 0"
 			label secretdanger
 			apply
 				set "deep: did not reveal remnant"
-			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever present red glow, and how the desolate nature of the area led to you calling it the 'Ember Waste.' You also mention how fuel was a constant concern, but there were a number of odd wormholes.`
-			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Oh, before I forget: we can pay you for half of the cost of the Keystones."`
+			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever-present red glow and how the desolate nature of the area led to you calling it the 'Ember Waste.' You also mention how fuel was a constant concern and explain the number of odd wormholes.`
+			`	"This is very interesting, and it would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Oh, before I forget: we can pay you for half of the cost of the Keystones."`
 			choice
 				`	"I would be glad to help."`
 					accept
@@ -1538,7 +1538,7 @@ mission "Deep: Remnant 1D"
 		has "deep: did not reveal remnant"
 	on offer
 		conversation
-			`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
+			`You contact Ivan after you land and he sends you directions to his research lab located on the outskirts of the city. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
 			`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there was an odd series of wormholes?"`
 			`	"Yes. They kind of make a train of sorts."`
 			`	"Right, definitely noteworthy. Well, we've decided that we need to know more about these wormholes, as they could be significant. Could you make the circuit around this loop while carrying a suite of astronomical instruments? "`
@@ -1678,7 +1678,7 @@ mission "Deep: Wormhole Research"
 		has "deep: did not reveal remnant"
 	on offer
 		payment 250000
-		conversation `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
+		conversation `You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
 			decline
 	on decline
 		set "Deep: Remnant Research: done"
