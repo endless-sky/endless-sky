@@ -116,13 +116,13 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			label trust
 			apply
 				set haitrust
-			label continue
+			`	You seem to get no reaction and the Elder follows up with, "What is the gravest threat, in your opinion, facing humanity?"`
 				goto return
 			label caution
 			apply
 				set haicaution
-			label return
 			`	You seem to get no reaction and the Elder follows up with, "What is the gravest threat, in your opinion, facing humanity?"`
+			label return
 			choice
 				`	"The Pug"`
 				`	"The Alphas"`
