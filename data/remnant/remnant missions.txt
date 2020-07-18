@@ -2339,7 +2339,9 @@ mission "Remnant: Crystal Research 3A"
 	to offer
 		has "Remnant: Crystal Research 3: active"
 	on offer
-		dialog `Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
+		conversation
+			`Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
+				accept
 
 
 
@@ -2513,6 +2515,8 @@ mission "Remnant: Crystal Research 5"
 		personality coward disables plunders staying surveillance target mining
 		system "Peragenor"
 		ship "Starling (Keystone)" "Winds of Light"
+		dialog
+			`The scanner chimes softly, informing you that it has completed scanning the Winds of Light and has successfully archived the data.`
 	to offer
 		has "Remnant: Crystal Research 4: done"
 	on offer
@@ -2545,6 +2549,8 @@ mission "Remnant: Crystal Research 6"
 		personality coward disables plunders staying surveillance target mining
 		system "Peragenor"
 		ship "Starling" "Winds of Light"
+		dialog
+			`The scanner chimes softly once again, informing you that it has completed scanning the Winds of Light and has successfully archived the data from this second scanning.`
 	to offer
 		has "Remnant: Crystal Research 5: done"
 	on offer
