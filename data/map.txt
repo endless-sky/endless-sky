@@ -12,6 +12,10 @@ galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
 
+galaxy "pug empty galaxy"
+	pos 10000 7000
+	sprite ui/pleiades
+
 galaxy "label core"
 	pos -136 130
 	sprite label/core
@@ -2062,6 +2066,7 @@ system Adhara
 system Aescolanus
 	pos -15 340
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 233.28
 	belt 1323
 	haze _menu/haze-red
@@ -2102,6 +2107,7 @@ system Aescolanus
 system "Aki'il"
 	pos -83 722
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	habitable 1505.92
 	asteroids "large metal" 47 5
 	asteroids "large rock" 2 10
@@ -4247,6 +4253,7 @@ system Antares
 system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 320
 	belt 1994
 	haze _menu/haze-red
@@ -4427,6 +4434,7 @@ system Arcturus
 system Arculus
 	pos 308.87 393.242
 	government Remnant
+	attributes "ember waste"
 	habitable 625
 	belt 1536
 	haze _menu/haze-red
@@ -5909,6 +5917,7 @@ system "Broken Bowl"
 system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 320
 	belt 1797
 	haze _menu/haze-red
@@ -6215,6 +6224,7 @@ system Cardax
 system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 851.84
 	belt 1725
 	haze _menu/haze-red
@@ -6776,6 +6786,7 @@ system Chy'chra
 system Cinxia
 	pos 265.87 415.242
 	government Remnant
+	attributes "ember waste"
 	habitable 425.92
 	belt 1713
 	haze _menu/haze-red
@@ -6829,6 +6840,7 @@ system Cinxia
 system Coluber
 	pos 149.504 197.389
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 659.2
 	belt 1590
 	haze _menu/haze-red
@@ -6945,6 +6957,7 @@ system Companion
 system Convector
 	pos -14.1297 379.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 4131.68
 	belt 1961
 	haze _menu/haze-red
@@ -7438,6 +7451,7 @@ system Debrugt
 system Delia
 	pos -41 757
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 486.68
 	link Dixere
@@ -7873,6 +7887,7 @@ system Diphda
 system Dixere
 	pos 33 708
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 851.84
 	link Delia
@@ -8433,6 +8448,7 @@ system Eblumab
 system Edusa
 	pos 273.87 347.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 2372.76
 	belt 1167
 	haze _menu/haze-red
@@ -9261,6 +9277,7 @@ system Eshkoshtar
 system Esix
 	pos 142 532
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 8640
 	link Gerenus
@@ -9749,6 +9766,7 @@ system Farbutero
 system Farinus
 	pos 202.87 440.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 745.92
 	belt 1149
 	haze _menu/haze-red
@@ -9885,6 +9903,7 @@ system Faronektu
 system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
+	attributes "archon"
 	habitable 100
 	belt 1670
 	asteroids "small rock" 24 7.722
@@ -9929,6 +9948,7 @@ system Fasitopfar
 system Fearis
 	pos -16 643
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 486.68
 	link Feraticus
@@ -10064,6 +10084,7 @@ system "Fell Omen"
 system Feraticus
 	pos 58 630
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 320
 	link Dixere
@@ -10125,6 +10146,7 @@ system Feraticus
 system Fereti
 	pos -39 600
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 486.68
 	link Lire
@@ -10870,6 +10892,7 @@ system "Gamma Corvi"
 system Gerenus
 	pos 197 514
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 9065.92
 	link Esix
@@ -10989,6 +11012,7 @@ system Gienah
 system Giribea
 	pos -6 674
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1705
 	link Delia
@@ -12567,6 +12591,7 @@ system "Imo Dep"
 system Insitor
 	pos -28.1296 400.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 553.28
 	belt 1170
 	haze _menu/haze-red
@@ -13258,6 +13283,7 @@ system Kashikt
 system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
+	attributes "archon"
 	habitable 100
 	belt 1539
 	asteroids "small rock" 4 3.8019
@@ -14654,6 +14680,7 @@ system Lesath
 system Levana
 	pos 203.504 247.389
 	government Uninhabited
+	attributes "ember waste"
 	habitable 2798.68
 	belt 1202
 	haze _menu/haze-red
@@ -14772,6 +14799,7 @@ system Limen
 system Lire
 	pos -59 676
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1080
 	link Fearis
@@ -15020,6 +15048,7 @@ system "Lone Cloud"
 system Lucina
 	pos 175.504 176.389
 	government Uninhabited
+	attributes "ember waste"
 	habitable 320
 	belt 1466
 	haze _menu/haze-red
@@ -17105,6 +17134,7 @@ system Naper
 system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
+	attributes "ember waste" "void sprites" "archon"
 	habitable 2340
 	belt 1343
 	haze _menu/haze-red
@@ -17319,6 +17349,7 @@ system Nocte
 system Nona
 	pos 166 558
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1080
 	link Esix
@@ -17630,6 +17661,7 @@ system Orvala
 system Ossipago
 	pos 6.87033 429.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 1948.28
 	belt 1803
 	haze _menu/haze-red
@@ -17692,9 +17724,41 @@ system Ossipago
 			distance 221
 			period 17.2936
 
+system "Over the Rainbow"
+	pos 9904 7176
+	government Uninhabited
+	link "Terra Incognita"
+	habitable 1215
+	asteroids "small rock" 1 3.3098
+	asteroids "medium rock" 8 3.3345
+	asteroids "large rock" 2 2.1242
+	asteroids "small metal" 5 2.9887
+	asteroids "medium metal" 11 3.6556
+	asteroids "large metal" 7 2.0007
+	object "Pug Wormhole"
+		sprite planet/wormhole
+	object
+		sprite star/k5
+		distance 1455.1
+		period 875.481048
+		offset 180
+		object
+			sprite star/m4
+			distance 75
+			period 12.179969
+	object
+		sprite star/g0
+		distance 544.9
+		period 875.481048
+		object
+			sprite star/m4
+			distance 107
+			period 12.701281
+
 system Paeli
 	pos 129 497
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 425.92
 	link Esix
@@ -17759,6 +17823,7 @@ system Paeli
 system Pantica
 	pos 303.87 445.242
 	government Remnant
+	attributes "ember waste"
 	habitable 486.68
 	belt 1203
 	haze _menu/haze-red
@@ -17813,6 +17878,7 @@ system Pantica
 system Parca
 	pos 150.504 151.389
 	government Uninhabited
+	attributes "ember waste"
 	habitable 760
 	belt 1315
 	haze _menu/haze-red
@@ -18037,6 +18103,7 @@ system Pelubta
 system Peragenor
 	pos 86.8703 356.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 1080
 	belt 1920
 	haze _menu/haze-red
@@ -18098,6 +18165,7 @@ system Peragenor
 system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
+	attributes "archon"
 	habitable 100
 	belt 1065
 	asteroids "small rock" 49 1.403
@@ -18139,6 +18207,7 @@ system Peresedersi
 system Perfica
 	pos 185.87 419.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 1080
 	belt 1160
 	haze _menu/haze-red
@@ -18690,6 +18759,7 @@ system Polaris
 system Polerius
 	pos 88 482
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1505.92
 	link Paeli
@@ -19352,6 +19422,7 @@ system Quaru
 system Queri
 	pos 69 518
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 135
 	link Esix
@@ -19742,6 +19813,7 @@ system Regulus
 system Relifer
 	pos 19 603
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 625
 	link Feraticus
@@ -19955,6 +20027,7 @@ system Rigel
 system Ritilas
 	pos 11 523
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 135
 	link Queri
@@ -20676,6 +20749,7 @@ system Sarin
 system Sayaiban
 	pos 250.431 -274.812
 	government Drak
+	attributes "archon"
 	habitable 2035
 	belt 1803
 	asteroids "small rock" 13 2.106
@@ -20853,6 +20927,7 @@ system Schedar
 system Segesta
 	pos 111.87 294.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 425.92
 	belt 1120
 	haze _menu/haze-red
@@ -22542,6 +22617,7 @@ system "Steep Roof"
 system Stercutus
 	pos 140.87 320.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 945
 	belt 1492
 	haze _menu/haze-red
@@ -23179,6 +23255,7 @@ system Tejat
 system Terminus
 	pos -727.99 -23.2491
 	government Republic
+	attributes "wormhole"
 	habitable 425.92
 	belt 1221
 	link Limen
@@ -23226,6 +23303,49 @@ system Terminus
 		sprite planet/wormhole-red
 		distance 2077.64
 		period 1835.49
+
+system "Terra Incognita"
+	pos 9921.5 7086.5
+	government Uninhabited
+	link "Over the Rainbow"
+	habitable 455.625
+	asteroids "small rock" 8 1.8432
+	asteroids "medium rock" 1 1.8144
+	asteroids "large rock" 31 3.2544
+	asteroids "small metal" 1 4.1472
+	asteroids "medium metal" 24 3.9744
+	asteroids "large metal" 11 4.2624
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava4
+		distance 174.59
+		period 43.230003
+	object Ruin
+		sprite planet/ocean9
+		distance 461.84
+		period 185.99169
+	object
+		sprite planet/cloud8
+		distance 862.65
+		period 474.79721
+	object
+		sprite planet/gas2
+		distance 2203.49
+		period 1938.3083
+		object
+			sprite planet/ganymede
+			distance 280
+			period 12.134831
+		object
+			sprite planet/dust5
+			distance 439
+			period 23.822836
+		object
+			sprite planet/oberon
+			distance 543
+			period 32.771508
 
 system Torbab
 	pos -949.587 490.051
@@ -23501,6 +23621,7 @@ system "Ula Mon"
 system "Ultima Thule"
 	pos -336 -211
 	government Republic
+	attributes "wormhole"
 	habitable 2560
 	belt 1635
 	link Rajak
@@ -24176,6 +24297,7 @@ system "Wah Yoot"
 system Waypoint
 	pos -184 -515
 	government Hai
+	attributes "wormhole"
 	habitable 78.125
 	belt 1610
 	link "Heia Due"
@@ -24430,6 +24552,64 @@ system Wezen
 			sprite planet/tethys
 			distance 496
 			period 38.9601
+
+system "World's End"
+	pos 9966.5 7017.5
+	government Uninhabited
+	habitable 700
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 0
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 20
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 50
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 70
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 140
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 160
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 180
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 200
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 270
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 290
 
 system "Ya Hai"
 	pos -24.9453 -505.571
@@ -27407,6 +27587,8 @@ planet Pugglequat
 	"required reputation" 2
 	security 1
 
+planet "Pug Wormhole"
+
 planet Quicksilver
 	attributes core volcanic mining
 	landscape land/snow0
@@ -27526,6 +27708,14 @@ planet "Ring of Wisdom"
 	spaceport `Most of this ringworld is off-limits to everyone but the Heliarch scientists, not just for the sake of secrecy but also for safety. When the Heliarchs first began exploring the machinery of this ringworld, hundreds of them died in explosions, gas leaks, and power discharges after trying to cut their way into inaccessible areas. More recently, an entire team of scientists vanished from one of the main hangars without a trace and without any sign of resistance.`
 	"required reputation" 25
 	bribe 0
+
+planet Ruin
+	attributes uninhabited
+	landscape land/hills3
+	description `This is a stormy, cloud-covered planet, where fog banks flow through the valleys like dark, cold, slow-moving rivers, and the sun is seldom visible. Aside from some dull blue-grey moss and lichen, there are few living things here. The ground is warmer than the air above it, due to an abundance of radioactive elements in the planet's crust.`
+	description `	Most of the surface is ocean, but atop one of the higher mountains is an odd, abandoned spaceport.`
+	spaceport `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not cement or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
+	spaceport `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
 
 planet Rust
 	attributes rim farming factory
