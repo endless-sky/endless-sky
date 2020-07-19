@@ -200,7 +200,7 @@ mission "Resistance: Reactors"
 		outfit "Breeder Reactor" -1
 		payment 16500000
 		conversation
-			`This time you're told to land even further away, being close to a massive cave entrance. A couple Arachi and Kimeks are waiting for you, and carefully take each individual reactor to a massive cargo loader, which then slowly enters the cave.`
+			`This time you're told to land even further away, being close to a massive cave entrance. A couple Arachi and Kimek are waiting for you, and carefully take each individual reactor to a massive cargo loader, which then slowly enters the cave.`
 			`	After all three reactors have been taken out of your cargo hold, one of the Arachi comes up to you, and hands you <payment>, thanking you for your service to their cause.`
 			choice
 				`	"I appreciate that your group has been paying me full price for these outfits, but where do you even get all this money from?"`
