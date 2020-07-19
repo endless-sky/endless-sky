@@ -68,7 +68,7 @@ mission "Heliarch Investigation 2"
 					decline
 			label heliarchelder
 			`	The trio escorts you through a number of restricted passageways, eventually leading you to a meeting room of sorts with about a dozen other Heliarchs, one of whom motions for you to sit with them.`
-			`	You take a seat before one of the Kimeks there speaks, "The honorable Captain, we salute. Make you feel welcome, I, elder Iekie, of the Heliarch council, do hope we will."`
+			`	You take a seat before one of the Kimek there speaks, "The honorable Captain, we salute. Make you feel welcome, I, elder Iekie, of the Heliarch council, do hope we will."`
 			choice
 				`	"Nice to meet you."`
 				`	"Are you the one that has a job for me?"`
