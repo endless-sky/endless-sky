@@ -51,11 +51,9 @@ public:
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
 	
-	// Update and check the to spawn conditions for if this NPC can be placed.
-	void CanSpawn(const PlayerInfo &player);
+	// Update or check spawning and despawning for this NPC.
+	void UpdateSpawning(const PlayerInfo &player);
 	bool PassedSpawn() const;
-	// Update and check the to despawn conditions for if this NPC should be removed.
-	void CanDespawn(const PlayerInfo &player);
 	bool PassedDespawn() const;
 	
 	// Get the ships associated with this set of NPCs.

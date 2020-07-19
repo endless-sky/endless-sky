@@ -353,7 +353,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		for(const Planet *planet : visitedStopovers)
 			out.Write("stopover", planet->Name(), "visited");
 		
-		// Save all NPCs, except those that have despawned.
+		// Save all NPCs, except those that have despawned. This is so that despawned
+		// NPCs will not reappear should the player quit the game and return, and the
+		// NPCs no lonager pass the despawn conditions.
 		for(const NPC &npc : npcs)
 			if(!npc.PassedDespawn())
 				npc.Save(out);
@@ -864,10 +866,7 @@ const list<NPC> &Mission::NPCs() const
 void Mission::UpdateNPCs(const PlayerInfo &player)
 {
 	for(auto &npc : npcs)
-	{
-		npc.CanSpawn(player);
-		npc.CanDespawn(player);
-	}
+		npc.UpdateSpawning(player);
 }
 
 

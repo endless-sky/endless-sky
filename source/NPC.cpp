@@ -273,12 +273,18 @@ void NPC::Save(DataWriter &out) const
 
 
 
-// Update to spawn conditions for if this NPC can be placed.
-void NPC::CanSpawn(const PlayerInfo &player)
+// Update spawning and despawning for this NPC.
+void NPC::UpdateSpawning(const PlayerInfo &player)
 {
-	// Check the toSpawn conditions each time this function is called until they pass.
+	// The spawn and despawn conditions are tested every time this function is called
+	// until they pass. This is so that a change in a player's conditions don't cause
+	// an NPC to "un-spawn" or "un-despawn."
 	if(!passedSpawnConditions)
 		passedSpawnConditions = toSpawn.Test(player.Conditions());
+	
+	// Only test despawn conditions if the spawn conditions have passed.
+	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
+		passedDespawnConditions = toDespawn.Test(player.Conditions());
 }
 
 
@@ -287,16 +293,6 @@ void NPC::CanSpawn(const PlayerInfo &player)
 bool NPC::PassedSpawn() const
 {
 	return passedSpawnConditions;
-}
-
-
-
-// Update the to despawn conditions for if this NPC should be removed.
-void NPC::CanDespawn(const PlayerInfo &player)
-{
-	// Check the toDepsawn conditions each time this function is called until they pass.
-	if(!toDespawn.IsEmpty() && !passedDespawnConditions)
-		passedDespawnConditions = toDespawn.Test(player.Conditions());
 }
 
 
