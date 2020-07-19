@@ -22,6 +22,8 @@ using namespace std;
 Weather::Weather(const Hazard *hazard, int lifetime, double strength, int totalLifetime)
 	: hazard(hazard), totalLifetime((totalLifetime > 0) ? totalLifetime : lifetime), lifetime(lifetime), strength(strength)
 {
+	// Using a deviation of totalLifetime / 4.3 causes the strength of the weather to start and end at about 10% the maximum.
+	deviation = totalLifetime / 4.3;
 }
 
 
@@ -46,7 +48,7 @@ int Weather::Period() const
 	// strength. This is so that as the strength of a hazard increases, it gets both
 	// more likely to impact the ships in the system and each impact hits harder.
 	if(hazard->Deviates())
-		return max(1, static_cast<int>(static_cast<double>(hazard->Period()) / sqrt(Strength())));
+		return max(1, static_cast<int>(hazard->Period() / sqrt(Strength())));
 	else
 		return hazard->Period();
 }
@@ -67,8 +69,8 @@ double Weather::DamageMultiplier() const
 		// period in order to correctly scale the damage so that the DPS of the hazard
 		// will always scale properly with the strength.
 		// This also fixes some precision lost by the fact that the period is an integer.
-		double truePeriod = static_cast<double>(hazard->Period()) / sqrt(Strength());
-		double multiplier = static_cast<double>(Period()) / truePeriod;
+		double truePeriod = hazard->Period() / sqrt(Strength());
+		double multiplier = Period() / truePeriod;
 		return sqrt(Strength()) * multiplier;
 	}
 	else
@@ -101,15 +103,11 @@ int Weather::Step(vector<Visual> &visuals)
 
 double Weather::Strength() const
 {
+	// If this hazard deviates, modulate strength by the current lifetime.
+	// Strength follows a normal curve, peaking when the lifetime has
+	// reached half the totalLifetime.
 	if(hazard->Deviates())
-	{
-		double castTotal = static_cast<double>(totalLifetime);
-		double castCurrent = static_cast<double>(lifetime);
-		// Using a deviation of totalLifetime / 4.3 causes the strength of the weather to start and end at about 10% the maximum.
-		double DEVIATION = castTotal / 4.3;
-		// Modulate strength by the current lifetime. Strength follows a normal curve, peaking when the lifetime has reached half the totalLifetime.
-		return strength * exp(-pow(castCurrent - castTotal / 2., 2.) / (2. * pow(DEVIATION, 2.)));
-	}
+		return strength * exp(-pow(lifetime - totalLifetime / 2., 2.) / (2. * pow(deviation, 2.)));
 	else
 		return strength;
 }

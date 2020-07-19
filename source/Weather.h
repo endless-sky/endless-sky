@@ -49,6 +49,7 @@ private:
 	int totalLifetime;
 	int lifetime;
 	double strength;
+	double deviation;
 };
 
 #endif

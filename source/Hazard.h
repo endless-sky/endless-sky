@@ -29,9 +29,9 @@ public:
 	// How often this hazard deals its damage while active.
 	int Period() const;
 	// Generates a random integer between the minimum and maximum length of this hazard.
-	int Length() const;
+	int RandomLength() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
-	double Strength() const;
+	double RandomStrength() const;
 	// How far from this hazard's origin that it will have an effect.
 	double MinRange() const;
 	double MaxRange() const;

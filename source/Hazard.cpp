@@ -85,7 +85,7 @@ int Hazard::Period() const
 
 
 
-int Hazard::Length() const
+int Hazard::RandomLength() const
 {
 	return minLength + (maxLength <= minLength ? 0 : Random::Int(maxLength - minLength));
 }
@@ -93,7 +93,7 @@ int Hazard::Length() const
 
 
 
-double Hazard::Strength() const
+double Hazard::RandomStrength() const
 {
 	return minStrength + (maxStrength <= minStrength ? 0. : (maxStrength - minStrength) * Random::Real());
 }
