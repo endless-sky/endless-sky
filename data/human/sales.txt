@@ -69,6 +69,7 @@ shipyard "Navy Advanced"
 	"Frigate"
 	"Cruiser"
 	"Carrier"
+	"Auxiliary"
 
 shipyard "Megaparsec Basics"
 	"Quicksilver"
