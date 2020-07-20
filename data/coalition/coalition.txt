@@ -1011,7 +1011,7 @@ phrase "friendly coalition"
 		"last year I did "
 		"I'd like to "
 		"one day I will "
-		"I enjoyed to "
+		"I found it enjoyable to "
 	word
 		"visit"
 		"travel to"
