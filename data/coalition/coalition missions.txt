@@ -526,7 +526,7 @@ mission "Saryd Students 1"
 				`	"Oh no, I live here actually. In the humantown district, right around the corner."`
 				`	"Actually I'm just here for the view, sorry."`
 					decline
-			`	They all start laughing, some clearly finding it much funnier than you anticipated. They happen to be the same ones from whom you notice the stronger scent of alcohol.`
+			`	They all start laughing, some clearly finding your joke much funnier than you anticipated. Given the way they are stumbling on flat ground and the scent of alcohol that's permeated the air ever since one of them bumped into you, you realize why.`
 			`	"Fair enough. Not a common sight here, humans are, Captain," the one with a translation box says. "Asking for such a response, I was."`
 			label work
 			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arachi Rum for that.`
@@ -938,7 +938,7 @@ mission "Arachi Cartoonist 1"
 	on offer
 		conversation
 			`As you're moving along one of the underground tunnels that connect the spaceport here, an Arach stops you on your tracks.`
-			`	He introduces himself as Drugub, a cartoonist of local fame for his sci-fi comics. "Many ship designs produced in our space are, but only so many ideas from them, I can get," he says. "Expand my creative horizon, seeing the general shape of some human ships would."`
+			`	He introduces himself as Drugub, a cartoonist of local fame for his sci-fi comics. "Many styles of ships produced in our space are, but only so many ideas from them, I can get," he says. "Expand my creative horizon, seeing the general shape of some human ships would."`
 			choice
 				`	"I can help with that. Do you have any type of ship in mind?"`
 				`	"Sorry, but I won't be heading back to human space for a while."`
