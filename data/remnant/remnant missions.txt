@@ -2208,3 +2208,50 @@ mission "Remnant: Face to Maw 2B"
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
+
+
+
+mission "Remnant: Expanded Horizons Astral 1"
+	name "Update scans of Sagittarius A*"
+	description "Dawn has asked you to take some scientists and their equipment to scan Sagittarius A**"
+	blocked "You need at least 1 free bunk and 9 cargo space to take this mission."
+	cargo "Scientific equipment" 9
+	passengers 1
+	minor
+	waypoint "Sagittarius A*"
+	to offer
+		has "Remnant: Expanded Horizons Quarg 3"
+		random < 30
+	source
+		government "Remnant"
+	on offer
+		conversation
+			`"In the starport cafeteria you come across Dawn sitting at a table looking worried. She smiles when she sees you, and waves you to the seat opposite her. "Back from galivanting around the galaxy with more tales to share?" she signs.`
+			choice
+				`	"Yes, as a matter of fact..."`
+				`	"No, just hunting Korath..."`
+				`	"No, just testing some stuff..."`
+				`	"You look worried. Is something happening?"`
+					goto worried
+			`	She listens for a minute or two as you tell her about what you have been up to, but it is obvious that she has something on her mind.`
+			choice
+				`	"You look worried. Is everything alright?"`
+					goto worried
+				`	"You look distracted. We can talk later."`
+					defer
+			label worried
+			`	She makes a gesture of appreciation. "I'm worried, <first>. I keep feeling like there's something I'm missing." She pauses, then continues. "I should back up a step. While I do not have a permanent position yet, I am currently serving with an astrophysics team. We have been studying a variety of things, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there's a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
+			choice
+				`	"Have you asked someone senior for advice?"`
+				`	"Don't worry about it."`
+					goto worry
+				`	"Can I help with something?"`
+					goto help
+			`	"I did. The senior researcher told me that most of the team feels it. No-one has any concrete theories yet, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
+				goto help
+			label worry
+				`	"Thanks for the advice, but that is our purpose here - to worry about all the stuff that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
+			label help
+				`	"If you would like to help, yes, there is something you can do. I am currently putting together an expedition to Sagittarius A*
+				
+	
