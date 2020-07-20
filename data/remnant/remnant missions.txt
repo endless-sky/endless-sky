@@ -2213,7 +2213,7 @@ mission "Remnant: Face to Maw 2B"
 
 mission "Remnant: Cognizance 1"
 	name "Follow-up Observations"
-	description "Plume would like you to do a follow up visit to the planets in <system>."
+	description "Plume would like you to do a follow-up visit to the planets in <system>."
 	minor
 	source "Aventine"
 	stopover "Nasqueron"
@@ -2227,7 +2227,7 @@ mission "Remnant: Cognizance 1"
 	on offer
 		conversation
 			`A familiar face is waiting for you as you step into the crowded spaceport on Aventine. "Captain <first>!" signs Plume. "I have been hoping you would stop by." He gestures for you to sit down on the bench next to him.`
-			`	"Now that most of the cocoons have been returned, I would like you return to Nasqueron and Slylandro to observe the void sprites' behavior. It is my hope that there might be a chance that we can document far greater insights into their life cycles."`
+			`	"Now that most of the cocoons have been returned, I would like you return to Nasqueron and Slylandro to observe the void sprites' behavior. It is my hope that we can document far greater insights into their life cycles."`
 			choice
 				`	"Sure, I could do that."`
 					goto rc1accept
@@ -2255,16 +2255,16 @@ mission "Remnant: Cognizance 1"
 			cargo "void sprite" 5 20
 	on enter "Nenia"
 		dialog
-			`As you scan the system the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and disappearing into the clouds whenever your ship moves towards them.`
-			`	After several minutes of recording the illusive void sprites you decide to try on a gas giant, recalling that Plume will want footage from both giants.`
+			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and disappearing into the clouds whenever your ship moves towards them.`
+			`	After several minutes of recording the illusive void sprites, you decide to try on a gas giant, recalling that Plume will want footage from both giants.`
 	on stopover
 		conversation
-			`Here you find the same behaviour as before: Void sprites that have suddenly become timid and prone to diving into the shrouded depths of their world at the slightest quick movement.`
+			`Here you find the same behavior as before: void sprites have suddenly become timid and prone to diving into the shrouded depths of their world at the slightest quick movement.`
 			`	Despite the new challenge, you manage to record a variety of different void sprites before deciding to head back to <destination>.`
 	on complete
 		conversation
-			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. He quickly takes them and reviews the footage. He makes a gesture that you think means 'curious dejection,' but then seems to notice something and resumes his usual intent bearing.`
-			`	"Here, look!" He rewinds the recording and gestures curtly at the projection in front of you. "There. That one is injured. Some kind of burn in a long, straight line." He zips through the footage farther "and here, a scattering of scorch marks." He looks up at you and snaps out a curt series of gestures: "This is outside my experience, I need to consult an expert. Meet me in the spaceport in an hour."`
+			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. He quickly takes them and reviews the footage. He makes a gesture that you think means 'curious dejection', then seems to notice something, and resumes his usual intent bearing.`
+			`	"Here, look!" He rewinds the recording and gestures curtly at the projection in front of you. "There. That one is injured. Some kind of burn in a long, straight line." He zips through the footage farther: "And here, a scattering of scorch marks." He looks up at you and snaps out a series of gestures: "This is outside my experience; I need to consult an expert. Meet me in the spaceport in an hour."`
 
 
 
@@ -2284,25 +2284,25 @@ mission "Remnant: Cognizance 2"
 				`	"Okay, I will destroy the Korath ship."`
 					goto acceptance
 				`	"Do you have the authority to order that?"`
-			`	He nods curtly. "I do not have the authority to raise a fleet or order a captain to kill the ship, but I do have the authority to declare this Korath a threat to Remnant interests. It is up to you to decide how you want to respond to the identification of that threat."`
+			`	He nods curtly. "I do not have the authority to raise a fleet or order a captain to destroy the ship, but I do have the authority to declare this Korath a threat to Remnant interests. It is up to you to decide how to respond to the identification of that threat."`
 			choice
 				`	(Accept his explanation.)`
 					goto acceptance
 				`	(Ask him to clarify.)`
-			`	"While the Remnant have an all-encompassing hierarchy to ensure everyone answers to someone, we saw fit to keep all facets of our society merged to prevent fragmentation into 'civilian' or 'military' branches. Two aspects of this merging is the decision of when to invoke military force, and what amount of force is worthwhile. According to my position as a researcher, I have the authority to designate something a threat to my projects and/or to the Remnant as a whole. I could even order someone to act on it. However, given that I am of low status in terms of military proficiency, I cannot dictate the magnitude of the military response, and I am subject to being overruled by those with higher military qualifications."`
-			`	In our particular situation, I have higher xenobiology qualifications than you, so I can dictate to you, and most other xenobiologists, for that matter, that protecting the Void Sprites is a priority and something that must happen. However, you are more skilled at combat and military matters than I am, therefore it is your decision as to how important it is relative to other military tasks. Likewise, it is your decision as to what amount of force is required, tactics used, or other such military considerations."`
-			`	This is one of the aspects that set prefects apart: They are Remnant who have demonstrated excellence in their field, sound judgment across a variety of fields, and an affinity for balancing a multitude of demands on Remnant resources. Humility is also a requirement, as they must always recognize that while their particular combination of skills may be unique, there is always someone else who is better than them at any one thing. As such, Prefects are the adjudicators in determining the priority of our various tasks, and the leaders who keep the Remnant unified.`
+			`	"While the Remnant have an all-encompassing hierarchy to ensure everyone answers to someone, we saw fit to keep all facets of our society merged to prevent fragmentation into 'civilian' or 'military' branches. Two aspects of this merging is the decision of when to invoke military force and what amount of force is worthwhile. According to my position as a researcher, I have the authority to designate something a threat to my projects and/or to the Remnant as a whole. I could even order someone to act on it. However, given that I am of low status in terms of military proficiency, I cannot dictate the magnitude of the military response, and I am subject to being overruled by those with higher military qualifications."`
+			`	In our particular situation, I have higher xenobiology qualifications than you, so I can dictate to you, and most other xenobiologists, for that matter, that protecting the Void Sprites is a priority. However, you are more skilled at combat and military matters than I am, therefore it is your decision as to how important it is relative to other military tasks. Likewise, it is your decision as to what amount of force is required, tactics used, or other such military considerations."`
+			`	This is one of the aspects that set prefects apart: They are Remnant who have demonstrated excellence in their field, sound judgment across a variety of fields, and an affinity for balancing a multitude of demands on Remnant resources. Humility is also a requirement, as they must always recognize that while their particular combination of skills may be unique, there is always someone else who is better than them at any one thing. As such, prefects are the adjudicators in determining the priority of our various tasks and the leaders who keep the Remnant unified.`
 			choice
 				`	"Thanks for the explanation!"`
 					goto acceptance
 				`	"I thought prefects were specialists?"`
 			`	"Well, they are and are not. Most prefects are assigned particular tasks that they are expected to devote themselves to. Often, this task relates to their area of expertise, but it is not always the case. Generally speaking, a prefect is considered to be the ultimate authority on tasks that they have been assigned to, but they are expected to take into account the information and suggestions from other prefects and especially the specialists in the field or fields relevant to the task.`
-			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia who has the task of co-ordinating the military defense of the Remnant; and Prefect Taely who has the task of integrating our latest innovations into usable ships."`
+			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia, coordinates the military defense of the Remnant, and Prefect Taely, who integrates our latest innovations into usable ships."`
 			choice
 				`	"Thanks! That was more detail than I was expecting."`
 				`	"Okay, that satisfied my curiosity for now."`
 			label acceptance
-			`	"Excellent. You deal with the Korath, and I will file a report about this threat. Please inform me immediately once you have dealt with the threat." He pauses, then continues, "Oh, and remember to record the battle. It may be useful to help understand what they are doing there."`
+			`	"Excellent. You deal with the Korath, and I will file a report about this threat. Please inform me immediately once you have taken care of it." He pauses, then continues, "Oh, and remember to record the battle. It may be useful in understanding what they are doing there."`
 				accept
 	npc kill
 		government "Korath"
@@ -2314,7 +2314,7 @@ mission "Remnant: Cognizance 2"
 	on complete
 		event "korath hunting"
 		conversation
-			`When you return to Aventine, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter..." he is interrupted by a flashing light on his commlink. He briefly reads something, then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defence prefect. Chilia has requested that you meet with him on Caelian immediately."`
+			`When you return to Aventine, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
 
 
 
@@ -2350,12 +2350,12 @@ mission "Remnant: Cognizance 3"
 			label main
 			branch voidrifle
 				has "Remnant: Face to Maw 2B: done"
-			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting the void sprites, and we must take steps to prevent this from happening.`
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting the void sprites, and we must take steps to prevent this from happening.`
 				goto next
 			label voidrifle
-			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting the void sprites, and must realize the importance of stopping such discovery.`
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting the void sprites and must realize the importance of stopping such discovery.`
 			label next
-			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet, and report back."`
+			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
 				accept
 	npc
 		government "Korath"
@@ -2371,7 +2371,7 @@ mission "Remnant: Cognizance 3"
 	on complete
 		payment 500000
 		conversation
-			`This time as you complete your post-flight checks you spot Prefect Chilia exiting the starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
+			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
 			`	"I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
 
 
