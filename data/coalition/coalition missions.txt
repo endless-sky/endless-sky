@@ -153,6 +153,7 @@ mission "Kimek Student 1"
 	passengers 1
 	to offer
 		has "Coalition: First Contact: done"
+		random < 90
 	source "Fourth Shadow"
 	destination "Second Rose"
 	on offer
@@ -355,6 +356,7 @@ mission "Coalition Outbreak 1"
 	cargo "Medical Supplies" 90
 	to offer
 		has "Coalition: Contributor: done"
+		random < 5
 	source
 		near "1 Axis" 6
 	destination "Celestial Third"
@@ -479,6 +481,7 @@ mission "Kimek Gift"
 	deadline 2
 	to offer
 		has "Coalition: First Contact: done"
+		random < 85
 	source "Second Cerulean"
 	destination "Cold Horizon"
 	on offer
@@ -511,6 +514,7 @@ mission "Saryd Students 1"
 	deadline
 	to offer
 		has "Coalition: First Contact: done"
+		random < 80
 	source "Shadow of Leaves"
 	destination "Weir of Glubatub"
 	on offer
@@ -583,6 +587,7 @@ mission "Saryd Census 1"
 	passengers 17
 	to offer
 		has "Coalition: Contributor: done"
+		random < 40
 	source
 		attributes saryd
 		not planet "Flowing Fields"
@@ -664,6 +669,7 @@ mission "Saryd Couple 1"
 	passengers 1
 	to offer
 		has "Coalition: First Contact: done"
+		random < 60
 	source
 		near "Hunter" 1 2
 	destination "Shadow of Leaves"
@@ -831,6 +837,7 @@ mission "Longcow Vaccines 1"
 	description "Arachi ranchers have asked you to pick up the latest vaccines for longcows on <destination>."
 	to offer
 		has "Coalition: First Contact: done"
+		random < 35
 	source
 		attributes arach
 	destination "New Finding"
@@ -903,6 +910,7 @@ mission "Arachi Orphans"
 	cargo "Orphanage Belongings" 2
 	to offer
 		has "Coalition: Contributor: done"
+		random < 45
 	source
 		attributes arach
 	destination "Chosen Nexus"
@@ -933,6 +941,7 @@ mission "Arachi Cartoonist 1"
 	description "The Arach cartoonist Drugub is currently struggling to find inspiration for new spaceship designs in his comics. Head to <destination> and find something you can bring back to show him the ship models produced there."
 	to offer
 		has "Coalition: First Contact: done"
+		random < 95
 	source "Mebla's Portion"
 	destination "Prime"
 	on offer
