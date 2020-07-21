@@ -3652,11 +3652,7 @@ mission "Pirate Duel"
 		not "ships: Medium Warship"
 		not "ships: Heavy Warship"
 		not "ships: Heavy Freighter"
-		or
-			"ships: Light Warship" == 1
-			"ships: Light Freighter" == 1
-			"ships: Transport" == 1
-			"ships: Interceptor" == 1
+		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" == 1
 	
 	on offer
 		conversation
