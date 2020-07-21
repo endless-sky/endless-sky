@@ -353,8 +353,7 @@ void ConversationPanel::Goto(int index, int choice)
 		}
 		else if(conversation.IsEvent(node))
 		{
-			map<const GameEvent *, pair<int, int>> event = conversation.Event(node);
-			for(const auto &it : event)
+			for(const auto &it : conversation.Event(node))
 			{
 				int delay = (it.second.first == it.second.second) ? it.second.first 
 					: (it.second.first + Random::Int(it.second.second - it.second.first));
