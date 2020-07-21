@@ -3713,6 +3713,7 @@ mission "Pirate Duel"
 	
 	on complete
 		"reputation:  Independent " = 10
+		payment 250000
 		conversation
 				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
 				`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you <payment> for your effort.`
