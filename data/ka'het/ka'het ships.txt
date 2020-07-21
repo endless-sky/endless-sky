@@ -301,7 +301,7 @@ ship "Faes'mar"
 		"cost" 1180000
 		"shields" 200
 		"hull" 1900
-		"mass" 6
+		"mass" 46
 		"drag" .7
 		"heat dissipation" 1.05
 		"cargo space" 102
