@@ -580,13 +580,13 @@ ship "Peregrine"
 		licenses
 			"Remnant Capital"
 		"cost" 41627000
-		"shields" 20500
-		"hull" 10500
+		"shields" 16000
+		"hull" 8000
 		"required crew" 9
 		"bunks" 25
 		"mass" 350
 		"drag" 4.3
-		"heat dissipation" 0.8
+		"heat dissipation" 0.85
 		"fuel capacity" 900
 		"ramscoop" 2.5
 		"cargo space" 49
