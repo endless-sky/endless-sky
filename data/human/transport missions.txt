@@ -3716,7 +3716,6 @@ mission "Pirate Duel"
 		payment 250000
 		conversation
 				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
-				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
 				choice
 					`	(Take the bounty money.)`
 						goto end
