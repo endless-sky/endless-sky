@@ -410,7 +410,7 @@ mission "Sheragi Archaeology: The Box 6b"
 			`	As soon as you hear that phrase, it suddenly hits you. You've met the Hai up north, and you heard from the Unfettered that they've met the Sheragi many millenia ago. Perhaps the Hai could be able to help.`
 			`	"I think I know what to do. You're not the only person with contacts in strange places."`
 			`	You pick up your things, placing the cube back inside the backpack.`
-			`	"Well, good luck with that, Captain. Don't get in too much trouble."`
+			`	"Well, I wish I could study it longer, but if you have a lead, it's worth pursuing. I trust you'll return the cube to either myself or Albert once you're done with it. Good luck, Captain. Don't get in too much trouble."`
 
 mission "Sheragi Archaeology: The Box 6c"
 	landing
