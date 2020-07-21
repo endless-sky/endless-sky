@@ -3696,26 +3696,36 @@ mission "Pirate Duel"
 				`	(Ignore the invitation.)`
 					decline
 	
+	on accept
+		"reputation:  Independent " = 10
+	
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
 	on enter "Umbral"
-		"reputation: Independent (Friendly before duel)" = -1000
+		"reputation:  Independent " = -1000
 		conversation
 			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system along side you. Before you can respond, your ship intercepts a hail, and it opens communication.`
 			`The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
 			`The Vanguard powers up its weapons.`
 	
 	npc kill
-		government "Independent (Friendly before duel)"
+		government " Independent "
 		personality heroic vindictive unconstrained launching
 			confusion 20
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
 		dialog `The Anglerfish and "The captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
-
-government "Independent (Friendly before duel)"
-	"display name" "Independent"
-	swizzle 6
-	"hostile hail" "hostile bounty hunter"
+	
+	on complete
+		"reputation:  Independent " = 10
+		conversation
+				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
+				`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you <payment> for your effort.`
+				choice
+					`	(Leave.)`
+					`	(Read more about the bounty.)`
+						decline
+				label more
+				`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also had a curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship.`
 
 ship "Vanguard" "Vanguard (Plasma Slow)"
 	outfits
@@ -3732,23 +3742,3 @@ ship "Vanguard" "Vanguard (Plasma Slow)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
-
-mission "Pirate Duel Payment"
-	landing
-	source "Wayfarer"
-	
-	to offer
-		has "Pirate Duel: done"
-	
-	on offer
-		payment 250000
-		conversation
-				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
-				choice
-					`	(Take the bounty money.)`
-					`	(Read more about the bounty.)`
-						goto more
-				`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you 250,000 credits for your effort.`
-					decline
-				label more
-				`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also had a curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship. You go to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you 250,000 credits for the effort.`
