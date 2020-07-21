@@ -3622,7 +3622,7 @@ mission "Earth Retirement"
 			choice
 				`	"Thank you. I hope you have the best of luck on Earth."`
 					goto payment
-				`	"You can keep those. You sound like you needed them more than I do."`
+				`	"You can keep those. You sound like you need them more than I do."`
 					goto reject
 			
 			label payment
