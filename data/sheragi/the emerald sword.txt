@@ -557,7 +557,7 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"We've managed to open the box and we're making a blueprint of it," says Desyo. "Once that's done, we might be able to rebuild the broken pieces and recover the data. We already have documentation on how their hardware worked."`
 			`	"The catch is that this is a collaboration now. We'll help you, if you share your findings with us," Rakei continues.`
 			`	"Sounds like a fair deal to me," Albert says. "We'll arrange the details later. <first>, thank you so much for your help. We'll continue studying this artifact, and we'll send you a message when we're done."`
-			`	You say goodbye to Albert, Rakei, Eyama, and Desyo, and make your way back to your ship. However, as you're walking back to the ship, you feel a heavy hand on your shoulder. You look back, and you're startled to see a Quarg. It's Yarthis, who you had brought here to help protect the dig site during the early days of the project.
+			`	You say goodbye to Albert, Rakei, Eyama, and Desyo, and make your way back to your ship. However, as you're walking back to the ship, you feel a heavy hand on your shoulder. You look back, and you're startled to see a Quarg. It's Yarthis, who you had brought here to help protect the dig site during the early days of the project.`
 			choice
 				`	"I wasn't expecting to see you here."`
 				`	"Can I help you?"`
