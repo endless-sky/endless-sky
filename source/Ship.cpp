@@ -39,13 +39,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <sstream>
 
 using namespace std;
 
 namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
-	const vector<string> BAY_TYPE = {"drone", "fighter"};
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
 	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
@@ -91,6 +91,8 @@ namespace {
 	}
 }
 
+
+
 const vector<string> Ship::CATEGORIES = {
 	"Transport",
 	"Light Freighter",
@@ -101,6 +103,14 @@ const vector<string> Ship::CATEGORIES = {
 	"Heavy Warship",
 	"Fighter",
 	"Drone"
+};
+
+
+
+// Set of ship types that can be carried in bays.
+const set<string> Ship::BAY_TYPES = {
+	"Drone",
+	"Fighter"
 };
 
 
@@ -240,23 +250,41 @@ void Ship::Load(const DataNode &node)
 			neverDisabled = true;
 		else if(key == "uncapturable")
 			isCapturable = false;
-		else if((key == "fighter" || key == "drone") && child.Size() >= 3)
+		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
+			(key == "bay" && child.Size() >= 4))
 		{
+			// While the `drone` and `fighter` keywords are supported for backwards compatiblity, the
+			// standard format is `bay <ship-category>`, with the same signature for other values.
+			string category = "Fighter";
+			int childOffset = 0;
+			if(key == "drone")
+				category = "Drone";
+			else if(key == "bay")
+			{
+				category = child.Token(1);
+				childOffset += 1;
+			}
+			if(!BAY_TYPES.count(category))
+			{
+				child.PrintTrace("Warning: Invalid category defined for bay:");
+				continue;
+			}
+			
 			if(!hasBays)
 			{
 				bays.clear();
 				hasBays = true;
 			}
-			bays.emplace_back(child.Value(1), child.Value(2), key == "fighter");
+			bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
 			Bay &bay = bays.back();
-			for(int i = 3; i < child.Size(); ++i)
+			for(int i = 3 + childOffset; i < child.Size(); ++i)
 			{
 				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
 					if(child.Token(i) == BAY_SIDE[j])
 						bay.side = j;
 				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
 					if(child.Token(i) == BAY_FACING[j])
-						bay.facing = j;
+						bay.facing = BAY_ANGLE[j];
 			}
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
@@ -268,8 +296,26 @@ void Ship::Load(const DataNode &node)
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
 					}
+					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
+						bay.facing = Angle(grand.Value(1));
 					else
-						grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
+					{
+						bool handled = false;
+						for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
+							if(grand.Token(0) == BAY_SIDE[i])
+							{
+								bay.side = i;
+								handled = true;
+							}
+						for(unsigned i = 1; i < BAY_FACING.size(); ++i)
+							if(grand.Token(0) == BAY_FACING[i])
+							{
+								bay.facing = BAY_ANGLE[i];
+								handled = true;
+							}
+						if(!handled)
+							grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\", \"angle\", or a facing keyword:");
+					}
 				}
 		}
 		else if(key == "leak" && child.Size() >= 2)
@@ -571,9 +617,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	
-	// Figure out if this ship can be carried.
-	const string &category = attributes.Category();
-	canBeCarried = (category == "Fighter" || category == "Drone");
+	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
 	
 	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
 	string warning;
@@ -708,18 +752,17 @@ void Ship::Save(DataWriter &out) const
 		{
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
-			if(bay.side && bay.facing)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
-			else if(bay.side)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_SIDE[bay.side]);
-			else if(bay.facing)
-				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing]);
-			else
-				out.Write(BAY_TYPE[bay.isFighter], x, y);
-			if(!bay.launchEffects.empty())
+
+			out.Write("bay", bay.category, x, y);
+			
+			if(!bay.launchEffects.empty() || bay.facing.Degrees() || bay.side)
 			{
 				out.BeginChild();
 				{
+					if(bay.facing.Degrees())
+						out.Write("angle", bay.facing.Degrees());
+					if(bay.side)
+						out.Write(BAY_SIDE[bay.side]);
 					for(const Effect *effect : bay.launchEffects)
 						out.Write("launch effect", effect->Name());
 				}
@@ -1000,6 +1043,20 @@ void Ship::SetIsParked(bool parked)
 bool Ship::IsParked() const
 {
 	return isParked;
+}
+
+
+
+bool Ship::HasDeployOrder() const
+{
+	return shouldDeploy;
+}
+
+
+
+void Ship::SetDeployOrder(bool shouldDeploy)
+{
+	this->shouldDeploy = shouldDeploy;
 }
 
 
@@ -1805,7 +1862,7 @@ void Ship::DoGeneration()
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 {
-	// Allow fighters to launch from a disabled ship, but not from a ship that
+	// Allow carried ships to launch from a disabled ship, but not from a ship that
 	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
@@ -1813,7 +1870,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 		return;
 	
 	for(Bay &bay : bays)
-		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
+		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
 				|| (ejecting && !Random::Int(6))))
 		{
 			// Resupply any ships launching of their own accord.
@@ -1845,7 +1902,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
 			Point exitPoint = position + angle.Rotate(bay.point);
 			// When ejected, ships depart haphazardly.
-			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + BAY_ANGLE[bay.facing];
+			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + bay.facing;
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(exitPoint, v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
@@ -2623,6 +2680,7 @@ double Ship::IdleHeat() const
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
+	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
 	return production / dissipation;
 }
 
@@ -2832,33 +2890,46 @@ bool Ship::HasBays() const
 
 
 
-int Ship::BaysFree(bool isFighter) const
+// Check how many bays are not occupied at present. This does not check whether
+// one of your escorts plans to use that bay.
+int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.isFighter == isFighter) && !bay.ship;
+		count += (bay.category == category) && !bay.ship;
 	return count;
 }
 
 
 
-// Check if this ship has a bay free for the given fighter, and the bay is
+// Check how many bays this ship has of a given category.
+int Ship::BaysTotal(const string &category) const
+{
+	int count = 0;
+	for(const Bay &bay : bays)
+		count += (bay.category == category);
+	return count;
+}
+
+
+
+// Check if this ship has a bay free for the given ship, and the bay is
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	if(!ship.canBeCarried)
+	if(!ship.CanBeCarried())
 		return false;
-	// This carried ship is either a fighter or a drone.
-	bool isFighter = (ship.attributes.Category() == "Fighter");
+	// Check only for the category that we are interested in.
+	const string &category = ship.attributes.Category();
 	
-	int free = BaysFree(isFighter);
+	int free = BaysFree(category);
 	if(!free)
 		return false;
 	
 	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
-		if(escort && escort->attributes.Category() == ship.attributes.Category())
+		if(escort && escort->attributes.Category() == category)
 			--free;
 	}
 	return (free > 0);
@@ -2875,14 +2946,14 @@ bool Ship::CanBeCarried() const
 
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
-	if(!ship || !ship->canBeCarried)
+	if(!ship || !ship->CanBeCarried())
 		return false;
 	
-	// This carried ship is either a fighter or a drone.
-	bool isFighter = ship->attributes.Category() == "Fighter";
+	// Check only for the category that we are interested in.
+	const string &category = ship->attributes.Category();
 	
 	for(Bay &bay : bays)
-		if((bay.isFighter == isFighter) && !bay.ship)
+		if((bay.category == category) && !bay.ship)
 		{
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
@@ -2942,7 +3013,7 @@ bool Ship::PositionFighters() const
 			hasVisible = true;
 			bay.ship->position = angle.Rotate(bay.point) * Zoom() + position;
 			bay.ship->velocity = velocity;
-			bay.ship->angle = angle + BAY_ANGLE[bay.facing];
+			bay.ship->angle = angle + bay.facing;
 			bay.ship->zoom = zoom;
 		}
 	return hasVisible;

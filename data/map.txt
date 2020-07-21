@@ -12,6 +12,10 @@ galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
 
+galaxy "pug empty galaxy"
+	pos 10000 7000
+	sprite ui/pleiades
+
 galaxy "label core"
 	pos -136 130
 	sprite label/core
@@ -1876,6 +1880,7 @@ system Achernar
 	fleet "Small Syndicate" 500
 	fleet "Small Core Merchants" 300
 	fleet "Human Miners" 3000
+	fleet "Republic Logistics" 6000
 	object
 		sprite star/g5
 		period 10
@@ -2061,6 +2066,7 @@ system Adhara
 system Aescolanus
 	pos -15 340
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 233.28
 	belt 1323
 	haze _menu/haze-red
@@ -2101,6 +2107,7 @@ system Aescolanus
 system "Aki'il"
 	pos -83 722
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	habitable 1505.92
 	asteroids "large metal" 47 5
 	asteroids "large rock" 2 10
@@ -2185,6 +2192,7 @@ system "Al Dhanab"
 	fleet "Large Core Merchants" 400
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 800
+	fleet "Republic Logistics" 5300
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 3000
 	fleet "Human Miners" 2000
@@ -2857,8 +2865,9 @@ system Alheka
 	trade Plastic 477
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 3000
-	fleet "Small Republic" 1200
-	fleet "Large Republic" 4000
+	fleet "Small Republic" 1500
+	fleet "Large Republic" 4400
+	fleet "Republic Logistics" 4600
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 2000
 	fleet "Human Miners" 3000
@@ -2913,8 +2922,9 @@ system Alhena
 	trade Plastic 415
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 700
-	fleet "Small Republic" 900
-	fleet "Large Republic" 1400
+	fleet "Small Republic" 1100
+	fleet "Large Republic" 1600
+	fleet "Republic Logistics" 3000
 	object
 		sprite star/g5
 		distance 32.1693
@@ -3407,8 +3417,9 @@ system Alnitak
 	trade Plastic 452
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
-	fleet "Small Republic" 2000
+	fleet "Small Republic" 3000
 	fleet "Large Republic" 4000
+	fleet "Republic Logistics" 6000
 	object
 		sprite star/m0
 		distance 31.1055
@@ -3722,8 +3733,9 @@ system Alphard
 	fleet "Large Northern Merchants" 900
 	fleet "Paradise Merchants" 1500
 	fleet "Small Deep Merchants" 2000
-	fleet "Small Republic" 2400
+	fleet "Small Republic" 3000
 	fleet "Large Republic" 6000
+	fleet "Republic Logistics" 6000
 	fleet "Human Miners" 2000
 	object
 		sprite star/g5
@@ -3894,8 +3906,9 @@ system Altair
 	fleet "Large Core Merchants" 600
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 3000
-	fleet "Small Republic" 2000
+	fleet "Small Republic" 3000
 	fleet "Large Republic" 6000
+	fleet "Republic Logistics" 6000
 	fleet "Small Syndicate" 9000
 	object
 		sprite star/g5
@@ -4240,6 +4253,7 @@ system Antares
 system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 320
 	belt 1994
 	haze _menu/haze-red
@@ -4420,6 +4434,7 @@ system Arcturus
 system Arculus
 	pos 308.87 393.242
 	government Remnant
+	attributes "ember waste"
 	habitable 625
 	belt 1536
 	haze _menu/haze-red
@@ -5318,8 +5333,9 @@ system Betelgeuse
 	trade Plastic 470
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 800
-	fleet "Small Republic" 2000
-	fleet "Large Republic" 3000
+	fleet "Small Republic" 2500
+	fleet "Large Republic" 3500
+	fleet "Republic Logistics" 6000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
 	object
@@ -5901,6 +5917,7 @@ system "Broken Bowl"
 system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 320
 	belt 1797
 	haze _menu/haze-red
@@ -5987,8 +6004,9 @@ system Canopus
 	trade Plastic 485
 	fleet "Small Northern Merchants" 900
 	fleet "Large Northern Merchants" 700
-	fleet "Small Republic" 1000
-	fleet "Large Republic" 2000
+	fleet "Small Republic" 1100
+	fleet "Large Republic" 2500
+	fleet "Republic Logistics" 4500
 	object
 		sprite star/m0
 		period 10
@@ -6206,6 +6224,7 @@ system Cardax
 system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 851.84
 	belt 1725
 	haze _menu/haze-red
@@ -6299,6 +6318,7 @@ system Castor
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 500
+	fleet "Republic Logistics" 2000
 	object
 		sprite star/g5
 		distance 52.9147
@@ -6766,6 +6786,7 @@ system Chy'chra
 system Cinxia
 	pos 265.87 415.242
 	government Remnant
+	attributes "ember waste"
 	habitable 425.92
 	belt 1713
 	haze _menu/haze-red
@@ -6819,6 +6840,7 @@ system Cinxia
 system Coluber
 	pos 149.504 197.389
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 659.2
 	belt 1590
 	haze _menu/haze-red
@@ -6935,6 +6957,7 @@ system Companion
 system Convector
 	pos -14.1297 379.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 4131.68
 	belt 1961
 	haze _menu/haze-red
@@ -7428,6 +7451,7 @@ system Debrugt
 system Delia
 	pos -41 757
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 486.68
 	link Dixere
@@ -7863,6 +7887,7 @@ system Diphda
 system Dixere
 	pos 33 708
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 851.84
 	link Delia
@@ -8423,6 +8448,7 @@ system Eblumab
 system Edusa
 	pos 273.87 347.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 2372.76
 	belt 1167
 	haze _menu/haze-red
@@ -9073,6 +9099,7 @@ system "Epsilon Leonis"
 	fleet "Small Deep Merchants" 1600
 	fleet "Large Deep Security" 6000
 	fleet "Large Deep Merchants" 2500
+	fleet "Republic Logistics" 6000
 	object
 		sprite star/g0
 		distance 25.8286
@@ -9250,6 +9277,7 @@ system Eshkoshtar
 system Esix
 	pos 142 532
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 8640
 	link Gerenus
@@ -9738,6 +9766,7 @@ system Farbutero
 system Farinus
 	pos 202.87 440.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 745.92
 	belt 1149
 	haze _menu/haze-red
@@ -9874,6 +9903,7 @@ system Faronektu
 system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
+	attributes "archon"
 	habitable 100
 	belt 1670
 	asteroids "small rock" 24 7.722
@@ -9918,6 +9948,7 @@ system Fasitopfar
 system Fearis
 	pos -16 643
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 486.68
 	link Feraticus
@@ -10053,6 +10084,7 @@ system "Fell Omen"
 system Feraticus
 	pos 58 630
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 320
 	link Dixere
@@ -10114,6 +10146,7 @@ system Feraticus
 system Fereti
 	pos -39 600
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 486.68
 	link Lire
@@ -10448,6 +10481,7 @@ system Fomalhaut
 	fleet "Large Core Merchants" 1200
 	fleet "Small Syndicate" 5000
 	fleet "Large Syndicate" 10000
+	fleet "Republic Logistics" 3300
 	object
 		sprite star/k0
 		period 10
@@ -10858,6 +10892,7 @@ system "Gamma Corvi"
 system Gerenus
 	pos 197 514
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 9065.92
 	link Esix
@@ -10977,6 +11012,7 @@ system Gienah
 system Giribea
 	pos -6 674
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1705
 	link Delia
@@ -11215,6 +11251,7 @@ system Gomeisa
 	fleet "Small Deep Merchants" 3000
 	fleet "Large Deep Security" 4000
 	fleet "Large Deep Merchants" 5000
+	fleet "Republic Logistics" 5000
 	object
 		sprite star/k0
 		distance 55.5
@@ -12554,6 +12591,7 @@ system "Imo Dep"
 system Insitor
 	pos -28.1296 400.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 553.28
 	belt 1170
 	haze _menu/haze-red
@@ -13245,6 +13283,7 @@ system Kashikt
 system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
+	attributes "archon"
 	habitable 100
 	belt 1539
 	asteroids "small rock" 4 3.8019
@@ -14641,6 +14680,7 @@ system Lesath
 system Levana
 	pos 203.504 247.389
 	government Uninhabited
+	attributes "ember waste"
 	habitable 2798.68
 	belt 1202
 	haze _menu/haze-red
@@ -14759,6 +14799,7 @@ system Limen
 system Lire
 	pos -59 676
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1080
 	link Fearis
@@ -15007,6 +15048,7 @@ system "Lone Cloud"
 system Lucina
 	pos 175.504 176.389
 	government Uninhabited
+	attributes "ember waste"
 	habitable 320
 	belt 1466
 	haze _menu/haze-red
@@ -15227,6 +15269,7 @@ system Markab
 	fleet "Small Syndicate" 600
 	fleet "Large Syndicate" 800
 	fleet "Human Miners" 3000
+	fleet "Republic Logistics" 4000
 	object
 		sprite star/g5
 		period 10
@@ -15868,8 +15911,9 @@ system Menkalinan
 	trade Plastic 472
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
-	fleet "Small Republic" 700
-	fleet "Large Republic" 1500
+	fleet "Small Republic" 800
+	fleet "Large Republic" 2000
+	fleet "Republic Logistics" 2000
 	object
 		sprite star/f5-old
 		distance 58.5
@@ -17090,6 +17134,7 @@ system Naper
 system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
+	attributes "ember waste" "void sprites" "archon"
 	habitable 2340
 	belt 1343
 	haze _menu/haze-red
@@ -17304,6 +17349,7 @@ system Nocte
 system Nona
 	pos 166 558
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1080
 	link Esix
@@ -17615,6 +17661,7 @@ system Orvala
 system Ossipago
 	pos 6.87033 429.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 1948.28
 	belt 1803
 	haze _menu/haze-red
@@ -17677,9 +17724,41 @@ system Ossipago
 			distance 221
 			period 17.2936
 
+system "Over the Rainbow"
+	pos 9904 7176
+	government Uninhabited
+	link "Terra Incognita"
+	habitable 1215
+	asteroids "small rock" 1 3.3098
+	asteroids "medium rock" 8 3.3345
+	asteroids "large rock" 2 2.1242
+	asteroids "small metal" 5 2.9887
+	asteroids "medium metal" 11 3.6556
+	asteroids "large metal" 7 2.0007
+	object "Pug Wormhole"
+		sprite planet/wormhole
+	object
+		sprite star/k5
+		distance 1455.1
+		period 875.481048
+		offset 180
+		object
+			sprite star/m4
+			distance 75
+			period 12.179969
+	object
+		sprite star/g0
+		distance 544.9
+		period 875.481048
+		object
+			sprite star/m4
+			distance 107
+			period 12.701281
+
 system Paeli
 	pos 129 497
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 425.92
 	link Esix
@@ -17744,6 +17823,7 @@ system Paeli
 system Pantica
 	pos 303.87 445.242
 	government Remnant
+	attributes "ember waste"
 	habitable 486.68
 	belt 1203
 	haze _menu/haze-red
@@ -17798,6 +17878,7 @@ system Pantica
 system Parca
 	pos 150.504 151.389
 	government Uninhabited
+	attributes "ember waste"
 	habitable 760
 	belt 1315
 	haze _menu/haze-red
@@ -18022,6 +18103,7 @@ system Pelubta
 system Peragenor
 	pos 86.8703 356.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 1080
 	belt 1920
 	haze _menu/haze-red
@@ -18083,6 +18165,7 @@ system Peragenor
 system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
+	attributes "archon"
 	habitable 100
 	belt 1065
 	asteroids "small rock" 49 1.403
@@ -18124,6 +18207,7 @@ system Peresedersi
 system Perfica
 	pos 185.87 419.242
 	government Uninhabited
+	attributes "ember waste"
 	habitable 1080
 	belt 1160
 	haze _menu/haze-red
@@ -18300,8 +18384,9 @@ system Phact
 	trade Plastic 460
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 2000
-	fleet "Small Republic" 4000
-	fleet "Large Republic" 8000
+	fleet "Small Republic" 6000
+	fleet "Large Republic" 9000
+	fleet "Republic Logistics" 6000
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 5000
@@ -18674,6 +18759,7 @@ system Polaris
 system Polerius
 	pos 88 482
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 1505.92
 	link Paeli
@@ -18761,8 +18847,9 @@ system Pollux
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
 	fleet "Paradise Merchants" 600
-	fleet "Small Republic" 1000
-	fleet "Large Republic" 2000
+	fleet "Small Republic" 1500
+	fleet "Large Republic" 4500
+	fleet "Republic Logistics" 4500
 	object
 		sprite star/g0
 		period 10
@@ -18961,6 +19048,7 @@ system Procyon
 	fleet "Paradise Merchants" 900
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 3000
+	fleet "Republic Logistics" 1500
 	object
 		sprite star/k0
 		period 10
@@ -19334,18 +19422,11 @@ system Quaru
 system Queri
 	pos 69 518
 	government Uninhabited
+	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
 	habitable 135
 	link Esix
 	link Ritilas
-	asteroids "large metal" 6 2
-	asteroids "large rock" 4 3
-	asteroids "medium metal" 13 2
-	asteroids "medium rock" 4 3
-	asteroids "small metal" 12 3
-	asteroids "small rock" 7 4
-	minables lead 4 4
-	minables silicon 3 5
 	trade Clothing 292
 	trade Electronics 793
 	trade Equipment 421
@@ -19359,101 +19440,8 @@ system Queri
 	fleet "Ka'het" 4000
 	fleet "Ka'het Aggressive" 11000
 	object
-		sprite star/a5
+		sprite star/g5-old
 		period 10
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 20
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 40
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 60
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 80
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 100
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 120
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 140
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 160
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 180
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 200
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 220
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 240
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 260
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 280
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 300
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 320
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 340
-	object
-		sprite planet/gas11
-		distance 2417.94
-		period 4093.19
 
 system Rajak
 	pos -270 -236
@@ -19825,6 +19813,7 @@ system Regulus
 system Relifer
 	pos 19 603
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 625
 	link Feraticus
@@ -19989,8 +19978,9 @@ system Rigel
 	trade Plastic 472
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 4000
-	fleet "Small Republic" 3000
-	fleet "Large Republic" 5000
+	fleet "Small Republic" 3500
+	fleet "Large Republic" 7000
+	fleet "Republic Logistics" 7000
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 2000
@@ -20037,6 +20027,7 @@ system Rigel
 system Ritilas
 	pos 11 523
 	government Uninhabited
+	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
 	habitable 135
 	link Queri
@@ -20758,6 +20749,7 @@ system Sarin
 system Sayaiban
 	pos 250.431 -274.812
 	government Drak
+	attributes "archon"
 	habitable 2035
 	belt 1803
 	asteroids "small rock" 13 2.106
@@ -20834,6 +20826,7 @@ system Scheat
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
+	fleet "Republic Logistics" 4700
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
 	object
@@ -20934,6 +20927,7 @@ system Schedar
 system Segesta
 	pos 111.87 294.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 425.92
 	belt 1120
 	haze _menu/haze-red
@@ -21808,7 +21802,8 @@ system Sirius
 	fleet "Large Northern Merchants" 700
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
-	fleet "Large Republic" 1500
+	fleet "Large Republic" 2500
+	fleet "Republic Logistics" 2500
 	object
 		sprite star/f5
 		distance 3.94301
@@ -22032,6 +22027,7 @@ system Sol
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 600
 	fleet "Large Republic" 900
+	fleet "Republic Logistics" 2000
 	fleet "Small Core Merchants" 1000
 	fleet "Large Core Merchants" 2000
 	object
@@ -22621,6 +22617,7 @@ system "Steep Roof"
 system Stercutus
 	pos 140.87 320.242
 	government Uninhabited
+	attributes "ember waste" "wormhole"
 	habitable 945
 	belt 1492
 	haze _menu/haze-red
@@ -22950,7 +22947,8 @@ system Talita
 	fleet "Large Northern Merchants" 900
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
-	fleet "Large Republic" 2000
+	fleet "Large Republic" 4000
+	fleet "Republic Logistics" 4000
 	fleet "Human Miners" 3000
 	object
 		sprite star/g0
@@ -23257,6 +23255,7 @@ system Tejat
 system Terminus
 	pos -727.99 -23.2491
 	government Republic
+	attributes "wormhole"
 	habitable 425.92
 	belt 1221
 	link Limen
@@ -23304,6 +23303,49 @@ system Terminus
 		sprite planet/wormhole-red
 		distance 2077.64
 		period 1835.49
+
+system "Terra Incognita"
+	pos 9921.5 7086.5
+	government Uninhabited
+	link "Over the Rainbow"
+	habitable 455.625
+	asteroids "small rock" 8 1.8432
+	asteroids "medium rock" 1 1.8144
+	asteroids "large rock" 31 3.2544
+	asteroids "small metal" 1 4.1472
+	asteroids "medium metal" 24 3.9744
+	asteroids "large metal" 11 4.2624
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava4
+		distance 174.59
+		period 43.230003
+	object Ruin
+		sprite planet/ocean9
+		distance 461.84
+		period 185.99169
+	object
+		sprite planet/cloud8
+		distance 862.65
+		period 474.79721
+	object
+		sprite planet/gas2
+		distance 2203.49
+		period 1938.3083
+		object
+			sprite planet/ganymede
+			distance 280
+			period 12.134831
+		object
+			sprite planet/dust5
+			distance 439
+			period 23.822836
+		object
+			sprite planet/oberon
+			distance 543
+			period 32.771508
 
 system Torbab
 	pos -949.587 490.051
@@ -23579,6 +23621,7 @@ system "Ula Mon"
 system "Ultima Thule"
 	pos -336 -211
 	government Republic
+	attributes "wormhole"
 	habitable 2560
 	belt 1635
 	link Rajak
@@ -24254,6 +24297,7 @@ system "Wah Yoot"
 system Waypoint
 	pos -184 -515
 	government Hai
+	attributes "wormhole"
 	habitable 78.125
 	belt 1610
 	link "Heia Due"
@@ -24334,8 +24378,9 @@ system Wazn
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1500
 	fleet "Paradise Merchants" 1800
-	fleet "Small Republic" 2000
-	fleet "Large Republic" 4000
+	fleet "Small Republic" 2500
+	fleet "Large Republic" 5000
+	fleet "Republic Logistics" 5000
 	object
 		sprite star/k5
 		distance 45.5327
@@ -24507,6 +24552,64 @@ system Wezen
 			sprite planet/tethys
 			distance 496
 			period 38.9601
+
+system "World's End"
+	pos 9966.5 7017.5
+	government Uninhabited
+	habitable 700
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 0
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 20
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 50
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 70
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 140
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 160
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 180
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 200
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 270
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 290
 
 system "Ya Hai"
 	pos -24.9453 -505.571
@@ -24855,6 +24958,7 @@ system Zosma
 	fleet "Large Deep Security" 2000
 	fleet "Large Deep Merchants" 8000
 	fleet "Small Republic" 4000
+	fleet "Republic Logistics" 4000
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
 	object
@@ -25856,7 +25960,7 @@ planet Dune
 planet "Dusk Companion"
 	attributes kimek oil
 	landscape land/mountain9
-	description `Dusk Companion's moon is so large and orbits so close to the planet that the tidal forces even affect the planet's plate tectonics. The skies here are frequently blanketed in a volcanic haze. This world is rich in oil deposits, a relic of a past when more life flourished here, but drilling for oil is costly because the shifting ground can damage drills or seal up previously productive bore-holes.`
+	description `Dusk Companion's moon is so large and orbits so close to the planet that the tidal forces even affect the planet's plate tectonics. The skies here are frequently blanketed in a volcanic haze. This world is rich in oil deposits, a relic of a past when more life flourished here, but drilling for oil is costly because the shifting ground can damage drills or seal up previously productive bore-holes. Since this also makes processing difficult, the oil is exported off-world for processing into plastics, instead of having the manufacturing performed locally.`
 	spaceport `The spaceport is in a particularly dingy corner of Dusk Companion's largest city. The windows are caked with soot and grime, and the few plants that grow here have a thin layer of volcanic ash on their leaves. The thick clouds overhead cloak the city in a perpetual twilight, and the streetlights remain lit even at midday.`
 	"required reputation" 15
 
@@ -27483,10 +27587,7 @@ planet Pugglequat
 	"required reputation" 2
 	security 1
 
-planet Querii'ka
-	attributes ka'het
-	landscape land/station2
-	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'het passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
+planet "Pug Wormhole"
 
 planet Quicksilver
 	attributes core volcanic mining
@@ -27608,6 +27709,14 @@ planet "Ring of Wisdom"
 	"required reputation" 25
 	bribe 0
 
+planet Ruin
+	attributes uninhabited
+	landscape land/hills3
+	description `This is a stormy, cloud-covered planet, where fog banks flow through the valleys like dark, cold, slow-moving rivers, and the sun is seldom visible. Aside from some dull blue-grey moss and lichen, there are few living things here. The ground is warmer than the air above it, due to an abundance of radioactive elements in the planet's crust.`
+	description `	Most of the surface is ocean, but atop one of the higher mountains is an odd, abandoned spaceport.`
+	spaceport `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not cement or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
+	spaceport `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
+
 planet Rust
 	attributes rim farming factory
 	landscape land/fields8
@@ -27655,7 +27764,7 @@ planet "Sandy Two"
 	landscape land/badlands1
 	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
-	outfitter "Coalition Basics"
+	outfitter "Coalition Advanced"
 
 planet "Sapira Mereti"
 	attributes korath
