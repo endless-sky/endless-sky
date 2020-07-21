@@ -3626,7 +3626,7 @@ mission "Earth Retirement"
 					goto reject
 			
 			label payment
-			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			`	They slowly make their way to the train station. Presumably, their new apartment is far from here.`
 			payment
 			payment 6000
 			label reject
