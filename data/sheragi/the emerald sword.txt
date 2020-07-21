@@ -567,60 +567,6 @@ mission "Sheragi Archaeology: The Box 8"
 		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She's part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
 		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you'd expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
 
-# >To be done later.<
-#mission "Sheragi Archaeology: The Bounty"
-#	landing
-#	to offer
-#		has "burned white flag"
-#		has "Sheragi Archaeology: The Box 8: done"
-#	on offer
-#		conversation
-#			`You receive a heavily-encoded transmission request, as your captain's console screens start flashing with an image you've seen before: a logo depicting a reptilian eye. It's Mammon's sign. Knowing their business style, if they are contacting you directly, it can't be good news for you.`
-#			choice
-#				`	(Accept the transmission)`
-#					goto accept
-#				`	(Refuse the transmission)`
-#					apply
-#						set "mercenary vendetta target"
-#				`	You push a button and decline the call. Whatever it is, you don't want to know, or at least not more than you want to not be involved in shady business anymore.`
-#				decline
-#				label accept
-#				`	A familiar robotic modulated voice greets you.`
-#				`	"Hello, Captain <last>. It seems that you weren't quite thorough in your naughty deeds back on Watcher, because the friends of a certain band of mercenaries have come knocking at my door, asking for the identity and whereabouts of the person responsible. It's your lucky day though, because the information business is only second to pure business. They are paying a million credits for your information. You have a choice: outbid them, or be sold out.`
-#				choice
-#					`	(Offer five million credits)`
-#						goto five
-#					`	(Offer three million credits)`
-#						goto three
-#					`	(Offer two million credits)`
-#						goto two
-#					`	(Offer nothing)`
-#						apply
-#							set "mercenary vendetta target"
-#					`	The voice, though distorted and modulated to prevent identification, manages to sound amused.`
-3					`	"Really, Captain? Well aren't you the fun kind of person. I'll be watching... the fireworks display you all will make is sure to be impressive."`
-#					`	The connection ends, leaving you sure that you're being hunted.`
-#						decline
-#					label five
-#					branch "outbid failed" "outbid success"
-#						random < 50
-#					label three
-#					branch "outbid failed" "outbid success"
-#						random < 25
-#					label two
-#					branch "outbid failed" "outbid success"
-#						random < 10
-#					label "outbid success"
-#					apply
-#						set "outbid mercenary vendetta"
-#					label "outbid failed"
-#					apply
-#						set "mercenary vendetta target"
-#					`	The voice replies, "I'll add that to your tab then, to be charged when we feel like it. Pleasure doing business with you, Captain <last>," and the transmission ends.`
-#					`The whole exchange feels like it was blackmail. Despite having outbid the mercenaries looking for you, you fail to feel safe, knowing that Mammon of all people has dirt on you.`
-#					`... and on top of that, you ended up paying more than you looted from the mercenary camp in the first place.`
-#					decline
-
 mission "Sheragi Archaeology: The Emerald Sword 1"
 	landing
 	name "Black Box Decoded"
