@@ -3585,7 +3585,7 @@ mission "Hauler VI cargo prototype 3"
 
 mission "Earth Retirement"
 	name "Retired Family to Earth"
-	description "Transport two seniors to <destination>, which is where they plan to retire. They can only promise you <payment>."
+	description "Transport two seniors to <destination>, where they plan to retire. They can only promise you <payment>."
 	minor
 	source
 		attributes paradise
