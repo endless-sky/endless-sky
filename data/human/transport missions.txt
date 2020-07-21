@@ -3605,7 +3605,7 @@ mission "Earth Retirement"
 			`	As Donna talks, Charles begins to frown. “I suppose you could put it like that.”`
 			`	“Is that wrong?” Donna replies, who appears to be bracing for the response.`
 			`	The man's look of resignation starts to turn to one of anger. "Of course it's wrong. We've spent our whole lives working for these spoiled brats, and what do we get in return? We get dumped on Earth like we're dead weight!"`
-			`	"I know you're upset about this," interrupts Donna "but just getting angry isn't going to do anything!" Charles remains silent for a long time, and then mutters a reluctant apology.`
+			`	"I know you're upset about this," interrupts Donna, "but just getting angry isn't going to do anything!" Charles remains silent for a long time, and then mutters a reluctant apology.`
 			`	Donna talks to you again. "I'm sorry about that. As you can tell, we're under a lot of stress right now. Can you help us? We'll pay you <payment> if you do."`
 			choice
 				`	"I can handle two passengers."`
