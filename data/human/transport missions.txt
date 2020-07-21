@@ -3599,7 +3599,7 @@ mission "Earth Retirement"
 			`As you wander through the spaceport, you are see an elderly man and woman sitting on a bench. They both seem to be talking about something that is causing them some amount of stress.`
 			choice
 				`	"Yes. Who are you two?"`
-				`	"I do own a ship, but it's not taking passengers right now."`
+				`	(Ignore them.)`
 					decline
 			`	“My name is Donna, and his name is Charles," she says. "We were yard workers here on <origin> for nearly fifty years, but we're both starting to get too old for our jobs. So, we've made the hard decision to retire. We've already chosen a location on the best place we could afford, which... well, it happened to be on Earth, so Charles and I are looking for someone to transport us.”`
 			`	As Donna talks, Charles begins to frown. “I supposed you could put it like that.”`
