@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Sprite.h"
@@ -174,13 +175,13 @@ void Conversation::Load(const DataNode &node)
 			nodes.back().canMergeOnto = false;
 			nodes.back().conditions.Load(child);
 		}
-		else if(child.Token(0) == "payment" && child.Size() > 1)
+		else if(child.Token(0) == "payment" && child.Size() >= 2)
 		{
 			AddNode();
 			nodes.back().canMergeOnto = false;
 			nodes.back().payment = child.Value(1);
 		}
-		else if(child.Token(0) == "event" && child.Size() > 1)
+		else if(child.Token(0) == "event" && child.Size() >= 2)
 		{
 			AddNode();
 			nodes.back().canMergeOnto = false;
@@ -190,6 +191,16 @@ void Conversation::Load(const DataNode &node)
 			if(maxDays < minDays)
 				swap(minDays, maxDays);
 			nodes.back().event[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
+		}
+		else if(child.Token(0) == "log")
+		{
+			AddNode();
+			nodes.back().canMergeOnto = false;
+			
+			bool isSpecial = (child.Size() >= 3);
+			string &text = (isSpecial ?
+				nodes.back().specialLogText[child.Token(1)][child.Token(2)] : nodes.back().logText);
+			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)
@@ -283,6 +294,29 @@ void Conversation::Save(DataWriter &out) const
 				else
 					out.Write("event", it.first->Name(), it.second.first, it.second.second);
 			}
+			if(!node.logText.empty())
+			{
+				out.Write("log");
+				out.BeginChild();
+				{
+					// Break the text up into paragraphs.
+					for(const string &line : Format::Split(node.logText, "\n\t"))
+						out.Write(line);
+				}
+				out.EndChild();
+			}
+			for(const auto &it : node.specialLogText)
+				for(const auto &eit : it.second)
+				{
+					out.Write("log", it.first, eit.first);
+					out.BeginChild();
+					{
+						// Break the text up into paragraphs.
+						for(const string &line : Format::Split(eit.second, "\n\t"))
+							out.Write(line);
+					}
+					out.EndChild();
+				}
 			if(node.isChoice)
 			{
 				out.Write(node.data.empty() ? "name" : "choice");
@@ -399,6 +433,28 @@ bool Conversation::IsEvent(int node) const
 
 
 
+// Check if the given converation node creates a log entry.
+bool Conversation::IsLog(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return false;
+	
+	return !nodes[node].logText.empty();
+}
+
+
+
+// Check if the given converation node creates a special log entry.
+bool Conversation::IsSpecialLog(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return false;
+	
+	return !nodes[node].specialLogText.empty();
+}
+
+
+
 // Get the list of conditions that the given node tests or applies.
 const ConditionSet &Conversation::Conditions(int node) const
 {
@@ -413,8 +469,9 @@ const ConditionSet &Conversation::Conditions(int node) const
 // Get the payment that the given node applies.
 const int64_t &Conversation::Payment(int node) const
 {
+	static int64_t empty;
 	if(static_cast<unsigned>(node) >= nodes.size())
-		return 0;
+		return empty;
 	
 	return nodes[node].payment;
 }
@@ -428,6 +485,30 @@ const map<const GameEvent *, pair<int, int>> &Conversation::Event(int node) cons
 		return empty;
 	
 	return nodes[node].event;
+}
+
+
+
+// Get the log text that the given node applies.
+const string &Conversation::LogText(int node) const
+{
+	static string empty;
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return empty;
+	
+	return nodes[node].logText;
+}
+
+
+
+// Get the special log text that the given node applies.
+const map<string, map<string, string>> &Conversation::SpecialLogText(int node) const
+{
+	static map<string, map<string, string>> empty;
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return empty;
+	
+	return nodes[node].specialLogText;
 }
 
 

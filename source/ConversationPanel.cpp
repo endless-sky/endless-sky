@@ -361,6 +361,14 @@ void ConversationPanel::Goto(int index, int choice)
 				player.AddEvent(*it.first, player.GetDate() + delay);
 			}
 		}
+		else if(conversation.IsLog(node))
+			player.AddLogEntry(conversation.LogText(node));
+		else if(conversation.IsSpecialLog(node))
+		{
+			for(const auto &it : conversation.SpecialLogText(node))
+				for(const auto &eit : it.second)
+					player.AddSpecialLog(it.first, eit.first, eit.second);
+		}
 		else
 		{
 			// This is an ordinary conversation node. Perform any necessary text

@@ -73,9 +73,13 @@ public:
 	bool IsApply(int node) const;
 	bool IsPayment(int node) const;
 	bool IsEvent(int node) const;
+	bool IsLog(int node) const;
+	bool IsSpecialLog(int node) const;
 	const ConditionSet &Conditions(int node) const;
 	const int64_t &Payment(int node) const;
 	const std::map<const GameEvent *, std::pair<int, int>> &Event(int node) const;
+	const std::string &LogText(int node) const;
+	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogText(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
@@ -97,6 +101,9 @@ private:
 		int64_t payment = 0;
 		// For triggering events.
 		std::map<const GameEvent *, std::pair<int, int>> event;
+		// For creating log entries.
+		std::string logText;
+		std::map<std::string, std::map<std::string, std::string>> specialLogText;
 		// The actual conversation text. If this node is not a choice, there
 		// will only be one entry in the vector. Each entry also stores the
 		// number of the node to go to next.
