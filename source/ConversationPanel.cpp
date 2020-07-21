@@ -355,8 +355,7 @@ void ConversationPanel::Goto(int index, int choice)
 		{
 			for(const auto &it : conversation.Event(node))
 			{
-				int delay = (it.second.first == it.second.second) ? it.second.first 
-					: (it.second.first + Random::Int(it.second.second - it.second.first));
+				int delay = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 				player.AddEvent(*it.first, player.GetDate() + delay);
 			}
 		}
