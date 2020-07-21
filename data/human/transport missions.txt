@@ -3636,7 +3636,7 @@ mission "Antibiotics To South"
 
 mission "Pirate Duel"
 	name "Fight at Umbral"
-	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the "Esca". After fighting, go to <destination> to follow up.`
+	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the "Esca." After fighting, go to <destination> to follow up.`
 	minor
 	deadline 5 1
 	source
@@ -3652,11 +3652,7 @@ mission "Pirate Duel"
 		not "ships: Medium Warship"
 		not "ships: Heavy Warship"
 		not "ships: Heavy Freighter"
-		or
-			"ships: Light Warship" == 1
-			"ships: Light Freighter" == 1
-			"ships: Transport" == 1
-			"ships: Interceptor" == 1
+		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" == 1
 	
 	on offer
 		conversation
@@ -3704,9 +3700,9 @@ mission "Pirate Duel"
 	on enter "Umbral"
 		"reputation:  Independent " = -1000
 		conversation
-			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system along side you. Before you can respond, your ship intercepts a hail, and it opens communication.`
-			`The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
-			`The Vanguard powers up its weapons.`
+			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
+			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
+			`	The Vanguard powers up its weapons.`
 	
 	npc kill
 		government " Independent "
