@@ -1695,6 +1695,17 @@ mission "Wanderers: Sestor Attack"
 				"Hurricane (Tough)"
 				"Derecho"
 				"Tempest (Missile)" 2
+	npc
+		government "Kor Mereti"
+		personality heroic
+		system "Faronektu"
+		fleet
+			names "kor mereti"
+			variant
+				"Model 512"
+				"Model 256"
+				"Model 64"
+				
 
 
 
@@ -2907,7 +2918,7 @@ mission "Wanderers: Sestor: Scan Drones"
 				`	"Do you think they are weakened enough that we can destroy them?"`
 				`	"Do you think there is any way we could regain control of them?"`
 					goto control
-			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?`
+			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?"`
 				goto end
 			label control
 			`	"That is our [hope, desire]," he says. "Or, barring that, at least we may [disable, shut down] the factories. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] on the drones?"`
@@ -3381,6 +3392,8 @@ mission "Wanderers: Sestor: Final"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
+		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
+		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40

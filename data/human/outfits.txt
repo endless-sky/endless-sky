@@ -409,14 +409,19 @@ outfit "Navy License"
 	thumbnail "outfit/navy license"
 	description "It is unusual, but not unheard of, for private citizens to be given the right to purchase Navy ships for their own private use. Recently, certain rich worlds have also begun petitioning Parliament for special permission to purchase Navy warships for their private security forces."
 
-outfit "Cruiser License"
+outfit "Navy Auxiliary License"
 	category "Special"
-	thumbnail "outfit/cruiser license"
+	thumbnail "outfit/auxiliary license"
+	description "It is a particularly rare occurrence for a Navy Auxiliary, of any kind, to be owned for private use."
+
+outfit "Navy Cruiser License"
+	category "Special"
+	thumbnail "outfit/navy cruiser license"
 	description "It is a very rare privilege to be permitted to purchase a Navy capital ship for private use - not just because of a Cruiser's firepower, but because it is a potent symbol of the Republic's strength."
 
-outfit "Carrier License"
+outfit "Navy Carrier License"
 	category "Special"
-	thumbnail "outfit/carrier license"
+	thumbnail "outfit/navy carrier license"
 	description "Only a handful of people in the past century have been given permission to purchase a Navy Carrier, even a decommissioned one, for private use."
 
 outfit "Militia License"

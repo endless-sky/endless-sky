@@ -296,12 +296,17 @@ Files:
  images/ship/gull*
  images/ship/pelican*
  images/ship/riptide*
+ images/ship/auxiliary*
+ images/ship/dropship*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
  images/thumbnail/gull*
  images/thumbnail/pelican*
  images/thumbnail/riptide*
+ images/thumbnail/auxiliary*
+ images/thumbnail/dropship*
+ images/outfit/auxiliary?license*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -334,10 +339,16 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/effect/remnant?afterburner/remnant?afterburner*
  images/hardpoint/annihilator?turret*
+ images/hardpoint/inhibitor?turret*
+ images/hardpoint/ion?hail?turret*
  images/hardpoint/ravager?turret*
+ images/outfit/inhibitor?turret*
+ images/outfit/ion?hail?turret*
  images/outfit/overcharged?shield?module*
  images/outfit/overclocked?repair?module*
+ images/outfit/remnant?afterburner*
  images/outfit/remnant?capital?license*
  images/outfit/salvage?scanner*
  images/outfit/tiny?remnant?engine*
@@ -661,6 +672,8 @@ Files:
  images/outfit/ka'het?ravager?beam*
  images/outfit/ka'het?shield?restorer*
  images/outfit/ka'het?support?cooling*
+ images/outfit/ka'het?mhd?generator*
+ images/outfit/ka'het?reserve?accumulator*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -691,12 +704,33 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Made in cooperation with Becca Tommaso (tommasobecca03@gmail.com) and derived from works by Michael Zahniser (under the same license) and Maximilian Korber (under the same license)
 
-Files
- images/effect/remnant leak*
- images/effect/remnant leak sparkle*
+Files:
+ images/effect/remnant?leak*
+ images/effect/remnant?leak?sparkle*
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
+
+Files:
+ images/planet/browndwarf-l-rouge*
+ images/planet/browndwarf-l*
+ images/planet/browndwarf-y-rouge*
+ images/planet/browndwarf-y*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+
+Files:
+ images/planet/browndwarf-t-rouge*
+ images/planet/browndwarf-t*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain)
+
+Files:
+ images/outfit/finisher?storage*
+Copyright: Arachi-Lover
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/effect/dragonflame*
