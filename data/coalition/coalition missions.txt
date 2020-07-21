@@ -156,7 +156,7 @@ mission "Coalition Yottrite 1"
 	to complete
 		has "Coalition Yottrite 2: offered"
 	source
-		near Bloptab 1 100
+		near "Bloptab" 1 100
 	destination "Bloptab's Furnace"
 	on offer
 		conversation
@@ -258,6 +258,8 @@ mission "Coalition Yottrite 3"
 	on accept
 		outfit "Yottrite" -7
 		payment 1540000
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the yottrite samples hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		conversation
 			`Though on <origin> you weren't greeted by him, the same Arach from the other trips now contacts you as you prepare to land on <planet>.`
@@ -289,8 +291,7 @@ mission "Coalition Yottrite 4"
 				`	"Sorry, I'm not one to take passenger jobs."`
 					decline
 	on complete
-		conversation
-			`When you land on <planet>, Lugglop contacts you and informs you that he has already told his friends about you. He says they will be waiting in the spaceport.`
+		dialog `When you land on <planet>, Lugglop contacts you and informs you that he has already told his friends about you. He says they will be waiting in the spaceport.`
 
 
 
@@ -298,6 +299,7 @@ mission "Coalition Yottrite 5"
 	name "Saryd Specialists"
 	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the Yottrite research."
 	passengers 2
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Yottrite 4: done"
 	source "Shadowed Valley"
@@ -311,6 +313,8 @@ mission "Coalition Yottrite 5"
 			`	Finally, you start heading back to your ship. Noticing your interest in the beauty of the gypsum caves, the two Saryd researchers slow down their pace and start to tell you more about themselves. They are twins, both born on Saros, but have been working here for decades. Though you don't understand much of the technical jargon, you figure out that Nasilor specializes in cryptocrystalline compounds, while Alituri focuses her studies on planetary and cosmic conditions that lead to the formation of the gypsum caves here.`
 			`	With the little "tour" over, when you three reach your ship, you show them to their bunks and prepare to head back to <planet>.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the Saryd twins hasn't entered the system yet. Better depart and wait for it.`
 
 
 
@@ -323,6 +327,7 @@ mission "Coalition Yottrite 6"
 	source "Delve of Bloptab"
 	destination "Market of Gupta"
 	on offer
+		payment 200000
 		conversation
 			`Lugglop is waiting for you when you land and greets the two researchers as you help them get their things out of the ship.`
 			`	He points them to a hotel where he had a room prepared for them, and asks you to follow him to his office again.`
@@ -330,8 +335,6 @@ mission "Coalition Yottrite 6"
 			`	He shows you to his map again, this time pointing to a nearby Arachi world. "Once cracked some aspects of yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
 			`	You're about to head back to your ship when he hands you 200,000 credits. "Nearly forgot to pay you for this last service, I did."`
 				accept
-	on accept
-		payment 200000
 
 
 
@@ -339,6 +342,7 @@ mission "Coalition Yottrite 7"
 	name "Master Shipwright"
 	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their Yottrite research."
 	passengers 1
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	landing
 	to offer
 		has "Coalition Yottrite 6: done"
@@ -366,15 +370,22 @@ mission "Coalition Yottrite 7"
 			`	Finally, he brings you to a room on the third floor, claiming that your passenger is waiting inside. You enter, only to see a Kimek glancing out the window.`
 			choice
 				`	"I take it that's the shipwright?"`
+					goto shipwright
 				`	"So, is my passenger crawling around somewhere? In some corner hidden in a web?"`
 				`	"A Kimek? I thought this was an Arach House."`
 			`	The butler ignores what you said and introduces you to the Kimek in question. "Marry into House Mallob at a young age, miss Pichiie did. A former student at the university here, she was."`
+				goto end
+			label shipwright
+			`	"Correct you are, Captain," he says. "Proud to introduce you to miss Pichiie, I am. A former student at the university here, she was, before marry into House Mallob, she did."`
+			label end
 			`	Finally, the reason why you had to come all the way to this part of <origin> becomes clear; Pichiie mentions she would like to hear your stories about where you got the yottrite in the first place before boarding your ship to head to <planet>. You tell her all samples you've come across were found in systems where the star had gone supernova. It's a short explanation, but she appears to be satisfied, and after saying her goodbyes to other members of the House, you're both brought to your ship.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Pichiie hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		event "yottrite research break" 165
 		payment 200000
-		conversation
+		dialog
 			`As with the Saryd twins, Lugglop greets Pichiie and tells her of a hotel he prepared for her time here.`
 			`	"Ready, my team is now, Captain," he says, after Pichiie leaves with her luggage. "Enrich and research samples as needed, for the next few months we will. Contact you again, I will, should the need for your services arise once again."`
 			`	He hands you <payment>, and walks away.`
@@ -392,7 +403,7 @@ mission "Coalition Yottrite 8"
 	to offer
 		has "event: yottrite research break"
 	source
-		near Pelubta 1 100
+		near "Pelubta" 1 100
 	destination "Pelubta Station"
 	on offer
 		conversation
@@ -407,7 +418,7 @@ mission "Coalition Yottrite 8"
 	on complete
 		outfit "Yottrite" -1
 		payment 220000
-		dialog	`Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
+		dialog `Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
 
 
 
@@ -416,14 +427,14 @@ mission "Coalition Yottrite 9"
 	description "Transport Lugglop and his team, alongside <cargo>, to <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
 	passengers 6
 	cargo "Yottrite Presentation Materials" 6.14
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Yottrite 8: done"
 	source "Pelubta Station"
 	destination "Ring of Wisdom"
 	on offer
 		conversation
-			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another.`
-			`	They detail how they have prepared all the material they needed and now just need a transport to <destination>.`
+			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another. They detail how they have prepared all the material they needed and now just need a transport to <destination>.`
 			`	"If with us, you come, Captain, perhaps a better detailed description of the systems where the yottrite was found, you could provide," Nasilor says.`
 			`	"<payment>, I would pay you," Lugglop says.`
 			choice
@@ -436,13 +447,14 @@ mission "Coalition Yottrite 9"
 			`	"Forgive us you must, Captain, but told to keep everything a secret, we were," Lugglop continues. "Perhaps after our presentation, public our findings could be made."`
 			label accept
 			`	They all follow you to your ship after the containers are ready to be loaded.`
-			`	After they are put into your cargo, Nasilor, Alituri and Pichiie head to their bunks, but as Lugglop is coming on board, you see that two Heliarch agents, both Kimek, are accompanying him.`
-			`	"Here to ensure the secrecy of our discoveries, they are," he says. Seeing as they are only two more passengers, you agree to carry them to <planet>, and they all board your ship.`
+			`	After they are put into your cargo, Nasilor, Alituri and Pichiie head to their bunks, but as Lugglop is coming on board, you see that two Heliarch agents, both Kimek, are accompanying him. "Here to ensure the secrecy of our discoveries, they are," he says. Seeing as they are only two more passengers, you agree to carry them to <planet>, and they all board your ship.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Lugglop's team and their presentation materials hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		payment 310000
 		conversation
-			`	Immediately when you land, Lugglop gives you your payment of <payment>. You and the four researchers then follow some Heliarch agents that were waiting for you at the docks. You five are brought to an area akin to a theater with some type of podium on the stage. The seats are all taken by Heliarch agents.`
+			`Immediately when you land, Lugglop gives you your payment of <payment>. You and the four researchers then follow some Heliarch agents that were waiting for you at the docks. You five are brought to an area akin to a theater with some type of podium on the stage. The seats are all taken by Heliarch agents.`
 			`	Lugglop's team apparently will wait until the contents of the two containers are brought here, so you're asked to describe the systems with supernovae where you encountered yottrite asteroids. This only lasts a few minutes, as the audience doesn't seem too keen on inquiring about details, though one particular Saryd did puzzle you when they asked about the state of the supernovas you visited. You tell them you don't know what they mean, and they press the topic no further.`
 			`	After you finish, and right as the materials for Lugglop's presentation arrives, you're escorted back to your ship by some agents. Several hours later, you're contacted by Lugglop, who says the presentation is finished, and his group is coming back to your ship. When they arrive, they each thank you for providing the means to perform their experiments. "Officially commended for our efforts, we were!" he says.` 
 			`	"Though allowed to publicly share our findings, we are not still, invited to be part of the team here that will continue the research, we were," Pichiie adds. The Saryd twins say they will reside here for as long as the project continues, while Pichiie comments on how she'll often be taking trips to visit her family in House Mallob's property.`
