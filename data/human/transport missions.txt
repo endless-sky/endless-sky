@@ -3618,7 +3618,7 @@ mission "Earth Retirement"
 		dialog phrase "generic passenger on visit"
 	on complete
 		conversation
-			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves, Charles stops by you, and takes out a large clump of credit chips with a total value of <payment>. "Here you go.", he mutters, "I hope your life goes better than ours has."`
+			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves Charles stops by you, and takes out a large clump of credit chips with a total value of <payment>. "Here you go." he mutters. "I hope your life goes better than ours has."`
 			choice
 				`	"Thank you. I hope you have the best of luck on Earth."`
 					goto payment
