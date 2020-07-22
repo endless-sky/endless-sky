@@ -613,6 +613,90 @@ ship "Penguin"
 	
 	
 	
+ship "Peregrine"
+	sprite "ship/peregrine/peregrine"
+		"frame rate" 3 
+		"rewind"
+	thumbnail "thumbnail/peregrine"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 41627000
+		"shields" 15400
+		"hull" 8600
+		"required crew" 9
+		"bunks" 25
+		"mass" 350
+		"drag" 4.3
+		"heat dissipation" 0.85
+		"fuel capacity" 900
+		"ramscoop" 2.5
+		"cargo space" 49
+		"outfit space" 552
+		"weapon capacity" 220
+		"engine capacity" 171
+		"shield generation" 3.9
+		"shield energy" 3.0
+		"hull repair rate" 1.5
+		"hull energy" 0.90
+		"cloak" .03
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"outfit scan power" 18
+		"outfit scan speed" 1
+		"tactical scan power" 39
+		"remnant node" 3
+		weapon
+			"blast radius" 240
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 3000
+	outfits
+		"Thrasher Cannon" 4
+		"EMP Torpedo Bay" 1
+		"Point Defense Turret"
+		"Thrasher Turret"
+		"EMP Torpedo" 9
+		
+		"Aeon Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 11
+		
+		"Bellows-Class Afterburner"
+		"Smelter-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+		
+	gun 0 -133.5 "EMP Torpedo Bay"
+	gun -12.5 -105 "Thrasher Cannon"
+	gun 12.5 -105 "Thrasher Cannon"
+	gun -17.5 -83 "Thrasher Cannon"
+	gun 17.5 -83 "Thrasher Cannon"
+	turret 0 -44 "Point Defense Turret"
+	turret 0 21 "Thrasher Turret"
+	engine 0 120.5 1.5
+	engine -26 126 1.1
+	engine 25 123.5 1.1
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Peregrine is the first warship designed by Taely using fresh insights garnered from recent experimentation as well as renewed studies of the void sprites. Encompassing over a century of development since the last generation of warships was built, it is the forerunner of a new breed of Remnant ships."
+	description "	The Peregrine was designed along the lines of old-earth's fast-attack cruisers. Drawing on inspiration from its namesake, famed for being the fastest self-propelled lifeform on Earth, it is designed to strike hard and fast. It closes quickly with enemies to unleash devastating barrages in the opening seconds of combat."
+	description "	The cloaking technology is built into the Peregrine's hull; it cannot be removed or transferred to another ship."
+
+
+
 ship "Petrel"
 	sprite "ship/petrel"
 	thumbnail "thumbnail/petrel"
