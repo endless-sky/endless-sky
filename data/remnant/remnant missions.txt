@@ -2327,6 +2327,16 @@ event "korath hunting"
 
 
 mission "Remnant: Cognizance 3"
+	name "Go to <destination> to meet Prefect Chilia."
+	description "Prefect Chilia left a message with Plume asking you to meet him on <destination> immediately."
+	source "Aventine"
+	to offer
+		has "Remnant: Cognizance 2: done"
+	destination "Caelian"
+
+
+
+mission "Remnant: Cognizance 4"
 	name "Search for Korath"
 	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
 	source "Caelian"
@@ -2334,7 +2344,7 @@ mission "Remnant: Cognizance 3"
 	waypoint
 		system "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 2: done"
+		has "Remnant: Cognizance 3: done"
 	on offer
 		log "People" "Chilia" `Prefect Chilia is, compared to most military leaders you have met, an unusual person. He is inclined to do things himself, rarely standing on protocol, if at all.`
 		"remnant chilia" ++
@@ -2376,14 +2386,14 @@ mission "Remnant: Cognizance 3"
 
 
 
-mission "Remnant: Cognizance 4"
+mission "Remnant: Cognizance 5"
 	name "Destroy Korath"
 	description "Prefect Chilia has asked you to eliminate the Korath fleet before returning to <destination> by <date>."
 	deadline 20
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 3: done"
+		has "Remnant: Cognizance 4: done"
 	on offer
 		conversation
 			`When you arrive in the spaceport you find Prefect Chilia in the middle of briefing a group of Remnant [soldiers? pilots? politicians? garbage collectors?] and waves you forward as soon as you approach. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and will take the lead on tracking the rest for this mission."`
@@ -2422,14 +2432,14 @@ mission "Remnant: Cognizance 4"
 
 
 
-mission "Remnant: Cognizance 5"
+mission "Remnant: Cognizance 6"
 	name "Transport Plume to a meeting"
 	description "Prefect Chilia needs Plume to consult about the void sprites."
 	deadline 5
 	source "Caelian"
 	stopover "Aventine"
 	to offer
-		has "Remnant: Cognizance 4: done"
+		has "Remnant: Cognizance 5: done"
 	on offer
 		conversation
 			`You find Prefect Chilia and the rest of the captains gathered in a small side room off the main cafeteria. Everyone is digging into their customarily enormous meals while the prefect works the room talking with everyone. As you pull up a chair, Chilia appears next to you and slides a tray in front of you. "It might not be the sort of fare you are used to from the ancestral worlds," he says, "but it is what we have to offer." Chilia looks around at everyone eating in muted conversation. "It is something of a tradition to eat a meal together when returning from battle. Share memories of those who fall, talk about why they fell, and what we must do differently next time." He eats a few bites from his own plate.`
@@ -2453,13 +2463,13 @@ mission "Remnant: Cognizance 5"
 
 
 
-mission "Remnant: Cognizance 6"
+mission "Remnant: Cognizance 7"
 	name "Take Plume to Nasqueron"
 	description "Plume wants to witness firsthand what is going on in Nenia."
 	source "Caelian"
 	destination "Nasqueron"
 	to offer
-		has "Remnant: Cognizance 5: done"
+		has "Remnant: Cognizance 6: done"
 	on offer
 		conversation
 			`In the starport, Prefect Chilia and Plume are gesturing at some details on a datapad when you approach. Chilia notices you first and waves you over. "Thank you for joining us. While I put together some more long-term plans, could you take Plume to Nasqueron?"`
@@ -2487,14 +2497,14 @@ mission "Remnant: Cognizance 6"
 
 
 
-mission "Remnant: Cognizance 7"
+mission "Remnant: Cognizance 8"
 	name "Return Plume to Caelian"
 	description "Plume wants to check his records of the research on void sprites to verify some information."
 	landing
 	source "Nasqueron"
 	destination "Aventine"
 	to offer
-		has "Remnant: Cognizance 6: done"
+		has "Remnant: Cognizance 7: done"
 	on offer
 		conversation
 			`Plume returns to the ship after several hours, spurred by alarms in his suit warning you both of low oxygen levels. As you help him out of the pressure suit, he looks like he is having trouble deciding if he should be thrilled or worried.`
@@ -2514,7 +2524,7 @@ mission "Remnant: Cognizance 7"
 
 
 
-mission "Remnant: Cognizance 8"
+mission "Remnant: Cognizance 9"
 	name "Transport engineer to Esquiline"
 	description "An engineer working for Plume needs transportation for himself and some equipment to <planet>."
 	blocked "Plume's engineer needs a free bunk and 8 tons of cargo space for his equipment. Come back when you have enough space."
@@ -2523,7 +2533,7 @@ mission "Remnant: Cognizance 8"
 	source "Aventine"
 	destination "Esquiline"
 	to offer
-		has "Remnant: Cognizance 7: done"
+		has "Remnant: Cognizance 8: done"
 	on offer
 		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed esquiline station.`
 		conversation
@@ -2546,7 +2556,7 @@ mission "Remnant: Cognizance 8"
 
 
 
-mission "Remnant: Cognizance 9"
+mission "Remnant: Cognizance 10"
 	name "Pick up a technician and more supplies and deliver to Esquiline."
 	description "You need to pick up a technician and their equipment from <origin> and take them to <planet>."
 	blocked "Plume's technician needs a free bunk and 8 tons of cargo space for his equipment. Come back when you have enough space."
@@ -2556,7 +2566,7 @@ mission "Remnant: Cognizance 9"
 	source "Esquiline"
 	stopover "Caelian"
 	to offer
-		has "Remnant: Cognizance 8: done"
+		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
 			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and 8 tons of equipment from Caelian and bring it back to Esquiline. `
@@ -2573,14 +2583,14 @@ mission "Remnant: Cognizance 9"
 
 
 
-mission "Remnant: Cognizance 10"
+mission "Remnant: Cognizance 11"
 	name "Remnant Data Delivery"
 	description "Deliver a datacube to the engineers on <planet>."
 	landing
 	source "Esquiline"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 9: done"
+		has "Remnant: Cognizance 10: done"
 	on offer
 		conversation
 			`As you finish unloading, you spot Gavriil approaching. He gestures in greeting as he approaches. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." He pauses and fishes a datacube out of a pouch. "Could you take this to Prefect Taely on Viminal? She is overseeing some retrofits and will need this data.`
@@ -2591,9 +2601,9 @@ mission "Remnant: Cognizance 10"
 
 
 
-mission "Remnant: Cognizance 11"
-	name "Travel with the <escort target ship> to pick up a shipment of atmosphere from<stopovers>, and deliver it to <destination>."
-	description "Go meet up with escorts"
+mission "Remnant: Cognizance 12"
+	name "Go meet up with escorts"
+	description "Travel with the <npc> to pick up a shipment of atmosphere from <stopovers>, and deliver it to <destination>."
 	cargo equipment 8
 	source "Viminal"
 	stopover "Nasqueron"
@@ -2608,7 +2618,7 @@ mission "Remnant: Cognizance 11"
 				Pelican
 				Puffin 4
 	to offer
-		has "Remnant: Cognizance 10: done"
+		has "Remnant: Cognizance 11: done"
 	on offer
 		conversation
 			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to Esquiline and offload what you have collected to the station.`
@@ -2686,7 +2696,7 @@ event "remnant: postverta reveal"
 		
 
 
-mission "Remnant: Cognizance 12"
+mission "Remnant: Cognizance 13"
 	name "Investigate strange sensor readings"
 	description "Long range sensors have picked up strange gravitational waves. Go investigate, then return to <destination>."
 	landing
@@ -2696,7 +2706,7 @@ mission "Remnant: Cognizance 12"
 	stopover
 		planet "Ssil Vida"
 	to offer
-		has "Remnant: Cognizance 11: done"
+		has "Remnant: Cognizance 12: done"
 	on offer
 		conversation
 			`You land by the starport and are immediately accosted by a Remnant who informs you that Prefect Chilia is on his personal warship and escorts you to a nearby Starling. Inside you find Chilia and several other Remnant clustered around a holographic display and some display panels. "Ah, Captain. Join us, please." Chilia gestures for you to join them around the displays. As you approach, you note that the holographic display shows the Ember Waste, although there are a few details that do not match the star maps you're familiar with.`
@@ -2719,13 +2729,13 @@ mission "Remnant: Cognizance 12"
 
 
 
-mission "Remnant: Cognizance 12b"
+mission "Remnant: Cognizance 14"
 	landing
 	invisible
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 12: active"
+		has "Remnant: Cognizance 13: active"
 	npc accompany
 		government "Ember Waste"
 		personality waiting mute
@@ -2733,7 +2743,7 @@ mission "Remnant: Cognizance 12b"
 	
 
 
-mission "Remnant: Cognizance 13"
+mission "Remnant: Cognizance 15"
 	name "Follow the Creature"
 	description "The creature seems to be creating constellations and trying to get you to follow it."
 	landing
@@ -2744,7 +2754,7 @@ mission "Remnant: Cognizance 13"
 		system Nenia
 	destination Nasqueron
 	to offer
-		has "Remnant: Cognizance 12: done"
+		has "Remnant: Cognizance 13: done"
 	on offer
 		conversation
 			`Quite a number of Remnant have gathered around the spaceport watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries are in position around the area in case the creature becomes violent.`
@@ -2766,7 +2776,7 @@ mission "Remnant: Cognizance 13"
 		conversation
 			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
 			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
-			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - perhaps I shall hear."`
+			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
 			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are quite sure that the Remnant are going to want to hear about this.`
 
 
@@ -2777,7 +2787,19 @@ event "remnant: nenia ember waste node"
 	
 
 
-mission "Remnant: Cognizance 14"
+mission "Remnant: Cognizance 16"
+	name "Report back to Aventine."
+	description "The Remnant will want to know about what happened on Nasqueron."
+	source 
+		"Nasqueron"
+	landing
+	destination
+		"Aventine"
+	to offer
+		has "Remnant: Cognizance 15: done"
+	
+
+mission "Remnant: Cognizance 17"
 	name "Go collect some void sprites"
 	description "Escort the Pelican fleet to <waypoints> and back to <planet>."
 	source
@@ -2786,7 +2808,7 @@ mission "Remnant: Cognizance 14"
 	destination Aventine
 	waypoint "Nenia"
 	to offer
-		has "Remnant: Cognizance 13: done"
+		has "Remnant: Cognizance 16: done"
 	on offer
 		conversation
 			`It is almost starting to feel commonplace to have Remnant pouncing on your ship and using your cockpit as a meeting room. This time, it is Prefect Chilia and Plume who seem to appear out of nowhere requesting permission to board. The two gather around your console to watch the recording of your trip. They nod at your narration of what transpired and focus intently when you describe the strange presence in your mind. When you finish recounting your experience, they lean back in thought.`
