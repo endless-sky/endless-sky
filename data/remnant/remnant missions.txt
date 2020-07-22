@@ -2790,11 +2790,9 @@ event "remnant: nenia ember waste node"
 mission "Remnant: Cognizance 16"
 	name "Report back to Aventine."
 	description "The Remnant will want to know about what happened on Nasqueron."
-	source 
-		"Nasqueron"
+	source "Nasqueron"
 	landing
-	destination
-		"Aventine"
+	destination "Aventine"
 	to offer
 		has "Remnant: Cognizance 15: done"
 	
