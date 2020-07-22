@@ -188,7 +188,7 @@ ship "Ember Waste Node"
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
-	description "This unusual creature, first spotted in Postverta, seem to have an affinity for void sprites and is usually found with them, albeit bearing only superficial resemblance to them. This 'Ember Waste Node,' as it is being called, demonstrates an ability to manipulate energy fields to create shield-like structures around itself. Most remarkably, however, is that it has been seen appearing and disappearing with an energy signature reminiscent of jump drives."
+	description "This unusual creature, first spotted in Postverta, seems to have an affinity for void sprites and is usually found with them, albeit bearing only superficial resemblance to them. This 'Ember Waste Node,' as it is being called, demonstrates an ability to manipulate energy fields to create shield-like structures around itself. Most remarkably, however, is that it has been seen appearing and disappearing with an energy signature reminiscent of jump drives."
 	description "Although its ability to cloak is believed to be connected to its other energy manipulation abilities, the exact method is unknown."
 
 
