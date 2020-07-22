@@ -2528,7 +2528,7 @@ mission "Remnant: Cognizance 8"
 		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed esquiline station.`
 		conversation
 			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another Remnant are gathered around the stack checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer. "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. He will be going with you."`
-			`	"It will be a pleasure to work with you," sings Gavrill, making a short bow. "We will be traveling to a research station on Esquiline. Yes, it is a gas-world." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
+			`	"It will be a pleasure to work with you," signs Gavrill, making a short bow. "We will be traveling to a research station on Esquiline. Yes, it is a gas-world." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
 				accept
 	on complete
 		payment 100000
@@ -2852,7 +2852,7 @@ event "remnant: pantica void sprites"
 		government "Remnant"
 		add attributes remnant
 		remove attributes uninhabited
-		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station.`
+		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
 		add spaceport `	Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
 
 
