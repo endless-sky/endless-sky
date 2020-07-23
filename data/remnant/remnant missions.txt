@@ -2250,8 +2250,12 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"I did. The senior researcher told me that most of the team feels it. No-one has any concrete theories yet, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
 			label worry
-				`	"Thanks for the advice, but that is our purpose here - to worry about all the stuff that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
+			`	"Thanks for the advice, but that is our purpose here - to worry about all the stuff that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
 			label help
-				`	"If you would like to help, yes, there is something you can do. I am currently putting together an expedition to Sagittarius A*
-				
-	
+			`	"If you would like to help, yes, there is something you can do. I am currently putting together an expedition to Sagittarius A*
+			branch sagistarius
+				has visited "Sagittarius A*"
+			choice
+				`	"I don't know where that is."`
+				`	"Isn't that the center of the galaxy?"
+					goto center
