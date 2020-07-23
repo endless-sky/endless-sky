@@ -2457,19 +2457,20 @@ mission "Remnant: Crystal Research 5"
 	waypoint "Peragenor"
 	source "Viminal"
 	destination "Viminal"
-	npc "scan outfits" "save"
-		government "Remnant"
-		personality coward disables plunders staying surveillance target mining
-		system "Peragenor"
-		ship "Starling (Keystone)" "Winds of Light"
-		dialog
-			`The scanner chimes softly, informing you that it has completed scanning the Winds of Light and has successfully archived the data.`
 	to offer
 		has "Remnant: Crystal Research 4: done"
 	on offer
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
-			`	"Ah, <first>, thank you for retrieving all these keystones." He pauses to stare at a crate bearing the image of a bunch of smiling Hai, then shakes his head and turns back to you.`
+			`	"Ah, <first>, thank you for retrieving all these keystones." He sweeps some kind of a device over the crates, then opens one. He pokes at the contents, and pulls out a brochure with a picture of a quantum keystone and a pair of respectable looking Hai. "What's this?" He asks curiously. "Because I bought a keystone, they think I might need more? Our histories told us that humanity thrived on the pursuit of wealth, it just seems inefficient to me."`
+			choice
+				`	"I'm not a fan of it either."`
+				`	"Those 'inefficient' capitalists did provide a keystone at one twentieth the cost you do."`
+					goto capitalists
+			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me." Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
+				goto work
+			label capitalists
+			`	"You've got a point there." Signs Aeolus. "But there is an entire supply chain at work. For all we know, most of these crystals could be simply recycled 
 			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular key stone. My ship has been outfitted with a keystone built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for a quantum key stone made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
 				`	"Wait, you are a pilot?"`
@@ -2477,6 +2478,13 @@ mission "Remnant: Crystal Research 5"
 					accept
 			`	"Oh, yes. It is actually quite common among the Remnant. I am not a particularly good pilot, but it is considered an important skill that is taught to almost everyone as a part of a general education. It is especially worthwhile for those of us who work directly with starships on a daily basis and may be called upon to move or fly one at a moment's notice." His gestures suggest both pride and humility as he talks about his piloting skills. "Anyway, let's go!"`
 				accept
+	npc "scan outfits" "save"
+		government "Remnant"
+		personality coward disables plunders staying surveillance target mining
+		system "Peragenor"
+		ship "Starling (Keystone)" "Winds of Light"
+		dialog
+			`The scanner chimes softly, informing you that it has completed scanning the Winds of Light and has successfully archived the data.`
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the Starling in <waypoints>. Make sure you scan the ship before returning.`
 	on complete
@@ -2503,7 +2511,7 @@ mission "Remnant: Crystal Research 6"
 	on offer
 		conversation
 			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a key stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement key stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
-			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. The worker nimbly steps clear and watches as the two ships head back out of the dome.`
+			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly steps clear of the wake as the two ships head back out of the dome.`
 				launch
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
@@ -2571,8 +2579,6 @@ mission "Remnant: Crystal Research 7"
 			choice
 				`	"Okay."`
 					accept
-				`	"Not right now."`
-					defer
 	on complete
 		payment 100000
 		conversation
