@@ -714,7 +714,6 @@ Comment: Derived from works by Michael Zahniser (under the same license)
 Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
- images/_menu/haze-stars+*
  images/_menu/haze-yellow+* 
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
@@ -722,12 +721,6 @@ Files:
  images/planet/browndwarf-y*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
-
-Files:
- images/_menu/haze-orange+*
-Copyright: Lia Gerty (https://github.com/ravenshining) 
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/planet/browndwarf-t-rouge*
