@@ -58,7 +58,7 @@ mission "Sheragi Archaeology: The Box 2"
 				goto offlimit
 			label hurry
 			`	"Straight to the point? Fair enough, I'm eager as well, but do come visit the museum some time in the future. There are so many interesting objects."`
-			`	You take the chance to catch up as he leads you into the ancient city's ruins, talking about the "minor" discoveries he made so far, but he quickly gets to the reason you're here: an artifact found buried even further underground. He leads you into one of the buildings, in an area that is off-limits to the public.`
+			`	You take the chance to catch up as he leads you into the ancient city's ruins, talking about the "minor" discoveries he made so far, but he quickly gets to the reason you are here: an artifact found buried even further underground. He leads you into one of the buildings, in an area that is off-limits to the public.`
 			label offlimit
 			`	"Here it is!"`
 			`	There is a tunnel going deep underground inside the room, but Albert sets his attention on a large safe instead. As he opens it up, he begins to explain the situation.`
@@ -169,7 +169,7 @@ mission "Sheragi Archaeology: The Box 4"
 		conversation
 			branch visited
 				has "visited mammon"
-			`Despite the obvious hostility the locals display towards you, you've safely entered Stormhold's atmosphere. You're still halfway through the descent when a robotic, modulated voice hails you.`
+			`Despite the obvious hostility the locals display towards you, you've safely entered Stormhold's atmosphere. You are still halfway through the descent when a robotic, modulated voice hails you.`
 			`	"I heard you were looking for me, <first> <last>," the person on the other end says.`
 			
 			choice
@@ -186,8 +186,8 @@ mission "Sheragi Archaeology: The Box 4"
 			label intro
 			`	"Mammon, information vendor. At your service," the voice states ominously. "Come meet me in person to discuss the specifics of what you're looking for." The connection cuts and you receive coordinates to land in a seemingly random location that appears to be in the middle of the sea.`
 			``
-			`	You arrive at the coordinates in the middle of nowhere under stormy conditions. You begin to question whether you received the correct coordinates until a massive submarine emerges from the waves. It is a gargantuan vessel, and as lights guide you to land on its deck, you notice that despite the size of your ship, it comfortably fits on the deck, where it is automatically secured in place by magnetic locks. Armed men in business suits surround your ship, and once you disembark, two of them guide you inside. You're led into a dimly lit room with a holographic map of the galaxy on the ceiling and a desk, behind which a hooded figure sits.`
-			`	"There we are, away from prying eyes. Please, take a seat," they say. Their voice has a strange tone with no distinguishable gender, with a sibilating, guttural accent, and it's not until you sit down that you notice a reptilian snout poking out of the hood. You don't know whether this is natural or an extreme body modification.`
+			`	You arrive at the coordinates in the middle of nowhere under stormy conditions. You begin to question whether you received the correct coordinates until a massive submarine emerges from the waves. It is a gargantuan vessel, and as lights guide you to land on its deck, you notice that despite the size of your ship, it comfortably fits on the deck, where it is automatically secured in place by magnetic locks. Armed men in business suits surround your ship, and once you disembark, two of them guide you inside. You are led into a dimly lit room with a holographic map of the galaxy on the ceiling and a desk, behind which a hooded figure sits.`
+			`	"There we are, away from prying eyes. Please, take a seat," they say. Their voice has a strange tone with no distinguishable gender, with a sibilating, guttural accent, and it's not until you sit down that you notice a reptilian snout poking out of the hood. You do not know whether this is natural or an extreme body modification.`
 			choice
 				`	"Are you a..."`
 				`	(Say nothing.)`
@@ -324,7 +324,7 @@ mission "Sheragi Archaeology: The Box 5"
 	
 	on offer
 		conversation
-			`You arrive at the uninhabited moon of Watcher and scout the area around the coordinates Mammon sent you. It's relatively easy to find some smoke rising from a campfire in a clearing, but as you approach to investigate, you're surprised by several large ships taking off to greet you, ditching the green tarps used to hide among the trees. It looks like they really don't want you here.`
+			`You arrive at the uninhabited moon of Watcher and scout the area around the coordinates Mammon sent you. It's relatively easy to find some smoke rising from a campfire in a clearing, but as you approach to investigate, you are surprised by several large ships taking off to greet you, ditching the green tarps used to hide among the trees. It looks like they really do not want you here.`
 				launch
 	
 	npc disable
@@ -452,7 +452,7 @@ mission "Sheragi Archaeology: The Box 7b"
 	
 	on offer
 		conversation
-			`Arriving on Mirrorlake, you ask around for a while, and eventually, someone directs you to the Museum of Galactic History: a huge, and very important place, but surprisingly not a very popular tourist spot. Most Hai aren't very fond of looking at the past, and most humans have no idea this place exists. The museum staff is surprised to see a human face, and as you wander you feel like you're drawing more attention from the locals than the exhibits themselves.`
+			`Arriving on Mirrorlake, you ask around for a while, and eventually, someone directs you to the Museum of Galactic History: a huge, and very important place, but surprisingly not a very popular tourist spot. Most Hai aren't very fond of looking at the past, and most humans have no idea this place exists. The museum staff is surprised to see a human face, and as you wander you feel like you are drawing more attention from the locals than the exhibits themselves.`
 			`	The place has a very unusual architecture vaguely resembling Earth's Ancient Greece, but clearly not based on any human design. Touches of metal, concrete, glass, and plastic add a modern aspect to its design. Exhibit rooms branch off a long corridor that makes up the majority of the building.  The rooms are arranged such that history proceeds backwards as you walk through the museum, with recent events at the front and the earliest at the back. One room you enter is dominated by a mural depicting the Hai's history of contact with humanity. It begins with the Alphas: most of the space is taken up by pictures of warships and artwork detailing battles between the Hai and Alphas. Around halfway through the mural, the green-skinned humans are replaced by ordinary ones. Here, there are surprisingly rich insights on human biology and culture.`
 			`	As you continue to wander further down the aisle, you find rooms dedicated to the Korath raids, their civil war, and the first contact with them, along with a very poetic recounting of the origins of the Unfettered. Going deeper, you find even more sections: A long one detailing Hai culture on several different worlds and how they shifted with time, another on the fall of the trans-wormhole government and the decision to pull back into a small territory, one on the completion of the Quarg ringworld, one for Hai trade and military culture during their imperial phase, and a very grim-looking room on the Hai Civil Wars. Finally, after a very long walk, you arrive at a room nearly at the end of the aisle, recounting the history of the Sheragi.`
 			choice
@@ -492,7 +492,7 @@ mission "Sheragi Archaeology: The Box 7b"
 
 	on complete
 		conversation
-			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
+			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you are scheduled to meet them in person.`
 			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table, you explain the situation, and they begin inquiring about the dig site on Zug, curious about the state of preservation of the ruins and what artifacts were found. They seem excited about it.`
 			`	This is a unique opportunity! Even when our species were in... active contact, millenia ago, we Hai never had the opportunity to study Sheragi cities up close. Brief skirmishes and diplomatic meetings was as close as our ancestors got."`
 			`	"You'll understand, however, that we can't simply sell you the documents you're requesting. Instead, we have a proposition for you: cooperation between our species, so both Hai and human can mutually benefit in ways more significant than the financial one."`
@@ -517,7 +517,7 @@ mission "Sheragi Archaeology: The Box 8"
 	destination "Zug"
 	passengers 3
 	cargo "Archaeological Equipment" 1
-	blocked `You arrive at the spaceport, but then you realize your ships don't have enough free bunks or cargo space required to bring the archaeologist team with you. You manage to contact them, and in an embarrassing conversation ask them to wait for you while you make sure you're ready.`
+	blocked `You arrive at the spaceport, but then you realize your ships do not have enough free bunks or cargo space required to bring the archaeologist team with you. You manage to contact them, and in an embarrassing conversation ask them to wait for you while you make sure you are ready.`
 	
 	to offer
 		has "Sheragi Archaeology: The Box 7b: done"
@@ -536,7 +536,7 @@ mission "Sheragi Archaeology: The Box 8"
 		event "cube decoded" 40 50
 		conversation
 			`It was a long trip, almost halfway across the galaxy. The Hai archaeologists have been quite friendly and amiable, giving you updates every time they made a new breakthrough. During this time, the cube, previously thought to be impenetrable, had been disassembled and cleaned. Components that decayed into a mess of oxidized wires and goopy paste over the eons have been identified and removed to substitute for equivalent ones, and a blueprint of the box and its circuits has started to take shape.`
-			`	As soon as you land, you call Albert Foster, who doesn't believe you when you say you've gotten alien archaeologists to help. You then look for the three Hai to figure out how they're going to go unnoticed on a human world. You're surprised to find Eyama wearing long, dark but colorful human clothing with an equally oversized hoodie and a bandanna. You recognize this outfit, very popular with the youth these days, who are generally regarded as delinquents by the previous generation. Additionally, she's carrying two more sets, for her Hai partners as well. It hides her body really well at the cost of making her look like a young boy, and the Hai's relatively short stature doesn't help.`
+			`	As soon as you land, you call Albert Foster, who does not believe you when you say you've gotten alien archaeologists to help. You then look for the three Hai to figure out how they are going to go unnoticed on a human world. You are surprised to find Eyama wearing long, dark but colorful human clothing with an equally oversized hoodie and a bandanna. You recognize this outfit, very popular with the youth these days, who are generally regarded as delinquents by the previous generation. Additionally, she is carrying two more sets, for her Hai partners as well. It hides her body really well at the cost of making her look like a young boy, and the Hai's relatively short stature doesn't help.`
 			`	"Call me Miss Deus ex Machina, because I thought ahead and bought these from a merchant back home. Perfect disguise. The humans will never notice. How do I look?"`
 			choice
 				`	"That's... clever. It hides you well."`
@@ -548,7 +548,7 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"That's not that bad, is it? I always considered myself young at heart, anyway!" she giggles a little.`
 			label anyway
 			`	"Anyway, can you take us to Mr. Foster's museum? We'll take the cube and fill him in on the details."`
-			`	You agree, and after they're all ready, you make your way out to the dig site. Surprisingly, the three Hai don't get many weird looks if they walk a bit further behind you. You arrive at the museum and they immediately break character by being very obviously excited to see the exhibits. This probably comes as a relief to onlookers, however, who would normally expect that type of kid to vandalize priceless artifacts.`
+			`	You agree, and after they are all ready, you make your way out to the dig site. Surprisingly, the three Hai do not get many weird looks if they walk a bit further behind you. You arrive at the museum and they immediately break character by being very obviously excited to see the exhibits. This probably comes as a relief to onlookers, however, who would normally expect that type of kid to vandalize priceless artifacts.`
 			`	Finally, you arrive at Albert's workshop. He stops brushing layers of hardened soil off of what looks like it was once a television, and looks startled at you and the three "kids." The Hai take off their hoods and bandannas, causing his jaw to nearly drop to the floor.`
 			`	"I'll be damned. The Hai really exist!" He exclaims.`
 			`	"Of course we do," Eyama laughs. "Haven't you heard all the stories?"`
@@ -557,15 +557,15 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"We've managed to open the box and we're making a blueprint of it," says Desyo. "Once that's done, we might be able to rebuild the broken pieces and recover the data. We already have documentation on how their hardware worked."`
 			`	"The catch is that this is a collaboration now. We'll help you, if you share your findings with us," Rakei continues.`
 			`	"Sounds like a fair deal to me," Albert says. "We'll arrange the details later. <first>, thank you so much for your help. We'll continue studying this artifact, and we'll send you a message when we're done."`
-			`	You say goodbye to Albert, Rakei, Eyama, and Desyo, and make your way back to your ship. However, as you're walking back to the ship, you feel a heavy hand on your shoulder. You look back, and you're startled to see a Quarg. It's Yarthis, who you had brought here to help protect the dig site during the early days of the project.`
+			`	You say goodbye to Albert, Rakei, Eyama, and Desyo, and make your way back to your ship. However, as you are walking back to the ship, you feel a heavy hand on your shoulder. You look back, and you are startled to see a Quarg. It's Yarthis, who you had brought here to help protect the dig site during the early days of the project.`
 			choice
 				`	"I wasn't expecting to see you here."`
 				`	"Can I help you?"`
-			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but i must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
+			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but I must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
 			`	He turns around, and leaves you to think about it.`
-		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She's more interested in technology and electronics than people, and often coordinates the work in the Hai archeologist team, despite her introversion, and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
-		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She's part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
-		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you'd expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
+		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people, and often coordinates the work in the Hai archeologist team, despite her introversion, and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
+		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She is part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
+		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you would expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
 
 mission "Sheragi Archaeology: The Emerald Sword 1"
 	landing
@@ -580,7 +580,7 @@ mission "Sheragi Archaeology: The Emerald Sword 1"
 	
 	on offer
 		dialog
-			`You're still in the middle of the post-flight check when you receive a new encoded message from Albert Foster.`
+			`You are still in the middle of the post-flight check when you receive a new encoded message from Albert Foster.`
 			`	"Hello <first>. I have some good news! We have decoded what's in the black box. You should come visit us on Zug; we have plenty to tell you!"`
 
 mission "Sheragi Archaeology: The Emerald Sword 2"
@@ -663,7 +663,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	"Who are you?"`
 					goto who
 				`	"What... What is this feeling?"`
-			`	There is a pause. The feeling of being watched becomes intense, as if you're being studied intently.`
+			`	There is a pause. The feeling of being watched becomes intense, as if you are being studied intently.`
 			`	"A human would call it... dread. Regret. Loss. You are standing in the last untouched graveyard of a lost civilization.`
 			label who
 			`	"I am the guardian of this site. I am also the one who guided you towards the buried city, so your species would bear witness and take heed of the lessons of ones who have long succumbed to their own folly. I did not intend for you to reach this far.`
@@ -677,7 +677,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			label cannon
 			`	"That ship is just a relic, its weapons a mere trinket. The weapon that perished the Sheragi was indiscriminate. An irrational decision they made for themselves, failing to judge the risk."`
 			label next
-			`	As that is said, you're overcome by glimpses of memories that are not yours, not clear enough for you to identify what exactly is happening, but you can feel the sadness in them.`
+			`	As that is said, you are overcome by glimpses of memories that are not yours, not clear enough for you to identify what exactly is happening, but you can feel the sadness in them.`
 			`	The voice continues: "I know what you seek here. The trinket you covet is of little relevance, even for your own, human standards. But if you wish to possess it, then take it. Show your respect to those who have perished here, learn their lessons, and I will allow it. Perhaps the sight of that vessel will remind the living races of those who have come and gone... and how, despite their great accomplishments, their decision to make war reduced them to graveyards, relics, memories... and dust."`
 			`	The voice, and the overwhelming emotions that came alongside it, disappear as mysteriously as they came. Desyo, who witnessed you speaking into the void, asks whether you feel okay. It seems like no one else heard it.`
 
