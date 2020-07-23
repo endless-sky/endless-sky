@@ -48,7 +48,7 @@ mission "Hai Reveal [D01] Cleanup"
 		log `Unfortunately it seems that in the midst of the crisis a single ship loaded with kidnapped Hai was misplaced by the pirate faction. Now they're in need of rescue from where they've been dumped, and someone has to check for loose ends...`
 		conversation
 			`Arriving on Mountaintop brings with it full diplomatic regalia. The Chancellor of the Free Worlds and President of the Republic are in their most respectable suits, Alondo and Xilin have the traditional symbols of office (though Alondo's looks like the Free Worlds have perhaps not finalised their design just yet), and dress uniforms laden with medals abound on both sides.`
-			`	When you ask around you find out that Terry is not invited to such an event, as the Syndicate is technically part of the republic and awarded no special diplomatic status, not to mention that Terry appears to have left the station as soon as she was released at the end of the crisis.`
+			`	When you ask around you find out that Terry is not invited to such an event, as the Syndicate is technically part of the Republic and awarded no special diplomatic status, not to mention that Terry appears to have left the station as soon as she was released at the end of the crisis.`
 			`	The station appears to have had work ongoing on it before you arrived, and after a remarkably short time you find yourself standing with the diplomats in the grand Borealis Chamber 'Where Mountains Touch The Sky' as Teeneep makes the first publicly broadcast speech from a Hai to the human media. The three heads of state announce a resolution granting safe passage to all Hai in human space, so long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety.`
 			`	This meeting will now turn into a multi-day summit to discuss and settle upon the appropriate terms of referencee and necessary criteria for a full resolution outlining a path to a formal treaty. This process will take a number of days.`
 			choice
@@ -119,7 +119,7 @@ mission "Hai Reveal [D02] Cleanup"
 	on stopover
 		conversation
 			`Arriving to Sunracer you follow the coded coordinates you were given to avoid drawing unnecessary attention. No one wants any press on this with the Hai's first public appearance only just days past and still dominating the news cycle. Fortunately a glance at the feeds your ship can pick up on the way in seems to indicate that the government response has taken the wind out of the more sensationalist talking heads, or at least the ones with notable followings.`
-			`	The coordinates turn out to lead to a lean-to town built around a star barge. The Hai here were unable to all fit on the ship and appear to have built shelters up against it out of the local flora to keep out of the weather. The communicator on the barge must be what was used to send a message. You find a clear space to land not too far away and make your way over.`
+			`	The coordinates turn out to lead to a lean-to town built around a Star Barge. The Hai here were unable to all fit on the ship and appear to have built shelters up against it out of the local flora to keep out of the weather. The communicator on the barge must be what was used to send a message. You find a clear space to land not too far away and make your way over.`
 			`	One of the Hai approaches you, "Are you Captain <last>?"`
 			choice
 				`	"Yes, that is me."`
@@ -139,14 +139,14 @@ mission "Hai Reveal [D02] Cleanup"
 			label kidnappers
 			`	"We were en route to somewhere after the ship left Hai space. We don't really know what happened but they received some kind of message that made them very concerned. They said something about hiding somewhere safe and they landed here."`
 			`	At this point he frowns in the way Hai do, "We were set down here for days and days, our kidnappers couldn't seem to work out what they should do. Eventually a woman came in this ship here."`
-			`	He gestures at the star barge, "She had them ferry us and all our stuff out to this ship, and then she took charge and flew off with them. That was when we sent the message. We were partly afraid it was some kind of elaborate trap when we saw that we could communicate to a Hai address directly, we never used to be able to communicate between human space and ours directly. I guess we were lucky this time."`
+			`	He gestures at the Star Barge, "She had them ferry us and all our stuff out to this ship, and then she took charge and flew off with them. That was when we sent the message. We were partly afraid it was some kind of elaborate trap when we saw that we could communicate to a Hai address directly, we never used to be able to communicate between human space and ours directly. I guess we were lucky this time."`
 			choice
 				`	"Do you know where they went?"`
 				`	"What did this woman look like?"`
 			`	"The woman was very fierce and very strict about what people said aloud. She disciplined a number of our kidnappers in front of us for opening their mouths at the wrong time. We have no idea where they went, but we did hear one of them say that they were afraid they wouldn't be welcome there. It sounded like it was out of the way somewhere, wherever it was."`
 				goto responses
 			label depart
-			`	The Hai sincerely thanks you and they load their meagre possessions and board your ship inside of twenty minutes. The star barge looks like it'd take a few hours at least to make ready for flight and then have to go through the risk of visiting the spaceport for fuelling, so you leave it behind.`
+			`	The Hai sincerely thanks you and they load their meagre possessions and board your ship inside of twenty minutes. The Star Barge looks like it'd take a few hours at least to make ready for flight and then have to go through the risk of visiting the spaceport for fuelling, so you leave it behind.`
 
 
 mission "Hai Reveal [D02A] Cleanup"
@@ -173,7 +173,7 @@ mission "Hai Reveal [D03] Cleanup"
 		log `With the Hai safely recovered you have a hunch about the loose end that left them there. It doesn't make a lot of sense yet, but you're sure you'll find answers on Freedom.`
 		conversation
 			`An all-Hai greeting party are waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer when you return to Mountaintop. It appears to have avoided media attention, and the summit is progressing towards a resolution at an acceptable rate. It's been slow going, since the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
-			`	You've had time to consider for a couple of days on the return the events that led to you hauling a group of spontaneously abandoned Hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
+			`	You've had a couple of days to contemplate the turn of events that led to you hauling a group of spontaneously abandoned Hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
 			`	While your passengers are quietly loaded onto a handful of transports to be quietly taken home, Sayari and Xilin find you somewhere quiet.`
 			`	"Thank you, <last>, you had all the necessary discretion at this sensitive time," says Sayari.`
 			`	Xilin is more direct, "I'll certainly thank you for saving me from another headache. Was there anything else you found? It seems so odd."`

@@ -123,7 +123,7 @@ conversation "hai reveal republic or syndicate news"
 	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders! He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at 6."`
 	`	You raise your eyebrows with surprise.`
 	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait so you stick around for the full segment out of curiosity.`
-	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently travelled many weeks before deciding to seek the media in order to avoid being shut down by republic intelligence if he contacted media elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
+	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently travelled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted media elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
@@ -488,7 +488,7 @@ mission "Hai Leaks Response 1"
 			`	As you are making the walk you hear questions posed and rumours stated. Occasionally you hear words like "honourable" and "reasonable" thrown in amongst the babble.`
 			label main
 			`	You are eventually led into a very comfortable office where you are received by a mature looking Hai with the apropriate regalia of a diplomat. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago."`
-			`	The present media storm is all the evidence you need to know the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then it makes sense that they're probably still trying to work out a suspression strategy and too busy to have sent an envoy quicker than yourself.`
+			`	The present media storm is all the evidence you need to know the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then it makes sense that they're probably still trying to work out a suspression strategy and have been too busy to send an envoy quicker than yourself.`
 			`	After a moment to let you ponder, she continues, "Our reports tell us that you are a well-known individual, respected both by your own government and abroad in the other human governments. Our reports also tell us that 'Hai' is quickly becoming a buzzword in your space. A few traders brought the news ahead of you."`
 			`	She pauses and looks at you seriously.`
 			`	"We think it would be prudent for you to represent your people as our point of contact. Would you accept such a role?"`
@@ -549,7 +549,7 @@ mission "Hai Leaks Response 2"
 		log `You have brought a number of diplomatic representatives from each of the main human factions to Hai-home to attend to the crisis in a collaborative manner. They do not believe any of their automatic responses that have already been engaged will be enough to suppress the information leak, though there is a reasonable model for how long they have to work with. While they work on the problem though you have been asked to help route some pirates. Apparently less scrupulous individuals have reacted swiftly to the leak and investigated in the hopes of scoring quickly.`
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
-			`	You get down to business at the moment Sayeri inquires how your journey went.`
+			`	You get down to business at the moment Sayari inquires how your journey went.`
 			choice
 				`	"I don't recall there being nearly so many pirates."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well it seems that the rumours of us, and the information making its way through your media has attracted every opportunist this side of the Deep."`
@@ -565,7 +565,7 @@ mission "Hai Leaks Response 2"
 			choice
 				`	"Would that be so bad?"`
 			`	"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release," says Yang.`
-			`	Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
+			`	Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome and help them route the pirates back to the other side of the wormhole. It will buy us some breathing space and some options."`
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
 				`	"I'll do what I can."`
@@ -601,13 +601,13 @@ mission "Hai Leaks Response 2A"
 	on offer
 		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic core for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free World's interests during this crisis.`
 		conversation
-			`When you land on Deep Katya is there waiting for you along with Alondo, "<first> it's so good to see you again! When the Republic briefed the Chancellor, he brought us in and we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
+			`When you land on Deep Katya is there waiting for you along with Alondo, "<first>! It's so good to see you again! When the Republic briefed the Chancellor, he brought us in and we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting as you look from one to the other, "I thought it seemed odd when they said I was meeting you for this Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
 			`	"Oh it was always going to be Alondo," she says, "but there's never a bad excuse for travelling with an old friend, especially when you're meeting other friends too."`
 			`	"Do we have time for a drink before we must rush off?" asks Alondo.`
 			`	You look around at the busy spaceport, no one has even begun looking at your ship for refueling.`
 			`	"I think we can spare a short while, and you really should meet Mr Yang."`
-			`	Mr Yang had been studiously pretending he wasn't eavesdropping from a distance of a few metres, but before you can call him over Alondo's slightly suggestive comment of 'Oh I should definitely meet Mr Yang' had evidently been overheard.`
+			`	Mr Yang had been studiously pretending he wasn't eavesdropping from a distance of a few metres but, before you could call him over, Alondo's slightly suggestive comment of, "Oh I should definitely meet Mr Yang," had evidently been overheard.`
 			`	Fortunately, after an hour and a couple of drinks, all embarrassment has been forgotten on both sides by the time you're returning to your ship.`
 				decline
 	
@@ -632,7 +632,7 @@ mission "Hai Leaks Response 2C"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
-		log "People" "Terry Adrianopolous" `Protege to the CEO, Terry Adrianopolous has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder, including an ability to act with apparently genuine friendliness to people whom she may consider her opponents.`
+		log "People" "Terry Adrianopolous" `Protege to the Syndicate CEO, Terry Adrianopolous has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder, including an ability to act with apparently genuine friendliness to people whom she may consider her opponents.`
 		conversation
 			`Approaching Foundry you are hailed on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
 			`	He smiles warmly, "Apologies Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
@@ -683,7 +683,7 @@ mission "Hai Leaks Response 4"
 			`	"What do you say?"`
 			`	The poor Captain seems desperate.`
 			choice
-				`	We shall bring them safely home.`
+				`	"We shall bring them safely home."`
 					accept
 	npc
 		government "Hai"

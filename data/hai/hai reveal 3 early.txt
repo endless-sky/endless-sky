@@ -95,7 +95,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				`	"Maybe in a bit, I should do something else first."`
 					defer
 			label council
-			`Following Sayari you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another hai doing administrative work for a moment before gesturing you to a private antechamber.`
+			`Following Sayari you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you to a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she glances at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
 			choice
 				`	"Yes, actually I found proof."`
@@ -104,7 +104,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	Sayari looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
 			`	"I will have a look," is all she says.`
 			`	No sooner has she pocketed it than there is a knock at the door and an aide looks in, "The Council will see you now."`
-			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recordsed in the FOI report. You're not really sure what most of it has to do with anything, but eventually one of the elders stands up.`
+			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recorded in the FOI report. You're not really sure what most of it has to do with anything, but eventually one of the elders stands up.`
 			`	"I think we've generally had enough of this here, answer me two questions and we shall make our decision," he says.`
 			`	"Do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
 			`	This seems like a very strange question...`
@@ -185,7 +185,7 @@ mission "Hai Building Mountaintop [1b] Return"
 	on offer
 		conversation
 			`On arrival, you see one of the Geocoris deploy a steel ring around itself. Space-based cranes set about removing the three outer sections of the Geocoris and moving them to the steel ring. After they finish with the first, they progressively dismantle the other seven Geocoris you escorted. Within a few hours, there is a makeshift station with eight Geocoris power generators and a sizable amount of storage and habitat space. The construction workers begin unpacking the contents of the Geocoris storage pods, checking construction seals, engaging principle life support systems, and a massive holoprojector.`
-			`	The Geocoris captains explain the Hai had conceived this space station option when the geocoris was first designed, with some station construction principles used to support its massive cargo capacity. With minor modifications it was a made a trivial effort to dismantle eight Geocoris and rapidly assemble a station. They thank you for your service, and inform you that the Hai government needs your help again.`
+			`	The Geocoris captains explain that the Hai had conceived this space station option when the Geocoris was first designed, with some station construction principles used to support its massive cargo capacity. With minor modifications it was a made a trivial effort to dismantle eight Geocoris and rapidly assemble a station. They thank you for your service, and inform you that the Hai government needs your help again.`
 			`	Content that the station is built satisfactorily, you prepare to return to <destination>.`
 				accept
 
