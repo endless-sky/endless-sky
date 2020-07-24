@@ -20647,6 +20647,34 @@ system Salipastart
 			distance 291
 			period 21.2086
 
+system Saquergen
+	pos -482 561
+	government Uninhabited
+	habitable 100
+	belt 1435
+	asteroids "small rock" 3 3.9105
+	asteroids "medium rock" 1 4.3255
+	asteroids "small metal" 2 6.7143
+	minables gold 2 3.04353
+	minables yottrite 4 4.69542
+	trade Clothing 243
+	trade Electronics 599
+	trade Equipment 513
+	trade Food 511
+	trade "Heavy Metals" 1254
+	trade Industrial 623
+	trade "Luxury Goods" 933
+	trade Medical 452
+	trade Metal 276
+	trade Plastic 328
+	object
+		sprite star/nova
+		period 1000
+	object
+		sprite planet/lava2
+		distance 938.342
+		period 531.634
+
 system Sargas
 	pos -542 445
 	government Republic
