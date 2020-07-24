@@ -2470,7 +2470,8 @@ mission "Remnant: Crystal Research 5"
 			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me." Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
 				goto work
 			label capitalists
-			`	"You've got a point there." Signs Aeolus. "But there is an entire supply chain at work. For all we know, most of these crystals could be simply recycled 
+			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then they do have a significant production and processing cost advantage." He takes on a defensive tone. "But there is an entire supply chain at work. For all we know, most of these crystals could be simply recycled from older ships. And that is something we want to figure out." He brightens again "That being said, we already have the first steps set out."`
+			label work
 			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular key stone. My ship has been outfitted with a keystone built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for a quantum key stone made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
 				`	"Wait, you are a pilot?"`
