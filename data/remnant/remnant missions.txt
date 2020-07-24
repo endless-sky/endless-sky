@@ -2302,7 +2302,7 @@ mission "Remnant: Crystal Research 1"
 				goto greedchoice
 			label greedpartial
 			`	Aeolus nods. "So financial wealth is a priority of necessity, but not necessarily what they would prefer to focus on. Interesting. That gives me a bit of hope. (not finished writing this section)`
-			goto greedchoice
+				goto greedchoice
 	on complete
 		dialog
 			`It takes a few minutes to contact the yardmaster, but once you do, a mixed crew of Hai and human dockworkers have the crates moved promptly from the warehouse to your cargo bay. Hai and humans seem accustomed to working together here.`
