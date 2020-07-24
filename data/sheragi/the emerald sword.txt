@@ -595,7 +595,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 		conversation
 			`You arrive on Zug, and after contacting Albert and the three Hai archaeologists and following their directions, you find them in an ice cream shop. They're still wearing the youngster clothes, but not even bothering to hide their faces with bandannas anymore. Surprisingly, nobody seems too distressed at the sight. Rakei waves for you and stands up, coming to you with ice creams in paw.`
 			`	"Hello <first>! It seems our disguise worked better than intended. The humans around here think we're wearing a costume. Apparently young humans like to dress up as aliens?" she says confusedly.`
-			`	"I had a feeling we'd fit right in with the furry crowd." Eyama responds proudly.`
+			`	"I had a feeling we'd fit right in with the furry crowd," Eyama responds proudly.`
 			`	"It has been an interesting cultural exchange. Human space might be a great vacation spot for us. But we're not on vacation yet. We have a mystery to solve," she continues.`
 			`	You sit down with your group on a bench in a nearby park, mostly empty, and Desyo picks up the conversation.`
 			`	"So, the files in the black box were thankfully standard for Sheragi. Not very difficult to decode, once we managed to read them."`
