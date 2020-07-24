@@ -139,6 +139,7 @@ effect "void sprite infant death"
 
 outfit Mouthparts?
 	category "Guns"
+	thumbnail "outfit/mouthparts"
 	"gun ports" -1
 	weapon
 		sound "crunch"
