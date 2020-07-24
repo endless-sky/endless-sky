@@ -2212,12 +2212,12 @@ mission "Remnant: Face to Maw 2B"
 
 
 mission "Remnant: Crystal Research 1"
-	name "Retrieve more Crystals"
-	description `Retrieve Crystals from Greenwater, and then Allhome.`
+	name "Retrieve more crystals"
+	description `Retrieve crystals from the Hai for the Remnant to study, starting in <destination>.`
 	minor
 	source "Viminal"
 	destination "Greenwater"
-	cargo "(reserved)" 2
+	cargo "(reserved)" 19
 	to offer
 		random < 30
 		has "Remnant: Learn Sign 2: done"
@@ -2228,8 +2228,8 @@ mission "Remnant: Crystal Research 1"
 			`In the spaceport cafeteria, you spot the outfitter who asked you to retrieve a shipment of Hai keystones. He notices you and waves you over, gesturing at an empty chair opposite him.`
 			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful." He pauses, then continues, "I never introduced myself before. My name is Aeolus, and I help manage resource logistics for our fleets." He eyes you for a moment, then ventures, "You came in here with the appearance of looking for something. Is there something on your mind?"`
 			choice
-				`	(Ask how business is going.)`
-				`	(Ask if there are more jobs like the last one you did for him.)`
+				`	"How is the outfit business going?"`
+				`	"That last job payed rather well. Do you have any more like it?"`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved," he gestures appreciatively. "I am told that we have you to thank for some of that.`
 			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some interesting results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
@@ -2258,14 +2258,16 @@ mission "Remnant: Crystal Research 1"
 			choice
 				`	"Wait, you didn't sell any of that?"`
 				`	"Okay, so that shipment you had me get?"`
-					goto crystaljobs
 			label crystaljobs
 			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to gauge your willingness to help. Your shipment was definitely useful, but we had to ensure we framed your job in a way that made sense without revealing what we were actually doing.`
 			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
 			choice
 				`	(Sign in the affirmative.)`
+				`	"Why would you assume that I needed a financial motivation?"`
+					goto greed
 				`	(Decline.)`
 					decline
+			label crystaljob
 			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
 			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
@@ -2279,6 +2281,28 @@ mission "Remnant: Crystal Research 1"
 			label remnantuntrusted
 			`	Aeolus smiles mysteriously at you. "Let's just say that you are not the only resourceful person working for us. We will share more with you once you have demonstrated your loyalty."`
 				accept
+			label greed
+			`	"While we don't know what is happening on the surface of planets in Ancestral space, we do pick up a fair bit of transmissions. Between those and our historical records, it is clear to us that 'making money' is the main motivation for why those in ancestral space do anything. Whether it is ferrying cargo, building a structure, or protecting someone; everything we see says that humanity in ancestral space requires credits for everything it does. And then beyond that, the larger the amount of credits, the more enthusiastic they are to do it." Aeolus shakes his head, looking visibly perturbed. "This is what we see. Tell me, are we wrong? A quote we have seen more than a few times says 'Money makes the world go round,' and everything we have seen supports that attitude."`
+			choice
+				`	"No, you aren't wrong. Money is the reason people work."`
+					goto greedconfirmation
+				`	"Yes and no. Most people work for money, but it isn't their only motivation."`
+					goto greedpartial
+				`	"You are wrong about that. Some people are all about money, but not everyone."`
+				`	"This isn't about everyone, this is about me. I'm not here for the money."`
+			`	"I am glad that some are willling to act for what is right, necessary or even just curiosity; and not just what they are paid for. It gives me hope for ancestral humanity." His look brightens a bit. "So, are you interested in another job to help us?"`
+			label greedchoice
+			choice
+				`	"Yes"`
+					goto crystaljob
+				`	"No"`
+					decline
+			label greedconfirmation
+			`	Aeolus nods sadly. "We appreciate the confirmation, and hope to learn more about those who remained in ancestral lands. It is depressing, however, to think that humanity is so self-centered to put financial wealth as such a high priority. Nonetheless, we do have another job for you. Are you interested?"`
+				goto greedchoice
+			label greedpartial
+			`	Aeolus nods. "So financial wealth is a priority of necessity, but not necessarily what they would prefer to focus on. Interesting. That gives me a bit of hope. (not finished writing this section)`
+			goto greedchoice
 	on complete
 		dialog
 			`It takes a few minutes to contact the yardmaster, but once you do, a mixed crew of Hai and human dockworkers have the crates moved promptly from the warehouse to your cargo bay. Hai and humans seem accustomed to working together here.`
@@ -2286,8 +2310,8 @@ mission "Remnant: Crystal Research 1"
 
 
 mission "Remnant: Crystal Research 2"
-	name "Retrieve more Crystals"
-	description `Retrieve Crystals from Greenwater, and then Allhome.`
+	name "Retrieve more crystals"
+	description `Retrieve crystals from the Hai for the Remnant to study, next from <destination>`
 	landing
 	source "Greenwater"
 	destination "Allhome"
@@ -2300,8 +2324,8 @@ mission "Remnant: Crystal Research 2"
 
 
 mission "Remnant: Crystal Research 3"
-	name "Retrieve more Crystals"
-	description `Retrieve Crystals from several Hai worlds, ending on Newhome.`
+	name "Retrieve more crystals"
+	description `Retrieve crystals from several Hai worlds, ending on Newhome.`
 	landing
 	source "Allhome"
 	destination "Newhome"
@@ -2412,8 +2436,8 @@ mission "Remnant: Crystal Research 3G"
 
 
 mission "Remnant: Crystal Research 4"
-	name "Retrieve more Crystals"
-	description `Return the Crystals to Viminal.`
+	name "Retrieve more crystals"
+	description `Return the crystals to Viminal.`
 	landing
 	source "Newhome"
 	destination "Viminal"
