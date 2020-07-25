@@ -130,6 +130,11 @@ Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
 
+Files: images/ship/peregrine/peregrine*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
+
 Files: images/outfit/city-ship?license*
 Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
@@ -295,13 +300,20 @@ Files:
  images/ship/hai?grasshopper*
  images/ship/gull*
  images/ship/pelican*
+ images/ship/peregrine/peregrine*
  images/ship/riptide*
+ images/ship/auxiliary*
+ images/ship/dropship*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
  images/thumbnail/gull*
  images/thumbnail/pelican*
+ images/thumbnail/peregrine*
  images/thumbnail/riptide*
+ images/thumbnail/auxiliary*
+ images/thumbnail/dropship*
+ images/outfit/auxiliary?license*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -667,6 +679,8 @@ Files:
  images/outfit/ka'het?ravager?beam*
  images/outfit/ka'het?shield?restorer*
  images/outfit/ka'het?support?cooling*
+ images/outfit/ka'het?mhd?generator*
+ images/outfit/ka'het?reserve?accumulator*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -697,14 +711,14 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Made in cooperation with Becca Tommaso (tommasobecca03@gmail.com) and derived from works by Michael Zahniser (under the same license) and Maximilian Korber (under the same license)
 
-Files
- images/effect/remnant leak*
- images/effect/remnant leak sparkle*
+Files:
+ images/effect/remnant?leak*
+ images/effect/remnant?leak?sparkle*
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
-Files
+Files:
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rouge*
@@ -712,13 +726,52 @@ Files
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 
-Files
+Files:
  images/planet/browndwarf-t-rouge*
  images/planet/browndwarf-t*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from works by NASA (public domain)
- 
+
+Files:
+ images/outfit/finisher?storage*
+Copyright: Arachi-Lover
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/effect/dragonflame*
+ images/effect/fdrive*
+ images/effect/pwave?shot*
+ images/effect/sheragiam*
+ images/effect/pwavehp*
+ images/outfit/dragonflame*
+ images/outfit/pwave?turret*
+ images/outfit/embattery*
+ images/outfit/sheragicooling*
+ images/outfit/fusiondrive*
+ images/projectile/pwavecannon*
+ images/scene/emeraldswordderelict*
+ images/ship/emeraldsword*
+ images/thumbnail/emeraldsword*
+Copyright: Fernando S. Sáez (crim@live.no)
+License: CC-BY-SA-4.0
+
+Files:
+ images/effect/pwave?impact*
+Copyright: Fernando S. Sáez (crim@live.no)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: sounds/dragonflame*
+Copyright: TheHadnot
+License: public-domain
+Comment: Taken from https://freesound.org/people/TheHadnot/sounds/160880/
+
+Files: sounds/pwave*
+Copyright: aust_paul
+License: public-domain
+Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

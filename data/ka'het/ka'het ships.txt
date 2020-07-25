@@ -60,6 +60,8 @@ ship "Maeri'het"
 		"Ka'het Support Cooling" 
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator"
 
 		"Hyperdrive"
 
@@ -94,6 +96,7 @@ ship "Maeri'het" "Maeri'het (EMP)"
 		"Ka'het Support Cooling"
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
 
 		Hyperdrive
 
@@ -108,6 +111,7 @@ ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 		"Ka'het Support Cooling"
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
 
 		Hyperdrive
 
@@ -129,7 +133,7 @@ ship "Telis'het"
 		"fuel capacity" 800
 		"ramscoop" 0.82
 		"cargo space" 71
-		"outfit space" 513
+		"outfit space" 528
 		"weapon capacity" 254
 		"energy capacity" 28000
 		"energy generation" 37.4
@@ -162,6 +166,8 @@ ship "Telis'het"
 
 		"Ka'het Shield Restorer" 7
 		"Ka'het Primary Cooling" 2
+		"Ka'het MHD Generator" 4
+		"Ka'het Reserve Accumulator"
 
 		"Hyperdrive"
 
@@ -197,7 +203,10 @@ ship "Telis'het" "Telis'het (EMP)"
 		"EMP Torpedo" 64
 
 		"Ka'het Shield Restorer" 11
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 3
 
 		Hyperdrive
 
@@ -210,7 +219,10 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 		"EMP Torpedo" 64
 
 		"Ka'het Shield Restorer" 11
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 3
 
 		Hyperdrive
 
@@ -221,8 +233,10 @@ ship "Telis'het" "Telis'het (Guns)"
 		"Ka'het Annihilator Turret" 5
 
 		"Ka'het Shield Restorer" 10
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 6
 
 		Hyperdrive
 
@@ -233,8 +247,10 @@ ship "Telis'het" "Telis'het (Guns, Disable-able)"
 		"Ka'het Annihilator Turret" 5
 
 		"Ka'het Shield Restorer" 10
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 6
 
 		Hyperdrive
 
@@ -249,11 +265,8 @@ ship "Selii'mar"
 		"drag" .8
 		"heat dissipation" 1.1
 		"cargo space" 14
-		"outfit space" 18
+		"outfit space" 51
 		"weapon capacity" 18
-		"energy capacity" 1200
-		"energy generation" 6.3
-		"heat generation" 4
 		"thrust" 10.2
 		"thrusting energy" 2.03
 		"thrusting heat" 1.43
@@ -272,6 +285,8 @@ ship "Selii'mar"
 			"hit force" 480
 	outfits
 		"Ka'het Ravager Beam"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 3
 	
 	gun 0 -32.5
 	engine 0 28 1.5
@@ -286,14 +301,11 @@ ship "Faes'mar"
 		"cost" 1180000
 		"shields" 200
 		"hull" 1900
-		"mass" 6
+		"mass" 46
 		"drag" .7
 		"heat dissipation" 1.05
 		"cargo space" 102
-		"outfit space" 38
-		"energy capacity" 800
-		"energy generation" 5.9
-		"heat generation" 3.2
+		"outfit space" 66
 		"thrust" 10.2
 		"thrusting energy" 2.03
 		"thrusting heat" 1.23
@@ -313,6 +325,8 @@ ship "Faes'mar"
 	outfits
 		"Ka'het Shield Restorer"
 		"Ka'het Support Cooling"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 5
 	
 	engine -7.5 34.5
 	engine 7.5 34.5
@@ -322,3 +336,5 @@ ship "Faes'mar"
 ship "Faes'mar" "Faes'mar (Strong)"
 	outfits
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 2
