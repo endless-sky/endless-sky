@@ -2267,7 +2267,7 @@ mission "Remnant: Crystal Research 1"
 					goto greed
 				`	(Decline.)`
 					decline
-			label crystaljob
+			label crystaldecision
 			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
 			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
@@ -2294,14 +2294,14 @@ mission "Remnant: Crystal Research 1"
 			label greedchoice
 			choice
 				`	"Yes"`
-					goto crystaljob
+					goto crystaldecision
 				`	"No"`
 					decline
 			label greedconfirmation
 			`	Aeolus nods sadly. "We appreciate the confirmation, and hope to learn more about those who remained in ancestral lands. It is depressing, however, to think that humanity is so self-centered to put financial wealth as such a high priority. Nonetheless, we do have another job for you. Are you interested?"`
 				goto greedchoice
 			label greedpartial
-			`	Aeolus nods. "So financial wealth is a priority of necessity, but not necessarily what they would prefer to focus on. Interesting. That gives me a bit of hope. (not finished writing this section)`
+			`	Aeolus nods. "So financial wealth is a priority of necessity, but not necessarily what they would prefer to focus on. Interesting. That gives me a bit of hope." He pauses to consider this, then continues. "The economic beliefs of humanity aside, are you interested in helping us out`
 				goto greedchoice
 	on complete
 		dialog
