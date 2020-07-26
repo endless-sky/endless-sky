@@ -23,11 +23,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameWindow.h"
-#include "MapPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
-#include "PlayerInfoPanel.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "SpriteSet.h"
@@ -249,12 +247,12 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
-		bool inMap = !gamePanels.IsEmpty() && (dynamic_cast<MapPanel*>(gamePanels.Top().get()) != nullptr);
-		bool inPlayerInfo = !gamePanels.IsEmpty() && (dynamic_cast<PlayerInfoPanel*>(gamePanels.Top().get()) != nullptr);
+
 		// Switch off fast-forward if the player is not in flight or flight-related screen
-		// (for example when the boarding dialog shows up or when the player lands or opens
-		// the map). The player can switch fast-forward on again when flight is resumed.
-		if(!inFlight && isFastForward && !inMap && !inPlayerInfo)
+		// (for example when the boarding dialog shows up or when the player lands). The player
+		// can switch fast-forward on again when flight is resumed.
+		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowFastForward();
+		if(!inFlight && isFastForward && !allowFastForward)
 			isFastForward = false;
 		
 		// Tell all the panels to step forward, then draw them.
