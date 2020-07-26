@@ -168,7 +168,7 @@ mission "Coalition: Lost: Marker"
 	landing
 	source
 		near "Ekuarik" 1 100
-		destination "Ring of Wisdom"
+	destination "Ring of Wisdom"
 	to offer
 		has "event: lost in coalition"
 	on offer
@@ -207,11 +207,10 @@ mission "Coalition: Lost: Offer"
 				accept
 	on accept
 		outfit "Jump Drive" 1
-	to complete
-		require "Jump Drive" 2
 	on fail
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
 	on complete
+		require "Jump Drive" 2
 		outfit "Jump Drive" -1
 		dialog `After you once again land near several of their warships and armed guards, the Heliarchs take the jump drive you brought them. They thank you for keeping true to your word, and ask that you avoid losing such an important outfit again.`
