@@ -23,6 +23,7 @@ mission "Immigrant Workers"
 		payment
 		payment 10000
 		dialog "The young couple from <origin> pays you and thanks you profusely as they gather up their goods and depart. You wish them the best of luck in their new life on <planet>."
+		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha’s conditions.`
 	on offer
 		conversation
 			"As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
@@ -105,7 +106,8 @@ mission "Pookie, Part 2"
 	on complete
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
-
+		log "Minor People" "Pocahontas (Pookie)" `A dog...`
+		
 
 
 mission "Smuggler's Den, Part 1"
@@ -252,6 +254,7 @@ mission "Smuggler's Den: Follow Up"
 				
 	on accept
 		log `Visited Joe and Maria on Millrace. Life is tough, but they are doing far better now than they were on a pirate ship. Jesse has grown and the couple already has another baby to look after.`
+		log "Minor People" "Joe and Maria" `Two teenagers who were under the employs of pirates, the couple wanted your aid with an escape from their lives and after a time have informed you that they are now living in relative peace where you left them on Millrace.`
 		fail
 
 
@@ -436,6 +439,7 @@ mission "Transport Workers C"
 		payment
 		payment 10000
 		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
+		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizeable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
 
 
 
@@ -2936,6 +2940,7 @@ mission "Paradise Fortune 2"
 			
 	on decline
 		payment 150000
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, you turned her in to the authorities for a meagre reward.`
 	on visit
 		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -2994,6 +2999,7 @@ mission "Paradise Fortune 3"
 	
 	on decline
 		payment 500000
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, you turned her in to the authorities for a moderate reward.`
 	
 	on visit
 		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -3086,12 +3092,13 @@ mission "Paradise Fortune 4"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
-	
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
 	on complete
 		payment 1000000
 		conversation
 			`You spot a fleet of docked Navy ships as you come in for a landing. A small squad of troops gather around your ship after you land. You are greeted by a Navy officer upon exiting your ship and explain to him where Diana is, showing him the note she wrote.`
 			`	"That is unfortunate," she responds with a troubled look on her face. "We'll contact the Howl family about this." Before letting you go, the officer hands you <payment>. "This is the reward that Mr. Howl put out for the return of his credits. Thank you for doing the right thing, Captain."`
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you dutifully turned in the credits to the authorities to keep the peace. You received a substantial reward for your integrity.`
 
 
 
@@ -3470,6 +3477,9 @@ mission "Inheritance Redirection"
 				decline
 	on complete
 		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
+		log "Minor People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa, but was then proven to be a scam.`
+	on decline
+		log "Minor People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa. You presume he was a scammer and had no part in it.`
 
 
 
@@ -3633,3 +3643,110 @@ mission "Antibiotics To South"
 		payment
 		payment 20000
 		dialog phrase "generic cargo delivery payment"
+
+
+mission "Pirate Duel"
+	name "Fight at Umbral"
+	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the "Esca." After fighting, go to <destination> to follow up.`
+	minor
+	deadline 5 1
+	source
+		near "Tarazed" 1 5
+		government "Republic" "Free Worlds"
+	waypoint "Umbral"
+	destination "Wayfarer"
+	
+	to offer
+		"combat rating" > 20
+		"combat rating" < 400
+		random < 35
+		not "ships: Medium Warship"
+		not "ships: Heavy Warship"
+		not "ships: Heavy Freighter"
+		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" == 1
+	
+	on offer
+		conversation
+			`While you are walking around the spaceport, you accidentally bump into a sturdily-built man. "Oh, I'm sorry," he responds in a gruff voice. When he takes a closer look at you, his expression changes to shock. "Oh! You're Captain <last>!"`
+			choice
+				`	"How did you know my name?"`
+					goto offer
+				`	"I don't know who you're talking about."`
+			`	The man's expression changes to one of slight dissapointment. "Oh. I see." He walks away without another word.`
+				decline
+			label offer
+			`	"I happen to take an interest in young pioneering privateers, and your performance, even in a small vessel like the <ship>, has impressed me greatly. I'll tell you more if you let me take you somewhere."`
+			choice
+				`	"Sure, I'll follow."`
+					goto follow
+				`	"Where are you taking me?"`
+			`	The man chuckles nervously. "Just to somewhere more private. Don't worry, I won't bite."`
+			choice
+				`	"Fine, I'll go."`
+				`	"I still don't buy this. I'm out."`
+					decline
+			label follow
+			`	You follow the man into a series of winding alleyways, keeping your eyes alert for any danger. After a while, the man stops. "I suppose I can tell you more about myself now. I... am the leader of the local militia, and I believe that, considering your proficiency in piloting smaller craft, you would be a great candidate to join our team. However, there is a test you must pass. I will use one of our smaller ships in our fleet, the Esca, to challenge you to a duel in the system of Umbral. If you manage to disable me, go to our base in Wayfarer, and I'll let you join."`
+			choice
+				`	"What sort of vessel is the Esca?"`
+					goto vessel
+				`	"Why did you need to bring me to here? Couldn't you have made this offer in the spaceport?"`
+			`	The man hesiates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
+				goto end
+			label vessel
+			`	The man hesiates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you.`
+			label end
+			`	"Well, I better be going now. Meet me at Umbral as fast as you can if you want to take up my challenge." The man walks away, leaving you to your own devices.`
+			choice
+				`	(Ready your ship for the battle with the Esca.)`
+					accept
+				`	(Ignore the invitation.)`
+					decline
+	
+	on accept
+		"reputation:  Independent " = 10
+	
+	on enter
+		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
+	on enter "Umbral"
+		"reputation:  Independent " = -1000
+		conversation
+			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
+			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
+			`	The Vanguard powers up its weapons.`
+	
+	npc kill
+		government " Independent "
+		personality heroic vindictive unconstrained launching
+			confusion 20
+		ship "Vanguard (Plasma Slow)" "Anglerfish"
+		dialog `The Anglerfish and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
+	
+	on complete
+		"reputation:  Independent " = 10
+		payment 250000
+		conversation
+				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
+				choice
+					`	(Take the bounty money.)`
+						goto end
+					`	(Read more about the bounty.)`
+				`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also had a curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship.`
+				label end
+				`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you <payment> for your effort.`
+
+ship "Vanguard" "Vanguard (Plasma Slow)"
+	outfits
+		"Plasma Cannon" 7
+		"Heavy Anti-Missile Turret"
+		"Fusion Reactor"
+		Supercapacitor
+		"D14-RN Shield Generator"
+		"Fuel Pod" 5
+		"Small Radar Jammer" 2
+		"Interference Plating" 4
+		"Cargo Expansion" 3
+		"Laser Rifle" 11
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
