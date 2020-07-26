@@ -561,11 +561,11 @@ mission "Sheragi Archaeology: The Box 8"
 			choice
 				`	"I wasn't expecting to see you here."`
 				`	"Can I help you?"`
-			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but i must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
+			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but I must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
 			`	He turns around, and leaves you to think about it.`
-		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She's more interested in technology and electronics than people, and often coordinates the work in the Hai archeologist team, despite her introversion, and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
-		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She's part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
-		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you'd expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
+		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people, and often coordinates the work in the Hai archeologist team, despite her introversion, and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
+		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She is part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
+		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you would expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
 
 mission "Sheragi Archaeology: The Emerald Sword 1"
 	landing
@@ -595,7 +595,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 		conversation
 			`You arrive on Zug, and after contacting Albert and the three Hai archaeologists and following their directions, you find them in an ice cream shop. They're still wearing the youngster clothes, but not even bothering to hide their faces with bandannas anymore. Surprisingly, nobody seems too distressed at the sight. Rakei waves for you and stands up, coming to you with ice creams in paw.`
 			`	"Hello <first>! It seems our disguise worked better than intended. The humans around here think we're wearing a costume. Apparently young humans like to dress up as aliens?" she says confusedly.`
-			`	"I had a feeling we'd fit right in with the furry crowd." Eyama responds proudly.`
+			`	"I had a feeling we'd fit right in with the furry crowd," Eyama responds proudly.`
 			`	"It has been an interesting cultural exchange. Human space might be a great vacation spot for us. But we're not on vacation yet. We have a mystery to solve," she continues.`
 			`	You sit down with your group on a bench in a nearby park, mostly empty, and Desyo picks up the conversation.`
 			`	"So, the files in the black box were thankfully standard for Sheragi. Not very difficult to decode, once we managed to read them."`
