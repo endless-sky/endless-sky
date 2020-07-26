@@ -63,6 +63,9 @@ public:
 	void DrawButtons(const std::string &condition);
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 	
+	// Map panels allow fast-forward to stay active.
+	virtual bool AllowFastForward() const;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
