@@ -1249,6 +1249,8 @@ mission "FW Pug 2C: Hyperdrive"
 		set "fw given jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		set "FW Pug 2C: done"
 
 
 
@@ -1276,6 +1278,8 @@ mission "FW Pug 2C: Scram Drive"
 		set "fw given jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		set "FW Pug 2C: done"
 
 
 
@@ -1305,6 +1309,8 @@ mission "FW Pug 2C: A Jump Drive"
 		set "already had jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		set "FW Pug 2C: done"
 
 
 
@@ -1406,6 +1412,7 @@ mission "FW Pug 3"
 	clearance
 	to offer
 		has "fw given jump drive"
+		has "FW Pug 2C: done"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
