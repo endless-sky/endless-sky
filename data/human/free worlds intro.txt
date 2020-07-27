@@ -1317,7 +1317,7 @@ mission "FW Escort 1"
 	
 	on offer
 		conversation
-			`As you are walking through the spaceport, a man in a militia uniform approaches you. "Captain <last>?" he asks. You nod. "I'm the Free Worlds quartermaster here on <origin>," he says. "We're looking for ships to help escort a supply convoy that is traveling to <planet> and back. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. Are you interested?"`
+			`As you are walking through the spaceport, a man in a militia uniform approaches you. "Captain <last>?" he asks. You nod. "I'm the Free Worlds quartermaster here on <origin>," he says. "We're looking for ships to help escort a freighter convoy that is traveling to <planet> to pick up supplies bound for Longjump. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. Are you interested?"`
 			choice
 				`	"Sure, I'd be glad to assist."`
 				`	"Sorry, I'm busy with another mission at this moment."`

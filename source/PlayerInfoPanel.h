@@ -36,6 +36,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 	
+	// The player info panel allow fast-forward to stay active.
+	virtual bool AllowFastForward() const;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
