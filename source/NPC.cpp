@@ -283,7 +283,8 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	// doesn't "despawn" before spawning in the first place.
 	if(!passedSpawnConditions)
 		passedSpawnConditions = toSpawn.Test(player.Conditions());
-	else if(!toDespawn.IsEmpty() && !passedDespawnConditions)
+	
+	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
 		passedDespawnConditions = toDespawn.Test(player.Conditions());
 }
 
