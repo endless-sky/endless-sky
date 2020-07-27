@@ -250,7 +250,7 @@ mission "Kimek Student 2"
 					decline
 			label accept
 			`	He thanks you, and this time follows you right away, as he already has his bags prepared.`
-			`	"Hoping to join the research teams on Ring of Wisdom, I am," he says as you two walk to your ship, explaining the reason he needs to study so much is because he isn't aiming for the more military-focused side of the government.`
+			`	"Hoping to join the research teams on Ring of Wisdom, I am," he says as you two walk to your ship, explaining the reason he needs to study so much is because he is aiming to work for for the scientific branch of the government, instead of the more military-focused side.`
 			`	You lead him to his bunk and prepare for the trip.`
 				accept
 	on visit
@@ -509,8 +509,7 @@ mission "Saryd Students 1"
 	destination "Weir of Glubatub"
 	on offer
 		conversation
-			`While walking by some shops, young Saryd bumps into you as you're turning a corner, knocking you to the ground.`
-			`	He helps you up, apologizing. A couple others that were with him entered the shop without even noticing you, but almost immediately come back out.`
+			`While walking by some shops, young Saryd bumps into you as you're turning a corner, knocking you to the ground. He helps you up, apologizing. A couple others that were with him entered the shop without even noticing you, but almost immediately come back out.`
 			branch translator
 				has "language: Coalition"
 			`	They speak with him, pointing at the shop and to where they must have been before bumping into you, while their friend tinkers with a translation box.`
@@ -678,7 +677,7 @@ mission "Saryd Couple 1"
 			choice
 				`	(Approach them.)`
 				`	(Go back to your ship and check if it was properly refueled.)`
-					decline
+					goto ship
 			`	They pause their map-gazing and introduce themselves as Inturi and Aunaris, a young couple who are looking to move out of <origin> and build a home they've always dreamed of on another world.`
 			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
 			`	"Much too far away, his old job took him, and well paid, crew members are not," Aunaris says, bringing up the map again and showing it to you. "Offered a job in Starlit University, on <destination>, I was. Not too distant from <origin>, it is, and a higher pay, it offers. Transport me there, would you, Captain? Once ready our house is, pay you we would."`
@@ -689,6 +688,9 @@ mission "Saryd Couple 1"
 			`	They both thank you, and you head back to your ship.`
 			`	By nightfall, Aunaris arrives, accompanied by Inturi and some other Saryds, who you guess must be family members, as they all say their goodbyes. Once she enters your ship, you show her to her bunk, and prepare to leave.`
 				accept
+			label ship
+			`	When you get to your ship, you check the control panel and do a short check-up. The fuel tank has been filled, and everything else is working properly. You leave your ship again, and move on with your business.`
+				decline
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Aunaris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -855,16 +857,16 @@ mission "Longcow Antibiotics 1"
 		conversation
 			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
 			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
-			`	She tells you that they are a cooperative of Arachi ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <destination>.`
+			`	She tells you that they are a cooperative of Arachi ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
 			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
 			choice
 				`	"You've found the perfect person for the job. I'm in."`
 				`	"I suppose that's true, but I'm not looking for courier jobs, sorry."`
 					decline
-			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <planet>, you'll have to drop them off on another planet before wishing you a good trip.`
+			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
 				accept
 	on stopover
-		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arachi cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the vaccines to <destination>, where they will pay you <payment>.`
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arachi cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -884,18 +886,18 @@ mission "Longcow Antibiotics 2"
 	destination "Nearby Jade"
 	on offer
 		conversation
-			`You're paid 421,000 credits when you land, but as you help the ranchers unload the vaccines, they say that something is off.`
-			`	"Only 6 tons of vaccines, we requested," one of them says. "That extra ton surplus, ours is not."`
+			`You're paid 421,000 credits when you land, but as you help the ranchers unload the antibiotics, they say that something is off.`
+			`	"Only 6 tons of antibiotics, we requested," one of them says. "That extra ton surplus, ours is not."`
 			`	She goes away for about ten minutes to contact the lab workers back on New Finding. When she comes back, she seemingly jokes with the other ranchers in the Arachi language, before talking to you.`
 			`	"Mixed up the cargo, they have. His own longcow ranch on <destination>, a cousin of mine has," she says. "Sent along with my own, his batch of antibiotics was."`
-			`	They contact the cousin in question and he asks that you transport his own part of the vaccines to <destination>, where he will pay you <payment>.`
+			`	They contact the cousin in question and he asks that you transport his own part of the antibiotics to <destination>, where he will pay you <payment>.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		"coalition jobs" += 2
 		payment 193000
-		dialog `You land and meet up with the cousin of the Corral of Meblumem rancher, and he pays you <payment>. "Mix up our batches due to our family name, the doctors always do!" he grumbles as the vaccines are being removed from your cargo hold.`
+		dialog `You land and meet up with the cousin of the Corral of Meblumem rancher, and he pays you <payment>. "Mix up our batches due to our family name, the doctors always do!" he grumbles as the antibiotics are being removed from your cargo hold.`
 
 
 
