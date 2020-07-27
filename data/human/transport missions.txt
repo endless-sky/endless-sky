@@ -816,6 +816,7 @@ mission "There Might Be Riots part 3A"
 	minor
 	source
 		attributes "dirt belt" "south" "rim"
+		government "Republic" "Free Worlds" "Neutral"
 	destination "Pilot"
 	clearance
 	infiltrating
