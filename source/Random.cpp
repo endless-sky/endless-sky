@@ -58,7 +58,7 @@ uint32_t Random::Int()
 
 
 
-uint32_t Random::Int(uint32_t modulus)
+uint32_t Random::Int(uint32_t upper_bound)
 {
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
