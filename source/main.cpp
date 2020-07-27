@@ -252,7 +252,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		// (for example when the boarding dialog shows up or when the player lands). The player
 		// can switch fast-forward on again when flight is resumed.
 		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowFastForward();
-		if(!inFlight && isFastForward && !allowFastForward)
+		if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
 			isFastForward = false;
 		
 		// Tell all the panels to step forward, then draw them.

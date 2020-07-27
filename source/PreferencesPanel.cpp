@@ -450,7 +450,8 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
-		"Warning siren"
+		"Warning siren",
+		"Interrupt fast-forward"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
