@@ -173,20 +173,23 @@ mission "Coalition: Lost: Marker"
 		has "event: lost in coalition"
 	on offer
 		conversation
-			`Another landing, another day spent stranded in this alien region, with no other humans in sight. Be it with the help of a Heliarch agent, via their own translation devices, or just by gesturing and hoping for the best, you've managed to get by just fine, but the thought that you may live the rest of your life living among an alien civilization refuses to leave your mind.`
-			`	Trying to take your mind off of it all, you start walking around <origin>, looking for some place to eat, but are stopped by a Heliarch delegation shortly after you leave your ship.`
+			`You're approached by a Heliarch delegation shortly after you leave your ship.`
 			`	"Cautiously observed during the past few weeks, scans of your ship have been, Captain <last>," the Saryd begins.`
 			`	"Unlike previous scans, a jump drive in your ship, our scanners found not," the Kimek continues.`
-			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, unlike the Quarg we wish not," the Arach says. "Discussed much, our elders have, and decided to help you, they have. To <destination> you must go, there discussed, the terms will be."`
+			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, unlike the Quarg we wish not," the Arach says. "Discussed much, our elders have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
+			choice
+				`	"By that you mean they'll get me another jump drive? That's pretty generous of them."`
+				`	"What? I lost my jump drive? You've gotta be kidding!"`
 			`	You thank them for bringing you this information, and go back to your ship to prepare a route to <destination>.`
+				accept
 	to complete
-		has "Coalition: Lost: Offer: active"
+		never
 
 
 
 mission "Coalition: Lost: Offer"
 	name "Jump Drive Loan"
-	description "The Heliarchs have provided you a jump drive to leave Coalition space. Bring another jump drive to <destination> by <date>, to replace the one you borrowed, or they will be extremely angry by you breaking their trust."
+	description "The Heliarchs have provided you a jump drive to leave Coalition space. Bring another jump drive to <destination> by <date>, to replace the one you borrowed, or they will be extremely angered by you breaking their trust."
 	deadline 333
 	landing
 	source "Ring of Wisdom"
@@ -199,14 +202,14 @@ mission "Coalition: Lost: Offer"
 			`	"Mind you, not a gift this is, but a loan, Captain," the Kimek continues. "Another one to replace this one, you must bring us, so that losing a copy of such valuable equipment, we are not."`
 			`	"By <date>, brought here the replacement jump drive must be. If any longer you take, assume that betrayed our trust you have, we will, and an enemy, considered you will be," the Arach finishes explaining. "Agree with those terms, do you, Captain?"`
 			choice
-				`	"Yes, I promise I'll be back here with a second jump drive by <date>."`
+				`	"Yes, I promise I'll return with a second jump drive."`
 				`	"Sorry, I need more time to think on this."`
 					defer
-			`	Their engineers proceed to install the jump drive in your ship. A couple of the guards come a bit closer during the process.`
-			`	When it's all done, you're reminded that you need to bring another jump drive here by <date>.`
+			`	Their engineers proceed to install the jump drive in your ship. A couple of the guards come a bit closer during the process. When it's all done, you're reminded that you need to bring another jump drive here by <date>.`
 				accept
 	on accept
 		outfit "Jump Drive" 1
+		fail "Coalition: Lost: Marker"
 	on fail
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
