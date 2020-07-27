@@ -63,7 +63,8 @@ uint32_t Random::Int(uint32_t modulus)
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	return uniform(gen) % modulus;
+	const uint32_t x = uniform(gen);
+	return ((uint64_t) x * (uint64_t) upper_bound) >> 32;
 }
 
 
