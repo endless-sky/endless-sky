@@ -250,7 +250,7 @@ mission "Kimek Student 2"
 					decline
 			label accept
 			`	He thanks you, and this time follows you right away, as he already has his bags prepared.`
-			`	"Hoping to join the research teams on Ring of Wisdom, I am," he says as you two walk to your ship, explaining the reason he needs to study so much is because he is aiming to work for for the scientific branch of the government, instead of the more military-focused side.`
+			`	"Hoping to join the research teams on Ring of Wisdom, I am," he says as you two walk to your ship, explaining the reason he needs to study so much is because he is aiming to work for the scientific branch of the government, instead of the more military-focused side.`
 			`	You lead him to his bunk and prepare for the trip.`
 				accept
 	on visit
@@ -509,7 +509,7 @@ mission "Saryd Students 1"
 	destination "Weir of Glubatub"
 	on offer
 		conversation
-			`While walking by some shops, young Saryd bumps into you as you're turning a corner, knocking you to the ground. He helps you up, apologizing. A couple others that were with him entered the shop without even noticing you, but almost immediately come back out.`
+			`While walking by some shops, a young Saryd bumps into you as you're turning a corner, knocking you to the ground. He helps you up, apologizing. A couple others that were with him entered a shop without even noticing you, but almost immediately come back out.`
 			branch translator
 				has "language: Coalition"
 			`	They speak with him, pointing at the shop and to where they must have been before bumping into you, while their friend tinkers with a translation box.`
