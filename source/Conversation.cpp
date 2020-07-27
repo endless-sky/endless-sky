@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Random.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -177,12 +178,14 @@ void Conversation::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "payment" && child.Size() >= 2)
 		{
+			// Don't merge "payment" nodes with any other nodes.
 			AddNode();
 			nodes.back().canMergeOnto = false;
 			nodes.back().payment = child.Value(1);
 		}
 		else if(child.Token(0) == "event" && child.Size() >= 2)
 		{
+			// Don't merge "event" nodes with any other nodes.
 			AddNode();
 			nodes.back().canMergeOnto = false;
 			
@@ -194,6 +197,7 @@ void Conversation::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "log")
 		{
+			// Don't merge "log" nodes with any other nodes.
 			AddNode();
 			nodes.back().canMergeOnto = false;
 			
@@ -357,8 +361,15 @@ Conversation Conversation::Substitute(const map<string, string> &subs) const
 {
 	Conversation result = *this;
 	for(Node &node : result.nodes)
+	{
 		for(pair<string, int> &choice : node.data)
 			choice.first = Format::Replace(choice.first, subs);
+		for(auto &it : node.event)
+		{
+			int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
+			node.event[it.first] = make_pair(day, day);
+		}
+	}
 	return result;
 }
 

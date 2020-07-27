@@ -26,7 +26,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
-#include "Random.h"
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
@@ -354,10 +353,7 @@ void ConversationPanel::Goto(int index, int choice)
 		else if(conversation.IsEvent(node))
 		{
 			for(const auto &it : conversation.Event(node))
-			{
-				int delay = it.second.first + Random::Int(it.second.second - it.second.first + 1);
-				player.AddEvent(*it.first, player.GetDate() + delay);
-			}
+				player.AddEvent(*it.first, player.GetDate() + it.second.first);
 		}
 		else if(conversation.IsLog(node))
 			player.AddLogEntry(conversation.LogText(node));
