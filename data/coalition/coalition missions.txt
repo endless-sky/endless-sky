@@ -944,14 +944,21 @@ mission "Arachi Cartoonist 1"
 	destination "Prime"
 	on offer
 		conversation
-			`As you're moving along one of the underground tunnels that connect the spaceport here, an Arach stops you in your tracks.`
-			`	He introduces himself as Drugub, a cartoonist of local fame for his sci-fi comics. "Many styles of ships produced in our space are, but only so many ideas from them, I can get," he says. "Expand my creative horizon, seeing the general shape of some human ships would."`
+			`As you're moving along one of the larger underground tunnels that connect the spaceport here, a dozen makeshift stands, each with a different apparent 'theme' to them, captures your attention. When you get closer, it's clear that the event is something of a convention, each stand managed by a different artist that lives here.`
+			`	After you're done looking at a stand that showcased various fantasy attires and move on to the neighboring one, it's owner jumps as soon as he turns to see you, looking dumbfounded. He introduces himself as Drugub, a cartoonist of local fame for his science fiction comics, showing various examples of them as he speaks with you. "Many styles of ships produced in our space are, but only so many ideas from them, I can get," he says. "That you came here, lucky I am. To expand my creative horizon, I need, and seeing the general shape of some human ships would."`
 			choice
 				`	"I can help with that. Do you have any type of ship in mind?"`
 				`	"Sorry, but I won't be heading back to human space for a while."`
 					decline
-			`	He tells you about how this comic series is set during a less developed time, so he has been trying to take after older ship designs.`
-			`	After you briefly detail the human shipyards to him, he is most interested in Betelgeuse's older, historical designs and settles for those.`
+			`	He looks puzzled, "For a variety of purposes, ships in my comics are used, so to know of a variety of ships, preferrable it would be."`
+			`	You decide to give him a brief description of the biggest shipyards in human space, citing their history and design philosophy, from Syndicated Shipyards' cheaper designs to Deep Sky's sophisticated (by human standards) technology.`
+			`	When you're done, he thinks for a bit, then concludes that Betelgeuse Shipyards' older, historical designs, are what he's looking for. "Set during a less developed time, what I'm working on is," he explains.`
+			choice
+				`	"In that case, I'll head to their home shipyard and see what I can bring back for you."`
+					goto end
+				`	"Alright, it's a bit of a long trip to <planet> but if you're sure, let's head to my ship and I'll show you your bunk."`
+			`	"Oh, leave I cannot. Whether far away or not this <planet> you speak of is, allowed to leave Coalition space, we are not," he says. "Go on without me you must, Captain."`
+			label end
 			`	He thanks you and wishes you safe travels on your journey to <planet>.`
 				accept
 
