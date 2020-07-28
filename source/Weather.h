@@ -1,5 +1,5 @@
 /* Weather.h
-Copyright (c) 2020 by Michael Zahniser
+Copyright (c) 2020 by Jonathan Steck
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
