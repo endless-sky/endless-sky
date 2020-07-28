@@ -28,10 +28,13 @@ class PlayerInfo;
 
 
 
-// A MissionAction represents what happens when a mission reaches a certain
-// milestone: offered, accepted, declined, completed or failed. Actions might
-// include showing a dialog or conversation, giving the player payment or a
-// special item, modifying condition flags, or queueing an event to occur.
+// A GameAction represents a number of things that can happen when a
+// mission or conversation reaches a certain milestone: offered, accepted,
+// declined, completed or failed for missions, and reaching an `action`
+// node for conversations. GameActions are limited to giving the player
+// payment, modifying conditions, queueing events, failing missions, and
+// creating log entires. Any functions added to GameAction should be able
+// to be safely executed while in a conversation.
 class GameAction {
 public:
 	GameAction() = default;
@@ -50,7 +53,7 @@ public:
 	void Do(PlayerInfo &player, bool conversation = false) const;
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
-	// destination, payment, cargo, etc.
+	// payment, event delay, etc.
 	GameAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	

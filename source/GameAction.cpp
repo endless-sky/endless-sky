@@ -45,6 +45,7 @@ void GameAction::Load(const DataNode &node, const string &missionName)
 
 
 
+// Load a single child at a time, used for streamlining MissionAction::Load.
 void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 {
 	const string &key = child.Token(0);
@@ -143,6 +144,8 @@ int GameAction::Payment() const
 
 
 
+// Do the actions of the GameAction. If this GameAction is a part of a conversations,
+// then some behavior may be different than from a MissionAction.
 void GameAction::Do(PlayerInfo &player, bool conversation) const
 {
 	if(!logText.empty())
