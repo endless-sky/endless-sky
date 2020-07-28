@@ -11,6 +11,14 @@
 effect "jump drive"
 	sprite "effect/jump drive"
 		"no repeat"
+		"frame rate" 12
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive red"
+	sprite "effect/jump drive red"
+		"no repeat"
 		"frame rate" 8
 		"rewind"
 	"lifetime" 8
