@@ -42,9 +42,11 @@ public:
 	GameAction(const DataNode &node, const std::string &missionName);
 	
 	void Load(const DataNode &node, const std::string &missionName);
+	// Load a single child at a time, used for streamlining MissionAction::Load.
 	void LoadSingle(const DataNode &child, const std::string &missionName);
 	void Save(DataWriter &out) const;
 	
+	// If this action has not been loaded, then it is empty.
 	bool IsEmpty() const;
 	
 	int Payment() const;
