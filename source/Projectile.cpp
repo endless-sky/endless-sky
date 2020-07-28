@@ -217,7 +217,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
-	if(target && (position - target->Position()).Length() < weapon->SplitRange() && !Random::Int(10))
+	if(target && (position - target->Position()).Length() < weapon->SplitRange())
 		lifetime = 0;
 }
 

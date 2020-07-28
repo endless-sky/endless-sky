@@ -270,6 +270,9 @@ outfit "Steering (Asteroid Class)"
 	"turn" 280.0
 	"turning energy" 0.7
 	"turning heat" 2.1
+	"steering flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"steering flare sound" "plasma tiny"
 	description "The Korath use these steering systems only in the very smallest of their ships."
 
 outfit "Steering (Comet Class)"
@@ -283,6 +286,9 @@ outfit "Steering (Comet Class)"
 	"turn" 568.8
 	"turning energy" 1.4
 	"turning heat" 4.1
+	"steering flare sprite" "effect/korath flare/small"
+		"frame rate" 7.5
+	"steering flare sound" "plasma small"
 	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
 outfit "Steering (Lunar Class)"
@@ -296,6 +302,9 @@ outfit "Steering (Lunar Class)"
 	"turn" 1056.0
 	"turning energy" 2.5
 	"turning heat" 7.4
+	"steering flare sprite" "effect/korath flare/medium"
+		"frame rate" 7
+	"steering flare sound" "plasma medium"
 	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
 
 outfit "Steering (Planetary Class)"
@@ -309,6 +318,9 @@ outfit "Steering (Planetary Class)"
 	"turn" 2069.6
 	"turning energy" 4.6
 	"turning heat" 14.2
+	"steering flare sprite" "effect/korath flare/large"
+		"frame rate" 6.5
+	"steering flare sound" "plasma large"
 	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
 
 outfit "Steering (Stellar Class)"
@@ -322,6 +334,9 @@ outfit "Steering (Stellar Class)"
 	"turn" 4005.0
 	"turning energy" 8.2
 	"turning heat" 26.7
+	"steering flare sprite" "effect/korath flare/huge"
+		"frame rate" 6
+	"steering flare sound" "plasma huge"
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
 	
 outfit "Korath Repeater Rifle"

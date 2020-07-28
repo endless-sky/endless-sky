@@ -41,6 +41,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	const string SHIP_OUTLINES = "Ship outlines in shops";
+	
 	constexpr int ICON_TILE = 62;
 	constexpr int ICON_COLS = 4;
 	constexpr float ICON_SIZE = ICON_TILE - 8;
@@ -132,11 +134,19 @@ void ShopPanel::Draw()
 	
 	if(dragShip && dragShip->GetSprite())
 	{
-		static const Color selected(.8f, 1.f);
 		const Sprite *sprite = dragShip->GetSprite();
 		float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-		Point size(sprite->Width() * scale, sprite->Height() * scale);
-		OutlineShader::Draw(sprite, dragPoint, size, selected);
+		if(Preferences::Has(SHIP_OUTLINES))
+		{
+			static const Color selected(.8f, 1.f);
+			Point size(sprite->Width() * scale, sprite->Height() * scale);
+			OutlineShader::Draw(sprite, dragPoint, size, selected);
+		}
+		else
+		{
+			int swizzle = dragShip->CustomSwizzle() >= 0 ? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
+		}
 	}
 
 	if(sameSelectedTopY)
@@ -221,8 +231,16 @@ void ShopPanel::DrawSidebar()
 		if(sprite)
 		{
 			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			if(Preferences::Has(SHIP_OUTLINES))
+			{
+				Point size(sprite->Width() * scale, sprite->Height() * scale);
+				OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			}
+			else
+			{
+				int swizzle = ship->CustomSwizzle() >= 0 ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+				SpriteShader::Draw(sprite, point, scale, swizzle);
+			}
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
@@ -822,10 +840,10 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 {
-	// Don't require a license for an outfit that you have in cargo or that you
-	// just sold to the outfitter. (Otherwise, there would be no way to transfer
-	// a restricted plundered outfit between ships or from cargo to a ship.)
-	if(player.Cargo().Get(outfit) || player.Stock(outfit) > 0)
+	// If the player is attempting to install an outfit from cargo or that they just
+	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
+	// would be no way to use or transfer license-restricted outfits between ships.)
+	if((player.Cargo().Get(outfit) && playerShip) || player.Stock(outfit) > 0)
 		return 0;
 	
 	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
