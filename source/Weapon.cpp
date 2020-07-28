@@ -188,7 +188,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(burstReload > reload)
 		burstReload = reload;
 	if(damageDropoffRange.first > damageDropoffRange.second)
-		damageDropoffRange.second = Range();
+		swap(damageDropoffRange.first, damageDropoffRange.second);
 	
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
