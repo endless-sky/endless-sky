@@ -174,13 +174,9 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(key == "conversation" && child.HasChildren())
-		{
 			conversation.Load(child, missionName);
-		}
 		else if(key == "conversation" && hasValue)
-		{
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		}
 		else if(key == "outfit" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
