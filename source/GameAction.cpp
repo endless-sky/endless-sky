@@ -166,7 +166,7 @@ void GameAction::Do(PlayerInfo &player, bool conversation) const
 			// in their account, then the player's credits are reduced to 0.
 			if(account + payment >= 0)
 				player.Accounts().AddCredits(payment);
-			else
+			else if(account > 0)
 				player.Accounts().AddCredits(-account);
 		}
 		else
