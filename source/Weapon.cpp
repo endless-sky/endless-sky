@@ -334,8 +334,8 @@ double Weapon::Range() const
 
 
 
-// Calculate the percent damage that this weapon deals given the distance
-// that the projectile traveled if it has a damage dropoff range.
+// Calculate the fraction of full damage that this weapon deals given the
+// distance that the projectile traveled if it has a damage dropoff range.
 double Weapon::DamageDropoff(double distance) const
 {
 	double minDropoff = damageDropoffRange.first;
