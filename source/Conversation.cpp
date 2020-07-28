@@ -88,7 +88,7 @@ bool Conversation::RequiresLaunch(int outcome)
 
 
 // Load a conversation from file.
-void Conversation::Load(const DataNode &node)
+void Conversation::Load(const DataNode &node, const string &missionName)
 {
 	// Make sure this really is a conversation specification.
 	if(node.Token(0) != "conversation")
@@ -180,7 +180,7 @@ void Conversation::Load(const DataNode &node)
 			// Don't merge "action" nodes with any other nodes.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().actions.Load(child, "");
+			nodes.back().actions.Load(child, missionName);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)

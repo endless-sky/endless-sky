@@ -175,7 +175,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		}
 		else if(key == "conversation" && child.HasChildren())
 		{
-			conversation.Load(child);
+			conversation.Load(child, missionName);
 		}
 		else if(key == "conversation" && hasValue)
 		{
