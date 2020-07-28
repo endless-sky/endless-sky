@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
 
@@ -26,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class GameAction;
 class GameEvent;
 class Outfit;
 class PlayerInfo;
@@ -50,6 +52,8 @@ public:
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
 	
+	bool IsEmpty() const;
+	
 	int Payment() const;
 	
 	const std::string &DialogText() const;
@@ -72,9 +76,6 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 	
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
-	
 	std::string dialogText;
 	const Phrase *stockDialogPhrase = nullptr;
 	Phrase dialogPhrase;
@@ -82,9 +83,15 @@ private:
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
 	
-	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
 	std::map<const Outfit *, int> requiredOutfits;
+	
+	GameAction actions;
+	/* Now handled by GameAction
+	std::string logText;
+	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	
+	std::map<const GameEvent *, std::pair<int, int>> events;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	
@@ -92,6 +99,7 @@ private:
 	std::set<std::string> fail;
 	
 	ConditionSet conditions;
+	*/
 };
 
 

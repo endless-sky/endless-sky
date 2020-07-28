@@ -162,6 +162,8 @@
 		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
 		<Unit filename="source/Galaxy.h" />
+		<Unit filename="source/GameAction.cpp" />
+		<Unit filename="source/GameAction.h" />
 		<Unit filename="source/GameData.cpp" />
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />

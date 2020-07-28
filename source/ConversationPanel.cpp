@@ -339,30 +339,8 @@ void ConversationPanel::Goto(int index, int choice)
 			// Update any altered government reputations.
 			player.CheckReputationConditions();
 		}
-		else if(conversation.IsPayment(node))
-		{
-			int64_t payment = conversation.Payment(node);
-			int64_t account = player.Accounts().Credits();
-			// If the payment is negative and the player doesn't have enough
-			// in their account, then the player's credits are reduced to 0.
-			if(account + payment >= 0)
-				player.Accounts().AddCredits(payment);
-			else
-				player.Accounts().AddCredits(-account);
-		}
-		else if(conversation.IsEvent(node))
-		{
-			for(const auto &it : conversation.Event(node))
-				player.AddEvent(*it.first, player.GetDate() + it.second.first);
-		}
-		else if(conversation.IsLog(node))
-			player.AddLogEntry(conversation.LogText(node));
-		else if(conversation.IsSpecialLog(node))
-		{
-			for(const auto &it : conversation.SpecialLogText(node))
-				for(const auto &eit : it.second)
-					player.AddSpecialLog(it.first, eit.first, eit.second);
-		}
+		else if(conversation.IsAction(node))
+			conversation.Action(node).Do(player, true);
 		else
 		{
 			// This is an ordinary conversation node. Perform any necessary text

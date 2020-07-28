@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
-#include "Random.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -176,35 +175,12 @@ void Conversation::Load(const DataNode &node)
 			nodes.back().canMergeOnto = false;
 			nodes.back().conditions.Load(child);
 		}
-		else if(child.Token(0) == "payment" && child.Size() >= 2)
+		else if(child.Token(0) == "action")
 		{
-			// Don't merge "payment" nodes with any other nodes.
+			// Don't merge "action" nodes with any other nodes.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().payment = child.Value(1);
-		}
-		else if(child.Token(0) == "event" && child.Size() >= 2)
-		{
-			// Don't merge "event" nodes with any other nodes.
-			AddNode();
-			nodes.back().canMergeOnto = false;
-			
-			int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
-			int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
-			if(maxDays < minDays)
-				swap(minDays, maxDays);
-			nodes.back().event[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
-		}
-		else if(child.Token(0) == "log")
-		{
-			// Don't merge "log" nodes with any other nodes.
-			AddNode();
-			nodes.back().canMergeOnto = false;
-			
-			bool isSpecial = (child.Size() >= 3);
-			string &text = (isSpecial ?
-				nodes.back().specialLogText[child.Token(1)][child.Token(2)] : nodes.back().logText);
-			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+			nodes.back().actions.Load(child, "");
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)
@@ -289,38 +265,16 @@ void Conversation::Save(DataWriter &out) const
 				out.EndChild();
 				continue;
 			}
-			if(node.payment != 0)
-				out.Write("payment", node.payment);
-			for(const auto &it : node.event)
+			if(!node.actions.IsEmpty())
 			{
-				if(it.second.first == it.second.second)
-					out.Write("event", it.first->Name(), it.second.first);
-				else
-					out.Write("event", it.first->Name(), it.second.first, it.second.second);
-			}
-			if(!node.logText.empty())
-			{
-				out.Write("log");
+				out.Write("action", TokenName(node.data[0].second));
 				out.BeginChild();
 				{
-					// Break the text up into paragraphs.
-					for(const string &line : Format::Split(node.logText, "\n\t"))
-						out.Write(line);
+					node.actions.Save(out);
 				}
 				out.EndChild();
+				continue;
 			}
-			for(const auto &it : node.specialLogText)
-				for(const auto &eit : it.second)
-				{
-					out.Write("log", it.first, eit.first);
-					out.BeginChild();
-					{
-						// Break the text up into paragraphs.
-						for(const string &line : Format::Split(eit.second, "\n\t"))
-							out.Write(line);
-					}
-					out.EndChild();
-				}
 			if(node.isChoice)
 			{
 				out.Write(node.data.empty() ? "name" : "choice");
@@ -361,15 +315,27 @@ Conversation Conversation::Substitute(const map<string, string> &subs) const
 {
 	Conversation result = *this;
 	for(Node &node : result.nodes)
+		for(pair<string, int> &choice : node.data)
+			choice.first = Format::Replace(choice.first, subs);
+	
+	return result;
+}
+
+
+
+// Do text replacement throughout this conversation, and instantiate any
+// potential actions.
+Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int payload) const
+{
+	Conversation result = *this;
+	for(Node &node : result.nodes)
 	{
 		for(pair<string, int> &choice : node.data)
 			choice.first = Format::Replace(choice.first, subs);
-		for(auto &it : node.event)
-		{
-			int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
-			node.event[it.first] = make_pair(day, day);
-		}
+		if(!node.actions.IsEmpty())
+			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}
+
 	return result;
 }
 
@@ -421,47 +387,13 @@ bool Conversation::IsApply(int node) const
 
 
 
-// Check if the given converation node grants a payment.
-bool Conversation::IsPayment(int node) const
+// Check if the given converation node does an action.
+bool Conversation::IsAction(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
 	
-	return nodes[node].payment != 0;
-}
-
-
-
-
-// Check if the given converation node triggers an event.
-bool Conversation::IsEvent(int node) const
-{
-	if(static_cast<unsigned>(node) >= nodes.size())
-		return false;
-	
-	return !nodes[node].event.empty();
-}
-
-
-
-// Check if the given converation node creates a log entry.
-bool Conversation::IsLog(int node) const
-{
-	if(static_cast<unsigned>(node) >= nodes.size())
-		return false;
-	
-	return !nodes[node].logText.empty();
-}
-
-
-
-// Check if the given converation node creates a special log entry.
-bool Conversation::IsSpecialLog(int node) const
-{
-	if(static_cast<unsigned>(node) >= nodes.size())
-		return false;
-	
-	return !nodes[node].specialLogText.empty();
+	return !nodes[node].actions.IsEmpty();
 }
 
 
@@ -477,49 +409,14 @@ const ConditionSet &Conversation::Conditions(int node) const
 }
 
 
-// Get the payment that the given node applies.
-const int64_t &Conversation::Payment(int node) const
+// Get the action that the given node does.
+const GameAction &Conversation::Action(int node) const
 {
-	static int64_t empty;
+	static GameAction empty;
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return empty;
 	
-	return nodes[node].payment;
-}
-
-
-// Get the event that the given node applies.
-const map<const GameEvent *, pair<int, int>> &Conversation::Event(int node) const
-{
-	static map<const GameEvent *, pair<int, int>> empty;
-	if(static_cast<unsigned>(node) >= nodes.size())
-		return empty;
-	
-	return nodes[node].event;
-}
-
-
-
-// Get the log text that the given node applies.
-const string &Conversation::LogText(int node) const
-{
-	static string empty;
-	if(static_cast<unsigned>(node) >= nodes.size())
-		return empty;
-	
-	return nodes[node].logText;
-}
-
-
-
-// Get the special log text that the given node applies.
-const map<string, map<string, string>> &Conversation::SpecialLogText(int node) const
-{
-	static map<string, map<string, string>> empty;
-	if(static_cast<unsigned>(node) >= nodes.size())
-		return empty;
-	
-	return nodes[node].specialLogText;
+	return nodes[node].actions;
 }
 
 
