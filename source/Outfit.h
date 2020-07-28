@@ -106,6 +106,8 @@ private:
 	
 	Dictionary attributes;
 	
+	// The integers in these pairs/maps indicate the number of
+	// sprites/effects/sounds to be placed/played.
 	std::vector<std::pair<Body, int>> flareSprites;
 	std::vector<std::pair<Body, int>> reverseFlareSprites;
 	std::vector<std::pair<Body, int>> steeringFlareSprites;
