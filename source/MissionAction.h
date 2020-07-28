@@ -52,8 +52,6 @@ public:
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
 	
-	bool IsEmpty() const;
-	
 	int Payment() const;
 	
 	const std::string &DialogText() const;
