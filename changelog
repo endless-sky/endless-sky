@@ -1,24 +1,52 @@
 Version 0.9.13:
+	* Big changes:
+		* Added over 30 new spaceport missions to Coalition space. (@Arachi-Lover)
+		* Extended the archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@AzureNyoki)
 	* Bug fixes:
-		* Typo fixes. (@Anarchist2, @michel-slm, @pega3, @Rakete1111, @Zitchas)
-		* Missions with illegal cargo that fail when scanned can no longer be scanned twice before landing. (@Amazinite)
+		* Typo fixes. (@Amazinite, @Anarchist2, @beccabunny, @Darcman99, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tehhowch, @Zitchas)
+		* Missions with illegal cargo that fail when scanned can no longer be scanned again before landing. (@Amazinite)
 		* The outfitter will no longer allow purchasing licensed outfits under certain circumstances where the player didn't have a license. (@Rakete1111)
 		* Planets without a spaceport but with a jobs board will no longer skip generating jobs. (@Amazinite)
 		* The Subsidurial person ship can now appear in uninhabited systems. (@Zitchas)
+		* "Deep Mystery Cube [3]" no longer offers on stations. (@Anarchist2)
+		* Corrected the hull mass of the Faes'mar. (@Amazinite)
+		* Ships will no longer attempt to route through undefined systems. (@Elorram)
+		* Infinitely nested submunitions will no longer crash the game. (@Rakete1111)
+		* Fixed a potential divide-by-zero error. (@tehhowch)
+		* Tinker's tribute will be properly restored after the main plot. (@Zitchas)
+		* "FW Pug 3" now requires that the previous mission be completed before offering. (@Amazinite)
+		* Escorts will now properly obey the hold command when they are already moving to hold position. (@petervdmeer)
+		* "There Might Be Riots part 3A" no longer offers on pirate worlds. (@Amazinite)
 	* Game content:
 		* New content:
 			* The Penguin now uses the new engine flare mechanics. (@Zitchas)
 			* Created a storage outfit for the Finisher Torpedo. (@Arachi-Lover)
+			* Ka'het ships now have power generation and storage outfits. (@beccabunny)
+			* Added new civilian hails. (@Anarchist2)
+			* New missions offered by the Quarg. (@Arachi-Lover)
+			* The Navy now has a unique logistics vessel, the Auxiliary. (@Brick63)
+			* New logs for various characters, factions, and plot points. (@MasterOfGrey, @pega3)
+			* Added two short spaceport missions to human space. (@Nameson2)
+			* Created a difficult combat mission only available to early pilots. (@Anarchist2)
+			* Added a new Remnant ship, the Peregrine. (@beccabunny, @Zitchas)
+			* "Mouthparts?" now has a sprite. (@beccabunny)
+			* Added a scene image to the on enter conversation in the Graveyard. (@beccabunny)
+			* Created a new jump drive sound and visual effect to be used at a later date. (@Kryes-Omega)
 		* Missions:
-			* FW Hope Recon 1C now refers to the proper number of crew on a Gunboat. (@Beccabunny)
-			* Rewrote some of the conversation for Wanderers: Defend Vara Ke'sok Hint. (@Anarchist2)
+			* "FW Hope Recon 1C" now refers to the proper number of crew on a Gunboat. (@Beccabunny)
+			* Rewrote some of the conversation for "Wanderers: Defend Vara Ke'sok Hint". (@Anarchist2)
+			* If the player has forgotten, the Remnant outfitter asking for Hai keystones will now explain how to purchase outfits into cargo. (@Zitchas)
 		* Balance:
 			* Buffed the Heliarch reactors and Coalition engines. (@Arachi-Lover)
 			* Buffed the Drak Draining Field and Antimatter Cannon. (@Zitchas)
 			* Gave the Kestrel two fighter bays. (@Zitchas)
 			* Increase the heat dissipation on the Kestrel (More Shields) to strength it against heat damage. (@finite-galaxy)
+			* The Ka'het Annihilator Turret now fires two projectiles at once instead of one projectile that deals double damage. (@Amazinite)
 		* Other:
 			* Renamed the Gascraft to the Puffin so that all Remnant ships are named after birds. (@Zitchas)
+			* Removed the Quarg ringworld from the Graveyard. (@Arachi-Lover)
+			* The phrase "plural nouns" now includes the contents of "gender-neutral titles" for ship names. (@SubstandardZeal)
+			* Added system attributes to the Ember Waste and related systems to be used by jobs. (@Zitchas)
 	* Game mechanics:
 		* Certain attributes are now capable of being made negative in the outfitter. (@Amazinite)
 		* Fines for illegal mission cargo are now added together instead of only the worst being applied. (@Amazinite)
@@ -30,8 +58,20 @@ Version 0.9.13:
 		* New engine flares for reverse and steering engines. (@Amazinite)
 		* Engine flares can now be angled. (@Amazinite)
 		* Effects can now have a random lifetime. (@Amazinite)
+		* Fighter and drone bays can now be given arbitrary facing angles. (@petervdmeer)
+		* Fighters and drones can now be deployed and recalled individually. (@petervdmeer)
+		* Mission NPCs can now be spawned or despawned based on the player's conditions. (@Amazinite)
+		* The sound and visual effects of hyperdrives and jump drives can now be customized. (@Amazinite)
 	* User interface:
+		* The outfitter help now explains how to buy outfits into cargo. (@Zitchas)
+		* Fast-forward will now be turned off if the player is not in flight, such as when landing or boarding a ship. (@petervdmeer)
+		* The fast-forward interrupt can be turned off in preferences. (@Amazinite)
+		* Added a preference to change the graphics of the player's ship outlines in the shipyard/outfitter. (@Amazinite)
 	* Under the hood:
+		* Carried ships are now identifies by their category instead of a boolean. (@petervdmeer)
+		* The game will now report more errors in conversations, including incorrect indentation. (@NomadicVolcano)
+		* The --ships flag now outputs the number of guns and turrets on a ship. (@fcfort)
+		* The systems that were defined in the Pug file have been moved to the map file. (@Zitchas)
 
 Version 0.9.12:
   * Bug fixes:
