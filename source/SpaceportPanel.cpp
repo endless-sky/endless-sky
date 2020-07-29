@@ -112,9 +112,7 @@ void SpaceportPanel::Draw()
 		interface->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface message that
 		// gets filled in changes.
-		string message = "message";
-		if(hasPortrait)
-			message += " portrait";
-		newsMessage.Draw(interface->GetBox(message).TopLeft(), *GameData::Colors().Get("medium"));
+		newsMessage.Draw(interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
+			*GameData::Colors().Get("medium"));
 	}
 }
