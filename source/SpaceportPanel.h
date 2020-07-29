@@ -41,6 +41,8 @@ private:
 	// Current news item (if any):
 	bool hasNews = false;
 	bool hasPortrait = false;
+	int portraitWidth;
+	int normalWidth;
 	Information newsInfo;
 	WrappedText newsMessage;
 };
