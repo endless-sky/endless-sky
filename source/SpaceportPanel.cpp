@@ -47,40 +47,31 @@ void SpaceportPanel::UpdateNews()
 	if(!news)
 		return;
 	
+	// Clear any previously cached information.
 	hasNews = true;
-	// Randomly pick which portrait is to be shown.
-	auto portrait = news->Portrait();
-	
-	// Ensure we only display one name for a given portrait.
-	const auto it = displayedProfessions.find(portrait);
-	auto name = string{};
-	if(it == displayedProfessions.end())
-	{
-		name = news->Name();
-		displayedProfessions.emplace(portrait, name);
-	}
-	else
-		name = it->second;
-	
-	// Clear any previous information
 	hasPortrait = false;
 	newsInfo.SetString("name portrait", "");
 	newsInfo.SetString("name", "");
 	newsInfo.SetSprite("portrait", nullptr);
+	
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
 	const Interface *interface = GameData::Interfaces().Get("news");
+	
+	// Randomly pick which portrait, if any, is to be shown. Depending on if
+	// this news has a portrait, different interface information gets filled in. 
+	auto portrait = news->Portrait();
 	// Cache the randomly picked results until the next update is requested.
 	if(portrait)
 	{
 		hasPortrait = true;
-		newsInfo.SetString("name portrait", name + ':');
+		newsInfo.SetString("name portrait", news->Name() + ':');
 		newsInfo.SetSprite("portrait", portrait);
 		newsMessage.SetWrapWidth(interface->GetBox("message portrait").Width());
 	}
 	else
 	{
-		newsInfo.SetString("name", name + ':');
+		newsInfo.SetString("name", news->Name() + ':');
 		newsMessage.SetWrapWidth(interface->GetBox("message").Width());
 	}
 	

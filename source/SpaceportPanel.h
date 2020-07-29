@@ -18,10 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "WrappedText.h"
 
-#include <map>
-
 class PlayerInfo;
-class Sprite;
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
@@ -46,9 +43,6 @@ private:
 	bool hasPortrait = false;
 	Information newsInfo;
 	WrappedText newsMessage;
-	// After displaying a portrait for a particular profession,
-	// only show it for that same profession.
-	std::map<const Sprite *, std::string> displayedProfessions;
 };
 
 
