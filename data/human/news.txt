@@ -10,7 +10,6 @@
 
 
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "human merchant anywhere"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
@@ -30,7 +29,6 @@ news "human merchant anywhere"
 
 
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "human merchant in human space"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -54,7 +52,6 @@ news "human merchant in human space"
 			"My first ship was a Shuttle. I kind of miss that glorified tour bus."
 			"I love doing Syndicate jobs. Easy money for not much work. I guess they're all so rich that they can afford to pay for the best."
 
-# Visual suggestion: hard-bitten, tough, often dark-skinned and/or wearing a hat
 news "human farming"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -81,7 +78,6 @@ news "human farming"
 
 
 
-# Visual suggestion: young, normal-looking, more female than male
 news "human textiles"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -100,7 +96,6 @@ news "human textiles"
 
 
 
-# Visual suggestion: unhappy-looking, predominately male, usually wearing a beanie or a hard hat
 news "human mining"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -117,7 +112,6 @@ news "human mining"
 
 
 
-# Visual suggestion: worn-down-looking, often older
 news "human factory"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -579,7 +573,6 @@ news "chauffeur"
 
 
 
-# Visual suggestion: old
 news "human retiree"
 	location
 		attributes "paradise"
@@ -598,7 +591,6 @@ news "human retiree"
 
 
 
-# Visual suggestion: middle-aged people wearing professional attire
 news "human financial analyst"
 	location
 		attributes "paradise" "near earth"
@@ -620,7 +612,6 @@ news "human financial analyst"
 
 
 
-# Visual suggestion: well-dressed young men, often looking kind of cocky
 news "human syndicate manager"
 	location
 		government "Syndicate"
@@ -640,7 +631,6 @@ news "human syndicate manager"
 
 
 
-# Visual suggestion: glasses, clean-cut attire, possibly scientific accoutrements
 news "human scientist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -659,7 +649,6 @@ news "human scientist"
 
 
 
-# Visual suggestion: young and optimistic
 news "human student"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -683,7 +672,6 @@ news "human student"
 
 
 
-# Visual suggestion: relaxed, happy, possibly wearing traditional religious dress
 news "human religious"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -707,7 +695,6 @@ news "human religious"
 
 
 
-# Visual suggestion: attractive or sexy, looking either happy or bored
 news "human tourism"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -729,7 +716,6 @@ news "human tourism"
 
 
 
-# Visual suggestion: determined, tough, irregular-looking military/warrior accoutrements
 news "human mercenary"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -746,7 +732,6 @@ news "human mercenary"
 
 
 
-# Visual suggestion: military beret, soldier's clothing, not too fancy
 news "human republic soldier"
 	location
 		government "Republic"
@@ -767,7 +752,6 @@ news "human republic soldier"
 
 
 
-# Visual suggestion: expensive-looking tactical gear
 news "human syndicate soldier"
 	location
 		government "Syndicate"
@@ -786,7 +770,6 @@ news "human syndicate soldier"
 
 
 
-# Visual suggestion: dangerous mofos, lunatics, reavers
 news "human pirate"
 	location
 		government "Pirate"
