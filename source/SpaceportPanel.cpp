@@ -51,31 +51,16 @@ void SpaceportPanel::UpdateNews()
 	const News *news = GameData::PickNews(player.GetPlanet());
 	if(!news)
 		return;
-	
-	// Clear any previously cached information.
 	hasNews = true;
-	hasPortrait = false;
-	newsInfo.SetString("name portrait", "");
-	newsInfo.SetString("name", "");
-	newsInfo.SetSprite("portrait", nullptr);
 	
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
 	// this news has a portrait, different interface information gets filled in. 
 	auto portrait = news->Portrait();
 	// Cache the randomly picked results until the next update is requested.
-	if(portrait)
-	{
-		hasPortrait = true;
-		newsInfo.SetString("name portrait", news->Name() + ':');
-		newsInfo.SetSprite("portrait", portrait);
-		newsMessage.SetWrapWidth(portraitWidth);
-	}
-	else
-	{
-		newsInfo.SetString("name", news->Name() + ':');
-		newsMessage.SetWrapWidth(normalWidth);
-	}
-	
+	hasPortrait = portrait;
+	newsInfo.SetSprite("portrait", portrait);
+	newsInfo.SetString("name", news->Name() + ':');
+	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	newsMessage.Wrap('"' + news->Message() + '"');
 }
 
