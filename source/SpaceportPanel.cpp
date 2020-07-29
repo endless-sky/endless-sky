@@ -36,10 +36,6 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	text.SetWrapWidth(480);
 	text.Wrap(player.GetPlanet()->SpaceportDescription());
 	
-	// Query the news interface to find out the wrap width.
-	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *interface = GameData::Interfaces().Get("news");
-	newsMessage.SetWrapWidth(interface->GetBox("message").Width());
 	newsMessage.SetFont(FontSet::Get(14));
 }
 
@@ -66,9 +62,28 @@ void SpaceportPanel::UpdateNews()
 	else
 		name = it->second;
 	
+	// Clear any previous information
+	hasPortrait = false;
+	newsInfo.SetString("name portrait", "");
+	newsInfo.SetString("name", "");
+	newsInfo.SetSprite("portrait", nullptr);
+	// Query the news interface to find out the wrap width.
+	// TODO: Allow Interface to handle wrapped text directly.
+	const Interface *interface = GameData::Interfaces().Get("news");
 	// Cache the randomly picked results until the next update is requested.
-	newsInfo.SetString("name", name + ':');
-	newsInfo.SetSprite("portrait", portrait);
+	if(portrait)
+	{
+		hasPortrait = true;
+		newsInfo.SetString("name portrait", name + ':');
+		newsInfo.SetSprite("portrait", portrait);
+		newsMessage.SetWrapWidth(interface->GetBox("message portrait").Width());
+	}
+	else
+	{
+		newsInfo.SetString("name", name + ':');
+		newsMessage.SetWrapWidth(interface->GetBox("message").Width());
+	}
+	
 	newsMessage.Wrap('"' + news->Message() + '"');
 }
 
@@ -103,6 +118,11 @@ void SpaceportPanel::Draw()
 	{
 		const Interface *interface = GameData::Interfaces().Get("news");
 		interface->Draw(newsInfo);
-		newsMessage.Draw(interface->GetBox("message").TopLeft(), *GameData::Colors().Get("medium"));
+		// Depending on if the news has a portrait, the interface message that
+		// gets filled in changes.
+		string message = "message";
+		if(hasPortrait)
+			message += " portrait";
+		newsMessage.Draw(interface->GetBox(message).TopLeft(), *GameData::Colors().Get("medium"));
 	}
 }

@@ -563,12 +563,19 @@ interface "news"
 		center -160 -45
 	image "portrait"
 		center -340 -40
-	string "name"
+	string "name portrait"
 		from -270 -100
 		align center left
 		color "bright"
-	box "message"
+	box "message portrait"
 		from -270 -80
+		to 80 10
+	string "name"
+		from -400 -100
+		align center left
+		color "bright"
+	box "message"
+		from -400 -80
 		to 80 10
 
 

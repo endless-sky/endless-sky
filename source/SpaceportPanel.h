@@ -43,6 +43,7 @@ private:
 	
 	// Current news item (if any):
 	bool hasNews = false;
+	bool hasPortrait = false;
 	Information newsInfo;
 	WrappedText newsMessage;
 	// After displaying a portrait for a particular profession,
