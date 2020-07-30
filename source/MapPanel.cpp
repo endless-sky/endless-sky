@@ -151,7 +151,7 @@ void MapPanel::Draw()
 	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
 	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
 	double ringDistance = systemRange ? systemRange : System::DEFAULT_NEIGHBOR_DISTANCE;
-	if(!playerRange || playerRange > ringDistance)
+	if(!playerRange || playerRange >= ringDistance)
 		RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
 			(ringDistance + .5) * Zoom(), (ringDistance - .5) * Zoom(), dimColor);
 	if(playerRange && !systemRange && playerRange != System::DEFAULT_NEIGHBOR_DISTANCE)
@@ -874,6 +874,7 @@ void MapPanel::DrawTravelPlan()
 		if(!isHyper && !isJump && !isWormhole)
 			break;
 		
+		double systemDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
@@ -881,7 +882,7 @@ void MapPanel::DrawTravelPlan()
 				if(it.second >= 0.)
 				{
 					double cost = isJump ? it.first->JumpDriveFuel() : it.first->HyperdriveFuel();
-					if(!cost || cost > it.second)
+					if(!cost || cost > it.second || (isJump && it.first->JumpRange() < systemDistance))
 					{
 						it.second = -1.;
 						stranded = true;
