@@ -467,6 +467,274 @@ mission "WR Star 1"
 
 
 
+mission "There Might Be Riots 1"
+	name "Transport band to <planet>"
+	description `Give the band "There Might Be Riots" a ride to <destination>.`
+	minor
+	source
+		near Tarazed 5 10
+		government "Republic" "Free Worlds" "Neutral"
+	destination "Wayfarer"
+	cargo "musical equipment" 4
+	passengers 8
+	to offer
+		random < 15
+	
+	on offer
+		conversation
+			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. "My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
+			choice
+				`	"Sure!"`
+				`	"Sorry, I'm not headed in that direction right now."`
+					defer
+			`	"Great," she says, "I'll tell the boys to start loading their gear into your ship." About a half an hour later the road crew begins carting instruments and amplifiers into your cargo hold. Soon after that, you hear the roar of a crowd in the distance and another group of men comes running into your ship. "We're with the band," they say. "Quick, shut the hatch." Half a minute later, a mob of people has surrounded your ship and a few of them are even climbing on top of it. It takes you a second to realize they're not angry or bent on destruction - they're just a group of crazy fans.`
+			`	"Happens everywhere we go," says one of the musicians, calmly, as he watches a video feed of the mob on one of your monitors. He tells you that he's Ulrich, the lead singer. Then he introduces the rest of the singers and musicians.`
+			choice
+				`	"Pleased to meet you all. What's the name of your band?"`
+			`	"Oh," Ulrich says, "we call ourselves, 'There Might Be Riots.'"`
+			`	Eventually, the spaceport police arrive and disperse the crowd, and the band settles in for their trip to <destination>.`
+				accept
+	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
+	on complete
+		payment
+		payment 100000
+		log `Dropped the famous band "There Might Be Riots" off on Wayfarer. They drew quite the crowd, and paid very well.`
+		conversation
+			`You drop off the band "There Might Be Riots" on <destination>. Along the way, you got to hear some of their music, which is mostly characterized by frenzied instrumentals, a very energetic brass section, and bizarre lyrics. One day while you were in transit, they nearly drove you insane by playing their catchy but nonsensical song "Henhouse In Your Soul" for four hours straight, but other than that they have been good passengers, and their stage manager gives you an incredibly generous payment of <payment>.`
+			`	"We've already got a gig lined up for tonight," says Ulrich. "Want to come? We'll give you free tickets." Given how well they just paid you, it might be worth going just to build a relationship with the band, even if not for the music itself.`
+			choice
+				`	"Sure!"`
+				`	"Sorry, I've got other things to do."`
+					decline
+			`	The band is even louder in concert than they were when practicing in the confines of your ship. About thirty minutes into the concert, the energy of the crowd and the surreal lyrics finally begin to soak in, and rather than seeming meaningless their music feels fraught with meaning that hovers just beyond your grasp.`
+			`	Finally the band announces that their last song will be "Sad Archie." You've never heard of it, but the fans scream in approval. It's a slow, ballad-like song about a man named Archie who lives forever and is sad because the friends he makes all grow old and die. Archie has a pet dragon, and he builds a beautiful house for the dragon, but the dragon dies young. Archie is so sad seeing the dragon's house empty and gathering dust that he rents it out to some friends, but they fight with each other and trash the place. The story makes no sense, but some of the fans are wiping away tears as the song ends.`
+			`	Becca, who is sitting next to you in the VIP section, says, "We learned years ago that we need to end every concert with a sad song. Otherwise the fans leave with way too much energy and start destroying public property."`
+			`	The concert ends, and you say goodbye to the band. They say they'll be in touch if they ever need a ride again.`
+
+
+
+mission "There Might Be Riots part 2"
+	name "Transport band to <planet>"
+	description `Give the band "There Might Be Riots" a ride to <destination>.`
+	minor
+	source
+		government Syndicate
+	destination "Prime"
+	cargo "musical equipment" 4
+	passengers 8
+	to offer
+		has "There Might Be Riots 1: done"
+		has "Deep Archaeology 5: done"
+		random < 30
+	
+	on offer
+		conversation
+			`As you walk through the spaceport, you see a large crowd gathered outside a small pub, and hear the unmistakable music of There Might Be Riots from inside. The concert seems to be just winding down. Do you want to wait around and say hello to them?`
+			choice
+				`	(Okay.)`
+				`	(Not right now.)`
+					defer
+			`	"<first>!" says Ulrich, when they see you. "What luck! We're doing a concert tonight on landing pad ninety-four, part of our 'Trouble on the Tarmac Tour.' We're going to need a lift to <planet> right after the concert. Or possibly in the middle of it. Can you help us out?"`
+			choice
+				`	"Okay. But why the hurry to leave?"`
+					goto okay
+				`	"Sorry, I've got other plans."`
+			`	"Please," he says, "I'm serious. You'll be saving our skins. Whatever else you've got, it's not this important."`
+			choice
+				`	"Okay, I'll do it. Why's it so urgent?"`
+				`	"Sorry, I really don't want to work with you guys anymore."`
+					decline
+			label okay
+			`	"You'll see," he says. "You should park your ship right behind us in case the natives get restless and we need to skedaddle."`
+			`	With some trepidation, you sit by the hatchway of your ship and watch as the band sets up directly outside it and the concert begins. Nothing seems out of the ordinary until the band introduces a song called "Gluttony," and you can feel a sudden tension fill the air. The Syndicate security guards, who until now have been standing at the periphery of the landing pad, begin to disperse themselves throughout the crowd.`
+			`	It's a song about a man who will die if he ever stops eating, so he eats more and more and grows bigger and bigger. A second after you realize that the whole thing is a thinly veiled critique of the Syndicate, a group up front unrolls a banner that reads "End Wage Slavery!" and begins shouting and chanting slogans. As the band plays on, there is some sort of scuffle at the back of the crowd, and then you see stun guns begin to flash, and rising plumes of what you would guess is tear gas.`
+			`	As the demonstrators are driven away, a group of guards approach you. "What is your connection to these musicians?" they ask.`
+			choice
+				`	"I'm just their transport. They're paying me to carry them to their next destination."`
+					goto transport
+				`	"They're friends of mine. Why? They haven't done anything illegal, that I can see."`
+			`	"Be careful what friends you choose," says the guard, "or you might find that no one in this sector will offer you any jobs. Now, get them packed up and get out of here." You have no choice but to leave the planet immediately...`
+				launch
+			label transport
+			`	"Then I suggest you do your job and transport them. Immediately." The guards leave. As soon as the band is packed up, you leave the planet...`
+				launch
+	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
+	on complete
+		payment
+		payment 200000
+		conversation
+			`As generous as before, the band pays you generously: <payment>. "Where will you be going next, from here?" you ask.`
+			`	"Who knows," says Ulrich. "Our music has taken us throughout human space, and beyond."`
+			choice
+				`	"What do you mean, 'beyond' human space?"`
+				`	"Well, I'll look forward to the next time we meet."`
+					accept
+			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old grey merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
+			branch known
+				has "First Contact: Hai: offered"
+			`	You're tempted to laugh, but he sounds serious. "Well," you say, "if I ever find a planet of intelligent squirrels, I'll be glad to take you guys there." You help them to unload their stuff, and say goodbye for now.`
+				accept
+			label known
+			apply
+				set "met hai before TMBR"
+			`	"It sounds like you were visiting Hai space," you say, and you describe the aliens who live beyond the wormhole. "Yeah, that would be them," says Ulrich. "I'd love to go back there some time, but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
+				accept
+
+
+
+mission "There Might Be Riots part 3A"
+	name "Transport band to <planet>"
+	description `Give the band "There Might Be Riots" a ride to <destination>.`
+	minor
+	source
+		attributes "dirt belt" "south" "rim"
+		government "Republic" "Free Worlds" "Neutral"
+	destination "Pilot"
+	clearance
+	infiltrating
+	cargo "musical equipment" 4
+	passengers 8
+	to offer
+		has "There Might Be Riots part 2: done"
+		has "First Contact: Hai: offered"
+		random < 30
+	
+	on offer
+		conversation
+			`As you walk through the spaceport, you see a distinctive group of people lugging a collection of instruments: the band There Might Be Riots. Would you like to see if there is anything more you can do for them?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			`	They're very happy to see you. "You always seem to have amazing timing," says Ulrich. "We were just wondering who could transport us to a... gig of sorts... up north, and then you come along. Any chance you could take us to <destination>?"`
+			`	You've heard of that planet. "The weapons testing world for Lovelace Labs?" you ask. "I'm surprised you'd be able to find a big audience there."`
+			`	"Oh, we'll have an audience, all right," he says. "We've just put out a new album called 'Songs for the End of Civilization.' A war protest album. We want to film ourselves playing a concert right in the middle of the missile testing range. Of course we'll probably end up running out of there with Republic Intelligence nipping at our heels. What do you say?"`
+			choice
+				`	"Sorry, that's further than I'm willing to go for you guys."`
+					goto no
+				`	"Sounds like a worthy cause. Count me in!"`
+					goto yes
+				`	"You're going to do a concert on ground that could be littered with unexploded ordnance?"`
+			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
+			choice
+				`	"Sorry, that's further than I'm willing to go for you guys."`
+					goto no
+				`	"Sounds like a worthy cause. Count me in!"`
+					goto yes
+			label no
+			`	"Are you sure?" he asks. "We'll pay you with more than just money. Do this for us, and I'll share a story with you that very few have heard."`
+			choice
+				`	"Sorry, but it's still a 'no.'"`
+					decline
+				`	"Okay, I'm intrigued. But it still sounds risky."`
+			label yes
+			branch known
+				has "met hai before TMBR"
+			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. Say, did you ever find that planet of squirrel people? We'd love to go back there."`
+			`	"Yes," you say, "they're called the Hai. They live in a whole big region to the north."`
+				goto end
+			label known
+			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
+			`	"The Hai," you say.`
+			label end
+			`	"Excellent," he says. "We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
+			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
+				accept
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
+
+
+
+government "Team Red"
+	swizzle 0
+	"player reputation" -1000
+	"attitude toward"
+		"Team Blue" -.1
+
+government "Team Blue"
+	swizzle 5
+	"player reputation" -1000
+	"attitude toward"
+		"Team Red" -.1
+
+mission "There Might Be Riots part 3B"
+	landing
+	name "Transport band to <planet>"
+	description `Avoid the Navy combat drones and give the band "There Might Be Riots" a ride to <destination>.`
+	source "Pilot"
+	destination "Allhome"
+	cargo "musical equipment" 4
+	passengers 8
+	to offer
+		has "There Might Be Riots part 3A: done"
+	
+	on offer
+		conversation
+			`You bring your ship to a gingerly landing in a section of the testing range that doesn't look too pockmarked with craters, and the band begins setting up their equipment and video cameras. "This is great," says Ulrich. "We'll be broadcasting live over the Net. It's time people started asking why the government thinks it needs all these weapons of war."`
+			`	The band plays through about a third of their set without any evidence that the locals even know you are here, which is surprising for such a tightly secured planet. Then, right in the middle of a particularly crunchy anti-war song, your long range radar picks up something: a large number of ships approaching from a hundred kilometers away.`
+			choice
+				`	"Guys, I think we should get out of here."`
+				`	"We've got ships incoming. Could be trouble."`
+					goto ships
+			`	The band stops playing. Ulrich turns to the cameras and says, "For all our fans out there, we'll be back after a brief intermission." Then he walks over to you and says, "What is it?"`
+			`	"Ships incoming," you say.`
+				goto bad
+			label ships
+			`	The band stops playing. Ulrich turns to the cameras and says, "For all our fans out there, we'll be back after a brief intermission." Then he walks over to you.`
+			label bad
+			`	"Did they hail us?" asks Ulrich.`
+			`	"No," you say.`
+			`	He swears, then shouts to the rest of the band, "Gentlemen, time to pack it up posthaste, before we get turned into a tragic industrial accident!"`
+			`	The band has just packed the last of their equipment away when the ships come into view. It's a swarm of unpiloted combat drones, and they seem to be engaged in mock combat with each other. But, their flight path is taking them straight in your direction. You power up your shields just as the first of the drones decide that your ship is a valid target for their lasers...`
+				launch
+	
+	npc
+		government "Team Red"
+		personality heroic nemesis
+		fleet
+			variant
+				"Combat Drone" 15
+	npc
+		government "Team Red"
+		personality waiting heroic
+		fleet
+			variant
+				"Combat Drone" 20
+	npc
+		government "Team Blue"
+		personality waiting heroic
+		fleet
+			variant
+				"Combat Drone" 35
+	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
+	on complete
+		payment 500000
+		log `Brought "There Might Be Riots" to the Hai world of Allhome after escaping a swarm of combat drones that disrupted their performance on Pilot. Ulrich spoke of a cloudy star in the Rim where he heard a voice in his head after parking his ship.`
+		conversation
+			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start." He hands you <payment>.`
+			`	As the rest of the band begins unloading their things, Ulrich adds speaking more quietly, "And, in good minstrel fashion I will pay you not just with money, but with a story.`
+			`	"Back when the fame first became too much for me, I rented a shuttlecraft under an assumed name and went tooling around the galaxy just to get away from it all. I found some cloudy star out along the Rim, parked my ship where no one would bother me, shut down everything but life support, and just sat there meditating and enjoying the silence for two or three days.`
+			`	"Then suddenly clear as day I heard a voice say, 'Are you okay? Do you need anything?' I was so shocked that without even thinking I said, 'I'm fine. How about you?' And the voice told me he was sad. Sad, because that part of space used to be the home of another species, and now they're all dead. He said we humans built our cities on the graveyards of a great civilization and didn't even know it. And if we didn't stop fighting each other, our species would die off too.`
+			`	"That's when the band started to speak out against war."`
+			choice
+				`	"Do you think the voice was real, or just in your head?"`
+				`	"It sounds like a good warning. I'll try to take it to heart."`
+					goto end
+			`	"It was in my head," he says, "And it was real. Very real. When it spoke I felt like the whole galaxy had just tipped sideways, or like I'd just stepped too close to the edge of a cliff and got vertigo. I've imagined some crazy things, but I tell you, this I did not imagine."`
+			`	You wish him the best of luck in Hai space, and he heads off into the spaceport with the rest of the band.`
+				accept
+			label end
+			`	"Then best of luck to you," he says, and he heads off into the spaceport with the rest of the band.`
+				accept
+
+
+
 mission "Drug Running 1"
 	name "Drug Running"
 	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
