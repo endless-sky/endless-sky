@@ -57,6 +57,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -81,6 +82,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	set<double> neighborDistances;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -181,6 +183,9 @@ bool GameData::BeginLoad(const char * const *argv)
 	}
 	
 	// Now that all the stars are loaded, update the neighbor lists.
+	// Make sure that the default jump range of 100 is among the neighbor distances
+	// to be updates.
+	NeighborDistance(100.);
 	UpdateNeighbors();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
@@ -558,8 +563,17 @@ void GameData::UpdateNeighbors()
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateNeighbors(systems);
+		for(double distance : neighborDistances)
+			it.second.UpdateNeighbors(systems, distance);
 	}
+}
+
+
+
+void GameData::NeighborDistance(double neighborDistance)
+{
+	if(!neighborDistances.count(neighborDistance))
+		neighborDistances.insert(neighborDistance);
 }
 
 

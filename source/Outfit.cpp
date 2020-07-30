@@ -181,8 +181,16 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "jump range")
+		{
+			double jumpRange = max(0., child.Value(1)); 
+			GameData::NeighborDistance(jumpRange);
+			attributes[child.Token(0)] = jumpRange;
+		}
 		else if(child.Size() >= 2)
+		{
 			attributes[child.Token(0)] = child.Value(1);
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}

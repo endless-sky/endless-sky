@@ -84,6 +84,7 @@ public:
 	// Update the neighbor lists of all the systems. This must be done any time
 	// that a change creates or moves a system.
 	static void UpdateNeighbors();
+	static void NeighborDistance(double neighborDistance);
 	
 	// Re-activate any special persons that were created previously but that are
 	// still alive.
