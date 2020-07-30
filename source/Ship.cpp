@@ -2630,7 +2630,7 @@ double Ship::JumpFuel(const System *destination) const
 	if(attributes.Get("hyperdrive") && currentSystem->Links().count(destination))
 		return HyperdriveFuel();
 	
-	if(attributes.Get("jump drive") && currentSystem->Neighbors().count(destination))
+	if(attributes.Get("jump drive") && currentSystem->Neighbors(JumpRange()).count(destination))
 		return JumpDriveFuel();
 	
 	// If the given system is not a possible destination, return 0.

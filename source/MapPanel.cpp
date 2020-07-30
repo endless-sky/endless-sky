@@ -858,11 +858,12 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 	
 	const System *previous = playerSystem;
+	double jumpRange = flagship->JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
-		bool isJump = !isHyper && previous->Neighbors().count(next);
+		bool isJump = !isHyper && previous->Neighbors(jumpRange).count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
