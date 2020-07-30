@@ -2631,7 +2631,7 @@ double Ship::JumpFuel(const System *destination) const
 		return HyperdriveFuel();
 	
 	if(attributes.Get("jump drive") && currentSystem->Neighbors(JumpRange()).count(destination))
-		return JumpDriveFuel();
+		return JumpDriveFuel(currentSystem->Position().Distance(destination->Position()));
 	
 	// If the given system is not a possible destination, return 0.
 	return 0.;
@@ -2684,13 +2684,13 @@ double Ship::HyperdriveFuel() const
 
 
 
-double Ship::JumpDriveFuel() const
+double Ship::JumpDriveFuel(double distance) const
 {
 	// Don't bother searching through the outfits if there is no jump drive.
 	if(!attributes.Get("jump drive"))
 		return 0.;
 	
-	return BestFuel("jump drive", "", 200.);
+	return BestFuel("jump drive", "", 200., distance);
 }
 
 
@@ -3386,26 +3386,41 @@ double Ship::MinimumHull() const
 
 
 // Find out how much fuel is consumed by the hyperdrive of the given type.
-double Ship::BestFuel(const string &type, const string &subtype, double defaultFuel) const
+double Ship::BestFuel(const string &type, const string &subtype, double defaultFuel, double distance) const
 {
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
 	// Make it possible for a hyperdrive to be integrated into a ship.
 	if(baseAttributes.Get(type) && (subtype.empty() || baseAttributes.Get(subtype)))
 	{
-		best = baseAttributes.Get("jump fuel");
-		if(!best)
-			best = defaultFuel;
+		// If a distance was given, then we know that we are making a jump.
+		// Only use the fuel from a jump drive if it is capable of making
+		// the given jump. We can guarantee that at least one jump drive
+		// is capable of making the given jump, as the destination must
+		// be among the neighbors of the current system.
+		double jumpRange = baseAttributes.Get("jump range");
+		jumpRange = jumpRange ? jumpRange : System::DEFAULT_NEIGHBOR_DISTANCE;
+		if(jumpRange >= distance)
+		{
+			best = baseAttributes.Get("jump fuel");
+			if(!best)
+				best = defaultFuel;
+		}
 	}
 	// Search through all the outfits.
 	for(const auto &it : outfits)
 		if(it.first->Get(type) && (subtype.empty() || it.first->Get(subtype)))
 		{
-			double fuel = it.first->Get("jump fuel");
-			if(!fuel)
-				fuel = defaultFuel;
-			if(!best || fuel < best)
-				best = fuel;
+			double jumpRange = it.first->Get("jump range");
+			jumpRange = jumpRange ? jumpRange : System::DEFAULT_NEIGHBOR_DISTANCE;
+			if(jumpRange >= distance)
+			{
+				double fuel = it.first->Get("jump fuel");
+				if(!fuel)
+					fuel = defaultFuel;
+				if(!best || fuel < best)
+					best = fuel;
+			}
 		}
 	return best;
 }

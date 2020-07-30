@@ -881,7 +881,7 @@ void MapPanel::DrawTravelPlan()
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel() : it.first->HyperdriveFuel();
+					double cost = isJump ? it.first->JumpDriveFuel(systemDistance) : it.first->HyperdriveFuel();
 					if(!cost || cost > it.second || (isJump && it.first->JumpRange() < systemDistance))
 					{
 						it.second = -1.;
