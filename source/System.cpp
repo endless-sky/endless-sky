@@ -321,15 +321,16 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 // Once the star map is fully loaded, figure out which stars are "neighbors"
 // of this one, i.e. close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems)
+void System::UpdateNeighbors(const Set<System> &systems, const double neighborDistance)
 {
-	neighbors.clear();
+	set<const System *> &neighborSet = neighbors[neighborDistance];
+	neighborSet.clear();
 	
 	// Every star system that is linked to this one is automatically a neighbor,
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
-		if(!(system->Position().Distance(position) <= NEIGHBOR_DISTANCE))
-			neighbors.insert(system);
+		if(!(system->Position().Distance(position) <= neighborDistance))
+			neighborSet.insert(system);
 	
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor. This will include any nearby linked systems.
@@ -339,8 +340,8 @@ void System::UpdateNeighbors(const Set<System> &systems)
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
 
-		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
-			neighbors.insert(&it.second);
+		if(&it.second != this && it.second.Position().Distance(position) <= neighborDistance)
+			neighborSet.insert(&it.second);
 	}
 	
 	// Calculate the solar power and solar wind.
@@ -368,8 +369,10 @@ void System::Link(System *other)
 	links.insert(other);
 	other->links.insert(this);
 	
-	neighbors.insert(other);
-	other->neighbors.insert(this);
+	for(auto &neighborSet : neighbors)
+		neighborSet.second.insert(other);
+	for(auto &neighborSet : other->neighbors)
+		neighborSet.second.insert(this);
 }
 
 
@@ -381,11 +384,13 @@ void System::Unlink(System *other)
 	
 	// If the only reason these systems are neighbors is because of a hyperspace
 	// link, they are no longer neighbors.
-	if(position.Distance(other->position) > NEIGHBOR_DISTANCE)
-	{
-		neighbors.erase(other);
-		other->neighbors.erase(this);
-	}
+	double distance = position.Distance(other->position);
+	for(auto &neighborSet : neighbors)
+		if(distance > neighborSet.first)
+			neighborSet.second.erase(other);
+	for(auto &neighborSet : other->neighbors)
+		if(distance > neighborSet.first)
+			neighborSet.second.erase(this);
 }
 
 
@@ -442,9 +447,15 @@ const set<const System *> &System::Links() const
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them. This is also the set of systems that you
 // can travel to from here via the jump drive.
-const set<const System *> &System::Neighbors() const
+const set<const System *> &System::Neighbors(const double neighborDistance) const
 {
-	return neighbors;
+	// The [] operator of map is non-const, so we need to iterate through
+	// the map to find a set with a matching distance.
+	static const set<const System *> EMPTY;
+	for(auto &neighborSet : neighbors)
+		if(neighborSet.first == neighborDistance)
+			return neighborSet.second;
+	return EMPTY;
 }
 
 
