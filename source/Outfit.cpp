@@ -188,9 +188,7 @@ void Outfit::Load(const DataNode &node)
 			attributes[child.Token(0)] = jumpRange;
 		}
 		else if(child.Size() >= 2)
-		{
 			attributes[child.Token(0)] = child.Value(1);
-		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}

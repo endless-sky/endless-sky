@@ -76,7 +76,7 @@ public:
 	void Load(const DataNode &node, Set<Planet> &planets);
 	// Once the star map is fully loaded, figure out which stars are "neighbors"
 	// of this one, i.e. close enough to see or to reach via jump drive.
-	void UpdateNeighbors(const Set<System> &systems, const double neighborDistance = 100.);
+	void UpdateNeighbors(const Set<System> &systems, std::set<double> neighborDistances);
 	
 	// Modify a system's links.
 	void Link(System *other);
@@ -98,7 +98,7 @@ public:
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them. This is also the set of systems that you
 	// can travel to from here via the jump drive.
-	const std::set<const System *> &Neighbors(const double neighborDistance = 100.) const;
+	const std::set<const System *> &Neighbors(double neighborDistance = 100.) const;
 	
 	// Move the stellar objects to their positions on the given date.
 	void SetDate(const Date &date);
@@ -110,6 +110,8 @@ public:
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
+	// Get how far ships can jump from this system.
+	double JumpRange() const; 
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
@@ -181,6 +183,7 @@ private:
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
+	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
 	

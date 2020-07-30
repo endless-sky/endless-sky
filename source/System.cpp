@@ -262,6 +262,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			habitable = child.Value(valueIndex);
 		else if(key == "belt")
 			asteroidBelt = child.Value(valueIndex);
+		else if(key == "jump range")
+			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
 			haze = SpriteSet::Get(value);
 		else if(key == "trade" && child.Size() >= 3)
@@ -321,27 +323,39 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 // Once the star map is fully loaded, figure out which stars are "neighbors"
 // of this one, i.e. close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems, const double neighborDistance)
+void System::UpdateNeighbors(const Set<System> &systems, set<double> neighborDistances)
 {
-	set<const System *> &neighborSet = neighbors[neighborDistance];
-	neighborSet.clear();
-	
-	// Every star system that is linked to this one is automatically a neighbor,
-	// even if it is farther away than the maximum distance.
-	for(const System *system : links)
-		if(!(system->Position().Distance(position) <= neighborDistance))
-			neighborSet.insert(system);
-	
-	// Any other star system that is within the neighbor distance is also a
-	// neighbor. This will include any nearby linked systems.
-	for(const auto &it : systems)
+	// If this system has a static jump range, then that is the only range
+	// that we need to create neighbors for.
+	if(jumpRange)
 	{
-		// Skip systems that have no name.
-		if(it.first.empty() || it.second.Name().empty())
-			continue;
+		neighborDistances.clear();
+		neighborDistances.insert(jumpRange);
+	}
+	
+	neighbors.clear();
+	for(const double distance : neighborDistances)
+	{
+		set<const System *> &neighborSet = neighbors[distance];
+		neighborSet.clear();
+		
+		// Every star system that is linked to this one is automatically a neighbor,
+		// even if it is farther away than the maximum distance.
+		for(const System *system : links)
+			if(!(system->Position().Distance(position) <= distance))
+				neighborSet.insert(system);
+		
+		// Any other star system that is within the neighbor distance is also a
+		// neighbor. This will include any nearby linked systems.
+		for(const auto &it : systems)
+		{
+			// Skip systems that have no name.
+			if(it.first.empty() || it.second.Name().empty())
+				continue;
 
-		if(&it.second != this && it.second.Position().Distance(position) <= neighborDistance)
-			neighborSet.insert(&it.second);
+			if(&it.second != this && it.second.Position().Distance(position) <= distance)
+				neighborSet.insert(&it.second);
+		}
 	}
 	
 	// Calculate the solar power and solar wind.
@@ -447,8 +461,12 @@ const set<const System *> &System::Links() const
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them. This is also the set of systems that you
 // can travel to from here via the jump drive.
-const set<const System *> &System::Neighbors(const double neighborDistance) const
+const set<const System *> &System::Neighbors(double neighborDistance) const
 {
+	// If this system has a static jump range, then the jump range of the
+	// ship does not matter.
+	if(jumpRange)
+		neighborDistance = jumpRange;
 	// The [] operator of map is non-const, so we need to iterate through
 	// the map to find a set with a matching distance.
 	static const set<const System *> EMPTY;
@@ -520,6 +538,14 @@ double System::HabitableZone() const
 double System::AsteroidBelt() const
 {
 	return asteroidBelt;
+}
+
+
+
+// Get how far ships can jump from this system.
+double System::JumpRange() const
+{
+	return jumpRange;
 }
 
 

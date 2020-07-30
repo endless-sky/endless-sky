@@ -563,8 +563,7 @@ void GameData::UpdateNeighbors()
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		for(double distance : neighborDistances)
-			it.second.UpdateNeighbors(systems, distance);
+		it.second.UpdateNeighbors(systems, neighborDistances);
 	}
 }
 
