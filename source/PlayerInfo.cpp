@@ -385,10 +385,13 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		// Recalculate what systems have been seen.
 		GameData::UpdateNeighbors();
 		seen.clear();
+		double jumpRange = flagship ? flagship->JumpRange() : System::DEFAULT_NEIGHBOR_DISTANCE;
+		if(!jumpRange)
+			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const System *system : visitedSystems)
 		{
 			seen.insert(system);
-			for(const System *neighbor : system->Neighbors())
+			for(const System *neighbor : system->Neighbors(jumpRange))
 				seen.insert(neighbor);
 		}
 	}
@@ -1840,7 +1843,10 @@ void PlayerInfo::Visit(const System *system)
 	
 	visitedSystems.insert(system);
 	seen.insert(system);
-	for(const System *neighbor : system->Neighbors())
+	double jumpRange = flagship ? flagship->JumpRange() : System::DEFAULT_NEIGHBOR_DISTANCE;
+	if(!jumpRange)
+		jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
+	for(const System *neighbor : system->Neighbors(jumpRange))
 		seen.insert(neighbor);
 }
 
