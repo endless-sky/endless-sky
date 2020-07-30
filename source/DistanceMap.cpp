@@ -309,7 +309,7 @@ bool DistanceMap::CheckLink(const System *from, const System *to, bool useJump) 
 	// the two systems that you can jump between them, you can plot a course
 	// between them even if neither system is explored. Otherwise, you need to
 	// know if a link exists, so you must have explored at least one of them.
-	if(useJump && from->Position().Distance(to->Position()) <= System::NEIGHBOR_DISTANCE)
+	if(useJump && from->Position().Distance(to->Position()) <= System::DEFAULT_NEIGHBOR_DISTANCE)
 		return true;
 	
 	return (player->HasVisited(from) || player->HasVisited(to));

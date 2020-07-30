@@ -39,7 +39,7 @@ namespace {
 	const double LIMIT = 20000.;
 }
 
-const double System::NEIGHBOR_DISTANCE = 100.;
+const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
 
 
 

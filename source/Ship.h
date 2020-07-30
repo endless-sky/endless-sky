@@ -280,6 +280,8 @@ public:
 	int JumpsRemaining(bool followParent = true) const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
+	// Get the distance that this ship can jump.
+	double JumpRange() const;
 	// Get the cost of making a jump of the given type (if possible).
 	double HyperdriveFuel() const;
 	double JumpDriveFuel() const;

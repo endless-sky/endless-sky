@@ -183,9 +183,9 @@ bool GameData::BeginLoad(const char * const *argv)
 	}
 	
 	// Now that all the stars are loaded, update the neighbor lists.
-	// Make sure that the default jump range of 100 is among the neighbor distances
-	// to be updates.
-	NeighborDistance(100.);
+	// Make sure that the default jump range is among the neighbor distances
+	// to be updated.
+	NeighborDistance(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateNeighbors();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)

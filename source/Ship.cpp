@@ -2639,6 +2639,36 @@ double Ship::JumpFuel(const System *destination) const
 
 
 
+double Ship::JumpRange() const
+{
+	// Ships without a jump drive have no jump range.
+	if(!attributes.Get("jump drive"))
+		return 0.;
+	
+	// Find the outfit that provides the farthest jump range.
+	double best = 0.;
+	// Make it possible for the jump range to be integrated into a ship.
+	if(baseAttributes.Get("jump drive"))
+	{
+		best = baseAttributes.Get("jump range");
+		if(!best)
+			best = System::DEFAULT_NEIGHBOR_DISTANCE;
+	}
+	// Search through all the outfits.
+	for(const auto &it : outfits)
+		if(it.first->Get("jump drive"))
+		{
+			double range = it.first->Get("jump range");
+			if(!range)
+				range = System::DEFAULT_NEIGHBOR_DISTANCE;
+			if(!best || range > best)
+				best = range;
+		}
+	return best;
+}
+
+
+
 // Get the cost of making a jump of the given type (if possible).
 double Ship::HyperdriveFuel() const
 {

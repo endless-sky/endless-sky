@@ -149,7 +149,15 @@ void MapPanel::Draw()
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1f, 0.f);
 	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
-		(System::NEIGHBOR_DISTANCE + .5) * Zoom(), (System::NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(),
+		(System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+	double jumpRange = player.Flagship()->JumpRange();
+	if(jumpRange && jumpRange != System::DEFAULT_NEIGHBOR_DISTANCE)
+	{
+		RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+			(jumpRange + .5) * Zoom(),
+			(jumpRange - .5) * Zoom(), dimColor);
+	}
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11.f, 9.f, brightColor);
