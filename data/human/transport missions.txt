@@ -1705,7 +1705,7 @@ mission "Shady passenger transport 3 - double cross"
 			apply
 				set "bribed mercenaries"
 			`	You up your bribe to 8 million credits. It's enough. A sigh of relief escapes your lips as everyone lowers their weapons.`
-			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closes, you send them the password. At least you have escaped with your life and your ship.`
+			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chip. Once the airlock closes, you send them the password. At least you have escaped with your life and your ship.`
 				defer
 
 			label betrayed
