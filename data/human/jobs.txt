@@ -3019,22 +3019,26 @@ mission "Bounty Hunting (Marauder IX)"
 		payment 600000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
-# Must destroy hunters and land to fail
-mission "Marauder Hunted"
-	invisible
-	landing
+mission "Bounty Hunting (Marauder X)"
+	name "Large Marauders near <system>"
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
-	destination "Earth"
+	job
 	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103
-		random < 3
-	to complete
-		never
-	npc save
+		random < 5
+	npc kill
 		government "Bounty Hunter"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
-			distance 5 5
+			distance 1 3
 		fleet "Marauder fleet X"
+		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
+	on complete
+		payment 750000
+		dialog phrase "generic fleet bounty hunting payment dialog"
