@@ -119,8 +119,65 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || bay.ship->Health() > .75))
+			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) &&
+					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
+	}
+	
+	// Issue deploy orders for the selected ships (or the full fleet if no ships are selected).
+	void IssueDeploy(const PlayerInfo &player)
+	{
+		// Lay out the rules for what constitutes a deployable ship. (Since player ships are not
+		// deleted from memory until the next landing, check both parked and destroyed states.)
+		auto isCandidate = [](const shared_ptr<Ship> &ship) -> bool
+		{
+			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed();
+		};
+		
+		auto toDeploy = vector<Ship *> {};
+		auto toRecall = vector<Ship *> {};
+		{
+			auto maxCount = player.Ships().size() / 2;
+			toDeploy.reserve(maxCount);
+			toRecall.reserve(maxCount);
+		}
+		
+		// First, check if the player selected any carreid ships.
+		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		{
+			shared_ptr<Ship> ship = it.lock();
+			if(ship && ship->IsYours() && isCandidate(ship))
+				(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
+		}
+		// If needed, check the player's fleet for deployable ships.
+		if(toDeploy.empty() && toRecall.empty())
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(isCandidate(ship) && ship.get() != player.Flagship())
+					(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
+		
+		// If any ships were not yet ordered to deployed, deploy them.
+		if(!toDeploy.empty())
+		{
+			for(Ship *ship : toDeploy)
+				ship->SetDeployOrder(true);
+			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.");
+		}
+		// Otherwise, instruct the carried ships to return to their berth.
+		else if(!toRecall.empty())
+		{
+			for(Ship *ship : toRecall)
+				ship->SetDeployOrder(false);
+			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships");
+		}
+	}
+	
+	// Check if the ship contains a carried ship that needs to launch.
+	bool HasDeployments(const Ship &ship)
+	{
+		for(const Ship::Bay &bay : ship.Bays())
+			if(bay.ship && bay.ship->HasDeployOrder())
+				return true;
+		return false;
 	}
 	
 	// Determine if the ship with the given travel plan should refuel in
@@ -316,15 +373,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(player.Ships().size() < 2)
 		return;
 	
-	// Only toggle the "deploy" command if one of your ships has fighter bays.
+	// Toggle the "deploy" command for the fleet or selected ships.
 	if(activeCommands.Has(Command::DEPLOY))
-		for(const auto &it : player.Ships())
-			if(it->HasBays())
-			{
-				isLaunching = !isLaunching;
-				Messages::Add(isLaunching ? "Deploying fighters." : "Recalling fighters.");
-				break;
-			}
+		IssueDeploy(player);
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	Orders newOrders;
@@ -478,7 +529,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		double healthRemaining = it->Health();
 		bool isPresent = (it->GetSystem() == playerSystem);
 		bool isStranded = IsStranded(*it);
-		bool thisIsLaunching = (isLaunching && isPresent);
+		bool thisIsLaunching = (isPresent && HasDeployments(*it));
 		if(isStranded || it->IsDisabled())
 		{
 			// Derelicts never ask for help (only the player should repair them).
@@ -707,7 +758,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
-			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category() == "Fighter");
+			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
 			{
 				// Find the possible parents for orphaned fighters and drones.
@@ -770,7 +821,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetParent(parent);
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(parentHasSpace && ShouldDock(*it, *parent, thisIsLaunching))
+			else if(parentHasSpace && ShouldDock(*it, *parent, playerSystem))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
@@ -790,8 +841,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			for(const weak_ptr<Ship> &ptr : it->GetEscorts())
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
-				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
-						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category() == "Fighter"))
+				// Note: HasDeployOrder is always `false` for NPC ships, as it is solely used for player ships.
+				if(escort && escort->CanBeCarried() && !escort->HasDeployOrder() && escort->GetSystem() == it->GetSystem()
+						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
 				{
 					mustRecall = true;
 					break;
@@ -1247,7 +1299,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
 	shared_ptr<Ship> parent = ship.GetParent();
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::MOVE_TO)
+	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && type != Orders::MOVE_TO)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1264,9 +1316,9 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		SelectRoute(ship, it->second.targetSystem);
 		return false;
 	}
-	else if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
+	else if((type == Orders::MOVE_TO || type == Orders::HOLD_ACTIVE) && ship.Position().Distance(it->second.point) > 20.)
 		MoveTo(ship, command, it->second.point, Point(), 10., .1);
-	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
+	else if(type == Orders::HOLD_POSITION || type == Orders::HOLD_ACTIVE || type == Orders::MOVE_TO)
 	{
 		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
 			Stop(ship, command);
@@ -1605,20 +1657,26 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 
 
 
-// Determine if a fighter meets any of the criteria for returning to its parent.
-bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const
+// Determine if a carried ship meets any of the criteria for returning to its parent.
+bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const
 {
 	// If your parent is disabled, you should not attempt to board it.
 	// (Doing so during combat will likely lead to its destruction.)
 	if(parent.IsDisabled())
 		return false;
 	
-	// A fighter should retreat if its parent is calling it back, or it is
-	// a player's ship and is not in the current system.
-	if(!parent.Commands().Has(Command::DEPLOY) || (ship.IsYours() && !playerShipsLaunch))
+	// A player-owned carried ship should return to its carrier when the player
+	// has ordered it to "no longer deploy" or when it is not in the current system.
+	// A non-player-owned carried ship should retreat if its parent is calling it back.
+	if(ship.IsYours())
+	{
+		if(!ship.HasDeployOrder() || ship.GetSystem() != playerSystem)
+			return true;
+	}
+	else if(!parent.Commands().Has(Command::DEPLOY))
 		return true;
 	
-	// If a fighter has repair abilities, avoid having it get stuck oscillating between
+	// If a carried ship has repair abilities, avoid having it get stuck oscillating between
 	// retreating and attacking when at exactly 25% health by adding hysteresis to the check.
 	double minHealth = RETREAT_HEALTH + .1 * !ship.Commands().Has(Command::DEPLOY);
 	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
@@ -1626,14 +1684,14 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch
 	
 	// TODO: Reboard if in need of ammo.
 	
-	// If a fighter has fuel capacity but is very low, it should return if
+	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
 	double maxFuel = ship.Attributes().Get("fuel capacity");
 	if(maxFuel && ship.Fuel() < .005 && parent.JumpFuel() < parent.Fuel() *
 			parent.Attributes().Get("fuel capacity") - maxFuel)
 		return true;
 	
-	// If an out-of-combat NPC fighter is carrying a significant cargo
+	// If an out-of-combat NPC carried ship is carrying a significant cargo
 	// load and can transfer some of it to the parent, it should do so.
 	if(!ship.IsYours())
 	{
@@ -1641,7 +1699,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch
 		if(!hasEnemy)
 		{
 			const CargoHold &cargo = ship.Cargo();
-			// Mining ships only mine while they have 5 or more free space. While mining, fighters
+			// Mining ships only mine while they have 5 or more free space. While mining, carried ships
 			// do not consider docking unless their parent is far from a targetable asteroid.
 			if(parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
 				return true;
@@ -2588,7 +2646,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
-		double steps = RendezvousTime(p, v, weapon->Velocity() + .5 * weapon->RandomVelocity());
+		double steps = RendezvousTime(p, v, weapon->WeightedVelocity() + .5 * weapon->RandomVelocity());
 		if(std::isnan(steps))
 			continue;
 		
@@ -2689,7 +2747,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			Angle aim = ship.Facing() + hardpoint.GetAngle();
 			// Get this projectile's average velocity.
 			const Weapon *weapon = hardpoint.GetOutfit();
-			double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+			double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 			// Loop through each body this hardpoint could shoot at. Find the
 			// one that is the "best" in terms of how many frames it will take
 			// to aim at it and for a projectile to hit it.
@@ -2849,7 +2907,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		start += person.Confusion();
 		
-		double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+		double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 		double lifetime = weapon->TotalLifetime();
 		
 		// Homing weapons revert to "dumb firing" if they have no target.
@@ -2942,7 +3000,7 @@ void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 		start += ship.GetPersonality().Confusion();
 		
 		const Weapon *weapon = hardpoint.GetOutfit();
-		double vp = weapon->Velocity() + .5 * weapon->RandomVelocity();
+		double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 		double lifetime = weapon->TotalLifetime();
 		
 		Point p = target.Position() - start;
@@ -3495,7 +3553,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 	}
 	
-	if(ship.HasBays() && isLaunching)
+	if(ship.HasBays() && HasDeployments(ship))
 	{
 		command |= Command::DEPLOY;
 		Deploy(ship, !Preferences::Has("Damaged fighters retreat"));
@@ -3708,8 +3766,14 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			gaveOrder = true;
 			
 			hasMismatch |= !orders.count(ship);
-			
+
 			Orders &existing = orders[ship];
+			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
+			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
+			// command is given.
+			if(existing.type == Orders::HOLD_ACTIVE)
+				existing.type = Orders::HOLD_POSITION;
+			
 			hasMismatch |= (existing.type != newOrders.type);
 			hasMismatch |= (existing.target.lock().get() != newTarget);
 			existing = newOrders;
@@ -3761,7 +3825,7 @@ void AI::UpdateOrders(const Ship &ship)
 		return;
 	
 	Orders &order = it->second;
-	if(order.type == Orders::MOVE_TO && ship.GetSystem() == order.targetSystem)
+	if((order.type == Orders::MOVE_TO || order.type == Orders::HOLD_ACTIVE) && ship.GetSystem() == order.targetSystem)
 	{
 		// If nearly stopped on the desired point, switch to a HOLD_POSITION order.
 		if(ship.Position().Distance(order.point) < 20. && ship.Velocity().Length() < .001)
@@ -3769,8 +3833,8 @@ void AI::UpdateOrders(const Ship &ship)
 	}
 	else if(order.type == Orders::HOLD_POSITION && ship.Position().Distance(order.point) > 20.)
 	{
-		// If far from the defined target point, return via a MOVE_TO order.
-		order.type = Orders::MOVE_TO;
+		// If far from the defined target point, return via a HOLD_ACTIVE order.
+		order.type = Orders::HOLD_ACTIVE;
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}

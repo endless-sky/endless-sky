@@ -22,7 +22,7 @@ jobs:
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}

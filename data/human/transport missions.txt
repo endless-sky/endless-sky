@@ -23,6 +23,7 @@ mission "Immigrant Workers"
 		payment
 		payment 10000
 		dialog "The young couple from <origin> pays you and thanks you profusely as they gather up their goods and depart. You wish them the best of luck in their new life on <planet>."
+		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha’s conditions.`
 	on offer
 		conversation
 			"As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
@@ -63,7 +64,7 @@ mission "Pookie, Part 1"
 			"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the <system> system."
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
+		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 
 
 
@@ -101,11 +102,12 @@ mission "Pookie, Part 2"
 			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
 				accept
 	on visit
-		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
+		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
-
+		log "Minor People" "Pocahontas (Pookie)" `A dog...`
+		
 
 
 mission "Smuggler's Den, Part 1"
@@ -252,6 +254,7 @@ mission "Smuggler's Den: Follow Up"
 				
 	on accept
 		log `Visited Joe and Maria on Millrace. Life is tough, but they are doing far better now than they were on a pirate ship. Jesse has grown and the couple already has another baby to look after.`
+		log "Minor People" "Joe and Maria" `Two teenagers who were under the employs of pirates, the couple wanted your aid with an escape from their lives and after a time have informed you that they are now living in relative peace where you left them on Millrace.`
 		fail
 
 
@@ -436,6 +439,7 @@ mission "Transport Workers C"
 		payment
 		payment 10000
 		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
+		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizeable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
 
 
 
@@ -812,6 +816,7 @@ mission "There Might Be Riots part 3A"
 	minor
 	source
 		attributes "dirt belt" "south" "rim"
+		government "Republic" "Free Worlds" "Neutral"
 	destination "Pilot"
 	clearance
 	infiltrating
@@ -956,6 +961,7 @@ mission "There Might Be Riots part 3B"
 
 ship "Timer Ship"
 	attributes
+		"heat dissipation" 1
 		"hull" 3
 		"hull repair rate" .001
 		"mass" 100
@@ -1551,7 +1557,7 @@ mission "Shady passenger transport 2"
 	on accept
 		"rejected illegal jobs" --
 		"getaway driver" ++
-		dialog `You bundle the men onto your ship before anyone sees them. As you're helping unpack their luggage, one of them casually mentions that they may have attracted the attention of some bounty hunters, and would prefer not to be captured. You should probably avoid being scanned, too."`
+		dialog `You bundle the men onto your ship before anyone sees them. As you're helping unpack their luggage, one of them casually mentions that they may have attracted the attention of some bounty hunters, and would prefer not to be captured. You should probably avoid being scanned, too.`
 
 	on decline
 		"rejected illegal jobs" ++
@@ -1699,7 +1705,7 @@ mission "Shady passenger transport 3 - double cross"
 			apply
 				set "bribed mercenaries"
 			`	You up your bribe to 8 million credits. It's enough. A sigh of relief escapes your lips as everyone lowers their weapons.`
-			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closes, you send them the password. At least you have escaped with your life and your ship.`
+			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chip. Once the airlock closes, you send them the password. At least you have escaped with your life and your ship.`
 				defer
 
 			label betrayed
@@ -2935,6 +2941,7 @@ mission "Paradise Fortune 2"
 			
 	on decline
 		payment 150000
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, you turned her in to the authorities for a meagre reward.`
 	on visit
 		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -2993,6 +3000,7 @@ mission "Paradise Fortune 3"
 	
 	on decline
 		payment 500000
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, you turned her in to the authorities for a moderate reward.`
 	
 	on visit
 		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -3085,12 +3093,13 @@ mission "Paradise Fortune 4"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
-	
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
 	on complete
 		payment 1000000
 		conversation
 			`You spot a fleet of docked Navy ships as you come in for a landing. A small squad of troops gather around your ship after you land. You are greeted by a Navy officer upon exiting your ship and explain to him where Diana is, showing him the note she wrote.`
 			`	"That is unfortunate," she responds with a troubled look on her face. "We'll contact the Howl family about this." Before letting you go, the officer hands you <payment>. "This is the reward that Mr. Howl put out for the return of his credits. Thank you for doing the right thing, Captain."`
+		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you dutifully turned in the credits to the authorities to keep the peace. You received a substantial reward for your integrity.`
 
 
 
@@ -3383,7 +3392,7 @@ mission "Capture Smuggler"
 				die
 	npc board
 		conversation
-			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangly muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
+			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangely muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
 			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
 				launch
 		government "Merchant"
@@ -3469,6 +3478,9 @@ mission "Inheritance Redirection"
 				decline
 	on complete
 		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
+		log "Minor People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa, but was then proven to be a scam.`
+	on decline
+		log "Minor People" "Mr. Smith" `A mysterious individual who asked for 200,000 credits to process a rich inheritance from the deceased warlord Limping Pappa. You presume he was a scammer and had no part in it.`
 
 
 
@@ -3582,3 +3594,160 @@ mission "Hauler VI cargo prototype 3"
 			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
+
+mission "Antibiotics To South"
+	name "Antibiotics shipment to <planet>"
+	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
+	minor
+	source
+		attributes "medical"
+		not attributes "south" "rim"
+		near "Sol" 100
+	destination
+		attributes "south"
+	to offer
+		"combat rating" > 10
+		"armament deterrence" > 2
+		random < 5
+	cargo "antibiotics" 25 2 .05
+	
+	on offer
+		conversation
+			`As you wander around the spaceport, you spot a well dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks, "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
+			choice
+				`	"It is. Why?"`
+				`	"Sorry, I think you're mistaken."`
+					decline
+			`	The man begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last two merchants I've sent down there have been attacked by pirate ships. My company won't give the budget for an escort, so anyone I send down there has to be alone. Fortunately, I do have the budget for a high risk contract, so if you can take one of these shipments to <destination>, I can arrange a payment of <payment>. Does this sound fair so far?"`
+			choice
+				`	"Sure, but do you know anything about these pirates?"`
+				`	"No thanks, that sounds too risky for me."`
+					decline
+			`	He seems to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the '<npc>'. It's faster than a Bounder and persistent beyond any reasonable measure. Which is, of course, why I'm talking to you. There is no way you're going to avoid a fight with it. However, I think your ship is a match for it. So, is this acceptable?"`
+			choice
+				`	"Of course."`
+				`	"No thanks, that sounds like too much of a risk."`
+					decline
+			`	"Thank you very much, Captain," he says. "I'll take care of everything else from here."`
+				accept
+	npc
+		government "Bounty Hunter"
+		personality nemesis heroic disables harvests plunders
+			confusion 20
+		system
+			distance 2 3
+		ship "Marauder Manta (Engines)" "Australis"
+	
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 20000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Pirate Duel"
+	name "Fight at Umbral"
+	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the "Esca." After fighting, go to <destination> to follow up.`
+	minor
+	deadline 5 1
+	source
+		near "Tarazed" 1 5
+		government "Republic" "Free Worlds"
+	waypoint "Umbral"
+	destination "Wayfarer"
+	
+	to offer
+		"combat rating" > 20
+		"combat rating" < 400
+		random < 35
+		not "ships: Medium Warship"
+		not "ships: Heavy Warship"
+		not "ships: Heavy Freighter"
+		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" == 1
+	
+	on offer
+		conversation
+			`While you are walking around the spaceport, you accidentally bump into a sturdily-built man. "Oh, I'm sorry," he responds in a gruff voice. When he takes a closer look at you, his expression changes to shock. "Oh! You're Captain <last>!"`
+			choice
+				`	"How did you know my name?"`
+					goto offer
+				`	"I don't know who you're talking about."`
+			`	The man's expression changes to one of slight dissapointment. "Oh. I see." He walks away without another word.`
+				decline
+			label offer
+			`	"I happen to take an interest in young pioneering privateers, and your performance, even in a small vessel like the <ship>, has impressed me greatly. I'll tell you more if you let me take you somewhere."`
+			choice
+				`	"Sure, I'll follow."`
+					goto follow
+				`	"Where are you taking me?"`
+			`	The man chuckles nervously. "Just to somewhere more private. Don't worry, I won't bite."`
+			choice
+				`	"Fine, I'll go."`
+				`	"I still don't buy this. I'm out."`
+					decline
+			label follow
+			`	You follow the man into a series of winding alleyways, keeping your eyes alert for any danger. After a while, the man stops. "I suppose I can tell you more about myself now. I... am the leader of the local militia, and I believe that, considering your proficiency in piloting smaller craft, you would be a great candidate to join our team. However, there is a test you must pass. I will use one of our smaller ships in our fleet, the Esca, to challenge you to a duel in the system of Umbral. If you manage to disable me, go to our base in Wayfarer, and I'll let you join."`
+			choice
+				`	"What sort of vessel is the Esca?"`
+					goto vessel
+				`	"Why did you need to bring me to here? Couldn't you have made this offer in the spaceport?"`
+			`	The man hesiates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
+				goto end
+			label vessel
+			`	The man hesiates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you.`
+			label end
+			`	"Well, I better be going now. Meet me at Umbral as fast as you can if you want to take up my challenge." The man walks away, leaving you to your own devices.`
+			choice
+				`	(Ready your ship for the battle with the Esca.)`
+					accept
+				`	(Ignore the invitation.)`
+					decline
+	
+	on accept
+		"reputation:  Independent " = 10
+	
+	on enter
+		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
+	on enter "Umbral"
+		"reputation:  Independent " = -1000
+		conversation
+			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
+			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
+			`	The Vanguard powers up its weapons.`
+	
+	npc kill
+		government " Independent "
+		personality heroic vindictive unconstrained launching
+			confusion 20
+		ship "Vanguard (Plasma Slow)" "Anglerfish"
+		dialog `The Anglerfish and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
+	
+	on complete
+		"reputation:  Independent " = 10
+		payment 250000
+		conversation
+				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
+				choice
+					`	(Take the bounty money.)`
+						goto end
+					`	(Read more about the bounty.)`
+				`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also had a curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship.`
+				label end
+				`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you <payment> for your effort.`
+
+ship "Vanguard" "Vanguard (Plasma Slow)"
+	outfits
+		"Plasma Cannon" 7
+		"Heavy Anti-Missile Turret"
+		"Fusion Reactor"
+		Supercapacitor
+		"D14-RN Shield Generator"
+		"Fuel Pod" 5
+		"Small Radar Jammer" 2
+		"Interference Plating" 4
+		"Cargo Expansion" 3
+		"Laser Rifle" 11
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
