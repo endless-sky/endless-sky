@@ -182,11 +182,11 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
-	// Now that all the stars are loaded, update the neighbor lists.
-	// Make sure that the default jump range is among the neighbor distances
-	// to be updated.
+	// Now that all the stars are loaded, update the neighbor lists and other
+	// system information. Make sure that the default jump range is among the
+	// neighbor distances to be updated.
 	NeighborDistance(System::DEFAULT_NEIGHBOR_DISTANCE);
-	UpdateNeighbors();
+	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading(true);
@@ -554,16 +554,16 @@ void GameData::Change(const DataNode &node)
 
 
 
-// Update the neighbor lists of all the systems. This must be done any time
-// that a change creates or moves a system.
-void GameData::UpdateNeighbors()
+// Update the neighbor lists and other information for all the systems.
+// This must be done any time that a change creates or moves a system.
+void GameData::UpdateSystems()
 {
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateNeighbors(systems, neighborDistances);
+		it.second.UpdateSystem(systems, neighborDistances);
 	}
 }
 

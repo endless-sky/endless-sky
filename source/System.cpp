@@ -321,42 +321,19 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 
 
-// Once the star map is fully loaded, figure out which stars are "neighbors"
-// of this one, i.e. close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems, set<double> neighborDistances)
+// Update any information about the system that may have changed due to events,
+// or because the game was started, e.g. neighbors, solar wind and power, or
+// if the system is inhabited.
+void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances)
 {
+	neighbors.clear();
 	// If this system has a static jump range, then that is the only range
 	// that we need to create neighbors for.
 	if(jumpRange)
-	{
-		neighborDistances.clear();
-		neighborDistances.insert(jumpRange);
-	}
-	
-	neighbors.clear();
-	for(const double distance : neighborDistances)
-	{
-		set<const System *> &neighborSet = neighbors[distance];
-		neighborSet.clear();
-		
-		// Every star system that is linked to this one is automatically a neighbor,
-		// even if it is farther away than the maximum distance.
-		for(const System *system : links)
-			if(!(system->Position().Distance(position) <= distance))
-				neighborSet.insert(system);
-		
-		// Any other star system that is within the neighbor distance is also a
-		// neighbor. This will include any nearby linked systems.
-		for(const auto &it : systems)
-		{
-			// Skip systems that have no name.
-			if(it.first.empty() || it.second.Name().empty())
-				continue;
-
-			if(&it.second != this && it.second.Position().Distance(position) <= distance)
-				neighborSet.insert(&it.second);
-		}
-	}
+		UpdateNeighbors(systems, jumpRange);
+	else
+		for(const double distance : neighborDistances)
+			UpdateNeighbors(systems, distance);
 	
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
@@ -373,6 +350,33 @@ void System::UpdateNeighbors(const Set<System> &systems, set<double> neighborDis
 		attributes.erase("uninhabited");
 	else
 		attributes.insert("uninhabited");
+}
+
+
+
+// Once the star map is fully loaded, figure out which stars are "neighbors"
+// of this one, i.e. close enough to see or to reach via jump drive.
+void System::UpdateNeighbors(const Set<System> &systems, const double distance)
+{
+	set<const System *> &neighborSet = neighbors[distance];
+	
+	// Every star system that is linked to this one is automatically a neighbor,
+	// even if it is farther away than the maximum distance.
+	for(const System *system : links)
+		if(!(system->Position().Distance(position) <= distance))
+			neighborSet.insert(system);
+	
+	// Any other star system that is within the neighbor distance is also a
+	// neighbor. This will include any nearby linked systems.
+	for(const auto &it : systems)
+	{
+		// Skip systems that have no name.
+		if(it.first.empty() || it.second.Name().empty())
+			continue;
+
+		if(&it.second != this && it.second.Position().Distance(position) <= distance)
+			neighborSet.insert(&it.second);
+	}
 }
 
 

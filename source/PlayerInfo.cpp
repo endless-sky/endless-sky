@@ -383,7 +383,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
-		GameData::UpdateNeighbors();
+		GameData::UpdateSystems();
 		seen.clear();
 		double jumpRange = (flagship && flagship->JumpRange()) ? flagship->JumpRange() : System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const System *system : visitedSystems)
