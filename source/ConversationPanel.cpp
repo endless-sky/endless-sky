@@ -340,7 +340,7 @@ void ConversationPanel::Goto(int index, int choice)
 			player.CheckReputationConditions();
 		}
 		else if(conversation.IsAction(node))
-			conversation.Action(node).Do(player, true);
+			conversation.Action(node).Do(player);
 		else
 		{
 			// This is an ordinary conversation node. Perform any necessary text

@@ -38,7 +38,6 @@ GameAction::GameAction(const DataNode &node, const string &missionName)
 
 void GameAction::Load(const DataNode &node, const string &missionName)
 {
-	empty = false;
 	for(const DataNode &child : node)
 		LoadSingle(child, missionName);
 }
@@ -48,6 +47,8 @@ void GameAction::Load(const DataNode &node, const string &missionName)
 // Load a single child at a time, used for streamlining MissionAction::Load.
 void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 {
+	empty = false;
+	
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
 	
@@ -144,9 +145,8 @@ int GameAction::Payment() const
 
 
 
-// Do the actions of the GameAction. If this GameAction is a part of a conversations,
-// then some behavior may be different than from a MissionAction.
-void GameAction::Do(PlayerInfo &player, bool conversation) const
+// Do the actions of the GameAction.
+void GameAction::Do(PlayerInfo &player) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
@@ -158,19 +158,14 @@ void GameAction::Do(PlayerInfo &player, bool conversation) const
 	{
 		// Conversation actions don't block a mission from offering if a
 		// negative payment would drop the player's account balance below
-		// zero, so payment is handled differently within conversations.
-		if(conversation)
-		{
-			int64_t account = player.Accounts().Credits();
-			// If the payment is negative and the player doesn't have enough
-			// in their account, then the player's credits are reduced to 0.
-			if(account + payment >= 0)
-				player.Accounts().AddCredits(payment);
-			else if(account > 0)
-				player.Accounts().AddCredits(-account);
-		}
-		else
+		// zero, so negative payments need to be handled.
+		int64_t account = player.Accounts().Credits();
+		// If the payment is negative and the player doesn't have enough
+		// in their account, then the player's credits are reduced to 0.
+		if(account + payment >= 0)
 			player.Accounts().AddCredits(payment);
+		else if(account > 0)
+			player.Accounts().AddCredits(-account);
 	}
 	
 	for(const auto &it : events)

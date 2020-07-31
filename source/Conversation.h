@@ -61,10 +61,9 @@ public:
 	// Check if any data is loaded in this conversation object.
 	bool IsEmpty() const;
 	
-	// Do text replacement throughout this conversation. This returns a new
-	// Conversation object with things like the player's name filled in.
-	Conversation Substitute(const std::map<std::string, std::string> &subs) const;
-	// Do text replacements and instantiate any GameActions.
+	// Do text replacement throughout this conversation and instantiate
+	// any GameActions. This returns a new Conversation object with
+	// things like the player's name filled in.
 	Conversation Instantiate(std::map<std::string, std::string> &subs, int jumps = 0, int payload = 0) const;
 	
 	// The beginning of the conversation is node 0. Some nodes have choices for

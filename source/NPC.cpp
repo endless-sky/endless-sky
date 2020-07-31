@@ -478,9 +478,9 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.dialogText = Format::Replace(dialogText, subs);
 	
 	if(stockConversation)
-		result.conversation = stockConversation->Substitute(subs);
+		result.conversation = stockConversation->Instantiate(subs);
 	else if(!conversation.IsEmpty())
-		result.conversation = conversation.Substitute(subs);
+		result.conversation = conversation.Instantiate(subs);
 	
 	return result;
 }

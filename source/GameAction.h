@@ -52,7 +52,7 @@ public:
 	int Payment() const;
 	
 	// Perform this action.
-	void Do(PlayerInfo &player, bool conversation = false) const;
+	void Do(PlayerInfo &player) const;
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// payment, event delay, etc.

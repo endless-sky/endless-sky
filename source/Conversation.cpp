@@ -310,19 +310,6 @@ bool Conversation::IsEmpty() const
 
 
 
-// Do text replacement throughout this conversation.
-Conversation Conversation::Substitute(const map<string, string> &subs) const
-{
-	Conversation result = *this;
-	for(Node &node : result.nodes)
-		for(pair<string, int> &choice : node.data)
-			choice.first = Format::Replace(choice.first, subs);
-	
-	return result;
-}
-
-
-
 // Do text replacement throughout this conversation, and instantiate any
 // potential actions.
 Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int payload) const

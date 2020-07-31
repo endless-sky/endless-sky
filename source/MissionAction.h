@@ -84,20 +84,9 @@ private:
 	std::map<const Outfit *, int> gifts;
 	std::map<const Outfit *, int> requiredOutfits;
 	
+	// The GameAction handles logs, events, payments, mission failures, and conditions.
+	// This is a separate class so that these same things can be done in Conversations.
 	GameAction actions;
-	/* Now handled by GameAction
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
-	
-	std::map<const GameEvent *, std::pair<int, int>> events;
-	int64_t payment = 0;
-	int64_t paymentMultiplier = 0;
-	
-	// When this action is performed, the missions with these names fail.
-	std::set<std::string> fail;
-	
-	ConditionSet conditions;
-	*/
 };
 
 

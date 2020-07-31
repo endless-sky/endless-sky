@@ -341,7 +341,7 @@ Conversation LoadConversation()
 			break;
 		}
 	
-	const map<string, string> subs = {
+	map<string, string> subs = {
 		{"<bunks>", "[N]"},
 		{"<cargo>", "[N tons of Commodity]"},
 		{"<commodity>", "[Commodity]"},
@@ -358,7 +358,7 @@ Conversation LoadConversation()
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};
-	return conversation.Substitute(subs);
+	return conversation.Instantiate(subs);
 }
 
 
