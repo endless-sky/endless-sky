@@ -40,7 +40,7 @@ public:
 	void OnCallback();
 	
 	// The main panel allows fast-forward.
-	virtual bool AllowFastForward() const;
+	virtual bool AllowFastForward() const override;
 	
 	
 protected:
