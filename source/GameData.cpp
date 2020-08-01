@@ -182,7 +182,7 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
-	// Now that all the stars are loaded, update the neighbor lists and other
+	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
 	// neighbor distances to be updated.
 	NeighborDistance(System::DEFAULT_NEIGHBOR_DISTANCE);
@@ -571,8 +571,7 @@ void GameData::UpdateSystems()
 
 void GameData::NeighborDistance(double neighborDistance)
 {
-	if(!neighborDistances.count(neighborDistance))
-		neighborDistances.insert(neighborDistance);
+	neighborDistances.insert(neighborDistance);
 }
 
 

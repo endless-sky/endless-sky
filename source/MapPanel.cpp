@@ -872,15 +872,15 @@ void MapPanel::DrawTravelPlan()
 		if(!isHyper && !isJump && !isWormhole)
 			break;
 		
-		double systemDistance = previous->Position().Distance(next->Position());
+		double jumpDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel(systemDistance) : it.first->HyperdriveFuel();
-					if(!cost || cost > it.second || (isJump && it.first->JumpRange() < systemDistance))
+					double cost = isJump ? it.first->JumpDriveFuel(jumpDistance) : it.first->HyperdriveFuel();
+					if(!cost || cost > it.second || (isJump && it.first->JumpRange() < jumpDistance))
 					{
 						it.second = -1.;
 						stranded = true;

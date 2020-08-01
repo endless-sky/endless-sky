@@ -310,6 +310,7 @@ bool DistanceMap::CheckLink(const System *from, const System *to, bool useJump) 
 	// the two systems that you can jump between them, you can plot a course
 	// between them even if neither system is explored. Otherwise, you need to
 	// know if a link exists, so you must have explored at least one of them.
+	// The jump range of a system overrides the jump range of this ship.
 	double distance = from->JumpRange() ? from->JumpRange() : jumpRange;
 	if(useJump && from->Position().Distance(to->Position()) <= distance)
 		return true;

@@ -467,17 +467,16 @@ const set<const System *> &System::Links() const
 // can travel to from here via the jump drive.
 const set<const System *> &System::Neighbors(double neighborDistance) const
 {
+	static const set<const System *> EMPTY;
 	// If this system has a static jump range, then the jump range of the
 	// ship does not matter.
 	if(jumpRange)
-		neighborDistance = jumpRange;
-	// The [] operator of map is non-const, so we need to iterate through
-	// the map to find a set with a matching distance.
-	static const set<const System *> EMPTY;
-	for(auto &neighborSet : neighbors)
-		if(neighborSet.first == neighborDistance)
-			return neighborSet.second;
-	return EMPTY;
+	{
+		const auto it = neighbors.find(jumpRange);
+		return it == neighbors.end() ? EMPTY : it->second;
+	}
+	const auto it = neighbors.find(neighborDistance);
+	return it == neighbors.end() ? EMPTY : it->second;
 }
 
 
