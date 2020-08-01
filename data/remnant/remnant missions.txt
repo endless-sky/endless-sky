@@ -51,7 +51,7 @@ mission "First Contact: Remnant"
 
 			`	Several of them burst into song, singing together in harmony, "We are the hidden ones. We are the Remnant. In time of great chaos to this place we came, lest all true-born humans be killed or enslaved, by those who evolved not, but unwisely were made."`
 			`	As they continue to sing, you begin to piece together their story. They are the descendants of people who fled to this region of space through an unstable wormhole at the peak of the first Alpha War, which means they have been here for more than half a millennium. That doesn't explain why their culture is so radically different, though.`
-			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
+			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. The meal itself is generous and stretches out as your hosts consume considerably more food than you would expect for such a trim group. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
 			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
 				decline
 			
@@ -1511,7 +1511,7 @@ mission "Remnant: Salvage 3"
 				accept
 	on stopover
 		dialog
-			`The injured crew made for an eerily quiet jaunt from Viminal to Aventine. They didn't sing, and rarely signed. Some spent the trip mellowed out on powerful painkillers, while the few that left their rooms seem to be mostly intent on doing prescribed stretches and movements to help damaged muscles heal. A few are interested in visiting with someone from outside the Ember Waste, but they lacked the energy to do so for long.`
+			`The injured crew made for an eerily quiet jaunt from Viminal to Aventine. They didn't sing, and rarely signed. Some spent the trip mellowed out on powerful painkillers, while the few that left their rooms seem to be mostly intent on doing prescribed stretches and movements to help damaged muscles heal. Others that you check on appear to be meditating while an intravenous system feeds into their gloves. A few are interested in visiting with someone from outside the Ember Waste, but they lacked the energy to do so for long.`
 			`	On Aventine there are ambulances and medical staff waiting to transport the injured to longer-term medical facilities. As they depart, a fresh crew arrives to take their places.`
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -1532,7 +1532,7 @@ mission "Remnant: Salvage 4"
 		has "Remnant: Salvage 3: done"
 	on offer
 		conversation
-			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the video screen, very few Remnant ships were actually lost. Furthermore, of the ships that were lost, the escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew are gathered around tables intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
+			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the video screen, very few Remnant ships were actually lost. Furthermore, of the ships that were lost, the escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew are gathered around tables covered in food intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
 			`	Taely sits over at a corner booth with the prefect who met you at the dock and a couple other mechanics, and she waves you over. "Captain <last>! So, how do you like fighting with our fleet?" asks one of the mechanics.`
 			choice
 				`	"It seems odd to have a planetary defense fleet plundering."`
@@ -2279,7 +2279,7 @@ mission "Remnant: Crystal Research 1"
 			`	Aeolus looks faintly amused. "While you are certainly adventurous, you are not the only one to have traveled widely. We mapped the Hai systems long ago with cloaked ships, but never landed or contacted any of them. So we never knew anything more than what we could observe from orbit or from scanning ships. But you are known to them, and have a fairly public reputation. By using your transponder codes, we can place and pay for orders through hyperspace relays. All we need is a ship in position to feed the signal into the network."`
 				accept
 			label remnantuntrusted
-			`	Aeolus smiles mysteriously at you. "Let's just say that you are not the only resourceful person working for us. We will share more with you once you have demonstrated your loyalty."`
+			`	Aeolus smiles mysteriously at you. "Let's just say that you are not the only resourceful person among the Remnant. We will share more with you once you have demonstrated your loyalty."`
 				accept
 			label greed
 			`	"While we don't know what is happening on the surface of planets in Ancestral space, we do pick up a fair bit of transmissions. Between those and our historical records, it is clear to us that 'making money' is the main motivation for why those in ancestral space do anything. Whether it is ferrying cargo, building a structure, or protecting someone; everything we see says that humanity in ancestral space requires credits for everything it does. And then beyond that, the larger the amount of credits, the more enthusiastic they are to do it." Aeolus shakes his head, looking visibly perturbed. "This is what we see. Tell me, are we wrong? A quote we have seen more than a few times says 'Money makes the world go round,' and everything we have seen supports that attitude."`
