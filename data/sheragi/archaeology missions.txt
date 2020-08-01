@@ -591,6 +591,7 @@ mission "Rim Archaeology 6"
 				decline
 
 
+
 mission "Sheragi Archaeology: The Box 1"
 	landing
 	name "The Sheragi Bunker"
@@ -609,6 +610,8 @@ mission "Sheragi Archaeology: The Box 1"
 		dialog
 			`You receive an encoded message from Albert Foster, the archaeologist who you helped uncover the mysterious Sheragi ruins on Zug. He seems to be very excited.`
 			`	"<first>! Been a while, hasn't it? Remember the Sheragi dig site? We've just found something incredible here. Please, come visit me on Zug. I don't think I can trust anyone else with this."`
+
+
 
 mission "Sheragi Archaeology: The Box 2"
 	landing
@@ -687,6 +690,8 @@ mission "Sheragi Archaeology: The Box 2"
 			`	"A couple months, probably. It depends on how alien this thing is, and if it's encrypted or not, but I should at least figure out if there is any recoverable data in here by then."`
 			`	John says he'll drop you a message once his results come out, and you part ways and return to your ship.`
 
+
+
 mission "Sheragi Archaeology: The Box 3"
 	landing
 	name "The Information Dealer"
@@ -737,6 +742,8 @@ mission "Sheragi Archaeology: The Box 3"
 	
 	to complete
 		never
+
+
 
 mission "Sheragi Archaeology: The Box 4"
 	landing
@@ -880,6 +887,8 @@ mission "Sheragi Archaeology: The Box 4"
 		set "paid mammon"
 		fail "Sheragi Archaeology: The Box 3"
 
+
+
 mission "Mammon Payment"               
 	landing
 	invisible
@@ -895,6 +904,8 @@ mission "Mammon Payment"
 		conversation     
 			`You receive a message informing you of a very large transaction: 10 million credits. With it, a message containing only the image of a reptilian eye logo. It seems Mammon's crew have withdrawn the money you agreed to pay for the information about the Sheragi black box.`
 				decline
+
+
 
 mission "Sheragi Archaeology: The Box 5"
 	landing
@@ -924,6 +935,8 @@ mission "Sheragi Archaeology: The Box 5"
 			`You attempt to evade the mercenary ships and make a quick assault on their encampment, but the ships follow you through the atmosphere, and ground personnel start shooting at you. Bombing it on a pass means you risk destroying the cube. You have no choice but to go back to space and eliminate the mercenary fleet.`
 				launch
 	
+
+
 mission "Sheragi Archaeology: The Box 6a"
 	landing
 	invisible
@@ -972,6 +985,8 @@ mission "Sheragi Archaeology: The Box 6a"
 	on decline
 		payment 926621
 
+
+
 mission "Sheragi Archaeology: The Box 6b"
 	landing
 	name "The Box Recovered"
@@ -995,6 +1010,8 @@ mission "Sheragi Archaeology: The Box 6b"
 			`	You pick up your things, placing the cube back inside the backpack.`
 			`	"Well, I wish I could study it longer, but if you have a lead, it's worth pursuing. I trust you'll return the cube to either myself or Albert once you're done with it. Good luck, Captain. Don't get in too much trouble."`
 
+
+
 mission "Sheragi Archaeology: The Box 6c"
 	landing
 	name "Hai Knowledge"
@@ -1004,7 +1021,9 @@ mission "Sheragi Archaeology: The Box 6c"
 	
 	to offer
 		has "Sheragi Archaeology: The Box 6b: done"
-		
+
+
+
 mission "Sheragi Archaeology: The Box 7a"
 	landing
 	name "The Museum of Galactic History"
@@ -1021,6 +1040,8 @@ mission "Sheragi Archaeology: The Box 7a"
 			`	"A human knows about them? I'm surprised. This is ancient history. If there's any place where you can find out more about them, it's the Museum of Galactic History on Mirrorlake."`
 			`	You thank the guide and return to your ship, plotting a course to the Ya Hai system.`
 				accept
+
+
 
 mission "Sheragi Archaeology: The Box 7b"
 	landing
@@ -1093,6 +1114,8 @@ mission "Sheragi Archaeology: The Box 7b"
 			`	"We have arranged for a very capable team of archaeologists to meet you in the spaceport in a few hours. They specialize in Sheragi artifacts. I would advise you to make room for 3 passengers and some cargo for their equipment."`
 			`	You thank them for their help, and leave the building, ready to meet your new team in the spaceport.`
 
+
+
 mission "Sheragi Archaeology: The Box 8"
 	name "Assembling the Team"
 	description "Take the Hai archaeologists to meet Albert Foster on <destination>."
@@ -1150,6 +1173,8 @@ mission "Sheragi Archaeology: The Box 8"
 		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She is part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
 		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you would expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
 
+
+
 mission "Sheragi Archaeology: The Emerald Sword 1"
 	landing
 	name "Black Box Decoded"
@@ -1165,6 +1190,8 @@ mission "Sheragi Archaeology: The Emerald Sword 1"
 		dialog
 			`You're still in the middle of the post-flight check when you receive a new encoded message from Albert Foster.`
 			`	"Hello <first>. I have some good news! We have decoded what's in the black box. You should come visit us on Zug; we have plenty to tell you!"`
+
+
 
 mission "Sheragi Archaeology: The Emerald Sword 2"
 	landing
@@ -1202,6 +1229,8 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 	
 	to complete
 		never
+
+
 
 mission "Sheragi Archaeology: The Emerald Sword 3"
 	landing
@@ -1278,6 +1307,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. You eventually park your ships over a mesa. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be otherwise unbreathable for long periods of time.`
 			`	Over the course of the next day, the workers unload some outfitting and repairing equipment, while scientists slowly work out the functions of the ship, and brief you and your crew on how to operate it. One of the workers invite you to visit the temporary outfitter and oversee the proper installation of the Outfits Expansion and the Jump Drive in the Emerald Sword.`
 			`[You need to remove the Damaged Sheragi Systems to repair it.]`
+
+
 
 mission "Sheragi Archaeology: Emerald Sword Epilogue"
 	landing
