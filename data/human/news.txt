@@ -16,6 +16,15 @@ news "human merchant anywhere"
 	name
 		word
 			"Merchant captain"
+			"Starship captain"
+			"Spacecraft captain"
+			"Spaceship captain"
+			"Freelance captain"
+			"Merchant pilot"
+			"Starship pilot"
+			"Spacecraft pilot"
+			"Spaceship pilot"
+			"Freelance pilot"
 	message
 		word
 			"Can you believe how little they pay for used ships and outfits these days? It's just a scandal!"
@@ -35,6 +44,15 @@ news "human merchant in human space"
 	name
 		word
 			"Merchant captain"
+			"Starship captain"
+			"Spacecraft captain"
+			"Spaceship captain"
+			"Freelance captain"
+			"Merchant pilot"
+			"Starship pilot"
+			"Spacecraft pilot"
+			"Spaceship pilot"
+			"Freelance pilot"
 	message
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
@@ -65,8 +83,13 @@ news "human merchant in human space"
 			"People may tell you otherwise, but I think that Vanguards are the best. They have such powerful frontal weaponry."
 			"Warships may have both speed and weaponry on their side, but if you're looking for something to last, use a Behemoth."
 			"I don't get how people could get worked up over what ship to use. As long as I'm in my trusty Protector, I'm happy."
+			"Ugh. It's so annoying to replace fighters everytime they suicide themselves into close-quarters with a pirate ship armed to the teeth."
+			"Don't you think it's strange that the Navy lets you buy their fighters, but not any of their other ships?"
+			"I wonder why shipyards haven't capitalised on making alternatives to the Navy combat drone. Probably because the only ships that can use drones are Navy ships, I guess."
 			"Some of the names that captains give their ships are awful. Seriously, I've seen ships named 'Ship'."
 			"I'm convinced the merchant captains make the worst jokes."
+			"What's up with the Deep? One moment, they have a defense force on par with the Navy, the next, they're asking random shmucks to help escort their fleets. How the mighty have fallen, I guess."
+			"I swear that Sparrows are so laughably weak, that Flivvers are a better option for an interecptor."
 
 news "human farming"
 	location
@@ -145,6 +168,7 @@ news "human factory"
 			"Management keeps threatening to move the plant to a planet with lower wages if our union doesn't accept concessions. I think they're bluffing; the move would cost more than they'd ever make back in profit."
 			"Working around so many huge machines is exciting. Every day we build things that would have blown the mind of anyone a thousand years ago. We're the backbone of interstellar civilization!"
 			"I don't like those news shows that tell you what to think! When I'm in the voting booth it's only MY opinion that counts!"
+			"Some of the stuff we make here ends up as one little part of a spaceship. Whenever you see a ship, always remember that it represents the effort of over a thousand of us."
 
 
 
@@ -157,12 +181,16 @@ news "street vendor"
 	name
 		word
 			"Street vendor"
+			"Open-Air Market vendor"
 			"Food stall operator"
 	message
 		word
 			"With the right marinade, rat meat can be delicious. Of course, they don't let us sell the ones that were already dead when we collected them."
 			"This is my own famous delicacy, Yogurt on a Stick. No, it's not frozen yogurt. It's more like, well... congealed..."
 			"Can I interest you in some vegan falafels? Trust me, you don't want to eat any of the meat that's getting sold on this street."
+			"Want some burgers? They've got my special sauce. What's the special sauce made of? Well, if I revealed that, it wouldn't be secret, wouldn't it?"
+			"Want some budget caviar? What's caviar? It's horse beef, duh. Why do you think that people who ride horses are called cavalry... Fish eggs?"
+			"Here, have a sample of my famous lemonsausage. What's a lemonsausage? It's, erm... It's a blend of lemon and pig meat! Trust me! No, don't go away!"
 			"I wish I had enough money to ask captains roaming around the spaceport for transport to somewhere nicer."
 
 
@@ -209,6 +237,8 @@ news "unemployed youth"
 	message
 		word
 			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
+			"Got any change?"
+			"I may be dirty, but I'll never be as filthy as those politicians in power."
 			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
@@ -276,6 +306,7 @@ news "groundskeeper"
 			"The family I work for has an odd fascination with carnivorous plants. I have to keep rotting piles of refuse around just to produce enough flies to feed them all."
 			"They told me that they wanted the landscaping to be classic and entertaining, so I constructed a giant hedge maze."
 			"Despite all our best terraforming efforts, it can still be hard to get native Earth plants to grow on an alien world."
+			"My employer once asked me to add a garden in their Star Queen. The pirates were sure confused when they boarded us."
 
 
 
@@ -291,7 +322,6 @@ news "hair stylist"
 			"For too long, the creativity of trend-setting stylists like myself has been held in check by the limited height of the doorways in most houses."
 			"My work is made possible by vision, creativity, and hairspray. Lots and lots of hairspray."
 			"The newest fad is hairstyles made to look like starships. Those boxy Navy ships are particularly hard to model in such a fluid medium."
-
 
 
 
@@ -353,6 +383,28 @@ news "hyperspace relay engineer"
 			"All of human space is linked into a single communications network by relay beacons. It's something that most people just take for granted."
 			"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."
 			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
+			"Hyperspace relays are so integral to society, that even pirates don't dare to touch them, out of fear of becoming the number one enemy of the Republic."
+			"Due to the nightmare that is Republic law, new captains are probitited from accessing all the relays at the very beginning. Instead, they have to visit every system individually to register themselves, or purchase a map for the area."
+
+
+
+news "hyperspace scientist"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "research" "deep"
+	name
+		word
+			"Hyperspace researcher"
+			"Hyperspace scientist"
+			"Hyperspace specialist"
+	message
+		word
+			"It's hard to believe that modern-day society relies on what is effectively magical space highways."
+			"Even centuries later, we still have around the same amount of understanding as to how the hyperspace lanes were formed as Charles Plot did. The only extra thing that we know is that apparently some other race the Quarg know is involved with them."
+			"The Quarg don't appear to even bother with hyperspace lanes. Their hyperdrives apparently teleport their ships from one system to another. If that's true, then they would be able to visit the systems not accessible by using a normal hyperdrive."
+			"Even if they aren't directly linked, your ship can still detect systems in a certain away from you. Not that it matters, though, since we still can't jump to those systems."
+			"The field of hyperspace lane destruction is filled with misunderstanding and pseudoscience. If there did happen to be a method to remove hyperspace lanes, though, said user of the method would effectively control human space."
+			"Many a hyperspace-based weapon has been tested, but due to the dynamics of entering hyperspace while not aligned with a hyperspace lane, all of them have failed. Thankfully."
 
 
 
@@ -369,6 +421,7 @@ news "geological engineer"
 			"I have equipment that would let me trigger an earthquake just by pressing a button. That's why they never allow me into the office when I'm drunk."
 			"For centuries people have been saying that asteroid mining is going to put terrestrial resource extraction companies out of business, but it still hasn't happened."
 			"A few times, I've traveled so deep underground that the rock felt warm to the touch. But I imagine that's nowhere near as exciting as traveling through space."
+			"I can't believe how annoying it must've been in the distant past to be a geological engineer, with you on one side, the thing you're trying to study on the other, and 15 kilometres of solid rock inbetween. Thankfully, technology and scanners have marched on since then, and those depressing days are long gone."
 
 
 
@@ -431,6 +484,7 @@ news "nuclear technician"
 			"Nuclear reactors are remarkably safe these days. I don't know why the government won't let us build them in residential neighborhoods."
 			"In all of human space, there hasn't been a single nuclear meltdown in fourteen years. And that was just a tiny one, hardly even worth mentioning."
 			"My company's motto is, 'We bring the power of the stars down to earth, and send earthlings to the stars.' I think we should change it to something catchier."
+			"Ever used a fusion reactor in your ship? Feel free to thank one of us."
 
 
 
@@ -612,6 +666,7 @@ news "human retiree"
 	name
 		word
 			"Retiree"
+			"Pensioner"
 	message
 		word
 			"Retiring is the best thing I ever did. They should make it mandatory!"
@@ -712,6 +767,8 @@ news "human religious"
 	name
 		word
 			"Mystic"
+			"Priest"
+			"Preacher"
 	message
 		word
 			"May God be with you!"
@@ -736,6 +793,8 @@ news "human tourism"
 	name
 		word
 			"Tourist"
+			"Sightseer"
+			"Traveller"
 	message
 		word
 			"This place is so romantic. I wish I could stay forever."
@@ -746,8 +805,9 @@ news "human tourism"
 			"Can you believe that our ship was attacked by pirates on the way here? It's lucky a Navy patrol showed up and chased them off before our shields dropped. It was all so exciting! I'm taking the same route again next year."
 			"I can't wait to go skiing here! Haha, just kidding."
 			"It's too bad I have to leave tomorrow. I only get two weeks of vacation a year, and it's hard to leave after spending half that time in transit here and back."
-			"I'm not riding on any ship that doesn't have decency to have luxurious accomodations!"
-
+			"I'm not riding on any ship that doesn't have the decency to have luxurious accomodations!"
+			"It's criminal how cheap the fares are to get here. For around a few thousand credits, you get to see stunning sights and shocking spectacles well worth double of what you paid."
+			"I was really hoping for more aliens in space. What's the point if there's no steamy interspecies romance!?"
 
 
 
@@ -765,8 +825,8 @@ news "human mercenary"
 			"Nothing beats the thrill of boarding a crippled starship, laser rifle in your hands."
 			"Have you ever been to a pirate world? The conditions there are nearly inhuman!"
 			"It's criminal how much the Navy and Syndicate prefer to destroy pirates rather than disable them. How are people like us supposed to make money if we can't loot?"
-			"If you're trying to nab a pirate ship, try the South. The militia often leave the pirates disabled rather than killing them."
-			"Take it from me: If you want to disable ships, only use lasers. Projectile-based weapons always overkill."
+			"If you're trying to nab a pirate ship, try it in the South. The militia often leave the pirates disabled rather than killing them."
+			"Take it from me: if you want to disable ships, only use lasers. Projectile-based weapons always overkill."
 			"As much as I'd like to dual-wield laser rifles, I'd probably just miss every shot."
 
 
@@ -808,6 +868,8 @@ news "human syndicate soldier"
 			"After 20 years, you're eligible for a lifetime pension. I've only got 8 years left, and then I'm home free!"
 			"It's a scandal how many pirates are out here. We do our best, but upper management ties our hands with ridiculous rules of engagement."
 			"Everybody knows where the pirate planets are, so why don't we ever go on a mission to wipe 'em out? I don't understand it."
+			"My team was about to obliterate the flagship of a pirate fleet, but just before we could, we received orders to cease fire and fall back. One more second and those pirates would have been rigatoni."
+			"If you ask me, I think that the Syndicate are far too soft on the pirates. Almost as if they don't want to harm them more than they need to. Don't tell my employers that I said that, though."
 
 
 
@@ -817,6 +879,13 @@ news "human pirate"
 	name
 		word
 			"Pirate"
+			"Renegade"
+			"Marauder"
+			"Looter"
+			"Buccaneer"
+			"Freebooter"
+			"Plunderer"
+			"Bandit"
 	message
 		word
 			"Next time we meet up, maybe I'll be plundering your ship."
@@ -833,13 +902,45 @@ news "human pirate"
 			"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
 			"I used to be a soft-bellied merchant captain before my life took a turn. Gotta get tough or get dead in this galaxy."
 			"Just a word of warning: don't fall asleep in the hotels here."
+			"Betcha I can name a combat use for every ship in the sky. Flivver? Might as well be a Sparrow. Freighter? Umm... it works as a great plundering vessel. Surveillance drone? Don't make me shoot you."
+			"Bah. How can you not gag at the suffocating rules that the Republic forces onto you? I mean, banning chickens with dynamite strapped to them? Ridiculous!"
+			"Yo, yo, yo, what's up, suckers! I'm high on stardust! Wanna freebie? No? Coward!"
+			"You look like a good captain. I'd bet you'd be a better slave!"
+			`Hmph. You "freelancers" have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!`
+			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
+			"Look at me like that one more time, and I've give you plastic surgery free of charge."
 
 
 
-news "human farming: pirate"
+news "human merchant in pirate space"
+	location
+		governement "Pirate"
+	name
+		word
+			"Merchant captain"
+			"Starship captain"
+			"Spacecraft captain"
+			"Spaceship captain"
+			"Freelance captain"
+			"Merchant pilot"
+			"Starship pilot"
+			"Spacecraft pilot"
+			"Spaceship pilot"
+			"Freelance pilot"
+	message
+		word
+			"Yikes! I just wanted to see what outfits were here! I'm out of here as soon as I get back to my ship!"
+			"What are you lookin' at? Don't judge me!"
+			"Nice to see a friendly face in these parts. I needed to land to shake those buggers off my tail. Pirates won't shoot at you if you're going for a landing."
+			"Why am I here? I really needed the fuel, and decided that bribing off pirates until another ship entered the system wasn't smart long term."
+			"There's some real creeps around here. All I wanted to do was sell some cargo at this port, but it definitely wasn't worth the risk."
+			"Whatever you do, don't try the hot wings. That stuff's nasty."
+
+
+
+news "human farming in pirate space"
 	location
 		government "Pirate"
-		attributes "farming"
 	name
 		word
 			"Farmer"
@@ -854,9 +955,13 @@ news "human farming: pirate"
 			"I came out here because I liked the company of animals more than people like you. Go away."
 			"Shocked to see some normal farmers wandering 'round here? Just because we live on a lawless world doesn't mean it's kill or be killed."
 			"My son was enslaved by a gang of pirates. Not much one can do around here to prevent that."
+			"My daugher was held hostage by a gang of pirates until I coughed up some money for them. It's inevitable in this social climate."
+			"My father was shot by a gang of pirates. Do you want to know why he was killed? It was because he had a large nose."
+			"My mother was once kidnapped by a gang of pirates. She escaped, but, well, now I'm here."
 			"It'd be nice if the pirates could plunder some pesticides for us. It's little more than a pipe dream, though."
 			"When one choses the lawless lifestyle, the opportunites to grab a good bite lower drastically. That's what we're here for."
-			"The pirates could easily just loot us for our last credit. Of course, if they did that, they'd lose their main source of food. And some of us aren't completely defenceless..."
+			"The pirates could easily just loot us for our last credit. Of course, if they did that, they'd lose one of their sources of food. And some of us aren't completely defenceless..."
 			"The farmers in the dirt belt have it easy. They get the luxuries of fertilizer and pesticide."
 			"Pirates may look fierce, but the moment you start pushing against most of them, they fold like paper."
+			"I came here due to all of those oppressive rules and regulations that the Republic force down your throat. Now I'm dealing with all the oppressive demands and threats that pirates force down my throat. It's a start."
 			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path, and could return to living normally. I'm talking from personal experience."
