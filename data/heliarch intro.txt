@@ -30,7 +30,7 @@ mission "Heliarch Investigation 1"
 				`	"Of course, I'll show you to my ship."`
 				`	"Sorry, I'm not looking for any work currently."`
 					decline
-			`	They thank you for agreeing to deliver them to <destination> as they introduce themselves as Iplora, Kirrie, and Tugroob respectively. You help them settle in their bunks, wondering why they so hastily came to you for transportation.`
+			`	They thank you for agreeing to deliver them to <destination> and introduce themselves: the Saryd is called Iplora, the Kimek is Kirrie, and lastly the Arach is known as Tugroob. You help them settle in their bunks, wondering why they seemed so rushed.`
 				accept
 	on complete
 		"coalition jobs" ++
@@ -42,7 +42,7 @@ mission "Heliarch Investigation 1"
 
 mission "Heliarch Investigation 2"
 	name "Heliarch Investigation"
-	description "Take the Heliarch agents to the marked planets so that they can investigate signs of resistance activity."
+	description "Take the Heliarch agents to the marked planets so that they can investigate signs of Resistance activity."
 	passengers 3
 	to offer
 		has "Heliarch Investigation 1: done"
@@ -58,7 +58,7 @@ mission "Heliarch Investigation 2"
 		has "HI2-RB: done"
 	on offer
 		conversation
-			`The agents you transported here meet you as you're entering the spaceport.`
+			`A Heliarch trio stops you as you enter the spaceport, and you notice they're the agents you transported here, Iplora the Saryd, Kirrie the Kimek, and Tugroob the Arach.`
 			`	"Captain <last>! Here again, you are. A stroke of fortune, this is," Iplora says.`
 			`	"Accompany us, would you? A job for you, we might have."`
 			choice
@@ -68,29 +68,29 @@ mission "Heliarch Investigation 2"
 					decline
 			label heliarchelder
 			`	The trio escorts you through a number of restricted passageways, eventually leading you to a meeting room of sorts with about a dozen other Heliarchs, one of whom motions for you to sit with them.`
-			`	You take a seat before one of the Kimek there speaks, "The honorable Captain, we salute. Make you feel welcome, I, elder Iekie, of the Heliarch council, do hope we will."`
+			`	You take a seat before one of the Kimek there speaks, "The honorable Captain, we salute. Make you feel welcome, I, elder Iekie of the Heliarch council, hope we will."`
 			choice
 				`	"Nice to meet you."`
 				`	"Are you the one that has a job for me?"`
-			`	"Stable and safe, our great Coalition is. Sadly, there are some who's ideas of revolt and rebellion spread," she says.`
+			`	"Stable and safe, our great Coalition is. Sadly, there are some who ideas of revolt and rebellion spread," she says.`
 			`	"To combat these thoughts of disunion, we swore. Correct such behavior, we must."`
-			`	"However dedicated, our agents and ships are, predictable and slow, often times we are. A different approach, might be due. An outsider's help, their way of thinking, we'd like to ask for."`
+			`	"However dedicated our agents and ships are, predictable and slow, often times we are. A different approach might be due. An outsider's help, and their way of thinking, we'd like to ask for."`
 			choice
 				`	"What exactly would I have to do?"`
 				`	"In that case, I'm not interested. I thought this was some simple job, not a political matter."`
 					decline
 			`	"Six worlds, we have marked. Six worlds, we'd like you to 'visit'. Those three tourists, you will be transporting," an Arach says as they point to Iplora, Kirrie and Tugroob.`
 			choice
-				`	"Sounds easy enough, where should I start?"`
+				`	"Sounds easy enough. Where should I start?"`
 				`	"Whether they go undercover or not, this seems a bit risky for me. Sorry, you'll have to find someone else."`
 					decline
-			`	"Your choice, that is," Iekie responds. "Known to the rebels, many of our methods are. Easily predicted, our order of worlds would be."`
+			`	"Your choice, that is," Iekie responds. "Known to the rebels, many of our methods are. Easily predicted, our ordering would be."`
 			`	Some of the others explain that you will have to visit the following worlds they have deemed suspicious: Shifting Sand, in Saryd space, Into White, Fourth Shadow and Remote Blue, in Kimek space, Mebla's Portion and Stronghold of Flugbu, in Arach space.`
 			`	They wish the four of you luck, and you're escorted back to the spaceport, after which you show the 'tourists' to their bunks in your ship.`
 				accept
 	on complete
 		"assisted heliarch" ++
-		log "Assisted the Heliarch in investigating several worlds around Coalition space, bringing their agents to each world to investigate any signs of Resistance activity."
+		log "Assisted the Heliarch in investigating several worlds around Coalition space, bringing their agents to each world to look for any signs of Resistance activity."
 		payment 900000
 		conversation
 				branch evidence0
@@ -105,8 +105,7 @@ mission "Heliarch Investigation 2"
 			`The Heliarch elder, Iekie, greets you and the agents when you return, handing you your payment of <payment>.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	"No doubt of that, I have. To the report, looking forward I am."`
-			`	They thank you once again for helping, and then walk to the Heliarch-only parts of the ringworld.`
-				accept
+				goto finalthanks
 			label evidence1
 			`The Heliarch elder, Iekie, greets you and the agents when you return, handing you your payment of <payment>.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
@@ -129,7 +128,7 @@ mission "Heliarch Investigation 2"
 			`	Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
 				goto finalthanks
 			label finalthanks
-			`	They thank you once again for helping, and then walk to the Heliarch-only parts of the ringworld.`
+			`	They thank you once again for helping and walk to the Heliarch-only parts of the ringworld.`
 
 
 
@@ -188,8 +187,8 @@ mission "HI2-Bonus 3"
 
 
 mission "HI2-MP"
-	name "Investigate Mebla's Portion"
-	description "Transport the Heliarch trio here so that they can investigate signs of Resistance activity."
+	name "Investigate <planet>"
+	description "Transport the Heliarch trio to <destination> so that they can investigate signs of Resistance activity."
 	to offer
 		has "Heliarch Investigation 1: done"
 	source "Ring of Friendship"
@@ -201,15 +200,14 @@ mission "HI2-MP"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`You arrive to a thunderstorm, as is many times the norm for this planet.`
-			`	Tugroob suggests that he pose as an Arach writer looking to find housing on the planet, and scurries off to what must be a real estate office. Iplora continues with the original idea of pretending to be a tourist, saying that she will get by asking the young local Arachi, hoping to find something of use.`
+			`You arrive to a thunderstorm, as is often the norm for <planet>.`
+			`	Tugroob suggests that he pose as an Arach writer looking to find housing on the planet and scurries off to what must be a real estate office. Iplora continues with the original idea of pretending to be a tourist, saying that she will ask the young local Arachi about rumors while walking around the city, hoping to find something of use.`
 			`	You are left with Kirrie, who has been mostly silent as his friends left your ship.`
 			choice
 				`	"Are you not going to follow their lead?"`
 				`	"Have you not decided how to investigate the planet?"`
 			`	"Captain <last>. Give us an edge, your human approach to these missions would, is what the elder said. Only, underused, your foreign ideas are, if only the order at which we land on these planets, they are used for."`
-			`	He looks out to the rainy spaceport, some rain drops are starting to get inside your ship, since the hatch is still open.`
-			`	"Lead the way, would you? The warehouses, I wish to inspect, but your assistance I could use."`
+			`	He looks out to the rainy spaceport through your hatch, still open from his friends' exits. "Lead the way, would you? The warehouses, I wish to inspect, but your assistance I could use."`
 			choice
 				`	"Of course, I'll get my rain coat."`
 					goto wetbeetle
@@ -221,70 +219,66 @@ mission "HI2-MP"
 			choice
 				`	(Check the warehouses with the rusty doors.)`
 					goto rustybeetle
-				`	(Check the warehouses with leaking roofs.)`
+				`	(Check the warehouse with the leaking roof.)`
 					goto reactor
 				`	(Go further out and check the trees and bushes.)`
 					goto trees
 			label rustybeetle
-			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents, in the event they need to conduct any work such as this, or simply to identify themselves as an agent.`
-			`	Sadly the warehouse turns out to contain nothing of any significance. It's a storage for what Kirrie says are toy parts. Just mountains of plastic stacked together.`
-			`	You check a few more like this, but none turn out to have anything. The rain is starting to get heavier.`
+			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents, in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts. Just mountains of plastic stacked together. You check a few more like this, but none turn out to have anything. The rain is starting to get heavier.`
 			choice
-				`	(Check the warehouses with infiltration now.)`
+				`	(Check the warehouse with the leaky roof now.)`
 					goto reactor
 				`	(Go further out and check the trees and bushes.)`
 					goto trees2
 				`	(Leave the rest of this to Kirrie.)`
 					goto whiteflagbeetle
 			label whiteflagbeetle
-			`	You apologize and tell Kirrie that you don't know what to do next, but while he does agree to do it himself, he never stops asking for your opinion on his choices.`
-			`	You spend a few more hours checking the warehouses until the rain and the wind get too dangerous for you to be moving from warehouse to warehouse, so you take shelter in one of them until the weather settles. Once it does though, it is nearly nightfall, and Kirrie was notified by Iplora that she and Tugroob are already back at the ship, so you two decide to head back too.`
+			`	You apologize and tell Kirrie that you don't know what to do next. While he does agree to do it himself, he never stops asking for your opinion on his choices.`
+			`	You spend a few more hours checking the warehouses until the rain and the wind get too dangerous for you to be moving from warehouse to warehouse, so you take shelter in one of them until the weather settles. Once it does, it is nearly nightfall, and Kirrie is notified by Iplora that she and Tugroob are already back at the ship, so you two decide to head back too.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. Exhausted, they get back in their bunks, asking you to depart the planet.`
 				accept
 			label reactor
 			apply
 				"resistance evidence" ++
-			`	Kirrie tries to open the door, but can't get his card to work.`
-			`	"All the doors to these warehouses, my card should open. Damaged, the reader doesn't seem to be," he says. He decides that he must get in, and grabs a small sidearm, busting the door open after some shots.`
-			`	At first glance there is nothing inside, but as he crawls all over the place with furious speed, he puts his head to a large metal panel on the opposite end of the room, before shooting that too, revealing a hidden staircase leading underground.`
-			`	As you start heading down, you notice that many pipes make their way down too, and you can hear the water from the rain flowing inside. On your way down, suddenly Kirrie yells for you to take cover, and dozens of shots start coming your way. One of the shots hits one of Kirrie's legs before he can take cover.`
-			`	You two attempt to retaliate, spotting several small automatic turrets on the ceiling and walls, but their fire proves too much, so you two rush back outside, where Kirrie uses a small radio-like device to call for support. A pair of Heliarch Punishers land nearby shortly after, and you two head back in with dozens of armed agents following.`
-			`	They storm the place, shooting down the turrets until eventually the group reaches the bottom, where you're told to wait while a small group checks the area.`
-			`	They come back, saying the place is deserted, but as you follow them and see that there are many other staircases, probably from other warehouses, you cannot help but wonder if the turrets protecting those staircases can't reach you here.`
+			`	Kirrie tries to open the door but can't get his card to work.`
+			`	"All the doors to these warehouses, my card should open. Damaged, the reader doesn't seem to be," he says. He decides that he must get in, and grabs a small sidearm, busting the door open with a couple shots.`
+			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too, revealing a hidden staircase leading underground.`
+			`	On your way down, you notice that many pipes make their way down too. You can hear the water from the rain flowing inside. Suddenly Kirrie yells for you to take cover, and you barely escape the first barrage of shots. A shot hits one of Kirrie's legs before he can take cover.`
+			`	You two attempt to retaliate, spotting several small automatic turrets on the ceiling and walls, but their fire proves too much, so you rush back outside, where Kirrie uses a small radio-like device to call for support. A pair of Heliarch Punishers land nearby shortly after, and you two head back in with dozens of armed agents following.`
+			`	They storm the place, shooting down the turrets along the way. At the bottom, where you're told to wait while a small group checks the area.`
+			`	They report it's deserted. As you follow them and see that there are many other staircases, probably from other warehouses, you cannot help but wonder if the turrets protecting those staircases can't reach you here.`
 			`	The group reaches a massive room with a colossal reactor inside, and Kirrie speaks up, saying, "A Small Reactor Module, it is! Stolen, somehow it was."`
-			`	The water pipes continue even to this room, and there reveal their purpose, to serve as a makeshift cooling system for the reactor. The reactor itself generates power to supply several automated production lines, that are replicating many outfits; you even recognize some parts as being awfully similar to that of a few human outfits.`
-			`	With the local Heliarchs taking care of the place, you two head back to your ship, to find Iplora and Tugroob waiting. The three agents get back in their bunks, and say you may depart now.`
+			`	The water pipes continue to this room, where they serve as a makeshift cooling system for the reactor. The reactor itself generates power to supply several automated production lines, that are replicating many outfits; you even recognize some parts as being awfully similar to those used in a few human outfits.`
+			`	With the local Heliarchs taking care of the place, you two head back to your ship, to find Iplora and Tugroob waiting. The three agents get back in their bunks and say you may depart now.`
 				accept
 			label trees
-			`	You suggest looking for something unusual near the plant life you spotted, while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees, but find nothing suspicious.`
-			`	While passing by another set of bushes, he notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then forcibly put on the ground again, noting some odd, wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
+			`	You suggest looking for something unusual near the plant life you spotted while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees but find nothing suspicious.`
+			`	While passing by another set of bushes, he notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then forcibly put on the ground again, noting the odd, wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
 			choice
 				`	(Dig out the bushes.)`
 					goto bushending
 				`	(Head back to the warehouses and look around there.)`
 					goto back
 			label bushending
-			`	You help him unearth the bushes, and dig a bit more to see if there's anything under them, but no matter how much you dig, you never find anything. You find some other suspicious sets of bushes, but none have anything underneath. The rain keeps getting heavier and the wind more powerful, so you two head to a warehouse and take shelter there.`
-			`	Once the weather settles, near nightfall, he gets notified by Iplora that she and Tugroob are already back at the ship, so you two decide to head back as well.`
+			`	You help him unearth the bushes and dig a bit more to see if there's anything under them, but you never find anything. You find some other suspicious sets of bushes, but none have anything underneath. The rain and wind become too intense to stay outside, so you head inside a warehouse and take shelter there.`
+			`	Once the weather settles near nightfall, Iplora notifies him that she and Tugroob are already back at the ship, so you two decide to return as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. They get back in their bunks, saying you may depart now.`
 				accept
 			label back
-			`	Though he wanted to try digging them out, you convince Kirrie to leave the bushes alone, and you two head back to the empty streets, surrounded by the warehouses. You can barely differentiate the warehouses from earlier, as the rain gets even heavier.`
+			`	Though he wanted to try digging them out, you convince Kirrie to leave the bushes alone, and you two head back to the empty streets surrounded by the warehouses. You can barely differentiate the warehouses from earlier as the rain gets even heavier.`
 			choice
 				`	(Check the warehouses with the rusty doors.)`
 					goto rustyending
-				`	(Check the warehouses with infiltration.)`
+				`	(Check the warehouse with the leaky roof.)`
 					goto reactor
 			label rustyending
-			`	Kirrie uses his card to open the door, and continues to explain that it is an access card granted to Heliarch agents, in case they need to do something like this, or just identify themselves as one.`
-			`	Sadly the warehouse turns out to not contain anything significant. It's a storage for what Kirrie says are toy parts, just mountains of plastic stacked together.`
-			`	You check a few more like this, but none turn out to have anything, and as the rain and wind become too much to walk around, you take shelter in one of the warehouses.`
-			`	Once the weather settles, near nightfall, he gets notified by Iplora that she and Tugroob are already back at the ship, so you two decide to head back as well.`
+			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents, in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts. Just mountains of plastic stacked together. You check a few more like this, but none turn out to have anything, and as the rain and wind become too much to walk through, you take shelter in one of the warehouses.`
+			`	Once the weather settles near nightfall, Iplora notifies him that she and Tugroob are already back at the ship, so you two decide to return as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. They get back in their bunks, saying you may depart now.`
 				accept
 			label trees2
-			`	You suggest looking for something unusual near the plant life you spotted, while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees, but find nothing suspicious.`
-			`	While passing by another set of bushes, he notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then forcibly put on the ground again, noting some odd, wavy patterns of the small rocks around the roots. The rain gets even heavier.`
+			`	You suggest looking for something unusual near the plant life you spotted while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees but find nothing suspicious.`
+			`	While passing by another set of bushes, he notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then forcibly put on the ground again, noting the odd, wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
 			choice
 				`	(Dig out the bushes.)`
 					goto bushending
@@ -292,19 +286,19 @@ mission "HI2-MP"
 					goto beetledigger
 			label beetledigger
 			`	Though you can barely hear each other in the rain, Kirrie insists on staying there and digging through the ground for a while to see if he finds anything.`
-			`	You walk back to the empty streets, taking care to not slip on the damp soil. You enter one of the warehouses Kirrie had previously opened before being joined by him as he walks in, informing you that he dug out the suspicious bushes, but couldn't find anything under them.`
-			`	Once the weather settles, near nightfall, he gets notified by Iplora that she and Tugroob are already back at the ship, so you two decide to head back as well.`
+			`	You walk back to the empty streets, taking care to not slip on the damp soil. You enter one of the warehouses Kirrie had previously opened and are soon joined by him. He informs you that he dug out the suspicious bushes but couldn't find anything under them.`
+			`	Once the weather settles near nightfall, Iplora notifies him that she and Tugroob are already back at the ship, so you two decide to return as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. They get back in their bunks, saying you may depart now.`
 				accept
 			label lonebeetle
 			`	Kirrie leaves you behind and you sit there on your own for a number of hours. Eventually, the trio returns, revealing that only Tugroob had found something, mentioning some evidence of smuggled weapons passing through the planet.`
-			`	The three agents get back in their bunks, and say you may depart now.`
+			`	The three agents get back in their bunks and say you may depart now.`
 
 
 
 mission "HI2-SF"
-	name "Investigate Stronghold of Flugbu"
-	description "Transport the Heliarch trio here so that they can investigate signs of Resistance activity."
+	name "Investigate <planet>"
+	description "Transport the Heliarch trio to <destination> so that they can investigate signs of Resistance activity."
 	to offer
 		has "Heliarch Investigation 1: done"
 	source "Ring of Friendship"
@@ -316,14 +310,14 @@ mission "HI2-SF"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`While you doubt anyone opposing the Heliarchs would find much success in this massive compound, it seems the planet holds enough resources, ships and serves as a valuable location that it was still marked for investigation.`
-			`	The three agents informs you that you're not allowed to enter most of the compound they will be headed to, leaving you behind to stay inside your ship. They return right as the sun is setting, revealing that they've found no signs of the Resistance.`
+			`While you doubt anyone opposing the Heliarchs would find much success in this massive compound, it seems the resources, ships, and strategic location the planet holds made it be marked for investigation anyway.`
+			`	The three agents inform you that you're not allowed to enter most of the compound they will be headed to, so you stay inside your ship. They return right at sunset, revealing that they've found no signs of the Resistance.`
 
 
 
 mission "HI2-SS"
-	name "Investigate Shifting Sand"
-	description "Transport the Heliarch trio here so that they can investigate signs of Resistance activity."
+	name "Investigate <planet>"
+	description "Transport the Heliarch trio to <destination> so that they can investigate signs of Resistance activity."
 	to offer
 		has "Heliarch Investigation 1: done"
 	source "Ring of Friendship"
@@ -335,64 +329,64 @@ mission "HI2-SS"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`Immediately upon landing, Iplora is the first to leave your ship, disappearing into the spaceport before you could stop her. You ask Tugroob and Kirrie about it, and they say that she is just taking a small break.`
-			`	"Value moments of solitude, the Saryd do. To a calm oasis, she will head for the day," Kirrie explains, as he also prepares to leave, claiming to know some Heliarchs stationed here who could help him look into some rumors.`
-			`	Being the last Heliarch agent in your ship, Tugroob turns to you, and asks, "Assist me in my search, would you, Captain?"`
+			`Iplora leaves the ship immediately, disappearing into the spaceport before you could stop her. You ask Tugroob and Kirrie about it, and they say that she is just taking a small break.`
+			`	"Value moments of solitude, the Saryd do. To a calm oasis, she will head for the day," Kirrie explains as he also prepares to leave, claiming to know a few Heliarchs stationed here who could help him look into some rumors of a local Resistance base.`
+			`	Being the last Heliarch agent in your ship, Tugroob turns to you and asks, "Assist me in my search, would you, Captain?"`
 			choice
-				`	"Of course, where are we headed?"`
+				`	"Of course. Where are we headed?"`
 					goto desertspider
 				`	"Sorry, I'll have to refuse this time."`
 					goto lonespider
 			label desertspider
-			`	"Reports of suspicious transactions, we have received. An outdated, abandoned warehouse, the place is. For storage of the few crops that can grow here, used, it was," they say as you put in the coordinates they give you.`
-			`	You follow Tugroob to the storage area after landing, spotting a desert storm brewing in the distance as you make your way there. A large crack has formed, around the area where they said the crops were originally planted and tested.`
-			`	The barn itself is quite large and could probably hold more stockpile than one of the medium-sized Arach freighters in it's earlier days, but now many of the planks making up the walls have been torn down in several spots.`
+			`	"Reports of suspicious transactions at an outdated, abandoned warehouse, we have received. For storage of the few crops that can grow here, used it was," they say as you put in the coordinates they give you.`
+			`	You follow Tugroob to the storage area after landing, spotting a desert storm brewing in the distance as you make your way there. A large crack has formed around the area where they said the crops were originally planted and tested.`
+			`	The barn is large enough that it could have held more stockpile than any medium-sized Arach freighters in it's early days. Now, many of the planks making up the walls have been torn down in several spots.`
 			choice
 				`	"Let's check out the barn."`
 					goto barn
 				`	"Maybe we should enter that hole where the crops used to be."`
 					goto holeintheground
 			label barn
-			`	The two of you head inside to find the place nearly entirely empty, save for a few sets of crates and barrels around the corners.`
-			`	You follow Tugroob to the upper levels, but once again find nothing but dusty containers. A small gap between the planks here allows some sand to come inside, the storm is getting closer.`
+			`	The two of you head inside to find the place nearly empty, save for a few crates and barrels in the corners.`
+			`	You follow Tugroob to the upper levels but once again find nothing but dusty containers. A small gap between the planks here allows some sand to come inside. The storm is getting closer.`
 			`	"Much too obvious a hiding spot, this would be," they say.`
 			choice
-				`	"You're right, should we go outside and check around that hole?"`
+				`	"You're right. Should we go outside and check around that hole?"`
 					goto anotherholeintheground
-				`	"Maybe, but that could also make someone consider it an even better one. Let's open up these crates."`
+				`	"Maybe, but they could be trying to hide in plain sight. Let's open up these crates."`
 					goto opencrate
 			label opencrate
-			`	You two go about opening all the crates on the upper floor, but end up finding nothing.`
-			`	On the bright side, you manage to use the remains to patch up the gap, as the storm grew stronger.`
-			`	"Nothing here, we will find, Captain," Tugroob says.`
+			`	You two go about opening all the crates on the upper floor but end up finding nothing.`
+			`	On the bright side, you manage to use the remains to patch up the gap as the storm grows stronger.`
+			`	"Nothing here we will find, Captain," Tugroob says.`
 			choice
-				`	"Yeah, sorry, let's go outside and check that hole while we can."`
+				`	"Yeah, sorry... Let's go outside and check that hole while we can."`
 					goto aslipperyholeintheground
-				`	"Hold on, we can still check the ones down there."`
+				`	"Hold on. We can still check the ones down there."`
 					goto crateeater
 			label crateeater
-			`	At this point Tugroob starts using all their body weight and gripping the crates with all legs at the same time, crushing each crate and barrel open.`
-			`	Once everything is broken up and it turns out there was nothing inside any of them after all, they rush outside, in the storm, and you follow after them.`
+			`	At this point, Tugroob starts using all their body weight to grip the containers with all legs at the same time, crushing each crate and barrel open.`
+			`	Once everything is broken up and it turns out there was nothing inside any of them after all, they rush outside into the storm, and you follow after them.`
 			`	You two find the hole, but as you try to go down constantly trip and nearly fall down, were it not for Tugroob holding you and setting you back on your feet. The storm making it too dificult to see any feasible path for you to get down there, so you two head back inside to wait for better visibility.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
+			`	Night falls. With no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group.`
 				accept
 			label aslipperyholeintheground
 			`	You two find the hole, but as you try to go down constantly trip and nearly fall down, were it not for Tugroob holding you and setting you back on your feet. The storm making it too dificult to see any feasible path for you to get down there, so you two head back inside to wait for better visibility.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
+			`	Night falls. With no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group.`
 				accept
 			label holeintheground
-			`	You two carefully make your way down the hole, down to the bottom, around ten meters below the flat area with the barn.`
-			`	As you were coming down, Tugroob pointed to the cracked, rocky walls, saying that most of them were unstable, and you should watch out for rockslides.`
-			`	Looking around, you two spot several smaller holes on the walls, many being just the right size for a human or Saryd arm to squeeze in, and a few larger cracks, that you two shouldn't have much trouble going through.`
+			`	You two carefully make your way down the hole. It bottoms out around ten meters below the barn.`
+			`	As you were coming down, Tugroob pointed to the cracked, rocky walls, saying that most of them were unstable, and you should watch out for rock slides.`
+			`	Looking around, you spot several smaller holes on the walls just large enough for a human or Saryd arm. There are also few larger cracks that you two shouldn't have much trouble going through.`
 			choice
 				`	(Reach your arms inside the smaller holes to look for anything there.)`
 					goto rockyarm
-				`	(Go for the larger cracks and see if they lead to anything.)`
+				`	(Head for the larger cracks to see if they lead to anything.)`
 					goto rockraider
 			label rockyarm
 			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
-			`	A few small rocks fell as you went about the whole thing, but none hit neither of you, thankfully. Up above, the storm has already started to bring in heavy amounts of sand inside.`
-			`	"To remain here for long, dangerous, will be, Captain," Tugroob says.`
+			`	A few small rocks fell while you were doing so, but thankfully you and Tugroob are unscathed. Sand is piling up inside from the storm raging above.`
+			`	"To remain here for long, dangerous it will be, Captain," Tugroob says.`
 			choice
 				`	(Head for the larger cracks in the wall now.)`
 					goto rockraider
@@ -400,48 +394,48 @@ mission "HI2-SS"
 					goto barnyedwards
 			label barnyedwards
 			`	Tugroob crawls back up while you cling to them, as the path you took before proves to be much too risky with the reduced visibility.`
-			`	You two head inside the barn, to find the place nearly entirely empty, save for a few sets of crates and barrels around the corners.`
-			`	You follow Tugroob to the upper levels, but once again find nothing but dusty containers. A small gap between the planks here allows some sand to come inside, the storm is getting closer.`
-			`	"Much too obvious a hiding spot, this would be," they say, but seeing as the storm doesn't go down, you two agree to break open the crates, just in case. Regrettably, you find nothing.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
+			`	The two of you head inside to find the place nearly empty, save for a few crates and barrels in the corners.`
+			`	You follow Tugroob to the upper levels but once again find nothing but dusty containers. A small gap between the planks here allows piles of sand to come inside. The storm envelops the barn.`
+			`	"Much too obvious a hiding spot, this would be," they say, but seeing as the storm doesn't let up, you two break open the crates, just in case. Regrettably, you find nothing.`
+			`	Night falls. With no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group.`
 				accept
 			label rockraider
 			apply
 				"resistance evidence" ++
-			`	After finding a hole that both of you can go through, you two head on inside, Tugroob lighting up the path below with a flashlight. A couple larger rocks occasionaly fall, and Tugroob has to prevent some from hitting you, quickly crawling around the walls to try and slow them down to give you time to move away.`
-			`	Eventually you two come to find some reinforced wooden beams, in what looks like a mineshaft, a few lights on the walls turn on as you two approach them.`
-			`	You're about to go forward, when you're stopped by Tugroob. They crawl around the entrance, looping it several times, without ever going further in, only sometimes stopping, and slowling reaching one leg inside, then back after apparently touching something.`
-			`	They come back down, and say, "Request support equipment, to get through safely, we must."`
-			`	Using their communication device, they call for support from Heliarch agents, warning them about the rockfall. Though you're well protected from the rockfall there, you hear several rocks fall rapidly, as Tugroob says the Heliarch are coming.`
-			`	Shortly after, several dozen Heliarch agents are there, some of them with certain cutting tools you can't quite identify, that they use to surgically cut down what Tugroob was slowly examining before, several extremely thin wires, connected to some type of machinery hidden within the wooden beams.`
-			`	After all is done, the agents storm the place, but find noone there. What they do find are dozens upon dozens of crates, filled to the brim with Heliarch staves and their blaster guns.`
-			`	They escort you two back outside, as the agents prepare to bring the smuggled weapons to their own ships. Though the storm is still raging on, you can make out the shape of a few Heliarch Interdictors parked nearby your own ship, right before you take off.`
-			`	You two regroup with Iplora and Kirrie, as they ask Tugroob for more details on the whole ordeal.`
+			`	You find a hole large enough for both of you and enter, Tugroob holding a flashlight to illuminate the path below. Larger rocks occasionally fall, and Tugroob has to prevent some from hitting you, quickly crawling around the walls to try and slow them down so you have time to move away.`
+			`	Eventually you two arrive at a pair of wooden beams, in what looks like a mineshaft. A few lights on the walls flicker on as you approach them.`
+			`	You're about to go forward when you're stopped by Tugroob. They crawl around the entrance, looping it several times without ever going further in, only sometimes stopping and slowly reaching one leg inside, then right back out after apparently touching something.`
+			`	They come back down and say, "Request support equipment to get through safely, we must."`
+			`	Using their communication device, they call for support from Heliarch agents, warning them about the rockfall. Though you're well protected from the rockfall there, you can still hear them falling in the distance as Tugroob says the Heliarch are coming.`
+			`	Shortly after, several dozen Heliarch agents are there with cutting tools you can't quite identify that they use to surgically remove what Tugroob was slowly examining before: several extremely thin wires, connected to some type of machinery hidden within the wooden beams.`
+			`	After they're done, the agents storm the place but find nobody. What they do find are dozens upon dozens of crates filled to the brim with Heliarch staves and blaster guns.`
+			`	They escort you two back outside as the agents prepare to bring the smuggled weapons to their own ships. Though the storm is still raging on, you can make out the shape of a few Heliarch Interdictors parked near your own ship right before you take off.`
+			`	You regroup with Iplora and Kirrie, and they ask Tugroob for more details on the ordeal.`
 				accept
 			label anotherholeintheground
-			`	You two carefully make your way down the hole, down to the bottom, around ten meters below the flat area with the barn.`
-			`	As you were coming down, Tugroob pointed to the cracked, rocky walls, saying that most of them were unstable, and you should watch out for rockfall.`
-			`	Looking around, you two spot several smaller holes on the walls, many being just the right size for a human or Saryd arm to squeeze in, and a few larger cracks, that you two shouldn't have much trouble going through.`
+			`	You two carefully make your way down the hole. It bottoms out around ten meters below the barn.`
+			`	As you were coming down, Tugroob pointed to the cracked, rocky walls, saying that most of them were unstable, and you should watch out for rock slides.`
+			`	Looking around, you spot several smaller holes on the walls just large enough for a human or Saryd arm. There are also few larger cracks that you two shouldn't have much trouble going through.`
 			choice
 				`	(Reach your arms inside the smaller holes to look for anything there.)`
 					goto sandyarm
-				`	(Go for the larger cracks and see if they lead to anything.)`
+				`	(Head for the larger cracks to see if they lead to anything.)`
 					goto rockraider
 			label sandyarm
 			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
-			`	Many small rocks fell as you went about the whole thing, but none hit neither of you, miraculously. Unfortunately, the storm above is bringing in too much sand now for you to even look around for more holes, or the exact location of the larger cracks you saw before.`
-			`	"To remain here for long, dangerous, will be, Captain," Tugroob says, as they urge you to cling to them. They carefully crawl back up, and you two take refuge inside the barn.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
+			`	Many small rocks fell while you were checking the holes, but miraculously you both remain unscathed. Unfortunately, too much sand from the storm above is piling up for you to look around for more holes or the exact location of the larger cracks you saw before.`
+			`	"To remain here for long, dangerous it will be, Captain," Tugroob says as they urge you to cling to them. They carefully crawl back up, and you two take refuge inside the barn.`
+			`	Night falls. With no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group.`
 				accept
 			label lonespider
-			`	"I see," they say, before handing you some coordinates where they will go to. You drop them off, and return to where you dropped off the other two.`
-			`	They come back hours later, and contact Tugroob, as you head there to pick them up too. It seems neither of them found anything worthwhile here.`
+			`	"I see," they say, then give you the coordinates they will go to. You drop them off and return to where you dropped off the other two.`
+			`	They come back hours later and contact Tugroob as you head there to pick them up too. It seems neither of them found anything worthwhile here.`
 
 
 
 mission "HI2-FS"
-	name "Investigate Fourth Shadow"
-	description "Transport the Heliarch trio here so that they can investigate signs of Resistance activity."
+	name "Investigate <planet>"
+	description "Transport the Heliarch trio to <destination> so that they can investigate signs of Resistance activity."
 	to offer
 		has "Heliarch Investigation 1: done"
 	source "Ring of Friendship"
@@ -453,18 +447,18 @@ mission "HI2-FS"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`For this planet, the trio informs you that they cannot spend too much time in one place, considering how densely populated it is, so they hand you the coordinates of dozens of factories, and tell you to bring them to them in whichever order you please.`
-			`	"Surprise inspections, we shall perform," Kirrie says, as the three prepare their equipment, with weapons ready.`
-			`	You spend hours flying around the planet, dropping one of the agents off in one factory, running off to another, then another, then picking up the first of the three again, and continuing the process.`
-			`	After picking up Tugroob from the last factory, they all analyze their findings one last time, going over each individual factory, mechanically running down a long list of "possible anormalities" for each, and marking on the side of the applicable ones.`
-			`	"Unauthorized power surges to some replicators, we found. Missing, some records of storage transport, were too," Iplora says.`
-			`	You land on a Heliarch base, and they hand all their findings to the agents there, before returning to your ship.`
+			`For this planet, the trio informs you that they cannot spend too much time in one place, considering how densely populated it is, so they hand you the coordinates of dozens of factories, and tell you to bring them to them in whichever order you'd prefer.`
+			`	"Surprise inspections, we shall perform," Kirrie says as the three prepare their equipment and weapons.`
+			`	You spend hours flying around the planet dropping one agent off in a factory, running off to another, then another, then picking up the first of the three again, and continuing the process.`
+			`	After picking up Tugroob from the last factory, they all analyze their findings one last time, going over each individual factory, mechanically running down a long list of "possible abnormalities" for each, leaving a mark on the side and briefly writing a description if any such "abnormality" was noted in a factory.`
+			`	"Unauthorized power surges to some replicators, we found. Missing as well, some records of storage transport were," Iplora says.`
+			`	You land on a Heliarch base, and they hand all their findings to the agents there before returning to your ship.`
 
 
 
 mission "HI2-IW"
-	name "Investigate Into White"
-	description "Transport the Heliarch trio here so that they can investigate signs of Resistance activity."
+	name "Investigate <planet>"
+	description "Transport the Heliarch trio to <destination> so that they can investigate signs of Resistance activity."
 	to offer
 		has "Heliarch Investigation 1: done"
 	source "Ring of Friendship"
@@ -476,50 +470,50 @@ mission "HI2-IW"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`Kirrie, already donning his winter coat, instructs you to land near the equator, where he and Tugroob will conduct some subtle interrogation, citing that it's 'all they can do' in a climate like this.`
-			`	You drop them in one of the larger settlements there, and right as they leave your ship, Iplora asks that you bring her to a polar region.`
+			`Kirrie, already donning his winter coat, instructs you to land near the equator. He and Tugroob will conduct some subtle interrogation, citing that it's 'all they can do' in this climate.`
+			`	You drop them off in one of the larger settlements there. After they leave, Iplora asks that you bring her to what is very close to a polar region.`
 			`	"Suspiciously similar, repeated reports about that area have been. Tasked with investigating it, I was."`
-			`	As you land on an isolated icy patch, in the middle of a snowstorm, she's ready to leave the ship, wearing what is, compared to her colleagues', fairly light clothing. Although she is a Saryd, you still worry that she might be frostbitten in this extreme weather, but she reassures you that she will be fine.`
-			`	You open your ship's hatch, and she prepares to leave.`
+			`	As you land on an isolated icy patch in the middle of a snowstorm, she's ready to leave the ship, carrying a bag with some equipment and wearing what is - compared to what her colleagues were wearing - fairly light clothing. Although she is a Saryd, you still worry that she might be frostbitten in this extreme weather, but she reassures you that she will be fine.`
+			`	You open your ship's hatch and she prepares to leave.`
 			choice
-				`	"Good luck, be careful not to get lost in all this snow."`
+				`	"Good luck. Be careful not to get lost in all this snow."`
 					goto warmandcosy
-				`	"Hold up, I'll go with you, that way we can search around faster."`
+				`	"Hold up, I'll go with you so we can search faster."`
 					goto frosty
 			label frosty
-			`	She staggers on the ramp, looking back at you.`
+			`	She pauses on the ramp, looking back at you.`
 			`	"Certain of that, are you, Captain? Treacherous, these storms can be."`
 			choice
 				`	"Don't worry, I can carry my weight through some snow."`
 					goto snowy
 				`	"On second thought, you're right. Good luck out there."`
 			label warmandcosy
-			`	You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlinks.`
-			`	Iplora comes back, saying she couldn't find anything, and you head back to pick up Kirrie and Tugroob, who also return empty handed.`
+			`	You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlink.`
+			`	Iplora comes back, saying she couldn't find anything. You leave and pick up Kirrie and Tugroob, who also return empty handed.`
 				accept
 			label snowy
 			`	She remains silent, and walks back inside. You close the hatch and prepare yourself for what's to come with the warmest clothing you could find. You open the hatch once more, and the both of you head out into the white fields.`
-			`	Not long after leaving your ship, you can make out small, dark lines nearby, some pine trees. It seems you landed close to a forest. Unfortunately, they don't do much to protect you from the snowfall.`
-			`	You two continue going deeper into the lifeless forest for what feels like hours, your feet starting to go numb from the cold. After yet another turn, Iplora guides you out of the forest, to snowy hills. The storm is not so terrible here, so you can faintly see some cave entrances in some of the more distant hills. Looking back at the woods, you see that there's a small shack in the outskirts, not too far from where you are now.`
+			`	Not long after leaving your ship, you can make out small, dark lines nearby, probably pine trees. It seems you landed close to a forest. Unfortunately, they don't do much to protect you from the snowfall.`
+			`	You continue deeper into the lifeless forest for what feels like hours, so long that your feet start to go numb from the cold. After yet another turn, Iplora guides you out of the forest to snowy hills. The storm is not so terrible here, so you can faintly see cave entrances in some of the more distant hills. Looking back at the woods, you see that there's a small shack in the outskirts, not too far from where you are now.`
 			`	"Check the caverns, we must. More relentless, the storm will soon become," Iplora says.`
 			choice
 				`	"Lead the way."`
 					goto bumpyroad
-				`	"You go ahead, I'll see if I can find anything in that shack."`
+				`	"You go ahead. I'll see if I can find anything in that shack."`
 					goto shack
 			label shack
-			`	She nods, and starts making her way uphill. You start walking to the shack, but just a couple steps into it you trip on something hard on the ground, unlike the soft, deep snow you've been in up until now.`
-			`	Iplora noticed it, and walks over to you, "Many boulders, this area has. Buried by the snow, they have been, so great care you must take, when walking here," she says, before getting on with her own path to the caverns.`
-			`	You reach the shack, and knock to see if anyone is inside, but even your subtle hits were enough to start creaking the door open. The place is abanadoned. You see some boxes laying around, bedrooms, and what must be a Kimek-styled fireplace. A large carpet covers the center of the living room.`
-			`	You remove it, but find nothing hidden underneath. You leave the shack, and walk around it; there's only a few tools on the ground, by the back. You take yet another look around, and even start checking some of the nearby trees, but as the snowfall starts to get stronger again, you decide to head to the caverns and catch up with Iplora.`
-			`	You trip over a few more of the small mounds, and right in the middle of the snowfield, you start wondering in which cavern Iplora is now. Though you can't be sure if you'll find her by entering the nearest one, it would certainly be a better option to wait inside one.`
+			`	She nods, and starts making her way uphill. You start walking to the shack, but just a couple steps into it you trip on something hard, unlike the soft, deep snow you've been in up until now.`
+			`	Iplora notices it and walks over to you, "Many boulders, this area has. Buried by the snow they have been. Great care you must take, while walking here," she explains before getting on with her own path to the caverns.`
+			`	You reach the shack, and knock to see if anyone is inside, but even your soft hits were enough to push the door open. The place is abandoned. You see some boxes laying around, bedrooms, and what must be a Kimek-styled fireplace. A large carpet covers the center of the living room.`
+			`	You pull it up but find nothing hidden underneath. You leave the shack, and walk around it; there's only a few tools on the ground, by the back. You take another look around, and even start checking some of the nearby trees, but as the snowfall starts to get stronger again, you decide to head to the caverns and catch up with Iplora.`
+			`	You trip over a few more of the small mounds, and right in the middle of the snowfield, you start wondering which cavern Iplora is in now. Though you can't be sure if you'll find her by entering the nearest one, it would certainly be better than standing outside in what will soon be a blizzard.`
 			choice
 				`	(Enter the nearest cavern.)`
 					goto takeshelter
 				`	(Try and dig through the snowy mounds to find something.)`
 					goto diggysnow
 			label diggysnow
-			`	You claw away at the snow, and hit a hard surface, but it turns out to be just a rock. You try some other mounds to no avail, and right as you finish digging through another pile of snow, only to find a rock, Iplora appears behind you.`
+			`	You claw away at the snow and hit a hard surface, but it turns out to be just a rock. You try some other mounds to no avail, and right as you finish digging through another pile of snow only to find another rock, Iplora appears behind you.`
 			`	"Counterproductive, cleaning away the snow is," she says. "Found nothing, I have. Back to your ship, we must go."`
 			choice
 				`	(Go back to the ship.)`
@@ -528,44 +522,44 @@ mission "HI2-IW"
 					goto diggydiggysnow
 			label takeshelter
 			`	You rush inside the nearest cave, waiting for the weather to clear up a bit. After a while you notice a light coming from further inside the cave, and Iplora emerges soon after.`
-			`	"Found anything?" She asks, and you shake your head. She too couldn't find anything, other than some hidden campsites. You wait inside a bit more, and when the weather clears, and night approaches, you start following her back to the ship.`
-			`	You get back to the ship, and head back to pick up Kirrie and Tugroob, both also coming back empty handed.`
+			`	"Found anything?" She asks, and you shake your head. Aside from some small campsites, she didn't either. You wait inside a bit more, and when the weather clears and night approaches, you follow her back to the ship.`
+			`	When you get back, you leave to pick up Kirrie and Tugroob. They also come back empty handed.`
 				accept
 			label bumpyroad
-			`	You start following her as you go up the hills. It's difficult at first, with your legs sinking into the snow, but after a few minutes the ground below appears to get more and more solid, if a bit bumpy. Iplora explains that the area has several small and medium sized boulders that got buried by the snow over the years, and warns you to watch your step. You do that as best as you can, but as the snowfall grows stronger, you trip over one of the mounds. She helps you up, and the two of you get to the entrance of one of the caverns.`
+			`	You follow her up the hills. It's difficult at first, with your legs sinking into the snow, but after a few minutes the ground below becomes more and more solid - if a bit bumpy. Iplora explains that the area has several small and medium sized boulders buried by the snow over the years and warns you to watch your step. You try to, but as the snowfall grows stronger, you trip over one of the mounds. She helps you up, and the two of you eventually arrive at the entrance of one of the caverns.`
 			choice
 				`	(Go inside with Iplora.)`
 					goto cave
 				`	(Search around the snow field.)`
 					goto snowfield
 			label snowfield
-			`	You tell her you'll look around the snow for a while, and go inside if the storm gets rough again.`
-			`	You walk around, this time minding the bumpy ground below, and try to spot anything unusual in the snow. The task is boring and you find nothing, even after walking far away from the hills. The snow starts falling much faster once more, so you start making your way back to the caverns.`
-			`	With all the snow blocking your vision, you end up tripping over some of the mounds on your way, and realize you don't exactly remember which cave Iplora entered. Considering the weather, though, taking shelter in any of them would be a good choice.`
+			`	You tell her you'll look around the snow for a while and go inside if the storm gets rough again.`
+			`	You walk around, this time minding the bumpy ground below, and try to spot anything unusual in the snow. The task is boring and you find nothing, even after walking far away from the hills. The snow starts falling much faster, so you start making your way back to the caverns.`
+			`	With all the snow blocking your vision, you end up tripping over some of the mounds on your way and realize you don't exactly remember which cave Iplora entered. Considering the weather, though, taking shelter in any of them would be a good choice.`
 			choice
 				`	(Enter the nearest cavern.)`
 					goto takeshelter
 				`	(Try and dig through the snowy mounds to find something.)`
 					goto diggysnow
 			label cave
-			`	Iplora reveals a small device - akin to a flashlight, only oval shaped - and lights up the way as you two explore the cavern. After some twists and turns, she notices that part of the cave's walls seems odd, and upon inspecting it, sees that it's some type of canvas, flapping around as she touches it.`
-			`	You help her pull it down, and a small campsite is revealed, some makeshift beds, small wooden crates, a worn down campfire in the middle.`
-			`	You search through the crates as she examines around the room, looking for some other hidden area, but neither of you find anything. She checks the campfire, and concludes that noone had been there for a few months.`
-			`	You two continue exploring the cave, and eventually loop back outside, leaving via another cave entrance, this time much further from the forest, according to her. You can't even see the trees anymore, the blizzard has gotten much stronger.`
+			`	Iplora reveals a small device - akin to a flashlight, only oval shaped - and lights up the way as you two explore the cavern. After some twists and turns, she notices that part of the cave's walls seems odd. She touches it, and it moves: it's not a wall at all, but some kind of canvas.`
+			`	You help her pull it down, and a small campsite is revealed, some makeshift beds, small wooden crates, and a worn down campfire in the middle.`
+			`	You search through the crates as she examines the room looking for some other hidden area, but neither of you find anything. She checks the campfire and concludes that nobody has been here for a few months.`
+			`	You continue exploring the cave and eventually loop back outside, leaving via another cave entrance, this time much further from the forest according to Iplora. You can't even see the trees anymore, the blizzard has gotten much stronger.`
 			choice
 				`	(Suggest returning to the ship.)`
 					goto bumpyblizzard
 				`	(Continue looking around the caves.)`
 					goto cavedweller
 			label cavedweller
-			`	You head back inside, and continue exploring the cave system. You two find a few more of the hidden campsites, but all are as abandoned as the first one. You're alerted whenever you're close to another exit, as the wind creeps inside, and snow and ice make their way into the place.`
+			`	You head back inside and continue exploring the cave system. You two find a few more of the hidden campsites, but all are as abandoned as the first one. You're alerted by the wind, snow, and ice whenever you're close to another exit.`
 			`	After a few hours, the storm finally subsides, and you both return to your ship.`
-			`	You go pick up Kirrie and Tugroob, both also coming back empty handed.`
+			`	You go pick up Kirrie and Tugroob, who are both also empty handed.`
 				accept
 			label bumpyblizzard
-			`	She hesitates for a bit, saying that you would probably get sick going through the storm now, and suggesting to wait in the cave until it is safe for human passage.`
+			`	Iplora hesitates for a bit then explains that you would probably get sick going through the storm now. She suggests you wait in the cave until it is safe for human passage.`
 			`	You insist, and she reluctantly gives in, telling you to stick close to her. She moves slowly, so you have no problem keeping up, but time and again you keep falling over, tripping on the mounds the rocks have created.`
-			`	Oddly enough, you feel like some of the rocks you tripped over felt different, as if the impact was different. Iplora reaches her hand out to help you get up, once again.`
+			`	Oddly enough, you feel like some of the rocks you tripped over felt different, as if you were landing on something besides rocks. Iplora reaches her hand out to help you up once again.`
 			choice
 				`	(Take her hand.)`
 					goto horsefriend
@@ -573,21 +567,21 @@ mission "HI2-IW"
 					goto snowdigger
 			label horsefriend
 			`	She helps you up, and you continue on your way down the hills. You get back to the forest, and she starts finding the trail back to the ship. Halfway through, the storm gets progressively weaker.`
-			`	You get back to the ship, and head back to pick up Kirrie and Tugroob, both also coming back empty handed.`
+			`	When you get back, you leave to pick up Kirrie and Tugroob. They also come back empty handed.`
 				accept
 			label snowdigger
-			`	You start clawing your way down the snow, Iplora asking you to stop and just get on with getting back to the ship. You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface, and start clearing from there, only to see it was, in fact, just a boulder.`
-			`	"Satisfied? Return, we must. Come now," you turn to see her offering her hand once again.`
+			`	You start clawing your way down the snow as Iplore asks you to stop and continue moving toward the ship You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface and start clearing from there, only to see it was, in fact, just a boulder.`
+			`	"Satisfied? Return, we must. Come now," You turn to see her offering her hand once again.`
 			choice
 				`	(Take her hand.)`
 					goto horsefriend
 				`	(Head to another mound and try digging there.)`
 					goto diggydiggysnow
 			label diggydiggysnow
-			`	You stand up, and run to another spot where you fell over. Iplora follows you, and even with the snow you can her sigh loud and clear. She tries to pull you away, but you hit a hard surface yet again, and a fait metallic sound echoes.`
-			`	She takes her hands off of you, and lays down, now helping you dig out whatever is there. She stands up once the crate is visible, a large one at that, somewhat like a coffin, much of it still buried under the ground itself. She asks you to help her get some hooks on it, after which she struggles to try and get the thing out of the ground.`
-			`	The slippery snow certainly doesn't help her hooves, but some of the storm does make the crate more slippery, slowly getting out of the hole, bit by bit. You help her as best as you can, and you get it on top of the snow field.`
-			`	Iplora searches through some tools in her bag, and takes out what looks like a crowbar. She starts opening it, a dim light creeping out, but an energy blast, coming from the the top of the hills, hits the ground near the hole, missing you by just about a meter.`
+			`	You stand up and run to another spot where you fell over. Iplora follows you, and even with the snow you can hear her exasperated sigh. She tries to pull you away, but you hit a hard surface yet again, and a faint metallic sound echoes.`
+			`	She takes her hands off of you and lays down, now helping you dig out whatever is there. She stands up once the crate is visible. It's large and looks like a coffin, but much of it is still buried. She asks you to help her get some hooks on it, after which she struggles to try and pull it out.`
+			`	The slippery snow certainly doesn't help her hooves, but it does make the crate slippery as well. It's coaxed out of the ground, bit by bit. You help her as best as you can and eventually get it on top of the snow field.`
+			`	Iplora searches through some tools in her bag and takes out what looks like a crowbar. She starts opening it, a dim light creeping out, but an energy blast, coming from the the top of the hills, hits the ground near the hole, missing you by just about a meter.`
 			`	She yells for you to get down, pulling out her weapon and firing in the direction the shot came from.`
 			choice
 				`	(Take cover.)`
@@ -597,28 +591,28 @@ mission "HI2-IW"
 			label cover
 			apply
 				"resistance evidence" ++
-			`	You get inside the hole, hoping you'll have enough protection from the blasts, and hear Iplora move around, shooting and taking cover, running as if to dodge incoming blasts.`
-			`	The shots stop, and you see her come over, telling you to get out.`
+			`	You get inside the hole, hoping you'll have enough protection from the blasts, and hear Iplora move around, shooting and taking cover, running and dodging incoming blasts.`
+			`	The shots stop, and you see her come over, saying you can get out now.`
 			`	"Fled, our attacker has," she claims. From the looks of it she wasn't injured. You two get back to the crate.`
 				goto opencrate
 			label helphorse
 			apply
 				"resistance evidence" ++
-			`	You start shooting the hills above, trying to aim around where Iplora's own shots go to. A shot comes your way, and you jump out of the way. Iplora takes cover inside the hole, firing a few more shots from there, then leaving, going uphill. You follow her lead, approaching from another direction.`
-			`	The shots alternate targets, some heading to Iplora, then some to you, back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes bothways, as you and Iplora manage to avoid getting hit without too much trouble.`
-			`	You've barely gotten past the last cave you visitted when the shots stop altogether. Iplora still takes aim for a bit, but ultimately lowers her weapon, coming toward you.`
+			`	You start shooting the hills above, trying to aim around where Iplora's own shots go to. A shot comes your way, and you jump to the side. Iplora takes cover inside the hole, firing a few more shots from there, then leaves, going uphill. You follow her lead, approaching from another direction.`
+			`	The shots alternate targets, some heading to Iplora, then some to you, then back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
+			`	You've barely gotten past the last cave you visited when the shots stop altogether. Iplora still takes aim for a bit, but ultimately lowers her weapon, coming toward you.`
 			`	"Fled, our attacker has," she claims. You two walk back to the crate.`
 			label opencrate
-			`	Finally open, the content is shown to be a Heliarch Finisher Torpedo. You two go around the fields, and find that many other mounds are identical crates. She uses a communication device, and calls for Heliarch support. Several Heliarch Neutralizers arrive some time after the blizzard subsides, and you're directed to one of them, to dry your clothes and make sure you're not frostbitten.`
-			`	When you leave, you see several Heliarch agents using proper equipment to dig out the crates, and opening them dozens at a time, revealing several more torpedoes. A group has also made their way up the hills, looking for any sign of whoever attacked you.`
-			`	Iplora speaks with some of the Heliarchs there, and then tells you that they will handle everything from now. One of the ships takes you two to where your own ship landed, and leaves as you prepare to take off.`
-			`	You head back to pick up Kirrie and Tugroob, who are excited to hear about what happened. They themselves didn't find anything, but seem content with listening to Iplora, as she tells the story.`
+			`	When it's finally open, you see it contains a Heliarch Finisher Torpedo. You two go around the fields, and find that many other mounds are identical crates. She uses a communication device and calls for Heliarch support. Several Heliarch Neutralizers arrive some time after the blizzard subsides, and you're directed to one of them to dry your clothes and make sure you're not frostbitten.`
+			`	When you leave, you see several Heliarch agents using proper equipment to dig out the crates and opening them dozens at a time, revealing several more torpedoes. A group has also made their way up the hills looking for any sign of whoever attacked you.`
+			`	Iplora speaks with some of the Heliarchs there and then tells you that they will handle everything from here. One of the ships takes you two to where your own ship landed and leaves as you prepare to take off.`
+			`	You head back to pick up Kirrie and Tugroob, who are excited to hear about what happened. They themselves didn't find anything, but they're content with listening to Iplora as she tells the story.`
 
 
 
 mission "HI2-RB"
-	name "Investigate Remote Blue"
-	description "Transport the Heliarch trio to investigate this isolated world."
+	name "Investigate <planet>"
+	description "Transport the Heliarch trio to investigate the isolated <planet>."
 	to offer
 		has "Heliarch Investigation 1: done"
 	source "Ring of Friendship"
@@ -630,17 +624,17 @@ mission "HI2-RB"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`When you land, a couple of other civilian ships land close, and some Kimek leave, waiting outside your own.`
+			`When you land, a couple of other civilian ships land nearby. Some Kimek leave them and wait outside your own.`
 			`	Kirrie is the only one to leave, and after speaking a bit with the other Kimek, they leave for the city, splitting in two groups.`
-			`	"Not fond of outsiders, the people of this world are," Tugroob says. "To employ undercover Kimek agents, our best method here, is."`
-			`	You wait around for a couple hours, as Iplora and Tugroob tinker around your ship's communication devices, keeping contact with the two groups.`
+			`	"Not fond of outsiders, the people of this world are," Tugroob explains. "Decided to employ undercover Kimek agents, the elder has."`
+			`	You wait around for a couple hours as Iplora and Tugroob tinker with your ship's communication devices, keeping in contact with the two groups.`
 			`	They don't mention if either group finds anything, and as night falls, Kirrie returns to the ship on his own.`
 
 
 
 mission "Heliarch Recon 1"
 	name "Heliarch Reconnaissance"
-	description "Fly to all the Quarg planets and stations the Heliarch asked, land on them, letting your modified ship sensors get a sense of the surroundings, then head back to the <destination>."
+	description "Fly to all the Quarg planets and stations the Heliarch asked, land on them, letting your modified ship sensors scan their surroundings, then head back to <destination>."
 	landing
 	source
 		government "Heliarch"
@@ -658,17 +652,18 @@ mission "Heliarch Recon 1"
 		has "Coalition: Contributor: done"
 		not "Resistance: Questions: offered"
 	on offer
+		require "Jump Drive"
 		conversation
 			`A Heliarch delegation is waiting for you when you land.`
-			`	"More than just a bit, the human visitor has contributed to our society," the Saryd says as they all salute you.`
+			`	"More than a little, the human visitor has contributed to our society," the Saryd says as they all salute you.`
 			`	"Stopped you from helping, access to our technology has not," the Kimek continues almost immediately. "Far from your true motivation, greed appears to be."`
 			`	"How far would the visitor go, if to further help our Coalition, it meant?" The Arach asks.`
 			choice
 				`	"I'm not sure I understand what you're getting at."`
 				`	"Obviously I have my limits as for what I would do."`
-			`	"A Jump Drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd starts explaining, as all three of them walk toward your ship.`
-			`	"Few in number, our own Jump Drives are, and too risky would it be, for one of our own to venture far out," the Kimek adds.`
-			`	"If to help us gain knowledge of the opressors, you wish, would thee lend the Coalition your ship's sensors, for a short time?" Asks the Arach.`
+			`	"A jump drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd explains as all three walk toward your ship.`
+			`	"Few in number, our own jump drives are, and too risky would it be, for one of our own to venture far out," the Kimek adds.`
+			`	"If to help us gain knowledge of the opressors, you wish, lend the Coalition your ship's sensors for a short time, would you?" Asks the Arach.`
 			choice
 				`	"Are you asking me to spy on the Quarg?"`
 				`	"Sorry, I don't want to get involved in your conflict with the Quarg."`
@@ -682,21 +677,21 @@ mission "Heliarch Recon 1"
 				`	"Sorry, I don't want to get involved in your conflict with the Quarg."`
 					decline
 			label accepted
-			`	They themselves were apparently unsure about this, as they ask you to show your own map of the galaxy, and all the Quarg planets and stations you have found. They're a bit startled at first when first seeing the whole map, but quickly focus again, and after a while they ask you check all of them.`
+			`	They themselves were apparently unsure about this, as they ask you to show them your own map of the galaxy and all the Quarg planets and stations you have found. They're a bit startled when they first see the entire map but quickly focus again, and after a while they give you the list of worlds they want you to gather data on.`
 			`	The list of places you need to land is: <stopovers>.`
-			`	After the engineers they called over are done doing the modifications needed, they thank you for your cooperation, and walk away.`
+			`	After the engineers they called over are finished modifying your sensors, they thank you for your cooperation and walk away.`
 				accept
 	on complete
 		event "heliarch recon break" 6
 		payment 165000
 		conversation
-			`The Heliarchs are eagerly waiting for you when you return, and urge you to let them take a look at your ship's logs, to look at what information you've gathered.`
-			`	They don't seem to pay much mind to data on the natural cosmic bodies the Quarg inhabit, barely looking at the data on Humanika and the others, but as they reach the part they were interested on, the ringworlds, the Saryd frowns, while the Kimek and Arach do what are probably their versions of that reaction.`
-			`	"Land on these, you really did, right Captain?" The Saryd asks while pointing Lagrange, then Kuwaru Efreti, then Alta Hai.`
-			`	You nod, and the Kimek hits your control panel lightly with one of it's legs. "No data on the rings, the sensors collected! Gone wrong, something must have."`
-			`	You explain about how your ship behaved when landing on them, and as the engineers return your ship to normality, they speak something amongst themselves that the boxes do not translate.`
+			`The Heliarchs are eagerly waiting for you when you return. They urge you to show them your ship's logs so they can see what information you've gathered.`
+			`	They don't seem to pay much mind to data on the natural cosmic bodies the Quarg inhabit, barely looking at Humanika and the others, but instead seem interested on the ringworlds. As they reach that data, the Saryd frowns while the Kimek and Arach do what are probably their versions of that reaction.`
+			`	"Land on these, you really did, right Captain?" The Saryd asks while pointing at Lagrange, then Kuwaru Efreti, then Alta Hai.`
+			`	You nod, and the Kimek hits your control panel lightly with one of its legs. "No data on the rings, the sensors collected! Gone wrong, something must have."`
+			`	You explain how your ship behaved while landing on them. The engineers return your ship to normality and speak among themselves, but it goes untranslated by the boxes.`
 			`	"Too straightforward an approach, we might have taken," the Arach says. "Captain <last>, for your efforts, we thank you."`
-			`	They hand you <payment>, and say that if they figure anything out and need your help again, they'll seek you out.`
+			`	They hand you <payment> and say that if they figure anything out and need your help again, they'll seek you out.`
 
 
 
@@ -709,7 +704,7 @@ mission "Heliarch Recon L"
 		has "Heliarch Recon 1: active"
 	on offer
 		conversation
-			`You can't quite make out what the Heliarchs did to your sensors, or if you can even see the data they are collecting, but as you come in for a landing, you hear a faint whistling sound from the hull of your ship. It's short lived, and you land normally, hopefully nothing broke.`
+			`You don't really know what the Heliarchs did to your sensors, or if you can even see the data they are collecting, but as you come in for a landing, you hear a faint whistling sound from the hull of your ship. It's short lived, and you land normally. Hopefully nothing broke.`
 				decline
 
 
@@ -737,7 +732,7 @@ mission "Heliarch Recon AH"
 		has "Heliarch Recon 1: active"
 	on offer
 		conversation
-			`Coming in for a landing, something from inside your ship produces a high pitched whistle sound. It gets progressively stronger as you get closer and closer to the ringworld, until it completely shuts down, only to click back to normality and land as usual at the last moment. Looking outside, you spot several Quarg standing still, staring at your vessel, until they hastily leave, without contacting you at all.`
+			`Coming in for a landing, something from inside your ship produces a high pitched whistle sound. It gets progressively stronger as you get closer and closer to the ringworld until it completely shuts down, only to click back to normality and land as usual at the last moment. Looking outside, you spot several Quarg standing still, staring at your vessel, until they hastily leave without contacting you at all.`
 				decline
 
 
@@ -765,7 +760,7 @@ mission "Heliarch Recon HU"
 		has "Heliarch Recon 1: active"
 	on offer
 		conversation
-			`The only reason the Heliarchs must have asked you to land on Humanika is to see how the human inhabitants interact with the Quarg-controlled robots here. You land as asked, and can't seem to notice anything different with your ship.`
+			`The only reason the Heliarchs must have asked you to land on Humanika is to see how the human inhabitants interact with the Quarg-controlled robots here. You land as asked and can't seem to notice anything different with your ship.`
 				decline
 
 
@@ -779,7 +774,7 @@ mission "Heliarch Recon F"
 		has "Heliarch Recon 1: active"
 	on offer
 		conversation
-			`	While you told them this was nothing more than a barren mining outpost, the Heliarchs still insisted on gathering intel on this small moon. Regardless of it's usefulness, you land as they asked, and let your scanners get a proper reading on this world.`
+			`	While you told them this was nothing more than a barren mining outpost, the Heliarchs still insisted on gathering intel on this small moon. Regardless of its usefulness, you land as they asked and let your scanners get a proper reading on this world.`
 				decline
 
 
@@ -807,25 +802,24 @@ mission "Heliarch Recon 2-A"
 	description "Install an Outfit Scanner, then land on <destination>, where the Heliarch will modify it to be able to scan Quarg ships the way they need it."
 	landing
 	source
-		government "Heliarch"
-		not planet "Ring of Wisdom"
+		near "Ekuarik" 1 100
 	destination "Ring of Wisdom"
 	to offer
 		has "event: heliarch recon break"
 		not "Resistance: Questions: offered"
 	on offer
 		conversation
-			`Some Heliarchs approach you as you land. You think you can recognize the Saryd of the group as one of those who asked you to land on all the Quarg-owned worlds some time ago.`
+			`Some Heliarchs approach you as you land. You think you can recognize the Saryd of the group as one of those who recently asked you to land on all the Quarg-owned worlds.`
 			`	"The honorable Captain, we once again are pleased to greet," he says.`
-			`	"Another fortuitous meeting, we hope this will be."`
+			`	"Another worthwhile meeting, we hope this will be."`
 			`	"In mind, a new strategy we have. Your assistance, we once again require."`
 			choice
 				`	"What do you need me to do?"`
 				`	"I'm sorry, but I'm not willing to risk my ship any longer to help you spy on the Quarg."`
 					decline
 			`	"If too complex and protected, the Quarg's rings are, perhaps something new, from their ships we might learn."`
-			`	"Scan them during our war, we of course did, but much wiser and more sofisticated, we and our devices have become."`
-			`	"To use one of our own scanners, we cannot ask of thee. Much risk, it would pose. Alas, if to <destination>, a human Outfit Scanner you bring, alter it, we could."`
+			`	"Scan them during our war, we of course did, but much wiser and more sophisticated, we and our devices have become."`
+			`	"To use one of our own scanners, we cannot ask of you. Much risk, it would pose. If to <destination>, a human Outfit Scanner you bring, alter it, we could."`
 			`	You agree to head there once you have equipped an Outfit Scanner, and they thank you for your willingness to help.`
 				accept
 	on complete
@@ -846,8 +840,8 @@ mission "Heliarch Recon 2-B"
 	on offer
 		conversation
 			`While you don't find any of the Heliarchs that spoke to you here, one of their groups is there with a team of engineers once you land.`
-			`	They remove the Outfit Scanner from your ship, and take it to some restricted area. After about an hour, they come back, and while you can't spot any change done to the oufit, they reinstall it in your ship.`
-			`	They say they will be waiting for your return, and wish you good luck.`
+			`	They remove the Outfit Scanner from your ship and take it to some restricted area. After about an hour, they come back, and while you can't see any visible changes to the outfit, they reinstall it in your ship.`
+			`	They say they will be waiting for your return and wish you good luck.`
 				accept
 	npc "scan outfits"
 		personality staying uninterested target
@@ -861,9 +855,10 @@ mission "Heliarch Recon 2-B"
 	on complete
 		payment 200000
 		conversation
-			`Once again the engineers remove your Outfit Scanner, taking a copy of the scan logs with them, and handing another copy to the Heliarchs, who hand you <payment>.`
-			`	They return the outfit to your ship just like before, you still not being able to tell what they did to it.`
+			`Once again the engineers remove your Outfit Scanner, taking a copy of the scan logs with them. They hand another copy to the Heliarchs, who give you <payment>.`
+			`	They return the outfit to your ship just like before. You still can't tell what they did to it.`
 			`	"Grateful to you, we are, Captain <last>," the Saryd says. "Remember your assistance, we will."`
+			`	You're reassured that the Quarg won't attack you for this service, and one of the Heliarch agents even encourages you to try and land on their worlds again to see if you find any useful information, before being dragged by his colleagues to continue on with their work.`
 
 
 
@@ -883,14 +878,14 @@ mission "Quarg Interrogation"
 			choice
 				`	"Hi, can I help you?"`
 				`	"Is there some sort of problem?"`
-			`	It blinks, then looks to the side slowly, to a Wardragon parked farther away.`
+			`	It blinks then slowly looks to a Wardragon parked farther away.`
 			`	"You were seen landing on our worlds and rings, bringing about strange scanning mechanisms, and were also found to be scanning some of our ships. Why is that?"`
 			choice
 				`	"I was just curious about your species."`
 					goto lie
 				`	"What are you talking about? I never did any of that. Must have been my cousin."`
 					goto lie
-				`	"Scanning? I'm sorry, I think my ship just had some malfunctions, I didn't mean to offend."`
+				`	"Scanning? I'm sorry, I think my ship just had some malfunctions. I didn't mean to offend."`
 					goto lie
 				`	"The Heliarchs asked me to do it."`
 					goto truth
@@ -902,7 +897,7 @@ mission "Quarg Interrogation"
 			label truth
 			`	"And why did you agree? Do you wish to join their ranks, perhaps?" It asks.`
 			choice
-				`	"I just wanted to help, it's not like I destroyed your ships or something."`
+				`	"I just wanted to help. It's not like I destroyed your ships or something."`
 					goto justhelp
 				`	"They told me that the Quarg keep others in 'separate boxes', and that you hinder their development."`
 					goto hinder
@@ -910,9 +905,9 @@ mission "Quarg Interrogation"
 			`	"Perhaps not, but you agreed to collect intel on us and our worlds, which hold countless civilians, and deliver the findings to a group that hates us."`
 				goto end
 			label hinder
-			`	"And you believe that? Have we restricted your movement? Chastised you for interacting with the Hai, or Korath? Even after you agreed to help those foolish, tyrannical Heliarchs, are you not here, in one of our worlds, peacefully conversing with a Quarg?"`
+			`	"And you believe that? Have we restricted your movement? Chastised you for interacting with the Hai or Korath? Even after you agreed to help those foolish, tyrannical Heliarchs, are you not here, in one of our worlds, peacefully conversing with a Quarg?"`
 			label end
-			`	It blinks a few more times, as a few small stripes on it's face rapidly alternate between shades of deep blue and bright red, then ends with, "It would be most wise to cut off all your ties with these 'Heliarchs,' human."`
+			`	It blinks a few more times as a few small stripes on its face rapidly alternate between shades of deep blue and bright red, then ends with, "It would be most wise to cut off all your ties with these 'Heliarchs', human."`
 			`	It walks away, headed to the Wardragon it looked at before.`
 				decline
 
@@ -937,15 +932,15 @@ mission "Heliarch Recon 3-A"
 	on offer
 		conversation
 			`Upon landing, a trio of Heliarchs walk up to your ship to meet with you.`
-			`	They inform you that though they looked over the scan logs of the Quarg ships, they weren't capable of detecting anything different from back when they were actively at war against them.`
-			`	"Although tinkered with, the human scanners sadly could not give us the precise information we needed."`
-			`	"Diminute stashes of their outfits, our ancestors stole, but never to fully capture one of the Quarg ships, did they manage," the Kimek adds.`
+			`	They inform you that though they looked over the scan logs of the Quarg ships, they weren't capable of detecting anything different from when they were actively at war against them.`
+			`	"Although tinkered with, the human scanners could not give us the precise information we needed."`
+			`	"Diminutive stashes of their outfits, our ancestors stole, but never to fully capture one of the Quarg ships, did they manage," the Kimek adds.`
 			`	"How the whole connects all their advanced equipment, we must learn, if to ever replicate it we are."`
-			`	The Saryd then explains that they have gotten special permission from the elders to let you 'borrow' one of their own pieces of scanning equipment, and that you should head to the <destination> if you wish to continue helping them.`
+			`	The Saryd then explains that they have gotten special permission from the elders to let you 'borrow' one of their own pieces of scanning equipment, and you should head to <destination> if you wish to continue helping them.`
 			choice
 				`	"Ok, I'll be heading there as soon as possible."`
 					accept
-				`	"Sorry, but I don't wanna risk upsetting the Quarg any more than I've already risked."`
+				`	"Sorry, but I don't want to risk upsetting the Quarg any more than I already have."`
 					decline
 				`	"Why didn't you just give me one last time?"`
 			`	"Restricted technology, it is. For Heliarch use only."`
@@ -955,11 +950,11 @@ mission "Heliarch Recon 3-A"
 				`	"Well, I don't want to risk any of that. Sorry, but I can't help you."`
 					decline
 			`	"Information, we have acquired. Protected by the Quarg, some expedition in the nearby human systems was. Correct that is, yes?"`
-			`	You confirm that there was indeed an archeology project on Zug, and explain how a Quarg Wardragon helped protect the dig site from a pirate attack.`
+			`	You confirm that there was indeed an archeology project on Zug and explain how a Quarg Wardragon helped protect the dig site from a pirate attack.`
 			`	"Then alone, the Wardragon is," the Arach says. "From their rings, and other worlds, far away it is. Arrive, reinforcements will not."`
 			`	"Only to scan it, we ask of you, Captain. Free to run away, you are, if it indeed attacks you," the Saryd reiterates.`
 			choice
-				`	"Fine, I'll help you, but won't risk my life for the scans if the Wardragon attacks me outright."`
+				`	"Fine. I'll help you, but I won't risk my life for the scans if the Wardragon attacks me outright."`
 					accept
 				`	"You say that, but the one going up against a Quarg ship would be me. Sorry, I won't help you this time."`
 					decline
@@ -985,7 +980,7 @@ mission "Heliarch Recon 3-B"
 			`The Heliarch engineers are waiting for you when you land, and immediately make sure the Scanning Module is installed in your ship.`
 			`	"Remember Captain, only borrowing, you are. Once returned, you have, take our scanner back, we will," one of them says.`
 			`	"At most for half an Earth month, keep it, you may. Orders, we have, to consider it theft, if any longer, you take," another adds.`
-			`	You're also warned not to disable or destroy the Wardragon, should it attack you, as that would permanently damage your standing with them, instead of just temporarily.`
+			`	You're also warned not to disable or destroy the Wardragon should it attack you, as that would not temporarily, but permanently, damage your standing with them.`
 			`	They wish you good luck, and you head back to your ship.`
 				accept
 	npc save "scan outfits"
@@ -999,16 +994,16 @@ mission "Heliarch Recon 3-B"
 	on complete
 		event "heliarch intel break" 42
 		"assisted heliarch" ++
-		log "Scanned the Quarg Wardragon flying around the Zubeneschamali system, successfully evading it when it attacked, and delivered the scan logs to the Heliarchs."
+		log "Scanned the Quarg Wardragon flying around the Zubeneschamali system, successfully evading it while it attacked, and delivered the scan logs to the Heliarchs."
 		"reputation: Quarg" = 1
 		outfit "Scanning Module" -1
 		payment 690000
 		conversation
-			`The Heliarchs have their engineers remove their scanners from your ship immediately when you land back. They seem pleased with the results, looking at the scan logs for the first time, as they hand you <payment>.`
+			`The Heliarchs have their engineers remove their scanners from your ship immediately when you land back. They seem pleased with the results, looking at the scan logs for the first time as they hand you <payment>.`
 			`	"Survived, you thankfully have, Captain."`
 			`	"Much bravery, you've shown, to even under attack by the Quarg, continue your mission."`
-			`	"More detailed, and useful, these scan results are. Assisted us greatly, you have."`
-			`	They explain that they will probably not ask for your help for a mission like this again, seeing as you might get in some serious trouble out there, but will keep an eye out for anything else you can help them with.`
+			`	"More detailed and useful, these scan results are. Assisted us greatly, you have."`
+			`	They explain that they will probably not ask for your help for a mission like this again, seeing as you might get in some serious trouble with the Quarg, but will keep an eye out for anything else you can help them with.`
 	on fail
 		"reputation: Heliarch" = -1000
 
@@ -1018,7 +1013,7 @@ event "heliarch intel break"
 
 
 
-mission "Wardragon Chill Again"
+mission "Keep Zug Wardragon"
 	landing
 	invisible
 	source "Ring of Wisdom"
@@ -1046,8 +1041,8 @@ mission "Heliarch Expedition 1"
 		has "event: heliarch intel break"
 	on offer
 		conversation
-			`As you land on <origin>, a ringworld under Heliarch rule, you remember the several missions they had you perform, scanning Quarg ships and landing on their worlds.`
-			`	It then clicks that, although you have seen many ringworlds, complete and in construction, the only damaged one you could find was the one through the wormhole in Deneb. Would you like to tell the Heliarch about it?`
+			`As you land on <origin>, a ringworld under Heliarch rule, you remember the several missions they had you perform scanning Quarg ships and landing on their worlds.`
+			`	You then realize although you have seen many ringworlds, complete and in construction, the only damaged one you could find was the one through the wormhole in Deneb. Would you like to tell the Heliarch about it?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
@@ -1059,28 +1054,28 @@ mission "Heliarch Expedition 1"
 			choice
 				`	"Can you bring me to a higher-up? I think I've found some useful information."`
 				`	"Is there anyone I can talk to about a broken ringworld?"`
-			`	The group discusses among themselves for a bit, then abide, bringing you to a restricted section of the ringworld, reserved for the Heliarch.`
-			`	Many Heliarch members enter the room over time, standing up as one final, elderly Saryd slowly makes his way to the table, stopping opposite to you.`
+			`	The group discusses among themselves for a bit, then they bring you to a restricted section of the ringworld, reserved for the Heliarch.`
+			`	Many Heliarch members enter the room over time, standing up as one final, elderly Saryd slowly makes his way to the table stopping opposite to you.`
 			`	"Our invaluable human guest, we greet," he says. "An honor, it is, for I, elder Aulori, to such a visit, host."`
 			`	Some other members salute you as well, and then the elder ask what is it that you wanted to tell them.`
 			choice
-				`	"I know of a system where a broken Quarg ringworld is, I figured I should tell you."`
+				`	"I know of a system where a broken Quarg ringworld is. I figured I should tell you."`
 				`	"Would I be paid if I told you about a place where you can find a broken Quarg ringworld?"`
 			`	He squints his eyes, then speaks, "Forgive me, you must, Captain, but repeat that, would you?"`
 			`	You say it again, and he once again looks puzzled. He speaks a bit to his colleagues in their own language, then takes off the translation box from around his neck.`
 			`	Soon after, another set is brought to him and he asks again. You repeat, once more.`
-			`	"Embarrassing to say this, it is, Captain, but still not comprehending it, I fear I am," he says. "An incomplete ringworld, you've found? What you mean, is it that?"`
+			`	"Embarrassing to say this, it is, Captain, but still uncomprehending, I fear I am," he says. "An incomplete ringworld, you've found? What you mean, is it that?"`
 			choice
 				`	"I didn't say incomplete, I said broken. I know the difference."`
-				`	"Is this some joke? If you don't care about the broken ringworld, just tell me, don't waste my time."`
-			`	You explain in detail about where the wormhole is, giving a bit of context about the Pug and the Deneb system. You speak of the odd planet on the other side, and the nearby system with the ringworld. He remains mostly silent while you explain, save for when he lets out a grunt and briefly breaks the poker face with a shocked expression when you first utter the word "Pug".`
-			`	You were too focused on this elder Aulori to notice before, but all over the table the other Heliarchs are engaged in a rather heated, though mostly quiet, discussion, as they gesticulate and tilt the table with their body weight amidst whispers.`
+				`	"Is this some joke? If you don't care about the broken ringworld, just tell me. Don't waste my time."`
+			`	You explain in detail about where the wormhole is, giving a bit of context about the Pug and the Deneb system. You speak of the odd planet on the other side, and the nearby system with the ringworld. He holds a poker face as you recount the experience, only breaking it and grunting in surprise when you say the word 'Pug'.`
+			`	You were too focused on this elder Aulori to notice before, but across the table the other Heliarchs are engaged in a quiet but heated discussion as they gesticulate and tilt the table with their body weight amidst whispers.`
 			`	Aulori stands up, and the others stop talking, looking at him.`
 			`	"Broken?" He stares right at you. "Impossible, such a thing should be... And Pug, you spoke of? Absolutely sure, are you, Captain?"`
-			`	You nod, and after talking among themselves, you're asked to wait outside the room for a while. The whispering discussion from earlier now becomes a fully fledged debate, as you can hear shouting coming from inside, in multiple Coalition languages. After half an hour, you also hear what must have been the table being knocked over, and louder yelling.`
-			`	It all grows quiet for a while, and then the door opens again, the table and everything else is in order. Everyone leaves, and Aulori comes over to you.`
+			`	You nod, and after talking among themselves, you're asked to wait outside the room for a while. The whispering discussion from earlier now becomes a fully fledged debate, as you can hear shouting coming from inside, in multiple Coalition languages. After half an hour, you also hear what must have been the table being knocked over and louder yelling.`
+			`	It all grows quiet for a while, and then the door opens again. The table and everything else has been placed back in their original spots. Everyone leaves, and Aulori comes over to you.`
 			`	"Adjusted, your ship's sensors will be. Better programmed, we will make them, for more detailed tridimensional projections," he says, and you're brought back to the ship.`
-			`	Some engineers indeed go inside your ship, and spend some time tinkering with it. After they're done, Aulori tells you to land on the planet you mentioned, Ruin, and to travel to World's End, to scan the ringworld. He then leaves, going back to the restricted section.`
+			`	Some engineers go inside your ship and spend some time tinkering with it. After they're done, Aulori tells you to land on the planet you mentioned, Ruin, and to travel to World's End to scan the ringworld. He then leaves, going back to the restricted section.`
 				accept
 	on enter "World's End"
 		dialog `You fire up your ship's sensors, letting it collect the data the Heliarch want.`
@@ -1088,11 +1083,11 @@ mission "Heliarch Expedition 1"
 		event "heliarch expedition break" 27
 		payment 1200000
 		conversation
-			`You're met by Aulori when you land, as well as several other Heliarch agents. You transmit your scan logs, and they bring you to a separate room once again, where a model of the broken ringworld is being projected for all to see.`
-			`	"For our previous skepticism, we apologize, Captain," Aulori says. "Only doubt, could we feel, when about this ring, you told us. For millenia, known of our three rings, we have. Never damaged, were these. Preposterous it was, to even consider them vulnerable. Foreign, the concept was."`
-			`	He pauses for a moment, as the projection makes sure to show one of the more fragmented parts of the ring, where floating debris can be seen once zoomed in. Aside from his previous lines, neither Aulori nor his colleagues have said anything at all.`
+			`You're met by Aulori when you land as well as several other Heliarch agents. You transmit your scan logs, and they bring you to a separate room once again, where a model of the broken ringworld is being projected for all to see.`
+			`	"For our previous skepticism, we apologize, Captain," Aulori says. "Only doubt, we could feel, when about this ring, you told us. For millenia, known of our three rings, we have. Never damaged, were these. Preposterous it was, to even consider them vulnerable. Foreign, the concept was."`
+			`	He pauses for a moment as the projection makes sure to show one of the more fragmented parts of the ring. Floating debris litters the area as the pojection zooms in. Aside from his previous lines, neither Aulori nor his colleagues have said anything at all.`
 			`	"Invulnerable, we thought them. Invincible. Indestructible," he speaks again. "This is unfathomable, Captain <last>. Contact you again, we shall."`
-			`	He hands you <payment>, and you're escorted out of the room, and back to your ship, as he and the others remain marveled at the projection.`
+			`	He hands you <payment>, and you're escorted out of the room and back to your ship as he and the others remain marveled at the projection.`
 
 
 
@@ -1102,7 +1097,7 @@ event "heliarch expedition break"
 
 mission "Heliarch Expedition 2"
 	name "Contacted"
-	description "Head to <destination>, where the Heliarch will tell you about their future plans about investigating the broken Quarg ringworld."
+	description "Head to <destination> where the Heliarch will tell you about their future plans for investigating the broken Quarg ringworld."
 	landing
 	source
 		government "Coalition"
@@ -1120,7 +1115,7 @@ mission "Heliarch Expedition 2"
 
 mission "Heliarch Expedition 3"
 	name "Extraterritorial Venture"
-	description "Escort a Heliarch ship through human space, and through the wormhole in Deneb, so that they can further investigate the broken ringworld."
+	description "Escort a Heliarch ship to <destination> to pick up supplies, then guide them through human space and through the wormhole in Deneb so that they can further investigate the broken ringworld."
 	landing
 	source "Ring of Wisdom"
 	destination "Ablub's Invention"
@@ -1130,9 +1125,9 @@ mission "Heliarch Expedition 3"
 		conversation
 			`Elder Aulori meets you when you land.`
 			`	"Carefully analyzing your findings, we have been, Captain. Much insight, they have brought us," he says. "Only so much can be gained from second hand observation, unfortunately. For that reason, to escort one of our own ships there, we ask of you."`
-			`	He points to a Heliarch Punisher, parked in the distance, with it's crew loading some cargo into it. He says it will be the ship that will go with you.`
+			`	He points to a Heliarch Punisher, parked in the distance with its crew loading some cargo into it. He says this ship will go with you.`
 			choice
-				`	"Of course, I'll show them the way."`
+				`	"Of course. I'll show them the way."`
 				`	"What do you expect to find there? Spare parts?"`
 					goto parts
 				`	"Well, I think they're probably good to get there on their own. Sorry, but I'm not interested."`
@@ -1141,10 +1136,10 @@ mission "Heliarch Expedition 3"
 			`	"Too advanced, the composites that make up this and all other ringworlds are. Replicate them, we cannot. Not yet. If how this one was destroyed, we learn, maybe how to construct parts of our own, we could."`
 			choice
 				`	"Fair enough. Alright, I'll show them the way."`
-				`	"I'm no megastructure engineer, won't help to have me go there. They can go on their own, I'm not interested."`
+				`	"I'm no megastructure engineer. It won't help to have me go there. They can go on their own; I'm not interested."`
 					decline
-			`	"Excellent. Equipped with a Jump Drive, the ship is, and to reach this "Ruin" planet, enough fuel, it has. Only, a few last scanners, the scientists have requested. A quick stop at <destination>, and to the ringworld, you may bring them."`
-			`	He introduces you to the Punisher's crew, and the dozens of scientists and engineers, who will also be accompanying you, then wishes you all good luck.`
+			`	"Excellent. Equipped with a jump drive, the ship is, and to reach this "Ruin" planet, enough fuel, it has. A few last scanners, the scientists have requested. A quick stop at <destination>, and to the ringworld, you may bring them."`
+			`	He introduces you to the Punisher's crew and the dozens of scientists and engineers, who will also be accompanying you, then he wishes you all good luck.`
 				accept
 	npc accompany save
 		personality escort heroic opportunistic
@@ -1155,7 +1150,7 @@ mission "Heliarch Expedition 3"
 
 mission "Heliarch Expedition 4"
 	name "Extraterritorial Venture"
-	description "Escort a Heliarch ship through human space, and through the wormhole in Deneb, so that they can further investigate the broken ringworld."
+	description "Escort a Heliarch ship through human space and through the wormhole in Deneb so that they can further investigate the broken ringworld."
 	landing
 	source "Ablub's Invention"
 	destination "Ruin"
@@ -1163,39 +1158,39 @@ mission "Heliarch Expedition 4"
 		has "Heliarch Expedition 3: done"
 	on offer
 		conversation
-			`The Punisher's captain has some equipment loaded to the ship, and some mechanics do one last maintenance check on the ship before it leaves home territory, then tells you they will follow your lead when you launch.`
+			`The Punisher's captain has some equipment loaded to the ship, and the mechanics do one last maintenance check on the ship before it leaves home territory. The captain tells you they will follow your lead when you launch.`
 				accept
 	npc accompany save
 		personality escort heroic opportunistic
 		government "Heliarch"
 		ship "Heliarch Punisher (Fuel)" "Eldest Inspector"
 	on visit
-		dialog `You've reached <planet>, but left the Heliarch ship behind. Best depart and wait for them to arrive.`
+		dialog `You've reached <planet> but left the Heliarch ship behind. Best depart and wait for them to arrive.`
 	on complete
 		conversation
 			`The Punisher's captain had you follow them all over the planet after they refueled in the odd "spaceport".`
 			`	Apparently they want an isolated place to set up their camp here, somewhere where they wouldn't be easily spotted.`
-			`	They settle for a cavern on the way up a mountain, overlooking a foggy valley, near where a river passes by.`
-			`	As they unload the cargo and start setting up, the captain comes to you, and says that they'll meet you in the spaceport in a few hours to discuss "the acquisition of supplies."`
+			`	They settle for a cavern on the way up a mountain, overlooking a foggy valley. A river is faintly visible through the dense fog.`
+			`	As they unload the cargo and start setting up, the captain comes to you and says that they'll meet you in the spaceport in a few hours to discuss "the acquisition of supplies."`
 
 
 
 mission "Heliarch Expedition 5"
 	name "Settlement Supplies"
-	description "Buy a nGVF-CC Fuel Cell, a LP144a Battery Pack, and a Water Coolant System, then deliver them to the Heliarch agets on Ruin, for them to set up their camp."
+	description "Buy a nGVF-CC Fuel Cell, a LP144a Battery Pack, and a Water Coolant System, then deliver them to the Heliarch agets on Ruin for them to set up their camp."
 	source "Ruin"
 	to offer
 		has "Heliarch Expedition 4: done"
 	on offer
 		conversation
-			`You've been waiting around for hours in the "spaceport" here, when the Punisher finally comes back.`
+			`You've been waiting around for hours in the "spaceport" here when the Punisher finally comes back.`
 			`	The captain, a young Arach, comes to meet you.`
 			`	"To do some shopping, ready, are you, Captain?"`
 			choice
 				`	"Wasn't I gonna get some supplies for you? Figured you meant I just had to pick them up from Coalition space."`
 				`	"Why do you even need supplies? Wasn't your cargo full with those crates?"`
-			`	"A most exquisite opportunity, this is. Excited, our researchers are. To keep them and the operation secure, I was tasked," he says. "Filled to the brim with laboratory utensils and advanced equiment, our cargo was, sadly."`
-			`	He goes over how they lack basic equipment to set up a proper camp, and further details on how all the Punisher was carrying was the technology that will be used to study the ringworld, so they have no means of sustaining the camp here in the long run.`
+			`	"A most exquisite opportunity, this is. Excited, our researchers are. To keep them and the operation secure, I was tasked," he says. "Filled to the brim with laboratory utensils and advanced equiment, our cargo was, unfortunately."`
+			`	He goes over how they lack basic equipment to set up a proper camp and further details on how all the Punisher was carrying was the technology that will be used to study the ringworld, so they have no means of sustaining the camp here in the long run.`
 			choice
 				`	"You came here without supply or equipment? What the hell were you thinking?"`
 					goto nosupply
@@ -1204,12 +1199,12 @@ mission "Heliarch Expedition 5"
 			label nosupply
 			`	"Decide it, I did not. Determined it to be the best course of action, the elders have," he explains. "Completely overhaul our understanding of the ringworlds, and maybe about these 'Pug' more information uncover, this project could."`
 			label needs
-			`	He says that the group will need a way to generate energy, and a sizeable battery too, to power up the facilities that will be mounted on the planet. He also mentions that they will need something to make sure the water they get from the nearby river is in a drinkable state.`
-			`	"Compensated for your expenses, you would be, of course," he says after finishing the list.`
-			`	You two go inside your ship, where you show him a list of outfits around human space, and even beyond, but he says that he doesn't want you to go too far away, as you'd need to return soon.`
+			`	He says that the group will need a way to generate energy and a sizeable battery to power the facilities that will be mounted on the planet. He also mentions that they will need something to make sure the water they get from the nearby river is in a drinkable state.`
+			`	"Compensated for your expenses, you would of course be," he says after finishing the list.`
+			`	You two go inside your ship where you show him a list of outfits around human space and even beyond, but he says that he doesn't want you to go too far away, as you'd need to return soon.`
 			`	After giving him details of many outfits, he settles for a nGVF-CC Fuel Cell, a LP144a Battery Pack, and a Water Coolant System.`
 			`	"For us to sleep, enough bunks, my ship has, and skilled with lichen cultivation, our Kimek crewmembers are, so all we need, those are," he says.`
-			`	You say you'll come back soon with the requested items, and he wishes you a safe travel, going back inside his ship and leaving for the camp.`
+			`	You say you'll come back soon with the requested items, and he wishes you safe travels, going back inside his ship and leaving for the camp.`
 				accept
 	on complete
 		outfit "nGVF-CC Fuel Cell" -1
@@ -1217,9 +1212,9 @@ mission "Heliarch Expedition 5"
 		outfit "Water Coolant System" -1
 		payment 330000
 		conversation
-			`You land back on the foggy valley to deliver the outfits, to find several big tents inside the cavern.`
-			`	"Small enough debris, we found, that bring them here, we could. Analyzing and experimenting, the scientists are," the Heliarch captain says.`
-			`	After everything has been unloaded from your ship, he hands you <payment>, saying they will be fine on their own now, that soon the Water Coolant System will be altered enough to have it run in a way to provide them with clean water, and that the power systems will shortly be connected to the research facilities.`
+			`You land back on the foggy valley to deliver the outfits and find several big tents inside the cavern.`
+			`	"Small enough debris, we found, that bring them here, we could. Analyzing and experimenting, the scientists are," the Heliarch captain explains.`
+			`	After everything has been unloaded from your ship, he hands you <payment>, saying they will be fine on their own now, that soon the Water Coolant System will be altered to provide clean water, and that the power systems will shortly be connected to the research facilities.`
 
 
 
@@ -1228,7 +1223,7 @@ mission "Heliarch Containment 1"
 	description "Bring these <bunks> Heliarch soldiers, along with <cargo>, to <destination>, so they can contain a rioting group."
 	deadline
 	passengers 33
-	cargo "Military Supplies" 25
+	cargo "military supplies" 25
 	to offer
 		has "Coalition: Contributor: done"
 		has "main plot completed"
@@ -1239,37 +1234,35 @@ mission "Heliarch Containment 1"
 	destination "Fourth Shadow"
 	on offer
 		conversation
-			`The spaceport on <origin> is in quite a lot of turmoil, as dozens of Heliarch agents march around at an accelerated pace, preparing to board their own ships, and some speaking with some of the captains here.`
-			`	It's no different with you, with a Kimek agent approaching you after noticing you watching.`
+			`The spaceport on <origin> is in quite a lot of turmoil, as dozens of Heliarch agents march around at an accelerated pace. Some prepare to board their own ships, and others speak with some of the captains here.`
+			`	It's no different with you. A Kimek agent approaching you after noticing you watching.`
 			`	"Much assistance, we require, Captain," they say. "A transport for <destination>, we need. For <bunks> of us, and <cargo>. Of great urgency, this task is."`
 			`	Without you even noticing it, an Arach agent has also gotten close, and after the Kimek is done speaking, says, "To contain a riot, there, we must go. <payment>, you will receive."`
 			choice
-				`	"Okay, bring your friends and the cargo to my ship."`
+				`	"Okay. Bring your friends and the cargo to my ship."`
 					accept
 				`	"That seems a bit excesive for a riot, no?"`
 					goto excessive
-				`	"You'll have to find someone else, I'm not heading there right now."`
+				`	"You'll have to find someone else. I'm not heading there right now."`
 					decline
 			label excessive
 			`	"To keep the peace, our job is," the Arach responds. "If with achieving that goal, you wish to help, transport us there, you should."`
 			choice
-				`	"Okay, bring your friends and the cargo to my ship."`
+				`	"Okay. Bring your friends and the cargo to my ship."`
 					accept
-				`	"You'll have to find someone else, I'm not heading there right now."`
+				`	"You'll have to find someone else. I'm not heading there right now."`
 					decline
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 420000
-		conversation
-			`You're told to open your hatch as soon as you land, and when you do, the Heliarch agents storm out of your ship, while a separate group that was waiting for you unloads the cargo.`
-			`	A few seconds later you see that <payment> have been added to your account.`
+		dialog `You're told to open your hatch as soon as you land, and when you do, the Heliarch agents storm out of your ship while a separate group that was waiting for you unloads the cargo. A few seconds later you see that <payment> have been added to your account.`
 
 
 
 mission "Heliarch Containment 2"
 	name "Pick Up Injured Soldiers"
-	description "Land on Delve of Bloptab, to pick up the <bunks> Heliarch Soldiers in need of medical attention, and transport them to <destination>."
+	description "Land on <stopovers>, to pick up the <bunks> Heliarch Soldiers in need of medical attention, and transport them to <destination>."
 	deadline
 	passengers 21
 	to offer
@@ -1289,17 +1282,17 @@ mission "Heliarch Containment 2"
 					accept
 				`	"Can't you ask some of the other captains here?"`
 					goto othercaptains
-				`	"Tragic, but I'm not interested, sorry."`
+				`	"Tragic, but I'm not interested. Sorry."`
 					decline
 			label othercaptains
-			`	"And asking, we are," a Kimek replies. "Heading there, seven other ships, already are. As much help as possible, in need of, we are."`
+			`	"And asking, we are," a Kimek replies. "Heading there, seven other ships already are. As much help as possible, in need of we are."`
 			choice
 				`	"Oh, I see. Alright, I'll help them."`
 					accept
-				`	"Seven ships? Guess you've got it all figured out then, no? I'm not interested."`
+				`	"Seven ships? Guess you've got it all figured out then. I'm not interested."`
 					decline
 	on stopover
-		dialog `Coming in for a landing you notice dozens of Heliarch warships rapidly surveying the planet. When you land, you see more of the ships that came to help pick up the injured agents, as hundreds of bandaged Saryds, Kimek and Arachi are being brought to the ships that keep arriving and departing. You pick up your passengers, and prepare to head to the medical center on <destination>.`
+		dialog `You notice dozens of Heliarch warships rapidly surveying the planet. When you land, you see more of the ships that came to help pick up the injured agents. Hundreds of bandaged Saryds, Kimek, and Arachi are being brought to the ships that keep arriving and departing. You pick up your passengers and prepare to head to the medical center on <destination>.`
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on complete
@@ -1308,25 +1301,25 @@ mission "Heliarch Containment 2"
 			`You help the medical workers get the agents on transports, and one of the Arachi Heliarchs supervising the operation hands you <payment>.`
 			`	"Avoided, many casualties were, thanks to your assistance in our conjoint efforts, Captain," she says. "Of this cooperativeness, inform the elders, I shall."`
 			choice
-				`	"Thanks, but I didn't really do anything too impressive, it was all just a simple transport mission."`
+				`	"Thanks, but I didn't really do anything too impressive. It was just a simple transport mission."`
 					goto impress
-				`	"There were a lot of injured people there, what even happened there? Some major factory accident?"`
+				`	"There were a lot of injured people there. What happened? Some major factory accident?"`
 					goto accident
 			label impress
-			`	"Worth much, the occasional impressive act is not. Greatly value your continued assistance, we do, Captain. Of that, you can be sure."`
-			`	She bids you farewell, and goes back to making sure the injured agents find their way to hospitals.`
-				accept
+			`	"Overvalued, the rare singular 'impressive' acts are. Your continuous assistance, much more do we value."`
+				goto end
 			label accident
-			`	"A Resistance raid, it was. The valuable resources there, they sought. Thanks to their efforts, though, robbed, the warehouses were not," she says, pointing to the injured agents.`
-			`	She bids you farewell, and goes back to making sure the injured agents find their way to hospitals.`
+			`	"A Resistance raid, it was. The valuable resources there, they sought. Thanks to their efforts though, robbed, the warehouses were not," she says, pointing to the injured agents.`
+			label end
+			`	She bids you farewell and goes back to making sure the injured agents find their way to hospitals.`
 				accept
 
 
 
 mission "Heliarch Containment 3"
 	name "Informational Medicine"
-	description "While picking up <cargo> from Secret Sky, let loose the spy bots the Heliarchs handed to you, to act as surveillance for the planet."
-	cargo "Medication" 15
+	description "While picking up <cargo> from Secret Sky, let loose the spy bots the Heliarchs gave you to act as surveillance for the planet."
+	cargo "medication" 15
 	to offer
 		has "Heliarch Containment 1: done"
 		not "Resistance: Questions: offered"
@@ -1348,7 +1341,7 @@ mission "Heliarch Containment 3"
 			label inquire
 			`	"Inform you of that, we cannot," the Kimek says. "Not until accepted our offer, you have."`
 			choice
-				`	"Fine, bring me to somewhere you can tell me."`
+				`	"Fine. Bring me to somewhere you can tell me."`
 				`	"That seems a bit sketchy, I'll pass."`
 					decline
 			label way
@@ -1358,10 +1351,10 @@ mission "Heliarch Containment 3"
 				`	"<first> <last>, pleasure to meet you."`
 				`	"I wouldn't call this "agreeing" to work. Why the secrecy anyway?"`
 			`	"Anonymous reports, we have received, from loyal patriots. Secret Sky, a Saryd world, your destination is. Rising in activity there, the Resistance is, we fear," Plortup says.`
-			`	A couple small boxes are brought inside, and upon opening them, Plortup show you that many small drones are in. Drones very similar to those employed by the Repair Modules used here.`
-			`	"A union of technologies, it is. Of the Scanning Module, the incredible surveillance capabilities. Of the Repair Drones, the versatile mobility and durable shells."`
-			`	He explains to you that you're to head to Secret Sky to pick up <cargo> produced on the planet, but as you're coming in for a landing, jettison the crates with the drones, so that they may act as spybots.`
-			`	"To <destination>, you must return, after completed this task, you have," Plortup says. "Your payment, there you will receive. Suffice, <payment> will, surely."`
+			`	A couple small boxes are brought inside, and upon opening them, Plortup shows you they contain several small drones - drones very similar to those employed by the repair modules used here.`
+			`	"A union of technologies, it is. Of the scanning module, the incredible surveillance capabilities are. Of the repair drones, the versatile mobility and durable shells are."`
+			`	He explains to you that you're to head to Secret Sky to pick up <cargo> produced on the planet, but as you're coming in for a landing, jettison the crates with the drones so that they may act as spybots.`
+			`	"To <destination>, you must return, after completed this task, you have," Plortup says. "Your payment there, you will receive. Suffice, <payment> will, surely."`
 			`	He wishes you good luck, and the trio from earlier escorts you back to your ship.`
 				accept
 	on stopover
@@ -1370,7 +1363,7 @@ mission "Heliarch Containment 3"
 		payment 330000
 		conversation
 			`Landing on <planet>, you're met by elder Plortup, who hands you your payment of <payment>.`
-			`	"Aided us, once more, you have, Captain. To further work with you, I look forward," he says, as he leaves for some other section of the ring.`
+			`	"Aided us, once more, you have, Captain. To further work with you, I look forward," he says, before leaving for some other section of the ring.`
 
 
 
@@ -1389,21 +1382,21 @@ mission "Heliarch Containment 4-A"
 		conversation
 			`As you land on <origin>, you see an Arach coming toward you. You recognize him as elder Plortup, the one who you helped with deploying drones on a Saryd world.`
 			`	"Ask for your assistance, once again, I must, Captain <last>," he says.`
-			`	You have no time to ask what's going on, or refuse, as he has you brought to a separate room, where a Saryd, a Kimek, and an Arach are waiting.`
+			`	You have no time to ask what's going on, or refuse, as he has you brought to a separate room where a Saryd, Kimek, and Arach are waiting.`
 			`	"Brewing on <destination>, another riot is. Your continued support, we hope you'll once more provide, Captain."`
 			choice
 				`	"Alright, what's the plan?"`
 					goto plan
-				`	"I'm not really comfortable in helping with these, can you let me go?"`
+				`	"I'm not really comfortable in helping with these. Can you let me go?"`
 					goto leave
 			label leave
 			`	He perks his head up a bit, then mumbles something in his own language, momentarily turning off the translator. He gives in, and has someone bring you back to your ship.`
 				decline
 			label plan
-			`	"Granted access to our civilian ships, you were. Three new Kimek Spires, you have bought. Many passengers, to <destination>, in them you are carrying," he says.`
-			`	The Saryd of the trio of captains then speaks up, "Pose as civilian ships, we will. Follow you, we will."`
-			`	"Armed and ready, the soldiers are. Follow, we will, once depart, you do," the Kimek adds.`
-			`	Plortup wishes you all good luck, and you follow the captain trio back to your ship, seeing that the Spires are parked close to it.`
+			`	"Granted access to our civilian ships, you were. Three new Kimek Spires, you have bought. Many passengers to <destination>, in them you are carrying," he says.`
+			`	The Saryd of the trio of captains then speaks up, "Pose as civilian ships, we must. Accompany your ship, we will."`
+			`	"Armed and ready, the soldiers are. Follow your lead once you depart, we shall," the Kimek adds.`
+			`	Plortup wishes you all good luck, and you follow the trio of captains back to your ship, seeing that the Spires are parked close to it.`
 				accept
 	npc accompany save
 		personality escort heroic opportunistic
@@ -1426,22 +1419,21 @@ mission "Heliarch Containment 4-B"
 	destination "Station Cian"
 	on offer
 		conversation
-			`The hundreds of Heliarch agents leave the three transports, rushing in groups to separate parts of the city, marching in unison, weapons in hand.`
-			`	You're informed by one of the local Heliarchs nearby that you should now head to <destination>, to collect your payment of <payment>.`
+			`The hundreds of Heliarch agents leave the three transports, rushing in groups to separate parts of the city. They march in unison, weapons in hand.`
+			`	You're informed by one of the local Heliarchs nearby that you should now head to <destination> to collect your payment of <payment>.`
 				accept
 	on complete
 		payment 495000
 		conversation
 			`You land in the station to find that <payment> have been transferred to you.`
-			`	Along with the credits, comes an incoming transmission from Plortup.`
-			`	"For my absence, forgive me, you must, Captain. On Fourth Shadow, broken out, another riot has."`
+			`	Along with the credits comes a transmission from Plortup. "For my absence, forgive me, you must, Captain. On Fourth Shadow, broken out, another riot has."`
 			`	He goes on to explain that the riot was quite a large one, and much of the fleet stationed here was sent there to help contain it. What remained is helping with the Remote Blue riot, so the station is fairly devoid of a military presence now.`
 
 
 
 mission "Heliarch Containment 5"
 	name "Stop The Fleeing Ships"
-	description "Defeat the Resistance ships that are attempting to flee. Only disable the ships, as the Heliarch wish to find the source of their weapons."
+	description "Defeat the Resistance ships that are attempting to flee. Only disable the ships, because the Heliarch wish to find the source of their weapons."
 	landing
 	to offer
 		has "Heliarch Containment 4-B: done"
@@ -1451,22 +1443,22 @@ mission "Heliarch Containment 5"
 		event "resistance fleeing rb"
 		conversation
 			`After the transmission with Plortup ends, the station is awfully quiet for a few hours.`
-			`	You head outside your ship to see if you can find something interesting to do, but can't find anything in particular. You also notice that the job board is completely empty, that the market's trade values are not updating, and any news system is awfully destabilized.`
-			`	Suddenly a few Heliarch rush beside you, heading for an office. They rush back outside, scouting the place, until they spot you, and rush for you.`
-			`	"Captain! Helped us, you have, trustworthy, you are. In need of a combat-ready ship, we are."`
+			`	You head outside your ship to see if you can find something interesting to do, but you don't find anything in particular. You also notice that the job board is completely empty, that the market's trade values are not updating, and any news system is awfully destabilized.`
+			`	Suddenly, a few Heliarch rush past you heading for an office. They quickly reemerge and approach you.`
+			`	"Captain! Helped us, you have. Trustworthy, you are, and in need of a combat-ready ship, we are."`
 			choice
 				`	"What's going on?"`
-				`	"My ship is not exactly combat-ready to fight your own warships."`
-			`They say that the station's systems haven't been functioning properly, and that the haven't been able of contacting the group on Remote Blue, nor the fleet that left for Fourth Shadow.`
-			`	"Alerted, we were, of incoming ships! Armed, civilian ships! Resistance members, no doubt they are. Fleeing, they are!"`
-			`	You can't say much before they've made you get back in your ship. They promise you'll be greatly compensated, and ask that you only disable the ships, boarding them after to see if there are any hostages inside.`
+				`	"My ship isn't exactly combat-ready to fight your own warships."`
+			`	They say that the station's systems haven't been functioning properly, and they haven't been able to contact neither the group on Remote Blue nor the fleet that left for Fourth Shadow.`
+			`	"Alerted, we were, of incoming ships! Armed, civilian ships! The Resistance, no doubt it is. Fleeing, they are!"`
+			`	You can't say much before they've made you get back in your ship. They promise you'll be greatly compensated and ask that you only disable the ships so you can board and check for hostages.`
 				launch
 	npc board
 		personality timid plunders entering target
 		government "Resistance"
 		ship "Saryd Sojourner (Bombardments)" "Hodoviah"
 		conversation
-			`Unlike the other two Resistance vessels, the <ship> is equipped with Heliarch weaponry. Sadly, you cannot verify the equipment it is using, nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
+			`Unlike the other two Resistance vessels, this ship is equipped with Heliarch weaponry. Sadly, you can neither verify the equipment it is using nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
 				launch
 		ship "Arach Spindle (Plasma)" "Aramitess"
 		conversation
@@ -1474,19 +1466,19 @@ mission "Heliarch Containment 5"
 				launch
 		ship "Kimek Thistle (Torpedoes)" "Resheph"
 		conversation
-			`This ship is equipped with Torpedo Launchers, somehow the Resistance has acquired human outfits, apparently. You're about to enter the ship and look for any hostages that might have been there, but rush back to your ship as a self destruction sequence starts.`
+			`This ship is equipped with Torpedo Launchers. Somehow, the Resistance has acquired human outfits. You're about to enter the ship and look for any hostages that might have been there, but you rush back as a self destruction sequence starts.`
 				launch
 	on complete
 		event "resistance detained rb"
 		"assisted heliarch" ++
 		payment 1320000
 		conversation
-			`Though you never managed to find out if there were any hostages on board, the Heliarch stationed at <planet> still herald you as a hero for a bit, for "detaining the Resistance", they claim.`
-			`	The Heliarchs immediately set to repair your ship, and you're still on alert for a few hours, in case any more ships come through, but everything appears to be normal. The station flips back to normality as well, getting it's communications back, among other functions.`
-			`	As soon as the commlinks are back, the Heliarchs contact elder Plortup, and inform him of what happened. Shortly after, <payment> are added to your account.`
-			`	"A humiliation, it would be, had under such circumstances, the Resistance ships escaped. Done well, you have, Captain," he says.`
-			`	He discusses with you the outfits that the ships were using, and is equally alarmed that they not only had stolen Heliarch equipment, but somehow also gotten a hold of human weapons.`
-			`	"To the other elders, this information, I will bring. Further tasks, of you, we may ask, but for now, done, your work is, Captain," he ends the transmission after a short salute.`
+			`Though you never managed to find out if there were any hostages on board, the Heliarchs stationed at <planet> still herald you as a hero for "detaining the Resistance".`
+			`	They immediately set to repair your ship, and you're still on alert for a few hours in case any more ships come through, but everything appears to be normal. The station returns to normality as well: communications and other functions are restored.`
+			`	As soon as the commlinks are back, the Heliarchs contact elder Plortup and inform him of what happened. Shortly after, <payment> are added to your account.`
+			`	"Humiliating, it would be, had under such circumstances, the Resistance ships escaped. Done well, you have, Captain," he says.`
+			`	He discusses with you the outfits that the ships were using and is equally alarmed that they had not only Heliarch equipment, but had also acquired human weapons.`
+			`	"To the other elders, this information I will bring. Further tasks, of you we may ask, but for now, done your work is, Captain," he ends the transmission after a short salute.`
 
 
 
@@ -1504,7 +1496,7 @@ event "resistance detained rb"
 
 mission "Heliarch Basic License"
 	name "Meet With Elders"
-	description "Head to <destination>, where the Heliarch elders will make you a Heliarch agent."
+	description "Head to <destination> where the Heliarch elders will make you a Heliarch agent."
 	landing
 	source
 		government "Coalition"
@@ -1520,22 +1512,22 @@ mission "Heliarch Basic License"
 	on offer
 		conversation
 			`When you land on <origin>, you find a Heliarch delegation waiting for you outside.`
-			`	You come out to meet them, and the Saryd of the group says, "A great ally to our Coalition, proved to be, you have."`
+			`	You come out to meet them, and the Saryd of the group says, "A great ally to our Coalition, you have proven to be."`
 			`	"Discussed your exploits, the elders have. Much contentment, your contributions brought us," the Kimek continues.`
-			`	"With you, a meeting, they request. To <destination>, you must go, if to join our ranks, you so wish," the Arach finishes.`
+			`	"With you, a meeting they request. To <destination> you must go, if to join our ranks, you so wish," the Arach finishes.`
 				accept
 	on complete
-		log "Was given a special circlet by the Heliarchs, which grants access to some of their technology, as well as serving as a translator for the Coalition languages."
+		log "Was given a special circlet by the Heliarchs, which grants access to some of their technology and serves as a translator for the Coalition languages."
 		set "language: Coalition"
 		event "first heliarch unlock"
 		set "license: Heliarch"
 		conversation
 			`When you land, you're met with a bit of ceremony: the usual Heliarch trio welcomes you, and each performs an extravagant salute.`
-			`	They bring you to a large, circular room, somewhat like a colosseum, with some Heliarch elders you recognize seated, among others you assume are of the same rank. You're instructed to head to the center.`
+			`	They bring you to a large, circular room, somewhat like a colosseum, with some Heliarch elders you recognize seated among others you assume are of the same rank. You're instructed to head to the center.`
 			`	The elders start to speak, and once again you're reminded of your "contributions and loyalty" to the Coalition.`
 			`	"Extraordinary, this ceremony is. Join our ranks, for the first time, an outsider does. May our Coalition, the enrolling of <first> <last> strengthen," a Saryd elder says, and after she finishes, all other elders stand up.`
-			`	The trio from before comes back in, the Saryd carrying some type of chest. Once they open it, you see a golden circlet inside. As everyone is waiting, you realize you're probably supposed to put it on yourself, so you pick it up and put it on your head.`
-			`	There's something like a round of applause, and some more speeches. After you're brought back to your ship, you're told that the circlet serves as a permission to buy certain outfits, as well as doubling as a translation device.`
+			`	The trio from before comes back in, the Saryd carrying some type of chest. They open it, revealing a golden circlet inside. As everyone is waiting, you realize you're probably supposed to put it on yourself, so you pick it up and put it on your head.`
+			`	There's something like a round of applause, and some more speeches. After you're brought back to your ship, you're told that the circlet serves as a permission to buy certain outfits and doubles as a translation device.`
 
 
 
