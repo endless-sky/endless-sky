@@ -57,6 +57,8 @@ void Preferences::Load()
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
+	settings["Ship outlines in shops"] = true;
+	settings["Interrupt fast-forward"] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)

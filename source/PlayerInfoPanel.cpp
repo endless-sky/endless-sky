@@ -174,6 +174,13 @@ void PlayerInfoPanel::Draw()
 
 
 
+bool PlayerInfoPanel::AllowFastForward() const
+{
+	return true;
+}
+
+
+
 bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));

@@ -39,6 +39,9 @@ public:
 	// The planet panel calls this when it closes.
 	void OnCallback();
 	
+	// The main panel allows fast-forward.
+	virtual bool AllowFastForward() const override;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
