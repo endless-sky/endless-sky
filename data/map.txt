@@ -27933,7 +27933,7 @@ planet "Rekat Moraski"
 planet Relic
 	attributes "near earth"
 	landscape land/valley4
-	description `Relic was colonized over seven hundred years ago, back when the construction of the first hyperdrive was still in living memory. At this point, most starships had a very limited range, so the stars adjacent to Earth were the only viable options for any colonization attempts. Because of this, Relic seemed like it was going to become a major colony, despite it's low gravity, harsh environment, and limited resources.`
+	description `Relic was colonized over seven hundred years ago, back when the construction of the first hyperdrive was still in living memory. At this point, most starships had a very limited range, so the stars adjacent to Earth were the only viable options for any colonization attempts. Because of this, Relic seemed like it was going to become a major colony, despite its low gravity, harsh environment, and limited resources.`
 	description `	However, this would not last. In less than fifty years, the colonies had spread to much more favorable planets, and Relic was left behind by most human development.`
 	spaceport `The spaceport here is located in the only recognized city on Relic, and it's only designed to handle the occasional merchant or Navy ship on its way to or from Earth. It doesn't even use standard landing pads used on most other planets. Instead, the natives seem to have set up some concrete slabs next to some gas pumps and gone back to their lives. Despite this, the small portion of Earth's traffic means a few ships land at the spaceport every day. This results in a running joke among the locals that the chief industry of Relic is the gas station.`
 	outfitter "Ammo North"
