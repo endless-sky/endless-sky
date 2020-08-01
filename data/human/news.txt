@@ -10,29 +10,12 @@
 
 
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "human merchant anywhere"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
 	name
 		word
 			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human112
 	message
 		word
 			"Can you believe how little they pay for used ships and outfits these days? It's just a scandal!"
@@ -46,31 +29,12 @@ news "human merchant anywhere"
 
 
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "human merchant in human space"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	name
 		word
 			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human108
-		portrait/human112
-		portrait/human125
 	message
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
@@ -87,8 +51,23 @@ news "human merchant in human space"
 			"My first ship was a Sparrow. How I survived my first week in space, I'm still not sure!"
 			"My first ship was a Shuttle. I kind of miss that glorified tour bus."
 			"I love doing Syndicate jobs. Easy money for not much work. I guess they're all so rich that they can afford to pay for the best."
+			"Why does the Deep restrict the sale of City-Ships? They don't seem that much better than other warships or freighters."
+			"I just don't get why anyone would pick the pirate life. Sure, no rules, but any government that doesn't force you to have 10 licenses just to look at a heavy warship is free enough to me."
+			"I've heard rumors of captains seeing the distinct flash of whatever Quarg ships use to jump near the core. Wonder what the Quarg are doing up there."
+			"Being a pirate must be a lose-lose scenario. You do badly and you end up enslaved to a stronger pirate. You do well and you get enough attention to get targeted by the Navy or Militia."
+			"I think that people are too harsh towards pirates. Not all of them are heartless."
+			"Be careful when taking suspicious jobs. You might end up at the wrong end of a gun."
+			"Always check the spaceport for jobs. Some of them pay quite well."
+			"Falcons are the best! They're faster and sleeker than any other civilian warship!"
+			"Leviathans are the best! They're tankier and can hold more firepower than any other civilian warship!"
+			"Why would anyone use a Falcon? They have specifications worse than the Leviathan in every way, and are more expensive to boot."
+			"How could anyone use a Leviathan? They're dreadfully slow and an eyesore to look at."
+			"People may tell you otherwise, but I think that Vanguards are the best. They have such powerful frontal weaponry."
+			"Warships may have both speed and weaponry on their side, but if you're looking for something to last, use a Behemoth."
+			"I don't get how people could get worked up over what ship to use. As long as I'm in my trusty Protector, I'm happy."
+			"Some of the names that captains give their ships are awful. Seriously, I've seen ships named 'Ship'."
+			"I'm convinced the merchant captains make the worst jokes."
 
-# Visual suggestion: hard-bitten, tough, often dark-skinned and/or wearing a hat
 news "human farming"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -96,23 +75,6 @@ news "human farming"
 	name
 		word
 			"Farmer"
-	portrait
-		portrait/human03
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human20
-		portrait/human21
-		portrait/human22
-		portrait/human52
-		portrait/human53
-		portrait/human78
-		portrait/human113
-		portrait/human116
-		portrait/human119
-		portrait/human120
-		portrait/human121
-		portrait/human126
 	message
 		word
 			"My neighbor is using some sort of newfangled pesticides. The wind carried their residue onto my fields and destroyed half my crops."
@@ -129,10 +91,10 @@ news "human farming"
 			"Did you eat today? Thank a farmer."
 			"I used to be a merchant captain like you. Bank account got up to a few million at one point. Thought I had it all. One day I realized none of it was making me happy. I bought this farm and gave the rest away. Best thing I ever did."
 			"I came out here because I liked the company of animals more than people like you. Go away."
+			"You should check around spaceports often. You might find one of us needing a captain like you for a job."
 
 
 
-# Visual suggestion: young, normal-looking, more female than male
 news "human textiles"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -140,18 +102,6 @@ news "human textiles"
 	name
 		word
 			"Textile worker"
-	portrait
-		portrait/human00
-		portrait/human01
-		portrait/human11
-		portrait/human18
-		portrait/human35
-		portrait/human55
-		portrait/human66
-		portrait/human69
-		portrait/human114
-		portrait/human123
-		portrait/human128
 	message
 		word
 			"Two days ago I ran over my finger with an industrial sewing machine. Put a hole straight through my thumb. But at least they paid my medical bill and gave me a week of sick leave."
@@ -160,10 +110,10 @@ news "human textiles"
 			"I'm just working here until I can save up enough money to go to college."
 			"I'm just working here until I can save up enough money to buy my own spaceship, just like yours!"
 			"Almost everyone else here can't wait to get out, but I'm proud of the work I do. Without people like me, you wouldn't have anything to wear!"
+			"You should check the spaceport often. I might not be able to afford transport right now, but I'll need transport off this dirtball when I get enough money for college."
 
 
 
-# Visual suggestion: unhappy-looking, predominately male, usually wearing a beanie or a hard hat
 news "human mining"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -171,30 +121,16 @@ news "human mining"
 	name
 		word
 			"Miner"
-	portrait
-		portrait/human07
-		portrait/human36
-		portrait/human41
-		portrait/human42
-		portrait/human50
-		portrait/human54
-		portrait/human60
-		portrait/human70
-		portrait/human77
-		portrait/human82
-		portrait/human102
-		portrait/human115
-		portrait/human117
 	message
 		word
 			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
 			"I buried my dad last week. He was a miner, too. The company didn't give me any time off so I had to pay to attend my own father's funeral. Can you believe that?"
 			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
 			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
+			"Check the spaceports around these parts. We might need an express delivery for extra equipment."
 
 
 
-# Visual suggestion: worn-down-looking, often older
 news "human factory"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -202,13 +138,6 @@ news "human factory"
 	name
 		word
 			"Factory worker"
-	portrait
-		portrait/human23
-		portrait/human75
-		portrait/human92
-		portrait/human94
-		portrait/human97
-		portrait/human111
 	message
 		word
 			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
@@ -229,16 +158,12 @@ news "street vendor"
 		word
 			"Street vendor"
 			"Food stall operator"
-	portrait
-		portrait/human26
-		portrait/human31
-		portrait/human57
-		portrait/human68
 	message
 		word
 			"With the right marinade, rat meat can be delicious. Of course, they don't let us sell the ones that were already dead when we collected them."
 			"This is my own famous delicacy, Yogurt on a Stick. No, it's not frozen yogurt. It's more like, well... congealed..."
 			"Can I interest you in some vegan falafels? Trust me, you don't want to eat any of the meat that's getting sold on this street."
+			"I wish I had enough money to ask captains roaming around the spaceport for transport to somewhere nicer."
 
 
 
@@ -248,12 +173,6 @@ news "company psychologist"
 	name
 		word
 			"Company psychologist"
-	portrait
-		portrait/human12
-		portrait/human28
-		portrait/human47
-		portrait/human93
-		portrait/human103
 	message
 		word
 			"Studies have shown that ultimate fulfillment in life comes from doing valuable work. My calling is to help all our workers achieve that sort of self-actualization by being as productive as possible."
@@ -271,11 +190,6 @@ news "genetic counselor"
 		word
 			"Genetic counselor"
 			"Personal geneticist"
-	portrait
-		portrait/human43
-		portrait/human71
-		portrait/human72
-		portrait/human90
 	message
 		word
 			"Of course the technology to manipulate genes is tightly controlled. But just reading a person's genome, and advising them based on the results, is perfectly legal."
@@ -292,17 +206,12 @@ news "unemployed youth"
 	name
 		word
 			"Unemployed youth"
-	portrait
-		portrait/human27
-		portrait/human34
-		portrait/human39
-		portrait/human98
-		portrait/human109
 	message
 		word
 			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
 			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
+			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 
 
 
@@ -312,11 +221,6 @@ news "union organizer"
 	name
 		word
 			"Union organizer"
-	portrait
-		portrait/human08
-		portrait/human33
-		portrait/human38
-		portrait/human56
 	message
 		word
 			"Capitalism is the best system ever invented for driving a productive economy. But without organized labor, the fruits of that productivity will not be shared with the workers."
@@ -333,16 +237,13 @@ news "dock worker"
 	name
 		word
 			"Dock worker"
-	portrait
-		portrait/human03
-		portrait/human45
-		portrait/human69
-		portrait/human92
 	message
 		word
 			"It seems crazy to me that people on other planets would be willing to pay money for the sort of junk that we're loading into starships here."
 			"The robots do most of the heavy lifting for us, but every so often one of them malfunctions and drops a crate on someone's toe."
 			"Why do they make the cargo bay doors on certain starships so small? You wouldn't believe how hard it is sometimes to load larger items onto a ship."
+			"Watch out on April Fools. You wouldn't believe what sorts of things we have to load on to ships on that day."
+			"I'd check around the spaceport frequently if I were you. Sure, you can end up carry some strange stuff, but it pays well in the end."
 
 
 
@@ -354,11 +255,6 @@ news "housekeeper"
 		word
 			"Housekeeper"
 			"Domestic worker"
-	portrait
-		portrait/human18
-		portrait/human23
-		portrait/human65
-		portrait/human75
 	message
 		word
 			"How is it possible that a man who manages a billion-credit corporation can still be so incompetent or so careless that he routinely misses the toilet bowl when he takes a piss?"
@@ -375,11 +271,6 @@ news "groundskeeper"
 		word
 			"Groundskeeper"
 			"Gardener"
-	portrait
-		portrait/human05
-		portrait/human22
-		portrait/human26
-		portrait/human63
 	message
 		word
 			"The family I work for has an odd fascination with carnivorous plants. I have to keep rotting piles of refuse around just to produce enough flies to feed them all."
@@ -395,16 +286,12 @@ news "hair stylist"
 	name
 		word
 			"Hair stylist"
-	portrait
-		portrait/human17
-		portrait/human40
-		portrait/human67
-		portrait/human79
 	message
 		word
 			"For too long, the creativity of trend-setting stylists like myself has been held in check by the limited height of the doorways in most houses."
 			"My work is made possible by vision, creativity, and hairspray. Lots and lots of hairspray."
 			"The newest fad is hairstyles made to look like starships. Those boxy Navy ships are particularly hard to model in such a fluid medium."
+
 
 
 
@@ -415,17 +302,13 @@ news "tour guide"
 	name
 		word
 			"Tour guide"
-	portrait
-		portrait/human15
-		portrait/human25
-		portrait/human52
-		portrait/human77
 	message
 		word
 			"I've delivered the same speech so many times now that the whole thing runs on continuous repeat in my head when I'm trying to sleep."
 			"Some famous people who you've probably never heard of died near here. If I weren't on break right now I would tell you all about them."
 			"At least they don't make me dress up like anything. I knew a woman whose tour job made her dress up like a twenty-first century person. Apparently back then they all wore very tight-fitting pants."
 			"It's kind of amazing to me that people would travel halfway across the galaxy to see this dump. To me, it's the one place I've always wished I could get away from."
+			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
 
 
 
@@ -435,12 +318,6 @@ news "human resources worker"
 	name
 		word
 			"Human resources worker"
-	portrait
-		portrait/human04
-		portrait/human11
-		portrait/human33
-		portrait/human72
-		portrait/human125
 	message
 		word
 			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
@@ -456,11 +333,6 @@ news "loan officer"
 		word
 			"Loan officer"
 			"Mortgage broker"
-	portrait
-		portrait/human02
-		portrait/human29
-		portrait/human83
-		portrait/human86
 	message
 		word
 			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
@@ -476,11 +348,6 @@ news "hyperspace relay engineer"
 	name
 		word
 			"Hyperspace relay engineer"
-	portrait
-		portrait/human13
-		portrait/human42
-		portrait/human76
-		portrait/human96
 	message
 		word
 			"All of human space is linked into a single communications network by relay beacons. It's something that most people just take for granted."
@@ -496,11 +363,6 @@ news "geological engineer"
 	name
 		word
 			"Geological engineer"
-	portrait
-		portrait/human07
-		portrait/human35
-		portrait/human50
-		portrait/human75
 	message
 		word
 			"With the right equipment, you can see inside a planet as easily as if it were... um... a tomato held up in front of an arc lamp. Sorry, I'm awful at similes."
@@ -517,11 +379,6 @@ news "agricultural scientist"
 	name
 		word
 			"Agricultural scientist"
-	portrait
-		portrait/human39
-		portrait/human53
-		portrait/human95
-		portrait/human97
 	message
 		word
 			"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."
@@ -537,12 +394,6 @@ news "epidemiologist"
 	name
 		word
 			"Epidemiologist"
-	portrait
-		portrait/human01
-		portrait/human10
-		portrait/human37
-		portrait/human79
-		portrait/human110
 	message
 		word
 			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
@@ -558,12 +409,6 @@ news "economist"
 	name
 		word
 			"Economist"
-	portrait
-		portrait/human20
-		portrait/human49
-		portrait/human83
-		portrait/human91
-		portrait/human104
 	message
 		word
 			"We're actually required by local law to predict that the economy will continue to do well, because the government thinks that any dire predictions will be a self-fulfilling prophecy."
@@ -579,11 +424,6 @@ news "nuclear technician"
 	name
 		word
 			"Nuclear technician"
-	portrait
-		portrait/human15
-		portrait/human41
-		portrait/human51
-		portrait/human75
 	message
 		word
 			"Last year all the hair on the left hand side of my face turned white and fell out. The company swears it was just a weird illness and had nothing to do with my work."
@@ -601,11 +441,6 @@ news "substance abuse counselor"
 	name
 		word
 			"Substance abuse counselor"
-	portrait
-		portrait/human37
-		portrait/human61
-		portrait/human64
-		portrait/human93
 	message
 		word
 			"I know some folks try to talk captains like you into carrying drugs on the side. I wish all of you could see the real human cost of that industry."
@@ -621,11 +456,6 @@ news "reporter"
 	name
 		word
 			"Reporter"
-	portrait
-		portrait/human00
-		portrait/human14
-		portrait/human68
-		portrait/human80
 	message
 		word
 			"I'm doing a human interest story about a llama that stowed away in a ship's cargo hold. Llamas are so cute, people will watch anything that involves them."
@@ -633,6 +463,10 @@ news "reporter"
 			"A free and independent press is a critical component of any healthy democracy. But sensationalism is a whole lot more lucrative."
 			"I've been interviewing elderly starship captains. You wouldn't believe the tall tales that some of them tell!"
 			`Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'`
+			"People love sorting things, and lists that sort things. Do you want to listen to my list of the top ten starships?"
+			`Read this! "The Real UGLIEST Starship that Lionheart Don't Want You to Know About!"`
+			`Look at my new article! 'The Protector - Actually a SCAM?'`
+			`Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'`
 
 
 
@@ -643,11 +477,6 @@ news "museum curator"
 	name
 		word
 			"Museum curator"
-	portrait
-		portrait/human36
-		portrait/human66
-		portrait/human73
-		portrait/human92
 	message
 		word
 			"You would not believe the sorts of things that the inhabitants of ancient Earth did for entertainment back before interstellar travel was a reality."
@@ -655,6 +484,7 @@ news "museum curator"
 			"The most popular exhibit in our entire Children's Museum is the interactive starship simulator. You're living a life that those kids can only dream of."
 			"Did you know that humans used to rely on explosive fuel mixtures to propel them into orbit? Imagine how mad you'd have to be to do that!"
 			"We recently put a restored 20th-century shipping container on display. You can hardly tell the difference from the ones in use today! Isn't historical inertia fascinating?"
+			"Every so often, we get contacted by someone shady wishing to donate something to our museum."
 
 
 
@@ -665,18 +495,13 @@ news "actor"
 	name
 		word
 			"Actor"
-	portrait
-		portrait/human02
-		portrait/human06
-		portrait/human51
-		portrait/human84
-		portrait/human105
 	message
 		word
 			"We're doing a production of the Scottish Play where the three witches are made up to look like Quarg. I know it sounds weird, but it works in our context."
 			"I just finished a project doing voice acting for an animated children's book. It's kind of a relief to be done with it, honestly. Certain lines are still stuck in my brain."
 			"Right now I'm mostly just doing commercials, but I'm working on a concept for a zero-gravity musical that will be truly epic."
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
+			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to look at."
 
 
 
@@ -687,11 +512,6 @@ news "technical writer"
 	name
 		word
 			"Technical writer"
-	portrait
-		portrait/human27
-		portrait/human52
-		portrait/human64
-		portrait/human94
 	message
 		word
 			"Do you have a few minutes to listen to my thoughts on the importance of the serial comma?"
@@ -708,11 +528,6 @@ news "dietitian"
 	name
 		word
 			"Dietitian"
-	portrait
-		portrait/human04
-		portrait/human37
-		portrait/human57
-		portrait/human66
 	message
 		word
 			"I actually have several recipes that can make processed algae delicious. Or at least, visually appealing. Quite edible. I mean, it's not that hard to mask the taste."
@@ -729,11 +544,6 @@ news "chef"
 	name
 		word
 			"Chef"
-	portrait
-		portrait/human00
-		portrait/human18
-		portrait/human31
-		portrait/human48
 	message
 		word
 			"For a recent corporate gala, I constructed a fire pit large enough to roast an entire Antarean thunder-lizard. The fat was perfectly rendered. It was amazing."
@@ -750,12 +560,6 @@ news "insurance agent"
 	name
 		word
 			"Insurance agent"
-	portrait
-		portrait/human43
-		portrait/human49
-		portrait/human78
-		portrait/human97
-		portrait/human127
 	message
 		word
 			"No, we don't sell insurance policies on private starships in this day and age. We also don't insure buildings in flood plains and houses inhabited by convicted serial arsonists."
@@ -773,11 +577,6 @@ news "excavation specialist"
 		word
 			"Excavation specialist"
 			"Explosives worker"
-	portrait
-		portrait/human24
-		portrait/human41
-		portrait/human42
-		portrait/human75
 	message
 		word
 			"Those newfangled mining lasers are pretty cool, but there's nothing like good old-fashioned dynamite for shifting a lot of rock in a hurry."
@@ -785,6 +584,8 @@ news "excavation specialist"
 			"For hundreds of years we've been worried that asteroid harvesting will put terrestrial miners out of business, but it still hasn't happened."
 			"Once I've worked here for another decade, I plan to move to some paradise world and earn a living excavating bunkers for paranoid rich folks to hide in."
 			"Once we had to stop work on a mine for a month because the archaeologists thought we found evidence of a million-year-old civilization. It turned out the site was just radioactive. Dodged that one!"
+			"Last month, we had some loony pilot offer to use their missile launchers to help us mine!"
+			"Last month, we had some loony pilot request a reactor upgrade after delivering some explosives to us!"
 
 
 
@@ -795,11 +596,6 @@ news "chauffeur"
 	name
 		word
 			"Chauffeur"
-	portrait
-		portrait/human07
-		portrait/human41
-		portrait/human67
-		portrait/human83
 	message
 		word
 			"I fly the missus to her appointments in a private shuttlecraft, because she hates being stuck in traffic."
@@ -810,18 +606,12 @@ news "chauffeur"
 
 
 
-# Visual suggestion: old
 news "human retiree"
 	location
 		attributes "paradise"
 	name
 		word
 			"Retiree"
-	portrait
-		portrait/human26
-		portrait/human29
-		portrait/human30
-		portrait/human38
 	message
 		word
 			"Retiring is the best thing I ever did. They should make it mandatory!"
@@ -834,21 +624,12 @@ news "human retiree"
 
 
 
-# Visual suggestion: middle-aged people wearing professional attire
 news "human financial analyst"
 	location
 		attributes "paradise" "near earth"
 	name
 		word
 			"Financial analyst"
-	portrait
-		portrait/human14
-		portrait/human16
-		portrait/human32
-		portrait/human39
-		portrait/human49
-		portrait/human56
-		portrait/human65
 	message
 		word
 			"You must be a very brave captain, if you have traveled to some of the... less civilized parts of human space."
@@ -864,19 +645,12 @@ news "human financial analyst"
 
 
 
-# Visual suggestion: well-dressed young men, often looking kind of cocky
 news "human syndicate manager"
 	location
 		government "Syndicate"
 	name
 		word
 			"Syndicate manager"
-	portrait
-		portrait/human12
-		portrait/human33
-		portrait/human67
-		portrait/human68
-		portrait/human91
 	message
 		word
 			"We've had to ask everyone to work sixty-hour weeks just to meet this month's quotas. The workers complain to me, but I tell them I'm in the same boat as they are."
@@ -890,7 +664,6 @@ news "human syndicate manager"
 
 
 
-# Visual suggestion: glasses, clean-cut attire, possibly scientific accoutrements
 news "human scientist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -898,13 +671,6 @@ news "human scientist"
 	name
 		word
 			"Scientist"
-	portrait
-		portrait/human13
-		portrait/human37
-		portrait/human43
-		portrait/human64
-		portrait/human71
-		portrait/human83
 	message
 		word
 			"It's so exciting being on the cutting edge of human knowledge, but I wish it were easier to secure funding. A lot of my equipment is more than 40 years old."
@@ -916,7 +682,6 @@ news "human scientist"
 
 
 
-# Visual suggestion: young and optimistic
 news "human student"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -924,12 +689,6 @@ news "human student"
 	name
 		word
 			"Student"
-	portrait
-		portrait/human28
-		portrait/human90
-		portrait/human93
-		portrait/human96
-		portrait/human107
 	message
 		word
 			"I'm going to be a teacher some day!"
@@ -946,7 +705,6 @@ news "human student"
 
 
 
-# Visual suggestion: relaxed, happy, possibly wearing traditional religious dress
 news "human religious"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -954,12 +712,6 @@ news "human religious"
 	name
 		word
 			"Mystic"
-	portrait
-		portrait/human45
-		portrait/human57
-		portrait/human61
-		portrait/human124
-		portrait/human126
 	message
 		word
 			"May God be with you!"
@@ -976,7 +728,6 @@ news "human religious"
 
 
 
-# Visual suggestion: attractive or sexy, looking either happy or bored
 news "human tourism"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -985,15 +736,6 @@ news "human tourism"
 	name
 		word
 			"Tourist"
-	portrait
-		portrait/human40
-		portrait/human46
-		portrait/human47
-		portrait/human48
-		portrait/human84
-		portrait/human86
-		portrait/human95
-		portrait/human122
 	message
 		word
 			"This place is so romantic. I wish I could stay forever."
@@ -1004,10 +746,11 @@ news "human tourism"
 			"Can you believe that our ship was attacked by pirates on the way here? It's lucky a Navy patrol showed up and chased them off before our shields dropped. It was all so exciting! I'm taking the same route again next year."
 			"I can't wait to go skiing here! Haha, just kidding."
 			"It's too bad I have to leave tomorrow. I only get two weeks of vacation a year, and it's hard to leave after spending half that time in transit here and back."
+			"I'm not riding on any ship that doesn't have decency to have luxurious accomodations!"
 
 
 
-# Visual suggestion: determined, tough, irregular-looking military/warrior accoutrements
+
 news "human mercenary"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1015,19 +758,19 @@ news "human mercenary"
 	name
 		word
 			"Mercenary"
-	portrait
-		portrait/human88
-		portrait/human89
 	message
 		word
 			"I've tracked fugitives halfway across the galaxy, and they have me on... guard duty. These guys must really be desperate given the kind of money they waved in my face."
 			"Security may be expensive, but think of it this way: it's better to be poor than dead."
 			"Nothing beats the thrill of boarding a crippled starship, laser rifle in your hands."
 			"Have you ever been to a pirate world? The conditions there are nearly inhuman!"
+			"It's criminal how much the Navy and Syndicate prefer to destroy pirates rather than disable them. How are people like us supposed to make money if we can't loot?"
+			"If you're trying to nab a pirate ship, try the South. The militia often leave the pirates disabled rather than killing them."
+			"Take it from me: If you want to disable ships, only use lasers. Projectile-based weapons always overkill."
+			"As much as I'd like to dual-wield laser rifles, I'd probably just miss every shot."
 
 
 
-# Visual suggestion: military beret, soldier's clothing, not too fancy
 news "human republic soldier"
 	location
 		government "Republic"
@@ -1035,13 +778,6 @@ news "human republic soldier"
 	name
 		word
 			"Republic Soldier"
-	portrait
-		portrait/human80
-		portrait/human81
-		portrait/human85
-		portrait/human100
-		portrait/human101
-		portrait/human118
 	message
 		word
 			"I bet you think that starship of yours is hot stuff, huh? Try tooling around in a cruiser with Atomic Engines sometime. You can run circles around interceptors."
@@ -1052,10 +788,11 @@ news "human republic soldier"
 			"Let me give you a piece of advice: particle cannons are some of the best weapons out there. Pirates don't stand a chance."
 			"I hope I don't get posted to fighter duty next week. Those things are deathtraps. By the time you get close enough to fire your lasers, you've already lost half your shields!"
 			"Nobody thinks about the Alphas anymore, but don't forget that they just disappeared. They could return at any time. If that happens, I'm going to kill every last one of 'em."
+			"While it seems pointless to have the Bactrian locked behind a license, don't forget that it's one of the oldest designs in human space. It was the Navy Carrier of it's time. And it still is comparable to one."
 
 
 
-# Visual suggestion: expensive-looking tactical gear
+
 news "human syndicate soldier"
 	location
 		government "Syndicate"
@@ -1063,9 +800,6 @@ news "human syndicate soldier"
 	name
 		word
 			"Syndicate Soldier"
-	portrait
-		portrait/human87
-		portrait/human99
 	message
 		word
 			"What a terrible posting. I thought I'd filed my transfer paperwork right, but it turned out my commander's seal had to be a certified original and not a copy, so now I'm stuck here for another two years."
@@ -1077,29 +811,18 @@ news "human syndicate soldier"
 
 
 
-# Visual suggestion: dangerous mofos, lunatics, reavers
 news "human pirate"
 	location
 		government "Pirate"
 	name
 		word
 			"Pirate"
-	portrait
-		portrait/human19
-		portrait/human24
-		portrait/human25
-		portrait/human27
-		portrait/human34
-		portrait/human44
-		portrait/human51
-		portrait/human59
-		portrait/human62
 	message
 		word
 			"Next time we meet up, maybe I'll be plundering your ship."
 			"What are you looking at, punk?"
 			"Hobbes and Darwin got it right: it's a war of all against all, and only the strongest deserve to survive. Without that pistol at your side, I'd slit your throat right now and take everything you own."
-			"Slaves for sale! Slaves for sale! Here is an oriental beauty with eyes full of fire that you can buy!"
+			"Slaves for sale! Slaves for sale! Here is an exotic beauty with eyes full of fire that you can buy!"
 			"Wanna buy some death sticks?"
 			"Sometimes I wonder if what I'm doing is wrong."
 			"Every morning I look in the mirror... and I like what I see."
@@ -1110,3 +833,30 @@ news "human pirate"
 			"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
 			"I used to be a soft-bellied merchant captain before my life took a turn. Gotta get tough or get dead in this galaxy."
 			"Just a word of warning: don't fall asleep in the hotels here."
+
+
+
+news "human farming: pirate"
+	location
+		government "Pirate"
+		attributes "farming"
+	name
+		word
+			"Farmer"
+	message
+		word
+			"Fancy folks in the big cities and the Paradise planets think they've got life all figured out, but if you scratch the surface, you'll find that they're slaves to their lifestyles, and we're the ones who are free."
+			"I moved here from a richer world and wouldn't ever go back."
+			"Surprised to see horses and wooden carts in the 31st century, huh? Sometimes the old ways are the best."
+			"Everybody who wants to stay here is crazy. We can't hardly make any money and nobody appreciates what we do."
+			"Did you eat today? Thank a farmer."
+			"I used to be a pirate, roaming the skies, lootin' and plunderin'. Pockets got up to a few million at one point. Thought I had it all. One day I realized none of it was making me happy. I bought this farm and sold the rest. Best thing I ever did."
+			"I came out here because I liked the company of animals more than people like you. Go away."
+			"Shocked to see some normal farmers wandering 'round here? Just because we live on a lawless world doesn't mean it's kill or be killed."
+			"My son was enslaved by a gang of pirates. Not much one can do around here to prevent that."
+			"It'd be nice if the pirates could plunder some pesticides for us. It's little more than a pipe dream, though."
+			"When one choses the lawless lifestyle, the opportunites to grab a good bite lower drastically. That's what we're here for."
+			"The pirates could easily just loot us for our last credit. Of course, if they did that, they'd lose their main source of food. And some of us aren't completely defenceless..."
+			"The farmers in the dirt belt have it easy. They get the luxuries of fertilizer and pesticide."
+			"Pirates may look fierce, but the moment you start pushing against most of them, they fold like paper."
+			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path, and could return to living normally. I'm talking from personal experience."
