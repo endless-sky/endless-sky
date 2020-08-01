@@ -37,6 +37,7 @@ namespace {
 void BatchShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex batch shader\n"
 		"uniform vec2 scale;\n"
 		"in vec2 vert;\n"
 		"in vec3 texCoord;\n"
@@ -49,6 +50,7 @@ void BatchShader::Init()
 		"}\n";
 	
 	static const char *fragmentCode =
+		"// fragment batch shader\n"
 		"uniform sampler2DArray tex;\n"
 		"uniform float frameCount;\n"
 		
