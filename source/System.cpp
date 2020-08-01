@@ -354,8 +354,10 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 
 
 
-// Once the star map is fully loaded, figure out which stars are "neighbors"
-// of this one, i.e. close enough to see or to reach via jump drive.
+
+// Once the star map is fully loaded or an event has changed systems
+// or links, figure out which stars are "neighbors" of this one, i.e.
+// close enough to see or to reach via jump drive.
 void System::UpdateNeighbors(const Set<System> &systems, const double distance)
 {
 	set<const System *> &neighborSet = neighbors[distance];
@@ -387,10 +389,9 @@ void System::Link(System *other)
 	links.insert(other);
 	other->links.insert(this);
 	
-	for(auto &neighborSet : neighbors)
-		neighborSet.second.insert(other);
-	for(auto &neighborSet : other->neighbors)
-		neighborSet.second.insert(this);
+	// After any Link or Unlink occurs, UpdateSystem gets
+	// called by GameData, so we don't need to update the
+	// neighbors here.
 }
 
 
@@ -399,16 +400,6 @@ void System::Unlink(System *other)
 {
 	links.erase(other);
 	other->links.erase(this);
-	
-	// If the only reason these systems are neighbors is because of a hyperspace
-	// link, they are no longer neighbors.
-	double distance = position.Distance(other->position);
-	for(auto &neighborSet : neighbors)
-		if(distance > neighborSet.first)
-			neighborSet.second.erase(other);
-	for(auto &neighborSet : other->neighbors)
-		if(distance > neighborSet.first)
-			neighborSet.second.erase(this);
 }
 
 

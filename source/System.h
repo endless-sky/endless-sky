@@ -147,8 +147,9 @@ public:
 	
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
-	// Once the star map is fully loaded, figure out which stars are "neighbors"
-	// of this one, i.e. close enough to see or to reach via jump drive.
+	// Once the star map is fully loaded or an event has changed systems
+	// or links, figure out which stars are "neighbors" of this one, i.e.
+	// close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems, const double distance);
 	
 	
