@@ -3031,7 +3031,7 @@ mission "Bounty Hunting (Marauder X)"
 		"combat rating" > 8103
 		random < 5
 	npc kill
-		government "Bounty Hunter"
+		government "Bounty"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 1 3
