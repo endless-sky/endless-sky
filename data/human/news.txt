@@ -10,29 +10,12 @@
 
 
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "human merchant anywhere"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
 	name
 		word
 			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human112
 	message
 		word
 			"Can you believe how little they pay for used ships and outfits these days? It's just a scandal!"
@@ -46,31 +29,12 @@ news "human merchant anywhere"
 
 
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "human merchant in human space"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	name
 		word
 			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human108
-		portrait/human112
-		portrait/human125
 	message
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
@@ -88,7 +52,6 @@ news "human merchant in human space"
 			"My first ship was a Shuttle. I kind of miss that glorified tour bus."
 			"I love doing Syndicate jobs. Easy money for not much work. I guess they're all so rich that they can afford to pay for the best."
 
-# Visual suggestion: hard-bitten, tough, often dark-skinned and/or wearing a hat
 news "human farming"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -96,23 +59,6 @@ news "human farming"
 	name
 		word
 			"Farmer"
-	portrait
-		portrait/human03
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human20
-		portrait/human21
-		portrait/human22
-		portrait/human52
-		portrait/human53
-		portrait/human78
-		portrait/human113
-		portrait/human116
-		portrait/human119
-		portrait/human120
-		portrait/human121
-		portrait/human126
 	message
 		word
 			"My neighbor is using some sort of newfangled pesticides. The wind carried their residue onto my fields and destroyed half my crops."
@@ -132,7 +78,6 @@ news "human farming"
 
 
 
-# Visual suggestion: young, normal-looking, more female than male
 news "human textiles"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -140,18 +85,6 @@ news "human textiles"
 	name
 		word
 			"Textile worker"
-	portrait
-		portrait/human00
-		portrait/human01
-		portrait/human11
-		portrait/human18
-		portrait/human35
-		portrait/human55
-		portrait/human66
-		portrait/human69
-		portrait/human114
-		portrait/human123
-		portrait/human128
 	message
 		word
 			"Two days ago I ran over my finger with an industrial sewing machine. Put a hole straight through my thumb. But at least they paid my medical bill and gave me a week of sick leave."
@@ -163,7 +96,6 @@ news "human textiles"
 
 
 
-# Visual suggestion: unhappy-looking, predominately male, usually wearing a beanie or a hard hat
 news "human mining"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -171,20 +103,6 @@ news "human mining"
 	name
 		word
 			"Miner"
-	portrait
-		portrait/human07
-		portrait/human36
-		portrait/human41
-		portrait/human42
-		portrait/human50
-		portrait/human54
-		portrait/human60
-		portrait/human70
-		portrait/human77
-		portrait/human82
-		portrait/human102
-		portrait/human115
-		portrait/human117
 	message
 		word
 			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
@@ -194,7 +112,6 @@ news "human mining"
 
 
 
-# Visual suggestion: worn-down-looking, often older
 news "human factory"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -202,13 +119,6 @@ news "human factory"
 	name
 		word
 			"Factory worker"
-	portrait
-		portrait/human23
-		portrait/human75
-		portrait/human92
-		portrait/human94
-		portrait/human97
-		portrait/human111
 	message
 		word
 			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
@@ -229,11 +139,6 @@ news "street vendor"
 		word
 			"Street vendor"
 			"Food stall operator"
-	portrait
-		portrait/human26
-		portrait/human31
-		portrait/human57
-		portrait/human68
 	message
 		word
 			"With the right marinade, rat meat can be delicious. Of course, they don't let us sell the ones that were already dead when we collected them."
@@ -248,12 +153,6 @@ news "company psychologist"
 	name
 		word
 			"Company psychologist"
-	portrait
-		portrait/human12
-		portrait/human28
-		portrait/human47
-		portrait/human93
-		portrait/human103
 	message
 		word
 			"Studies have shown that ultimate fulfillment in life comes from doing valuable work. My calling is to help all our workers achieve that sort of self-actualization by being as productive as possible."
@@ -271,11 +170,6 @@ news "genetic counselor"
 		word
 			"Genetic counselor"
 			"Personal geneticist"
-	portrait
-		portrait/human43
-		portrait/human71
-		portrait/human72
-		portrait/human90
 	message
 		word
 			"Of course the technology to manipulate genes is tightly controlled. But just reading a person's genome, and advising them based on the results, is perfectly legal."
@@ -292,12 +186,6 @@ news "unemployed youth"
 	name
 		word
 			"Unemployed youth"
-	portrait
-		portrait/human27
-		portrait/human34
-		portrait/human39
-		portrait/human98
-		portrait/human109
 	message
 		word
 			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
@@ -312,11 +200,6 @@ news "union organizer"
 	name
 		word
 			"Union organizer"
-	portrait
-		portrait/human08
-		portrait/human33
-		portrait/human38
-		portrait/human56
 	message
 		word
 			"Capitalism is the best system ever invented for driving a productive economy. But without organized labor, the fruits of that productivity will not be shared with the workers."
@@ -333,11 +216,6 @@ news "dock worker"
 	name
 		word
 			"Dock worker"
-	portrait
-		portrait/human03
-		portrait/human45
-		portrait/human69
-		portrait/human92
 	message
 		word
 			"It seems crazy to me that people on other planets would be willing to pay money for the sort of junk that we're loading into starships here."
@@ -354,11 +232,6 @@ news "housekeeper"
 		word
 			"Housekeeper"
 			"Domestic worker"
-	portrait
-		portrait/human18
-		portrait/human23
-		portrait/human65
-		portrait/human75
 	message
 		word
 			"How is it possible that a man who manages a billion-credit corporation can still be so incompetent or so careless that he routinely misses the toilet bowl when he takes a piss?"
@@ -375,11 +248,6 @@ news "groundskeeper"
 		word
 			"Groundskeeper"
 			"Gardener"
-	portrait
-		portrait/human05
-		portrait/human22
-		portrait/human26
-		portrait/human63
 	message
 		word
 			"The family I work for has an odd fascination with carnivorous plants. I have to keep rotting piles of refuse around just to produce enough flies to feed them all."
@@ -395,11 +263,6 @@ news "hair stylist"
 	name
 		word
 			"Hair stylist"
-	portrait
-		portrait/human17
-		portrait/human40
-		portrait/human67
-		portrait/human79
 	message
 		word
 			"For too long, the creativity of trend-setting stylists like myself has been held in check by the limited height of the doorways in most houses."
@@ -415,11 +278,6 @@ news "tour guide"
 	name
 		word
 			"Tour guide"
-	portrait
-		portrait/human15
-		portrait/human25
-		portrait/human52
-		portrait/human77
 	message
 		word
 			"I've delivered the same speech so many times now that the whole thing runs on continuous repeat in my head when I'm trying to sleep."
@@ -435,12 +293,6 @@ news "human resources worker"
 	name
 		word
 			"Human resources worker"
-	portrait
-		portrait/human04
-		portrait/human11
-		portrait/human33
-		portrait/human72
-		portrait/human125
 	message
 		word
 			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
@@ -456,11 +308,6 @@ news "loan officer"
 		word
 			"Loan officer"
 			"Mortgage broker"
-	portrait
-		portrait/human02
-		portrait/human29
-		portrait/human83
-		portrait/human86
 	message
 		word
 			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
@@ -476,11 +323,6 @@ news "hyperspace relay engineer"
 	name
 		word
 			"Hyperspace relay engineer"
-	portrait
-		portrait/human13
-		portrait/human42
-		portrait/human76
-		portrait/human96
 	message
 		word
 			"All of human space is linked into a single communications network by relay beacons. It's something that most people just take for granted."
@@ -496,11 +338,6 @@ news "geological engineer"
 	name
 		word
 			"Geological engineer"
-	portrait
-		portrait/human07
-		portrait/human35
-		portrait/human50
-		portrait/human75
 	message
 		word
 			"With the right equipment, you can see inside a planet as easily as if it were... um... a tomato held up in front of an arc lamp. Sorry, I'm awful at similes."
@@ -517,11 +354,6 @@ news "agricultural scientist"
 	name
 		word
 			"Agricultural scientist"
-	portrait
-		portrait/human39
-		portrait/human53
-		portrait/human95
-		portrait/human97
 	message
 		word
 			"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."
@@ -537,12 +369,6 @@ news "epidemiologist"
 	name
 		word
 			"Epidemiologist"
-	portrait
-		portrait/human01
-		portrait/human10
-		portrait/human37
-		portrait/human79
-		portrait/human110
 	message
 		word
 			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
@@ -558,12 +384,6 @@ news "economist"
 	name
 		word
 			"Economist"
-	portrait
-		portrait/human20
-		portrait/human49
-		portrait/human83
-		portrait/human91
-		portrait/human104
 	message
 		word
 			"We're actually required by local law to predict that the economy will continue to do well, because the government thinks that any dire predictions will be a self-fulfilling prophecy."
@@ -579,11 +399,6 @@ news "nuclear technician"
 	name
 		word
 			"Nuclear technician"
-	portrait
-		portrait/human15
-		portrait/human41
-		portrait/human51
-		portrait/human75
 	message
 		word
 			"Last year all the hair on the left hand side of my face turned white and fell out. The company swears it was just a weird illness and had nothing to do with my work."
@@ -601,11 +416,6 @@ news "substance abuse counselor"
 	name
 		word
 			"Substance abuse counselor"
-	portrait
-		portrait/human37
-		portrait/human61
-		portrait/human64
-		portrait/human93
 	message
 		word
 			"I know some folks try to talk captains like you into carrying drugs on the side. I wish all of you could see the real human cost of that industry."
@@ -621,11 +431,6 @@ news "reporter"
 	name
 		word
 			"Reporter"
-	portrait
-		portrait/human00
-		portrait/human14
-		portrait/human68
-		portrait/human80
 	message
 		word
 			"I'm doing a human interest story about a llama that stowed away in a ship's cargo hold. Llamas are so cute, people will watch anything that involves them."
@@ -643,11 +448,6 @@ news "museum curator"
 	name
 		word
 			"Museum curator"
-	portrait
-		portrait/human36
-		portrait/human66
-		portrait/human73
-		portrait/human92
 	message
 		word
 			"You would not believe the sorts of things that the inhabitants of ancient Earth did for entertainment back before interstellar travel was a reality."
@@ -665,12 +465,6 @@ news "actor"
 	name
 		word
 			"Actor"
-	portrait
-		portrait/human02
-		portrait/human06
-		portrait/human51
-		portrait/human84
-		portrait/human105
 	message
 		word
 			"We're doing a production of the Scottish Play where the three witches are made up to look like Quarg. I know it sounds weird, but it works in our context."
@@ -687,11 +481,6 @@ news "technical writer"
 	name
 		word
 			"Technical writer"
-	portrait
-		portrait/human27
-		portrait/human52
-		portrait/human64
-		portrait/human94
 	message
 		word
 			"Do you have a few minutes to listen to my thoughts on the importance of the serial comma?"
@@ -708,11 +497,6 @@ news "dietitian"
 	name
 		word
 			"Dietitian"
-	portrait
-		portrait/human04
-		portrait/human37
-		portrait/human57
-		portrait/human66
 	message
 		word
 			"I actually have several recipes that can make processed algae delicious. Or at least, visually appealing. Quite edible. I mean, it's not that hard to mask the taste."
@@ -729,11 +513,6 @@ news "chef"
 	name
 		word
 			"Chef"
-	portrait
-		portrait/human00
-		portrait/human18
-		portrait/human31
-		portrait/human48
 	message
 		word
 			"For a recent corporate gala, I constructed a fire pit large enough to roast an entire Antarean thunder-lizard. The fat was perfectly rendered. It was amazing."
@@ -750,12 +529,6 @@ news "insurance agent"
 	name
 		word
 			"Insurance agent"
-	portrait
-		portrait/human43
-		portrait/human49
-		portrait/human78
-		portrait/human97
-		portrait/human127
 	message
 		word
 			"No, we don't sell insurance policies on private starships in this day and age. We also don't insure buildings in flood plains and houses inhabited by convicted serial arsonists."
@@ -773,11 +546,6 @@ news "excavation specialist"
 		word
 			"Excavation specialist"
 			"Explosives worker"
-	portrait
-		portrait/human24
-		portrait/human41
-		portrait/human42
-		portrait/human75
 	message
 		word
 			"Those newfangled mining lasers are pretty cool, but there's nothing like good old-fashioned dynamite for shifting a lot of rock in a hurry."
@@ -795,11 +563,6 @@ news "chauffeur"
 	name
 		word
 			"Chauffeur"
-	portrait
-		portrait/human07
-		portrait/human41
-		portrait/human67
-		portrait/human83
 	message
 		word
 			"I fly the missus to her appointments in a private shuttlecraft, because she hates being stuck in traffic."
@@ -810,18 +573,12 @@ news "chauffeur"
 
 
 
-# Visual suggestion: old
 news "human retiree"
 	location
 		attributes "paradise"
 	name
 		word
 			"Retiree"
-	portrait
-		portrait/human26
-		portrait/human29
-		portrait/human30
-		portrait/human38
 	message
 		word
 			"Retiring is the best thing I ever did. They should make it mandatory!"
@@ -834,21 +591,12 @@ news "human retiree"
 
 
 
-# Visual suggestion: middle-aged people wearing professional attire
 news "human financial analyst"
 	location
 		attributes "paradise" "near earth"
 	name
 		word
 			"Financial analyst"
-	portrait
-		portrait/human14
-		portrait/human16
-		portrait/human32
-		portrait/human39
-		portrait/human49
-		portrait/human56
-		portrait/human65
 	message
 		word
 			"You must be a very brave captain, if you have traveled to some of the... less civilized parts of human space."
@@ -864,19 +612,12 @@ news "human financial analyst"
 
 
 
-# Visual suggestion: well-dressed young men, often looking kind of cocky
 news "human syndicate manager"
 	location
 		government "Syndicate"
 	name
 		word
 			"Syndicate manager"
-	portrait
-		portrait/human12
-		portrait/human33
-		portrait/human67
-		portrait/human68
-		portrait/human91
 	message
 		word
 			"We've had to ask everyone to work sixty-hour weeks just to meet this month's quotas. The workers complain to me, but I tell them I'm in the same boat as they are."
@@ -890,7 +631,6 @@ news "human syndicate manager"
 
 
 
-# Visual suggestion: glasses, clean-cut attire, possibly scientific accoutrements
 news "human scientist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -898,13 +638,6 @@ news "human scientist"
 	name
 		word
 			"Scientist"
-	portrait
-		portrait/human13
-		portrait/human37
-		portrait/human43
-		portrait/human64
-		portrait/human71
-		portrait/human83
 	message
 		word
 			"It's so exciting being on the cutting edge of human knowledge, but I wish it were easier to secure funding. A lot of my equipment is more than 40 years old."
@@ -916,7 +649,6 @@ news "human scientist"
 
 
 
-# Visual suggestion: young and optimistic
 news "human student"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -924,12 +656,6 @@ news "human student"
 	name
 		word
 			"Student"
-	portrait
-		portrait/human28
-		portrait/human90
-		portrait/human93
-		portrait/human96
-		portrait/human107
 	message
 		word
 			"I'm going to be a teacher some day!"
@@ -946,7 +672,6 @@ news "human student"
 
 
 
-# Visual suggestion: relaxed, happy, possibly wearing traditional religious dress
 news "human religious"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -954,12 +679,6 @@ news "human religious"
 	name
 		word
 			"Mystic"
-	portrait
-		portrait/human45
-		portrait/human57
-		portrait/human61
-		portrait/human124
-		portrait/human126
 	message
 		word
 			"May God be with you!"
@@ -976,7 +695,6 @@ news "human religious"
 
 
 
-# Visual suggestion: attractive or sexy, looking either happy or bored
 news "human tourism"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -985,15 +703,6 @@ news "human tourism"
 	name
 		word
 			"Tourist"
-	portrait
-		portrait/human40
-		portrait/human46
-		portrait/human47
-		portrait/human48
-		portrait/human84
-		portrait/human86
-		portrait/human95
-		portrait/human122
 	message
 		word
 			"This place is so romantic. I wish I could stay forever."
@@ -1007,7 +716,6 @@ news "human tourism"
 
 
 
-# Visual suggestion: determined, tough, irregular-looking military/warrior accoutrements
 news "human mercenary"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1015,9 +723,6 @@ news "human mercenary"
 	name
 		word
 			"Mercenary"
-	portrait
-		portrait/human88
-		portrait/human89
 	message
 		word
 			"I've tracked fugitives halfway across the galaxy, and they have me on... guard duty. These guys must really be desperate given the kind of money they waved in my face."
@@ -1027,7 +732,6 @@ news "human mercenary"
 
 
 
-# Visual suggestion: military beret, soldier's clothing, not too fancy
 news "human republic soldier"
 	location
 		government "Republic"
@@ -1035,13 +739,6 @@ news "human republic soldier"
 	name
 		word
 			"Republic Soldier"
-	portrait
-		portrait/human80
-		portrait/human81
-		portrait/human85
-		portrait/human100
-		portrait/human101
-		portrait/human118
 	message
 		word
 			"I bet you think that starship of yours is hot stuff, huh? Try tooling around in a cruiser with Atomic Engines sometime. You can run circles around interceptors."
@@ -1055,7 +752,6 @@ news "human republic soldier"
 
 
 
-# Visual suggestion: expensive-looking tactical gear
 news "human syndicate soldier"
 	location
 		government "Syndicate"
@@ -1063,9 +759,6 @@ news "human syndicate soldier"
 	name
 		word
 			"Syndicate Soldier"
-	portrait
-		portrait/human87
-		portrait/human99
 	message
 		word
 			"What a terrible posting. I thought I'd filed my transfer paperwork right, but it turned out my commander's seal had to be a certified original and not a copy, so now I'm stuck here for another two years."
@@ -1077,23 +770,12 @@ news "human syndicate soldier"
 
 
 
-# Visual suggestion: dangerous mofos, lunatics, reavers
 news "human pirate"
 	location
 		government "Pirate"
 	name
 		word
 			"Pirate"
-	portrait
-		portrait/human19
-		portrait/human24
-		portrait/human25
-		portrait/human27
-		portrait/human34
-		portrait/human44
-		portrait/human51
-		portrait/human59
-		portrait/human62
 	message
 		word
 			"Next time we meet up, maybe I'll be plundering your ship."
