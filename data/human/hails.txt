@@ -1771,9 +1771,11 @@ phrase "friendly syndicate"
 	word
 		" "
 	word
-		"of the galactic economy."
-		"of galactic trade."
+		"of the galactic economy"
+		"of galactic trade"
 		"of galactic civilization"
+	word
+		"."
 		
 		
 phrase "friendly syndicate"

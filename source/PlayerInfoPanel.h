@@ -37,7 +37,7 @@ public:
 	virtual void Draw() override;
 	
 	// The player info panel allow fast-forward to stay active.
-	virtual bool AllowFastForward() const;
+	virtual bool AllowFastForward() const override;
 	
 	
 protected:
