@@ -914,7 +914,7 @@ news "human pirate"
 
 news "human merchant in pirate space"
 	location
-		governement "Pirate"
+		government "Pirate"
 	name
 		word
 			"Merchant captain"
