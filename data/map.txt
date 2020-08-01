@@ -9997,9 +9997,9 @@ system Fearis
 		distance 2525.49
 		period 3795.49
 		offset 11.7572
-		object
-			sprite planet/desert4
-			distance 242
+		object "Letis'sei"
+			sprite planet/station4bd
+			distance 282
 			period 11.83
 	object "Graveyard Wormhole (Stable)"
 		sprite planet/wormhole
@@ -26870,6 +26870,12 @@ planet "Leviathan Station"
 	tribute 1200
 		threshold 3500
 		fleet "Small Deep Security" 27
+
+planet "Letis'sei"
+	attributes ka'het
+	landscape land/loc3
+	description `Letis'sei was disabled long ago, but it seems the destruction it suffered was relatively small: with only a tiny fraction of the station designed to be inhabited, it didn't take much for the Ka'het to blow the crew quarters up. Today, all the air once inside the station is gone, and few of the original rooms can still be recognised.`
+	description `	Outside, three impressive, cannon-like structures slowly rotate around the living section. Each of them is more than twice as big as the crew quarters, and despite their age they still seem to be mostly intact.`
 
 planet Lichen
 	attributes south farming frontier
