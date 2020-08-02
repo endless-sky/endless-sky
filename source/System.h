@@ -150,7 +150,7 @@ private:
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
-	void UpdateNeighbors(const Set<System> &systems, const double distance);
+	void UpdateNeighbors(const Set<System> &systems, double distance);
 	
 	
 private:

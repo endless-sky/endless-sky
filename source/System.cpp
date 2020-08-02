@@ -354,35 +354,6 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 
 
 
-
-// Once the star map is fully loaded or an event has changed systems
-// or links, figure out which stars are "neighbors" of this one, i.e.
-// close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems, const double distance)
-{
-	set<const System *> &neighborSet = neighbors[distance];
-	
-	// Every star system that is linked to this one is automatically a neighbor,
-	// even if it is farther away than the maximum distance.
-	for(const System *system : links)
-		if(!(system->Position().Distance(position) <= distance))
-			neighborSet.insert(system);
-	
-	// Any other star system that is within the neighbor distance is also a
-	// neighbor. This will include any nearby linked systems.
-	for(const auto &it : systems)
-	{
-		// Skip systems that have no name.
-		if(it.first.empty() || it.second.Name().empty())
-			continue;
-
-		if(&it.second != this && it.second.Position().Distance(position) <= distance)
-			neighborSet.insert(&it.second);
-	}
-}
-
-
-
 // Modify a system's links.
 void System::Link(System *other)
 {
@@ -738,6 +709,34 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			LoadObject(child, planets, index);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+// Once the star map is fully loaded or an event has changed systems
+// or links, figure out which stars are "neighbors" of this one, i.e.
+// close enough to see or to reach via jump drive.
+void System::UpdateNeighbors(const Set<System> &systems, double distance)
+{
+	set<const System *> &neighborSet = neighbors[distance];
+	
+	// Every star system that is linked to this one is automatically a neighbor,
+	// even if it is farther away than the maximum distance.
+	for(const System *system : links)
+		if(!(system->Position().Distance(position) <= distance))
+			neighborSet.insert(system);
+	
+	// Any other star system that is within the neighbor distance is also a
+	// neighbor. This will include any nearby linked systems.
+	for(const auto &it : systems)
+	{
+		// Skip systems that have no name.
+		if(it.first.empty() || it.second.Name().empty())
+			continue;
+
+		if(&it.second != this && it.second.Position().Distance(position) <= distance)
+			neighborSet.insert(&it.second);
 	}
 }
 
