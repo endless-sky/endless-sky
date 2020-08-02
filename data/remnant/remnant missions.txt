@@ -2232,13 +2232,13 @@ mission "Remnant: Crystal Research 1"
 				`	"That last job payed rather well. Do you have any more like it?"`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved," he gestures appreciatively. "I am told that we have you to thank for some of that.`
-			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some interesting results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
+			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some intriguing results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
 			choice
 				`	(Nod affirmatively.)`
 					goto notforsale
 				`	(Shrug noncommittally.)`
 					goto notforsale
-				`	"No, there are better uses for them."`
+				`	"No, I suspected they would be studied instead."`
 					goto notreally
 				`	"What does 'outfits in the current' mean?"`
 			`	"Oh, that's just an expression. 'Current' refers to a current of air or water as a metaphor for the development process. It means that there are outfits that are progressing in the development process." He taps at his commlink for a moment. "Back before the Exodus, there was a saying: 'products in the pipeline.' I think that has a comparable meaning to us having 'something in the current.' I am curious, though. Were you expecting me to sell them?"`
@@ -2247,7 +2247,7 @@ mission "Remnant: Crystal Research 1"
 					goto notforsale
 				`	(Shrug noncommittally.)`
 					goto notforsale
-				`	"No, there are better uses for them."`
+				`	"No, I suspected they would be studied instead."`
 			label notreally
 			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the quantum key stone does without being identical to it is clearly much more valuable as a subject of research than as a miscellaneous commodity. Add the security implications of slapping an alien device on a ship without thoroughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfitting inventory."`
 				goto clarification
@@ -2257,7 +2257,7 @@ mission "Remnant: Crystal Research 1"
 			label clarification
 			choice
 				`	"Wait, you didn't sell any of that?"`
-				`	"Okay, so that shipment you had me get?"`
+				`	"Okay, so that shipment you had me get...?"`
 			label crystaljobs
 			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to gauge your willingness to help. Your shipment was definitely useful, but we had to ensure we framed your job in a way that made sense without revealing what we were actually doing.`
 			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
