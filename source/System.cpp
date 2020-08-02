@@ -724,8 +724,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	// Every star system that is linked to this one is automatically a neighbor,
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
-		if(!(system->Position().Distance(position) <= distance))
-			neighborSet.insert(system);
+		neighborSet.insert(system);
 	
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor. This will include any nearby linked systems.
