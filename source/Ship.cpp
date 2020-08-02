@@ -3400,6 +3400,9 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// be among the neighbors of the current system.
 		double jumpRange = baseAttributes.Get("jump range");
 		jumpRange = jumpRange ? jumpRange : System::DEFAULT_NEIGHBOR_DISTANCE;
+		// If no distance was given then we're either using a hyperdrive
+		// or refueling this ship, in which case this if statement will
+		// always pass.
 		if(jumpRange >= distance)
 		{
 			best = baseAttributes.Get("jump fuel");
