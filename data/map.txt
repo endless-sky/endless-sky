@@ -26874,7 +26874,7 @@ planet "Leviathan Station"
 planet "Letis'sei"
 	attributes ka'het
 	landscape land/loc3
-	description `Letis'sei was disabled long ago, but it seems the destruction it suffered was relatively small: with only a tiny fraction of the station designed to be inhabited, it didn't take much for the Ka'het to blow the crew quarters up. Today, all the air once inside the station is gone, and few of the original rooms can still be recognised.`
+	description `Letis'sei was disabled long ago, but it seems the destruction it suffered was relatively small: with only a tiny fraction of the station designed to be inhabited, it didn't take much for the Ka'het to eliminate the crew. Today, all the air once inside the station is gone, and few of the original rooms can still be recognised.`
 	description `	Outside, three impressive, cannon-like structures slowly rotate around the living section. Each of them is more than twice as large as the crew quarters, and despite their age they still seem to be mostly intact.`
 
 planet Lichen
