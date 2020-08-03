@@ -2357,7 +2357,8 @@ mission "Remnant: Crystal Research 3"
 mission "Remnant: Crystal Research 3A"
 	invisible
 	landing
-	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
+	source
+		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
@@ -2372,7 +2373,8 @@ mission "Remnant: Crystal Research 3A"
 mission "Remnant: Crystal Research 3B"
 	invisible
 	landing
-	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
+	source
+		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
@@ -2383,7 +2385,8 @@ mission "Remnant: Crystal Research 3B"
 mission "Remnant: Crystal Research 3C"
 	invisible
 	landing
-	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
+	source
+		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
@@ -2394,7 +2397,8 @@ mission "Remnant: Crystal Research 3C"
 mission "Remnant: Crystal Research 3D"
 	invisible
 	landing
-	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
+	source
+		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
@@ -2405,7 +2409,8 @@ mission "Remnant: Crystal Research 3D"
 mission "Remnant: Crystal Research 3E"
 	invisible
 	landing
-	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
+	source
+		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
@@ -2416,7 +2421,8 @@ mission "Remnant: Crystal Research 3E"
 mission "Remnant: Crystal Research 3F"
 	invisible
 	landing
-	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
+	source
+		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
@@ -2427,7 +2433,8 @@ mission "Remnant: Crystal Research 3F"
 mission "Remnant: Crystal Research 3G"
 	invisible
 	landing
-	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
+	source
+		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
