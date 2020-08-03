@@ -1328,16 +1328,17 @@ mission "Hely Contain True"
 	job
 	repeat
 	name `Contain Resistance`
-	description `Fly to <destination> so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
 	deadline
 	passengers 8 23
 	to offer
-		random < 15
+		random < 45
 		has "license: Heliarch"
 	source
 		government "Heliarch"
-	stopover
+	destination
 		distance 6 10
+		not attributes "coalition station"
 	on offer
 		require "Enforcer Confrontation Gear"
 	on visit
@@ -1350,16 +1351,17 @@ mission "Hely Contain Fake"
 	job
 	repeat
 	name `Contain Resistance`
-	description `Fly to <destination> so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
 	deadline
 	passengers 8 23
 	to offer
-		random < 15
+		random < 45
 		has "license: Heliarch"
 	source
 		government "Heliarch"
-	stopover
+	destination
 		distance 6 10
+		not attributes "coalition station"
 	on offer
 		require "Enforcer Confrontation Gear"
 	on visit
@@ -1372,10 +1374,10 @@ mission "Hely Prisoner Transport"
 	job
 	repeat
 	name `Transport Resistance Prisoners`
-	description `Bring <bunks> Resistance members, who were arrested on <origin>, to <destination>.`
+	description `Bring <bunks> Resistance members, who were arrested on <origin>, to <destination>. Payment is <payment>`
 	passengers 3 11
 	to offer
-		random < 10
+		random < 35
 		has "license: Heliarch"
 	source
 		government "Coalition"
@@ -1398,14 +1400,15 @@ mission "Hely Investigate"
 	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>`
 	passengers 2 5
 	to offer
-		random < 20
+		random < 70
 		has "license: Heliarch"
 	source
 		government "Heliarch"
 	stopover
 		distance 5 10
+		not attributes "coalition station"
 	on visit
-		dialog phrase"generic passenger on visit"
+		dialog phrase "generic passenger on visit"
 	on stopover
 		dialog `You and the other agents head to the reported area looking for anything out of place. You don't find anything prominent, but there are clear signs that the place was recently used. You spend a few hours collecting evidence before heading back to your ship.`
 	on complete
