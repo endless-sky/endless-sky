@@ -1171,7 +1171,7 @@ mission "Sheragi Archaeology: The Box 8"
 				`	"I wasn't expecting to see you here."`
 				`	"Can I help you?"`
 			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but I must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
-			`	It turns around, and leaves you to think about it.`
+			`	It turns around and leaves you to think about it.`
 
 
 
