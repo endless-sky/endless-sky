@@ -184,7 +184,8 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
 			double jumpRange = max(0., child.Value(1)); 
-			GameData::NeighborDistance(jumpRange);
+			if(jumpRange)
+				GameData::NeighborDistance(jumpRange);
 			attributes[child.Token(0)] = jumpRange;
 		}
 		else if(child.Size() >= 2)
