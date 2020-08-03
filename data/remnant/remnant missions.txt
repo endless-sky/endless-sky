@@ -2357,7 +2357,7 @@ mission "Remnant: Crystal Research 3"
 mission "Remnant: Crystal Research 3A"
 	invisible
 	landing
-	source "Makerplace"
+	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
@@ -2372,79 +2372,80 @@ mission "Remnant: Crystal Research 3A"
 mission "Remnant: Crystal Research 3B"
 	invisible
 	landing
-	source "Stonebreak"
+	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Crystal Research 3A: active"
 
 
 
 mission "Remnant: Crystal Research 3C"
 	invisible
 	landing
-	source "Giverstone"
+	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Crystal Research 3B: active"
 
 
 
 mission "Remnant: Crystal Research 3D"
 	invisible
 	landing
-	source "Cloudfire"
+	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Crystal Research 3C: active"
 
 
 
 mission "Remnant: Crystal Research 3E"
 	invisible
 	landing
-	source "Snowfeather"
+	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Crystal Research 3D: active"
 
 
 
 mission "Remnant: Crystal Research 3F"
 	invisible
 	landing
-	source "Icelake"
+	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Crystal Research 3E: active"
 
 
 
 mission "Remnant: Crystal Research 3G"
 	invisible
 	landing
-	source "Heartvalley"
+	source "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Crystal Research 3F: active"
 
 
 
 mission "Remnant: Crystal Research 4"
 	name "Retrieve more crystals"
 	description `Return the crystals to Viminal.`
+	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
 	landing
 	source "Newhome"
 	destination "Viminal"
 	cargo "Keystones" 19
 	to offer
 		has "Remnant: Crystal Research 3: done"
-	on offer
+	on accept
 		dialog
 			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 keystones. While there are no new instructions, the subtext is clear: Time to head back.`
 	on complete
