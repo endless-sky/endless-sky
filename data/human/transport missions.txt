@@ -3012,6 +3012,8 @@ mission "Hauler VI cargo prototype 3"
 			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
 
+
+
 mission "Antibiotics To South"
 	name "Antibiotics shipment to <planet>"
 	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
@@ -3061,6 +3063,7 @@ mission "Antibiotics To South"
 		payment
 		payment 20000
 		dialog phrase "generic cargo delivery payment"
+
 
 
 mission "Pirate Duel"
@@ -3168,3 +3171,53 @@ ship "Vanguard" "Vanguard (Plasma Slow)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
+
+
+
+mission "Earth Retirement"
+	name "Retired Family to Earth"
+	description "Transport two seniors to <destination>, where they plan to retire. They can only promise you <payment>."
+	minor
+	source
+		attributes paradise
+	destination "Earth"
+	to offer
+		random < 15
+	passengers 2
+	
+	on offer
+		conversation
+			`As you wander through the spaceport, you are see an elderly man and woman sitting on a bench. They both seem to be talking about something that is causing them some amount of stress.`
+			choice
+				`	"Who are you two?"`
+				`	(Ignore them.)`
+					decline
+			`	“My name is Donna, and his name is Charles," she says. "We were yard workers here on <origin> for nearly fifty years, but we're both starting to get too old for our jobs. So, we've made the hard decision to retire. We've already chosen a location on the best place we could afford, which... well, happened to be on Earth, so Charles and I are looking for someone to transport us.”`
+			`	As Donna talks, Charles begins to frown. “I suppose you could put it like that.”`
+			`	“Is that wrong?” Donna replies, who appears to be bracing for the response.`
+			`	The man's look of resignation starts to turn to one of anger. "Of course it's wrong. We've spent our whole lives working for these spoiled brats, and what do we get in return? We get dumped on Earth like we're dead weight!"`
+			`	"I know you're upset about this," interrupts Donna, "but just getting angry isn't going to do anything!" Charles remains silent for a long time, and then mutters a reluctant apology.`
+			`	Donna talks to you again. "I'm sorry about that. As you can tell, we're under a lot of stress right now. Can you help us? We'll pay you <payment> if you do."`
+			choice
+				`	"I can handle two passengers."`
+				`	"I'm sorry, but I'm not headed to Earth right now."`
+					decline
+			`	You show Charles and Donna to their bunks, and they both thank you in advance.`
+				accept
+	
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		conversation
+			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves Charles stops by you, and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
+			choice
+				`	"Thank you. I hope you have the best of luck on Earth."`
+					goto payment
+				`	"You can keep those. You sound like you need them more than I do."`
+					goto reject
+			
+			label payment
+			`	They slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			label reject
+			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
+			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
