@@ -18,6 +18,8 @@ news "human merchant anywhere"
 			"Merchant captain"
 	message
 		word
+			`"`
+		word
 			"Can you believe how little they pay for used ships and outfits these days? It's just a scandal!"
 			"You know, planets as nice as this one make me want to think about selling off my fleet and retiring."
 			"I can't wait to get off this planet. What a dump!"
@@ -26,6 +28,8 @@ news "human merchant anywhere"
 			"I'm barely able to turn a profit with the terrible prices at this port."
 			"It kind of boggles my mind to imagine that tomorrow I'll be a dozen light-years away. We lead exciting lives, but sometimes I wonder if we don't take enough time to appreciate what's right in front of us."
 			"Watch out for pirates! Those lowlifes will snatch every spool of thread out of your hold if you give them the chance. My advice: when you run into them, don't leave anything left to bury."
+		word
+			`"`
 
 
 
@@ -36,6 +40,8 @@ news "human merchant in human space"
 		word
 			"Merchant captain"
 	message
+		word
+			`"`
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
 			"I keep hearing rumors about ships disappearing north of Syndicate space. It's probably a bunch of hot air, but either way, I'm staying away from there!"
@@ -51,6 +57,8 @@ news "human merchant in human space"
 			"My first ship was a Sparrow. How I survived my first week in space, I'm still not sure!"
 			"My first ship was a Shuttle. I kind of miss that glorified tour bus."
 			"I love doing Syndicate jobs. Easy money for not much work. I guess they're all so rich that they can afford to pay for the best."
+		word
+			`"`
 
 news "human farming"
 	location
@@ -60,6 +68,8 @@ news "human farming"
 		word
 			"Farmer"
 	message
+		word
+			`"`
 		word
 			"My neighbor is using some sort of newfangled pesticides. The wind carried their residue onto my fields and destroyed half my crops."
 			"This year, only the farms with enough money to pay for irrigation are thriving. In most of my fields, there's nothing growing but knotweed and razor grass. I hope we can make it to the next season."
@@ -75,6 +85,8 @@ news "human farming"
 			"Did you eat today? Thank a farmer."
 			"I used to be a merchant captain like you. Bank account got up to a few million at one point. Thought I had it all. One day I realized none of it was making me happy. I bought this farm and gave the rest away. Best thing I ever did."
 			"I came out here because I liked the company of animals more than people like you. Go away."
+		word
+			`"`
 
 
 
@@ -87,12 +99,16 @@ news "human textiles"
 			"Textile worker"
 	message
 		word
+			`"`
+		word
 			"Two days ago I ran over my finger with an industrial sewing machine. Put a hole straight through my thumb. But at least they paid my medical bill and gave me a week of sick leave."
 			"Working in the mill is hard, but I'm making good money. Someday I hope to buy my own spaceship like yours."
 			"Can you believe it's the year 3000 and they still need people like me to work in textile mills? Where are the robot factories to do all the work while I live a life of ease?"
 			"I'm just working here until I can save up enough money to go to college."
 			"I'm just working here until I can save up enough money to buy my own spaceship, just like yours!"
 			"Almost everyone else here can't wait to get out, but I'm proud of the work I do. Without people like me, you wouldn't have anything to wear!"
+		word
+			`"`
 
 
 
@@ -105,10 +121,14 @@ news "human mining"
 			"Miner"
 	message
 		word
+			`"`
+		word
 			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
 			"I buried my dad last week. He was a miner, too. The company didn't give me any time off so I had to pay to attend my own father's funeral. Can you believe that?"
 			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
 			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
+		word
+			`"`
 
 
 
@@ -121,11 +141,15 @@ news "human factory"
 			"Factory worker"
 	message
 		word
+			`"`
+		word
 			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
 			"The plant's all right. I don't have to do much more than show up on time, and I can make a decent living. It's hard work, but I don't mind."
 			"Management keeps threatening to move the plant to a planet with lower wages if our union doesn't accept concessions. I think they're bluffing; the move would cost more than they'd ever make back in profit."
 			"Working around so many huge machines is exciting. Every day we build things that would have blown the mind of anyone a thousand years ago. We're the backbone of interstellar civilization!"
 			"I don't like those news shows that tell you what to think! When I'm in the voting booth it's only MY opinion that counts!"
+		word
+			`"`
 
 
 
@@ -141,9 +165,13 @@ news "street vendor"
 			"Food stall operator"
 	message
 		word
+			`"`
+		word
 			"With the right marinade, rat meat can be delicious. Of course, they don't let us sell the ones that were already dead when we collected them."
 			"This is my own famous delicacy, Yogurt on a Stick. No, it's not frozen yogurt. It's more like, well... congealed..."
 			"Can I interest you in some vegan falafels? Trust me, you don't want to eat any of the meat that's getting sold on this street."
+		word
+			`"`
 
 
 
@@ -155,10 +183,14 @@ news "company psychologist"
 			"Company psychologist"
 	message
 		word
+			`"`
+		word
 			"Studies have shown that ultimate fulfillment in life comes from doing valuable work. My calling is to help all our workers achieve that sort of self-actualization by being as productive as possible."
 			"My job is to help workers deal with stress and channel it in healthy directions. A little bit of stress is not a bad thing, if it drives someone to be more productive."
 			"We routinely evaluate employees for sociopathic tendencies, narcissism, and other signs that they might be excellent candidates for upper management positions."
 			"I've gotten incredibly good at doing this thing with my face that makes it look like I care."
+		word
+			`"`
 
 
 
@@ -172,10 +204,14 @@ news "genetic counselor"
 			"Personal geneticist"
 	message
 		word
+			`"`
+		word
 			"Of course the technology to manipulate genes is tightly controlled. But just reading a person's genome, and advising them based on the results, is perfectly legal."
 			"Technically speaking, social status is a much better predictor of future health outcomes than anything in your genome. But most of my clients are too rich to ever need to worry about that."
 			"I just had to break the news to one of my clients that he's likely to develop alarmingly long nose hair as he ages. He took it surprisingly well."
 			"No, science can't make anyone immortal, but for anyone with enough money it can substantially reduce their chances of dying young."
+		word
+			`"`
 
 
 
@@ -188,9 +224,13 @@ news "unemployed youth"
 			"Unemployed youth"
 	message
 		word
+			`"`
+		word
 			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
 			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
+		word
+			`"`
 
 
 
@@ -202,10 +242,14 @@ news "union organizer"
 			"Union organizer"
 	message
 		word
+			`"`
+		word
 			"Capitalism is the best system ever invented for driving a productive economy. But without organized labor, the fruits of that productivity will not be shared with the workers."
 			"There's more than enough wealth to go around. All that we're asking for is our fair share."
 			"Syndicate managers get paid three times as much as their employees, just for sitting in an office all day and watching us sweat."
 			"My job is to encourage workers to place a higher value on their own lives despite being surrounded by a culture that tells them they are worthless."
+		word
+			`"`
 
 
 
@@ -218,9 +262,13 @@ news "dock worker"
 			"Dock worker"
 	message
 		word
+			`"`
+		word
 			"It seems crazy to me that people on other planets would be willing to pay money for the sort of junk that we're loading into starships here."
 			"The robots do most of the heavy lifting for us, but every so often one of them malfunctions and drops a crate on someone's toe."
 			"Why do they make the cargo bay doors on certain starships so small? You wouldn't believe how hard it is sometimes to load larger items onto a ship."
+		word
+			`"`
 
 
 
@@ -234,9 +282,13 @@ news "housekeeper"
 			"Domestic worker"
 	message
 		word
+			`"`
+		word
 			"How is it possible that a man who manages a billion-credit corporation can still be so incompetent or so careless that he routinely misses the toilet bowl when he takes a piss?"
 			"The family I work for offered to let me live in a room in the attic for free, but I'm not sure I want to have that little separation between work and my personal life."
 			"If rich kids are so pampered that they've never so much as had to wash a dish in their entire lives, it makes me wonder how they hope to be independent adults one day."
+		word
+			`"`
 
 
 
@@ -250,9 +302,13 @@ news "groundskeeper"
 			"Gardener"
 	message
 		word
+			`"`
+		word
 			"The family I work for has an odd fascination with carnivorous plants. I have to keep rotting piles of refuse around just to produce enough flies to feed them all."
 			"They told me that they wanted the landscaping to be classic and entertaining, so I constructed a giant hedge maze."
 			"Despite all our best terraforming efforts, it can still be hard to get native Earth plants to grow on an alien world."
+		word
+			`"`
 
 
 
@@ -265,9 +321,13 @@ news "hair stylist"
 			"Hair stylist"
 	message
 		word
+			`"`
+		word
 			"For too long, the creativity of trend-setting stylists like myself has been held in check by the limited height of the doorways in most houses."
 			"My work is made possible by vision, creativity, and hairspray. Lots and lots of hairspray."
 			"The newest fad is hairstyles made to look like starships. Those boxy Navy ships are particularly hard to model in such a fluid medium."
+		word
+			`"`
 
 
 
@@ -280,10 +340,14 @@ news "tour guide"
 			"Tour guide"
 	message
 		word
+			`"`
+		word
 			"I've delivered the same speech so many times now that the whole thing runs on continuous repeat in my head when I'm trying to sleep."
 			"Some famous people who you've probably never heard of died near here. If I weren't on break right now I would tell you all about them."
 			"At least they don't make me dress up like anything. I knew a woman whose tour job made her dress up like a twenty-first century person. Apparently back then they all wore very tight-fitting pants."
 			"It's kind of amazing to me that people would travel halfway across the galaxy to see this dump. To me, it's the one place I've always wished I could get away from."
+		word
+			`"`
 
 
 
@@ -295,9 +359,13 @@ news "human resources worker"
 			"Human resources worker"
 	message
 		word
+			`"`
+		word
 			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
 			"I once had to find a delicate way to explain to a worker that he smelled bad. Like, so bad that no one could bear to be in a small meeting room with him."
 			"For most jobs, it's essential to know how to get along with others and be a team player. But I bet a freelance pilot like you never needs to worry about that."
+		word
+			`"`
 
 
 
@@ -310,10 +378,14 @@ news "loan officer"
 			"Mortgage broker"
 	message
 		word
+			`"`
+		word
 			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
 			"We charge however much interest the market will support. The only captains who can't manage to pay their debts are the ones with no business sense whatsoever."
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
 			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
+		word
+			`"`
 
 
 
@@ -325,9 +397,13 @@ news "hyperspace relay engineer"
 			"Hyperspace relay engineer"
 	message
 		word
+			`"`
+		word
 			"All of human space is linked into a single communications network by relay beacons. It's something that most people just take for granted."
 			"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."
 			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
+		word
+			`"`
 
 
 
@@ -340,10 +416,14 @@ news "geological engineer"
 			"Geological engineer"
 	message
 		word
+			`"`
+		word
 			"With the right equipment, you can see inside a planet as easily as if it were... um... a tomato held up in front of an arc lamp. Sorry, I'm awful at similes."
 			"I have equipment that would let me trigger an earthquake just by pressing a button. That's why they never allow me into the office when I'm drunk."
 			"For centuries people have been saying that asteroid mining is going to put terrestrial resource extraction companies out of business, but it still hasn't happened."
 			"A few times, I've traveled so deep underground that the rock felt warm to the touch. But I imagine that's nowhere near as exciting as traveling through space."
+		word
+			`"`
 
 
 
@@ -356,10 +436,14 @@ news "agricultural scientist"
 			"Agricultural scientist"
 	message
 		word
+			`"`
+		word
 			"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."
 			"Even though there are some alien ungulates that put on weight much quicker than Earth animals, or that have much leaner meat, most people still prefer to eat cows."
 			"I've heard that the corporate farms on some paradise worlds don't even need irrigation systems. They can just call up the terraforming office and order a rainstorm whenever they need one."
 			"People have been farming for thousands of years, but finding the best way to maximize yields without wearing out the land is still a hard problem to solve."
+		word
+			`"`
 
 
 
@@ -371,10 +455,14 @@ news "epidemiologist"
 			"Epidemiologist"
 	message
 		word
+			`"`
+		word
 			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
 			"Would you be willing to donate a saliva sample? Frequent interstellar travelers are the primary vector for pandemics, so we're supposed to monitor any starship captains that come though here."
 			"It's been so many centuries since the Rigellian Plague that most spaceports don't even have quarantine facilities anymore. When the next big one comes, we'll be woefully unprepared."
 			"Don't listen to those conspiracy theories that say you can catch awful viruses from the Quarg. Their physiology is so alien that we're immune to all their diseases."
+		word
+			`"`
 
 
 
@@ -386,10 +474,14 @@ news "economist"
 			"Economist"
 	message
 		word
+			`"`
+		word
 			"We're actually required by local law to predict that the economy will continue to do well, because the government thinks that any dire predictions will be a self-fulfilling prophecy."
 			"It's crazy that we live in an age where technology lets us predict solar storms a month in advance, but we still can't predict what the stock market will do a week from today."
 			"The hardest part of being an economist isn't the difficulty of seeing a disaster coming; it's the difficulty of convincing those in power to do something about it."
 			"An economy is almost like a living organism, and if you're able to grasp its intricacy and scope, it's actually a very beautiful thing."
+		word
+			`"`
 
 
 
@@ -401,11 +493,15 @@ news "nuclear technician"
 			"Nuclear technician"
 	message
 		word
+			`"`
+		word
 			"Last year all the hair on the left hand side of my face turned white and fell out. The company swears it was just a weird illness and had nothing to do with my work."
 			"My kids keep asking me to bring a bar of plutonium home for them to play with. Some stupid video convinced them that it would give them super powers."
 			"Nuclear reactors are remarkably safe these days. I don't know why the government won't let us build them in residential neighborhoods."
 			"In all of human space, there hasn't been a single nuclear meltdown in fourteen years. And that was just a tiny one, hardly even worth mentioning."
 			"My company's motto is, 'We bring the power of the stars down to earth, and send earthlings to the stars.' I think we should change it to something catchier."
+		word
+			`"`
 
 
 
@@ -418,10 +514,14 @@ news "substance abuse counselor"
 			"Substance abuse counselor"
 	message
 		word
+			`"`
+		word
 			"I know some folks try to talk captains like you into carrying drugs on the side. I wish all of you could see the real human cost of that industry."
 			"Zooming around in your fancy space ship, I bet you don't realize the sort of desperation that some of the folks down here below you are carrying around."
 			"The government pays my salary. They say it's worth it, because every credit spent on me prevents ten credits of lost productivity."
 			"Honestly, drugs are a problem throughout human space, but the richer folks have the resources to keep their addictions well-managed and well-hidden."
+		word
+			`"`
 
 
 
@@ -433,11 +533,15 @@ news "reporter"
 			"Reporter"
 	message
 		word
+			`"`
+		word
 			"I'm doing a human interest story about a llama that stowed away in a ship's cargo hold. Llamas are so cute, people will watch anything that involves them."
 			"My job is to bring sunlight into dark places and expose things that people are trying to keep hidden... and to avoid being killed in the process."
 			"A free and independent press is a critical component of any healthy democracy. But sensationalism is a whole lot more lucrative."
 			"I've been interviewing elderly starship captains. You wouldn't believe the tall tales that some of them tell!"
 			`Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'`
+		word
+			`"`
 
 
 
@@ -450,11 +554,15 @@ news "museum curator"
 			"Museum curator"
 	message
 		word
+			`"`
+		word
 			"You would not believe the sorts of things that the inhabitants of ancient Earth did for entertainment back before interstellar travel was a reality."
 			"I operate an arboretum with trees and shrubs from more than fifty worlds. Fortunately, none of them are particularly invasive species."
 			"The most popular exhibit in our entire Children's Museum is the interactive starship simulator. You're living a life that those kids can only dream of."
 			"Did you know that humans used to rely on explosive fuel mixtures to propel them into orbit? Imagine how mad you'd have to be to do that!"
 			"We recently put a restored 20th-century shipping container on display. You can hardly tell the difference from the ones in use today! Isn't historical inertia fascinating?"
+		word
+			`"`
 
 
 
@@ -467,10 +575,14 @@ news "actor"
 			"Actor"
 	message
 		word
+			`"`
+		word
 			"We're doing a production of the Scottish Play where the three witches are made up to look like Quarg. I know it sounds weird, but it works in our context."
 			"I just finished a project doing voice acting for an animated children's book. It's kind of a relief to be done with it, honestly. Certain lines are still stuck in my brain."
 			"Right now I'm mostly just doing commercials, but I'm working on a concept for a zero-gravity musical that will be truly epic."
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
+		word
+			`"`
 
 
 
@@ -483,10 +595,14 @@ news "technical writer"
 			"Technical writer"
 	message
 		word
+			`"`
+		word
 			"Do you have a few minutes to listen to my thoughts on the importance of the serial comma?"
 			"People who over-use the passive voice should be lined up and shot. It doesn't make your writing more formal, it just makes it harder to read."
 			"Documents are written once, and read many times. So every minute I spend polishing someone's writing will pay off many times over in the long run."
 			"Communication skills are essential no matter what your job is. If you can't write well, people will think you're an idiot. Or at least, people like me will think that."
+		word
+			`"`
 
 
 
@@ -499,10 +615,14 @@ news "dietitian"
 			"Dietitian"
 	message
 		word
+			`"`
+		word
 			"I actually have several recipes that can make processed algae delicious. Or at least, visually appealing. Quite edible. I mean, it's not that hard to mask the taste."
 			"One of my rich clients wants me to figure out how she can subsist on eating nothing but flowers. She thinks eating the leaves and roots of plants is cruel."
 			"A few years ago I worked for the Syndicate, designing prepackaged liquid meals for factory workers. They were incredibly nutritious, but they tasted disgusting."
 			"There are probably thousands of edible native plants on every world human beings have colonized, but people still prefer the plants we brought with us from ancient Earth."
+		word
+			`"`
 
 
 
@@ -515,10 +635,14 @@ news "chef"
 			"Chef"
 	message
 		word
+			`"`
+		word
 			"For a recent corporate gala, I constructed a fire pit large enough to roast an entire Antarean thunder-lizard. The fat was perfectly rendered. It was amazing."
 			"I'm employed as the chef on a luxury cruise ship. A Star Queen. The captain tells me that Star Queens are considered the safest way to travel in outer space."
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
-			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!" 
+			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
+		word
+			`"`
 
 
 
@@ -531,10 +655,14 @@ news "insurance agent"
 			"Insurance agent"
 	message
 		word
+			`"`
+		word
 			"No, we don't sell insurance policies on private starships in this day and age. We also don't insure buildings in flood plains and houses inhabited by convicted serial arsonists."
 			"Among the paradise worlds, there's currently a fad of taking out insurance policies on pets, to pay for therapy if the animal dies unexpectedly."
 			"Insurance is all about mitigating risks. But you're flying around the vacuum of space in a tin can, so you probably don't know much about that."
 			"I just got done handling an insurance fraud case where the owner claimed her entire home had been eaten by Sagittarian sand-fleas."
+		word
+			`"`
 
 
 
@@ -548,11 +676,15 @@ news "excavation specialist"
 			"Explosives worker"
 	message
 		word
+			`"`
+		word
 			"Those newfangled mining lasers are pretty cool, but there's nothing like good old-fashioned dynamite for shifting a lot of rock in a hurry."
 			"Sure, you may have been to outer space, but I bet you've never been ten kilometers underground."
 			"For hundreds of years we've been worried that asteroid harvesting will put terrestrial miners out of business, but it still hasn't happened."
 			"Once I've worked here for another decade, I plan to move to some paradise world and earn a living excavating bunkers for paranoid rich folks to hide in."
 			"Once we had to stop work on a mine for a month because the archaeologists thought we found evidence of a million-year-old civilization. It turned out the site was just radioactive. Dodged that one!"
+		word
+			`"`
 
 
 
@@ -565,11 +697,15 @@ news "chauffeur"
 			"Chauffeur"
 	message
 		word
+			`"`
+		word
 			"I fly the missus to her appointments in a private shuttlecraft, because she hates being stuck in traffic."
 			"The family I work for is so rich that they pay me to ride in the back of their self-driving car just so I can open the doors for them when they arrive wherever they're going."
 			"My company gives private gyrocopter rides to rich tourists. I built the gyrocopter myself, but it's a very safe vehicle."
 			"You wouldn't believe the sorts of things that go on in the back of my car after certain extravagant social galas."
 			"You'll never believe what happened on my first day on the job. Someone tried to rob a building while I was in the parking lot. I had to ram their van to keep them from getting away!"
+		word
+			`"`
 
 
 
@@ -581,6 +717,8 @@ news "human retiree"
 			"Retiree"
 	message
 		word
+			`"`
+		word
 			"Retiring is the best thing I ever did. They should make it mandatory!"
 			"All of my children have gone to the most prestigious academy on Hestia. They're so brilliant, it was the only place that would do."
 			"It makes me feel so safe to know that there are half a dozen Navy warships in orbit. The barbarians north of here wouldn't dare attack us!"
@@ -588,6 +726,8 @@ news "human retiree"
 			"I don't stand for it when I hear youngsters complain about the fact that I have a generous pension. I worked for 40 years to earn this retirement!"
 			"I feel sorry for the young workers who are supporting me right now. They have to pay more in taxes and pension contributions than I ever did, and they probably won't get to retire until they're 70, at least."
 			"We're very fortunate to have been able to retire here. Don't ever take your blessings for granted, captain."
+		word
+			`"`
 
 
 
@@ -599,6 +739,8 @@ news "human financial analyst"
 			"Financial analyst"
 	message
 		word
+			`"`
+		word
 			"You must be a very brave captain, if you have traveled to some of the... less civilized parts of human space."
 			"I can't believe how expensive college tuition is these days. My kid's first semester just set me back 172,000 credits!"
 			"My daughter's Flivver is a few years old already... maybe it's time for an upgrade? I hear the new ones are much safer."
@@ -609,6 +751,8 @@ news "human financial analyst"
 			"God, these taxes are killing me. I make a good income, but it feels like half of it goes to the Republic, and I've got bills to pay, too."
 			"I manage 8-figure portfolios, but what gets me up in the morning is the sight of a beautiful sunrise. I know it's all geo-engineered, but is a painting any less sublime just because it was made by human hands?"
 			"Nearly lost my shirt in the commodities market last week. If my boss ever found out, it'd be curtains for me!"
+		word
+			`"`
 
 
 
@@ -620,6 +764,8 @@ news "human syndicate manager"
 			"Syndicate manager"
 	message
 		word
+			`"`
+		word
 			"We've had to ask everyone to work sixty-hour weeks just to meet this month's quotas. The workers complain to me, but I tell them I'm in the same boat as they are."
 			"The Syndicate makes us take the same stupid workspace harassment training every single year. How would you like it if some bohemian outside consultant was telling you what you can and can't do in your social life?"
 			"In general, the women in my factory are much more conscientious workers than most of the men. Too bad so few of them have the sort of assertiveness and commanding presence you need in a manager."
@@ -628,6 +774,8 @@ news "human syndicate manager"
 			"You look like the kind of captain who could benefit from a Syndicate Proton Gun. Would you care to schedule a test-firing?"
 			"Have you considered a Syndicate Freighter for your next ship? Captains like you swear by them!"
 			"Nobody ever got fired for buying Syndicate."
+		word
+			`"`
 
 
 
@@ -640,12 +788,16 @@ news "human scientist"
 			"Scientist"
 	message
 		word
+			`"`
+		word
 			"It's so exciting being on the cutting edge of human knowledge, but I wish it were easier to secure funding. A lot of my equipment is more than 40 years old."
 			"This neutronium alloy I'm working on will be what's armoring your next starship - no doubt about it."
 			"Yesterday I almost lost all my research notes when my computer crashed. I can't believe we still have to worry about things like this! What are the software guys doing all day?"
 			"We've got student interns in the lab this month. A few of them are very bright!"
 			"Excuse me, captain, I have to resume work on a paper I'm co-authoring. Would you like an advance copy?"
 			"My research concerns force fields. No, not those kinds of force fields."
+		word
+			`"`
 
 
 
@@ -658,6 +810,8 @@ news "human student"
 			"Student"
 	message
 		word
+			`"`
+		word
 			"I'm going to be a teacher some day!"
 			"I'm going to be a doctor some day!"
 			"I'm going to be a financial manager some day!"
@@ -669,6 +823,8 @@ news "human student"
 			"After graduation, I think I'd like to work in industry somewhere, but my advisor is encouraging me to go on and get my master's degree. What do you think?"
 			"Sorry, no time to chat. My master's thesis is already late and I'm hiding from my advisor."
 			"This is the life! I'm only in class like 3, so my days are totally open! I know it'll end in a few years, but I'm going to enjoy it while I can. After you graduate, it's just work work work until you're dead."
+		word
+			`"`
 
 
 
@@ -681,6 +837,8 @@ news "human religious"
 			"Mystic"
 	message
 		word
+			`"`
+		word
 			"May God be with you!"
 			"The path to enlightenment is fraught with sacrifice."
 			"We spend all our lives striving, but everything we need is always right in front of us."
@@ -692,6 +850,8 @@ news "human religious"
 			"Praise Jesus! This day is a blessing."
 			"Praise Allah! This day is a blessing."
 			"Praise God! This day is a blessing."
+		word
+			`"`
 
 
 
@@ -705,6 +865,8 @@ news "human tourism"
 			"Tourist"
 	message
 		word
+			`"`
+		word
 			"This place is so romantic. I wish I could stay forever."
 			"I may have paid a small fortune to get here, but it was worth it! Don't you just love this place?"
 			"I paid so much money to get here, and look at the place - it's a dump. I'll try to make the best of it, I suppose."
@@ -713,6 +875,8 @@ news "human tourism"
 			"Can you believe that our ship was attacked by pirates on the way here? It's lucky a Navy patrol showed up and chased them off before our shields dropped. It was all so exciting! I'm taking the same route again next year."
 			"I can't wait to go skiing here! Haha, just kidding."
 			"It's too bad I have to leave tomorrow. I only get two weeks of vacation a year, and it's hard to leave after spending half that time in transit here and back."
+		word
+			`"`
 
 
 
@@ -725,10 +889,14 @@ news "human mercenary"
 			"Mercenary"
 	message
 		word
+			`"`
+		word
 			"I've tracked fugitives halfway across the galaxy, and they have me on... guard duty. These guys must really be desperate given the kind of money they waved in my face."
 			"Security may be expensive, but think of it this way: it's better to be poor than dead."
 			"Nothing beats the thrill of boarding a crippled starship, laser rifle in your hands."
 			"Have you ever been to a pirate world? The conditions there are nearly inhuman!"
+		word
+			`"`
 
 
 
@@ -741,6 +909,8 @@ news "human republic soldier"
 			"Republic Soldier"
 	message
 		word
+			`"`
+		word
 			"I bet you think that starship of yours is hot stuff, huh? Try tooling around in a cruiser with Atomic Engines sometime. You can run circles around interceptors."
 			"As soon as I leave the service, I'm buying my own ship like yours. It'll be nice to give the orders for a change!"
 			"Nice ship, captain. We trashed one just like it the other day during a pirate raid. Plating behind the engine room was real weak once the shields dropped, and a volley of sidewinders crippled her. You might want to look into that on yours."
@@ -749,6 +919,8 @@ news "human republic soldier"
 			"Let me give you a piece of advice: particle cannons are some of the best weapons out there. Pirates don't stand a chance."
 			"I hope I don't get posted to fighter duty next week. Those things are deathtraps. By the time you get close enough to fire your lasers, you've already lost half your shields!"
 			"Nobody thinks about the Alphas anymore, but don't forget that they just disappeared. They could return at any time. If that happens, I'm going to kill every last one of 'em."
+		word
+			`"`
 
 
 
@@ -761,12 +933,16 @@ news "human syndicate soldier"
 			"Syndicate Soldier"
 	message
 		word
+			`"`
+		word
 			"What a terrible posting. I thought I'd filed my transfer paperwork right, but it turned out my commander's seal had to be a certified original and not a copy, so now I'm stuck here for another two years."
 			"I did a stint in the Republic military a few years ago, but the Syndicate pays so much more. Now I can actually save some money for my daughter's college tuition."
 			"You're living the dream, captain! Someday I'm going to retire from the Syndicate military and buy my own ship."
 			"After 20 years, you're eligible for a lifetime pension. I've only got 8 years left, and then I'm home free!"
 			"It's a scandal how many pirates are out here. We do our best, but upper management ties our hands with ridiculous rules of engagement."
 			"Everybody knows where the pirate planets are, so why don't we ever go on a mission to wipe 'em out? I don't understand it."
+		word
+			`"`
 
 
 
@@ -777,6 +953,8 @@ news "human pirate"
 		word
 			"Pirate"
 	message
+		word
+			`"`
 		word
 			"Next time we meet up, maybe I'll be plundering your ship."
 			"What are you looking at, punk?"
@@ -792,3 +970,5 @@ news "human pirate"
 			"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
 			"I used to be a soft-bellied merchant captain before my life took a turn. Gotta get tough or get dead in this galaxy."
 			"Just a word of warning: don't fall asleep in the hotels here."
+		word
+			`"`
