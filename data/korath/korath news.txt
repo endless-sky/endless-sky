@@ -81,4 +81,4 @@ news "kor efret scientist"
 	message
 		word
 			"A Kor Efret pushes a cart filled with strange chemicals and bits of technology past you."
-			"A Korath wearing an insignia - probably to designate it as some sort of government official - strides through the spaceport with a strange device. It looks like it's taking samples of the air quality."
+			"A Korath walks through the spaceport reading numbers off a device and inputting them onto another one. It looks like it's taking samples of the air quality."
