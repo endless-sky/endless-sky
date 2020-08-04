@@ -56,7 +56,6 @@ mission "First Contact: Remnant"
 				decline
 			
 	on enter
-		log "People" "Chilia" `Despite being quite young, Chilia is the Remnant Prefect in charge of Remnant military actions. He is highly respected among Remnant society.`
 		"remnant chilia" ++
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
@@ -1274,6 +1273,30 @@ mission "Remnant: taely intro log"
 
 
 
+mission "Remnant: Chilia Intro Log"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 1
+	on offer
+		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
+		fail
+
+
+
+mission "Remnant: Chilia Intro Log 2"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 2
+	on offer
+		log "People" "Chilia" `Despite being quite young, Chilia is highly respected among Remnant society.`
+		fail
+
+
+
 mission "Remnant: Return the Samples"
 	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
@@ -2187,7 +2210,6 @@ mission "Remnant: Face to Maw 2B"
 			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
 				decline
 	on complete
-		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
 		payment 250000
 		"remnant chilia" ++
 		outfit "Void Rifle"
@@ -2208,3 +2230,4 @@ mission "Remnant: Face to Maw 2B"
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
+
