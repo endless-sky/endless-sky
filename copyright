@@ -738,6 +738,9 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
+ images/_menu/haze-blackbody+*
+ images/_menu/haze-full+*
+ images/_menu/haze-yellow+* 
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rouge*
