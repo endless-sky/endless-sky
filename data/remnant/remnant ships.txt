@@ -130,6 +130,7 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
+		"Quantum Key Stone"
 		"Outfits Expansion" 2
 		"Tuning Rifle" 49
 
@@ -155,6 +156,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Quantum Key Stone"
 		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
 		"Outfits Expansion" 4
 		"Tuning Rifle" 65
 
@@ -186,6 +188,7 @@ ship "Albatross" "Albatross (Shield)"
 		"Millennium Cell"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler" 1
+		"Quantum Key Stone"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 3
 		"Small Heat Shunt" 1
