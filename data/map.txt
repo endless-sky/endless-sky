@@ -12386,7 +12386,6 @@ system Host
 	government Uninhabited
 	habitable 486.68
 	belt 1669
-	haze _menu/haze-yellow
 	asteroids "large metal" 1 0.732
 	trade Clothing 268
 	trade Electronics 639
