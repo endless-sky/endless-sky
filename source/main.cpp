@@ -247,6 +247,13 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
+
+		// Switch off fast-forward if the player is not in flight or flight-related screen
+		// (for example when the boarding dialog shows up or when the player lands). The player
+		// can switch fast-forward on again when flight is resumed.
+		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowFastForward();
+		if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
+			isFastForward = false;
 		
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
@@ -321,7 +328,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.11" << endl;
+	cerr << "Endless Sky 0.9.13-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
