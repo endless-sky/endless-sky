@@ -1841,20 +1841,27 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 void AI::PrepareForHyperspace(Ship &ship, Command &command)
 {
 	bool hasHyperdrive = ship.Attributes().Get("hyperdrive");
-	double scramThreshold = ship.Attributes().Get("scram drive");
 	bool hasJumpDrive = ship.Attributes().Get("jump drive");
+	// Can't jump without a drive
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 	
-	bool isJump = !hasHyperdrive || !ship.GetSystem()->Links().count(ship.GetTargetSystem());
+	bool hasHyperScramDrive = ship.HasOutfit("hyperdrive", "scram drive");
+	bool hasJumpScramDrive = ship.HasOutfit("jump drive", "scram drive");
+	bool isJumping = !hasHyperdrive || !ship.GetSystem()->Links().count(ship.GetTargetSystem());
+	bool isScramming = (isJumping && hasJumpScramDrive) || (!isJumping && hasHyperScramDrive);
 	
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	if(!isJump && scramThreshold)
+	
+	// If scramming, the ship can only enter hyperspace or jump if it is traveling 
+	// slowly enough and pointed in the right direction.
+	if(isScramming)
 	{
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
 		
 		double deviation = ship.Velocity().Dot(normal);
+		double scramThreshold = ship.Attributes().Get("scram drive");
 		if(fabs(deviation) > scramThreshold)
 		{
 			// Need to maneuver; not ready to jump
@@ -1881,7 +1888,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		command.SetTurn(TurnToward(ship, direction));
 	}
 	// If we're a jump drive, just stop.
-	else if(isJump)
+	else if(isJumping)
 		Stop(ship, command, ship.Attributes().Get("jump speed"));
 	// Else stop in the fastest way to end facing in the right direction
 	else if(Stop(ship, command, ship.Attributes().Get("jump speed"), direction))

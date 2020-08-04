@@ -360,6 +360,8 @@ public:
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
+	// Determine if the ship has an outfit with the specified type and optionally subtype
+	bool HasOutfit(const std::string &type, const std::string &subtype) const;
 	
 	// Get the list of weapons.
 	Armament &GetArmament();

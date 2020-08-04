@@ -2280,14 +2280,20 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	if(!fuelCost || fuel < fuelCost)
 		return false;
 	
-	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
-	double scramThreshold = attributes.Get("scram drive");
+	bool hasHyperdrive = attributes.Get("hyperdrive");
+	bool isJumping = !hasHyperdrive || !currentSystem->Links().count(targetSystem);
 	
-	// The ship can only enter hyperspace if it is traveling slowly enough
-	// and pointed in the right direction.
-	if(!isJump && scramThreshold)
+	bool hasHyperScramDrive = HasOutfit("hyperdrive", "scram drive");
+	bool hasJumpScramDrive = HasOutfit("jump drive", "scram drive");
+	bool isScramming = (isJumping && hasJumpScramDrive) || (!isJumping && hasHyperScramDrive);
+	
+	Point direction = targetSystem->Position() - currentSystem->Position();
+	
+	// If scramming, the ship can only enter hyperspace or jump if it is traveling 
+	// slowly enough and pointed in the right direction.
+	if(isScramming)
 	{
+		double scramThreshold = attributes.Get("scram drive");
 		double deviation = fabs(direction.Unit().Cross(velocity));
 		if(deviation > scramThreshold)
 			return false;
@@ -2295,7 +2301,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	else if(velocity.Length() > attributes.Get("jump speed"))
 		return false;
 	
-	if(!isJump)
+	if(isScramming || !isJumping)
 	{
 		// Figure out if we're within one turn step of facing this system.
 		bool left = direction.Cross(angle.Unit()) < 0.;
@@ -2646,7 +2652,7 @@ double Ship::HyperdriveFuel() const
 	if(!attributes.Get("hyperdrive"))
 		return JumpDriveFuel();
 	
-	if(attributes.Get("scram drive"))
+	if(HasOutfit("hyperdrive", "scram drive"))
 		return BestFuel("hyperdrive", "scram drive", 150.);
 	
 	return BestFuel("hyperdrive", "", 100.);
@@ -2659,6 +2665,9 @@ double Ship::JumpDriveFuel() const
 	// Don't bother searching through the outfits if there is no jump drive.
 	if(!attributes.Get("jump drive"))
 		return 0.;
+	
+	if(HasOutfit("jump drive", "scram drive"))
+		return BestFuel("jump drive", "scram drive", 250.);
 	
 	return BestFuel("jump drive", "", 200.);
 }
@@ -3139,7 +3148,19 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 	}
 }
 
-
+// Determine if the ship has an outfit with the specified type and optionally subtype
+bool Ship::HasOutfit(const string &type, const string &subtype) const
+{
+	// Make it possible for the outfit to be integrated directly into the ship
+	if(baseAttributes.Get(type) && (subtype.empty() || baseAttributes.Get(subtype)))
+		return true;
+	// Search through all the outfits.
+	for(const auto &it : outfits)
+		if(it.first->Get(type) && (subtype.empty() || it.first->Get(subtype)))
+			return true;
+	// The ship does not have the outfit with the type(s) requested
+	return false;
+}
 
 // Get the list of weapons.
 Armament &Ship::GetArmament()
