@@ -1249,6 +1249,8 @@ mission "FW Pug 2C: Hyperdrive"
 		set "fw given jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		set "FW Pug 2C: done"
 
 
 
@@ -1276,6 +1278,8 @@ mission "FW Pug 2C: Scram Drive"
 		set "fw given jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		set "FW Pug 2C: done"
 
 
 
@@ -1305,6 +1309,8 @@ mission "FW Pug 2C: A Jump Drive"
 		set "already had jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		set "FW Pug 2C: done"
 
 
 
@@ -1406,6 +1412,7 @@ mission "FW Pug 3"
 	clearance
 	to offer
 		has "fw given jump drive"
+		has "FW Pug 2C: done"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -2540,6 +2547,8 @@ mission "FW Syndicate Extremists 1C"
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
+		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds, culminating in a series of military confrontations that ended when the Free Worlds were able to present credible evidence denying any involvement in the terrorist attacks. After the Free Worlds joined the effort to drive out the Pug invaders, the Republic officially recognized the Free Worlds and diplomatic relations were established.`
+		log "Factions" "Syndicate" `It was exposed that the bombings of Gemini and Martini that helped cause the war between the Republic and Free Worlds were the doing of the Syndicate, designed by top executives with the help of a group of Alphas. Despite the claims that all the extremists responsible have been purged and handed over to the Navy, the reputation of the Syndicate will be damaged for years to come.`
 		payment 5000000
 		event "stack core for sale"
 		set "main plot completed"
