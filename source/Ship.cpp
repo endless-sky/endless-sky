@@ -3399,7 +3399,8 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// is capable of making the given jump, as the destination must
 		// be among the neighbors of the current system.
 		double jumpRange = baseAttributes.Get("jump range");
-		jumpRange = jumpRange ? jumpRange : System::DEFAULT_NEIGHBOR_DISTANCE;
+		if(!jumpRange)
+			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
 		// always pass.
@@ -3415,7 +3416,8 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		if(it.first->Get(type) && (subtype.empty() || it.first->Get(subtype)))
 		{
 			double jumpRange = it.first->Get("jump range");
-			jumpRange = jumpRange ? jumpRange : System::DEFAULT_NEIGHBOR_DISTANCE;
+			if(!jumpRange)
+				jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 			if(jumpRange >= distance)
 			{
 				double fuel = it.first->Get("jump fuel");
