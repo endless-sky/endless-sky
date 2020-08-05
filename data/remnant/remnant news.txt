@@ -10,14 +10,19 @@
 
 
 
-news "remnant advisory"
+news "remnant security advisory"
 	location
 		government "Remnant"
 	name
 		word
-			"System Security Advisory:"
-			"Local Status:"
-			"System Threats:"
+			"System Security "
+			"Local "
+			"System "
+			"Defense "
+		word
+			"Advisory"
+			"Status"
+			"Threats"
 	message
 		word
 			"Incoming Korath Fleet in "
@@ -57,26 +62,25 @@ news "remnant advisory"
 		word
 			"Threat Sierra-"
 		word
-			"20"
-			"21"
-			"22"
-			"23"
-			"24"
-			"25"
-			"26"
-			"27"
-			"28"
-			"29"
-			"30"
-			"31"
-			"32"
-			"33"
-			"34"
-			"35"
-			"36"
-			"37"
-			"38"
-			"39"
+			"2"
+			"3"
+		word
+			"0"
+			"1"
+			"2"
+			"3"
+			"4"
+			"5"
+			"6"
+			"7"
+			"8"
+			"9"
+			"A"
+			"B"
+			"C"
+			"D"
+			"E"
+			"F"
 	message
 		word
 			"Incoming Korath Ship in "
@@ -116,26 +120,25 @@ news "remnant advisory"
 		word
 			"Threat Sierra-"
 		word
-			"40"
-			"41"
-			"42"
-			"43"
-			"44"
-			"45"
-			"46"
-			"47"
-			"48"
-			"49"
-			"50"
-			"51"
-			"52"
-			"53"
-			"54"
-			"55"
-			"56"
-			"57"
-			"58"
-			"59"
+			"4"
+			"5"
+		word
+			"0"
+			"1"
+			"2"
+			"3"
+			"4"
+			"5"
+			"6"
+			"7"
+			"8"
+			"9"
+			"A"
+			"B"
+			"C"
+			"D"
+			"E"
+			"F"
 	message
 		word
 			"Patrol "
@@ -144,6 +147,7 @@ news "remnant advisory"
 			"Attack "
 			"Reconnaissance "
 			"Escort "
+			"Decoy "
 		word
 			"Flight "
 			"Talon "
@@ -203,6 +207,7 @@ news "remnant advisory"
 			" prepare for "
 			" ready for "
 			" standby for "
+			" hold for "
 		word
 			"departure."
 			"launch."
@@ -214,5 +219,67 @@ news "remnant advisory"
 			"Maintain normal security status."
 			"All departing ships advised to have weapon systems hot."
 			"All departing ships be advised to expect hostiles in the vicinity."
-			
+			"Reminder to update your IFF settings and verify keys."
+			"Reminder to verify functionality of selective IFF broadcast every startup."
+
+
+
+news "remnant incomprehensible"
+	location
+		government "Remnant"
+	name
+		word
+			"A "
+		word
+			"pair "
+			"small group "
+			"medium group "
+			"large group "
+		word
+			"of Remnant"
+	message
+		word
+			"They "
+		word
+			"sign "
+			"gesture "
+		word
+			"quickly "
+			"calmly "
+			"leisurely "
+			"slowly "
+			"deliberately "
+			"carefully "
+			"precisely "
+			"sharply "
+			"bruskly "
+			"sweepingly "
+			"intensively "
+			"meticulously "
+			"at length "
+			"vaguely "
+			"briskly "
+			"hurriedly "
+			"hastily "
+			"abruptly "
+			"spontaneously "
+		word
+			"to each other. "
+			"to another Remnant. "
+			"to other Remnant. "
+			"to something or someone you can't see. "
+		word
+			"You can not "
+		word 
+			"make out "
+			"figure out "
+			"understand "
+			"comprehend "
+		word
+			"what they are "
+		word
+			"saying."
+			"communicating."
+			"conveying."
+			"discussing."
 
