@@ -183,16 +183,20 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
-			double jumpRange = max(0., child.Value(1)); 
-			if(jumpRange)
-				GameData::NeighborDistance(jumpRange);
-			attributes[child.Token(0)] = jumpRange;
+			// Jump range must be positive.
+			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Only outfits with the jump drive and jump range attributes can
+	// use the jump range, so only keep track of the jump range on
+	// viable outfits.
+	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+		GameData::NeighborDistance(attributes.Get("jump range"));
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
