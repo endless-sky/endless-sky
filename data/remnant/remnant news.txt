@@ -291,3 +291,12 @@ news "remnant incomprehensible"
 			"communicating."
 			"conveying."
 			"discussing."
+	message
+		word
+			"They "
+		word
+			" collect trays heaped with food from the cafeteria window."
+			" appear to be enjoying a large meal together."
+			" are relaxing around the remains of a large meal."
+			" are signing to each other over a large meal."
+			" are reading reports over a large meal."
