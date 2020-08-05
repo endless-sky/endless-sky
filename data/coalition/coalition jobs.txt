@@ -12,6 +12,42 @@ phrase "coalition ringworld workers"
 	word
 		`You drop off the workers on the <planet>. A few minutes later you receive a transfer of <payment>.`
 
+phrase "resistance evacuation stopover"
+	word
+		`You `
+		`As was asked, you `
+	word
+		`wait for your passengers to come, `
+		`land on an inconspicuous part of the planet, `
+		`land someplace where the Heliarch aren't patrolling, `
+	word
+		`and prepare to depart after the last Resistance member boards your ship.`
+		`and are urged to leave by the Resistance members, after they've all boarded your ship.`
+
+phrase "resistance evacuation done"
+	word
+		`After you land `
+		`Once you dock `
+	word
+		`and make sure you weren't followed, `
+		`and confirm there are no Heliarchs close-by, `
+	word
+		`the Resistance members thank you one by one, before handing you <payment> and leaving your ship.`
+		`you're given <payment> by the Resistance members, who thank you for your help and leave your ship.`
+		`you tell the Resistance members that it's safe to leave, which they do after paying you <payment>.`
+
+phrase "resistance evacuation fail"
+	word
+		`You `
+		`As was asked, you `
+	word
+		`wait for your passengers to come. `
+		`land on an inconspicuous part of the planet. `
+		`land someplace where the Heliarch aren't patrolling. `
+	word
+		`As time passes and no one shows up, it's clear that the Heliarchs got to them before you did.`
+		`After hours of waiting and not managing to get in contact with anyone, it becomes clear that the Resistance members couldn't make it to your ship.`
+
 mission "Coalition: Ringworld Workers 1"
 	job
 	repeat
@@ -1446,11 +1482,11 @@ mission "Evacuate Resistance True"
 	on offer
 		dialog `You wander around the spaceport for a bit without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them on <stopovers>, where the Heliarchs are investigating, and transport them to <destination>.`
 	on stopover
-		dialog `The Resistance members rush inside your ship, urging you to take off quickly.`
+		dialog phrase "resistance evacuation stopover"
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on complete
-		dialog `The Resistance members thank you for rescuing them before handing you <payment>.`
+		dialog phrase "resistance evacuation done"
 		payment 23861 8
 
 mission "Evacuate Resistance Fake"
@@ -1482,7 +1518,7 @@ mission "Evacuate Resistance Fake"
 	on offer
 		dialog `You wander around the spaceport for a bit without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them on <stopovers>, where the Heliarchs are investigating, and transport them to <destination>.`
 	on stopover
-		dialog `You land at the meeting spot, waiting for the Resistance members to arrive. As time passes and no one shows up, it's clear that the Heliarchs got to them before you did.`
+		dialog phrase "resistance evacuation fail"
 		fail
 
 
