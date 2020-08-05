@@ -57,18 +57,6 @@ news "kor efret local"
 			"You try asking one of the Korath about the abandoned buildings littered throughout the spaceport, but it's no good. You're unable to convey the strange dichotomy the mixture of old and new makes; in fact, it seems to be the norm here."
 			"You pass by one of the abandoned buildings and hear a door open and close rapidly behind you. You turn back and see a Korath dressed in rags quickly walking the other direction."
 
-news "kor efret fancy"
-	location
-		government "Kor Efret"
-	name
-		word
-			"Well-dressed Korath"
-			"Well-dressed Kor Efret"
-	message
-		word
-			"One Korath wearing a toga-like outfit walks directly toward you. You barely manage to get out of the way before it bumps into you, and it makes a hissing sound. As you watch it continue through the spaceport, every other Korath gives it plenty of space. You hope you didn't just cause a diplomatic crisis on behalf of your entire species."
-			"Nearby, a Korath with a toga-like robe speaks to a small group of noticably worse-dressed Kor Efreti. You don't know what they're talking about, but it's obvious they're being told what to do."
-
 news "kor efret scientist"
 	location
 		government "Kor Efret"
