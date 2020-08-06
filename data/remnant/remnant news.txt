@@ -199,7 +199,7 @@ news "remnant incomprehensible"
 			"discussing."
 	message
 		word
-			"They "
+			"They"
 		word
 			" collect trays heaped with food from the cafeteria window."
 			" appear to be enjoying a large meal together."
