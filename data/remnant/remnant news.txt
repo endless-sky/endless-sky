@@ -75,23 +75,10 @@ news "remnant security advisory"
 		word
 			"0"
 			"1"
+		phrase
+			"0 to F"
 		word
-			"0 hours. "
-			"1 hours. "
-			"2 hours. "
-			"3 hours. "
-			"4 hours. "
-			"5 hours. "
-			"6 hours. "
-			"7 hours. "
-			"8 hours. "
-			"9 hours. "
-			"A hours. "
-			"B hours. "
-			"C hours. "
-			"D hours. "
-			"E hours. "
-			"F hours. "
+			" hours. "
 		word
 			"Threat Sierra-"
 		word
