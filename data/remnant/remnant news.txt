@@ -10,6 +10,26 @@
 
 
 
+phrase "00-07"
+	word
+		"00"
+		"01"
+		"03"
+		"04"
+		"05"
+		"06"
+		"07"
+
+
+
+phrase "00-07 days"
+	phrase
+		"00-07"
+	word
+		" days"
+
+
+
 phrase "0-F"
 	word
 		"0"
@@ -29,12 +49,54 @@ phrase "0-F"
 		"E"
 		"F"
 
-phrase "Remnant Time"
+
+
+phrase "00-1F"
 	word
 		"0"
 		"1"
 	phrase
 		"0-F"
+
+
+
+phrase "A group of"
+	word
+		"A "
+	word
+		"pair "
+		"couple "
+		"pack "
+		"squad "
+		"team "
+		"family "
+		"group "
+		"gathering "
+		"small group "
+		"medium group "
+		"large group "
+	word
+		"of"
+
+
+
+phrase "Indeterminate"
+	word
+		"A few "
+		"Several "
+		"Some "
+		"Lots of "
+		"Many "
+
+
+
+phrase "Amount of Remnant"
+	phrase
+		"A group of"
+		"Indeterminate"
+	word
+		"Remnant"
+
 
 news "remnant security advisory"
 	location
@@ -52,16 +114,12 @@ news "remnant security advisory"
 	message
 		word
 			"Incoming Korath Fleet in "
-		word
-			"00 days "
-			"01 days "
-			"03 days "
-			"04 days "
-			"05 days "
-			"06 days "
-			"07 days "
 		phrase
-			"Remnant Time"
+			"00-07 days"
+		word
+			" "
+		phrase
+			"00-1F"
 		word
 			" hours. Threat Sierra-"
 		word
@@ -69,19 +127,17 @@ news "remnant security advisory"
 			"3"
 		phrase
 			"0-F"
+		word
+			"."
 	message
 		word
 			"Incoming Korath Ship in "
-		word
-			"00 days "
-			"01 days "
-			"03 days "
-			"04 days "
-			"05 days "
-			"06 days "
-			"07 days "
 		phrase
-			"Remnant Time"
+			"00-07 days"
+		word
+			" "
+		phrase
+			"00-1F"
 		word
 			" hours. Threat Sierra-"
 		word
@@ -89,6 +145,8 @@ news "remnant security advisory"
 			"5"
 		phrase
 			"0-F"
+		word
+			"."
 	message
 		word
 			"Patrol "
@@ -134,25 +192,21 @@ news "remnant incomprehensible"
 		government "Remnant"
 	name
 		word
-			"A "
+			"Spaceport"
+			"Loading dock"
+			"Cafeteria"
+			"Landing pad"
+			"Landing dock"
+			"Spaceport alley"
+			"Spaceport hallway"
 		word
-			"pair "
-			"couple "
-			"pack "
-			"squad "
-			"team "
-			"family "
-			"small group "
-			"medium group "
-			"large group "
-		word
-			"of Remnant"
+			" scene"
 	message
+		phrase 
+			"Amount of Remnant"
 		word
-			"They "
-		word
-			"sign "
-			"gesture "
+			" sign "
+			" gesture "
 		word
 			"quickly "
 			"calmly "
@@ -197,12 +251,29 @@ news "remnant incomprehensible"
 			"communicating."
 			"conveying."
 			"discussing."
+
+
+
+news "remnant cafeteria"
+	name
+		word
+			"Spaceport"
+			"Cafeteria"
+			"Dining room"
+			"Buffet"
+			"Mess"
+			"Canteen"
+			"Kitchen"
+		word
+			" scene"
+		
 	message
+		phrase 
+			"Amount of Remnant"
 		word
-			"They"
-		word
-			" collect trays heaped with food from the cafeteria window."
+			" collect trays heaped with food from the kitchen window."
 			" appear to be enjoying a large meal together."
 			" are relaxing around the remains of a large meal."
 			" are signing to each other over a large meal."
 			" are reading reports over a large meal."
+			" are examining holo projections over a large meal."
