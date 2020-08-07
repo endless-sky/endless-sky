@@ -385,11 +385,18 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		// Recalculate what systems have been seen.
 		GameData::UpdateSystems();
 		seen.clear();
-		double jumpRange;
+		// All systems within the default neighbor distance of visited systems
+		// are considered seen, but if the player has an increased jump range
+		// then all systems within that jump range are considered seen. If a
+		// system has a static jump range less than the default, then it also
+		// has a restricted view range
+		double jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 		if(flagship)
-			jumpRange = flagship->JumpRange();
-		if(!jumpRange)
-			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
+		{
+			double flagshipRange = flagship->JumpRange();
+			if(flagshipRange > jumpRange)
+				jumpRange = flagshipRange;
+		}
 		for(const System *system : visitedSystems)
 		{
 			seen.insert(system);
@@ -1845,11 +1852,13 @@ void PlayerInfo::Visit(const System *system)
 	
 	visitedSystems.insert(system);
 	seen.insert(system);
-	double jumpRange;
+	double jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 	if(flagship)
-		jumpRange = flagship->JumpRange();
-	if(!jumpRange)
-		jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
+	{
+		double flagshipRange = flagship->JumpRange();
+		if(flagshipRange > jumpRange)
+			jumpRange = flagshipRange;
+	}
 	for(const System *neighbor : system->Neighbors(jumpRange))
 		seen.insert(neighbor);
 }

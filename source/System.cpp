@@ -327,8 +327,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances)
 {
 	neighbors.clear();
-	// If this system has a static jump range, then that is the only range
-	// that we need to create neighbors for.
+	// Neighbors are cached for each system for the purpose of quicker
+	// pathfinding. If this system has a static jump range then that
+	// is the only range that we need to create neighbors for, but
+	// otherwise we must create a set of neighbors for every potential
+	// jump range that can be encountered.
 	if(jumpRange)
 		UpdateNeighbors(systems, jumpRange);
 	else
