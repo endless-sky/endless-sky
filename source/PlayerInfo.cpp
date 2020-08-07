@@ -387,9 +387,9 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		seen.clear();
 		// All systems within the default neighbor distance of visited systems
 		// are considered seen, but if the player has an increased jump range
-		// then all systems within that jump range are considered seen. If a
-		// system has a static jump range less than the default, then it also
-		// has a restricted view range
+		// then all systems within that jump range are considered seen. But,
+		// if a system has a static jump range less than the default, then it
+		// also has a restricted view range.
 		double jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 		if(flagship)
 		{
