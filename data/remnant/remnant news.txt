@@ -103,7 +103,7 @@ news "remnant security advisory"
 		government "Remnant"
 	name
 		word
-			"System security"
+			"System Security"
 			"Local"
 			"System"
 			"Defense"
