@@ -10,26 +10,6 @@
 
 
 
-phrase "00-07"
-	word
-		"00"
-		"01"
-		"03"
-		"04"
-		"05"
-		"06"
-		"07"
-
-
-
-phrase "00-07 days"
-	phrase
-		"00-07"
-	word
-		" days"
-
-
-
 phrase "0-F"
 	word
 		"0"
@@ -115,9 +95,11 @@ news "remnant security advisory"
 			"Threats"
 	message
 		word
+			`"`
+		word
 			"Incoming Korath Fleet in "
-		phrase
-			"00-07 days"
+		word
+			"${00-07} days"
 		word
 			" "
 		phrase
@@ -131,11 +113,15 @@ news "remnant security advisory"
 			"0-F"
 		word
 			"."
+		word
+			`"`
 	message
 		word
+			`"`
+		word
 			"Incoming Korath Ship in "
-		phrase
-			"00-07 days"
+		word
+			"${00-07} days"
 		word
 			" "
 		phrase
@@ -149,7 +135,11 @@ news "remnant security advisory"
 			"0-F"
 		word
 			"."
+		word
+			`"`
 	message
+		word
+			`"`
 		word
 			"Patrol"
 			"Salvage"
@@ -187,7 +177,11 @@ news "remnant security advisory"
 			"combat"
 		word
 			"."
+		word
+			`"`
 	message
+		word
+			`"`
 		word
 			"Salvage ships report to orbit for incoming Korath ships."
 			"No change in current threat level."
@@ -196,6 +190,8 @@ news "remnant security advisory"
 			"All departing ships advised to expect hostiles in the vicinity."
 			"Reminder to update your IFF settings and verify keys."
 			"Reminder to verify functionality of selective IFF broadcast every startup."
+		word
+			`"`
 
 
 
