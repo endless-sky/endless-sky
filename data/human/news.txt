@@ -86,7 +86,7 @@ news "human merchant in human space"
 			"Ugh. Why are fighter pilots so gun-ho about charging right into the guns of their enemies? At the very least, don't make we waste hundreds of thousands of credits replacing my ship when you kill yourself."
 			"Don't you think it's strange that the Navy lets you buy their fighters but not any of their other ships?"
 			"I wonder why shipyards haven't capitalised on making alternatives to the Navy combat drone. Probably because the only ships that can use drones are Navy ships, I guess."
-			"Some of the names that captains give their ships are awful. Seriously, I've seen ships named 'Ship'."
+			"Some of the names that captains give their ships are awful. Seriously, I've seen ships named 'Ship.'"
 			"I'm convinced merchant captains make the worst jokes."
 			"What's up with the Deep? One moment, they have a defense force on par with the Navy, the next, they're asking random schmucks to help escort their fleets. How the mighty have fallen, I guess."
 			"I swear: Sparrows are so laughably weak that Flivvers are a better option for an interceptor."
@@ -188,7 +188,7 @@ news "street vendor"
 			"With the right marinade, rat meat can be delicious. Of course, they don't let us sell the ones that were already dead when we collected them."
 			"This is my own famous delicacy, Yogurt on a Stick. No, it's not frozen yogurt. It's more like, well... congealed..."
 			"Can I interest you in some vegan falafels? Trust me, you don't want to eat any of the meat that's getting sold on this street."
-			"Want some burgers? They've got my special sauce. What's the special sauce made of? Well, if I revealed that, it wouldn't be secret, wouldn't it?"
+			"Want some burgers? They've got my secret sauce. What's the secret sauce made of? Well, if I revealed that, it wouldn't be secret, wouldn't it?"
 			"Want some budget caviar? What's caviar? It's horse beef, duh. Why do you think that people who ride horses are called cavalry... Fish eggs?"
 			"Here, have a sample of my famous lemonsausage. What's a lemonsausage? It's, erm... It's a blend of lemon and pig meat! Trust me! No, don't go away!"
 			"I wish I had enough money to ask captains roaming around the spaceport for transport to somewhere nicer."
@@ -384,7 +384,6 @@ news "hyperspace relay engineer"
 			"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."
 			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
-			"Due to the nightmare that is Republic law, new captains are prohibited from accessing all the relays at the very beginning. Instead, they have to visit every system individually to register themselves or purchase a map for the area."
 
 
 
@@ -401,7 +400,7 @@ news "hyperspace scientist"
 		word
 			"It's hard to believe that modern-day society relies on what is effectively magical space highways."
 			"Even centuries later, we still know barely more than Charles Plot, father of the hyperdrive, did about how the hyperspace lanes were formed. All we've learned since then is apparently some other race the Quarg know is involved with them."
-			"The Quarg don't appear to even bother with hyperspace lanes. Their hyperdrives apparently teleport their ships from one system to another. If that's true, then they would be able to visit the systems inaccessible to our hyperdrives."
+			"The Quarg don't appear to even bother with hyperspace lanes. Their drives apparently teleport their ships from one system to another. If that's true, then they would be able to visit the systems inaccessible to our hyperdrives."
 			"Even if they aren't directly linked by hyperspace lanes, your ship can still detect systems near you. Not that it matters, though, since we still can't jump to those systems."
 			"The field of hyperspace lane destruction is filled with misunderstanding and pseudoscience. If there was a method to remove hyperspace lanes, though, whoever discovered it would effectively control human space."
 			"Many a hyperspace-based weapon has been tested, but due to the dynamics of entering hyperspace while not aligned with a hyperspace lane, all of them have failed. Thankfully."
@@ -421,7 +420,7 @@ news "geological engineer"
 			"I have equipment that would let me trigger an earthquake just by pressing a button. That's why they never allow me into the office when I'm drunk."
 			"For centuries people have been saying that asteroid mining is going to put terrestrial resource extraction companies out of business, but it still hasn't happened."
 			"A few times, I've traveled so deep underground that the rock felt warm to the touch. But I imagine that's nowhere near as exciting as traveling through space."
-			"I can't believe how annoying it must've been in the distant past to be a geological engineer, with you on one side, the thing you're trying to study on the other, and 15 kilometres of solid rock in between. Thankfully, technology and scanners have marched on since then, and those depressing days are long gone."
+			"I can't believe how annoying it must've been in the distant past to be a geological engineer, with you on one side, the thing you're trying to study on the other, and 15 kilometers of solid rock in between. Thankfully, technology and scanners have marched on since then, and those depressing days are long gone."
 
 
 
@@ -852,7 +851,6 @@ news "human republic soldier"
 
 
 
-
 news "human syndicate soldier"
 	location
 		government "Syndicate"
@@ -904,7 +902,7 @@ news "human pirate"
 			"Just a word of warning: don't fall asleep in the hotels here."
 			"Betcha I can name a combat use for every ship in the sky. Flivver? Might as well be a Sparrow. Freighter? Umm... it works as a great plundering vessel. Surveillance drone? Don't make me shoot you."
 			"Bah. How can you not gag at the suffocating rules that the Republic forces onto you? I mean, banning chickens with dynamite strapped to them? Ridiculous!"
-			"Yo, yo, yo, what's up, suckers! I'm high on stardust! Wanna freebie? No? Coward!"
+			"Yo, yo, yo, what's up, suckers! I'm high on ${contraband}! Wanna freebie? No? Coward!"
 			"You look like a good captain. I'd bet you'd be a better slave!"
 			"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
 			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
@@ -934,7 +932,7 @@ news "human merchant in pirate space"
 			"Nice to see a friendly face in these parts. I needed to land to shake those buggers off my tail. Pirates won't shoot at you if you're going for a landing."
 			"Why am I here? I really needed the fuel and decided that bribing off pirates until another ship entered the system wasn't smart long-term."
 			"There's some real creeps around here. All I wanted to do was sell some cargo at this port, but it definitely wasn't worth the risk."
-			"Whatever you do, don't try the hot wings. That stuff's nasty."
+			"Whatever you do, don't try the ${contraband}. That stuff's nasty."
 
 
 
