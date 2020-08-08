@@ -474,7 +474,7 @@ news "hyperspace scientist"
 			"Hyperspace scientist"
 			"Hyperspace specialist"
 	message
-  		word
+		word
 			`"`
 		word
 			"It's hard to believe that modern-day society relies on what is effectively magical space highways."
@@ -1118,6 +1118,7 @@ news "human merchant in pirate space"
 			"Yikes! I just wanted to see what outfits were here! I'm out of here as soon as I get back to my ship!"
 			"What are you lookin' at? Don't judge me!"
 			"Nice to see a friendly face in these parts. I needed to land to shake those buggers off my tail. Pirates won't shoot at you if you're going for a landing."
+			"Thank god, there's someone other than those freaky pirates around here. At least, assuming that you're not a pirate. Which you aren't, of course. Right?"
 			"Why am I here? I really needed the fuel and decided that bribing off pirates until another ship entered the system wasn't smart long-term."
 			"There's some real creeps around here. All I wanted to do was sell some cargo at this port, but it definitely wasn't worth the risk."
 			"Whatever you do, don't try the ${contraband}. That stuff's nasty."
