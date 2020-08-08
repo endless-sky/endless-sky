@@ -2284,6 +2284,7 @@ mission "Remnant: Crystal Research 1"
 			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to gauge your willingness to help. Your shipment was definitely useful, but we had to ensure we framed your job in a way that made sense without revealing what we were actually doing.`
 			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
 			choice
+				`	"Yes."`
 				`	(Sign in the affirmative.)`
 				`	"Why would you assume that I needed a financial motivation?"`
 					goto greed
