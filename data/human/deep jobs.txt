@@ -65,7 +65,7 @@ phrase "deep mystery cube dropoff station payment"
 	word
 		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 
-mission "Deep Mystery Cube [0]"
+mission "Mystery Cube Delivery Job [0]"
 	name "Mystery delivery to <planet>"
 	job
 	repeat
@@ -96,7 +96,7 @@ mission "Deep Mystery Cube [0]"
 		fleet "Bounty Hunters"
 
 
-mission "Deep Mystery Cube [1]"
+mission "Mystery Cube Delivery Job [1]"
 	name "Mystery delivery to <planet>"
 	job
 	repeat
@@ -127,7 +127,7 @@ mission "Deep Mystery Cube [1]"
 		fleet "Bounty Hunters"
 
 
-mission "Deep Mystery Cube [2]"
+mission "Mystery Cube Delivery Job [2]"
 	name "Mystery delivery to <planet>"
 	job
 	repeat
@@ -158,7 +158,7 @@ mission "Deep Mystery Cube [2]"
 		fleet "Bounty Hunters"
 
 
-mission "Deep Mystery Cube [3]"
+mission "Mystery Cube Delivery Job [3]"
 	name "Mystery delivery to <planet>"
 	job
 	repeat
@@ -189,7 +189,7 @@ mission "Deep Mystery Cube [3]"
 		fleet "Bounty Hunters"
 
 
-mission "Deep Mystery Cube Station"
+mission "Mystery Cube Delivery Job Station"
 	name "Mystery delivery to <planet>"
 	job
 	repeat
@@ -220,7 +220,8 @@ mission "Deep Mystery Cube Station"
 		fleet "Bounty Hunters"
 
 
-mission "Mystery retrieval"
+mission "Mystery Cube Retrieval Job"
+	name "Mystery retrieval"
 	job
 	repeat
 	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
