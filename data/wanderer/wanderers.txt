@@ -759,8 +759,6 @@ event "wanderers: unfettered invasion starts"
 		spaceport `The Unfettered are using the few jump drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the jump drives from all but a few of them. A few well guarded jump-capable ships then carry those spare jump drives back to Unfettered space, where they are used to bring more ships and people.`
 		shipyard clear
 		outfitter clear
-	planet "Varu Mer'ek"
-		add attributes "evacuation"
 
 event "wanderers: riptide mass production"
 	fleet "Wanderer Freight"

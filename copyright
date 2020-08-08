@@ -444,7 +444,6 @@ Files:
  images/land/lava1*
  images/land/lava2*
  images/land/lava6*
- images/land/loc3*
  images/land/mountain0*
  images/land/mountain1*
  images/land/mountain3*
@@ -705,8 +704,6 @@ Files:
  images/planet/station2b*
  images/planet/station3b*
  images/planet/station3bd*
- images/planet/station4b*
- images/planet/station4bd*
  images/projectile/annihilator*
  images/projectile/ravager?beam*
  images/scene/ringworld?debris*
@@ -738,9 +735,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
- images/_menu/haze-blackbody+*
- images/_menu/haze-full+*
- images/_menu/haze-yellow+* 
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rouge*

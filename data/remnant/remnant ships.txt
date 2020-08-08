@@ -129,7 +129,6 @@ ship "Albatross" "Albatross (Turret)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
-		"Quantum Key Stone"
 		"Outfits Expansion" 2
 		"Tuning Rifle" 49
 
@@ -154,7 +153,6 @@ ship "Albatross" "Albatross (Heavy)"
 		"Millennium Cell"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
-		"Quantum Key Stone"
 		"Outfits Expansion" 4
 		"Tuning Rifle" 65
 
@@ -185,7 +183,6 @@ ship "Albatross" "Albatross (Shield)"
 		"Aeon Cell"
 		"Millennium Cell"
 		"Thermoelectric Cooler" 1
-		"Quantum Key Stone"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 3
 		"Small Heat Shunt" 1
@@ -281,7 +278,6 @@ ship "Gull" "Gull (Sniper)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Quantum Key Stone"
 		"Salvage Scanner" 2
 		"Outfits Expansion"
 		"Tuning Rifle" 4
@@ -300,7 +296,6 @@ ship "Gull" "Gull (Support)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Quantum Key Stone"
 		"Salvage Scanner" 2
 		"Outfits Expansion"
 		"Tuning Rifle" 3
@@ -315,7 +310,6 @@ ship "Gull" "Gull (Cargo)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 3
 
@@ -329,7 +323,6 @@ ship "Gull" "Gull (Bunks)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 3
 
