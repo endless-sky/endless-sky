@@ -57,29 +57,31 @@ phrase "A group of"
 	word
 		"A "
 	word
-		"pair "
-		"couple "
-		"pack "
-		"squad "
-		"team "
-		"family "
-		"group "
-		"gathering "
-		"small group "
-		"medium group "
-		"large group "
+		"pair"
+		"couple"
+		"pack"
+		"squad"
+		"team"
+		"family"
+		"group"
+		"gathering"
+		"small group"
+		"medium group"
+		"large group"
 	word
-		"of "
+		" of "
 
 
 
 phrase "Indeterminate"
 	word
-		"A few "
-		"Several "
-		"Some "
-		"Lots of "
-		"Many "
+		"A few"
+		"Several"
+		"Some"
+		"Lots of"
+		"Many"
+	word
+		" "
 
 
 
