@@ -61,7 +61,7 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetSprite("portrait", portrait);
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
-	newsMessage.Wrap('"' + news->Message() + '"');
+	newsMessage.Wrap(news->Message());
 }
 
 
