@@ -10,6 +10,19 @@
 
 
 
+phrase "00-07"
+	word
+		"00"
+		"01"
+		"02"
+		"03"
+		"04"
+		"05"
+		"06"
+		"07"
+
+
+
 phrase "0-F"
 	word
 		"0"
@@ -56,7 +69,7 @@ phrase "A group of"
 		"medium group "
 		"large group "
 	word
-		"of"
+		"of "
 
 
 
