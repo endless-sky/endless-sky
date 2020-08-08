@@ -11,6 +11,7 @@
 news "kor efret merchant"
 	location
 		government "Kor Efret"
+		not attributes "station"
 	name
 		word
 			"Korath merchant"
@@ -28,6 +29,7 @@ news "kor efret merchant"
 news "kor efret worker"
 	location
 		government "Kor Efret"
+		not attributes "station"
 	name
 		word
 			"Korath worker"
@@ -42,6 +44,7 @@ news "kor efret worker"
 news "kor efret local"
 	location
 		government "Kor Efret"
+		not attributes "station"
 	name
 		word
 			"Korath local"
@@ -51,15 +54,13 @@ news "kor efret local"
 	message
 		word
 			"A ball chased by a young Korath rolls up to your feet. You pick it up, and the youth pauses and stares at you for a moment before gesturing in thanks and accepting the ball. It runs back to a grown Korath who holds both its hands up with palms toward you."
-			"There's a Korath nearby precariously balancing several boxes above its head. You can't tell if it's a street performer or just transporting the crates."
 			"A local Korath gestures toward a building you've never been inside before. Out of curiousity, you poke your head inside to see the reptilian aliens conversing and sharing drinks: it's a bar. Some things never change, no matter where you are in the galaxy."
-			"A Kor Efret near your ship is speaking with a worker, gradually increasing its volume until it's doing some strange mix of shouting and hissing. Suddenly, it turns and stalks away with its chest puffed out."
-			"You try asking one of the Korath about the abandoned buildings littered throughout the spaceport, but it's no good. You're unable to convey the strange dichotomy the mixture of old and new makes; in fact, it seems to be the norm here."
 			"You pass by one of the abandoned buildings and hear a door open and close rapidly behind you. You turn back and see a Korath dressed in rags quickly walking the other direction."
 
 news "kor efret scientist"
 	location
 		government "Kor Efret"
+		not attributes "station"
 	name
 		word
 			"Korath scientist"
@@ -70,3 +71,19 @@ news "kor efret scientist"
 		word
 			"A Kor Efret pushes a cart filled with strange chemicals and bits of technology past you."
 			"A Korath walks through the spaceport reading numbers off a device and inputting them onto another one. It looks like it's taking samples of the air quality."
+			
+news "kor efret station friendly"		
+	location
+		government "Kor Efret"
+	name
+		word
+			"Korath local"
+			"Kor Efret local"
+			"Korath"
+			"Kor Efret"
+	message
+		word
+			"There's a Korath nearby precariously balancing several boxes above its head. You can't tell if it's a street performer or just transporting the crates."
+			"A Kor Efret near your ship is speaking with a worker, gradually increasing its volume until it's doing some strange mix of shouting and hissing. Suddenly, it turns and stalks away with its chest puffed out."
+			"A Korath is studying you intently from a distance. You guess it's never seen a human face to face before."
+			"A local greets you by holding its hands up with its palms facing toward you."
