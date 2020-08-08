@@ -222,8 +222,6 @@ news "remnant incomprehensible"
 			"Landing dock"
 			"Spaceport alley"
 			"Spaceport hallway"
-		word
-			" scene"
 	message
 		phrase 
 			"Amount of Remnant"
@@ -290,8 +288,6 @@ news "remnant cafeteria"
 			"Mess"
 			"Canteen"
 			"Kitchen"
-		word
-			" scene"
 		
 	message
 		phrase 
