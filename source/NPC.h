@@ -51,6 +51,11 @@ public:
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
 	
+	// Update or check spawning and despawning for this NPC.
+	void UpdateSpawning(const PlayerInfo &player);
+	bool PassedSpawn() const;
+	bool PassedDespawn() const;
+	
 	// Get the ships associated with this set of NPCs.
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 	
@@ -85,6 +90,12 @@ private:
 	
 	Conversation conversation;
 	const Conversation *stockConversation = nullptr;
+	
+	// Conditions that must be met in order for this NPC to be placed or despawned:
+	bool passedSpawnConditions = false;
+	bool passedDespawnConditions = false;
+	ConditionSet toSpawn;
+	ConditionSet toDespawn;
 	
 	// The ships may be listed individually or referred to as a fleet, and may
 	// be customized or just refer to stock objects:

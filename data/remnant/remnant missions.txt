@@ -56,7 +56,6 @@ mission "First Contact: Remnant"
 				decline
 			
 	on enter
-		log "People" "Chilia" `Despite being quite young, Chilia is the Remnant Prefect in charge of Remnant military actions. He is highly respected among Remnant society.`
 		"remnant chilia" ++
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
@@ -477,7 +476,7 @@ conversation "remnant key stones"
 			decline
 	
 	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-	`	"We look forward to receiving this shipment" he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
+	`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
 	choice
 		`	"I can purchase outfits into my cargo bay?"`
 		`	"Why would you even need to specify that?"`
@@ -614,7 +613,7 @@ mission "Remnant: Key Stones"
 					decline
 			
 			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-			`	"We look forward to receiving this shipment" he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
+			`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
 			choice
 				`	"I can purchase outfits into my cargo bay?"`
 				`	"Why would you even need to specify that?"`
@@ -1270,6 +1269,30 @@ mission "Remnant: taely intro log"
 		"remnant met taely" >= 1
 	on offer
 		log "People" "Taely" `As an engineering prefect, Taely is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		fail
+
+
+
+mission "Remnant: Chilia Intro Log"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 1
+	on offer
+		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
+		fail
+
+
+
+mission "Remnant: Chilia Intro Log 2"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 2
+	on offer
+		log "People" "Chilia" `Despite being quite young, Chilia is highly respected among Remnant society.`
 		fail
 
 
@@ -2187,7 +2210,6 @@ mission "Remnant: Face to Maw 2B"
 			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
 				decline
 	on complete
-		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
 		payment 250000
 		"remnant chilia" ++
 		outfit "Void Rifle"
@@ -2259,3 +2281,4 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"I don't know where that is."`
 				`	"Isn't that the center of the galaxy?"
 					goto center
+

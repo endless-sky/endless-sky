@@ -195,7 +195,7 @@ ship "Auxiliary"
 		"shields" 17100
 		"hull" 5900
 		"required crew" 87
-		"bunks" 260
+		"bunks" 250
 		"mass" 820
 		"drag" 13.3
 		"heat dissipation" .45

@@ -110,7 +110,7 @@ outfit "Ka'het Annihilator Turret"
 		"reload" 10
 		"firing energy" 62
 		"firing heat" 16
-		"submunition" "Annihilator Projectile"
+		"submunition" "Annihilator Projectile" 2
 	description "The Builders mounted two Annihilators on this turret, making it highly efficient against enemy shields."
 
 outfit "Annihilator Projectile"
