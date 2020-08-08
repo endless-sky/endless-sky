@@ -3042,7 +3042,7 @@ mission "Antibiotics To South"
 				`	"Sure, but do you know anything about these pirates?"`
 				`	"No thanks, that sounds too risky for me."`
 					decline
-			`	He seems to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the '<npc>'. It's faster than a Bounder and persistent beyond any reasonable measure. Which is, of course, why I'm talking to you. There is no way you're going to avoid a fight with it. However, I think your ship is a match for it. So, is this acceptable?"`
+			`	He seems to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the <npc>. It's faster than a Bounder and persistent beyond any reasonable measure. Which is, of course, why I'm talking to you. There is no way you're going to avoid a fight with it. However, I think your ship is a match for it. So, is this acceptable?"`
 			choice
 				`	"Of course."`
 				`	"No thanks, that sounds like too much of a risk."`
