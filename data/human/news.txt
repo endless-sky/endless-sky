@@ -928,7 +928,7 @@ news "human religious"
 	name
 		word
 			"Mystic"
-			"Religeous scholar"
+			"Religious scholar"
 			"Preacher"
 	message
 		word
