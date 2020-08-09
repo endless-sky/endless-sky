@@ -78,13 +78,13 @@ mission "Asteroid Course"
 		attributes shipyard
 	on offer
 		conversation
-			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is about to be slammed by a huge asteroid! While in a normal flight this wouldn't cause much trouble, a ship that has already suffered heavy damages and cannot dodge could be completely destroyed.`
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is about to be slammed by a huge asteroid! While in a normal flight this wouldn't cause much trouble, a ship that has already suffered heavy damage and cannot dodge could be completely destroyed.`
 			branch unarmed
 				not "armament deterrence"
 			choice
 				`	(Shoot the asteroid.)`
 					goto fire
-				`	(Maneuver my ship to shield the <origin>.)`
+				`	(Maneuver your ship to shield the <origin>.)`
 					goto move
 				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
 					goto repair
@@ -92,7 +92,7 @@ mission "Asteroid Course"
 					goto escape
 			label unarmed
 			choice
-				`	(Maneuver my ship to shield the <origin>.)`
+				`	(Maneuver your ship to shield the <origin>.)`
 					goto move
 				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
 					goto repair
@@ -102,7 +102,7 @@ mission "Asteroid Course"
 				depart
 			label fire
 			branch success
-				random > 50
+				random < 50
 			`	You fire at the asteroid in an attempt to destroy it, but it looks like you've only made things worse. The asteroid has now broken up into dozens of smaller chunks still flying directly for the <origin>. Before you can even react to fix your mistake, most of the chunks have already hit the <origin>, which is now quickly depressurizing. There's nothing more you can do except move a safe distance away from the exploding ship...`
 				depart
 			label success
@@ -110,7 +110,7 @@ mission "Asteroid Course"
 				decline
 			label repair
 			branch crew
-				random > 60
+				random < 40
 			`	You dock with the <origin>, hoping to get out of this alive, but as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach your cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
 				depart
 			label crew
