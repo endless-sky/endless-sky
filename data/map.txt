@@ -7895,7 +7895,6 @@ system Diespiter
 	asteroids "small rock" 65 3
 	government Uninhabited
 	haze _menu/haze-red
-	link Postverta
 	link Statina
 	minables iron 22 3
 	minables silicon 46 3
@@ -19155,6 +19154,38 @@ system Porrima
 			sprite planet/dust0
 			distance 294
 			period 11.4255
+
+system Postverta
+	pos 15000 15000
+	government Uninhabited
+	haze _menu/haze-red
+	asteroids "large metal" 9 3
+	asteroids "large rock" 4 3
+	asteroids "medium metal" 52 1
+	asteroids "medium rock" 4 2
+	object "Ssil Vida"
+		distance 1408
+		period 554
+		sprite planet/sheragi_postverta
+	object
+		distance 1208
+		period 654
+		sprite planet/rock10
+	object
+		distance 439
+		period 143
+		sprite planet/desert7
+	object
+		distance 814
+		period 362
+		sprite planet/fog0
+		object
+			distance 202
+			period 21
+			sprite planet/dust4
+	object
+		period 19
+		sprite star/m4
 	
 system Prakacha'a
 	pos -35.1114 -802.607
@@ -19299,7 +19330,6 @@ system Prosa
 	asteroids "small rock" 4 1
 	government Uninhabited
 	haze _menu/haze-red
-	link Postverta
 	link Vaticanus
 	minables copper 5 2
 	object
@@ -22863,7 +22893,6 @@ system Statina
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
-	link Postverta
 	minables iron 5 6
 	minables silicon 11 5
 	minables titanium 10 4

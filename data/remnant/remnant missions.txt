@@ -2678,44 +2678,19 @@ mission "Remnant: Cognizance 13"
 	
 
 event "remnant: postverta reveal"
-	system Postverta
-		asteroids "large metal" 9 3
-		asteroids "large rock" 4 3
-		asteroids "medium metal" 52 1
-		asteroids "medium rock" 4 2
-		government Uninhabited
-		haze _menu/haze-red
-		link Diespiter
-		link Prosa
-		link Statina
-		object "Ssil Vida"
-			distance 1408
-			period 554
-			sprite planet/sheragi_postverta
-		object
-			distance 1208
-			period 654
-			sprite planet/rock10
-		object
-			distance 439
-			period 143
-			sprite planet/desert7
-		object
-			distance 814
-			period 362
-			sprite planet/fog0
-			object
-				distance 202
-				period 21
-				sprite planet/dust4
-		object
-			period 19
-			sprite star/m4
-		pos 297 269
 	unvisit Levana
 	unvisit Caeculus
 	unvisit Prosa
 	unvisit Egeria
+	system Postverta
+		pos 297 269
+		link Diespiter
+		link Prosa
+		link Statina
+	system Diespiter
+		link Postverta
+	system Statina
+		link Postverta
 	system Levana
 		add object wormhole_barren
 			distance 2313
@@ -2727,6 +2702,7 @@ event "remnant: postverta reveal"
 			period 391
 			sprite planet/wormhole-red
 	system Prosa
+		link Postverta
 		add object wormhole_barren2
 			distance 2313
 			period 389
