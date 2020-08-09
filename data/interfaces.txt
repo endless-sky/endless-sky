@@ -562,13 +562,16 @@ interface "news"
 	sprite "ui/news"
 		center -160 -45
 	image "portrait"
-		center -340 -40
+		center 20 -40
 	string "name"
-		from -270 -100
+		from -400 -100
 		align center left
 		color "bright"
+	box "message portrait"
+		from -400 -80
+		to -50 10
 	box "message"
-		from -270 -80
+		from -400 -80
 		to 80 10
 
 

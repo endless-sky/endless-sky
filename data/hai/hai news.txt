@@ -1,0 +1,167 @@
+# Copyright (c) 2020 by Nomadic Volcano
+# Based on earlier text copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+news "food in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Visiting chef"
+			"Food connoisseur"
+			"Tourist"
+			"Tour guide"
+	message
+		word
+			`"`
+		word
+			"This may sound odd, but the acorn cookies they sell here are the best cookies I've ever eaten."
+			"A Hai-human fusion restaurant near here sells peanut pizza. It sounds gross, but the taste is heavenly."
+			"They make beer from fermented nuts here. I didn't know you could do that!"
+			"I just can't get enough acorn stew. These Hai cooks are amazing."
+			"Peanut this, walnut that, hazelnut icecream. What I wouldn't give for some good steak right now..."
+			"Back home, my favorite snack was pickled walnuts. Here, the pickled acorns are amazing!"
+		word
+			`"`
+
+
+news "trading in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Merchant captain"
+	message
+		word
+			`"`
+		word
+			"Hai Tech is incredible compared to ours. Every time I add a ship to my fleet, I always make a trip up here to stock up on Hai tech."
+			"Have you tried out one of those Hai anti-missile systems? They'll waste any missile in human space."
+			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
+			"Have you visited the Quarg ringworld here in Hai space? It's a humbling sight. There's probably more Quarg in there than there are humans anywhere. Makes you feel pretty insignificant."
+			"Did you see the stuff they sell on Icelake? Hai technology is amazing."
+			"I met some young Hai pilots. It sounds like they start out as poor as we do."
+			"I sold my entire stock of food from human space at this port. I guess even Hai get tired of nuts."
+			"Some Hai were protesting the work week. They want to work only 32 hours a week instead of 40. I used to work 70 hours a week for the Syndicate!"
+		word
+			`"`
+
+
+news "science in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Scientist"
+			"Engineer"
+	message
+		word
+			`"`
+		word
+			"A while back, my Hai research partner was nearing a breakthrough, and then she vanished. I wonder where she went?"
+			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
+			"Have you visited the Quarg ringworld here in Hai space? It's a humbling sight. There's probably more Quarg in there than there are humans anywhere. Makes you feel pretty insignificant."
+			"It's amazing how effective Hai fertilizer has become. If we had that technology, hunger would be a thing of the past."
+			"Hai can terraform planets a hundred times faster than we can. I wonder why they didn't do that at Darkwaste?"
+			"Hai have the most amazing holographic technology. One of them put on a backpack holoprojector. When he turned it on, he looked like an elephant. The legs and tail even tracked his movements! I wonder if they can mimic humans too?"
+			"The Hai have an amazing grasp of quantum chromodynamics. It's why their shield generators are so effective."
+			"The alloys Hai use in their ships are way beyond our technology. They're twice as strong with half the weight. No wonder their ships are so fast."
+		word
+			`"`
+
+news "cute story in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Tourist"
+	message
+		word
+			`"`
+		word
+			"My little daughter loved her stuffed bear back in human space, but now she wants to hug every Hai she sees instead."
+			"These Hai are so fluffy! I want to hug one every time I see them!"
+			"I saw the Hai-human fusion band Nuclear Martini playing on Luna. Nobody realized the hairy drummer was really a Hai in disguise."
+			"I saw a Hai wearing the cutest bonnet the other day. When I get back to human space, I'm definitely getting a pet squirrel."
+			"Do you see that Hai woman carrying her baby? Doesn't it look like a long-tailed teddy-bear? The Hai are so cute."
+		word
+			`"`
+
+news "concerned merchant in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Merchant captain"
+	message
+		word
+			`"`
+		word
+			"Don't go too far north up here. The Hai have their own pirates, and they're much more powerful than anything we're used to in human space."
+			"I took a shortcut through Wah Ki with six ships. Just two seconds later, BAM! half my fleet is dust."
+			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
+			"These Hai are so creepy. What are they hiding? I can't wait to get back to human space."
+			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
+			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on this stuff."
+			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
+		word
+			`"`
+
+news "human citizen in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Human citizen"
+	message
+		word
+			`"`
+		word
+			"Don't go too far north up here. The Hai have their own pirates, and they're much more powerful than anything we're used to in human space."
+			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
+			"Where I lived in human space, pirates kidnapped dozens of people a month. Here there are no pirates, and people rarely disappear."
+			"One of my scientist friends told me the Hai can make wearable holographic projectors. I wonder if they're using those to hide in human space?"
+			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
+		word
+			`"`
+
+
+news "reformed pirate in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Reformed pirate"
+	message
+		word
+			`"`
+		word
+			"I used to rob people for a living, and I'd be in jail now if I stayed in human space. Here, they've given me a job, and I've been sober for six weeks. This has really turned my life around."
+			"I lived on Freedom before I came here, and I could get space weed, death sticks, stardust, and toad juice any time of day or night. Here, the best I can find is spicy acorns."
+			"I used to be a slave on a pirate ship. My fool of a captain decided to attack Hai space. The Hai freed me, and now I work in one of their factories."
+			"I tried smuggling some bad blue to Hai space, but they caught me right away. I don't know what scanners they use in those Hai ships, but it's a lot more effective than the Navy's toys."
+			"If you think the Hai are weak-willed fur-balls, try watching one of their fencing matches. I've never seen a human move as fast as those Hai."
+			"I always said I'd get out of piracy one day, but I know the navy would lock me up for sure. Here in Hai space, I've made a new start."
+			"Being in Hai space has taught me to be a better person."
+			"Some of my friends abuse the Hai's kindness. After all they've done for me, I'd never do that."
+			"Back home, I had to rob people just to get enough money for food. Here I never go hungry."
+			"Don't judge me. You have no idea what I had to go through before I got here."
+			"I haven't stabbed anyone in months. This is an easier life."
+			"Hai are so forgiving here. I got into a fight with one and instead of pressing charges, he had a long talk with me about my choices in life."
+			"I always said I'd rethink my life, and now I have. I'm a farmer, not a killer."
+			"I used to hate myself for all the terrible crimes I did in human space. Here, the Hai have given me a fresh start."
+			"You have to re-invent yourself sometimes. I used to be a killer on a pirate ship, now I'm a canner in a Hai factory."
+			# Duplicated intentionally so pirates say it too:
+			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on that stuff."
+			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
+			"These Hai are so fluffy! I want to hug one every time I see them!"
+			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
+		word
+			`"`

@@ -268,10 +268,9 @@ mission "Visit Wanderers Again"
 	
 	on accept
 		set "language: Wanderer"
-		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 
-event "wanderer technology available" #Name unchanged for compatibility
+event "wanderer technology available" # Name unchanged for compatibility
 	government "Wanderer"
 		"friendly hail" "friendly wanderer"
 		"friendly disabled hail" "friendly disabled wanderer"
@@ -287,7 +286,6 @@ mission "Wanderer Hail Patch"
 	to offer
 		has "event: wanderer technology available"
 	on offer
-		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 		fail
 
@@ -299,6 +297,7 @@ mission "Wanderers Conversation"
 	to offer
 		has "Visit Wanderers Again: done"
 	on offer
+		set "license: Wanderer Outfits"
 		log "Spoke with a Wanderer ambassador named Iktat Rek, using the translation device. Received permission to purchase some of their technology, but not their ships."
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
@@ -390,13 +389,13 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you perform [charitable, heroic] acts. Is this correct?"`
+			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you are capable of [providing, gifting] help. Is this correct?"`
 			choice
 				`	"Yes it is. What do you need?"`
 					goto proposal
 				`	"Depends on how much you are willing to pay."`
 					goto jerk
-				`	"Where did you hear that from?"`
+				`	"What do you mean?"`
 			branch hai
 				"reputation: Hai" > 100
 			branch war
@@ -429,7 +428,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				`	"I'd be happy to do that."`
 				`	"Sorry, but I have more important matters to attend to."`
 					defer
-			`	When the Wanderer hears your translated response, they chatter to their friend, who nods in glee and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
+			`	When the Wanderer hears your translated response, they chatter in the Wanderer language to their friend, who nods and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
 				accept
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -455,9 +454,14 @@ mission "Wanderers: Defend Vara Ke'sok"
 			`	You are buffeted by wind as one of the Wanderers lands next to your ship and says, in the Hai language, "Unfettered [raider, pirate] fleet comes. We have put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
 				goto choice
 			label hint
-			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air."`
+			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air.`
 			`	Looking around, you suddenly see a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
-			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
+			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. [Understand, empathise]?"`
+			choice
+				`	"I will help drive the Unfettered away."`
+					goto yes
+				`	"Why do I need to help? I only accepted a transport mission."`
+			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failure] if you do not help. Will you aid us now?"`
 			label choice
 			choice
 				`	"Yes, I will help drive the Unfettered away."`
@@ -605,7 +609,7 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 			`	It takes several hours for the massive Wanderer freighter to be loaded. Rek explains that they have kept track of which kinds of food the Unfettered prefer to steal, so they know what will be edible for them. He says, "Our destination is called <planet>. Sayari tells me that all Hai share a [custom, taboo] concerning guests, so once we land on their planet we will be able to [speak, parley] with them in safety."`
 				accept
 	on visit
-		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -639,7 +643,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 	on accept
 		event "wanderer / unfettered peace"
 	on visit
-		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -1184,7 +1188,7 @@ mission "Wanderers: Alpha Surveillance E"
 	
 	on offer
 		conversation
-			`When you meet up with Elias Hanover in the spaceport, he says, "I can't think of any way to go about it: we need to involve the Navy in this. No one else has the capability to launch a ground attack."`
+			`When you meet up with Elias Hanover in the spaceport, he says, "I can't think of any other way to go about it: we need to involve the Navy in this. No one else has the capability to launch a ground attack."`
 			choice
 				`	"Are you sure we can trust them? The Alphas were in a Navy ship, after all."`
 				`	"We could go to Admiral Danforth. He's a Navy officer who I trust to be on the right side."`
@@ -1655,7 +1659,7 @@ event "capture of ik'kara'ka"
 
 mission "Wanderers Invaded 3"
 	landing
-	name "Evacuate <planet>"
+	name "Evacuate <origin>"
 	description `Escort another fleet of Wanderer refugee transports to <destination>.`
 	autosave
 	source "Varu Mer'ek"
@@ -1986,6 +1990,29 @@ mission "Wanderers Solifuge Recon 2"
 			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
 
 
+
+event "eastern evacuation"
+	planet "Vara Ke'stai"
+		add attributes "evacuation"
+	planet "Var' Kar'i'i"
+		add attributes "evacuation"
+	planet "Vara Ke'sok"
+		add attributes "evacuation"
+	planet "Kort Vek'kri"
+		add attributes "evacuation"
+
+# Patch mission for v0.9.13 to make sure that some Wanderer jobs don't offer
+# after the number of Wanderer systems has decreased.
+mission "eastern evacuation"
+	landing
+	invisible
+	to offer
+		or
+			has "Wanderers Solifuge Recon 2: done"
+			has "Wanderers Pond Strider Recon 2: done"
+	on offer
+		event "eastern evacuation"
+		fail
 
 mission "Wanderers Evacuation 1"
 	name "Evacuate <planet>"
@@ -2466,12 +2493,29 @@ event "battle for ap'arak"
 event "battle for ap'arak ends"
 	government "Wanderer"
 		"attitude toward"
-			"Pug" .01
+			"Pug (Wanderer)" .01
 	system "Ap'arak"
 		add fleet "Wanderer Freight" 2000
 		add fleet "Wanderer Drones" 4000
 		add fleet "Wanderer Defense" 600
 		add fleet "Large Unfettered" 700
+
+mission "pug defend wanderers"
+	invisible
+	landing
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	on offer
+		event "pug defend wanderers"
+		fail
+
+event "pug defend wanderers"
+	government "Pug (Wanderer)"
+		"attitude toward"
+			"Wanderer" .01
+	government "Pug"
+		"attitude toward"
+			"Wanderer" .01
 
 mission "Wanderers Ap'arak 2"
 	landing
@@ -2591,6 +2635,7 @@ mission "Wanderers Ap'arak 3"
 		has "Wanderers Ap'arak 2: done"
 	on offer
 		log `The Wanderers have begun producing even larger warships, and have succeeded in driving off yet another Unfettered assault. Afterwards the Pug, whom the Wanderers refer to as the "Keepers," finally sent assistance... in the form of two ships, which they claim are powerful enough to keep the entire Unfettered fleet at bay.`
+		log "Factions" "Unfettered Hai" `After obtaining a sufficient number of Jump Drives, the Unfettered expanded into Wanderer space and managed to conquer six worlds from the Wanderers before their advance was stopped due to Pug interference.`
 		conversation
 			`The Wanderers here seem incredulous that they managed to drive off such a powerful Unfettered attack force. As you walk through the spaceport, many of them stop to thank you for your assistance in defending their home.`
 			`	Just as you reach the pavilion where the military leaders are gathering, a shadow falls over you, and you look up to see two ships approaching with the unmistakable horned silhouettes of Pug warships. Throughout the spaceport you hear Wanderer voices raised in excitement, and hundreds of them leap into the air to accompany the Pug ships to the landing pad. Sobari Tele'ek says to you, "It is a [visitation, appearance] of the Keepers! In our hour of [need, desperation] they make themselves known at last." A small delegation of Pug disembarks from the ships and approaches the pavilion on foot.`
