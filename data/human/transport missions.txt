@@ -3068,7 +3068,7 @@ mission "Antibiotics To South"
 
 mission "Pirate Duel"
 	name "Fight at Umbral"
-	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the "Esca." After fighting, go to <destination> to follow up.`
+	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the Esca. After fighting, go to <destination> to follow up.`
 	minor
 	deadline 5 1
 	source

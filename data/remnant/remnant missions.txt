@@ -105,9 +105,9 @@ mission "First Contact: Remnant"
 		conversation
 			`Your return trip is a bit more nerve-wracking. Unlike the previous time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone, "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
 			choice
-				`(Provide the blood sample.)`
+				`	(Provide the blood sample.)`
 					goto comply
-				`(Refuse and run for your ship.)`
+				`	(Refuse and run for my ship.)`
 				
 			`	As you turn to start running back to your ship, the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquify under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the man with the scanner. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
 				die
@@ -898,7 +898,7 @@ mission "Remnant: Learn Sign 1"
 		conversation
 			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single one.`
 			choice
-				`	(Ask someone to teach you.)`
+				`	(Ask someone to teach me.)`
 				`	(Ignore it.)`
 					decline
 					
@@ -906,7 +906,7 @@ mission "Remnant: Learn Sign 1"
 			choice
 				`	"I would like to learn your sign language."`
 					goto words
-				`	(Sing a short verse about not understanding people because your hands are still.)`
+				`	(Sing a short verse about not understanding people because my hands are still.)`
 					goto song
 			label words
 			`	She looks at you with a confused expression, her hands making a few quick gestures. After a moment she points at the hand scanner embedded in the desk.`
@@ -944,7 +944,7 @@ mission "Remnant: Learn Sign 2"
 			`	Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehearsed phrases before directing you to place your hand on the scanner. Once again, the scanner takes a sample of your blood.`
 			choice
 				`	(Sign asking what the scanners are for.)`
-				`	(Sing a verse about your confusion of the hand scanners.)`
+				`	(Sing a verse about my confusion of the hand scanners.)`
 			`	The man begins to sign, but then realizes that you don't understand much of what he is signing, so he switches to singing. "Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
 			`	You thank the man for explaining the scanners to you and accept the next set of lessons.`
 			`	You spend a few hours viewing some of the lessons, one of which involves watching an ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exaggerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
