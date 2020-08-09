@@ -1297,6 +1297,18 @@ mission "Remnant: Chilia Intro Log 2"
 
 
 
+mission "Remnant: Chilia Intro Log 3"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 3
+	on offer
+		log "People" "Chilia" `Prefect Chilia is, compared to most military leaders, an unusual person: He is inclined to do things himself and rarely stands on protocol.`
+		fail
+
+
+
 mission "Remnant: Return the Samples"
 	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
@@ -2368,7 +2380,6 @@ mission "Remnant: Cognizance 4"
 	to offer
 		has "Remnant: Cognizance 3: done"
 	on offer
-		log "People" "Chilia" `Prefect Chilia is, compared to most military leaders you have met, an unusual person. He is inclined to do things himself, rarely standing on protocol, if at all.`
 		"remnant chilia" ++
 		conversation
 			branch chilia
@@ -2656,6 +2667,16 @@ mission "Remnant: Cognizance 12"
 
 
 
+mission "Remnant: Cognizance 13"
+	name "Go meet with Prefect Chilia on <destination>."
+	description "You have been informed that Prefect Chilia would like to meet with you on <destination>."
+	source "Esquiline"
+	destination "Viminal"
+	to offer
+		has "Remnant: Cognizance 12: done"
+
+	
+
 event "remnant: postverta reveal"
 	system Postverta
 		asteroids "large metal" 9 3
@@ -2718,7 +2739,7 @@ event "remnant: postverta reveal"
 		
 
 
-mission "Remnant: Cognizance 13"
+mission "Remnant: Cognizance 14"
 	name "Investigate strange sensor readings"
 	description "Long range sensors have picked up strange gravitational waves. Go investigate, then return to <destination>."
 	landing
@@ -2728,7 +2749,7 @@ mission "Remnant: Cognizance 13"
 	stopover
 		planet "Ssil Vida"
 	to offer
-		has "Remnant: Cognizance 12: done"
+		has "Remnant: Cognizance 13: done"
 	on offer
 		conversation
 			`You land by the starport and are immediately accosted by a Remnant who informs you that Prefect Chilia is on his personal warship and escorts you to a nearby Starling. Inside you find Chilia and several other Remnant clustered around a holographic display and some display panels. "Ah, Captain. Join us, please." Chilia gestures for you to join them around the displays. As you approach, you note that the holographic display shows the Ember Waste, although there are a few details that do not match the star maps you're familiar with.`
@@ -2751,13 +2772,13 @@ mission "Remnant: Cognizance 13"
 
 
 
-mission "Remnant: Cognizance 14"
+mission "Remnant: Cognizance 15"
 	landing
 	invisible
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 13: active"
+		has "Remnant: Cognizance 14: active"
 	npc accompany
 		government "Ember Waste"
 		personality waiting mute
@@ -2765,7 +2786,7 @@ mission "Remnant: Cognizance 14"
 	
 
 
-mission "Remnant: Cognizance 15"
+mission "Remnant: Cognizance 16"
 	name "Follow the Creature"
 	description "The creature seems to be creating constellations and trying to get you to follow it."
 	landing
@@ -2776,7 +2797,7 @@ mission "Remnant: Cognizance 15"
 		system Nenia
 	destination Nasqueron
 	to offer
-		has "Remnant: Cognizance 13: done"
+		has "Remnant: Cognizance 14: done"
 	on offer
 		conversation
 			`Quite a number of Remnant have gathered around the spaceport watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries are in position around the area in case the creature becomes violent.`
@@ -2809,17 +2830,17 @@ event "remnant: nenia ember waste node"
 	
 
 
-mission "Remnant: Cognizance 16"
+mission "Remnant: Cognizance 17"
 	name "Report back to Aventine."
 	description "The Remnant will want to know about what happened on Nasqueron."
 	source "Nasqueron"
 	landing
 	destination "Aventine"
 	to offer
-		has "Remnant: Cognizance 15: done"
+		has "Remnant: Cognizance 16: done"
 	
 
-mission "Remnant: Cognizance 17"
+mission "Remnant: Cognizance 18"
 	name "Go collect some void sprites"
 	description "Escort the Pelican fleet to <waypoints> and back to <planet>."
 	source
@@ -2828,7 +2849,7 @@ mission "Remnant: Cognizance 17"
 	destination Aventine
 	waypoint "Nenia"
 	to offer
-		has "Remnant: Cognizance 16: done"
+		has "Remnant: Cognizance 17: done"
 	on offer
 		conversation
 			`It is almost starting to feel commonplace to have Remnant pouncing on your ship and using your cockpit as a meeting room. This time, it is Prefect Chilia and Plume who seem to appear out of nowhere requesting permission to board. The two gather around your console to watch the recording of your trip. They nod at your narration of what transpired and focus intently when you describe the strange presence in your mind. When you finish recounting your experience, they lean back in thought.`
