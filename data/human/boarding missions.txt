@@ -84,7 +84,7 @@ mission "Asteroid Course"
 			choice
 				`	(Shoot the asteroid.)`
 					goto fire
-				`	(Maneuver your ship to shield the <origin>.)`
+				`	(Maneuver my ship to shield the <origin>.)`
 					goto move
 				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
 					goto repair
@@ -92,7 +92,7 @@ mission "Asteroid Course"
 					goto escape
 			label unarmed
 			choice
-				`	(Maneuver your ship to shield the <origin>.)`
+				`	(Maneuver my ship to shield the <origin>.)`
 					goto move
 				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
 					goto repair
