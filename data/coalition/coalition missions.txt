@@ -1073,7 +1073,7 @@ mission "Saryd Couple 1"
 			`While walking around the spaceport, you notice one of the Saryd workers that was refueling your ship is quickly galloping somewhere, only without his uniform, as if his shift just ended. He meets up with another Saryd and starts looking at a map with her.`
 			choice
 				`	(Approach them.)`
-				`	(Go back to your ship and check if it was properly refueled.)`
+				`	(Go back to my ship and check if it was properly refueled.)`
 					goto ship
 			`	They pause their map-gazing and introduce themselves as Inturi and Aunaris, a young couple who are looking to move out of <origin> and build a home they've always dreamed of on another world.`
 			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
