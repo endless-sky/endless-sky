@@ -516,7 +516,7 @@ mission "FW Syndicate Diplomacy 1D"
 
 mission "FW Hope Recon 1"
 	name "Early Warning Systems"
-	description "Land on the abandoned planet <destination> and place sensor there to monitor Navy fleet activity in the system."
+	description "Land on the abandoned planet <destination> and place sensors there to monitor Navy fleet activity in the system."
 	autosave
 	source Longjump
 	destination Hope
