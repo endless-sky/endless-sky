@@ -89,7 +89,7 @@ news "human merchant in human space"
 			"People may tell you otherwise, but I think that Vanguards are the best. They have such powerful frontal weaponry."
 			"Warships may have both speed and weaponry on their side, but if you're looking for something to last, use a Behemoth."
 			"I don't get how people could get worked up over what ship to use. As long as I'm in my trusty Protector, I'm happy."
-			"Ugh. Why are fighter pilots so gun-ho about charging right into the guns of their enemies? At the very least, don't make we waste hundreds of thousands of credits replacing my ships when you kill yourself."
+			"Ugh. Why are fighter pilots so gung-ho about charging right into the guns of their enemies? At the very least, don't make me waste hundreds of thousands of credits replacing my ships when you kill yourself."
 			"Don't you think it's strange that the Navy lets you buy their offensive fighters but not any of their other ships?"
 			"I wonder why shipyards haven't capitalised on making alternatives to the Navy combat drone. Probably because the only ships that can use drones are Navy ships, I guess."
 			"Some of the names that captains give their ships are awful. Seriously, I've seen ships named 'Ship.'"
@@ -928,7 +928,7 @@ news "human religious"
 	name
 		word
 			"Mystic"
-			"Religeous scholar"
+			"Religious scholar"
 			"Preacher"
 	message
 		word
