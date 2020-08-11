@@ -1,0 +1,242 @@
+# Copyright (c) 2020 by W1zrad
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Kor Efreti: Cargo"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 10 2 .18
+	to offer
+		has "Translator Development 4: done"
+		random < 50
+	source
+		government "Kor Efret"
+	destination
+		distance 1 8
+		government "Kor Efret" "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+		
+mission "Kor Efreti: Cargo [1]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 10 2 .14
+	to offer
+		has "Translator Development 4: done"
+		random < 20
+	source
+		government "Kor Efret"
+	destination
+		distance 1 8
+		government "Kor Efret" "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 500
+		dialog phrase "generic cargo delivery payment"		
+
+mission "Kor Efreti: Food Cargo [0]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo "Food" 5 3 .16
+	to offer
+		has "Translator Development 4: done"
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
+mission "Kor Efreti: Food Cargo [1]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo "Food" 5 3 .14
+	to offer
+		random < 70
+		has "Translator Development 4: done"
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 1000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Kor Efreti: Industrial to Wanderers"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the Wanderers on <destination>. Payment is <payment>."
+	cargo "Industrial" 5 3 .13
+	to offer
+		has "Translator Development 4: done"
+		random < 75
+	source
+		government "Kor Efret"
+	destination
+		distance 2 8
+		government "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 500
+		dialog phrase "generic cargo delivery payment"
+		
+mission "Kor Efreti: Cargo to Wanderers"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the Wanderers on <destination>. Payment is <payment>."
+	cargo random 5 4 .12
+	to offer
+		has "Translator Development 4: done"
+		random < 60
+	source
+		government "Kor Efret"
+	destination
+		distance 2 8
+		government "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 700
+		dialog phrase "generic cargo delivery payment"		
+		
+mission "Kor Efreti: Rush Delivery Food"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo "Food" 10 6 .1
+	deadline
+	to offer
+		has "Translator Development 4: done"
+		random < 60
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 2000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Kor Efreti: Passengers [0]"
+	name "Korath passengers to <planet>"
+	job
+	repeat
+	description "Bring these <bunks> Kor Efreti to <destination>. Payment is <payment>."
+	passengers 1 2 .15
+	to offer
+		has "Translator Development 4: done"
+	source
+		government "Kor Efret"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Kor Efreti: Passengers [1]"
+	name "Korath passengers to <planet>"
+	job
+	repeat
+	description "Bring these <bunks> Kor Efreti to <destination>. Payment is <payment>."
+	passengers 1 2 .1
+	to offer
+		has "Translator Development 4: done"
+		random < 60
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 500
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Kor Efreti: Settlers"
+	name "Korath settlers to <planet>"
+	job
+	repeat
+	description "Take these <bunks> Kor Efreti and their <cargo> to the new Wanderer-Korath settlement on <destination>. Payment is <payment>."
+	passengers 10 5 .15
+	cargo "supplies" 5 3 .16
+	to offer
+		has "Translator Development 4: done"
+		random < 90
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination "Sabira Eseskrai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "The Korath in charge hands you <payment>, and the settlers depart your ship."
+
+mission "Kor Efreti to Wanderers: Farming"
+	name "Learning Wanderer farming methods"
+	job
+	repeat
+	description "Take <bunks> Kor Efreti to learn Wanderer farming methods on <stopovers>, and return them to <destination>. Payment is <payment>."
+	passengers 5 1 .2
+	to offer
+		has "Translator Development 4: done"
+		random < 70
+	source
+		government "Kor Efret"
+	stopover
+		distance 2 8
+		government "Wanderer"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog `The Wanderers explain to the Korath using gestures and pointing, but the language barrier makes it challenging. The Korath eventually pick up bits and pieces of what the Wanderers are doing. Time to return to <destination>.`
+	on complete
+		payment 10000 200
+		dialog `When you return, the Korath move their hands in a circular motion with their palms toward you as a sign of gratitude. They hand you <payment> and disembark your ship.`
