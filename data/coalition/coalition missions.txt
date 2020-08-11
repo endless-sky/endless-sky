@@ -1396,27 +1396,28 @@ mission "Arachi Cartoonist 2"
 
 
 
-mission "Coalition Games 1"
+mission "Coalition Games"
 	name "Coalition Athletes"
-	description "Transport three athletes to <destination> where they will compete in the Coalition games."
+	description "Transport three athletes to <destination> by <date> where they will compete in the Coalition games."
 	deadline
 	passengers 3
-	to offer
-		"coalition jobs" >= 35
-		month == 7
 	source
 		near "Homeward" 3 12
 		government "Coalition"
 	destination "Far Home"
+	to offer
+		"coalition jobs" >= 35
+		month == 7
 	on offer
+		require "Jump Drive"
 		conversation
 			`You're approached by a group consisting of a Saryd, Kimek, and Arach. The Saryd speaks and the small box around their neck translates after they stop.`
 			`	"The astonishing sojourner, with great joy we salute."`
-			`	You greet the group, and the Kimek continues the conversation, "The season of joy and camaraderie, we find ourselves in. Upon us, the Coalition games are."`
-			`	The Arach speaks last, asking, "To <destination>, we must go. Compete to our hardest, we will. Transport us, would you, if upon <payment>, you agreed on?"`
+			`	You greet the group, and the Kimek continues the conversation. "The season of joy and camaraderie, we find ourselves in. Upon us, the Coalition games are."`
+			`	The Arach speaks last, asking, "To <destination> by <day>, we must go. Compete to our hardest, we will. Transport us, would you, if upon <payment>, you agreed on?"`
 			choice
 				`	"That sounds good. I'll bring you there."`
-					goto bbbb
+					goto end
 				`	"Sorry, I'm not looking for any transport jobs right now."`
 					decline
 				`	"Coalition games?"`
@@ -1425,43 +1426,31 @@ mission "Coalition Games 1"
 			`	"Trained hard, we have. To prove our worth in the games, we wish," the Arach ends, and they once again look at you as if expecting an answer to their original question.`
 			choice
 				`	"Sounds like you're all really excited about this. Alright, I'll bring you there."`
-					goto bbbb
+					goto end
 				`	"Well I wish you luck then, but sadly I'm not looking for any transport jobs right now."`
 					decline
-			label bbbb
+			label end
 			`	"Most grateful, we are," the Saryd says.`
 			`	As you help them bring their luggage into your ship, they introduce themselves: the Saryd is called Ulmodi, the Kimek is Pairri, and the Arach is Tumub. They settle in their bunks to rest for the upcoming event, though as soon as Pairri closes her bunk's door you hear some slight noises. It sounds like she's doing push-ups - or maybe squats; you can't really tell how a Kimek would name such exercises.`
-			`	Ulmodi explained that they need to get to <destination> (by <date>). It shouldn't be a problem considering you even have a Jump Drive to get there faster.`
+			`	Ulmodi later comes talk to you, seeming a bit worried about not making it in time, as they need to be there by <date>, but you assure him it won't be a problem, especially considering you even have a jump drive to get there faster. Once he's back in his bunk, you set the route and prepare to leave.`
 				accept
 	on complete
-		"coalition jobs" ++
+		"coalition jobs" += 3
 		payment 300000
-
-
-
-mission "Coalition Games 2"
-	invisible
-	landing
-	to offer
-		has "Coalition Games 1: done"
-	source "Far Home"
-	on offer
 		conversation
-			`As the athletes leave your ship and hand you your pay of 300,000 credits, Pairri stretches her legs, trying to get eye-level with you.`
-			`	You crouch, and she says, "Incapable of arriving on time, a mutual friend of ours was. Available, their ticket is."`
-			`	She extends one of her legs to you, holding a small, coin-like piece. It has a symbol like the old Olympic Games on Earth, except with three interlocked rings instead of five.`
+			`As the athletes leave your ship and hand you your pay of <payment>, Pairri stretches her legs, trying to get eye-level with you. You crouch, and she says, "Incapable of arriving on time, a mutual friend of ours was. Available, their ticket is." She extends one of her legs to you, holding a small, coin-like piece. It has a symbol like the old Olympic Games on Earth, except with three interlocked rings instead of five.`
 			`	"Very long and tiring, for a first timer the games can be. Reading an entire novel in an hour, it is like," Tumub explains. "Understand, we would, if too busy to watch them, you are."`
 			`	"Still, much joy, it would bring us, if to watch the games, you chose," says Ulmodi. "Rare, such a chance is, to show an outsider the wonders of our games."`
 			choice
 				`	"Thank you. I would be glad to view the games."`
 				`	"I'm honored, but sadly I have other matters to attend to right now."`
 					decline
-			`	You take the 'ticket', and they start explaining how the games work.`
+			`	You take the 'ticket,' and they start explaining how the games work.`
 			`	"Separate competitions, each species has," Tumub says. "To value each one's history, it is so."`
 			`	"A grand, cooperative match, at the end of it all takes place," Ulmodi further details. "Teams consisting of all three species, formed they are. A joyous, unmatched experience, the last spectacle is."`
-			`	Since they need to leave to prepare for the games, they can't tell you about each sport but assure you that you'll like them. You find a Heliarch agent, and they quickly point you to the line where people are checking in with their own tickets. The line must be thousands long, but you barely spend ten minutes in it. The Heliarchs taking care of admissions are incredibly efficient and keep things organized.`
+			`	Since they need to leave to prepare for the games, they can't tell you about each sport, but assure you that you'll like them. You find a Heliarch agent who quickly points you to the line where people are checking in with their own tickets. The line must be thousands long, but you barely spend ten minutes in it. The Heliarchs taking care of admissions are incredibly efficient and keep things organized.`
 			`	After that, you find yet another Heliarch who shows you where you should go for each competition. Three massive transports, similar in design to old-school bullet trains, each take you to a different 'arena' for a different type of game.`
-			`	They also explain that you'll take a separate train to go to the 'grand spectacle' at the end of it all, which will be available for boarding in any one of the three arenas after those matches are done. You thank them for the explanation and decide on which train to take.`
+			`	They also explain that you'll take a separate train to go to the 'grand spectacle' at the end of the Games, which will be available for boarding in any one of the three arenas after those matches are done. You thank them for the explanation and decide on which train to take.`
 			choice
 				`	(Take the train to the Saryd game.)`
 					goto saryd
