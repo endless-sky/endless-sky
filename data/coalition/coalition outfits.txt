@@ -256,8 +256,8 @@ outfit "Refuelling Module"
 	"mass" 9
 	"outfit space" -9
 	"fuel capacity" -100
-	"fuel generation" .05
-	"energy consumption" .025
+	"fuel generation" .1
+	"energy consumption" .02
 	description "To avoid the risk of being inspected by the Heliarch as they refuel on planets, the Resistance has created an outfit for ships carrying contraband to refuel while still in flight."
 	description "	The outfit's mechanisms require a set amount of fuel to be put aside for its inner workings, so a ship can only install so many of these before it doesn't have enough fuel to jump to another system."
 
