@@ -22230,45 +22230,155 @@ system Sol
 		sprite star/g0
 		period 25.38
 	object
-		sprite planet/mercury
-		distance 289.647
-		period 60
+		sprite planet/mercury-new
+		distance 194.437
+		period 33.0002
+		offset 216.774
 	object
-		sprite planet/venus
-		distance 533.534
-		period 150
+		sprite planet/venus-new
+		distance 395.164
+		period 95.6123
+		offset 101.433
 	object Earth
-		sprite planet/earth
-		distance 965.669
-		period 365.25
+		sprite planet/earth-new
+		distance 770.685
+		period 260.414
+		offset 313.561
 		object Luna
-			sprite planet/luna
-			distance 201.24
-			period 27.3
+			sprite planet/luna-new
+			distance 207.522
+			period 30.6057
+			offset 231.547
 	object Mars
-		sprite planet/mars
-		distance 1471.43
-		period 687
+		sprite planet/mars-new
+		distance 1176.83
+		period 491.38
+		offset 150.967
 	object
-		sprite planet/jupiter
-		distance 3000
-		period 2000
+		sprite planet/ceres-new
+		distance 1306.83
+		period 575.01
+		offset 265.773
+	object
+		sprite planet/jupiter-new
+		distance 2100.69
+		period 1171.9
+		offset 122.05
 		object
-			sprite planet/io
-			distance 238.221
-			period 10.614
+			sprite planet/io-new
+			distance 243.794
+			period 11.9618
+			offset 190.613
 		object
-			sprite planet/europa
-			distance 379.078
-			period 21.306
+			sprite planet/europa-new
+			distance 376.802
+			period 22.9843
+			offset 125.316
 		object
-			sprite planet/ganymede
-			distance 604.739
-			period 42.93
+			sprite planet/ganymede-new
+			distance 469.802
+			period 31.9988
+			offset 104.166
 		object
-			sprite planet/callisto
-			distance 811.717
-			period 66.76
+			sprite planet/callisto-new
+			distance 578.802
+			period 43.7579
+			offset 4.21769
+	object
+		sprite planet/gas8
+		distance 3687.89
+		period 2725.94
+		offset 250.587
+		object
+			sprite planet/mimas-new
+			distance 183
+			period 13.1781
+			offset 307.836
+		object
+			sprite planet/enceladus-new
+			distance 273
+			period 24.0116
+			offset 221.415
+		object
+			sprite planet/tethys-new
+			distance 351
+			period 35.0056
+			offset 240.907
+		object
+			sprite planet/dione-new
+			distance 429
+			period 47.3002
+			offset 345.118
+		object
+			sprite planet/rhea-new
+			distance 522
+			period 63.4867
+			offset 2.0427
+		object
+			sprite planet/titan-new
+			distance 629
+			period 83.9756
+			offset 215.963
+		object
+			sprite planet/hyperion-new
+			distance 733
+			period 105.641
+			offset 61.8169
+		object
+			sprite planet/iapetus-new
+			distance 823
+			period 125.683
+			offset 10.4384
+	object
+		sprite planet/uranus-new
+		distance 5188.22
+		period 4548.57
+		offset 342.672
+		object
+			sprite planet/miranda-new
+			distance 218.323
+			period 13.7824
+			offset 70.0776
+		object
+			sprite planet/ariel-new
+			distance 301.323
+			period 22.3471
+			offset 100.147
+		object
+			sprite planet/umbriel-new
+			distance 391.323
+			period 33.0732
+			offset 96.1756
+		object
+			sprite planet/titania-new
+			distance 481.323
+			period 45.1158
+			offset 162.838
+		object
+			sprite planet/oberon-new
+			distance 559.323
+			period 56.5155
+			offset 301.33
+	object
+		sprite planet/neptune-new
+		distance 6195.21
+		period 5935.15
+		offset 352.782
+		object
+			sprite planet/triton-new
+			distance 233.422
+			period 17.7682
+			offset 53.0826
+	object
+		sprite planet/pluto-new
+		distance 6701.28
+		period 6677.05
+		offset 3.46986
+		object
+			sprite planet/charon-new
+			distance 101.546
+			period 33.026
+			offset 359.085
 
 system "Sol Arach"
 	pos -711.587 649.051
