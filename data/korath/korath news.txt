@@ -94,7 +94,7 @@ news "wanderer at kor efret spaceport"
 		word
 			"Wanderer"
 			"Wanderer captain"
-			"Wanderer merchant"
+			"Wanderer trader"
 	message
 		word
 			`"`

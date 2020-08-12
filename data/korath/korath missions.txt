@@ -62,7 +62,7 @@ event "label korath space"
 	galaxy "label korath"
 		sprite "label/korath"
 
-mission "Translator Development 1A"
+mission "Translator Development 1"
 	name "Translator Development"
 	description "Go to <destination> to ask Eruk if his translation device could be modified for the Wanderers and Korath to use."
 	minor
@@ -71,56 +71,53 @@ mission "Translator Development 1A"
 	to offer
 		has "Wanderers: Sestor: Final: done"
 	on offer
-		log "People" "Syciil" `Syciil is a Kor Efret ambassador on Setar Fort. She ensures Ektasi Rek has accomodations and whatever else she may need. Along with Rek, she is investigating ways to improve relations between the Wanderers and Kor Efreti.`
+		log "People" "Siclyss" `Siclyss is a Kor Efret ambassador on Setar Fort. She ensures Ektasi Rek has accomodations and whatever else she may need. Along with Rek, she is investigating ways to improve relations between the Wanderers and Kor Efreti.`
 		conversation
-			`When you leave your ship, Rek and a Korath are waiting at the dock. "Hello, Captain <last>. When I was informed you had come to Setar Fort, I came here to see you. This is Scyiil," she says, gesturing to the Korath next to her. Syciil holds up her hands with her palms toward you. "She is an ambassador for the Kor Efreti, and she accompanies me virtually everywhere I go on the planet. I've learned much about the Kor Efreti - and the Korath in general - from her."`
+			`As you look around the spaceport, Rek and a Korath approach you at the dock. "<first>! When I was informed you had come to Setar Fort, I came here to see you. This is Scyiil," she says, gesturing to the Korath next to her. Syciil holds up her hands with her palms toward you. "She's one of the newly appointed ambassadors for the Kor Efreti and has told me a lot about the culture and history of the Korath.`
 			choice
-				`	"Pleased to meet you, Syciil. I'm <first> <last>."`
+				`	"Pleased to meet you, Siclyss. I'm <first> <last>."`
 				`	(Let Rek continue speaking.)`
 					goto nogreeting
-			`	Rek passes on your greeting, and Syciil replies. "She says, 'I am pleased to meet you as well. Rek has told me you've seen much of the galaxy,'" she translates.`
+			`	Rek passes on your greeting, and Siclyss replies. "She says, 'I am pleased to meet you as well. Rek has told me you've seen much of the galaxy,'" she translates.`
 			label nogreeting
-			`	Rek continues to speak. "Syciil and I have been discussing how we might improve our peoples' relations. Obviously, our main hindrance is the language barrier. When I was telling her about our recent effort to shut down the Kor Sestor, she asked how you communicate with other Wanderers who did not speak your language. It's strange that this idea never occurred to me sooner, but I suppose I've been so busy that I haven't had time to think about it. Could your translation device be converted for Wanderer and Korath languages?"`
+			`	Rek continues to speak. "Siclyss and I have been discussing how we might improve our peoples' relations. Obviously, our main hindrance is the language barrier. When I was telling her about our recent effort to shut down the Kor Sestor, she asked how you communicate with other Wanderers who did not speak your language. It's strange that this idea never occurred to me sooner, but I suppose I've been so busy that I haven't had time to think about it. Could your translation device be converted for Wanderer and Korath languages?"`
 			choice
 				`	"A Hai named Eruk gave the translator to me; he might have an answer."`
-			`	"Let me tell Syciil," Rek says, then turns to her and repeats your answer. When she's done, Syciil holds her hands up with her palms toward you and moves them in a circular motion while speaking. "That's a gesture of gratitude. She says, 'Thank you. Your help will benefit both the Wanderers and Kor Efreti.' We would go with you, but both of us are busy with another project right now. If you make any progress, come back to Setar Fort and tell us." Rek and Scyiil depart. It sounds like you should visit Eruk on <planet>.`
+			`	"Let me tell Siclyss," Rek says, then turns to her and repeats your answer. When she's done, Siclyss holds her hands up with her palms toward you and moves them in a circular motion while speaking. "That's a gesture of gratitude. She says, 'Thank you. Your help will benefit both the Wanderers and Kor Efreti.' We would go with you, but both of us are busy with another project right now. If you make any progress, come back to Setar Fort and tell us." Rek and Scyiil depart. It sounds like you should visit Eruk on <planet>.`
 				accept
 
 mission "Translator Development 2A"
 	landing
 	name "Information Exchange"
-	description "Acquire a copy of the Library of Parliament on <stopovers> for Eruk. Then, return to <destination> in exchange for information about the inner workings of his translation device."
+	description "Acquire a copy of the Library of Parliament on <destination> for Eruk in exchange for information about the translation device."
 	source "Greenwater"
-	stopover "Earth"
+	destination "Earth"
 	to offer
-		or
-			has "Translator Development 1A: done"
-			has "Translator Development 1B: done"
+		has "Translator Development 1: done"
 	on offer
 		conversation
-			`You make contact with Eruk soon after landing, and he invites you on a tour of his facility. Compared to the last time you were here, it has doubled - maybe even tripled - in size. "The translator was released to the public a few months ago, and its reception has been fantastic," he explains. "Consequentially, my operation here has grown immensely." As the tour continues, he's sure to point out many exact details of his work. Eruk is obviously pleased with the success of his device. "But, enough about me. I suspect you're a busy person, so you likely came here with a purpose. What can I do for you?"`
+			`You make contact with Eruk soon after landing, and he invites you to tour the laboratory where he works. "Our translation device has proven to be very popular among Hai not versed in the human language," he explains. "Consequentially, our operation here is a busy one." As the tour continues, he's sure to point out many exact details of his work. Eruk is obviously pleased with the continued success of this device. "But, enough about me. I would imagine you're here with a purpose. What can I do for you?"`
 			choice
 				`	"I was wondering if it would be possible to program other languages into your translator."`
 				`	"Are you interested in a new project? I know two of species that could use a translation device."`
-			`	You briefly explain that the Wanderers now reside in Korath space and have made contact with the Kor Efreti. "Yes, a translation device would indeed be useful for the two species. Unfortunately, as you can see, all my resources are spent here." He gestures around his facility. "Considering our current success, it makes no financial sense to stop what we're doing and pick up an entirely new project. That we'd be working with two languages I know virtually nothing about also concerns me. I can, however, offer you an alternative: I could compile a document in Hai language detailing how this device was constructed so the Wanderers could learn and replicate it themselves. The spread of information is a mutually beneficial business, after all. I would, of course, ask another small favor in return.`
-			`	"I am told your Republic's governing body holds a database on <stopovers> similar to that of Alexandria. I believe it is known as the Library of Parliament. I would like to study this database as well, but I have yet to obtain a copy. I will give you the translator information in exchange for one."`
+			`	You briefly explain that the Wanderers now reside in Korath space and have made contact with the Kor Efreti. "Yes, a translation device would indeed be useful for the two species. Unfortunately, as you can see, all my resources are spent here." He gestures around the laboratory. "Considering our current success, it makes no sense to stop what we're doing and pick up an entirely new project. That we'd be working with two languages I know virtually nothing about also concerns me. I can, however, offer you an alternative: I could compile a document in Hai language detailing how this device was constructed so the Wanderers could learn and replicate it themselves. The spread of information is a mutually beneficial business, after all. I would, of course, ask another small favor in return.`
+			`	"I am told your Republic's governing body holds a database on <destination> similar to that of Alexandria. I believe it is known as the Library of Parliament. I would like to study this database as well, but I have yet to obtain a copy. I will give you the translator information in exchange for one."`
 			choice
 				`	"That sounds fair to me. I'll be back when I have a copy."`
 					accept
 				`	"Sorry, but I'm not interested in running another errand to human space for you right now. If I change my mind, I'll come back."`
 					decline
-	on stopover
-		dialog `Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. You buy a cheap data card for 20 credits at a nearby convenience store and download the information from a terminal inside the library. Time to head back.`
+	on complete
 		payment -20
 	on visit
-		dialog `You've arrived at Greenwater, but you haven't obtained a copy of the Library of Parliament from <stopovers>. Better go get one.`
+		dialog `Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. Unfortunately, you don't have the money to purchase a data card to store the database on. Better earn some money first.`
 		
 mission "Translator Development 2B"
 	landing
 	name "Information Exchange"
-	description "Acquire a copy of the Library of Parliament on <stopovers> for Eruk. Then, return to <destination> in exchange for information about the inner workings of his translation device."
+	description "Acquire a copy of the Library of Parliament on <destination> for Eruk in exchange for information about the translation device."
 	source "Greenwater"
-	stopover "Earth"
+	destination "Earth"
 	to offer
 		has "Translator Development 2A: declined"
 	on offer
@@ -130,31 +127,44 @@ mission "Translator Development 2B"
 				`	(Yes.)`
 				`	(No.)`
 					defer
-			`	Eruk is pleased to hear from you. He tells you to return to Greenwater once you've obtained a copy of the library from <stopovers>.`
+			`	Eruk is pleased to hear from you. He tells you to return to Greenwater once you've obtained a copy of the library from <desination>.`
 				accept
-	on stopover
-		dialog `Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. You buy a cheap data card for 20 credits at a nearby convenience store and download the information from a terminal inside the library. Time to head back.`
+	on complete
 		payment -20
 	on visit
-		dialog `You've arrived at Greenwater, but you haven't obtained a copy of the Library of Parliament from <stopovers>. Better go get one.`			
+		dialog `Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. Unfortunately, you don't have the money to purchase a data card to store the database on. Better earn some money first.`
 
-mission "Translator Development 3"
+mission "Translator Development 2C"
 	landing
-	name "Translator Information to <planet>"
-	description "Bring the document containing information about Eruk's translation device to Rek and Syciil on <destination>."
-	source "Greenwater"
-	destination "Setar Fort"
+	name "Information Exchange"
+	description "Bring the copy of the Library of Parliament to Eruk on <destination> in exchange for information about the translation device."
+	source "Earth"
+	destination "Greenwater"
 	to offer
 		or
 			has "Translator Development 2A: done"
 			has "Translator Development 2B: done"
 	on offer
 		conversation
+			`Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. You buy a data card for 20 credits at a nearby convenience store and download the information from a terminal inside the library. Time to head back.`
+				accept
+			
+
+mission "Translator Development 3"
+	landing
+	name "Translator Information to <planet>"
+	description "Bring the document containing information about Eruk's translation device to Rek and Siclyss on <destination>."
+	source "Greenwater"
+	destination "Setar Fort"
+	to offer
+		has "Translator Development 2C: done"
+	on offer
+		conversation
 			`You return to Eruk's facility and give him the copy of the Library of Parliament. He thanks you and hands you a different data card. "This contains a summary of our translator and details the process of how it was made. In theory, any language should work, but considering I know almost nothing about either Wanderer or Korath language myself, I can't speak to its actual feasibility. The nuances of such a process also make it hard to determine how long it would take. Regardless, I wish you and your friends the best of luck in replicating the device. You may need it."`
 			choice
 				`	"Thanks for your help, Eruk."`
 					accept
-				`	"See you around, Eruk."`
+				`	"Enjoy the database. I'll let you know if we need anything else."`
 					accept
 
 mission "Translator Development 4"
@@ -167,33 +177,33 @@ mission "Translator Development 4"
 		has "Translator Development 3: done"
 	on offer
 		conversation
-			`When you exit your ship, the spaceport is different. Every Kor Efret spaceport you've visited so far was dotted with ruined buildings and dirty alleyways long-since abandoned. One such area, however, is fenced off, and you can hear sounds of construction from behind it. Rek and Syciil emerge from a nearby building - also under construction - and approach you.`
-			`	"Were you able to make any progress, Captain <last>?" Rek asks. As you explain Eruk's response and show them the data card he gave you, Rek translates to Syciil. The two have a brief conversation in Korath language, then Rek turns to you and says, "While it's unfortunate Eruk can't help us, this information is much better than nothing at all. Would you deliver the data card to Wanderer technologists on <stopovers>? I'll contact them ahead of time so they can get started right away."`
+			`When you exit your ship, the spaceport is different. Every Kor Efret spaceport you've visited so far was dotted with ruined buildings and dirty alleyways long-since abandoned. One such area, however, is fenced off, and you can hear sounds of construction from behind it. Rek and Siclyss emerge from a nearby building - also under construction - and approach you.`
+			`	"Were you able to make any progress, Captain <last>?" Rek asks. As you explain Eruk's response and show them the data card he gave you, Rek translates to Siclyss. The two have a brief conversation in Korath language, then Rek turns to you and says, "While it's unfortunate Eruk can't help us, this information is much better than nothing at all. Would you deliver the data card to Wanderer technologists on <stopovers>? I'll contact them ahead of time so they can get started right away."`
 			choice
 				`	"Sure, I'll go drop it off."`
 					goto noquestions
-				`	"I can do that, but before I leave, can you tell me what's going on here at the spaceport? Are they building something?"`
-			`	Rek smiles. "I could explain, but that would spoil the surprise. The construction will be finished by the time you return. When you're back, I'll be happy to show you around. Until then, <first>." Rek and Syciil turn and head back to the building they came from. It looks like you won't get any answers until you've dropped off the data card.`
+				`	"Before I leave, can you tell me what's going on with the construction?"`
+			`	"I could explain, but that would spoil the surprise," Rek replies. "The construction will be finished by the time you return. When you're back, I'll be happy to show you around. Until then, <first>." Rek and Siclyss turn and head back to the building they came from. It looks like you won't get any answers until you've dropped off the data card.`
 				accept
 			label noquestions
-			`	"Wonderful. Thank you for all your help," Rek says. She speaks to Syciil, and the two begin walking away.`
-			`	Suddenly, Rek pauses in her step and turns back to you. "<first>! I nearly forgot to tell you. When you've finished dropping off the information, please return to Setar Fort. I'll have something you may be interested in." You nod in acknowledgement, and she turns around to catch up to Syciil.`
+			`	"Wonderful. Thanks for all your help," Rek says. She speaks to Siclyss, and the two begin walking away.`
+			`	Suddenly, Rek pauses in her step and turns back to you. "<first>! I nearly forgot to tell you. When you've finished dropping off the information, please return to Setar Fort. I'll have something you may be interested in." You nod in acknowledgement, and she turns around to catch up to Siclyss.`
 				accept
 	on stopover
 		dialog `Sure enough, a team of Wanderer technologists is waiting for you when you arrive. You hand off the data card, and they rush away, obviously eager to dive into its contents. Time to return to <planet> and see what Rek has in store for you.`
 	on complete
 		payment 200000
 		event "wanderers taking jobs from kor efreti"
-		log "Brought a copy of the information used to develop my Hai translator to Wanderer researchers trying to make one for them and the Korath. The Kor Efreti have created terminals that will allow me to run jobs for them without knowing their language."
+		log "Brought a copy of the information used to develop the Hai-human translator to Wanderer researchers trying to make one for them and the Korath. The Kor Efreti have created terminals allowing job offerings to be communicated without the use of language."
 		conversation
-			`When you land on <planet>, the fencing is gone, and it looks like the construction is finished. Rek and Syciil meet you as you disembark. Syciil gestures with her palms toward you, moving in a circular motion again. When she is finished, she hands you <payment> and speaks in her own language. Rek translates: "She says, 'Rek and I thank you for your help in this project. This payment represents a joint contribution between the Kor Efret and Wanderer governments.'"`
+			`When you land on <planet>, the fencing is gone, and it looks like the construction is finished. Rek and Siclyss meet you as you disembark. Siclyss gestures with her palms toward you, moving in a circular motion again. When she is finished, she hands you <payment> and speaks in her own language. Rek translates: "She says, 'Rek and I thank you for your help in this project. This payment represents a joint contribution between the Kor Efret and Wanderer governments.'"`
 			choice
 				`	"I'm happy to help in whatever way I can."`
 				`	"You're welcome. Do you know how long it will take for them to make a working translator?"`
-			`	Rek translates your acknowledgement to Syciil, then continues speaking to you. "I spoke with the technologists after you dropped off the information. They say it will take some time to convert the Hai technology and methodology into something we would be able to use. It would then take even longer to program two new languages into the translator. From what I understand, it's too early to tell if the translator's programming would even work with Wanderer or Korath languages. I'll have to start working with them to create a database of the Korath language soon.`
-			`	"All things considered, the device probably won't be done for a long time - if ever - but it's a big step in the right direction. We have you to thank for that. That brings me to my next point: I'm sure you're curious about what the new part of the spaceport is. Please, follow me." You, Rek, and Syciil walk to the newly-developed area.`
-			`	The centerpiece of the area is several large, two-sided monitors. Each displays a map of local Korath space with settlements and hyperspace lanes labeled. Syciil holds her hand up to one, and a few different listings appear. Each shows the destination and displays the number of passengers and cargo. The most intuitive aspect of the setup is that it's entirely visual: there are no numbers or writing anywhere.`
-			`	Syciil speaks through Rek. "She says, 'A translation device is not the only thing Rek and I have been developing. We've been brainstorming a way for our populations to communicate without translators should the project fall through, and this is what we've come up with. The Wanderers were kind enough to lend us the resources to build these - though it took some deliberation to determine it would not be an insult to Korath honor to accept the help. Similar terminals were recently installed in other Kor Efret systems and are being built on the new Wanderer colonies as we speak. You are welcome to use these terminals as well, Captain <last>.'" She holds her hands up, palms forward, says a few words, then departs. "She has other matters to attend to," Rek explains. "In fact, I do as well. Thanks again for all your help, <first>. The Wanderers and Kor Efreti will both benefit from it, and I hope these new jobs will work to your advantage as well. Until next time," Rek says, then she leaves to catch up with Syciil. You're left to explore the new jobs available in Korath space.`
+			`	Rek translates your acknowledgement to Siclyss, then continues speaking to you. "I spoke with the technologists after you dropped off the information. They say it will take some time to convert the Hai technology and methodology into something we would be able to use. It would then take even longer to program two new languages into the translator. From what I understand, it's too early to tell if the translator's programming would even work with Wanderer or Korath languages. I'll have to start working with them to create a database of the Korath language soon.`
+			`	"All things considered, the device probably won't be done for a long time - if ever - but it's a big step in the right direction. We have you to thank for that. That brings me to my next point: I'm sure you're curious about what the new part of the spaceport is. Please, follow me." You, Rek, and Siclyss walk to the newly-developed area.`
+			`	The centerpiece of the area is several large, two-sided monitors. Each displays a map of local Korath space with settlements and hyperspace lanes labeled. Siclyss holds her hand up to one, and a few different listings appear. Each shows the destination and displays the number of passengers and cargo. The most intuitive aspect of the setup is that it's entirely visual: there are no numbers or writing anywhere.`
+			`	Siclyss speaks through Rek. "She says, 'A translation device is not the only thing Rek and I have been developing. We've been brainstorming a way for our populations to communicate without translators should the project fall through, and this is what we've come up with. The Wanderers were kind enough to lend us the resources to build these - though it took some deliberation to determine it would not be an insult to Korath honor to accept the help. Similar terminals were recently installed in other Kor Efret systems and are being built on the new Wanderer colonies as we speak. You are welcome to use these terminals as well, Captain <last>.'" She holds her hands up, palms forward, says a few words, then departs. "She has other matters to attend to," Rek explains. "In fact, I do as well. Thanks again for all your help, <first>. The Wanderers and Kor Efreti will both benefit from it, and I hope these new jobs will work to your advantage as well. Until next time," Rek says, then she leaves to catch up with Siclyss. You're left to explore the new jobs available in Korath space.`
 			
 event "wanderers taking jobs from kor efreti"
 	news "wanderer at kor efret spaceport"
@@ -208,6 +218,7 @@ mission "Setar Fort Heating"
 	cargo "heating supplies" 30
 	source
 		government "Wanderer"
+		attributes "korath"
 	destination "Setar Fort"
 	to offer
 		random < 60
@@ -275,33 +286,33 @@ mission "Korath Family to Ringworld"
 	on offer
 		conversation
 			`The smog is so thick on Laki Nemparu that even the brightest hours of the day feel like evening to you. Most of the Korath are a few shades darker than those of other planets, more a result of dirtiness rather than skin pigmentation. Within minutes, a small layer of soot clings to your skin as well.`
-			`	As you observe your surroundings, a Kor Efret approaches you followed by two others, one likely a child, based on its size, and the other hunched over a cane it uses for support - probably elderly. The one in front speaks to you rapidly in its own language before realizing you don't understand it at all. It pauses to take a deep breath, then erupts into a coughing fit as it inhales far too much smog. The older Korath behind begins coughing too, and it's almost a full minute before they've both recovered.`
-			`	The Korath who had spoken to you points up to the sky and says, "<planet>. <planet>," while gesturing to itself and the two Korath. It presses 500 credits into your hands and continues to mutter in its own language. <planet> is the name of the Quarg ringworld in Korath space. They must want transportation to it. 500 credits is shockingly low for any transport job, but based on their look they can't afford to pay you any more. Do you want to take them to <planet>?`
+			`	As you observe your surroundings, a Kor Efret approaches you followed by two others, one likely a child, based on its size, and the other hunched over a cane it uses for support - probably elderly. The one in front tries the Korath language and quickly realizes you don't understand it at all. The Kor Efret pauses to take a deep breath, then erupts into a coughing fit as they inhale far too much smog. The older Korath behind begins coughing too, and it's almost a full minute before they've both recovered.`
+			`	The Korath who had spoken to you points up to the sky and says, "<planet>. <planet>," while gesturing to the three Korath. They press 500 credits into your hands and continue to mutter in the Korath language. <planet> is the name of the Quarg ringworld in Korath space. They must want transportation to it. 500 credits is shockingly low for any transport job, but based on their look they can't afford to pay you any more. Do you want to take them to <planet>?`
 			choice
 				`	(Yes.)`
 				`	(Yes, and give their credits back to them.)`
 					goto forfree
 				`	(No.)`
 					goto heartless
-			`	You pocket the credits and gesture for them to follow to your ship. When the Korath realizes you've agreed, it sighs in relief and rapidly gestures in gratitude. You show them to their bunks and the shower - they're covered in soot.`
+			`	You pocket the credits and gesture for them to follow to your ship. When the Korath realizes you've agreed, they sigh in relief and rapidly gestures in gratitude. You show them to their bunks and the shower - they're all covered in soot.`
 				accept
 			label forfree
-			`	The Korath's shoulders slump when you hand back the credits, but its disappointment turns to surprise when you gesture to your ship. When it realizes you're trying to refuse the money, it puffs its chest out and pushes the credits into your hands again. It won't take no for an answer, so you pocket the credits and take them to your ship. You show them to their bunks and the shower - they're covered in soot.`
+			`	The Korath's shoulders slump when you hand back the credits, but their disappointment turns to surprise when you gesture to your ship. When they realize you're trying to refuse the money, they puff their chest out and push the credits into your hands again. They won't take no for an answer, so you pocket the credits and take them to your ship. You show them to their bunks and the shower - they're covered in soot.`
 			accept
 			label heartless
-			`	You give the credits back to the Korath, and its shoulders slump. The trio wanders off, all three coughing, until the smog envelops them. You can't help but feel a little bad.`
+			`	You give the credits back to the Korath, and their shoulders slump. The trio wanders off, all three coughing, until the smog envelops them. You can't help but feel a little bad.`
 				decline
 	on accept
 		payment 500
 	on complete
 		conversation
-			`You enjoy the new company on your ship. The child has taught you a game where you take turns throwing a ball against the wall. You spend an hour or two playing with it in the cargo hold.`
+			`You enjoy the new company on your ship. The child has taught you a game where you take turns throwing a ball against the wall. You spend an hour or two playing with them in the cargo hold.`
 			`	When you arrive, you decide to accompany the family into the spaceport. Waiting near the docking bay are two more Korath, one an adult and the other elderly, and the three you've transported rush to meet them. After the happy reunion has died down, the Korath who had originally asked you for transportation turns to a nearby Quarg and chatters off something. The Quarg responds and then turns to you.`
-			`	"This prideful fellow has said he regards my translation skills with reverence and asks I use them. I am inclined to acquiesce his request." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to roughly gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our comraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
+			`	"This fellow pridefulest has claimed he regarded my indebted translation with reverence and asks my usage of it be preferred. I am inclined to acquiesce his request happyifully." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to roughly gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our camaraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
 			choice
 				`	"Tell him it's no problem at all."`
 				`	"Tell him he has a wonderful family, and I was glad to help."`
-			`	The Quarg nods and turns to translate. The Korath responds while holding its palms toward you and moving them in a wide circular motion. "This is indicating of thankfulness of wholesomest measure. He thanks you for your fortunate words and wishes you kind travels." You acknowledge the response, thank the Quarg for its (rough) translation services, and return to your ship."`
+			`	The Quarg nods and turns to translate. The Korath responds while holding his palms toward you and moving them in a wide circular motion. "This is indicating of thankfulness of wholesomest measure. He thanks you for your fortunate words and wishes you kind travels." You acknowledge the response, thank the Quarg for its (rough) translation services, and return to your ship."`
 		
 mission "Korath Livestock"
 	name "Livestock to <planet>"
