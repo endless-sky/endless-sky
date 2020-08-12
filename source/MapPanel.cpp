@@ -546,7 +546,11 @@ void MapPanel::Select(const System *system)
 	const System *source = isJumping ? flagship->GetTargetSystem() : playerSystem;
 	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
-	if(system == source && !shift)
+	bool ctrl = (SDL_GetModState() & KMOD_CTRL);
+	if (ctrl) {
+		return;
+	}
+	else if(system == source && !shift)
 	{
 		plan.clear();
 		if(!isJumping)
