@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -794,6 +794,44 @@ Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
+
+Files:
+ images/planet/mercury-new*
+ images/planet/venus-new*
+ images/planet/earth-new*
+ images/planet/luna-new*
+ images/planet/ceres-new*
+ images/planet/jupiter-new*
+ images/planet/io-new*
+ images/planet/europa-new*
+ images/planet/ganymede-new*
+ images/planet/callisto-new*
+ images/planet/mimas-new*
+ images/planet/enceladus-new*
+ images/planet/tethys-new*
+ images/planet/dione-new*
+ images/planet/rhea-new*
+ images/planet/titan-new*
+ images/planet/hyperion-new*
+ images/planet/iapetus-new*
+ images/planet/uranus-new*
+ images/planet/miranda-new*
+ images/planet/ariel-new*
+ images/planet/umbriel-new*
+ images/planet/titania-new*
+ images/planet/oberon-new*
+ images/planet/neptune-new*
+ images/planet/triton-new*
+ images/planet/pluto-new*
+ images/planet/charon-new*
+Copyright: Tommaso Becca
+License: CC-BY-SA-4.0
+Comment: Modified from works by NASA (under a compatible license) made by Cassini, Voyager 2, Juno or Apollo 17.
+
+Files: images/planet/mars-new*
+Copyright: Tommaso Becca
+License: CC-BY-SA 3.0-igo
+Comment: Modified from works by ESA (under the same license) made by Rosetta.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
