@@ -2870,12 +2870,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		++index;
 		// Skip weapons that are not ready to fire.
 		if(!hardpoint.IsReady())
-			continue;
-		if(ship.IsYours() && weapon->Ammo())
-		{
-			command.SetFire(index);
-			continue;
-		}			
+			continue;			
 		const Weapon *weapon = hardpoint.GetOutfit();
 		// Don't expend ammo for homing weapons that have no target selected.
 		if(!currentTarget && weapon->Homing() && weapon->Ammo())
