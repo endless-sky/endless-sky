@@ -78,36 +78,14 @@ mission "Translator Development 1A"
 				`	"Pleased to meet you, Syciil. I'm <first> <last>."`
 				`	(Let Rek continue speaking.)`
 					goto nogreeting
-			`	Rek translates the greeting, and Syciil replies. "She says, 'I am pleased to meet you as well. Rek has told me you've seen much of the galaxy.'`
+			`	Rek passes on your greeting, and Syciil replies. "She says, 'I am pleased to meet you as well. Rek has told me you've seen much of the galaxy,'" she translates.`
 			label nogreeting
-			`	"You're probably wondering why I was waiting for you. Syciil and I have been discussing how we might improve our peoples' relations. Obviously, our main hindrance is the language barrier. When I was telling her about our recent effort to shut down the Kor Sestor, she asked how you communicate with other Wanderers who did not speak your language. It's strange that this idea never ocurred to me sooner, but I suppose I've been so busy that I haven't had time to think about it. Could your translation device be converted for Wanderer and Korath languages?"`
+			`	Rek continues to speak. "Syciil and I have been discussing how we might improve our peoples' relations. Obviously, our main hindrance is the language barrier. When I was telling her about our recent effort to shut down the Kor Sestor, she asked how you communicate with other Wanderers who did not speak your language. It's strange that this idea never occurred to me sooner, but I suppose I've been so busy that I haven't had time to think about it. Could your translation device be converted for Wanderer and Korath languages?"`
 			choice
-				`	"To be honest, I'm not sure. A Hai named Eruk gave me it; he might have an answer. That would be a good place to start."`
-				`	"Sorry, I don't know, and I'm not able to help right now. I'll return when I'm available. Good luck."`
-					decline
-			`	"A place to start is all we need. Let me tell Syciil," Rek says, then turns to her and repeats your answer. When she's done, Syciil holds her hands up with her palms toward you and moves them in a circular motion while speaking. "That's a gesture of gratitude. She says, 'Thank you. Your help will benefit both the Wanderers and Kor Efreti.' We would go with you, but both of us are busy with another project right now. Please return to Setar Fort if you make any progress." Rek and Scyiil depart. It sounds like you should visit Eruk on <planet>.`
+				`	"A Hai named Eruk gave the translator to me; he might have an answer."`
+			`	"Let me tell Syciil," Rek says, then turns to her and repeats your answer. When she's done, Syciil holds her hands up with her palms toward you and moves them in a circular motion while speaking. "That's a gesture of gratitude. She says, 'Thank you. Your help will benefit both the Wanderers and Kor Efreti.' We would go with you, but both of us are busy with another project right now. If you make any progress, come back to Setar Fort and tell us." Rek and Scyiil depart. It sounds like you should visit Eruk on <planet>.`
 				accept
 
-mission "Translator Development 1B"
-	landing
-	name "Translator Development"
-	description "Go to <destination> to ask Eruk if his translation device could be modified for the Wanderers and Korath to use."
-	minor
-	source "Setar Fort"
-	destination "Greenwater"
-	to offer
-		has "Wanderers: Sestor: Final: done"
-		has "Translator Development 1A: declined"
-	on offer
-		conversation
-			`As you leave your ship, you remember the conversation you had with Rek and Syciil. They asked you to go speak to Eruk on <destination> about using his translator for the Wanderers and Kor Efreti, but you were too busy to help them. Would you like to tell Rek you can help now?`
-			choice
-				`	(Yes.)`
-				`	(No.)`
-					defer
-			`	You send a message to Rek to let her know you'll go ask Eruk about his translator. She thanks you and says to return to Setar Fort if you make any progress. Time to visit Eruk.`
-				accept
-		
 mission "Translator Development 2A"
 	landing
 	name "Information Exchange"
@@ -195,11 +173,11 @@ mission "Translator Development 4"
 				`	"Sure, I'll go drop it off."`
 					goto noquestions
 				`	"I can do that, but before I leave, can you tell me what's going on here at the spaceport? Are they building something?"`
-			`	Rek smiles. "I could explain, but that would spoil the surprise. The construction will be finished by the time you return. When you're back, I'll be happy to show you around. Until then, Captain <last>." Rek and Syciil turn and head back to the building they came from. It looks like you won't get any answers until you've dropped off the data card.`
+			`	Rek smiles. "I could explain, but that would spoil the surprise. The construction will be finished by the time you return. When you're back, I'll be happy to show you around. Until then, <first>." Rek and Syciil turn and head back to the building they came from. It looks like you won't get any answers until you've dropped off the data card.`
 				accept
 			label noquestions
-			`	"Wonderful. Thank you for all your help, Captain," Rek says. She speaks to Syciil, and the two begin walking away.`
-			`	Suddenly, Rek pauses in her step and turns back to you. "Captain <last>! I nearly forgot to tell you. When you're finished dropping off the information, please return to Setar Fort. I will have something you may be interested in." You nod in acknowledgement, and she turns around to catch up to Syciil.`
+			`	"Wonderful. Thank you for all your help," Rek says. She speaks to Syciil, and the two begin walking away.`
+			`	Suddenly, Rek pauses in her step and turns back to you. "<first>! I nearly forgot to tell you. When you've finished dropping off the information, please return to Setar Fort. I'll have something you may be interested in." You nod in acknowledgement, and she turns around to catch up to Syciil.`
 				accept
 	on stopover
 		dialog `Sure enough, a team of Wanderer technologists is waiting for you when you arrive. You hand off the data card, and they rush away, obviously eager to dive into its contents. Time to return to <planet> and see what Rek has in store for you.`
@@ -208,13 +186,13 @@ mission "Translator Development 4"
 		event "wanderers taking jobs from kor efreti"
 		log "Brought a copy of the information used to develop my Hai translator to Wanderer researchers trying to make one for them and the Korath. The Kor Efreti have created terminals that will allow me to run jobs for them without knowing their language."
 		conversation
-			`When you land on <planet>, the fencing is gone, and it looks like the construction is finished. Rek and Syciil meet you as you disembark. Syciil gestures with her palms toward you, moving in a circular motion again. You remember Rek told you this is a symbol of gratitude. When she is finished, she hands you <payment> and speaks in her own language. Rek translates: "She says, 'Rek and I thank you for your help in this project. This payment represents a joint contribution between the Kor Efret and Wanderer governments.'"`
+			`When you land on <planet>, the fencing is gone, and it looks like the construction is finished. Rek and Syciil meet you as you disembark. Syciil gestures with her palms toward you, moving in a circular motion again. When she is finished, she hands you <payment> and speaks in her own language. Rek translates: "She says, 'Rek and I thank you for your help in this project. This payment represents a joint contribution between the Kor Efret and Wanderer governments.'"`
 			choice
 				`	"I'm happy to help in whatever way I can."`
 				`	"You're welcome. Do you know how long it will take for them to make a working translator?"`
 			`	Rek translates your acknowledgement to Syciil, then continues speaking to you. "I spoke with the technologists after you dropped off the information. They say it will take some time to convert the Hai technology and methodology into something we would be able to use. It would then take even longer to program two new languages into the translator. From what I understand, it's too early to tell if the translator's programming would even work with Wanderer or Korath languages. I'll have to start working with them to create a database of the Korath language soon.`
 			`	"All things considered, the device probably won't be done for a long time - if ever - but it's a big step in the right direction. We have you to thank for that. That brings me to my next point: I'm sure you're curious about what the new part of the spaceport is. Please, follow me." You, Rek, and Syciil walk to the newly-developed area.`
-			`	Its centerpiece is several large, two-sided monitors. Each displays a map of local Korath space with settlements and hyperspace lanes labeled. Syciil holds her hand up to one, and a few different listings appear. Each shows the destination and displays the number of passengers and cargo. The most intuitive aspect of the setup is that it's entirely visual: there are no numbers or writing anywhere.`
+			`	The centerpiece of the area is several large, two-sided monitors. Each displays a map of local Korath space with settlements and hyperspace lanes labeled. Syciil holds her hand up to one, and a few different listings appear. Each shows the destination and displays the number of passengers and cargo. The most intuitive aspect of the setup is that it's entirely visual: there are no numbers or writing anywhere.`
 			`	Syciil speaks through Rek. "She says, 'A translation device is not the only thing Rek and I have been developing. We've been brainstorming a way for our populations to communicate without translators should the project fall through, and this is what we've come up with. The Wanderers were kind enough to lend us the resources to build these - though it took some deliberation to determine it would not be an insult to Korath honor to accept the help. Similar terminals were recently installed in other Kor Efret systems and are being built on the new Wanderer colonies as we speak. You are welcome to use these terminals as well, Captain <last>.'" She holds her hands up, palms forward, says a few words, then departs. "She has other matters to attend to," Rek explains. "In fact, I do as well. Thanks again for all your help, <first>. The Wanderers and Kor Efreti will both benefit from it, and I hope these new jobs will work to your advantage as well. Until next time," Rek says, then she leaves to catch up with Syciil. You're left to explore the new jobs available in Korath space.`
 			
 event "wanderers taking jobs from kor efreti"

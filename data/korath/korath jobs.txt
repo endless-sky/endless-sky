@@ -213,11 +213,11 @@ mission "Kor Efreti: Settlers"
 		not attributes "station"
 	destination "Sabira Eseskrai"
 	on visit
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment
 		payment 2000
-		dialog "The Korath in charge hands you <payment>, and the settlers depart your ship."
+		dialog "While the settlers depart your ship, the Korath in charge hands you <payment>."
 
 mission "Kor Efreti to Wanderers: Farming"
 	name "Learning Wanderer farming methods"
@@ -234,9 +234,9 @@ mission "Kor Efreti to Wanderers: Farming"
 		distance 2 8
 		government "Wanderer"
 	on visit
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic missing stopover or passengers"
 	on stopover
-		dialog `The Wanderers explain to the Korath using gestures and pointing, but the language barrier makes it challenging. The Korath eventually pick up bits and pieces of what the Wanderers are doing. Time to return to <destination>.`
+		dialog `The Wanderers try to explain their farming methods to the Korath farmers, but the language barrier makes it challenging. The Korath eventually pick up bits and pieces of what the Wanderers are doing. Time to return to <destination>.`
 	on complete
 		payment 10000 200
 		dialog `When you return, the Korath move their hands in a circular motion with their palms toward you as a sign of gratitude. They hand you <payment> and disembark your ship.`

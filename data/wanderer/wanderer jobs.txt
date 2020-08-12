@@ -832,7 +832,7 @@ mission "Wanderers to Kor Efreti"
 		distance 2 8
 		government "Kor Efret"
 	on visit
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic missing stopover or passengers"
 	on stopover
 		dialog `The Wanderers tour the planet to investigate the envoronmental problems this Kor Efret world faces. They try to point out specific things to the Korath accompanying them, but it's not very effective. After a few hours, they've gathered enough data and are ready to return home.`
 	on complete
