@@ -548,9 +548,7 @@ void MapPanel::Select(const System *system)
 	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
 	bool ctrl = (SDL_GetModState() & KMOD_CTRL);
 	if (ctrl) 
-	{
 		return;
-	}
 	else if(system == source && !shift)
 	{
 		plan.clear();
