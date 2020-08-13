@@ -142,7 +142,7 @@ mission "Kestrel Testing"
 					goto kestrel
 			
 			label kestrel
-			`	"When you say the word 'Kestrel' he jerks as if he's just been electrocuted. "Yes," he says, "that's it! That's the name we'll go with. Thank you, Captain. I will let you know as soon as the Kestrel is available for sale, and we will take your recommendations into account when making our final modifications to the design." He pays you two million credits and wishes you the best of luck in your future endeavors.`
+			`	When you say the word 'Kestrel' he jerks as if he's just been electrocuted. "Yes," he says, "that's it! That's the name we'll go with. Thank you, Captain. I will let you know as soon as the Kestrel is available for sale, and we will take your recommendations into account when making our final modifications to the design." He pays you two million credits and wishes you the best of luck in your future endeavors.`
 
 
 
