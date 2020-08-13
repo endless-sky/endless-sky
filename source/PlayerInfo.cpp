@@ -1721,6 +1721,56 @@ int64_t PlayerInfo::GetCondition(const string &name) const
 
 
 
+// Copy conditions matching the prefix into the given map.
+void PlayerInfo::GetConditions(std::map<std::string, int64_t> &targetMap, const std::string &prefix) const
+{
+	auto it = conditions.lower_bound(prefix);
+	for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
+		targetMap[it->first] = it->second;
+}
+
+
+
+// Get the sum (addition) of all conditions starting with the given prefix.
+int64_t PlayerInfo::GetConditionSum(const std::string &prefix) const
+{
+	auto it = conditions.lower_bound(prefix);
+	int64_t returnValue = 0;
+	for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
+		returnValue += it->second;
+	
+	return returnValue;
+}
+
+
+
+// Set a condition to the given value.
+bool PlayerInfo::SetCondition(const string &name, int64_t value)
+{
+	conditions[name] = value;
+	return true;
+}
+
+
+
+// Add a value to the given condition.
+bool PlayerInfo::AddCondition(const string &name, int64_t value)
+{
+	conditions[name] += value;
+	return true;
+}
+
+
+
+// Remove the value for some condition.
+bool PlayerInfo::EraseCondition(const std::string &name)
+{
+	conditions.erase(name);
+	return true;
+}
+
+
+
 // Get mutable access to the player's list of conditions.
 map<string, int64_t> &PlayerInfo::Conditions()
 {

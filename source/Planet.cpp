@@ -574,7 +574,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	if(!isDefeated)
 		return "We're not ready to surrender yet.";
 	
-	player.Conditions()["tribute: " + name] = tribute;
+	player.SetCondition("tribute: " + name, tribute);
 	GameData::GetPolitics().DominatePlanet(this);
 	return "We surrender. We will pay you " + Format::Credits(tribute) + " credits per day to leave us alone.";
 }

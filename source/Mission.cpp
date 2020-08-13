@@ -583,12 +583,8 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
 		return false;
 	
-	if(repeat)
-	{
-		auto cit = player.Conditions().find(name + ": offered");
-		if(cit != player.Conditions().end() && cit->second >= repeat)
-			return false;
-	}
+	if(repeat && player.GetCondition(name + ": offered") >= repeat)
+		return false;
 	
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
@@ -813,26 +809,26 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	
 	if(trigger == ACCEPT)
 	{
-		++player.Conditions()[name + ": offered"];
-		++player.Conditions()[name + ": active"];
+		player.AddCondition(name + ": offered", 1);
+		player.AddCondition(name + ": active", 1);
 		// Any potential on offer conversation has been finished, so update
 		// the active NPCs for the first time.
 		UpdateNPCs(player);
 	}
 	else if(trigger == DECLINE)
 	{
-		++player.Conditions()[name + ": offered"];
-		++player.Conditions()[name + ": declined"];
+		player.AddCondition(name + ": offered", 1);
+		player.AddCondition(name + ": declined", 1);
 	}
 	else if(trigger == FAIL)
 	{
-		--player.Conditions()[name + ": active"];
-		++player.Conditions()[name + ": failed"];
+		player.AddCondition(name + ": active", -1);
+		player.AddCondition(name + ": failed", 1);
 	}
 	else if(trigger == COMPLETE)
 	{
-		--player.Conditions()[name + ": active"];
-		++player.Conditions()[name + ": done"];
+		player.AddCondition(name + ": active", -1);
+		player.AddCondition(name + ": done", 1);
 	}
 	
 	// "Jobs" should never show dialogs when offered, nor should they call the

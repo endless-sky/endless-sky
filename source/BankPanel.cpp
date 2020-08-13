@@ -107,11 +107,7 @@ void BankPanel::Draw()
 	int64_t income[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
-	{
-		auto it = player.Conditions().lower_bound(prefix[i]);
-		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
-			income[i] += it->second;
-	}
+		income[i] += player.GetConditionSum(prefix[i]);
 	// Check if maintenance needs to be drawn.
 	int64_t maintenance = player.Maintenance();
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();

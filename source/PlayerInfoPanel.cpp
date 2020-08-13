@@ -45,13 +45,15 @@ namespace {
 	// plus the values of the conditions.
 	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
 	{
-		vector<pair<int64_t, string>> match;
+		// Get the elements matching in map-format.
+		map<string, int64_t> playerMatch;
+		player.GetConditions(playerMatch, prefix);
 		
-		auto it = player.Conditions().lower_bound(prefix);
-		for( ; it != player.Conditions().end(); ++it)
+		// Convert to vector/pair for value-sorting and further processing.
+		vector<pair<int64_t, string>> match;
+		auto it = playerMatch.begin();
+		for( ; it != playerMatch.end(); ++it)
 		{
-			if(it->first.compare(0, prefix.length(), prefix))
-				break;
 			if(it->second > 0)
 				match.emplace_back(it->second, it->first.substr(prefix.length()) + suffix);
 		}
