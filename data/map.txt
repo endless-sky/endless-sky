@@ -27966,9 +27966,9 @@ planet Palarei
 
 planet Palatine
 	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa8
-	description `The swirling atmosphere of Palatine is filled with strange compounds and colorful gases. It provides a variety of useful elements for the Remnant, but it is otherwise unremarkable.`
-	description `At present, Palatine is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
+	landscape land/nasa12
+	description `The whipping winds of Palatine are a prime example of how the inner mechanics of gas giants are poorly understood: When it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what astrophysical models predicted, as if they had recently been subject to a massive acceleration.`
+	description `	Over the subsequent centuries the winds have been imperceptibly slowing toward normally predicted velocities, but at their current rate it will be many millennia before they reach them.`
 	security 0
 
 planet Parii'het
@@ -29276,8 +29276,9 @@ planet "Wyvern Station"
 
 planet Xerolophos
 	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa10
-	description `According to astrophysicists, Xerolophos appears to be a former dwarf star. Its internal reaction was snuffed out; at the same time, it lost a significant amount of mass. No known stellar event could have caused this, making it a constant subject of discussion.`
+	landscape land/nasa29
+	description `Although formerly classified as a "Hot Jupiter", Xerolophos does not present all the characteristics of one: it is very far from the system star, so distant that it isn't even tidally locked to it. Its temperature, instead, is unusually high even for a Hot Jupiter, with the core internally heating up the atmosphere much more than expected.`
+	description `	While it's possible Xerolophos might have migrated here long ago, even after years of studies and dozens of probes the Remnant weren't able to explain the extreme temperatures of the planet.`
 	security 0
 	government Uninhabited
 
