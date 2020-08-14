@@ -27968,7 +27968,7 @@ planet Palatine
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa13
 	description `Like many gas giants, Palatine's outer atmosphere is characterized by ammonia clouds and rare elements that give it an orange tint. Down below, the landscape changes and water clouds start forming, together with strong winds that sometimes culminate in tempests lasting for centuries.`
-	description `	There are few ships visiting Palatine, except for some unmanned drones searching for rare gasses in the relatively calm skies of this gas giant destinated to the nearby world of Caelian.`
+	description `	Few ships visit Palatine, except for some unmanned drones searching for rare gasses in the relatively calm skies of this gas giant destinated to the nearby world of Caelian.`
 	security 0
 	government Uninhabited
 
@@ -28430,7 +28430,7 @@ planet Servian
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa28
 	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the planet, where automated scoop probes don't have any trouble gathering gasses and various exotic elements. Underneath the peaceful exterior, violent storms with lightnings thousands of times stronger than the ones observed on any nearby planet and extreme turbulence are the norm.`
-	description `	While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early gascrafts. Every ship was destroyed before reaching the depths of the planet, but it nonetheless proved a valuable testing ground for their early ship hulls and helped to refine the technology.`
+	description `	While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early puffins. Every ship was destroyed before reaching the depths of the planet, but it nonetheless proved a valuable testing ground for their early ship hulls and helped to refine the technology.`
 	security 0
 	government Uninhabited
 
@@ -29287,7 +29287,7 @@ planet Xerolophos
 planet Yedikule
 	attributes  "requires: gaslining" "gas" "moon" uninhabited
 	landscape land/nasa11
-	description `Although much smaller than most gaseus planets, including the one it orbits, the thick atmosphere of Yedikule and its rocky core make it considered a gas dwarf. While it was not the first to be discovered in human history, it is very improbable to have formed around a gas giant, and the extreme differences between its atmosphere and the one of Xerolophos further suggest this was not its original location.`
+	description `Although much smaller than most gaseus planets, including the one it orbits, the thick atmosphere of Yedikule and its rocky core make it a gas dwarf. While it was not the first to be discovered in human history, it is very improbable to have formed around a gas giant, and the extreme differences between its atmosphere and the one of Xerolophos further suggest this was not its original location.`
 	description `	While basically every craft that tries to land here is an a fuel scooping drone, there is a large number of satellites orbiting Yedikule at various heights, meaning that it must have been exhaustively studied in the past.`
 	security 0
 	government Uninhabited

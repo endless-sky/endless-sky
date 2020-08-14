@@ -2461,7 +2461,7 @@ mission "Remnant: Cognizance 5"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
 	on complete
 		conversation
-			`The task force streams back into <planet> without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to head out. As first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
+			`The task force streams back into <planet> without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to head out. As the first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
 
 
 
@@ -2582,7 +2582,7 @@ mission "Remnant: Cognizance 9"
 				`	"What do you mean?"`
 				`	"Let's get on with it."`
 					goto skipinfo
-			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships." We had plenty of puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?." With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
+			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships." We had plenty of puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?" With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
 			label skipinfo
 			`	"The station should be pressurized with a normal atmosphere, but it has been running on standby for ages with just yearly maintenance. It is time to get this place up and running again." With two of you running the equipment, everything is unloaded in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. It looks like Gavriil is planning on staying here for a while.`
 			`	As he heads off deeper into the station, you receive a notification that 'Remnant Logistics' has made a deposit of <payment> to your account.`
@@ -2618,7 +2618,7 @@ mission "Remnant: Cognizance 10"
 
 mission "Remnant: Cognizance 11"
 	name "Remnant Data Delivery"
-	description "Deliver a datacube to the engineers on <planet>."
+	description "Deliver a data crystal to the engineers on <planet>."
 	landing
 	source "Esquiline"
 	destination "Viminal"
@@ -2626,11 +2626,11 @@ mission "Remnant: Cognizance 11"
 		has "Remnant: Cognizance 10: done"
 	on offer
 		conversation
-			`As you finish unloading, you spot Gavriil approaching. He gestures in greeting as he approaches. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." He pauses and fishes a datacube out of a pouch. "Could you take this to Prefect Taely on Viminal? She is overseeing some retrofits and will need this data.`
+			`As you finish unloading, you spot Gavriil approaching. He gestures in greeting as he approaches. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." He pauses and fishes a data crystal out of a pouch. "Could you take this to Prefect Taely on Viminal? She is overseeing some retrofits and will need this data.`
 				accept
 	on complete
 		conversation
-			`On Viminal you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, <first>. How is our station faring?" You reply that it is improving rapidly and hand her the datacube. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
+			`On Viminal you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, <first>. How is our station faring?" You reply that it is improving rapidly and hand her the data crystal. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
 
 
 
