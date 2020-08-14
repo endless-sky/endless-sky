@@ -2670,6 +2670,7 @@ mission "Remnant: Cognizance 12"
 mission "Remnant: Cognizance 13"
 	name "Go meet Prefect Chilia on <planet>."
 	description "You have been informed that Prefect Chilia would like to meet with you on <destination>."
+	landing
 	source "Esquiline"
 	destination "Viminal"
 	to offer
@@ -2689,8 +2690,10 @@ event "remnant: postverta reveal"
 		link Statina
 	system Diespiter
 		link Postverta
+		link Statina
 	system Statina
 		link Postverta
+		link Diespiter
 	system Levana
 		add object wormhole_barren
 			distance 2313
@@ -2703,6 +2706,7 @@ event "remnant: postverta reveal"
 			sprite planet/wormhole-red
 	system Prosa
 		link Postverta
+		link Vaticanus
 		add object wormhole_barren2
 			distance 2313
 			period 389
@@ -2811,7 +2815,7 @@ mission "Remnant: Cognizance 17"
 	description "The Remnant will want to know about what happened on Nasqueron."
 	source "Nasqueron"
 	landing
-	destination "Aventine"
+	destination "Viminal"
 	to offer
 		has "Remnant: Cognizance 16: done"
 	
