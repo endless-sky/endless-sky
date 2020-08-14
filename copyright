@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿mat: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -794,6 +794,11 @@ Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
+
+Files: images/planet/hot?jupiter*
+Copyright: Tommaso Becca
+License: CC-BY-SA-4.0
+Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
