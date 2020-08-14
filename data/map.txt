@@ -26546,7 +26546,7 @@ planet "Esperaktu Station"
 
 planet "Esquiline"
 	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/clouds_00
+	landscape land/nasa13
 	description `Esquiline's wispy skies billow with raging winds and continuous storms. Although few crafts can penetrate its depths, the Remnant have discovered that its upper atmosphere contains a useful source of certain chemicals. As such, aero scoop drones dipping into its atmosphere for shipments to Aventine are a regular occurrence.`
 	security 0
 	government Uninhabited
@@ -27966,7 +27966,7 @@ planet Palarei
 
 planet Palatine
 	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa8
+	landscape land/nasa12
 	description `The swirling atmosphere of Palatine is filled with strange compounds and colorful gases. It provides a variety of useful elements for the Remnant, but it is otherwise unremarkable.`
 	description `At present, Palatine is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
 	security 0
