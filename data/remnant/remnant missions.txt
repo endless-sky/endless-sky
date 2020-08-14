@@ -2589,7 +2589,9 @@ mission "Remnant: Cognizance 9"
 	on complete
 		payment 100000
 		conversation
-			`Gavriil gives you precise directions to a set of coordinates that your sensors tell you is an empty area, and when you reach the designated spot, you see a small station shimmering out of the clouds. "We never managed to actually cloak the station," the engineer explains, grinning. "But we managed to hide it very effectively against every form of scanning we knew of. We even managed to give it a cloak-like field that renders it mostly transparent."`
+			`Gavriil gives you precise directions to a set of coordinates that your sensors tell you is an empty area, and when you reach the designated spot, you see a small station shimmering out of the clouds.`
+			scene "scene/remnant station"
+			`	"We never managed to actually cloak the station," the engineer explains, grinning. "But we managed to hide it very effectively against every form of scanning we knew of. We even managed to give it a cloak-like field that renders it mostly transparent."`
 			`	He nods approvingly. "It's rather impressive what my predecessors managed to do with what they had back then."`
 			choice
 				`	"What do you mean?"`
