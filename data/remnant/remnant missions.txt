@@ -2361,7 +2361,7 @@ event "korath hunting"
 
 
 mission "Remnant: Cognizance 3"
-	name "Go to <destination> to meet Prefect Chilia."
+	name "Go to <planet> to meet Prefect Chilia."
 	description "Prefect Chilia left a message with Plume asking you to meet him on <destination> immediately."
 	source "Aventine"
 	to offer
