@@ -2591,7 +2591,7 @@ mission "Remnant: Cognizance 9"
 
 mission "Remnant: Cognizance 10"
 	name "Technician and supplies to <planet>."
-	description "You need to pick up a technician and their equipment from <origin> and take them to <planet>."
+	description "You need to pick up a technician and their equipment from <stopovers> and take them to <planet>."
 	blocked "Plume's technician needs a free bunk and 8 tons of cargo space for his equipment. Come back when you have enough space."
 	cargo equipment 8
 	passengers 1
