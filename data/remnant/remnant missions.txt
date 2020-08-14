@@ -2304,7 +2304,7 @@ mission "Remnant: Cognizance 1"
 
 mission "Remnant: Cognizance 2"
 	name "Eliminate Korath Ship"
-	description "Plume would like you to eliminate the Korath ship in the Nenia system."
+	description "Plume ordered you to eliminate the Korath ship in the <waypoints> system."
 	source "Aventine"
 	waypoint
 		system "Nenia"
@@ -2318,19 +2318,19 @@ mission "Remnant: Cognizance 2"
 				`	"Okay, I will destroy the Korath ship."`
 					goto acceptance
 				`	"Do you have the authority to order that?"`
-			`	He nods curtly. "I do not have the authority to raise a fleet or order a captain to destroy the ship, but I do have the authority to declare this Korath a threat to Remnant interests. It is up to you to decide how to respond to the identification of that threat."`
+			`	He nods curtly. "I do not have the authority to raise a fleet or order a captain to destroy the ship, but I can declare this Korath a threat to Remnant interests. It is up to you to decide how to respond to the identification of that threat."`
 			choice
 				`	(Accept his explanation.)`
 					goto acceptance
-				`	(Ask him to clarify.)`
-			`	"While the Remnant have an all-encompassing hierarchy to ensure everyone answers to someone, we saw fit to keep all facets of our society merged to prevent fragmentation into 'civilian' or 'military' branches. Two aspects of this merging is the decision of when to invoke military force and what amount of force is worthwhile. According to my position as a researcher, I have the authority to designate something a threat to my projects and/or to the Remnant as a whole. I could even order someone to act on it. However, given that I am of low status in terms of military proficiency, I cannot dictate the magnitude of the military response, and I am subject to being overruled by those with higher military qualifications."`
+				`	"Could you explain?"`
+			`	"While the Remnant have an all-encompassing hierarchy to ensure everyone answers to someone, we saw fit to keep all facets of our society merged to prevent fragmentation into 'civilian' or 'military' branches. Two aspects of this merging is the decision of when to invoke military force and what amount of force is worthwhile. According to my position as a researcher, I have the authority to designate something a threat to my projects or to the Remnant as a whole. I could even order someone to act on it. However, given that I am of low status in terms of military proficiency, I cannot dictate the magnitude of the military response, and I am subject to being overruled by those with higher military qualifications."`
 			`	In our particular situation, I have higher xenobiology qualifications than you, so I can dictate to you, and most other xenobiologists, for that matter, that protecting the void sprites is a priority. However, you are more skilled at combat and military matters than I am, therefore it is your decision as to how important it is relative to other military tasks. Likewise, it is your decision as to what amount of force is required, tactics used, or other such military considerations."`
 			`	This is one of the aspects that set prefects apart: They are Remnant who have demonstrated excellence in their field, sound judgment across a variety of fields, and an affinity for balancing a multitude of demands on Remnant resources. Humility is also a requirement, as they must always recognize that while their particular combination of skills may be unique, there is always someone else who is better than them at any one thing. As such, prefects are the adjudicators in determining the priority of our various tasks and the leaders who keep the Remnant unified.`
 			choice
 				`	"Thanks for the explanation!"`
 					goto acceptance
 				`	"I thought prefects were specialists?"`
-			`	"Well, they are and are not. Most prefects are assigned particular tasks that they are expected to devote themselves to. Often, this task relates to their area of expertise, but it is not always the case. Generally speaking, a prefect is considered to be the ultimate authority on tasks that they have been assigned to, but they are expected to take into account the information and suggestions from other prefects and especially the specialists in the field or fields relevant to the task.`
+			`	"Well, they are and are not. Most prefects are assigned particular tasks that they are expected to devote themselves to. Often, this task relates to their area of expertise, but it is not always the case. Generally speaking, a prefect is considered to be the ultimate authority on tasks that they have been assigned to, but they are expected to take into account the suggestions from other prefects and the specialists in the fields relevant to the task.`
 			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia, coordinates the military defense of the Remnant, and Prefect Taely, who integrates our latest innovations into usable ships."`
 			choice
 				`	"Thanks! That was more detail than I was expecting."`
@@ -2348,7 +2348,7 @@ mission "Remnant: Cognizance 2"
 	on complete
 		event "korath hunting"
 		conversation
-			`When you return to Aventine, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
+			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
 
 
 
@@ -2371,7 +2371,7 @@ mission "Remnant: Cognizance 3"
 
 
 mission "Remnant: Cognizance 4"
-	name "Search for Korath"
+	name "Search for the Korath"
 	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
 	source "Caelian"
 	landing
@@ -2461,7 +2461,7 @@ mission "Remnant: Cognizance 5"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
 	on complete
 		conversation
-			`The task force streams back into Caelian without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to head out. As first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
+			`The task force streams back into <planet> without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to head out. As first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
 
 
 
@@ -2482,7 +2482,7 @@ mission "Remnant: Cognizance 6"
 				`	"The EMPs kept getting in the way."`
 				`	"I think that went fairly well, actually."`
 			`	He writes something on his notepad. "I appreciate the feedback." He pauses and sips from his glass. "Now, moving forward, we need to know what the Korath are doing. Beyond the obvious of killing void sprites and picking fights with the Archon, the Korath are a cunning foe, and they would not antagonize the Archon for no reason," he says.`
-			`	"I have to look into a few things here. In the meantime, please go pick up Plume from Aventine and bring him back. We need him to be here for a briefing before <day>."`
+			`	"I have to look into a few things here. In the meantime, please go pick up Plume from <stopovers> and bring him back. We need him to be here for a briefing before <day>."`
 				accept
 	on stopover
 		dialog
@@ -2505,7 +2505,7 @@ mission "Remnant: Cognizance 7"
 		has "Remnant: Cognizance 6: done"
 	on offer
 		conversation
-			`In the starport, Prefect Chilia and Plume are gesturing at some details on a datapad when you approach. Chilia notices you first and waves you over. "Thank you for joining us. While I put together some more long-term plans, could you take Plume to Nasqueron?"`
+			`In the starport, Prefect Chilia and Plume are gesturing at some details on a datapad when you approach. Chilia notices you first and waves you over. "Thank you for joining us. While I put together some more long-term plans, could you take Plume to <planet>?"`
 			choice
 				`	"Why do we need to go back?"`
 				`	"Let's go."`
@@ -2571,7 +2571,7 @@ mission "Remnant: Cognizance 9"
 		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed esquiline station.`
 		conversation
 			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another Remnant are gathered around the stack checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer. "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. He will be going with you."`
-			`	"It will be a pleasure to work with you," signs Gavrill, making a short bow. "We will be traveling to a research station on Esquiline. Yes, it is a gas-world." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
+			`	"It will be a pleasure to work with you," signs Gavrill, making a short bow. "We will be traveling to a research station on <planet>. Yes, it is a gas giant." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
 				accept
 	on complete
 		payment 100000
@@ -2590,7 +2590,7 @@ mission "Remnant: Cognizance 9"
 
 
 mission "Remnant: Cognizance 10"
-	name "Pick up a technician and more supplies and deliver to Esquiline."
+	name "Technician and supplies to <planet>."
 	description "You need to pick up a technician and their equipment from <origin> and take them to <planet>."
 	blocked "Plume's technician needs a free bunk and 8 tons of cargo space for his equipment. Come back when you have enough space."
 	cargo equipment 8
@@ -2610,8 +2610,8 @@ mission "Remnant: Cognizance 10"
 	on complete
 		payment 100000
 		conversation
-			`On the flight over, the technician joins you on the control deck to chat. She's a biotech specialist, adept at managing life-support systems in alien atmospheres, and a recent graduate from a Remnant educational program that sounds kind of like university. Apparently she studied astrobiology and is part of a project aimed at supporting mutually exclusive environments in close proximity. She spends nearly an hour excitedly telling you the ins and outs of the station.`
-			`	As you approach Esquiline, it occurs to you that the Remnant might appreciate you taking steps to maintain the secrecy of the station. Altering the <ship>'s path slightly, you swing down into Esquiline in an oblique path then meander around the planet under the cloud layer until arriving at the station. Your passenger nods approvingly as she notices the flight path. "Secrecy is always good with projects like this. We appreciate the extra effort, and if anyone were to follow you, a path like that through the clouds would leave few signs to spot."`
+			`On the flight over, the technician joins you on the control deck to chat. She's a biotech specialist, adept at managing life-support systems in alien atmospheres, and a recent graduate from a Remnant educational program that seems to be similar to a university. Apparently she studied astrobiology and is part of a project aimed at supporting mutually exclusive environments in close proximity. She spends nearly an hour excitedly telling you the ins and outs of the station.`
+			`	As you approach <planet>, it occurs to you that the Remnant might appreciate you taking steps to maintain the secrecy of the station. Altering the <ship>'s path slightly, you swing down into <planet> in an oblique path then meander around the planet under the cloud layer until arriving at the station. Your passenger nods approvingly as she notices the flight path. "Secrecy is always good with projects like this. We appreciate the extra effort, and if anyone were to follow you, a path like that through the clouds would leave few signs to spot."`
 			`	The <ship> settles into the landing bay, and the technician quickly disembarks. Apparently there must have been other shipments while you were gone, as there are now a handful of people visible and quite a bit more equipment stacked everywhere. The station itself feels more alive, the air fresher. As before, you promptly receive notification of another payment of <payment> to your account.`
 
 
@@ -2654,21 +2654,21 @@ mission "Remnant: Cognizance 12"
 		has "Remnant: Cognizance 11: done"
 	on offer
 		conversation
-			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to Esquiline and offload what you have collected to the station.`
+			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to <planet> and offload what you have collected to the station.`
 				accept
 	on stopover
 		dialog
-			`You cruise through the atmosphere at a relaxed pace, waiting while the equipment does its work. You see fewer void sprites than usual, and many have scars. Once the equipment indicates that it has reached capacity, you climb up to where the Pelican is waiting in the high atmosphere, hook up the connections to offload the gas, and then head back down into the depths of the planet. After several hours, the captain of the Pelican informs you that the tanks are full, and it is time to head to Esquiline.`
+			`You cruise through the atmosphere at a relaxed pace, waiting while the equipment does its work. You see fewer void sprites than usual, and many have scars. Once the equipment indicates that it has reached capacity, you climb up to where the Pelican is waiting in the high atmosphere, hook up the connections to offload the gas, and then head back down into the depths of the planet. After several hours, the captain of the Pelican informs you that the tanks are full, and it is time to head to <planet>.`
 	on complete
 		event "remnant: postverta reveal"
 		conversation
-			`You arrive at the hidden station on Esquiline where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffin up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
+			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffin up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
 			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
 
 
 
 mission "Remnant: Cognizance 13"
-	name "Go meet with Prefect Chilia on <destination>."
+	name "Go meet Prefect Chilia on <planet>."
 	description "You have been informed that Prefect Chilia would like to meet with you on <destination>."
 	source "Esquiline"
 	destination "Viminal"
@@ -2729,7 +2729,7 @@ mission "Remnant: Cognizance 14"
 	on offer
 		conversation
 			`You land by the starport and are immediately accosted by a Remnant who informs you that Prefect Chilia is on his personal warship and escorts you to a nearby Starling. Inside you find Chilia and several other Remnant clustered around a holographic display and some display panels. "Ah, Captain. Join us, please." Chilia gestures for you to join them around the displays. As you approach, you note that the holographic display shows the Ember Waste, although there are a few details that do not match the star maps you're familiar with.`
-			`	Chilia notices you eyeing the deviations. "Perceptive, captain. Our sensors have reported some unusual energy signatures coming from this location. Scouts in the area say they are picking up signs of a new system. There were no immediately apparent hyperlinks or wormholes that connect to it, but there are still unusual energy fluctuations in the area. Unusual even for the Ember Waste." He looks up at you. "We are hoping that you might be able to figure out a way in."`
+			`	Chilia notices you eyeing the deviations. "Perceptive, Captain. Our sensors have reported some unusual energy signatures coming from this location. Scouts in the area say they are picking up signs of a new system. There were no immediately apparent hyperlinks or wormholes that connect to it, but there are still unusual energy fluctuations in the area. Unusual even for the Ember Waste." He looks up at you. "We are hoping that you might be able to figure out a way in."`
 			choice
 				`	"I could see if I can reach it with a Jump Drive."`
 				`	"I will see if I can find another way."`
@@ -2796,7 +2796,7 @@ mission "Remnant: Cognizance 16"
 			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
 			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
 			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
-			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are quite sure that the Remnant are going to want to hear about this.`
+			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
 
 
 
@@ -2871,7 +2871,7 @@ mission "Remnant: Cognizance 18"
 	on enter "Nenia"
 		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the Pelicans immediately set to work collecting void sprites. As the last one closes its hold, the confirmation codes flash across your tactical screen. "Good to go."`
 	on enter "Pantica"
-		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
+		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquiline's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 	on complete
 		log "Succesfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
