@@ -22337,7 +22337,7 @@ system Sol
 	object
 		sprite planet/neptune-new
 		distance 6195.21
-		period 60,190.03
+		period 60190.03
 		object
 			sprite planet/triton-new
 			distance 233.422
