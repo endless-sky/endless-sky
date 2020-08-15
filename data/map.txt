@@ -265,7 +265,7 @@ system "11 Autumn Above"
 		period 14.9791
 		offset 180
 	object
-		sprite "planet/hot jupiter10"
+		sprite "planet/gas10-hot"
 		distance 536.616
 		period 125.622
 		object
@@ -1973,7 +1973,7 @@ system Acrux
 		period 11.4474
 		offset 180
 	object
-		sprite "planet/hot jupiter2"
+		sprite "planet/gas2"
 		distance 249.567
 		period 64.8911
 	object Starcross
@@ -4378,7 +4378,7 @@ system Ap'arak
 		sprite star/g0
 		period 10
 	object
-		sprite "planet/hot jupiter9"
+		sprite "planet/gas9-hot"
 		distance 262.16
 		period 51.6652
 	object "Varu Tev'kei"
@@ -4516,7 +4516,7 @@ system Arculus
 			distance 162
 			period 17.8986
 	object
-		sprite "planet/hot jupiter0"
+		sprite "planet/gas0-hot"
 		distance 1734.39
 		period 1155.69
 		object
@@ -9867,7 +9867,7 @@ system Farinus
 		period 11.6805
 		offset 180
 	object
-		sprite "planet/hot jupiter7"
+		sprite "planet/gas7-hot"
 		distance 195.066
 		period 39.9012
 	object
@@ -10998,7 +10998,7 @@ system Gerenus
 		sprite star/giant
 		period 8.42267
 	object
-		sprite "planet/hot jupiter4"
+		sprite "planet/gas4-hot"
 		distance 329.94
 		period 25.1772
 	object "Palarei"
@@ -11338,7 +11338,7 @@ system Gomeisa
 		distance 55.5
 		period 15.4962
 	object
-		sprite "planet/hot jupiter5"
+		sprite "planet/gas5-hot"
 		distance 258.76
 		period 55.1553
 	object Nifel
@@ -12639,7 +12639,7 @@ system "Imo Dep"
 		sprite star/f5
 		period 10
 	object
-		sprite "planet/hot jupiter10"
+		sprite "planet/gas10-hot"
 		distance 571.36
 		period 131.915
 		object
@@ -12704,7 +12704,7 @@ system Insitor
 		distance 60.1504
 		period 18.0359
 	object
-		sprite "planet/hot jupiter1"
+		sprite "planet/gas1-hot"
 		distance 247.76
 		period 66.3186
 	object
@@ -13141,7 +13141,7 @@ system Ka'pru
 		period 10.9322
 		offset 180
 	object
-		sprite "planet/hot jupiter6"
+		sprite "planet/gas6-hot"
 		distance 261.426
 		period 43.5694
 	object
@@ -14138,7 +14138,7 @@ system "Kor Men"
 		period 11.5563
 		offset 180
 	object
-		sprite "planet/hot jupiter3"
+		sprite "planet/gas3-hot"
 		distance 361.863
 		period 56.9205
 	object
@@ -15648,7 +15648,7 @@ system Mebsuta
 		distance 78.8843
 		period 19.3068
 	object
-		sprite "planet/hot jupiter0"
+		sprite "planet/gas0-hot"
 		distance 305.544
 		period 82.5342
 	object Featherweight
@@ -20478,7 +20478,7 @@ system Sabriset
 		period 12.1391
 		offset 180
 	object
-		sprite "planet/hot jupiter7"
+		sprite "planet/gas7-hot"
 		distance 279.387
 		period 47.1932
 	object
@@ -21806,7 +21806,7 @@ system "Silver Bell"
 		sprite star/g0
 		period 10
 	object
-		sprite "planet/hot jupiter4"
+		sprite "planet/gas4-hot"
 		distance 265.49
 		period 25.9123
 	object
@@ -24402,7 +24402,7 @@ system "Wah Oh"
 		sprite star/a0
 		period 10
 	object
-		sprite "planet/hot jupiter8"
+		sprite "planet/gas8-hot"
 		distance 341.76
 		period 17.1522
 	object
