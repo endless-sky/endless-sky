@@ -3100,6 +3100,7 @@ mission "Hunted"
 		# A single stock T1 interceptor deals about 300 to 750 DPS.
 		"armament detterence" >= 2
 		random < 3
+		not "Hunted: active"
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -3160,14 +3161,16 @@ mission "Hunted"
 		# A single stock Heliarch Punisher deals almost 10k DPS.
 		# A single Quarg ship or Pug Arfecta deals almost 11k DPS.
 		to despawn
-			"armament deterrence" < 16
+			or
+				"armament deterrence" < 16
+				"armament deterrence" >= 64
 		government "Bounty Hunter"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
 		# A fleet of Marauder vessels.
 		fleet "Marauder fleet X"
-	npc save
+	npc kill
 		# Greater than 16000 DPS.
 		to despawn
 			"armament deterrence" < 32
@@ -3176,7 +3179,7 @@ mission "Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
-	npc save
+	npc kill
 		# Greater than 32000 DPS.
 		to despawn
 			"armament deterrence" < 64
@@ -3184,4 +3187,4 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet X"
+		fleet "Marauder fleet X" 2
