@@ -128,10 +128,11 @@ bool GameWindow::Init()
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit(); 
 #ifdef GLEW_ERROR_NO_GLX_DISPLAY
-	if(GLEW_OK != err && err != GLEW_ERROR_NO_GLX_DISPLAY){
+	if(err != GLEW_OK && err != GLEW_ERROR_NO_GLX_DISPLAY)
 #else
-	if(GLEW_OK != err){
+	if(err != GLEW_OK)
 #endif
+	{
 		ExitWithError("Unable to initialize GLEW!");
 		return false;
 	}
@@ -372,5 +373,4 @@ void GameWindow::ExitWithError(const string& message)
 	
 	GameWindow::Quit();	
 }
-
 
