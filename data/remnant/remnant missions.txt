@@ -2262,23 +2262,23 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"You look distracted. We can talk later."`
 					defer
 			label worried
-			`	She makes a gesture of appreciation. "I'm worried, <first>. I keep feeling like there's something I'm missing." She pauses, then continues. "I should back up a step. While I do not have a permanent position yet, I am currently serving with an astrophysics team. We have been studying a variety of things, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there's a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
+			`	She makes a gesture of appreciation. "Yes, I'm worried, <first>. I keep feeling like there's something I'm missing." She pauses, then continues. "I should back up a step. While I do not have a permanent position yet, I am currently serving with an astrophysics team. We have been studying a variety of things, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there's a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
 			choice
 				`	"Have you asked someone senior for advice?"`
 				`	"Don't worry about it."`
 					goto worry
 				`	"Can I help with something?"`
 					goto help
-			`	"I did. The senior researcher told me that most of the team feels it. No-one has any concrete theories yet, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
+			`	"I did. The senior researcher told me that most of the team feels it. There are some concrete theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
 			label worry
 			`	"Thanks for the advice, but that is our purpose here - to worry about all the stuff that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
 			label help
-			`	"If you would like to help, yes, there is something you can do. I am currently putting together an expedition to Sagittarius A*
-			branch sagistarius
+			`	"If you would like to help, yes, there is something you can do. I am currently putting together an expedition to Sagittarius A*"`
+			branch sagittarius
 				has visited "Sagittarius A*"
 			choice
 				`	"I don't know where that is."`
-				`	"Isn't that the center of the galaxy?"
+				`	"Isn't that the center of the galaxy?"`
 					goto center
 
