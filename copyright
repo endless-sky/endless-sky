@@ -795,7 +795,7 @@ Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
 
-Files: images/planet/hot?jupiter*
+Files: images/planet/*-hot*
 Copyright: Tommaso Becca
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
