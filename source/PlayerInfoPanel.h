@@ -16,13 +16,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Point.h"
+#include "InfoPanelState.h"
+#include "Table.h"
 
+#include <map>
+#include <memory>
 #include <set>
 #include <vector>
 
+class Color;
 class PlayerInfo;
+class Point;
 class Rectangle;
+class Ship;
 
 
 
@@ -32,6 +38,7 @@ class Rectangle;
 class PlayerInfoPanel : public Panel {
 public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
+	explicit PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -60,22 +67,37 @@ private:
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	
+	void SortShips (InfoPanelState::ShipComparator &shipComparator);
+	
+	class SortableColumn {
+	public:
+		SortableColumn(std::string name, double offset, Table::Align align, InfoPanelState::ShipComparator *shipSort);
+		
+		std::string name = "";
+		double offset = 0.;
+		Table::Align align = Table::Align::LEFT;
+		InfoPanelState::ShipComparator *shipSort = nullptr;
+	};
 	
 private:
 	PlayerInfo &player;
 	
-	std::vector<ClickZone<int>> zones;
-	// Keep track of which ship the mouse is hovering over, which ship was most
-	// recently selected, which ship is currently being dragged, and all ships
-	// that are currently selected.
+	static std::vector<SortableColumn> columns;
+	
+	InfoPanelState panelState;
+	
+	// Keep track of which column header is under the mouse.
+	InfoPanelState::ShipComparator *hoverMenuPtr = nullptr;
+	
+	// Click areas that sort ships when clicked.
+	std::vector<ClickZone<InfoPanelState::ShipComparator*>> menuZones;
+	
+	std::vector<ClickZone<int>> shipZones;
+	
+	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
-	int selectedIndex = -1;
-	std::set<int> allSelected;
-	// This is the index of the ship at the top of the fleet listing.
-	int scroll = 0;
 	Point hoverPoint;
-	// When the player is landed, they are able to change their flagship and reorder their fleet.
-	bool canEdit = false;
+	
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
 };

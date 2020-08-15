@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <limits>
 #include <sstream>
 #include <stdexcept>
+#include <cassert>
 
 using namespace std;
 
@@ -1009,6 +1010,45 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 	flagship.reset();
 	
 	return toIndex;
+}
+
+
+
+void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
+{
+	// Check if the incoming vector contains the same elements
+	bool same;
+	size_t aSize = newOrder.size();
+	size_t bSize = ships.size();
+	
+	if(aSize != bSize)
+	{
+		same = false;
+	}
+	else
+	{
+		// Compare vectors element by element
+		for(size_t i = 0; i < aSize; i++)
+		{
+			same = false;
+			for(size_t j = 0; i < bSize; j++)
+			{
+				if(newOrder[i] == ships[j])
+				{
+					same = true;
+					break;
+				}
+			}
+			if(!same)
+			{
+				break;
+			}
+		}
+	}
+	
+	assert(same);
+	
+	ships = newOrder;
 }
 
 

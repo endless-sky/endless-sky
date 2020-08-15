@@ -29,7 +29,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
-#include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -95,12 +94,72 @@ namespace {
 				table.Advance();
 		}
 	}
+	
+	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		return lhs->Name() < rhs->Name();
+	}
+	
+	bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		return lhs->ModelName() < rhs->ModelName();
+	}
+	
+	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		// Ships (drones) with no system are sorted to the end
+		if(lhs->GetSystem() == nullptr)
+			return false;
+		else if(rhs->GetSystem() == nullptr)
+			return true;
+		return lhs->GetSystem()->Name() < rhs->GetSystem()->Name();
+	}
+	
+	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		return lhs->Shields() < rhs->Shields();
+	}
+	
+	bool CompareHull(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		return lhs->Hull() < rhs->Hull();
+	}
+	
+	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel() <
+			rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
+	}
+	
+	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		// Parked ships are sorted to the end
+		if(lhs->IsParked())
+			return false;
+		else if(rhs->IsParked())
+			return true;
+		return lhs->RequiredCrew() < rhs->RequiredCrew();
+	}
 }
 
-
+// Table columns and their starting x positions, alignment and sort comparator
+const vector<PlayerInfoPanel::SortableColumn> PlayerInfoPanel::columns = {
+	SortableColumn("ship", 0, {217, Truncate::MIDDLE}, CompareName),
+	SortableColumn("model", 220, {127, Truncate::BACK}, CompareModelName),
+	SortableColumn("system", 350, {137, Truncate::BACK}, CompareSystem),
+	SortableColumn("shields", 550, {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
+	SortableColumn("hull", 610, {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
+	SortableColumn("fuel", 670, {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
+	SortableColumn("crew", 730, {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
+};
 
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
-	: player(player), canEdit(player.GetPlanet())
+	: PlayerInfoPanel(player, InfoPanelState(player))
+{
+}
+
+PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
+	: player(player), panelState(panelState)
 {
 	SetInterruptible(false);
 }
@@ -111,7 +170,7 @@ void PlayerInfoPanel::Step()
 {
 	// If the player has acquired a second ship for the first time, explain to
 	// them how to reorder the ships in their fleet.
-	if(player.Ships().size() > 1)
+	if(panelState.Ships().size() > 1)
 		DoHelp("multiple ships");
 }
 
@@ -125,12 +184,12 @@ void PlayerInfoPanel::Draw()
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
 	interfaceInfo.SetCondition("player tab");
-	if(canEdit && player.Ships().size() > 1)
+	if(panelState.CanEdit() && panelState.Ships().size() > 1)
 	{
 		bool allParked = true;
 		bool hasOtherShips = false;
 		const Ship *flagship = player.Flagship();
-		for(const auto &it : player.Ships())
+		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && it.get() != flagship)
 			{
 				allParked &= it->IsParked();
@@ -141,13 +200,13 @@ void PlayerInfoPanel::Draw()
 		
 		// If ships are selected, decide whether the park or unpark button
 		// should be shown.
-		if(!allSelected.empty())
+		if(!panelState.AllSelected().empty())
 		{
 			bool parkable = false;
 			allParked = true;
-			for(int i : allSelected)
+			for(int i : panelState.AllSelected())
 			{
-				const Ship &ship = *player.Ships()[i];
+				const Ship &ship = *panelState.Ships()[i];
 				if(!ship.IsDisabled() && &ship != flagship)
 				{
 					allParked &= ship.IsParked();
@@ -160,7 +219,14 @@ void PlayerInfoPanel::Draw()
 				interfaceInfo.SetCondition(allParked ? "show unpark" : "show park");
 			}
 		}
+		
+		// If ship order has changed, show "Save order" button.
+		if(panelState.Ships() != player.Ships())
+		{
+			interfaceInfo.SetCondition("show save order");
+		}
 	}
+	
 	interfaceInfo.SetCondition("three buttons");
 	if(player.HasLogs())
 		interfaceInfo.SetCondition("enable logbook");
@@ -170,7 +236,9 @@ void PlayerInfoPanel::Draw()
 	infoPanelUi->Draw(interfaceInfo, this);
 	
 	// Draw the player and fleet info sections.
-	zones.clear();
+	shipZones.clear();
+	menuZones.clear();
+	
 	DrawPlayer(infoPanelUi->GetBox("player"));
 	DrawFleet(infoPanelUi->GetBox("fleet"));
 }
@@ -184,19 +252,21 @@ bool PlayerInfoPanel::AllowFastForward() const
 
 
 
-bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
 			|| key == 'i' || command.Has(Command::INFO))
+	{
 		GetUI()->Pop(this);
+	}
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER)
 	{
-		if(!player.Ships().empty())
+		if(!panelState.Ships().empty())
 		{
 			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, selectedIndex));
+			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
 		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -207,37 +277,37 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
-		if(selectedIndex < 0)
+		if(panelState.SelectedIndex() < 0)
 		{
 			// If no ship was selected, moving up or down selects the first or
 			// last ship, and the scroll jumps to the first or last page.
 			if(key == SDLK_UP)
 			{
-				selectedIndex = player.Ships().size() - 1;
-				Scroll(player.Ships().size());
+				panelState.SetSelectedIndex(panelState.Ships().size() - 1);
+				Scroll(panelState.Ships().size());
 			}
 			else
 			{
-				selectedIndex = 0;
-				Scroll(-player.Ships().size());
+				panelState.SetSelectedIndex(0);
+				Scroll(-panelState.Ships().size());
 			}
 		}
 		// Holding both Ctrl & Shift keys and using the arrows moves the
 		// selected ship group up or down one row.
-		else if(!allSelected.empty() && control && shift)
+		else if(panelState.CanEdit() && !panelState.AllSelected().empty() && control && shift)
 		{
 			// Move based on the position of the first selected ship. An upward
 			// movement is a shift of one, while a downward move shifts 1 and
 			// then 1 for each ship in the contiguous selection.
-			size_t toIndex = *allSelected.begin();
+			size_t toIndex = *panelState.AllSelected().begin();
 			if(key == SDLK_UP && toIndex > 0)
 				--toIndex;
 			else if(key == SDLK_DOWN)
 			{
 				int next = ++toIndex;
-				for(set<int>::const_iterator sel = allSelected.begin(); ++sel != allSelected.end(); )
+				for(const auto sel : panelState.AllSelected())
 				{
-					if(*sel != next)
+					if(sel != next)
 						break;
 					
 					++toIndex;
@@ -246,80 +316,90 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			}
 			
 			// Clamp the destination index to the end of the ships list.
-			size_t moved = allSelected.size();
-			toIndex = min(player.Ships().size() - moved, toIndex);
-			selectedIndex = player.ReorderShips(allSelected, toIndex);
+			size_t moved = panelState.AllSelected().size();
+			toIndex = min(panelState.Ships().size() - moved, toIndex);
+			player.ReorderShips(panelState.Ships());
+			// The order has now changed, so the ships are no longer sorted.
+			panelState.SetCurrentSort(nullptr);
+			
+			panelState.SetSelectedIndex(player.ReorderShips(panelState.AllSelected(), toIndex));
+			panelState.Ships() = player.Ships();
 			// If the move accessed invalid indices, no moves are done
 			// but the selectedIndex is set to -1.
-			if(selectedIndex < 0)
-				selectedIndex = *allSelected.begin();
+			if(panelState.SelectedIndex() < 0)
+				panelState.SetSelectedIndex(*panelState.AllSelected().begin());
 			else
 			{
 				// Update the selected indices so they still refer
 				// to the block of ships that just got moved.
-				int lastIndex = selectedIndex + moved;
-				allSelected.clear();
-				for(int i = selectedIndex; i < lastIndex; ++i)
-					allSelected.insert(i);
+				int lastIndex = panelState.SelectedIndex() + moved;
+				panelState.AllSelected().clear();
+				for(int i = panelState.SelectedIndex(); i < lastIndex; ++i)
+					panelState.AllSelected().insert(i);
 			}
 			// Update the scroll if necessary to keep the selected ship on screen.
-			int scrollDirection = ((selectedIndex >= scroll + LINES_PER_PAGE) - (selectedIndex < scroll));
-			if(selectedIndex >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
+			int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE) - (panelState.SelectedIndex() < panelState.Scroll());
+			if(panelState.SelectedIndex() >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
 				hoverIndex = -1;
 			return true;
 		}
 		else
 		{
 			// Move the selection up or down one space.
-			selectedIndex += (key == SDLK_DOWN) - (key == SDLK_UP);
+			panelState.SetSelectedIndex(panelState.SelectedIndex() + (key == SDLK_DOWN) - (key == SDLK_UP));
 			// Down arrow when the last ship is selected deselects all.
-			if(static_cast<unsigned>(selectedIndex) >= player.Ships().size())
-				selectedIndex = -1;
+			if(static_cast<unsigned>(panelState.SelectedIndex()) >= panelState.Ships().size())
+				panelState.SetSelectedIndex(-1);
 			
 			// Update the scroll if necessary to keep the selected ship on screen.
-			int scrollDirection = ((selectedIndex >= scroll + LINES_PER_PAGE) - (selectedIndex < scroll));
-			if(selectedIndex >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
+			int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE)
+				- (panelState.SelectedIndex() < panelState.Scroll());
+			if(panelState.SelectedIndex() >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
 				hoverIndex = -1;
 		}
 		// Update the selection.
 		bool hasMod = (SDL_GetModState() & (KMOD_SHIFT | KMOD_CTRL | KMOD_GUI));
 		if(!hasMod)
-			allSelected.clear();
-		if(selectedIndex >= 0)
-			allSelected.insert(selectedIndex);
+			panelState.AllSelected().clear();
+		if(panelState.SelectedIndex() >= 0)
+			panelState.AllSelected().insert(panelState.SelectedIndex());
 	}
-	else if(canEdit && (key == 'P' || (key == 'p' && shift)) && !allSelected.empty())
+	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
 		const Ship *flagship = player.Flagship();
-		for(int i : allSelected)
+		for(int i : panelState.AllSelected())
 		{
-			const Ship &ship = *player.Ships()[i];
+			const Ship &ship = *panelState.Ships()[i];
 			if(!ship.IsDisabled() && &ship != flagship)
 				allParked &= ship.IsParked();
 		}
 		
-		for(int i : allSelected)
+		for(int i : panelState.AllSelected())
 		{
-			const Ship &ship = *player.Ships()[i];
+			const Ship &ship = *panelState.Ships()[i];
 			if(!ship.IsDisabled() && &ship != flagship)
 				player.ParkShip(&ship, !allParked);
 		}
 	}
-	else if(canEdit && (key == 'A' || (key == 'a' && shift)) && player.Ships().size() > 1)
+	else if(panelState.CanEdit() && (key == 'A' || (key == 'a' && shift)) && panelState.Ships().size() > 1)
 	{
 		// Toggle the parked status for all ships except the flagship.
 		bool allParked = true;
 		const Ship *flagship = player.Flagship();
-		for(const auto &it : player.Ships())
+		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && it.get() != flagship)
 				allParked &= it->IsParked();
 		
-		for(const auto &it : player.Ships())
+		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
 				player.ParkShip(it.get(), !allParked);
 	}
+	// If "Save order" button is pressed (it is only shown
+	// if the order or the list has changed).
+	else if(panelState.CanEdit() && key == 'v')
+		player.ReorderShips(panelState.Ships());
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
@@ -331,8 +411,8 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		{
 			// Convert from indices into ship pointers.
 			set<Ship *> selected;
-			for(int i : allSelected)
-				selected.insert(player.Ships()[i].get());
+			for(int i : panelState.AllSelected())
+				selected.insert(panelState.Ships()[i].get());
 			player.SetGroup(group, &selected);
 		}
 		else
@@ -340,29 +420,33 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			// Convert ship pointers into indices in the ship list.
 			set<int> added;
 			for(Ship *ship : player.GetGroup(group))
-				for(unsigned i = 0; i < player.Ships().size(); ++i)
-					if(player.Ships()[i].get() == ship)
+				for(unsigned i = 0; i < panelState.Ships().size(); ++i)
+					if(panelState.Ships()[i].get() == ship)
 						added.insert(i);
 			
 			// If the shift key is not down, replace the current set of selected
 			// ships with the group with the given index.
 			if(!shift)
-				allSelected = added;
+				panelState.AllSelected() = added;
 			else
 			{
 				// If every single ship in this group is already selected, shift
 				// plus the group number means to deselect all those ships.
 				bool allWereSelected = true;
 				for(int i : added)
-					allWereSelected &= allSelected.erase(i);
+					allWereSelected &= panelState.AllSelected().erase(i);
 				
 				if(!allWereSelected)
 					for(int i : added)
-						allSelected.insert(i);
+						panelState.AllSelected().insert(i);
 			}
 			
 			// Any ships are selected now, the first one is the selected index.
-			selectedIndex = (allSelected.empty() ? -1 : *allSelected.begin());
+			panelState.SetSelectedIndex(
+				panelState.AllSelected().empty()
+				? -1
+				: *panelState.AllSelected().begin()
+			);
 		}
 	}
 	else
@@ -373,47 +457,60 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 
 
-bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
+bool PlayerInfoPanel::Click(int x, int y, int clicks)
 {
+ 	Point mouse = Point(x,y);
+	for(auto &zone : menuZones)
+		if(zone.Contains(mouse))
+		{
+			SortShips(*zone.Value());
+			panelState.SetCurrentSort(zone.Value());
+			return true;
+		}
+	
 	// Do nothing if the click was not on one of the ships in the fleet list.
 	if(hoverIndex < 0)
 		return true;
 	
 	bool shift = (SDL_GetModState() & KMOD_SHIFT);
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
-	if(canEdit && (shift || control || clicks < 2))
+	if(panelState.CanEdit() && (shift || control || clicks < 2))
 	{
 		// Only allow changing your flagship when landed.
-		if(control && allSelected.count(hoverIndex))
-			allSelected.erase(hoverIndex);
+		if(control && panelState.AllSelected().count(hoverIndex))
+			panelState.AllSelected().erase(hoverIndex);
 		else
 		{
-			if(allSelected.count(hoverIndex))
+			if(panelState.AllSelected().count(hoverIndex))
 			{
 				// If the click is on an already selected line, start dragging
 				// but do not change the selection.
 			}
 			else if(control)
-				allSelected.insert(hoverIndex);
+				panelState.AllSelected().insert(hoverIndex);
 			else if(shift)
 			{
 				// Select all the ships between the previous selection and this one.
-				for(int i = max(0, min(selectedIndex, hoverIndex)); i <= max(selectedIndex, hoverIndex); ++i)
-					allSelected.insert(i);
+				int start = max(0, min(panelState.SelectedIndex(), hoverIndex));
+				int end = max(panelState.SelectedIndex(), hoverIndex);
+				for(int i = start; i <= end; ++i)
+					panelState.AllSelected().insert(i);
 			}
 			else
 			{
-				allSelected.clear();
-				allSelected.insert(hoverIndex);
+				panelState.AllSelected().clear();
+				panelState.AllSelected().insert(hoverIndex);
 			}
-			selectedIndex = hoverIndex;
+			panelState.SetSelectedIndex(hoverIndex);
 		}
 	}
 	else
 	{
 		// If not landed, clicking a ship name takes you straight to its info.
+		panelState.SetSelectedIndex(hoverIndex);
+		
 		GetUI()->Pop(this);
-		GetUI()->Push(new ShipInfoPanel(player, hoverIndex));
+		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
 	}
 	
 	return true;
@@ -436,7 +533,7 @@ bool PlayerInfoPanel::Drag(double dx, double dy)
 
 
 
-bool PlayerInfoPanel::Release(int x, int y)
+bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 {
 	if(!isDragging)
 		return true;
@@ -444,20 +541,27 @@ bool PlayerInfoPanel::Release(int x, int y)
 	
 	// Do nothing if the block of ships has not been dragged to a valid new
 	// location in the list, or if it's not possible to reorder the list.
-	if(!canEdit || hoverIndex < 0 || hoverIndex == selectedIndex)
+	if(!panelState.CanEdit() || hoverIndex < 0 || hoverIndex == panelState.SelectedIndex())
 		return true;
 	
+	// If player reorders ships by hand then save the order (this is needed
+	// because the ships might have been sorted before the player reordered them).
+	player.ReorderShips(panelState.Ships());
+	// The ships are no longer sorted.
+	panelState.SetCurrentSort(nullptr);
+	
 	// Try to move all the selected ships to this location.
-	selectedIndex = player.ReorderShips(allSelected, hoverIndex);
-	if(selectedIndex < 0)
+	panelState.SetSelectedIndex(player.ReorderShips(panelState.AllSelected(), hoverIndex));
+	panelState.Ships() = player.Ships();
+	if(panelState.SelectedIndex() < 0)
 		return true;
 	
 	// Change the selected indices so they still refer to the block of ships
 	// that just got moved.
-	int lastIndex = selectedIndex + allSelected.size();
-	allSelected.clear();
-	for(int i = selectedIndex; i < lastIndex; ++i)
-		allSelected.insert(i);
+	int lastIndex = panelState.SelectedIndex() + panelState.AllSelected().size();
+	panelState.AllSelected().clear();
+	for(int i = panelState.SelectedIndex(); i < lastIndex; ++i)
+		panelState.AllSelected().insert(i);
 	
 	return true;
 }
@@ -560,43 +664,57 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	Color elsewhere = *GameData::Colors().Get("dim");
-	Color dead(.4f, 0.f, 0.f, 0.f);
-	Color disabled(.5f, .3f, .1f, 0.f);
+	Color dead = *GameData::Colors().Get("dead");
+	Color special = *GameData::Colors().Get("special");
+	Color disabled = *GameData::Colors().Get("disabled");
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {217, Truncate::MIDDLE});
-	table.AddColumn(220, {127, Truncate::BACK});
-	table.AddColumn(350, {137, Truncate::BACK});
-	table.AddColumn(550, {57, Alignment::RIGHT, Truncate::BACK});
-	table.AddColumn(610, {57, Alignment::RIGHT, Truncate::BACK});
-	table.AddColumn(670, {57, Alignment::RIGHT, Truncate::BACK});
-	table.AddColumn(730, {57, Alignment::RIGHT, Truncate::BACK});
+	for(const auto &col: columns)
+		table.AddColumn(col.offset, col.layout);
+	
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+	table.DrawUnderline(dim);
 	
 	// Header row.
-	table.DrawUnderline(dim);
-	table.SetColor(bright);
-	table.Draw("ship");
-	table.Draw("model");
-	table.Draw("system");
-	table.Draw("shields");
-	table.Draw("hull");
-	table.Draw("fuel");
-	table.Draw("crew");
+	const Point tablePoint = table.GetPoint();
+	for(const auto &column : columns)
+	{
+		// Highlight the column if it is under the mouse
+		// or ships are sorted according to that column.
+		const Color columnHeaderColor = (hoverMenuPtr == column.shipSort
+			|| panelState.CurrentSort() == column.shipSort)
+				? bright : dim;
+		
+		table.Draw(column.name, columnHeaderColor);
+		
+		// Find out where the column ends. If column is aligned
+		// to the left, then it ends at (offset + width), if it
+		// is aligned to the right, then at (offset - width).
+		auto width = column.layout.width;
+		int columnWidth = column.layout.align == Alignment::RIGHT ? -width : width;
+		int columnEndX = column.offset + columnWidth;
+		
+		menuZones.emplace_back(
+			tablePoint + Point((column.offset + columnEndX) / 2, table.GetRowSize().Y()/2),
+			Point(width, table.GetRowSize().Y()),
+			column.shipSort
+		);
+	}
+	
 	table.DrawGap(5);
 	
 	// Loop through all the player's ships.
-	int index = scroll;
-	for(auto sit = player.Ships().begin() + scroll; sit < player.Ships().end(); ++sit)
+	int index = panelState.Scroll();
+	for(auto sit = panelState.Ships().begin() + panelState.Scroll(); sit < panelState.Ships().end(); ++sit)
 	{
 		// Bail out if we've used out the whole drawing area.
 		if(!bounds.Contains(table.GetRowBounds()))
 			break;
 		
 		// Check if this row is selected.
-		if(allSelected.count(index))
+		if(panelState.AllSelected().count(index))
 			table.DrawHighlight(back);
 		
 		const Ship &ship = **sit;
@@ -605,10 +723,23 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		bool isDead = ship.IsDestroyed();
 		bool isDisabled = ship.IsDisabled();
 		bool isHovered = (index == hoverIndex);
-		table.SetColor(isDead ? dead : isDisabled ? disabled : isElsewhere ? elsewhere : isHovered ? bright : dim);
+		bool isFlagship = &ship == player.Flagship();
+		
+		if(isDead)
+			table.SetColor(dead);
+		else if(isDisabled)
+			table.SetColor(disabled);
+		else if(isHovered)
+			table.SetColor(bright);
+		else if(isElsewhere)
+			table.SetColor(elsewhere);
+		else if(isFlagship)
+			table.SetColor(special);
+		else
+			table.SetColor(dim);
 		
 		// Store this row's position, to handle hovering.
-		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
+		shipZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
 		
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
@@ -630,7 +761,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		// If this isn't the flagship, we'll remember how many crew it has, but
 		// only the minimum number of crew need to be paid for.
 		int crewCount = ship.Crew();
-		if(&ship != player.Flagship())
+		if(!isFlagship)
 			crewCount = min(crewCount, ship.RequiredCrew());
 		string crew = (ship.IsParked() ? "Parked" : to_string(crewCount));
 		table.Draw(crew);
@@ -643,9 +774,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	{
 		const Font &font = FontSet::Get(14);
 		Point pos(hoverPoint.X(), hoverPoint.Y());
-		for(int i : allSelected)
+		for(int i : panelState.AllSelected())
 		{
-			const string &name = player.Ships()[i]->Name();
+			const string &name = panelState.Ships()[i]->Name();
 			font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 			font.Draw(name, pos, bright);
 			pos.Y() += 20.;
@@ -655,13 +786,79 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 
 
+// Sorts the player's fleet given a comparator function (based on column)
+void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator &shipComparator)
+{
+	// Save selected ships to preserve selection after sort
+	set<shared_ptr<Ship>> selectedShips;
+	shared_ptr<Ship> lastSelected = panelState.SelectedIndex() == -1
+	? nullptr
+	: panelState.Ships()[panelState.SelectedIndex()];
+	
+	for(int i : panelState.AllSelected())
+		selectedShips.insert(panelState.Ships()[i]);
+	panelState.AllSelected().clear();
+	
+	// Move flagship to first position
+	for(auto it = panelState.Ships().begin(); it != panelState.Ships().end(); ++it)
+		if(it->get() == player.Flagship())
+		{
+			iter_swap(it, panelState.Ships().begin());
+			break;
+		}
+	
+	// If ships are not sorted according to this comparator,
+	// then sort them, otherwise reverse the sort order.
+	if(panelState.CurrentSort() != shipComparator)
+		std::stable_sort(
+			panelState.Ships().begin() + 1,
+			panelState.Ships().end(),
+			[&](const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+				{ return shipComparator(lhs, rhs); }
+		);
+	else
+		std::reverse(panelState.Ships().begin() + 1, panelState.Ships().end());
+	
+	// Load the same selected ships from before the sort
+	for(size_t i = 0; i < panelState.Ships().size(); ++i)
+	{
+		auto ship = panelState.Ships()[i];
+		auto selectedShip = selectedShips.find(ship);
+		
+		if(selectedShip != selectedShips.end())
+		{
+			panelState.AllSelected().insert(i);
+			if(lastSelected == ship)
+				panelState.SetSelectedIndex(i);
+			selectedShips.erase(selectedShip);
+		}
+		
+		if(selectedShips.empty())
+			break;
+	}
+}
+
+
+
 bool PlayerInfoPanel::Hover(const Point &point)
 {
 	hoverPoint = point;
 	hoverIndex = -1;
-	for(const auto &zone : zones)
+	hoverMenuPtr = nullptr;
+	
+	for(const auto &zone : menuZones)
 		if(zone.Contains(hoverPoint))
+		{
+			hoverMenuPtr = zone.Value();
+			return true;
+		}
+	
+	for(const auto &zone : shipZones)
+		if(zone.Contains(hoverPoint))
+		{
 			hoverIndex = zone.Value();
+			return true;
+		}
 	
 	return true;
 }
@@ -671,10 +868,24 @@ bool PlayerInfoPanel::Hover(const Point &point)
 // Adjust the scroll by the given amount. Return true if it changed.
 bool PlayerInfoPanel::Scroll(int distance)
 {
-	int newScroll = max(0, min<int>(player.Ships().size() - LINES_PER_PAGE, scroll + distance));
-	if(scroll == newScroll)
+	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
+	int newScroll = max(0, min<int>(maxScroll, panelState.Scroll() + distance));
+	
+	if(panelState.Scroll() == newScroll)
 		return false;
 	
-	scroll = newScroll;
+	panelState.SetScroll(newScroll);
 	return true;
+}
+
+
+
+PlayerInfoPanel::SortableColumn::SortableColumn(
+	string name,
+	double offset,
+	Layout layout,
+	InfoPanelState::ShipComparator *shipSort
+)
+	: name(name), offset(offset), layout(layout), shipSort(shipSort)
+{
 }
