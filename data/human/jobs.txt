@@ -3096,8 +3096,6 @@ mission "Hunted"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103
-		# Below 1000 DPS.
-		# A single stock T1 interceptor deals about 300 to 750 DPS.
 		"armament detterence" >= 2
 		random < 3
 		not "Hunted: active"
@@ -3105,8 +3103,6 @@ mission "Hunted"
 			not "chosen sides"
 			has "main plot completed"
 	npc save
-		# Between 1000 and 1500 DPS.
-		# A single stock T1 light warship deals about 500 to 1.5k DPS.
 		to despawn
 			or
 				"armament deterrence" < 2
@@ -3115,11 +3111,8 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		# Some interceptors, maybe one light or medium warship.
 		fleet "Bounty Hunters"
 	npc save
-		# Between 1500 and 2000 DPS.
-		# A single stock T1 medium warship deals about 1.5k to 2k DPS.
 		to despawn
 			or
 				"armament deterrence" < 3
@@ -3128,11 +3121,8 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		# Typically a Marauder LW + 2 Marauder Interceptors.
 		fleet "Marauder fleet I"
 	npc save
-		# Between 2000 and 4000 DPS.
-		# A single stock T1 heavy warship deals about 2k to 4k DPS.
 		to despawn
 			or
 				"armament deterrence" < 4
@@ -3141,11 +3131,8 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		# Typically a Marauder MW + 2 Marauder LWs.
 		fleet "Marauder fleet IV"
 	npc save
-		# Between 4000 and 8000 DPS.
-		# A single stock T2 heavy warship deals about 5k to 6k DPS.
 		to despawn
 			or
 				"armament deterrence" < 8
@@ -3154,12 +3141,8 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		# A Marauder HW + 3 MWs.
 		fleet "Marauder fleet VII"
 	npc save
-		# Between than 8000 and 16000 DPS.
-		# A single stock Heliarch Punisher deals almost 10k DPS.
-		# A single Quarg ship or Pug Arfecta deals almost 11k DPS.
 		to despawn
 			or
 				"armament deterrence" < 16
@@ -3168,10 +3151,8 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		# A fleet of Marauder vessels.
 		fleet "Marauder fleet X"
 	npc kill
-		# Greater than 16000 DPS.
 		to despawn
 			"armament deterrence" < 32
 		government "Bounty Hunter"
@@ -3180,7 +3161,6 @@ mission "Hunted"
 			distance 5 5
 		fleet "Marauder fleet X" 2
 	npc kill
-		# Greater than 32000 DPS.
 		to despawn
 			"armament deterrence" < 64
 		government "Bounty Hunter"
