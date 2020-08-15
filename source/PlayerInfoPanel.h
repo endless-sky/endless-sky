@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class PlayerInfo;
 class Rectangle;
+class Ship;
 
 
 
@@ -63,12 +64,15 @@ private:
 	
 private:
 	PlayerInfo &player;
-	
-	std::vector<ClickZone<int>> zones;
+	std::vector<ClickZone<bool (*)
+		(const std::shared_ptr<Ship> &lhs, const std::shared_ptr<Ship> &rhs)>> menuZones;
+
+	std::vector<ClickZone<int>> shipZones;
 	// Keep track of which ship the mouse is hovering over, which ship was most
 	// recently selected, which ship is currently being dragged, and all ships
 	// that are currently selected.
 	int hoverIndex = -1;
+	bool (*hoverMenuPtr) ( const std::shared_ptr <Ship>& , const std::shared_ptr <Ship>&) = nullptr;
 	int selectedIndex = -1;
 	std::set<int> allSelected;
 	// This is the index of the ship at the top of the fleet listing.
@@ -78,6 +82,7 @@ private:
 	bool canEdit = false;
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
+	bool sortDescending = true;
 };
 
 

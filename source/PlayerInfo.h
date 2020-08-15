@@ -130,6 +130,10 @@ public:
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
 	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	void SortShips(
+		const bool sortDesc,
+		const std::function<bool(const std::shared_ptr<Ship> &,
+			const std::shared_ptr<Ship> &)> &sortFunc);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
 	

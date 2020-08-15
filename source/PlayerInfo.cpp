@@ -996,6 +996,23 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 
 
 
+// Sorts the player's fleet depending on which function (column) was given
+void PlayerInfo::SortShips(bool sortDesc, const function<bool(const shared_ptr<Ship>&, const shared_ptr<Ship>&)>& sortFunction)
+{
+	std::stable_sort(ships.begin() + 1, ships.end(), [&](const shared_ptr<Ship> &lhs, const  shared_ptr<Ship> &rhs) {
+		if (sortDesc == true)
+		{
+			return sortFunction(lhs, rhs);
+		}
+		else
+		{
+			return !sortFunction(lhs, rhs);
+		}
+	});
+}
+
+
+
 // Find out how attractive the player's fleet is to pirates. Aside from a
 // heavy freighter, no single ship should attract extra pirate attention.
 pair<double, double> PlayerInfo::RaidFleetFactors() const

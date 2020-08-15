@@ -167,7 +167,9 @@ void PlayerInfoPanel::Draw()
 	interface->Draw(interfaceInfo, this);
 	
 	// Draw the player and fleet info sections.
-	zones.clear();
+	shipZones.clear();
+	menuZones.clear();
+
 	DrawPlayer(interface->GetBox("player"));
 	DrawFleet(interface->GetBox("fleet"));
 }
@@ -372,6 +374,14 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
 {
+	for(auto &zone : menuZones)
+		if(zone.Contains(UI::GetMouse()))
+		{
+			player.SortShips(sortDescending, *zone.Value());
+			sortDescending = !sortDescending;
+			break;
+		}
+
 	// Do nothing if the click was not on one of the ships in the fleet list.
 	if(hoverIndex < 0)
 		return true;
@@ -545,7 +555,34 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	DrawList(licenses, table, "licenses:", maxRows, false);
 }
 
+bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	return lhs->Name() > rhs->Name();
+}
 
+bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	return lhs->ModelName() > rhs->ModelName();
+}
+
+bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	return lhs->GetSystem() > rhs->GetSystem();
+}
+
+bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	return lhs->Shields() > rhs->Shields();
+}
+
+bool CompareHull(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	return lhs->Hull() > rhs->Hull();
+}
+
+bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	return lhs->Attributes().Get("fuel capacity") * lhs->Fuel() >
+		rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
+}
+
+bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	return lhs->RequiredCrew() > rhs->RequiredCrew();
+}
 
 void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 {
@@ -559,29 +596,57 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color bright = *GameData::Colors().Get("bright");
 	Color elsewhere = *GameData::Colors().Get("dim");
 	Color dead(.4f, 0.f, 0.f, 0.f);
-	
+	Color special(0.5f, 0.5f, 0.1f, 0.f);
+
+	// Table columns and their starting x positions
+	vector <tuple <string, int, Table::Align,
+		bool (*) (const shared_ptr <Ship>&, const shared_ptr <Ship>& )>> columns;
+
+	columns.emplace_back("ship", 0, Table::LEFT, CompareName);
+	columns.emplace_back("model", 220, Table::LEFT, CompareModelName);
+	columns.emplace_back("system", 350, Table::LEFT, CompareSystem);
+	columns.emplace_back("shields", 550, Table::RIGHT, CompareShields);
+	columns.emplace_back("hull", 610, Table::RIGHT, CompareHull);
+	columns.emplace_back("fuel", 670, Table::RIGHT, CompareFuel);
+	columns.emplace_back("crew", 730, Table::RIGHT, CompareRequiredCrew);
+	columns.emplace_back("", 790, Table::RIGHT, nullptr);
+
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(220, Table::LEFT);
-	table.AddColumn(350, Table::LEFT);
-	table.AddColumn(550, Table::RIGHT);
-	table.AddColumn(610, Table::RIGHT);
-	table.AddColumn(670, Table::RIGHT);
-	table.AddColumn(730, Table::RIGHT);
+	auto cit = columns.begin();
+	for(; cit < columns.end() - 1; ++cit)
+	{
+		auto currentColumn = *cit;
+		table.AddColumn(get<1>(currentColumn), get<2>(currentColumn));
+	}
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
-	
+	table.DrawUnderline(hoverMenuPtr == nullptr ? dim : bright);
+
 	// Header row.
-	table.DrawUnderline(dim);
-	table.SetColor(bright);
-	table.Draw("ship");
-	table.Draw("model");
-	table.Draw("system");
-	table.Draw("shields");
-	table.Draw("hull");
-	table.Draw("fuel");
-	table.Draw("crew");
+	auto cit2 = columns.begin();
+	for(; cit2 < columns.end() - 1; ++cit2)
+	{
+		const auto currentColumn = *cit2;
+		const Color columnHeaderColor = hoverMenuPtr == get<3>(currentColumn) ? bright : dim;
+		const Point tablePoint = table.GetPoint();
+
+		table.Draw(get<0>(currentColumn), columnHeaderColor);
+
+		// Look to where the column should end depending on alignment
+		const auto adjacentColumn = get<2>(currentColumn) == Table::LEFT ? *(cit2 + 1) : *(cit2 - 1);
+
+		// Special case where a left and right column "share" the same column space, so we split it
+		int columnEndX = get<2>(currentColumn) != get<2>(adjacentColumn) ?
+			(get<1>(currentColumn) + get<1>(adjacentColumn)) / 2 :
+			get<1>(adjacentColumn);
+
+		menuZones.emplace_back(
+			tablePoint + Point((get<1>(currentColumn) + columnEndX) / 2, 0),
+			Point(abs(columnEndX - get<1>(currentColumn)), table.GetRowSize().Y()),
+			get<3>(currentColumn));
+	}
+
 	table.DrawGap(5);
 	
 	// Loop through all the player's ships.
@@ -602,10 +667,12 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
 		bool isDead = ship.IsDestroyed() || ship.IsDisabled();
 		bool isHovered = (index == hoverIndex);
-		table.SetColor(isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim);
+		bool isFlagship = &ship == player.Flagship();
+
+		table.SetColor(isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : isFlagship ? special : dim);
 		
 		// Store this row's position, to handle hovering.
-		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
+		shipZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
 		
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(font.TruncateMiddle(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name(), 217));
@@ -627,7 +694,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		// If this isn't the flagship, we'll remember how many crew it has, but
 		// only the minimum number of crew need to be paid for.
 		int crewCount = ship.Crew();
-		if(&ship != player.Flagship())
+		if(isFlagship)
 			crewCount = min(crewCount, ship.RequiredCrew());
 		string crew = (ship.IsParked() ? "Parked" : to_string(crewCount));
 		table.Draw(crew);
@@ -656,10 +723,14 @@ bool PlayerInfoPanel::Hover(const Point &point)
 {
 	hoverPoint = point;
 	hoverIndex = -1;
-	for(const auto &zone : zones)
+	hoverMenuPtr = nullptr;
+	for(const auto &zone : shipZones)
 		if(zone.Contains(hoverPoint))
 			hoverIndex = zone.Value();
-	
+	for(const auto &zone : menuZones)
+		if(zone.Contains(hoverPoint))
+			hoverMenuPtr = zone.Value();
+
 	return true;
 }
 
