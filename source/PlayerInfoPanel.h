@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <set>
 #include <vector>
+#include <memory>
 
 class PlayerInfo;
 class Rectangle;
