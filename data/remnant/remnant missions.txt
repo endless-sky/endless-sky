@@ -875,9 +875,23 @@ mission "Remnant: Technology Available"
 			`	"When your name came up in the study," he says, "I asked around and discovered that you have helped us in other ways as well. The other prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall henceforth be given permission to purchase our ships and technology."`
 			choice
 				`	"I'm honored. Thank you."`
-					decline
+					goto onwards
 				`	"Is there anything else I can do to assist your people?"`
-			`	"Not that I am aware of right now," he says, "but we will call on you if a need ever arises."`
+			`	"I do not have anything at the moment," he says, "but I am sure other Remnant will have tasks you can help with, now that you have demonstrated your trustworthiness. We have been keeping track of you, and we are impressed with your curiosity, perseverance, and ability to survive where most would be destroyed. All three are valued characteristics among the Remnant, and thus many will welcome your assistance on their projects.`
+			label onwards
+			`	As he talks, he gestures for you to walk with him towards a nearby hall. "While you are welcome to become one of us, we suspect that you are a citizen of the galaxy - wandering hither and yon building coalitions and enmities with species and groups across the breadth of accessible space, unfettered by conventional allegiances. As such, we hope that you will continue to explore and stop by to let us know what you have found. We ask only that you keep the secret with which you are trusted, and bring us word of anything that might influence humanity's long-term survival."`
+			`	You follow the prefect into the hall, and discover that it is one of the many cafeterias that seem to be common in Remnant starports. He picks up two trays from the window and leads you to an empty table.`
+			choice
+				`	"What secret do you want me to keep?`
+					goto secret
+				`	"What constitutes 'things that influence humanity's survival?"`
+			`	He takes a bite before responding. "Basically, anything that might either pose an existential threat to humanity; or anything that we might learn from and put to use to ensure humanity's survival. It might be an invading fleet of automated machines, or a spaceborn plague. But it is just as possible you might find beings that we can work alongside to form strong partnerships, or ancient ruins with old technology that points us towards new discoveries. The possibilities are indeed infinite.`
+				goto feast
+			label secret
+			`	He sips on thick drink before responding. "Quite simply, the fact that we are here. To the best of our knowledge, only the Drak and the Korath know that we exist, and of those only the Korath have raided our worlds. Our intention is to the last bastion of humanity, and we rely on secrecy to achieve that goal." He pauses for a moment to eat, then continues. "The Alphas are a fearsome threat, but they may be the least of humanity's worries in the grand scheme of things. Thus we strive to maintain whatever advantages we can, and one of those is surprise. If no-one knows we are here, we have the advantage over any that might seek to conquer or destroy us."`
+			`	"Of course, maintaining the secrecy of our capabilities is also very important - and the reason why you had to prove yourself before we let you purchase our ships and outfits - but it is secondary to the fundemental secrecy of our existence. Ideally, no-one should know we exist. Those who do know, should ideally think of us as little more than refugees struggling to survive in a hostile environment`
+			label feast
+			`	He waves dismisively. "I am sure you have more questions, but let us leave it there for now. Our meals await, and, well, it is important to always be ready to work. And that means well-fed, well-rested, and ready to go." With that, he gestures at the plate in front of you and digs into his own meal.`
 				decline
 
 
