@@ -3032,7 +3032,7 @@ mission "Bounty Hunting (Marauder X)"
 		random < 5
 	npc kill
 		government "Bounty"
-		personality heroic unconstrained waiting nemesis plunders harvests
+		personality heroic unconstrained staying nemesis target
 		system
 			distance 1 3
 		fleet "Marauder fleet X"
@@ -3042,3 +3042,146 @@ mission "Bounty Hunting (Marauder X)"
 	on complete
 		payment 750000
 		dialog phrase "generic fleet bounty hunting payment dialog"
+
+
+
+mission "Hunted Warning"
+	invisible
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	to offer
+		"combat rating" > 8103
+		or
+			not "chosen sides"
+			has "main plot completed"
+	on offer
+		log `Got noticed at a spaceport bar as a "famous warrior." Was warned to watch for pirates looking to make a name for themselves or bounty hunters looking to claim a bounty.`
+		conversation
+			`You walk into a bar in the spaceport looking for something to eat when a man sitting at a table in the corner looks up and takes notice of you. "It's Captain <last>, the famous warrior! Barkeep, give <first> a drink on my tab."`
+			choice
+				`	"Glad to get some recognition. I work hard out here."`
+					goto recognition
+				`	"Famous warrior?"`
+			`	"Of course! Word travels fast in the galaxy, and word on the hyperspace lanes is that you're quite the fighter."`
+			
+			branch recognition
+				"reputation: Republic" >= 0
+				"reputation: Free Worlds" >= 0
+				"reputation: Syndicate" >= 0
+			
+			`	"It doesn't help that you've pissed off the law, either," someone says, not sounding too happy.`
+			label recognition
+			`	More of the patrons of the bar begin to notice that you've entered and begin chattering amongst themselves. "Quite the force to be reckoned with, I've heard," you overhear one of them mumble.`
+			`	"You might want to watch your back," another says to you. "Plenty of pirates looking to make a name for themselves taking out such a famous captain, and plenty of bounty hunters out for a bounty you might have on your head without even knowing about it."`
+			choice
+				`	"I'll be fine. My ship is strong enough to stand against anything."`
+				`	"Maybe I should go into hiding for a while."`
+					goto hide
+			`	"Oh, I'm sure it is. You wouldn't have gotten this notorious if you weren't able to hold your all."`
+				goto end
+			label hide
+			`	"You'd need to hide for more than just a while, but laying low in a small ship might help to stay off the radar of any bounty hunters."`
+			label end
+			`	After a few more minutes of mumbling, the bar returns to like it was before you entered. The food you ordered arrives and you dig in.`
+				decline
+
+mission "Hunted"
+	invisible
+	landing
+	deadline 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	to offer
+		"combat rating" > 8103
+		# Below 1000 DPS.
+		# A single stock T1 interceptor deals about 300 to 750 DPS.
+		"armament detterence" >= 2
+		random < 3
+		or
+			not "chosen sides"
+			has "main plot completed"
+	npc save
+		# Somewhere between 1000 and 1500 DPS.
+		# A single stock T1 light warship deals about 500 to 1.5k DPS.
+		to despawn
+			or
+				"armament deterrence" < 2
+				"armament deterrance" >= 3
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		# Some interceptors, maybe one light or medium warship.
+		fleet "Bounty Hunters"
+	npc save
+		# Somewhere between 1500 and 2000 DPS.
+		# A single stock T1 medium warship deals about 1.5k to 2k DPS.
+		to despawn
+			or
+				"armament deterrence" < 3
+				"armament deterrance" >= 4
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		# Typically a Marauder LW + 2 Marauder Interceptors.
+		fleet "Marauder fleet I"
+	npc save
+		# Somewhere between 2000 and 4000 DPS.
+		# A single stock T1 heavy warship deals about 2k to 4k DPS.
+		to despawn
+			or
+				"armament deterrence" < 4
+				"armament deterrance" >= 8
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		# Typically a Marauder MW + 2 Marauder LWs.
+		fleet "Marauder fleet IV"
+	npc save
+		# Somewhere between 4000 and 8000 DPS.
+		# A single stock T2 heavy warship deals about 5k to 6k DPS.
+		to despawn
+			or
+				"armament deterrence" < 8
+				"armament deterrance" >= 16
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		# A Marauder HW + 3 MWs.
+		fleet "Marauder fleet VII"
+	npc save
+		# Greater than 8000 DPS.
+		# A single stock Heliarch Punisher deals almost 10k DPS.
+		# A single Quarg ship or Pug Arfecta deals almost 11k DPS.
+		to despawn
+			"armament deterrence" < 16
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		# A fleet of Marauder vessels.
+		fleet "Marauder fleet X"
+	npc save
+		# Greater than 16000 DPS.
+		to despawn
+			"armament deterrence" < 32
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet X"
+	npc save
+		# Greater than 32000 DPS.
+		to despawn
+			"armament deterrence" < 64
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet X"
