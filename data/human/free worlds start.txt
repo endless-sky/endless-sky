@@ -516,7 +516,7 @@ mission "FW Syndicate Diplomacy 1D"
 
 mission "FW Hope Recon 1"
 	name "Early Warning Systems"
-	description "Land on the abandoned planet <destination> and place sensor there to monitor Navy fleet activity in the system."
+	description "Land on the abandoned planet <destination> and place sensors there to monitor Navy fleet activity in the system."
 	autosave
 	source Longjump
 	destination Hope
@@ -766,7 +766,7 @@ mission "FW Plasma Testing 1B"
 			label plan
 			`	"So, where do I come in?" you ask.`
 			`	"Well, the Council says no testing against the Navy yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile, that's been haunting the <waypoints> system, sniping on merchants that take a wrong turn and end up there."`
-			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <waypoints>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?`
+			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <waypoints>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?"`
 			choice
 				`	"You bet!"`
 					accept

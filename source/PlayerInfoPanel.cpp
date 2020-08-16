@@ -174,6 +174,13 @@ void PlayerInfoPanel::Draw()
 
 
 
+bool PlayerInfoPanel::AllowFastForward() const
+{
+	return true;
+}
+
+
+
 bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
@@ -363,7 +370,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 
 
-bool PlayerInfoPanel::Click(int x, int y, int clicks)
+bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
 {
 	// Do nothing if the click was not on one of the ships in the fleet list.
 	if(hoverIndex < 0)
@@ -378,7 +385,6 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 			allSelected.erase(hoverIndex);
 		else
 		{
-			isDragging = true;
 			if(allSelected.count(hoverIndex))
 			{
 				// If the click is on an already selected line, start dragging
@@ -421,6 +427,7 @@ bool PlayerInfoPanel::Hover(int x, int y)
 
 bool PlayerInfoPanel::Drag(double dx, double dy)
 {
+	isDragging = true;
 	return Hover(hoverPoint + Point(dx, dy));
 }
 
@@ -579,8 +586,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Loop through all the player's ships.
 	int index = scroll;
-	auto sit = player.Ships().begin() + scroll;
-	for( ; sit < player.Ships().end(); ++sit)
+	for(auto sit = player.Ships().begin() + scroll; sit < player.Ships().end(); ++sit)
 	{
 		// Bail out if we've used out the whole drawing area.
 		if(!bounds.Contains(table.GetRowBounds()))

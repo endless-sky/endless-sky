@@ -52,6 +52,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string SHIP_OUTLINES = "Ship outlines in shops";
 }
 
 
@@ -440,6 +441,7 @@ void PreferencesPanel::DrawSettings()
 		"Draw background haze",
 		"Draw starfield",
 		"Show hyperspace flash",
+		SHIP_OUTLINES,
 		"",
 		"Other",
 		"Clickable radar display",
@@ -448,7 +450,8 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
-		"Warning siren"
+		"Warning siren",
+		"Interrupt fast-forward"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
@@ -501,6 +504,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+		}
+		else if(setting == SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{

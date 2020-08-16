@@ -317,6 +317,13 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 
 
+bool MapPanel::AllowFastForward() const
+{
+	return true;
+}
+
+
+
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE

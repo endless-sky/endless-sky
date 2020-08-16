@@ -16,6 +16,14 @@ effect "jump drive"
 	"random angle" 180
 	"velocity scale" 0.
 
+effect "jump drive red"
+	sprite "effect/jump drive red"
+		"no repeat"
+		"frame rate" 8
+		"rewind"
+	"lifetime" 8
+	"velocity scale" 3
+
 effect "ion spark"
 	sprite "effect/spark"
 		"no repeat"
