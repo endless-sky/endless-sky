@@ -302,9 +302,12 @@ void ShopPanel::DrawDetailsSidebar()
 	// Draw this string representing the selection, centered in the details side panel,
 	// It will either be the outfit name or the ship model.
 	string selectedItem = "Nothing Selected";
-	if (selectedOutfit) {
+	if (selectedOutfit)
+	{
 		selectedItem = selectedOutfit->Name();
-	} else if (selectedShip) {
+	}
+	else if (selectedShip)
+	{
 		selectedItem = selectedShip->ModelName();
 	}
 	Point selectedPoint(
@@ -323,7 +326,8 @@ void ShopPanel::DrawDetailsSidebar()
 
 	float panelCenter = Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2;
 
-	if (selectedOutfit) {
+	if (selectedOutfit)
+	{
 		outfitInfo.Update(*selectedOutfit, player, CanSell());
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -341,7 +345,9 @@ void ShopPanel::DrawDetailsSidebar()
 		outfitInfo.DrawAttributes(attrPoint);
 		outfitInfo.DrawRequirements(reqsPoint);
 		point = Point(descPoint.X(), descPoint.Y() + outfitInfo.DescriptionHeight());
-	} else if (selectedShip) {
+	}
+	else if (selectedShip)
+	{
 		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 
 		const Sprite *shipSprite = selectedShip->GetSprite();
@@ -982,16 +988,19 @@ bool ShopPanel::DoScroll(double dy)
 {
 	double *scroll;
 	double maximum;
-	if (hoverInfo) {
+	if (hoverInfo)
+	{
 		scroll = &side2Scroll;
 		maximum = maxSide2Scroll;
 	}
-	else if (hoverShip) {
+	else if (hoverShip)
+	{
 
 		scroll = &sideScroll;
 		maximum = maxSideScroll;
 	}
-	else {
+	else
+	{
 		scroll = &mainScroll;
 		maximum = maxMainScroll;
 	}
