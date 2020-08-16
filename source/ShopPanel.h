@@ -119,11 +119,11 @@ protected:
 	const Outfit *selectedOutfit = nullptr;
 	
 	double mainScroll = 0.;
-	double sideScroll = 0.;
-	double side2Scroll = 0.;
+	double sideShipScroll = 0.;
+	double sideDetailScroll = 0.;
 	double maxMainScroll = 0.;
-	double maxSideScroll = 0.;
-	double maxSide2Scroll = 0.;
+	double maxSideShipScroll = 0.;
+	double maxSideDetailScroll = 0.;
 	bool hoverInfo = false;
 	bool hoverShip = false;
 	int mainDetailHeight = 0;

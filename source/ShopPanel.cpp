@@ -186,13 +186,13 @@ void ShopPanel::DrawShipsSidebar()
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(
 		Screen::Right() - SHIP_SIDE_WIDTH / 2 - font.Width(YOURS) / 2,
-		Screen::Top() + 10 - sideScroll);
+		Screen::Top() + 10 - sideShipScroll);
 	font.Draw(YOURS, yoursPoint, bright);
 	
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
 		Screen::Right() - SHIP_SIDE_WIDTH / 2 - 93,
-		Screen::Top() + SHIP_SIDE_WIDTH / 2 - sideScroll + 40 - 93);
+		Screen::Top() + SHIP_SIDE_WIDTH / 2 - sideShipScroll + 40 - 93);
 	
 	const System *here = player.GetSystem();
 	int shipsHere = 0;
@@ -283,12 +283,12 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw(space, right, bright);
 		point.Y() += 20.;
 	}
-	maxSideScroll = max(0., point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT);
+	maxSideShipScroll = max(0., point.Y() + sideShipScroll - Screen::Bottom() + BUTTON_HEIGHT);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(sideScroll > 0 ? .8f : .2f, 0.f));
+		Point(0., -1.), 10.f, 10.f, 5.f, Color(sideShipScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(sideScroll < maxSideScroll ? .8f : .2f, 0.f));
+		Point(0., 1.), 10.f, 10.f, 5.f, Color(sideShipScroll < maxSideShipScroll ? .8f : .2f, 0.f));
 }
 
 
@@ -302,31 +302,28 @@ void ShopPanel::DrawDetailsSidebar()
 	// Draw this string representing the selection, centered in the details side panel,
 	// It will either be the outfit name or the ship model.
 	string selectedItem = "Nothing Selected";
-	if (selectedOutfit)
-	{
+	if(selectedOutfit)
 		selectedItem = selectedOutfit->Name();
-	}
-	else if (selectedShip)
-	{
+	else if(selectedShip)
 		selectedItem = selectedShip->ModelName();
-	}
+
 	Point selectedPoint(
 		Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2 - font.Width(selectedItem) / 2,
-		Screen::Top() + 10 - side2Scroll);
+		Screen::Top() + 10 - sideDetailScroll);
 	font.Draw(selectedItem, selectedPoint, bright);
 
 	// Start below the "Selected Item" label, and draw them.
 	Point point(
 		Screen::Right() - SIDE_WIDTH + SHIP_SIDE_WIDTH / 2 - 93,
-		Screen::Top() + SHIP_SIDE_WIDTH / 2 - side2Scroll + 40 - 93);
+		Screen::Top() + SHIP_SIDE_WIDTH / 2 - sideDetailScroll + 40 - 93);
 
 	point = Point(
 		Screen::Right() - SHIP_SIDE_WIDTH - INFO_SIDE_WIDTH + 16,
-		Screen::Top() + SHIP_SIDE_WIDTH / 2 - side2Scroll + 40 - 93);
+		Screen::Top() + SHIP_SIDE_WIDTH / 2 - sideDetailScroll + 40 - 93);
 
 	float panelCenter = Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2;
 
-	if (selectedOutfit)
+	if(selectedOutfit)
 	{
 		outfitInfo.Update(*selectedOutfit, player, CanSell());
 
@@ -346,7 +343,7 @@ void ShopPanel::DrawDetailsSidebar()
 		outfitInfo.DrawRequirements(reqsPoint);
 		point = Point(descPoint.X(), descPoint.Y() + outfitInfo.DescriptionHeight());
 	}
-	else if (selectedShip)
+	else if(selectedShip)
 	{
 		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 
@@ -367,12 +364,12 @@ void ShopPanel::DrawDetailsSidebar()
 		point = Point(descPoint.X(), descPoint.Y() + shipInfo.DescriptionHeight());
 	}
 
-	maxSide2Scroll = max(0., point.Y() + side2Scroll - Screen::Bottom());
+	maxSideDetailScroll = max(0., point.Y() + sideDetailScroll - Screen::Bottom());
 
 	PointerShader::Draw(Point(Screen::Right() - SHIP_SIDE_WIDTH - 10, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(side2Scroll > 0 ? .8f : .2f, 0.f));
+		Point(0., -1.), 10.f, 10.f, 5.f, Color(sideDetailScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - SHIP_SIDE_WIDTH - 10, Screen::Bottom() - 10),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(side2Scroll < maxSide2Scroll ? .8f : .2f, 0.f));
+		Point(0., 1.), 10.f, 10.f, 5.f, Color(sideDetailScroll < maxSideDetailScroll ? .8f : .2f, 0.f));
 }
 
 
@@ -986,16 +983,16 @@ bool ShopPanel::DoScroll(double dy)
 {
 	double *scroll;
 	double maximum;
-	if (hoverInfo)
+	if(hoverInfo)
 	{
-		scroll = &side2Scroll;
-		maximum = maxSide2Scroll;
+		scroll = &sideDetailScroll;
+		maximum = maxSideDetailScroll;
 	}
-	else if (hoverShip)
+	else if(hoverShip)
 	{
 
-		scroll = &sideScroll;
-		maximum = maxSideScroll;
+		scroll = &sideShipScroll;
+		maximum = maxSideShipScroll;
 	}
 	else
 	{
