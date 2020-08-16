@@ -207,6 +207,7 @@ int OutfitterPanel::DetailWidth() const
 }
 
 
+
 int OutfitterPanel::DrawDetails(const Point &center)
 {
 
@@ -247,6 +248,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 	return heightOffset;
 }
+
 
 
 bool OutfitterPanel::CanBuy() const
