@@ -207,6 +207,47 @@ int OutfitterPanel::DetailWidth() const
 }
 
 
+int OutfitterPanel::DrawDetails(const Point &center)
+{
+
+	string selectedItem = "Nothing Selected";
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+
+	int heightOffset = 20;
+
+	if(selectedOutfit)
+	{
+		outfitInfo.Update(*selectedOutfit, player, CanSell());
+		selectedItem = selectedOutfit->Name();
+
+		const Sprite *thumbnail = selectedOutfit->Thumbnail();
+
+		Point thumbnailCenter(center.X(), center.Y() + 20 + thumbnail->Height() / 2);
+
+		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + thumbnail->Height());
+
+		Point attrPoint(startPoint.X(), startPoint.Y());
+		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
+		Point descPoint(startPoint.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
+
+		SpriteShader::Draw(thumbnail, thumbnailCenter);
+
+		outfitInfo.DrawDescription(descPoint);
+		outfitInfo.DrawAttributes(attrPoint);
+		outfitInfo.DrawRequirements(reqsPoint);
+
+		heightOffset = descPoint.Y() + outfitInfo.DescriptionHeight();
+	}
+
+	// Draw this string representing the selected item (if any), centered in the details side panel
+	Point selectedPoint(
+		center.X() - font.Width(selectedItem) / 2, center.Y());
+	font.Draw(selectedItem, selectedPoint, bright);
+
+	return heightOffset;
+}
+
 
 bool OutfitterPanel::CanBuy() const
 {

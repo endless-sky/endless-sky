@@ -56,6 +56,7 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
+	virtual int DrawDetails(const Point &center) = 0;
 	virtual bool CanBuy() const = 0;
 	virtual void Buy(bool fromCargo = false) = 0;
 	virtual void FailBuy() const = 0;

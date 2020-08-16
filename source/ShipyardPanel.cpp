@@ -18,12 +18,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -132,6 +134,49 @@ int ShipyardPanel::DividerOffset() const
 int ShipyardPanel::DetailWidth() const
 {
 	return 3 * shipInfo.PanelWidth();
+}
+
+
+
+int ShipyardPanel::DrawDetails(const Point &center)
+{
+
+	string selectedItem = "No Ship Selected";
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	int heightOffset = 20;
+
+	if(selectedShip)
+	{
+		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		selectedItem = selectedShip->ModelName();
+
+		const Sprite *shipSprite = selectedShip->GetSprite();
+		float spriteScale = min(1.f, (INFO_SIDE_WIDTH - 20.f) / shipSprite->Width());
+		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+
+		Point spriteCenter(center.X(), center.Y() + 20 + shipSprite->Height() / 2);
+		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + shipSprite->Height());
+
+		Point attrPoint(startPoint.X(), startPoint.Y());
+		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
+		Point descPoint(startPoint.X(), outfPoint.Y() + shipInfo.OutfitsHeight());
+
+		SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+
+		shipInfo.DrawAttributes(attrPoint);
+		shipInfo.DrawOutfits(outfPoint);
+		shipInfo.DrawDescription(descPoint);
+
+		heightOffset = descPoint.Y() + shipInfo.DescriptionHeight();
+	}
+
+	// Draw this string representing the selected ship (if any), centered in the details side panel
+	Point selectedPoint(
+		center.X() - font.Width(selectedItem) / 2, center.Y());
+	font.Draw(selectedItem, selectedPoint, bright);
+
+	return heightOffset;
 }
 
 

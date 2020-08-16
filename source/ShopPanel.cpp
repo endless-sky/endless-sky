@@ -295,77 +295,13 @@ void ShopPanel::DrawShipsSidebar()
 
 void ShopPanel::DrawDetailsSidebar()
 {
-	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	sideDetailHeight = 0;
-
-	// Draw this string representing the selection, centered in the details side panel,
-	// It will either be the outfit name or the ship model.
-	string selectedItem = "Nothing Selected";
-	if(selectedOutfit)
-		selectedItem = selectedOutfit->Name();
-	else if(selectedShip)
-		selectedItem = selectedShip->ModelName();
-
-	Point selectedPoint(
-		Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2 - font.Width(selectedItem) / 2,
-		Screen::Top() + 10 - sideDetailScroll);
-	font.Draw(selectedItem, selectedPoint, bright);
-
-	// Start below the "Selected Item" label, and draw them.
 	Point point(
-		Screen::Right() - SIDE_WIDTH + SHIP_SIDE_WIDTH / 2 - 93,
-		Screen::Top() + SHIP_SIDE_WIDTH / 2 - sideDetailScroll + 40 - 93);
+		Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2,
+		Screen::Top() + 10 - sideDetailScroll);
 
-	point = Point(
-		Screen::Right() - SHIP_SIDE_WIDTH - INFO_SIDE_WIDTH + 16,
-		Screen::Top() + SHIP_SIDE_WIDTH / 2 - sideDetailScroll + 40 - 93);
+	int heightOffset = DrawDetails(point);
 
-	float panelCenter = Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2;
-
-	if(selectedOutfit)
-	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell());
-
-		const Sprite *thumbnail = selectedOutfit->Thumbnail();
-
-		Point itemPoint(point.X(), point.Y());
-		Point center(panelCenter, itemPoint.Y() + thumbnail->Height() / 2);
-
-		Point attrPoint(itemPoint.X(), itemPoint.Y() + thumbnail->Height());
-		Point reqsPoint(attrPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
-		Point descPoint(point.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
-
-		SpriteShader::Draw(thumbnail, center);
-
-		outfitInfo.DrawDescription(descPoint);
-		outfitInfo.DrawAttributes(attrPoint);
-		outfitInfo.DrawRequirements(reqsPoint);
-		point = Point(descPoint.X(), descPoint.Y() + outfitInfo.DescriptionHeight());
-	}
-	else if(selectedShip)
-	{
-		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
-
-		const Sprite *shipSprite = selectedShip->GetSprite();
-		float spriteScale = min(1.f, (INFO_SIDE_WIDTH - 20.f) / shipSprite->Width());
-		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-
-		Point itemPoint(point.X(), point.Y());
-		Point center(panelCenter, itemPoint.Y() + shipSprite->Height() / 2);
-		Point attrPoint(itemPoint.X(), itemPoint.Y() + shipSprite->Height());
-		Point outfPoint(attrPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
-		Point descPoint(outfPoint.X(), outfPoint.Y() + shipInfo.OutfitsHeight());
-
-		SpriteShader::Draw(shipSprite, center, spriteScale, swizzle);
-
-		shipInfo.DrawAttributes(attrPoint);
-		shipInfo.DrawOutfits(outfPoint);
-		shipInfo.DrawDescription(descPoint);
-		point = Point(descPoint.X(), descPoint.Y() + shipInfo.DescriptionHeight());
-	}
-
-	maxSideDetailScroll = max(0., point.Y() + sideDetailScroll - Screen::Bottom());
+	maxSideDetailScroll = max(0., heightOffset + sideDetailScroll - Screen::Bottom());
 
 	PointerShader::Draw(Point(Screen::Right() - SHIP_SIDE_WIDTH - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(sideDetailScroll > 0 ? .8f : .2f, 0.f));
@@ -982,8 +918,8 @@ double ShopPanel::Zone::ScrollY() const
 
 bool ShopPanel::DoScroll(double dy)
 {
-	double *scroll;
-	double maximum;
+	double *scroll = &mainScroll;
+	double maximum = maxMainScroll;
 	if(hoverInfo)
 	{
 		scroll = &sideDetailScroll;
@@ -994,11 +930,6 @@ bool ShopPanel::DoScroll(double dy)
 
 		scroll = &sideShipScroll;
 		maximum = maxSideShipScroll;
-	}
-	else
-	{
-		scroll = &mainScroll;
-		maximum = maxMainScroll;
 	}
 
 	*scroll = max(0., min(maximum, *scroll - dy));
