@@ -351,9 +351,7 @@ void ShopPanel::DrawDetailsSidebar()
 		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 
 		const Sprite *shipSprite = selectedShip->GetSprite();
-		float spriteScale = 1.;
-		if (shipSprite->Width() > (INFO_SIDE_WIDTH - 20))
-			spriteScale = (INFO_SIDE_WIDTH - 20) / shipSprite->Width();
+		float spriteScale = min(1.f, (INFO_SIDE_WIDTH - 20.f) / shipSprite->Width());
 
 		Point itemPoint(point.X(), point.Y());
 		Point center(panelCenter, itemPoint.Y() + shipSprite->Height() / 2);
