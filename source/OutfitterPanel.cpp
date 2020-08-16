@@ -223,6 +223,10 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		selectedItem = selectedOutfit->Name();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
+		if(!thumbnail)
+		{
+			thumbnail = SpriteSet::Get("ui/outfitter selected");
+		}
 
 		Point thumbnailCenter(center.X(), center.Y() + 20 + thumbnail->Height() / 2);
 
