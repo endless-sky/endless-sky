@@ -80,7 +80,7 @@ ship "Void Sprite"
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
-	description "The void sprites are an enigmatic species originally discovered in the Nenia system under the watchful gaze of the Archon. It is unknown what the connection between the two is, but the Archon seem particularly protective of them."
+	description "The void sprites are an enigmatic species under the watchful gaze of the Archon originally discovered in the Nenia system. The species' connection is unknown, but the Archon seem particularly protective of them."
 
 effect "blood"
 	sprite "effect/blood"
@@ -188,8 +188,8 @@ ship "Ember Waste Node"
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
-	description "This unusual creature, first spotted in Postverta, seems to have an affinity for void sprites and is usually found with them, albeit bearing only superficial resemblance to them. This 'Ember Waste Node,' as it is being called, demonstrates an ability to manipulate energy fields to create shield-like structures around itself. Most remarkably, however, is that it has been seen appearing and disappearing with an energy signature reminiscent of jump drives."
-	description "Although its ability to cloak is believed to be connected to its other energy manipulation abilities, the exact method is unknown."
+	description "This unusual creature, first spotted in Postverta, seems to have an affinity for void sprites and is usually found close to them. This 'Ember Waste Node,' as it is being called, bears a superficial resemblance to void sprites but is clearly a different species. The Node demonstrates an ability to manipulate energy fields to create shield-like structures around itself. Most remarkably, it has been seen appearing and disappearing with an energy signature reminiscent of jump drives."
+	description "Although the Node's cloaking power is believed to be connected to its other energy manipulation abilities, the exact method is unknown."
 
 
 
