@@ -3047,7 +3047,6 @@ mission "Bounty Hunting (Marauder X)"
 
 mission "Hunted Warning"
 	invisible
-	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3090,6 +3089,7 @@ mission "Hunted Warning"
 mission "Hunted"
 	invisible
 	landing
+	repeat
 	deadline 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3102,6 +3102,7 @@ mission "Hunted"
 		or
 			not "chosen sides"
 			has "main plot completed"
+	# For weaker players, killing a single one of the attacking NPCs and then landing is sufficient to "complete" the mission.
 	npc save
 		to despawn
 			or
@@ -3152,6 +3153,7 @@ mission "Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
+	# For stronger players, all attacking NPCs must be killed before the mission will be completed.
 	npc kill
 		to despawn
 			"armament deterrence" < 32
