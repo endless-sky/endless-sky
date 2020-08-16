@@ -276,8 +276,6 @@ phrase "unknown entity"
 		"Unrecognized"
 		"Exotic"
 		"Unidentified"
-		"Unnamed"
-		"Nameless"
 		"Unresolved"
 	word
 		" "
