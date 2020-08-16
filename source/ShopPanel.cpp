@@ -349,6 +349,7 @@ void ShopPanel::DrawDetailsSidebar()
 
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = min(1.f, (INFO_SIDE_WIDTH - 20.f) / shipSprite->Width());
+		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 
 		Point itemPoint(point.X(), point.Y());
 		Point center(panelCenter, itemPoint.Y() + shipSprite->Height() / 2);
@@ -356,7 +357,7 @@ void ShopPanel::DrawDetailsSidebar()
 		Point outfPoint(attrPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
 		Point descPoint(outfPoint.X(), outfPoint.Y() + shipInfo.OutfitsHeight());
 
-		SpriteShader::Draw(shipSprite, center, spriteScale);
+		SpriteShader::Draw(shipSprite, center, spriteScale, swizzle);
 
 		shipInfo.DrawAttributes(attrPoint);
 		shipInfo.DrawOutfits(outfPoint);
