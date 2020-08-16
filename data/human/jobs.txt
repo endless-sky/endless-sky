@@ -3096,7 +3096,7 @@ mission "Hunted"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103
-		"armament detterence" >= 2
+		"armament deterrence" >= 2
 		random < 3
 		not "Hunted: active"
 		or
@@ -3106,7 +3106,7 @@ mission "Hunted"
 		to despawn
 			or
 				"armament deterrence" < 2
-				"armament deterrance" >= 3
+				"armament deterrence" >= 3
 		government "Bounty Hunter"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
@@ -3116,7 +3116,7 @@ mission "Hunted"
 		to despawn
 			or
 				"armament deterrence" < 3
-				"armament deterrance" >= 4
+				"armament deterrence" >= 4
 		government "Bounty Hunter"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
@@ -3126,7 +3126,7 @@ mission "Hunted"
 		to despawn
 			or
 				"armament deterrence" < 4
-				"armament deterrance" >= 8
+				"armament deterrence" >= 8
 		government "Bounty Hunter"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
@@ -3136,7 +3136,7 @@ mission "Hunted"
 		to despawn
 			or
 				"armament deterrence" < 8
-				"armament deterrance" >= 16
+				"armament deterrence" >= 16
 		government "Bounty Hunter"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
