@@ -43,6 +43,7 @@ public:
 	
 protected:
 	void DrawSidebar();
+	void DrawSidebar2();
 	void DrawButtons();
 	void DrawMain();
 	
@@ -55,7 +56,6 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
-	virtual int DrawDetails(const Point &center) = 0;
 	virtual bool CanBuy() const = 0;
 	virtual void Buy(bool fromCargo = false) = 0;
 	virtual void FailBuy() const = 0;
@@ -97,7 +97,9 @@ protected:
 	
 	
 protected:
-	static const int SIDE_WIDTH = 250;
+	static const int SHIP_SIDE_WIDTH = 250;
+	static const int INFO_SIDE_WIDTH = 300;
+	static const int SIDE_WIDTH = SHIP_SIDE_WIDTH + INFO_SIDE_WIDTH;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
@@ -118,9 +120,13 @@ protected:
 	
 	double mainScroll = 0.;
 	double sideScroll = 0.;
+	double side2Scroll = 0.;
 	double maxMainScroll = 0.;
 	double maxSideScroll = 0.;
-	bool dragMain = true;
+	double maxSide2Scroll = 0.;
+//	bool dragMain = true;
+	bool hoverInfo = false;
+	bool hoverShip = false;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;

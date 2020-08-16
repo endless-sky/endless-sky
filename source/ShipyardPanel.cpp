@@ -136,20 +136,6 @@ int ShipyardPanel::DetailWidth() const
 
 
 
-int ShipyardPanel::DrawDetails(const Point &center)
-{
-	shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
-	Point offset(shipInfo.PanelWidth(), 0.);
-	
-	shipInfo.DrawDescription(center - offset * 1.5);
-	shipInfo.DrawAttributes(center - offset * .5);
-	shipInfo.DrawOutfits(center + offset * .5);
-	
-	return shipInfo.MaximumHeight();
-}
-
-
-
 bool ShipyardPanel::CanBuy() const
 {
 	if(!selectedShip)
