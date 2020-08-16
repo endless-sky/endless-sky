@@ -42,8 +42,8 @@ public:
 	virtual void Draw() override;
 	
 protected:
-	void DrawSidebar();
-	void DrawSidebar2();
+	void DrawShipsSidebar();
+	void DrawDetailsSidebar();
 	void DrawButtons();
 	void DrawMain();
 	

@@ -105,8 +105,8 @@ void ShopPanel::Draw()
 	zones.clear();
 	categoryZones.clear();
 	
-	DrawSidebar();
-	DrawSidebar2();
+	DrawShipsSidebar();
+	DrawDetailsSidebar();
 	DrawButtons();
 	DrawMain();
 	DrawKey();
@@ -165,8 +165,7 @@ void ShopPanel::Draw()
 
 
 
-
-void ShopPanel::DrawSidebar()
+void ShopPanel::DrawShipsSidebar()
 {
 	const Font &font = FontSet::Get(14);
 	const Color &medium = *GameData::Colors().Get("medium");
@@ -294,22 +293,14 @@ void ShopPanel::DrawSidebar()
 
 
 
-
-void ShopPanel::DrawSidebar2()
+void ShopPanel::DrawDetailsSidebar()
 {
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	sideDetailHeight = 0;
 
-	// Fill in the background.
-	/*
-	FillShader::Fill(
-		Point(Screen::Right() - SIDE_WIDTH, 0.),
-		Point(1, Screen::Height()),
-		*GameData::Colors().Get("shop side panel background"));
-		*/
-
-	// Draw this string, centered in the side panel:
+	// Draw this string representing the selection, centered in the details side panel,
+	// It will either be the outfit name or the ship model.
 	string selectedItem = "Nothing Selected";
 	if (selectedOutfit) {
 		selectedItem = selectedOutfit->Name();
@@ -342,7 +333,7 @@ void ShopPanel::DrawSidebar2()
 
 		Point attrPoint(itemPoint.X(), itemPoint.Y() + thumbnail->Height());
 		Point reqsPoint(attrPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
-		Point descPoint(point.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight()); // TODO: Make this be in a certain area near the bottom with a scroll bar
+		Point descPoint(point.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
 
 		SpriteShader::Draw(thumbnail, center);
 
@@ -353,15 +344,15 @@ void ShopPanel::DrawSidebar2()
 	} else if (selectedShip) {
 		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 
-		const Sprite *thumbnail = selectedShip->Thumbnail();
+		const Sprite *shipSprite = selectedShip->GetSprite();
 
 		Point itemPoint(point.X(), point.Y());
-		Point center(panelCenter, itemPoint.Y() + thumbnail->Height() / 2);
-		Point attrPoint(itemPoint.X(), itemPoint.Y() + thumbnail->Height());
+		Point center(panelCenter, itemPoint.Y() + shipSprite->Height() / 2);
+		Point attrPoint(itemPoint.X(), itemPoint.Y() + shipSprite->Height());
 		Point outfPoint(attrPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
 		Point descPoint(outfPoint.X(), outfPoint.Y() + shipInfo.OutfitsHeight());
 
-		SpriteShader::Draw(thumbnail, center);
+		SpriteShader::Draw(shipSprite, center);
 
 		shipInfo.DrawAttributes(attrPoint);
 		shipInfo.DrawOutfits(outfPoint);
@@ -376,6 +367,7 @@ void ShopPanel::DrawSidebar2()
 	PointerShader::Draw(Point(Screen::Right() - SHIP_SIDE_WIDTH - 10, Screen::Bottom() - 10),
 		Point(0., 1.), 10.f, 10.f, 5.f, Color(side2Scroll < maxSide2Scroll ? .8f : .2f, 0.f));
 }
+
 
 
 void ShopPanel::DrawButtons()
