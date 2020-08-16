@@ -124,7 +124,6 @@ protected:
 	double maxMainScroll = 0.;
 	double maxSideScroll = 0.;
 	double maxSide2Scroll = 0.;
-//	bool dragMain = true;
 	bool hoverInfo = false;
 	bool hoverShip = false;
 	int mainDetailHeight = 0;
