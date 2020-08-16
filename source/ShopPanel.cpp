@@ -352,8 +352,8 @@ void ShopPanel::DrawDetailsSidebar()
 
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = 1.;
-		if (shipSprite->Width() > (INFO_SIDE_WIDTH - 16))
-			spriteScale = (INFO_SIDE_WIDTH - 16) / shipSprite->Width();
+		if (shipSprite->Width() > (INFO_SIDE_WIDTH - 20))
+			spriteScale = (INFO_SIDE_WIDTH - 20) / shipSprite->Width();
 
 		Point itemPoint(point.X(), point.Y());
 		Point center(panelCenter, itemPoint.Y() + shipSprite->Height() / 2);
