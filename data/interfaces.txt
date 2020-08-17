@@ -70,8 +70,10 @@ color "escort hostile" 1. .6 .4 1.
 # Colors used when "status overlays" are enabled, and to show scan progress.
 color "overlay friendly shields" 0. .5 0. .25
 color "overlay friendly hull" .45 .5 0. .25
+color "overlay friendly disabled" .5 0 0 .25
 color "overlay hostile shields" .5 .15 0. .25
 color "overlay hostile hull" .5 .3 0. .25
+color "overlay hostile disabled" .3 .3 0 .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
@@ -560,13 +562,16 @@ interface "news"
 	sprite "ui/news"
 		center -160 -45
 	image "portrait"
-		center -340 -40
+		center 20 -40
 	string "name"
-		from -270 -100
+		from -400 -100
 		align center left
 		color "bright"
+	box "message portrait"
+		from -400 -80
+		to -50 10
 	box "message"
-		from -270 -80
+		from -400 -80
 		to 80 10
 
 
@@ -839,34 +844,35 @@ interface "mission" bottom
 
 
 interface "map buttons" bottom right
-	sprite "ui/dialog cancel"
-		from -450 -50 to -360 0
-	button d "_Done"
-		from -450 -50 to -360 0
-	
 	active if "!is shipyards"
 	sprite "ui/wide button"
-		from -370 -50 to -260 0
+		from -464 -50 to -354 0
 	button s "_Shipyards"
-		from -370 -50 to -260 0
+		from -454 -40 to -364 -10
 	
 	active if "!is outfitters"
 	sprite "ui/wide button"
-		from -270 -50 to -160 0
+		from -364 -50 to -254 0
 	button o "_Outfitters"
-		from -270 -50 to -160 0
+		from -354 -40 to -264 -10
 	
 	active if "!is missions"
 	sprite "ui/dialog cancel"
-		from -170 -50 to -80 0
+		from -264 -50 to -174 0
 	button i "M_issions"
-		from -170 -50 to -80 0
+		from -254 -40 to -184 -10
 	
 	active if "!is ports"
 	sprite "ui/dialog cancel"
-		from -90 -50 to 0 0
+		from -184 -50 to -94 0
 	button p "_Ports"
+		from -174 -40 to -104 -10
+	
+	active
+	sprite "ui/dialog cancel"
 		from -90 -50 to 0 0
+	button d "_Done"
+		from -80 -40 to -10 -10
 	
 	sprite "ui/zoom"
 		from 0 -40 to -90 -90
