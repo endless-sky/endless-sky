@@ -854,6 +854,8 @@ mission "Remnant: Gascraft-Puffin Compatibility"
 
 
 mission "Remnant: Technology Available"
+	name "Remnant: License Training"
+	description "Transport a prefect to <destination> so he can teach about their license."
 	landing
 	invisible
 	destination
@@ -897,20 +899,20 @@ mission "Remnant: Technology Available"
 				accept
 	on enter
 		conversation
-			`"I'm sure you noticed that your 'license' isn't exactly a normal ID card. There's a reason for that, namely that it has a whole bunch of extra circuitry in it, and includes a couple sensors on the surface. I don't understand everything in it, but the security specialists assure me that it is incredibly resistance to being hacked or compromised."`
+			`Once you reach space, the prefect interrupts your normal routine. "I'm sure you noticed that your 'license' isn't exactly a normal ID card. There's a reason for that, namely that it has a whole bunch of extra circuitry in it, and includes a couple sensors on the surface. I don't understand everything in it, but the security specialists assure me that it is incredibly resistance to being hacked or compromised."`
 			choice
 				`	"Okay, sounds good."`
 					goto continue
-				`	"How do you know what licenses look like?"`
-			`	The old man smiles. "While we might not have access to modern licenses, we do have all our old entertainment programs from before the exile. Some of them included details such as what licenses looked like. While things might have changed in the intervening years, licenses are governed by by petty bureaucracy, and those are very resistant to change. So it seemed pretty likely that things have not changed much. And definitely not so much as to resemble ours." He seems amused, but then his smile fades.`
-			`	"Then again, ancestral space never designed their licenses to withstand much. They are incentivized to not be so secure, are they not? Enough money and the right connections, and licenses for anything can be acquired. These" he holds up a Remnant license "not so much." He shakes his head and becomes serious. "Now, your license has a handful of connection pads on the bottom, which can be connected to your ship's IFF. When you are inbound for landing, simply pinch the license while it is connected, and the cube will verify your fingerprints, a few other biometrics to ensure you are indeed living and concious, and then transmit an encrypted code. Our IFF systems will verify the transmitted signal and respond accordingly."`
+				`	"How do you know what regular licenses look like?"`
+			`	The old man smiles. "While we might not have access to modern licenses, we do have all our old entertainment programs from before the exile. Some of them included details such as what licenses looked like. While things might have changed in the intervening years, licenses were historically governed by by petty bureaucracy, and those are very resistant to change. So it seemed very likely that things have not changed much. And definitely not so much as to resemble ours." He seems amused, but then his smile fades.`
+			`	"Then again, ancestral space never designed their licenses to withstand much. They are incentivized to not be so secure, are they not? Enough money and the right connections, and licenses for anything can be acquired. These" he holds up a Remnant license "not so much." He shakes his head and becomes serious. "Now, your license has a handful of connection pads on the bottom, which can be connected to your ship's IFF. When you are inbound for landing, simply tap this code on the license, and the cube will verify the pattern as well as your fingerprints, a few other biometrics to ensure you are indeed living and concious, and then transmit an encrypted code. Our IFF systems will verify the transmitted signal and respond accordingly."`
 			choice
 				`	"That sounds thorough."`
 					goto thorough
 				`	"So why haven't I been shot down yet?"`
 					goto shotdown
 				`	"What is an 'IFF' system?"`
-			`	"You aren't familiar with IFF?" He asks, looking slighly incredulous. "IFF stands for Identify Friend or Foe, and is the general name for the system that identifies your ship to those around it. It is what determines which ships should be highlighted red or orange on your system map, and provides limited movement detail to allied ships so that targetting systems miss you. I do not know about their current practices, but historically the Navy and most other organizations had complex methods of verifying the identify of other ships. So it is not simply a case of having your IFF state that you are a friendly."`
+			`	"You aren't familiar with IFF?" He asks, looking slighly incredulous. "IFF stands for Identify Friend or Foe, and is the general name for the system that identifies your ship to those around it. It is what determines which ships should be highlighted red or orange on your system map, and provides limited movement detail to allied ships so that targetting systems can fire past you. I do not know about their current practices, but historically the Navy and most other organizations had complex methods of verifying the identify of other ships. So it is not simply a case of having your IFF state that you are a friendly."`
 			choice
 				`	"Thanks for the explanation."`
 					goto continue
@@ -918,10 +920,22 @@ mission "Remnant: Technology Available"
 					goto thorough
 				`	"So why haven't I been shot down yet?"`
 			label shotdown
+			`	"Because every system has potential failures and vulnerabilities, we ensure that people are always involved in the decision making process. Our initial scans showed that you were not likely an Alpha, and we were curious as to who you were and what opportunities might come of it. Since then the various monitors of the system have had to manually designate you as 'friendly' every time you made an approach. It worked, for a time. But now it is time to make your acceptance official. While our monitors are effective, it still wastes time to force them to track you and cancel the alerts every time you approach. Since you are trustworthy, better to give you the means to identify yourself so our defences can focus on real threats."`
 				goto continue
 			label thorough
+			`	The prefects nods in agreement. "We take our security very seriously."`
 			label continue
-			
+			`	"Now, before we arrive at <destination>, pick a pattern for yourself. Something short - a second or two at most, and something memorable to you." The prefect turns away from you to install a small device on the side of one of your bridge consoles, and connects a few wires into the panel. "Now, insert your license here, and tap your pattern on the license." He looks away as you follow his directions. "Done? Good. When we approach <destination>, you will have a few options: For a normal approach when everything is nominal, tap your pattern on the license. If there is a threat following you in - an enemy ship or some other kind of danger you want the monitors to watch for, pinch or squeeze the license instead. And if you have a problem onboard, such as having been captured and forced to fly the ship in tap the license in a random pattern. Lastly, if you are having trouble landing due to injury or damage to the ship, just press briefly on the license. If you don't touch the license at all, the monitors will assume that you are either incapacitated or otherwise not in command of your ship. We will still attempt to let you land safely and provide assistance, but will also be standing ready to destroy you and block your approach if we think you are becoming a threat."`
+	on complete
+		conversation
+			`	As you enter the upper atmosphere of <destination>, the prefect gestures toward the small bracket he installed on your console. You insert your license, and tap the pattern you created. He checks something on his commlink and then nods. "Your license and clearance have been accepted, Captain <first>. Carry on with landing as normal."  You proceed with the approach and landing, with the prefect pointing out noteworthy features along the way. He also points out various approach paths, including prefered routes to take if you are being chased. "If you have a hostile threat on your tail, take this landing corridor; which will expose trailing ships to fire from these points. And if you have something sticking tight in your shadow, do a roll at this point or that point. That will expose them to our high-precision batteries."`
+			choice
+				`	"Thank you for the advice."`
+					goto conclusion
+				`	"I'm surprised you are telling me all this."`
+			`	"Oh, do not worry that you know too much. There are far more defences that I have not mentioned, and we are always improving them. Generally, our defences should be invisible to you - as in, they just stay out of your way and are not something you pay attention to."`
+			label conclusion
+			`	"Your approach goes smoothly, and you glide past a number of anti-air batteries that are methodically covering the sky around you. Once the <ship> has settled safely to the ground, the prefect pulls the license from the socket and hands it back to you. "At the risk of sounding like a parody: Keep it secret, keep it safe. May the Embers burn bright for you." And with that, the old prefect walks off your ship.`
 
 
 
