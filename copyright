@@ -1,4 +1,4 @@
-﻿Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -129,6 +129,11 @@ Files: images/outfit/*storage*
 Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
+
+Files: images/ship/peregrine/peregrine*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
 
 Files: images/outfit/city-ship?license*
 Copyright: Jonathan Steck
@@ -280,7 +285,9 @@ Copyright: Zachary Siple
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
  
-Files: images/outfit/tactical?scanner*
+Files:
+ images/outfit/tactical?scanner*
+ images/effect/jump?drive?red*
 Copyright: Zachary Siple
 License: CC-BY-SA-4.0
 
@@ -295,13 +302,20 @@ Files:
  images/ship/hai?grasshopper*
  images/ship/gull*
  images/ship/pelican*
+ images/ship/peregrine/peregrine*
  images/ship/riptide*
+ images/ship/auxiliary*
+ images/ship/dropship*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
  images/thumbnail/gull*
  images/thumbnail/pelican*
+ images/thumbnail/peregrine*
  images/thumbnail/riptide*
+ images/thumbnail/auxiliary*
+ images/thumbnail/dropship*
+ images/outfit/auxiliary?license*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -430,6 +444,7 @@ Files:
  images/land/lava1*
  images/land/lava2*
  images/land/lava6*
+ images/land/loc3*
  images/land/mountain0*
  images/land/mountain1*
  images/land/mountain3*
@@ -505,6 +520,18 @@ Files: sounds/*
 Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
+
+Files:
+ sounds/jump?drive?red.wav
+ sounds/jump?in?red.wav
+ sounds/jump?out?red.wav
+Copyright: Zachary Siple
+License: CC-BY-NC-3.0
+Comment: Derived from:
+ https://freesound.org/people/tim.kahn/sounds/338969/
+ https://freesound.org/people/SoundFX.studio/sounds/456272/
+ https://freesound.org/people/Setuniman/sounds/155860/
+ https://freesound.org/people/Tuben/sounds/161392/
 
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
@@ -667,6 +694,9 @@ Files:
  images/outfit/ka'het?ravager?beam*
  images/outfit/ka'het?shield?restorer*
  images/outfit/ka'het?support?cooling*
+ images/outfit/ka'het?mhd?generator*
+ images/outfit/ka'het?reserve?accumulator*
+ images/outfit/mouthparts*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -675,8 +705,11 @@ Files:
  images/planet/station2b*
  images/planet/station3b*
  images/planet/station3bd*
+ images/planet/station4b*
+ images/planet/station4bd*
  images/projectile/annihilator*
  images/projectile/ravager?beam*
+ images/scene/ringworld?debris*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -697,14 +730,17 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Made in cooperation with Becca Tommaso (tommasobecca03@gmail.com) and derived from works by Michael Zahniser (under the same license) and Maximilian Korber (under the same license)
 
-Files
- images/effect/remnant leak*
- images/effect/remnant leak sparkle*
+Files:
+ images/effect/remnant?leak*
+ images/effect/remnant?leak?sparkle*
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
-Files
+Files:
+ images/_menu/haze-blackbody+*
+ images/_menu/haze-full+*
+ images/_menu/haze-yellow+* 
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rouge*
@@ -712,13 +748,52 @@ Files
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 
-Files
+Files:
  images/planet/browndwarf-t-rouge*
  images/planet/browndwarf-t*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from works by NASA (public domain)
- 
+
+Files:
+ images/outfit/finisher?storage*
+Copyright: Arachi-Lover
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/effect/dragonflame*
+ images/effect/fdrive*
+ images/effect/pwave?shot*
+ images/effect/sheragiam*
+ images/effect/pwavehp*
+ images/outfit/dragonflame*
+ images/outfit/pwave?turret*
+ images/outfit/embattery*
+ images/outfit/sheragicooling*
+ images/outfit/fusiondrive*
+ images/projectile/pwavecannon*
+ images/scene/emeraldswordderelict*
+ images/ship/emeraldsword*
+ images/thumbnail/emeraldsword*
+Copyright: Fernando S. Sáez (crim@live.no)
+License: CC-BY-SA-4.0
+
+Files:
+ images/effect/pwave?impact*
+Copyright: Fernando S. Sáez (crim@live.no)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: sounds/dragonflame*
+Copyright: TheHadnot
+License: public-domain
+Comment: Taken from https://freesound.org/people/TheHadnot/sounds/160880/
+
+Files: sounds/pwave*
+Copyright: aust_paul
+License: public-domain
+Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

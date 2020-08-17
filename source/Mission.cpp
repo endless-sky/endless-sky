@@ -353,8 +353,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		for(const Planet *planet : visitedStopovers)
 			out.Write("stopover", planet->Name(), "visited");
 		
+		// Save all NPCs, except those that have despawned. This is so that despawned
+		// NPCs will not reappear should the player quit the game and return, and the
+		// NPCs no lonager pass the despawn conditions.
 		for(const NPC &npc : npcs)
-			npc.Save(out);
+			if(!npc.PassedDespawn())
+				npc.Save(out);
 		
 		// Save all the actions, because this might be an "available mission" that
 		// has not been received yet but must still be included in the saved game.
@@ -690,6 +694,13 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 
 
 
+bool Mission::IsFailed() const
+{
+	return hasFailed;
+}
+
+
+
 // Mark a mission failed (e.g. due to a "fail" action in another mission).
 void Mission::Fail()
 {
@@ -804,6 +815,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": active"];
+		// Any potential on offer conversation has been finished, so update
+		// the active NPCs for the first time.
+		UpdateNPCs(player);
 	}
 	else if(trigger == DECLINE)
 	{
@@ -844,6 +858,15 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 const list<NPC> &Mission::NPCs() const
 {
 	return npcs;
+}
+
+
+
+// Update which NPCs are active based on their spawn and despawn conditions.
+void Mission::UpdateNPCs(const PlayerInfo &player)
+{
+	for(auto &npc : npcs)
+		npc.UpdateSpawning(player);
 }
 
 
@@ -907,6 +930,10 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		
 		// Perform an "on enter" action for this system, if possible.
 		Enter(system, player, ui);
+		
+		// Update any potential NPCs for this mission, as an "on enter" action may have
+		// changed the player's conditions.
+		UpdateNPCs(player);
 	}
 	
 	for(NPC &npc : npcs)

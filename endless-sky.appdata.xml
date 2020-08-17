@@ -38,7 +38,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.12" date="2020-04-22">
+    <release version="0.9.12" date="2020-05-01">
       <description>
         <p>This is a stable release focusing on bug fixes and polishing the recent v0.9.11 release.</p>
         <p>Changes include:</p>
