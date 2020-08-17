@@ -1665,10 +1665,10 @@ mission "Coalition Games"
 			`	After they finish, the monitor switches to a black screen, which after a moment displays live footage of one of the athletes, a Kimek. A Saryd is next, then another Kimek, followed by an Arach. Tumub's and Ulmodi's faces are shown next, and Pairri makes a sound that you think sounds like an excited scream - or, at least, a Kimek version of such a thing.`
 			`	"Selected, my friends have been!" She says. "Made it, they have!"`
 			`	A few more words are said after the crowd has settled, and the six that were selected are invited into the Punishers. Pairri explains they are being considered for the rank of Heliarch and will go to the Ring of Friendship to continue their journey.`
-			`	The ring platforms head back to the building, and you board the train with Pairri to head back to one of the previous areans, and from there to where your ship is docked at. During the train rides she used some device to call friends and family members, who congratulate her on getting so far. She still can't seem to contact Ulmodi or Tumub, though.`
+			`	The ring platforms head back to the building, and you board the train with Pairri to head back to one of the previous arenas, and from there to where your ship is docked at. During the train rides she used some device to call friends and family members, who congratulate her on getting so far. She can't seem to contact Ulmodi or Tumub, though.`
 			`	"Busy with the Heliarchs they must be." She guesses. "That there with them I am not, a shame it is."`
 			choice
-				`	"So are they themselves Heliarchs now?"`
+				`	"So are they Heliarchs now?"`
 				`	"You almost won this time, so I'm sure you'll make it next time."`
 					goto nexttime
 			`	"Not yet. A few more short trials they must pass, before elevated to that rank they are." She explains. "Similar to the standard process, it is. Only, for those selected during the games, much faster said process is."`
@@ -1676,5 +1676,5 @@ mission "Coalition Games"
 			label nexttime
 			`	"Thanks Captain. Even if next year watching my matches you are not, do my best I promise I will. Better than this last time I will do."`
 			label ending
-			`	A dozen Kimek suddenly come running towards you two, Pairri telling you it's her family. She tries to introduce you to all of them, but they seem much more interested in telling her how proud they were to see her compete. After they calm down a bit, you say goodbye to Pairri, wishing her good luck for next year's games, and head back to your ship.`
+			`	A dozen Kimek suddenly come running towards you two, and Pairri tells you it's her family. She tries to introduce you to all of them, but they seem much more interested in telling her how proud they were to see her compete than they are in meeting you. After they calm down a bit, you say goodbye to Pairri, wish her good luck for next year's games, and head back to your ship.`
 				decline
