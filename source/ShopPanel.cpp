@@ -608,7 +608,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_LEFT)
 	{
-		if(!hoverShip)
+		if(activePane != ShopPane::Sidebar)
 			MainLeft();
 		else
 			SideSelect(-1);
@@ -616,7 +616,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_RIGHT)
 	{
-		if(!hoverShip)
+		if(activePane != ShopPane::Sidebar)
 			MainRight();
 		else
 			SideSelect(1);
@@ -624,7 +624,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_UP)
 	{
-		if(!hoverShip)
+		if(activePane != ShopPane::Sidebar)
 			MainUp();
 		else
 			SideSelect(-4);
@@ -632,7 +632,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_DOWN)
 	{
-		if(!hoverShip)
+		if(activePane != ShopPane::Sidebar)
 			MainDown();
 		else
 			SideSelect(4);
@@ -800,8 +800,11 @@ bool ShopPanel::Hover(int x, int y)
 		outfitInfo.Hover(point);
 	}
 	
-	hoverShip = (x > Screen::Right() - SHIP_SIDE_WIDTH);
-	hoverInfo = (hoverShip ? false : (x > Screen::Right() - SIDE_WIDTH));
+	activePane = ShopPane::Main;
+	if(x > Screen::Right() - SHIP_SIDE_WIDTH)
+		activePane = ShopPane::Sidebar;
+	else if(x > Screen::Right() - SIDE_WIDTH)
+		activePane = ShopPane::Info;
 	return true;
 }
 
@@ -920,12 +923,12 @@ bool ShopPanel::DoScroll(double dy)
 {
 	double *scroll = &mainScroll;
 	double maximum = maxMainScroll;
-	if(hoverInfo)
+	if(activePane == ShopPane::Info)
 	{
 		scroll = &sideDetailScroll;
 		maximum = maxSideDetailScroll;
 	}
-	else if(hoverShip)
+	else if(activePane == ShopPane::Sidebar)
 	{
 
 		scroll = &sideShipScroll;

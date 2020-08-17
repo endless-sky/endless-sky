@@ -30,7 +30,11 @@ class Planet;
 class PlayerInfo;
 class Ship;
 
-
+enum class ShopPane : int {
+  Main,
+  Sidebar,
+  Info
+};
 
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
@@ -125,8 +129,7 @@ protected:
 	double maxMainScroll = 0.;
 	double maxSideShipScroll = 0.;
 	double maxSideDetailScroll = 0.;
-	bool hoverInfo = false;
-	bool hoverShip = false;
+	ShopPane activePane = ShopPane::Main;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
