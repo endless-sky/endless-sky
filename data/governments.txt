@@ -79,6 +79,7 @@ government "Drak"
 	"fine" 0
 	"attitude toward"
 		"Indigenous Lifeform" 1
+		"Ember Waste" 1
 
 government "Escort"
 	swizzle 5
@@ -504,6 +505,19 @@ government "Test Dummy"
 
 government "Uninhabited"
 	color .4 .4 .4
+
+government "Ember Waste"
+	"display name" "???"
+	"player reputation" 1
+	"bribe" 0
+	"fine" 0
+	language "Ember Waste"
+	"attitude toward"
+		"Indigenous Lifeform" 1
+		"Drak" 1
+		" Drak " .01
+		"Korath" -.01
+		"Remnant" .01
 
 government "Wanderer"
 	swizzle 2
