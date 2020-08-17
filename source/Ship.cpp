@@ -1196,8 +1196,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			Point target;
 			// Except when you arrive at an extra distance from the target,
 			// in that case always use the system-center as target.
-			double arrivalDistance = currentSystem->ArrivalDistance();
-			if(arrivalDistance == 0)
+			double extraArrivalDistance = currentSystem->ExtraArrivalDistance();
+			if(extraArrivalDistance == 0)
 			{
 				if(targetPlanet)
 					target = targetPlanet->Position();
@@ -1221,7 +1221,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Have all ships exit hyperspace at the same distance so that
 			// your escorts always stay with you.
 			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
-			distance += arrivalDistance;
+			distance += extraArrivalDistance;
 			position = (target - distance * angle.Unit());
 			position += hyperspaceOffset;
 			// Make sure your velocity is in exactly the direction you are

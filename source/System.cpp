@@ -269,7 +269,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "object")
 			LoadObject(child, planets);
 		else if(key == "arrival")
-			arrivalDistance = child.Value(valueIndex);
+			extraArrivalDistance = child.Value(valueIndex);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -436,9 +436,9 @@ const set<const System *> &System::Links() const
 
 
 // Additional travel distance to target for ships entering through hyperspace.
-double System::ArrivalDistance() const
+double System::ExtraArrivalDistance() const
 {
-	return arrivalDistance;
+	return extraArrivalDistance;
 }
 
 
