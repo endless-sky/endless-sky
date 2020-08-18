@@ -95,6 +95,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 mission "Ringworld Debris"
 	invisible
 	landing
+	waypoint "Queri"
 	on enter "Queri"
 		set "ringworld debris"
 		conversation
