@@ -3097,8 +3097,15 @@ mission "Hunted"
 	to offer
 		"combat rating" > 8103
 		"armament deterrence" >= 2
-		random < 3
-		not "Hunted: active"
+		"ship scale" = "ship: Light Warship" / 4 + "ship: Medium Warship" / 2 + "ship: Heavy Warship"
+		or
+			and
+				not "Hunted: active"
+				"ship scale" < 8
+				random < 2 + "ship scale"
+			and
+				"ship scale" >= 8
+				random < 10
 		or
 			not "chosen sides"
 			has "main plot completed"
