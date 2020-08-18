@@ -103,10 +103,9 @@ mission "Ringworld Debris"
 			scene "scene/ringworld debris"
 			`	In one particular corner you see that there is a small, barely recognizable tube, badly damaged but with a few intact wires creeping out. After tinkering a bit with the wires you manage to connect the debris to your ship's secondary power systems. It barely uses any energy at all, but you can feel the air around it starting to get slightly colder.`
 			`	You unplug it and store the debris in a separate part of your ship. Maybe some alien species could tell you about it, if you were to bring it to them.`
+		fail
 	to complete
 		never
-	to fail
-		has "ringworld debris"
 
 mission "Ringworld Debris: Remnant"
 	invisible
