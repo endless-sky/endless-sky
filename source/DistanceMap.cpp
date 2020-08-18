@@ -256,7 +256,7 @@ void DistanceMap::Init(const Ship *ship)
 bool DistanceMap::Propagate(Edge edge, bool useJump)
 {
 	edge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
-	for(const System *link : (useJump ? edge.next->Neighbors(jumpRange) : edge.next->Links()))
+	for(const System *link : (useJump ? edge.next->JumpNeighbors(jumpRange) : edge.next->Links()))
 	{
 		// Find out whether we already have a better path to this system, and
 		// check whether this link can be traveled. If this route is being

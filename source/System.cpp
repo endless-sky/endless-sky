@@ -437,7 +437,7 @@ const set<const System *> &System::Links() const
 // jump distance, whether or not there is a direct hyperspace link to them.
 // If this system has its own jump range, then it will always return the
 // systems within that jump range instead of the jump range given.
-const set<const System *> &System::Neighbors(double neighborDistance) const
+const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 {
 	static const set<const System *> EMPTY;
 	// If this system has a static jump range, then the jump range of the

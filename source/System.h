@@ -99,7 +99,7 @@ public:
 	// jump distance, whether or not there is a direct hyperspace link to them.
 	// If this system has its own jump range, then it will always return the
 	// systems within that jump range instead of the jump range given.
-	const std::set<const System *> &Neighbors(double neighborDistance = 100.) const;
+	const std::set<const System *> &JumpNeighbors(double neighborDistance = 100.) const;
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
 	const std::set<const System *> &VisibleNeighbors() const;
