@@ -2285,8 +2285,12 @@ mission "Remnant: Cognizance 1"
 		government "Korath"
 		system "Nenia"
 		personality entering forbearing timid uninterested surveillance staying
-		ship "Korath Raider" "Korath Raider (Ember)"
+		fleet
+			names "korath"
 			cargo "void sprite" 5 20
+			variant
+				"Korath Raider (Ember)"
+				"Korath Chaser" 2
 	on enter "Nenia"
 		dialog
 			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and disappearing into the clouds whenever your ship moves towards them.`
@@ -2345,8 +2349,12 @@ mission "Remnant: Cognizance 2"
 		government "Korath"
 		system "Nenia"
 		personality forbearing timid uninterested surveillance staying
-		ship "Korath Raider" "Korath Raider (Ember)"
+		fleet
+			names "korath"
 			cargo "void sprite" 5 20
+			variant
+				"Korath Raider (Ember)"
+				"Korath Chaser" 2
 		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
 	on complete
 		event "korath hunting"
@@ -2366,9 +2374,11 @@ event "korath hunting"
 mission "Remnant: Cognizance 3"
 	name "Go to <planet> to meet Prefect Chilia."
 	description "Prefect Chilia left a message with Plume asking you to meet him on <destination> immediately."
+	landing
 	source "Aventine"
 	to offer
 		has "Remnant: Cognizance 2: done"
+		not "Remnant: Cognizance 4: offered"
 	destination "Caelian"
 
 
@@ -2381,7 +2391,7 @@ mission "Remnant: Cognizance 4"
 	waypoint
 		system "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 3: done"
+		has "Remnant: Cognizance 2: done"
 	on offer
 		"remnant chilia" ++
 		conversation
@@ -2412,6 +2422,7 @@ mission "Remnant: Cognizance 4"
 			variant
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 4
+				"Korath Chaser" 8
 	on enter "Aescolanus"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
 	on complete
@@ -2460,6 +2471,7 @@ mission "Remnant: Cognizance 5"
 					cargo "void sprite" 10 40
 				"Korath Raider (Ember)" 4
 					cargo "void sprite" 10 40
+				"Korath Chaser" 8
 		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
 		government "Remnant"
@@ -2538,6 +2550,7 @@ mission "Remnant: Cognizance 7"
 			names "korath"
 			variant
 				"Korath Raider (Ember)" 2
+				"Korath Chaser" 4
 	on complete
 		conversation
 			`Descending into the clouds of Nasqueron is becoming almost familiar to you. Wispy layers of gas give way to more voluminous formations and the occasional turbulent storm. Beside you, Plume is eagerly peering out the window, and you remind yourself that this may well be his first time actually seeing void sprites on their world.`
@@ -2567,6 +2580,7 @@ mission "Remnant: Cognizance 8"
 			names "korath"
 			variant
 				"Korath Raider (Ember)" 3
+				"Korath Chaser" 6
 	on complete
 		conversation
 			`As you approach Aventine, Plume gestures toward the pad closest to his lab. "You might as well set down there. If the samples in my lab check out, I will have another mission for you right away. You will need to keep your high-pressure ship active for this one. Stop by the lab in an hour or two and we will be ready to start loading."`
@@ -2693,6 +2707,7 @@ mission "Remnant: Cognizance 13"
 	destination "Viminal"
 	to offer
 		has "Remnant: Cognizance 12: done"
+		not "Remnant: Cognizance 14: offered"
 
 	
 
@@ -2747,7 +2762,7 @@ mission "Remnant: Cognizance 14"
 	stopover
 		planet "Ssil Vida"
 	to offer
-		has "Remnant: Cognizance 13: done"
+		has "Remnant: Cognizance 12: done"
 	on offer
 		conversation
 			`You land by the starport and are immediately accosted by a Remnant who informs you that Prefect Chilia is on his personal warship and escorts you to a nearby Starling. Inside you find Chilia and several other Remnant clustered around a holographic display and some display panels. "Ah, Captain. Join us, please." Chilia gestures for you to join them around the displays. As you approach, you note that the holographic display shows the Ember Waste, although there are a few details that do not match the star maps you're familiar with.`
@@ -2890,6 +2905,7 @@ mission "Remnant: Cognizance 18"
 			variant
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 3
+				"Korath Chaser" 6
 	on enter "Nenia"
 		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the Pelicans immediately set to work collecting void sprites. As the last one closes its hold, the confirmation codes flash across your tactical screen. "Good to go."`
 	on enter "Pantica"
