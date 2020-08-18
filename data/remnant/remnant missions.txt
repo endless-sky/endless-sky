@@ -2529,7 +2529,7 @@ mission "Remnant: Crystal Research 5"
 	on offer
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
-			`	"Ah, <first>, thank you for retrieving all these keystones." He sweeps some kind of a device over the crates, then opens one. He pokes at the contents, and pulls out a brochure with a picture of a quantum keystone and a pair of respectable looking Hai. "What's this?" He asks curiously. "Because I bought a keystone, they think I might need more? Our histories told us that humanity thrived on the pursuit of wealth, it just seems inefficient to me."`
+			`	"Ah, <first>, thank you for retrieving all these keystones." He sweeps some kind of a device over the crates, then opens one. He pokes at the contents, and pulls out a brochure with a picture of a quantum keystone and a pair of respectable looking Hai. "What's this?" He asks curiously. "Because I bought a keystone, they think I might need more? That seems like a decidedly inefficient way of promoting their product."`
 			choice
 				`	"I'm not a fan of it either."`
 				`	"Those 'inefficient' capitalists did provide a keystone at one twentieth the cost you do."`
