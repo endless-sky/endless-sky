@@ -440,8 +440,6 @@ const set<const System *> &System::Links() const
 const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 {
 	static const set<const System *> EMPTY;
-	// If this system has a static jump range, then the jump range of the
-	// ship does not matter.
 	const auto it = neighbors.find(jumpRange ? jumpRange : neighborDistance);
 	return it == neighbors.end() ? EMPTY : it->second;
 }
