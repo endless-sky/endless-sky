@@ -95,10 +95,14 @@ public:
 	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::set<const System *> &Links() const;
-	// Get a list of systems you can "see" from here, whether or not there is a
-	// direct hyperspace link to them. This is also the set of systems that you
-	// can travel to from here via the jump drive.
+	// Get a list of systems that can be jumped to from here with the given
+	// jump distance, whether or not there is a direct hyperspace link to them.
+	// If this system has its own jump range, then it will always return the
+	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &Neighbors(double neighborDistance = 100.) const;
+	// Get a list of systems you can "see" from here, whether or not there is a
+	// direct hyperspace link to them.
+	const std::set<const System *> &VisibleNeighbors() const;
 	
 	// Move the stellar objects to their positions on the given date.
 	void SetDate(const Date &date);

@@ -329,11 +329,17 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	neighbors.clear();
 	// Neighbors are cached for each system for the purpose of quicker
 	// pathfinding. If this system has a static jump range then that
-	// is the only range that we need to create neighbors for, but
+	// is the only range that we need to create jump neighbors for, but
 	// otherwise we must create a set of neighbors for every potential
 	// jump range that can be encountered.
 	if(jumpRange)
+	{
 		UpdateNeighbors(systems, jumpRange);
+		// Systems with a static jump range must also create a set for
+		// the DEFAULT_NEIGHBOR_DISTANCE to be returned for those systems
+		// which are visible from it.
+		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE);
+	}
 	else
 		for(const double distance : neighborDistances)
 			UpdateNeighbors(systems, distance);
@@ -427,15 +433,27 @@ const set<const System *> &System::Links() const
 
 
 
-// Get a list of systems you can "see" from here, whether or not there is a
-// direct hyperspace link to them. This is also the set of systems that you
-// can travel to from here via the jump drive.
+// Get a list of systems that can be jumped to from here with the given
+// jump distance, whether or not there is a direct hyperspace link to them.
+// If this system has its own jump range, then it will always return the
+// systems within that jump range instead of the jump range given.
 const set<const System *> &System::Neighbors(double neighborDistance) const
 {
 	static const set<const System *> EMPTY;
 	// If this system has a static jump range, then the jump range of the
 	// ship does not matter.
 	const auto it = neighbors.find(jumpRange ? jumpRange : neighborDistance);
+	return it == neighbors.end() ? EMPTY : it->second;
+}
+
+
+
+// Get a list of systems you can "see" from here, whether or not there is a
+// direct hyperspace link to them.
+const set<const System *> &System::VisibleNeighbors() const
+{
+	static const set<const System *> EMPTY;
+	const auto it = neighbors.find(DEFAULT_NEIGHBOR_DISTANCE);
 	return it == neighbors.end() ? EMPTY : it->second;
 }
 

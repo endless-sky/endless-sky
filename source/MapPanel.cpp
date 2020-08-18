@@ -148,13 +148,17 @@ void MapPanel::Draw()
 	
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1f, 0.f);
-	// The range of the system takes priority over the range of the player's flagship.
+	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+	// Draw the jump range circle around your current location if it is different than the
+	// visible range. The range of the system takes priority over the range of the player's
+	// flagship.
 	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
 	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
-	// If neither the system or the player have a jump range, use the default neighbor distance.
 	double ringDistance = systemRange ? systemRange : (playerRange ? playerRange : System::DEFAULT_NEIGHBOR_DISTANCE);
-	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
-		(ringDistance + .5) * Zoom(), (ringDistance - .5) * Zoom(), dimColor);
+	if(ringDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
+		RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+			(ringDistance + .5) * Zoom(), (ringDistance - .5) * Zoom(), dimColor);
 	
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
