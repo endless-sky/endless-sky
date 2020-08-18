@@ -1567,7 +1567,7 @@ mission "Remnant: Salvage 4"
 		has "Remnant: Salvage 3: done"
 	on offer
 		conversation
-			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the video screen, very few Remnant ships were actually lost. Furthermore, of the ships that were lost, the escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew are gathered around tables covered in food intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
+			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the video screen, very few Remnant ships were actually lost. Furthermore, of the ships that were lost, their escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew members are gathered around tables covered in food, intermingled with the ground teams that keep their ships operational. Based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
 			`	Taely sits over at a corner booth with the prefect who met you at the dock and a couple other mechanics, and she waves you over. "Captain <last>! So, how do you like fighting with our fleet?" asks one of the mechanics.`
 			choice
 				`	"It seems odd to have a planetary defense fleet plundering."`
@@ -2317,7 +2317,7 @@ mission "Remnant: Crystal Research 1"
 			`	Aeolus smiles mysteriously at you. "Let's just say that you are not the only resourceful person among the Remnant. We will share more with you once you have demonstrated your loyalty."`
 				accept
 			label greed
-			`	"While we don't know what is happening on the surface of planets in Ancestral space, we do pick up a fair bit of transmissions. Between those and our historical records, it is clear to us that 'making money' is the main motivation for why those in ancestral space do anything. Whether it is ferrying cargo, building a structure, or protecting someone; everything we see says that humanity in ancestral space requires credits for everything it does. And then beyond that, the larger the amount of credits, the more enthusiastic they are to do it." Aeolus shakes his head, looking visibly perturbed. "This is what we see. Tell me, are we wrong? A quote we have seen more than a few times says 'Money makes the world go round,' and everything we have seen supports that attitude."`
+			`	"While we don't know what is happening on the surface of planets in Ancestral space, we do pick up a fair number of transmissions. Between those and our historical records, it is clear to us that 'making money' is the main motivation for why those in ancestral space do anything. Whether it is ferrying cargo, building a structure, or protecting someone; everything we see says that humanity in ancestral space requires credits for everything it does. And then beyond that, the larger the amount of credits, the more enthusiastic they are to do it." Aeolus shakes his head, looking visibly perturbed. "This is what we see. Tell me, are we wrong? A quote we have seen more than a few times says 'Money makes the world go round,' and everything we have seen supports that attitude."`
 			choice
 				`	"No, you aren't wrong. Money is the reason people work."`
 					goto greedconfirmation
@@ -2381,7 +2381,7 @@ mission "Remnant: Crystal Research 3"
 				accept
 	on stopover
 		dialog
-			`On each stop you quickly locate and load the shipment of crystals. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
+			`You quickly locate and load the shipment of crystals. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 	on complete
 		payment 250000
 		dialog
@@ -2493,8 +2493,8 @@ mission "Remnant: Crystal Research 4"
 	on complete
 		payment 2000000
 		conversation
-			`As you descend through the clouds to Viminal, you get the feeling someone is watching you, but your sensors show nothing more than a smattering of Gulls and a patrol squad in the distance. Looking down, you spot an extra battery of anti-air artillery next to the main entrance to the spaceport. You note the artillery tracking you and quickly tap in the recognition code to the IFF system. Within seconds, the large guns are swinging back to covering the initial approach.`
-			`	Passing through the cavernous opening into the great spaceport dome, there is a shimmer in the air next to you and a Starling fades into view, settling onto the platform beside you. The pilot signs a quick, "Greetings, anticipating talking with you," before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
+			`As you descend through the clouds to Viminal, you get the feeling someone is watching you, but your sensors show nothing more than a smattering of Gulls and a patrol squad in the distance. Looking down, you spot an extra battery of anti-air artillery next to the main entrance to the spaceport. You note the weapons tracking you and quickly tap your recognition code into the IFF system. Within seconds, the large guns are swinging back to cover the initial approach.`
+			`	Passing through a cavernous opening into the great spaceport dome, there is a shimmer in the air next to you as a Starling fades into view, settling onto the adjacent platform. The pilot signs a quick, "Greetings, anticipating talking with you," before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
 			`	As you finish your own shutdown routine, your commlink informs you that your account has been updated with <payment>.`
 
 
@@ -2537,9 +2537,9 @@ mission "Remnant: Crystal Research 5"
 			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me." Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
 				goto work
 			label capitalists
-			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then they do have a significant production and processing cost advantage." He takes on a defensive tone. "But there is an entire supply chain at work. For all we know, most of these crystals could be simply recycled from older ships. And that is something we want to figure out." He brightens again "That being said, we already have the first steps set out."`
+			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these crystals could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
 			label work
-			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular key stone. My ship has been outfitted with a keystone built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for a quantum key stone made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
+			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular keystone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for one made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
 				`	"Wait, you are a pilot?"`
 				`	"Okay."`
@@ -2579,7 +2579,7 @@ mission "Remnant: Crystal Research 6"
 	on offer
 		conversation
 			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a key stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement key stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
-			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly steps clear of the wake as the two ships head back out of the dome.`
+			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
 				launch
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
@@ -2589,7 +2589,7 @@ mission "Remnant: Crystal Research 6"
 			`While in transit, you took the opportunity to examine the preliminary results of the scans: there are a few differences between the two crystals, but both appear to have functioned similarly. Upon landing on Viminal, Aeolus comes over to collect a copy of the data for the researchers.`
 			`	"Thanks for your help, Captain <first>. This information may be valuable in understanding how the wormholes work." He pauses, then continues thoughtfully. "Perhaps more importantly, it may help us understand how the wormholes of the Ember Waste are different from the wormholes elsewhere that require no such aid."`
 			`	He looks down at the data crystal. "I have one more task to ask of you. Meet me in the cafeteria in an hour to discuss it. May the Embers burn bright for you, Captain." He gives a wave that seems vaguely like a salute and heads off.`
-			`	As he disappears from sight you hear a faint chime from your commlink, which displays a message indicating that two payments of <payment> have been allocated to your account. You recall that you didn't get a message after the last mission, so they must have combined them. You do find it odd, however, that they always seem to know exactly when you finish a delivery.`
+			`	As he disappears from sight you hear a faint chime from your commlink, which displays a message indicating that two payments of <payment> have been allocated to your account. You recall that you didn't get a message after the last mission, so whichever Remnant person or agency is sending you these payments must have combined them. You do find it odd, however, that they always seem to know exactly when you finish a delivery.`
 
 
 
@@ -2618,13 +2618,13 @@ mission "Remnant: Crystal Research 7"
 			label foodvolume
 			branch capitallicense
 				has "license: Remnant Capital"
-			`	He looks at you appraisingly. "You are perceptive, but there are some things you cannot learn yet. Ask us again when you have earned more of our trust."`
+			`	He looks at you appraisingly. "There are some things you cannot learn yet. Ask us again when you have earned more of our trust."`
 				goto deliverdata
 			label capitallicense
 			apply
 				"remnant symbionts info" += 1
-			`	He looks at you appraisingly "You are perceptive, and have earned our trust." He leans forward and holds up his hands. He pokes at the leather fingerless gloves he is wearing, and you realize that they extend up under his sleeves. You note that the leather does not actually look like any leather you have seen - it has fine scales and rough ridges on it. What stands out the most, however, is that it appears to pulse faintly.`
-			`	"The truth is, when we eat, we are eating for two. You will have to ask someone else how they came to be or how it works, but suffice to say that we have developed a symbiotic relationship with a variety of creatures we found here. These ones," He explains while holding up his hands, "have a knack for accuracy and durability. With them, I am more precise than I would otherwise be, and much tougher. In exchange, they feed through us and require regular care and attention. Normally, this causes us no hardship, but if we do not eat enough, we will consume our reserves far faster than we normally would."`
+			`	He leans forward and holds up his hands, poking at the leather fingerless gloves he is wearing, and you realize that they extend up under his sleeves. You note that the leather does not actually look like any leather you have seen - it has fine scales and rough ridges on it. What stands out the most, however, is that it appears to pulse faintly.`
+			`	"The truth is, when we eat, we are eating for two. You will have to ask someone else how they came to be or how it works, but suffice it to say that we have developed a symbiotic relationship with a variety of creatures we found here. These ones," He explains while holding up his hands, "have a knack for accuracy and durability. With them, I am more precise than I would otherwise be, and much tougher. In exchange, they feed through us and require regular care and attention. Normally, this causes us no hardship, but if we do not eat enough, we will consume our reserves far faster than we normally would."`
 			choice
 				`	"That is quite the revelation."`
 				`	"Thanks for the explanation."`
@@ -2632,7 +2632,7 @@ mission "Remnant: Crystal Research 7"
 					goto terribleflavor
 				`	"Sounds creepy."`
 					goto creepy
-			`	Aeolus nods. "From what I have heard, humanity does not even seem to have much in the way of exoskeletons or cybernetics. Having living organisms we wear would certainly seem to be the realm of science-fiction." He contemplates his symbiont for a few seconds as he absent-mindedly eats more of his meal. "But education aside, there is work to do."`
+			`	Aeolus nods. "From what I have heard, the ancestral worlds do not seem to have much in the way of exoskeletons or cybernetics. The living organisms we wear would certainly seem to be the realm of science-fiction." He contemplates his symbiont for a few seconds as he absent-mindedly eats more of his meal. "But education aside, there is work to do."`
 				goto deliverdata
 			label spices
 			`	He shakes his head. "I will not discourage you doing so - and I am sure some might appreciate them - but most of us like our food the way it is." He chuckles, then continues. "But there is still work to do."`
@@ -2641,7 +2641,7 @@ mission "Remnant: Crystal Research 7"
 			`	"I suppose it might. Our symbionts have different dietary requirements, and such unusual compounds in our food inevitably change the flavor. We are all long since used to it, but it would definitely be different for an outsider." He seems amused by this. "But enough of food - there is work to do!"`
 				goto deliverdata
 			label creepy
-			`	"Creepy? I do not understand how something so useful and beneficial could be 'creepy,' but I suppose some might equate our symbionts to being useful leeches. To each their own, I suppose." He shrugs, then continues. "But enough. We still have work to do."`
+			`	"Creepy? I do not understand how something so useful and beneficial could be 'creepy,' but I suppose some might equate our symbionts with leeches. To each their own, I suppose." He shrugs, then continues. "But enough. We still have work to do."`
 			label deliverdata
 			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to some researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these crystals and the wormholes. Will you do it?"`
 			choice
@@ -3332,4 +3332,3 @@ event "remnant: pantica void sprites"
 event "remnant: cognizance timer"
 	system "Nenia"
 		fleet "Ember Waste Node" 6000
-
