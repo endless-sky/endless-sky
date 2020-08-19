@@ -433,30 +433,6 @@ void ShopPanel::DrawMain()
 			
 			DrawItem(name, point, scrollY);
 			
-			if(isSelected)
-			{
-				Color color(.2f, 0.f);
-				int dy = DividerOffset();
-				
-				float before = point.X() - TILE_SIZE / 2 - Screen::Left();
-				FillShader::Fill(Point(Screen::Left() + .5f * before, point.Y() + dy),
-					Point(before, 1.), color);
-				
-				float after = endX - (static_cast<float>(point.X()) + TILE_SIZE / 2);
-				FillShader::Fill(Point(endX - .5f * after, point.Y() + dy),
-					Point(after, 1.), color);
-				
-				// The center of the display needs to be between these two values:
-				int panelAndAHalf = DetailWidth() / 2;
-				double minX = Screen::Left() + panelAndAHalf;
-				double maxX = Screen::Left() + mainWidth - panelAndAHalf;
-				Point center(
-					max(minX, min(maxX, point.X())),
-					point.Y() + TILE_SIZE / 2);
-				
-				nextY += mainDetailHeight;
-			}
-			
 			point.X() += columnWidth;
 			if(point.X() >= endX)
 			{

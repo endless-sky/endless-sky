@@ -155,8 +155,10 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		float spriteScale = min(1.f, (INFO_SIDE_WIDTH - 20.f) / shipSprite->Width());
 		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 
-		Point spriteCenter(center.X(), center.Y() + 20 + shipSprite->Height() / 2);
-		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + shipSprite->Height());
+		float tileSize = max(shipSprite->Height(), static_cast<float>(TileSize()));
+
+		Point spriteCenter(center.X(), center.Y() + 20 + tileSize / 2);
+		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
 		Point attrPoint(startPoint.X(), startPoint.Y());
 		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());

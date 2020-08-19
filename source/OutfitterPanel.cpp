@@ -228,9 +228,11 @@ int OutfitterPanel::DrawDetails(const Point &center)
 			thumbnail = SpriteSet::Get("ui/outfitter selected");
 		}
 
-		Point thumbnailCenter(center.X(), center.Y() + 20 + thumbnail->Height() / 2);
+		float tileSize = max(thumbnail->Height(), static_cast<float>(TileSize()));
 
-		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + thumbnail->Height());
+		Point thumbnailCenter(center.X(), center.Y() + 20 + tileSize / 2);
+
+		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
 		Point attrPoint(startPoint.X(), startPoint.Y());
 		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
