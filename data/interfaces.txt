@@ -645,7 +645,7 @@ interface "boarding"
 		from 330 -22
 		align right
 	
-	label "survival odds (defending):"
+	label "survival odds (retreating):"
 		from 50 8
 		align left
 	string "defense odds"
@@ -679,7 +679,7 @@ interface "boarding"
 		dimensions 80 30
 	
 	active if "can defend"
-	button d "_Defend"
+	button d "_Retreat"
 		center 210 185
 		dimensions 80 30
 

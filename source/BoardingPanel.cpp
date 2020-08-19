@@ -304,7 +304,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		isCapturing = true;
 		messages.push_back("The airlock blasts open. Combat has begun!");
-		messages.push_back("(It will end if you both choose to \"defend.\")");
+		messages.push_back("(It will end if you kill their crew, or retreat.)");
 	}
 	else if((key == 'a' || key == 'd') && CanAttack())
 	{
@@ -324,7 +324,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// If neither side attacks, combat ends.
 		if(!youAttack && !enemyAttacks)
 		{
-			messages.push_back("You retreat to your ships. Combat ends.");
+			messages.push_back("You successfully retreat. Combat ends.");
 			isCapturing = false;
 		}
 		else
@@ -332,7 +332,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			if(youAttack)
 				messages.push_back("You attack. ");
 			else if(enemyAttacks)
-				messages.push_back("You defend. ");
+				messages.push_back("Retreat failed! ");
 			
 			// To speed things up, have multiple rounds of combat each time you
 			// click the button, if you started with a lot of crew.
