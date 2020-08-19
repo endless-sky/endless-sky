@@ -2317,7 +2317,7 @@ mission "Remnant: Cognizance 2"
 	on offer
 		conversation
 			`You arrive in the spaceport to find Plume pacing quickly along a walkway. He gestures a quick greeting and jumps straight to the point. "We have never seen marks like these naturally appear on void sprites, but they match the weapon scoring patterns we have seen delivered by Korath ships. As such, we believe the Korath have begun hunting void sprites."`
-			`	He looks at you with a surprising amount of vigor. "I will not have our work ruined by reptilian warmongers. Destroy the Korath hunters responsponsible, then we can continue the research."`
+			`	He looks at you with a surprising amount of vigor. "I will not have our work ruined by reptilian warmongers. Destroy the Korath hunters responsible, then we can continue the research."`
 			choice
 				`	"Okay, I will destroy the Korath hunters' ship."`
 					goto acceptance
