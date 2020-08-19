@@ -2287,9 +2287,9 @@ mission "Remnant: Cognizance 1"
 		personality entering forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo "void sprite" 5 20
 			variant
 				"Korath Raider (Ember)"
+					cargo "void sprite" 5 20
 				"Korath Chaser" 2
 	on enter "Nenia"
 		dialog
@@ -2351,9 +2351,9 @@ mission "Remnant: Cognizance 2"
 		personality forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo "void sprite" 5 20
 			variant
 				"Korath Raider (Ember)"
+					cargo "void sprite" 5 20
 				"Korath Chaser" 2
 		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
 	on complete
