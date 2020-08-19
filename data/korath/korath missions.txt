@@ -96,6 +96,11 @@ mission "Translator Development 2A"
 		has "Translator Development 1: done"
 	on offer
 		conversation
+			branch "return"
+				has "deferred"
+			
+			apply
+				set "deferred"
 			`You make contact with Eruk soon after landing, and he invites you to tour the laboratory where he works. "Our translation device has proven to be very popular among Hai not versed in the human language," he explains. "Consequentially, our operation here is a busy one." As the tour continues, he's sure to point out many exact details of his work. Eruk is obviously pleased with the continued success of this device. "But, enough about me. I would imagine you're here with a purpose. What can I do for you?"`
 			choice
 				`	"I was wondering if it would be possible to program other languages into your translator."`
@@ -106,23 +111,10 @@ mission "Translator Development 2A"
 				`	"That sounds fair to me. I'll be back when I have a copy."`
 					accept
 				`	"Sorry, but I'm not interested in running another errand to human space for you right now. If I change my mind, I'll come back."`
-					decline
-	on complete
-		payment -20
-	on visit
-		dialog `Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. Unfortunately, you don't have the money to purchase a data card to store the database on. Better earn some money first.`
-		
-mission "Translator Development 2B"
-	landing
-	name "Information Exchange"
-	description "Acquire a copy of the Library of Parliament on <destination> for Eruk in exchange for information about the translation device."
-	source "Greenwater"
-	destination "Earth"
-	to offer
-		has "Translator Development 2A: declined"
-	on offer
-		conversation
-			`As you land on Greenwater, you remember your last conversation with Eruk. He had offered to give you a document detailing the composition of his translator device that you could bring to the Wanderers and Korath. In exchange, he requested you bring him a copy of the Library of Parliament from <stopovers>. You told him you were too busy at the moment to run the errand. Would you like to contact him and let him know you're ready now?`
+					defer
+			
+			label return
+			`As you land on Greenwater, you remember your last conversation with Eruk. He had offered to give you a document detailing the composition of his translator device that you could bring to the Wanderers and Korath. In exchange, he requested you bring him a copy of the Library of Parliament from <destination>. You told him you were too busy at the moment to run the errand. Would you like to contact him and let him know you're ready now?`
 			choice
 				`	(Yes.)`
 				`	(No.)`
@@ -133,17 +125,15 @@ mission "Translator Development 2B"
 		payment -20
 	on visit
 		dialog `Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. Unfortunately, you don't have the money to purchase a data card to store the database on. Better earn some money first.`
-
-mission "Translator Development 2C"
+		
+mission "Translator Development 2B"
 	landing
 	name "Information Exchange"
 	description "Bring the copy of the Library of Parliament to Eruk on <destination> in exchange for information about the translation device."
 	source "Earth"
 	destination "Greenwater"
 	to offer
-		or
-			has "Translator Development 2A: done"
-			has "Translator Development 2B: done"
+		has "Translator Development 2A: done"
 	on offer
 		conversation
 			`Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. You buy a data card for 20 credits at a nearby convenience store and download the information from a terminal inside the library. Time to head back.`
@@ -157,7 +147,7 @@ mission "Translator Development 3"
 	source "Greenwater"
 	destination "Setar Fort"
 	to offer
-		has "Translator Development 2C: done"
+		has "Translator Development 2B: done"
 	on offer
 		conversation
 			`You return to Eruk's facility and give him the copy of the Library of Parliament. He thanks you and hands you a different data card. "This contains a summary of our translator and details the process of how it was made. In theory, any language should work, but considering I know almost nothing about either Wanderer or Korath language myself, I can't speak to its actual feasibility. The nuances of such a process also make it hard to determine how long it would take. Regardless, I wish you and your friends the best of luck in replicating the device. You may need it."`
@@ -210,6 +200,24 @@ event "wanderers taking jobs from kor efreti"
 		location
 			government "Kor Efret"
 			not attributes "station"
+	system "Sumprast"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Sevrelect"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kashikt"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Dokdobaru"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Furmeliki"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Meftarkata"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Skeruto"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kaliptari"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Solifar"
+		add fleet "Wanderer Kor Efret Traders" 1500
 			
 mission "Setar Fort Heating"
 	name "Supplies to <planet>"
