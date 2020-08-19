@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
