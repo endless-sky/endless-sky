@@ -28027,7 +28027,7 @@ planet Pilot
 planet Pincian
 	attributes moon uninhabited
 	landscape land/mars3
-	description `Pincian is a small rocky moon, tiny enough to avoid most asteroids attracted by the nearby gas giant of Palatine. Nevertheless, its surface is pockmarked by a huge crater, so old that by now it has almost completely filled out of dust and regolith. Whatever crashed here, it must be thousands of years since the impact.`
+	description `Pincian is a small rocky moon, tiny enough to avoid most asteroids attracted by the nearby gas giant of Palatine. Nevertheless, a huge crater, old enough to have collected some dust and regolith, dominates its surface. Whatever crashed here, it must be tens of thousands of years since the impact.`
 	description `There are some small-scale mining operations all around Pincian, but everything around crater has been left untouched except for a Remnant research station nestled into one of its edges.`
 	security 0
 	government Uninhabited
