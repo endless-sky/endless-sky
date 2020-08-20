@@ -427,7 +427,7 @@ outfit "Navy Carrier License"
 outfit "Militia License"
 	category "Special"
 	thumbnail "outfit/militia license"
-	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only ships."
+	description "This is the standard issue license for all pilots that have enlisted in a local militia, but with the formation of the Free Worlds it has also become a license given to all those that fight for the Free Worlds cause, allowing pilots to fly the colors of the Free Worlds and purchase unique ships that the fledgling government has developed."
 
 outfit "City-Ship License"
 	category "Special"

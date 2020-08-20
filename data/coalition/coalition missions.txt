@@ -540,3 +540,856 @@ mission "Coalition Yottrite 9"
 			`	"Though allowed to publicly share our findings, we are not still, invited to be part of the team here that will continue the research, we were," Pichiie adds. The Saryd twins say they will reside here for as long as the project continues, while Pichiie comments on how she'll often be taking trips to visit her family in House Mallob's property.`
 			`	"As for me, a job as overseer, I still have to perform," Lugglop says. "Stay here for a few days I will, but even with all the advanced equipment of this ring, still our Coalition's most capable, the smelters of Bloptab's Furnace are. In their optimal state they must be, if to deepen our knowledge on yottrite, we are. Return there shortly, I will."`
 			`	They thank you again for all your help and wish you safe travels as you continue exploring.`
+
+
+
+mission "Kimek Student 1"
+	minor
+	name "Transport Chikee"
+	description "Chikee, a young Kimek, is studying to become a Heliarch. Transport him to <destination>, where he was offered a job, so that he can make a living while studying on his own."
+	passengers 1
+	to offer
+		has "Coalition: First Contact: done"
+	source "Fourth Shadow"
+	destination "Second Rose"
+	on offer
+		conversation
+			`At any given time there are thousands of Kimek here in the spaceport, either mingling among themselves during a break from work or negotiating travel prices with starship captains. You imagine that if you weren't a human and clearly stood out, you too would be constantly getting offers to travel to another world, as many civilian captains here wish to fill a last bunk or two they have vacant on their ship before departing.`
+			`	You manage to find a restaurant here where you spot some food you've already learned you can eat, so you take a seat and order something.`
+			`	You're halfway through your meal when you notice the waiter who brought it to you still hasn't moved away from the table.`
+			choice
+				`	"Can I help you?"`
+				`	"Sorry, should I have paid first before eating?"`
+			branch translator
+				has "language: Coalition"
+			`	The Kimek doesn't have a translation box, so your words don't reach him. While he insists on remaining by the table, you also notice he has been constantly glancing at the entrance, as if waiting for someone to come in.`
+			`	When a Heliarch agent passes by the entrance, the Kimek says something in his language, heading to meet the Heliarch, and speaking with them briefly. The Heliarch agent then accompanies the Kimek waiter to your table.`
+			choice
+				`	"Does he need something?"`
+				`	"Did I do something wrong?"`
+			`	"Wish to speak to you, this Kimek does, Captain," the agent says, as they continue listening to what the Kimek is telling them, and makes an effort to translate their message to you. "Called Chikee, he is. A student, aspiring to join the ranks of the Heliarchs. Looking for transportation to <destination>, he is, so that a better job there he may acquire."`
+			choice
+				`	"Sure, I'll take him there."`
+					goto accept1
+				`	"How much will he pay me?"`
+				`	"I'm not headed that way, sorry."`
+					decline
+			`	The Heliarch asks the young Kimek about payment, to which he takes a pause before responding, and when he does so he speaks a lot slower than before.`
+			`	"Not enough funds to pay you for the trip, he has," the agent says. "However, to pay you once well established he is, he promises."`
+			choice
+				`	"Okay then, I'll take him there."`
+				`	"I prefer not having to wait to get paid, sorry."`
+					decline
+			label accept1
+			`	You're told to wait for Chikee before departing the planet, and the Heliarch agent leaves. You leave the restaurant yourself shortly after, and head to your ship.`
+				goto end
+			label translator
+			`	The Kimek is a bit surprised by you having a translation box, but seems to be put at ease knowing that he can speak with you directly now.`
+			`	"Chikee, my name is, Captain. A student. Looking for transportation to <destination>, I am," he blabs, scrambling to show you what you assume is some kind of letter. "A job in the mines there, I was offered. Better payment than this one, it has."`
+			choice
+				`	"Sure, I'll take you there."`
+					goto accept2
+				`	"How much will you pay me?"`
+				`	"I'm not headed that way, sorry."`
+					decline
+			`	He pauses for a bit, and you see his mandibles clicking together time and again.`
+			`	"Lacking proper funds, I currently am," he says, speaking much slower than before. "Once paid by this new job I am, however, pay you I will. I promise."`
+			choice
+				`	"Ok, I'll take you there."`
+				`	I prefer not having to wait to get paid, sorry.`
+					decline
+			label accept2
+			`	He thanks you and says to wait for him by your ship before you depart. You leave the restaurant shortly after, and head to your ship.`
+			label end
+			`	Night falls, but there hasn't been any decrease to the activities here, as the hordes of captains and workers still populate the docking area and the spaceport.`
+			`	Around midnight, Chikee arrives at your ship, and you show him to his bunk. He is only bringing a single, old rugged bag with him.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Chikee hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		event "chikee break" 62
+		dialog `You drop Chikee off on <planet>, and wish him good luck on the new job.`
+
+
+
+event "chikee break"
+
+
+
+mission "Kimek Student 2"
+	name "Transport Chikee"
+	description "Chikee, a young Kimek, is studying to become a Heliarch. Transport him to <destination>, where he was offered an internship and hopes to be awarded with a recommendation letter."
+	deadline
+	passengers 1
+	to offer
+		has "event: chikee break"
+	source "Second Rose"
+	destination "New Finding"
+	on offer
+		clear "event: chikee break"
+		conversation
+			`While strolling through the spaceport, you're flagged down by a familiar face. It's Chikee, the Kimek student whom you brought here months ago.`
+			`	He excitedly greets you and talks about how well his studies have been going. You notice that he now has a translation device of his own, positioned by his neck.`
+			`	"Purchased it recently, I did, so that hindered by language barriers, I am not," he says. "Excellent timing you have, Captain. Looking for transportation, once again I am."`
+			`	He tells you how his academic successes have earned him an internship in one of the laboratories on <destination>, and that he needs someone to transport him there by <date> so that he may begin working right away.`
+			`	"Better, the payment is, but also hoping for a recommendation letter, I am," he says, explaining that such letters from a Heliarch laboratory could help him significantly in joining their ranks.`
+			choice
+				`	"Sounds like you've worked pretty hard for this. Let's go to my ship, I'll take you there."`
+					goto accept
+				`	"You still haven't paid me for last time, though."`
+			`	He freezes up for a bit, not responding.`
+			`	"Just enough money to rent an apartment there, I have. Save up until the laboratory pays me, I must," he says. "Scamming you, I am not, Captain. Thankful I am, and pay you handsomely, I will."`
+			choice
+				`	"Alright, I'll wait again. Let's go to my ship."`
+					goto accept
+				`	"Sorry, but I'm not one to be fooled twice."`
+					decline
+			label accept
+			`	He thanks you, and this time follows you right away, as he already has his bags prepared.`
+			`	"Hoping to join the research teams on Ring of Wisdom, I am," he says as you two walk to your ship, explaining the reason he needs to study so much is because he is aiming to work for the scientific branch of the government, instead of the more military-focused side.`
+			`	You lead him to his bunk and prepare for the trip.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Chikee hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		event "chikee break" 93
+		conversation
+			`It seems the laboratory Chikee will work in is quite far away from the docking area, so after bidding you farewell, he decides to walk there immediately to get acquainted with his new bosses as soon as possible.`
+			`	As he starts crossing one of the bridges linking the canyon walls here, he visibly struggles against the strong winds, as his bags seem to weigh him down.`
+			choice
+				`	(Help him with his bags.)`
+				`	(Let him go on his own.)`
+					decline
+			`	You catch up to him without too much trouble, though you too are also somewhat troubled by the winds here. You pick up one of his bags, and he becomes much more comfortable with facing the constant blasts of air, though he still walks slower than the expected from a Kimek.`
+			`	The two of you walk for about twenty minutes before finally reaching the laboratory. It is shielded by several large thick walls of stone slabs, much like many buildings in this unorthodox city.`
+			`	You wish Chikee the best of luck and head back to your ship.`
+
+
+
+mission "Kimek Student 3"
+	name "Transport Chikee"
+	description "Chikee, a young Kimek, is studying to become a Heliarch. Transport him to <destination>, where he will work with some members of House Idriss to further his research project."
+	landing
+	passengers 1
+	to offer
+		has "event: chikee break"
+		has "Kimek Student 2: done"
+	source "New Finding"
+	destination "Ablub's Invention"
+	on offer
+		clear "event: chikee break"
+		payment 170000
+		conversation
+			`As you land on <origin>, you notice that 170,000 credits have been transferred to your account, along with a message.`
+			`	It's from Chikee, the Kimek student whom you brought here. He asks that you meet him in an area here more well protected from the winds, so you head there.`
+			`	Upon meeting him, he says in a jolly tone, "Kept my promise, I did, Captain. Paid you, I have."`
+			`	His internship here apparently went really well, and he got the recommendation letter he wanted and is once again looking for transportation.`
+			`	"Passing by a month ago, some members of House Idriss were. The Arach House that deals with the construction of hardware, they are," he says. "Interested by my work, they were. Offered a partnership on <destination>, they have."`
+			choice
+				`	"I thought you wanted to become a Heliarch. How exactly will all of this help you?"`
+					goto how
+				`	"Hold on, what sort of 'work' were they interested by? What have you been working on?"`
+					goto work
+			label how
+			`	"If well known among the scientific community, I become, more merit, my curriculum will have," he says. "Make it easier to pass the trials, all the knowledge and experience I've gathered until now will as well."`
+				goto bunk
+			label work
+			`	"Larger than most, the Kimek population is. Struggle to properly distribute medication or other chemicals, even worlds richer than my homeworld do," he says. "Seeking to create an independent network to provide better distribution, I am."`
+			`	He jokes about how it's silly that although his species has such incredible advancements in their alimentary transport network, it's still difficult for most of the population to find medicine for what is translated as "the common cold" by the device. He claims that, were he on the Heliarch council, he could directly propose changes and solutions to such problems.`
+			label bunk
+			`	He tells you a bit more about his work here, how it was working with Saryds, and the cultural exchange. Though he seems to have garnered some fond memories of his time here, you notice while heading for your ship that he still hasn't gotten used to the wind.`
+			`	You show him to his bunk and prepare for the journey to <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Chikee hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" += 2
+		event "chikee break" 78
+		payment 130000
+		dialog `Chikee hands you 130,000 credits when you land. "As always, for transporting me, grateful I am, Captain," he says, as he heads off to meet with the members of House Idriss.`
+
+
+
+mission "Kimek Student 4"
+	name "Transport Chikee"
+	description "Chikee, the young Kimek whom you've transported many times, has finally become a candidate for elevation to the rank of Heliarch. Bring him to <destination> by <date>."
+	deadline
+	landing
+	passengers 1
+	to offer
+		has "event: chikee break"
+		has "Kimek Student 3: done"
+	source "Ablub's Invention"
+	destination "Ring of Wisdom"
+	on offer
+		clear "event: chikee break"
+		conversation
+			`You're contacted by Chikee when you land.`
+			`	"Captain <last>! Good news and another job for you, I have," he says, asking that you meet him in the spaceport.`
+			`	You head there, and he's already with his bags, prepared to board your ship. "Helped me a lot, House Idriss has. An audience with the Heliarch, on <destination> I have!"`
+			`	He tells you that he needs to be there by <date>, and wastes no time as he heads into your ship.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Chikee hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" += 2
+		payment 300000
+		conversation
+			`Chikee hands you <payment> before leaving your ship. Heliarch agents are waiting for him, and receive him in a bit of a ceremony.`
+			`	You spend a few hours browsing some shops here and have some food once you find an establishment that serves something appetizing to humans.`
+			`	Ringworlds have no day or night, but looking at your ship's internal clock, it is almost night time when Chikee returns to your ship in a hurry.`
+			`	"Accepted I was! Grant me the rank, they did!" he says, showing you a Heliarch circlet as he puts it on his head. "Infinitely grateful for your help in all of this I am, Captain."`
+			`	You congratulate him on the achievement, and he starts to tell you how what he calls the "trial" went. Aside from explaining his work on places that got him a recommendation letter, he was told to do a presentation on his own work to some type of jury and pass an interview. "Wait in a line with other candidates, I had to. To be selected, only a few were. So nervous, I was," he says. After thanking you again and trying to shake hands with you, he leaves your ship one last time, and you wish him the best of luck in his new line of work.`
+
+
+
+mission "Coalition Outbreak 1"
+	minor
+	name "Transport Doctors"
+	description "Bring these <bunks> doctors, along with <cargo> to <destination> by <date>, where they will work to address a major viral outbreak"
+	deadline
+	passengers 75
+	cargo "Medical Supplies" 90
+	to offer
+		has "Coalition: Contributor: done"
+		random < 5
+	source
+		near "1 Axis" 1 6
+	destination "Celestial Third"
+	on offer
+		conversation
+			`As you enter the spaceport, you notice several battalions of Coalition doctors roaming about, talking with merchant captains and then following some of them back to their ships.`
+			`	One such crowd approaches you, and a Saryd among them says, "Broken out on <destination>, a deadly virus has. Captains willing to transport us and <cargo>, we seek." She shows you to the group of doctors, <bunks> of them.`
+			choice
+				`	"I'd be glad to help with something serious like that. Let's go to my ship."`
+				`	"I can't afford to fill so many bunks right now, sorry."`
+					decline
+			`	The doctors rush inside your ship, and spaceport workers quickly place the <cargo> in your cargo hold.`
+			`	When you get the chance, you ask them what exactly the virus is, and they explain as best as they can how it causes "tumorous-like behavior on Kimek exoskeletons, rapidly degenerating the tissue and exposing the flesh, all the while increasing the risk of infection." They say that although it is most dangerous to Kimek, there are confirmed cases of some Arachi having contracted the disease.`
+			`	It seems pretty serious, so you should make sure these doctors and their supplies are brought to <destination> as quickly as possible.`
+				accept
+	on visit
+		dialog `You've reached <planet>, but the doctors and the medical supplies haven't arrived yet. Depart and wait for the ships carrying them.`
+	on complete
+		payment 768540
+		"coalition jobs" += 2
+		dialog `The medical workers exit your ship just as quickly as they entered it and head off to different sections of the city, directed by some emergency workers. After the <cargo> are also taken off your ship, a worker hands you <payment> and says you could look for more ways to help with the outbreak by looking for their colleagues in the spaceport.`
+
+
+
+mission "Coalition Outbreak 2"
+	name "Collect Vaccines"
+	description "Head to <stopovers>, where Saryd researchers have been working on a vaccine for the new virus, and deliver it to <destination> by <date>."
+	deadline
+	cargo "Vaccines" 80
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition Outbreak 1: done"
+	source "Celestial Third"
+	stopover "Secret Sky"
+	destination "Ki Patek Ka"
+	on offer
+		conversation
+			`As before, the spaceport is completely dominated by doctors and nurses. You don't find the person who told you to come here, but as you ask one of the other emergency workers, they direct you to a makeshift office set up next to a few trading panels.`
+			`	"Fairly new to us, this virus is," the Kimek manning the stand says. "But finally developed an initial batch of vaccines for it, the researchers on Secret Sky thankfully have."`
+			choice
+				`	"What do you mean 'finally?' Didn't this virus just break out recently?"`
+				`	"You want me to go there retrieve the vaccines?"`
+					goto vaccines
+			`	He looks puzzles by your question.`
+			`	"That some weeks have already passed, true it is, but hard at work, the researchers have been," he says. "Blame them for taking a few days more than usual, we cannot. Intricate, this virus is."`
+			label vaccines
+			`	He shows you a detailed map of Kimek space, explaining that most of the confirmed and suspected cases have been there. Given that the Kimek population is more than double that of the Arachi and the Saryds combined, it's not surprising.`
+			`	"To <destination>, this initial batch must be brought. From there, distributing more batches of the vaccines to other worlds, you will be tasked with."`
+			`	As the line of volunteering merchant captains continues to grow behind you, he is swift to inform you that payment will be <payment>, and asks that the next person come forward.`
+				accept
+	on stopover
+		dialog `A group of Saryd workers is waiting for you, and they load the <cargo> onto your ship. A laboratory worker babbles about how you must care for them.`
+	on visit
+		dialog `You've reached <planet>, but the vaccines aren't here yet. Depart and wait for whichever ships are carrying them to arrive.`
+	on complete
+		payment 943720
+		"coalition jobs" += 2
+		conversation
+			`An incessant stream of freighters has the landing pads of the spaceport here overcrowded, and from the looks of it you were only given a quick clearance due to carrying the vaccines.`
+			`	The people here, who are surprisingly managing to keep the place organized despite the overwhelming traffic, pay you <payment> as they unload the vaccines from your cargo hold.`
+			`	"Waiting in the spaceport with more tasks for you, our colleagues will be, Captain <last>," one says before running off to tend to other ships carrying doctors or supplies.`
+
+
+
+mission "Coalition Outbreak 3"
+	name "Distribute Vaccines"
+	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral oubreak, then return to <destination> by <date>."
+	deadline
+	cargo "Vaccines" 80
+	to offer
+		has "Coalition Outbreak 2: done"
+	source "Ki Patek Ka"
+	stopover "Fourth Shadow"
+	stopover "Blue Interior"
+	stopover "Sandy Two"
+	stopover "Inmost Blue"
+	stopover "Double Haze"
+	stopover "Brass Second"
+	stopover "Second Viridian"
+	stopover "Remote Blue"
+	on offer
+		conversation
+			`This time you're expected and are brought to a large conference room where many Saryds, and the occasional Arach, are waiting. A Kimek that is part of the team organizing the containment procedures comes in and says you will once again be transporting vaccines.`
+			`	"In a few hours, fully replicated, the vaccine samples will be. Load them onto your ships, we will. Deliver them to <stopovers>, you must."`
+			`	Everyone is then separated into groups. You're put with two Saryd captains and an Arachi who is wearing some protective suit of sorts that covers his entire body, making it somewhat difficult for him to walk.`
+			`	The captains agree to follow your lead and deliver the vaccines along with you, so you all head back to your ships.`
+				accept
+	npc accompany save
+		personality escort timid
+		government "Coalition"
+		ship "Saryd Sojourner" "Noset Temu"
+		ship "Saryd Sojourner" "Miest Laba"
+		ship "Arach Hulk" "Bloobrupblot"
+	on stopover
+		dialog `You and the Coalition captains have delivered the final batch of vaccines. You must now return to <origin>.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left the Coalition ships behind.`
+	on complete
+		payment 2593230
+		"coalition jobs" += 3
+		conversation
+			`You and the other captains are told to wait in one of several lines formed here. Your group chats with some others while you wait, and a few mention how their batch of vaccines was delivered to Arachi and Saryd space. Apparently many tourists had contracted the disease before flying to those areas.`
+			`	The line moves quickly, and once it's your turn, you're paid <payment>, and then switfly shoved along by the workers who are already paying the person who was behind you.`
+			`	Looking back at the line, and seeing the sheer number of captains waiting for their share, it's no wonder the Kimek that paid you were extremely brief. As you come back to your ship, you see that a message was sent to you by the Coalition government. More specifically, it appears to have been sent by their Department of Health.`
+			`	"To all captains who helped in dealing with the recent viral outbreak, you have our gratitude and may rest tonight knowing you've contributed to the continued prosperity of our Coalition."`
+
+
+
+mission "Kimek Gift"
+	minor
+	name "Not One Minute Late"
+	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a jump drive and can make it there in time, she asked you to deliver the present by <date>."
+	deadline 2
+	to offer
+		has "Coalition: First Contact: done"
+	source "Second Cerulean"
+	destination "Cold Horizon"
+	on offer
+		require "Jump Drive"
+		conversation
+			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package with some papers attached.`
+			`	As soon as she spots you, she quickly approaches you and says, "Human! The visitor I've heard about, you are! From the outside! A jump drive you have, if our space you've reached, yes?"`
+			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work, I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your jump drive, get there in a day you could. Help me, would you, Captain?"`
+			choice
+				`	"Just that small package? Easy enough, I'll do it."`
+					accept
+				`	"I'm not headed there, sorry, have another mission to do. Somewhere else."`
+					decline
+	on complete
+		payment 36750
+		"coalition jobs" += 2
+		conversation
+			`Apparently this Saryd in question doesn't live here in the spaceport village, so you must take a train to go to his home. Thankfully, a train ticket was attached to the package, so you waste no time and get on the next train there.`
+			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and gaze at the sights of the seemingly infinite winter forest.`
+			`	Halfway through, a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now they are serving something akin to hot chocolate, only it is instead a blue, creamy substance.`
+			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included and deliver the present to her Saryd friend. Apparently the party had just started.`
+			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
+
+
+
+mission "Saryd Students 1"
+	minor
+	name "Acquire Arachi Rum"
+	description "Some Saryd students on <origin> have offered to pay you for bringing them a shipment of traditional Arachi rum, currently only sold on <destination>. To make it in time, the rum must be bought by <date>."
+	deadline
+	to offer
+		has "Coalition: First Contact: done"
+	source "Shadow of Leaves"
+	destination "Weir of Glubatub"
+	on offer
+		conversation
+			`While walking by some shops, a young Saryd bumps into you as you're turning a corner, knocking you to the ground. He helps you up, apologizing. A couple others that were with him entered a shop without even noticing you, but almost immediately come back out.`
+			branch translator
+				has "language: Coalition"
+			`	They speak with him, pointing at the shop and to where they must have been before bumping into you, while their friend tinkers with a translation box.`
+				goto question
+			label translator
+			`	"No luck?" he asks them, tinkering with a translation box, not realizing you have your own.`
+			`	His colleagues shake their heads, "Told the same as in the other store, we were. Shipping here, the Arachi no longer are," they say, pointing to the shop and to where they must have been before bumping into you. Their friend continues messing with the device.`
+			label question
+			`	Once he's done, he asks, "Human, a merchant captain you are, correct? Looking for work, are you?"`
+			choice
+				`	"What kind of work?"`
+					goto work
+				`	"Oh no, I live here actually. In the humantown district, right around the corner."`
+				`	"Actually I'm just here for the view, sorry."`
+					decline
+			`	They all start laughing, some clearly finding your joke much funnier than you anticipated. Given the way they are stumbling on flat ground and the scent of alcohol that's permeated the air ever since one of them bumped into you, you realize why.`
+			`	"Fair enough. Not a common sight here, humans are, Captain," the one with a translation box says. "Asking for such a response, I was."`
+			label work
+			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arachi rum for that.`
+			`	"Stopped shipping it here, the Arachi have," another Saryd says, pulling on the translation box on his friend's neck and nearly yanking it off. "Happened with many other drinks, this also has."`
+			`	They explain that the rum is produced on <destination>, and that you'll probably have an easier time finding it there. Despite you not knowing for sure how many people they intend on inviting to this party, and the fact that you don't know how much a Saryd can drink, you still worry a bit when they say that "two tons should do." They also tell you that to make it in time for the party, the rum should be bought by <date>.`
+			choice
+				`	"Sounds good, I'll go get it and bring it to you."`
+					accept
+				`	"How much would I need to pay for two tons?"`
+				`	"Sorry, but I'm against smuggling alcohol to students."`
+					decline
+			`	"One of the pricier drinks, this rum is," the Saryd explains. "Some thousands of credits per ton, you should expect to pay. But well compensated, you will be."`
+			choice
+				`	"Sounds good, I'll go get it and bring it to you."`
+					accept
+				`	"Sorry, but I'm against smuggling alcohol to students."`
+					decline
+	on visit
+		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresposibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
+	on complete
+		payment -11284
+
+
+
+mission "Saryd Students 2"
+	name "Deliver Arachi Rum"
+	description "Now that you've bought the two tons of Arachi rum, deliver it to the Saryd students on <destination> by <date>."
+	landing
+	deadline
+	cargo "Arachi Rum" 2
+	to offer
+		has "Saryd Students 1: done"
+	source "Weir of Glubatub"
+	destination "Shadow of Leaves"
+	on offer
+		conversation
+			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arachi rum was first produced.`
+			`	You ask for two tons, avoiding giving the exact details of what it's for, as you do not wish to be held accountable for whatever some drunken Saryds may do, and pay the price for all the rum: 11,284 credits.`
+			`	The Arachi that take care to load the rum into your ship give you some odd looks, and when it's all done the manager tells you to try and slow down on the drinking.`
+				accept
+	on complete
+		payment 87500
+		conversation
+			`Besides the students who tasked you with buying the rum, about a dozen others are waiting for your ship when you land and help you unload the beverages.`
+			`	"Saved our party you have, Captain," the Saryd with the translation device says, handing you <payment>.`
+			`	They head off, excitedly dragging along the cargo carts with the many kegs on top. Some of them have already taken the liberty of opening a keg and begun drinking.`
+
+
+
+mission "Saryd Census 1"
+	minor
+	name "Saryd Census"
+	description "Transport these <bunks> Saryds census workers to <destination>, where they will collect data on the population growth there."
+	passengers 17
+	to offer
+		has "Coalition: Contributor: done"
+		random < 40
+	source
+		attributes saryd
+		not planet "Flowing Fields"
+		not planet "Warm Slope"
+	destination "Flowing Fields"
+	on offer
+		conversation
+			`Over a dozen Saryds walk up to you as you're entering the spaceport. They explain that they are census workers, and are in need of a transport to <destination>. "Left us hanging, our previous transport has."`
+			choice
+				`	"What sort of data are you gathering? Just general information?"`
+				`	"Sure, I'll show you to your bunks."`
+					goto accept
+				`	"You're not in luck then, I'm also not looking for any transport missions now."`
+					decline
+			`	"Collecting data on population growth, we are. Agreed to help our colleagues, many other ships already have," one of them says.`
+			choice
+				`	"Alright, I'll show you to your bunks."`
+					goto accept
+				`	"Well I'm sure you can find someone else then. I'm not looking for any transport missions now."`
+					decline
+			label accept
+			`	They thank you and start following you to your ship. There are <bunks> of them in total, now that you've had the time to count.`
+			`	You ask if this search will stick to Saryd space, and they say that each species usually sticks to their own home territory when gathering this type of data, so you shouldn't worry about having to take them from one end of Coalition space to the other.`
+			`	They settle in their bunks, and prepare for the trip.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the census workers hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		payment 342000
+		dialog `You're paid <payment> for transporting the Saryds here, and they leave your ship, ready to get to work and ask around. They say that they'll probably all be back in the spaceport by night time, so you should check there later if you want to help them further.`
+
+
+
+mission "Saryd Census 2"
+	name "Saryd Census"
+	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
+	passengers 17
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Saryd Census 1: done"
+	source "Flowing Fields"
+	destination "Warm Slope"
+	on offer
+		conversation
+			`Apparently you got lucky to have transported a group that was assigned to an area close to the spaceport city, as you see many other Coalition captains impatiently waiting for their own passengers to return, some looking at maps of the planet and grumbling.`
+			`	Most of the Saryds are here, but three of them still haven't come back, so the 14 that have already arrived just keep discussing the results they've found.`
+			choice
+				`	(Go browse some shops, then come back later.)`
+					goto shops
+				`	(Ask them to tell you about the data they have collected.)`
+			`	They explain how this census was mostly focused on the total population growth of the Coalition and how things are going as expected.`
+			`	"Remained stable, the Saryd population has," one of them comments. "At about 30 billion individuals, our numbers still are, though slightly increasing the fertility rate has been."`
+			`	As you continue to chat, one of them gets curious and asks you about humanity's population, to which you respond that your species numbers about 100 billion people.`
+			`	"Double that of the Arachi," one of the workers says.`
+			`	"And half that of the Kimek," another one completes.`
+			`	They ask you some more questions about human territory, but avoid getting too technical to the point where it's difficult for you to respond.`
+				goto end
+			label shops
+			`	You try and entertain yourself by looking at the shops here, but pretty much all of them are just filled with the produce of local farms.`
+			`	One of them has a few toys made out of straw. You take a look at the Saryd designs for them. They're nothing particularly special, nor as stereotypical as one might have expected from a species that resembles centaurs. Most of them appear to be replicating creatures of the local fauna or buildings like small houses.`
+			`	You notice two other census workers have come back, so you decide to return to the group and wait for the final member. Some Coalition captains from earlier have gathered together in a bar to lament the long wait.`
+			label end
+			`	After the final Saryd arrives, you all head back to your ship, and you're told that the next destination is <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the census workers hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" += 2
+		payment 387000
+		conversation
+			`This time the workers mention how they were tasked with gathering data on a part of the planet other than the surroundings of the spaceport, as they pay you <payment>.`
+			`	Thankfully, they mention how the census is nearly over and that this was their final destination, so you won't need to wait for hours in the spaceport like the captains you saw on <origin>.`
+			`	They thank you for helping them do their job, and wish you safe travels.`
+
+
+
+mission "Saryd Couple 1"
+	minor
+	name "Acquiring Funds"
+	description "Inturi and Aunaris, a young Saryd couple, need to make enough money to buy their dream home. Transport Aunaris to <destination>, where she was offered a job in the university there."
+	passengers 1
+	to offer
+		has "Coalition: First Contact: done"
+		random < 60
+	source
+		near "Hunter" 1 2
+	destination "Shadow of Leaves"
+	on offer
+		conversation
+			`While walking around the spaceport, you notice one of the Saryd workers that was refueling your ship is quickly galloping somewhere, only without his uniform, as if his shift just ended. He meets up with another Saryd and starts looking at a map with her.`
+			choice
+				`	(Approach them.)`
+				`	(Go back to my ship and check if it was properly refueled.)`
+					goto ship
+			`	They pause their map-gazing and introduce themselves as Inturi and Aunaris, a young couple who are looking to move out of <origin> and build a home they've always dreamed of on another world.`
+			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
+			`	"Much too far away, his old job took him, and well paid, crew members are not," Aunaris says, bringing up the map again and showing it to you. "Offered a job in Starlit University, on <destination>, I was. Not too distant from <origin>, it is, and a higher pay, it offers. Transport me there, would you, Captain? Once ready our house is, pay you we would."`
+			choice
+				`	"Of course, just come to my ship when you've finished preparing your luggage."`
+				`	"Sorry, I'm headed elsewhere now."`
+					decline
+			`	They both thank you, and you head back to your ship.`
+			`	By nightfall, Aunaris arrives, accompanied by Inturi and some other Saryds, who you guess must be family members, as they all say their goodbyes. Once she enters your ship, you show her to her bunk, and prepare to leave.`
+				accept
+			label ship
+			`	When you get to your ship, you check the control panel and do a short check-up. The fuel tank has been filled, and everything else is working properly. You leave your ship again, and move on with your business.`
+				decline
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Aunaris hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		event "saryd couple has money" 42 86
+		dialog `Aunaris thanks you for bringing her here, and apologizes for not being able to pay you right away, but promises once she and Inturi have figured out their home, they will work hard to pay you. "Stay here for a few months, I probably will, before the remaining funds I have acquired," she says before saying goodbye and taking a cable car to her new workplace.`
+
+
+
+event "saryd couple has money"
+
+
+
+mission "Saryd Couple 2"
+	name "Home Sweet Plot Of Land"
+	description "The Saryd couple Inturi and Aunaris have finally amassed enough money to buy a plot of land on <destination>, where they will begin building their very own home. Bring both of them there so that they can settle the purchase."
+	passengers 2
+	to offer
+		has "event: saryd couple has money"
+	source "Shadow of Leaves"
+	destination "Far Garden"
+	on offer
+		conversation
+			`You're met with two familiar faces in the spaceport: the Saryd couple you met some time ago, Inturi and Aunaris, who were working on acquiring the funding needed to build their own home.`
+			`	"Worked for a week in another ship, I did, until landed here we had," Inturi says, joking about his way of catching a ride on a ship without paying a transport fee.`
+			`	"Sleeping well, I have not been, but helped much with the campus administration, I have. A bonus, I was given," Aunaris tells you.`
+			`	They say they just need a transport to <destination>, the world they have chosen to put down roots on, and after everything is done, they will work on getting you your payment.`
+			choice
+				`	"Glad to hear it all worked out. Let's go to my ship, and I'll set a route to <planet>."`
+				`	"Sorry, but I'm not going there right now."`
+					decline
+			`	You show them to their bunks, and prepare for the trip.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Aunaris and Inturi hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+
+
+
+mission "Saryd Couple 3"
+	name "Reversed House Spider"
+	description "Take Inturi to <destination>, where he will purchase a small Arach ship that he and Aunaris will repurpose into a home."
+	landing
+	passengers 1
+	to offer
+		has "Saryd Couple 2: done"
+	source "Far Garden"
+	destination "Saros"
+	on offer
+		conversation
+			`The couple leaves your ship and heads to a real estate agency. From what they told you during the trip, they have about 1,500,000 credits they can spend, which they claim is in line with the standard properties in the most valued (and most sought-after) locations here, and that they should still have enough money to pay you afterwards.`
+			`	They return from consulting, the both of them with disappointed looks on their faces. Inturi starts looking at the ships landing and departing while Aunaris comes talk to you.`
+			`	"Kept watch of one property, for months we had. On a mountain village, overlooking a lake, and with access to a nearby forest, it is. A few days ago, purchased it was," she sighs. "Available, another plot of land neighboring it is, but over half our funds, the land alone costs."`
+			`	Inturi then looks over, as if he had just received a shock, and says, "That's it! A ship! Live in a ship, we could!"`
+			choice
+				`	"What do you mean?"`
+				`	"I like the enthusiasm, but unfortunately I'm not looking for any more crew members right now."`
+				`	"If you say so. Just don't forget the oranges, scurvy probably is a problem for Saryds too."`
+			`	"Live in a ship?" Aunaris repeats the sentence, puzzled.`
+			`	"In an Arach ship, for that week I worked. Taught me some things, the captain did. Often repurposed into houses, their ships are," he explains. "Their smallest ship, we could buy. Save time and money otherwise spent building a home, it would."`
+			`	They talk for a bit in private, and after a few minutes Inturi apparently managed to fully explain his idea and convince her.`
+			`	They head back to the real estate agency and arrange the purchase of the plot of land. Inturi then asks that you transport him to <destination>, where the basic Arach ship model is sold, and after buying it he will return here with the new "house."`
+			`	Aunaris will remain here to finish sorting out all the paperwork and will be waiting by the property once you two return.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Inturi hasn't entered the system yet. Better depart and wait for it.`
+
+
+
+mission "Saryd Couple 4"
+	name "Test Drive, Final Drive"
+	description "Escort Inturi's ship, which will be repurposed into a home for him and Aunaris, to <destination>."
+	landing
+	to offer
+		has "Saryd Couple 3: done"
+	source "Saros"
+	destination "Far Garden"
+	on offer
+		conversation
+			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that alhough he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
+			`	Only when you're with him inside the Arach vessel do you think of asking if he even knows how to fly a ship, but he reassures you that it won't be a problem.`
+			`	"To work as a copilot for an old friend, my first job was. Worry about me crashing the ship, you need not," he jokes.`
+			`	He says he will wait for your lead and follow you to <destination> once you depart.`
+				accept
+	npc accompany save
+		personality escort timid
+		government "Coalition"
+		ship "Arach Courier" "Boop"
+	on visit
+		dialog `You land on <planet>, but realize that Inturi's ship hasn't entered the system yet. Better depart and wait for it to get here.`
+	on complete
+		"coalition jobs" += 2
+		event "saryd couple follow-up" 51 96
+		conversation
+			`You help Inturi park the ship on the plot of land, but since the Arach Courier takes up almost the entire area, your own ship has to land on a regular landing pad.`
+			`	After taking a transport up the mountain, you see that some workers are already there and are starting to remove ship components that won't be needed, like its engines and hyperdrive. A house doesn't need to be able to traverse the void of space, after all.`
+			`	The couple comes to meet up with you. "In a day or two, after some shopping we do, fully furnished the house will be," Aunaris says, looking at the ship.`
+			`	"Helped us a lot in getting it all sorted out you have, Captain <last>. Focus on working hard to pay you back in full, we will," Inturi adds.`
+			choice
+				`	"You don't need to worry about paying me, I helped because I wanted to, not for a payday."`
+				`	"Well, I hope everything goes well. Best of luck to you two!"`
+					goto end
+			apply
+				set "refused saryd couple payment"
+			`	They look at you confused and then try to insist on paying you, but after some minutes they agree. "Too kind a heart you are, Captain," Aunaris says.`
+			label end
+			`	They thank you again, and you head back to your ship.`
+
+
+
+event "saryd couple follow-up"
+
+
+
+mission "Saryd Couple Follow-Up A"
+	invisible
+	landing
+	to offer
+		has "event: saryd couple follow-up"
+		not "refused saryd couple payment"
+	source
+		government "Coalition" "Heliarch"
+	on offer
+		payment 325400
+		conversation
+			`When you land, you're notified of <payment> being transferred to your account.`
+			`	With it, there's a message. It's from Inturi and Aunaris, the Saryd couple who you helped move out to their very own home.`
+			`	In the message, they apologize for taking so long to pay you, and go on to tell you about how they've been doing there. Aunaris has been working in a school there, while Inturi has been helping other residents set up their own "ship-houses," as he calls them. Apparently it's become somewhat popular there after people saw the couple's home.`
+			`	They thank you again and say you're welcome to visit anytime.`
+
+
+
+mission "Saryd Couple Follow-Up B"
+	invisible
+	landing
+	to offer
+		has "event: saryd couple follow-up"
+		has "refused saryd couple payment"
+	source
+		government "Coalition" "Heliarch"
+	on offer
+		conversation
+			`When you land, you see you've received a message. It's from Inturi and Aunaris, the Saryd couple who you helped move out to their very own home.`
+			`	Along with the message, they've sent a picture of them both tending to some flowers and short trees in a little garden they've started up near the ship. In the message they go on to tell you about how they've been doing there. Aunaris has been working in a school there, while Inturi has been helping other residents set up their own "ship-houses," as he calls them. Apparently it's become somewhat popular there after people saw the couple's home.`
+			`	They thank you again and say you're welcome to visit anytime.`
+
+
+
+mission "Longcow Antibiotics 1"
+	minor
+	name "Longcow Antibiotics"
+	description "Arachi ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
+	cargo "Longcow Antibiotics" 7
+	to offer
+		has "Coalition: First Contact: done"
+		random < 35
+	source
+		attributes arach
+	stopover "New Finding"
+	destination "Corral of Meblumem"
+	on offer
+		require "Jump Drive"
+		conversation
+			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
+			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
+			`	She tells you that they are a cooperative of Arachi ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
+			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
+			choice
+				`	"You've found the perfect person for the job. I'm in."`
+				`	"I suppose that's true, but I'm not looking for courier jobs, sorry."`
+					decline
+			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
+				accept
+	on stopover
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arachi cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" += 2
+		payment 421000
+
+
+
+mission "Longcow Antibiotics 2"
+	name "Longcow Antibiotics"
+	description "Deliver the remaining <cargo> to <destination>, where some Arachi also work as longcow ranchers."
+	landing
+	cargo "Longcow Antibiotics" 1
+	to offer
+		has "Longcow Antibiotics 1: done"
+	source "Corral of Meblumem"
+	destination "Nearby Jade"
+	on offer
+		conversation
+			`You're paid 421,000 credits when you land, but as you help the ranchers unload the antibiotics, they say that something is off.`
+			`	"Only 6 tons of antibiotics, we requested," one of them says. "That extra ton surplus, ours is not."`
+			`	She goes away for about ten minutes to contact the lab workers back on New Finding. When she comes back, she seemingly jokes with the other ranchers in the Arachi language, before talking to you.`
+			`	"Mixed up the cargo, they have. His own longcow ranch on <destination>, a cousin of mine has," she says. "Sent along with my own, his batch of antibiotics was."`
+			`	They contact the cousin in question and he asks that you transport his own part of the antibiotics to <destination>, where he will pay you <payment>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" += 2
+		payment 193000
+		dialog `You land and meet up with the cousin of the Corral of Meblumem rancher, and he pays you <payment>. "Mix up our batches due to our family name, the doctors always do!" he grumbles as the antibiotics are being removed from your cargo hold.`
+
+
+
+mission "Arachi Orphans"
+	minor
+	name "Arachi Orphans"
+	description "Bring these 4 Arachi orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
+	passengers 5
+	cargo "Orphanage Belongings" 2
+	to offer
+		has "Coalition: Contributor: done"
+		random < 45
+	source
+		attributes arach
+	destination "Chosen Nexus"
+	on offer
+		conversation
+			`An elderly Arach beckons to you as you enter the spaceport. He is accompanied by four Arachi children, who all stand close to a large pile of luggage.`
+			`	He explains that he used to run an orphanage here, but has now gotten too old for the job. He has arranged for the four kids to be transferred to a foster home on <destination>.`
+			`	"Take care of them, the Saryds there will," he says, patting the head of the youngest and shortest of the kids. "Retiring, I am, but abandon them, I will not. An apartment close to the foster home, I will purchase."`
+			`	He offers to pay you <payment> to bring the five of them and their <cargo> to <destination>.`
+			choice
+				`	"Of course I'll help. Here, let me help you get the luggage into my ship."`
+					accept
+				`	"I hope things work out for you, but I'm actually not going to stay in or fly around Coalition space for long now."`
+					decline
+	on complete
+		"coalition jobs" += 3
+		payment 268000
+		conversation
+			`You help the old Arach caretaker and some workers take the luggage out of your ship then head to the orphanage.`
+			`	A Saryd couple runs the place and greets you and the old Arach when you get there. Aside from a few Saryd kids, you notice the place already has an Arach child and some Kimek too.`
+			`	After you make sure all their belongings are inside the foster house, the Arachi children head on inside to get acquainted with their new family. Their caretaker thanks you and hands you <payment> before heading inside himself.`
+
+
+
+mission "Arachi Cartoonist 1"
+	minor
+	name "A New Design"
+	description "The Arach cartoonist Drugub is currently struggling to find inspiration for new spaceship designs in his comics. Head to <destination> and find something you can bring back to show him the ship models produced there."
+	to offer
+		has "Coalition: First Contact: done"
+	source "Mebla's Portion"
+	destination "Prime"
+	on offer
+		conversation
+			`As you're moving along one of the larger underground tunnels that connect the spaceport here, a dozen makeshift stands, each with a different apparent 'theme' to them, captures your attention. When you get closer, it's clear that the event is something of a convention, each stand managed by a different artist that lives here.`
+			`	After you're done looking at a stand that showcased various fantasy attires and move on to the neighboring one, it's owner jumps as soon as he turns to see you, looking dumbfounded. He introduces himself as Drugub, a cartoonist of local fame for his science fiction comics, showing various examples of them as he speaks with you. "Many styles of ships produced in our space are, but only so many ideas from them, I can get," he says. "That you came here, lucky I am. To expand my creative horizon, I need, and seeing the general shape of some human ships would."`
+			choice
+				`	"I can help with that. Do you have any type of ship in mind?"`
+				`	"Sorry, I'm just passing by, not looking for a job or anything."`
+					decline
+			`	He looks puzzled. "For a variety of purposes, ships in my comics are used, so to know of a variety of ships, preferable it would be."`
+			`	You decide to give him a brief description of the biggest shipyards in human space, citing their history and design philosophy, from Syndicated Shipyards' cheaper designs to Deep Sky's sophisticated (by human standards) technology.`
+			`	When you're done, he thinks for a bit, then concludes that Betelgeuse Shipyards' older, historical designs, are what he's looking for. "Set during a less developed time, what I'm working on is," he explains.`
+			choice
+				`	"In that case, I'll head to their home shipyard and see what I can bring back for you."`
+					goto end
+				`	"Alright, it's a bit of a long trip to <planet>, but if you're sure, let's head to my ship and I'll show you your bunk."`
+			`	"Oh, leave I cannot. Whether far away or not this <planet> you speak of is, allowed to leave Coalition space, we are not," he says. "Go on without me you must, Captain."`
+			label end
+			`	He thanks you and wishes you safe travels on your journey to <planet>.`
+				accept
+
+
+
+mission "Arachi Cartoonist 2"
+	name "A New Design"
+	description "Return to Drugub on <destination>, and give him the flyer with pictures and some details of Betelgeuse's ship models."
+	landing
+	to offer
+		has "Arachi Cartoonist 1: done"
+	source "Prime"
+	destination "Mebla's Portion"
+	on offer
+		conversation
+			`When you ask the shipyard clerk if you could have something that detailed their ship models to "show a friend who is new to spaceships," she hands you a flyer. Inside, all of Betelgeuse's ships are depicted with some details on each (along with the pricing, of course).`
+			`	"Usually we show these to first time buyers, but you can take one if you want. Is your friend interested in buying? Maybe I could help you figure out what ship would best suit them."`
+			`	You thank her, saying that your friend does not have the funds for any of the ships and just wants some info, then head back to your ship.`
+			`	Hopefully a small pamphlet will do for Drugub to get some ideas.`
+				accept
+	on complete
+		"coalition jobs" += 2
+		payment 75940
+		conversation
+			`Drugub is excitedly waiting for you when you return. However simple a piece of paper it may seem to you, he grabs the flyer as if it's some scroll of knowledge.`
+			`	He hands you your payment of <payment> and spends some time with you still, asking you all the questions he can think of about each ship.`
+			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
+			`	He spends some more minutes listening to you after he asks that you describe how you've seen each of the ships perform, thanks you again, and prepares to leave.`
+			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan,' may I? Just as a small thank you."`
+			choice
+				`	"Of course! It's called <ship>."`
+				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
+					goto noship
+			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
+				accept
+			label noship
+			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`

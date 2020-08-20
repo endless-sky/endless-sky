@@ -1293,7 +1293,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
 	shared_ptr<Ship> parent = ship.GetParent();
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::MOVE_TO)
+	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && type != Orders::MOVE_TO)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1310,9 +1310,9 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		SelectRoute(ship, it->second.targetSystem);
 		return false;
 	}
-	else if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
+	else if((type == Orders::MOVE_TO || type == Orders::HOLD_ACTIVE) && ship.Position().Distance(it->second.point) > 20.)
 		MoveTo(ship, command, it->second.point, Point(), 10., .1);
-	else if(type == Orders::HOLD_POSITION || type == Orders::MOVE_TO)
+	else if(type == Orders::HOLD_POSITION || type == Orders::HOLD_ACTIVE || type == Orders::MOVE_TO)
 	{
 		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
 			Stop(ship, command);
@@ -3759,6 +3759,12 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		hasMismatch |= !orders.count(ship);
 		
 		Orders &existing = orders[ship];
+		// HOLD_ACTIVE cannot be given as manual order, but we make sure here
+		// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
+		// command is given.
+		if(existing.type == Orders::HOLD_ACTIVE)
+			existing.type = Orders::HOLD_POSITION;
+		
 		hasMismatch |= (existing.type != newOrders.type);
 		hasMismatch |= (existing.target.lock().get() != newTarget);
 		existing = newOrders;
@@ -3805,7 +3811,7 @@ void AI::UpdateOrders(const Ship &ship)
 		return;
 	
 	Orders &order = it->second;
-	if(order.type == Orders::MOVE_TO && ship.GetSystem() == order.targetSystem)
+	if((order.type == Orders::MOVE_TO || order.type == Orders::HOLD_ACTIVE) && ship.GetSystem() == order.targetSystem)
 	{
 		// If nearly stopped on the desired point, switch to a HOLD_POSITION order.
 		if(ship.Position().Distance(order.point) < 20. && ship.Velocity().Length() < .001)
@@ -3813,8 +3819,8 @@ void AI::UpdateOrders(const Ship &ship)
 	}
 	else if(order.type == Orders::HOLD_POSITION && ship.Position().Distance(order.point) > 20.)
 	{
-		// If far from the defined target point, return via a MOVE_TO order.
-		order.type = Orders::MOVE_TO;
+		// If far from the defined target point, return via a HOLD_ACTIVE order.
+		order.type = Orders::HOLD_ACTIVE;
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}

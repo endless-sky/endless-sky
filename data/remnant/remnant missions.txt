@@ -56,7 +56,6 @@ mission "First Contact: Remnant"
 				decline
 			
 	on enter
-		log "People" "Chilia" `Despite being quite young, Chilia is the Remnant Prefect in charge of Remnant military actions. He is highly respected among Remnant society.`
 		"remnant chilia" ++
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
@@ -106,9 +105,9 @@ mission "First Contact: Remnant"
 		conversation
 			`Your return trip is a bit more nerve-wracking. Unlike the previous time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone, "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
 			choice
-				`(Provide the blood sample.)`
+				`	(Provide the blood sample.)`
 					goto comply
-				`(Refuse and run for your ship.)`
+				`	(Refuse and run for my ship.)`
 				
 			`	As you turn to start running back to your ship, the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquify under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the man with the scanner. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
 				die
@@ -899,7 +898,7 @@ mission "Remnant: Learn Sign 1"
 		conversation
 			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single one.`
 			choice
-				`	(Ask someone to teach you.)`
+				`	(Ask someone to teach me.)`
 				`	(Ignore it.)`
 					decline
 					
@@ -907,7 +906,7 @@ mission "Remnant: Learn Sign 1"
 			choice
 				`	"I would like to learn your sign language."`
 					goto words
-				`	(Sing a short verse about not understanding people because your hands are still.)`
+				`	(Sing a short verse about not understanding people because my hands are still.)`
 					goto song
 			label words
 			`	She looks at you with a confused expression, her hands making a few quick gestures. After a moment she points at the hand scanner embedded in the desk.`
@@ -945,7 +944,7 @@ mission "Remnant: Learn Sign 2"
 			`	Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehearsed phrases before directing you to place your hand on the scanner. Once again, the scanner takes a sample of your blood.`
 			choice
 				`	(Sign asking what the scanners are for.)`
-				`	(Sing a verse about your confusion of the hand scanners.)`
+				`	(Sing a verse about my confusion of the hand scanners.)`
 			`	The man begins to sign, but then realizes that you don't understand much of what he is signing, so he switches to singing. "Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
 			`	You thank the man for explaining the scanners to you and accept the next set of lessons.`
 			`	You spend a few hours viewing some of the lessons, one of which involves watching an ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exaggerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
@@ -1270,6 +1269,42 @@ mission "Remnant: taely intro log"
 		"remnant met taely" >= 1
 	on offer
 		log "People" "Taely" `As an engineering prefect, Taely is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		fail
+
+
+
+mission "Remnant: Chilia Intro Log"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 1
+	on offer
+		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
+		fail
+
+
+
+mission "Remnant: Chilia Intro Log 2"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 2
+	on offer
+		log "People" "Chilia" `Despite being quite young, Chilia is highly respected among Remnant society.`
+		fail
+
+
+
+mission "Remnant: Chilia Intro Log 3"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant chilia" >= 3
+	on offer
+		log "People" "Chilia" `Prefect Chilia is an unusual person compared to most military leaders: He is inclined to do things himself and rarely stands on protocol.`
 		fail
 
 
@@ -2187,7 +2222,6 @@ mission "Remnant: Face to Maw 2B"
 			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
 				decline
 	on complete
-		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
 		payment 250000
 		"remnant chilia" ++
 		outfit "Void Rifle"
@@ -2208,3 +2242,682 @@ mission "Remnant: Face to Maw 2B"
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
+
+
+
+mission "Remnant: Cognizance 1"
+	name "Follow-up Observations"
+	description "Plume would like you to do a follow-up visit to the planets in <system>."
+	minor
+	source "Aventine"
+	stopover "Nasqueron"
+	stopover "Slylandro"
+	cargo "scanning equipment" 8
+	blocked "The Remnant researcher has another job for you, but you're going to have to free up <tons> cargo space in order to take it on."
+	to offer
+		has "event: remnant: wait for plume"
+		has "Remnant: Learn Sign Follow Up: declined"
+		random < 50
+	on offer
+		conversation
+			`A familiar face is waiting for you as you step into the crowded spaceport on Aventine. "Captain <first>!" signs Plume. "I have been hoping you would stop by." He gestures for you to sit down on the bench next to him.`
+			`	"Now that most of the cocoons have been returned, I would like you return to Nasqueron and Slylandro to observe the void sprites' behavior. It is my hope that we can gain far greater insight into their life cycle."`
+			choice
+				`	"Sure, I could do that."`
+					goto rc1accept
+				`	"Not right now, but I could later."`
+					defer
+				`	"How much will I get paid?"`
+			`	"Once the research is published, you will receive one million credits.`
+			choice
+				`	"I accept."`
+				`	"Not right now, but I could later."`
+					defer
+			label rc1accept
+			`	"Excellent. As before, please visit both Nasqueron and Slylandro, record the void sprites there, and return here."`
+				accept
+	npc
+		government "Drak"
+		system "Nenia"
+		personality staying heroic disables uninterested
+		ship "Archon (Cloaked)" "Lifted Lorax"
+	npc
+		government "Korath"
+		system "Nenia"
+		personality entering forbearing timid uninterested surveillance staying
+		ship "Korath Raider" "Korath Raider (Ember)"
+			cargo "void sprite" 5 20
+	on enter "Nenia"
+		dialog
+			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and disappearing into the clouds whenever your ship moves towards them.`
+			`	After several minutes of recording the elusive void sprites, you decide to visit the next gas giant, recalling that Plume will want footage from both planets.`
+	on stopover
+		conversation
+			`Here you find the same behavior as before: void sprites have suddenly become timid and prone to diving into the shrouded depths of their world at the slightest quick movement.`
+			`	Despite the new challenge, you manage to record a variety of different void sprites before deciding to head back to <destination>.`
+	on complete
+		conversation
+			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. He quickly takes them and reviews the footage. He makes a gesture that you think means 'curious dejection', then seems to notice something, and resumes his usual intent bearing.`
+			`	"Here, look!" He rewinds the recording and gestures curtly at the projection in front of you. "There. That one is injured. Some kind of burn in a long, straight line." He zips through the footage farther: "And here, a scattering of scorch marks." He looks up at you and snaps out a series of gestures: "This is outside my experience; I need to consult an expert. Meet me in the spaceport in an hour."`
+
+
+
+mission "Remnant: Cognizance 2"
+	name "Eliminate Korath Ship"
+	description "Plume ordered you to eliminate the Korath ship in the <waypoints> system."
+	source "Aventine"
+	waypoint
+		system "Nenia"
+	to offer
+		has "Remnant: Cognizance 1: done"
+	on offer
+		conversation
+			`You arrive in the spaceport to find Plume pacing quickly along a walkway. He gestures a quick greeting and jumps straight to the point. "We have never seen marks like these naturally appear on void sprites, but they match the weapon scoring patterns we have seen delivered by Korath ships. As such, we believe the Korath have begun hunting void sprites."`
+			`	He looks at you with a surprising amount of vigor. "I will not have our work ruined by reptilian warmongers. Destroy the Korath hunters responsponsible, then we can continue the research."`
+			choice
+				`	"Okay, I will destroy the Korath hunters' ship."`
+					goto acceptance
+				`	"Do you have the authority to order that?"`
+			`	He nods curtly. "I do not have the authority to raise a fleet or order a captain to destroy the ship, but I can declare this Korath a threat to Remnant interests. It is up to you to decide how to respond to the identification of that threat."`
+			choice
+				`	(Accept his explanation.)`
+					goto acceptance
+				`	"Could you explain?"`
+			`	"While the Remnant have an all-encompassing hierarchy to ensure everyone answers to someone, we saw fit to keep all facets of our society merged to prevent fragmentation into 'civilian' or 'military' branches. Two aspects of this merging is the decision of when to invoke military force and what amount of force is worthwhile. According to my position as a researcher, I have the authority to designate something a threat to my projects or to the Remnant as a whole. I could even order someone to act on it. However, given that I am of low status in terms of military proficiency, I cannot dictate the magnitude of the military response, and I am subject to being overruled by those with higher military qualifications."`
+			`	"In our particular situation, I have higher xenobiology qualifications than you, so I can dictate to you, and most other xenobiologists, for that matter, that protecting the void sprites is a priority. However, you are more skilled at combat and military matters than I am. Therefore it is your decision as to how important it is relative to other military tasks. Likewise, it is your decision as to what amount of force is required, tactics used, or other such military considerations."`
+			`	"This is one of the aspects that set prefects apart: They are Remnant who have demonstrated excellence in their field, sound judgment across a variety of fields, and an affinity for balancing a multitude of demands on Remnant resources. Humility is also a requirement, as they must always recognize that while their particular combination of skills may be unique, there is always someone else who is better than them at any one thing. As such, prefects are the adjudicators in determining the priority of our various tasks and the leaders who keep the Remnant unified."`
+			choice
+				`	"Thanks for the explanation!"`
+					goto acceptance
+				`	"I thought prefects were specialists."`
+			`	"Well, they are and are not. Most prefects are assigned particular tasks that they are expected to devote themselves to. Often, this task relates to their area of expertise, but it is not always the case. Generally speaking, a prefect is considered to be the ultimate authority on tasks that they have been assigned to, but they are expected to take into account the suggestions from other prefects and the specialists in the fields relevant to the task.`
+			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia, coordinates the military defense of the Remnant, and Prefect Taely, who integrates our latest innovations into usable ships."`
+			choice
+				`	"Thanks! That was more detail than I was expecting."`
+				`	"Okay, that satisfied my curiosity for now."`
+			label acceptance
+			`	"Excellent. You deal with the Korath, and I will file a report about this threat. Please inform me immediately once you have taken care of it." He pauses, then continues, "Oh, and remember to record the battle. It may be useful in understanding what they are doing there."`
+				accept
+	on enter Nenia
+		dialog
+			`As you spot the Korath hunters you recall Plume's request and tap the 'Reccord' button as your ship prepares for combat.`
+	npc kill
+		government "Korath"
+		system "Nenia"
+		personality forbearing timid uninterested surveillance staying
+		ship "Korath Raider" "Korath Raider (Ember)"
+			cargo "void sprite" 5 20
+		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
+	on complete
+		event "korath hunting"
+		conversation
+			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
+
+
+
+event "korath hunting"
+	government "Korath"
+		"attitude toward"
+			"Indigenous Lifeform" -.01
+			"Ember Waste" -.01
+
+
+
+mission "Remnant: Cognizance 3"
+	name "Go to <planet> to meet Prefect Chilia."
+	description "Prefect Chilia left a message with Plume asking you to meet him on <destination> immediately."
+	source "Aventine"
+	to offer
+		has "Remnant: Cognizance 2: done"
+	destination "Caelian"
+
+
+
+mission "Remnant: Cognizance 4"
+	name "Search for the Korath"
+	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
+	source "Caelian"
+	landing
+	waypoint
+		system "Aescolanus"
+	to offer
+		has "Remnant: Cognizance 3: done"
+	on offer
+		"remnant chilia" ++
+		conversation
+			branch chilia
+				"remnant chilia" > 1
+			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A glance at the viewscreen shows a fit young man with a military bearing standing at your airlock. You quickly check with the starport control and confirm that the prefect in charge of Remnant military activities is indeed waiting to board your ship. You hit the unlock button and watch as Prefect Chilia strides onboard.`
+			`	"Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly. "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them.`
+				goto main
+			label chilia
+			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A quick glance at the viewscreen shows Prefect Chilia standing at your airlock. You quickly hit the unlock button and watch as he strides onboard.`
+			`	"Greetings, Captain <first>," he sings. "You seem to have a knack for finding things of importance to us. I am glad, however, that you and Plume discovered this."`
+			label main
+			branch voidrifle
+				has "Remnant: Face to Maw 2B: done"
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting void sprites, and we must take steps to prevent this from happening.`
+				goto next
+			label voidrifle
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting void sprites and must realize the importance of stopping this.`
+			label next
+			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
+				accept
+	npc save
+		government "Korath"
+		personality staying surveillance
+		system "Aescolanus"
+		fleet
+			names "korath"
+			variant
+				"Korath World-Ship B (Ember)"
+				"Korath Raider (Ember)" 4
+	on enter "Aescolanus"
+		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
+	on complete
+		payment 500000
+		conversation
+			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
+			`	"I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
+	on fail
+		payment 500000
+		conversation
+			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the destruction of the various ships. His eyes flit over the display for a moment, then he nods.`
+			`	"You have demonstrated good initiative, however I suspect that it was not the only hunter fleet out there. I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
+
+
+
+mission "Remnant: Cognizance 5"
+	name "Destroy Korath"
+	description "Prefect Chilia has asked you to eliminate the Korath fleet before returning to <destination> by <date>."
+	deadline 20
+	source "Caelian"
+	waypoint "Aescolanus"
+	to offer
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+	on offer
+		conversation
+			branch fleetkilled
+				has "Remnant: Cognizance 4: failed"
+			`When you arrive in the spaceport you find Prefect Chilia in the middle of briefing a group of Remnant and waves you forward as soon as you approach. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and will take the lead on tracking the rest for this mission." As you cross the room to join him, you take a good look at the group. One detail that stands out to you is that every one of Remnant in this group is wearing a thick leather neck wrap that extends right up to their hairline. It has a scaly texture and appears to be pulsing faintly. Unfortunately, you do not have time to ask questions as Chilia has not stopped issuing instructions.`
+				goto next
+			label fleetkilled
+			`When you arrive in the spaceport you find Prefect Chilia in the middle of briefing a group of Remnant and waves you forward as soon as you approach. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and recently destroyed part of their fleet. The Captain will take the lead on tracking the rest for this mission." As you cross the room to join him, you take a good look at the group. One detail that stands out to you is that every one of Remnant in this group is wearing a thick leather neck wrap that extends right up to their hairline. It has a scaly texture and appears to be pulsing faintly. Unfortunately, you do not have time to ask questions as Chilia has not stopped issuing instructions.`
+			label next
+			`	He turns to you. "These are the captains who will be following your lead. They are flying two Albatrosses, two Ibises with full complements, and six Starlings. One of the Albatrosses is outfitted to be a shield to take the brunt of attacks." He pauses, looking around at the group. "This task force would be overkill for the intended target, but we are not taking any chances: Make sure every Korath there is killed. Salvage is secondary, and there should be no escapees."`
+			`	He steps back and looks at the group. "May the Embers burn bright for you." With that, he gives the group a respectful nod and walks away. The captains all look around, make various signs you think are probably encouraging combat pilot slang, and variations on Prefect Chilia's parting words. As they disperse to their ships, one gestures to you. "Lead on, Captain."`
+				accept
+	npc kill
+		government "Korath"
+		personality staying
+		system "Nenia"
+		fleet
+			names "korath"
+			variant
+				"Korath World-Ship B (Ember)"
+					cargo "void sprite" 10 40
+				"Korath Raider (Ember)" 4
+					cargo "void sprite" 10 40
+		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
+	npc
+		government "Remnant"
+		personality escort launching appeasing unconstrained disables plunders
+		fleet
+			names "remnant"
+			variant
+				"Albatross (Shield)"
+				"Albatross"
+				"Ibis" 2
+				"Starling (Heavy)" 6
+				"Petrel" 4
+				"Tern" 8
+	on enter "Aescolanus"
+		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
+	on complete
+		conversation
+			`The task force streams back into <planet> without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to head out. As the first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
+
+
+
+mission "Remnant: Cognizance 6"
+	name "Transport Plume to a meeting"
+	description "Prefect Chilia needs Plume to consult about the void sprites."
+	deadline 5
+	source "Caelian"
+	stopover "Aventine"
+	to offer
+		has "Remnant: Cognizance 5: done"
+	on offer
+		conversation
+			`You find Prefect Chilia and the rest of the captains gathered in a small side room off the main cafeteria. Everyone is digging into their customarily enormous meals while the prefect works the room talking with everyone. As you pull up a chair, Chilia appears next to you and slides a tray in front of you. "It might not be the sort of fare you are used to from the ancestral worlds," he says, "but it is what we have to offer." Chilia looks around at everyone eating in muted conversation. "It is something of a tradition to eat a meal together when returning from battle. Share memories of those who fall, talk about why they fell, and what we must do differently next time." He eats a few bites from his own plate.`
+			`	"So, what should we do differently next time?"`
+			choice
+				`	"A few more Albatrosses would have been great."`
+				`	"The EMPs kept getting in the way."`
+				`	"I think that went fairly well, actually."`
+			`	He writes something on his notepad. "I appreciate the feedback." He pauses and sips from his glass. "Now, moving forward, we need to know what the Korath are doing. Beyond the obvious of killing void sprites and picking fights with the Archon, the Korath are a cunning foe, and they would not antagonize the Archon for no reason," he says.`
+			`	"I have to look into a few things here. In the meantime, please go pick up Plume from <stopovers> and bring him back. We need him to be here for a briefing before <day>."`
+				accept
+	on stopover
+		dialog
+			`Plume is waiting for you at the landing pad. Once you have given the all-clear and opened the doors, he boards with little fanfare. "Thanks for dealing with the Korath, Captain <last>. They had me worried." With that, he settles into a bunk and starts reviewing his notes.`
+			
+	on complete
+		payment 100000
+		conversation
+			`As soon as you land, Plume scurries off to find Chilia. By the time you finish your shutdown checks and head to where the meeting is taking place, you find that Plume has almost finished the briefing already. You catch the last few minutes summarizing what materials might be concentrated within the void sprites and his speculation that the Korath may have decided that these semi-processed resources are useful to their survival, despite the hostility of the Archon.`
+			`	After a few minutes of questions and answers about void sprite physiology and speculation by the assembled Remnant pilots, Chilia calls for a recess. "We will reconvene shortly to discuss the implications of this, but there are tasks to be done in the meantime. Captain <first>, meet me in the spaceport." As everyone disperses towards the spaceport, your commlink notifies you that you have received what the message terms 'a resource offset allotment of <payment> from Remnant Logistics.'`
+
+
+
+mission "Remnant: Cognizance 7"
+	name "Take Plume to Nasqueron"
+	description "Plume wants to witness firsthand what is going on in Nenia."
+	source "Caelian"
+	destination "Nasqueron"
+	to offer
+		has "Remnant: Cognizance 6: done"
+	on offer
+		conversation
+			`In the starport, Prefect Chilia and Plume are gesturing at some details on a datapad when you approach. Chilia notices you first and waves you over. "Thank you for joining us. While I put together some more long-term plans, could you take Plume to <planet>?"`
+			choice
+				`	"Why do we need to go back?"`
+				`	"Let's go."`
+					goto action
+			`	"Recordings and sensor readings are useful data, but they don't really compare to actually seeing what is going on and experiencing the data first-hand." says Plume. "There aren't too many opportunities to do it in my line of work - especially when my expertise is needed by others who would rather not spend their time watching wildlife. But I digress."`
+			label action
+			`	With a respectful bow to Chilia (who returns it equally respectfully), Plume heads for your ship. "I will be waiting onboard for you, Captain."`
+				accept
+	npc
+		government "Korath"
+		personality staying
+		system "Nenia"
+		fleet
+			names "korath"
+			variant
+				"Korath Raider (Ember)" 2
+	on complete
+		conversation
+			`Descending into the clouds of Nasqueron is becoming almost familiar to you. Wispy layers of gas give way to more voluminous formations and the occasional turbulent storm. Beside you, Plume is eagerly peering out the window, and you remind yourself that this may well be his first time actually seeing void sprites on their world.`
+			`	You reach the altitude where void sprites have previously been found in the greatest concentration before activating your ship's sensors. Plume looks around, peering out the windows. "Where are they? Aren't there usually some around? They always seemed plentiful in the recordings." You focus on the sensors, and after a few minutes pick up some distant contacts. You follow them down into the lower atmosphere and eventually begin to detect some void sprites."`
+			`	"That's close enough, Captain," says Plume. "I'll go outside and watch them from the hull." You help him into a pressure suit and cycle the airlock behind him. You quickly suppress a brief feeling of disappointment. "This is, after all, Plume's job," you say to yourself as you settle back into your chair to wait for him to return.`
+
+
+
+mission "Remnant: Cognizance 8"
+	name "Return Plume to Caelian"
+	description "Plume wants to check his records of the research on void sprites to verify some information."
+	landing
+	source "Nasqueron"
+	destination "Aventine"
+	to offer
+		has "Remnant: Cognizance 7: done"
+	on offer
+		conversation
+			`Plume returns to the ship after several hours, spurred by alarms in his suit warning you both of low oxygen levels. As you help him out of the pressure suit, he looks like he is having trouble deciding if he should be thrilled or worried.`
+			`	"It is wonderful to be here, watching them from a distance. A few did venture close, too. But I'm worried about them. Some of the void sprites out there have scorch marks similar to the scoring left by Korath weapons. And we already noticed that they are hiding much deeper in the atmosphere than normal." He glances down at his datapad then back up at you. "Once we are back into the chaos of the Ember Waste, I will send Chilia a signal. It looks like I will need to double-check my records and samples back on Aventine. Please take me there."`
+				accept
+	npc
+		government "Korath"
+		personality staying
+		system "Nenia"
+		fleet
+			names "korath"
+			variant
+				"Korath Raider (Ember)" 3
+	on complete
+		conversation
+			`As you approach Aventine, Plume gestures toward the pad closest to his lab. "You might as well set down there. If the samples in my lab check out, I will have another mission for you right away. You will need to keep your high-pressure ship active for this one. Stop by the lab in an hour or two and we will be ready to start loading."`
+
+
+
+mission "Remnant: Cognizance 9"
+	name "Transport engineer to Esquiline"
+	description "An engineer working for Plume needs transportation for himself and some equipment to <planet>."
+	blocked "Plume's engineer needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
+	cargo equipment 8
+	passengers 1
+	source "Aventine"
+	destination "Esquiline"
+	to offer
+		has "Remnant: Cognizance 8: done"
+	on offer
+		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed esquiline station.`
+		conversation
+			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another Remnant are gathered around the stack checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer. "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. He will be going with you."`
+			`	"It will be a pleasure to work with you," signs Gavrill, making a short bow. "We will be traveling to a research station on <planet>. Yes, it is a gas giant." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
+				accept
+	on complete
+		payment 100000
+		conversation
+			`Gavriil gives you precise directions to a set of coordinates that your sensors tell you is an empty area, and when you reach the designated spot, you see a small station shimmering out of the clouds.`
+			scene "scene/remnant station"
+			`	"We never managed to actually cloak the station," the engineer explains, grinning. "But we managed to hide it very effectively against every form of scanning we knew of. We even managed to give it a cloak-like field that renders it mostly transparent."`
+			`	He nods approvingly. "It's rather impressive what my predecessors managed to do with what they had back then."`
+			choice
+				`	"What do you mean?"`
+				`	"Let's get on with it."`
+					goto skipinfo
+			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships." We had plenty of puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?" With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
+			label skipinfo
+			`	"The station should be pressurized with a normal atmosphere, but it has been running on standby for ages with just yearly maintenance. It is time to get this place up and running again." With two of you operating your ship's loading equipment, everything is transferred in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. It looks like Gavriil is planning on staying here for a while.`
+			`	As he heads off deeper into the station, you receive a notification that 'Remnant Logistics' has made a deposit of <payment> to your account.`
+
+
+
+mission "Remnant: Cognizance 10"
+	name "Technician and supplies to <planet>."
+	description "You need to pick up a technician and their equipment from <stopovers> and take them to <planet>."
+	blocked "Plume's technician needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
+	cargo equipment 8
+	passengers 1
+	landing
+	source "Esquiline"
+	stopover "Caelian"
+	to offer
+		has "Remnant: Cognizance 9: done"
+	on offer
+		dialog
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from Caelian and bring it back to Esquiline. `
+				accept
+	on stopover
+		dialog
+			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. You shake your head, impressed at how quickly the Remnant make things happen when projects start to move.`
+	on complete
+		payment 100000
+		conversation
+			`On the flight over, the technician joins you on the control deck to chat. She's a biotech specialist, adept at managing life-support systems in alien atmospheres, and a recent graduate from a Remnant educational program that seems to be similar to a university. Apparently she studied astrobiology and is part of a project aimed at supporting mutually exclusive environments in close proximity. She spends nearly an hour excitedly telling you the ins and outs of the station.`
+			`	As you approach <planet>, it occurs to you that the Remnant might appreciate you taking steps to maintain the secrecy of the station. Altering the <ship>'s path slightly, you swing down into <planet> in an oblique path then meander around the planet under the cloud layer until arriving at the station. Your passenger nods approvingly as she notices the flight path. "Secrecy is always good with projects like this. We appreciate the extra effort, and if anyone were to follow you, a path like that through the clouds would leave few signs to spot."`
+			`	The <ship> settles into the landing bay, and the technician quickly disembarks. Apparently there must have been other shipments while you were gone, as there are now a handful of people visible and quite a bit more equipment stacked everywhere. The station itself feels more alive, the air fresher. As before, you promptly receive notification of another payment of <payment> to your account.`
+
+
+
+mission "Remnant: Cognizance 11"
+	name "Remnant Data Delivery"
+	description "Deliver a data crystal to the engineers on <planet>."
+	landing
+	source "Esquiline"
+	destination "Viminal"
+	to offer
+		has "Remnant: Cognizance 10: done"
+	on offer
+		conversation
+			`As you finish unloading, you spot Gavriil approaching. He gestures in greeting as he approaches. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." He pauses and fishes a data crystal out of a pouch. "Could you take this to Prefect Taely on Viminal? She is overseeing some retrofits and will need this data.`
+				accept
+	on complete
+		conversation
+			`On Viminal you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, <first>. How is our station faring?" You reply that it is improving rapidly and hand her the data crystal. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
+
+
+
+mission "Remnant: Cognizance 12"
+	name "Go meet up with escorts"
+	description "Travel with the <npc> to pick up a shipment of atmosphere from <stopovers>, and deliver it to <destination>."
+	cargo equipment 8
+	source "Viminal"
+	stopover "Nasqueron"
+	destination "Esquiline"
+	npc accompany
+		government "Remnant"
+		personality timid launching escort
+		fleet
+			names "remnant"
+			cargo 8 equipment
+			variant
+				Pelican
+				Puffin 4
+	to offer
+		has "Remnant: Cognizance 11: done"
+	on offer
+		conversation
+			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to <planet> and offload what you have collected to the station.`
+				accept
+	on stopover
+		dialog
+			`You cruise through the atmosphere at a relaxed pace, waiting while the equipment does its work. You see fewer void sprites than usual, and many have scars. Once the equipment indicates that it has reached capacity, you climb up to where the Pelican is waiting in the high atmosphere, hook up the connections to offload the gas, and then head back down into the depths of the planet. After several hours, the captain of the Pelican informs you that the tanks are full, and it is time to head to <planet>.`
+	on complete
+		event "remnant: postverta reveal"
+		conversation
+			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffin up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
+			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
+
+
+
+mission "Remnant: Cognizance 13"
+	name "Go meet Prefect Chilia on <planet>."
+	description "You have been informed that Prefect Chilia would like to meet with you on <destination>."
+	landing
+	source "Esquiline"
+	destination "Viminal"
+	to offer
+		has "Remnant: Cognizance 12: done"
+
+	
+
+event "remnant: postverta reveal"
+	unvisit Levana
+	unvisit Caeculus
+	unvisit Prosa
+	unvisit Egeria
+	system Postverta
+		pos 297 269
+		link Diespiter
+		link Prosa
+		link Statina
+	system Diespiter
+		link Postverta
+		link Statina
+	system Statina
+		link Postverta
+		link Diespiter
+	system Levana
+		add object wormhole_barren
+			distance 2313
+			period 389
+			sprite planet/wormhole-red
+	system Caeculus
+		add object wormhole_barren2
+			distance 2400
+			period 391
+			sprite planet/wormhole-red
+	system Prosa
+		link Postverta
+		link Vaticanus
+		add object wormhole_barren2
+			distance 2313
+			period 389
+			sprite planet/wormhole-red
+	system Egeria
+		add object wormhole_barren
+			distance 2313
+			period 389
+			sprite planet/wormhole-red
+		
+
+
+mission "Remnant: Cognizance 14"
+	name "Investigate strange sensor readings"
+	description "Long range sensors have picked up strange gravitational waves. Go investigate, then return to <destination>."
+	landing
+	source "Viminal"
+	waypoint
+		system Postverta
+	stopover
+		planet "Ssil Vida"
+	to offer
+		has "Remnant: Cognizance 13: done"
+	on offer
+		conversation
+			`You land by the starport and are immediately accosted by a Remnant who informs you that Prefect Chilia is on his personal warship and escorts you to a nearby Starling. Inside you find Chilia and several other Remnant clustered around a holographic display and some display panels. "Ah, Captain. Join us, please." Chilia gestures for you to join them around the displays. As you approach, you note that the holographic display shows the Ember Waste, although there are a few details that do not match the star maps you're familiar with.`
+			`	Chilia notices you eyeing the deviations. "Perceptive, Captain. Our sensors have reported some unusual energy signatures coming from this location. Scouts in the area say they are picking up signs of a new system. There were no immediately apparent hyperlinks or wormholes that connect to it, but there are still unusual energy fluctuations in the area. Unusual even for the Ember Waste." He looks up at you. "We are hoping that you might be able to figure out a way in."`
+			choice
+				`	"I could see if I can reach it with a Jump Drive."`
+				`	"I will see if I can find another way."`
+			`	"Thank you, Captain <first>. We have some ships that can follow, and there are other scouts already in the area that should be reporting soon. Given your experience with the wider galaxy, though, we would like you to lead the way."`
+				accept
+	on enter "Postverta"
+		dialog
+			`As your ship's sensors re-establish their depiction of the system around you, an alien space station comes into view. It appears to be old and mostly inactive, but your sensors do pick up occasional bursts of energy - and, oddly, faint signs of life almost everywhere.`
+	on stopover
+		conversation
+			`Surprisingly, the station is still operational, despite its apparent age. Ancient environmental systems maintain a breathable atmosphere, although it is thinner than you find comfortable. Likewise, the air is cool - but not dangerously so. Everywhere you look you continually feel like you have stumbled upon a space station built by giants: doors are massive, controls are placed at head height, and displays seem to be angled for a being significantly taller than you. Most unusually, larger rooms often have what look to be benches and tables placed halfway up walls.`
+			`	The engineering of the station points to a dedicated construction program aimed at a single purpose. You trace some of the more obvious sets of cables and discover a large spherical chamber in the station's core filled with arcane machinery which is emitting significant amounts of unknown energy - enough that your suit's medical systems emphatically warn you to turn back. While the devices appear to be central to this station's purpose, they will have to remain a mystery for now. Clearly, this is the sort of thing that the Remnant sent you out to find, and they will want to know about it as soon as possible.`
+	on complete
+		dialog
+			`As you arrive back at Viminal, you broadcast a warning to the port authorities that something is following you. You inform them that it is not hostile, but it is an unknown entity that originated in the new system.`
+
+
+
+mission "Remnant: Cognizance 15"
+	landing
+	invisible
+	source "Ssil Vida"
+	destination "Viminal"
+	to offer
+		has "Remnant: Cognizance 14: active"
+	npc accompany
+		government "Ember Waste"
+		personality waiting mute
+		ship "Ember Waste Node" "Unknown Entity"
+	
+
+
+mission "Remnant: Cognizance 16"
+	name "Follow the Creature"
+	description "The creature seems to be creating constellations and trying to get you to follow it."
+	landing
+	source "Viminal"
+	waypoint
+		system Peragenor
+		system Convector
+		system Nenia
+	destination Nasqueron
+	to offer
+		has "Remnant: Cognizance 14: done"
+	on offer
+		conversation
+			`Quite a number of Remnant have gathered around the spaceport watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries around the area have their formidable-looking weapons trained on the creature in case it turns violent.`
+			`	After several hours of watching the creature, one captain pushes his way forward to where you, Chilia, and Plume are talking. "I think I have an idea about this thing, Prefect!" the man signs excitedly. "Look at the positions of the glowing tips when it freezes. That pattern there matches the star positions of the main Ember Waste systems when viewed from Peragenor, and that second matches Convector." He pulls out a datapad and pulls up a projection of the starmap. "It is hard to tell due to the imprecision, but it looks like the third freeze is probably Antevorta or Nenia."`
+			`	Plume chimes in, "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating that it wants you to travel there. Please give it a try."`
+				accept
+	npc accompany
+		government "Ember Waste"
+		personality mute
+		ship "Ember Waste Node" "Unknown Entity"
+	on enter Peragenor
+		dialog `The creature comes to a stop in front of you, spins around briefly, then spreads out its tentacles in another pattern. Following the Remnant's intuition, you match it to your star charts as probably being Convector. After holding the position for a minute, the creature realigns itself and starts to shimmer with the tell-tale signs of starting to make a jump, but it holds it, as if waiting for you.`
+	on enter Convector
+		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
+	on enter Nenia
+		dialog `You have never seen such activity from the void sprites. Many quickly congregate around the strange creature that has been guiding you, and escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Korath Raider.`
+	on complete
+		event "remnant: nenia ember waste node"
+		conversation
+			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
+			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
+			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
+			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
+
+
+
+event "remnant: nenia ember waste node"
+	system "Nenia"
+		add fleet "Ember Waste Node" 10000
+	
+
+
+mission "Remnant: Cognizance 17"
+	name "Report back to Aventine."
+	description "The Remnant will want to know about what happened on Nasqueron."
+	source "Nasqueron"
+	landing
+	destination "Viminal"
+	to offer
+		has "Remnant: Cognizance 16: done"
+	
+
+mission "Remnant: Cognizance 18"
+	name "Go collect some void sprites"
+	description "Escort the Pelican fleet to <waypoints> and back to <planet>."
+	source
+		government "Remnant"
+	landing
+	destination Aventine
+	waypoint "Nenia"
+	to offer
+		has "Remnant: Cognizance 17: done"
+	on offer
+		conversation
+			`It is almost starting to feel commonplace to have Remnant pouncing on your ship and using your bridge as a meeting room. This time, it is Prefect Chilia and Plume who seem to appear out of nowhere requesting permission to board. The two gather around your console to watch the recording of your trip. They nod at your narration of what transpired and focus intently when you describe the strange presence in your mind. When you finish recounting your experience, they lean back in thought.`
+			`	"Captain <first>, the exact meaning is unclear, but it seems to be the voice of something not accustomed to speaking to us or creatures like us," signs Prefect Chilia. "While interesting, I think we should move forward with our plan and continue investigating this later." Plume reluctantly signs his agreement as Chilia continues. "Best case scenario, we can deprive the Korath of easy access to the void sprites. Worst case scenario, we can move enough that should the Korath hunt them to extinction in Nenia, they will continue to exist in our territory."`
+			`	Plume signals his cautious agreement. "This message is intriguing, but I agree it should not be our first priority. That being said, I will plan for additional investigations after we have completed this initial operation."`
+			`	The two look at you, and Chilia authoritatively signs, "We are evacuating a large group of void sprites from Nenia to Esquiline. The atmospheres are largely a match, and we have reconfigured the station to provide the nutrients that aren't otherwise present. We have a fleet of Pelicans that have basically been hollowed out so we can lure as many void sprites into it as we can."`
+			choice
+				`	"How are we supposed to lure them inside?"`
+				`	"Are we sure this is a good idea?"`
+					goto goodidea
+				`	"Okay, let's go do this."`
+					goto letsgo
+			`	Plume looks a bit embarrassed. "Centuries ago when we first studied the void sprites, we learned how to harvest them. As part of that, we discovered that they were particularly interested in certain types of radiation. Likewise, if they discovered a certain kind of element common in some asteroids, they would ignore almost everything while they chewed on it. So, we have emitters inside the cargo holds along with asteroids to keep them busy for a short while."`
+			choice
+				`	"Are we sure this is a good idea?"`
+				`	"Okay, let's go."`
+					goto letsgo
+			label goodidea
+			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs. "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect to them to talk to you. That is, if they do not simply start shooting, anyway."`
+			label letsgo
+			`	Chilia continues. "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, load up, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of Pelicans are warming up, each one synchronizing to your IFF and confirming their status."`
+				accept
+	npc save accompany
+		government "Remnant"
+		personality pacifist coward launching escort
+		fleet
+			names "remnant"
+			variant
+				"Pelican (Heavy Lift)" 6
+	npc
+		government "Remnant"
+		personality launching escort disables plunders
+		fleet "Large Remnant" 3
+	npc evade
+		government "Korath"
+		personality heroic disables plunders harvests entering staying
+		system "Nenia"
+		fleet
+			names "korath"
+			variant
+				"Korath World-Ship B (Ember)"
+				"Korath Raider (Ember)" 3
+	on enter "Nenia"
+		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the Pelicans immediately set to work collecting void sprites. As the last one closes its hold, the confirmation codes flash across your tactical screen. "Good to go."`
+	on enter "Pantica"
+		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquiline's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
+	on complete
+		log "Succesfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
+		"salary: Remnant" = 2500
+		payment 1000000
+		event "remnant: pantica void sprites"
+		event "remnant: cognizance timer" 30
+		conversation
+			`	Moments later a ping comes in on the comlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
+			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
+
+
+
+event "remnant: pantica void sprites"
+	system "Pantica"
+		add fleet "Void Sprites" 4000
+	planet "Esquiline"
+		government "Remnant"
+		add attributes remnant
+		remove attributes uninhabited
+		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
+		add spaceport `	Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
+
+
+
+event "remnant: cognizance timer"
+	system "Nenia"
+		fleet "Ember Waste Node" 6000
