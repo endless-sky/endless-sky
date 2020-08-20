@@ -1882,14 +1882,11 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	}
 	// If we're a jump drive, just stop.
 	else if(isJump)
-		(Stop(ship, command, ship.Attributes().Get("jump speed"), direction))
-		command.SetTurn(TurnToward(ship, direction));
-}
+		Stop(ship, command, ship.Attributes().Get("jump speed"));
 	// Else stop in the fastest way to end facing in the right direction
 	else if(Stop(ship, command, ship.Attributes().Get("jump speed"), direction))
 		command.SetTurn(TurnToward(ship, direction));
 }
-
 
 	
 void AI::CircleAround(Ship &ship, Command &command, const Body &target)
