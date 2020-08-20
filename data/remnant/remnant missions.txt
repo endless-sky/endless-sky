@@ -2345,7 +2345,7 @@ mission "Remnant: Cognizance 2"
 				accept
 	on enter Nenia
 		dialog
-			`As you spot the Korath hunters you recall Plume's request and tap the 'Reccord' button as your ship prepares for combat.`
+			`As you spot the Korath hunters you recall Plume's request and tap the 'Record' button as your ship prepares for combat.`
 	npc kill
 		government "Korath"
 		system "Nenia"
