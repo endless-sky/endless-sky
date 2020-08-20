@@ -1594,7 +1594,7 @@ mission "Wanderers: Sestor Attack"
 		conversation
 			`A few hours after you present the scanning data to the scientists, you are called into a meeting with the Wanderer leaders. "We may have found the [facility, center]," says, Tele'ek, "but we are not [certain, confident]. There is indeed an underground [bunker, fortress] on one of the planets, but it must have been [damaged, overrun] in the course of their war." He calls up a holographic display of the facility, showing that one section of it has been breached, and a tunnel leads from there to the surface.`
 			choice
-				`	"You're probably right that they wouldn't have kept using the facility once it was been breached."`
+				`	"You're probably right that they wouldn't have kept using the facility once it had been breached."`
 				`	"Is there any sign that they tried to rebuild it after the damage? Or that it's still in use?"`
 
 			`	Iriket walks up closer to the display to look on it. She adjusts some controls, and an overlay shows up in another color. "The Kor Efret said their [civil war, cultural collapse] ended a century ago, yes?" she asks. You nod. She walks around the display, examining it carefully, then says, "These [cracks, fractures] in the [bedrock?] have not yet been [infiltrated, saturated] with ground water. This damage is not a century old. It is from at most one [month?] ago."`
@@ -1862,7 +1862,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					decline
 			
 			label approach
-			`	You get a better view of the Behemoth - the "Heart of Gold", as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
+			`	You get a better view of the Behemoth - the Heart of Gold, as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
 			choice
 				`	"How did your ship end up in such a state?"`
 				`	"Was this beauty the victim of a pirate attack?"`
@@ -2918,7 +2918,7 @@ mission "Wanderers: Sestor: Scan Drones"
 				`	"Do you think they are weakened enough that we can destroy them?"`
 				`	"Do you think there is any way we could regain control of them?"`
 					goto control
-			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?`
+			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?"`
 				goto end
 			label control
 			`	"That is our [hope, desire]," he says. "Or, barring that, at least we may [disable, shut down] the factories. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] on the drones?"`
@@ -3392,6 +3392,8 @@ mission "Wanderers: Sestor: Final"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
+		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
+		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40

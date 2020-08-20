@@ -157,6 +157,7 @@ public:
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
 	const Mission *ActiveBoardingMission() const;
+	void UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI *ui);
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);

@@ -64,6 +64,15 @@ phrase "generic missing stopover or cargo"
 phrase "generic missing stopover or escort"
 	word
 		`You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left the <npc> behind.`
+phrase "generic missing waypoint or cargo and passengers"
+	word
+		`You have reached <planet>, but you're missing something! Either you haven't passed through <waypoints>, or not all the cargo and passengers are in the system.`
+phrase "generic missing waypoint or passengers"
+	word
+		`You have reached <planet>, but you're missing something! Either you haven't passed through <waypoints>, or not all the passengers are in the system.`
+phrase "generic missing waypoint or cargo"
+	word
+		`You have reached <planet>, but you're missing something! Either you haven't passed through <waypoints>, or not all the cargo is in the system.`		
 
 phrase "generic stopover on visit"
 	word

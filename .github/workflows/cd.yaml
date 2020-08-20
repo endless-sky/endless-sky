@@ -30,7 +30,7 @@ jobs:
       - name: Package Application
         run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -52,7 +52,7 @@ jobs:
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -84,7 +84,7 @@ jobs:
       - name: Package Application
         run: 7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -96,7 +96,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: brew install libpng libjpeg-turbo libmad sdl2 p7zip
+        run: |
+          brew update
+          brew install libpng libjpeg-turbo libmad sdl2 p7zip
       - name: Adjust library paths
         run: |
           install_name_tool -id "@rpath/libpng16.16.dylib" /usr/local/lib/libpng16.16.dylib
@@ -113,7 +115,7 @@ jobs:
           cd build/Release
           7z a ${{ github.workspace }}/${{ env.OUTPUT }} Endless\ Sky.app
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -149,10 +151,11 @@ jobs:
           git push --tags --force
       - name: Setup continuous release
         run: |
-          DESCRIPTION=$'This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
-          \n
-          \nTriggered on commit ${{ github.sha }} by @${{ github.actor }}
-          \nhttps://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+          DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})
+          
+          This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
+          
+          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           if ! github-release info -t continuous > /dev/null 2>&1; then
             github-release release \
               --tag continuous \
@@ -166,52 +169,36 @@ jobs:
               --description "$DESCRIPTION" \
               --pre-release
           fi
-      - name: Download ${{ env.OUTPUT_UBUNTU }}
-        uses: actions/download-artifact@v1
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
         with:
-          name: ${{ env.OUTPUT_UBUNTU }}
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
       - name: Add ${{ env.OUTPUT_UBUNTU }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_UBUNTU }} \
-            --file ${{ env.OUTPUT_UBUNTU }}
-      - name: Download ${{ env.OUTPUT_APPIMAGE }}
-        uses: actions/download-artifact@v1
-        with:
-          name: ${{ env.OUTPUT_APPIMAGE }}
-          path: ${{ github.workspace }}
+            --file ${{ env.OUTPUT_UBUNTU }}/${{ env.OUTPUT_UBUNTU }}
       - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_APPIMAGE }} \
-            --file ${{ env.OUTPUT_APPIMAGE }}
-      - name: Download ${{ env.OUTPUT_WINDOWS }}
-        uses: actions/download-artifact@v1
-        with:
-          name: ${{ env.OUTPUT_WINDOWS }}
-          path: ${{ github.workspace }}
+            --file ${{ env.OUTPUT_APPIMAGE }}/${{ env.OUTPUT_APPIMAGE }}
       - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_WINDOWS }} \
-            --file ${{ env.OUTPUT_WINDOWS }}
-      - name: Download ${{ env.OUTPUT_MACOS }}
-        uses: actions/download-artifact@v1
-        with:
-          name: ${{ env.OUTPUT_MACOS }}
-          path: ${{ github.workspace }}
+            --file ${{ env.OUTPUT_WINDOWS }}/${{ env.OUTPUT_WINDOWS }}
       - name: Add ${{ env.OUTPUT_MACOS }} to release tag
         run: |
           github-release upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_MACOS }} \
-            --file ${{ env.OUTPUT_MACOS }}
+            --file ${{ env.OUTPUT_MACOS }}/${{ env.OUTPUT_MACOS }}
     
