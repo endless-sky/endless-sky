@@ -25853,7 +25853,7 @@ planet Aventine
 planet Babiali
 	attributes "ice giant" uninhabited
 	landscape land/canyon12
-	description `The giant mass of ice and rock is the bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
+	description `Babiali surface is a bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
 	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered to set up anything resembling a spaceport.`
 	security 0
 	government Uninhabited
@@ -27207,7 +27207,7 @@ planet "Into White"
 planet Janiculum
 	attributes uninhabited
 	landscape land/canyon11
-	description `As you pass low over Janiculum, you see that its surface is little more than a gravitational graveyard for asteroids and debris. Impact craters liter the surface, with some looking fairly recent.`
+	description `As you pass low over Janiculum, you see that its surface is little more than a gravitational graveyard for asteroids and debris. Impact craters litter the surface, with some looking fairly recent.`
 	description `	Janiculum is the subject of regular surveillance by the Remnant, who track impacts and investigate them whenever they occur. While it is not clear what the Remnant are recovering from these investigations, they continue to do them with meticulous regularity.`
 	security 0
 	government Uninhabited
@@ -27967,7 +27967,7 @@ planet Palarei
 planet Palatine
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa12
-	description `The whipping winds of Palatine are a prime example of how the inner mechanics of gas giants are poorly understood: When it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what astrophysical models predicted, as if they had recently been subject to a massive acceleration.`
+	description `The whipping winds of Palatine are a prime example of how the inner mechanics of gas giants are poorly understood; when it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what astrophysical models predicted, as if they had recently been subject to a massive acceleration.`
 	description `	Over the subsequent centuries the winds have been imperceptibly slowing toward normally predicted velocities, but at their current rate it will be many millennia before they reach them.`
 	security 0
 	government Uninhabited
@@ -29144,7 +29144,7 @@ planet "Varu Tev'kei"
 planet Vatican
 	attributes "lava" uninhabited
 	landscape land/lava10
-	description `Vatican's propensity for constant renewal of the surface has resulted in a flourishing astrogeological academic program. While it has frequently been dismissed as a low priority for Remnant efforts, it has nonetheless received continued support from the defense prefects. Why they would be concerned with the geological formations of planet is unknown, but the research continues.`
+	description `Vatican's propensity for constant renewal of the surface has resulted in a flourishing astrogeological academic program. While it has frequently been dismissed as a low priority for Remnant efforts, it has nonetheless received continued support from the defense prefects. Why they would be concerned with the geological formations of an uninhabited planet is unknown, but the research continues.`
 	security 0
 	government Uninhabited
 
