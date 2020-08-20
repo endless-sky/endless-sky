@@ -226,8 +226,8 @@ outfit "EMP Torpedo Storage Bay"
 	"outfit space" -12
 	"energy capacity" 400
 	"emp torpedo capacity" 7
-	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP Torpedoes."
-	description "In addition to its ammunition capacity, the Storage Bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
+	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
+	description "   In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
