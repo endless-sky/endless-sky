@@ -3056,7 +3056,7 @@ mission "Hunted Warning"
 			not "chosen sides"
 			has "main plot completed"
 	on offer
-		log `Got noticed at a spaceport bar as a "famous warrior." Was warned to watch for pirates looking to make a name for themselves or bounty hunters looking to claim a bounty.`
+		log `Got noticed at a spaceport bar as a "famous warrior." Was warned to look out for bounty hunters or pirates hoping to make a name for themselves.`
 		conversation
 			`You walk into a bar in the spaceport looking for something to eat when a man sitting at a table in the corner looks up and takes notice of you. "It's Captain <last>, the famous warrior! Barkeep, give <first> a drink on my tab."`
 			choice
@@ -3070,18 +3070,18 @@ mission "Hunted Warning"
 				"reputation: Free Worlds" >= 0
 				"reputation: Syndicate" >= 0
 			
-			`	"It doesn't help that you've pissed off the law, either," someone says, not sounding too happy.`
+			`	"It doesn't help that you've pissed off the law, either," someone behind you says, not sounding too happy.`
 			label recognition
-			`	More of the patrons of the bar begin to notice that you've entered and begin chattering amongst themselves. "Quite the force to be reckoned with, I've heard," you overhear one of them mumble.`
-			`	"You might want to watch your back," another says to you. "Plenty of pirates looking to make a name for themselves taking out such a famous captain, and plenty of bounty hunters out for a bounty you might have on your head without even knowing about it."`
+			`	More patrons take notice of the conversation and begin chattering amongst themselves. "Quite the force to be reckoned with, I've heard," you overhear one of them mumble.`
+			`	"You might want to watch your back," another says to you. "Plenty of pirates with more brains than sense might be looking to make a name for themselves by taking out such a famous captain. A person like you has to have some enemies, and you never know who might have put a price on your head. A bounty hunter could retire early on the fat purse they'd get from spacing you."`
 			choice
 				`	"I'll be fine. My ship is strong enough to stand against anything."`
 				`	"Maybe I should go into hiding for a while."`
 					goto hide
-			`	"Oh, I'm sure it is. You wouldn't have gotten this notorious if you weren't able to hold your all."`
+			`	"Oh, I'm sure it is. You wouldn't have gotten this notorious without being able to hold your own."`
 				goto end
 			label hide
-			`	"You'd need to hide for more than just a while, but laying low in a small ship might help to stay off the radar of any bounty hunters."`
+			`	"You'd need to hide for more than just a while, but laying low in a small ship might help to stay off the radar of pirates and bounty hunters."`
 			label end
 			`	After a few more minutes of mumbling, the bar returns to like it was before you entered. The food you ordered arrives and you dig in.`
 				decline
