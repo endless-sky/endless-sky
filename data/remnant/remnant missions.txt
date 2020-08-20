@@ -2287,9 +2287,10 @@ mission "Remnant: Cognizance 1"
 		personality entering forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
+			cargo 1
+			commodities "void sprite parts"
 			variant
 				"Korath Raider (Ember)"
-					cargo "void sprite" 5 20
 				"Korath Chaser" 2
 	on enter "Nenia"
 		dialog
@@ -2351,9 +2352,10 @@ mission "Remnant: Cognizance 2"
 		personality forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
+			cargo 1
+			commodities "void sprite parts"
 			variant
 				"Korath Raider (Ember)"
-					cargo "void sprite" 5 20
 				"Korath Chaser" 2
 		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
 	on complete
@@ -2419,6 +2421,8 @@ mission "Remnant: Cognizance 4"
 		system "Aescolanus"
 		fleet
 			names "korath"
+			cargo 2
+			commodities "void sprite parts"
 			variant
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 4
@@ -2466,11 +2470,11 @@ mission "Remnant: Cognizance 5"
 		system "Nenia"
 		fleet
 			names "korath"
+			cargo 2
+			commodities "void sprite parts"
 			variant
 				"Korath World-Ship B (Ember)"
-					cargo "void sprite" 10 40
 				"Korath Raider (Ember)" 4
-					cargo "void sprite" 10 40
 				"Korath Chaser" 8
 		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
