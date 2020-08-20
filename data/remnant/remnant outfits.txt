@@ -216,6 +216,19 @@ outfit "EMP Torpedo"
 	"emp torpedo capacity" -1
 	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
 
+outfit "EMP Torpedo Storage Bay"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 98000
+	thumbnail "outfit/emp rack"
+	"mass" 5
+	"outfit space" -12
+	"energy capacity" 400
+	"emp torpedo capacity" 7
+	description "The EMP Torpedo Storage Bay is used to store extra ammunition for EMP Bays."
+	description "In addition to its ammunition capacity, the Storage Bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
+
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
 	licenses
