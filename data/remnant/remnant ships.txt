@@ -900,6 +900,7 @@ ship "Starling" "Starling (Sniper)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Outfits Expansion"
 		"Tuning Rifle" 9
 
 		"Forge-Class Thruster"
