@@ -30,9 +30,6 @@ class Panel;
 // starting with whichever one is on the bottom.
 class UI {
 public:
-	// Default constructor.
-	UI();
-	
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);
@@ -62,6 +59,9 @@ public:
 	// Get the lower-most panel.
 	std::shared_ptr<Panel> Root() const;
 	
+	// Indicate if all gamedata-loading is done and the first menu is displayed.
+	void IsInitialized(bool isInitialized);
+	bool IsInitialized() const;
 	// If the player enters the game, enable saving the loaded file.
 	void CanSave(bool canSave);
 	bool CanSave() const;
@@ -85,7 +85,8 @@ private:
 	std::vector<std::shared_ptr<Panel>> stack;
 	
 	bool canSave = false;
-	bool isDone;
+	bool isInitialized = false;
+	bool isDone = false;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 };

@@ -24,14 +24,6 @@ using namespace std;
 
 
 
-// Default constructor.
-UI::UI()
-	: isDone(false)
-{
-}
-
-
-
 // Handle an event. The event is handed to each panel on the stack until one
 // of them handles it. If none do, this returns false.
 bool UI::Handle(const SDL_Event &event)
@@ -205,6 +197,21 @@ shared_ptr<Panel> UI::Root() const
 	}
 	
 	return stack.front();
+}
+
+
+
+// Indicate if all gamedata-loading is done and the first menu is displayed.
+void UI::IsInitialized(bool isInitialized)
+{
+	this->isInitialized = isInitialized;
+}
+
+
+
+bool UI::IsInitialized() const
+{
+	return isInitialized;
 }
 
 

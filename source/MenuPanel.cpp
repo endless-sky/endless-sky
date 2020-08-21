@@ -43,7 +43,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	bool isReady = false;
 	float alpha = 1.f;
 	const int scrollSpeed = 2;
 }
@@ -69,7 +68,7 @@ void MenuPanel::Step()
 			scroll = 0;
 	}
 	progress = static_cast<int>(GameData::Progress() * 60.);
-	if(progress == 60 && !isReady)
+	if(progress == 60 && !GetUI()->IsInitialized())
 	{
 		if(gamePanels.IsEmpty())
 		{
@@ -79,7 +78,7 @@ void MenuPanel::Step()
 			gamePanels.StepAll();
 			gamePanels.StepAll();
 		}
-		isReady = true;
+		GetUI()->IsInitialized(true);
 	}
 }
 
@@ -179,7 +178,7 @@ void MenuPanel::OnCallback(int)
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!isReady)
+	if(!GetUI()->IsInitialized())
 		return false;
 	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))

@@ -269,7 +269,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 		// and it helps to show if the CI testframework is working.
 		// This hardcoded testcase is expected to be replaced by the
 		// larger testframework that is planned for ES.
-		if(!testToRun.empty() && GameData::Progress() == 1)
+		if(!testToRun.empty() && menuPanels.IsInitialized())
 			menuPanels.Quit();
 		
 		// Caps lock slows the frame rate in debug mode.
