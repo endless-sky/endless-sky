@@ -3104,7 +3104,7 @@ mission "Hunted"
 				"ship scale" < 8
 				random < 2 + "ship scale"
 			and
-				"ship scale" >= 8
+				"ship scale" >= 8 + "Hunted: active"
 				random < 10
 		or
 			not "chosen sides"
