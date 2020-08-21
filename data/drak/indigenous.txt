@@ -128,7 +128,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 	leak "blood" 60 50
 	explode "blood" 25
 	"final explode" "void sprite infant death"
-	description "This is the immature form of the void sprite. While they typically rely on their tendrils and natural boyancy to fly within atmospheres, they have demonstrated the unusual ability to manipulate gravitational fields to propel themselves off-world."
+	description "This is the immature form of the void sprite. While they typically rely on their tendrils and natural buoyancy to fly within atmospheres, they have demonstrated the unusual ability to manipulate gravitational fields to propel themselves off-world."
 
 effect "void sprite infant death"
 	sprite "effect/void sprite infant death"
