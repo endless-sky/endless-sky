@@ -430,17 +430,6 @@ void ShopPanel::DrawMain()
 			isEmpty = false;
 			if(isCollapsed)
 				break;
-			
-			if(isSelected)
-			{
-				// highlight the selected item
-				Color color(.07f, 0.9f);
-
-				FillShader::Fill(
-					point,
-					Point(TILE_SIZE, TILE_SIZE),
-					color);
-			}
 
 			DrawItem(name, point, scrollY);
 			
