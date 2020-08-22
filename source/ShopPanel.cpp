@@ -295,6 +295,18 @@ void ShopPanel::DrawShipsSidebar()
 
 void ShopPanel::DrawDetailsSidebar()
 {
+	// Fill in the background.
+	const Color &line = *GameData::Colors().Get("dim");
+	const Color back = Color(.055, .055, .055);
+	FillShader::Fill(
+		Point(Screen::Right() - SHIP_SIDE_WIDTH - INFO_SIDE_WIDTH, 0.),
+		Point(1., Screen::Height()),
+		line);
+	FillShader::Fill(
+		Point(Screen::Right() - SHIP_SIDE_WIDTH - INFO_SIDE_WIDTH / 2, 0.),
+		Point(INFO_SIDE_WIDTH - 1., Screen::Height()),
+		back);
+
 	Point point(
 		Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2,
 		Screen::Top() + 10 - sideDetailScroll);
