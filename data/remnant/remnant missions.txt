@@ -2336,7 +2336,7 @@ mission "Remnant: Crystal Research 1"
 			`	Aeolus nods sadly. "We appreciate the confirmation, and hope to learn more about those who remained in ancestral lands. It is depressing, however, to think that humanity is so self-centered to put financial wealth as such a high priority. Nonetheless, we do have another job for you. Are you interested?"`
 				goto greedchoice
 			label greedpartial
-			`	Aeolus nods. "So financial wealth is a priority of necessity, but not necessarily what they would prefer to focus on. Interesting. That gives me a bit of hope." He pauses to consider this, then continues. "The economic beliefs of humanity aside, are you interested in helping us out`
+			`	Aeolus nods. "So financial wealth is a priority of necessity, but not necessarily what they would prefer to focus on. Interesting. That gives me a bit of hope." He pauses to consider this, then continues. "The economic beliefs of humanity aside, are you interested in helping us out?"`
 				goto greedchoice
 	on complete
 		dialog
