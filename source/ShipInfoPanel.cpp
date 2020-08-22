@@ -43,9 +43,10 @@ namespace {
 }
 
 
-ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
-	: player(player), shipIt(player.Ships().begin()), canEdit(player.GetPlanet())
+ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index, vector<shared_ptr<Ship>> *shipView)
+: player(player), canEdit(player.GetPlanet()), ships(shipView == nullptr ? player.Ships() : *shipView)
 {
+	shipIt = ships.begin();
 	SetInterruptible(false);
 	
 	// If a valid ship index was given, show that ship.
@@ -118,22 +119,22 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Pop(this);
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
-		if(shipIt == player.Ships().begin())
-			shipIt = player.Ships().end();
+		if(shipIt == ships.begin())
+			shipIt = ships.end();
 		--shipIt;
 		UpdateInfo();
 	}
-	else if(!player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
+	else if(!ships.empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
 	{
 		++shipIt;
-		if(shipIt == player.Ships().end())
-			shipIt = player.Ships().begin();
+		if(shipIt == ships.end())
+			shipIt = ships.begin();
 		UpdateInfo();
 	}
 	else if(key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new PlayerInfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player, &ships));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
@@ -202,7 +203,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 bool ShipInfoPanel::Click(int x, int y, int clicks)
 {
-	if(shipIt == player.Ships().end())
+	if(shipIt == ships.end())
 		return true;
 	
 	draggingIndex = -1;
@@ -255,8 +256,7 @@ void ShipInfoPanel::UpdateInfo()
 {
 	draggingIndex = -1;
 	hoverIndex = -1;
-	ClearZones();
-	if(shipIt == player.Ships().end())
+	if(shipIt == ships.end())
 		return;
 	
 	const Ship &ship = **shipIt;
@@ -613,7 +613,7 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 
 bool ShipInfoPanel::Hover(const Point &point)
 {
-	if(shipIt == player.Ships().end())
+	if(shipIt == ships.end())
 		return true;
 
 	hoverPoint = point;
@@ -635,7 +635,7 @@ bool ShipInfoPanel::Hover(const Point &point)
 
 void ShipInfoPanel::Rename(const string &name)
 {
-	if(shipIt != player.Ships().end() && !name.empty())
+	if(shipIt != ships.end() && !name.empty())
 	{
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
@@ -646,7 +646,7 @@ void ShipInfoPanel::Rename(const string &name)
 
 bool ShipInfoPanel::CanDump() const
 {
-	if(canEdit || shipIt == player.Ships().end())
+	if(canEdit || shipIt == ships.end())
 		return false;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
@@ -744,13 +744,13 @@ void ShipInfoPanel::DumpCommodities(int count)
 void ShipInfoPanel::Disown()
 {
 	// Make sure a ship really is selected.
-	if(shipIt == player.Ships().end() || shipIt->get() == player.Flagship())
+	if(shipIt == ships.end() || shipIt->get() == player.Flagship())
 		return;
 	
 	// Because you can never disown your flagship, the player's ship list will
 	// never become empty as a result of disowning a ship.
 	const Ship *ship = shipIt->get();
-	if(shipIt != player.Ships().begin())
+	if(shipIt != ships.begin())
 		--shipIt;
 	
 	player.DisownShip(ship);

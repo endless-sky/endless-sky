@@ -1003,6 +1003,12 @@ interface "info panel"
 	button A "Unpark All"
 		center 145 305
 		dimensions 90 30
+	visible if "show save order"
+	sprite "ui/wide button"
+		center -195 305
+	button v "Sa_ve Order"
+		center -195 305
+		dimensions 90 30
 
 
 

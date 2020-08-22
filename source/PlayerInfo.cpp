@@ -1,5 +1,5 @@
 /* PlayerInfo.cpp
-Copyright (c) 2020 by Michael Zahniser
+Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -996,19 +996,9 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 
 
 
-// Sorts the player's fleet depending on which function (column) was given
-void PlayerInfo::SortShips(bool sortDesc, const function<bool(const shared_ptr<Ship>&, const shared_ptr<Ship>&)>& sortFunction)
+void PlayerInfo::ReorderShips(const std::vector<std::shared_ptr<Ship>> newOrder)
 {
-	std::stable_sort(ships.begin() + 1, ships.end(), [&](const shared_ptr<Ship> &lhs, const  shared_ptr<Ship> &rhs) {
-		if (sortDesc == true)
-		{
-			return sortFunction(lhs, rhs);
-		}
-		else
-		{
-			return !sortFunction(lhs, rhs);
-		}
-	});
+	ships = newOrder;
 }
 
 

@@ -37,7 +37,7 @@ class Rectangle;
 // hardpoints. In flight, this panel allows them to jettison cargo.
 class ShipInfoPanel : public Panel {
 public:
-	explicit ShipInfoPanel(PlayerInfo &player, int index = -1);
+	explicit ShipInfoPanel(PlayerInfo &player, int index = -1, std::vector<std::shared_ptr<Ship>> *ships = nullptr);
 	
 	virtual void Draw() override;
 	
@@ -77,6 +77,7 @@ private:
 	PlayerInfo &player;
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
+	std::vector<std::shared_ptr<Ship>> ships;
 	
 	// Information about the currently selected ship.
 	ShipInfoDisplay info;
