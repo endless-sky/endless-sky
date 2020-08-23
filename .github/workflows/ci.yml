@@ -2,9 +2,8 @@ name: Build & Parse
 
 # TODO:
 # - Reduce duplicate code (Blocking: https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
-# - Cache artifact files directly instead of directories (Workaround for https://github.com/actions/upload-artifact/issues/3)
-# - Don't tar the macOS app before uploading (Workaround for https://github.com/actions/upload-artifact/issues/36)
 # - Investigate using scoop as package manager on windows
+# - MacOS artifact uploads are still slow (https://github.com/actions/upload-artifact/issues/69)
 # - Cache build files on all systems (Looking at you OSX)
 # - Cache development libraries on windows
 # - Run windows builds as matrix with different mingw versions
@@ -55,13 +54,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Restore cached artifact
       id: cache-artifact
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with: 
-        path: artifact
-        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }} # Any of these files will trigger a rebuild
-    - name: Move restored artifact
-      if: steps.cache-artifact.outputs.cache-hit == 'true'
-      run: mv artifact/${{ env.ARTIFACT }} .
+        path: ${{ env.ARTIFACT }}
+        key: ${{ matrix.os }}-artifact-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }} # Any of these files will trigger a rebuild
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -70,7 +66,7 @@ jobs:
         sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
     - name: Cache ccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
@@ -82,15 +78,10 @@ jobs:
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: scons -j $(nproc);
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2
       with:
         name: binary-${{ matrix.os }} 
         path: ${{ env.ARTIFACT }}
-    - name: Move artifact for caching
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: |
-        mkdir artifact
-        mv ${{ env.ARTIFACT }} artifact/
 
 
   build_windows:
@@ -108,13 +99,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Restore cached artifact
       id: cache-artifact
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with:
-        path: artifact
+        path: ${{ env.ARTIFACT }}
         key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }} # Any of these files will trigger a rebuild
-    - name: Move restored artifact
-      if: steps.cache-artifact.outputs.cache-hit == 'true'
-      run: mv artifact/${{ env.ARTIFACT }} .
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -126,7 +114,7 @@ jobs:
         Remove-Item win64-dev.zip
     - name: Cache sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with:
         path: ${{ env.SCCACHE_DIR }}
         key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
@@ -144,15 +132,10 @@ jobs:
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2
       with:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
-    - name: Move artifact for caching
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: |
-        MD artifact
-        MOVE ${{ env.ARTIFACT }} artifact/
 
 
   build_macos:
@@ -161,18 +144,15 @@ jobs:
       matrix:
         os: [macos-latest]
     env:
-      ARTIFACT: EndlessSky.app.tar
+      ARTIFACT: /tmp/EndlessSky.dst/Applications/
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached artifact
       id: cache-artifact
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with: 
-        path: artifact
+        path: ${{ env.ARTIFACT }}
         key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
-    - name: Move restored artifact
-      if: steps.cache-artifact.outputs.cache-hit == 'true'
-      run: mv artifact/${{ env.ARTIFACT }} .
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -181,24 +161,38 @@ jobs:
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet install
-    - name: Archive artifact
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: |
-        cd /tmp/EndlessSky.dst/Applications/
-        tar -cf $GITHUB_WORKSPACE/${{ env.ARTIFACT }} "Endless Sky.app"
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2
       with:
         name: app-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
-    - name: Move artifact for caching
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+
+
+  # This section is for tests on ubuntu 16 (and on ubuntu 20).
+  # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
+  autotest_ubuntu16:
+    runs-on: ubuntu-16.04
+    needs: build_ubuntu
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
       run: |
-        mkdir artifact
-        mv ${{ env.ARTIFACT }} artifact/
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev
+        sudo apt-get install -y --no-install-recommends mesa-utils libmad0 libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6 xvfb
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: binary-ubuntu-16.04
+        path: .
+    - name: Execute available testcases
+      run: |
+        chmod +x endless-sky
+        ./tests/run_tests_headless.sh
 
 
-  test_ubuntu:
+  parsetest_ubuntu:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -212,16 +206,16 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
     - name: Download artifact
-      uses: actions/download-artifact@v1.0.0
+      uses: actions/download-artifact@v2
       with:
         name: binary-${{ matrix.os }}
-        path: .
     - name: Execute test_parse
       run: |
         chmod +x endless-sky
         ./tests/test_parse.sh ./endless-sky
 
-  test_windows:
+
+  parsetest_windows:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -239,15 +233,14 @@ jobs:
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
     - name: Download artifact
-      uses: actions/download-artifact@v1.0.0
+      uses: actions/download-artifact@v2
       with:
         name: binary-${{ matrix.os }}
-        path: .
     - name: Execute test_parse
       run: .\tests\test_parse.ps1 EndlessSky.exe
 
 
-  test_macos:
+  parsetest_macos:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -260,12 +253,9 @@ jobs:
         brew update
         brew install libmad libpng jpeg-turbo sdl2
     - name: Download artifact
-      uses: actions/download-artifact@v1.0.0
+      uses: actions/download-artifact@v2
       with:
         name: app-${{ matrix.os }}
-        path: .
-    - name: Extract artifact
-      run: tar -xf EndlessSky.app.tar
     - name: Execute test_parse
       run: |
         chmod +x "./Endless Sky.app/Contents/MacOS/Endless Sky"

@@ -46,7 +46,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode);
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 #ifdef _WIN32
 void InitConsole();
@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
+	string testToRun = "";
+
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -84,64 +86,67 @@ int main(int argc, char *argv[])
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
+		else if(arg == "--test" && *++it)
+			testToRun = *it;
 	}
 	
-	// Begin loading the game data. Exit early if we are not using the UI.
-	if(!GameData::BeginLoad(argv))
-		return 0;
-	
-	// Load player data, including reference-checking.
-	PlayerInfo player;
-	bool checkedReferences = player.LoadRecent();
-	if(loadOnly)
-	{
-		if(!checkedReferences)
-			GameData::CheckReferences();
-		cout << "Parse completed." << endl;
-		return 0;
-	}
-	
-	// On Windows, make sure that the sleep timer has at least 1 ms resolution
-	// to avoid irregular frame rates.
-#ifdef _WIN32
-	timeBeginPeriod(1);
-#endif
-	
-	Preferences::Load();
-	
-	if(!GameWindow::Init())
-		return 1;
-	
-	GameData::LoadShaders();
-	
-	// Show something other than a blank window.
-	GameWindow::Step();
-	
-	Audio::Init(GameData::Sources());
-	
-	// This is the main loop where all the action begins.
 	try {
-		GameLoop(player, conversation, debugMode);
+		// Begin loading the game data. Exit early if we are not using the UI.
+		if(!GameData::BeginLoad(argv))
+			return 0;
+		
+		// Load player data, including reference-checking.
+		PlayerInfo player;
+		bool checkedReferences = player.LoadRecent();
+		if(loadOnly)
+		{
+			if(!checkedReferences)
+				GameData::CheckReferences();
+			cout << "Parse completed." << endl;
+			return 0;
+		}
+		
+		// On Windows, make sure that the sleep timer has at least 1 ms resolution
+		// to avoid irregular frame rates.
+#ifdef _WIN32
+		timeBeginPeriod(1);
+#endif
+		
+		Preferences::Load();
+		
+		if(!GameWindow::Init())
+			return 1;
+		
+		GameData::LoadShaders();
+		
+		// Show something other than a blank window.
+		GameWindow::Step();
+		
+		Audio::Init(GameData::Sources());
+		
+		// This is the main loop where all the action begins.
+		GameLoop(player, conversation, testToRun, debugMode);
 	}
 	catch(const runtime_error &error)
 	{
+		Audio::Quit();
 		GameWindow::ExitWithError(error.what());
 		return 1;
 	}
 	
-	// Remember the window state.
+	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
 
-	GameWindow::Quit();
 	Audio::Quit();
+	GameWindow::Quit();
 	
 	return 0;
 }
 
-void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -246,9 +251,26 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
+
+		// Switch off fast-forward if the player is not in flight or flight-related screen
+		// (for example when the boarding dialog shows up or when the player lands). The player
+		// can switch fast-forward on again when flight is resumed.
+		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowFastForward();
+		if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
+			isFastForward = false;
 		
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+		
+		// Currently running the hardcoded "empty" testcase:
+		//   Wait for the game to be fully loaded and then quit.
+		//
+		// This testcase can catch issues related to startup/data-loading,
+		// and it helps to show if the CI testframework is working.
+		// This hardcoded testcase is expected to be replaced by the
+		// larger testframework that is planned for ES.
+		if(!testToRun.empty() && GameData::IsLoaded())
+			menuPanels.Quit();
 		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
@@ -309,6 +331,7 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
+	cerr << "    --test <name>: run the empty testcase (any name is fine for now)" << endl;
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
@@ -320,7 +343,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.11" << endl;
+	cerr << "Endless Sky 0.9.13-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
