@@ -298,11 +298,6 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = BREAK_IF;
 		checkedCondition.Load(node);
 	}
-	else if(node.Token(0) == "command")
-	{
-		stepType = COMMAND;
-		command.Load(node);
-	}
 	else if(node.Token(0) == "land")
 		stepType = LAND;
 	else if(node.Token(0) == "launch")
@@ -337,11 +332,48 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = WAITFOR;
 		checkedCondition.Load(node);
 	}
+	else if(node.Token(0) == "input")
+	{
+		stepType = INPUT;
+		for(const DataNode &child : node)
+		{
+			int childSize = child.Size();
+			if(child.Token(0) == "key" && childSize >= 2)
+			{
+				for(int i=1; i < childSize; ++i)
+					inputKeys.insert(child.Token(i));
+			}
+			else if(child.Token(0) == "mouse" && childSize >= 3)
+			{
+				mouseInput = true;
+				mousePosX = child.Value(1);
+				mousePosY = child.Value(2);
+				for(int i=3; i < childSize; ++i)
+				{
+					if(child.Token(i) == "percent")
+					{
+						mouseXpercent = true;
+						mouseYpercent = true;
+					}
+					else if(child.Token(i) == "x-percent")
+						mouseXpercent = true;
+					else if(child.Token(i) == "y-percent")
+						mouseYpercent = true;
+					else if(child.Token(i) == "left")
+						mouseLeftClick = true;
+					else if(child.Token(i) == "right")
+						mouseRightClick = true;
+				}
+			}
+			else if(child.Token(0) == "command")
+				command.Load(child);
+		}
+	}
 	else if(node.Size() < 2)
 		node.PrintTrace("Skipping unrecognized or incomplete test-step: " + node.Token(0));
 	else if(node.Token(0) == "command")
 	{
-		stepType = COMMAND;
+		stepType = INPUT;
 		command.Load(node);
 	}
 	else if(node.Token(0) == "load")
@@ -356,8 +388,8 @@ void Test::TestStep::Load(const DataNode &node)
 	}
 	else if(node.Token(0) == "ui key")
 	{
-		stepType = UI_KEY;
-		stepInputString = node.Token(1);
+		stepType = INPUT;
+		inputKeys.insert(node.Token(1));
 	}
 	else
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
@@ -367,6 +399,31 @@ void Test::TestStep::Load(const DataNode &node)
 
 Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
+	// If a step gives input, then it is always handled, regardless of the step-type.
+	if(command && !SendFlightCommand(command, gamePanels))
+		return RESULT_FAIL;
+	if(mouseInput)
+	{
+		// TODO: handle mouse-input
+	}
+	if(!inputKeys.empty())
+	{
+		// TODO: handle as single set of input-keys
+		// TODO: handle keys also in-flight
+		// TODO: combine keys with mouse-inputs
+		for(const string key : inputKeys)
+		{
+			const char* inputChar = key.c_str();
+			if(PlayerMenuIsActive(menuPanels))
+			{
+				if(!KeyInputToUI(menuPanels, inputChar))
+					return RESULT_FAIL;
+			}
+			else if(!KeyInputToUI(gamePanels, inputChar))
+				return RESULT_FAIL;
+		}
+	}
+	
 	switch (stepType)
 	{
 		case TestStep::ASSIGN:
@@ -384,9 +441,8 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 			// We only break if the condition is true.
 			return RESULT_DONE;
 			
-		case TestStep::COMMAND:
-			if(!SendFlightCommand(command, gamePanels))
-				return RESULT_FAIL;
+		case TestStep::INPUT:
+			// The input is already handled earlier.
 			return RESULT_DONE;
 			
 		case TestStep::INJECT:
@@ -512,23 +568,6 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 			if(checkedCondition.Test(player.Conditions()))
 				return RESULT_DONE;
 			return RESULT_RETRY;
-			
-		case TestStep::UI_KEY:
-			{
-				if(stepInputString.empty())
-					return RESULT_FAIL;
-
-				const char* inputChar = stepInputString.c_str();
-				if(PlayerMenuIsActive(menuPanels))
-				{
-					if(KeyInputToUI(menuPanels, inputChar))
-						return RESULT_DONE;
-				}
-				else if(KeyInputToUI(gamePanels, inputChar))
-					return RESULT_DONE;
-				
-				return RESULT_FAIL;
-			}
 			
 		default:
 			// ERROR, unknown test-step-type. Just return failure.

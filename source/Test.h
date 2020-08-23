@@ -16,7 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConditionSet.h"
 
+#include <set>
 #include <string>
+#include <vector>
 
 class DataNode;
 class Planet;
@@ -46,10 +48,10 @@ public:
 			// of the test itself if at toplevel) when a certain condition is
 			// true.
 			BREAK_IF,
-			// Step that performs the given command.
-			COMMAND,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
+			// Step that performs input (key, mouse, command).
+			INPUT,
 			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
 			INVALID,
 			// Step that performs land of the players flagship.
@@ -69,8 +71,6 @@ public:
 			// Sets the watchdog timer. No value or zero disables the watchdog. Non-zero gives
 			// a watchdog in number of frames/steps.
 			WATCHDOG,
-			// Send a key-input towards a panel
-			UI_KEY,
 		};
 
 		// Result returned from a TestStep.
@@ -112,8 +112,18 @@ public:
 		// Variables for travelpan/NAVIGATE steps.
 		std::vector<const System *> travelPlan;
 		const Planet *travelDestination = nullptr;
+		
+		// Inputkeys pressed by this test-step.
+		std::set<std::string> inputKeys;
+		// Mouse inputs given by this test-step.
+		bool mouseInput = false;
+		bool mouseXpercent = false;
+		bool mouseYpercent = false;
+		bool mouseLeftClick = false;
+		bool mouseRightClick = false;
+		double mousePosX;
+		double mousePosY;
 	};
-	
 	
 	class Context {
 	friend class Test;
