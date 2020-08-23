@@ -1,7 +1,11 @@
 #!/bin/bash
+# TODO: When this script is made cross-platform, replace this OS check with a check for Xvfb and other required resources.
+if [[ $OSTYPE == 'msys' ]] || [[ $OS == 'Windows_NT' ]] || [[ $(uname) == 'Darwin' ]]; then
+	echo "Headless testing is not supported on this platform"
+	exit 1
+fi
 
 HERE=$(cd `dirname $0` && pwd)
-
 cd "${HERE}"
 
 # Running headless using Xvfb
