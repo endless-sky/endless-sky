@@ -29,6 +29,7 @@ class Ship;
 class Table;
 
 
+
 // This panel displays detailed information about the player and their fleet. If
 // the player is landed on a planet, it also allows them to reorder the ships in
 // their fleet (including changing which one is the flagship).
