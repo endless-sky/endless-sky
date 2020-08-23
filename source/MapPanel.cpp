@@ -545,7 +545,7 @@ void MapPanel::Select(const System *system)
 	bool isJumping = flagship->IsEnteringHyperspace();
 	const System *source = isJumping ? flagship->GetTargetSystem() : playerSystem;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
+	auto mod = SDL_GetModState();
 	bool ctrl = (SDL_GetModState() & KMOD_CTRL);
 	if (ctrl) 
 		return;
