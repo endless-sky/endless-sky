@@ -46,6 +46,7 @@ mission "Corporate retreat from <origin>"
 		government "Syndicate"
 	stopover
 		attributes "quarg" "volcanic" "frontier" "north" "south"
+		not attributes "station"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 	on stopover
