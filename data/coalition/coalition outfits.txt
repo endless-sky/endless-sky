@@ -1,0 +1,283 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Small Collector Module"
+	category "Power"
+	licenses
+		Coalition
+	cost 60000
+	thumbnail "outfit/small collector module"
+	"mass" 8
+	"outfit space" -6
+	"solar collection" .8
+	"heat generation" .4
+	description "Solar power is the mainstay of the Coalition's merchant marine. The design of these panels has been refined over the millennia, growing ever more efficient."
+
+outfit "Large Collector Module"
+	category "Power"
+	licenses
+		Coalition
+	cost 300000
+	thumbnail "outfit/large collector module"
+	"mass" 28
+	"outfit space" -21
+	"solar collection" 3.3
+	"heat generation" 1.5
+	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
+
+outfit "Small Reactor Module"
+	category "Power"
+	licenses
+		Heliarch
+	cost 5497000
+	thumbnail "outfit/small reactor module"
+	"mass" 42
+	"outfit space" -42
+	"energy generation" 9.8
+	"heat generation" 19
+	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. So for ships that must have a reliable energy source to power weapons, the Heliarchs use nuclear reactors."
+
+outfit "Large Reactor Module"
+	category "Power"
+	licenses
+		Heliarch
+	cost 17754000
+	thumbnail "outfit/large reactor module"
+	"mass" 98
+	"outfit space" -98
+	"energy generation" 24.2
+	"heat generation" 45
+	description "This reactor was designed for the most powerful Heliarch warships. Its design has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
+
+outfit "Small Battery Module"
+	category "Power"
+	licenses
+		Coalition
+	cost 44000
+	thumbnail "outfit/small battery module"
+	"mass" 4
+	"outfit space" -4
+	"energy capacity" 900
+	description "Because Coalition ships rely on solar power, they must also be able to store a substantial amount of energy. This small battery pack is much more efficient than comparable human technology."
+
+outfit "Large Battery Module"
+	category "Power"
+	licenses
+		Coalition
+	cost 340000
+	thumbnail "outfit/large battery module"
+	"mass" 18
+	"outfit space" -18
+	"energy capacity" 4500
+	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
+
+
+outfit "Small Shield Module"
+	category "Systems"
+	licenses
+		Coalition
+	cost 84000
+	thumbnail "outfit/small shield module"
+	"mass" 11
+	"outfit space" -11
+	"shield generation" .28
+	"shield energy" .28
+	"shield heat" .1
+	description "Although combat is almost unheard of in Coalition space, almost all of their ships are able to recharge their shields when necessary."
+
+outfit "Large Shield Module"
+	category "Systems"
+	licenses
+		Coalition
+	cost 553000
+	thumbnail "outfit/large shield module"
+	"mass" 39
+	"outfit space" -39
+	"shield generation" 1.3
+	"shield energy" 1.3
+	"shield heat" .5
+	description "The Coalition manufactures heavy shield generators for their ships in case they ever face aggression from the Quarg or another species."
+
+outfit "Overcharged Shield Module"
+	category "Systems"
+	licenses
+		Heliarch
+	cost 1216000
+	thumbnail "outfit/overcharged shield module"
+	"mass" 44
+	"outfit space" -44
+	"shield generation" 3.7
+	"shield energy" 3.7
+	"shield heat" 1.4
+	"energy consumption" 1.5
+	description "These modular shield generators are the most powerful emitters produced in Coalition space, and as such they are strictly controlled and exclusively used by the Heliarchs. The additions made to the Large Shield Module nearly tripled its shield generation, but at the cost of it requiring a constant supply of energy to stabilize it."
+
+outfit "Small Repair Module"
+	category "Systems"
+	licenses
+		Coalition
+	cost 64000
+	thumbnail "outfit/small repair module"
+	"mass" 6
+	"outfit space" -6
+	"hull repair rate" .12
+	"hull energy" .12
+	"hull heat" .1
+	description "Arachi ships, which rely more on strong hull than on energy shields, often carry one of these repair modules to allow damaged hull plating to be patched back together on the fly."
+
+outfit "Large Repair Module"
+	category "Systems"
+	licenses
+		Coalition
+	cost 553000
+	thumbnail "outfit/large repair module"
+	"mass" 21
+	"outfit space" -21
+	"hull repair rate" .57
+	"hull energy" .57
+	"hull heat" .5
+	description "This hub houses a small fleet of repair robots that can climb around on a ship's hull and repair damage to it, even in the middle of combat."
+
+outfit "Overclocked Repair Module"
+	category "Systems"
+	licenses
+		Heliarch
+	cost 1126000
+	thumbnail "outfit/overclocked repair module"
+	"mass" 32
+	"outfit space" -32
+	"hull repair rate" 1.3
+	"hull energy" 1.3
+	"hull heat" 1.14
+	"heat generation" .6
+	description "These advanced repair modules are issued to Heliarch ships, providing hull repair unparalleled in all of Coalition space. The legions of small repair drones come with the extensive pathways they use to quickly get around a ship, and as such the outfit can interfere with a ship's cooling and heat dissipation systems."
+
+outfit "Cooling Module"
+	category "Systems"
+	licenses
+		Coalition
+	cost 160000
+	thumbnail "outfit/cooling module"
+	"mass" 5
+	"outfit space" -5
+	"active cooling" 21
+	"cooling energy" 1.4
+	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
+
+outfit "Scanning Module"
+	category "Systems"
+	licenses
+		Heliarch
+	cost 453600
+	thumbnail "outfit/scan module"
+	"mass" 3
+	"outfit space" -3
+	"outfit scan power" 25
+	"outfit scan speed" 1
+	"cargo scan power" 25
+	"cargo scan speed" 1
+	"tactical scan power" 25
+	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
+
+
+outfit "Small Thrust Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 66000
+	thumbnail "outfit/small thrust module"
+	"mass" 9
+	"outfit space" -9
+	"engine capacity" -9
+	"thrust" 6.6
+	"thrusting energy" 0.46
+	"thrusting heat" 3
+	"flare sprite" "effect/coalition flare/small"
+		"frame rate" 4.8
+	"flare sound" "atomic tiny"
+	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
+
+outfit "Large Thrust Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 292000
+	thumbnail "outfit/large thrust module"
+	"mass" 32
+	"outfit space" -32
+	"engine capacity" -32
+	"thrust" 26.2
+	"thrusting energy" 1.7
+	"thrusting heat" 11
+	"flare sprite" "effect/coalition flare/large"
+		"frame rate" 3.5
+	"flare sound" "atomic small"
+	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
+
+outfit "Small Steering Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 60000
+	thumbnail "outfit/small steering module"
+	"mass" 7
+	"outfit space" -7
+	"engine capacity" -7
+	"turn" 178.8
+	"turning energy" 0.26
+	"turning heat" 1.8
+	"steering flare sprite" "effect/coalition flare/small"
+		"frame rate" 4.8
+	"steering flare sound" "atomic tiny"
+	description "Despite its high efficiency, this module is not sufficient for any but the tiniest of ships. Instead, the modules are designed with the expectation that ships may use two or three of them in tandem."
+
+outfit "Large Steering Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 269000
+	thumbnail "outfit/large steering module"
+	"mass" 25
+	"outfit space" -25
+	"engine capacity" -25
+	"turn" 711.9
+	"turning energy" 1.0
+	"turning heat" 6.5
+	"steering flare sprite" "effect/coalition flare/large"
+		"frame rate" 3.5
+	"steering flare sound" "atomic small"
+	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
+
+outfit "Enforcer Confrontation Gear"
+	category "Hand to Hand"
+	licenses
+		Heliarch
+	cost 369000
+	thumbnail "outfit/enforcer confrontation gear"
+	"capture attack" 3.1
+	"capture defense" 4.9
+	"unplunderable" 1
+	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the Coalition safety."
+
+outfit "Enforcer Riot Staff"
+	category "Hand to Hand"
+	licenses
+		Heliarch
+	cost 97000
+	thumbnail "outfit/enforcer riot staff"
+	"capture attack" 2.0
+	"capture defense" 3.5
+	"unplunderable" 1
+	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
+
+outfit "Coalition License"
+	category "Special"
+	thumbnail "outfit/coalition license"
+	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."

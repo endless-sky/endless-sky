@@ -159,6 +159,25 @@ namespace {
 		Messages::Add(tag + message);
 	}
 	
+	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints, const vector<pair<Body, int>> &flareSprites, uint8_t side)
+	{
+		for(const Ship::EnginePoint &point : enginePoints)
+		{
+			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
+			// If multiple engines with the same flare are installed, draw up to
+			// three copies of the flare sprite.
+			for(const auto &it : flareSprites)
+				if(point.side == side && (point.steering == Ship::EnginePoint::NONE
+					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
+					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
+					for(int i = 0; i < it.second && i < 3; ++i)
+					{
+						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom);
+						draw.Add(sprite, ship.Cloaking());
+					}
+		}
+	}
+	
 	const double RADAR_SCALE = .025;
 }
 
@@ -242,6 +261,9 @@ void Engine::Place()
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
 	shared_ptr<Ship> flagship = player.FlagshipPtr();
+	
+	// Update the active NPCs for missions based on the player's conditions.
+	player.UpdateMissionNPCs();
 	for(const Mission &mission : player.Missions())
 		Place(mission.NPCs(), flagship);
 	
@@ -319,8 +341,12 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 {
 	for(const NPC &npc : npcs)
 	{
-		map<Ship *, int> droneCarriers;
-		map<Ship *, int> fighterCarriers;
+		// If this NPC has failed its spawn conditions or passed its despawn
+		// conditions, don't place it.
+		if(!npc.PassedSpawn() || npc.PassedDespawn())
+			continue;
+		
+		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
 			// Skip ships that have been destroyed.
@@ -328,11 +354,16 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 				continue;
 			
 			// Redo the loading up of fighters.
-			ship->UnloadBays();
-			if(ship->BaysFree(false))
-				droneCarriers[&*ship] = ship->BaysFree(false);
-			if(ship->BaysFree(true))
-				fighterCarriers[&*ship] = ship->BaysFree(true);
+			if(ship->HasBays())
+			{
+				ship->UnloadBays();
+				for(const string &bayType : Ship::BAY_TYPES)
+				{
+					int baysTotal = ship->BaysTotal(bayType);
+					if(baysTotal)
+						carriers[bayType][&*ship] = baysTotal;
+				}
+			}
 		}
 		
 		shared_ptr<Ship> npcFlagship;
@@ -351,9 +382,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->CanBeCarried())
 			{
 				bool docked = false;
-				map<Ship *, int> &carriers = (ship->Attributes().Category() == "Drone") ?
-					droneCarriers : fighterCarriers;
-				for(auto &it : carriers)
+				const string &bayType = ship->Attributes().Category();
+				for(auto &it : carriers[bayType])
 					if(it.second && it.first->Carry(ship))
 					{
 						--it.second;
@@ -1244,7 +1274,15 @@ void Engine::CalculateStep()
 		MoveShip(it);
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
-		Audio::Play(Audio::Get(flagship->IsUsingJumpDrive() ? "jump drive" : "hyperdrive"));
+	{
+		bool isJumping = flagship->IsUsingJumpDrive();
+		const map<const Sound *, int> &jumpSounds = isJumping ? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
+		if(jumpSounds.empty())
+			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
+		else
+			for(const auto &sound : jumpSounds)
+				Audio::Play(sound.first);
+	}
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
 	{
@@ -1358,11 +1396,20 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
-				if(ship->IsThrusting())
+				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
-						if(it.second > 0)
-							Audio::Play(it.first, ship->Position());
+						Audio::Play(it.first, ship->Position());
+				}
+				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
+				{
+					for(const auto &it : ship->Attributes().ReverseFlareSounds())
+						Audio::Play(it.first, ship->Position());
+				}
+				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
+				{
+					for(const auto &it : ship->Attributes().SteeringFlareSounds())
+						Audio::Play(it.first, ship->Position());
 				}
 			}
 			else
@@ -1372,11 +1419,20 @@ void Engine::CalculateStep()
 	if(flagship && showFlagship)
 	{
 		AddSprites(*flagship);
-		if(flagship->IsThrusting())
+		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
-				if(it.second > 0)
-					Audio::Play(it.first);
+				Audio::Play(it.first);
+		}
+		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
+		{
+			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
+				Audio::Play(it.first);
+		}
+		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
+		{
+			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
+				Audio::Play(it.first);
 		}
 	}
 	// Draw the projectiles.
@@ -1384,7 +1440,7 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
-		batchDraw[calcTickTock].Add(visual);
+		batchDraw[calcTickTock].AddVisual(visual);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
@@ -1430,17 +1486,29 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// the system. Make no sound if it entered via wormhole.
 	if(ship.get() != flagship && ship->Zoom() == 1.)
 	{
+		// The position from where sounds will be played.
+		Point position = ship->Position();
 		// Did this ship just begin hyperspacing?
 		if(wasHere && !wasHyperspacing && ship->IsHyperspacing())
-			Audio::Play(
-				Audio::Get(isJump ? "jump out" : "hyperdrive out"),
-				ship->Position());
+		{
+			const map<const Sound *, int> &jumpSounds = isJump ? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
+			if(jumpSounds.empty())
+				Audio::Play(Audio::Get(isJump ? "jump out" : "hyperdrive out"), position);
+			else
+				for(const auto &sound : jumpSounds)
+					Audio::Play(sound.first, position);
+		}
 		
 		// Did this ship just jump into the player's system?
 		if(!wasHere && flagship && ship->GetSystem() == flagship->GetSystem())
-			Audio::Play(
-				Audio::Get(isJump ? "jump in" : "hyperdrive in"),
-				ship->Position());
+		{
+			const map<const Sound *, int> &jumpSounds = isJump ? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
+			if(jumpSounds.empty())
+				Audio::Play(Audio::Get(isJump ? "jump in" : "hyperdrive in"), position);
+			else
+				for(const auto &sound : jumpSounds)
+					Audio::Play(sound.first, position);
+		}
 	}
 	
 	// Boarding:
@@ -2052,19 +2120,12 @@ void Engine::AddSprites(const Ship &ship)
 				draw[calcTickTock].Add(*bay.ship, cloak);
 			}
 	
-	if(ship.IsThrusting())
-		for(const Ship::EnginePoint &point : ship.EnginePoints())
-		{
-			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			// If multiple engines with the same flare are installed, draw up to
-			// three copies of the flare sprite.
-			for(const auto &it : ship.Attributes().FlareSprites())
-				for(int i = 0; i < it.second && i < 3; ++i)
-				{
-					Body sprite(it.first, pos, ship.Velocity(), ship.Facing(), point.Zoom());
-					draw[calcTickTock].Add(sprite, cloak);
-				}
-		}
+	if(ship.IsThrusting() && !ship.EnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
+	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
+	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
 	if(drawCloaked)
 		draw[calcTickTock].AddSwizzled(ship, 7);
@@ -2080,6 +2141,13 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Zoom());
 			draw[calcTickTock].Add(body, cloak);
 		}
+	
+	if(ship.IsThrusting() && !ship.EnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
+	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
+	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())

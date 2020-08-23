@@ -1,0 +1,35 @@
+name: Release CD
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  appimage_amd64:
+    runs-on: ubuntu-16.04
+    env:
+      ARCH: x86_64
+      OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+      - name: Build AppImage
+        run: ./utils/build_appimage.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+      - name: Upload AppImage
+        uses: actions/upload-release-asset@v1.0.2
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ env.OUTPUT }}
+          asset_name: ${{ env.OUTPUT }}
+          asset_content_type: application/octet-stream

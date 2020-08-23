@@ -41,6 +41,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	const string SHIP_OUTLINES = "Ship outlines in shops";
+	
 	constexpr int ICON_TILE = 62;
 	constexpr int ICON_COLS = 4;
 	constexpr float ICON_SIZE = ICON_TILE - 8;
@@ -130,13 +132,21 @@ void ShopPanel::Draw()
 		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
 	}
 	
-	if(dragShip && dragShip->GetSprite())
+	if(dragShip && isDraggingShip && dragShip->GetSprite())
 	{
-		static const Color selected(.8f, 1.f);
 		const Sprite *sprite = dragShip->GetSprite();
 		float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-		Point size(sprite->Width() * scale, sprite->Height() * scale);
-		OutlineShader::Draw(sprite, dragPoint, size, selected);
+		if(Preferences::Has(SHIP_OUTLINES))
+		{
+			static const Color selected(.8f, 1.f);
+			Point size(sprite->Width() * scale, sprite->Height() * scale);
+			OutlineShader::Draw(sprite, dragPoint, size, selected);
+		}
+		else
+		{
+			int swizzle = dragShip->CustomSwizzle() >= 0 ? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
+		}
 	}
 
 	if(sameSelectedTopY)
@@ -221,8 +231,16 @@ void ShopPanel::DrawSidebar()
 		if(sprite)
 		{
 			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			if(Preferences::Has(SHIP_OUTLINES))
+			{
+				Point size(sprite->Width() * scale, sprite->Height() * scale);
+				OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			}
+			else
+			{
+				int swizzle = ship->CustomSwizzle() >= 0 ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+				SpriteShader::Draw(sprite, point, scale, swizzle);
+			}
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
@@ -230,7 +248,7 @@ void ShopPanel::DrawSidebar()
 		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
 		{
-			const string &check = (*checkIt).second;
+			const string &check = (*checkIt).second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(zones.back().Contains(mouse))
@@ -654,7 +672,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int clicks)
+bool ShopPanel::Click(int x, int y, int /* clicks */)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
@@ -678,11 +696,11 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			return Scroll(0, -4);
 	}
 	
-	Point point(x, y);
+	const Point clickPoint(x, y);
 	
 	// Check for clicks in the category labels.
 	for(const ClickZone<string> &zone : categoryZones)
-		if(zone.Contains(point))
+		if(zone.Contains(clickPoint))
 		{
 			bool toggleAll = (SDL_GetModState() & KMOD_SHIFT);
 			auto it = collapsed.find(zone.Value());
@@ -717,7 +735,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 	// Handle clicks anywhere else by checking if they fell into any of the
 	// active click zones (main panel or side panel).
 	for(const Zone &zone : zones)
-		if(zone.Contains(point))
+		if(zone.Contains(clickPoint))
 		{
 			if(zone.GetShip())
 			{
@@ -774,6 +792,7 @@ bool ShopPanel::Drag(double dx, double dy)
 {
 	if(dragShip)
 	{
+		isDraggingShip = true;
 		dragPoint += Point(dx, dy);
 		for(const Zone &zone : zones)
 			if(zone.Contains(dragPoint))
@@ -807,6 +826,7 @@ bool ShopPanel::Drag(double dx, double dy)
 bool ShopPanel::Release(int x, int y)
 {
 	dragShip = nullptr;
+	isDraggingShip = false;
 	return true;
 }
 
@@ -822,10 +842,10 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 {
-	// Don't require a license for an outfit that you have in cargo or that you
-	// just sold to the outfitter. (Otherwise, there would be no way to transfer
-	// a restricted plundered outfit between ships or from cargo to a ship.)
-	if(player.Cargo().Get(outfit) || player.Stock(outfit) > 0)
+	// If the player is attempting to install an outfit from cargo or that they just
+	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
+	// would be no way to use or transfer license-restricted outfits between ships.)
+	if((player.Cargo().Get(outfit) && playerShip) || player.Stock(outfit) > 0)
 		return 0;
 	
 	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
