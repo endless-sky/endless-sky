@@ -112,6 +112,8 @@ namespace {
 	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
+	// Whether sprites and audio have finished loading at game startup.
+	bool initiallyLoaded = false;
 	
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
@@ -309,7 +311,17 @@ void GameData::LoadShaders()
 
 double GameData::Progress()
 {
-	return min(spriteQueue.Progress(), Audio::Progress());
+	auto progress = min(spriteQueue.Progress(), Audio::GetProgress());
+	if(progress == 1.)
+		initiallyLoaded = true;
+	return progress;
+}
+
+
+
+bool GameData::IsLoaded()
+{
+	return initiallyLoaded;
 }
 
 
