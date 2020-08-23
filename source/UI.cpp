@@ -201,21 +201,6 @@ shared_ptr<Panel> UI::Root() const
 
 
 
-// Indicate if all gamedata-loading is done and the first menu is displayed.
-void UI::IsInitialized(bool isInitialized)
-{
-	this->isInitialized = isInitialized;
-}
-
-
-
-bool UI::IsInitialized() const
-{
-	return isInitialized;
-}
-
-
-
 // If the player enters the game, enable saving the loaded file.
 void UI::CanSave(bool canSave)
 {

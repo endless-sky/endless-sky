@@ -59,9 +59,6 @@ public:
 	// Get the lower-most panel.
 	std::shared_ptr<Panel> Root() const;
 	
-	// Indicate if all gamedata-loading is done and the first menu is displayed.
-	void IsInitialized(bool isInitialized);
-	bool IsInitialized() const;
 	// If the player enters the game, enable saving the loaded file.
 	void CanSave(bool canSave);
 	bool CanSave() const;
@@ -82,11 +79,12 @@ private:
 	
 	
 private:
-	std::vector<std::shared_ptr<Panel>> stack;
-	
+	// Whether the player has taken actions that enable us to save the game.
 	bool canSave = false;
-	bool isInitialized = false;
+	// Whether the player has requested the game to shut down.
 	bool isDone = false;
+	
+	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 };

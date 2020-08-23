@@ -262,14 +262,14 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
-		// Currently running the hardcoded "empty" testcase;
+		// Currently running the hardcoded "empty" testcase:
 		//   Wait for the game to be fully loaded and then quit.
 		//
 		// This testcase can catch issues related to startup/data-loading,
 		// and it helps to show if the CI testframework is working.
 		// This hardcoded testcase is expected to be replaced by the
 		// larger testframework that is planned for ES.
-		if(!testToRun.empty() && menuPanels.IsInitialized())
+		if(!testToRun.empty() && GameData::IsLoaded())
 			menuPanels.Quit();
 		
 		// Caps lock slows the frame rate in debug mode.
