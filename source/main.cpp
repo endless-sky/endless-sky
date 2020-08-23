@@ -46,7 +46,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun, bool &debugMode);
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 #ifdef _WIN32
 void InitConsole();
@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun, bool &debugMode)
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
