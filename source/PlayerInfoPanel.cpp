@@ -593,7 +593,15 @@ bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) 
 }
 
 bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
-	return lhs->GetSystem() < rhs->GetSystem();
+	if(lhs->GetSystem() == NULL)
+	{
+		return false;
+	}
+	else if(rhs->GetSystem() == NULL)
+	{
+		return true;
+	}
+	return lhs->GetSystem()->Name() < rhs->GetSystem()->Name();
 }
 
 bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
@@ -610,6 +618,14 @@ bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
 }
 
 bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	if(lhs->IsParked())
+	{
+		return false;
+	}
+	else if(rhs->IsParked())
+	{
+		return true;
+	}
 	return lhs->RequiredCrew() < rhs->RequiredCrew();
 }
 
