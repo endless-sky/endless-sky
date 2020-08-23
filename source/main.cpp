@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 		else if(arg == "--test" && *++it)
 			testToRun = *it;
 	}
-
+	
 	try {
 		// Begin loading the game data. Exit early if we are not using the UI.
 		if(!GameData::BeginLoad(argv))
