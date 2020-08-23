@@ -20,12 +20,12 @@ Developers
 Major Programming
   AdamKauffman
   Amazinite
-  comnom
   CyberShadow
   db47h
   Elyssaen
   EndrosG
   flaviojs
+  Frederick Goy IV
   guillochon
   Hadron1776
   kozbot

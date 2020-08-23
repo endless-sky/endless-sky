@@ -33,8 +33,8 @@ public:
 	// Begin loading sounds (in a separate thread).
 	static void Init(const std::vector<std::string> &sources);
 	
-	// Check the progress of loading sounds.
-	static double Progress();
+	// Report the progress of loading sounds.
+	static double GetProgress();
 	
 	// Get or set the volume (between 0 and 1).
 	static double Volume();

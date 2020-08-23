@@ -47,7 +47,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun, bool &debugMode);
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 #ifdef _WIN32
 void InitConsole();
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun, bool &debugMode)
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -262,11 +262,18 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
+
+		// Switch off fast-forward if the player is not in flight or flight-related screen
+		// (for example when the boarding dialog shows up or when the player lands). The player
+		// can switch fast-forward on again when flight is resumed.
+		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowFastForward();
+		if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
+			isFastForward = false;
 		
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
-		// All manual events done. Handle any test inputs/events if we have any.
+		// All manual events and processing done. Handle any test inputs and events if we have any.
 		if(!testToRun.empty())
 			(GameData::Tests().Get(testToRun))->Step(testContext, menuPanels, gamePanels, player);
 		
@@ -329,8 +336,8 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
-	cerr << "        --tests: print table of available tests, then exit." << endl;
-	cerr << "        --test <name>: run given test from resources directory" << endl;
+	cerr << "    --tests: print table of available tests, then exit." << endl;
+	cerr << "    --test <name>: run given test from resources directory" << endl;
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;

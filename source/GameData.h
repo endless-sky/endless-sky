@@ -64,7 +64,10 @@ public:
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadShaders();
+	// TODO: make Progress() a simple accessor.
 	static double Progress();
+	// Whether initial game loading is complete (sprites and audio are loaded).
+	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
