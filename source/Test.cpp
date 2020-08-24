@@ -194,7 +194,7 @@ string Test::DebugMessage(Context &context) const
 void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
 	// Wait with testing until the game is fully loaded.
-	if(GameData::Progress() < 1.)
+	if(!GameData::IsLoaded())
 		return;
 	
 	if(context.stepToRun.empty() || context.stepToRun[0] >= testSteps.size())
