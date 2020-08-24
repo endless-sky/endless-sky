@@ -19,5 +19,7 @@
 "help: multiple ships" 1
 "help: navigation" 1
 "help: outfitter" 1
+"help: outfitter 2" 1
+"help: outfitter 3" 1
 "help: stranded" 1
 "help: trading" 1
