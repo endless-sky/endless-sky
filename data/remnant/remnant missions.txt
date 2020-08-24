@@ -888,7 +888,7 @@ mission "Remnant: Technology Available"
 			choice
 				`	"What secret do you want me to keep?`
 					goto secret
-				`	"I would be honored to be one of the Remnant"`
+				`	"I would be honored to be one of the Remnant."`
 					goto beremnant
 				`	"While I have enjoyed my time among you, I can never stay in one place."`
 					goto galacticcitizen
@@ -899,7 +899,7 @@ mission "Remnant: Technology Available"
 			label beremnant
 			apply
 				set "Wants to be a Remnant"
-			`	He nods, smiling. "You are not there yet, but I think you might well become one of us before too long." he takes a bite from his plate, then continues. "Keep learning, and you may well earn yourself a place among us."`
+			`	He nods, smiling. "You are not there yet, but I think you might well become one of us before too long." He takes a bite from his plate, then continues. "Keep learning, and you may well earn yourself a place among us."`
 			choice
 				`	"What secret do you want me to keep?`
 					goto secret
