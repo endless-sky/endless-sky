@@ -21,7 +21,7 @@ test "Test-Framework - Load only"
 		inject "commodity barges"
 		load "commodity barges.txt"
 		assert
-			"ships: Light Freighter" = 3
+			"ships: Light Freighter" == 3
 
 
 
@@ -78,10 +78,10 @@ test "Test-Framework - Load and depart"
 		inject "commodity barges"
 		load "commodity barges.txt"
 		assert
-			"ships: Light Freighter" = 3
+			"ships: Light Freighter" == 3
 		launch
 		assert
-			"ships: Light Freighter" = 3
+			"ships: Light Freighter" == 3
 
 
 
