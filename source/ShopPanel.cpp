@@ -1100,7 +1100,7 @@ void ShopPanel::MainUp()
 	if(it == zones.end())
 	{
 		--it;
-		mainScroll += it->Center().Y() - start->Center().Y();
+		mainScroll = max(0., mainScroll + it->Center().Y() - start->Center().Y());
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
