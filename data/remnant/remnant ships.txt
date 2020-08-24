@@ -871,7 +871,7 @@ ship "Starling"
 	explode "small explosion" 20
 	explode "medium explosion" 10
 	"final explode" "final explosion small" 1
-	description "One of the strangest and most useful things that the Remnant discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They designed their scout ships to be able to cloak when needed, in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
+	description "One of the strangest and most useful things that the Remnant have discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They have designed their scout ships to cloak when needed in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
 	description "	The cloaking technology is built into the Starling's hull; it cannot be removed or transferred to another ship."
 
 ship "Starling" "Starling (Heavy)"

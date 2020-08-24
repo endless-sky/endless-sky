@@ -253,7 +253,7 @@ void Ship::Load(const DataNode &node)
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
 			(key == "bay" && child.Size() >= 4))
 		{
-			// While the `drone` and `fighter` keywords are supported for backwards compatiblity, the
+			// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
 			// standard format is `bay <ship-category>`, with the same signature for other values.
 			string category = "Fighter";
 			int childOffset = 0;

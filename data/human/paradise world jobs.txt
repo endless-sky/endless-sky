@@ -291,6 +291,7 @@ mission "Paradise Job: Party Goods"
 		distance 5 9
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "rich"
+		attributes "spaceport"
 	on stopover
 		dialog "You oversee the loading as dockworkers carry box after box of <commodity> onto your ship. Must be some party."
 	on visit
@@ -336,6 +337,7 @@ mission "Paradise Jobs: Contract Laborers"
 		distance 7 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
+		attributes "spaceport"
 	on stopover
 		dialog "The shabbily-dressed young men and women in the group don't look nearly as happy to be boarding your ship as you expected, given the new opportunity that awaits them. They shuffle wearily up the ramp for the return trip to <planet>."
 	on visit
@@ -398,6 +400,7 @@ mission "Pleasure cruise security"
 		attributes "paradise" "rich"
 	stopover
 		attributes "tourism" "religious" "quarg" "pirate" "volcanic" "frontier" "moon" "fishing"
+		attributes "spaceport"
 		distance 6 15
 	destination
 		attributes "paradise"

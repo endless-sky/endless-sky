@@ -234,6 +234,7 @@ mission "Mystery Cube Retrieval Job"
 	stopover
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		attributes "spaceport"
 		not attributes "station"
 	on stopover
 		dialog phrase "deep mystery cube pickup"
