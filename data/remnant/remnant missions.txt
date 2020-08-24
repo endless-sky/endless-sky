@@ -854,13 +854,13 @@ mission "Remnant: Gascraft-Puffin Compatibility"
 
 
 mission "Remnant: Technology Available"
-	name "Remnant: License Training"
-	description "Transport a prefect to <destination> so he can teach about their license."
+	name "License Training"
+	description "Transport a prefect to <destination> so he can tell you more about the Remnant license."
 	landing
 	invisible
-	destination
-		government "Remnant"
 	source
+		government "Remnant"
+	destination
 		government "Remnant"
 	to offer
 		has "event: remnant: void sprite research"
@@ -881,38 +881,38 @@ mission "Remnant: Technology Available"
 				`	"I'm honored. Thank you."`
 					goto onwards
 				`	"Is there anything else I can do to assist your people?"`
-			`	"I do not have anything at the moment," he says, "but I am sure other Remnant will have tasks you can help with, now that you have demonstrated your trustworthiness. We have been keeping track of you, and we are impressed with your curiosity, perseverance, and ability to survive where most would be destroyed. All three are valued characteristics among the Remnant, and thus many will welcome your assistance on their projects.`
+			`	"I do not have anything at the moment," he says, "but I am sure other Remnant will have tasks you can help with, now that you have demonstrated your trustworthiness. We have been keeping track of you, and we are impressed with your curiosity, perseverance, and ability to survive where most would be destroyed. All three are valued characteristics among the Remnant, and thus many will welcome your assistance on their projects."`
 			label onwards
-			`	As he talks, he gestures for you to walk with him towards a nearby hall. "While you are welcome to become one of us, we suspect that you are a citizen of the galaxy - wandering hither and yon building coalitions and enmities with species and groups across the breadth of accessible space, unfettered by conventional allegiances. As such, we hope that you will continue to explore and stop by to let us know what you have found. We ask only that you keep the secret with which you are trusted, and bring us word of anything that might influence humanity's long-term survival."`
+			`	As he talks, he gestures for you to walk with him towards a nearby hall. "While you are welcome to become one of us, we suspect that you are a citizen of the galaxy - wandering hither and yon building coalitions and enmities with species and groups across the breadth of accessible space, unfettered by conventional allegiances. As such, we hope that you will continue to explore and stop by to let us know what you have found. We ask only that you keep the secret with which you are trusted and bring us word of anything that might influence humanity's long-term survival."`
 			`	You follow the prefect into the hall, and discover that it is one of the many cafeterias that seem to be common in Remnant starports. He picks up two trays from the window and leads you to an empty table.`
 			choice
 				`	"What secret do you want me to keep?`
 					goto secret
-				`	"What constitutes 'things that influence humanity's survival?"`
-			`	He takes a bite before responding. "Basically, anything that might either pose an existential threat to humanity; or anything that we might learn from and put to use to ensure humanity's survival. It might be an invading fleet of automated machines, or a spaceborn plague. But it is just as possible you might find beings that we can work alongside to form strong partnerships, or ancient ruins with old technology that points us towards new discoveries. The possibilities are indeed infinite.`
+				`	"What constitutes 'things that influence humanity's survival'?"`
+			`	He takes a bite before responding. "Basically, anything that might either pose an existential threat to humanity, or anything that we might learn from and put to use to ensure humanity's survival. It might be an invading fleet of automated machines or a spaceborn plague. But it is just as possible you might find beings that we can work alongside to form strong partnerships or ancient ruins with old technology that points us towards new discoveries. The possibilities are indeed infinite.`
 				goto feast
 			label secret
 			`	He sips on thick drink before responding. "Quite simply, the fact that we are here. To the best of our knowledge, only the Drak and the Korath know that we exist, and of those only the Korath have raided our worlds. Our intention is to the last bastion of humanity, and we rely on secrecy to achieve that goal." He pauses for a moment to eat, then continues. "The Alphas are a fearsome threat, but they may be the least of humanity's worries in the grand scheme of things. Thus we strive to maintain whatever advantages we can, and one of those is surprise. If no-one knows we are here, we have the advantage over any that might seek to conquer or destroy us."`
-			`	"Of course, maintaining the secrecy of our capabilities is also very important - and the reason why you had to prove yourself before we let you purchase our ships and outfits - but it is secondary to the fundemental secrecy of our existence. Ideally, no-one should know we exist. Those who do know, should ideally think of us as little more than refugees struggling to survive in a hostile environment`
+			`	"Of course, maintaining the secrecy of our capabilities is also very important - and the reason why you had to prove yourself before we let you purchase our ships and outfits - but it is secondary to the fundamental secrecy of our existence. Ideally, no one should know we exist. Those who do know should think of us as little more than refugees struggling to survive in a hostile environment."`
 			label feast
-			`	He waves dismisively. "I am sure you have more questions, but let us leave it there for now. Our meals await, and, well, I need to show you some stuff in regards to our security procedures. So finish your meal, and let's head over to <destination>."`
+			`	He waves dismissively. "I am sure you have more questions, but let us leave it there for now. Our meals await, and, well, I need to show you some things in regards to our security procedures. So finish your meal, and let's head over to <destination>."`
 				accept
 	on enter
 		conversation
-			`Once you reach space, the prefect interrupts your normal routine. "I'm sure you noticed that your 'license' isn't exactly a normal ID card. There's a reason for that, namely that it has a whole bunch of extra circuitry in it, and includes a couple sensors on the surface. I don't understand everything in it, but the security specialists assure me that it is incredibly resistance to being hacked or compromised."`
+			`Once you reach space, the prefect interrupts your normal routine. "I'm sure you've noticed that your 'license' isn't exactly a normal ID card. There's a reason for that, namely that it has extra circuitry in it and includes a couple sensors on the surface. I don't understand everything in it, but the security specialists assure me that it is incredibly resistant to being hacked or compromised."`
 			choice
 				`	"Okay, sounds good."`
 					goto continue
 				`	"How do you know what regular licenses look like?"`
-			`	The old man smiles. "While we might not have access to modern licenses, we do have all our old entertainment programs from before the exile. Some of them included details such as what licenses looked like. While things might have changed in the intervening years, licenses were historically governed by petty bureaucracy, and those are very resistant to change. So it seemed very likely that things have not changed much. And definitely not so much as to resemble ours." He seems amused, but then his smile fades.`
-			`	"Then again, ancestral space never designed their licenses to withstand much. They are incentivized to not be so secure, are they not? Enough money and the right connections, and licenses for anything can be acquired. These" he holds up a Remnant license "not so much." He shakes his head and becomes serious. "Now, your license has a handful of connection pads on the bottom, which can be connected to your ship's IFF. When you are inbound for landing, simply tap this code on the license, and the cube will verify the pattern as well as your fingerprints, a few other biometrics to ensure you are indeed living and concious, and then transmit an encrypted code. Our IFF systems will verify the transmitted signal and respond accordingly."`
+			`	The old man smiles. "While we might not have access to modern licenses, we do have all our old entertainment programs from before the Exodus. Some of them included details such as what licenses looked like. While things might have changed in the intervening years, licenses were historically governed by petty bureaucracy, and those are very resistant to change. So it seemed very likely that things have not changed much. And definitely not so much as to resemble ours." He seems amused, but then his smile fades.`
+			`	"Then again, ancestral space never designed their licenses to withstand much. They are incentivized to be not so secure, are they not? Enough money and the right connections, and licenses for anything can be acquired. These?" He holds up a Remnant license. "Not so much." He shakes his head and becomes serious. "Now, your license has a handful of connection pads on the bottom which can be connected to your ship's IFF. When you are inbound for landing, simply tap this code on the license, and the cube will verify the pattern as well as your fingerprints and a few other biometrics to ensure you are indeed living and conscious, and then transmit an encrypted code. Our IFF systems will verify the transmitted signal and respond accordingly."`
 			choice
 				`	"That sounds thorough."`
 					goto thorough
 				`	"So why haven't I been shot down yet?"`
 					goto shotdown
 				`	"What is an 'IFF' system?"`
-			`	"You aren't familiar with IFF?" He asks, looking slighly incredulous. "IFF stands for Identify Friend or Foe, and is the general name for the system that identifies your ship to those around it. It is what determines which ships should be highlighted red or orange on your system map, and provides limited movement detail to allied ships so that targetting systems can fire past you. I do not know about their current practices, but historically the Navy and most other organizations had complex methods of verifying the identify of other ships. So it is not simply a case of having your IFF state that you are a friendly."`
+			`	"You aren't familiar with IFF?" he asks, looking slightly incredulous. "IFF stands for 'Identify Friend or Foe,' and is the general name for the system that identifies your ship to those around it. It is what determines which ships should be highlighted red or orange on your system map, and provides limited movement detail to allied ships so that targeting systems can fire past you. I do not know about their current practices, but historically the Navy and most other organizations had complex methods of verifying the identify of other ships, so it is not simply a case of having your IFF state that you are a friendly."`
 			choice
 				`	"Thanks for the explanation."`
 					goto continue
@@ -920,22 +920,24 @@ mission "Remnant: Technology Available"
 					goto thorough
 				`	"So why haven't I been shot down yet?"`
 			label shotdown
-			`	"Because every system has potential failures and vulnerabilities, we ensure that people are always involved in the decision making process. Our initial scans showed that you were not likely an Alpha, and we were curious as to who you were and what opportunities might come of it. Since then the various monitors of the system have had to manually designate you as 'friendly' every time you made an approach. It worked, for a time. But now it is time to make your acceptance official. While our monitors are effective, it still wastes time to force them to track you and cancel the alerts every time you approach. Since you are trustworthy, better to give you the means to identify yourself so our defences can focus on real threats."`
+			`	"Because every system has potential failures and vulnerabilities, we ensure that people are always involved in the decision making process. Our initial scans showed that you were not likely an Alpha, and we were curious as to who you were and what opportunities might come of it. Since then the various monitors of the system have had to manually designate you as 'friendly' every time you made an approach. It worked, for a time. But now it is time to make your acceptance official. While our monitors are effective, it still wastes time to force them to track you and cancel the alerts every time you approach. Since you are trustworthy, better to give you the means to identify yourself so our defenses can focus on real threats."`
 				goto continue
 			label thorough
-			`	The prefects nods in agreement. "We take our security very seriously."`
+			`	The prefects nods in agreement. "We take our security very seriously.`
 			label continue
-			`	"Now, before we arrive at <destination>, pick a pattern for yourself. Something short - a second or two at most, and something memorable to you." The prefect turns away from you to install a small device on the side of one of your bridge consoles, and connects a few wires into the panel. "Now, insert your license here, and tap your pattern on the license." He looks away as you follow his directions. "Done? Good. When we approach <destination>, you will have a few options: For a normal approach when everything is nominal, tap your pattern on the license. If there is a threat following you in - an enemy ship or some other kind of danger you want the monitors to watch for, pinch or squeeze the license instead. And if you have a problem onboard, such as having been captured and forced to fly the ship in tap the license in a random pattern. Lastly, if you are having trouble landing due to injury or damage to the ship, just press briefly on the license. If you don't touch the license at all, the monitors will assume that you are either incapacitated or otherwise not in command of your ship. We will still attempt to let you land safely and provide assistance, but will also be standing ready to destroy you and block your approach if we think you are becoming a threat."`
+			`	"Now, before we arrive at <planet>, pick a pattern for yourself. Something short - a second or two at most, and something memorable to you." The prefect turns away from you to install a small device on the side of one of your bridge consoles, and connects a few wires into the panel. "Now, insert your license here, and tap your pattern on the license." He looks away as you follow his directions.`
+			`	"Done? Good. When we approach <planet>, you will have a few options: for a normal approach when everything is nominal, tap your pattern on the license. If there is a threat following you in - an enemy ship or some other kind of danger you want the monitors to watch for, pinch or squeeze the license instead. And if you have a problem onboard, such as having been captured and forced to fly the ship in, tap the license in a random pattern. Lastly, if you are having trouble landing due to injury or damage to the ship, just press briefly on the license. If you don't touch the license at all, the monitors will assume that you are either incapacitated or otherwise not in command of your ship. We will still attempt to let you land safely and provide assistance, but will also be standing ready to destroy you and block your approach if we think you are becoming a threat."`
 	on complete
 		conversation
-			`	As you enter the upper atmosphere of <destination>, the prefect gestures toward the small bracket he installed on your console. You insert your license, and tap the pattern you created. He checks something on his commlink and then nods. "Your license and clearance have been accepted, Captain <first>. Carry on with landing as normal."  You proceed with the approach and landing, with the prefect pointing out noteworthy features along the way. He also points out various approach paths, including prefered routes to take if you are being chased. "If you have a hostile threat on your tail, take this landing corridor; which will expose trailing ships to fire from these points. And if you have something sticking tight in your shadow, do a roll at this point or that point. That will expose them to our high-precision batteries."`
+			`	As you enter the upper atmosphere of <planet>, the prefect gestures toward the small bracket he installed on your console. You insert your license and tap the pattern you created. He checks his commlink and then nods. "Your license and clearance have been accepted, Captain <first>. Carry on with landing as normal."`
+			`	You proceed with the approach and landing, with the prefect pointing out noteworthy features along the way. He also points out various approach paths, including preferred routes to take if you are being chased. "If you have a hostile threat on your tail, take this landing corridor, which will expose trailing ships to fire from these points. And if you have something sticking tight in your shadow, do a roll at this point or that point. That will expose them to our high-precision batteries."`
 			choice
 				`	"Thank you for the advice."`
 					goto conclusion
 				`	"I'm surprised you are telling me all this."`
-			`	"Oh, do not worry that you know too much. There are far more defences that I have not mentioned, and we are always improving them. Generally, our defences should be invisible to you - as in, they just stay out of your way and are not something you pay attention to."`
+			`	"Oh, do not worry that you know too much. There are far more defenses that I have not mentioned, and we are always improving them. Generally, our defenses should be invisible to you - as in, they stay out of your way."`
 			label conclusion
-			`	"Your approach goes smoothly, and you glide past a number of anti-air batteries that are methodically covering the sky around you. Once the <ship> has settled safely to the ground, the prefect pulls the license from the socket and hands it back to you. "At the risk of sounding like a parody: Keep it secret, keep it safe. May the Embers burn bright for you." And with that, the old prefect walks off your ship.`
+			`	Your approach goes smoothly, and you glide past a number of anti-air batteries that are methodically covering the sky around you. Once the <ship> has settled safely to the ground, the prefect pulls the license from the socket and hands it back to you. "At the risk of sounding like a parody: keep it secret, keep it safe. May the Embers burn bright for you." And with that, the old prefect walks off your ship.`
 
 
 
