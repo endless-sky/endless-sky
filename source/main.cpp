@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 		
 		if(!testToRun.empty() && !GameData::Tests().Has(testToRun))
 		{
-			cout << "Test not found." << endl;
+			cout << "Test " << testToRun << " not found." << endl;
 			return 1;
 		}
 		
