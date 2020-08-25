@@ -891,9 +891,9 @@ mission "Remnant: Technology Available"
 				`	"I would be honored to be one of the Remnant."`
 					goto beremnant
 				`	"While I have enjoyed my time among you, I can never stay in one place."`
-					goto galacticcitizen
+					goto traveler
 				`	"What constitutes 'things that influence humanity's survival'?"`
-			label humanitiessurvival
+			label survival
 			`	He takes a bite before responding. "Basically, anything that might either pose an existential threat to humanity, or anything that we might learn from and put to use to ensure humanity's survival. It might be an invading fleet of automated machines or a spaceborn plague. But it is just as possible you might find beings that we can work alongside to form strong partnerships or ancient ruins with old technology that points us towards new discoveries. The possibilities are indeed infinite.`
 				goto feast
 			label beremnant
@@ -904,14 +904,14 @@ mission "Remnant: Technology Available"
 				`	"What secret do you want me to keep?`
 					goto secret
 				`	"What constitutes 'things that influence humanity's survival'?"`
-					goto humanitiessurvival
-			label galacticcitizen
+					goto survival
+			label traveler
 			`	He nods "Thank you for confirming our impression. We are grateful to have you with us, and look forward to hearing about your travels."`
 			choice
 				`	"What secret do you want me to keep?`
 					goto secret
 				`	"What constitutes 'things that influence humanity's survival'?"`
-					goto humanitiessurvival
+					goto survival
 			label secret
 			`	He sips on a thick drink before responding. "Quite simply, the fact that we are here. To the best of our knowledge, only the Drak and the Korath know that we exist, and of those only the Korath have raided our worlds. Our intention is to be the last bastion of humanity, and we rely on secrecy to achieve that goal." He pauses for a moment to eat, then he continues. "The Alphas are a fearsome threat, but they may be the least of humanity's worries in the grand scheme of things. We strive to maintain whatever advantages we can in case any of those threats proves itself such, and one of our best tools is surprise. If no one knows we are here, we have the advantage over any that might seek to conquer or destroy us.`
 			`	"Of course, maintaining the secrecy of our capabilities is also very important - and the reason why you had to prove yourself before we let you purchase our ships and outfits - but it is secondary to the fundamental secrecy of our existence. Ideally, no one should know we exist. Those who do know should think of us as little more than refugees struggling to survive in a hostile environment."`
