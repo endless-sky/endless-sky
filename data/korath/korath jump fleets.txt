@@ -1,0 +1,179 @@
+# Copyright (c) 2014-2016 by Bereskatuket
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+fleet "Small Kor Sestor Jump"
+	government "Kor Sestor"
+	names "kor sestor"
+	fighters "kor sestor fighter"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
+	variant 5
+		"Met Par Tek 53 (Jump)" 3
+	variant 5
+		"Met Par Tek 53 (Jump)" 2
+		"Met Par Tek 53 (Sniper, Jump)"
+	variant 5
+		"Met Par Tek 53 (Jump)"
+		"Met Par Tek 53 (Sniper, Jump)" 2
+	variant 5
+		"Met Par Tek 53 (Sniper, Jump)" 3
+	variant 8
+		"Tek Far 71 - Lek (Jump)"
+		"Far Lek 14" 10
+	variant 5
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Far Lek 14" 10
+	variant
+		"Tek Far 71 - Lek (Jump)"
+		"Far Lek 14" 6
+	variant
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Far Lek 14" 4
+	variant
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Far Lek 14" 2
+	variant 6
+		"Tek Far 78 - Osk (Jump)"
+		"Far Osk 27" 9
+	variant 4
+		"Tek Far 78 - Osk (Close Quarters, Jump)"
+		"Far Osk 27" 9
+	variant
+		"Tek Far 78 - Osk (Jump)"
+		"Far Osk 27" 7
+	variant
+		"Tek Far 78 - Osk (Close Quarters, Jump)"
+		"Far Osk 27" 5
+	variant
+		"Tek Far 78 - Osk (Jump)"
+		"Far Osk 27" 2
+	variant 3
+		"Tek Far 109 (Jump)"
+		"Far Lek 14" 9
+		"Far Osk 27" 7
+	variant
+		"Tek Far 109 (Jump)"
+		"Far Lek 14" 6
+		"Far Osk 27" 3
+	variant
+		"Tek Far 109 (Jump)"
+		"Far Lek 14" 3
+		"Far Osk 27" 2
+
+fleet "Large Kor Sestor Jump"
+	government "Kor Sestor"
+	names "kor sestor"
+	fighters "kor sestor fighter"
+	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
+	variant 8
+		"Kar Ik Vot 349 (Jump)"
+		"Tek Far 71 - Lek (Jump)"
+		"Far Lek 14" 10
+		"Met Par Tek 53 (Jump)" 2
+	variant 4
+		"Kar Ik Vot 349 (Defense, Jump)"
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Far Lek 14" 8
+		"Met Par Tek 53 (Sniper, Jump)" 2
+	variant 4
+		"Kar Ik Vot 349 (Offense, Jump)"
+		"Tek Far 71 - Lek (Jump)"
+		"Far Lek 14" 9
+		"Met Par Tek 53 (Jump)"
+		"Met Par Tek 53 (Sniper, Jump)"
+	variant 4
+		"Kar Ik Vot 349 (Trapper, Jump)"
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Far Lek 14" 7
+		"Met Par Tek 53 (Jump)"
+		"Met Par Tek 53 (Sniper, Jump)"
+	variant 8
+		"Kar Ik Vot 349 (Jump)"
+		"Tek Far 78 - Osk (Jump)"
+		"Far Osk 27" 9
+		"Met Par Tek 53 (Jump)"
+	variant 4
+		"Kar Ik Vot 349 (Defense, Jump)"
+		"Tek Far 78 - Osk (Close Quarters, Jump)"
+		"Far Osk 27" 7
+		"Met Par Tek 53 (Jump)"
+	variant 4
+		"Kar Ik Vot 349 (Offense, Jump)"
+		"Tek Far 78 - Osk (Jump)"
+		"Far Osk 27" 8
+		"Met Par Tek 53 (Sniper, Jump)"
+	variant 4
+		"Kar Ik Vot 349 (Trapper, Jump)"
+		"Tek Far 78 - Osk (Close Quarters, Jump)"
+		"Far Osk 27" 6
+		"Met Par Tek 53 (Sniper, Jump)"
+	variant 4
+		"Kar Ik Vot 349 (Jump)"
+		"Tek Far 71 - Lek (Jump)"
+		"Far Lek 14" 10
+		"Tek Far 78 - Osk (Jump)"
+		"Far Osk 27" 9
+	variant 2
+		"Kar Ik Vot 349 (Defense, Jump)"
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Far Lek 14" 8
+		"Tek Far 78 - Osk (Jump)"
+		"Far Osk 27" 8
+	variant 2
+		"Kar Ik Vot 349 (Offense, Jump)"
+		"Tek Far 71 - Lek (Jump)"
+		"Far Lek 14" 9
+		"Tek Far 78 - Osk (Close Quarters, Jump)"
+		"Far Osk 27" 7
+	variant 2
+		"Kar Ik Vot 349 (Trapper, Jump)"
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Far Lek 14" 7
+		"Tek Far 78 - Osk (Close Quarters, Jump)"
+		"Far Osk 27" 6
+	variant 2
+		"Kar Ik Vot 349 (Jump)"
+	variant 1
+		"Kar Ik Vot 349 (Defense, Jump)"
+	variant 1
+		"Kar Ik Vot 349 (Offense, Jump)"
+	variant 1
+		"Kar Ik Vot 349 (Trapper, Jump)"
+	variant 2
+		"Kar Ik Vot 349 (Jump)"
+		"Met Par Tek 53 (Jump)" 3
+	variant 1
+		"Kar Ik Vot 349 (Defense, Jump)"
+		"Met Par Tek 53 (Jump)" 2
+		"Met Par Tek 53 (Sniper, Jump)"
+	variant 1
+		"Kar Ik Vot 349 (Offense, Jump)"
+		"Met Par Tek 53 (Jump)"
+		"Met Par Tek 53 (Sniper, Jump)" 2
+	variant 1
+		"Kar Ik Vot 349 (Trapper, Jump)"
+		"Met Par Tek 53 (Sniper, Jump)" 3
+	variant 5
+		"Tek Far 109 (Jump)" 3
+		"Far Lek 14" 27
+		"Far Osk 27" 21
+	variant 3
+		"Tek Far 109 (Jump)"
+		"Tek Far 71 - Lek (Jump)"
+		"Tek Far 78 - Osk (Jump)"
+		"Far Lek 14" 17
+		"Far Osk 27" 13
+		"Met Par Tek 53 (Sniper, Jump)" 2
+	variant 3
+		"Tek Far 109 (Jump)"
+		"Tek Far 71 - Lek (Close Quarters, Jump)"
+		"Tek Far 78 - Osk (Close Quarters, Jump)"
+		"Far Lek 14" 17
+		"Far Osk 27" 13
+		"Met Par Tek 53 (Jump)" 2
