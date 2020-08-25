@@ -1620,19 +1620,19 @@ mission "Wanderers: Sestor Attack"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 7
-				"Met Par Tek 53"
-				"Met Par Tek 53 (Sniper)"
+				"Met Par Tek 53 (Jump)"
+				"Met Par Tek 53 (Sniper, Jump)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 7
-				"Met Par Tek 53"
+				"Met Par Tek 53 (Jump)"
 	npc evade
 		government "Kor Sestor"
 		personality entering heroic
@@ -1640,12 +1640,12 @@ mission "Wanderers: Sestor Attack"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Tek Far 109"
+				"Tek Far 109 (Jump)"
 				"Tek Far 71 - Lek"
 				"Tek Far 78 - Osk"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
-				"Met Par Tek 53 (Sniper)" 2
+				"Met Par Tek 53 (Sniper, Jump)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -1657,10 +1657,10 @@ mission "Wanderers: Sestor Attack"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 7
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 6
 	npc
 		government "Wanderer"
@@ -1779,7 +1779,7 @@ mission "Wanderers: Sestor Search"
 		system "Aya'k'k"
 		government "Kor Sestor"
 		personality derelict uninterested
-		fleet "Large Kor Sestor"
+		fleet "Large Kor Sestor Jump"
 	on enter "Alnilam"
 		set "wanderers: found the sestor fleet"
 		dialog
@@ -1802,8 +1802,8 @@ mission "Wanderers: Sestor: Alnilam Fleet 1"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Met Par Tek 53" 3
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Met Par Tek 53, (Jump)" 3
 
 
 
@@ -1991,24 +1991,24 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349"
-				"Tek Far 71 - Lek"
+				"Kar Ik Vot 349 (Jump)"
+				"Tek Far 71 - Lek (Jump)"
 				"Far Lek 14" 10
-				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Jump)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 78 - Osk"
+				"Kar Ik Vot 349 (Offense, Jump)"
+				"Tek Far 78 - Osk (Jump)"
 				"Far Osk 27" 8
-				"Met Par Tek 53 (Sniper)"
+				"Met Par Tek 53 (Sniper, Jump)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Kar Ik Vot 349 (Trapper)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Kar Ik Vot 349 (Trapper, Jump)"
 		dialog `The Kor Sestor fleet has been driven off. Time to land and see what Danforth thinks you should do next.`
 	npc
 		government "Navy (Oathkeeper)"
@@ -2112,7 +2112,7 @@ mission "Wanderers: Sestor: Quarg Help 2"
 		government "Kor Sestor"
 		personality heroic staying
 		system "Alnitak"
-		fleet "Large Kor Sestor" 2
+		fleet "Large Kor Sestor Jump" 2
 	on visit
 		dialog `You've reached <planet>, but you've either left one of the Quarg warships behind, or your escort carrying the medical supplies from Elias hasn't entered the system yet. Better depart and wait for it.`
 
@@ -2132,9 +2132,9 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 10
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
+				"Far Lek 14 (Jump)" 10
 
 
 
@@ -2253,101 +2253,101 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349"
-				"Tek Far 71 - Lek"
+				"Kar Ik Vot 349 (Jump)"
+				"Tek Far 71 - Lek (Jump)"
 				"Far Lek 14" 10
-				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Jump)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 8
-				"Met Par Tek 53 (Sniper)" 2
+				"Met Par Tek 53 (Sniper, Jump)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 78 - Osk"
+				"Kar Ik Vot 349 (Offense, Jump)"
+				"Tek Far 78 - Osk (Jump)"
 				"Far Osk 27" 8
-				"Met Par Tek 53 (Sniper)"
+				"Met Par Tek 53 (Sniper, Jump)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 6
-				"Met Par Tek 53 (Sniper)"
+				"Met Par Tek 53 (Sniper, Jump)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 8
-				"Tek Far 78 - Osk"
+				"Tek Far 78 - Osk (Jump)"
 				"Far Osk 27" 8
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 71 - Lek"
+				"Kar Ik Vot 349 (Offense, Jump)"
+				"Tek Far 71 - Lek (Jump)"
 				"Far Lek 14" 9
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 7
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 7
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 6
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Met Par Tek 53" 2
-				"Met Par Tek 53 (Sniper)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Met Par Tek 53 (Jump)" 2
+				"Met Par Tek 53 (Sniper, Jump)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Offense)"
-				"Met Par Tek 53"
-				"Met Par Tek 53 (Sniper)" 2
+				"Kar Ik Vot 349 (Offense, Jump)"
+				"Met Par Tek 53 (Jump)"
+				"Met Par Tek 53 (Sniper, Jump)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Met Par Tek 53 (Sniper)" 3
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Met Par Tek 53 (Sniper, Jump)" 3
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Tek Far 109"
-				"Tek Far 71 - Lek"
-				"Tek Far 78 - Osk"
+				"Tek Far 109 (Jump)"
+				"Tek Far 71 - Lek (Jump)"
+				"Tek Far 78 - Osk (Jump)"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
-				"Met Par Tek 53 (Sniper)" 2
+				"Met Par Tek 53 (Sniper, Jump)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Tek Far 109"
-				"Tek Far 71 - Lek (Close Quarters)"
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Tek Far 109 (Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
-				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Jump)" 2
 		dialog `Against all odds, all the Kor Sestor ships attacking the Oathkeepers have been destroyed. Maybe you won't have to use Danforth's bomb after all.`
 
 
@@ -2367,10 +2367,10 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349"
-				"Tek Far 71 - Lek"
+				"Kar Ik Vot 349 (Jump)"
+				"Tek Far 71 - Lek (Jump)"
 				"Far Lek 14" 10
-				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Jump)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Canopus"
@@ -2380,10 +2380,10 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 8
-				"Met Par Tek 53 (Sniper)" 2
+				"Met Par Tek 53 (Sniper, Jump)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Betelgeuse"
@@ -2393,18 +2393,18 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 78 - Osk"
+				"Kar Ik Vot 349 (Offense, Jump)"
+				"Tek Far 78 - Osk (Jump)"
 				"Far Osk 27" 8
-				"Met Par Tek 53 (Sniper)"
+				"Met Par Tek 53 (Sniper, Jump)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 6
-				"Met Par Tek 53 (Sniper)"
+				"Met Par Tek 53 (Sniper, Jump)"
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Capella"
@@ -2414,10 +2414,10 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 8
-				"Tek Far 78 - Osk"
+				"Tek Far 78 - Osk (Jump)"
 				"Far Osk 27" 8
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
@@ -2428,10 +2428,10 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 71 - Lek"
+				"Kar Ik Vot 349 (Offense, Jump)"
+				"Tek Far 71 - Lek (Jump)"
 				"Far Lek 14" 9
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 7
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
@@ -2442,10 +2442,10 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 71 - Lek (Close Quarters)"
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
 				"Far Lek 14" 7
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Osk 27" 6
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
@@ -2456,9 +2456,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Defense)"
-				"Met Par Tek 53" 2
-				"Met Par Tek 53 (Sniper)"
+				"Kar Ik Vot 349 (Defense, Jump)"
+				"Met Par Tek 53 (Jump)" 2
+				"Met Par Tek 53 (Sniper, Jump)"
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Wazn"
@@ -2468,9 +2468,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Offense)"
-				"Met Par Tek 53"
-				"Met Par Tek 53 (Sniper)" 2
+				"Kar Ik Vot 349 (Offense, Jump)"
+				"Met Par Tek 53 (Jump)"
+				"Met Par Tek 53 (Sniper, Jump)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Miaplacidus"
@@ -2480,8 +2480,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
-				"Met Par Tek 53 (Sniper)" 3
+				"Kar Ik Vot 349 (Trapper, Jump)"
+				"Met Par Tek 53 (Sniper, Jump)" 3
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Kursa"
@@ -2491,12 +2491,12 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Tek Far 109"
-				"Tek Far 71 - Lek"
-				"Tek Far 78 - Osk"
+				"Tek Far 109 (Jump)"
+				"Tek Far 71 - Lek (Jump)"
+				"Tek Far 78 - Osk (Jump)"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
-				"Met Par Tek 53 (Sniper)" 2
+				"Met Par Tek 53 (Sniper, Jump)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Saiph"
@@ -2506,12 +2506,12 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Tek Far 109"
-				"Tek Far 71 - Lek (Close Quarters)"
-				"Tek Far 78 - Osk (Close Quarters)"
+				"Tek Far 109 (Jump)"
+				"Tek Far 71 - Lek (Close Quarters, Jump)"
+				"Tek Far 78 - Osk (Close Quarters, Jump)"
 				"Far Lek 14" 17
 				"Far Osk 27" 13
-				"Met Par Tek 53" 2
+				"Met Par Tek 53 (Jump)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 		
 
