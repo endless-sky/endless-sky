@@ -132,7 +132,7 @@ void ShopPanel::Draw()
 		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
 	}
 	
-	if(dragShip && dragShip->GetSprite())
+	if(dragShip && isDraggingShip && dragShip->GetSprite())
 	{
 		const Sprite *sprite = dragShip->GetSprite();
 		float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
@@ -672,7 +672,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int clicks)
+bool ShopPanel::Click(int x, int y, int /* clicks */)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
@@ -696,11 +696,11 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			return Scroll(0, -4);
 	}
 	
-	Point point(x, y);
+	const Point clickPoint(x, y);
 	
 	// Check for clicks in the category labels.
 	for(const ClickZone<string> &zone : categoryZones)
-		if(zone.Contains(point))
+		if(zone.Contains(clickPoint))
 		{
 			bool toggleAll = (SDL_GetModState() & KMOD_SHIFT);
 			auto it = collapsed.find(zone.Value());
@@ -735,7 +735,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 	// Handle clicks anywhere else by checking if they fell into any of the
 	// active click zones (main panel or side panel).
 	for(const Zone &zone : zones)
-		if(zone.Contains(point))
+		if(zone.Contains(clickPoint))
 		{
 			if(zone.GetShip())
 			{
@@ -792,6 +792,7 @@ bool ShopPanel::Drag(double dx, double dy)
 {
 	if(dragShip)
 	{
+		isDraggingShip = true;
 		dragPoint += Point(dx, dy);
 		for(const Zone &zone : zones)
 			if(zone.Contains(dragPoint))
@@ -825,6 +826,7 @@ bool ShopPanel::Drag(double dx, double dy)
 bool ShopPanel::Release(int x, int y)
 {
 	dragShip = nullptr;
+	isDraggingShip = false;
 	return true;
 }
 

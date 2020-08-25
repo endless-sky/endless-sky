@@ -88,7 +88,8 @@ ship "Albatross" "Albatross (Sniper)"
 		"Inhibitor Cannon" 5
 		"EMP Torpedo Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 18
+		"EMP Torpedo" 39
+		"EMP Torpedo Storage Bay" 3
 
 		"Aeon Cell"
 		"Epoch Cell"
@@ -102,7 +103,6 @@ ship "Albatross" "Albatross (Sniper)"
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
-		"Forge-Class Steering"
 		"Scram Drive"
 
 	gun "Inhibitor Cannon"
@@ -322,14 +322,16 @@ ship "Gull" "Gull (Support)"
 		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"EMP Torpedo" 5
+		"EMP Torpedo" 16
+		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
+		"Thermoelectric Cooler"
 		"Salvage Scanner" 2
-		"Outfits Expansion"
+		"Outfits Expansion" 2
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -869,7 +871,7 @@ ship "Starling"
 	explode "small explosion" 20
 	explode "medium explosion" 10
 	"final explode" "final explosion small" 1
-	description "One of the strangest and most useful things that the Remnant discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They designed their scout ships to be able to cloak when needed, in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
+	description "One of the strangest and most useful things that the Remnant have discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They have designed their scout ships to cloak when needed in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
 	description "	The cloaking technology is built into the Starling's hull; it cannot be removed or transferred to another ship."
 
 ship "Starling" "Starling (Heavy)"
@@ -891,12 +893,14 @@ ship "Starling" "Starling (Sniper)"
 	outfits
 		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 4
-		"EMP Torpedo" 9
+		"EMP Torpedo" 16
+		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Emergency Ramscoop"
+		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Outfits Expansion"
 		"Tuning Rifle" 9
 
 		"Forge-Class Thruster"

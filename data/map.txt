@@ -265,7 +265,7 @@ system "11 Autumn Above"
 		period 14.9791
 		offset 180
 	object
-		sprite planet/gas1-b
+		sprite planet/gas10-hot
 		distance 536.616
 		period 125.622
 		object
@@ -1973,7 +1973,7 @@ system Acrux
 		period 11.4474
 		offset 180
 	object
-		sprite planet/dust5
+		sprite planet/gas2-hot
 		distance 249.567
 		period 64.8911
 	object Starcross
@@ -4378,7 +4378,7 @@ system Ap'arak
 		sprite star/g0
 		period 10
 	object
-		sprite planet/ice3
+		sprite planet/gas9-hot
 		distance 262.16
 		period 51.6652
 	object "Varu Tev'kei"
@@ -4516,7 +4516,7 @@ system Arculus
 			distance 162
 			period 17.8986
 	object Xerolophos
-		sprite planet/gas8-b
+		sprite planet/gas0-hot
 		distance 1734.39
 		period 1155.69
 		object Topkapi
@@ -9936,7 +9936,7 @@ system Farinus
 		period 11.6805
 		offset 180
 	object
-		sprite planet/rock9
+		sprite planet/gas7-hot
 		distance 195.066
 		period 39.9012
 	object
@@ -11067,7 +11067,7 @@ system Gerenus
 		sprite star/giant
 		period 8.42267
 	object
-		sprite planet/rock5-b
+		sprite planet/gas4-hot
 		distance 329.94
 		period 25.1772
 	object "Palarei"
@@ -11407,7 +11407,7 @@ system Gomeisa
 		distance 55.5
 		period 15.4962
 	object
-		sprite planet/rock19
+		sprite planet/gas5-hot
 		distance 258.76
 		period 55.1553
 	object Nifel
@@ -12708,7 +12708,7 @@ system "Imo Dep"
 		sprite star/f5
 		period 10
 	object
-		sprite planet/gas11-b
+		sprite planet/gas10-hot
 		distance 571.36
 		period 131.915
 		object
@@ -12773,7 +12773,7 @@ system Insitor
 		distance 60.1504
 		period 18.0359
 	object
-		sprite planet/rock19
+		sprite planet/gas1-hot
 		distance 247.76
 		period 66.3186
 	object
@@ -13210,7 +13210,7 @@ system Ka'pru
 		period 10.9322
 		offset 180
 	object
-		sprite planet/titan-b
+		sprite planet/gas6-hot
 		distance 261.426
 		period 43.5694
 	object
@@ -14207,7 +14207,7 @@ system "Kor Men"
 		period 11.5563
 		offset 180
 	object
-		sprite planet/mercury-b
+		sprite planet/gas3-hot
 		distance 361.863
 		period 56.9205
 	object
@@ -15717,7 +15717,7 @@ system Mebsuta
 		distance 78.8843
 		period 19.3068
 	object
-		sprite planet/desert8-b
+		sprite planet/gas0-hot
 		distance 305.544
 		period 82.5342
 	object Featherweight
@@ -20619,7 +20619,7 @@ system Sabriset
 		period 12.1391
 		offset 180
 	object
-		sprite planet/desert1
+		sprite planet/gas7-hot
 		distance 279.387
 		period 47.1932
 	object
@@ -21947,8 +21947,8 @@ system "Silver Bell"
 		sprite star/g0
 		period 10
 	object
-		sprite planet/mercury-b
-		distance 165.49
+		sprite planet/gas4-hot
+		distance 265.49
 		period 25.9123
 	object
 		sprite planet/gas4-b
@@ -24630,8 +24630,8 @@ system "Wah Oh"
 		sprite star/a0
 		period 10
 	object
-		sprite planet/cloud4-b
-		distance 209.49
+		sprite planet/gas8-hot
+		distance 341.76
 		period 17.1522
 	object
 		sprite planet/gas11
@@ -25853,7 +25853,7 @@ planet Aventine
 planet Babiali
 	attributes "ice giant" uninhabited
 	landscape land/canyon12
-	description `The giant mass of ice and rock is the bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
+	description `Babiali surface is a bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
 	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered to set up anything resembling a spaceport.`
 	security 0
 	government Uninhabited
@@ -27207,7 +27207,7 @@ planet "Into White"
 planet Janiculum
 	attributes uninhabited
 	landscape land/canyon11
-	description `As you pass low over Janiculum, you see that its surface is little more than a gravitational graveyard for asteroids and debris. Impact craters liter the surface, with some looking fairly recent.`
+	description `As you pass low over Janiculum, you see that its surface is little more than a gravitational graveyard for asteroids and debris. Impact craters litter the surface, with some looking fairly recent.`
 	description `	Janiculum is the subject of regular surveillance by the Remnant, who track impacts and investigate them whenever they occur. While it is not clear what the Remnant are recovering from these investigations, they continue to do them with meticulous regularity.`
 	security 0
 	government Uninhabited
@@ -27967,7 +27967,7 @@ planet Palarei
 planet Palatine
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa12
-	description `The whipping winds of Palatine are a prime example of how the inner mechanics of gas giants are poorly understood: When it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what astrophysical models predicted, as if they had recently been subject to a massive acceleration.`
+	description `The whipping winds of Palatine are a prime example of how the inner mechanics of gas giants are poorly understood; when it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what astrophysical models predicted, as if they had recently been subject to a massive acceleration.`
 	description `	Over the subsequent centuries the winds have been imperceptibly slowing toward normally predicted velocities, but at their current rate it will be many millennia before they reach them.`
 	security 0
 	government Uninhabited
@@ -28027,8 +28027,8 @@ planet Pilot
 planet Pincian
 	attributes moon uninhabited
 	landscape land/mars3
-	description `Pincian is a small rocky moon, tiny enough to avoid most asteroids attracted by the nearby gas giant of Palatine. Nevertheless, its surface is is pockmarked by a huge crater, so old that by now it has almost completely filled out of dust and regolith. Whatever crashed here, it must be thousands of years since the impact.`
-	description `There are some small-scale mining operations all around Pincian, but everything around crater has been left untouched except for a Remnant research station nestled into one of its edges.`
+	description `Pincian is a small rocky moon, tiny enough to avoid most asteroids attracted by the nearby gas giant of Palatine. Nevertheless, a huge crater, old enough to have collected some dust and regolith, dominates its surface. Whatever crashed here, it must be tens of thousands of years since the impact.`
+	description `	There are some small-scale mining operations all around Pincian, but everything around the crater has been left untouched except for a Remnant research station nestled into one of its edges.`
 	security 0
 	government Uninhabited
 
@@ -29144,7 +29144,7 @@ planet "Varu Tev'kei"
 planet Vatican
 	attributes "lava" uninhabited
 	landscape land/lava10
-	description `Vatican's propensity for constant renewal of the surface has resulted in a flourishing astrogeological academic program. While it has frequently been dismissed as a low priority for Remnant efforts, it has nonetheless received continued support from the defense prefects. Why they would be concerned with the geological formations of planet is unknown, but the research continues.`
+	description `Vatican's propensity for constant renewal of the surface has resulted in a flourishing astrogeological academic program. While it has frequently been dismissed as a low priority for Remnant efforts, it has nonetheless received continued support from the defense prefects. Why they would be concerned with the geological formations of an uninhabited planet is unknown, but the research continues.`
 	security 0
 	government Uninhabited
 
