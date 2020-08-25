@@ -402,7 +402,7 @@ outfit "Pilot's License"
 	category "Special"
 	cost 50000
 	thumbnail "outfit/license"
-	description "Decades ago, starship pilots used to be able to fly without any sort of license. However, recent Republic legislation has led to the creation of pilot's licenses, which still permit all the freedoms captains had previously... if you can cough up the money for it. Needless to say, this system is not terribly popular with freelance merchant captains."
+	description "For much of the Republic's nearly three century long history, being able to pilot your own starship was limited only by your ability to purchase one. But at the turn of the millennium in an attempt to increase tax revenue, the Republic Parliament passed a law requiring that all ship captains purchase a pilot's license, and for no small fee at that. Needless to say, this policy is not terribly popular with freelance merchant captains."
 
 outfit "Navy License"
 	category "Special"
