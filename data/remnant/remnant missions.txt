@@ -898,7 +898,7 @@ mission "Remnant: Technology Available"
 				goto feast
 			label beremnant
 			apply
-				set "Wants to be a Remnant"
+				set "wants to be a remnant"
 			`	He nods, smiling. "You are not there yet, but I think you might well become one of us before too long." He takes a bite from his plate, then continues. "Keep learning, and you may well earn yourself a place among us."`
 			choice
 				`	"What secret do you want me to keep?`
@@ -906,7 +906,7 @@ mission "Remnant: Technology Available"
 				`	"What constitutes 'things that influence humanity's survival'?"`
 					goto survival
 			label traveler
-			`	He nods "Thank you for confirming our impression. We are grateful to have you with us, and look forward to hearing about your travels."`
+			`	He nods. "Thank you for confirming our impression. We are grateful to have you with us, and look forward to hearing about your travels."`
 			choice
 				`	"What secret do you want me to keep?`
 					goto secret
@@ -950,7 +950,7 @@ mission "Remnant: Technology Available"
 			`	"Done? Good. When we approach <planet>, you will have a few options: for a normal approach when everything is nominal, tap your pattern on the license. If there is a threat following you in - an enemy ship or some other kind of danger you want the monitors to watch for, pinch or squeeze the license instead. And if you have a problem onboard, such as having been captured and forced to fly the ship in, tap the license in a random pattern. Lastly, if you are having trouble landing due to injury or damage to the ship, just press briefly on the license. If you don't touch the license at all, the monitors will assume that you are either incapacitated or otherwise not in command of your ship. We will still attempt to let you land safely and provide assistance, but will also be standing ready to destroy you and block your approach if we think you are becoming a threat."`
 	on complete
 		conversation
-			`	As you enter the upper atmosphere of <planet>, the prefect gestures toward the small bracket he installed on your console. You insert your license and tap the pattern you created. He checks his commlink and then nods. "Your license and clearance have been accepted, Captain <first>. Carry on with landing as normal."`
+			`As you enter the upper atmosphere of <planet>, the prefect gestures toward the small bracket he installed on your console. You insert your license and tap the pattern you created. He checks his commlink and then nods. "Your license and clearance have been accepted, Captain <first>. Carry on with landing as normal."`
 			`	You proceed with the approach and landing, with the prefect pointing out noteworthy features along the way. He also points out various approach paths, including preferred routes to take if you are being chased. "If you have a hostile threat on your tail, take this landing corridor, which will expose trailing ships to fire from these points. And if you have something sticking tight in your shadow, do a roll at this point or that point. That will expose them to our high-precision batteries."`
 			choice
 				`	"Thank you for the advice."`
