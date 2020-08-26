@@ -1545,6 +1545,8 @@ mission "Deep: Remnant C: Secret"
 	
 	on offer
 		conversation "deep: remnant c"
+	on accept
+		event "remnant: nenia empty"
 	
 	npc "scan outfits"
 		government "Indigenous Lifeform"
@@ -1561,6 +1563,7 @@ mission "Deep: Remnant C: Secret"
 		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more creatures for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
+		event "remnant: nenia restored"
 		log `Scanned alien creatures beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog `The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
 
@@ -1577,10 +1580,12 @@ mission "Deep: Remnant C: Revealed"
 	
 	on offer
 		conversation "deep: remnant c"
+	on accept
+		event "deep: arculus empty"
 	
 	npc "scan outfits"
 		government "Remnant"
-		personality staying uninterested target
+		personality staying uninterested
 		system "Arculus"
 		fleet
 			names "remnant"
@@ -1593,8 +1598,25 @@ mission "Deep: Remnant C: Revealed"
 		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
+		event "deep: arculus restored"
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog `The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
+
+event "deep: arculus empty"
+	system "Arculus"
+		remove fleet "Large Remnant"
+		remove fleet "Small Remnant"
+		remove fleet "Remnant Transport"
+		remove fleet "Remnant Home Guard"
+		remove fleet "Korath Ember Waste Raid"
+
+event "deep: arculus restored"
+	system "Arculus"
+		add fleet "Large Remnant" 3000
+		add fleet "Small Remnant" 2200
+		add fleet "Remnant Transport" 2200
+		add fleet "Remnant Home Guard" 2000
+		add fleet "Korath Ember Waste Raid" 40000
 
 
 
