@@ -1472,7 +1472,7 @@ conversation "deep: remnant"
 	`	"We've analyzed the Keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
 	`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
 	branch "know now" "still don't know"
-		not "First Contact: Remnant: offered"
+		has "First Contact: Remnant: offered"
 	
 	label "know now"
 	choice
