@@ -1382,7 +1382,7 @@ mission "Deep: Remnant: Keystone Research"
 
 
 
-mission "Deep: Remnant A"
+mission "Deep: Remnant 1"
 	landing
 	name `Exploring the Unknown`
 	description `Explore the region of space beyond the Terminus wormhole. Return to <destination> after exploring everything you can reach.`
@@ -1392,6 +1392,7 @@ mission "Deep: Remnant A"
 		has "Deep: Remnant: Keystone Research: done"
 		not "deep: knew of stones before scientists"
 		not "First Contact: Remnant: offered"
+		# A relic of how Deep: Remnant use to be structured.
 		not "Deep: Remnant 1A: offered"
 		not "Deep: Remnant 1B: offered"
 		not "Deep: Remnant 1C: offered"
@@ -1415,7 +1416,7 @@ mission "Deep: Remnant A"
 
 
 
-mission "Deep: Remnant B"
+mission "Deep: Remnant 2"
 	landing
 	name `Analyze Wormholes`
 	description `Ivan and his team are interested in studying the wormholes beyond the one in Terminus. Return to the strange region of space and travel through the wormholes that create a loop while carrying the scanning equipment.`
@@ -1428,10 +1429,10 @@ mission "Deep: Remnant B"
 	blocked `You've returned to <planet>, but Ivan informs you that you'll need <capacity> available for this next mission. Return when you have the available space.`
 	to offer
 		or
-			has "Deep: Remnant A: done"
+			has "Deep: Remnant 1: done"
 			and
 				has "Deep: Remnant: Keystone Research: done"
-				not "Deep: Remnant A: offered"
+				not "Deep: Remnant 1: offered"
 				not "Deep: Remnant 1A: offered"
 				not "Deep: Remnant 1B: offered"
 				not "Deep: Remnant 1C: offered"
@@ -1534,17 +1535,17 @@ conversation "deep: remnant"
 
 
 
-mission "Deep: Remnant C: Secret"
+mission "Deep: Remnant 3: Secret"
 	name `Analyze Alien Creatures`
 	description `Scan the "outfits" of the alien creatures in Nenia, then return to the scientists on <destination> with the detailed scanner logs.`
 	source "Valhalla"
 	waypoint "Nenia"
 	to offer
-		has "Deep: Remnant B: done"
+		has "Deep: Remnant 2: done"
 		has "deep: did not reveal remnant"
 	
 	on offer
-		conversation "deep: remnant c"
+		conversation "deep: remnant 3"
 	on accept
 		event "remnant: nenia empty"
 	
@@ -1569,17 +1570,17 @@ mission "Deep: Remnant C: Secret"
 
 
 
-mission "Deep: Remnant C: Revealed"
+mission "Deep: Remnant 3: Revealed"
 	name `Analyze Remnant Ships`
 	description `Scan the outfits of the Remnant ships in Arculus, then return to the scientists on <destination> with the detailed scanner logs.`
 	source "Valhalla"
 	waypoint "Arculus"
 	to offer
-		has "Deep: Remnant B: done"
+		has "Deep: Remnant 2: done"
 		has "deep: did reveal remnant"
 	
 	on offer
-		conversation "deep: remnant c"
+		conversation "deep: remnant 3"
 	on accept
 		event "deep: arculus empty"
 	
@@ -1620,7 +1621,7 @@ event "deep: arculus restored"
 
 
 
-conversation "deep: remnant c"
+conversation "deep: remnant 3"
 	`The team of scientists is already waiting in the spaceport when you arrive. They remove the equipment from your ship and immediately being analyzing the results after returning to the lab.`
 	`	"At first glance this series of wormholes seems no different than the one that is used to enter this region of space, but it will require some time for us to go over all the data the sensors collected," Ivan explains to you.`
 	branch revealed
