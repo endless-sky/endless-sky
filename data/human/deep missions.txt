@@ -1606,7 +1606,7 @@ conversation "deep: remnant c"
 		goto end
 
 	label revealed
-	`	"While you wait, though, I have another job you could do. You mentioned something about a group of humans, or at least human-like beings, being the wormhole. Would you be able to return there and scan their ships for us? I'd be interested in seeing what an outfits scanner returns. You need not contact them, simply find a couple ships and scan them so that we might learn more about their capabilities."`
+	`	"While you wait, though, I have another job you could do. You mentioned something about a group of humans, or at least human-like beings, beyond the wormhole. Would you be able to return there and scan their ships for us? I'd be interested in seeing what an outfits scanner returns. You need not contact them, simply find a couple ships and scan them so that we might learn more about their capabilities."`
 	label end
 	choice
 		`	"Sounds like a good plan. I'll be back as fast as I can."`
