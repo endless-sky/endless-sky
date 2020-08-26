@@ -1465,7 +1465,7 @@ conversation "deep: remnant"
 	label remnant1
 	`	"Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
 	`	"Remnant," you say.`
-	`	"Right, that was it. Well, it would be extremely interesting if we were to learn more about this people?`
+	`	"Right, that was it. Well, it would be extremely interesting if we were to learn more about this people.`
 		goto end
 	
 	label "didn't know before"
