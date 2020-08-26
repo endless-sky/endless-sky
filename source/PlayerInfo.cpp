@@ -1134,6 +1134,7 @@ void PlayerInfo::Land(UI *ui)
 	UpdateAutoConditions();
 	
 	// Update missions that are completed, or should be failed.
+	UpdateMissionNPCs();
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
@@ -1473,6 +1474,15 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 const Mission *PlayerInfo::ActiveBoardingMission() const
 {
 	return activeBoardingMission;
+}
+
+
+
+// Update mission NPCs with the player's current conditions.
+void PlayerInfo::UpdateMissionNPCs()
+{
+	for(Mission &mission : missions)
+		mission.UpdateNPCs(*this);
 }
 
 
@@ -1917,7 +1927,7 @@ const Planet *PlayerInfo::TravelDestination() const
 void PlayerInfo::SetTravelDestination(const Planet *planet)
 {
 	travelDestination = planet;
-	if(planet->IsInSystem(system) && Flagship())
+	if(planet && planet->IsInSystem(system) && Flagship())
 		Flagship()->SetTargetStellar(system->FindStellar(planet));
 }
 

@@ -775,6 +775,7 @@ mission "Expanding Business [4]"
 	
 	on complete
 		event "outfitter on greenwater" 95
+		log "People" "David Turner" `An entrepreneur with a sharp mind, he was instrumental in the creation of a human outfitter in Hai space, allowing merchants to arm themselves for the dangerous trip back to human space.`
 		conversation
 			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
 			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end.`
@@ -1028,6 +1029,7 @@ mission "Hiding in Plain Sight"
 	on complete
 		payment 75000
 		dialog `Arthur and Kiru pay you <payment> before running off to the convention center. As they run away, you notice that Kiru is drawing a number of eyes from the crowd, but no one seems to suspect that he is an actual alien.`
+		log "Minor People" "Arthur and Kiru" `Human and Hai respectively, both attended the Vinci cosplay convention without a costume, gaining much attention.`
 
 
 
@@ -1078,6 +1080,7 @@ mission "Hai Honeymoon"
 	on complete
 		payment 100000
 		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
+		log "Minor People" "Anaya and Touhar" `A Hai-human interspecies couple that you transported to their secluded honeymoon on Featherweight in human space.`
 
 
 
@@ -1579,7 +1582,7 @@ mission "Nanachi 2"
 		conversation
 			`You help the family gather all their luggage and bid them farewell, but right as they disappear into a hallway Nanachi lets out a heavy sigh. "I bit off more than I could chew. Those kids kept wanting to play with the ship's controls, and one of them tried to go up the air vent in a game of hide-and-seek. I couldn't get any rest since I had to keep making sure they weren't about to dump their own bags into the void by accident."`
 			`	"Do you want to get some sleep before trying to find another mission?" you ask, hoping she won't try to overwork herself.`
-			`	"Yes, I could really use that. Sorry to make you wait again Captain <last>. I'll rest a bit, see if I can't find a spot nearby to relax, and meet up with you the in spaceport after a while."`
+			`	"Yes, I could really use that. Sorry to make you wait again Captain <last>. I'll rest a bit, see if I can't find a spot nearby to relax, and meet up with you in the spaceport after a while."`
 
 mission "Nanachi 3"
 	name "Deliver spices with Nanachi"
@@ -1701,6 +1704,7 @@ mission "Nanachi 4"
 			`The convoy's captain messaged you as you entered the system and told you to land on a remote, hidden area of Prime, where they have already prepared for all the cargo to be transferred. They refuel your ships and urge you two to go back. "Captain Nanachi can stay hidden with us here if you need supplies or anything from the outfitter, but please don't take too long."`
 	on complete
 		event "Nanachi: payment" 180
+		log "Minor People" "Nanachi" `A young Hai merchant captain who struggled in the beginning of her career. Her fortune turned when she was able, against difficult circumstances, to deliver a valuable collection of human arts on time to the organizers of a Hai festival.`
 		conversation
 			`Landing back on Allhome, the festival group gives you and Nanachi a warm hug, "We sold tens of thousands of tickets for the festival by promising to host a great art exhibition with pieces from all over human space. Without them it'd be a complete failure, and we'd be in serious trouble with our sponsors." Narancia explains.`
 			`	As the cargo is rushed to the exhibition site, Nanachi shows you the chip she got as payment, and the balance of her bank account: this last payment allowed her to fully pay off her loan. "Captain," she speaks with some difficulty, and tries to hide her face, as if to wipe away some tears. "I'll never be able to thank you properly, if not for you I'd still be lost in that spaceport, and would eventually have to go back to my mining job. I'll work hard now; I'll save up and pay you for everything!" She hugs you and bows to you in a way you'd see in movies, as if trying to imitate the gesture. You two finally say goodbye, and head back to your ships.`

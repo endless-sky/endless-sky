@@ -100,8 +100,12 @@ mission "Ringworld Debris"
 		conversation
 			`When you enter this suspiciously empty system, your attention is drawn to your ship's scanners. The proximity detection system is going off, suggesting that something sizable is close to your ship, although whatever it is you can't see it as you look out your cockpit.`
 			`	You turn your ship around and open the hatch of your cargo hold, catching the object. When you go to inspect it, you see a small, extremely dark piece of debris that almost looks to be covered in vantablack, but it doesn't resemble any alloy you've seen on a spaceship or station, bearing semblance to both a crystal and a metallic structure.`
+			scene "scene/ringworld debris"
 			`	In one particular corner you see that there is a small, barely recognizable tube, badly damaged but with a few intact wires creeping out. After tinkering a bit with the wires you manage to connect the debris to your ship's secondary power systems. It barely uses any energy at all, but you can feel the air around it starting to get slightly colder.`
 			`	You unplug it and store the debris in a separate part of your ship. Maybe some alien species could tell you about it, if you were to bring it to them.`
+		fail
+	to complete
+		never
 
 mission "Ringworld Debris: Remnant"
 	invisible
