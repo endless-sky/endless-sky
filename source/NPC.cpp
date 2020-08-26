@@ -196,10 +196,14 @@ void NPC::Load(const DataNode &node)
 
 
 
-// Note: the Save() function can assume this is an instantiated mission, not
+// Note: the Save() function can assume this is an instantiated NPC, not
 // a template, so fleets will be replaced by individual ships already.
 void NPC::Save(DataWriter &out) const
 {
+	// If this NPC should no longer appear in-game, don't serialize it.
+	if(passedDespawnConditions)
+		return;
+	
 	out.Write("npc");
 	out.BeginChild();
 	{
