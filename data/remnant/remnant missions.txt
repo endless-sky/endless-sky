@@ -1671,7 +1671,7 @@ mission "Remnant: Salvage 6"
 			`	"Yes, it is, isn't it? So many new things out there to discover and learn about.`
 				goto end
 			label threats
-			`	"Yes, sometimes salvage that is brought in is dangerous. System Cores come with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that have run amok. We haven't seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
+			`	"Yes, sometimes salvage that is brought in is dangerous. A Systems Core comes with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that have run amok. We haven't seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
 			label end
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Taely strides out of the outfitters, heading towards another landing bay.`
 
