@@ -43,6 +43,13 @@ void Phrase::Load(const DataNode &node)
 
 
 
+bool Phrase::IsEmpty() const
+{
+	return sentences.empty();
+}
+
+
+
 // Get the name associated with the node this phrase was instantiated
 // from, or "Unnamed Phrase" if it was anonymously defined.
 const string &Phrase::Name() const

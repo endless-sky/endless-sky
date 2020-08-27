@@ -91,6 +91,13 @@ void News::Load(const DataNode &node)
 
 
 
+bool News::IsEmpty() const
+{
+	return messages.IsEmpty() || names.IsEmpty();
+}
+
+
+
 // Check if this news item is available on the given planet.
 bool News::Matches(const Planet *planet) const
 {
