@@ -604,8 +604,8 @@ mission "FW Hope Recon 1C"
 					goto destroy
 				`	(Kill the landing crew, then steal their ship.)`
 					goto steal
-				`	(Spare the crew, and chase their ship out of this system.)`
-					goto spare
+				`	(Accept the crew's surrender.)`
+					goto accept
 			
 			label destroy
 			`	It turns out you made the right choice: someone is indeed onboard the Gunboat still, because the moment you open fire it raises shields and starts powering up its engines and weapons. But, your initial shots must have damaged some critical systems, because it only manages to fire a few shots at you and to lift off about thirty meters into the air before crashing back down onto the ice and exploding. You quickly pick off the landing crew as well; they have no place to hide on the broad, flat glacial expanse.`
@@ -616,10 +616,18 @@ mission "FW Hope Recon 1C"
 			`	The landing crew has absolutely nowhere to hide in this glacial field; you pick them off easily. There is no response from the ship, so you land beside it and prepare to board it. But, the moment you open your hatch, the other ship roars to life, powering up its engines and beating a hasty retreat while firing a few parting shots at you from its turret. You fire up your own engines and pursue it...`
 				launch
 			
-			label spare
+			label accept
 			apply
 				karma ++
-			`	Most ships are equipped with external speakers for exactly this sort of situation. Speaking through them, you tell the Navy crew below, "Return to your ship and leave this system immediately." They beat a hasty retreat and fire up their engines. You follow their ship into orbit to make sure it truly does leave the system...`
+				set "fw accepted Susquehanna's word of honor"
+			`	Most ships are equipped with external speakers for exactly this sort of situation.`
+			`	"Crew of the R.N.S. Susquehanna, this is Captain <last> of the Free Worlds ship <ship>," you announce. "Will you each give me your word of honor that you will take no further part in fighting the Free Worlds?"`
+			`	The Gunboat captain thinks for a brief moment and gives you a thumbs-up sign, their hand held high in the air. Their crew follows suit without any visible hesitation.`
+			`	You consider the situation and decide not to bother with landing and taking your new prisoners on board.`
+			`	"Thank you," you reply. "You may return to your ship and fly back to Republic space."`
+			`	The Navy sailors exchange looks, apparently surprised, but they recover quickly. Their captain snaps to attention and salutes you. You return the salute, and then, realizing their captain can't see you, flash your ship's external lights in acknowledgment. The R.N.S. Susquehanna's crew fall into formation, march back to their ship, fire up their engines, and take off.`
+			`	Their weapon systems remain unarmed and inactive, as far as your sensors can tell.`
+			`	Your mission on this planet done, you take off too, monitoring the Navy ship. They gave you their word of honor that they would leave this system...`
 				launch
 	
 	
