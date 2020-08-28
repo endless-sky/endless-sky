@@ -3183,7 +3183,7 @@ mission "Remnant: Cognizance 14"
 			`You land by the starport and are immediately accosted by a Remnant who informs you that Prefect Chilia is on his personal warship and escorts you to a nearby Starling. Inside you find Chilia and several other Remnant clustered around a holographic display and some display panels. "Ah, Captain. Join us, please." Chilia gestures for you to join them around the displays. As you approach, you note that the holographic display shows the Ember Waste, although there are a few details that do not match the star maps you're familiar with.`
 			`	Chilia notices you eyeing the deviations. "Perceptive, Captain. Our sensors have reported some unusual energy signatures coming from this location. Scouts in the area say they are picking up signs of a new system. There were no immediately apparent hyperlinks or wormholes that connect to it, but there are still unusual energy fluctuations in the area. Unusual even for the Ember Waste." He looks up at you. "We are hoping that you might be able to figure out a way in."`
 			choice
-				`	"I could see if I can reach it with a Jump Drive."`
+				`	"I could see if I can reach it with a jump drive."`
 				`	"I will see if I can find another way."`
 			`	"Thank you, Captain <first>. We have some ships that can follow, and there are other scouts already in the area that should be reporting soon. Given your experience with the wider galaxy, though, we would like you to lead the way."`
 				accept

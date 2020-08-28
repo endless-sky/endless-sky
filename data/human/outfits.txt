@@ -180,7 +180,7 @@ outfit "Scram Drive"
 	"scram drive" .2
 	"jump fuel" 150
 	"hyperdrive" 1
-	description "A Scram Drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
+	description "A scram drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
 
 outfit "Jump Drive"
 	category "Systems"
