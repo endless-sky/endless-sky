@@ -2472,7 +2472,7 @@ phrase "friendly pirate"
 		""
 		" More interference plating would have helped."
 		" This interference plating is useless!"
-		" I could have gotten out faster if I had a Scram Drive."
+		" I could have gotten out faster if I had a scram drive."
 		" I know I should have installed more interference plating."
 		" If only I was strong enough to stand up to them."
 
