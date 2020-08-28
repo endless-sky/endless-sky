@@ -199,8 +199,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			return false;
 		
 		const Date &today = player.GetDate();
-		const int year = today.Year(), month = today.Month(), day = today.Day();
-		const string &defaultFilename =
+		const int year = today.Year();
+		const int month = today.Month();
+		const int day = today.Day();
+		const string defaultFilename =
 			to_string(year) + "-" +
 			(month < 10 ? "0" : "") + to_string(month) + "-" +
 			(day < 10 ? "0" : "") + to_string(day);
