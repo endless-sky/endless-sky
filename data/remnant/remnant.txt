@@ -303,7 +303,7 @@ phrase "remnant uncontacted"
 phrase "remnant uncontacted hostile"
 	word
 		"Eat space dust"
-		"Kill yourself"
+		"Time to go"
 		"Sing your last prayers"
 		"Leave this space"
 	word
@@ -313,7 +313,7 @@ phrase "remnant uncontacted hostile"
 	word
 		"hostile ship"
 		"pirate"
-		"genetically modified biological weapon"
+		"Alpha"
 	word
 		"!"
 
@@ -321,7 +321,6 @@ phrase "remnant uncontacted hostile"
 	word
 		"I"
 		"My friend"
-		"My suspicion"
 		"My comrade"
 		"My gut"
 	word
@@ -336,20 +335,20 @@ phrase "remnant uncontacted hostile"
 	word
 		" "
 	word
-		"You are"
+		"You're"
 	word
 		" "
 	word
 		"hostile"
-		"entering this space with a malicious mind"
-		"genetically modified"
+		"here with malicious intent"
+		"an Alpha"
 	word
 		"!"
 
 phrase "remnant uncontacted hostile"
 	word
 		"(They sent you hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
-		"(They are sending you a lot of signs too fast, that your hail receiver can't even handle it.)"
+		"(They sign so quickly that your hail receiver can't process it all.)"
 		"(It seems you are not welcome here.)"
 
 phrase "friendly remnant"
@@ -373,11 +372,11 @@ phrase "friendly remnant"
 phrase "friendly remnant"
 	word
 		"I almost died"
-		"A lot of hostiles were firing at me"
-		"It was a very difficult mission"
+		"Several hostiles attacked my ship"
+		"My mission was difficult"
 		"We had an emergency"
 		"There was a swarm of Korath raiders here"
-		"The crew were panicking while we face a life-threatening situation"
+		"We faced a life-threatening situation"
 	word
 		" "
 	word
@@ -390,22 +389,22 @@ phrase "friendly remnant"
 	word
 		"Luckily"
 		"Fortunately"
-		"Like a miracle"
-		"And oh my"
+		"Miraculously"
+		"Suddenly"
 	word
 		","
 	word
 		" "
 	word
 		"I"
-		"My captain"
-		"We"
+		"my captain"
+		"we"
 	word
 		"actually had"
-		"remembered"
+		"remembered the ship had"
 	word
 		"a cloaking device all along"
-		"a secret weapon we had all the time"
+		"a secret weapon the whole time"
 		"a last resort every Remnant should have"
 	word
 		"."
@@ -417,15 +416,15 @@ phrase "friendly remnant"
 	word
 		" "
 	word
-		"you have a"
-		"the prefects gave you a"
-		"our elders handed you a"
-		"our government granted you a"
+		"you have"
+		"the prefects gave you"
+		"our elders allowed you"
+		"our government granted you"
 	word
 		" "
 	word
-		"license"
-		"permit"
+		"a license"
+		"a permit"
 		"permission to buy our outfits"
 	word
 		","
@@ -439,14 +438,13 @@ phrase "friendly remnant"
 	word
 		" "
 	word
-		"suggest"
-		"recommend"
-		"would like you"
+		"would suggest"
+		"would recommend"
 	word
 		" "
 	word
-		"to buy"
-		"to get"
+		"buying"
+		"getting"
 	word
 		" "
 	phrase
@@ -455,7 +453,7 @@ phrase "friendly remnant"
 		"remnant emp torpedo bay"
 		"remnant salvage scanner"
 	word
-		"They are the best!"
+		"They're the best!"
 		"You should definitely try it!"
 		"Definitely better than those outfits in your space."
 
@@ -492,14 +490,14 @@ phrase "remnant inhibitor cannon"
 		" "
 	word
 		"and prevent them from escaping"
-		"that anyone will surely beg you to stop"
+		", and anyone won't stand a chance"
 	word
 		"."
 		"!"
 
 phrase "remnant thrasher cannon"
 	word
-		"a dozen of"
+		"a few"
 		"several"
 		"some"
 	word
@@ -522,12 +520,12 @@ phrase "remnant thrasher cannon"
 	word
 		" "
 	word
-		"they are more efficient in terms of heat"
+		"they're more efficient in terms of heat"
 		"you can deal more damage with our cannons"
 		"they may be consuming more energy, but they have better heat and damage"
 		"our cannons may be more expensive, but they have better damage"
-		"they are larger, but they can deal more damage and release less heat"
-		"they can be a force to reckoned with"
+		"they're larger, but they can deal more damage and release less heat"
+		"they're a force to reckoned with"
 	word
 		"."
 		"!"
@@ -575,11 +573,11 @@ phrase "remnant salvage scanner"
 	word
 		" "
 	word
-		"They are a combination of an outfit scanner and a tactical one"
+		"They combine outfit and tactical scanners into one package"
 		"Compared to your separated versions, our special scanner is more powerful"
 		"They have a longer range than your outfit scanner"
 		"Those babies scan fast"
-		"They are a must for your plundering needs"
+		"They're a must-have for plundering"
 	word
 		"."
 		"!"
@@ -588,12 +586,11 @@ phrase "friendly remnant"
 	word
 		"Have you heard"
 		"Do you know"
-		"Are you familiar"
+		"You know anything"
 	word
 		" "
 	word
 		"about"
-		"regarding"
 	word
 		" "
 	word
@@ -621,12 +618,11 @@ phrase "friendly remnant (aliens.!)"
 		"They look strong"
 		"They look weak"
 		"Maybe we should contact them"
-		"I think they are dangerous"
-		"I think they are good"
+		"I think they're dangerous"
+		"I think they're good"
 		"I think we can trust them"
 		"I want to plunder their tech"
 		"I want their ships"
-		"I have seen them"
 		"I haven't seen them yet"
 		"I wonder if the prefects already knew about them"
 	word
@@ -641,8 +637,8 @@ phrase "friendly remnant (aliens?)"
 		"Are they hostile"
 		"How strong are they"
 		"What are the odds of capturing their ships"
-		"Did your government met them"
-		"Is it worth plundering them"
+		"Has your government met them"
+		"Is it worth trying to get my hands on their tech?"
 	word
 		"?"
 
@@ -655,53 +651,51 @@ phrase "friendly remnant"
 		" "
 	word
 		"about"
-		"aboot"
 	word
 		" "
 	word
-		"those"
 		"the"
 	word
 		"Alphas in this galaxy"
 		"pirates in your space"
 		"Korath raiders"
 		"Korath"
-		"Archon in Nenia
+		"Archon in Nenia"
 	word
 		"."
 		"!"
 	word
 		" "
 	word
-		"You don't want to kill yourself"
-		"It is dangerous to encounter them"
-		"Always have the best possible weapons with you"
-		"We have ships that can cloak just in case"
+		"You don't want to get yourself killed"
+		"It's dangerous to encounter them"
+		"Always have some weapons in case you come across them"
+		"We have ships that can cloak in case you find yourself in a tricky situation with them"
 	word
 		"."
 		"!"
 
 phrase "hostile remnant"
 	word
-		"(It only consists of signs so deep that a regular human can't even understand. Seems like they don't like you.)"
+		"(It consists of signs so complex that any regular human wouldn't understand, but it seems that they don't like you.)"
 
 phrase "hostile remnant"
 	word
-		"Apparently"
+		"Apparently,"
 		"It seems"
 		"I think"
 	word
 		" "
 	word
-		"you are"
+		"you're"
 	word
-		"not different to"
+		"not all that different from"
 		"very similar to"
 		"like"
 	word
 		"them"
 		"an Alpha"
-		"a genetically modified weapon"
+		"a certain genetically modified weapon I've heard about"
 		"a Korath"
 	word
 		"."
@@ -710,34 +704,33 @@ phrase "hostile remnant"
 	word
 		"Too bad"
 		"Too sad"
-		"I hope you think about your actions"
+		"I hope you go up in flames"
 		"You backstabbed us"
 		"You lied to us"
-		"You violated our trust"
+		"You betrayed our trust"
 	word
 		"."
 
 phrase "hostile remnant (we're)"
 	word
-		"we're"
+		"we were"
 	word
 		" "
 	word
 		"friends"
 		"comrades"
-		"brethens"
+		"brethren"
 		"good"
-		"awesome"
 		"cool"
 
 phrase "hostile remnant (you're)"
 	word
-		"you're"
+		"you were"
 	word
 		" "
 	word
-		"not an Alpha"
-		"not hostile
+		"weren't like the Alphas"
+		"not hostile"
 		"friendly"
 		"good"
 		"human"
@@ -746,7 +739,7 @@ phrase "hostile remnant (you're)"
 phrase "hostile remnant"
 	word
 		"I"
-		"we"
+		"We"
 	word
 		" "
 	word
@@ -761,10 +754,9 @@ phrase "hostile remnant"
 	word
 		" "
 	word
-		"Why do you have to do this"
+		"Why are you doing this"
 		"Are you insane"
 		"Did I hurt you"
-		"Perhaps we intimidated you"
 	word
 		"?"
 
