@@ -386,11 +386,6 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = INJECT;
 		stepInputString = node.Token(1);
 	}
-	else if(node.Token(0) == "ui key")
-	{
-		stepType = INPUT;
-		inputKeys.insert(node.Token(1));
-	}
 	else
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
 }

@@ -32,25 +32,36 @@ test "Test-Framework - UI controls"
 		inject "commodity barges"
 		load "commodity barges.txt"
 		# Enter and leave jobs
-		"ui key" "j"
-		"ui key" "d"
+		input
+			key "j"
+		input
+			key "d"
 		# Enter trading
-		"ui key" "t"
+		input
+			key "t"
 		# Enter bank
-		"ui key" "b"
+		input
+			key "b"
 		# Enter spaceport
-		"ui key" "p"
+		input
+			key "p"
 		# Enter and leave shipyard
 		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
-		#"ui key" "s"
-		#"ui key" "l"
+		#input
+		#	key "s"
+		#input
+		#	key "l"
 		# Enter and leave outfitter
-		"ui key" "o"
-		"ui key" "l"
+		input
+			key "o"
+		input
+			key "l"
 		# Enter hire-crew section
-		"ui key" "h"
+		input
+			key "h"
 		# Depart
-		"ui key" "d"
+		input
+			key "d"
 
 
 test "Test-Framework - Menu controls"
@@ -61,13 +72,17 @@ test "Test-Framework - Menu controls"
 		inject "commodity barges"
 		load "commodity barges.txt"
 		# Go to menu
-		"ui key" "escape"
+		input
+			key "escape"
 		# Go to settings
-		"ui key" "s"
+		input
+			key "s"
 		# Go to controls
-		"ui key" "c"
+		input
+			key "c"
 		# Enter ships
-		"ui key" "e"
+		input
+			key "e"
 
 
 
