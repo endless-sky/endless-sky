@@ -822,7 +822,7 @@ const News *GameData::PickNews(const Planet *planet)
 {
 	vector<const News *> matches;
 	for(const auto &it : news)
-		if(it.second.Matches(planet))
+		if(!it.second.IsEmpty() && it.second.Matches(planet))
 			matches.push_back(&it.second);
 	
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
