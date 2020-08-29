@@ -257,7 +257,7 @@ void Command::Load(const DataNode &node)
 		if(it != lookup.end())
 			Set(it->second);
 		else
-			node.PrintTrace("Skipping unrecognized command:");
+			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
 	}
 }
 
