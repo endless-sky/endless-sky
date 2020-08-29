@@ -17,7 +17,7 @@ mission "Resistance: Charity"
 	destination "Fourth Shadow"
 	to offer
 		random < 85
-		"coalition jobs" >= 42
+		has "Coalition: Contributor: done"
 		not "assisted heliarch"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch Containment 4-A: offered"
@@ -92,7 +92,7 @@ mission "Resistance: Introductions"
 		not planet "Remote Blue"
 	destination "Remote Blue"
 	to offer
-		random < 25
+		random < 75
 		has "Resistance: Platings: done"
 		has "main plot completed"
 		not "assisted heliarch"
