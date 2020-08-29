@@ -450,7 +450,7 @@ mission "HI2-FS"
 			`For this planet, the trio informs you that they cannot spend too much time in one place, considering how densely populated it is, so they hand you the coordinates of dozens of factories, and tell you to bring them to them in whichever order you'd prefer.`
 			`	"Surprise inspections, we shall perform," Kirrie says as the three prepare their equipment and weapons.`
 			`	You spend hours flying around the planet dropping one agent off in a factory, running off to another, then another, then picking up the first of the three again, and continuing the process.`
-			`	After picking up Tugroob from the last factory, they all analyze their findings one last time, going over each individual factory, mechanically running down a long list of "possible abnormalities" for each, leaving a mark on the side and briefly writing a description if any such "abnormality" was noted in a factory.`
+			`	After picking up Tugroob from the last factory, they all analyze their findings one last time, going over each individual factory, mechanically running down a long list of "possible abnormalities" for each, leaving a mark on the side, and briefly writing a description if any such "abnormality" was noted in a factory.`
 			`	"Unauthorized power surges to some replicators, we found. Missing as well, some records of storage transport were," Iplora says.`
 			`	You land on a Heliarch base, and they hand all their findings to the agents there before returning to your ship.`
 
