@@ -51,7 +51,7 @@ template <class T>
 	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue, Font::Truncate trunc = Font::TRUNC_NONE);
 	
 template <class T>
-	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, Font::Truncate trunc = Font::TRUNC_NONE);
+	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "", Font::Truncate trunc = Font::TRUNC_NONE);
 	
 template <class T>
 	Dialog(T *t, void (T::*fun)(), const std::string &text, Font::Truncate trunc = Font::TRUNC_NONE);
@@ -119,8 +119,8 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialVa
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, Font::Truncate trunc)
-	: stringFun(std::bind(fun, t, std::placeholders::_1))
+Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue, Font::Truncate trunc)
+	: stringFun(std::bind(fun, t, std::placeholders::_1)), input(initialValue)
 {
 	Init(text, true, false, trunc);
 }

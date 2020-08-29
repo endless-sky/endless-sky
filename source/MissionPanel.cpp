@@ -584,27 +584,34 @@ void MissionPanel::DrawSelectedSystem() const
 // waypoints) by drawing colored rings around them.
 void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
 {
+	auto toVisit = set<const System *>{mission.Waypoints()};
+	for(const Planet *planet : mission.Stopovers())
+		toVisit.insert(planet->GetSystem());
+	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
+	for(const Planet *planet : mission.VisitedStopovers())
+		hasVisited.insert(planet->GetSystem());
+	
 	const Color &waypoint = *GameData::Colors().Get("waypoint back");
 	const Color &visited = *GameData::Colors().Get("faint");
-	const float MISSION_OUTER = 22.f;
-	const float MISSION_INNER = 20.5f;
 	
 	double zoom = Zoom();
-	// Draw a colored ring around the destination system.
-	Point pos = zoom * (mission.Destination()->GetSystem()->Position() + center);
-	RingShader::Draw(pos, MISSION_OUTER, MISSION_INNER, color);
+	auto drawRing = [&](const System *system, const Color &drawColor)
+	{
+		RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor);
+	};
 	
-	// Draw bright rings around systems that still need to be visited.
-	for(const System *system : mission.Waypoints())
-		RingShader::Draw(zoom * (system->Position() + center), MISSION_OUTER, MISSION_INNER, waypoint);
-	for(const Planet *planet : mission.Stopovers())
-		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), MISSION_OUTER, MISSION_INNER, waypoint);
-	
-	// Draw faint rings around systems already visited for this mission.
-	for(const System *system : mission.VisitedWaypoints())
-		RingShader::Draw(zoom * (system->Position() + center), MISSION_OUTER, MISSION_INNER, visited);
-	for(const Planet *planet : mission.VisitedStopovers())
-		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), MISSION_OUTER, MISSION_INNER, visited);
+	RingShader::Bind();
+	{
+		// Draw a colored ring around the destination system.
+		drawRing(mission.Destination()->GetSystem(), color);
+		// Draw bright rings around systems that still need to be visited.
+		for(const System *system : toVisit)
+			drawRing(system, waypoint);
+		// Draw faint rings around systems already visited for this mission.
+		for(const System *system : hasVisited)
+			drawRing(system, visited);
+	}
+	RingShader::Unbind();
 }
 
 

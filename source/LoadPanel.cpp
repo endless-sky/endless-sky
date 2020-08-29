@@ -200,8 +200,17 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
 			return false;
 		
+		const Date &today = player.GetDate();
+		const int year = today.Year();
+		const int month = today.Month();
+		const int day = today.Day();
+		const string defaultFilename =
+			to_string(year) + "-" +
+			(month < 10 ? "0" : "") + to_string(month) + "-" +
+			(day < 10 ? "0" : "") + to_string(day);
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
-			"Enter a name for this snapshot, or leave the name empty to use the current date:"));
+			"Enter a name for this snapshot, or leave the name empty to use the current date:",
+			defaultFilename));
 	}
 	else if(key == 'R' && !selectedFile.empty())
 	{
