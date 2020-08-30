@@ -307,9 +307,7 @@ phrase "remnant uncontacted hostile"
 		"Sing your last prayers"
 		"Leave this space"
 	word
-		","
-	word
-		" "
+		", "
 	word
 		"hostile ship"
 		"pirate"
@@ -333,11 +331,7 @@ phrase "remnant uncontacted hostile"
 		"."
 		"!"
 	word
-		" "
-	word
-		"You're"
-	word
-		" "
+		" You're "
 	word
 		"hostile"
 		"here with malicious intent"
@@ -463,14 +457,12 @@ phrase "remnant inhibitor cannon"
 		"those"
 		"our"
 	word
-		" "
-	word
-		"Inhibitor Cannons."
-	word
-		" "
+		" Inhibitor Cannons. "
 	word
 		"They"
 		"Those weapons"
+	word
+		" "
 	word
 		"can"
 		"will"
@@ -512,11 +504,7 @@ phrase "remnant thrasher cannon"
 		"Compared to"
 		"When placed beside"
 	word
-		" "
-	word
-		"your energy blasters,"
-	word
-		" "
+		" your energy blasters, "
 	word
 		"they're more efficient in terms of heat"
 		"you can deal more damage with our cannons"
@@ -530,9 +518,7 @@ phrase "remnant thrasher cannon"
 
 phrase "remnant emp torpedo bay"
 	word
-		"an EMP Torpedo Bay."
-	word
-		" "
+		"an EMP Torpedo Bay.  "
 	word
 		"With a single shot, it"
 		"Firing one"
@@ -565,11 +551,7 @@ phrase "remnant salvage scanner"
 		"a dozen"
 		"some"
 	word
-		" "
-	word
-		"salvage scanners."
-	word
-		" "
+		" salvage scanners. "
 	word
 		"They combine outfit and tactical scanners into one package"
 		"Compared to your separated versions, our special scanner is more powerful"
@@ -586,11 +568,7 @@ phrase "friendly remnant"
 		"Do you know"
 		"You know anything"
 	word
-		" "
-	word
-		"about"
-	word
-		" "
+		" about "
 	word
 		"the"
 		"those"
@@ -602,9 +580,7 @@ phrase "friendly remnant"
 		"Hai"
 		"Coalition far west of our space"
 	word
-		"?"
-	word
-		" "
+		"? "
 	phrase
 		"friendly remnant (aliens.!)"
 		"friendly remnant (aliens?)"
@@ -646,13 +622,7 @@ phrase "friendly remnant"
 		"Stay alert"
 		"Be vigilant"
 	word
-		" "
-	word
-		"about"
-	word
-		" "
-	word
-		"the"
+		" about the "
 	word
 		"Alphas in this galaxy"
 		"pirates in your space"
@@ -682,22 +652,18 @@ phrase "hostile remnant"
 		"It seems"
 		"I think"
 	word
-		" "
-	word
-		"you're"
-	word
-		" "
+		" you're "
 	word
 		"not all that different from"
 		"very similar to"
 		"like"
 	word
+		" "
+	word
 		"an Alpha"
 		"a Korath"
 	word
-		"."
-	word
-		" "
+		". "
 	word
 		"Too bad"
 		"I hope you go up in flames"
@@ -712,11 +678,7 @@ phrase "hostile remnant"
 		"I"
 		"We"
 	word
-		" "
-	word
-		"thought"
-	word
-		" "
+		" thought "
 	phrase
 		"hostile remnant (we're)"
 		"hostile remnant (you're)"
@@ -731,9 +693,7 @@ phrase "hostile remnant"
 
 phrase "hostile remnant (we're)"
 	word
-		"we were"
-	word
-		" "
+		"we were "
 	word
 		"friends"
 		"comrades"
@@ -742,9 +702,7 @@ phrase "hostile remnant (we're)"
 
 phrase "hostile remnant (you're)"
 	word
-		"you were"
-	word
-		" "
+		"you were "
 	word
 		"not like the Alphas"
 		"not hostile"
