@@ -116,6 +116,12 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	hoverText.SetWrapWidth(150);
 	hoverText.SetAlignment(WrappedText::LEFT);
 	
+	// Find out how far the player is able to jump. The range of the system
+	// takes priority over the range of the player's flagship.
+	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
+	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
+	playerJumpDistance = systemRange ? systemRange : (playerRange ? playerRange : System::DEFAULT_NEIGHBOR_DISTANCE);
+	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem, true);
 }
@@ -151,14 +157,10 @@ void MapPanel::Draw()
 	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
 		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
 	// Draw the jump range circle around your current location if it is different than the
-	// visible range. The range of the system takes priority over the range of the player's
-	// flagship.
-	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
-	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
-	double ringDistance = systemRange ? systemRange : (playerRange ? playerRange : System::DEFAULT_NEIGHBOR_DISTANCE);
-	if(ringDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
+	// visible range.
+	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
 		RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
-			(ringDistance + .5) * Zoom(), (ringDistance - .5) * Zoom(), dimColor);
+			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
 	
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),

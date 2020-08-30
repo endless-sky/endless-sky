@@ -100,6 +100,7 @@ protected:
 	
 protected:
 	PlayerInfo &player;
+	double playerJumpDistance;
 	
 	DistanceMap distance;
 	
