@@ -354,7 +354,6 @@ phrase "remnant uncontacted hostile"
 phrase "friendly remnant"
 	word
 		"Greetings"
-		"Howdy"
 		"Hello there"
 		"Salutations"
 	word
@@ -383,6 +382,7 @@ phrase "friendly remnant"
 		"last time"
 		"last week"
 		"last month"
+		"last year"
 	word
 		"."
 		"!"
@@ -392,16 +392,18 @@ phrase "friendly remnant"
 		"Miraculously"
 		"Suddenly"
 	word
-		","
-	word
-		" "
+		", "
 	word
 		"I"
 		"my captain"
 		"we"
 	word
+		" "
+	word
 		"actually had"
 		"remembered the ship had"
+	word
+		" "
 	word
 		"a cloaking device all along"
 		"a secret weapon the whole time"
@@ -427,9 +429,7 @@ phrase "friendly remnant"
 		"a permit"
 		"permission to buy our outfits"
 	word
-		","
-	word
-		" "
+		", "
 	word
 		"I"
 		"our experts"
@@ -453,6 +453,8 @@ phrase "friendly remnant"
 		"remnant emp torpedo bay"
 		"remnant salvage scanner"
 	word
+		" "
+	word
 		"They're the best!"
 		"You should definitely try it!"
 		"Definitely better than those outfits in your space."
@@ -465,7 +467,7 @@ phrase "remnant inhibitor cannon"
 	word
 		" "
 	word
-		"inhibitor cannons."
+		"Inhibitor Cannons."
 	word
 		" "
 	word
@@ -485,12 +487,12 @@ phrase "remnant inhibitor cannon"
 	word
 		"the enemy's thrusters"
 		"your target's steering"
-		"any engine"
+		"any ship's engines"
 	word
 		" "
 	word
 		"and prevent them from escaping"
-		", and anyone won't stand a chance"
+		"and they won't stand a chance"
 	word
 		"."
 		"!"
@@ -503,13 +505,11 @@ phrase "remnant thrasher cannon"
 	word
 		" "
 	word
-		"thrasher cannons"
-		"thrasher guns"
-		"thrasher turrets"
+		"Thrasher Cannons"
+		"Thrashers"
+		"Thrasher Turrets"
 	word
-		"."
-	word
-		" "
+		". "
 	word
 		"Compared to"
 		"When placed beside"
@@ -525,7 +525,7 @@ phrase "remnant thrasher cannon"
 		"they may be consuming more energy, but they have better heat and damage"
 		"our cannons may be more expensive, but they have better damage"
 		"they're larger, but they can deal more damage and release less heat"
-		"they're a force to reckoned with"
+		"they're a force to be reckoned with"
 	word
 		"."
 		"!"
@@ -602,9 +602,7 @@ phrase "friendly remnant"
 		"Quarg"
 		"Pug"
 		"Hai"
-		"Drak"
-		"Archons"
-		"insects far west of our space"
+		"Coalition far west of our space"
 	word
 		"?"
 	word
@@ -612,6 +610,8 @@ phrase "friendly remnant"
 	phrase
 		"friendly remnant (aliens.!)"
 		"friendly remnant (aliens?)"
+	replace
+		"those Coalition" "that Coalition"
 
 phrase "friendly remnant (aliens.!)"
 	word
@@ -660,7 +660,6 @@ phrase "friendly remnant"
 		"pirates in your space"
 		"Korath raiders"
 		"Korath"
-		"Archon in Nenia"
 	word
 		"."
 		"!"
@@ -689,13 +688,13 @@ phrase "hostile remnant"
 	word
 		"you're"
 	word
+		" "
+	word
 		"not all that different from"
 		"very similar to"
 		"like"
 	word
-		"them"
 		"an Alpha"
-		"a certain genetically modified weapon I've heard about"
 		"a Korath"
 	word
 		"."
@@ -703,7 +702,6 @@ phrase "hostile remnant"
 		" "
 	word
 		"Too bad"
-		"Too sad"
 		"I hope you go up in flames"
 		"You backstabbed us"
 		"You lied to us"
@@ -721,7 +719,6 @@ phrase "hostile remnant (we're)"
 		"comrades"
 		"brethren"
 		"good"
-		"cool"
 
 phrase "hostile remnant (you're)"
 	word
@@ -729,11 +726,10 @@ phrase "hostile remnant (you're)"
 	word
 		" "
 	word
-		"weren't like the Alphas"
+		"not like the Alphas"
 		"not hostile"
 		"friendly"
 		"good"
-		"human"
 		
 
 phrase "hostile remnant"
@@ -748,11 +744,9 @@ phrase "hostile remnant"
 		" "
 	phrase
 		"hostile remnant (we're)"
-		"hostile remnant (you're)
+		"hostile remnant (you're)"
 	word
-		"."
-	word
-		" "
+		". "
 	word
 		"Why are you doing this"
 		"Are you insane"
