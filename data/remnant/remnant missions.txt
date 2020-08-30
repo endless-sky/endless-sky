@@ -969,137 +969,123 @@ mission "Remnant: Learn Sign Follow Up"
 
 
 
-mission "Remnant: Follow-up on Terminus Researchers A-1"
-	name "Check up on Wormhole Researchers"
-	description "Return to Bounty to check up on a group of wormhole researchers you met some time ago."
+mission "Remnant: Deep Surveillance"
+	name "Investigate Ivan"
+	description "Travel to <destination> where Ivan's office is in order to ask him what he knows about the Ember Waste."
 	minor
 	source
 		government "Remnant"
-	destination "Bounty"
+	stopover "Valhalla"
 	to offer
-		has "Remnant: Learning Sign 2: done"
-		has "Terminus exploration: done"
-		not "Deep: Remnant 0: offered"
-		random < 40
-	on offer
-		conversation
-			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you first got your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants.`
-			branch secrets
-				has "deep: did not reveal remnant"
-			`	Thinking back, it suddenly occurs to you that you helped retrieve a science drone for some researchers on Bounty - researchers who were studying the wormhole in Terminus. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes. It would only be a matter of time until someone figures out how to use the key stones either by luck or by research, and then the Remnant's secrecy would vanish.`
-				goto terminuschoice
-			label secrets
-			`	Thinking back, you recall how you helped Ivan and a team of researchers from the Deep study the Ember Waste threshold wormhole. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes.`
-			label terminuschoice
-			choice
-				`	(Find a prefect.)`
-				`	(Forget about it.)`
-					decline
-			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
-			`	"Greetings Captain; I am Prefect Torza. I was told you had some information that could be important?" He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same.`
-			branch confirmation
-				has "deep: did not reveal remnant"
-			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system. He quickly picks up on the potential threat if someone figures out the key to using them, especially since you have demonstrated that it only takes one curious human to figure it out.`
-			goto investigatechoice
-			label confirmation
-			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system and now know that quantum keystones can stabilize it. He quickly picks up on the potential threat that this development represents.`
-			`	Thinking carefully, he says, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
-			choice
-				`	"I'd be happy to."`
-				`	"I'd prefer not to."`
-					decline
-			`	"Excellent. See what you can find out about their research and results, but it would probably be wise to avoid making direct contact with them."`
-				accept
-	on complete
-		conversation
-			`Arriving on Bounty, you take a discreet look around the spaceport, but you don't find the researchers or any sign of them. It appears that they packed up and left since the last time you saw them. Time to look around for some info.`
-
-
-
-mission "Remnant: Follow-up on Terminus Researchers A-2"
-	name "Check up on Terminus Researchers"
-	description "Tracking down the wormhole researchers."
-	source "Bounty"
-	destination
-		government "Deep"
-	to offer
-		has "Remnant: Follow-up on Terminus Researchers A-1: done"
-	on offer
-		conversation
-			`A few hours of searching later, you find a lead: It seems that launching probes into the Terminus system isn't exactly a common activity, so their permits stand out from the rest. A helpful clerk in the spaceport office pulled up their application and found that they are listed as part of a university in the Deep, although it doesn't mention which planet their specific campus is on. A quick check of the directory lists a number of planets where they could be found.`
-			choice
-				`	(Stop investigating.)`
-					decline
-				`	(Continue the investigation)`
-					accept
-	on complete
-		conversation
-			`Once you've landed on <planet>, you look up the local university and pay it a visit. After thinking about it for a minute, you decide that the best source of information would probably be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief searching, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here in the Deep, and transfer copies of each to you for free.`
-
-
-
-mission "Remnant: Follow-up on Terminus Researchers AB-3"
-	name "Check up on Terminus Researchers"
-	description "Returning with information on the wormhole researchers."
-	source
-		government "Deep"
-	destination
-		government "Remnant"
-	to offer
+		has "License: Remnant"
 		or
-			has "Remnant: Follow-up on Terminus Researchers A-2: done"
-			has "Remnant: Follow-up on Terminus Researchers B: done"
+			and
+				has "Terminus Exploration: done"
+				not "Deep: Remnant 0: done"
+			has "Deep: Remnant Research: done"
 	on offer
 		conversation
-			`Back on board <ship>, you take a moment to flip through the papers. You quickly realize that little beyond the summary is understandable to someone without a good theoretical understanding of physics. Even with your first-hand experience of wormholes, most of what they are discussing doesn't make much sense.`
-			`	All the academic stuff aside, the summary on the most recent paper confirms that the researchers are making progress: they have determined that the spatial anomaly in the Terminus system is in fact a wormhole with some kind of instability. They also speculate that it may be possible for a ship to artificially stabilize the wormhole enough for it to pass through unharmed.`
-			`	Prefect Torza is definitely going to be interested in seeing this.`
-				accept
-	on complete
-		payment 2000000
-		conversation
-			`The trip back to the Ember Wastes is long, and it gave you plenty of opportunities to think about what this research could lead to. You also wondered about what the Remnant will do, as it seems obvious that their current isolation plan is about to fail.`
-			`	Torza seems grimly optimistic on receiving your report. "If this had happened without us being aware, it could have gone badly. Fortunately for us, you were in the right place at the right time and have proven yourself loyal to us. We are now forewarned and can use this time to plan and prepare for it. Perhaps re-establishing contact with the rest of humanity could even be to our benefit, but that will be for the council to decide.`
-			`	"Thank you, Captain. If you ever come across any other interesting information like this, don't hesitate to bring it to me."`
-
-
-
-# The B mission is for players that kept the Remnant secret from the Deep, but did the wormhole research.
-mission "Remnant: Follow-up on Terminus Researchers B"
-	name "Check up on Wormhole Researchers"
-	description "Return to Bounty to check up on a group of wormhole researchers you met some time ago."
-	minor
-	source
-		government "Remnant"
-	destination "Valhalla"
-	to offer
-		has "Remnant: Learning Sign 2: done"
-		has "Deep: Wormhole Research: offered"
-		not "Remnant: Follow-up on Terminus Researchers A: done"
-		not "Remnant: Follow-up on Terminus Researchers B: active"
-		random < 40
-	on offer
-		conversation
-			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you first got your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants (and on your darker days - contemplating being a pirate).`
-			`	Thinking back, you recall how you helped Ivan and a team of researchers from the Deep study the Ember Waste threshold wormhole. Research like that might be of interest to the Remnant, seeing as it could open the door to new vessels venturing into the Ember Wastes.`
+			branch "told before"
+				has "remnant: told about deep"
+			
+			branch terminus1
+				not "Deep: Remnant Research: done"
+			
+			`	While wandering the spaceport, you think back to the scientists from the Deep who you helped to discover the Ember Waste. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
 			choice
-				`	(Find a prefect.)`
-				`	(Forget about it.)`
+				`	(Find a prefect to tell.)`
+					goto telling
+				`	(Don't tell the Remnant.)`
 					decline
-			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
-			`	"Greetings Captain. I am Prefect Torza. I was told you had some information that could be important?"`
-			`	He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same.`
-			`	You give him some background about the current state of human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers studying the wormhole. He appreciates that you kept them focused on the wormhole train instead of revealing the Remnant, but still appears concerned.`
-			`	Thinking carefully, he says, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
+			
+			label terminus1
+			`	While wandering the spaceport, you think back to the scientsits researching in wormhole in Terminus. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
 			choice
-				`	"I'd be happy to."`
-				`	"I'd prefer not to."`
+				`	(Find a prefect to tell.)`
+				`	(Don't tell the Remnant.)`
 					decline
-			`	"Excellent. See what you can find out about their research and results, but it would probably be wise to avoid making direct contact with them."`
+			
+			label telling
+			apply
+				set "remnant: told about deep"
+			`	You ask one of the Remnant in the spaceport where you would be able to find a prefect and they point you to what looks like an information desk of sorts. There you tell the attendant that you have something potentially important to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
+			`	"Greetings, Captain. I am Prefect Torza. I was told you had information that could be important to our security." He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same. "What do you have to tell us?"`
+			
+			branch terminus2
+				not "Deep: Remnant Research: done"
+			choice
+				`	"I helped a group of scientists from the Deep to discover the Ember Waste."`
+				`	"A group of scientists from the Deep has discovered the Ember Waste."`
+					goto discovered1
+			
+			`	`
+			
+			label discovered1
+			`	`
+			
+			label terminus2
+			choice
+				`	"I helped a group of scientists who were researching the wormhole in Terminus."`
+				`	"I discovered that a group of scientists are researching the wormhole in Terminus."`
+			
+			`	"Do they know how to enter it?" Torza asks, not sounding concerned with this new information.`
+			`	"No," you say. "But they know, or at least think, that it is a wormhole, and are attempting to learn how to enter it."`
+			`	"Well it is unlikely that they will ever learn. The only way to stabilize the wormholes is by using a Key Stone, but I have never heard of one being found in Ancestral space. Learning what these scientists know would still be helpful, though. Would you be able to get us a copy of their findings?"`
+			choice
+				`	"I'll try. The lead scientists told me where his office is."`
+					goto accept2
+				`	"I'm sorry, but I don't believe I'll be able to."`
+			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. I do not expect anything to come of this for now, but should anything occur we can be more prepared than we otherwise would have been." Torza gets up from the bench and shows you out. "May the Embers burn bright for you."`
+				decline
+			
+			label accept2
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. May the Embers burn bright for you."`
 				accept
-	on complete
+			
+			label "told before"
+			`	Since you last told the Remnant about Ivan's research on the wormhole in Terminus, you have helped him to discover the Ember Waste. The Remnant may be interested in being updated on Ivan's progress.`
+			choice
+				`	(Find a prefect to tell.)`
+				`	(Don't update the Remnant.)`
+					decline
+			
+			`	You approach a spaceport information desk and ask to see Prefect Torza, who you spoke to the last time you informed the Remnant about the Deep researching the wormhole. Luckily, Torza is on-world at the moment, and you are told to meet him in the cafeteria. When you arrive, you find that Torza has just finished a meal and was leaving.`
+			`	"Ah, Captain. I was told you were looking for me. Is there an update to the research on the Threshold that the Deep are doing?"`
+			choice
+				`	"I've helped the scientists learn how to pass through the wormhole."
+				`	"The scientists have discovered how to pass through the wormhole."`
+					goto discovered2
+			
+			`	`
+			
+			label discovered2
+			`	`
+	
+	# Multiple visits + knowing about the Remnant before + not doing surveillance + not bringing tech all raise suspicion.
+	# Doing surveillance = no suspicion
+	# Bringing tech = slightly less suspicion
+	# Suspicion level changes comments from Ivan as well as whether he gives you classified information or not
+	on stopover
+		"retrieved information" ++
 		conversation
-			`Once you've landed on <planet>, you look up the university that Ivan worked for. After thinking about it for a minute, you decide that the best source of information would probably be to visit the university library and ask one of the librarians for assistance locating research on wormholes. After some brief research, they return with a handful of research papers published over the past decade. They proudly note that two of the more recent papers were published here at their university. They proudly give you copies and wish you good luck in your studies.`
+			branch "retrieved before"
+				"retrieved information" == 2
+			
+			`	...`
+			
+			label "retrieved before"
+			`	...`
+	
+	on complete
+		payment 1000000
+		conversation
+			branch "retrieved before"
+				"retrieved information" == 2
+			
+			`	...`
+			
+			label "retrieved before"
+			`	...`
 
 
 
