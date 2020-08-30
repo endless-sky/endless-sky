@@ -110,10 +110,9 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Font::Truncat
 
 template <class T>
 Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue, Font::Truncate trunc)
-	: intFun(std::bind(fun, t, std::placeholders::_1))
+	: intFun(std::bind(fun, t, std::placeholders::_1)), input(std::to_string(initialValue))
 {
 	Init(text, true, false, trunc);
-	input = std::to_string(initialValue);
 }
 
 
