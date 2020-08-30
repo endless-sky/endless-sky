@@ -1924,6 +1924,7 @@ mission "Wanderers Solifuge Recon 1"
 	autosave
 	source "Vara K'chrai"
 	destination "Vara Ke'sok"
+	passengers 1
 	to offer
 		has "Wanderers Hai Assistance 3: done"
 		not "Wanderers Pond Strider Recon 1: offered"
@@ -1946,7 +1947,10 @@ mission "Wanderers Solifuge Recon 1"
 			`	"Well," you say, "I hope for your sake that it is a true Molt."`
 			label end
 			`	"Thank you," he says. "And now, if you are willing to help my people further, they have asked for your [assistance, expertise] on <planet>. Do not worry about me; I will [face, deal with] whatever future comes, when it comes."`
+			`	As you return to your ship, Sayari approaches you, seemingly having listened in on your conversation with Rek. "I too have been told that my presence has been requested on <planet>." She pauses for a moment before continuing. "And while this 'Molt' is a mystery to me, I hope that it may go well for your friend." You thank Sayari for the well wishes and get ready to leave for <planet>.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1965,9 +1969,9 @@ mission "Wanderers Solifuge Recon 2"
 		log "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
 		set "license: Wanderer Military"
 		conversation
-			`Sobari Tele'ek, the military commander whom you met earlier, greets you when you land. "The human who enjoys taking part in fights!" he says. "I am glad you have come. We have two [pieces, items] of good news for you. The first is that we have decided it is [permissible? prudent?] to allow you to purchase our warships. That will include the new [ugly, brutish] one, the Tempest."`
+			`Sobari Tele'ek, the military commander whom you met earlier, greets you and Sayari when you land. "The human who enjoys taking part in fights!" he says. "And the Hai ambassador. I am glad you have come. We have two [pieces, items] of good news for you, human. The first is that we have decided it is [permissible? prudent?] to allow you to purchase our warships. That will include the new [ugly, brutish] one, the Tempest."`
 			`	"Thank you," you say.`
-			`	"The other news is even better!" he says. "We have [saved, set aside] a fight for you. Unfettered ships of unknown design have been [spotted, discovered] in the Prakacha'a system. I ask you to destroy all these ships, then report to me what their [capabilities, strengths] are."`
+			`	"The other news is even better!" he says. "We have [saved, set aside] a fight for you. Unfettered ships of unknown design have been [spotted, discovered] in the Prakacha'a system. I ask you to destroy all these ships, then report to me what their [capabilities, strengths] are. I will discuss the [situation? troubles?] of the Unfettered with Sayari while you are gone."`
 			`	You tell him that you will do your best. Now that you are able to purchase Wanderer warships, you should be able to match anything the Unfettered throw at you.`
 				accept
 	waypoint "Prakacha'a"
@@ -1987,8 +1991,9 @@ mission "Wanderers Solifuge Recon 2"
 		dialog `Tele'ek approaches you when you land. "I have [reports, word] that the Unfettered ships are still [present, alive] within Prakacha'a. Please destroy them all before returning."`
 	on complete
 		conversation
-			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
-			`Ambassador Sayari has been informed of the Solifuge, has a message for the elders on the Hai Homeworld, and needs your help to deliver it to <destination>."`
+			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
+			`	Sayari looks more concerned about this information. "These carriers may not be an issue for the Wanderers, but this development could cause trouble for the Hai. I have written a message describing the situation." She hands you a data chip. "When you have the chance, please deliver it to the council of elders on Hai-home."`
+			`	"Please be quick if you are to deliver this message now," Tele'ek says. "We have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
 
 
 event "eastern evacuation"
@@ -2027,6 +2032,10 @@ mission "Wanderers Evacuation 1"
 	on offer
 		conversation
 			`Four Wanderer ships that you've never seen before are parked here. These must be the dedicated transport ships that Iktat Rek mentioned. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
+			branch choice
+				not "Strider 0: active"
+			`	You have yet to deliver Sayari's message to the Hai elders about the new Unfettered ship. Perhaps it would be wise to wait before continuing to help the Wanderers.`
+			label choice
 			choice
 				`	"I would be glad to."`
 					accept
