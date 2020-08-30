@@ -378,10 +378,8 @@ phrase "friendly remnant"
 	word
 		" "
 	word
-		"last time"
 		"last week"
 		"last month"
-		"last year"
 		"last year"
 	word
 		"."
