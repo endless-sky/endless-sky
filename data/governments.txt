@@ -451,6 +451,8 @@ government "Remnant"
 		assist -0.25
 		capture 10
 		destroy 10
+	"friendly hail" "remnant uncontacted"
+	"hostile hail" "remnant uncontacted hostile"
 
 government "Republic"
 	swizzle 0

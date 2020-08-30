@@ -140,7 +140,20 @@ mission "Remnant Blood Test Patch"
 		set "remnant blood test pure"
 		fail
 
+# Changes Remnant hails once contacted and submitted to blood test
+mission "Remnant Hails Change"
+	landing
+	invisible
+	to offer
+		has "remnant blood test pure"
+	on offer
+		event "remnant change hail"
+		fail
 
+event "remnant change hail"
+	government "Remnant"
+		"friendly hail" "friendly remnant"
+		"hostile hail" "hostile remnant"
 
 mission "lost in ember waste"
 	landing
