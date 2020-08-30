@@ -388,7 +388,6 @@ phrase "friendly remnant"
 		"Luckily"
 		"Fortunately"
 		"Miraculously"
-		"Suddenly"
 	word
 		", "
 	word
