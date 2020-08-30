@@ -1756,7 +1756,7 @@ mission "Strider 0"
 		has "Wanderers Solifuge Recon 2: done"
 		not "Wanderers Evacuation 1: offered"
 
-event "pond striders released"
+event "pond strider released"
 	fleet "Large Hai"
 		add variant 1
 			"Pond Strider (Old)" 2
