@@ -1860,6 +1860,7 @@ conversation "pond strider"
 	label remnant
 	apply
 		set "strider: remnant"
+	``
 		goto end
 	label coalition
 	apply
