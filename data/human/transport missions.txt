@@ -2107,12 +2107,12 @@ mission "Terminus exploration"
 		payment 90000
 		log `Recovered data from a derelict science drone for a team of scientists, who were studying a strange red anomaly in the Terminus system. They suggest that it may be a partially collapsed wormhole.`
 		conversation
-			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>.`
+			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>. "And by the way, my name is Ivan. I have an office on Valhalla that you can visit if ever you're wanting to help. or just curious."`
 			choice
 				`	"Can you tell me more about this anomaly you are studying?"`
 				`	"I'm glad I was able to help."`
 					decline
-			`	He says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't even sure if it's even a wormhole at all."`
+			`	Ivan says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't even sure if it's even a wormhole at all. We'll need to study the data you've recovered to understand it further."`
 			`	You thank him for the information, and return to your ship.`
 				decline
 	

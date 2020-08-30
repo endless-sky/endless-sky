@@ -1288,7 +1288,7 @@ mission "Deep: Remnant 0"
 	
 	on offer
 		conversation
-			`While wandering through the spaceport, you are approached by a man you instantly recognize as the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He introduces himself as Ivan and mentions that he heard how helpful you have been to others within the Deep.`
+			`While wandering through the spaceport, you are approached by a man you instantly recognize as Ivan, the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He mentions that he heard how helpful you have been to others within the Deep.`
 			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it.`
 			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
 			branch remnant
