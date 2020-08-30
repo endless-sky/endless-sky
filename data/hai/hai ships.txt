@@ -474,7 +474,7 @@ ship "Pond Strider"
 	"final explode" "final explosion large"
 	description "The Hai upgraded their original Pond Strider after acquiring technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
 
-ship "Pond Strider" "Hai Pond Strider"
+ship "Pond Strider" "Pond Strider (Old)"
 	add attributes
 		"cost" -2250000
 		"hull" -500
