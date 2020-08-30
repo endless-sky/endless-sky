@@ -397,12 +397,14 @@ phrase "friendly remnant"
 	word
 		" "
 	word
-		"actually had"
+		"had prepared for this"
+		"had planned for this"
 	word
-		" "
+		" by having "
 	word
-		"a cloaking device all along"
-		"a secret weapon the whole time"
+		"a cloaking device along"
+		"a secret weapon"
+		"fast engines"
 		"a last resort every Remnant should have"
 	word
 		"."
