@@ -1,0 +1,174 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Weapons:
+
+outfit "Periapsis-Class Beam"
+	category "Guns"
+	licenses
+		"Sleeper"
+	cost 6970000
+	thumbnail "outfit/tach_beam"
+	"mass" 26
+	"outfit space" -26
+	"weapon capacity" -26
+	"gun ports" -1
+	weapon
+		sprite "projectile/small-sleep-ray"
+			"frame rate" 30
+		sound "fire-lance"
+		"hit effect" "sleep impact"
+		"inaccuracy" .2
+		"velocity" 100
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 7.5
+		"firing heat" 7.5
+		"shield damage" 0
+		"hull damage" 4
+		"piercing" 1
+	description "The Periapsis-Class Beam is the shorter range, fixed version of the Sleeper's Apoapsis-Class Turret used on their capital ships."
+
+outfit "Apoapsis-Class Turret"
+	category "Turrets"
+	licenses
+		"Sleeper"
+	cost 13710000
+	thumbnail "outfit/tach_turret"
+	"mass" 80
+	"outfit space" -80
+	"weapon capacity" -80
+	"turret mounts" -1
+	weapon
+		sprite "projectile/sleep-ray"
+			"frame rate" 30
+		sound "fire-lance"
+		"hardpoint sprite" "hardpoint/wanderer anti-missile"
+		"hardpoint offset" 6.
+		"hit effect" "sleep impact"
+		"inaccuracy" .2
+		"velocity" 500
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 30
+		"firing heat" 30
+		"shield damage" 0
+		"turret turn" 4.0
+		"hull damage" 10
+		"piercing" 1
+	description `The Apoapsis-Class Turret taps into the natural hyperspace fluctuations that exists between the turret and target vessel. Since these fluctuation travel through space faster than light, from the perspective of both the target and turret, the beam propagates backwards in time and originates from inside the target vessel, connecting with the turret at the moment of firing. In this way, it circumvents the target's shield matrix.`
+	description `The Sleeper's willingness to play fast and loose with such causal paradoxes greatly concerns the Quarg while simultaneously amusing the Pug.`
+
+outfit "Elliptic-Class Anti-missile"
+	category "Turrets"
+	licenses
+		"Sleeper"
+	cost 4120000
+	thumbnail "outfit/anti_miss_sys"
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
+	"turret mounts" -1
+	weapon
+		"hit effect" "sleeper anti-missile"
+		"fire effect" "meteor fire"
+		"velocity" 500
+		"lifetime" 1
+		"reload" 30
+		"firing energy" 10
+		"firing heat" 10
+		"anti-missile" 100
+	description "The Elliptic-Class Anti-missile silos are embedded into the plating of Sleeper ships, and launch small relativistic ramscoop rockets which are designed to intercept and collide with incoming missile threats."
+
+effect "sleeper anti-missile"
+	sprite "effect/sleep anti missile"
+		"no repeat"
+		"frame rate" 60
+	sound "quarg anti-missile"
+	"lifetime" 15
+	"velocity scale" 1
+
+effect "sleep impact"
+	sprite "effect/sleep impact"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+# Systems:
+
+outfit "Lissajous-Class Regenerator"
+	category "Systems"
+	licenses
+		"Sleeper"
+	cost 21000000
+	thumbnail "outfit/recuperator"
+	"mass" 15
+	"outfit space" -15
+	"active cooling" 18
+	"cooling energy" -18
+	unplunderable 1
+	description "A unique characteristic of most Sleeper outfits is their efficient utilization of naturally occurring energy gradients to derive their power. As such, they produce as much high-quality waste heat is as needed to keep them running. By using their coveted Lissajous-Class Thermal Regenerator to convert this waste heat into energy at -by human standards- perfect efficiency, the Sleepers require no conventional power generators."
+
+outfit "Oberth-Class Active Shield"
+	category "Systems"
+	licenses
+		"Sleeper"
+	cost 4100000
+	thumbnail "outfit/active_shield"
+	"mass" 20
+	"outfit space" -20
+	"shield generation" 6.66667
+	"shield energy" 0.66667
+	"shield heat" 0.66667
+	"shield fuel" 0.24
+	description "This defence system injects, then ignites a small amount of hyperspace fuel within the shield matrix of a Sleeper ship just prior to an enemy attack. The resultant plasma acts as an active shield that is opaque to both projectile, and energy weapons."
+
+# Engines:
+
+outfit "Prograde-Class Thruster"
+	category "Engines"
+	licenses
+		"Sleeper"
+	"cost" 290000
+	thumbnail "outfit/prograde_thrust"
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"thrust" 9.9
+	"thrusting energy" 3
+	"thrusting heat" 3
+	"flare sprite" "effect/sleep flare/sleep_thrust"
+		"frame rate" 4.8
+	"flare sound" "atomic tiny"
+	description "Instead of using a conventional propellant, the Prograde-Class propulsion units push off of the virtual particle pairs popping into and out of existence."
+
+outfit "Prograde-Class Steering"
+	category "Engines"
+	licenses
+		"Sleeper"
+	"cost" 262000
+	thumbnail "outfit/prograde_steer"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"turn" 229.875
+	"turning energy" 1.29
+	"turning heat" 1.29
+	"steering flare sprite" "effect/sleep flare/sleep_thrust"
+		"frame rate" 4.8
+	"steering flare sound" "atomic tiny"
+	description "Instead of using a conventional propellant, the Prograde-Class propulsion units push off of the virtual particle pairs popping into and out of existence."
+
+outfit "Sleeper License"
+	category "Special"
+	thumbnail "outfit/unknown"
+	description "The Sleepers have begrudgingly given you access to the valuable caches of technology that they nominally reserve for the Heat Death."

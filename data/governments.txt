@@ -470,6 +470,18 @@ government "Republic"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
 
+government "Sleeper"
+	swizzle 0
+	color .0 .0 .08
+	"player reputation" 1
+	"bribe" 0
+	"fine" 0
+	language "Sleeper"
+	"friendly hail" "sleeper untranslated"
+	"friendly disabled hail" "sleeper untranslated"
+	"hostile hail" "sleeper untranslated"
+	"hostile disabled hail" "sleeper untranslated"
+
 government "Syndicate"
 	swizzle 4
 	color 0 .41 .71

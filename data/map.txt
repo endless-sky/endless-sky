@@ -47,6 +47,9 @@ galaxy "label south"
 galaxy "label wanderers"
 	pos -145 -753
 
+galaxy "label sleepers"
+	pos 453.25 -391.723
+
 galaxy "label hai"
 	pos -74 -497
 
@@ -73,10 +76,10 @@ system "1 Axis"
 	government Coalition
 	habitable 745.92
 	belt 1112
-	link "Sol Kimek"
-	link "4 Winter Rising"
-	link "4 Spring Rising"
 	link "3 Axis"
+	link "4 Spring Rising"
+	link "4 Winter Rising"
+	link "Sol Kimek"
 	asteroids "small rock" 8 3.3166
 	asteroids "medium rock" 11 3.4454
 	asteroids "large rock" 1 3.1556
@@ -221,8 +224,8 @@ system "11 Autumn Above"
 	habitable 1566.68
 	belt 1099
 	link "16 Autumn Rising"
-	link "Sol Kimek"
 	link "7 Autumn Rising"
+	link "Sol Kimek"
 	asteroids "small rock" 1 4.1454
 	asteroids "medium rock" 28 3.2928
 	asteroids "large rock" 51 2.058
@@ -300,8 +303,8 @@ system "11 Spring Below"
 	government Coalition
 	habitable 912.6
 	belt 1932
-	link "4 Spring Rising"
 	link "3 Axis"
+	link "4 Spring Rising"
 	link "5 Spring Below"
 	asteroids "small rock" 36 3.808
 	asteroids "medium rock" 86 4.004
@@ -595,9 +598,9 @@ system "14 Winter Below"
 	government Coalition
 	habitable 1111.68
 	belt 1173
+	link "4 Axis"
 	link "8 Winter Below"
 	link "Ki War Ek"
-	link "4 Axis"
 	asteroids "small rock" 27 6.0912
 	asteroids "medium rock" 2 2.7648
 	asteroids "large rock" 21 5.8752
@@ -670,11 +673,11 @@ system "16 Autumn Rising"
 	government Coalition
 	habitable 1715
 	belt 1424
-	link "12 Autumn Above"
-	link "5 Summer Above"
-	link "11 Autumn Above"
-	link "3 Pole"
 	link "10 Pole"
+	link "11 Autumn Above"
+	link "12 Autumn Above"
+	link "3 Pole"
+	link "5 Summer Above"
 	asteroids "medium rock" 6 3.4138
 	asteroids "large rock" 8 2.2984
 	asteroids "small metal" 1 4.6644
@@ -740,10 +743,10 @@ system "3 Axis"
 	habitable 2372.76
 	belt 1202
 	link "1 Axis"
-	link "8 Winter Below"
-	link "4 Winter Rising"
-	link "4 Axis"
 	link "11 Spring Below"
+	link "4 Axis"
+	link "4 Winter Rising"
+	link "8 Winter Below"
 	asteroids "small rock" 1 2.1945
 	asteroids "medium rock" 39 1.8645
 	asteroids "large rock" 10 1.1715
@@ -806,10 +809,10 @@ system "3 Pole"
 	government Coalition
 	habitable 625
 	belt 1617
-	link "16 Autumn Rising"
-	link "5 Summer Above"
 	link "14 Summer Above"
+	link "16 Autumn Rising"
 	link "4 Summer Rising"
+	link "5 Summer Above"
 	link "Sol Kimek"
 	asteroids "small rock" 1 1.7864
 	asteroids "medium rock" 1 4.5584
@@ -937,9 +940,9 @@ system "4 Axis"
 	habitable 425.92
 	belt 1838
 	link "14 Winter Below"
+	link "3 Axis"
 	link "5 Axis"
 	link "5 Spring Below"
-	link "3 Axis"
 	asteroids "small rock" 71 3.726
 	asteroids "medium rock" 41 4.59
 	asteroids "large rock" 19 7.398
@@ -999,8 +1002,8 @@ system "4 Spring Rising"
 	habitable 320
 	belt 1801
 	link "1 Axis"
-	link "3 Spring Rising"
 	link "11 Spring Below"
+	link "3 Spring Rising"
 	asteroids "small rock" 9 10.8808
 	asteroids "large rock" 8 10.0688
 	asteroids "small metal" 3 11.4492
@@ -1062,8 +1065,8 @@ system "4 Summer Rising"
 	government Coalition
 	habitable 320
 	belt 1860
-	link "3 Pole"
 	link "14 Summer Above"
+	link "3 Pole"
 	asteroids "small rock" 7 3.1694
 	asteroids "medium rock" 4 8.8504
 	asteroids "large rock" 1 8.6112
@@ -1121,10 +1124,10 @@ system "4 Winter Rising"
 	government Coalition
 	habitable 135
 	belt 1345
-	link "Sol Kimek"
 	link "1 Axis"
-	link "5 Winter Above"
 	link "3 Axis"
+	link "5 Winter Above"
+	link "Sol Kimek"
 	asteroids "medium rock" 6 2.2022
 	asteroids "large rock" 1 0.9464
 	asteroids "small metal" 71 2.2932
@@ -1267,8 +1270,8 @@ system "5 Spring Below"
 	government Coalition
 	habitable 1313.28
 	belt 1104
-	link "4 Axis"
 	link "11 Spring Below"
+	link "4 Axis"
 	asteroids "small rock" 77 6.0372
 	asteroids "medium rock" 13 8.9154
 	asteroids "large rock" 137 3.7206
@@ -1531,8 +1534,8 @@ system "8 Winter Below"
 	government Coalition
 	habitable 486.68
 	belt 1285
-	link "3 Axis"
 	link "14 Winter Below"
+	link "3 Axis"
 	asteroids "small rock" 25 1.4256
 	asteroids "medium rock" 54 2.2968
 	asteroids "large rock" 69 3.5376
@@ -1670,8 +1673,8 @@ system Ablodab
 	belt 1368
 	link Debrugt
 	link Gupta
-	link Pelubta
 	link Mebla
+	link Pelubta
 	asteroids "small rock" 2 1.8837
 	asteroids "large rock" 2 3.8766
 	asteroids "medium metal" 2 3.7401
@@ -1794,8 +1797,8 @@ system Acamar
 	government Syndicate
 	habitable 1080
 	belt 1013
-	link Diphda
 	link Aldebaran
+	link Diphda
 	link Elnath
 	link Kugel
 	asteroids "medium rock" 2 2.352
@@ -1854,8 +1857,8 @@ system Achernar
 	belt 1963
 	link "Al Dhanab"
 	link Alpheratz
-	link Schedar
 	link Polaris
+	link Schedar
 	asteroids "medium metal" 27 1.8676
 	asteroids "large metal" 2 4.7334
 	minables copper 4 3.93672
@@ -1921,9 +1924,9 @@ system Acrux
 	government Republic
 	habitable 590.625
 	belt 1407
+	link Izar
 	link Minkar
 	link "Zeta Centauri"
-	link Izar
 	asteroids "small rock" 82 6.7183
 	asteroids "medium rock" 91 3.4385
 	asteroids "large rock" 17 4.8139
@@ -2098,7 +2101,7 @@ system Aescolanus
 		distance 2279.29
 		period 2849.84
 
-system "Aki'il"
+system Aki'il
 	pos -83 722
 	government Uninhabited
 	habitable 1505.92
@@ -2147,7 +2150,7 @@ system "Aki'il"
 		distance 600.757
 		period 151.778
 		offset 57.1944
-	object "Kaeyin"
+	object Kaeyin
 		sprite planet/ocean3
 		distance 927.757
 		period 291.28
@@ -2158,10 +2161,10 @@ system "Al Dhanab"
 	government Syndicate
 	habitable 1080
 	belt 1432
-	link Scheat
-	link Mirach
-	link Alpheratz
 	link Achernar
+	link Alpheratz
+	link Mirach
+	link Scheat
 	asteroids "small rock" 65 3.45
 	asteroids "medium rock" 24 1.6008
 	asteroids "large rock" 6 1.6008
@@ -2226,9 +2229,9 @@ system Albaldah
 	habitable 534.375
 	belt 1622
 	link Albireo
+	link Eltanin
 	link Girtab
 	link Nunki
-	link Eltanin
 	asteroids "small rock" 1 8.82
 	asteroids "medium rock" 20 5.4
 	asteroids "large rock" 9 7.02
@@ -2298,10 +2301,10 @@ system Albireo
 	government Republic
 	habitable 760
 	belt 1030
-	link Tarazed
 	link Albaldah
-	link Sadr
 	link Lurata
+	link Sadr
+	link Tarazed
 	asteroids "small rock" 2 3.57
 	asteroids "medium rock" 4 2.5466
 	asteroids "large rock" 4 3.1654
@@ -2355,9 +2358,9 @@ system Alcyone
 	government Pirate
 	habitable 270
 	belt 1438
-	link Zaurak
-	link Oblate
 	link Durax
+	link Oblate
+	link Zaurak
 	asteroids "small rock" 4 1.62
 	asteroids "medium rock" 16 1.3176
 	asteroids "large rock" 16 1.08
@@ -2420,8 +2423,8 @@ system Aldebaran
 	government Republic
 	habitable 625
 	belt 1296
-	link Capella
 	link Acamar
+	link Capella
 	link Elnath
 	link Kursa
 	asteroids "large metal" 1 2.8322
@@ -2528,10 +2531,10 @@ system Aldhibain
 	government Republic
 	habitable 455.625
 	belt 1840
-	link Kornephoros
-	link Sabik
 	link Alniyat
 	link Dschubba
+	link Kornephoros
+	link Sabik
 	asteroids "small rock" 1 2.574
 	asteroids "medium rock" 5 2.0592
 	asteroids "large rock" 1 4.1184
@@ -2643,8 +2646,8 @@ system Algieba
 	government Republic
 	habitable 2695
 	belt 1070
-	link "Tania Australis"
 	link Alphard
+	link "Tania Australis"
 	link Zosma
 	asteroids "small rock" 7 7.236
 	asteroids "medium rock" 1 3.726
@@ -2773,9 +2776,9 @@ system Algorel
 	habitable 320
 	belt 1993
 	link "Cor Caroli"
-	link Turais
 	link Mizar
 	link Phecda
+	link Turais
 	asteroids "small rock" 2 3.094
 	asteroids "medium rock" 5 2.142
 	asteroids "large rock" 2 1.768
@@ -2958,10 +2961,10 @@ system Alioth
 	government Republic
 	habitable 455.625
 	belt 1889
-	link Wei
-	link Vindemiatrix
 	link Alphecca
 	link Holeb
+	link Vindemiatrix
+	link Wei
 	asteroids "small metal" 5 4.0832
 	asteroids "medium metal" 2 4.048
 	asteroids "large metal" 4 3.7664
@@ -3182,8 +3185,8 @@ system Alnair
 	government Syndicate
 	habitable 135
 	belt 1969
-	link Persian
 	link Alderamin
+	link Persian
 	asteroids "small rock" 20 6.825
 	asteroids "medium rock" 242 4.355
 	asteroids "large rock" 19 8.32
@@ -3249,10 +3252,10 @@ system Alnasl
 	government Republic
 	habitable 640
 	belt 1412
+	link Eber
+	link "Kaus Borealis"
 	link Seginus
 	link Wei
-	link "Kaus Borealis"
-	link Eber
 	asteroids "medium rock" 1 1.4784
 	asteroids "large rock" 1 3.5112
 	asteroids "small metal" 15 3.2208
@@ -3386,8 +3389,8 @@ system Alnitak
 	government Republic
 	habitable 349.375
 	belt 1907
-	link Rigel
 	link Mintaka
+	link Rigel
 	link Saiph
 	asteroids "small rock" 1 5.4375
 	asteroids "medium rock" 24 4.6875
@@ -3440,12 +3443,12 @@ system Alniyat
 	government Republic
 	habitable 534.375
 	belt 1760
-	link Pherkad
-	link Graffias
-	link Antares
-	link Han
-	link Dschubba
 	link Aldhibain
+	link Antares
+	link Dschubba
+	link Graffias
+	link Han
+	link Pherkad
 	asteroids "small rock" 19 10.368
 	asteroids "medium rock" 148 6.156
 	asteroids "large rock" 37 4.455
@@ -3513,9 +3516,9 @@ system "Alpha Arae"
 	habitable 945
 	belt 1405
 	link "Delta Sagittarii"
-	link Rastaban
-	link "Kaus Borealis"
 	link Eber
+	link "Kaus Borealis"
+	link Rastaban
 	asteroids "small rock" 1 1.302
 	asteroids "medium rock" 26 3.129
 	asteroids "large rock" 28 1.974
@@ -3696,9 +3699,9 @@ system Alphard
 	habitable 1080.62
 	belt 1101
 	link Algieba
-	link Zosma
 	link Miaplacidus
 	link Talita
+	link Zosma
 	asteroids "small rock" 2 7.7896
 	asteroids "medium rock" 33 8.8088
 	asteroids "large rock" 2 7.4984
@@ -3761,8 +3764,8 @@ system Alphecca
 	habitable 1400
 	belt 1101
 	link Alioth
-	link Seginus
 	link Boral
+	link Seginus
 	asteroids "large metal" 1 4.3296
 	trade Clothing 343
 	trade Electronics 799
@@ -3809,9 +3812,9 @@ system Alpheratz
 	government Syndicate
 	habitable 1080.62
 	belt 1645
+	link Achernar
 	link "Al Dhanab"
 	link Ruchbah
-	link Achernar
 	asteroids "small rock" 8 5.44
 	asteroids "medium rock" 5 4.12
 	asteroids "large rock" 1 3.48
@@ -3875,10 +3878,10 @@ system Altair
 	government Republic
 	habitable 945
 	belt 1830
-	link Vega
-	link Sol
 	link "Delta Capricorni"
 	link Fomalhaut
+	link Sol
+	link Vega
 	asteroids "large metal" 1 4.6748
 	trade Clothing 378
 	trade Electronics 806
@@ -3998,8 +4001,8 @@ system "Ancient Hope"
 	government Coalition
 	habitable 455
 	belt 1439
-	link "Sol Saryd"
 	link "Far Horizon"
+	link "Sol Saryd"
 	asteroids "small rock" 14 8.1374
 	asteroids "medium rock" 11 5.2693
 	asteroids "large rock" 6 4.9358
@@ -4066,8 +4069,8 @@ system Ankaa
 	government Syndicate
 	habitable 625
 	belt 1003
-	link Markab
 	link Diphda
+	link Markab
 	link Ruchbah
 	asteroids "medium rock" 1 2.016
 	asteroids "large rock" 1 1.664
@@ -4243,10 +4246,10 @@ system Antevorta
 	habitable 320
 	belt 1994
 	haze _menu/haze-red
-	link Ossipago
 	link Cardea
 	link Convector
 	link Insitor
+	link Ossipago
 	asteroids "small rock" 1 1.6272
 	asteroids "medium rock" 14 1.2816
 	asteroids "large rock" 1 1.1088
@@ -4306,8 +4309,8 @@ system Ap'arak
 	habitable 1080
 	belt 1385
 	link Chirr'ay'akai
-	link Sich'ka'ara
 	link Ka'ch'chrai
+	link Sich'ka'ara
 	asteroids "medium rock" 6 7.383
 	asteroids "large rock" 2 4.485
 	asteroids "medium metal" 1 7.797
@@ -4359,9 +4362,9 @@ system Arcturus
 	government Republic
 	habitable 320
 	belt 1422
+	link Holeb
 	link Mizar
 	link Rutilicus
-	link Holeb
 	asteroids "small rock" 4 2.86
 	asteroids "medium rock" 3 2.508
 	asteroids "large rock" 5 2.288
@@ -4423,8 +4426,8 @@ system Arculus
 	habitable 625
 	belt 1536
 	haze _menu/haze-red
-	link Edusa
 	link Cinxia
+	link Edusa
 	link Pantica
 	asteroids "medium rock" 2 0.606667
 	asteroids "large metal" 1 1.34167
@@ -4539,11 +4542,11 @@ system Ascella
 	government Republic
 	habitable 640
 	belt 1971
-	link Peacock
-	link "Zeta Aquilae"
-	link Tais
-	link Rasalhague
 	link Naper
+	link Peacock
+	link Rasalhague
+	link Tais
+	link "Zeta Aquilae"
 	asteroids "small rock" 3 1.3328
 	asteroids "medium rock" 258 1.5708
 	asteroids "large rock" 6 1.547
@@ -4603,10 +4606,10 @@ system Asikafarnut
 	government "Kor Sestor"
 	habitable 320
 	belt 1342
+	link Celeborim
+	link Makferuti
 	link Silikatakfar
 	link Sobarati
-	link Makferuti
-	link Celeborim
 	asteroids "small rock" 1 4.1328
 	asteroids "medium rock" 3 4.536
 	asteroids "large rock" 3 2.184
@@ -4668,8 +4671,8 @@ system Aspidiske
 	habitable 135
 	belt 1885
 	link Avior
-	link Regor
 	link "Epsilon Leonis"
+	link Regor
 	asteroids "large metal" 1 3.7422
 	trade Clothing 276
 	trade Electronics 642
@@ -4723,9 +4726,9 @@ system Atria
 	government Republic
 	habitable 214.375
 	belt 1340
+	link Dschubba
 	link Han
 	link Lesath
-	link Dschubba
 	asteroids "small rock" 18 2.376
 	asteroids "medium rock" 16 2.781
 	asteroids "large rock" 37 3.888
@@ -4789,8 +4792,8 @@ system Avior
 	habitable 1215
 	belt 1097
 	link Aspidiske
-	link Naos
 	link Markeb
+	link Naos
 	asteroids "medium rock" 10 7.0875
 	asteroids "large rock" 1 5.7834
 	asteroids "medium metal" 1 5.8968
@@ -4916,10 +4919,10 @@ system Beginning
 	habitable 425.92
 	belt 1833
 	link Belonging
+	link "Dark Hills"
 	link "Fallen Leaf"
 	link "Good Omen"
 	link Remembrance
-	link "Dark Hills"
 	asteroids "small rock" 9 6.9888
 	asteroids "medium rock" 12 5.2962
 	asteroids "large rock" 47 4.8048
@@ -5036,9 +5039,9 @@ system Belonging
 	government Coalition
 	habitable 625
 	belt 1407
+	link Beginning
 	link "Bright Void"
 	link "Sol Saryd"
-	link Beginning
 	asteroids "medium metal" 2 3.4848
 	asteroids "large metal" 1 4.1472
 	trade Clothing 286
@@ -5238,9 +5241,9 @@ system "Beta Lupi"
 	government Republic
 	habitable 625
 	belt 1261
-	link Pherkad
 	link "Kappa Centauri"
 	link Men
+	link Pherkad
 	asteroids "small rock" 12 4.1272
 	asteroids "medium rock" 124 2.2484
 	asteroids "large rock" 14 2.5564
@@ -5295,8 +5298,8 @@ system Betelgeuse
 	government Republic
 	habitable 1080
 	belt 1641
-	link Mirzam
 	link Alheka
+	link Mirzam
 	link Rigel
 	asteroids "medium rock" 21 1.86
 	asteroids "large rock" 7 1.65
@@ -5427,9 +5430,9 @@ system Blubipad
 	government Coalition
 	habitable 1080
 	belt 1567
-	link "Sol Arach"
-	link Miblulub
 	link Ablub
+	link Miblulub
+	link "Sol Arach"
 	asteroids "small rock" 5 4
 	asteroids "medium rock" 17 5.55
 	asteroids "large rock" 5 5
@@ -5482,9 +5485,9 @@ system Blugtad
 	government Coalition
 	habitable 625
 	belt 1841
-	link Gupta
-	link Eblumab
 	link Bloptab
+	link Eblumab
+	link Gupta
 	link "Sol Arach"
 	asteroids "small rock" 11 9.477
 	asteroids "medium rock" 52 4.698
@@ -5617,8 +5620,8 @@ system "Bore Fah"
 	government Hai
 	habitable 625
 	belt 1823
-	link "Wah Ki"
 	link "Bote Asu"
+	link "Wah Ki"
 	asteroids "small rock" 29 3.0912
 	asteroids "medium rock" 108 5.8443
 	asteroids "large rock" 27 4.2021
@@ -5676,10 +5679,10 @@ system "Bote Asu"
 	government Hai
 	habitable 2859.44
 	belt 1613
-	link "Wah Ki"
-	link "Ula Mon"
-	link "Ya Hai"
 	link "Bore Fah"
+	link "Ula Mon"
+	link "Wah Ki"
+	link "Ya Hai"
 	asteroids "small rock" 10 5.4758
 	asteroids "medium rock" 58 4.1382
 	asteroids "large rock" 4 3.6366
@@ -5766,11 +5769,11 @@ system "Bright Void"
 	government Coalition
 	habitable 2795
 	belt 1385
-	link "Steep Roof"
-	link "Silver Bell"
-	link Hunter
-	link Belonging
 	link Answer
+	link Belonging
+	link Hunter
+	link "Silver Bell"
+	link "Steep Roof"
 	asteroids "small rock" 7 2.5992
 	asteroids "medium rock" 8 3.9672
 	asteroids "large rock" 6 5.7
@@ -5970,10 +5973,10 @@ system Canopus
 	government Republic
 	habitable 214.375
 	belt 1530
-	link Phurad
-	link Mirzam
 	link Alheka
+	link Mirzam
 	link Phact
+	link Phurad
 	asteroids "large metal" 1 6.8264
 	trade Clothing 237
 	trade Electronics 738
@@ -6014,9 +6017,9 @@ system Capella
 	government Republic
 	habitable 455.625
 	belt 1722
-	link Procyon
 	link Aldebaran
 	link Menkalinan
+	link Procyon
 	asteroids "small rock" 175 2.1204
 	asteroids "medium rock" 62 1.482
 	asteroids "large rock" 8 2.3712
@@ -6083,9 +6086,9 @@ system Caph
 	government Syndicate
 	habitable 670
 	belt 1173
-	link Sol
 	link Diphda
 	link Eteron
+	link Sol
 	asteroids "small rock" 19 4.14
 	asteroids "medium rock" 15 2.925
 	asteroids "large rock" 104 3.6
@@ -6147,8 +6150,8 @@ system Cardax
 	habitable 1705
 	belt 1228
 	link Moktar
-	link Volax
 	link Sumar
+	link Volax
 	asteroids "small rock" 26 5.4366
 	asteroids "medium rock" 14 3.978
 	asteroids "large rock" 32 3.1382
@@ -6209,8 +6212,8 @@ system Cardea
 	habitable 851.84
 	belt 1725
 	haze _menu/haze-red
-	link Nenia
 	link Antevorta
+	link Nenia
 	asteroids "small rock" 2 1.071
 	asteroids "medium rock" 34 1.2138
 	asteroids "large rock" 26 0.7497
@@ -6272,9 +6275,9 @@ system Castor
 	government Republic
 	habitable 1715
 	belt 1675
+	link Menkalinan
 	link Pollux
 	link Talita
-	link Menkalinan
 	asteroids "small rock" 3 3.5154
 	asteroids "medium rock" 9 4.8762
 	asteroids "large rock" 10 7.7679
@@ -6354,11 +6357,11 @@ system Cebalrai
 	government Republic
 	habitable 625
 	belt 1955
-	link Rutilicus
-	link "Kaus Borealis"
-	link Rasalhague
-	link Menkent
 	link Hintar
+	link "Kaus Borealis"
+	link Menkent
+	link Rasalhague
+	link Rutilicus
 	asteroids "small rock" 3 4.5
 	asteroids "medium rock" 9 1.77
 	asteroids "large rock" 18 3.63
@@ -6527,9 +6530,9 @@ system Chimitarp
 	government "Kor Mereti"
 	habitable 912.6
 	belt 1932
+	link Farbutero
 	link Mekislepti
 	link Sepetrosk
-	link Farbutero
 	link Similisti
 	asteroids "small rock" 3 2.717
 	asteroids "medium rock" 103 4.0546
@@ -6598,8 +6601,8 @@ system Chirr'ay'akai
 	government Wanderer
 	habitable 486.68
 	belt 1425
-	link Prakacha'a
 	link Ap'arak
+	link Prakacha'a
 	asteroids "large rock" 1 3.762
 	asteroids "small metal" 2 2.964
 	asteroids "medium metal" 3 5.548
@@ -6705,8 +6708,8 @@ system Chy'chra
 	government Wanderer
 	habitable 625
 	belt 1120
-	link Prakacha'a
 	link Ik'kara'ka
+	link Prakacha'a
 	asteroids "small rock" 5 3.8019
 	asteroids "medium rock" 6 5.0141
 	asteroids "large rock" 2 3.0305
@@ -6770,9 +6773,9 @@ system Cinxia
 	belt 1713
 	haze _menu/haze-red
 	link Arculus
-	link Perfica
 	link Farinus
 	link Pantica
+	link Perfica
 	trade Clothing 297
 	trade Electronics 724
 	trade Equipment 691
@@ -6822,9 +6825,9 @@ system Coluber
 	habitable 659.2
 	belt 1590
 	haze _menu/haze-red
-	link Parca
 	link Levana
 	link Lucina
+	link Parca
 	asteroids "small rock" 4 2.1021
 	asteroids "medium rock" 21 1.8291
 	asteroids "large rock" 22 4.0131
@@ -6881,8 +6884,8 @@ system Companion
 	government Coalition
 	habitable 425.92
 	belt 1786
-	link "Sol Saryd"
 	link "Far Horizon"
+	link "Sol Saryd"
 	asteroids "small rock" 18 8.265
 	asteroids "medium rock" 3 8.845
 	asteroids "large rock" 6 8.845
@@ -6998,10 +7001,10 @@ system "Cor Caroli"
 	government Republic
 	habitable 1080
 	belt 1474
-	link Vindemiatrix
-	link Gacrux
 	link Algorel
+	link Gacrux
 	link Mizar
+	link Vindemiatrix
 	asteroids "small rock" 24 3.2472
 	asteroids "medium rock" 20 1.4784
 	asteroids "large rock" 5 2.7456
@@ -7170,10 +7173,10 @@ system Dabih
 	government Republic
 	habitable 670
 	belt 1088
-	link Tarazed
 	link Eltanin
 	link "Kaus Australis"
 	link Lurata
+	link Tarazed
 	asteroids "small rock" 1 3.456
 	asteroids "medium rock" 9 2.976
 	asteroids "large rock" 1 2.784
@@ -7228,8 +7231,8 @@ system Danoa
 	government Republic
 	habitable 135
 	belt 1689
-	link Sumar
 	link Hassaleh
+	link Sumar
 	asteroids "small rock" 26 2.425
 	asteroids "medium rock" 274 2.15
 	asteroids "large rock" 40 2.275
@@ -7296,9 +7299,9 @@ system "Dark Hills"
 	habitable 1080
 	belt 1367
 	link Beginning
-	link Remembrance
 	link "Broken Bowl"
 	link Hunter
+	link Remembrance
 	asteroids "small rock" 16 3.4944
 	asteroids "medium rock" 2 4.8384
 	asteroids "large rock" 10 4.9536
@@ -7361,10 +7364,10 @@ system Debrugt
 	government Coalition
 	habitable 640
 	belt 1224
-	link Torbab
+	link Ablodab
 	link Flugbu
 	link Mebla
-	link Ablodab
+	link Torbab
 	asteroids "large metal" 1 3.1104
 	trade Clothing 344
 	trade Electronics 740
@@ -7428,8 +7431,8 @@ system Debrugt
 system Delia
 	pos -41 757
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 486.68
+	haze _menu/haze-red
 	link Dixere
 	link Giribea
 	asteroids "large metal" 10 9
@@ -7451,7 +7454,7 @@ system Delia
 	trade Medical 698
 	trade Metal 397
 	trade Plastic 490
-	fleet "Ka'het" 3400
+	fleet Ka'het 3400
 	fleet "Ka'het Aggressive" 10300
 	object
 		sprite star/k0
@@ -7569,9 +7572,9 @@ system "Delta Sagittarii"
 	government Republic
 	habitable 320
 	belt 1414
-	link Rastaban
 	link "Alpha Arae"
 	link Eltanin
+	link Rastaban
 	link Tais
 	asteroids "small rock" 35 4.914
 	asteroids "medium rock" 14 4.4577
@@ -7634,9 +7637,9 @@ system "Delta Velorum"
 	government Republic
 	habitable 1080
 	belt 1221
-	link Turais
 	link Fala
 	link Mora
+	link Turais
 	asteroids "small rock" 6 2.775
 	asteroids "medium rock" 39 2.8875
 	asteroids "large rock" 6 3.45
@@ -7745,9 +7748,9 @@ system Denebola
 	government Republic
 	habitable 534.375
 	belt 1050
-	link Sol
-	link Merak
 	link Fingol
+	link Merak
+	link Sol
 	asteroids "small rock" 23 8.91
 	asteroids "medium rock" 13 5.1084
 	asteroids "large rock" 15 4.6926
@@ -7809,9 +7812,9 @@ system Diphda
 	government Syndicate
 	habitable 590.625
 	belt 1559
+	link Acamar
 	link Ankaa
 	link Caph
-	link Acamar
 	asteroids "small rock" 22 4.536
 	asteroids "medium rock" 23 7.7112
 	asteroids "large rock" 29 6.0264
@@ -7863,8 +7866,8 @@ system Diphda
 system Dixere
 	pos 33 708
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 851.84
+	haze _menu/haze-red
 	link Delia
 	link Feraticus
 	link Giribea
@@ -7886,7 +7889,7 @@ system Dixere
 	trade Medical 815
 	trade Metal 349
 	trade Plastic 479
-	fleet "Ka'het" 2760
+	fleet Ka'het 2760
 	fleet "Ka'het Aggressive" 10400
 	object
 		sprite star/k0-old
@@ -7939,11 +7942,11 @@ system Dokdobaru
 	government Quarg
 	habitable 700
 	belt 1935
+	link Chornifath
+	link Furmeliki
 	link Hesselpost
 	link Kashikt
-	link Furmeliki
 	link Meftarkata
-	link Chornifath
 	asteroids "small rock" 4 5.6295
 	asteroids "medium rock" 1 5.751
 	asteroids "large rock" 2 2.349
@@ -8042,10 +8045,10 @@ system Dschubba
 	government Republic
 	habitable 398.125
 	belt 1429
+	link Aldhibain
+	link Alniyat
 	link Atria
 	link Lesath
-	link Alniyat
-	link Aldhibain
 	asteroids "small rock" 20 1.85
 	asteroids "medium rock" 66 2.85
 	asteroids "large rock" 11 2.375
@@ -8171,11 +8174,11 @@ system "Due Yoot"
 	government Hai
 	habitable 233.28
 	belt 1854
-	link "Wah Oh"
-	link "Io Mann"
 	link "Heia Due"
-	link "Rati Cal"
+	link "Io Mann"
 	link "Lom Tahr"
+	link "Rati Cal"
+	link "Wah Oh"
 	asteroids "small rock" 2 4.5045
 	asteroids "medium rock" 11 3.15
 	asteroids "large rock" 4 4.0635
@@ -8542,10 +8545,10 @@ system Ek'kek'ru
 	government Wanderer
 	habitable 320
 	belt 1517
-	link Ka'ch'chrai
-	link Si'yak'ku
-	link Pik'ro'iyak
 	link Iyech'yek
+	link Ka'ch'chrai
+	link Pik'ro'iyak
+	link Si'yak'ku
 	asteroids "small rock" 54 1.683
 	asteroids "medium rock" 12 1.1385
 	asteroids "large rock" 50 1.5015
@@ -8600,9 +8603,9 @@ system Ekuarik
 	government Heliarch
 	habitable 700
 	belt 1711
+	link Belug
 	link "Ki War Ek"
 	link Quaru
-	link Belug
 	link Speloog
 	asteroids "small rock" 2 4.5954
 	asteroids "medium rock" 3 9.1908
@@ -8784,8 +8787,8 @@ system Elnath
 	belt 1462
 	link Acamar
 	link Aldebaran
-	link Nihal
 	link Kursa
+	link Nihal
 	asteroids "medium rock" 8 4.998
 	asteroids "large rock" 1 4.6452
 	asteroids "small metal" 9 7.2912
@@ -8846,9 +8849,9 @@ system Eltanin
 	government Republic
 	habitable 455.625
 	belt 1859
+	link Albaldah
 	link Dabih
 	link "Delta Sagittarii"
-	link Albaldah
 	asteroids "small rock" 34 1.904
 	asteroids "medium rock" 12 4.896
 	asteroids "large rock" 6 3.298
@@ -8904,9 +8907,9 @@ system Eneremprukt
 	government "Kor Sestor"
 	habitable 486.68
 	belt 1421
-	link Silikatakfar
-	link Mesuket
 	link Ferukistek
+	link Mesuket
+	link Silikatakfar
 	asteroids "medium rock" 11 3.456
 	asteroids "large rock" 10 7.29
 	asteroids "large metal" 4 7.506
@@ -9047,9 +9050,9 @@ system "Epsilon Leonis"
 	government Republic
 	habitable 1400
 	belt 1527
-	link Gomeisa
-	link Aspidiske
 	link Adhara
+	link Aspidiske
+	link Gomeisa
 	asteroids "small rock" 34 3.888
 	asteroids "medium rock" 66 1.836
 	asteroids "large rock" 24 2.376
@@ -9180,8 +9183,8 @@ system Eshkoshtar
 	habitable 806.68
 	belt 1105
 	link Mekislepti
-	link Similisti
 	link Mesuket
+	link Similisti
 	asteroids "small rock" 4 4.44
 	asteroids "medium rock" 31 2.49
 	asteroids "large rock" 2 4.02
@@ -9250,8 +9253,8 @@ system Eshkoshtar
 system Esix
 	pos 142 532
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 8640
+	haze _menu/haze-red
 	link Gerenus
 	link Nona
 	link Paeli
@@ -9270,7 +9273,7 @@ system Esix
 	trade Medical 520
 	trade Metal 357
 	trade Plastic 358
-	fleet "Ka'het" 3600
+	fleet Ka'het 3600
 	fleet "Ka'het Aggressive" 10500
 	object
 		sprite star/b5
@@ -9311,8 +9314,8 @@ system Eteron
 	government Republic
 	habitable 135
 	belt 1479
-	link Sirius
 	link Caph
+	link Sirius
 	asteroids "small rock" 30 2.688
 	asteroids "medium rock" 4 6
 	asteroids "large rock" 48 3.216
@@ -9501,8 +9504,8 @@ system Fala
 	government Republic
 	habitable 625
 	belt 1264
-	link "Tania Australis"
 	link "Delta Velorum"
+	link "Tania Australis"
 	asteroids "small rock" 2 3.0464
 	asteroids "medium rock" 91 2.8672
 	asteroids "large rock" 2 2.0832
@@ -9613,8 +9616,8 @@ system "Far Horizon"
 	government Coalition
 	habitable 320
 	belt 1242
-	link Companion
 	link "Ancient Hope"
+	link Companion
 	link "Four Pillars"
 	asteroids "large metal" 1 2.1945
 	trade Clothing 265
@@ -9667,10 +9670,10 @@ system Farbutero
 	government Uninhabited
 	habitable 625
 	belt 1175
-	link Meftarkata
+	link Chimitarp
 	link Feroteri
 	link Korsmanath
-	link Chimitarp
+	link Meftarkata
 	asteroids "small rock" 2 4.7357
 	asteroids "medium rock" 9 9.1379
 	asteroids "large rock" 16 8.8044
@@ -9810,8 +9813,8 @@ system Faronektu
 	government "Kor Mereti"
 	habitable 1080
 	belt 1630
-	link Similisti
 	link Salipastart
+	link Similisti
 	asteroids "small rock" 32 2.244
 	asteroids "medium rock" 53 2.754
 	asteroids "large rock" 15 1.9125
@@ -9918,14 +9921,14 @@ system Fasitopfar
 system Fearis
 	pos -16 643
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 486.68
+	haze _menu/haze-red
 	link Feraticus
 	link Lire
-	asteroids "large metal" 1.9865 1.34234
-	asteroids "large rock" 2.25464 2.242
-	asteroids "medium rock" 7.241 2.3423
-	asteroids "small rock" 1.2312 0.2312
+	asteroids "large metal" 1 1.34234
+	asteroids "large rock" 2 2.242
+	asteroids "medium rock" 7 2.3423
+	asteroids "small rock" 1 0.2312
 	trade Clothing 271
 	trade Electronics 824
 	trade Equipment 531
@@ -9936,7 +9939,7 @@ system Fearis
 	trade Medical 874
 	trade Metal 224
 	trade Plastic 339
-	fleet "Ka'het" 2900
+	fleet Ka'het 2900
 	fleet "Ka'het Aggressive" 9100
 	object
 		sprite star/k0-old
@@ -10053,8 +10056,8 @@ system "Fell Omen"
 system Feraticus
 	pos 58 630
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 320
+	haze _menu/haze-red
 	link Dixere
 	link Fearis
 	link Giribea
@@ -10077,7 +10080,7 @@ system Feraticus
 	trade Medical 875
 	trade Metal 241
 	trade Plastic 405
-	fleet "Ka'het" 3150
+	fleet Ka'het 3150
 	fleet "Ka'het Aggressive" 8500
 	object
 		sprite planet/browndwarf-l-rouge
@@ -10114,8 +10117,8 @@ system Feraticus
 system Fereti
 	pos -39 600
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 486.68
+	haze _menu/haze-red
 	link Lire
 	asteroids "large metal" 5 2
 	asteroids "large rock" 4 3
@@ -10159,7 +10162,7 @@ system Fereti
 		sprite planet/gas2
 		distance 2166.29
 		period 2087.09
-		object "Alix"
+		object Alix
 			sprite planet/luna-b
 			distance 203
 			period 17.525
@@ -10360,8 +10363,8 @@ system Flugbu
 	government Coalition
 	habitable 425.92
 	belt 1843
-	link Torbab
 	link Debrugt
+	link Torbab
 	asteroids "small rock" 92 4.0848
 	asteroids "medium rock" 4 2.9808
 	asteroids "large rock" 7 4.416
@@ -10485,10 +10488,10 @@ system Fornarep
 	government Uninhabited
 	habitable 320
 	belt 1922
-	link Skeruto
-	link Meftarkata
 	link Kaliptari
+	link Meftarkata
 	link Mekislepti
+	link Skeruto
 	asteroids "small rock" 15 2.9904
 	asteroids "medium rock" 4 1.8144
 	asteroids "large rock" 5 3.528
@@ -10611,8 +10614,8 @@ system Furmeliki
 	government Uninhabited
 	habitable 486.68
 	belt 1577
-	link Dokdobaru
 	link Chikatip
+	link Dokdobaru
 	link Kashikt
 	link Skeruto
 	asteroids "large metal" 1 3.5511
@@ -10858,8 +10861,8 @@ system "Gamma Corvi"
 system Gerenus
 	pos 197 514
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 9065.92
+	haze _menu/haze-red
 	link Esix
 	link Nona
 	asteroids "large metal" 5 5
@@ -10881,7 +10884,7 @@ system Gerenus
 	trade Medical 561
 	trade Metal 356
 	trade Plastic 349
-	fleet "Ka'het" 3400
+	fleet Ka'het 3400
 	fleet "Ka'het Aggressive" 11000
 	object
 		sprite star/giant
@@ -10890,7 +10893,7 @@ system Gerenus
 		sprite planet/rock5-b
 		distance 329.94
 		period 25.1772
-	object "Palarei"
+	object Palarei
 		sprite planet/rock10-b
 		distance 757.43
 		period 87.5725
@@ -10916,8 +10919,8 @@ system Gienah
 	government Pirate
 	habitable 534.375
 	belt 1939
-	link Persian
 	link Algenib
+	link Persian
 	asteroids "small rock" 1 2.574
 	asteroids "medium rock" 4 2.448
 	asteroids "large rock" 16 2.16
@@ -10977,12 +10980,12 @@ system Gienah
 system Giribea
 	pos -6 674
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 1705
+	haze _menu/haze-red
 	link Delia
+	link Dixere
 	link Feraticus
 	link Lire
-	link Dixere
 	asteroids "large metal" 29 4
 	asteroids "large rock" 2 1
 	asteroids "medium metal" 50 3
@@ -11018,11 +11021,11 @@ system Giribea
 		sprite planet/lava0
 		distance 217.769
 		period 31.131
-	object "Osaeli"
+	object Osaeli
 		sprite planet/forest0-b
 		distance 562.609
 		period 129.273
-	object "Seli'het"
+	object Seli'het
 		sprite planet/station1b
 		distance 950.019
 		period 283.659
@@ -11049,9 +11052,9 @@ system Girtab
 	government Republic
 	habitable 1080
 	belt 1387
+	link Albaldah
 	link Lesath
 	link Rastaban
-	link Albaldah
 	asteroids "large rock" 1 7.695
 	asteroids "small metal" 9 3.648
 	asteroids "medium metal" 1 5.7
@@ -11113,8 +11116,8 @@ system Glubatub
 	government Coalition
 	habitable 233.28
 	belt 1093
-	link "Sol Arach"
 	link Miblulub
+	link "Sol Arach"
 	link Tebuteb
 	asteroids "small rock" 17 7.6038
 	asteroids "medium rock" 27 5.3998
@@ -11190,9 +11193,9 @@ system Gomeisa
 	government Republic
 	habitable 911.25
 	belt 1616
-	link Zosma
-	link "Epsilon Leonis"
 	link Adhara
+	link "Epsilon Leonis"
+	link Zosma
 	asteroids "small rock" 44 4.956
 	asteroids "medium rock" 13 3.78
 	asteroids "large rock" 1 3.024
@@ -11318,8 +11321,8 @@ system Gorvi
 	government Republic
 	habitable 670
 	belt 1345
-	link Tortor
 	link Mintaka
+	link Tortor
 	asteroids "small rock" 60 1.1781
 	asteroids "medium rock" 3 2.1692
 	asteroids "large rock" 17 2.7302
@@ -11440,9 +11443,9 @@ system Gupta
 	link Ablodab
 	link Belugt
 	link Blugtad
-	link "Sol Arach"
 	link Membulem
 	link Pelubta
+	link "Sol Arach"
 	asteroids "small rock" 40 8.448
 	asteroids "medium rock" 7 6.006
 	asteroids "large rock" 3 7.062
@@ -11497,10 +11500,10 @@ system Hadar
 	government Republic
 	habitable 455.625
 	belt 1520
-	link "Zeta Centauri"
-	link Izar
-	link Zubeneschamali
 	link Alkaid
+	link Izar
+	link "Zeta Centauri"
+	link Zubeneschamali
 	asteroids "small rock" 37 3.5226
 	asteroids "medium rock" 22 3.9672
 	asteroids "large rock" 7 4.9248
@@ -11667,10 +11670,10 @@ system Hassaleh
 	government Republic
 	habitable 670
 	belt 1924
-	link Rigel
-	link Sumar
 	link Danoa
 	link Rajak
+	link Rigel
+	link Sumar
 	asteroids "small rock" 6 1.9305
 	asteroids "medium rock" 75 4.4928
 	asteroids "large rock" 14 2.8782
@@ -11726,9 +11729,9 @@ system Hatysa
 	government Pirate
 	habitable 533.75
 	belt 1163
-	link Arneb
-	link Alnilam
 	link Almaaz
+	link Alnilam
+	link Arneb
 	asteroids "small rock" 19 0.858
 	asteroids "large rock" 3 1.0296
 	asteroids "small metal" 13 1.0153
@@ -11785,9 +11788,9 @@ system "Heia Due"
 	government Hai
 	habitable 1215
 	belt 1079
-	link Waypoint
 	link "Due Yoot"
 	link "Io Lowe"
+	link Waypoint
 	asteroids "small rock" 28 8.9775
 	asteroids "medium rock" 10 7.3575
 	asteroids "large rock" 12 9.99
@@ -12154,8 +12157,8 @@ system Holeb
 	habitable 1715
 	belt 1181
 	link Alioth
-	link Rutilicus
 	link Arcturus
+	link Rutilicus
 	asteroids "large metal" 1 3.5904
 	trade Clothing 271
 	trade Electronics 842
@@ -12200,8 +12203,8 @@ system Homeward
 	government Coalition
 	habitable 425.92
 	belt 1499
-	link "Silver Bell"
 	link Quaru
+	link "Silver Bell"
 	asteroids "small rock" 20 6.1248
 	asteroids "medium rock" 46 6.3162
 	asteroids "large rock" 33 6.2524
@@ -12314,8 +12317,8 @@ system Hunter
 	habitable 425.92
 	belt 1498
 	link "Bright Void"
-	link "Dark Hills"
 	link "Broken Bowl"
+	link "Dark Hills"
 	asteroids "small rock" 10 2.7189
 	asteroids "medium rock" 2 3.7449
 	asteroids "large rock" 7 4.8222
@@ -12434,8 +12437,8 @@ system Ildaria
 	government Republic
 	habitable 625
 	belt 1132
-	link Zubeneschamali
 	link Kochab
+	link Zubeneschamali
 	asteroids "medium rock" 1 3.159
 	asteroids "large rock" 1 3.51
 	asteroids "small metal" 9 3.3696
@@ -12609,9 +12612,9 @@ system "Io Lowe"
 	habitable 135
 	belt 1552
 	link "Heia Due"
+	link "Lom Tahr"
 	link "Mei Yohn"
 	link "Ula Mon"
-	link "Lom Tahr"
 	asteroids "small rock" 16 8.0325
 	asteroids "medium rock" 9 7.425
 	asteroids "large rock" 29 8.235
@@ -12668,8 +12671,8 @@ system "Io Mann"
 	government Hai
 	habitable 973.36
 	belt 1132
-	link "Wah Oh"
 	link "Due Yoot"
+	link "Wah Oh"
 	asteroids "small rock" 25 5.5944
 	asteroids "medium rock" 19 4.6116
 	asteroids "large rock" 2 4.4982
@@ -12916,6 +12919,44 @@ system Izar
 			distance 201
 			period 12.6652
 
+system "Jesmat"
+	pos -2000.0 -2000.0
+	government Sleeper
+	habitable 233.28
+	belt 1947
+	link Telmir
+	link Refuge
+	asteroids "large metal" 3 0.1
+	asteroids "medium metal" 5 0.2
+	asteroids "small metal" 7 0.3
+	minables aluminum 7 0.1
+	minables copper 7 0.1
+	minables titanium 7 0.1
+	trade Clothing 319
+	trade Electronics 784
+	trade Equipment 592
+	trade Food 469
+	trade "Heavy Metals" 941
+	trade Industrial 632
+	trade "Luxury Goods" 1150
+	trade Medical 633
+	trade Metal 309
+	trade Plastic 341
+	fleet "Sleeper Guard" 2050
+	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/rock11
+		distance 296.133
+		period 133.46
+		offset 192.497
+		object "Jesmat Station"
+			sprite planet/station4
+			distance 183.133
+			period 49.6091
+			offset 290.701
+
 system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
@@ -13046,12 +13087,12 @@ system Kaliptari
 	government Uninhabited
 	habitable 320
 	belt 1089
-	link Skeruto
 	link Fornarep
 	link Mekislepti
-	link Solifar
-	link Sepriaptu
 	link Sabriset
+	link Sepriaptu
+	link Skeruto
+	link Solifar
 	asteroids "small rock" 8 4.2282
 	asteroids "medium rock" 11 6.9498
 	asteroids "large rock" 25 5.4918
@@ -13120,8 +13161,8 @@ system "Kappa Centauri"
 	government Republic
 	habitable 1215
 	belt 1508
-	link Pherkad
 	link "Beta Lupi"
+	link Pherkad
 	asteroids "large metal" 1 3.9349
 	trade Clothing 356
 	trade Electronics 855
@@ -13182,8 +13223,8 @@ system Kashikt
 	belt 1013
 	link Dokdobaru
 	link Furmeliki
-	link Sumprast
 	link Sevrelect
+	link Sumprast
 	asteroids "small rock" 15 4.1055
 	asteroids "medium rock" 39 6.5688
 	asteroids "large rock" 12 2.9463
@@ -13287,8 +13328,8 @@ system "Kaus Australis"
 	habitable 320
 	belt 1281
 	link Dabih
-	link Tais
 	link Peacock
+	link Tais
 	asteroids "small rock" 2 4.7628
 	asteroids "medium rock" 39 4.9518
 	asteroids "large rock" 1 3.8556
@@ -13336,9 +13377,9 @@ system "Kaus Borealis"
 	government Republic
 	habitable 590.625
 	belt 1074
-	link Cebalrai
-	link "Alpha Arae"
 	link Alnasl
+	link "Alpha Arae"
+	link Cebalrai
 	asteroids "small rock" 1 4.2504
 	asteroids "medium rock" 10 4.1888
 	asteroids "large rock" 4 3.388
@@ -13397,10 +13438,10 @@ system "Ki War Ek"
 	government Heliarch
 	habitable 700
 	belt 1777
-	link Quaru
-	link Ekuarik
 	link "14 Winter Below"
 	link "5 Axis"
+	link Ekuarik
+	link Quaru
 	asteroids "small rock" 12 2.349
 	asteroids "medium rock" 11 2.523
 	asteroids "large rock" 22 4.1325
@@ -13614,8 +13655,8 @@ system Kiro'ku
 	government Wanderer
 	habitable 1111.68
 	belt 1308
-	link Sich'ka'ara
 	link Ka'pru
+	link Sich'ka'ara
 	asteroids "small rock" 32 4.9572
 	asteroids "medium rock" 25 5.4675
 	asteroids "large rock" 14 6.1965
@@ -13747,8 +13788,8 @@ system Kochab
 	government Republic
 	habitable 320
 	belt 1912
-	link Zubeneschamali
 	link Ildaria
+	link Zubeneschamali
 	asteroids "large metal" 1 6.9552
 	trade Clothing 382
 	trade Electronics 668
@@ -13838,8 +13879,8 @@ system "Kor En'lakfar"
 	government Korath
 	habitable 1080
 	belt 1115
-	link "Kor Men"
 	link "Kor Fel'tar"
+	link "Kor Men"
 	asteroids "small rock" 7 0.84
 	asteroids "medium rock" 20 1.17
 	asteroids "large rock" 31 1.27
@@ -14192,8 +14233,8 @@ system Kornephoros
 	government Republic
 	habitable 911.25
 	belt 1168
-	link Sabik
 	link Aldhibain
+	link Sabik
 	link Sargas
 	link Wei
 	asteroids "small rock" 127 10.44
@@ -14272,8 +14313,8 @@ system Korsmanath
 	government Uninhabited
 	habitable 486.68
 	belt 1775
-	link Feroteri
 	link Farbutero
+	link Feroteri
 	asteroids "small rock" 2 2.4123
 	asteroids "medium rock" 1 2.5993
 	asteroids "large rock" 4 1.3277
@@ -14464,8 +14505,8 @@ system Kursa
 	government Republic
 	habitable 455
 	belt 1624
-	link Elnath
 	link Aldebaran
+	link Elnath
 	link Wazn
 	asteroids "large metal" 1 3.87
 	trade Clothing 253
@@ -14516,9 +14557,9 @@ system "Last Word"
 	government Coalition
 	habitable 625
 	belt 1761
-	link "Silver Bell"
 	link "Fell Omen"
 	link Quaru
+	link "Silver Bell"
 	asteroids "small rock" 167 4.6574
 	asteroids "medium rock" 31 3.828
 	asteroids "large rock" 32 3.5409
@@ -14580,11 +14621,11 @@ system Lesath
 	habitable 1715
 	belt 1865
 	link Atria
-	link Shaula
-	link Girtab
 	link Dschubba
-	link Sargas
+	link Girtab
 	link Rastaban
+	link Sargas
+	link Shaula
 	asteroids "medium rock" 9 4.8384
 	asteroids "large rock" 21 7.2
 	asteroids "medium metal" 8 4.3776
@@ -14710,9 +14751,9 @@ system Limen
 	government Republic
 	habitable 1715
 	belt 1463
+	link Mora
 	link Orbona
 	link Terminus
-	link Mora
 	asteroids "large metal" 1 2.7552
 	trade Clothing 271
 	trade Electronics 793
@@ -14759,8 +14800,8 @@ system Limen
 system Lire
 	pos -59 676
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 1080
+	haze _menu/haze-red
 	link Fearis
 	link Fereti
 	link Giribea
@@ -14778,7 +14819,7 @@ system Lire
 	trade Medical 816
 	trade Metal 307
 	trade Plastic 411
-	fleet "Ka'het" 2850
+	fleet Ka'het 2850
 	fleet "Ka'het Aggressive" 9300
 	object
 		sprite star/g0-old
@@ -14884,11 +14925,11 @@ system "Lom Tahr"
 	government Hai
 	habitable 2372.76
 	belt 1445
-	link "Ya Hai"
-	link "Io Lowe"
-	link "Due Yoot"
-	link "Rati Cal"
 	link "Da Lest"
+	link "Due Yoot"
+	link "Io Lowe"
+	link "Rati Cal"
+	link "Ya Hai"
 	asteroids "small rock" 7 2.961
 	asteroids "medium rock" 9 2.163
 	asteroids "large rock" 2 1.638
@@ -15010,8 +15051,8 @@ system Lucina
 	habitable 320
 	belt 1466
 	haze _menu/haze-red
-	link Parca
 	link Coluber
+	link Parca
 	asteroids "small rock" 1 4.59
 	asteroids "medium rock" 9 4.7175
 	asteroids "large rock" 1 3.06
@@ -15064,8 +15105,8 @@ system Lurata
 	government Republic
 	habitable 455.625
 	belt 1151
-	link Dabih
 	link Albireo
+	link Dabih
 	asteroids "medium rock" 2 4.225
 	asteroids "large rock" 1 8.125
 	asteroids "small metal" 4 6.76
@@ -15200,10 +15241,10 @@ system Markab
 	government Syndicate
 	habitable 625
 	belt 1411
-	link "Delta Capricorni"
-	link Scheat
 	link Ankaa
+	link "Delta Capricorni"
 	link Fomalhaut
+	link Scheat
 	asteroids "small rock" 11 4.4863
 	asteroids "medium rock" 54 5.2403
 	asteroids "large rock" 8 2.0358
@@ -15399,9 +15440,9 @@ system Mebla
 	government Coalition
 	habitable 486.68
 	belt 1114
+	link Ablodab
 	link Debrugt
 	link Pelubta
-	link Ablodab
 	asteroids "medium metal" 16 2.175
 	asteroids "large metal" 1 4.725
 	minables gold 3 3.12889
@@ -15530,10 +15571,10 @@ system Meftarkata
 	government Uninhabited
 	habitable 2201.68
 	belt 1232
-	link Skeruto
 	link Dokdobaru
-	link Fornarep
 	link Farbutero
+	link Fornarep
+	link Skeruto
 	asteroids "small rock" 6 1.8096
 	asteroids "medium rock" 4 1.716
 	asteroids "large rock" 14 0.8892
@@ -15590,9 +15631,9 @@ system "Mei Yohn"
 	government Hai
 	habitable 425.92
 	belt 1075
-	link "Zuba Zub"
-	link "Ula Mon"
 	link "Io Lowe"
+	link "Ula Mon"
+	link "Zuba Zub"
 	asteroids "medium rock" 1 5.1282
 	asteroids "large rock" 1 3.7884
 	asteroids "small metal" 2 4.851
@@ -15654,10 +15695,10 @@ system Mekislepti
 	government "Kor Mereti"
 	habitable 1705
 	belt 1673
-	link Fornarep
-	link Kaliptari
 	link Chimitarp
 	link Eshkoshtar
+	link Fornarep
+	link Kaliptari
 	link Similisti
 	asteroids "small rock" 63 1.3552
 	asteroids "medium rock" 126 1.2826
@@ -15716,9 +15757,9 @@ system Membulem
 	government Coalition
 	habitable 2201.68
 	belt 1794
-	link "Sol Arach"
-	link Pelubta
 	link Gupta
+	link Pelubta
+	link "Sol Arach"
 	asteroids "large metal" 1 2.376
 	trade Clothing 322
 	trade Electronics 758
@@ -15844,9 +15885,9 @@ system Menkalinan
 	government Republic
 	habitable 3430
 	belt 1424
+	link Alhena
 	link Capella
 	link Castor
-	link Alhena
 	asteroids "small rock" 17 2.7216
 	asteroids "medium rock" 19 4.9086
 	asteroids "large rock" 1 2.8674
@@ -15909,9 +15950,9 @@ system Menkar
 	government Syndicate
 	habitable 455.625
 	belt 1634
-	link Zaurak
-	link Mirfak
 	link Bellatrix
+	link Mirfak
+	link Zaurak
 	asteroids "small rock" 109 4.3
 	asteroids "medium rock" 33 7.45
 	asteroids "large rock" 44 6.45
@@ -15970,10 +16011,10 @@ system Menkent
 	government Republic
 	habitable 2340
 	belt 1728
-	link Vega
-	link Rutilicus
 	link Cebalrai
 	link Muphrid
+	link Rutilicus
+	link Vega
 	asteroids "small rock" 33 2.9328
 	asteroids "medium rock" 44 1.4144
 	asteroids "large rock" 32 1.04
@@ -16040,9 +16081,9 @@ system Merak
 	government Republic
 	habitable 1080.62
 	belt 1769
+	link Denebola
 	link Phecda
 	link Porrima
-	link Denebola
 	link Regulus
 	asteroids "small rock" 1 4.1847
 	asteroids "medium rock" 87 5.6173
@@ -16103,10 +16144,10 @@ system Mesuket
 	government Uninhabited
 	habitable 425.92
 	belt 1189
-	link Eshkoshtar
-	link Silikatakfar
 	link Eneremprukt
+	link Eshkoshtar
 	link Salipastart
+	link Silikatakfar
 	asteroids "large metal" 1 1.6758
 	trade Clothing 252
 	trade Electronics 746
@@ -16169,9 +16210,9 @@ system Miaplacidus
 	government Republic
 	habitable 455.625
 	belt 1236
-	link Tejat
 	link Alphard
 	link Talita
+	link Tejat
 	asteroids "small rock" 25 6.902
 	asteroids "medium rock" 8 3.2844
 	asteroids "large rock" 52 2.38
@@ -16243,11 +16284,11 @@ system Miblulub
 	government Coalition
 	habitable 1080
 	belt 1757
-	link "Sol Arach"
+	link Ablub
 	link Blubipad
 	link Glubatub
+	link "Sol Arach"
 	link Tebuteb
-	link Ablub
 	asteroids "small rock" 74 1.0335
 	asteroids "medium rock" 169 1.716
 	asteroids "large rock" 33 1.9695
@@ -16323,8 +16364,8 @@ system Mimosa
 	government Republic
 	habitable 320
 	belt 1484
-	link Minkar
 	link Kraz
+	link Minkar
 	asteroids "medium rock" 22 3.3698
 	asteroids "large rock" 3 5.4404
 	asteroids "small metal" 2 3.3292
@@ -16373,8 +16414,8 @@ system Minkar
 	habitable 670
 	belt 1354
 	link Acrux
-	link Spica
 	link Mimosa
+	link Spica
 	asteroids "medium rock" 5 8.97
 	asteroids "large rock" 9 6.63
 	asteroids "small metal" 1 4.42
@@ -16438,8 +16479,8 @@ system Mintaka
 	belt 1753
 	link Almaaz
 	link Alnitak
-	link Tortor
 	link Gorvi
+	link Tortor
 	asteroids "small rock" 34 6.935
 	asteroids "medium rock" 1 4.6075
 	asteroids "large rock" 23 5.985
@@ -16499,8 +16540,8 @@ system Mirach
 	habitable 292.5
 	belt 1980
 	link "Al Dhanab"
-	link Scheat
 	link "Gamma Cassiopeiae"
+	link Scheat
 	link Schedar
 	asteroids "small rock" 84 3.4884
 	asteroids "medium rock" 64 3.1518
@@ -16565,8 +16606,8 @@ system Mirfak
 	government Syndicate
 	habitable 320
 	belt 1887
-	link Menkar
 	link Bellatrix
+	link Menkar
 	link Moktar
 	asteroids "small rock" 3 3.3592
 	asteroids "medium rock" 5 4.6436
@@ -16620,8 +16661,8 @@ system Mirzam
 	government Republic
 	habitable 1080
 	belt 1025
-	link Canopus
 	link Betelgeuse
+	link Canopus
 	link Mebsuta
 	asteroids "small rock" 24 3.402
 	asteroids "medium rock" 42 4.4712
@@ -16680,9 +16721,9 @@ system Mizar
 	government Republic
 	habitable 1080
 	belt 1876
+	link Algorel
 	link Arcturus
 	link "Cor Caroli"
-	link Algorel
 	link Ipsing
 	asteroids "large metal" 1 2.6304
 	trade Clothing 187
@@ -16731,9 +16772,9 @@ system Moktar
 	government Syndicate
 	habitable 455
 	belt 1888
-	link Oblate
 	link Cardax
 	link Mirfak
+	link Oblate
 	asteroids "small rock" 2 4.945
 	asteroids "medium rock" 7 8.395
 	asteroids "large rock" 3 4.83
@@ -16799,8 +16840,8 @@ system Mora
 	habitable 320
 	belt 1176
 	link "Delta Velorum"
-	link "Tania Australis"
 	link Limen
+	link "Tania Australis"
 	asteroids "medium rock" 54 1.9305
 	asteroids "large rock" 33 1.9877
 	asteroids "medium metal" 3 1.287
@@ -16857,8 +16898,8 @@ system Muhlifain
 	government Republic
 	habitable 455.625
 	belt 1265
-	link Vindemiatrix
 	link Gacrux
+	link Vindemiatrix
 	asteroids "large metal" 1 2.1186
 	trade Clothing 236
 	trade Electronics 816
@@ -16959,10 +17000,10 @@ system Naos
 	government Republic
 	habitable 625
 	belt 1045
+	link Aludra
+	link Avior
 	link Regor
 	link Wezen
-	link Avior
-	link Aludra
 	asteroids "medium rock" 167 3.8976
 	asteroids "large rock" 1 6.3168
 	asteroids "large metal" 1 6.1824
@@ -17093,8 +17134,8 @@ system Nenia
 	habitable 2340
 	belt 1343
 	haze _menu/haze-red
-	link Ossipago
 	link Cardea
+	link Ossipago
 	asteroids "small rock" 4 1.4352
 	asteroids "medium rock" 10 2.3
 	asteroids "large rock" 3 2.0608
@@ -17169,8 +17210,8 @@ system Nihal
 	habitable 534.375
 	belt 1329
 	link Elnath
-	link Volax
 	link Sospi
+	link Volax
 	asteroids "small rock" 18 3.1668
 	asteroids "medium rock" 3 4.0131
 	asteroids "large rock" 119 3.9858
@@ -17304,8 +17345,8 @@ system Nocte
 system Nona
 	pos 166 558
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 1080
+	haze _menu/haze-red
 	link Esix
 	link Gerenus
 	asteroids "large metal" 1 3
@@ -17322,7 +17363,7 @@ system Nona
 	trade Medical 587
 	trade Metal 340
 	trade Plastic 379
-	fleet "Ka'het" 3700
+	fleet Ka'het 3700
 	fleet "Ka'het Aggressive" 11400
 	object
 		sprite star/g0-old
@@ -17335,7 +17376,7 @@ system Nona
 		sprite planet/desert5-b
 		distance 342.7
 		period 77.2181
-	object "Siteria"
+	object Siteria
 		sprite planet/ocean0-b
 		distance 675.34
 		period 213.615
@@ -17680,8 +17721,8 @@ system Ossipago
 system Paeli
 	pos 129 497
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 425.92
+	haze _menu/haze-red
 	link Esix
 	link Polerius
 	asteroids "large metal" 1 4
@@ -17702,7 +17743,7 @@ system Paeli
 	trade Medical 328
 	trade Metal 466
 	trade Plastic 462
-	fleet "Ka'het" 3500
+	fleet Ka'het 3500
 	fleet "Ka'het Aggressive" 9800
 	object
 		sprite planet/browndwarf-t-rouge
@@ -17872,9 +17913,9 @@ system Peacock
 	government Republic
 	habitable 214.375
 	belt 1870
-	link Tais
-	link "Kaus Australis"
 	link Ascella
+	link "Kaus Australis"
+	link Tais
 	asteroids "small rock" 18 3.06
 	asteroids "medium rock" 79 3.312
 	asteroids "large rock" 29 5.4
@@ -17945,10 +17986,10 @@ system Pelubta
 	government Coalition
 	habitable 9265
 	belt 1709
-	link Membulem
-	link Gupta
 	link Ablodab
+	link Gupta
 	link Mebla
+	link Membulem
 	asteroids "small rock" 23 4.48
 	asteroids "medium rock" 1 6.496
 	asteroids "large rock" 74 2.5088
@@ -18278,8 +18319,8 @@ system Phact
 	government Republic
 	habitable 1080.62
 	belt 1704
-	link Wazn
 	link Canopus
+	link Wazn
 	asteroids "small rock" 1 1.0816
 	asteroids "medium rock" 71 2.3153
 	asteroids "large rock" 2 1.8421
@@ -18349,8 +18390,8 @@ system Phecda
 	habitable 320
 	belt 1375
 	link Algorel
-	link "Tania Australis"
 	link Merak
+	link "Tania Australis"
 	asteroids "small rock" 182 3.2
 	asteroids "medium rock" 57 6.95
 	asteroids "large rock" 40 3.75
@@ -18405,9 +18446,9 @@ system Pherkad
 	government Republic
 	habitable 135
 	belt 1924
+	link Alniyat
 	link "Beta Lupi"
 	link "Kappa Centauri"
-	link Alniyat
 	link "Yed Prior"
 	asteroids "large metal" 1 2.6884
 	trade Clothing 325
@@ -18459,8 +18500,8 @@ system Phurad
 	government Republic
 	habitable 1080
 	belt 1881
-	link Tejat
 	link Canopus
+	link Tejat
 	link Wazn
 	asteroids "small rock" 78 11.907
 	asteroids "medium rock" 1 9.801
@@ -18518,10 +18559,10 @@ system Pik'ro'iyak
 	government Wanderer
 	habitable 233.28
 	belt 1279
-	link Si'yak'ku
-	link Ek'kek'ru
 	link Aya'k'k
+	link Ek'kek'ru
 	link Es'sprak'ai
+	link Si'yak'ku
 	asteroids "large metal" 1 3.7488
 	trade Clothing 270
 	trade Electronics 760
@@ -18674,8 +18715,8 @@ system Polaris
 system Polerius
 	pos 88 482
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 1505.92
+	haze _menu/haze-red
 	link Paeli
 	asteroids "small rock" 2 4
 	asteroids "medium rock" 8 5
@@ -18695,7 +18736,7 @@ system Polerius
 	trade Medical 361
 	trade Metal 463
 	trade Plastic 503
-	fleet "Ka'het" 2900
+	fleet Ka'het 2900
 	fleet "Ka'het Aggressive" 9400
 	object
 		sprite star/g0
@@ -18714,7 +18755,7 @@ system Polerius
 		sprite planet/rock19-b
 		distance 644.74
 		period 168.747
-	object "Celeatis"
+	object Celeatis
 		sprite planet/rock10-b
 		distance 1091.15
 		period 371.523
@@ -18740,8 +18781,8 @@ system Pollux
 	government Republic
 	habitable 1080
 	belt 1161
-	link Procyon
 	link Castor
+	link Procyon
 	link Talita
 	asteroids "small rock" 2 8.94
 	asteroids "medium rock" 8 3.48
@@ -18792,8 +18833,8 @@ system Porrima
 	government Republic
 	habitable 760
 	belt 1636
-	link Muphrid
 	link Merak
+	link Muphrid
 	asteroids "small rock" 20 4.7334
 	asteroids "medium rock" 35 3.0429
 	asteroids "large rock" 5 2.5116
@@ -18858,10 +18899,10 @@ system Prakacha'a
 	government Wanderer
 	habitable 1505.92
 	belt 1637
+	link Chirr'ay'akai
 	link Chy'chra
 	link Ik'kara'ka
 	link Sich'ka'ara
-	link Chirr'ay'akai
 	asteroids "small rock" 32 1.974
 	asteroids "medium rock" 45 1.484
 	asteroids "large rock" 20 1.75
@@ -18935,9 +18976,9 @@ system Procyon
 	government Republic
 	habitable 455.625
 	belt 1763
-	link Sirius
-	link Pollux
 	link Capella
+	link Pollux
+	link Sirius
 	asteroids "small rock" 9 4.4226
 	asteroids "medium rock" 16 2.7594
 	asteroids "large rock" 157 4.4604
@@ -19046,10 +19087,10 @@ system Quaru
 	government Heliarch
 	habitable 700
 	belt 1440
-	link "Ki War Ek"
 	link Ekuarik
-	link "Last Word"
 	link Homeward
+	link "Ki War Ek"
+	link "Last Word"
 	asteroids "large metal" 1 2.0202
 	trade Clothing 372
 	trade Electronics 637
@@ -19334,10 +19375,18 @@ system Quaru
 system Queri
 	pos 69 518
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 135
+	haze _menu/haze-red
 	link Esix
 	link Ritilas
+	asteroids "large metal" 6 2
+	asteroids "large rock" 4 3
+	asteroids "medium metal" 13 2
+	asteroids "medium rock" 4 3
+	asteroids "small metal" 12 3
+	asteroids "small rock" 7 4
+	minables lead 4 4
+	minables silicon 3 5
 	trade Clothing 292
 	trade Electronics 793
 	trade Equipment 421
@@ -19348,19 +19397,112 @@ system Queri
 	trade Medical 678
 	trade Metal 175
 	trade Plastic 329
-	fleet "Ka'het" 4000
+	fleet Ka'het 4000
 	fleet "Ka'het Aggressive" 11000
 	object
-		sprite star/g5-old
+		sprite star/a5
 		period 10
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 20
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 40
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 60
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 80
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 100
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 160
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 180
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 200
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 260
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 280
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 300
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 320
+	object Querii'ka
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 340
+	object
+		sprite planet/gas11
+		distance 2417.94
+		period 4093.19
 
 system Rajak
 	pos -270 -236
 	government Republic
 	habitable 78.125
 	belt 1410
-	link Sumar
 	link Hassaleh
+	link Sumar
 	link "Ultima Thule"
 	asteroids "small rock" 15 2.3232
 	asteroids "medium rock" 51 4.1536
@@ -19425,9 +19567,9 @@ system Rasalhague
 	government Republic
 	habitable 455.625
 	belt 1282
-	link "Zeta Aquilae"
-	link Cebalrai
 	link Ascella
+	link Cebalrai
+	link "Zeta Aquilae"
 	asteroids "small rock" 2 1.9
 	asteroids "medium rock" 32 2.546
 	asteroids "large rock" 1 1.292
@@ -19484,10 +19626,10 @@ system Rastaban
 	government Republic
 	habitable 1080
 	belt 1041
+	link "Alpha Arae"
+	link "Delta Sagittarii"
 	link Girtab
 	link Lesath
-	link "Delta Sagittarii"
-	link "Alpha Arae"
 	asteroids "small rock" 2 3.8766
 	asteroids "medium rock" 60 7.6986
 	asteroids "large rock" 3 6.9888
@@ -19590,6 +19732,41 @@ system "Rati Cal"
 		sprite planet/gas5
 		distance 2194.1
 		period 1991.96
+
+system "Refuge"
+	pos -2002.0 -2002.0
+	government Sleeper
+	habitable 1080
+	belt 1924
+	link Telmir
+	link Jesmat
+	trade Clothing 313
+	trade Electronics 769
+	trade Equipment 676
+	trade Food 492
+	trade "Heavy Metals" 1036
+	trade Industrial 626
+	trade "Luxury Goods" 1206
+	trade Medical 611
+	trade Metal 253
+	trade Plastic 296
+	fleet "Sleeper Guard" 2050
+	object
+		sprite star/black-hole-core
+		period 1
+	object
+		sprite star/black-hole
+		period 1
+	object "Refuge Station"
+		sprite planet/station5
+		distance 135
+		period 19.0919
+		offset -237.35
+	object "Contact Station"
+		sprite planet/station1
+		distance 1140.61
+		period 468.869
+		offset 275.631
 
 system Regor
 	pos -702 -335
@@ -19724,8 +19901,8 @@ system Regulus
 system Relifer
 	pos 19 603
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 625
+	haze _menu/haze-red
 	link Feraticus
 	asteroids "large metal" 2 3
 	asteroids "large rock" 1 2
@@ -19745,7 +19922,7 @@ system Relifer
 	trade Medical 883
 	trade Metal 219
 	trade Plastic 355
-	fleet "Ka'het" 2750
+	fleet Ka'het 2750
 	fleet "Ka'het Aggressive" 8900
 	object
 		sprite star/g0-old
@@ -19863,10 +20040,10 @@ system Rigel
 	government Republic
 	habitable 1080
 	belt 1782
-	link Saiph
 	link Alnitak
 	link Betelgeuse
 	link Hassaleh
+	link Saiph
 	asteroids "small rock" 12 11.076
 	asteroids "medium rock" 42 3.9
 	asteroids "large rock" 37 10.53
@@ -19936,8 +20113,8 @@ system Rigel
 system Ritilas
 	pos 11 523
 	government Uninhabited
-	haze _menu/haze-red
 	habitable 135
+	haze _menu/haze-red
 	link Queri
 	asteroids "large metal" 4 4
 	asteroids "large rock" 18 2
@@ -19956,7 +20133,7 @@ system Ritilas
 	trade Medical 721
 	trade Metal 138
 	trade Plastic 363
-	fleet "Ka'het" 2700
+	fleet Ka'het 2700
 	fleet "Ka'het Aggressive" 9600
 	object
 		sprite star/k0-old
@@ -20010,12 +20187,12 @@ system Ruchbah
 	government Syndicate
 	habitable 2560
 	belt 1598
-	link Ankaa
-	link Alpheratz
-	link Sheratan
-	link Hamal
-	link "Alpha Hydri"
 	link Algol
+	link "Alpha Hydri"
+	link Alpheratz
+	link Ankaa
+	link Hamal
+	link Sheratan
 	asteroids "small rock" 6 4.8412
 	asteroids "medium rock" 17 2.1476
 	asteroids "large rock" 57 4.7684
@@ -20082,8 +20259,8 @@ system Rutilicus
 	belt 1771
 	link Arcturus
 	link Cebalrai
-	link Menkent
 	link Holeb
+	link Menkent
 	asteroids "small rock" 1 1.9188
 	asteroids "medium rock" 10 1.9656
 	asteroids "large rock" 1 2.0358
@@ -20148,10 +20325,10 @@ system Sabik
 	government Republic
 	habitable 625
 	belt 1609
+	link Aldhibain
+	link Kornephoros
 	link Unukalhai
 	link Zubenelgenubi
-	link Kornephoros
-	link Aldhibain
 	asteroids "small rock" 2 5.684
 	asteroids "medium rock" 1 4.669
 	asteroids "large rock" 5 5.5622
@@ -20199,8 +20376,8 @@ system Sabriset
 	government Uninhabited
 	habitable 1566.68
 	belt 1025
-	link Sepriaptu
 	link Kaliptari
+	link Sepriaptu
 	asteroids "small rock" 3 3.9285
 	asteroids "medium rock" 6 2.6325
 	asteroids "large rock" 5 4.779
@@ -20432,10 +20609,10 @@ system "Sagittarius A*"
 	government Uninhabited
 	habitable 10000
 	object
-		sprite "star/black-hole-core"
+		sprite star/black-hole-core
 		period 1
 	object
-		sprite "star/black-hole"
+		sprite star/black-hole
 		period 1
 
 system Saiph
@@ -20443,8 +20620,8 @@ system Saiph
 	government Republic
 	habitable 320
 	belt 1690
-	link Rigel
 	link Alnitak
+	link Rigel
 	asteroids "small rock" 103 6.4974
 	asteroids "medium rock" 69 5.4054
 	asteroids "large rock" 13 3.003
@@ -20495,9 +20672,9 @@ system Salipastart
 	government "Kor Mereti"
 	habitable 486.68
 	belt 1056
-	link Similisti
 	link Faronektu
 	link Mesuket
+	link Similisti
 	asteroids "small rock" 2 6.7116
 	asteroids "medium rock" 9 4.3792
 	asteroids "large rock" 9 5.95
@@ -20713,11 +20890,11 @@ system Scheat
 	government Syndicate
 	habitable 625
 	belt 1536
-	link Markab
-	link "Delta Capricorni"
 	link "Al Dhanab"
-	link Mirach
+	link "Delta Capricorni"
+	link Markab
 	link Matar
+	link Mirach
 	asteroids "large metal" 1 5.0547
 	trade Clothing 279
 	trade Electronics 757
@@ -20768,9 +20945,9 @@ system Schedar
 	government Syndicate
 	habitable 1080
 	belt 1903
-	link Mirach
 	link Achernar
 	link Almach
+	link Mirach
 	asteroids "small rock" 10 1.736
 	asteroids "medium rock" 2 0.896
 	asteroids "large rock" 3 1.148
@@ -20901,8 +21078,8 @@ system Seginus
 	habitable 135
 	belt 1906
 	link Alnasl
-	link Wei
 	link Alphecca
+	link Wei
 	asteroids "small rock" 11 5.5188
 	asteroids "medium rock" 3 6.2748
 	asteroids "large rock" 1 4.6116
@@ -20965,8 +21142,8 @@ system Seketra
 	government Uninhabited
 	habitable 425.92
 	belt 1465
-	link Skeruto
 	link Chikatip
+	link Skeruto
 	asteroids "large metal" 1 1.7556
 	trade Clothing 247
 	trade Electronics 792
@@ -21127,8 +21304,8 @@ system Sevrelect
 	government "Kor Efret"
 	habitable 320
 	belt 1763
-	link Sumprast
 	link Kashikt
+	link Sumprast
 	asteroids "large metal" 1 2.97
 	trade Clothing 225
 	trade Electronics 853
@@ -21380,9 +21557,9 @@ system Sich'ka'ara
 	government Wanderer
 	habitable 1715
 	belt 1744
-	link Prakacha'a
 	link Ap'arak
 	link Kiro'ku
+	link Prakacha'a
 	asteroids "large metal" 1 2.3738
 	trade Clothing 327
 	trade Electronics 745
@@ -21431,10 +21608,10 @@ system Silikatakfar
 	government "Kor Sestor"
 	habitable 425.92
 	belt 1641
-	link Mesuket
-	link Eneremprukt
 	link Asikafarnut
+	link Eneremprukt
 	link Ferukistek
+	link Mesuket
 	asteroids "small rock" 2 1.9936
 	asteroids "medium rock" 1 1.2544
 	asteroids "large rock" 1 2.128
@@ -21485,10 +21662,10 @@ system "Silver Bell"
 	habitable 1080
 	belt 1406
 	link "Bright Void"
-	link "Silver String"
 	link "Broken Bowl"
 	link Homeward
 	link "Last Word"
+	link "Silver String"
 	asteroids "small rock" 2 6.9498
 	asteroids "medium rock" 5 2.43
 	asteroids "large rock" 13 6.7068
@@ -21616,11 +21793,11 @@ system Similisti
 	habitable 1080
 	belt 1349
 	link Chimitarp
-	link Mekislepti
 	link Eshkoshtar
-	link Sepetrosk
 	link Faronektu
+	link Mekislepti
 	link Salipastart
+	link Sepetrosk
 	asteroids "small rock" 3 3.015
 	asteroids "medium rock" 2 6.345
 	asteroids "large rock" 21 4.23
@@ -21681,9 +21858,9 @@ system Sirius
 	government Republic
 	habitable 1800
 	belt 1407
-	link Sol
-	link Procyon
 	link Eteron
+	link Procyon
+	link Sol
 	asteroids "small rock" 1 5.225
 	asteroids "medium rock" 6 4.565
 	asteroids "large rock" 6 7.645
@@ -21743,10 +21920,10 @@ system Skeruto
 	government Uninhabited
 	habitable 320
 	belt 1198
-	link Furmeliki
-	link Meftarkata
 	link Fornarep
+	link Furmeliki
 	link Kaliptari
+	link Meftarkata
 	link Seketra
 	asteroids "large metal" 1 1.5554
 	trade Clothing 286
@@ -21905,12 +22082,12 @@ system Sol
 	government Republic
 	habitable 1080
 	belt 1529
-	link Vega
 	link "Alpha Centauri"
 	link Altair
-	link Sirius
-	link Denebola
 	link Caph
+	link Denebola
+	link Sirius
+	link Vega
 	asteroids "small rock" 30 2.691
 	asteroids "large rock" 50 5.0508
 	asteroids "medium metal" 4 2.8566
@@ -21982,12 +22159,12 @@ system "Sol Arach"
 	government Coalition
 	habitable 486.68
 	belt 1147
-	link Membulem
-	link Gupta
+	link Blubipad
 	link Blugtad
 	link Glubatub
+	link Gupta
+	link Membulem
 	link Miblulub
-	link Blubipad
 	link Plort
 	asteroids "small rock" 5 4.5864
 	asteroids "medium rock" 9 4.6872
@@ -22052,10 +22229,10 @@ system "Sol Kimek"
 	government Coalition
 	habitable 425.92
 	belt 1490
-	link "3 Pole"
-	link "11 Autumn Above"
-	link "4 Winter Rising"
 	link "1 Axis"
+	link "11 Autumn Above"
+	link "3 Pole"
+	link "4 Winter Rising"
 	link "9 Spring Above"
 	asteroids "small rock" 3 6.9552
 	asteroids "medium rock" 1 5.1543
@@ -22126,8 +22303,8 @@ system "Sol Saryd"
 	government Coalition
 	habitable 1313.28
 	belt 1720
-	link Belonging
 	link "Ancient Hope"
+	link Belonging
 	link Companion
 	asteroids "small rock" 4 2.42
 	asteroids "medium rock" 140 1.48
@@ -22262,8 +22439,8 @@ system Sospi
 	government Republic
 	habitable 1715
 	belt 1715
-	link Volax
 	link Nihal
+	link Volax
 	asteroids "small rock" 1 2.8336
 	asteroids "large rock" 1 1.9481
 	asteroids "small metal" 6 3.1625
@@ -22392,8 +22569,8 @@ system Spica
 	government Republic
 	habitable 625
 	belt 1940
-	link Minkar
 	link "Gamma Corvi"
+	link Minkar
 	asteroids "medium rock" 28 1.386
 	asteroids "large rock" 4 1.554
 	asteroids "small metal" 7 1.533
@@ -22644,8 +22821,8 @@ system Sumar
 	habitable 2560
 	belt 1778
 	link Cardax
-	link Hassaleh
 	link Danoa
+	link Hassaleh
 	link Rajak
 	asteroids "large metal" 1 2.2176
 	trade Clothing 316
@@ -22766,10 +22943,10 @@ system Tais
 	government Republic
 	habitable 3645
 	belt 1379
+	link Ascella
 	link "Delta Sagittarii"
 	link "Kaus Australis"
 	link Peacock
-	link Ascella
 	asteroids "medium rock" 7 6.65
 	asteroids "large rock" 2 7
 	asteroids "small metal" 1 10.15
@@ -22822,9 +22999,9 @@ system Talita
 	government Republic
 	habitable 1705
 	belt 1403
-	link Miaplacidus
 	link Alphard
 	link Castor
+	link Miaplacidus
 	link Pollux
 	asteroids "small rock" 73 2.128
 	asteroids "medium rock" 8 2.94
@@ -22886,11 +23063,11 @@ system "Tania Australis"
 	government Republic
 	habitable 1080
 	belt 1738
-	link Phecda
 	link Algieba
 	link Fala
-	link Mora
 	link Lolami
+	link Mora
+	link Phecda
 	asteroids "medium rock" 4 4.6656
 	asteroids "large rock" 13 5.2704
 	asteroids "medium metal" 1 2.5488
@@ -22958,9 +23135,9 @@ system Tarazed
 	government Republic
 	habitable 1215
 	belt 1169
-	link Enif
 	link Albireo
 	link Dabih
+	link Enif
 	link Umbral
 	asteroids "small rock" 2 2.2968
 	asteroids "medium rock" 1 2.1978
@@ -23020,8 +23197,8 @@ system Tebuteb
 	government Coalition
 	habitable 553.28
 	belt 1855
-	link Miblulub
 	link Glubatub
+	link Miblulub
 	asteroids "small rock" 7 2.0468
 	asteroids "medium rock" 54 3.094
 	asteroids "large rock" 30 2.4514
@@ -23081,8 +23258,8 @@ system Tejat
 	government Republic
 	habitable 1158.12
 	belt 1447
-	link Phurad
 	link Miaplacidus
+	link Phurad
 	asteroids "small rock" 5 4.5675
 	asteroids "medium rock" 5 3.1755
 	asteroids "large rock" 5 4.959
@@ -23153,6 +23330,42 @@ system Tejat
 			distance 438
 			period 22.9367
 
+system "Telmir"
+	pos -2001.0 -2001.0
+	government Sleeper
+	habitable 486.68
+	belt 1893
+	link Jesmat
+	link Refuge
+	asteroids "medium rock" 3 2.585
+	asteroids "large rock" 3 2.1175
+	asteroids "small metal" 2 3.1625
+	asteroids "large metal" 1 2.8325
+	trade Clothing 338
+	trade Electronics 810
+	trade Equipment 676
+	trade Food 505
+	trade "Heavy Metals" 994
+	trade Industrial 622
+	trade "Luxury Goods" 1180
+	trade Medical 605
+	trade Metal 273
+	trade Plastic 315
+	fleet "Sleeper Guard" 2050
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/gas8
+		distance 1208.3
+		period 761.554
+		offset 26.3207
+		object "Telmir Station"
+			sprite planet/station1
+			distance 196.499
+			period 14.6628
+			offset 343.794
+
 system Terminus
 	pos -727.99 -23.2491
 	government Republic
@@ -23209,9 +23422,9 @@ system Torbab
 	government Coalition
 	habitable 1505.92
 	belt 1702
-	link Speloog
 	link Debrugt
 	link Flugbu
+	link Speloog
 	asteroids "small rock" 12 3.094
 	asteroids "medium rock" 5 2.3296
 	asteroids "large rock" 1 2.0384
@@ -23350,9 +23563,9 @@ system Turais
 	government Republic
 	habitable 320
 	belt 1471
-	link Gacrux
-	link "Delta Velorum"
 	link Algorel
+	link "Delta Velorum"
+	link Gacrux
 	asteroids "small rock" 16 3.075
 	asteroids "medium rock" 37 4.2
 	asteroids "large rock" 7 4.35
@@ -23407,8 +23620,8 @@ system "Ula Mon"
 	habitable 640
 	belt 1574
 	link "Bote Asu"
-	link "Mei Yohn"
 	link "Io Lowe"
+	link "Mei Yohn"
 	link "Ya Hai"
 	asteroids "small rock" 1 3.2319
 	asteroids "medium rock" 12 2.793
@@ -23661,8 +23874,8 @@ system Unukalhai
 	government Republic
 	habitable 625
 	belt 1968
-	link Zubenelgenubi
 	link Sabik
+	link Zubenelgenubi
 	asteroids "small rock" 9 4.5864
 	asteroids "medium rock" 35 2.9484
 	asteroids "large rock" 23 3.7856
@@ -23779,9 +23992,9 @@ system Vega
 	habitable 1400
 	belt 1744
 	link Altair
-	link Sol
 	link Menkent
 	link Nocte
+	link Sol
 	asteroids "small rock" 2 5.7596
 	asteroids "medium rock" 1 6.4736
 	asteroids "large rock" 1 6.5688
@@ -23842,8 +24055,8 @@ system Vindemiatrix
 	habitable 1080
 	belt 1957
 	link Alioth
-	link Muhlifain
 	link "Cor Caroli"
+	link Muhlifain
 	link Sarin
 	asteroids "small rock" 150 4.446
 	asteroids "medium rock" 90 4.0716
@@ -23946,10 +24159,10 @@ system "Wah Ki"
 	government Hai
 	habitable 425.92
 	belt 1585
-	link "Zuba Zub"
-	link "Wah Yoot"
-	link "Bote Asu"
 	link "Bore Fah"
+	link "Bote Asu"
+	link "Wah Yoot"
+	link "Zuba Zub"
 	asteroids "small rock" 39 5.9598
 	asteroids "medium rock" 1 5.4978
 	asteroids "large rock" 24 2.4024
@@ -24014,10 +24227,10 @@ system "Wah Oh"
 	government Hai
 	habitable 5000
 	belt 1194
-	link "Io Mann"
 	link "Due Yoot"
 	link "Fah Root"
 	link "Fah Soom"
+	link "Io Mann"
 	asteroids "small rock" 12 1.917
 	asteroids "medium rock" 21 1.89
 	asteroids "large rock" 6 3.321
@@ -24091,9 +24304,9 @@ system "Wah Yoot"
 	government "Hai (Unfettered)"
 	habitable 1080
 	belt 1222
-	link "Wah Ki"
 	link "Ehma Ti"
 	link "Hi Yahr"
+	link "Wah Ki"
 	asteroids "small rock" 44 2.0592
 	asteroids "medium rock" 26 3.4452
 	asteroids "large rock" 9 2.6532
@@ -24274,10 +24487,10 @@ system Wei
 	government Republic
 	habitable 455.625
 	belt 1927
-	link Seginus
+	link Alioth
 	link Alnasl
 	link Kornephoros
-	link Alioth
+	link Seginus
 	asteroids "large metal" 1 3.1824
 	trade Clothing 319
 	trade Electronics 718
@@ -24412,11 +24625,11 @@ system "Ya Hai"
 	government Hai
 	habitable 425.92
 	belt 1120
-	link "Ula Mon"
 	link "Bote Asu"
-	link "Uwa Fahn"
-	link "Lom Tahr"
 	link "Da Ent"
+	link "Lom Tahr"
+	link "Ula Mon"
+	link "Uwa Fahn"
 	asteroids "medium rock" 10 1.2096
 	asteroids "large rock" 1 2.0328
 	asteroids "small metal" 17 1.1928
@@ -24542,9 +24755,9 @@ system Zaurak
 	government Syndicate
 	habitable 625
 	belt 1130
-	link Sheratan
 	link Alcyone
 	link Menkar
+	link Sheratan
 	asteroids "small rock" 30 5.0232
 	asteroids "medium rock" 34 5.2052
 	asteroids "large rock" 11 1.82
@@ -24599,8 +24812,8 @@ system "Zeta Aquilae"
 	habitable 1400
 	belt 1829
 	link Ascella
-	link Rasalhague
 	link Orvala
+	link Rasalhague
 	asteroids "small rock" 5 7.695
 	asteroids "medium rock" 11 4.536
 	asteroids "large rock" 2 10.611
@@ -24726,8 +24939,8 @@ system Zosma
 	habitable 455.625
 	belt 1436
 	link Algieba
-	link Dubhe
 	link Alphard
+	link Dubhe
 	link Gomeisa
 	asteroids "small rock" 17 3.2175
 	asteroids "medium rock" 1 3.77
@@ -24789,8 +25002,8 @@ system "Zuba Zub"
 	government Hai
 	habitable 425.92
 	belt 1911
-	link "Mei Yohn"
 	link "Imo Dep"
+	link "Mei Yohn"
 	link "Wah Ki"
 	asteroids "small rock" 3 3.12
 	asteroids "large rock" 5 2.76
@@ -24853,9 +25066,9 @@ system Zubenelgenubi
 	government Republic
 	habitable 945
 	belt 1475
-	link Zubeneschamali
-	link Unukalhai
 	link Sabik
+	link Unukalhai
+	link Zubeneschamali
 	asteroids "medium rock" 2 2.5344
 	asteroids "large rock" 1 3.2076
 	asteroids "small metal" 10 4.9104
@@ -24919,9 +25132,9 @@ system Zubeneschamali
 	habitable 1250
 	belt 1543
 	link Hadar
-	link Zubenelgenubi
-	link Kochab
 	link Ildaria
+	link Kochab
+	link Zubenelgenubi
 	asteroids "small rock" 9 1.9344
 	asteroids "medium rock" 57 1.7784
 	asteroids "large rock" 33 2.496
@@ -25178,15 +25391,13 @@ planet Avalon
 planet Aventine
 	attributes remnant
 	landscape land/mountain17-harro
-	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant rely on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
+	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant relies on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
-	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	bribe 0
 	tribute 4000
 		threshold 8500
-		fleet "Remnant Decoy Defense" 3
-		fleet "Light Remnant Defense" 10
 		fleet "Heavy Remnant Defense" 30
 
 planet "Bank of Blugtad"
@@ -25363,13 +25574,11 @@ planet Caelian
 	landscape land/sky7
 	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
-	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	bribe 0
 	tribute 3000
 		threshold 8000
-		fleet "Remnant Decoy Defense" 3
-		fleet "Light Remnant Defense" 8
 		fleet "Heavy Remnant Defense" 25
 
 planet Calda
@@ -25415,6 +25624,12 @@ planet "Ceaseless Toil"
 	description `	The solar collectors are mounted on frames about ten meters above the shifting sand dunes. In addition to turning to face the sun, they can be turned upside-down as necessary to dump off any sand that accumulates on them.`
 	"required reputation" 15
 
+planet Ceilia'sei
+	attributes ka'het
+	landscape land/loc2
+	description `This station used to act as some sort of anti-missile platform. It is covered in a large number of defensive turrets capable of shooting down even the strongest of torpedoes. During the Ka'het invasion it must have been able to stop the incoming EMPs, but it had no way to defend itself against the Ravager Beams; the crew quarters were completely destroyed by the Ka'het, and the Builders soon lost control of all the station's defense systems.`
+	description `	Given the location of the station, it's likely that it was originally built to stop everything coming out of the wormhole rather than the Ka'het themselves.`
+
 planet Celeatis
 	attributes ka'het
 	landscape land/canyon4
@@ -25426,17 +25641,6 @@ planet "Celestial Third"
 	landscape land/fields4
 	description `Celestial Third is the breadbasket of Kimek space. Most of its land mass is used for farming, augmented by seaweed farms and fisheries in the oceans and factories near the equator producing yeast and bacterial cultures as nutritional supplements. The first settlers came here more than thirteen thousand years ago, at a time when their home world had run out of arable land for farming and food was desperately needed.`
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
-
-planet Ceilia'sei
-	attributes ka'het
-	landscape land/loc2
-	description `This station used to act as some sort of anti-missile platform. It is covered in a large number of defensive turrets capable of shooting down even the strongest of torpedoes. During the Ka'het invasion it must have been able to stop the incoming EMPs, but it had no way to defend itself against the Ravager Beams; the crew quarters were completely destroyed by the Ka'het, and the Builders soon lost control of all the station's defense systems.`
-	description `	Given the location of the station, it's likely that it was originally built to stop everything coming out of the wormhole rather than the Ka'het themselves.`
-
-planet Veliante
-	attributes ka'het
-	landscape land/fog5
-	description `The world that suffered the heaviest damage during the invasion was probably Veliante. Here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable. While most of the planet has returned to safe level of radiation, the areas around the ancient facility are still too irradiated to survive for long without some form of protective equipment.`
 
 planet "Charon Station"
 	attributes south station
@@ -25534,6 +25738,15 @@ planet "Cold Horizon"
 	description `	Half a billion Saryds live here, drawn not so much by the planet's resources, which are scarce, as by its natural beauty.`
 	spaceport `The spaceport on Cold Horizon is only a tiny village; most of the natives prefer to stay as far as possible from the bustle and confusion of interstellar life. The spaceport is also a railway hub, with trains departing from here to bring tourists to and from the larger population centers in the forest, on the shore, and far up in the mountains.`
 	"required reputation" 15
+
+planet "Contact Station"
+	attributes "station" "sleeper"
+	landscape land/station0
+	description `	Contact Station is a large space station that, judging from appearances, is mostly geared towards industrial capacity. There is constant activity on the surface of the station, with machines receiving and processing raw materials brought in by a stream of drones from the Jesmat and Telmir systems. Another stream of drones carries the processed materials deep into the gravitational well of the black hole in this system, where another mysterious station lies.`
+	description `	While the automation and industrial sophistication is something that is only slightly beyond humanity's level, a cursory glance over the station exterior with a thermal sensor reveals the true marvel here: all of the activity is being performed at the theoretical maximum in terms of efficiency.`
+	spaceport `	In contrast to the massive industrial capacity of this station, the spaceport and associated facilities are very sparse by human standards. Since the station is run autonomously, there is little need for them. Instead the spaceport is evidently just a docking area for any biological species that happen to pass through the system.`
+	"required reputation" 0
+	bribe 0
 
 planet "Cool Forest"
 	attributes saryd shipping urban
@@ -25815,21 +26028,17 @@ planet "Elek Kartanu"
 
 planet "Ember Graveyard"
 	attributes "requires: quantum keystone"
-	description ""
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
-	description ""
-	spaceport ""
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
-	description ""
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
-	spaceport ""
+
+planet "Entrop Station"
 
 planet "Esayaku Fen"
 	attributes korath
@@ -26150,6 +26359,9 @@ planet Geyser
 		threshold 3500
 		fleet "Large Militia" 20
 
+planet "Gibb Station"
+	landscape land/space2
+
 planet Giverstone
 	attributes hai mining
 	landscape land/valley5
@@ -26205,12 +26417,10 @@ planet Grakhord
 	bribe 0
 	security 0.9
 
+planet "Graveyard Wormhole (Stable)"
+
 planet "Graveyard Wormhole (Unstable)"
 	attributes "requires: quantum keystone"
-	description ``
-
-planet "Graveyard Wormhole (Stable)"
-	description ``
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -26513,7 +26723,15 @@ planet "Into White"
 	spaceport `	The Kimek who live here are dressed in puffy winter coats that entirely cover their bodies and heads; only their spindly legs protrude out.`
 	"required reputation" 15
 
-planet "Kaeyin"
+planet "Jesmat Station"
+	attributes "sleeper" "station"
+	landscape land/space4
+	description `Jesmat Station is the Custodian control hub for the Sleeper's mining operations. Drones within the system mine the abundant asteriods here and bring them back to the station to be processed into usable metals.`
+	spaceport `The spaceport is a flurry of activity but with little in the way of amenities other than a refuelling depot. Drones are constantly docking, unloading their cargo, and then taking back off. They do all of this with an eerie silence, hinting at the lack of energy being wasted here.`
+	"required reputation" 2
+	bribe 0
+
+planet Kaeyin
 	attributes uninhabited
 	landscape land/myrabella5
 	description `The world of Kaeyin now seems to be completely uninhabited, but it hasn't always been like that. Large, empty cities with towers of indescribable design encompass a portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
@@ -27382,6 +27600,11 @@ planet Pugglequat
 	"required reputation" 2
 	security 1
 
+planet Querii'ka
+	attributes ka'het
+	landscape land/station2
+	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'het passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
+
 planet Quicksilver
 	attributes core volcanic mining
 	landscape land/snow0
@@ -27411,6 +27634,18 @@ planet "Refuge of Belugt"
 	spaceport `Many of the Kimek and Arachi tourists here are rather scantily clad, wearing what must be their equivalent of swimwear. Of the few Saryds who are mingling with them, most are clad from head to hoof in thin white robes that block the glaring sun. Apparently Saryds have a more conservative sense of modesty than the other Coalition species.`
 	spaceport `	Many of the shops and restaurants have signs on the doors that are oddly reminiscent of human beach towns: the signs explain pictorially that all patrons must be wearing pants.`
 
+planet "Refuge Station"
+	attributes "sleeper" "station"
+	landscape "land/space2"
+	description `	This enormous space station is the home of the Sleepers. The station is incredibly thin by human standards, reminescent of a section of a Quarg ringworld that has been stretched into a concave disk. It holds just a single "floor", or level, in order to cope with the crushing tidal forces exerted by the black hole it orbits. Because of these tidal forces there is a clear "up" and "down" in Refuge Station, even without gravity generators. Ones' feet feeling something close to a full gee, while their head and arms feel as if they are in near free-fall. The extremely cold air and dim, red floodlights make the station feel less like a base for habitation adn more like a tomb.`
+	description `	All around the station there are examples of how this layout was designed with Sleeper physiology in mind: individuals keep their single foot planted firmly to the floor, and their six photosynthetic tentacles flow languidly upwards.`
+	spaceport `	Given that Refuge Station lives so deep in the gravity well of a black hole, the spaceport uses huge electromagnetic rails to both slow down, and speed up vessels that are arriving and departing the station. The rails absorb the kinetic energy of landing vessels, so that it can be reused again upon launch. In this way the Sleepers avoid wasting any precious propellant.`
+	spaceport `	As you explore the station in your own temperature controlled spacesuit, you can't help but feel that the Sleepers are giving you contemptuous, albeit lethargic, stares for such flagrant energy consumption. `
+	shipyard "Sleeper"
+	outfitter "Sleeper"
+	"required reputation" 50
+	bribe 0
+
 planet "Rekat Moraski"
 	attributes korath station
 	landscape land/space4
@@ -27423,7 +27658,7 @@ planet "Rekat Moraski"
 planet Relic
 	attributes "near earth"
 	landscape land/valley4
-	description `Relic was colonized over seven hundred years ago, back when the construction of the first hyperdrive was still in living memory. At this point, most starships had a very limited range, so the stars adjacent to Earth were the only viable options for any colonization attempts. Because of this, Relic seemed like it was going to become a major colony, despite it's low gravity, harsh environment, and limited resources.`
+	description `Relic was colonized over seven hundred years ago, back when the construction of the first hyperdrive was still in living memory. At this point, most starships had a very limited range, so the stars adjacent to earth where the only viable opinion for any colonization attempts. Because of this, Relic seemed like it was going to become a major colony, despite it's low gravity, harsh environment, and limited resources.`
 	description `	However, this would not last. In less than fifty years, the colonies had spread to much more favorable planets, and Relic was left behind by most human development.`
 	spaceport `The spaceport here is located in the only recognized city on Relic, and it's only designed to handle the occasional merchant or Navy ship on its way to or from Earth. It doesn't even use standard landing pads used on most other planets. Instead, the natives seem to have set up some concrete slabs next to some gas pumps and gone back to their lives. Despite this, the small portion of Earth's traffic means a few ships land at the spaceport every day. This results in a running joke among the locals that the chief industry of Relic is the gas station.`
 	outfitter "Ammo North"
@@ -27434,8 +27669,6 @@ planet Relic
 
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
-	spaceport ""
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -27555,7 +27788,7 @@ planet "Sapira Mereti"
 	attributes korath
 	landscape land/lava6
 	description `This was the seat of government and last military stronghold of the Kor Mereti faction during the Korath civil war. Here they built the factories and shipyards that churned out autonomous warships to prosecute their war against the Kor Sestor. The machines now rule this world alone, and have made it entirely uninhabitable for living creatures as they delve ever deeper into the planet's crust to harvest metal and fuel, and construct more and more factories to build new generations of robotic warships.`
-	spaceport `With no living creatures in sight, the only noises in this refueling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair robots that attach new layers of hull armor and replace weapons and engines that have been destroyed.`
+	spaceport `With no living creatures in sight, the only noises in this refuelling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair robots that attach new layers of hull armor and replace weapons and engines that have been destroyed.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -27645,7 +27878,6 @@ planet Seli'het
 	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
 	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
 	government Builder
-
 
 planet "Separa Tiklar"
 	attributes korath station
@@ -28026,6 +28258,14 @@ planet "Tefkar Ret"
 	landscape land/station0
 	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
+planet "Telmir Station"
+	attributes "sleeper" "station"
+	landscape land/space4
+	description `Telmir Station is the only deuterium refinery in Sleeper space. That being said, as you watch the constant stream of Custodian drones bring fuel in from the gas giant in the system, you would have no trouble believing that the deuterium output of Telmir station alone far exceeds all of the human refineries combined.`
+	spaceport `There are no difficulties in finding a fuel depot to fill up your ship in this station. However, this is about the only thing you can do in the Telmir Station spaceport.`
+	"required reputation" 2
+	bribe 0
+
 planet "Third Umber"
 	attributes kimek factory research
 	landscape land/bwerner6
@@ -28357,6 +28597,11 @@ planet "Varu Tev'kei"
 	"required reputation" 15
 	bribe 0
 
+planet Veliante
+	attributes ka'het
+	landscape land/fog5
+	description `The world that suffered the heaviest damage during the invasion was probably Veliante. Here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable. While most of the planet has returned to safe level of radiation, the areas around the ancient facility are still too irradiated to survive for long without some form of protective equipment.`
+
 planet "Vibrant Water"
 	attributes saryd farming
 	landscape land/beach8-sfiera
@@ -28370,13 +28615,11 @@ planet Viminal
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the "key stones" that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
-	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	bribe 0
 	tribute 3000
 		threshold 8000
-		fleet "Remnant Decoy Defense" 3
-		fleet "Light Remnant Defense" 8
 		fleet "Heavy Remnant Defense" 25
 
 planet Vinci
@@ -28471,8 +28714,6 @@ planet Winter
 
 planet "Wormhole Alpha"
 	government "Wormhole Alpha"
-	description ""
-	spaceport ""
 
 planet "Wyvern Station"
 	attributes rim station
@@ -28516,3 +28757,4 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
+

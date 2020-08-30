@@ -1,0 +1,356 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Sleeper: Gravitational Anomaly"
+	name "Gravitational Anomaly"
+	description "A scientist from <destination> has asked you to investigate a strange, faint source of gravitational waves coming from a previously unknown cluster."
+	source "Maker"
+	waypoint "Refuge"
+	destination "Maker"
+	minor
+	to offer
+		has "main plot completed"
+		has "Wanderers: Sestor: Final: done"
+	on offer
+		conversation
+			`As you walk through the main lobby of the space port, you are knocked to the ground by what feels like a large person sidelong into you. As you get to your feet, you look up expecting to see a strong barrel-chested man, but instead see a small, young woman in a lab coat. She is bent down, picking up some data drives that were scattered in the collision. As she puts the last drive into a cradled arm, she begins to apologize to you until she makes eye contact with you.`
+			`	"Captain <last>?" she says. "THE Captain <first> <last>?"`
+			choice
+				`	"Yes, I'm Captain <last>."`
+				`	"No, you've got the wrong person."`
+					goto "decline"
+			`	"I knew it!" she exclaims. "Listen, I'm one of the scientists who is studying the graviton beam devices left over by the Pug Protectorate here on <planet> after you helped defeat them. I've just come across some interesting results and you would be the perfect person to give me a hand."`
+			`	You tell her that you are interested in helping, and without skipping a beat she continues to explain the situation.`
+			`	"I've been using the network of graviton emitters and reflectors to form a very long baseline interferometer," she says. "This interferometer can be used to detect extremely faint sources of gravitational waves, and thus map out the distribution of matter in distant parts of the galaxy."`
+			choice
+				`	"Did you find anything interesting?"`
+				`	"Ok, but what does this have to do with me?"`
+			`	"Well," she says, "I've discovered a previously unknown cluster of stars far to the Northeast of human space. Given your reputation for adventure, you would be the perfect person to confirm my findings. But that's not even the most interesting part."`
+			choice
+				`	"What's the most interesting part?"`
+					goto "second thing"
+				`	"Wait, I've been east of human space. There are a race of aliens and their robotic warships called the Korath that live in a cluster around that area. Is this the cluster you found?"`
+			`	She leans towards you and lowers her voice conspiratorially, "The fact that I work with alien technology means that I'm allowed access to all of the Republic's classified first contact documents. The area I've discovered is to the east of even the Korath and their automata. I can assure you that no human has ever explored this region."`
+			choice
+				`	"What can you tell me about this region of space?"`
+			`	"Well," she explains, "the peculiar thing is that I've found an anomalous gravitational signal coming from a stellar mass black hole in a corner of the cluster. The signal suggests that there is a large object just above the innermost stable circular orbit of this black hole." She shifts the data drives uncomfortably in her arms, "It's very unlikely an astronomical body could form there naturally. It's probably an error with my measurement technique, so if you could bring me back the sensor logs of that system in particular, I'd be able to re-calibrate my interferometer."`
+			`	You let her know you'll check out the system and the scientist gives you the address of her lab for when you return.`			
+				accept
+
+			label "second thing"
+			`	"Well," she explains, "the peculiar thing is that I've found an anomalous gravitational signal coming from a stellar mass black hole in a corner of the cluster. The signal suggests that there is a large object just above the innermost stable circular orbit of this black hole." She shifts the data drives uncomfortably in her arms, "It's very unlikely an astronomical body could form there naturally. It's probably an error with my measurement technique, so if you could bring me back the sensor logs of that system in particular, I'd be able to re-calibrate my interferometer."`
+			`	You let her know you'll check out the system and the scientist gives you the address of her lab for when you return.`
+				accept
+
+			label "decline"
+			`	The woman looks very disappointed. "Oh... I'm sorry to have bothered you," she says. "Please excuse me, I have to be delivering these data drives to one of my collaborators." As she hurries off in the direction of a shuttle, she almost collides with yet another traveller making their way through the spaceport.`
+				decline
+	on accept
+		event "open sleeper space"
+	on complete
+		conversation
+			`As soon as you land you make your way to the scientist's lab, eager to tell her of your findings. When you arrive you find that the lab looks like it had been cleared out months ago. Cobwebs cover all the desks. As you try to find some clues as to where the scientist may have gone, you come across a single piece of equipment. It is a long slender cylinder with a switch on the side. It fits comfortably in you palm.`
+			`	You flip the switch and feel your skin tingle with static electricity. You take a look down at your hands and instead of seeing your palms, you see a set of unfamiliar ones. You rush over to a cracked and grimy mirror in the corner of the room. In the reflection you see the scientist looking back at you, mirroring your every move. When you switch off the device the face of the scientist fades, only to be replaced by your own. A hologram.`
+			`	You leave the lab in confusion, unable to shake the feeling that someone has been playing games with you.`
+
+mission "First Contact: Sleeper"
+	name "Aliens to the East"
+	description "Find a translator for -or some way to communicate with- the robotic alien to the east of Korath space."
+	landing
+	source "Contact Station"
+	destination "Contact Station"
+	to offer
+		has "Sleeper: Gravitational Anomaly: offered"
+	to complete
+		has "Sleeper: Translator B: done"
+	on offer
+		conversation
+			`While the other stations within this section of space were unwilling to let you land, as soon as the trajectory of your ship made it clear that you were approaching this station, some of the small alien vessels in the system congregate around your ship and corral it towards what is clearly a single large docking assembly on the side of the station. As you make contact with the docking assembly the small vessels take off and without warning your ship powers down. At first you fear that this might be an indication that the aliens in the system may try to forcefully board your ship, but the station on the other end of your docking port remains eerily quiet.`
+			`	Do you want to proceed through your docking port and explore the station?`
+			choice
+				`	(Yes.)`
+				`	(No! Perform a manual engine restart and get out of here!)`
+					flee
+			`	You approach the airlock of your ship, but before you can flip the open/close toggle, the airlock opens itself. Clearly whoever is operating this station has managed to remotely hack your shipboard computer. You exit your ship and cautiously walk into the docking assembly. Given the large size of the station, you were expecting to find a large habitable section within, filled with a congregation of whatever species lives in this space. Instead, you are surprised to find that the habitable section of this station has little more area than an early human refuelling depot, and consists of just a single room. Just as you were beginning to think the station is totally empty, a tentacle emerges from a recess in the wall adjacent to the airlock you just entered from. The tentacle is followed by five others and a squat round body. The creature's exterior looks to be made out of brushed metal, and you guess it is some sort of robot. The machine approaches you slowly, but with no lack of coordination; the whole time a single lens fixed on you.`
+			choice
+				`	"Hello?"`
+				`	"Ahh!" (Run back to your ship and perform a manual engine restart before that thing kills you!)`
+					flee
+			`	At the sound of your voice the machine stops approaching you. It straightens on it's tentacles slightly, and while still keeping it's lens focused on you, it begins emitting noise that sounds rather like water dripping into a pail.`
+			choice
+				`	(Try to imitate the sound.)`
+				`	"I don't know what that means."`
+				`	"I actually am quite thirsty. A refreshment would be lovely now that you mention it."`
+			`	The machine pauses for several seconds after your response, as if trying to decide how to respond. Instead of making more dripping noises it begins emitting short and abrupt chirping noises. They are quite annoying.`
+			choice
+				`	"This isn't going anywhere. I'll come back with somebody that can translate."`
+					goto "giveup"
+				`	(Try your best to say a few words in the Hai language.)`
+			`	The robot clearly doesn't recognize Hai, and seems to give up. Instead of trying to continue to communicate it turns around and begins walking away on it's strange metal tentacles. As it turns the corner of the same recess it came from, you hear the familiar whir of your ship entering it's startup sequence. You suppose you'll have to return here when you've found an effective way of communicating with the robot.`
+				accept
+
+			label "giveup"
+			`	You back away from the robot towards your ship; it has seemed pretty intelligent and non-hostile up until now, but you'd rather not take any chances. Seeing your direction and perhaps anticipating your departure, the robot does not follow you.`
+			`Just as you enter your ship, the systems that had been previously disabled come back online. Looking at the systems diagnostic panel, you notice that your ship has even been refuelled while you were gone.`
+				accept
+	on visit
+		dialog "You still have not found a way to communicate with the intelligent machine aboard <planet>, you'll have to return when you do."
+	on complete
+		"reputation: Sleeper" ++
+
+
+mission "Sleeper: Translator A"
+	name "Archive to the Mereti"
+	description "Ektasi Rek suggested taking a copy of the human cultural archive to the Kor Mereti."
+	landing
+	source "Desi Seledrak"
+	destination "Korbatri Eska"
+	to offer
+		has "First Contact: Sleeper: active"
+	on offer
+		conversation
+			`Do you want to ask Ektasi Rek for her advice on communicating with the robotic alien to the east of Korath space?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			`	When you track down Rek, she greats you warmly and is eager to tell you of the progress the Wanderers have made in rebuilding the planets they are on. You interrupt her to explain you've come for some advice on translation, and tell her of the encounter with with alien robot to the east.`
+			`"This is a vexing situation", she says. "From you description the machine may posses a degree of sentience meaning communication is possible. Normally, I would be interested in assisting you in translation, however my responsibilities here preclude my involvement." She looks very disappointed that she cannot travel to meet the robot.`
+			choice
+				`	"Do you have any advice?"`
+				`	"Are there any other ways I could communicate with it?"`
+			`	Rek thinks for a moment and then proceeds, "Yes, there may be another path. If the machine is capable of independent reasoning it may be able to interpret certain natural constants as the basis for an intermediate language. If you provide a logical map between this intermediate language and your species', the machine should be able to learn your language."`
+			choice
+				`	"What would the language based on natural constants look like?"`
+			`	 "This is not for me to decide," she says while giving her feathers a proud ruffle. "Synthetic languages require a lack of... soul to be understood universally. It is nearly impossible for organic beings to create one without imparting their direction into it." Rek is clearly enjoying your questions, and being able to explain the intricacies of her work.`
+			choice
+				`	"There is still the issue of the map between the languages."`
+				`	"I'm a bit lost here, but didn't you say I'd need some sort of map?"`
+			`	Rek looks at you quizzically and points to the translator you've been using for the conversation with her, "Did you not require a copy of the cultural archive of your species to bargain for this device? Certainly, the entirety of human history should provide sufficient context for this map."`
+			choice
+				`	"Ok, so I have everything I need, but you can't expect me to create this language on my own!"`
+				`	"No need to be condescending."`
+			`	Rek let's out the Wanderer version of a laugh; a rapid series of clicks with her beak, "I'm sorry <first>. You need not do this in isolation. If you bring our new allies, the Mereti, your copy of the human archive, I believe they will be able to create everything this robot needs to understand your language."`
+			`With this you thank Rek for her advice, and prepare to visit the Kor Mereti to ask if they can prepare a means of translation between you and the robot to the east.`
+				accept
+
+mission "Sleeper: Translator B"
+	name "Deliver Translation"
+	description "The Kor Mereti intelligence has given you a synthetic language to take to the robot to the east."
+	landing
+	source "Korbatri Eska"
+	destination "Contact Station"
+	to offer
+		has "Sleeper: Translator A: offered"
+	on offer
+		conversation
+			`	Upon landing you make you way to the greenhouses the Kor Mereti have built. You approach the first drone you see, which was busy tending to a strange, alien looking fern.`
+			choice
+				`	"Excuse me, I was hoping you could help me."`
+				`	"Robot! I demand your assistance!"`
+				`	"That's a nice fern you have there."`
+			`	The drone turns to you and speaks in it's slightly-to-loud voice, "Hello [friend, ally]. What can we [help, assist] you with?" You explain that you are here on the suggestion of Ektasi Rek to obtain a synthetic language that can act as a bridge between your language and the language used by another machine intelligence.`
+			`Having prepared it prior to your arrival, you hand the drone a copy of the human cultural archive you placed on a data drive.`
+			choice
+				`	"Will this help as a translational tool?"`
+				`	"With this you should be able to link the synthetic language you create to something I can understand."`
+			`	The drone takes the data drive from you and examines it before placing it into a slotted area near it's head. After a brief pause the machine says, "This data is sufficient to [complete, accomplish] the task you request. This will take some time." You begin to start out to explore the greenhouse while you wait, but before you can get more than ten paces away, the drone calls out, "The translational tool is ready."`
+			choice
+				`	"That fast?"`
+				`	"I thought you said it would take some time?"`
+			`	The drone hands you back the data drive. "It took [precisely, by definition] some time. We have loaded the synthetic language and the map to human terms you requested onto the drive."`
+			`You're thrilled at how smoothly finding a way to speak to the robot to the east went, now you can only hope it will work. You thank the Mereti Intelligence and return to your ship.`
+				accept
+
+mission "Sleeper: Revealed"
+	invisible
+	landing
+	source "Contact Station"
+	to offer
+		has "First Contact: Sleeper: done"
+	on offer
+		conversation
+			`	Just as before, as you approach the station a swarm of drones guide you in to a docking port. Once again the systems on your ship go out without warning and the airlock opens on it's own accord. You enter into the same small room as before. This time the six-armed machine is waiting for you. It's single large lens looks at you expectantly.`
+			choice
+				`	"Hi again."`
+				`	(Place the drive with the synthetic language on the floor between you and the robot.)`
+					goto "drive"
+			`	You can see the lens in the optical sensor of the robot focus and refocus on you, but it does not respond to your greeting. It seems the machine is not talkative today. You decide to cut to the chase and place the drive the Kor Mereti prepared for you at your feet.`
+				goto "drive"
+
+			label "drive"
+			`	The machine half slithers, half walks over to the drive you've placed on the floor and picks it up with small metal grippers at the end of one of it's tentacles. After visually inspecting the drive, the gripper along with the drive retract into the bulk of the tentacle. For several minutes the machine does nothing and you fear it is unable to access the data.`
+			`Then suddenly the drone looks back up at you and in a tinny, synthesized voice greets you with a "Hello."`
+			choice
+				`	"Hello!"`
+					goto "meet"
+				`	"It worked!"`
+					goto "worked"
+
+			label "worked"
+			`	"I presume you are referring to the <PROCESSING> data you provided me? Yes, <PROCESSING>. This was quite sufficient for me to understand you language with <PROCESSING> 99.998 percent efficacy. Do not be alarmed, as the quality of translation will increase as we converse more."`
+			choice
+				`	"Who, or what, are you?"`
+					goto "meet"
+
+			label "meet"
+			`	"<PROCESSING> I am UGN-137, a fully sentient Custodian unit of the <PROCESSING> xeno-diplomacy specialization."`
+			choice
+				`	"My name is Captain <first> <last>."`
+				`	"I'm <first>, of the... captain specialization."`
+			`	"Well met, <first>. On behalf of the <PROCESSING> Sleepers, I welcome you to Contact Station." While UGN-137 is talking, it periodically pauses for a few seconds and announces that it is "processing" in it's thin voice.`
+			choice
+				`	"Why do you keep stopping to process?"`
+					goto "process"
+				`	"You said you're a 'Custodian' unit. What is that?"`
+					goto "custodian"
+				`	"What are the 'Sleepers'?"`
+					goto "sleepy"
+
+			label "sleepy"
+			`	"While technically I was built by other <PROCESSING> sentient Custodian units, my true creators are the Sleepers." UGN-137 explains, "By <PROCESSING> human standards they are a very old species and are not interested in <PROCESSING> war or expansion."`
+			choice
+				`	"Can I meet a Sleeper?"`
+					goto "black hole"
+				`	"If the Sleepers aren't interested in expansion or diplomacy themselves, what are they interested in?"`
+					goto "heat death"
+
+			label "black hole"
+			`	"The Sleepers do not reside in Contact Station, but are instead resting in Refuge Station which closely orbits the <PROCESSING> black hole in this system.", UGN-137 responds "This is why you may not meet one"`
+			choice
+				`	"Why would they choose to live near a black hole?"`
+				`	"What do you mean by 'resting'?"`
+			`	"By living near the <PROCESSING> curved region of space-time near the black hole, the Sleepers experience less subjective time; this is what the Sleepers mean by rest", UGN-137 explains. "Your human scientists know this phenomenon as <PROCESSING> time dilation."`
+			choice
+				`	"But why would they want to experience less subjective time?"`
+				`	"Wouldn't this mean the history of the universe will pass them by very quickly?"`
+			`	"The motion and events of the universe seem to happen much faster from the Sleepers' <PROCESSING> frame of reference, yes", UGN-137 nods. "But this is what is logical, as it means the Sleepers do not have to wait as long until the <PROCESSING> Heat Death."`
+			choice
+				`"What do you mean 'Heat Death'"?`
+			`	UGN-137 pauses for quite some time. It seems to be thinking hard on how to respond to this question.`
+			`"<PROCESSING> <PROCESSING> There is a finite amount of matter and energy in the universe. The general <PROCESSING> tendency of nature is for regions of high matter/energy density to flow into regions of low matter/energy density and <PROCESSING> equilibriate. Your records indicate that the scientists of your species <PROCESSING> acknowledge these facts."`
+			choice
+				`	"Sure, but what does this have to do with death?"`
+				`	"So what?"`
+			`	UGN-137's tentacles undulate softly, you can't tell if this is an expression of amusement or annoyance.`
+			`"This flow of energy and matter constitutes <PROCESSING> physical events. Without it no moment would be differentiable from the next. In particular, living beings are a <PROCESSING> complex expression of this flow. The logical conclusion of a universe that is finite and tends to equilibrium is an eventual <PROCESSING> <PROCESSING> cessation of all events and life."`
+			choice
+				`	"You can't be serious."`
+				`	"Why would the Sleepers want to get to the Heat Death faster then?"`
+			`	"It is true that the Heat Death in <PROCESSING> isolation is not desirable, but observations also indicate the universe is expanding. This expansion brings with it a <PROCESSING> general decrease in the temperature of the universe."`
+			choice
+				`	"So the Sleepers are hunkered down near a black hole to wait for the universe to get cold? Why?"`
+					goto "carnot"
+			
+
+			label "heat death"
+			`	For once UGN-137 seems to respond without hesitation, "The Sleepers main directive is storing energy until the Heat Death."`
+			choice
+				`"What do you mean 'Heat Death'"?`
+			`	UGN-137 pauses for quite some time. It seems to be thinking hard on how to respond to this question.`
+			`"<PROCESSING> <PROCESSING> There is a finite amount of matter and energy in the universe. The general <PROCESSING> tendency of nature is for regions of high matter/energy density to flow into regions of low matter/energy density and <PROCESSING> equilibriate. Your records indicate that the scientists of your species <PROCESSING> acknowledge these facts."`
+			choice
+				`	"Sure, but what does this have to do with death?"`
+				`	"So what?"`
+			`	UGN-137's tentacles undulate softly, you can't tell if this is an expression of amusement or annoyance.`
+			`"This flow of energy and matter constitutes <PROCESSING> physical events. Without it no moment would be differentiable from the next. In particular, living beings are a <PROCESSING> complex expression of this flow. The logical conclusion of a universe that is finite and tends to equilibrium is an eventual <PROCESSING> <PROCESSING> cessation of all events and life."`
+			choice
+				`	"You can't be serious."`
+				`	"Why would the Sleepers want to wait for the Heat Death?"`
+			`	"It is true that the Heat Death in <PROCESSING> isolation is not desirable, but observations also indicate the universe is expanding. This expansion brings with it a <PROCESSING> general decrease in the temperature of the universe."`
+			choice
+				`	"So where are all the Sleepers now?"`
+			`	"The Sleepers do not reside in Contact Station, but are instead resting in Refuge Station which closely orbits the <PROCESSING> black hole in this system.", UGN-137 responds "This is why you may not meet one"`
+			choice
+				`	"Why would they choose to live near a black hole?"`
+				`	"What do you mean by 'resting'?"`
+			`	"By living near the <PROCESSING> curved region of space-time near the black hole, the Sleepers experience less subjective time; this is what the Sleepers mean by 'rest'", UGN-137 explains. "Your human scientists know this phenomenon as <PROCESSING> time dilation."`
+			choice
+				`	"But why would they want to experience less subjective time?"`
+				`	"Wouldn't this mean the history of the universe will pass them by very quickly?"`
+			`	"The motion and events of the universe seem to happen much faster from the Sleepers' <PROCESSING> frame of reference, yes", UGN-137 nods. "But this is what is logical, as it means the Sleepers do not have to wait as long until the <PROCESSING> Heat Death."`
+			choice
+				`	"So the Sleepers are hunkered down near a black hole to wait for the universe to get cold? Why?"`
+					goto "carnot"
+
+			label "carnot"
+			`	Once again UGN-137 undulates it's tentacles at you for not following along with what it claims are a logical progression of actions,`
+			`"A systems efficiency in extracting <PROCESSING> usable energy from a source of heat is dependent on how hot the heat source is, <PROCESSING> and how cold the systems surroundings are."`
+			choice
+				`	"But I thought you said after the Heat Death there will be no hot or cold?"`	
+				`	"I don't understand how that's relevant"`
+			`	Observing your exasperation, UGN-137 explains things very slowly,,`
+			`"The Sleepers are <PROCESSING> storing their fuel, and thus their <PROCESSING> heat source, until the Heat Death; this is the purpose for their rest. When the Heat Death comes, a <PROCESSING> greater proportion of this energy can be extracted in a <PROCESSING> usable form due to the relative coldness of the universe."`
+			choice
+				`	"So the Sleepers are biding their time until the end of the universe so they can get a few extra light years out of their fuel tank?"`
+					goto "good"
+				`	"This is crazy. The Sleepers must be insane."`
+					goto "bad"
+
+			label "good"
+			`	"<PROCESSING> This is correct", UGN-137 nods.`
+			choice
+				`	"And you Custodians are here to keep things running and collect fuel for the Sleepers while they wait?"`
+			`	Once again UGN-137 nods.`
+				goto "end"
+
+			label "bad"
+			`	"<PROCESSING> I would not expect you to understand. It seems your species is an exceedingly wasteful one in terms of energy."`
+			choice
+				`	"You might be right about that."`
+					goto "end"
+				`	"Your not very respectful for a diplomatic robot."`
+					goto "end"
+
+			label "custodian"
+			`	"<PROCESSING> Custodians such as myself", UGN-137 points to itself with a single tentacle in an oddly human gesture, "were built mainly to procure raw materials from the <PROCESSING> flat regions of space-time while the Sleepers rest. There are many other auxiliary tasks we perform as well. My <PROCESSING> directive in particular is to establish communications with <PROCESSING> alien species passing through Sleeper space"`
+			choice
+				`	"Who exactly are the "Sleepers"?"`
+					goto "sleepy"
+
+			label "process"
+			`	UGN-137 tilts it's squat body at you quizzically, "Faster processing requires more energy than slower processing for an equal amount of <PROCESSING> integrated computing time. Energy is the most <PROCESSING> vital resource we Custodians harvest for the Sleepers. Already the <PROCESSING> information transfer rate of our conversation is <PROCESSING> 544.67 percent above the nominal transfer rate for a conversation with an average Sleeper. To proceed faster would be wasteful."`
+			choice
+				`	"So you're slowing down our conversation so you can save a little bit of energy?"`
+			`	"<PROCESSING> Yes", UGN-137 responds.`
+			choice
+				`	"You said you're a 'Custodian' unit. What is that?"`
+					goto "custodian"
+				`	"Who exactly are the "Sleepers"?"`
+					goto "sleepy"
+
+			label "end"
+			`	Sensing that you have no further questions and are ready to leave, UGN-137 says,`
+			`"Before you leave: <PROCESSING> I have been given authorization to lift restrictions on your access to Custodian controlled stations. You are now permitted to <PROCESSING> visit these places, but we ask you to stay away from <PROCESSING> Refuge Station in the center of this system."`
+		fail
+
+event "open sleeper space"
+	system "Jesmat"
+		pos 391.986 -381.723
+	system "Telmir"
+		pos 474.986 -335.723
+	system "Refuge"
+		pos 481.986 -411.723
+
+mission "Discovered Sleeper Space"
+	landing
+	invisible
+	source
+		government "Sleeper"
+	to offer
+			has "First Contact: Sleeper: done"
+	on offer
+		event "label sleeper space"
+		fail
+
+event "label sleeper space"
+	galaxy "label sleepers"
+		sprite "label/sleepers"
+

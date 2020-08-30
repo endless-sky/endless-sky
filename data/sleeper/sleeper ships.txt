@@ -1,0 +1,112 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Eclipse"
+	plural "Eclipses"
+	sprite "ship/eclipse"
+	thumbnail "thumbnail/eclipse"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Sleeper"
+		cost 40250000
+		"shields" 104200
+		"hull" 52600
+		"required crew" 44
+		"bunks" 74
+		"cargo space" 80
+		"mass" 292
+		"drag" 8.6
+		"heat dissipation" 0.0
+		"energy capacity" 40000
+		"heat generation" 5
+		"energy generation" 5
+		"fuel capacity" 1000
+		"ramscoop" 80
+		"outfit space" 610
+		"weapon capacity" 210
+		"engine capacity" 190	
+		weapon
+			"blast radius" 250
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 2000
+	outfits
+		"Apoapsis-Class Turret" 2
+		"Elliptic-Class Anti-missile"
+		"Lissajous-Class Regenerator" 6
+		"Oberth-Class Active Shield" 6
+		"Prograde-Class Thruster" 6
+		"Prograde-Class Steering" 6
+		"Hyperdrive"
+
+	turret 48 -27.5 "Apoapsis-Class Turret"
+	turret -48 -27.5 "Apoapsis-Class Turret"
+	turret 0 0 "Elliptic-Class Anti-missile"
+	engine -65.5 95
+	engine -45 106.5
+	engine -24 119
+	engine 24 119
+	engine 45 106.5
+	engine 65.5 95
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description "The Eclipse is the Sleeper's combat vessel, piloted by Sleepers themselves as opposed to robotic Custodians. It's rumoured that the Sleepers have a massive fleet of mothballed Eclipses, just in case they are awoken before the Heat Death."
+
+ship "Syzygy"
+	sprite "ship/syzygy"
+	thumbnail "thumbnail/syzygy"
+	attributes
+		category "Light Freighter"
+		licenses
+			"Sleeper"
+		"cost" 1064000
+		"shields" 11000
+		"hull" 4000
+		"automaton" 1
+		"cargo space" 15
+		"mass" 42
+		"drag" 2.8
+		"heat dissipation" .0
+		"energy capacity" 10000
+		"heat generation" 1
+		"energy generation" 1
+		"outfit space" 111
+		"weapon capacity" 26
+		"engine capacity" 30
+		"outfit scan power" 10
+		"outfit scan speed" 1
+		"tactical scan power" 20
+		"asteroid scan power" 30
+		"self destruct" .9
+		"ramscoop" 3
+		"fuel capacity" 200
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Periapsis-Class Beam"
+		"Lissajous-Class Regenerator"
+		"Oberth-Class Active Shield"
+		"Prograde-Class Thruster"
+		"Prograde-Class Steering"
+		"Hyperdrive"
+
+	gun 0 -25.5 "Periapsis-Class Beam"
+	engine -7 23
+	engine 7 23
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Syzygy are the drones that constitute the mining and freighting force of the Sleepers. Each one is piloted by a semi-sentient Custodian intelligence and roam Sleeper space, looking for minerals to mine and collecting fuel with their sizable ramscoop."

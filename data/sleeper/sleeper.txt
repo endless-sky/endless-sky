@@ -1,0 +1,132 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+fleet "Small Sleeper"
+	government "Sleeper"
+	names "sleeper"
+	cargo 2
+	personality
+		heroic opportunistic plunders
+	variant
+		"Eclipse"
+
+fleet "Large Sleeper"
+	government "Sleeper"
+	names "sleeper"
+	cargo 1
+	personality
+		heroic opportunistic plunders
+	variant 2
+		"Eclipse" 3
+	variant
+		"Eclipse" 4
+
+fleet "Sleeper Guard"
+	government "Sleeper"
+	names "sleeper"
+	cargo 2
+	personality
+		disables mining harvests
+	variant 20
+		"Syzygy" 1
+	variant 10
+		"Syzygy" 2
+	variant 5
+		"Syzygy" 3
+
+#ship names
+phrase "sleeper"
+	word
+		"Groggy"
+		"Awoken"
+		"Sedated"
+		"Invigorated"
+		"Unconscious"
+		"Sleeping"
+		"Waking"
+	word
+		" "
+	word
+		"Day"
+		"Night"
+		"Sunrise"
+		"Dusk"
+		"Twilight"
+		"Noon"
+		"Sunset"
+
+
+#Hails:
+phrase "sleeper untranslated"
+	word
+		"Se"
+		"We"
+		"Cs"
+		"Id"
+		"Vl"
+		"Yt"
+		"Sh"
+	word
+		"int "
+		" "
+		"ds "
+		"ee "
+		" "
+		"vs "
+		"ry "
+	word
+		"... "
+	word
+		"ssk "
+		"isk "
+		"tsk "
+		"chk "
+		"chu"
+		"ych"
+		"sl "
+	word
+		"let"
+		"..."
+		"sk"
+		"ie"
+
+phrase "friendly sleeper"
+	word
+		"May you rest well."
+
+phrase "hostile sleeper"
+	word
+		"You should not have woken us."
+		"You are wasting valuable energy by trifling with us."
+		"The energy expended to destroy you shall be worth it."
+
+phrase "hostile disabled sleeper"
+	word
+		"You should not have woken us."
+		"You are wasting valuable energy by trifling with us."
+		"The energy expended to destroy you shall be worth it."
+
+phrase "friendly disabled sleeper"
+	word
+		"Please... assist."
+
+#shipyards
+shipyard "Sleeper"
+	"Syzygy"
+	"Eclipse"
+
+outfitter "Sleeper"
+	"Lissajous-Class Regenerator"
+	"Periapsis-Class Beam"
+	"Apoapsis-Class Turret"
+	"Elliptic-Class Anti-missile"
+	"Oberth-Class Active Shield"
+	"Prograde-Class Thruster"
+	"Prograde-Class Steering"
