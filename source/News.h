@@ -31,6 +31,8 @@ class News {
 public:
 	void Load(const DataNode &node);
 	
+	// Check whether this news item has anything to say.
+	bool IsEmpty() const;
 	// Check if this news item is available on the given planet.
 	bool Matches(const Planet *planet) const;
 	

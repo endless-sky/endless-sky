@@ -51,6 +51,42 @@ effect "inhibitor impact"
 	"random velocity" 6
 	"velocity scale" -.05
 
+outfit "Inhibitor Turret"
+	category "Turrets"
+	licenses
+		Remnant
+	cost 1371000
+	thumbnail "outfit/inhibitor turret"
+	"mass" 42
+	"outfit space" -28
+	"weapon capacity" -22
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/inhibitor"
+			"frame rate" 10
+			"no repeat"
+		"hardpoint sprite" "hardpoint/inhibitor turret"
+		"hardpoint offset" 6.
+		sound "inhibitor"
+		"hit effect" "inhibitor impact" 3
+		"inaccuracy" .5
+		"turret turn" 3.5
+		"velocity" 36
+		"random velocity" .5
+		"lifetime" 24
+		"reload" 6.5
+		"cluster"
+		"firing energy" 26
+		"firing heat" 45.5
+		"firing force" 13
+		"shield damage" 26
+		"hull damage" 19.5
+		"hit force" 39
+		"slowing damage" .5
+	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
+	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
+
 
 outfit "Thrasher Cannon"
 	category "Guns"
@@ -179,6 +215,19 @@ outfit "EMP Torpedo"
 	"mass" 1
 	"emp torpedo capacity" -1
 	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
+
+outfit "EMP Torpedo Storage Bay"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 98000
+	thumbnail "outfit/emp rack"
+	"mass" 5
+	"outfit space" -12
+	"energy capacity" 400
+	"emp torpedo capacity" 7
+	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
@@ -330,7 +379,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 outfit "Quantum Key Stone"
 	category "Systems"
@@ -360,6 +409,34 @@ outfit "Salvage Scanner"
 
 
 # Engines:
+
+outfit "Bellows-Class Afterburner"
+	category "Engines"
+	"cost" 640000
+	thumbnail "outfit/remnant afterburner"
+	"mass" 13
+	"outfit space" -11
+	"engine capacity" -11
+	"afterburner thrust" 153.0
+	"afterburner fuel" 2.0
+	"afterburner energy" 6.0
+	"afterburner heat" 8.0
+	"afterburner effect" "remnant afterburner"
+	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
+	description "	The Bellows-class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
+
+effect "remnant afterburner"
+	sprite "effect/remnant afterburner/remnant afterburner"
+		"no repeat"
+		"frame rate" 30
+	sound "afterburner"
+	"lifetime" 0.1
+	"random angle" 0
+	"random spin" 0
+	"random velocity" 1.
+	"velocity scale" 0.1
+
+
 
 outfit "Anvil-Class Engine"
 	category "Engines"
@@ -444,6 +521,9 @@ outfit "Crucible-Class Steering"
 	"turn" 448.0
 	"turning energy" 1.32
 	"turning heat" 1.4
+	"steering flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
 	description "This steering system is tiny enough to fit in even an interceptor, but the Remnant mostly use them to provide an extra bit of maneuverability for their larger ships."
 
 outfit "Forge-Class Steering"
@@ -458,6 +538,9 @@ outfit "Forge-Class Steering"
 	"turn" 952.0
 	"turning energy" 2.64
 	"turning heat" 3.0
+	"steering flare sprite" "effect/remnant flare/medium"
+		"frame rate" 4
+	"steering flare sound" "plasma small"
 	description "This unusually power-hungry steering system packs a lot of power into a relatively small space. It seems that engine technology has progressed more rapidly for the Remnant than it has for the rest of humanity."
 
 outfit "Smelter-Class Steering"
@@ -472,6 +555,9 @@ outfit "Smelter-Class Steering"
 	"turn" 1980.0
 	"turning energy" 5.21
 	"turning heat" 6.2
+	"steering flare sprite" "effect/remnant flare/large"
+		"frame rate" 3
+	"steering flare sound" "plasma medium"
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
 
 outfit "Tuning Rifle"

@@ -133,7 +133,7 @@ void Audio::Init(const vector<string> &sources)
 	// The listener is looking "into" the screen. This orientation vector is
 	// used to determine what sounds should be in the right or left speaker.
 	ALfloat zero[3] = {0., 0., 0.};
-	ALfloat	orientation[6] = {0., 0., -1., 0., 1., 0.};
+	ALfloat orientation[6] = {0., 0., -1., 0., 1., 0.};
 	
 	alListenerf(AL_GAIN, volume);
 	alListenerfv(AL_POSITION, zero);
@@ -181,8 +181,8 @@ void Audio::Init(const vector<string> &sources)
 
 
 
-// Check the progress of loading sounds.
-double Audio::Progress()
+// Report the progress of loading sounds.
+double Audio::GetProgress()
 {
 	unique_lock<mutex> lock(audioMutex);
 	

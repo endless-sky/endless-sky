@@ -709,3 +709,8 @@ trade
 		"stolen yachts"
 		"undeclared nuclear fuel"
 		"weaponized chickens"
+	commodity "void sprite parts"
+		"void sprite parts"
+		"void sprite limbs"
+		"dismembered void sprites"
+

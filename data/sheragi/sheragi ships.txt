@@ -1,0 +1,76 @@
+# Copyright (c) 2020 by Fernando S. Sáez
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Emerald Sword"
+	sprite ship/emeraldsword
+	thumbnail "thumbnail/emeraldsword"
+	attributes
+		category "Heavy Warship"
+		"cost" 100000000
+		"shields" 9500
+		"hull" 45000
+		"required crew" 86
+		"bunks" 302
+		"mass" 1520
+		"drag" 20
+		"heat dissipation" 0.45
+		"fuel capacity" 900
+		"cargo space" 169
+		"outfit space" 1185
+		"weapon capacity" 512
+		"engine capacity" 230
+		"spinal mount" 1
+		weapon
+			"blast radius" 993
+			"shield damage" 19930
+			"hull damage" 11965
+			"hit force" 11495
+	outfits
+		"Dragonflame Cannon"
+		"Particle Waveform Turret" 6
+		"Sheragi Anti-Missile" 2
+		
+		"Electromagnetic Battery"
+		"Sheragi Cooling Unit"
+		"Outfits Expansion"
+		"Damaged Sheragi Systems"
+		
+		"Fusion Drive"
+		"Jump Drive"
+	engine 83 275 1.3
+	engine 132 282 0.8
+	engine -83 275 1.3
+	engine -132 282 0.8
+	turret -18 -41.5 "Particle Waveform Turret"
+	turret 18 -41.5 "Particle Waveform Turret"
+	turret -70 70.5 "Particle Waveform Turret"
+	turret 70 70.5 "Particle Waveform Turret"
+	turret -128.5 174 "Particle Waveform Turret"
+	turret 128.5 174 "Particle Waveform Turret"
+	turret 0 114 "Sheragi Anti-Missile"
+	turret 0 183 "Sheragi Anti-Missile"
+	gun 0 -276 "Dragonflame Cannon"
+	fighter 0 220.5 back
+	fighter 0 220.5 back
+	fighter 0 220.5 back
+	fighter 0 220.5 back
+	fighter 0 220.5 back
+	fighter 0 220.5 back
+	explode "medium explosion" 47
+	explode "huge explosion" 42
+	explode "tiny explosion" 60
+	explode "small explosion" 26
+	explode "large explosion" 39
+	explode "nuke explosion" 2
+	"final explode" "nuke explosion" 2
+	"final explode" "nuke residue fast" 25
+	"final explode" "nuke residue fast" 25
+	description "An ancient Sheragi warship that was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size."
+	description "For its original Sheragi masters, this warship was home to around 100 individuals. For others, however, that number more than doubles, bringing it on par with the largest city ships."
