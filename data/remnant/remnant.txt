@@ -399,7 +399,6 @@ phrase "friendly remnant"
 		" "
 	word
 		"actually had"
-		"remembered the ship had"
 	word
 		" "
 	word
