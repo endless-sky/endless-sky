@@ -708,6 +708,28 @@ phrase "hostile remnant"
 		"You betrayed our trust"
 	word
 		"."
+		
+phrase "hostile remnant"
+	word
+		"I"
+		"We"
+	word
+		" "
+	word
+		"thought"
+	word
+		" "
+	phrase
+		"hostile remnant (we're)"
+		"hostile remnant (you're)"
+	word
+		". "
+	word
+		"Why are you doing this"
+		"Are you insane"
+		"Did I hurt you"
+	word
+		"?"
 
 phrase "hostile remnant (we're)"
 	word
@@ -730,29 +752,6 @@ phrase "hostile remnant (you're)"
 		"not hostile"
 		"friendly"
 		"good"
-		
-
-phrase "hostile remnant"
-	word
-		"I"
-		"We"
-	word
-		" "
-	word
-		"thought"
-	word
-		" "
-	phrase
-		"hostile remnant (we're)"
-		"hostile remnant (you're)"
-	word
-		". "
-	word
-		"Why are you doing this"
-		"Are you insane"
-		"Did I hurt you"
-	word
-		"?"
 
 
 
