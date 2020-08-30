@@ -1052,7 +1052,7 @@ mission "Remnant: Deep Surveillance"
 			`	You approach a spaceport information desk and ask to see Prefect Torza, who you spoke to the last time you informed the Remnant about the Deep researching the wormhole. Luckily, Torza is on-world at the moment, and you are told to meet him in the cafeteria. When you arrive, you find that Torza has just finished a meal and was leaving.`
 			`	"Ah, Captain. I was told you were looking for me. Is there an update to the research on the Threshold that the Deep are doing?"`
 			choice
-				`	"I've helped the scientists learn how to pass through the wormhole."
+				`	"I've helped the scientists learn how to pass through the wormhole."`
 				`	"The scientists have discovered how to pass through the wormhole."`
 					goto discovered2
 			
