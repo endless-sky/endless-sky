@@ -37,7 +37,7 @@ class Rectangle;
 // hardpoints. In flight, this panel allows them to jettison cargo.
 class ShipInfoPanel : public Panel {
 public:
-	explicit ShipInfoPanel(PlayerInfo &player, int index = -1, std::vector<std::shared_ptr<Ship>> *ships = nullptr);
+	explicit ShipInfoPanel(PlayerInfo &player, std::vector<std::shared_ptr<Ship>> shipList, int index = -1);
 	
 	virtual void Draw() override;
 	

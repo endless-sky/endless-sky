@@ -43,12 +43,12 @@ namespace {
 }
 
 
-ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index, vector<shared_ptr<Ship>> *shipView)
-: player(player), canEdit(player.GetPlanet()), ships(shipView == nullptr ? player.Ships() : *shipView)
+ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, vector<shared_ptr<Ship>> shipList, int index)
+: player(player), canEdit(player.GetPlanet()), ships(move(shipList))
 {
 	shipIt = ships.begin();
 	SetInterruptible(false);
-	
+
 	// If a valid ship index was given, show that ship.
 	if(static_cast<unsigned>(index) < player.Ships().size())
 		shipIt += index;
@@ -134,7 +134,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new PlayerInfoPanel(player, &ships));
+		GetUI()->Push(new PlayerInfoPanel(player, ships));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));

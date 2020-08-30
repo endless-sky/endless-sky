@@ -403,7 +403,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 	}
 	else if(command.Has(Command::INFO))
-		GetUI()->Push(new ShipInfoPanel(player));
+		GetUI()->Push(new ShipInfoPanel(player, player.Ships()));
 	
 	// Trim the list of status messages.
 	while(messages.size() > 5)

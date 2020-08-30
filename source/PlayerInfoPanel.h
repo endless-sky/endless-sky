@@ -15,14 +15,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Color.h"
 #include "ClickZone.h"
 #include "Point.h"
 #include "Table.h"
 
+#include <map>
 #include <memory>
 #include <set>
 #include <vector>
 
+class Color;
 class PlayerInfo;
 class Rectangle;
 class Ship;
@@ -36,7 +39,7 @@ class Table;
 class PlayerInfoPanel : public Panel {
 public:
 	using ShipComparator = bool (const std::shared_ptr <Ship>&, const std::shared_ptr <Ship>&);
-	explicit PlayerInfoPanel(PlayerInfo &player, std::vector<std::shared_ptr<Ship>> *shipView = nullptr);
+	explicit PlayerInfoPanel(PlayerInfo &player, std::vector<std::shared_ptr<Ship>> shipList);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -58,6 +61,7 @@ protected:
 private:
 	// Draw the two subsections of this panel.
 	void DrawPlayer(const Rectangle &bounds);
+	void Init();
 	void DrawFleet(const Rectangle &bounds);
 	
 	// Handle mouse hover (also including hover during drag actions):
@@ -65,21 +69,24 @@ private:
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	
-	std::vector<std::shared_ptr<Ship>> SortShips (bool sortDescending, ShipComparator &shipComparator);
+	void SortShips (ShipComparator &shipComparator);
 
 	class SortableColumn {
 	public:
 		SortableColumn();
 		SortableColumn(std::string name, double offset, Table::Align align, ShipComparator* shipSort);
 		
-		std::string name;
-		double offset;
-		Table::Align align;
-		ShipComparator *shipSort;
+		std::string name = "";
+		double offset = 0.;
+		Table::Align align = Table::Align::LEFT;
+		ShipComparator *shipSort = nullptr;
 	};
 
 private:
+	enum Colors {FAINT, MEDIUM, BRIGHT, DIM, DEAD, SPECIAL};
+
 	PlayerInfo &player;
+	std::map<Colors, Color> colors;
 	std::vector<SortableColumn> columns;
 	std::vector<ClickZone<ShipComparator*>> menuZones;
 	// A copy of PlayerInfo.ships for sorting

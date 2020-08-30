@@ -32,7 +32,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
-#include <iterator>
 #include <utility>
 
 using namespace std;
@@ -97,15 +96,11 @@ namespace {
 
 
 
-PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, vector<shared_ptr<Ship>> *shipView)
-	: player(player), canEdit(player.GetPlanet()), ships(shipView == nullptr ? player.Ships() : *shipView)
+PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, vector<shared_ptr<Ship>> shipList)
+	: player(player), canEdit(player.GetPlanet()), ships(move(shipList))
 {
 	SetInterruptible(false);
-	if(shipView == nullptr)
-	{
-		ships.clear();
-		copy(player.Ships().begin(), player.Ships().end(), back_inserter(ships));
-	}
+	Init();
 }
 
 
@@ -216,7 +211,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		if(!ships.empty())
 		{
 			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, selectedIndex, &ships));
+			GetUI()->Push(new ShipInfoPanel(player, ships, selectedIndex));
 		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -402,8 +397,7 @@ bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
 	for(auto &zone : menuZones)
 		if(zone.Contains(UI::GetMouse()))
 		{
-			sortAscending = currentSort == zone.Value() ? !sortAscending : true;
-			SortShips(sortAscending, *zone.Value());
+			SortShips(*zone.Value());
 			currentSort = zone.Value();
 			isDirty = true;
 			return true;
@@ -447,7 +441,7 @@ bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
 	{
 		// If not landed, clicking a ship name takes you straight to its info.
 		GetUI()->Pop(this);
-		GetUI()->Push(new ShipInfoPanel(player, hoverIndex, &ships));
+		GetUI()->Push(new ShipInfoPanel(player, ships, hoverIndex));
 	}
 	
 	return true;
@@ -507,83 +501,6 @@ bool PlayerInfoPanel::Scroll(double dx, double dy)
 
 
 
-void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
-{
-	// Check that the specified area is big enough.
-	if(bounds.Width() < 250.)
-		return;
-	
-	// Colors to draw with.
-	Color dim = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
-	
-	// Table attributes.
-	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(230, Table::RIGHT);
-	table.SetUnderline(0, 230);
-	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
-	
-	// Header row.
-	table.Draw("player:", dim);
-	table.Draw(player.FirstName() + " " + player.LastName(), bright);
-	table.Draw("net worth:", dim);
-	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
-	
-	// Determine the player's combat rating.
-	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
-	const string &combatRating = GameData::Rating("combat", combatLevel);
-	if(!combatRating.empty())
-	{
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw("combat rating:", bright);
-		table.Advance();
-		table.DrawGap(5);
-		
-		table.Draw(combatRating, dim);
-		table.Draw("(" + to_string(combatLevel) + ")", dim);
-	}
-	
-	// Display the factors affecting piracy targeting the player.
-	pair<double, double> factors = player.RaidFleetFactors();
-	double attractionLevel = max(0., log2(max(factors.first, 0.)));
-	double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
-	const string &attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
-	const string &deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
-	if(!attractionRating.empty() && !deterrenceRating.empty())
-	{
-		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
-		double prob = 1. - pow(1. - attraction, 10.);
-		
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw("piracy threat:", bright);
-		table.Draw(to_string(lround(100 * prob)) + "%", dim);
-		table.DrawGap(5);
-		
-		// Format the attraction and deterrence levels with tens places, so it
-		// is clear which is higher even if they round to the same level.
-		table.Draw("cargo: " + attractionRating, dim);
-		table.Draw("(+" + Format::Decimal(attractionLevel, 1) + ")", dim);
-		table.DrawGap(5);
-		table.Draw("fleet: " + deterrenceRating, dim);
-		table.Draw("(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim);
-	}
-	// Other special information:
-	auto salary = Match(player, "salary: ", "");
-	sort(salary.begin(), salary.end());
-	DrawList(salary, table, "salary:", 4);
-	
-	auto tribute = Match(player, "tribute: ", "");
-	sort(tribute.begin(), tribute.end());
-	DrawList(tribute, table, "tribute:", 4);
-	
-	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
-	auto licenses = Match(player, "license: ", " License");
-	DrawList(licenses, table, "licenses:", maxRows, false);
-}
-
 bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
 	return lhs->Name() < rhs->Name();
 }
@@ -593,11 +510,11 @@ bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) 
 }
 
 bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
-	if(lhs->GetSystem() == NULL)
+	if(lhs->GetSystem() == nullptr)
 	{
 		return false;
 	}
-	else if(rhs->GetSystem() == NULL)
+	else if(rhs->GetSystem() == nullptr)
 	{
 		return true;
 	}
@@ -629,19 +546,18 @@ bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rh
 	return lhs->RequiredCrew() < rhs->RequiredCrew();
 }
 
-void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
+// Initialize a bunch of constants used for drawing later
+void PlayerInfoPanel::Init()
 {
-	// Check that the specified area is big enough.
-	if(bounds.Width() < 750.)
-		return;
-	
 	// Colors to draw with.
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
-	Color elsewhere = *GameData::Colors().Get("dim");
-	Color dead(.4f, 0.f, 0.f, 0.f);
-	Color special(0.5f, 0.5f, 0.1f, 0.f);
+	colors = {
+		{FAINT, *GameData::Colors().Get("faint")},
+		{MEDIUM, *GameData::Colors().Get("medium")},
+		{BRIGHT, *GameData::Colors().Get("bright")},
+		{DIM, *GameData::Colors().Get("dim")},
+		{DEAD, *GameData::Colors().Get("dead")},
+		{SPECIAL, *GameData::Colors().Get("special")}
+	};
 
 	// Table columns and their starting x positions, alignment and sort comparator
 	columns = {
@@ -653,7 +569,89 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		SortableColumn("fuel", 670, Table::RIGHT, CompareFuel),
 		SortableColumn("crew", 730, Table::RIGHT, CompareRequiredCrew)
 	};
+}
+
+
+
+void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < 250.)
+		return;
 	
+	
+	// Table attributes.
+	Table table;
+	table.AddColumn(0, Table::LEFT);
+	table.AddColumn(230, Table::RIGHT);
+	table.SetUnderline(0, 230);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+	
+	// Header row.
+	table.Draw("player:", colors[MEDIUM]);
+	table.Draw(player.FirstName() + " " + player.LastName(), colors[BRIGHT]);
+	table.Draw("net worth:", colors[MEDIUM]);
+	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", colors[BRIGHT]);
+	
+	// Determine the player's combat rating.
+	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
+	const string &combatRating = GameData::Rating("combat", combatLevel);
+	if(!combatRating.empty())
+	{
+		table.DrawGap(10);
+		table.DrawUnderline(colors[MEDIUM]);
+		table.Draw("combat rating:", colors[BRIGHT]);
+		table.Advance();
+		table.DrawGap(5);
+		
+		table.Draw(combatRating, colors[MEDIUM]);
+		table.Draw("(" + to_string(combatLevel) + ")", colors[MEDIUM]);
+	}
+	
+	// Display the factors affecting piracy targeting the player.
+	pair<double, double> factors = player.RaidFleetFactors();
+	double attractionLevel = max(0., log2(max(factors.first, 0.)));
+	double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
+	const string &attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
+	const string &deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
+	if(!attractionRating.empty() && !deterrenceRating.empty())
+	{
+		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
+		double prob = 1. - pow(1. - attraction, 10.);
+		
+		table.DrawGap(10);
+		table.DrawUnderline(colors[MEDIUM]);
+		table.Draw("piracy threat:", colors[BRIGHT]);
+		table.Draw(to_string(lround(100 * prob)) + "%", colors[MEDIUM]);
+		table.DrawGap(5);
+		
+		// Format the attraction and deterrence levels with tens places, so it
+		// is clear which is higher even if they round to the same level.
+		table.Draw("cargo: " + attractionRating, colors[MEDIUM]);
+		table.Draw("(+" + Format::Decimal(attractionLevel, 1) + ")", colors[MEDIUM]);
+		table.DrawGap(5);
+		table.Draw("fleet: " + deterrenceRating, colors[MEDIUM]);
+		table.Draw("(-" + Format::Decimal(deterrenceLevel, 1) + ")", colors[MEDIUM]);
+	}
+	// Other special information:
+	auto salary = Match(player, "salary: ", "");
+	sort(salary.begin(), salary.end());
+	DrawList(salary, table, "salary:", 4);
+	
+	auto tribute = Match(player, "tribute: ", "");
+	sort(tribute.begin(), tribute.end());
+	DrawList(tribute, table, "tribute:", 4);
+	
+	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
+	auto licenses = Match(player, "license: ", " License");
+	DrawList(licenses, table, "licenses:", maxRows, false);
+}
+
+void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < 750.)
+		return;
 
 	// Table attributes.
 	Table table;
@@ -662,7 +660,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
-	table.DrawUnderline(hoverMenuPtr == nullptr ? dim : bright);
+	table.DrawUnderline(hoverMenuPtr == nullptr ? colors[MEDIUM] : colors[BRIGHT]);
 
 	// Header row.
 	
@@ -671,7 +669,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		const auto currentColumn = *column;
 		const Color columnHeaderColor = (hoverMenuPtr == currentColumn.shipSort
 			|| currentSort == currentColumn.shipSort)
-				? bright : dim;
+				? colors[BRIGHT] : colors[MEDIUM];
 		const Point tablePoint = table.GetPoint();
 
 		table.Draw(currentColumn.name, columnHeaderColor);
@@ -704,7 +702,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		
 		// Check if this row is selected.
 		if(allSelected.count(index))
-			table.DrawHighlight(back);
+			table.DrawHighlight(colors[FAINT]);
 		
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
@@ -715,23 +713,23 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		if(isDead)
 		{
-			table.SetColor(dead);
+			table.SetColor(colors[DEAD]);
 		}
 		else if(isHovered)
 		{
-			table.SetColor(bright);
+			table.SetColor(colors[BRIGHT]);
 		}
 		else if(isElsewhere)
 		{
-			table.SetColor(elsewhere);
+			table.SetColor(colors[DIM]);
 		}
 		else if(isFlagship)
 		{
-			table.SetColor(special);
+			table.SetColor(colors[SPECIAL]);
 		}
 		else
 		{
-			table.SetColor(dim);
+			table.SetColor(colors[MEDIUM]);
 		}
 		
 		// Store this row's position, to handle hovering.
@@ -774,7 +772,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		{
 			const string &name = ships[i]->Name();
 			font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
-			font.Draw(name, pos, bright);
+			font.Draw(name, pos, colors[BRIGHT]);
 			pos.Y() += 20.;
 		}
 	}
@@ -782,7 +780,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 
 // Sorts the player's fleet given a comparator function (based on column)
-vector<shared_ptr<Ship>> PlayerInfoPanel::SortShips(bool sortDescending, ShipComparator &shipComparator)
+void PlayerInfoPanel::SortShips(ShipComparator &shipComparator)
 {
 	// Move flagship to first position
 	for(auto it = ships.begin(); it != ships.end(); ++it)
@@ -792,13 +790,12 @@ vector<shared_ptr<Ship>> PlayerInfoPanel::SortShips(bool sortDescending, ShipCom
 			break;
 		}
 
-	std::stable_sort(ships.begin() + 1, ships.end(), [&](const shared_ptr<Ship> &lhs, const  shared_ptr<Ship> &rhs) {
-		if(sortDescending == true)
+	if(currentSort != shipComparator)
+		std::stable_sort(ships.begin() + 1, ships.end(), [&](const shared_ptr<Ship> &lhs, const  shared_ptr<Ship> &rhs) {
 			return shipComparator(lhs, rhs);
-		else
-			return !shipComparator(lhs, rhs);
-	});
-	return ships;
+		});
+	else
+		std::reverse(ships.begin() + 1, ships.end());
 }
 
 bool PlayerInfoPanel::Hover(const Point &point)
@@ -835,13 +832,6 @@ bool PlayerInfoPanel::Scroll(int distance)
 	
 	scroll = newScroll;
 	return true;
-}
-
-
-
-PlayerInfoPanel::SortableColumn::SortableColumn()
-	: name(""), offset(0.), align(Table::Align::LEFT), shipSort(nullptr)
-{
 }
 
 

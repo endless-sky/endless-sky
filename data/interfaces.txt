@@ -18,6 +18,8 @@ color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "faint" .1 .1 .1 0.
+color "special" .5 .5 .1 0.
+color "dead" .4 0. 0. 0.
 
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
