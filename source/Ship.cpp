@@ -879,7 +879,7 @@ vector<string> Ship::FlightCheck() const
 	double afterburner = (attributes.Get("afterburner thrust") * (1. + attributes.Get("thrust multiplier")));
 	double thrustEnergy = (attributes.Get("thrusting energy") * (1. + attributes.Get("thrusting energy multiplier")));
 	double turn = (attributes.Get("turn") * (1. + attributes.Get("turn multiplier")));
-	double turnEnergy = (attributes.Get("turning energy") * (1. + attributes.Get("turning energy multiplier")));
+	double turnEnergy = (attributes.Get("turning energy") * (1. + attributes.Get("thrust energy multiplier")));
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
 	
