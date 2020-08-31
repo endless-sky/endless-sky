@@ -10,8 +10,8 @@
 
 government "Alpha"
 	swizzle 1
-	"crew attack" 8
-	"crew defense" 6
+	"crew attack" 5
+	"crew defense" 4
 	"player reputation" -1000
 	"bribe" 0
 
