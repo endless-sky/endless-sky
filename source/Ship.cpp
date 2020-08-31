@@ -874,7 +874,7 @@ vector<string> Ship::FlightCheck() const
 	double fuelChange = attributes.Get("fuel generation") - attributes.Get("fuel consumption");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	double fuel = fuelCapacity + fuelChange;
-	double thrust = attributes.Get("thrust");
+	double thrust = (attributes.Get("thrust") * (1. + attributes.Get("thrust multiplier")));
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
 	double thrustEnergy = attributes.Get("thrusting energy");
