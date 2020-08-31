@@ -8,32 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-fleet "Southern Patrol Drones"
-	government "Militia"
-	fighters "republic fighter"
-	personality disables staying
-	variant 10
-		"Defense Drone" 2
-		"Defense Drone (surveillance)"
-	variant 5
-		"Defense Drone (surveillance)"
-	variant 7
-		"Defense Drone" 3
-fleet "Southern Defense Drones"
-	government "Militia"
-	names "republic fighter"
-	variant 5
-		"Defense Drone" 2
-		"Defense Drone (Modified)"
-	variant 5
-		"Defense Drone" 3
-	variant 4
-		"Defense Drone" 5
-	variant 3
-		"Defense Drone" 7
-	variant 2
-		"Defense Drone (Modified)" 3
-
 fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
