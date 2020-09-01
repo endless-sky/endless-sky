@@ -583,7 +583,7 @@ event "southern carriers 2"
 		add variant 5
 			"Modified Freighter"
 			"Nock" 2
-			add variant 5
+		add variant 5
 			"Modified Freighter"
 			"Nock (Modified)" 2
 		add variant 5
