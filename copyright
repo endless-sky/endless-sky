@@ -721,13 +721,18 @@ Comment: Derived from works by NASA (public domain)
  
 Files:
  images/ship/defense_drone*
- images/ship/mfreighter*
  images/ship/nock*
  images/thumbnail/defense_drone*
- images/thumbnail/mfreighter*
  images/thumbnail/nock*
 Copyright: Loyse
 License: CC-BY-SA-4.0
+
+Files:
+ images/ship/mfreighter*
+ images/thumbnail/mfreighter*
+Copyright: Loyse
+License: CC-BY-SA-4.0
+Derived from works by Michael Zahniser (under the same license)
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
