@@ -924,12 +924,10 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		if(waypoints.erase(system))
 			visitedWaypoints.insert(system);
 		
-		// Perform an "on enter" action for this system, if possible.
-		Enter(system, player, ui);
-		
-		// Update any potential NPCs for this mission, as an "on enter" action may have
-		// changed the player's conditions.
-		UpdateNPCs(player);
+		// Perform an "on enter" action for this system, if possible, and if
+		// any was performed, update this mission's NPC spawn states.
+		if(Enter(system, player, ui))
+			UpdateNPCs(player);
 	}
 	
 	for(NPC &npc : npcs)
@@ -1198,9 +1196,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 
 // Perform an "on enter" MissionAction associated with the current system.
-void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
+// Returns true if an action was performed.
+bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
+	const auto originalSize = didEnter.size();
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);
@@ -1216,6 +1216,8 @@ void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 				didEnter.insert(&action);
 				break;
 			}
+	
+	return didEnter.size() > originalSize;
 }
 
 
