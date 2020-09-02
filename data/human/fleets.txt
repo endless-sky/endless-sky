@@ -1277,6 +1277,58 @@ fleet "Large Republic"
 		"Rainmaker" 2
 		"Gunboat"
 
+fleet "Republic Logistics"
+	government "Republic"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 3
+	personality
+		heroic opportunistic
+	variant 19
+		"Auxiliary"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
+	variant 19
+		"Auxiliary (Cargo)"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
+	variant 19
+		"Auxiliary (Transport)"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
+	variant 1
+		"Auxiliary (Cargo)" 3
+		"Dropship" 3
+		"Lance" 9
+		"Cruiser" 2
+		"Combat Drone" 8
+	variant 1
+		"Auxiliary (Transport)"
+		"Auxiliary (Cargo)"
+		"Auxiliary"
+		"Dropship" 6
+		"Lance" 6
+		"Cruiser" 2
+		"Combat Drone" 8
+	variant 1
+		"Auxiliary (Transport)" 3
+		"Dropship" 9
+		"Lance" 3
+		"Cruiser" 2
+		"Combat Drone" 8
+
 fleet "Navy Surveillance"
 	government "Republic"
 	names "republic capital"

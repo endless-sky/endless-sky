@@ -50,6 +50,8 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
+		fighter -46 106 under
+		fighter 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -74,6 +76,32 @@ person "Michael Zahniser"
 		explode "medium explosion" 80
 		explode "large explosion" 120
 		explode "huge explosion" 60
+	ship "Finch (MZ)" "Vapor"
+	ship "Finch (MZ)" "Cipher"
+
+ship "Finch" "Finch (MZ)"
+		"never disabled"
+		add attributes
+			"shields" 900
+			"hull" 1800
+			"outfit space" 140
+			"weapon capacity" 22
+			"engine capacity" 22
+		outfits
+			"Electron Beam" 2
+			
+			"Fuel Pod"
+			"Liquid Nitrogen Cooler"
+			"Large Radar Jammer"
+			"Ramscoop"
+			"S-270 Regenerator"
+			
+			"LP036a Battery Pack"
+			"Fission Reactor"
+			
+			"A125 Atomic Steering"
+			"A120 Atomic Thruster"
+			"Ionic Afterburner"
 
 
 
@@ -736,7 +764,8 @@ ship "Ursa Polaris"
 		"Korath Disruptor" 5
 		"Quarg Anti-Missile" 5
 		Hyperdrive
-		"Korath Heat Shunt"
+		"Large Heat Shunt"
+		"Small Heat Shunt" 2
 		"Systems Core (Large)" 2
 		"Korath Repeater Rifle" 600
 		"Thruster (Stellar Class)"
@@ -765,7 +794,7 @@ ship "Ursa Polaris"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 50
 
 
@@ -777,5 +806,4 @@ person "Subsidurial"
 	ship "Subsidurial"
 		"never disabled"
 	system
-		neighbor government "Uninhabited" "Wanderer" "Remnant"
-
+		government "Uninhabited"
