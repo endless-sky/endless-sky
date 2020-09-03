@@ -399,3 +399,14 @@ bool Mask::Contains(Point point) const
 	// If the number of intersections is odd, the point is within the mask.
 	return (intersections & 1);
 }
+
+
+
+Mask Mask::operator*(double scalar) const
+{
+	Mask newMask;
+	for(const Point &p : outline)
+		newMask.outline.push_back(p * scalar);
+	newMask.radius = ComputeRadius(newMask.outline);
+	return newMask;
+}

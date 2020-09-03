@@ -165,3 +165,10 @@ const Mask &Sprite::GetMask(int frame) const
 	// Assume that if a masks array exists, it has the right number of frames.
 	return masks[frame % masks.size()];
 }
+
+
+
+const vector<Mask> &Sprite::GetMasks() const
+{
+	return masks;
+}

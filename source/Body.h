@@ -14,15 +14,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define BODY_H_
 
 #include "Angle.h"
+#include "Mask.h"
 #include "Point.h"
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 class DataNode;
 class DataWriter;
 class Government;
-class Mask;
 class Sprite;
 
 
@@ -104,11 +105,16 @@ private:
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
 	void SetStep(int step) const;
+	// Cache scaled masks for this body.
+	void ScaleMasks();
+	const Mask &GetScaledMask(int frame = 0) const;
 	
 	
 private:
 	// Animation parameters.
 	const Sprite *sprite = nullptr;
+	// If a Body has a scale, then it may also need scaled collision masks.
+	std::vector<Mask> masks;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 	

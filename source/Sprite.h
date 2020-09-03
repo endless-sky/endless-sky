@@ -61,6 +61,8 @@ public:
 	uint32_t Texture(bool isHighDPI) const;
 	// Get the collision mask for the given frame of the animation.
 	const Mask &GetMask(int frame = 0) const;
+	// Get all the collision masks for this sprite.
+	const std::vector<Mask> &GetMasks() const;
 	
 	
 private:

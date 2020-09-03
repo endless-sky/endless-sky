@@ -60,6 +60,8 @@ public:
 	// Get the list of points in the outline.
 	const std::vector<Point> &Points() const;
 	
+	// Scale all the points in the mask.
+	Mask operator*(double scalar) const;
 	
 private:
 	double Intersection(Point sA, Point vA) const;
