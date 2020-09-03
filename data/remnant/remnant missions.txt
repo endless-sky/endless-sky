@@ -1444,7 +1444,9 @@ mission "Remnant: Salvage 1"
 				`	"Sorry, not interested."`
 					decline
 			branch library
-				has "Human Cultural Archives: done"
+				or
+					has "Human Cultural Archives: done"
+					has "library card"
 			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
 				accept
 			label library

@@ -3437,6 +3437,75 @@ phrase "hostile bounty"
 		"mislead."
 
 
+phrase "friendly bounty hunter"
+	word
+		"This bounty is going to make"
+	word
+		" "
+	word
+		"me rich!"
+		"me filthy rich!"
+		"me a rich man!"
+		"me a rich woman!"
+		"me a lot of money!"
+		"me a comfortable retirement!"
+		"my bank account happy!"
+		"for a nice bit of target practice!"
+		"a fine trophy!"
+
+phrase "friendly bounty hunter"
+	word
+		"I'm getting paid"
+		"I'm being paid"
+		"They paid me"
+		"They gave me"
+		"My client paid me"
+		"They ponied up"
+		"I was promised"
+		"I was given"
+	word
+		" "
+	word
+		"a grand reward"
+		"a lot of money"
+		"a huge amount of money"
+		"an enormous sum"
+		"an enormous sum of money"
+		"quite a bit"
+		"quite a bit of money"
+		"a fat purse"
+		"a lifetime of riches"
+		"ten times a king's ransom"
+	word
+		" "
+	word
+		"to"
+	word
+		" "
+	word
+		"kill this bounty"
+		"take out this bounty"
+		"eliminate this bounty"
+		"vaporize this bounty"
+		"turn my bounty into space debris"
+		"terminate this bounty"
+		"destroy a bounty"
+		"end someone's life"
+		"get rid of a problem"
+		"make someone disappear"
+		"make a problem go away"
+		"take a "friend" out of the picture"
+		"guide someone to the afterlife"
+		"end someone's career"
+		"cut short a crime spree"
+		"put an end to someone's crimes"
+		"give my bounty an early retirement"
+		"put a "friend" in a grave"
+	word
+		"."
+		"!"
+		
+		
 phrase "hostile bounty hunter"
 	word
 		"You're going to make"

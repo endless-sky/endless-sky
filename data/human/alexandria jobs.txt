@@ -1,0 +1,1328 @@
+# Copyright (c) 2020 by Nomadic Volcano
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Small Interlibrary Loan [0]"
+	job
+	repeat
+	name "Interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		distance 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 170
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Loan [1]"
+	job
+	repeat
+	name "Interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 800 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Loan [2]"
+	job
+	repeat
+	name "Interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 170
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Small Interlibrary Loan [3]"
+	job
+	repeat
+	name "Interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1500 150
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Loan [4]"
+	job
+	repeat
+	name "Interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Loan [5]"
+	job
+	repeat
+	name "Interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 180
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Small Library Media Delivery [0]"
+	job
+	repeat
+	name "Library media delivery to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Library Media Delivery [1]"
+	job
+	repeat
+	name "Library media delivery to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 500 170
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Library Media Delivery [2]"
+	job
+	repeat
+	name "Library media delivery to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1500 150
+		dialog phrase "generic cargo delivery payment"
+
+
+
+
+mission "Bulk Interlibrary Loan [0]"
+	job
+	repeat
+	name "Bulk interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 25 2 .07
+	to offer
+		"cargo space" > 40
+		has "library card"
+		random < 40
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2000 170
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Interlibrary Loan [1]"
+	job
+	repeat
+	name "Bulk interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 25 2 .07
+	to offer
+		"cargo space" > 40
+		random < 40
+		has "library card"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 160
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Bulk Library Media Delivery [0]"
+	job
+	repeat
+	name "Bulk library media delivery to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 25 2 .07
+	to offer
+		"cargo space" > 40
+		random < 40
+		has "library card"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2000 170
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Library Media Delivery [1]"
+	job
+	repeat
+	name "Bulk library media delivery to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 25 2 .07
+	to offer
+		"cargo space" > 40
+		random < 40
+		has "library card"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 3500 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Large Bulk Interlibrary Loan [0]"
+	job
+	repeat
+	name "Large bulk interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 40 2 .02
+	to offer
+		"cargo space" > 140
+		random < 25
+		has "library card"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 4000 170
+		dialog phrase "generic cargo delivery payment"
+
+mission "Large Bulk Interlibrary Loan [1]"
+	job
+	repeat
+	name "Large bulk interlibrary loan to <planet>"
+	description `Deliver <cargo> to a library on <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Media" 40 2 .02
+	to offer
+		"cargo space" > 140
+		random < 25
+		has "library card"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 6000 150
+		dialog phrase "generic cargo delivery payment"
+
+mission "Librarian Transport [0]"
+	job
+	repeat
+	name "Alexandria Librarian to <planet>"
+	description `Transport an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 1000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Librarian Transport [1]"
+	job
+	repeat
+	name "Alexandria Librarian to <planet>"
+	description `Transport an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 500 160
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Librarian Transport [2]"
+	job
+	repeat
+	name "Alexandria Librarian to <planet>"
+	description `Transport an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 1500 150
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Library Assistant Transport [0]"
+	job
+	repeat
+	name "Alexandria Library Assistant to <planet>"
+	description `Transport an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 500 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Library Assistant Transport [1]"
+	job
+	repeat
+	name "Alexandria Library Assistant to <planet>"
+	description `Transport an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Library Assistant Transport [2]"
+	job
+	repeat
+	name "Alexandria Library Assistant to <planet>"
+	description `Transport an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 800 170
+		dialog phrase "generic passenger dropoff payment"
+
+
+
+mission "Library Staff Transport [0]"
+	job
+	repeat
+	name "Alexandria Library staff to <planet>"
+	description `Transport <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 3 10 .7
+	to offer
+		has "library card"
+		random < 50
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 2000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Library Staff Transport [1]"
+	job
+	repeat
+	name "Alexandria Library staff to <planet>"
+	description `Transport <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 3 10 .7
+	to offer
+		has "library card"
+		random < 50
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 2000 170
+		dialog phrase "generic passenger dropoff payment"
+
+
+
+mission "Library Team Transport"
+	job
+	repeat
+	name "Alexandria Library team to <planet>"
+	description `Transport a team of <bunks> Alexandria Library staff and <cargo> to <destination>. Payment is <payment>.`
+	source Alexandria
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+		distance 6 25
+	cargo "Library Supplies" 3 2 .5
+	passengers 10 4 .2
+	to offer
+		has "library card"
+		"passenger space" > 30
+		random < 50
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 4000 170
+		dialog phrase "generic passenger dropoff payment"
+
+
+
+
+
+
+########################################################################
+
+mission "Small Interlibrary Return [0]"
+	job
+	repeat
+	name "Interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2000 140
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Return [1]"
+	job
+	repeat
+	name "Interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 3000 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Return [2]"
+	job
+	repeat
+	name "Interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 150
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Return [3]"
+	job
+	repeat
+	name "Interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 150
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Return [4]"
+	job
+	repeat
+	name "Interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Small Interlibrary Return [5]"
+	job
+	repeat
+	name "Interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 3 2 .5
+	to offer
+		has "library card"
+		random < 70
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 4000 160
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Bulk Interlibrary Return [0]"
+	job
+	repeat
+	name "Bulk interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 25 2 .07
+	to offer
+		"cargo space" > 40
+		has "library card"
+		random < 40
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000 140
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Interlibrary Return [1]"
+	job
+	repeat
+	name "Bulk interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 25 2 .07
+	to offer
+		"cargo space" > 40
+		has "library card"
+		random < 40
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 9000 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Interlibrary Return [2]"
+	job
+	repeat
+	name "Bulk interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 25 2 .07
+	to offer
+		"cargo space" > 40
+		has "library card"
+		random < 40
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2000 150
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Large Bulk Interlibrary Return [0]"
+	job
+	repeat
+	name "Large bulk interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 40 2 .02
+	to offer
+		"cargo space" > 140
+		has "library card"
+		random < 25
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2500 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Large Bulk Interlibrary Return [1]"
+	job
+	repeat
+	name "Large bulk interlibrary return to <planet>"
+	description `Return <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Media" 40 2 .02
+	to offer
+		"cargo space" > 140
+		has "library card"
+		random < 25
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2500 130
+		dialog phrase "generic cargo delivery payment"
+
+
+
+
+
+
+
+mission "Librarian Return [0]"
+	job
+	repeat
+	name "Return a Librarian to Alexandria"
+	description `Return an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		random < 35
+		has "library card"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 500 130
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Librarian Return [1]"
+	job
+	repeat
+	name "Return a Librarian to Alexandria"
+	description `Return an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		random < 35
+		has "library card"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 500 130
+		dialog phrase "generic passenger dropoff payment"
+
+
+
+mission "Library Assistant Return [0]"
+	job
+	repeat
+	name "Return a Library Assistant to Alexandria"
+	description `Return an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 35
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 0 130
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Library Assistant Return [1]"
+	job
+	repeat
+	name "Return a Library Assistant to Alexandria"
+	description `Return an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Supplies" 3 2 .5
+	passengers 1
+	to offer
+		has "library card"
+		random < 35
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 0 130
+		dialog phrase "generic passenger dropoff payment"
+
+
+
+mission "Library Staff Return [0]"
+	job
+	repeat
+	name "Alexandria Library staff to <planet>"
+	description `Return <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Supplies" 3 2 .5
+	passengers 3 10 .7
+	to offer
+		has "library card"
+		random < 20
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 1000 130
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Library Staff Return [1]"
+	job
+	repeat
+	name "Alexandria Library staff to <planet>"
+	description `Return <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Supplies" 3 2 .5
+	passengers 3 10 .7
+	to offer
+		has "library card"
+		random < 20
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 1000 130
+		dialog phrase "generic passenger dropoff payment"
+
+
+
+mission "Library Team Return [0]"
+	job
+	repeat
+	name "Alexandria Library team to <planet>"
+	description `Return a team of <bunks> Alexandria Library staff and <cargo> to <destination>. Payment is <payment>.`
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		near Markeb 6 25
+		not
+			attributes uninhabited
+	destination Alexandria
+	cargo "Library Supplies" 3 2 .5
+	passengers 10 4 .2
+	to offer
+		has "library card"
+		"passenger space" > 30
+		random < 15
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 2000 130
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Library Team Return [1]"
+	job
+	repeat
+	name "Alexandria Library team to <planet>"
+	source Alexandria
+	passengers 10 4 .2
+	to offer
+		has "library card"
+		"passenger space" > 30
+		random < 15
+	destination
+		attributes tourism shopping urban wealthy rich factory manufacturing
+		near Markeb 6 25
+		not
+			attributes uninhabited
+	description `Return a team of <bunks> Alexandria Library staff and <cargo> to <destination>. Payment is <payment>.`
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	cargo "Library Supplies" 3 2 .5
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 2000 130
+		dialog phrase "generic passenger dropoff payment"
+
+
+
+
+
+mission "Library Supplies [0]"
+	job
+	repeat
+	name "Supplies to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 6 25
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 5 2 .1
+	to offer
+		has "library card"
+		random < 25
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2000 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Library Supplies [1]"
+	job
+	repeat
+	name "Supplies to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 5 13
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 5 2 .1
+	to offer
+		has "library card"
+		random < 25
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1500 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Library Supplies [2]"
+	job
+	repeat
+	name "Supplies to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 7 18
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 5 2 .1
+	to offer
+		has "library card"
+		random < 15
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 800 150
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Bulk Library Supplies [0]"
+	job
+	repeat
+	name "Bulk supplies to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 4 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 25 2 .05
+	to offer
+		has "library card"
+		random < 25
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000 120
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Library Supplies [1]"
+	job
+	repeat
+	name "Bulk supplies to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 5 13
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 25 2 .05
+	to offer
+		has "library card"
+		random < 25
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 4000 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Library Supplies [2]"
+	job
+	repeat
+	name "Bulk supplies to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 7 18
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 25 2 .05
+	to offer
+		has "library card"
+		random < 15
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1500 150
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Large Bulk Library Supplies [0]"
+	job
+	repeat
+	name "Large bulk delivery to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 4 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 40 2 .02
+	to offer
+		"cargo space" > 140
+		has "library card"
+		random < 15
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 8000 130
+		dialog phrase "generic cargo delivery payment"
+
+mission "Large Bulk Library Supplies [1]"
+	job
+	repeat
+	name "Large bulk delivery to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 5 13
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 40 2 .02
+	to offer
+		"cargo space" > 140
+		has "library card"
+		random < 15
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000 140
+		dialog phrase "generic cargo delivery payment"
+
+mission "Large Bulk Library Supplies [2]"
+	job
+	repeat
+	name "Large bulk delivery to Alexandria Library"
+	description `Deliver <cargo> to the Alexandria Library. Payment is <payment>.`
+	source
+		near Markeb 7 18
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes factory urban manufacturing
+	destination Alexandria
+	cargo "Library Media" 40 2 .02
+	to offer
+		"cargo space" > 140
+		has "library card"
+		random < 10
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 3000 150
+		dialog phrase "generic cargo delivery payment"
+
+
+
+########################################################################
+
+# Smuggling to Alexandria. Payments are high because you are going
+# deep into Republic space.
+
+
+mission "Library Smuggling [0]"
+	job
+	repeat
+	name "Smuggling to Alexandria Library"
+	description `Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 37,000 credits.`
+	source
+		government Pirate
+	destination Alexandria
+	cargo "Illegal Library Cargo" 5 2 .1
+	illegal 37000
+	to offer
+		has "library card"
+		or
+			"reputation: Pirate" > -100
+			"combat rating" > 150
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 15000 200
+		dialog phrase "generic cargo delivery payment"
+
+mission "Library Smuggling [1]"
+	job
+	repeat
+	name "Smuggling to Alexandria Library"
+	description `Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 45,000 credits.`
+	source
+		government Pirate
+	destination Alexandria
+	cargo "Illegal Library Cargo" 5 2 .1
+	illegal 45000
+	to offer
+		has "library card"
+		or
+			"reputation: Pirate" > -100
+			"combat rating" > 150
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 15000 200
+		dialog phrase "generic cargo delivery payment"
+
+mission "Library Smuggling [2]"
+	job
+	repeat
+	name "Smuggling to Alexandria Library"
+	description `Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 56,000 credits.`
+	source
+		government Pirate
+	destination Alexandria
+	cargo "Illegal Library Cargo" 5 2 .1
+	illegal 56000
+	to offer
+		has "library card"
+		or
+			"reputation: Pirate" > -100
+			"combat rating" > 150
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 15000 200
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Bulk Library Smuggling [0]"
+	job
+	repeat
+	name "Bulk smuggling to Alexandria Library"
+	description `Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 75,000 credits.`
+	source
+		government Pirate
+	destination Alexandria
+	cargo "Illegal Library Cargo" 25 2 .1
+	illegal 75000
+	to offer
+		has "library card"
+		or
+			"reputation: Pirate" > -50
+			"combat rating" > 400
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 27000 200
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Library Smuggling [1]"
+	job
+	repeat
+	name "Bulk smuggling to Alexandria Library"
+	description `Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 93,000 credits.`
+	source
+		government Pirate
+	destination Alexandria
+	cargo "Illegal Library Cargo" 25 2 .1
+	illegal 93000
+	to offer
+		has "library card"
+		or
+			"reputation: Pirate" > -50
+			"combat rating" > 400
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 27000 200
+		dialog phrase "generic cargo delivery payment"
