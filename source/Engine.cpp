@@ -1980,7 +1980,7 @@ void Engine::AddSprites(const Ship &ship)
 	if(ship.IsThrusting())
 		for(const Ship::EnginePoint &point : ship.EnginePoints())
 		{
-			Point pos = ship.Facing().Rotate(point) * ship.Zoom() * ship.Scale() + ship.Position();
+			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
 			// If multiple engines with the same flare are installed, draw up to
 			// three copies of the flare sprite.
 			for(const auto &it : ship.Attributes().FlareSprites())
@@ -1999,7 +1999,7 @@ void Engine::AddSprites(const Ship &ship)
 		{
 			Body body(
 				hardpoint.GetOutfit()->HardpointSprite(),
-				ship.Position() + ship.Zoom() * ship.Scale() * ship.Facing().Rotate(hardpoint.GetPoint()),
+				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());

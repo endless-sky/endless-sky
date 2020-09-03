@@ -190,7 +190,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	// Get projectiles to start at the right position. They are drawn at an
 	// offset of (.5 * velocity) and that velocity includes the velocity of the
 	// ship that fired them.
-	Point start = ship.Position() + aim.Rotate(point * ship.Scale()) - .5 * ship.Velocity();
+	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
 	
 	// Apply the aim and hardpoint offset.
 	aim += angle;
@@ -221,7 +221,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	double range = outfit->Velocity();
 	
 	// Check if the missile is within range of this hardpoint.
-	Point start = ship.Position() + ship.Facing().Rotate(point * ship.Scale());
+	Point start = ship.Position() + ship.Facing().Rotate(point);
 	Point offset = projectile.Position() - start;
 	if(offset.Length() > range)
 		return false;
