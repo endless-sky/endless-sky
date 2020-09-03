@@ -807,3 +807,74 @@ person "Subsidurial"
 		"never disabled"
 	system
 		government "Uninhabited"
+
+person "M.C.Officer"
+	frequency 200
+	government "Author"
+	personality
+		mining harvests surveillance unconstrained forbearing
+	phrase
+		phrase
+			"friendly author"
+	ship "Rais Iris XVIII" "M*C*Officer"
+		"never disabled"
+
+ship "Rais Iris XVIII"
+    sprite ship/bactrian
+    thumbnail thumbnail/bactrian
+    attributes
+		licenses
+			City-Ship
+        category Transport
+        cost 17600000
+        shields 30000
+        hull 1200
+        "required crew" 70
+        bunks 93
+        mass 650
+        drag 15
+        "heat dissipation" 0.4
+        "fuel capacity" 800
+        "cargo space" 80
+        "outfit space" 1500
+        "weapon capacity" 1000
+        "engine capacity" 220
+    outfits
+        "Outfits Expansion" 4
+        "Jump Drive"
+        "Point Defense Turret"
+        "A860 Atomic Thruster"
+        "A865 Atomic Steering"
+        "Large Heat Shunt" 3
+        "Dark Storm Shielding" 5
+        "Blue Sun Reactor" 3
+        "Dual Sunbeam Turret" 6
+    crew 82
+    fuel 800
+    shields 30000
+    hull 1200
+    position -768.24609 560.17458
+    engine -18 230
+        zoom 1.2
+        angle 0
+        under
+    engine 18 230
+        zoom 1.2
+        angle 0
+        under
+    turret -22 -148 "Dual Sunbeam Turret"
+    turret 26 -80 "Dual Sunbeam Turret"
+    turret -41 -20 "Dual Sunbeam Turret"
+    turret 32 -7 "Point Defense Turret"
+    turret 53 82 "Dual Sunbeam Turret"
+    turret -37 186 "Dual Sunbeam Turret"
+    turret 37 186 "Dual Sunbeam Turret"
+    leak leak 30 50
+    leak flame 30 80
+    leak "big leak" 50 30
+    explode "small explosion" 25
+    explode "medium explosion" 35
+    explode "large explosion" 45
+    explode "huge explosion" 30
+    "final explode" "final explosion large" 1
+	
