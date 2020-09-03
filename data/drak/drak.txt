@@ -234,8 +234,8 @@ ship "Archon"
 	turret 55 16 "Drak Distancer"
 	explode "nuke explosion" 3
 	"final explode" "final explosion large"
-	description "Very little is know about Archons other than that they significantly exceed the spacefaring prowess of any known species. From external observation, they appear to be a mix of organic and cybernetic elements. They are known to guard noteworthy locations and seem focused on guarding sapient species or the remains thereof."
-	description "It is unknown whether Archons are grown, created, or raised. Likewise, while they are identified as 'Drak' by most IFF systems, it is unknown whether or not they are Drak, are merely servants or agents of the Drak, or if the labeling is completely erroneous."
+	description "Very little is know about Archons other than that they significantly exceed the spacefaring prowess of any known species. From external observation, they appear to be a mix of organic and cybernetic elements. They are known to guard noteworthy locations and sapient species or the remains thereof."
+	description "It is unknown whether Archons are grown, created, or raised. Likewise, while they are identified as 'Drak' by most IFF systems, it is unknown whether or not they are Drak, servants or agents of the Drak, or another thing entirely."
 
 ship "Archon" "Archon B"
 	"never disabled"
