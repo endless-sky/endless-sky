@@ -236,20 +236,22 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
-			Angle angle = Angle(0.);
-			bool parallel = false;
+			Angle gunPortAngle = Angle(0.);
+			bool gunPortParallel = false;
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "angle" && grand.Size() >= 2)
-						angle = grand.Value(1);
+						gunPortAngle = grand.Value(1);
 					else if(grand.Token(0) == "parallel")
-						parallel = true;
+						gunPortParallel = true;
+					else
+						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
 			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, angle, parallel, outfit);
+				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
@@ -761,10 +763,12 @@ void Ship::Save(DataWriter &out) const
 			if(hardpoint.IsParallel() || hardpointAngle)
 			{
 				out.BeginChild();
-				if(hardpointAngle)
-					out.Write("angle", hardpointAngle);
-				if(hardpoint.IsParallel())
-					out.Write("parallel");
+				{
+					if(hardpointAngle)
+						out.Write("angle", hardpointAngle);
+					if(hardpoint.IsParallel())
+						out.Write("parallel");
+				}
 				out.EndChild();
 			}
 		}

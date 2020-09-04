@@ -224,13 +224,6 @@ bool Weapon::IsWeapon() const
 
 
 
-bool Weapon::IsParallel() const
-{
-	return isParallel;
-}
-
-
-
 // Get assets used by this weapon.
 const Body &Weapon::WeaponSprite() const
 {
@@ -263,6 +256,13 @@ const Outfit *Weapon::Ammo() const
 int Weapon::AmmoUsage() const
 {
 	return ammo.second;
+}
+
+
+
+bool Weapon::IsParallel() const
+{
+	return isParallel;
 }
 
 

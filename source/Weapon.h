@@ -37,7 +37,6 @@ public:
 	// Load from a "weapon" node, either in an outfit or in a ship (explosion).
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
-	bool IsParallel() const;
 	
 	// Get assets used by this weapon.
 	const Body &WeaponSprite() const;
@@ -69,6 +68,7 @@ public:
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	bool IsStreamed() const;
+	bool IsParallel() const;
 	
 	double Velocity() const;
 	double RandomVelocity() const;
