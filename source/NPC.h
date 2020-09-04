@@ -53,8 +53,7 @@ public:
 	
 	// Update or check spawning and despawning for this NPC.
 	void UpdateSpawning(const PlayerInfo &player);
-	bool PassedSpawn() const;
-	bool PassedDespawn() const;
+	bool ShouldSpawn() const;
 	
 	// Get the ships associated with this set of NPCs.
 	const std::list<std::shared_ptr<Ship>> Ships() const;

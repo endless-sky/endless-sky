@@ -288,24 +288,18 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	if(!passedSpawnConditions)
 		passedSpawnConditions = toSpawn.Test(player.Conditions());
 	
+	// It is allowable for an NPC to pass its spawning conditions and then immediately pass its despawning
+	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
 		passedDespawnConditions = toDespawn.Test(player.Conditions());
 }
 
 
 
-// Return if spawned conditions have passed, without updating.
-bool NPC::PassedSpawn() const
+// Determine if this NPC should be placed in-flight.
+bool NPC::ShouldSpawn() const
 {
-	return passedSpawnConditions;
-}
-
-
-
-// Return if despawned conditions have passed, without updating.
-bool NPC::PassedDespawn() const
-{
-	return passedDespawnConditions;
+	return passedSpawnConditions && !passedDespawnConditions;
 }
 
 
