@@ -1184,6 +1184,5 @@ news "grafiti on spaceport wall"
 			"There once was a man from new Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
 			"There once was a man from new Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
 			"There once was a man from new Boston / His loan officer advised caution / He purchased a sparrow / Took off like an arrow- / That sparrow soon turned up at auction. - Lake"
-			
 		word
 			`"`
