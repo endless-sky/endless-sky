@@ -1171,7 +1171,7 @@ news "grafiti on spaceport wall"
 		word
 			`"`
 		word
-			    "A lone, soulless husk. / Appointed immortal king. / To sulk forever. - Arachi"
-				"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
+			"A lone, soulless husk. / Appointed immortal king. / To sulk forever. - Arachi"
+			"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
 		word
 			`"`
