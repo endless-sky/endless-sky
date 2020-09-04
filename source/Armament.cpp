@@ -36,8 +36,7 @@ void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParalle
 // Add a turret hardpoint (omnidirectional weapon).
 void Armament::AddTurret(const Point &point, const Outfit *outfit)
 {
-	bool isParallel = false;
-	hardpoints.emplace_back(point, Angle(0.), true, isParallel, outfit);
+	hardpoints.emplace_back(point, Angle(0.), true, false, outfit);
 }
 
 
