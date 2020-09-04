@@ -96,6 +96,9 @@ private:
 	// Conditions that must be met in order for this NPC to be placed or despawned:
 	bool passedSpawnConditions = false;
 	bool passedDespawnConditions = false;
+	// Whether we have actually checked spawning conditions yet. (This
+	// will generally be true, except when reloading a save.)
+	bool checkedSpawnConditions = false;
 	ConditionSet toSpawn;
 	ConditionSet toDespawn;
 	

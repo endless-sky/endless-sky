@@ -1136,6 +1136,7 @@ void PlayerInfo::Land(UI *ui)
 	// Evaluate changes to NPC spawning criteria.
 	if(!freshlyLoaded)
 		UpdateMissionNPCs();
+	
 	// Update missions that are completed, or should be failed.
 	StepMissions(ui);
 	UpdateCargoCapacities();

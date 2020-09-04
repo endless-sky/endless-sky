@@ -286,6 +286,7 @@ void NPC::Save(DataWriter &out) const
 // Update spawning and despawning for this NPC.
 void NPC::UpdateSpawning(const PlayerInfo &player)
 {
+	checkedSpawnConditions = true;
 	// The conditions are tested every time this function is called until
 	// they pass. This is so that a change in a player's conditions don't
 	// cause an NPC to "un-spawn" or "un-despawn." Despawn conditions are
@@ -394,7 +395,7 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 	// If this NPC has not yet spawned, or has fully despawned, then ignore its
 	// objectives. An NPC that will despawn on landing is allowed to still enter
 	// a "completed" state and trigger related completion events.
-	if(!passedSpawnConditions || despawned)
+	if(checkedSpawnConditions && (!passedSpawnConditions || despawned))
 		return true;
 	
 	if(HasFailed())
