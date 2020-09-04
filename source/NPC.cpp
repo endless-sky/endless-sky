@@ -201,7 +201,7 @@ void NPC::Load(const DataNode &node)
 void NPC::Save(DataWriter &out) const
 {
 	// If this NPC should no longer appear in-game, don't serialize it.
-	if(passedDespawnConditions)
+	if(passedDespawnConditions || despawned)
 		return;
 	
 	out.Write("npc");
@@ -292,6 +292,9 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
 		passedDespawnConditions = toDespawn.Test(player.Conditions());
+	
+	// Once the player is on a planet, a spawned NPC may be permanently despawned.
+	despawned = passedSpawnConditions && passedDespawnConditions && player.GetPlanet();
 }
 
 
@@ -382,9 +385,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 
 bool NPC::HasSucceeded(const System *playerSystem) const
 {
-	// If this NPC has been despawned or was never spawned in the first place
-	// then ignore its objectives.
-	if(!passedSpawnConditions || passedDespawnConditions)
+	// If this NPC has not yet spawned, or has fully despawned, then ignore its
+	// objectives. An NPC that will despawn on landing is allowed to still enter
+	// a "completed" state and trigger related completion events.
+	if(!passedSpawnConditions || despawned)
 		return true;
 	
 	if(HasFailed())
@@ -455,9 +459,12 @@ bool NPC::IsLeftBehind(const System *playerSystem) const
 
 bool NPC::HasFailed() const
 {
-	// If this NPC has been despawned or was never spawned in the first place
-	// then ignore its objectives.
-	if(!passedSpawnConditions || passedDespawnConditions)
+	// An unspawned NPC, one which will despawn on landing, or that has
+	// already despawned, is not considered "failed."
+	// TODO: Should we re-evaluate this? Should a currently-spawned NPC
+	// influence mission state even if it would despawn on the next landing?
+	// (Removing `passedDespawnConditions` here will enable that behavior.)
+	if(!passedSpawnConditions || passedDespawnConditions || despawned)
 		return false;
 	
 	for(const auto &it : actions)

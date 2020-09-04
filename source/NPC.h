@@ -90,6 +90,9 @@ private:
 	Conversation conversation;
 	const Conversation *stockConversation = nullptr;
 	
+	// Whether this NPC has permanently despawned, at which point any objectives or
+	// actions associated with it are ignored (such as a "completion" conversation).
+	bool despawned = false;
 	// Conditions that must be met in order for this NPC to be placed or despawned:
 	bool passedSpawnConditions = false;
 	bool passedDespawnConditions = false;
