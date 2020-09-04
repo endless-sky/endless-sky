@@ -184,6 +184,12 @@ void NPC::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
+	// Empty spawning conditions imply that an instantiated NPC has spawned (or
+	// if this is an NPC template, that any NPCs created from this will spawn).
+	passedSpawnConditions = toSpawn.IsEmpty();
+	// (Any non-empty `toDespawn` set is guaranteed to evaluate to false, otherwise the NPC would never
+	// have been serialized. Thus, `passedDespawnConditions` is always false if the NPC is being Loaded.)
+	
 	// Since a ship's government is not serialized, set it now.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
@@ -498,7 +504,6 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.mustAccompany = mustAccompany;
 	
 	result.passedSpawnConditions = passedSpawnConditions;
-	result.passedDespawnConditions = passedDespawnConditions;
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
 	
