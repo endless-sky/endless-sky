@@ -1161,7 +1161,7 @@ news "human farming in pirate space"
 
 
 
-news "grafiti on spaceport wall"
+news "graffiti on spaceport wall"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
 	name
