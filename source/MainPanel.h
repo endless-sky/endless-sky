@@ -42,6 +42,9 @@ public:
 	// Send a command to the engine (on behalf of the player).
 	void GiveCommand(const Command &command);
 
+	// The mainpanel on the stack doesn't pause the game.
+	virtual bool IsModal() const override;
+
 	// The main panel allows fast-forward.
 	virtual bool AllowFastForward() const override;
 	

@@ -65,6 +65,16 @@ bool Panel::TrapAllEvents()
 
 
 
+// Check if this panel is modal, which means that the gameloop in the main
+// engine would continue running if this panel is active. Panels are by
+// default not modal.
+bool Panel::IsModal() const
+{
+	return false;
+}
+
+
+
 // Check if this panel can be "interrupted" to return to the main menu.
 bool Panel::IsInterruptible() const
 {

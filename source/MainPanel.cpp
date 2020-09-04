@@ -64,7 +64,12 @@ void MainPanel::Step()
 	
 	// Depending on what UI element is on top, the game is "paused." This
 	// checks only already-drawn panels.
-	bool isActive = GetUI()->IsTop(this);
+	bool isActive = false;
+	{
+		shared_ptr<Panel> topPanel = GetUI()->Top();
+		if(topPanel)
+			isActive = topPanel->IsModal();
+	}
 	
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
@@ -191,6 +196,13 @@ void MainPanel::OnCallback()
 	// Start the next step of the simulation because Step() above still
 	// thinks the planet panel is up and therefore will not start it.
 	engine.Go();
+}
+
+
+
+bool MainPanel::IsModal() const
+{
+	return true;
 }
 
 

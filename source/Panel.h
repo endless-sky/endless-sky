@@ -49,6 +49,10 @@ public:
 	// Return true if, when this panel is on the stack, no events should be
 	// passed to any panel under it. By default, all panels do this.
 	bool TrapAllEvents();
+	// Check if this panel is modal, which means that the gameloop in the main
+	// engine would continue running if this panel is active. Panels are by
+	// default not modal.
+	virtual bool IsModal() const;
 	// Check if this panel can be "interrupted" to return to the main menu.
 	bool IsInterruptible() const;
 	
