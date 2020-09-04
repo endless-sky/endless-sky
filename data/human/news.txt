@@ -1158,3 +1158,20 @@ news "human farming in pirate space"
 			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path and could return to living normally. I'm talking from personal experience."
 		word
 			`"`
+
+
+
+news "grafiti on spaceport wall"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+	name
+		word
+			"Graffiti painted on a wall"
+	message
+		word
+			`"`
+		word
+			    "A lone, soulless husk. / Appointed immortal king. / To sulk forever. - Arachi"
+				"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
+		word
+			`"`
