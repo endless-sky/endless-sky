@@ -309,6 +309,13 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
+bool HailPanel::IsModal() const
+{
+	return true;
+}
+
+
+
 void HailPanel::SetBribe(double scale)
 {
 	// Find the total value of your fleet.

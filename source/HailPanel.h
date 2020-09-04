@@ -40,6 +40,9 @@ public:
 	
 	virtual void Draw() override;
 	
+	// The hailpanel on the stack doesn't pause the game.
+	virtual bool IsModal() const override;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
