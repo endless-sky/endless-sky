@@ -1171,7 +1171,9 @@ news "grafiti on spaceport wall"
 		word
 			`"`
 		word
-			"A lone, soulless husk. / Appointed immortal king. / To sulk forever. - Arachi"
+			"A lone, soulless husk. / Appointed immortal king. / To sulk forever. - fgnt"
+			"The galaxy's child / Cursed with madness of time / Behind bloody chains - fgnt"
 			"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
+			"A small cosmological speck drifting in and out of time - Swiren"
 		word
 			`"`
