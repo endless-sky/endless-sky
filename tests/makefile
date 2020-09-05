@@ -90,7 +90,7 @@ test: export cxx_extra := -g
 
 # Invoke the subprocess (-f flag is not sent in MAKEFLAGS)
 test:
-	$(MAKE) -$(MAKEFLAGS) -f .test-winmake
+	$(MAKE) -$(MAKEFLAGS) -f makefile
 clean:
 	cmd /c rd /S /Q $(OUTPUT_DIR)
 	cmd /c rd /S /Q $(OBJECT_DIR)

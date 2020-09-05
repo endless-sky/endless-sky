@@ -18,6 +18,9 @@ Release/
 .sconsign.dblite
 /*.d
 
+# Test Reports
+test-report.xml
+
 # User-installed plugins
 plugins/
 

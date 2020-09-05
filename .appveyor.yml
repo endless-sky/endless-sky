@@ -47,6 +47,10 @@ cache:
 
 build_script:
     - ps: mingw32-make.exe -k -j2 -e -f .winmake $Env:es_run_mode;
+    - ps: |
+        cd tests;
+        mingw32-make.exe -j2 -e -f makefile test;
+        cd ..;
 
 before_test:
     - ps: |
@@ -56,7 +60,9 @@ before_test:
 
 test_script:
     - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
+    - ps: .\tests\bin\endless-sky-tests.exe -r junit -o .\tests\test-report.xml;
 
+# Upload the build if tests passed.
 after_test:
     - ps: |
         $here = (Get-Location).Path;
@@ -68,3 +74,10 @@ after_test:
         $ZIP_ARGS = "a $ARCHIVE_NAME .\*.exe -i!.\*.dll -i!.\data\ -i!.\icons\ -i!.\images\ -i!.\sounds\ -i!.\source\ -i!license.txt -i!copyright -i!README.md -i!changelog -i!credits.txt -i!keys.txt";
         Start-Process '7z.exe' -ArgumentList $ZIP_ARGS -Wait;
         Push-AppveyorArtifact $ARCHIVE_NAME;
+
+# Upload the test report even if tests failed.
+# TODO: add file existence check in case the build step failed
+on_finish:
+    - ps: |
+        $wc = New-Object 'System.Net.WebClient';
+        $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests\test-report.xml));
