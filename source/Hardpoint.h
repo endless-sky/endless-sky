@@ -85,12 +85,12 @@ private:
 	
 	
 private:
+	// The weapon installed in this hardpoint.
+	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
 	// Angle of firing direction (guns only).
 	Angle baseAngle;
-	// The weapon installed in this hardpoint.
-	const Outfit *outfit = nullptr;
 	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
 	// Indicates if this hardpoint disallows converging (guns only).
