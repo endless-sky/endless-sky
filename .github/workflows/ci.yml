@@ -1,6 +1,7 @@
 name: Build & Parse
 
 # TODO:
+# - Run unit tests for all platforms (Blocked by XCode / Scons build file creation.)
 # - Reduce duplicate code (Blocking: https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 # - Investigate using scoop as package manager on windows
 # - MacOS artifact uploads are still slow (https://github.com/actions/upload-artifact/issues/69)
@@ -141,6 +142,66 @@ jobs:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
 
+  test_windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    env:
+        SCCACHE_DIR: ./sccache/
+        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+        DIR_ESLIB: .\dev64
+        CXX: sccache g++ 
+        TEST_BINARY: endless-sky-tests.exe
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore test binary
+      id: cache-binary
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.TEST_BINARY }}
+        # Rebuild upon changes to the game source code or tests.
+        key: ${{ matrix.os }}-test-artifacts-${{ hashFiles('source/**') }}-${{ hashFiles('tests/**') }}
+    - name: Install dependencies
+      if: steps.cache-binary.outputs.cache-hit != 'true'
+      run: choco install sccache
+    - name: Fetch development libraries
+      if: steps.cache-binary.outputs.cache-hit != 'true'
+      run: |
+        Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+        Expand-Archive win64-dev.zip -DestinationPath . -Force
+        Remove-Item win64-dev.zip
+    - name: Cache sccache
+      if: steps.cache-binary.outputs.cache-hit != 'true'
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.SCCACHE_DIR }}
+        key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
+        restore-keys: |
+          ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-
+          ${{ matrix.os }}-sccache-${{ github.repository }}-
+          ${{ matrix.os }}-sccache
+    - name: Compile Tests
+      if: steps.cache-binary.outputs.cache-hit != 'true'
+      run: |
+        cd tests
+        make -e -f makefile test -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
+        cd ..
+        COPY ".\tests\bin\endless-sky-tests.exe" .
+    - name: Run tests
+      run: |
+        .\endless-sky-tests.exe -r compact -o test-result.log
+        echo ::set-env name=TEST_RESULT::$( cat test-result.log )
+    # TODO: when running tests on multiple platforms, we should amalgamate failures and only report them once.
+    # TODO: this action only works on linux containers
+    # - name: Report failures on PR
+    #   if: failure() && github.event_name =='pull_request'
+    #   uses: unsplash/comment-on-pr@v1.2.0
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     msg: ${{ env.TEST_RESULT }}
+    #     check_for_duplicate_msg: true # not in v1.2.0
 
   build_macos:
     runs-on: ${{ matrix.os }}
