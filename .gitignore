@@ -7,9 +7,9 @@
 *.dll
 
 # Build Directories and toolchain-generated files
-/build/
-/obj
-/bin/
+build/
+obj
+bin/
 x64/
 Debug/
 Release/
