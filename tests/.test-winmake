@@ -1,0 +1,97 @@
+# A makefile used for generating the test binary
+# Like the main winmake file, we use some standard variables
+
+DIR_ESLIB ?= C:\dev64
+DIR_MINGW64 ?= C:\Program\ Files\mingw64\x86_64-w64-mingw32
+OUTPUT_DIR ?= bin
+SRC_ROOT ?= src
+OBJECT_DIR ?= obj
+
+# You should not need to modify the lines below.
+ifdef build_dir
+# The build directory is defined, so proceed to build the invoked target
+exe := $(OUTPUT_DIR)/endless-sky-tests.exe
+
+# Get the source directory and its immediate subdirectories.
+source_dirs ::= $(sort $(dir $(wildcard $(SRC_ROOT)/*/)))
+# Get all .cpp files in all source directories.
+sources ::= $(foreach dir,$(source_dirs),$(wildcard $(dir)*.cpp))
+
+# Compute needed objects by swapping the .cpp extension for .o, and swapping
+# the basepath component (i.e. $(SRC_ROOT)) for the build (sub)directory.
+obj_dir ::= $(OBJECT_DIR)/
+obj_build_dirs ::= $(patsubst $(SRC_ROOT)/%,$(obj_dir)%,$(source_dirs))
+objects ::= $(sort $(foreach obj,$(sources:.cpp=.o),$(patsubst $(SRC_ROOT)/%,$(obj_dir)%,$(obj))))
+depends ::= $(objects:.o=.d)
+
+# Define non-default compilers and linkers
+LD = g++.exe
+
+# Compiler and linker flags (prefer local stubs to dev64 headers)
+include_dir = -I./include -I$(DIR_ESLIB)/include
+CXXFLAGS += -std=c++11 -Wall -MMD $(cxx_extra) $(include_dir)
+
+# Don't pull in the dev64 .dlls
+# LDFLAGS += -L$(DIR_ESLIB)/lib $(ldd_extra)
+LDFLAGS += $(ldd_extra)
+# Include the Windows Multimedia API.
+LDLIBS += -lwinmm
+
+# Don't pull in the dev64 static libs either.
+# archives ::= $(wildcard $(DIR_ESLIB)/lib/*.a)
+archives ::= \
+	$(DIR_MINGW64)/lib/libmingw32.a \
+	$(DIR_MINGW64)/lib/libopengl32.a
+
+# Default target (linker step)
+$(exe): $(objects) | $(OUTPUT_DIR)
+	$(LD) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Wl,-\( $(archives) -Wl,-\)
+
+# Include .o dependencies to ensure changing any of the .cpp's included headers
+# triggers the .o recompilation (this must be defined after the desired exe definition).
+-include $(depends)
+
+# Pattern rule for compiling .cpps in SRC_ROOT and its child directories.
+# Search for *.cpp in each source directory, using lexical sort order.
+vpath %.cpp $(source_dirs)
+define make-goal
+$(1)%.o: %.cpp | $(obj_build_dirs)
+	$(CXX) -c $(CXXFLAGS) $$< -o $$@
+endef
+# Generate implicit rules for all source directories from the pattern rule.
+$(foreach bdir,$(obj_build_dirs),$(eval $(call make-goal,$(bdir))))
+
+# Pattern rule for main.cpp
+$(obj_dir)/main.o: $(SRC_ROOT)/test_main.cpp | $(obj_dir)
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+# Rules for making the output and build directories
+$(OBJECT_DIR) \
+$(obj_build_dirs) \
+$(OUTPUT_DIR):
+	-@cmd /c 'if not exist $(subst /,\,$@) md $(subst /,\,$@)'
+
+else # build_dir not yet defined
+# Define variables to be consumed by invoked make subprocess (which will have a target)
+
+# Define targets as phony, i.e. invoke the subprocess no matter what. It will decide
+# if there is anything to be done
+.PHONY: default all test clean
+
+default all: test
+
+# Define target-specific build directory for use by subprocess
+test: export build_dir := foo
+
+# Define compiler and linker flags for use by subprocess
+test: export cxx_extra := -g
+# release: export cxx_extra := -O2 -march=native
+# release dist: export ldd_extra := -Wl,-O2 -s
+
+# Invoke the subprocess (-f flag is not sent in MAKEFLAGS)
+test:
+	$(MAKE) -$(MAKEFLAGS) -f .test-winmake
+clean:
+	cmd /c rd /S /Q $(OUTPUT_DIR)
+	cmd /c rd /S /Q $(OBJECT_DIR)
+endif # build_dir
