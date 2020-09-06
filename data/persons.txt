@@ -836,7 +836,7 @@ ship "Rais Iris XVIII"
 		"heat dissipation" 0.4
 		"fuel capacity" 800
 		"cargo space" 80
-		"outfit space" 1500
+		"outfit space" 1526
 		"weapon capacity" 1000
 		"engine capacity" 220
 		weapon
