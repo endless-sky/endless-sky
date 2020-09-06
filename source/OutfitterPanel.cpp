@@ -231,7 +231,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		Point thumbnailCenter(center.X(), center.Y() + 20 + tileSize / 2);
 
-		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
+		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
 		double descriptionOffset = 35.;
 		Point descCenter(Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2, startPoint.Y() + 20.);

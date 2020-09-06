@@ -101,9 +101,9 @@ protected:
 	
 	
 protected:
-	static const int SHIP_SIDE_WIDTH = 250;
-	static const int INFO_SIDE_WIDTH = 300;
-	static const int SIDE_WIDTH = SHIP_SIDE_WIDTH + INFO_SIDE_WIDTH;
+	static const int SIDEBAR_WIDTH = 250;
+	static const int INFOBAR_WIDTH = 300;
+	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
@@ -123,11 +123,11 @@ protected:
 	const Outfit *selectedOutfit = nullptr;
 	
 	double mainScroll = 0.;
-	double sideShipScroll = 0.;
-	double sideDetailScroll = 0.;
+	double sidebarScroll = 0.;
+	double infobarScroll = 0.;
 	double maxMainScroll = 0.;
-	double maxSideShipScroll = 0.;
-	double maxSideDetailScroll = 0.;
+	double maxSidebarScroll = 0.;
+	double maxInfobarScroll = 0.;
 	ShopPane activePane = ShopPane::Main;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
