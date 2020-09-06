@@ -808,7 +808,7 @@ person "Subsidurial"
 	system
 		government "Uninhabited"
 
-person "M.C.Officer"
+person "MCOfficer"
 	frequency 200
 	government "Author"
 	personality
@@ -816,7 +816,7 @@ person "M.C.Officer"
 	phrase
 		phrase
 			"friendly author"
-	ship "Rais Iris XVIII" "M*C*Officer"
+	ship "Rais Iris XVIII" "MCOfficer"
 		"never disabled"
 
 ship "Rais Iris XVIII"
