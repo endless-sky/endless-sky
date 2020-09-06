@@ -180,7 +180,7 @@ double Format::Parse(const string &str)
 			value *= 1e3;
 		else if(*it == 'm' || *it == 'M')
 			value *= 1e6;
-		else if(*it == 'b' || *it == 'B')
+		else if(*it == 'b' || *it == 'B' || *it == 'g' || *it == 'G')
 			value *= 1e9;
 		else if(*it == 't' || *it == 'T')
 			value *= 1e12;
