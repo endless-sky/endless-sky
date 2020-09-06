@@ -820,7 +820,7 @@ person "M.C.Officer"
 		"never disabled"
 
 ship "Rais Iris XVIII"
-	sprite ship/bactrian
+	sprite ship/mbactriane
 	thumbnail thumbnail/bactrian
 	attributes
 		licenses
@@ -853,7 +853,11 @@ ship "Rais Iris XVIII"
 		"Large Heat Shunt" 3
 		"Dark Storm Shielding" 5
 		"Blue Sun Reactor" 3
-		"Dual Sunbeam Turret" 6
+		"Dual Sunbeam Turret" 7
+	engine -45 230
+		zoom 1.2
+		angle 0
+		under
 	engine -18 230
 		zoom 1.2
 		angle 0
@@ -862,13 +866,18 @@ ship "Rais Iris XVIII"
 		zoom 1.2
 		angle 0
 		under
-	turret -22 -148 "Dual Sunbeam Turret"
-	turret 26 -80 "Dual Sunbeam Turret"
-	turret -41 -20 "Dual Sunbeam Turret"
-	turret 32 -7 "Point Defense Turret"
-	turret 53 82 "Dual Sunbeam Turret"
-	turret -37 186 "Dual Sunbeam Turret"
-	turret 37 186 "Dual Sunbeam Turret"
+	engine 45 230
+		zoom 1.2
+		angle 0
+		under
+	turret -10.5 -160.5 "Dual Sunbeam Turret"
+	turret 32.5 -86 "Dual Sunbeam Turret"
+	turret -40.5 -23 "Dual Sunbeam Turret"
+	turret 0 10 "Dual Sunbeam Turret"
+	turret -19.5 73 "Dual Sunbeam Turret"
+	turret 35 74 "Dual Sunbeam Turret"
+	turret 33.5 148.5 "Dual Sunbeam Turret"
+	turret -42 185.5 "Point Defense Turret"
 	leak leak 30 50
 	leak flame 30 80
 	leak "big leak" 50 30
