@@ -165,7 +165,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 
 		double descriptionOffset = 35.;
-		Point descCenter(Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2, startPoint.Y() + 20.);
+		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
 
 		// Maintenance note: This can be replaced with collapsed.contains() in C++20
 		if(!collapsed.count("description"))
@@ -181,7 +181,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		}
 
 		// calculate the new ClickZone for the description
-		Point descDimensions(INFO_SIDE_WIDTH, descriptionOffset + 10.);
+		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
 		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
 
 		// find the old zone to erase it
