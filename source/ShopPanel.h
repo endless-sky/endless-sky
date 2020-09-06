@@ -30,12 +30,6 @@ class Planet;
 class PlayerInfo;
 class Ship;
 
-enum class ShopPane : int {
-  Main,
-  Sidebar,
-  Info
-};
-
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
@@ -83,7 +77,6 @@ protected:
 	
 	int64_t LicenseCost(const Outfit *outfit) const;
 	
-	
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
@@ -98,6 +91,12 @@ protected:
 	private:
 		double scrollY = 0.;
 		const Outfit *outfit = nullptr;
+	};
+
+	enum class ShopPane : int {
+		Main,
+		Sidebar,
+		Info
 	};
 	
 	

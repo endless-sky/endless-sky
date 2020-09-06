@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -213,6 +214,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	string selectedItem = "Nothing Selected";
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 
 	int heightOffset = 20;
 
@@ -222,10 +225,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		selectedItem = selectedOutfit->Name();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
-		if(!thumbnail)
-		{
-			thumbnail = SpriteSet::Get("ui/outfitter selected");
-		}
+		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
 
 		float tileSize = max(thumbnail->Height(), static_cast<float>(TileSize()));
 
@@ -233,17 +233,52 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
-		Point attrPoint(startPoint.X(), startPoint.Y());
+		double descriptionOffset = 35.;
+		Point descCenter(Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2, startPoint.Y() + 20.);
+
+		// Maintenance note: This can be replaced with collapsed.contains() in C++20
+		if(!collapsed.count("description"))
+		{
+			descriptionOffset = outfitInfo.DescriptionHeight();
+			outfitInfo.DrawDescription(startPoint);
+		}
+		else
+		{
+			std::string label = "description";
+			font.Draw(label, startPoint + Point(35., 12.), dim);
+			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+		}
+
+		// calculate the new ClickZone for the description
+		Point descDimensions(INFO_SIDE_WIDTH, descriptionOffset + 10.);
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+
+		// find the old zone to erase it
+		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
+		{
+			if(it->Value() == "description")
+			{
+				categoryZones.erase(it);
+				break;
+			}
+
+		}
+
+		// insert the new zone
+		categoryZones.emplace_back(collapseDescription);
+
+		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
 		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
-		Point descPoint(startPoint.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
 
-		SpriteShader::Draw(thumbnail, thumbnailCenter);
+		SpriteShader::Draw(background, thumbnailCenter);
+		if(thumbnail)
+			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		outfitInfo.DrawDescription(descPoint);
+
 		outfitInfo.DrawAttributes(attrPoint);
 		outfitInfo.DrawRequirements(reqsPoint);
 
-		heightOffset = descPoint.Y() + outfitInfo.DescriptionHeight();
+		heightOffset = reqsPoint.Y() + outfitInfo.RequirementsHeight();
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel

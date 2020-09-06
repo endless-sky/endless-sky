@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipyardPanel.h"
 
+#include "ClickZone.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Font.h"
@@ -23,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -140,10 +142,12 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center)
 {
-
 	string selectedItem = "No Ship Selected";
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+
 	int heightOffset = 20;
 
 	if(selectedShip)
@@ -151,6 +155,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 		selectedItem = selectedShip->ModelName();
 
+		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = min(1.f, (INFO_SIDE_WIDTH - 20.f) / shipSprite->Width());
 		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
@@ -160,17 +165,50 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		Point spriteCenter(center.X(), center.Y() + 20 + tileSize / 2);
 		Point startPoint(center.X() - INFO_SIDE_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
-		Point attrPoint(startPoint.X(), startPoint.Y());
-		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
-		Point descPoint(startPoint.X(), outfPoint.Y() + shipInfo.OutfitsHeight());
+		double descriptionOffset = 35.;
+		Point descCenter(Screen::Right() - SIDE_WIDTH + INFO_SIDE_WIDTH / 2, startPoint.Y() + 20.);
 
+		// Maintenance note: This can be replaced with collapsed.contains() in C++20
+		if(!collapsed.count("description"))
+		{
+			descriptionOffset = shipInfo.DescriptionHeight();
+			shipInfo.DrawDescription(startPoint);
+		}
+		else
+		{
+			std::string label = "description";
+			font.Draw(label, startPoint + Point(35., 12.), dim);
+			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+		}
+
+		// calculate the new ClickZone for the description
+		Point descDimensions(INFO_SIDE_WIDTH, descriptionOffset + 10.);
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+
+		// find the old zone to erase it
+		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
+		{
+			if(it->Value() == "description")
+			{
+				categoryZones.erase(it);
+				break;
+			}
+
+		}
+
+		// insert the new zone
+		categoryZones.emplace_back(collapseDescription);
+
+		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
+
+		SpriteShader::Draw(background, spriteCenter);
 		SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 
 		shipInfo.DrawAttributes(attrPoint);
 		shipInfo.DrawOutfits(outfPoint);
-		shipInfo.DrawDescription(descPoint);
 
-		heightOffset = descPoint.Y() + shipInfo.DescriptionHeight();
+		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
 	}
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
