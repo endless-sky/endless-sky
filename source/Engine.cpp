@@ -1041,6 +1041,14 @@ void Engine::Draw() const
 
 
 
+// Give an (automated/scripted) command on behalf of the player.
+void Engine::GiveCommand(const Command &command)
+{
+	activeCommands.Set(command);
+}
+
+
+
 // Select the object the player clicked on.
 void Engine::Click(const Point &from, const Point &to, bool hasShift)
 {

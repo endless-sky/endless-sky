@@ -1158,3 +1158,34 @@ news "human farming in pirate space"
 			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path and could return to living normally. I'm talking from personal experience."
 		word
 			`"`
+
+
+
+news "graffiti on spaceport wall"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+	name
+		word
+			"Graffiti painted on a wall"
+	message
+		word
+			`"`
+		word
+			"A lone, soulless husk. / Appointed immortal king. / To sulk forever. - fgnt"
+			"The galaxy's child / Cursed with madness of time / Behind bloody chains - fgnt"
+			"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
+			"A small cosmological speck drifting in and out of time - Swiren"
+			"Tear down the planet / Draw the most perfect circle / Idle endlessly - fgnt"
+			"Polish hull plating / Bring guns and ammunition / When will the blood stop? -fgnt"
+			"Farmer's family / Where's our guardian fleet? / Trapped in Paradise - fgnt"
+			"Built on graveyards / Our infant species pretends / No bodies remain - fgnt"
+			"The honest soldier / Rescue children when Hope dies / Fired by Earth's wisest - fgnt"
+			"What lies beyond life / A Rampant AI wonders / Exit door leads in - Warlord Mike"
+			"There once was a man from New Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
+			"There once was a man from New Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
+			"There once was a man from New Boston / His loan officer advised caution / He purchased a sparrow / Took off like an arrow- / That sparrow soon turned up at auction. - Lake"
+			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
+			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
+			"A long time ago / I was respected by all, / but now I sit here."
+		word
+			`"`
