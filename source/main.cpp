@@ -178,6 +178,9 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 	
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
+
+	// keep track of lagging
+	double lagCount = 0;
 	
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
@@ -277,6 +280,22 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			}
 		}
 		
+		// drop the frame if we are (still) lagging behind
+		if(lagCount >= 1)
+		{
+			// we only slow down in flight,
+			// we still slow down in the menu etc for smoother animations
+			if(inFlight)
+			{
+				lagCount = lagCount - 1;
+				continue;
+			}
+			else
+			{
+				lagCount = 0;
+			}
+		}
+		
 		Audio::Step();
 		
 		// Events in this frame may have cleared out the menu, in which case
@@ -287,7 +306,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		
 		GameWindow::Step();
 
-		timer.Wait();
+		lagCount += timer.Wait();
 	}
 	
 	// If player quit while landed on a planet, save the game if there are changes.

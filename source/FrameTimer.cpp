@@ -41,14 +41,17 @@ FrameTimer::FrameTimer(int fps, int maxLagMsec)
 
 
 // Wait until the next frame should begin.
-void FrameTimer::Wait()
+double FrameTimer::Wait()
 {
+	double lagCount = 0;
 	// Note: in theory this could get interrupted by a signal handler, although
 	// it's unlikely the program will receive any signals that do not terminate
 	// it and that it does not ignore. But, the worst that would happen in that
 	// case is that this particular frame will end too quickly, and then it will
 	// go back to normal for the next one.
 	chrono::steady_clock::time_point now = chrono::steady_clock::now();
+	
+	// are we early?
 	if(now < next)
 	{
 		// This should never happen with a true steady clock, but make sure that
@@ -61,9 +64,14 @@ void FrameTimer::Wait()
 	}
 	// If the lag is too high, don't try to do catch-up.
 	if(now - next > maxLag)
+	{
+		// track how many steps we are behind
+		lagCount =  (1.0 * (now - next)) / step;
 		next = now;
+	}
 	
 	Step();
+	return lagCount;
 }
 
 

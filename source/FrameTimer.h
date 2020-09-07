@@ -31,7 +31,8 @@ public:
 	explicit FrameTimer(int fps, int maxLagMsec = 5);
 	
 	// Wait until the next frame should begin.
-	void Wait();
+	// returns how many steps we missed, 0 -> no lag
+	double Wait();
 	// Find out how long it has been since this timer was created, in seconds.
 	double Time() const;
 	
