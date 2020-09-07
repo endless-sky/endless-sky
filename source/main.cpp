@@ -283,7 +283,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		// drop the frame if we are (still) lagging behind
 		if(lagCount >= 1)
 		{
-			// we only slow down in flight,
+			// we only drop frames in flight,
 			// we still slow down in the menu etc for smoother animations
 			if(inFlight)
 			{
