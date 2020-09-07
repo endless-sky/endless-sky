@@ -1,0 +1,158 @@
+person "Prototype B3-CC4"
+	frequency 20000
+	government "Author"
+	personality
+		swarming unconstrained forbearing
+	phrase
+		phrase
+			"friendly author"
+	system
+		attributes "ember waste"
+	phrase
+		word
+			"I may be just a piece of rock, but"
+			"Even for a floating gathering of debris"
+			"If there's something being uncostrained by gravity taught me, it's that"
+		word
+			" "
+		word
+			"those reactors the Navy uses are absurdly overpriced"
+			"you shouldn't buy anything the Syndicate sells. That stuff's terrible they even for their price"
+			"many reactors are in terrible conditions the moment they are sold to you. Fortunately, downloading Restock can fix this"
+			"there are lots of used engines that, after the previous owner sells them, are just refurbished enough to pass the checks and put in the local outfitter without even cleaning them a little. If I were you, I'd just download Restock and look at the new models all around the spaceport"
+		word
+			"."
+			"!"
+	phrase
+		word
+			"Long years of technological development were for this ship a pathway to many abilities some consider to be unnatural."
+	phrase
+		word
+			"If you ever feel useless, just remember that the people at Betelgeuse Shipyards spent months while developing the Heavy Shuttle trying to add one more gun port to it, without ever thinking about giving it more weapon space."
+	phrase
+		word
+			"What are you looking at?"
+			"Stop staring at my ship."
+		word
+			" "
+		word
+			"I thought captains like you saw asteroids passing by every day."
+			"I'm just a normal minor planet trying its best to ignore the law of gravity."
+	phrase
+		word
+			"What were you thinking about when you hailed me? 'Oh look, an asteroid. Let's chat.'"
+	phrase
+		word
+			"How does it feel trying to hail an asteroid and actually succeeding?"
+	phrase
+		word
+			"What a day to be a non sentient rock floating in the middle of the eternal void."
+	phrase
+		word
+			"When even the local asteroid belt starts chatting with you, you can tell you've been jumping a little too much lately."
+	phrase
+		word
+			"What's weirder, an asteroid that emits purple rays or the person that tried to talk with it?"
+	ship "Shooting Star" "BeccaBunny"
+
+
+ship "Shooting Star"
+	sprite "ship/shooting star/spin"
+		"frame time" 3
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		"hull" 31500
+		"automaton" 1
+		"energy capacity" 1
+		"mass" 450
+		"drag" 3.9
+		"heat dissipation" 10
+		"outfit space" 273
+		"cargo space" 10
+		"hull repair" 3
+		"thrust" 15.6
+		"reverse thrust" 15.6
+		"flare sound" "ion medium"
+		"turn" 1089.2
+		"hyperdrive" 1
+		weapon
+			"blast radius" 180
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Shooting Star Flare"
+		"Shooting Star Hit"
+		"Shooting Star Impact"
+		"Shooting Star Mover"
+		"Jump Drive"
+		"Quantum Key Stone"
+		
+
+	gun 0 0
+	turret 0 0
+	turret 0 0
+	turret 0 0
+	explode "tiny explosion" 5
+	explode "small explosion" 20
+	explode "medium explosion" 25
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description "."
+
+# Outfits
+
+outfit "Shooting Star Flare"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"gun ports" -1
+	weapon
+		"hardpoint sprite" "hardpoint/shooting star flare/spin"
+			"frame time" 3
+	description "The beam projector of the Shooting Star, without it the flares would appear in the ship outline."
+
+outfit "Shooting Star Mover"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turret mounts" -1
+	weapon
+		"turret turn" 6
+		"velocity" 250
+		"lifetime" 3
+		"reload" 4
+		"firing force" -68
+		"hit force" -43
+	description "A tractor beam, to make sure that the Shooting Star won't miss."
+
+outfit "Shooting Star Hit"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turret mounts" -1
+	weapon
+		sound "crunch"
+		"hit effect" "void sprite chewing"
+		"turret turn" 6
+		"velocity" 46
+		"lifetime" 1
+		"reload" 1
+		"piercing" 1
+		"hull damage" 293
+	description "A continuous beam version of the Impact, to avoid having a collision without damage nor a hit effect."
+
+outfit "Shooting Star Impact"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turret mounts" -1
+	weapon
+		sound "crunch"
+		"hit effect" "void sprite chewing" 3
+		"turret turn" 6
+		"velocity" 42
+		"lifetime" 1
+		"reload" 30
+		"piercing" 1
+		"firing force" 2700
+		"hit force" 3500
+		"hull damage" 2160
+	description "The actual impact of the Shooting Star, dealing most of the damage and pushing the vessel back."
