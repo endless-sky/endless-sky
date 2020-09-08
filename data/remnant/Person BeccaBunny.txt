@@ -26,9 +26,13 @@ person "Prototype B3-CC4"
 	phrase
 		word
 			"Long years of technological development were for this ship a pathway to many abilities some consider to be unnatural."
-	phrase
-		word
 			"If you ever feel useless, just remember that the people at Betelgeuse Shipyards spent months while developing the Heavy Shuttle trying to add one more gun port to it, without ever thinking about giving it more weapon space."
+			"What were you thinking about when you hailed me? 'Oh look, an asteroid. Let's chat.'"
+			"How does it feel to try hailing an asteroid and actually succeeding?"
+			"What a day to be a non-sentient rock floating in the middle of the eternal void."
+			"When even the local asteroid belt starts chatting with you, you can tell you've been jumping a little too much lately."
+			"What's weirder, an asteroid that emits purple rays or the person that tried to talk with it?"
+			"My goals are beyond your understanding."
 	phrase
 		word
 			"What are you looking at?"
@@ -38,21 +42,6 @@ person "Prototype B3-CC4"
 		word
 			"I thought captains like you saw asteroids passing by every day."
 			"I'm just a normal minor planet trying its best to ignore the law of gravity."
-	phrase
-		word
-			"What were you thinking about when you hailed me? 'Oh look, an asteroid. Let's chat.'"
-	phrase
-		word
-			"How does it feel to try hailing an asteroid and actually succeeding?"
-	phrase
-		word
-			"What a day to be a non-sentient rock floating in the middle of the eternal void."
-	phrase
-		word
-			"When even the local asteroid belt starts chatting with you, you can tell you've been jumping a little too much lately."
-	phrase
-		word
-			"What's weirder, an asteroid that emits purple rays or the person that tried to talk with it?"
 
 	phrase # The ones below are EVN Krypt Pod references
 		word
@@ -114,9 +103,8 @@ ship "Shooting Star"
 	attributes
 		category "Heavy Warship"
 		"hull" 31500
-		# "automaton" 1
 		"required crew" 1
-		"bunks" 3
+		"bunks" 2
 		"energy capacity" 100
 		"mass" 450
 		"drag" 3.9
@@ -129,9 +117,10 @@ ship "Shooting Star"
 		"reverse thrust" 15.6
 		"flare sound" "ion medium"
 		"turn" 1089.2
-		"jump speed" .3
+		"jump speed" .2
 		"jump fuel" 1
-		"jump drive" 1
+		"hyperdrive" 1
+		"energy generation" 1
 		weapon
 			"blast radius" 180
 			"shield damage" 720
