@@ -12,12 +12,12 @@ person "Prototype B3-CC4"
 		word
 			"I may be just a piece of rock, but"
 			"Even for a floating gathering of debris"
-			"If there's something being uncostrained by gravity taught me, it's that"
+			"If there's something being unconstrained by gravity taught me, it's that"
 		word
 			" "
 		word
 			"those reactors the Navy uses are absurdly overpriced"
-			"you shouldn't buy anything the Syndicate sells. That stuff's terrible they even for their price"
+			"you shouldn't buy anything the Syndicate sells. That stuff's terrible, even for their price"
 			"many reactors are in terrible conditions the moment they are sold to you. Fortunately, downloading Restock can fix this"
 			"there are lots of used engines that, after the previous owner sells them, are just refurbished enough to pass the checks and put in the local outfitter without even cleaning them a little. If I were you, I'd just download Restock and look at the new models all around the spaceport"
 		word
@@ -43,17 +43,68 @@ person "Prototype B3-CC4"
 			"What were you thinking about when you hailed me? 'Oh look, an asteroid. Let's chat.'"
 	phrase
 		word
-			"How does it feel trying to hail an asteroid and actually succeeding?"
+			"How does it feel to try hailing an asteroid and actually succeeding?"
 	phrase
 		word
-			"What a day to be a non sentient rock floating in the middle of the eternal void."
+			"What a day to be a non-sentient rock floating in the middle of the eternal void."
 	phrase
 		word
 			"When even the local asteroid belt starts chatting with you, you can tell you've been jumping a little too much lately."
 	phrase
 		word
 			"What's weirder, an asteroid that emits purple rays or the person that tried to talk with it?"
-	ship "Shooting Star" "BeccaBunny"
+
+	phrase # The ones below are EVN Krypt Pod references
+		word
+			"<"
+		word
+			"Unauthorised"
+			"Unknown"
+		word
+			" "
+		word
+			"interface"
+			"computer access"
+		word
+			">"
+	phrase
+		word
+			"<Transmission disrupted at source>"
+	phrase
+		word
+			"<Incoherent signal>"
+	phrase
+		word
+			"<"
+		word
+			"Incoherent"
+			"Irregular"
+			"Static"
+			"Undecipherable"
+		word
+			" "
+		word
+			"response"
+			"EM beam"
+			"transmission brust"
+		word
+			">"
+	phrase
+		word
+			"<"
+		word
+			"Unregistered"
+			"Undecipherable"
+		word
+			" "
+		word
+			"language"
+			"transmission burst"
+		word
+			">"
+	ship "Shooting Star" "Prototype B3-CC4"
+		"never disabled"
+
 
 
 ship "Shooting Star"
@@ -63,11 +114,14 @@ ship "Shooting Star"
 	attributes
 		category "Heavy Warship"
 		"hull" 31500
-		"automaton" 1
-		"energy capacity" 1
+		# "automaton" 1
+		"required crew" 1
+		"bunks" 3
+		"energy capacity" 100
 		"mass" 450
 		"drag" 3.9
 		"heat dissipation" 10
+		"fuel capacity" 100
 		"outfit space" 273
 		"cargo space" 10
 		"hull repair" 3
@@ -75,7 +129,9 @@ ship "Shooting Star"
 		"reverse thrust" 15.6
 		"flare sound" "ion medium"
 		"turn" 1089.2
-		"hyperdrive" 1
+		"jump speed" .3
+		"jump fuel" 1
+		"jump drive" 1
 		weapon
 			"blast radius" 180
 			"shield damage" 720
@@ -86,10 +142,7 @@ ship "Shooting Star"
 		"Shooting Star Hit"
 		"Shooting Star Impact"
 		"Shooting Star Mover"
-		"Jump Drive"
 		"Quantum Key Stone"
-		
-
 	gun 0 0
 	turret 0 0
 	turret 0 0
