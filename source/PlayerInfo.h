@@ -121,8 +121,8 @@ public:
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
-	// Buy a ship, receive a gifted ship, or sell a ship.
-	void BuyShip(const Ship *model, const std::string &name, bool isGift);
+	// Buy a ship or sell a ship.
+	void BuyShip(const Ship *model, const std::string &name, bool isGift = false);
 	void SellShip(const Ship *selected);
 	void DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
@@ -267,9 +267,6 @@ private:
 	
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
-
-	// Adds a ship of the given model with the given name to the player's fleet. If this ship is being gifted, it costs nothing and starts fully depreciated.
-	void ReceiveShip(const Ship *model, const std::string &name, bool isGift);
 	
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;

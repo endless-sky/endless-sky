@@ -36,7 +36,6 @@ namespace {
 	void DoGiftShip(PlayerInfo &player, const Ship *model, const std::string &name, UI *ui)
 	{
 		player.BuyShip(model, name, true);
-		
 		if(ui)
 			ui->Push(new Dialog("The " + name + " was added to your fleet!"));
 	}
@@ -306,6 +305,7 @@ void MissionAction::Save(DataWriter &out) const
 		}
 		if(!conversation.IsEmpty())
 			conversation.Save(out);
+		
 		for(const auto &it : giftShips)
 			out.Write("ship", it.first->Name(), it.second);
 		for(const auto &it : giftOutfits)
@@ -507,7 +507,6 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}
-	
 	for(const auto &it : giftShips)
 		result.giftShips[it.first] = !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get();
 	result.giftOutfits = giftOutfits;

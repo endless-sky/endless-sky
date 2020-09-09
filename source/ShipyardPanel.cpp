@@ -313,7 +313,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 		
-		player.BuyShip(selectedShip, shipName, false);
+		player.BuyShip(selectedShip, shipName);
 	}
 	
 	playerShip = &*player.Ships().back();

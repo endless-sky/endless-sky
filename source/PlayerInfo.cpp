@@ -841,16 +841,9 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 
 
-// Buy a ship of the given model, and give it the given name.
+// Adds a ship of the given model with the given name to the player's fleet.
+// If this ship is being gifted, it costs nothing and starts fully depreciated.
 void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
-{
-	ReceiveShip(model, name, isGift);
-}
-
-
-
-// Adds a ship of the given model with the given name to the player's fleet. If this ship is being gifted, it costs nothing and starts fully depreciated.
-void PlayerInfo::ReceiveShip(const Ship *model, const string &name, bool isGift)
 {
 	if(!model)
 		return;
