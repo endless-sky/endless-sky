@@ -2,7 +2,7 @@ person "Prototype B3-CC4"
 	frequency 20000
 	government "Author"
 	personality
-		surveillance unconstrained forbearing
+		forbearing mining surveillance unconstrained
 	phrase
 		phrase
 			"friendly author"
