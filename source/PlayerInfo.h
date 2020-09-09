@@ -121,8 +121,9 @@ public:
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
-	// Buy or sell a ship.
+	// Buy a ship, receive a gifted ship, or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name);
+	void GiftShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
 	void DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
@@ -247,6 +248,9 @@ public:
 	
 	
 private:
+	// Internal implementation of BuyShip and GiftShip
+	void ReceiveShip(const Ship *model, const std::string &name, bool gifting);
+	
 	// Don't allow anyone else to copy this class, because pointers won't get
 	// transferred properly.
 	PlayerInfo(const PlayerInfo &) = default;
@@ -270,8 +274,8 @@ private:
 	
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
-	
-	
+
+
 private:
 	std::string firstName;
 	std::string lastName;
