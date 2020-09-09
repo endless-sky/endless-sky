@@ -33,7 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGiftShip(PlayerInfo &player, const Ship *model, const std::string &name, UI *ui)
+	void DoGiftShip(PlayerInfo &player, const Ship *model, const string &name, UI *ui)
 	{
 		player.BuyShip(model, name, true);
 		if(ui)
