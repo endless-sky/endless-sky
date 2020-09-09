@@ -35,7 +35,7 @@ using namespace std;
 namespace {
 	void DoGiftShip(PlayerInfo &player, const Ship *model, const std::string &name, UI *ui)
 	{
-		player.GiftShip(model, name);
+		player.BuyShip(model, name, true);
 		
 		if(ui)
 			ui->Push(new Dialog("The " + name + " was added to your fleet!"));
