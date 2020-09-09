@@ -719,7 +719,6 @@ shipyard "Remnant"
 	"Pelican"
 	"Petrel"
 	"Tern"
-	"Shooting Star"
 
 shipyard "Remnant Puffin"
 	"Puffin"
