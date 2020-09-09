@@ -155,7 +155,7 @@ ship "Shooting Star"
 	explode "medium explosion" 25
 	explode "large explosion" 15
 	"final explode" "final explosion medium"
-	description "."
+	description "This ship appears to be a hollowed-out asteroid filled with strange equipment. It is unclear what is creating the rays of light, but they clearly have something to do with how it moves without obvious engines."
 
 # Outfits
 
