@@ -2,7 +2,7 @@ person "Prototype B3-CC4"
 	frequency 20000
 	government "Author"
 	personality
-		swarming unconstrained forbearing
+		surveillance unconstrained forbearing
 	phrase
 		phrase
 			"friendly author"
@@ -97,7 +97,7 @@ person "Prototype B3-CC4"
 
 
 ship "Shooting Star"
-	sprite "ship/shooting star/spin"
+	sprite "ship/shooting star/shootingstar"
 		"frame time" 3
 	"never disabled"
 	attributes
@@ -118,9 +118,13 @@ ship "Shooting Star"
 		"flare sound" "ion medium"
 		"turn" 1089.2
 		"jump speed" .2
-		"jump fuel" 1
+		"jump fuel" 50
 		"hyperdrive" 1
 		"energy generation" 1
+		"outfit scan power" 24
+		"outfit scan speed" 1
+		"asteroid scan power" 30
+		"atmosphere scan" 100
 		weapon
 			"blast radius" 180
 			"shield damage" 720
@@ -150,7 +154,7 @@ outfit "Shooting Star Flare"
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
-		"hardpoint sprite" "hardpoint/shooting star flare/spin"
+		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
 	description "The beam projector of the Shooting Star, without it the flares would appear in the ship outline."
 
