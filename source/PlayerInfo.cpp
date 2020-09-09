@@ -849,7 +849,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 
 
 
-// Receive a ship as a gift
+// Receive a ship of the given model with the given name as a gift.
 void PlayerInfo::GiftShip(const Ship *model, const std::string &name)
 {
 	ReceiveShip(model, name, true);

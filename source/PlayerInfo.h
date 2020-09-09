@@ -121,7 +121,7 @@ public:
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
-	// Buy a ship, receive a gifted ship, or sell a ship.
+	// Buy a ship, receive a ship, or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	void GiftShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
