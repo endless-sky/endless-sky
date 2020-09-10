@@ -33,14 +33,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGiftShip(PlayerInfo &player, const Ship *model, const string &name, UI *ui)
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name, UI *ui)
 	{
+		if(model->ModelName().empty())
+			return;
+		
 		player.BuyShip(model, name, true);
 		if(ui)
 			ui->Push(new Dialog("The " + name + " was added to your fleet!"));
 	}
 	
-	void DoGiftOutfit(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
+	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
 		Ship *flagship = player.Flagship();
 		bool isSingle = (abs(count) == 1);
@@ -307,7 +310,7 @@ void MissionAction::Save(DataWriter &out) const
 			conversation.Save(out);
 		
 		for(const auto &it : giftShips)
-			out.Write("ship", it.first->Name(), it.second);
+			out.Write("ship", it.first->ModelName(), it.second);
 		for(const auto &it : giftOutfits)
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
@@ -457,15 +460,15 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
 	for(const auto &it : giftShips)
-		DoGiftShip(player, it.first, it.second, ui);
+		DoGift(player, it.first, it.second, ui);
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(const auto &it : giftOutfits)
 		if(it.second < 0)
-			DoGiftOutfit(player, it.first, it.second, ui);
+			DoGift(player, it.first, it.second, ui);
 	for(const auto &it : giftOutfits)
 		if(it.second > 0)
-			DoGiftOutfit(player, it.first, it.second, ui);
+			DoGift(player, it.first, it.second, ui);
 	
 	if(payment)
 		player.Accounts().AddCredits(payment);
