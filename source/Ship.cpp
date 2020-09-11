@@ -704,13 +704,23 @@ void Ship::Save(DataWriter &out) const
 		out.Write("outfits");
 		out.BeginChild();
 		{
+			// Using a temporary map with the outfit names as keys so that
+			// outfits are written to the savefile in named alphabetical
+			// order.
+			// The game-engine doesn't care in which order outfits are
+			// saved or loaded, the sorting here is done as a service for
+			// content creators that use savegames for working on their
+			// new content.
+			map<string, int> orderedOutfits;
 			for(const auto &it : outfits)
 				if(it.first && it.second)
+					orderedOutfits[it.first->Name()] = it.second;
+			for(const auto &ito : orderedOutfits)
 				{
-					if(it.second == 1)
-						out.Write(it.first->Name());
+					if(ito.second == 1)
+						out.Write(ito.first);
 					else
-						out.Write(it.first->Name(), it.second);
+						out.Write(ito.first, ito.second);
 				}
 		}
 		out.EndChild();
