@@ -365,7 +365,8 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				panelState.SetSelectedIndex(-1);
 			
 			// Update the scroll if necessary to keep the selected ship on screen.
-			int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE) - (panelState.SelectedIndex() < panelState.Scroll());
+			int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE)
+				- (panelState.SelectedIndex() < panelState.Scroll());
 			if(panelState.SelectedIndex() >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
 				hoverIndex = -1;
 		}
@@ -501,9 +502,9 @@ bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
 			else if(shift)
 			{
 				// Select all the ships between the previous selection and this one.
-				for(int i = max(0, min(panelState.SelectedIndex(), hoverIndex));
-					i <= max(panelState.SelectedIndex(), hoverIndex);
-					++i)
+				int start = max(0, min(panelState.SelectedIndex(), hoverIndex));
+				int end = max(panelState.SelectedIndex(), hoverIndex);
+				for(int i = start; i <= end; ++i)
 					panelState.AllSelected().insert(i);
 			}
 			else
@@ -681,7 +682,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	table.DrawUnderline(hoverMenuPtr == nullptr ? dim : bright);
 
 	// Header row.
-	
 	for(auto column = columns.begin(); column < columns.end(); ++column)
 	{
 		const auto currentColumn = *column;
@@ -718,12 +718,11 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		if(!bounds.Contains(table.GetRowBounds()))
 			break;
 
-		const Ship &ship = **sit;
-
 		// Check if this row is selected.
 		if(panelState.AllSelected().count(index))
 			table.DrawHighlight(back);
 
+		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
 		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
 		bool isDead = ship.IsDestroyed() || ship.IsDisabled();
@@ -875,10 +874,8 @@ bool PlayerInfoPanel::Hover(const Point &point)
 // Adjust the scroll by the given amount. Return true if it changed.
 bool PlayerInfoPanel::Scroll(int distance)
 {
-	int newScroll = max(
-		0,
-		min<int>(panelState.Ships().size() - LINES_PER_PAGE, panelState.Scroll() + distance)
-	);
+	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
+	int newScroll = max(0, min<int>(maxScroll, panelState.Scroll() + distance));
 
 	if(panelState.Scroll() == newScroll)
 		return false;

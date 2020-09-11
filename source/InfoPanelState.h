@@ -1,4 +1,4 @@
-/* PlayerInfoPanel.cpp
+/* InfoPanelState.h
 Copyright (c) 2020 by Eric Xing
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
