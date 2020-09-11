@@ -46,13 +46,14 @@ outfit "Drak Draining Field"
 		"velocity" 1
 		"lifetime" 1
 		"range override" 1100
+		"velocity override" 1100
 		"blast radius" 1100
 		"trigger radius" 1100
 		"reload" 1
 		"firing energy" 20
 		"firing heat" 5
 		"firing force" 30
-		"hit force" 500
+		"hit force" 50
 		"shield damage" 50
 		"ion damage" .5
 		"disruption damage" 1
