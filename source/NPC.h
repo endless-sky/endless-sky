@@ -60,7 +60,7 @@ public:
 	
 	// Handle the given ShipEvent.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
-	bool HasSucceeded(const System *playerSystem) const;
+	bool HasSucceeded(const System *playerSystem, bool checkDespawnConditions = true) const;
 	// Check if the NPC is supposed to be accompanied and is not.
 	bool IsLeftBehind(const System *playerSystem) const;
 	bool HasFailed() const;
@@ -90,9 +90,6 @@ private:
 	Conversation conversation;
 	const Conversation *stockConversation = nullptr;
 	
-	// Whether this NPC has permanently despawned, at which point any objectives or
-	// actions associated with it are ignored (such as a "completion" conversation).
-	bool despawned = false;
 	// Conditions that must be met in order for this NPC to be placed or despawned:
 	bool passedSpawnConditions = false;
 	bool passedDespawnConditions = false;
