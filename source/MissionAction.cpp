@@ -196,7 +196,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation.Load(child);
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		else if(key ==  "ship" && hasValue)
+		else if(key == "ship" && hasValue)
 			giftShips[GameData::Ships().Get(child.Token(1))] = child.Size() >= 3 ? child.Token(2) : "";
 		else if(key == "outfit" && hasValue)
 		{
