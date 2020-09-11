@@ -108,6 +108,7 @@ namespace {
 
 	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
+		// Ships (drones) with no system are sorted to the end
 		if(lhs->GetSystem() == nullptr)
 		{
 			return false;
@@ -137,6 +138,7 @@ namespace {
 
 	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
+		// Parked ships are sorted to the end
 		if(lhs->IsParked())
 		{
 			return false;

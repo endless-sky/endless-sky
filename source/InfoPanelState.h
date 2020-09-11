@@ -20,13 +20,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class PlayerInfo;
-class PlayerInfoPanel;
 
 
 
 // This class is responsible for storing the state between PlayerInfoPanel and ShipInfoPanel
-// so that things like scroll position, selection and sort are saved when the user is switching
-// between the panels
+// so that things like scroll position, selection and sort are saved when the user is switching between the panels
 class InfoPanelState {
 public:
 	using ShipComparator = bool (const std::shared_ptr <Ship>&, const std::shared_ptr <Ship>&);

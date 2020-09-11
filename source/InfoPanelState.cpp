@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "InfoPanelState.h"
 
 #include "PlayerInfo.h"
-#include "PlayerInfoPanel.h"
 
 #include <memory>
 #include <set>
@@ -28,9 +27,8 @@ class InfoPanelState;
 
 
 InfoPanelState::InfoPanelState(PlayerInfo &player)
-:ships(player.Ships()), canEdit(player.GetPlanet())
+	:ships(player.Ships()), canEdit(player.GetPlanet())
 {
-	
 }
 
 
@@ -57,6 +55,7 @@ bool InfoPanelState::CanEdit()
 {
 	return canEdit;
 }
+
 
 
 int InfoPanelState::Scroll()
