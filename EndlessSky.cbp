@@ -180,6 +180,8 @@
 		<Unit filename="source/ImageBuffer.h" />
 		<Unit filename="source/ImageSet.cpp" />
 		<Unit filename="source/ImageSet.h" />
+		<Unit filename="source/InfoPanelState.cpp" />
+		<Unit filename="source/InfoPanelState.h" />
 		<Unit filename="source/Information.cpp" />
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />

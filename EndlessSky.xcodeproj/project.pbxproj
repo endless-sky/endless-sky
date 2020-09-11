@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1578F8782503F5A300D318FB /* InfoPanelState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1578F8762503F5A300D318FB /* InfoPanelState.cpp */; };
+		1578F883250B5F8A00D318FB /* InfoPanelState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1578F880250B5F8A00D318FB /* InfoPanelState.cpp */; };
 		4C2DEF56201B8FAE0062315E /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; };
 		4C2DEF57201B90310062315E /* libSDL2-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
@@ -171,8 +171,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1578F8762503F5A300D318FB /* InfoPanelState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InfoPanelState.cpp; sourceTree = "<group>"; };
-		1578F8772503F5A300D318FB /* InfoPanelState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoPanelState.h; sourceTree = "<group>"; };
+		1578F880250B5F8A00D318FB /* InfoPanelState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InfoPanelState.cpp; path = source/InfoPanelState.cpp; sourceTree = "<group>"; };
+		1578F882250B5F8A00D318FB /* InfoPanelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoPanelState.h; path = source/InfoPanelState.h; sourceTree = "<group>"; };
 		4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "/usr/local/lib/libSDL2-2.0.0.dylib"; sourceTree = "<absolute>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
 		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
@@ -471,6 +471,8 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				1578F880250B5F8A00D318FB /* InfoPanelState.cpp */,
+				1578F882250B5F8A00D318FB /* InfoPanelState.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -650,8 +652,6 @@
 				A96863591AE6FD0C004FE1FE /* PlayerInfo.cpp */,
 				A968635A1AE6FD0C004FE1FE /* PlayerInfo.h */,
 				A98150831EA9635D00428AD6 /* PlayerInfoPanel.cpp */,
-				1578F8762503F5A300D318FB /* InfoPanelState.cpp */,
-				1578F8772503F5A300D318FB /* InfoPanelState.h */,
 				A98150841EA9635D00428AD6 /* PlayerInfoPanel.h */,
 				A968635B1AE6FD0C004FE1FE /* Point.cpp */,
 				A968635C1AE6FD0C004FE1FE /* Point.h */,
@@ -930,7 +930,7 @@
 				A96863EA1AE6FD0E004FE1FE /* PreferencesPanel.cpp in Sources */,
 				A96863F11AE6FD0E004FE1FE /* Shader.cpp in Sources */,
 				A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */,
-				1578F8782503F5A300D318FB /* InfoPanelState.cpp in Sources */,
+				1578F883250B5F8A00D318FB /* InfoPanelState.cpp in Sources */,
 				A96863F41AE6FD0E004FE1FE /* ShipInfoDisplay.cpp in Sources */,
 				A96863C21AE6FD0E004FE1FE /* FrameTimer.cpp in Sources */,
 				A96863D81AE6FD0E004FE1FE /* MissionAction.cpp in Sources */,

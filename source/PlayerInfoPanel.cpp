@@ -96,15 +96,18 @@ namespace {
 		}
 	}
 
-	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
 		return lhs->Name() < rhs->Name();
 	}
 
-	bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
 		return lhs->ModelName() < rhs->ModelName();
 	}
 
-	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
 		if(lhs->GetSystem() == nullptr)
 		{
 			return false;
@@ -116,20 +119,24 @@ namespace {
 		return lhs->GetSystem()->Name() < rhs->GetSystem()->Name();
 	}
 
-	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
 		return lhs->Shields() < rhs->Shields();
 	}
 
-	bool CompareHull(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	bool CompareHull(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
 		return lhs->Hull() < rhs->Hull();
 	}
 
-	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
 		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel() <
 			rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
 	}
 
-	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs) {
+	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
 		if(lhs->IsParked())
 		{
 			return false;
