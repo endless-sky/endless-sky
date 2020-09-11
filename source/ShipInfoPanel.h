@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "InfoPanelState.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
 
@@ -26,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Color;
+class InfoPanelState;
 class Outfit;
 class PlayerInfo;
 class Rectangle;
@@ -37,8 +39,9 @@ class Rectangle;
 // hardpoints. In flight, this panel allows them to jettison cargo.
 class ShipInfoPanel : public Panel {
 public:
-	explicit ShipInfoPanel(PlayerInfo &player, std::vector<std::shared_ptr<Ship>> shipList, int index = -1);
-	
+	explicit ShipInfoPanel(PlayerInfo &player);
+	explicit ShipInfoPanel(PlayerInfo &player, InfoPanelState state);
+
 	virtual void Draw() override;
 	
 	
@@ -66,7 +69,7 @@ private:
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
 	void Rename(const std::string &name);
-	bool CanDump() const;
+	bool CanDump();
 	void Dump();
 	void DumpPlunder(int count);
 	void DumpCommodities(int count);
@@ -77,7 +80,6 @@ private:
 	PlayerInfo &player;
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
-	std::vector<std::shared_ptr<Ship>> ships;
 	
 	// Information about the currently selected ship.
 	ShipInfoDisplay info;
@@ -91,11 +93,11 @@ private:
 	// recently selected, and which item is currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
-	int selectedIndex = -1;
+
+	InfoPanelState panelState;
+
 	// Track the current mouse location.
 	Point hoverPoint;
-	// You can only make changes to ships when landed on a planet.
-	bool canEdit = false;
 	// Track whether a commodity or plundered outfit is selected to jettison.
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;

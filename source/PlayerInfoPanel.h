@@ -15,9 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "Color.h"
 #include "ClickZone.h"
-#include "Point.h"
+#include "InfoPanelState.h"
 #include "Table.h"
 
 #include <map>
@@ -26,7 +25,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Color;
+class InfoPanelState;
 class PlayerInfo;
+class Point;
 class Rectangle;
 class Ship;
 class Table;
@@ -38,8 +39,8 @@ class Table;
 // their fleet (including changing which one is the flagship).
 class PlayerInfoPanel : public Panel {
 public:
-	using ShipComparator = bool (const std::shared_ptr <Ship>&, const std::shared_ptr <Ship>&);
-	explicit PlayerInfoPanel(PlayerInfo &player, std::vector<std::shared_ptr<Ship>> shipList);
+	explicit PlayerInfoPanel(PlayerInfo &player);
+	explicit PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -61,7 +62,6 @@ protected:
 private:
 	// Draw the two subsections of this panel.
 	void DrawPlayer(const Rectangle &bounds);
-	void Init();
 	void DrawFleet(const Rectangle &bounds);
 	
 	// Handle mouse hover (also including hover during drag actions):
@@ -69,48 +69,37 @@ private:
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	
-	void SortShips (ShipComparator &shipComparator);
+	void SortShips (InfoPanelState::ShipComparator &shipComparator);
 
 	class SortableColumn {
 	public:
-		SortableColumn();
-		SortableColumn(std::string name, double offset, Table::Align align, ShipComparator* shipSort);
+		SortableColumn(std::string name, double offset, Table::Align align, InfoPanelState::ShipComparator* shipSort);
 		
 		std::string name = "";
 		double offset = 0.;
 		Table::Align align = Table::Align::LEFT;
-		ShipComparator *shipSort = nullptr;
+		InfoPanelState::ShipComparator *shipSort = nullptr;
 	};
 
 private:
-	enum Colors {FAINT, MEDIUM, BRIGHT, DIM, DEAD, SPECIAL};
-
 	PlayerInfo &player;
-	std::map<Colors, Color> colors;
-	std::vector<SortableColumn> columns;
-	std::vector<ClickZone<ShipComparator*>> menuZones;
-	// A copy of PlayerInfo.ships for sorting
-	std::vector<std::shared_ptr<Ship>> ships;
-	// Keep track which column is hovered and applied
-	ShipComparator *hoverMenuPtr = nullptr;
-	ShipComparator *currentSort = nullptr;
-	bool isDirty = false;
+
+	static std::vector<SortableColumn> columns;
+
+	InfoPanelState panelState;
+
+	InfoPanelState::ShipComparator *hoverMenuPtr = nullptr;
+
+	std::vector<ClickZone<InfoPanelState::ShipComparator*>> menuZones;
 
 	std::vector<ClickZone<int>> shipZones;
-	// Keep track of which ship the mouse is hovering over, which ship was most
-	// recently selected, which ship is currently being dragged, and all ships
-	// that are currently selected.
+
+	// Keep track of which ship the mouse is hovering over
 	int hoverIndex = -1;
-	int selectedIndex = -1;
-	std::set<int> allSelected;
-	// This is the index of the ship at the top of the fleet listing.
-	int scroll = 0;
 	Point hoverPoint;
-	// When the player is landed, they are able to change their flagship and reorder their fleet.
-	bool canEdit = false;
+
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
-	bool sortAscending = true;
 };
 
 

@@ -996,7 +996,7 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 
 
 
-void PlayerInfo::ReorderShips(const std::vector<std::shared_ptr<Ship>> newOrder)
+void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
 {
 	ships = newOrder;
 }

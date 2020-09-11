@@ -198,7 +198,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
-		GetUI()->Push(new PlayerInfoPanel(player, player.Ships()));
+		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else

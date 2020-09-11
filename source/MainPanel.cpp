@@ -74,7 +74,7 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::INFO))
 	{
-		GetUI()->Push(new PlayerInfoPanel(player, player.Ships()));
+		GetUI()->Push(new PlayerInfoPanel(player));
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
