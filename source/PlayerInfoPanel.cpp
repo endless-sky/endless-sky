@@ -312,7 +312,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		}
 		// Holding both Ctrl & Shift keys and using the arrows moves the
 		// selected ship group up or down one row.
-		else if(!panelState.AllSelected().empty() && control && shift)
+		else if(panelState.CanEdit() && !panelState.AllSelected().empty() && control && shift)
 		{
 			// Move based on the position of the first selected ship. An upward
 			// movement is a shift of one, while a downward move shifts 1 and
