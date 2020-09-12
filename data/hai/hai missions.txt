@@ -254,6 +254,53 @@ mission "First Contact: Unfettered"
 		fail
 
 
+mission "Ask the Hai about the Unfettered"
+	landing
+	source
+		attributes "hai"
+	to offer
+		has "First Contact: Unfettered: offered"
+	on offer
+		conversation
+			`The Unfettered Hai told you that they are the "true Hai," and seem to think that the other Hai are oppressing them. Would you like to look for someone here who can tell you the other side of the story?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You find an elderly-looking Hai who is sitting on a bench watching the starships land and take off. As you approach, he says, "Hello human."`
+			choice
+				`	"Hello. I've met some of the Unfettered Hai. What can you tell me about them?"`
+				`	"Hello. Can you tell me why you are at war with the other Hai who live to the north?"`
+					goto war
+			`	He says, "Ah, our wayward sisters and brothers to the north. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
+				goto raids
+			label war
+			`	He says, "I would not call it war. We launch no raids on them. We only defend when they attack. And, we supply them with food and other things needful for life. They are not our enemies, they are just those who do not fit in. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
+			label raids
+			`	He pauses. "No, I am telling this unfairly. I will start again. Hundreds of years ago, when I was young, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped.`
+			`	"Most of those who had fought the invaders were glad to return to ordinary life, but there were some for whom life now seemed bland and meaningless without the excitement and chaos of war. They started colonies in the systems to the north, and fought amongst themselves, and mismanaged the land, and grew in numbers. And now their worlds cannot feed them all, and they invade us and tell stories to put blame on us for their failures."`
+			choice
+				`	"Shouldn't they be treated with gratitude for defending you against the raiders?"`
+				`	"They said the Drak altered the Hai to make them less aggressive. Is that true?"`
+					goto drak
+				`	"That's all I wanted to know. Thanks."`
+					decline
+			`	"They were, and still should be. There will always be times when our society needs them. Only at this time, the need is not so great. There is no new frontier for them to explore, no worthy challenges for them to face. And we fear what would happen if they ventured south and gained access to the wormhole, so we must force them to stay where they are."`
+			choice
+				`	"They said the Drak altered the Hai to make them less aggressive. Is that true?"`
+				`	"That's all I wanted to know. Thanks."`
+					decline
+			label drak
+			`	"No," he says, "it is a story they invented, that the Hai were destined to be masters of the galaxy but the Drak and the Quarg prevented us. The story is not true. Our civilization beyond the wormhole was brought down by infighting and unwise governance. Amid the wreckage we studied and thought and argued and came to believe that we could rule a small territory with stability and peace, or hold more worlds but with constant turmoil. We chose stability, and relinquished those worlds."`
+			choice
+				`	"So you don't think the Drak are keeping us all in cages?"`
+				`	"That's all I wanted to know. Thanks."`
+					decline
+			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
+			`	You thank him for taking time to speak with you, and say goodbye.`
+				decline
+
+
 
 mission "Unfettered Jump Drive 1"
 	name "More Jump Drives"
