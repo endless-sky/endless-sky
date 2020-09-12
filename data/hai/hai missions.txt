@@ -75,10 +75,96 @@ mission "Assisting Hai"
 
 
 
-mission "First Contact: Unfettered"
+mission "First Contact: Unfettered 1"
 	landing
 	source
 		attributes "unfettered"
+	to offer
+		not "First Contact: Hai: offered"
+	on offer
+		conversation
+			`This planet is populated by an alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
+			choice
+				`	(Sure.)`
+				`	(Not now, it's too risky.)`
+					defer
+			`	You catch the eye of one of the Hai dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+			choice
+				`	"Hai? Is that what you call yourselves?"`
+					goto name
+				`	"What do you mean, 'true Hai'?"`
+					goto true
+				`	"Why did you shoot at me? Are you at war with everyone?"`
+					goto everyone
+			
+			label name
+			`	We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."
+				goto masters
+			
+			label true
+			`	"It means that we are unaltered, Hai as Hai were first born to be. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+				goto masters
+			
+			label everyone
+			`	"We fight to defend ourselves from extinction," it says.`
+			`	"'Extinction?'" you ask. "Do you mean that there are no other Hai?"`
+			`	"We are all that is left of the original Hai." it says, "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+				goto masters
+			
+			label masters
+			choice
+				`	"Where was your territory? Why have I never heard of you before?"`
+				`	"What do you mean, the Hai were altered?"`
+	
+			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
+			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
+			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
+			`	"How were you altered?" you ask.`
+			`	It says, "We Hai took worlds that Drak said belonged to Sheragi, although Sheragi had not yet even discovered them. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
+			choice
+				`	"Did you try to resist the Drak?"`
+					goto resist
+				`	"How do you know this, if it happened a hundred thousand years ago?"`
+					goto know
+			
+			label resist
+			`	"Silly monkey," it says, "none can resist. They are strong. Their will prevails. And their will is for the galaxy to be a zoo, little remnants of each species all in separate cages. For now they let humans run free so humans will grow in knowledge, but soon they will fashion a cage for humans too."`
+				goto help
+			
+			label know
+			`	"All Hai know. The story is passed down. Others tell an altered version, where the way of peace was choice and not an inflicted wound, but some in each generation learn truth, and join us here."`
+				goto help
+			
+			label help
+			choice
+				`	"That is a frightening story. Thank you for taking the time to speak with me."`
+					decline
+				`	"Is there anything I can do to help you?"`
+			
+			`	"If you are ever willing to sell us a jump drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
+			choice
+				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
+				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
+					goto sell
+			`	"Then leave us alone," it says, and it walks off.`
+				decline
+			
+			label sell
+			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
+				decline
+				
+	on decline
+		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
+		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
+
+
+
+mission "First Contact: Unfettered 2"
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "First Contact: Hai: offered"
 	on offer
 		conversation
 			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
@@ -157,51 +243,15 @@ mission "First Contact: Unfettered"
 
 
 
-mission "Ask the Hai about the Unfettered"
+mission "First Contact: Unfettered"
 	landing
-	source
-		attributes "hai"
+	invisible
 	to offer
-		has "First Contact: Unfettered: offered"
+		or
+			has "First Contact: Unfettered 1: offered"
+			has "First Contact: Unfettered 2: offered"
 	on offer
-		conversation
-			`The Unfettered Hai told you that they are the "true Hai," and seem to think that the other Hai are oppressing them. Would you like to look for someone here who can tell you the other side of the story?`
-			choice
-				`	(Yes.)`
-				`	(No.)`
-					decline
-			`	You find an elderly-looking Hai who is sitting on a bench watching the starships land and take off. As you approach, he says, "Hello human."`
-			choice
-				`	"Hello. I've met some of the Unfettered Hai. What can you tell me about them?"`
-				`	"Hello. Can you tell me why you are at war with the other Hai who live to the north?"`
-					goto war
-			`	He says, "Ah, our wayward sisters and brothers to the north. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
-				goto raids
-			label war
-			`	He says, "I would not call it war. We launch no raids on them. We only defend when they attack. And, we supply them with food and other things needful for life. They are not our enemies, they are just those who do not fit in. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
-			label raids
-			`	He pauses. "No, I am telling this unfairly. I will start again. Hundreds of years ago, when I was young, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped.`
-			`	"Most of those who had fought the invaders were glad to return to ordinary life, but there were some for whom life now seemed bland and meaningless without the excitement and chaos of war. They started colonies in the systems to the north, and fought amongst themselves, and mismanaged the land, and grew in numbers. And now their worlds cannot feed them all, and they invade us and tell stories to put blame on us for their failures."`
-			choice
-				`	"Shouldn't they be treated with gratitude for defending you against the raiders?"`
-				`	"They said the Drak altered the Hai to make them less aggressive. Is that true?"`
-					goto drak
-				`	"That's all I wanted to know. Thanks."`
-					decline
-			`	"They were, and still should be. There will always be times when our society needs them. Only at this time, the need is not so great. There is no new frontier for them to explore, no worthy challenges for them to face. And we fear what would happen if they ventured south and gained access to the wormhole, so we must force them to stay where they are."`
-			choice
-				`	"They said the Drak altered the Hai to make them less aggressive. Is that true?"`
-				`	"That's all I wanted to know. Thanks."`
-					decline
-			label drak
-			`	"No," he says, "it is a story they invented, that the Hai were destined to be masters of the galaxy but the Drak and the Quarg prevented us. The story is not true. Our civilization beyond the wormhole was brought down by infighting and unwise governance. Amid the wreckage we studied and thought and argued and came to believe that we could rule a small territory with stability and peace, or hold more worlds but with constant turmoil. We chose stability, and relinquished those worlds."`
-			choice
-				`	"So you don't think the Drak are keeping us all in cages?"`
-				`	"That's all I wanted to know. Thanks."`
-					decline
-			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
-			`	You thank him for taking time to speak with you, and say goodbye.`
-				decline
+		fail
 
 
 
