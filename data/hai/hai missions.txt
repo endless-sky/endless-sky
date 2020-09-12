@@ -98,7 +98,7 @@ mission "First Contact: Unfettered 1"
 					goto everyone
 			
 			label name
-			`	We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."
+			`	"We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."
 				goto masters
 			
 			label true
