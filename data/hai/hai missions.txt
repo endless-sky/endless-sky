@@ -127,10 +127,6 @@ mission "First Contact: Unfettered"
 			`	"We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 
-			label true
-			`	"It means that we are unaltered, Hai as Hai were first born to be. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
-				goto masters
-
 			label everyone
 			`	"We fight to defend ourselves from extinction," it says.`
 			`	"'Extinction?'" you ask. "Do you mean that there are no other Hai?"`
