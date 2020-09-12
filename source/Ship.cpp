@@ -805,12 +805,22 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const Leak &leak : leaks)
 			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
+		
+		// Sort the explosion and final explosion effects by name before
+		// writing them out. This is done as a service for content
+		// creators that use savefiles for creating new content.
+		map<string, int> explosionEffectsSorted;
 		for(const auto &it : explosionEffects)
 			if(it.first && it.second)
-				out.Write("explode", it.first->Name(), it.second);
+				explosionEffectsSorted[it.first->Name()] = it.second;
+		for(const auto &it : explosionEffectsSorted)
+			out.Write("explode", it.first, it.second);
+		explosionEffectsSorted.clear();
 		for(const auto &it : finalExplosions)
 			if(it.first && it.second)
-				out.Write("final explode", it.first->Name(), it.second);
+				explosionEffectsSorted[it.first->Name()] = it.second;
+		for(const auto &it : explosionEffectsSorted)
+			out.Write("final explode", it.first, it.second);
 		
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
