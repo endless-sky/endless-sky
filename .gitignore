@@ -6,11 +6,6 @@
 # dlls needed to run the binary
 *.dll
 
-# Dependencies for compiling (available for download at
-# https://github.com/endless-sky/endless-sky/wiki/BuildInstructions#development-libraries)
-/dev64/
-/dev32/
-
 # Build Directories and toolchain-generated files
 /build/
 /obj
@@ -59,5 +54,4 @@ ipch/
 *.xcodeproj/**
 .idea/
 .idea_modules/
-cmake-build-*/
 CMakeLists.txt
