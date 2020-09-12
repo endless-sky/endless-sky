@@ -715,13 +715,13 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : outfits)
 				if(it.first && it.second)
 					orderedOutfits[it.first->Name()] = it.second;
-			for(const auto &ito : orderedOutfits)
-				{
-					if(ito.second == 1)
-						out.Write(ito.first);
-					else
-						out.Write(ito.first, ito.second);
-				}
+			for(const auto &it : orderedOutfits)
+			{
+				if(it.second == 1)
+					out.Write(it.first);
+				else
+					out.Write(it.first, it.second);
+			}
 		}
 		out.EndChild();
 		
