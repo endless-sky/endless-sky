@@ -146,7 +146,7 @@ mission "First Contact: Unfettered 1"
 				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
 				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
 					goto sell
-			`	"Then leave us alone," it says, and it walks off.`
+			`	"Then leave us alone," it says, and it walks off."`
 				decline
 			
 			label sell
@@ -230,7 +230,7 @@ mission "First Contact: Unfettered 2"
 				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
 				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
 					goto sell
-			`	"Then leave us alone," it says, and it walks off.`
+			`	"Then leave us alone," it says, and it walks off."`
 				decline
 			
 			label sell
