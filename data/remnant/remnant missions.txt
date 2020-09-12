@@ -1236,7 +1236,7 @@ mission "Remnant: Catalytic Ramscoop"
 		payment 1390000
 		"remnant met taely" ++
 		conversation
-			`As the <ship> settles onto the pad closest to the research laboratory, you can see several people exiting an adjacent hangar with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of the comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
+			`As the <ship> settles onto the pad closest to the research laboratory, you can see several people exiting an adjacent hangar with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of them comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
 
 
 
@@ -2380,7 +2380,7 @@ mission "Remnant: Crystal Research 1"
 				goto clarification
 			label notforsale
 			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: something that does what the quantum key stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
-			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, I ensure that Remnant captains have the resources they need. What you see listed as the 'price,' Remnant captains see listed instead as a 'logistics adjustment' that indicates the amount of resources are needed to supply that component. Every ship has a resource budget allocated to it, determining how much is can utilize for repairs, restocking, and improvements."`
+			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, I ensure that Remnant captains have the resources they need. What you see listed as the 'price,' Remnant captains see listed instead as a 'logistics adjustment' that indicates the amount of resources needed to supply that component. Every ship has a resource budget allocated to it, determining how much it can utilize for repairs, restocking, and improvements."`
 			label clarification
 			choice
 				`	"Wait, you didn't sell any of that?"`
@@ -2904,11 +2904,11 @@ mission "Remnant: Cognizance 4"
 			branch chilia
 				"remnant chilia" > 1
 			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A glance at the viewscreen shows a fit young man with a military bearing standing at your airlock. You quickly check with the starport control and confirm that the prefect in charge of Remnant military activities is indeed waiting to board your ship. You hit the unlock button and watch as Prefect Chilia strides onboard.`
-			`	"Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly. "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them.`
+			`	"Greetings, Captain <first>," he signs. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly. "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them.`
 				goto main
 			label chilia
 			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A quick glance at the viewscreen shows Prefect Chilia standing at your airlock. You quickly hit the unlock button and watch as he strides onboard.`
-			`	"Greetings, Captain <first>," he sings. "You seem to have a knack for finding things of importance to us. I am glad, however, that you and Plume discovered this."`
+			`	"Greetings, Captain <first>," he signs. "You seem to have a knack for finding things of importance to us. I am glad, however, that you and Plume discovered this."`
 			label main
 			branch voidrifle
 				has "Remnant: Face to Maw 2B: done"
@@ -3062,7 +3062,7 @@ mission "Remnant: Cognizance 7"
 	on complete
 		conversation
 			`Descending into the clouds of Nasqueron is becoming almost familiar to you. Wispy layers of gas give way to more voluminous formations and the occasional turbulent storm. Beside you, Plume is eagerly peering out the window, and you remind yourself that this may well be his first time actually seeing void sprites on their world.`
-			`	You reach the altitude where void sprites have previously been found in the greatest concentration before activating your ship's sensors. Plume looks around, peering out the windows. "Where are they? Aren't there usually some around? They always seemed plentiful in the recordings." You focus on the sensors, and after a few minutes pick up some distant contacts. You follow them down into the lower atmosphere and eventually begin to detect some void sprites."`
+			`	You reach the altitude where void sprites have previously been found in the greatest concentration before activating your ship's sensors. Plume looks around, peering out the windows. "Where are they? Aren't there usually some around? They always seemed plentiful in the recordings." You focus on the sensors, and after a few minutes pick up some distant contacts. You follow them down into the lower atmosphere and eventually begin to detect some void sprites.`
 			`	"That's close enough, Captain," says Plume. "I'll go outside and watch them from the hull." You help him into a pressure suit and cycle the airlock behind him. You quickly suppress a brief feeling of disappointment. "This is, after all, Plume's job," you say to yourself as you settle back into your chair to wait for him to return.`
 
 
@@ -3106,10 +3106,10 @@ mission "Remnant: Cognizance 9"
 	to offer
 		has "Remnant: Cognizance 8: done"
 	on offer
-		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed esquiline station.`
+		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed Esquiline station.`
 		conversation
 			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another Remnant are gathered around the stack checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer. "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. He will be going with you."`
-			`	"It will be a pleasure to work with you," signs Gavrill, making a short bow. "We will be traveling to a research station on <planet>. Yes, it is a gas giant." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
+			`	"It will be a pleasure to work with you," signs Gavriil, making a short bow. "We will be traveling to a research station on <planet>. Yes, it is a gas giant." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
 				accept
 	on complete
 		payment 100000
