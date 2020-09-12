@@ -52,3 +52,6 @@ ipch/
 *.userosscache
 *.sln.docstates
 *.xcodeproj/**
+.idea/
+.idea_modules/
+CMakeLists.txt
