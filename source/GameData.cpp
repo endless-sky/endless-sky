@@ -458,9 +458,14 @@ void GameData::WriteEconomy(DataWriter &out)
 		{
 			out.Write("purchases");
 			out.BeginChild();
-			for(const auto &pit : purchases)
-				for(const auto &cit : pit.second)
-					out.Write(pit.first->Name(), cit.first, cit.second);
+			using Purchase = pair<const System * const, map<string, int>>;
+			WriteSorted(out, purchases,
+				[](const Purchase *lhs, const Purchase *rhs) { return lhs->first->Name() < rhs->first->Name();},
+				[](DataWriter &dw, const Purchase &pit)
+				{
+					for(const auto &cit : pit.second)
+						dw.Write(pit.first->Name(), cit.first, cit.second);
+				});
 			out.EndChild();
 		}
 		out.WriteToken("system");

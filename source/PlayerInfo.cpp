@@ -2641,9 +2641,14 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("stock");
 		out.BeginChild();
 		{
-			for(const auto &it : stock)
-				if(it.second)
-					out.Write(it.first->Name(), it.second);
+			WriteSorted(out, stock,
+				[](const pair<const Outfit *const, int> *lhs, const pair<const Outfit *const, int> *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
+				[](DataWriter &dw, const pair<const Outfit *const, int> &it)
+				{
+					if(it.second)
+						dw.Write(it.first->Name(), it.second);
+				});
 		}
 		out.EndChild();
 	}
@@ -2707,23 +2712,47 @@ void PlayerInfo::Save(const string &path) const
 	out.WriteComment("What you know:");
 	
 	// Save a list of systems the player has visited.
-	for(const System *system : visitedSystems)
-		if(!system->Name().empty())
-			out.Write("visited", system->Name());
+	WriteSorted(out, visitedSystems,
+		[](const System *const *lhs, const System *const *rhs){ return (*lhs)->Name() < (*rhs)->Name(); },
+		[](DataWriter &dw, const System *system)
+		{
+			if(!system->Name().empty())
+				dw.Write("visited", system->Name());
+		});
 	
 	// Save a list of planets the player has visited.
-	for(const Planet *planet : visitedPlanets)
-		if(!planet->TrueName().empty())
-			out.Write("visited planet", planet->TrueName());
+	WriteSorted(out, visitedPlanets,
+		[](const Planet *const *lhs, const Planet *const *rhs){ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
+		[](DataWriter &dw, const Planet *planet)
+		{
+			if(!planet->TrueName().empty())
+				dw.Write("visited planet", planet->TrueName());
+		});
 	
 	if(!harvested.empty())
 	{
 		out.Write("harvested");
 		out.BeginChild();
 		{
-			for(const auto &it : harvested)
-				if(it.first && it.second)
-					out.Write(it.first->Name(), it.second->Name());
+			WriteSorted(out, harvested,
+				[](const pair<const System *, const Outfit *> *lhs, const pair<const System *, const Outfit *> *rhs) -> bool
+				{
+					if(!lhs->first || !rhs->first)
+						return lhs->first;
+					if(!lhs->second || !rhs->second)
+						return lhs->second;
+					
+					// Sort by system name and then by outfit name.
+					if(lhs->first != rhs->first)
+						return lhs->first->Name() < rhs->first->Name();
+					else
+						return lhs->second->Name() < rhs->second->Name();
+				},
+				[](DataWriter &dw, const pair<const System *, const Outfit *> &it)
+				{
+					if(it.first && it.second)
+						dw.Write(it.first->Name(), it.second->Name());
+				});
 		}
 		out.EndChild();
 	}

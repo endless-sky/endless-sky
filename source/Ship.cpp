@@ -704,24 +704,14 @@ void Ship::Save(DataWriter &out) const
 		out.Write("outfits");
 		out.BeginChild();
 		{
-			// Using a temporary map with the outfit names as keys so that
-			// outfits are written to the savefile in named alphabetical
-			// order.
-			// The game-engine doesn't care in which order outfits are
-			// saved or loaded, the sorting here is done as a service for
-			// content creators that use savegames for working on their
-			// new content.
-			map<string, int> orderedOutfits;
-			for(const auto &it : outfits)
-				if(it.first && it.second)
-					orderedOutfits[it.first->Name()] = it.second;
-			for(const auto &it : orderedOutfits)
-			{
-				if(it.second == 1)
-					out.Write(it.first);
-				else
-					out.Write(it.first, it.second);
-			}
+			WriteSorted(out, outfits,
+				[](const pair<const Outfit *const, int> *lhs, const pair<const Outfit *const, int> *rhs){ return lhs->first->Name() < rhs->first->Name(); },
+				[](DataWriter &dw, const pair<const Outfit *, int> &it){
+					if(it.second == 1)
+						dw.Write(it.first->Name());
+					else
+						dw.Write(it.first->Name(), it.second);
+				});
 		}
 		out.EndChild();
 		
@@ -805,12 +795,17 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const Leak &leak : leaks)
 			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
-		for(const auto &it : explosionEffects)
+		auto effectSort = [](const pair<const Effect *const, int> *lhs, const pair<const Effect *const, int> *rhs){
+			return lhs->first->Name() < rhs->first->Name();
+		};
+		WriteSorted(out, explosionEffects, effectSort, [](DataWriter &dw, const pair<const Effect *const, int> &it){
 			if(it.first && it.second)
-				out.Write("explode", it.first->Name(), it.second);
-		for(const auto &it : finalExplosions)
+				dw.Write("explode", it.first->Name(), it.second);
+		});
+		WriteSorted(out, finalExplosions, effectSort, [](DataWriter &dw, const pair<const Effect *const, int> &it){
 			if(it.first && it.second)
-				out.Write("final explode", it.first->Name(), it.second);
+				dw.Write("final explode", it.first->Name(), it.second);
+		});
 		
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
