@@ -78,12 +78,12 @@ void Depreciation::Save(DataWriter &out, int day) const
 	out.BeginChild();
 	{
 		using ShipElement = pair<const Ship *const, map<int, int>>;
-		WriteSorted(out, ships,
+		WriteSorted(ships,
 			[](const ShipElement *lhs, const ShipElement *rhs) { return lhs->first->ModelName() < rhs->first->ModelName(); },
-			[=](DataWriter &dw, const ShipElement &sit)
+			[=, &out](const ShipElement &sit)
 			{
-				dw.Write("ship", sit.first->ModelName());
-				dw.BeginChild();
+				out.Write("ship", sit.first->ModelName());
+				out.BeginChild();
 				{
 					// If this is a planet's stock, remember how many outfits in
 					// stock are fully depreciated. If it's the player's stock,
@@ -91,23 +91,23 @@ void Depreciation::Save(DataWriter &out, int day) const
 					// there is no reason to save records for those items.
 					for(const auto &it : sit.second)
 						if(isStock || (it.second && it.first > day - MAX_AGE))
-							dw.Write(it.first, it.second);
+							out.Write(it.first, it.second);
 				}
-				dw.EndChild();
+				out.EndChild();
 			});
 		using OutfitElement = pair<const Outfit *const, map<int, int>>;
-		WriteSorted(out, outfits,
+		WriteSorted(outfits,
 			[](const OutfitElement *lhs, const OutfitElement *rhs) { return lhs->first->Name() < rhs->first->Name(); },
-			[=](DataWriter &dw, const OutfitElement &oit)
+			[=, &out](const OutfitElement &oit)
 			{
-				dw.Write("outfit", oit.first->Name());
-				dw.BeginChild();
+				out.Write("outfit", oit.first->Name());
+				out.BeginChild();
 				{
 					for(const auto &it : oit.second)
 						if(isStock || (it.second && it.first > day - MAX_AGE))
-							dw.Write(it.first, it.second);
+							out.Write(it.first, it.second);
 				}
-				dw.EndChild();
+				out.EndChild();
 			});
 	}
 	out.EndChild();

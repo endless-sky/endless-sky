@@ -2641,13 +2641,13 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("stock");
 		out.BeginChild();
 		{
-			WriteSorted(out, stock,
-				[](const pair<const Outfit *const, int> *lhs, const pair<const Outfit *const, int> *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
-				[](DataWriter &dw, const pair<const Outfit *const, int> &it)
+			using StockElement = pair<const Outfit *const, int>;
+			WriteSorted(stock,
+				[](const StockElement *lhs, const StockElement *rhs){ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const StockElement &it)
 				{
 					if(it.second)
-						dw.Write(it.first->Name(), it.second);
+						out.Write(it.first->Name(), it.second);
 				});
 		}
 		out.EndChild();
@@ -2712,21 +2712,21 @@ void PlayerInfo::Save(const string &path) const
 	out.WriteComment("What you know:");
 	
 	// Save a list of systems the player has visited.
-	WriteSorted(out, visitedSystems,
+	WriteSorted(visitedSystems,
 		[](const System *const *lhs, const System *const *rhs){ return (*lhs)->Name() < (*rhs)->Name(); },
-		[](DataWriter &dw, const System *system)
+		[&out](const System *system)
 		{
 			if(!system->Name().empty())
-				dw.Write("visited", system->Name());
+				out.Write("visited", system->Name());
 		});
 	
 	// Save a list of planets the player has visited.
-	WriteSorted(out, visitedPlanets,
+	WriteSorted(visitedPlanets,
 		[](const Planet *const *lhs, const Planet *const *rhs){ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
-		[](DataWriter &dw, const Planet *planet)
+		[&out](const Planet *planet)
 		{
 			if(!planet->TrueName().empty())
-				dw.Write("visited planet", planet->TrueName());
+				out.Write("visited planet", planet->TrueName());
 		});
 	
 	if(!harvested.empty())
@@ -2734,8 +2734,9 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("harvested");
 		out.BeginChild();
 		{
-			WriteSorted(out, harvested,
-				[](const pair<const System *, const Outfit *> *lhs, const pair<const System *, const Outfit *> *rhs) -> bool
+			using HarvestLog = pair<const System *, const Outfit *>;
+			WriteSorted(harvested,
+				[](const HarvestLog *lhs, const HarvestLog *rhs) -> bool
 				{
 					if(!lhs->first || !rhs->first)
 						return lhs->first;
@@ -2748,10 +2749,10 @@ void PlayerInfo::Save(const string &path) const
 					else
 						return lhs->second->Name() < rhs->second->Name();
 				},
-				[](DataWriter &dw, const pair<const System *, const Outfit *> &it)
+				[&out](const HarvestLog &it)
 				{
 					if(it.first && it.second)
-						dw.Write(it.first->Name(), it.second->Name());
+						out.Write(it.first->Name(), it.second->Name());
 				});
 		}
 		out.EndChild();

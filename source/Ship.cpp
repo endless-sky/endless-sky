@@ -704,13 +704,14 @@ void Ship::Save(DataWriter &out) const
 		out.Write("outfits");
 		out.BeginChild();
 		{
-			WriteSorted(out, outfits,
-				[](const pair<const Outfit *const, int> *lhs, const pair<const Outfit *const, int> *rhs){ return lhs->first->Name() < rhs->first->Name(); },
-				[](DataWriter &dw, const pair<const Outfit *, int> &it){
+			using OutfitElement = pair<const Outfit *const, int>;
+			WriteSorted(outfits,
+				[](const OutfitElement *lhs, const OutfitElement *rhs){ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const pair<const Outfit *, int> &it){
 					if(it.second == 1)
-						dw.Write(it.first->Name());
+						out.Write(it.first->Name());
 					else
-						dw.Write(it.first->Name(), it.second);
+						out.Write(it.first->Name(), it.second);
 				});
 		}
 		out.EndChild();
@@ -795,16 +796,21 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const Leak &leak : leaks)
 			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
-		auto effectSort = [](const pair<const Effect *const, int> *lhs, const pair<const Effect *const, int> *rhs){
+		
+		using EffectElement = pair<const Effect *const, int>;
+		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
+		{
 			return lhs->first->Name() < rhs->first->Name();
 		};
-		WriteSorted(out, explosionEffects, effectSort, [](DataWriter &dw, const pair<const Effect *const, int> &it){
+		WriteSorted(explosionEffects, effectSort, [&out](const EffectElement &it)
+		{
 			if(it.first && it.second)
-				dw.Write("explode", it.first->Name(), it.second);
+				out.Write("explode", it.first->Name(), it.second);
 		});
-		WriteSorted(out, finalExplosions, effectSort, [](DataWriter &dw, const pair<const Effect *const, int> &it){
+		WriteSorted(finalExplosions, effectSort, [&out](const EffectElement &it)
+		{
 			if(it.first && it.second)
-				dw.Write("final explode", it.first->Name(), it.second);
+				out.Write("final explode", it.first->Name(), it.second);
 		});
 		
 		if(currentSystem)
