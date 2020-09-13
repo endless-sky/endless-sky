@@ -84,7 +84,7 @@ mission "First Contact: Unfettered"
 			branch hai
 				has "First Contact: Hai: offered"
 				
-			`This planet is populated by an alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
 			choice
 				`	(Sure.)`
 				`	(Not now, it's too risky.)`
