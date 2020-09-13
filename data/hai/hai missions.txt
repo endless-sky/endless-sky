@@ -89,7 +89,7 @@ mission "First Contact: Unfettered"
 				`	(Sure.)`
 				`	(Not now, it's too risky.)`
 					defer
-			`	You catch the eye of one of the Hai dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+			`	You catch the eye of one of the alien dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
 				`	"Hai? Is that what you call yourselves?"`
 					goto name
