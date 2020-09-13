@@ -48,7 +48,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 
 void SpaceportPanel::UpdateNews()
 {
-	const News *news = GameData::PickNews(player.GetPlanet());
+	const News *news = GameData::PickNews(player.GetPlanet(), player);
 	if(!news)
 		return;
 	hasNews = true;

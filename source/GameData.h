@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "PlayerInfo.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
@@ -127,9 +128,9 @@ public:
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
 	
-	// Pick a random news object that applies to the given planet. If there is
-	// no applicable news, this returns null.
-	static const News *PickNews(const Planet *planet);
+	// Pick a random news object that applies to the player's planets and conditions.
+	// If there is no applicable news, this returns null.
+	static const News *PickNews(const Planet *planet, const PlayerInfo &player);
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
