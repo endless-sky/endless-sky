@@ -98,11 +98,11 @@ namespace {
 	void WriteSorted(const map<const T*, int> &container, F nameFn, G writeFn)
 	{
 		map<string, int> sorted;
-		for_each(container.cbegin(), container.cend(), [&](const pair<const T*, int> &element) {
+		for_each(container.cbegin(), container.cend(), [&](const pair<const T*, int> &element){
 			if(element.first && element.second)
 				sorted.emplace(nameFn(element), element.second);
 		});
-		for_each(sorted.cbegin(), sorted.cend(), [&](const pair<const string, int> &element) {
+		for_each(sorted.cbegin(), sorted.cend(), [&](const pair<const string, int> &element){
 			writeFn(element);
 		});
 	}
@@ -824,9 +824,9 @@ void Ship::Save(DataWriter &out) const
 		// Sort the explosion and final explosion effects by name before
 		// writing them out. This is done as a service for content
 		// creators that use savefiles for creating new content.
-		auto sortFn = [&](const pair<const Effect*, int> it) -> string { return it.first->Name(); };
-		auto writeFn = [&](const pair<const string, int> it) { out.Write("explode", it.first, it.second); };
-		auto writeFnFinal = [&](const pair<const string, int> it) { out.Write("final explode", it.first, it.second); };
+		auto sortFn = [&](const pair<const Effect*, int> it)->string{return it.first->Name();};
+		auto writeFn = [&](const pair<const string, int> it){out.Write("explode", it.first, it.second);};
+		auto writeFnFinal = [&](const pair<const string, int> it){out.Write("final explode", it.first, it.second);};
 		WriteSorted(explosionEffects, sortFn, writeFn);
 		WriteSorted(finalExplosions, sortFn, writeFnFinal);
 		
