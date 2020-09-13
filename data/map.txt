@@ -11625,7 +11625,7 @@ system Gupta
 	link Belugt
 	link Blugtad
 	link "Sol Arach"
-	link Membulem
+	link Mebulmem
 	link Pelubta
 	asteroids "small rock" 40 8.448
 	asteroids "medium rock" 7 6.006
@@ -15942,7 +15942,7 @@ system Mekislepti
 			distance 334.445
 			period 30.4733
 
-system Membulem
+system Mebulmem
 	pos -722.587 616.051
 	government Coalition
 	habitable 2201.68
@@ -18232,7 +18232,7 @@ system Pelubta
 	government Coalition
 	habitable 9265
 	belt 1709
-	link Membulem
+	link Mebulmem
 	link Gupta
 	link Ablodab
 	link Mebla
@@ -22417,7 +22417,7 @@ system "Sol Arach"
 	habitable 486.68
 	belt 1147
 	haze _menu/haze-133
-	link Membulem
+	link Mebulmem
 	link Gupta
 	link Blugtad
 	link Glubatub
