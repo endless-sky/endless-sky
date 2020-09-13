@@ -128,7 +128,7 @@ mission "First Contact: Unfettered"
 			label everyone
 			`	"We fight to defend ourselves from extinction," it says.`
 			`	"'Extinction?'" you ask. "Do you mean that there are no other Hai?"`
-			`	"We are all that is left of the original Hai." it says, "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	"We are all that is left of the original Hai," it says. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label evelse
