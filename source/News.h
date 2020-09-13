@@ -16,13 +16,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConditionSet.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
-#include "PlayerInfo.h"
 
 #include <string>
 #include <vector>
 
 class DataNode;
 class Planet;
+class PlayerInfo;
 class Sprite;
 
 
@@ -36,7 +36,7 @@ public:
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;
 	// Check if this news item is available given the player's planet and conditions.
-	bool Matches(const Planet *planet, const PlayerInfo &player) const;
+	bool Matches(const PlayerInfo &player) const;
 	
 	// Get the speaker's name.
 	std::string Name() const;

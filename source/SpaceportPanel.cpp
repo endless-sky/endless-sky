@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Random.h"
 #include "UI.h"
 
 using namespace std;
@@ -48,7 +49,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 
 void SpaceportPanel::UpdateNews()
 {
-	const News *news = GameData::PickNews(player.GetPlanet(), player);
+	const News *news = PickNews();
 	if(!news)
 		return;
 	hasNews = true;
@@ -100,4 +101,18 @@ void SpaceportPanel::Draw()
 		newsMessage.Draw(interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
 			*GameData::Colors().Get("medium"));
 	}
+}
+
+
+
+// Pick a random news object that applies to the player's planets and conditions.
+// If there is no applicable news, this returns null.
+const News *SpaceportPanel::PickNews() const
+{
+	vector<const News *> matches;
+	for(const auto &it : GameData::SpaceportNews())
+		if(!it.second.IsEmpty() && it.second.Matches(player))
+			matches.push_back(&it.second);
+	
+	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }
