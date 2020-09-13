@@ -95,8 +95,8 @@ mission "First Contact: Unfettered"
 					goto name
 				`	"What do you mean, 'true Hai'?"`
 					goto true
-				`	"Why did you shoot at me? Are you at war with everyone?"`
-					goto everyone
+				`	"Why did you shoot at me? Are you at war?"`
+					goto war
 
 			label hai
 			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
@@ -111,7 +111,7 @@ mission "First Contact: Unfettered"
 				`	"What do you mean, 'true Hai'?"`
 					goto true
 				`	"Why are you at war with everyone else?"`
-					goto evelse
+					goto everyone
 			
 			label brethren
 			`	It hisses. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
@@ -125,13 +125,13 @@ mission "First Contact: Unfettered"
 			`	"We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
-			label everyone
+			label war
 			`	"We fight to defend ourselves from extinction," it says.`
-			`	"'Extinction?'" you ask. "Do you mean that there are no other Hai?"`
+			`	"Extinction?" you ask. "Do you mean that there are no other Hai?"`
 			`	"We are all that is left of the original Hai," it says. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
-			label evelse
+			label everyone
 			`	"We fight to defend ourselves from extinction," it says.`
 			`	"'Extinction?'" you ask. "Do you mean that you are not the same species as the other Hai?"`
 			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
