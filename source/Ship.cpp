@@ -92,7 +92,7 @@ namespace {
 	
 	// Helper function to write out a map that have keys as pointers and
 	// integer values as counters to a datawriter in alphabetical order of
-	// the items pointed to by the keys.
+	// the names of the items pointed to by the keys.
 	// Entries with null-pointers and zero counters are not written out.
 	template <class T, typename F, typename G>
 	void WriteSorted(const map<const T*, int> &container, F nameFn, G writeFn)
