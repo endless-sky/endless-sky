@@ -85,16 +85,15 @@ void News::Load(const DataNode &node)
 			else
 				messages.Load(child);
 		}
-		// Handle the attributes which cannot be "removed" or "added."
-		else if(add || remove)
-		{
-			child.PrintTrace("Cannot \"add\" or \"remove\" a specific value from the given key:");
-			continue;
-		}
 		else if(tag == "to" && hasValue)
-		{
+		{		
 			if(child.Token(valueIndex) == "show")
-				toShow.Load(child);
+			{
+				if(remove)
+					toShow = ConditionSet{};
+				else
+					toShow.Load(child);
+			}
 			else
 				child.PrintTrace("Unrecognized news attribute:");
 		}
@@ -113,13 +112,13 @@ bool News::IsEmpty() const
 
 
 // Check if this news item is available given the player's planet and conditions.
-bool News::Matches(const PlayerInfo &player) const
+bool News::Matches(const Planet *planet, const map<string, int64_t> &conditions) const
 {
 	// If no location filter is specified, it should never match. This can be
 	// used to create news items that are never shown until an event "activates"
 	// them by specifying their location.
 	// Similarly, by updating a news item with "remove location", it can be deactivated.
-	return location.IsEmpty() ? false : (location.Matches(player.GetPlanet()) && toShow.Test(player.Conditions()));
+	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test(conditions));
 }
 
 

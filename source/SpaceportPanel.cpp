@@ -110,8 +110,10 @@ void SpaceportPanel::Draw()
 const News *SpaceportPanel::PickNews() const
 {
 	vector<const News *> matches;
+	const Planet *planet = player.GetPlanet();
+	const map<string, int64_t> &conditions = player.Conditions();
 	for(const auto &it : GameData::SpaceportNews())
-		if(!it.second.IsEmpty() && it.second.Matches(player))
+		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
 			matches.push_back(&it.second);
 	
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
