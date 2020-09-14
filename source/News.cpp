@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "News.h"
 
 #include "DataNode.h"
-#include "PlayerInfo.h"
 #include "Random.h"
 #include "SpriteSet.h"
 
@@ -86,7 +85,7 @@ void News::Load(const DataNode &node)
 				messages.Load(child);
 		}
 		else if(tag == "to" && hasValue)
-		{		
+		{
 			if(child.Token(valueIndex) == "show")
 			{
 				if(remove)
