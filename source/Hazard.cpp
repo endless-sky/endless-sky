@@ -31,26 +31,26 @@ void Hazard::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		if(key == "weapon")
 			LoadWeapon(child);
-		else if(key == "no deviation")
+		else if(key == "constant strength")
 			deviates = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping hazard attribute with no value specified:");
 		else if(key == "period")
 			period = max(1, static_cast<int>(child.Value(1)));
-		else if(key == "length")
+		else if(key == "duration")
 		{
-			minLength = max(0, static_cast<int>(child.Value(1)));
-			maxLength = max(0, (child.Size() >= 3 ? static_cast<int>(child.Value(2)) : 0));
+			minDuration = max(0, static_cast<int>(child.Value(1)));
+			maxDuration = max(minDuration, (child.Size() >= 3 ? static_cast<int>(child.Value(2)) : 0));
 		}
 		else if (key == "strength")
 		{
 			minStrength = max(0., child.Value(1));
-			maxStrength = max(0., (child.Size() >= 3) ? child.Value(2) : 0.);
+			maxStrength = max(minStrength, (child.Size() >= 3) ? child.Value(2) : 0.);
 		}
 		else if(key == "range")
 		{
 			minRange = max(0., (child.Size() >= 3) ? child.Value(1) : 0.);
-			maxRange = max(0., (child.Size() >= 3) ? child.Value(2) : child.Value(1));
+			maxRange = max(minRange, (child.Size() >= 3) ? child.Value(2) : child.Value(1));
 		}
 		else if(key == "environmental effect")
 		{
@@ -85,9 +85,9 @@ int Hazard::Period() const
 
 
 
-int Hazard::RandomLength() const
+int Hazard::RandomDuration() const
 {
-	return minLength + (maxLength <= minLength ? 0 : Random::Int(maxLength - minLength));
+	return minDuration + (maxDuration <= minDuration ? 0 : Random::Int(maxDuration - minDuration));
 }
 
 

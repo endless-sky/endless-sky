@@ -13,10 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEATHER_H_
 #define WEATHER_H_
 
-#include "Hazard.h"
-#include "Visual.h"
-
-#include <string>
 #include <vector>
 
 class Hazard;
@@ -27,12 +23,12 @@ class Visual;
 class Weather {
 public:
 	Weather() = default;
-	Weather(const Hazard *harzard, int lifetime, double strength, int totalLifetime = -1);
+	explicit Weather(const Hazard *hazard, int lifetime, double strength, int totalLifetime = -1);
 	
 	const Hazard *GetHazard() const;
 	// Whether the hazard of this weather deals damage or not.
 	bool HasWeapon() const;
-	// The probability of this weather dealing damage while active.
+	// The period of this weather, dictating how often it deals damage while active.
 	int Period() const;
 	// What the hazard's damage is multiplied by given the current strength.
 	double DamageMultiplier() const;
@@ -46,10 +42,10 @@ private:
 	
 private:
 	const Hazard *hazard = nullptr;
-	int totalLifetime;
-	int lifetime;
-	double strength;
-	double deviation;
+	int totalLifetime = 0;
+	int lifetime = 0;
+	double strength = 0.;
+	double deviation = 0.;
 };
 
 #endif

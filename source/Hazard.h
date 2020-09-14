@@ -28,8 +28,8 @@ public:
 	bool Deviates() const;
 	// How often this hazard deals its damage while active.
 	int Period() const;
-	// Generates a random integer between the minimum and maximum length of this hazard.
-	int RandomLength() const;
+	// Generates a random integer between the minimum and maximum duration of this hazard.
+	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double RandomStrength() const;
 	// How far from this hazard's origin that it will have an effect.
@@ -43,12 +43,12 @@ public:
 private:
 	std::string name;
 	int period = 1;
-	int minLength = 1;
-	int maxLength = 1;
+	int minDuration = 1;
+	int maxDuration = 1;
 	double minStrength = 1.;
 	double maxStrength = 1.;
-	double minRange;
-	double maxRange;
+	double minRange = 0.;
+	double maxRange = 0.;
 	bool deviates = true;
 	
 	std::map<const Effect *, int> environmentalEffects;

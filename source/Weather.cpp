@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Weather.h"
 
 #include "Angle.h"
+#include "Hazard.h"
+#include "Visual.h"
 #include "Random.h"
 
 #include <cmath>
@@ -69,9 +71,10 @@ double Weather::DamageMultiplier() const
 		// period in order to correctly scale the damage so that the DPS of the hazard
 		// will always scale properly with the strength.
 		// This also fixes some precision lost by the fact that the period is an integer.
-		double truePeriod = hazard->Period() / sqrt(Strength());
+		double sqrtStrength = sqrt(Strength());
+		double truePeriod = hazard->Period() / sqrtStrength;
 		double multiplier = Period() / truePeriod;
-		return sqrt(Strength()) * multiplier;
+		return sqrtStrength * multiplier;
 	}
 	else
 		return strength;
@@ -88,8 +91,9 @@ int Weather::Step(vector<Visual> &visuals)
 	double maxRange = hazard->MaxRange();
 	if(!maxRange)
 		maxRange = 10000.;
+	double currentStrength = Strength();
 	for(const auto &effect : hazard->EnvironmentalEffects())
-		for(int i = 0; i < static_cast<int>(effect.second * Strength()); ++i)
+		for(int i = 0; i < static_cast<int>(effect.second * currentStrength); ++i)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
