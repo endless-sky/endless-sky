@@ -96,6 +96,7 @@ private:
 	
 	void SpawnFleets();
 	void SpawnPersons();
+	void GenerateWeather();
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
@@ -103,7 +104,7 @@ private:
 	void FillCollisionSets();
 	
 	void DoCollisions(Projectile &projectile);
-	void DoWeather();
+	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
 	

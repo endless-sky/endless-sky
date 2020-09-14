@@ -1313,6 +1313,11 @@ void Engine::CalculateStep()
 		projectile.Move(newVisuals, newProjectiles);
 	Prune(projectiles);
 	
+	// Step the weather.
+	for(Weather &weather : activeWeather)
+		weather.Step(newVisuals);
+	Prune(activeWeather);
+	
 	// Move the visuals.
 	for(Visual &visual : visuals)
 		visual.Move();
@@ -1321,6 +1326,7 @@ void Engine::CalculateStep()
 	// Perform various minor actions.
 	SpawnFleets();
 	SpawnPersons();
+	GenerateWeather();
 	SendHails();
 	HandleMouseClicks();
 	
@@ -1348,8 +1354,9 @@ void Engine::CalculateStep()
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
 	
-	// See if any new system weather has started and perform any active weather events.
-	DoWeather();
+	// Damage ships from any active weather events.
+	for(Weather &weather : activeWeather)
+		DoWeather(weather);
 	
 	// Check for flotsam collection (collisions with ships).
 	for(const shared_ptr<Flotsam> &it : flotsam)
@@ -1629,6 +1636,22 @@ void Engine::SpawnPersons()
 
 
 
+void Engine::GenerateWeather()
+{
+	// If this system has any hazards, see if any have activated this frame.
+	const System *playerSystem = player.GetSystem();
+	for(const System::HazardProbability &hazard : playerSystem->Hazards())
+		if(!Random::Int(hazard.Period()))
+		{
+			const Hazard *weather = hazard.Get();
+			// If a hazard has activated, generate a length and strength of the
+			// resulting weather and place it in the list of active weather.
+			activeWeather.emplace_back(weather, weather->RandomDuration(), weather->RandomStrength());
+		}
+}
+
+
+
 // At random intervals, have one of the ships in the game send you a hail.
 void Engine::SendHails()
 {
@@ -1811,6 +1834,17 @@ void Engine::HandleMouseClicks()
 
 
 
+void Engine::DoWeather(Weather &weather)
+{
+	const System *playerSystem = player.GetSystem();
+	if(weather.HasWeapon() && !Random::Int(weather.Period()))
+		for(const shared_ptr<Ship> &ship : ships)
+			if(ship->GetSystem() == playerSystem)
+				ship->DoHazard(visuals, weather.GetHazard(), weather.DamageMultiplier());
+}
+
+
+
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
@@ -1927,41 +1961,6 @@ void Engine::DoCollisions(Projectile &projectile)
 					projectile.Kill();
 					break;
 				}
-	}
-}
-
-
-
-void Engine::DoWeather()
-{
-	// If this system has any hazards, see if any have activated this frame.
-	const System *playerSystem = player.GetSystem();
-	for(const System::HazardProbability &hazard : playerSystem->Hazards())
-	{
-		if(!Random::Int(hazard.Period()))
-		{
-			const Hazard *weather = hazard.Get();
-			// If a hazard has activated, generate a length and strength of the
-			// resulting weather and place it in the list of active weather.
-			activeWeather.emplace_back(weather, weather->RandomDuration(), weather->RandomStrength());
-		}
-	}
-	
-	// Go through each active weather event to deal damage to ships and generate
-	// environmental effects.
-	for(auto it = activeWeather.begin(); it != activeWeather.end(); ++it)
-	{
-		if(it->HasWeapon() && !Random::Int(it->Period()))
-			for(const shared_ptr<Ship> &ship : ships)
-				if(ship->GetSystem() == playerSystem)
-					ship->DoHazard(visuals, it->GetHazard(), it->DamageMultiplier());
-		
-		// If this weather event has ended, remove it from the list.
-		if(!it->Step(visuals))
-		{
-			activeWeather.erase(it);
-			--it;
-		}
 	}
 }
 

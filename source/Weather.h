@@ -33,12 +33,17 @@ public:
 	// What the hazard's damage is multiplied by given the current strength.
 	double DamageMultiplier() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
-	int Step(std::vector<Visual> &newVisuals);
-
+	void Step(std::vector<Visual> &newVisuals);
+	
+	// Check if this object is marked for removal from the game.
+	bool ShouldBeRemoved() const;
+	
+	
 private:
 	// The current strength of this weather, to be used to find out what the
 	// current period and damage multipliers are.
 	double Strength() const;
+	
 	
 private:
 	const Hazard *hazard = nullptr;
@@ -46,6 +51,9 @@ private:
 	int lifetime = 0;
 	double strength = 0.;
 	double deviation = 0.;
+	
+	// Record when this object is marked for removal from the game.
+	bool shouldBeRemoved = false;
 };
 
 #endif
