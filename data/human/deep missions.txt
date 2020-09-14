@@ -1450,7 +1450,7 @@ conversation "deep: remnant"
 		has "Deep: Remnant A: done"
 	
 	label "on first mission"
-	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
+	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
 	branch "knew before" "didn't know before"
 		has "deep: knew of stones before scientists"
 	
@@ -1507,7 +1507,7 @@ conversation "deep: remnant"
 	label secret
 	apply
 		set "deep: did not reveal remnant"
-	`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the alien creaturess which inhabit the region. They seem to agree that they need to learn more about these aliens.`
+	`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the alien creatures which inhabit the region. They seem to agree that they need to learn more about these aliens.`
 	`	"We can seek to learn more about these alien creatures later," Ivan says.`
 		goto end
 		
@@ -1516,7 +1516,8 @@ conversation "deep: remnant"
 	`	"We can seek to learn more about this group of humans later," Ivan says.`
 
 	label end
-	`	"But, first and foremost, we should continue our work on understanding these wormholes. You mentioned a strange series of wormholes. Their behavior is definitely noteworthy. Could you return to this region of space while carrying a suite of astronomical instruments? If you travel through these wormholes, we may learn more about what makes them tick."`
+	`	"But, first and foremost, we should continue our work on understanding these wormholes. You mentioned a strange series of wormholes. Their behavior is definitely noteworthy. Could you return to this region of space while carrying a suite of astronomic instruments? If you travel through these wormholes, we may learn more about what makes them tick."`
+```Subjective change for clarity because astronomical also means big.
 	choice
 		`	"Okay, I'm willing to do it."`
 		`	"Sorry, but I didn't agree to help you beyond that first job. Goodbye."`
@@ -1600,17 +1601,17 @@ mission "Deep: Remnant C: Revealed"
 
 conversation "deep: remnant c"
 	`The team of scientists is already waiting in the spaceport when you arrive. They remove the equipment from your ship and immediately being analyzing the results after returning to the lab.`
-	`	"At first glance this series of wormholes seems no different than the one that is used to enter this region of space, but it will require some time for us to go over all the data the sensors collected," Ivan explains to you.`
+	`	"At first glance, this series of wormholes seems no different than the one that is used to enter this region of space, but it will require some time for us to go over all the data the sensors collected," Ivan explains to you.`
 	branch revealed
 		has "deep: did reveal remnant"
-	`	"While you wait, though, I have another job you could do. You mentioned something about strange alien creatures beyond the wormhole that seemed to be able to survive in the vacuum of space. Would you be able to return there and scan them for us? These alien creatures won't have 'outifts' for the scanners to pick up, but a typical outfits scanner is likely to give us the most information."`
+	`	"While you wait, though, I have another job you could do. You mentioned something about strange alien creatures beyond the wormhole that seemed to be able to survive in the vacuum of space. Would you be able to return there and scan them for us? These alien creatures won't have 'outfits' for the scanners to pick up, but a typical outfits scanner is likely to give us the most information."`
 		goto end
 
 	label revealed
-	`	"While you wait, though, I have another job you could do. You mentioned something about a group of humans, or at least human-like beings, beyond the wormhole. Would you be able to return there and scan their ships for us? I'd be interested in seeing what an outfits scanner returns. You need not contact them, simply find a couple ships and scan them so that we might learn more about their capabilities."`
+	`	"While you wait, though, I have another job you could do. You mentioned something about a group of humans, or at least human-like beings, beyond the wormhole. Would you be able to return there and scan their ships for us? I'd be interested in seeing what an outfits scanner returns. You need not contact them, simply find a couple of ships and scan them so that we might learn more about their capabilities."`
 	label end
 	choice
-		`	"Sounds like a good plan. I'll be back as fast as I can."`
+		`	"Sounds like a good plan. I'll be back as soon as I can."`
 			accept
 		`	"Sorry, but I'm not comfortable with this idea. You'll need to find someone else."`
 			decline
