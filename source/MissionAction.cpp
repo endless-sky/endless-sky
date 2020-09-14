@@ -196,8 +196,13 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation.Load(child);
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		else if(key == "ship" && hasValue)
-			giftShips[GameData::Ships().Get(child.Token(1))] = child.Size() >= 3 ? child.Token(2) : "";
+		else if(key == "give" && hasValue)
+		{
+			if(child.Token(1) == "ship" && child.Size() >= 3)
+				giftShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
+			else
+				child.PrintTrace("Skipping unsupported give syntax:")
+		}
 		else if(key == "outfit" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
