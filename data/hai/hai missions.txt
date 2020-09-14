@@ -33,7 +33,7 @@ mission "First Contact: Hai"
 					goto travel
 				`	"How come people back in human space don't know that you are here?"`
 			`	The human merchant laughs. "Probably because most of us came here to escape from the chaos and fighting in human space. The last thing we want is for it to follow us here. Not that I'm saying you can't tell anyone about the wormhole, but if I were you I wouldn't go spreading the news too widely either. And take a look around Hai space before you leave; you'll find that we could learn a lot from them."`
-			`	"So I can travel anywhere I want in your territory?" you ask the Hai.
+			`	"So I can travel anywhere I want in your territory?" you ask the Hai.`
 			label travel
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
