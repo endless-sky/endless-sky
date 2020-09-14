@@ -1639,12 +1639,11 @@ void Engine::SpawnPersons()
 void Engine::GenerateWeather()
 {
 	// If this system has any hazards, see if any have activated this frame.
-	const System *playerSystem = player.GetSystem();
-	for(const System::HazardProbability &hazard : playerSystem->Hazards())
+	for(const System::HazardProbability &hazard : player.GetSystem()->Hazards())
 		if(!Random::Int(hazard.Period()))
 		{
 			const Hazard *weather = hazard.Get();
-			// If a hazard has activated, generate a length and strength of the
+			// If a hazard has activated, generate a duration and strength of the
 			// resulting weather and place it in the list of active weather.
 			activeWeather.emplace_back(weather, weather->RandomDuration(), weather->RandomStrength());
 		}
@@ -1834,17 +1833,6 @@ void Engine::HandleMouseClicks()
 
 
 
-void Engine::DoWeather(Weather &weather)
-{
-	const System *playerSystem = player.GetSystem();
-	if(weather.HasWeapon() && !Random::Int(weather.Period()))
-		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == playerSystem)
-				ship->DoHazard(visuals, weather.GetHazard(), weather.DamageMultiplier());
-}
-
-
-
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
@@ -1961,6 +1949,28 @@ void Engine::DoCollisions(Projectile &projectile)
 					projectile.Kill();
 					break;
 				}
+	}
+}
+
+
+
+void Engine::DoWeather(Weather &weather)
+{
+	if(weather.HasWeapon() && !Random::Int(weather.Period()))
+	{
+		const Hazard *hazard = weather.GetHazard();
+		double minRange = hazard->MinRange();
+		double maxRange = hazard->MaxRange();
+		double multiplier = weather.DamageMultiplier();
+		
+		for(Body *body : shipCollisions.Bodies())
+		{
+			double distance = body->Position().Length();
+			if(maxRange && (distance > maxRange || distance < minRange))
+				continue;
+
+			reinterpret_cast<Ship *>(body)->DoHazard(visuals, hazard, multiplier);
+		}
 	}
 }
 
