@@ -1090,7 +1090,7 @@ news "human pirate"
 			"You look like a good captain. I'd bet you'd be a better slave!"
 			"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
 			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
-			"Look at me like that one more time, and I've give you plastic surgery free of charge."
+			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
 		word
 			`"`
 
