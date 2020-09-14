@@ -323,6 +323,8 @@
 		<Unit filename="source/TradingPanel.h" />
 		<Unit filename="source/UI.cpp" />
 		<Unit filename="source/UI.h" />
+		<Unit filename="source/Utf8.cpp" />
+		<Unit filename="source/Utf8.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
