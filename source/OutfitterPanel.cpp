@@ -24,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -227,7 +226,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
 		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
 
-		float tileSize = max(thumbnail->Height(), static_cast<float>(TileSize()));
+		float tileSize = thumbnail ? max(thumbnail->Height(), static_cast<float>(TileSize())) : static_cast<float>(TileSize());
 
 		Point thumbnailCenter(center.X(), center.Y() + 20 + tileSize / 2);
 
