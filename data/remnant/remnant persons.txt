@@ -13,15 +13,15 @@ person "Prototype B3-CC4"
 	government "Author"
 	personality
 		forbearing mining surveillance unconstrained
-	phrase
-		phrase
-			"friendly author"
 	system
 		attributes "ember waste"
 	phrase
+		phrase
+			"friendly author"
+	phrase
 		word
-			"I may be just a piece of rock, but"
-			"Even for a floating gathering of debris"
+			"I may be just a piece of rock, but I know that"
+			"Even for a floating gathering of debris I know that"
 			"If there's something being unconstrained by gravity taught me, it's that"
 		word
 			" "
