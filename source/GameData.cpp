@@ -667,6 +667,13 @@ const Set<Mission> &GameData::Missions()
 
 
 
+const Set<News> &GameData::SpaceportNews()
+{
+	return news;
+}
+
+
+
 const Set<Outfit> &GameData::Outfits()
 {
 	return outfits;
@@ -789,20 +796,6 @@ double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = solarWind.find(sprite);
 	return (it == solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Pick a random news object that applies to the given planet. If there is
-// no applicable news, this returns null.
-const News *GameData::PickNews(const Planet *planet)
-{
-	vector<const News *> matches;
-	for(const auto &it : news)
-		if(!it.second.IsEmpty() && it.second.Matches(planet))
-			matches.push_back(&it.second);
-	
-	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }
 
 
