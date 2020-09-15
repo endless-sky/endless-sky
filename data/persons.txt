@@ -808,7 +808,7 @@ person "Subsidurial"
 	system
 		government "Uninhabited"
 
-person "MCOfficer"
+person "Rais Iris XVIII"
 	frequency 200
 	government "Author"
 	personality
@@ -816,10 +816,10 @@ person "MCOfficer"
 	phrase
 		phrase
 			"friendly author"
-	ship "Rais Iris XVIII" "MCOfficer"
+	ship "Marauder Bactrian" "Rais Iris XVIII"
 		"never disabled"
 
-ship "Rais Iris XVIII"
+ship "Marauder Bactrian"
 	sprite ship/mbactriane
 	thumbnail thumbnail/bactrian
 	attributes
