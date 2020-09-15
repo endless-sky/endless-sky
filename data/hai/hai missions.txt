@@ -76,7 +76,7 @@ mission "First Contact: Hai"
 			choice
 				`	"I would like to ask about the Unfettered."`
 					goto questions
-				`	"I will be careful"`
+				`	"I will be careful."`
 					
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
