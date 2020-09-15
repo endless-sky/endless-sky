@@ -74,7 +74,7 @@ mission "First Contact: Hai"
 			
 			`	"Yes," it says, "but be careful if you return to the north. The Unfettered are dangerous. If you travel among them, you will not be safe."`
 			choice
-				`	"I would like to ask about the Unfettered"`
+				`	"I would like to ask about the Unfettered."`
 					goto questions
 				`	"I will be careful"`
 					
