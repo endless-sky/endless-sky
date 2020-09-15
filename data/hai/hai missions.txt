@@ -81,6 +81,24 @@ mission "First Contact: Unfettered"
 		attributes "unfettered"
 	on offer
 		conversation
+			branch hai
+				has "First Contact: Hai: offered"
+				
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
+			choice
+				`	(Sure.)`
+				`	(Not now, it's too risky.)`
+					defer
+			`	You catch the eye of one of the alien dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+			choice
+				`	"Hai? Is that what you call yourselves?"`
+					goto name
+				`	"What do you mean, 'true Hai'?"`
+					goto true
+				`	"Why did you shoot at me? Are you at war?"`
+					goto war
+
+			label hai
 			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
 			choice
 				`	(Sure.)`
@@ -103,9 +121,19 @@ mission "First Contact: Unfettered"
 			`	"It means that we are unaltered, Hai as Hai were first born to be. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
+			label name
+			`	"We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+				goto masters
+			
+			label war
+			`	"We fight to defend ourselves from extinction," it says.`
+			`	"Extinction?" you ask. "Do you mean that there are no other Hai?"`
+			`	"We are all that is left of the original Hai," it says. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+				goto masters
+			
 			label everyone
 			`	"We fight to defend ourselves from extinction," it says.`
-			`	"'Extinction?'" you ask. "Do you mean that you are not the same species as the other Hai?"`
+			`	"Extinction'" you ask. "Do you mean that you are not the same species as the other Hai?"`
 			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
@@ -113,7 +141,7 @@ mission "First Contact: Unfettered"
 			choice
 				`	"Where was your territory? Why have I never heard of you before?"`
 				`	"What do you mean, the Hai were altered?"`
-	
+			
 			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
@@ -150,7 +178,7 @@ mission "First Contact: Unfettered"
 			label sell
 			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
-
+	
 	on decline
 		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
 		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
