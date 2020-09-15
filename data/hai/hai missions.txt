@@ -38,12 +38,14 @@ mission "First Contact: Hai"
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
+				
 			label unfettered
 			`	The Hai here seem more friendly and approachable than those you met earlier. However, the most surprising aspect of the spaceport is not the aliens, but the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
 			choice
 				`	(Sure.)`
 				`	(Not right now.)`
 					defer
+					
 			`	You walk up to a human merchant who is busy haggling with a Hai. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "First time down the rabbit hole?" he asks.`
 			`	You shake your head and explain how you met with the Unfettered that called themselves the 'True Hai.'`
 			`	The Hai says, "Ah, you have met our wayward sisters and brothers to the north. Is that what you have come to ask us about?`
@@ -51,22 +53,27 @@ mission "First Contact: Hai"
 				`	"Yes. Can you tell me why you are at war?"`
 				`	"No, I wanted to know more about your society. Is it as peaceful as it appears?"`
 					goto peaceful
+					
 			`	He says, "I would not call it war. We launch no raids on them. We only defend when they attack. And, we supply them with food and other things needful for life. They are not our enemies, they are just those who do not fit in. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
 				goto questions
+				
 			label peaceful
 			`	"We are a people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
 			`	You glance quickly at the human merchant to see his expression, wondering if these aliens can indeed be so benign, but his expression is calm and untroubled. "It's true," he says, "look around you. These buildings have stood for thousands of years. Hai society is so advanced, they need almost no resources to maintain it."`
 			choice
 				`	"Why do you allow humans to settle here?"`
 				`	"What do you ask for in return for letting humans settle here?"`
+				
 			`	"Humans are a young species," the Hai says, "full of energy, full of new ideas. And the Hai are old, and everything we do is what we have done before. When humans go on vacation, they travel to a world with perfect weather, sunny every day. When Hai go on vacation, we visit the stormiest world, to find unpredictability and change. Humans are so strange, that to speak with a human is like a small vacation." It smiles, and you catch a glimpse of its massive incisors. Based on your knowledge of xenobiology you would guess that the Hai are herbivores, but you can't be certain.`
 			choice
 				`	"So I'm allowed to travel throughout your territory if I want?"`
-					goto north
 				`	"Can I ask more about the Unfettered now?"`
 					goto questions
 				`	"Thank you, but I have no more questions."`
 					decline
+			
+			`	"Yes," it says, "but be careful if you return to the north. The Unfettered are dangerous. If you travel among them, you will not be safe."`
+			choice
 			label questions
 			apply
 				set "Ask the Hai about the Unfettered: offered"
@@ -80,37 +87,28 @@ mission "First Contact: Hai"
 					goto peaceful
 				`	"That's all I wanted to know. Thanks."`
 					decline
+					
 			label raids
 			`	He pauses. "Hundreds of years ago, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped.`
 			`	"Most of those who had fought the invaders were glad to return to ordinary life, but there were some for whom life now seemed bland and meaningless without the excitement and chaos of war. They started colonies in the systems to the north, and fought amongst themselves, and mismanaged the land, and grew in numbers. And now their worlds cannot feed them all, and they invade us and tell stories to put blame on us for their failures."`
 			choice
 				`	"Shouldn't they be treated with gratitude for defending you against the raiders?"`
-				`	"I have other questions."`
-					goto questions
+
 			`	"They were, and still should be. There will always be times when our society needs them. Only at this time, the need is not so great. There is no new frontier for them to explore, no worthy challenges for them to face. And we fear what would happen if they ventured south and gained access to the wormhole, so we must force them to stay where they are."`
 				goto questions
+				
 			label drak
 			`	"No," he says, "it is a story they invented, that the Hai were destined to be masters of the galaxy but the Drak and the Quarg prevented us. The story is not true. Our civilization beyond the wormhole was brought down by infighting and unwise governance. Amid the wreckage we studied and thought and argued and came to believe that we could rule a small territory with stability and peace, or hold more worlds but with constant turmoil. We chose stability, and relinquished those worlds."`
 			choice
 				`	"So you don't think the Drak are keeping us all in cages?"`
-				`	"I have more questions."`
-					goto questions
 				`	"That's all I wanted to know. Thanks."`
 					decline
+					
 			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
-			choice
-				`	"I still have more questions."`
-					goto questions
-				`	"That's all I wanted to know. Thanks."`
-					decline			
-			label north
-			`	"Yes," it says, "but be careful if you return to the north. The Unfettered are dangerous. If you travel among them, you will not be safe."`
-			choice
-				`	"I would like to ask about the Unfettered"`
-					goto questions
-				`	"I will be careful"`
+
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
+				
 	on decline
 		log "Factions" "Hai" `The Hai are a species of giant, intelligent rodents, who live to the north of human space. They allow any humans who discover their territory to live alongside them, and to trade with them and purchase their technology.`
 
