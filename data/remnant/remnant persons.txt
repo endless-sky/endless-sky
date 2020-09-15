@@ -107,7 +107,7 @@ person "Prototype B3-CC4"
 
 
 ship "Shooting Star"
-	sprite "ship/shooting star/shootingstar"
+	sprite "ship/shooting star/shooting star"
 		"frame time" 3
 	"never disabled"
 	attributes
