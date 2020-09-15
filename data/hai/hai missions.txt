@@ -45,7 +45,7 @@ mission "First Contact: Hai"
 				`	(Not right now.)`
 					defer
 			`	You walk up to a human merchant who is busy haggling with a Hai. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "First time down the rabbit hole?" he asks.`
-			`	You shake your head and explain how you met with the Unfettered that called themselves the 'True Hai'.`
+			`	You shake your head and explain how you met with the Unfettered that called themselves the 'True Hai.'`
 			`	The Hai says, "Ah, you have met our wayward sisters and brothers to the north. Is that what you have come to ask us about?`
 			choice
 				`	"Yes. Can you tell me why you are at war?"`
