@@ -825,14 +825,14 @@ ship "Rais Iris XVIII"
 	attributes
 		licenses
 			City-Ship
-		category Transport
-		cost 17600000
-		shields 30000
-		hull 1200
+		category "Transport"
+		"cost" 17600000
+		"shields" 30000
+		"hull" 1200
 		"required crew" 70
-		bunks 93
-		mass 650
-		drag 15
+		"bunks" 93
+		"mass" 650
+		"drag" 15
 		"heat dissipation" 0.4
 		"fuel capacity" 800
 		"cargo space" 80
@@ -845,31 +845,19 @@ ship "Rais Iris XVIII"
 			"hull damage" 1300
 			"hit force" 3900		
 	outfits
-		"Outfits Expansion" 4
-		"Hyperdrive"
+		"Dual Sunbeam Turret" 7
 		"Point Defense Turret"
+		"Blue Sun Reactor" 3
+		"Dark Storm Shielding" 5
+		"Large Heat Shunt" 3
+		"Outfits Expansion" 4
 		"A860 Atomic Thruster"
 		"A865 Atomic Steering"
-		"Large Heat Shunt" 3
-		"Dark Storm Shielding" 5
-		"Blue Sun Reactor" 3
-		"Dual Sunbeam Turret" 7
-	engine -45 230
-		zoom 1.2
-		angle 0
-		under
-	engine -18 230
-		zoom 1.2
-		angle 0
-		under
-	engine 18 230
-		zoom 1.2
-		angle 0
-		under
-	engine 45 230
-		zoom 1.2
-		angle 0
-		under
+		"Hyperdrive"
+	engine -45 230 1.2
+	engine -18 230 1.2
+	engine 18 230 1.2
+	engine 45 230 1.2
 	turret -10.5 -160.5 "Dual Sunbeam Turret"
 	turret 32.5 -86 "Dual Sunbeam Turret"
 	turret -40.5 -23 "Dual Sunbeam Turret"
