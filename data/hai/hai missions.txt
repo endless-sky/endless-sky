@@ -70,7 +70,7 @@ mission "First Contact: Hai"
 			label questions
 			apply
 				set "Ask the Hai about the Unfettered: offered"
-			`	The Hai seems willing to explain more, what would you like to ask?`
+			`	"What exactly would you like to know?" the Hai responds.`
 			choice
 				`	"Could you tell me about how the Unfettered came about?"`
 					goto raids
