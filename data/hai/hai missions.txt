@@ -74,6 +74,13 @@ mission "First Contact: Hai"
 			
 			`	"Yes," it says, "but be careful if you return to the north. The Unfettered are dangerous. If you travel among them, you will not be safe."`
 			choice
+				`	"I would like to ask about the Unfettered"`
+					goto questions
+				`	"I will be careful"`
+					
+			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
+				decline
+							
 			label questions
 			apply
 				set "Ask the Hai about the Unfettered: offered"
@@ -95,7 +102,10 @@ mission "First Contact: Hai"
 				`	"Shouldn't they be treated with gratitude for defending you against the raiders?"`
 
 			`	"They were, and still should be. There will always be times when our society needs them. Only at this time, the need is not so great. There is no new frontier for them to explore, no worthy challenges for them to face. And we fear what would happen if they ventured south and gained access to the wormhole, so we must force them to stay where they are."`
-				goto questions
+			choice
+				`	"They said the Drak altered the Hai to make them less aggressive. Is that true?"`
+				`	"That's all I wanted to know. Thanks."`
+					decline
 				
 			label drak
 			`	"No," he says, "it is a story they invented, that the Hai were destined to be masters of the galaxy but the Drak and the Quarg prevented us. The story is not true. Our civilization beyond the wormhole was brought down by infighting and unwise governance. Amid the wreckage we studied and thought and argued and came to believe that we could rule a small territory with stability and peace, or hold more worlds but with constant turmoil. We chose stability, and relinquished those worlds."`
@@ -105,9 +115,9 @@ mission "First Contact: Hai"
 					decline
 					
 			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
-
-			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
-				decline
+			choice
+				`	"That's all I wanted to know. Thanks."`
+					decline
 				
 	on decline
 		log "Factions" "Hai" `The Hai are a species of giant, intelligent rodents, who live to the north of human space. They allow any humans who discover their territory to live alongside them, and to trade with them and purchase their technology.`
