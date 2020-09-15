@@ -107,7 +107,7 @@ person "Prototype B3-CC4"
 
 
 ship "Shooting Star"
-	sprite "ship/shooting star/shootingstar"
+	sprite "ship/shooting star/shooting star"
 		"frame time" 3
 	"never disabled"
 	attributes
@@ -166,7 +166,6 @@ outfit "Shooting Star Flare"
 	weapon
 		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
-	description "The beam projector of the Shooting Star, without it the flares would appear in the ship outline."
 
 outfit "Shooting Star Mover"
 	category "Turrets"
@@ -179,7 +178,6 @@ outfit "Shooting Star Mover"
 		"reload" 4
 		"firing force" -68
 		"hit force" -43
-	description "A tractor beam, to make sure that the Shooting Star won't miss."
 
 outfit "Shooting Star Hit"
 	category "Turrets"
@@ -194,7 +192,6 @@ outfit "Shooting Star Hit"
 		"reload" 1
 		"piercing" 1
 		"hull damage" 293
-	description "A continuous beam version of the Impact, to avoid having a collision without damage nor a hit effect."
 
 outfit "Shooting Star Impact"
 	category "Turrets"
@@ -211,4 +208,3 @@ outfit "Shooting Star Impact"
 		"firing force" 2700
 		"hit force" 3500
 		"hull damage" 2160
-	description "The actual impact of the Shooting Star, dealing most of the damage and pushing the vessel back."
