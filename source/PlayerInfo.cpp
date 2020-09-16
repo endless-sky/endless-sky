@@ -2643,7 +2643,8 @@ void PlayerInfo::Save(const string &path) const
 		{
 			using StockElement = pair<const Outfit *const, int>;
 			WriteSorted(stock,
-				[](const StockElement *lhs, const StockElement *rhs){ return lhs->first->Name() < rhs->first->Name(); },
+				[](const StockElement *lhs, const StockElement *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
 				[&out](const StockElement &it)
 				{
 					if(it.second)
@@ -2713,7 +2714,8 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save a list of systems the player has visited.
 	WriteSorted(visitedSystems,
-		[](const System *const *lhs, const System *const *rhs){ return (*lhs)->Name() < (*rhs)->Name(); },
+		[](const System *const *lhs, const System *const *rhs)
+			{ return (*lhs)->Name() < (*rhs)->Name(); },
 		[&out](const System *system)
 		{
 			if(!system->Name().empty())
@@ -2722,7 +2724,8 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save a list of planets the player has visited.
 	WriteSorted(visitedPlanets,
-		[](const Planet *const *lhs, const Planet *const *rhs){ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
+		[](const Planet *const *lhs, const Planet *const *rhs)
+			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
 		[&out](const Planet *planet)
 		{
 			if(!planet->TrueName().empty())

@@ -706,8 +706,9 @@ void Ship::Save(DataWriter &out) const
 		{
 			using OutfitElement = pair<const Outfit *const, int>;
 			WriteSorted(outfits,
-				[](const OutfitElement *lhs, const OutfitElement *rhs){ return lhs->first->Name() < rhs->first->Name(); },
-				[&out](const pair<const Outfit *, int> &it){
+				[](const OutfitElement *lhs, const OutfitElement *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const OutfitElement &it){
 					if(it.second == 1)
 						out.Write(it.first->Name());
 					else
@@ -799,17 +800,15 @@ void Ship::Save(DataWriter &out) const
 		
 		using EffectElement = pair<const Effect *const, int>;
 		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
-		{
-			return lhs->first->Name() < rhs->first->Name();
-		};
+			{ return lhs->first->Name() < rhs->first->Name(); };
 		WriteSorted(explosionEffects, effectSort, [&out](const EffectElement &it)
 		{
-			if(it.first && it.second)
+			if(it.second)
 				out.Write("explode", it.first->Name(), it.second);
 		});
 		WriteSorted(finalExplosions, effectSort, [&out](const EffectElement &it)
 		{
-			if(it.first && it.second)
+			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
 		});
 		
@@ -1770,15 +1769,11 @@ void Ship::DoGeneration()
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
-				{
-					return lhs.first > rhs.first;
-				}
+					{ return lhs.first > rhs.first; }
 				// The default strategy is to prioritize the healthiest ship first, in
 				// order to get fighters back out into the battle as soon as possible.
 				: [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
-				{
-					return lhs.first < rhs.first;
-				}
+					{ return lhs.first < rhs.first; }
 			);
 			
 			// Apply shield and hull repair to carried fighters.

@@ -218,5 +218,5 @@ void MapShipyardPanel::Init()
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) {return a->ModelName() < b->ModelName();});
+			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });
 }

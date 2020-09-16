@@ -79,7 +79,8 @@ void Depreciation::Save(DataWriter &out, int day) const
 	{
 		using ShipElement = pair<const Ship *const, map<int, int>>;
 		WriteSorted(ships,
-			[](const ShipElement *lhs, const ShipElement *rhs) { return lhs->first->ModelName() < rhs->first->ModelName(); },
+			[](const ShipElement *lhs, const ShipElement *rhs)
+				{ return lhs->first->ModelName() < rhs->first->ModelName(); },
 			[=, &out](const ShipElement &sit)
 			{
 				out.Write("ship", sit.first->ModelName());
@@ -97,7 +98,8 @@ void Depreciation::Save(DataWriter &out, int day) const
 			});
 		using OutfitElement = pair<const Outfit *const, map<int, int>>;
 		WriteSorted(outfits,
-			[](const OutfitElement *lhs, const OutfitElement *rhs) { return lhs->first->Name() < rhs->first->Name(); },
+			[](const OutfitElement *lhs, const OutfitElement *rhs)
+				{ return lhs->first->Name() < rhs->first->Name(); },
 			[=, &out](const OutfitElement &oit)
 			{
 				out.Write("outfit", oit.first->Name());
