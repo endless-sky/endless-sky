@@ -84,27 +84,25 @@ double Weather::DamageMultiplier() const
 
 void Weather::Step(vector<Visual> &visuals)
 {
-	if(lifetime-- <= 0)
+	// Environmental effects are created by choosing a random angle and distance from
+	// the system center, then creating the effect there. If a hazard has no range,
+	// effects are only created out to the invisible fence.
+	double minRange = hazard->MinRange();
+	double maxRange = hazard->MaxRange();
+	if(!maxRange)
+		maxRange = 10000.;
+	double currentStrength = Strength();
+	for(const auto &effect : hazard->EnvironmentalEffects())
+		for(int i = 0; i < static_cast<int>(effect.second * currentStrength); ++i)
+		{
+			Point angle = Angle::Random().Unit();
+			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
+			Point pos = (minRange + magnitude) * angle;
+			visuals.emplace_back(*effect.first, pos, Point(), Angle::Random());
+		}
+	
+	if(--lifetime <= 0)
 		shouldBeRemoved = true;
-	else
-	{
-		// Environmental effects are created by choosing a random angle and distance from
-		// the system center, then creating the effect there. If a hazard has no range,
-		// effects are only created out to the invisible fence.
-		double minRange = hazard->MinRange();
-		double maxRange = hazard->MaxRange();
-		if(!maxRange)
-			maxRange = 10000.;
-		double currentStrength = Strength();
-		for(const auto &effect : hazard->EnvironmentalEffects())
-			for(int i = 0; i < static_cast<int>(effect.second * currentStrength); ++i)
-			{
-				Point angle = Angle::Random().Unit();
-				double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-				Point pos = (minRange + magnitude) * angle;
-				visuals.emplace_back(*effect.first, pos, Point(), Angle::Random());
-			}
-	}
 }
 
 
