@@ -14,6 +14,8 @@ mission "First Contact: Hai"
 		attributes "hai"
 	on offer
 		conversation
+			branch unfettered
+				has "First Contact: Unfettered: offered"
 			`This planet is populated by an alien species that resemble giant, intelligent squirrels. However, the most surprising aspect of the spaceport is not the aliens, but the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
 			choice
 				`	(Sure.)`
@@ -22,22 +24,57 @@ mission "First Contact: Hai"
 			
 			`	You walk up to a human merchant who is busy haggling with one of the aliens. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look totally lost," he says. "First time down the rabbit hole?"`
 			`	You nod. The alien reaches out a paw to shake hands with you. "Welcome to Hai space," it says. "We are people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
+				goto next
+			
+			label unfettered
+			`The Hai here seem more friendly and approachable than those you met earlier. Even more surprising though is the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
+			choice
+				`	(Sure.)`
+				`	(Not right now.)`
+					defer
+			
+			`	You walk up to a human merchant who is busy haggling with one of the Hai. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look lost," he says. "First time down the rabbit hole?"`
+			`	"No, I've actually met with the Hai up north," you respond. The merchant looks slightly concerned with this, but the Hai only seems to sigh.`
+			`	"Ah, you have met our wayward sisters and brothers. I hope that they did not cause you too much trouble, for they are misled in their ways," it says. "Welcome to Hai space. Unlike those that you met before, the rest of us are a people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
+			
+			label next
 			`	You glance quickly at the human merchant to see his expression, wondering if these aliens can indeed be so benign, but his expression is calm and untroubled. "It's true," he says, "look around you. These buildings have stood for thousands of years. Hai society is so advanced, they need almost no resources to maintain it."`
 			choice
 				`	"Why do you allow humans to settle here?"`
 				`	"What do you ask for in return for letting humans settle here?"`
 			
 			`	"Humans are a young species," the Hai says, "full of energy, full of new ideas. And the Hai are old, and everything we do is what we have done before. When humans go on vacation, they travel to a world with perfect weather, sunny every day. When Hai go on vacation, we visit the stormiest world, to find unpredictability and change. Humans are so strange, that to speak with a human is like a small vacation." It smiles, and you catch a glimpse of its massive incisors. Based on your knowledge of xenobiology you would guess that the Hai are herbivores, but you can't be certain.`
+			branch hostile
+				has "First Contact: Unfettered: offered"
 			choice
 				`	"So I'm allowed to travel throughout your territory if I want?"`
 					goto travel
 				`	"How come people back in human space don't know that you are here?"`
+					goto human
 			
+			label hostile
+			choice
+				`	"If your people are peaceful then way are the Hai from the north so hostile?"`
+					goto why
+				`	"How come people back in human space don't know that you are here?"`
+			
+			label human
 			`	The human merchant laughs. "Probably because most of us came here to escape from the chaos and fighting in human space. The last thing we want is for it to follow us here. Not that I'm saying you can't tell anyone about the wormhole, but if I were you I wouldn't go spreading the news too widely either. And take a look around Hai space before you leave; you'll find that we could learn a lot from them."`
+			branch question
+				has "First Contact: Unfettered: offered"
 			`	"So I can travel anywhere I want in your territory?" you ask the Hai.`
 			
 			label travel
-			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
+			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai who are misled in their ways: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
+				goto end
+			
+			label question
+			`	"If your people are peaceful then way are the Hai from the north so hostile?" you ask the Hai.`
+			
+			label why
+			`	"I am young, and the origins of our 'Unfettered' brethren are before my time," it responds. "If you want to know more, it might be wise to find someone much older than myself to ask."`
+			
+			label end
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
 	on decline
@@ -190,10 +227,11 @@ mission "Ask the Hai about the Unfettered"
 	source
 		attributes "hai"
 	to offer
+		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
 	on offer
 		conversation
-			`The Unfettered Hai told you that they are the "true Hai," and seem to think that the other Hai are oppressing them. Would you like to look for someone here who can tell you the other side of the story?`
+			`The Unfettered Hai say that they are the "true Hai," and seem to think that the other Hai are oppressing them, but another Hai that you spoke to said that the Unfettered Hai are simply misled. Would you like to look for someone here who can tell you more of the story?`
 			choice
 				`	(Yes.)`
 				`	(No.)`
