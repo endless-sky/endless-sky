@@ -270,8 +270,8 @@ private:
 	
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
-
-
+	
+	
 private:
 	std::string firstName;
 	std::string lastName;
