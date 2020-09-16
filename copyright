@@ -814,10 +814,6 @@ Copyright: Tommaso Becca
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
-Files: source/Utf8.*
-Copyright: 2017, 2018 by Flávio J. Saraiva
-License: GPL-3+
-
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
