@@ -181,8 +181,8 @@ void Audio::Init(const vector<string> &sources)
 
 
 
-// Check the progress of loading sounds.
-double Audio::Progress()
+// Report the progress of loading sounds.
+double Audio::GetProgress()
 {
 	unique_lock<mutex> lock(audioMutex);
 	

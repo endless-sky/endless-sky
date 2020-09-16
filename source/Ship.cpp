@@ -236,10 +236,22 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
+			Angle gunPortAngle = Angle(0.);
+			bool gunPortParallel = false;
+			if(child.HasChildren())
+			{
+				for(const DataNode &grand : child)
+					if(grand.Token(0) == "angle" && grand.Size() >= 2)
+						gunPortAngle = grand.Value(1);
+					else if(grand.Token(0) == "parallel")
+						gunPortParallel = true;
+					else
+						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
+			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, outfit);
+				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
@@ -253,7 +265,7 @@ void Ship::Load(const DataNode &node)
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
 			(key == "bay" && child.Size() >= 4))
 		{
-			// While the `drone` and `fighter` keywords are supported for backwards compatiblity, the
+			// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
 			// standard format is `bay <ship-category>`, with the same signature for other values.
 			string category = "Fighter";
 			int childOffset = 0;
@@ -484,7 +496,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), outfit);
 					if(nextGun != end)
 					{
 						if(outfit)
@@ -692,14 +704,24 @@ void Ship::Save(DataWriter &out) const
 		out.Write("outfits");
 		out.BeginChild();
 		{
+			// Using a temporary map with the outfit names as keys so that
+			// outfits are written to the savefile in named alphabetical
+			// order.
+			// The game-engine doesn't care in which order outfits are
+			// saved or loaded, the sorting here is done as a service for
+			// content creators that use savegames for working on their
+			// new content.
+			map<string, int> orderedOutfits;
 			for(const auto &it : outfits)
 				if(it.first && it.second)
-				{
-					if(it.second == 1)
-						out.Write(it.first->Name());
-					else
-						out.Write(it.first->Name(), it.second);
-				}
+					orderedOutfits[it.first->Name()] = it.second;
+			for(const auto &it : orderedOutfits)
+			{
+				if(it.second == 1)
+					out.Write(it.first);
+				else
+					out.Write(it.first, it.second);
+			}
 		}
 		out.EndChild();
 		
@@ -747,6 +769,18 @@ void Ship::Save(DataWriter &out) const
 					hardpoint.GetOutfit()->Name());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
+			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
+			if(hardpoint.IsParallel() || hardpointAngle)
+			{
+				out.BeginChild();
+				{
+					if(hardpointAngle)
+						out.Write("angle", hardpointAngle);
+					if(hardpoint.IsParallel())
+						out.Write("parallel");
+				}
+				out.EndChild();
+			}
 		}
 		for(const Bay &bay : bays)
 		{

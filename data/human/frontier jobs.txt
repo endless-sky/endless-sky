@@ -202,7 +202,9 @@ mission "Instruct Novice Pilot"
 		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
 	stopover
 		not government "Pirate"
-		attributes "frontier" "outfitter"
+		attributes "frontier"
+		attributes "outfitter"
+		attributes "spaceport"
 		distance 3 7
 	on stopover
 		dialog "After a smooth landing, you guide your student through an especially rough part of the spaceport, full of trash, homeless drifters, and poorly-lit alleyways. You explain the ins and outs of avoiding pickpockets, keeping out of bar fights, and how to spot a lousy deal at an outfitter's shop. After a few hours in one of the seedier parts of the galaxy, both of you are eager to return to <origin>."

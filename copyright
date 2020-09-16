@@ -169,6 +169,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/land/enceladus_1*
+ images/land/enceladus_2*
+ images/land/enceladus_3*
+ images/land/enceladus_4*
  images/ui/galaxy*
  images/ui/pleiades*
  images/planet/callisto*
@@ -357,6 +361,7 @@ Files:
  images/outfit/ion?hail?turret*
  images/outfit/overcharged?shield?module*
  images/outfit/overclocked?repair?module*
+ images/outfit/ramscoop*
  images/outfit/remnant?afterburner*
  images/outfit/remnant?capital?license*
  images/outfit/salvage?scanner*
@@ -680,11 +685,13 @@ Files:
  images/ship/telis'het*
  images/ship/faes'mar*
  images/ship/selii'mar*
+ images/ship/ember?waste?node/ember?waste?node*
  images/thumbnail/maeri'het*
  images/thumbnail/telis'het*
  images/thumbnail/faes'mar*
  images/thumbnail/selii'mar*
  images/thumbnail/subsidurial*
+ images/thumbnail/ember?waste?node*
  images/effect/ravager?impact*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
@@ -700,6 +707,7 @@ Files:
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
+ images/planet/sheragi_postverta*
  images/planet/station0*
  images/planet/station1b*
  images/planet/station2b*
@@ -710,6 +718,7 @@ Files:
  images/projectile/annihilator*
  images/projectile/ravager?beam*
  images/scene/ringworld?debris*
+ images/scene/remnant?station*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -794,6 +803,16 @@ Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
+
+Files: images/outfit/emp?rack*
+Copyright: Anarchist2
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/planet/*-hot*
+Copyright: Tommaso Becca
+License: CC-BY-SA-4.0
+Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

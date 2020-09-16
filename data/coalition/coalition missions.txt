@@ -1342,7 +1342,7 @@ mission "Arachi Cartoonist 1"
 	on offer
 		conversation
 			`As you're moving along one of the larger underground tunnels that connect the spaceport here, a dozen makeshift stands, each with a different apparent 'theme' to them, captures your attention. When you get closer, it's clear that the event is something of a convention, each stand managed by a different artist that lives here.`
-			`	After you're done looking at a stand that showcased various fantasy attires and move on to the neighboring one, it's owner jumps as soon as he turns to see you, looking dumbfounded. He introduces himself as Drugub, a cartoonist of local fame for his science fiction comics, showing various examples of them as he speaks with you. "Many styles of ships produced in our space are, but only so many ideas from them, I can get," he says. "That you came here, lucky I am. To expand my creative horizon, I need, and seeing the general shape of some human ships would."`
+			`	After you're done looking at a stand that showcased various fantasy attires and move on to the neighboring one, its owner jumps as soon as he turns to see you, looking dumbfounded. He introduces himself as Drugub, a cartoonist of local fame for his science fiction comics, showing various examples of them as he speaks with you. "Many styles of ships produced in our space are, but only so many ideas from them, I can get," he says. "That you came here, lucky I am. To expand my creative horizon, I need, and seeing the general shape of some human ships would."`
 			choice
 				`	"I can help with that. Do you have any type of ship in mind?"`
 				`	"Sorry, I'm just passing by, not looking for a job or anything."`

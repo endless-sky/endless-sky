@@ -60,7 +60,7 @@ LD = g++.exe
 
 # Compiler and linker flags
 include_dir = -I$(DIR_ESLIB)/include
-CXXFLAGS += -std=c++11 -Wall -MMD $(cxx_extra) $(include_dir)
+CXXFLAGS += -std=c++11 -Wall -Werror -MMD $(cxx_extra) $(include_dir)
 # Require the linker uses WinMainCRTStartup as the entry point.
 LDFLAGS += -mwindows -L$(DIR_ESLIB)/lib $(ldd_extra)
 # Include the Windows Multimedia API.

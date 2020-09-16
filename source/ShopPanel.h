@@ -36,7 +36,7 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	ShopPanel(PlayerInfo &player, bool isOutfitter);
+	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -83,8 +83,8 @@ protected:
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
-		Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
-		Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
+		explicit Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
+		explicit Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
 		
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
@@ -118,12 +118,20 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 	
+	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
+	// The player-owned ship being reordered.
 	Ship *dragShip = nullptr;
+	bool isDraggingShip = false;
 	Point dragPoint;
+	// The group of all selected, player-owned ships.
 	std::set<Ship *> playerShips;
+	
+	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
+	// The currently selected Outfit, for the OutfitterPanel.
 	const Outfit *selectedOutfit = nullptr;
+	// (It may be worth moving the above pointers into the derived classes in the future.)
 	
 	double mainScroll = 0.;
 	double sidebarScroll = 0.;
