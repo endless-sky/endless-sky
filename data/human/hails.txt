@@ -1477,7 +1477,7 @@ phrase "friendly civilian"
 		"I just don't get it"
 		"I'm not that into music"
 		"I prefer classical works"
-		"I don't hate them"
+		"I don't care for them"
 	word
 		", but "
 	word
