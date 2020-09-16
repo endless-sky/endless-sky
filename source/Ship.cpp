@@ -704,24 +704,16 @@ void Ship::Save(DataWriter &out) const
 		out.Write("outfits");
 		out.BeginChild();
 		{
-			// Using a temporary map with the outfit names as keys so that
-			// outfits are written to the savefile in named alphabetical
-			// order.
-			// The game-engine doesn't care in which order outfits are
-			// saved or loaded, the sorting here is done as a service for
-			// content creators that use savegames for working on their
-			// new content.
-			map<string, int> orderedOutfits;
-			for(const auto &it : outfits)
-				if(it.first && it.second)
-					orderedOutfits[it.first->Name()] = it.second;
-			for(const auto &it : orderedOutfits)
-			{
-				if(it.second == 1)
-					out.Write(it.first);
-				else
-					out.Write(it.first, it.second);
-			}
+			using OutfitElement = pair<const Outfit *const, int>;
+			WriteSorted(outfits,
+				[](const OutfitElement *lhs, const OutfitElement *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const OutfitElement &it){
+					if(it.second == 1)
+						out.Write(it.first->Name());
+					else
+						out.Write(it.first->Name(), it.second);
+				});
 		}
 		out.EndChild();
 		
@@ -805,12 +797,20 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const Leak &leak : leaks)
 			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
-		for(const auto &it : explosionEffects)
-			if(it.first && it.second)
+		
+		using EffectElement = pair<const Effect *const, int>;
+		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
+			{ return lhs->first->Name() < rhs->first->Name(); };
+		WriteSorted(explosionEffects, effectSort, [&out](const EffectElement &it)
+		{
+			if(it.second)
 				out.Write("explode", it.first->Name(), it.second);
-		for(const auto &it : finalExplosions)
-			if(it.first && it.second)
+		});
+		WriteSorted(finalExplosions, effectSort, [&out](const EffectElement &it)
+		{
+			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
+		});
 		
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
@@ -1769,15 +1769,11 @@ void Ship::DoGeneration()
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
-				{
-					return lhs.first > rhs.first;
-				}
+					{ return lhs.first > rhs.first; }
 				// The default strategy is to prioritize the healthiest ship first, in
 				// order to get fighters back out into the battle as soon as possible.
 				: [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
-				{
-					return lhs.first < rhs.first;
-				}
+					{ return lhs.first < rhs.first; }
 			);
 			
 			// Apply shield and hull repair to carried fighters.
