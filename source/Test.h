@@ -41,9 +41,16 @@ public:
 		// The different types of teststeps.
 		enum StepType {
 			// Step that assigns a value to a condition.
+			// TODO: Does not cause the game to step.
 			ASSIGN,
 			// Step that verifies if a certain condition is true
+			// TODO: Does not cause the game to step.
 			ASSERT,
+			// Branch with a label to jump to when the condition in child is true.
+			// When a second label is given, then the second is to jump to on false.
+			// TODO: use LABEL and BRANCH as replacement for REPEAT, BREAK_IF and WAITFOR
+			// TODO: Does not cause the game to step, except when no step was done since last branch.
+			BRANCH,
 			// Step that breaks execution of a REPEAT loop (or stops the execution
 			// of the test itself if at toplevel) when a certain condition is
 			// true.
@@ -51,14 +58,22 @@ public:
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
 			// Step that performs input (key, mouse, command).
+			// TODO: Does cause the game to step (to proces the inputs).
 			INPUT,
 			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
 			INVALID,
+			// Label to jump to (similar as is done in conversations)
+			// TODO: use LABEL and BRANCH as replacement for REPEAT, BREAK_IF and WAITFOR
+			// TODO: Does not cause the game to step.
+			LABEL,
 			// Step that performs land of the players flagship.
+			// TODO: replace by regular scan, mouse and keyboard inputs
 			LAND,
 			// Step that launches the players flagship.
+			// TODO: replace by regular keyboard inputs
 			LAUNCH,
 			// Step to perform loading of a savegame
+			// TODO: replace by regular mouse and keyboard inputs
 			LOAD_GAME,
 			// Instructs the game to set navigation / travel plan to a target system
 			NAVIGATE,
