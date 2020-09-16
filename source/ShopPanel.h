@@ -79,6 +79,7 @@ protected:
 	
 	int64_t LicenseCost(const Outfit *outfit) const;
 	
+	
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
@@ -94,7 +95,7 @@ protected:
 		double scrollY = 0.;
 		const Outfit *outfit = nullptr;
 	};
-
+	
 	enum class ShopPane : int {
 		Main,
 		Sidebar,

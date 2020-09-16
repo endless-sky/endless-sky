@@ -149,7 +149,7 @@ void ShopPanel::Draw()
 			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
 		}
 	}
-
+	
 	if(sameSelectedTopY)
 	{
 		sameSelectedTopY = false;
@@ -213,7 +213,7 @@ void ShopPanel::DrawShipsSidebar()
 		// Skip any ships that are "absent" for whatever reason.
 		if(!CanShowInSidebar(*ship, here))
 			continue;
-	
+		
 		if(point.X() > Screen::Right())
 		{
 			point.X() -= ICON_TILE * ICON_COLS;
@@ -306,15 +306,15 @@ void ShopPanel::DrawDetailsSidebar()
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH / 2, 0.),
 		Point(INFOBAR_WIDTH - 1., Screen::Height()),
 		back);
-
+	
 	Point point(
 		Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2,
 		Screen::Top() + 10 - infobarScroll);
-
+	
 	int heightOffset = DrawDetails(point);
-
+	
 	maxInfobarScroll = max(0., heightOffset + infobarScroll - Screen::Bottom());
-
+	
 	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(infobarScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - 10),
@@ -918,13 +918,12 @@ bool ShopPanel::DoScroll(double dy)
 	}
 	else if(activePane == ShopPane::Sidebar)
 	{
-
 		scroll = &sidebarScroll;
 		maximum = maxSidebarScroll;
 	}
-
+	
 	*scroll = max(0., min(maximum, *scroll - dy));
-
+	
 	return true;
 }
 
