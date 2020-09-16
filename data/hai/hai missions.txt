@@ -54,7 +54,7 @@ mission "First Contact: Hai"
 			
 			label hostile
 			choice
-				`	"If your people are peaceful then way are the Hai from the north so hostile?"`
+				`	"If your people are peaceful then why are the Hai from the north so hostile?"`
 					goto why
 				`	"How come people back in human space don't know that you are here?"`
 			
@@ -69,7 +69,7 @@ mission "First Contact: Hai"
 				goto end
 			
 			label question
-			`	"If your people are peaceful then way are the Hai from the north so hostile?" you ask the Hai.`
+			`	"If your people are peaceful then why are the Hai from the north so hostile?" you ask the Hai.`
 			
 			label why
 			`	"I am young, and the origins of our 'Unfettered' brethren are before my time," it responds. "If you want to know more, it might be wise to find someone much older than myself to ask."`
