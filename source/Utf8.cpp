@@ -18,7 +18,7 @@ namespace Utf8 {
 	size_t NextCodePoint(const string &str, size_t pos)
 	{
 		if(pos >= str.length())
-			return str.length();
+			return string::npos;
 		
 		for(++pos; pos < str.length(); ++pos)
 			if((str[pos] & 0x80) == 0 || (str[pos] & 0xc0) == 0xc0)
@@ -82,24 +82,30 @@ namespace Utf8 {
 	
 	// Decodes a unicode code point in utf8.
 	// Invalid codepoints are converted to 0xFFFFFFFF.
-	char32_t DecodeCodePoint(const string &str, size_t pos)
+	char32_t DecodeCodePoint(const string &str, size_t &pos)
 	{
 		if(pos >= str.length())
+		{
+			pos = string::npos;
 			return 0;
+		}
 		
 		// invalid (-1) or end (0)
 		int bytes = CodePointBytes(str.c_str() + pos);
 		if(bytes < 1)
+		{
+			++pos;
 			return bytes;
+		}
 		
 		// 1 byte
 		if(bytes == 1)
-			return (str[pos] & 0x7f);
+			return (str[pos++] & 0x7f);
 		
 		// 2-4 bytes
-		char32_t c = (str[pos] & ((1 << (7 - bytes)) - 1));
+		char32_t c = (str[pos++] & ((1 << (7 - bytes)) - 1));
 		for(int i = 1; i < bytes; ++i)
-			c = (c << 6) + (str[pos + i] & 0x3f);
+			c = (c << 6) + (str[pos++] & 0x3f);
 		return c;
 	}
 }

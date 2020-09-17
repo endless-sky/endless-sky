@@ -106,9 +106,10 @@ void DataFile::LoadData(const string &data)
 	size_t lineNumber = 0;
 	
 	size_t end = data.length();
-	for(size_t pos = 0; pos < end; pos = Utf8::NextCodePoint(data, pos))
+	for(size_t pos = 0; pos < end; )
 	{
 		++lineNumber;
+		size_t tokenPos = pos;
 		char32_t c = Utf8::DecodeCodePoint(data, pos);
 		
 		// Find the first non-white character in this line.
@@ -134,19 +135,14 @@ void DataFile::LoadData(const string &data)
 			}
 			
 			++white;
-			pos = Utf8::NextCodePoint(data, pos);
+			tokenPos = pos;
 			c = Utf8::DecodeCodePoint(data, pos);
 		}
 		
 		// If the line is a comment, skip to the end of the line.
 		if(c == '#')
-		{
 			while(c != '\n')
-			{
-				pos = Utf8::NextCodePoint(data, pos);
 				c = Utf8::DecodeCodePoint(data, pos);
-			}
-		}
 		// Skip empty lines (including comment lines).
 		if(c == '\n')
 			continue;
@@ -178,26 +174,26 @@ void DataFile::LoadData(const string &data)
 			bool isQuoted = (endQuote == '"' || endQuote == '`');
 			if(isQuoted)
 			{
-				pos = Utf8::NextCodePoint(data, pos);
+				tokenPos = pos;
 				c = Utf8::DecodeCodePoint(data, pos);
 			}
 			
-			const size_t start = pos;
+			size_t endPos = tokenPos;
 			
 			// Find the end of this token.
 			while(c != '\n' && (isQuoted ? (c != endQuote) : (c > ' ')))
 			{
-				pos = Utf8::NextCodePoint(data, pos);
+				endPos = pos;
 				c = Utf8::DecodeCodePoint(data, pos);
 			}
 			
 			// It ought to be legal to construct a string from an empty iterator
 			// range, but it appears that some libraries do not handle that case
 			// correctly. So:
-			if(start == pos)
+			if(tokenPos == endPos)
 				node.tokens.emplace_back();
 			else
-				node.tokens.emplace_back(data, start, pos - start);
+				node.tokens.emplace_back(data, tokenPos, endPos - tokenPos);
 			// This is not a fatal error, but it may indicate a format mistake:
 			if(isQuoted && c == '\n')
 				node.PrintTrace("Closing quotation mark is missing:");
@@ -208,12 +204,12 @@ void DataFile::LoadData(const string &data)
 				// forward for the next non-whitespace character.
 				if(isQuoted)
 				{
-					pos = Utf8::NextCodePoint(data, pos);
+					tokenPos = pos;
 					c = Utf8::DecodeCodePoint(data, pos);
 				}
 				while(c != '\n' && c <= ' ' && c != '#')
 				{
-					pos = Utf8::NextCodePoint(data, pos);
+					tokenPos = pos;
 					c = Utf8::DecodeCodePoint(data, pos);
 				}
 				
@@ -222,10 +218,7 @@ void DataFile::LoadData(const string &data)
 				if(c == '#')
 				{
 					while(c != '\n')
-					{
-						pos = Utf8::NextCodePoint(data, pos);
 						c = Utf8::DecodeCodePoint(data, pos);
-					}
 				}
 			}
 		}

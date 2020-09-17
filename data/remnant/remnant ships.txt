@@ -771,7 +771,7 @@ ship "Puffin"
 		"hull" 1500
 		"required crew" 1
 		"bunks" 2
-		"mass" 44
+		"mass" 40
 		"drag" 1.27
 		"heat dissipation" 0.9
 		"fuel capacity" 700

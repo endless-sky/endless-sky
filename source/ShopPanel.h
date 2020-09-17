@@ -42,7 +42,8 @@ public:
 	virtual void Draw() override;
 	
 protected:
-	void DrawSidebar();
+	void DrawShipsSidebar();
+	void DrawDetailsSidebar();
 	void DrawButtons();
 	void DrawMain();
 	
@@ -95,9 +96,17 @@ protected:
 		const Outfit *outfit = nullptr;
 	};
 	
+	enum class ShopPane : int {
+		Main,
+		Sidebar,
+		Info
+	};
+	
 	
 protected:
-	static const int SIDE_WIDTH = 250;
+	static const int SIDEBAR_WIDTH = 250;
+	static const int INFOBAR_WIDTH = 300;
+	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
@@ -125,10 +134,12 @@ protected:
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 	
 	double mainScroll = 0.;
-	double sideScroll = 0.;
+	double sidebarScroll = 0.;
+	double infobarScroll = 0.;
 	double maxMainScroll = 0.;
-	double maxSideScroll = 0.;
-	bool dragMain = true;
+	double maxSidebarScroll = 0.;
+	double maxInfobarScroll = 0.;
+	ShopPane activePane = ShopPane::Main;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;

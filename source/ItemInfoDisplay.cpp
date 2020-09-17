@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "Rectangle.h"
 #include "Screen.h"
 #include "Table.h"
 
@@ -76,7 +77,9 @@ int ItemInfoDisplay::AttributesHeight() const
 // Draw each of the panels.
 void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 {
-	description.Draw(topLeft + Point(10., 12.), *GameData::Colors().Get("medium"));
+	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), DescriptionHeight()));
+	Color color = hoverTarget.Contains(hoverPoint) ? *GameData::Colors().Get("bright") : *GameData::Colors().Get("medium");
+	description.Draw(topLeft + Point(10., 12.), color);
 }
 
 
@@ -148,7 +151,6 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 			if(i && i == licenses.size() - 1)
 				fullText += "and ";
 			fullText += (isVoweled ? "an " : "a ") + licenses[i] + " License";
-
 		}
 		fullText += ".\n";
 		description.Wrap(fullText);

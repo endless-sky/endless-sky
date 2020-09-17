@@ -98,9 +98,7 @@ void ShipInfoPanel::Draw()
 	interface->Draw(interfaceInfo, this);
 	
 	// Draw all the different information sections.
-	zones.clear();
-	commodityZones.clear();
-	plunderZones.clear();
+	ClearZones();
 	Rectangle cargoBounds = interface->GetBox("cargo");
 	DrawShipStats(interface->GetBox("stats"));
 	DrawOutfits(interface->GetBox("outfits"), cargoBounds);
@@ -257,6 +255,7 @@ void ShipInfoPanel::UpdateInfo()
 {
 	draggingIndex = -1;
 	hoverIndex = -1;
+	ClearZones();
 	if(shipIt == player.Ships().end())
 		return;
 	
@@ -268,6 +267,15 @@ void ShipInfoPanel::UpdateInfo()
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
 		outfits[it.first->Category()].push_back(it.first);
+}
+
+
+
+void ShipInfoPanel::ClearZones()
+{
+	zones.clear();
+	commodityZones.clear();
+	plunderZones.clear();
 }
 
 

@@ -124,13 +124,10 @@ jobs:
           ${{ matrix.os }}-sccache
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: |
-        make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
-        COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
-        COPY ".\dev64\bin\*.dll" .
-        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
-        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
-        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
+      run: make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
+    - name: Prepare artifact
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:

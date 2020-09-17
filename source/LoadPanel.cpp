@@ -77,7 +77,7 @@ namespace {
 				date[9] += day % 10;
 				break;
 			}
-		return std::move(date);
+		return date;
 	}
 	
 	// Only show tooltips if the mouse has hovered in one place for this amount

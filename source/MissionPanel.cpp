@@ -596,9 +596,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 	
 	double zoom = Zoom();
 	auto drawRing = [&](const System *system, const Color &drawColor)
-	{
-		RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor);
-	};
+		{ RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor); };
 	
 	RingShader::Bind();
 	{

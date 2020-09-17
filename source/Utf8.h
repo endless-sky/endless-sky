@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 namespace Utf8 {
 	// Skip to the next unicode code point after pos in utf8.
-	// Return the string length when there are no more code points.
+	// Return string::npos when there are no more code points.
 	std::size_t NextCodePoint(const std::string &str, std::size_t pos);
 	
 	// Returns the start of the unicode code point at pos in utf8.
@@ -26,7 +26,9 @@ namespace Utf8 {
 	
 	// Decodes a unicode code point in utf8.
 	// Invalid codepoints are converted to 0xFFFFFFFF.
-	char32_t DecodeCodePoint(const std::string &str, std::size_t pos);
+	// pos skips to the next unicode code point after pos in utf8,
+	// or is set string::npos when there are no more code points.
+	char32_t DecodeCodePoint(const std::string &str, std::size_t &pos);
 }
 
 #endif

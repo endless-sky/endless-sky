@@ -11625,7 +11625,7 @@ system Gupta
 	link Belugt
 	link Blugtad
 	link "Sol Arach"
-	link Membulem
+	link Meblumem
 	link Pelubta
 	asteroids "small rock" 40 8.448
 	asteroids "medium rock" 7 6.006
@@ -15942,7 +15942,7 @@ system Mekislepti
 			distance 334.445
 			period 30.4733
 
-system Membulem
+system Meblumem
 	pos -722.587 616.051
 	government Coalition
 	habitable 2201.68
@@ -18232,7 +18232,7 @@ system Pelubta
 	government Coalition
 	habitable 9265
 	belt 1709
-	link Membulem
+	link Meblumem
 	link Gupta
 	link Ablodab
 	link Mebla
@@ -22417,7 +22417,7 @@ system "Sol Arach"
 	habitable 486.68
 	belt 1147
 	haze _menu/haze-133
-	link Membulem
+	link Meblumem
 	link Gupta
 	link Blugtad
 	link Glubatub
@@ -25853,7 +25853,7 @@ planet Aventine
 planet Babiali
 	attributes "ice giant" uninhabited
 	landscape land/canyon12
-	description `Babiali surface is a bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
+	description `Babiali's surface is a bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
 	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered to set up anything resembling a spaceport.`
 	security 0
 	government Uninhabited
