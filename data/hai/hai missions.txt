@@ -786,8 +786,7 @@ mission "Expanding Business [4]"
 		log "People" "David Turner" `An entrepreneur with a sharp mind, he was instrumental in the creation of a human outfitter in Hai space, allowing merchants to arm themselves for the dangerous trip back to human space.`
 		conversation
 			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
-			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end."`
-			`	"The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day."`
+			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end. The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day."`
 			`	Turner pats you on the back, "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
 
 event "outfitter on greenwater"
@@ -1738,7 +1737,7 @@ mission "Nanachi 4"
 				goto return2
 			label public2
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! Even if we contact the navy it will take weeks before they can mobilise to hunt them down and guarantee that they've made it safe for the convoy to come here, and the hazard pay to request a carrier escort is frankly ridiculous. The art exhibition is scheduled only three weeks from now!"`
-			`	Some of them eye you as they try to figure out what to do but before any well-formed ideas are reached, Nanachi speaks up, "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either so it's much more likely to go unnoticed or uncared for."`
+			`	Some of them eye you as they try to figure out what to do, but Nanachi speaks up before any well-formed ideas are reached, "I'll go there. I pilot a human ship, and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either so it's much more likely to go unnoticed or uncared for."`
 			label return2
 			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught your chances of outrunning the pirates are next to nothing!"`
 			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?"`
