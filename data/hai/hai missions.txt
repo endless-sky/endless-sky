@@ -1803,7 +1803,7 @@ mission "Nanachi 4"
 				goto return2
 			label public2
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! Even if we contact the Navy it will take weeks before they can mobilize to hunt them down and guarantee that they've made it safe for the convoy to come here, and the hazard pay to request a carrier escort is frankly ridiculous. The art exhibition is scheduled for only three weeks from now!"`
-			`	Some of them eye you as they try to figure out what to do but before any well-formed ideas are reached, Nanachi speaks up, "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either so it's much more likely to go unnoticed or uncared for."`
+			`	Some of them eye you as they try to figure out what to do, but Nanachi speaks up before any well-formed ideas are reached, "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either, so it's much more likely to go unnoticed or uncared for."`
 			label return2
 			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught your chances of outrunning the pirates are next to nothing!"`
 			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?"`
