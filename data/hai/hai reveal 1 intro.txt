@@ -87,94 +87,91 @@ mission "Event: Pug Media Coverage"
 		event "hai secret leaks" 10 15
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
-			`	As you look around you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect, that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict and learn not to tolerate the sorts of extremism that lead to the events that precipitated the war.`
+			`	As you look around you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that lead to the events precipitating the war would not be tolerated.`
 			`	Others...`
-			`	You sigh deeply as you watch some paranoid fringe world politician demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known and that it was the responsibility of the government to find out and inform the people.`
+			`	You sigh deeply as you watch some paranoid fringe world politician demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people.`
 			`	Your thoughts, you keep to yourself.`
 				decline
 
 event "hai secret leaks"
 
 
-
 conversation "hai reveal free worlds news"
-	`You are relaxing at the spaceport while your ship refuels after conducting a spot of business. On the viewscreen is some talk show or other, not something you specifically paid attention to but apparently a quite popular one out of Tarazed.`
+	`You are relaxing at the spaceport while your ship refuels after conducting a spot of business. On the view-screen is some talk show - not something you specifically pay attention to, but apparently a quite popular one out of Tarazed.`
 	`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
-	`	"So now in our surprise segment let me introduce you to Ronald. He once crewed on one of these big trade ships but after seeing what he saw, he just had to come foward!"`
-	`	The host stresses the word 'had' so much his voice squeeks but the audience's attention has certainly been gained.`
-	`	"But first, lets take a look at a clip."`
-	`	You raise your eyebrows with surprise.`
+	`	"So now in our surprise segment, let me introduce you to Ronald. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
+	`	The host stresses the word 'had' so much his voice squeaks, but the audience's attention has certainly been gained.`
+	`	"But first, let's take a look at a clip."`
+	`	You raise an eyebrow with surprise.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
-	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown. You've seen things, but not this.`
+	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 		accept
 	label "hai knowledge"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
-	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
-	`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
+	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
+	`	You suspect it might be time to go visit your Hai friends again.`
 		accept
 
 
 conversation "hai reveal republic or syndicate news"
-	`You are relaxing at the spaceport while your ship refuels after conducting a spot of business when a breaking news broadcast comes on; not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
-	`	The severe looking anchorwoman bores down the camera with an expression that demands attention.`
-	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders! He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at 6."`
+	`You are relaxing at the spaceport while your ship refuels when a breaking news broadcast comes on; it's not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
+	`	The severe-looking anchorwoman bores down the camera with an expression that demands attention.`
+	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at 6."`
 	`	You raise your eyebrows with surprise.`
-	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait so you stick around for the full segment out of curiosity.`
-	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently travelled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted media elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
+	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.`
+	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
-	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown. You've seen things, but not this.`
+	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 		accept	
 	label "hai knowledge"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
-	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
-	`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
+	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
+	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
+	`	You suspect it might be time to go visit your Hai friends again.`
 		accept
 
 
 conversation "What is going on in Hai space? (Have not met Unfettered.)"
-	`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children and passers-by look upon you with a hint of wariness.`
-	`	You realise that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
+	`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children, and passers-by look upon you with a hint of wariness.`
+	`	You realize that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
 	choice
 		`	"Why does everyone seem so afraid?"`
-	`	She shakes her head and wrinkles her nose with a look of distaste, "Within about three days of hearing that the Hai were being splashed all over major news networks back home a whole heap of curious pirates have chanced the wormhole en mass. The local security forces on patrol at the time got blown out of the sky by a surprise attack and everyone has been a bit shaken up since."`
+	`	She shakes her head and wrinkles her nose with a look of distaste. "Within about three days of hearing that the Hai were being splashed all over major news networks back home, a whole heap of curious pirates have chanced the wormhole en masse. The local security forces on patrol at the time got blown out of the sky by a surprise attack, and everyone has been a bit shaken up since."`
 	`	"Oh that's awful!" you say.`
-	`	She nods, "Unfortunately, these pirates are increasing in number by the day and it's taking a while for the government to redistribute an appropriately resourced security force thanks to the Unfettered."`
+	`	She nods. "Unfortunately, these pirates are increasing in number by the day, and it's taking a while for the government to redistribute an appropriately resourced security force thanks to the Unfettered."`
 	choice
 		# Rewrote question so it makes sense whether you met them or not
 		`	"Who are the Unfettered?"`
-	`	She seems surprised you asked, "Oh, they're a sort of rebel Hai group. If you don't know you should go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit will explain it far better than I ever could."`
+	`	She seems surprised that you asked and responds, "Oh, they're a sort of rebel Hai group. If you don't know you should go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit will explain it far better than I ever could."`
 		decline
 
 
 conversation "What is going on in Hai space? (Met the Unfettered.)"
-	`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children and passers-by look upon you with a hint of wariness.`
-	`	You realise that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
+	`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children, and passers-by look upon you with a hint of wariness.`
+	`	You realize that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet her to ask a few questions.`
 	choice
 		`	"Why does everyone seem so afraid?"`
 		`	"Why are you all wearing pink?"`
 			goto pink
-	`	She shakes her head and wrinkles her nose with a look of distaste, "Some marauder came here just yesterday, posing as a trader to investigate the rumours. We thought the Hai had means of keeping them out but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
-	`	She sighs deeply, "Everyone is just a bit shaken and distrustful at the moment."`
+	`	She shakes her head and wrinkles her nose with a look of distaste. "Some marauder came here just yesterday, posing as a trader to investigate the rumors. We thought the Hai had means of keeping them out, but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+	`	She sighs deeply ans says, "Everyone is just a bit shaken and distrustful at the moment."`
 	`	"Oh that's awful!" you say.`
-	`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."`
+	`	She nods and forces a little bit of false cheer into her voice, "This is why we're all wearing pink, just a little show of local solidarity."`
 		goto main
 	label pink
-	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."`
+	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris, and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."`
 	label main
 	`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
 	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
-	`	"Are you Captain <last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
+	`	"Are you Captain <last>?" one of them asks you. "Don't worry, you're not in trouble or anything."`
 	`	You nod your affirmation.`
-	`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."`
-	`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
+	`	"Your reputation precedes you, Captain. If you have any stake in the current information crisis, please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy." They leave without waiting for your agreement, but then, you did come here to see what was going on.`
 		decline
-
 
 
 # Six possibilities for origin and destination, to work around bug 1938
@@ -184,7 +181,7 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 mission "ZZ Event Hai Secret Leaks: RSHU"
 	landing
 	name "Visit the Hai"
-	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok. Visit <stopovers> and then <destination>."
+	description "It seems like events may be taking away the Hai's valued secrecy. Go see if things are okay. Visit <stopovers> and maybe see if you can render assistance on <destination>."
 	source
 		government "Republic" "Syndicate"
 		attributes "spaceport"
@@ -209,7 +206,7 @@ mission "ZZ Event Hai Secret Leaks: RSHU"
 mission "ZZ Event Hai Secret Leaks: FWHU"
 	landing
 	name "Visit the Hai"
-	description "It seems like events may be taking away the Hai's valued secrecy, best see if things are ok. Visit <stopovers> and <destination>."
+	description "It seems like events may be taking away the Hai's valued secrecy. Go see if things are okay. Visit <stopovers> and maybe see if you can render assistance on <destination>."
 	source
 		government "Free Worlds"
 		attributes "spaceport"
@@ -278,7 +275,7 @@ mission "ZZ Event Hai Secret Leaks: FWH"
 mission "ZZ Event Hai Secret Leaks: RS"
 	landing
 	name "Investigate the Hai"
-	description "A secret and violent alien race that Traders have known about for ages? Preposterous; go find out what's really going on."
+	description "A secret and violent alien race that traders have known about for ages? Preposterous; go find out what's really going on."
 	source
 		government "Republic" "Syndicate"
 		attributes "spaceport"
@@ -297,7 +294,7 @@ mission "ZZ Event Hai Secret Leaks: RS"
 mission "ZZ Event Hai Secret Leaks: FW"
 	landing
 	name "Investigate the Hai"
-	description "A secret and violent alien race that Traders have known about for ages? Preposterous; go find out what's really going on."
+	description "A secret and violent alien race waging war just outside of human space? Preposterous; go find out what's really going on."
 	source
 		government "Free Worlds"
 		attributes "spaceport"
@@ -326,7 +323,7 @@ event "pirates investigate leaks"
 	#Goto Stop 3 Wah Yoot (Darkcloak) and pick up at Tour 4 mission.
 mission "Hai Witness Unfettered [1]"
 	name "Witness the Unfettered"
-	description "Turns out this endless conflict has some truth to it, go see where it's happening."
+	description "It turns out this conflict has some truth to it. Go see where it's happening."
 	landing
 	source "Allhome"
 	destination "Darkcloak"
@@ -343,7 +340,7 @@ mission "Hai Witness Unfettered [1]"
 	#This follows immediately after the First Contact text - no other convo is required.
 mission "ZZ Hai Tour [1] Stonebreak"
 	landing
-	name "You're summoned to <planet>"
+	name "Visit <planet>"
 	description "Go to <destination> and learn more about the Hai's worlds."
 	source "Allhome"
 	destination "Stonebreak"
@@ -353,7 +350,7 @@ mission "ZZ Hai Tour [1] Stonebreak"
 			has "ZZ Event Hai Secret Leaks: FW: done"
 	on offer
 		conversation
-			`As you are leaving the Merchant and the Hai, the Hai calls out as an afterthought, "Oh Captain, if you really want to see what the Hai are like, you should go visit Stonebreak."`
+			`As you are leaving the merchant and the Hai, the Hai calls out as an afterthought, "By the way Captain, if you really want to see what the Hai are like, you should go visit Stonebreak."`
 			choice
 				`	"Thanks, I'll do that!"`
 					accept
@@ -369,11 +366,11 @@ mission "Hai Tour [2] Alta Hai"
 		has "ZZ Hai Tour [1] Stonebreak: done"
 	on offer
 		conversation
-			`Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
+			`Stonebreak is home to incredibly large cities: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which you noticed the Hai harvesting for the raw materials before you landed.`
 			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
-			`	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
-			`	While the layout is utilitarian, it is an incredibly comfortable place to live, and the Hai have given their individual community spaces quite a lot of character and life. It is, overall, an excellent example of an idealised Hai world, built in the presence of abundant resources.`
-			`	As you are wandering around and getting a feel for the place you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out.`
+			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, and warehouses and living quarters dot the inside of the ring.`
+			`	While the layout is utilitarian, it is an incredibly comfortable place to live, and the Hai have given their individual community spaces quite a lot of character and life.`
+			`	As you are wandering around and getting a feel for the place, you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out.`
 				accept
 
 	#Goto Stop 3 Wah Yoot (Darkcloak) - must happen after Quarg first contact
@@ -387,11 +384,10 @@ mission "ZZ Hai Tour [3] Meet Unfettered"
 		has "Hai Tour [2] Alta Hai: done"
 	on offer
 		conversation
-			`This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
-			`	Pondering your questions, you find a Quarg to query, "So this isn't Hai space then, but it's a dead end?"`
+			`This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships while housing storage facilities for cargo.`
+			`	Pondering your questions, you find a Quarg and ask, "So this isn't Hai space then, but it's a dead end?"`
 			`	The Quarg explains, "Much like in Enif in human space, this is where we live as friends to the Hai."`
-			`	This explanation seems typically Quarg, but it's the best one you're able to get.`
-			`	Before you go you ask, "Do you know about the rebels I've been hearing about?"`
+			`	This explanation seems typically Quarg, but it's the best one you're able to get. Before you go, you ask, "Do you know about the rebels I've been hearing about?"`
 			`	The Quarg responds, "The Hai and their rebels are the same. You should travel to Darkcloak in Wah Yoot to understand."`
 			`	It seems like there's nothing else for it but to see for yourself.`
 				accept
@@ -416,7 +412,7 @@ mission "00 Hai Tour [4] Cloudfire"
 		conversation
 			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
 			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
-			`	It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
+			`	It does not take long to realize that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defense without apparently taxing their civilization to any great extent.`
 
 # Both tours merge here
 mission "Hai Tour [5] Tour Ends"
@@ -432,29 +428,28 @@ mission "Hai Tour [5] Tour Ends"
 		conversation
 			branch "skipped tours"
 				has "Hai Witness Unfettered [1]"
-			`After looking around Cloudfire for some time you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby and your ears suddenly perk up at the word "marauder".`
-			`	"Yesterday a marauder terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+			`After looking around Cloudfire for some time, you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby, and your ears suddenly perk up at the word "marauder".`
+			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
 				goto "that's awful"
 			label "skipped tours"
-			`Soon after you land on <planet>, you notice a news broadcast on a nearby wall, "Yesterday a marauder terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+			`Soon after you land on <planet>, you notice a news broadcast on a nearby wall. "Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
 				goto "that's awful"
 			label "that's awful"
-			`	At a table nearby you hear a Hai staff member exclaim, "Oh that's awful!"`
-			`	The rumours must be spreading further by the day you think, no doubt something will soon have to be done.`
+			`	At a table nearby you hear a Hai staff member exclaim, "Oh, that's awful!"`
+			`	The rumors must be spreading further by the day. There's no doubt even more problems than this marauder will follow.`
 			`	This thought has no sooner crossed your mind when your solitude is interrupted by a small group of somewhat official-looking Hai.`
-			`	"Are you Captain <last>?" one of them asks you, "Don't worry, you're not in trouble or anything."`
+			`	"Are you Captain <last>?" one of them asks you. "Don't worry, you're not in trouble or anything."`
 			`	You nod your affirmation.`
-			`	"Your reputation precedes you Captain. As a person of note at home who we hear has now been travelling around Hai space, you are presently being treated as an Envoy."`
-			`	For a second you wonder if it's a joke but they look as serious as Hai can look.`
+			`	"Your reputation precedes you Captain. As a person of note among humanity who we hear has now been traveling around Hai space, you are presently being treated as an Envoy."`
+			`	For a second you wonder if it's a joke, but they look as serious as Hai can look.`
 			choice
-				`	"Oh I really don't think that's necessary."`
+				`	"I really don't think that's necessary."`
 					goto nevertheless
-				`	"Oh, I'm honoured, thank you."`
-			`	"If you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you."`
+				`	"Oh, I'm honored. Thank you."`
+			`	"If you have any stake in the current information crisis, please head directly to Hai-home. Someone would very much like to talk to you."`
 				goto main
 			label nevertheless
-			`	"You may not think it's necessary, but sometimes that is the price of fame."`
-			`	The officious-looking Hai shrugs, "In any event please head directly to Hai-home. Someone would very much like to talk to you."`
+			`	"You may not think it's necessary, but sometimes that is the price of fame." The official-looking Hai shrugs. "In any event, please head directly to Hai-home. Someone would very much like to talk to you."`
 			label main
 			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
 				accept
