@@ -66,7 +66,6 @@ void CollisionSet::Clear(int step)
 {
 	this->step = step;
 	
-	bodies.clear();
 	added.clear();
 	sorted.clear();
 	counts.clear();
@@ -80,8 +79,6 @@ void CollisionSet::Clear(int step)
 // Add an object to the set.
 void CollisionSet::Add(Body &body)
 {
-	bodies.push_back(&body);
-	
 	// Calculate the range of (x, y) grid coordinates this object covers.
 	int minX = static_cast<int>(body.Position().X() - body.Radius()) >> SHIFT;
 	int minY = static_cast<int>(body.Position().Y() - body.Radius()) >> SHIFT;
@@ -356,12 +353,4 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 		}
 	}
 	return result;
-}
-
-
-
-// Get all the bodies that are kept track of in the collision set.
-const vector<Body *> &CollisionSet::Bodies() const
-{
-	return bodies;
 }

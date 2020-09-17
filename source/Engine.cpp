@@ -1960,17 +1960,22 @@ void Engine::DoWeather(Weather &weather)
 	{
 		const Hazard *hazard = weather.GetHazard();
 		double minRange = hazard->MinRange();
-		double maxRange = hazard->MaxRange();
 		double multiplier = weather.DamageMultiplier();
 		
-		for(Body *body : shipCollisions.Bodies())
-		{
-			double distance = body->Position().Length();
-			if(maxRange && (distance > maxRange || distance < minRange))
-				continue;
-
-			reinterpret_cast<Ship *>(body)->DoHazard(visuals, hazard, multiplier);
-		}
+		// Get all ship bodies that are touching a circle at the hazard origin
+		// that is the size of the hazard's max range. Then, don't damage those
+		// ships whos position is below the minimum range of the hazard. This
+		// means that ships which are touching the outer edge of the hazard's
+		// zone of effect will be damaged, but ships must have their center
+		// within the hazard zone in order to start taking damage from the inner edge.
+		
+		// TODO: Update CollisionSet to return bodies touching a ring given two
+		// ranges instead of a solid circle? This would mean that any ship touching
+		// the hazard zone on either side takes damage, instead of the inner and
+		// outer edges of a hazard zone behaving differently.
+		for(Body *body : shipCollisions.Circle(Point(), hazard->MaxRange()))
+			if(body->Position().Length() >= minRange)
+				reinterpret_cast<Ship *>(body)->DoHazard(visuals, hazard, multiplier);
 	}
 }
 

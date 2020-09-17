@@ -50,9 +50,6 @@ public:
 	// Get all objects within the given range of the given point.
 	const std::vector<Body *> &Circle(const Point &center, double radius) const;
 	
-	// Get all the bodies that are kept track of in the collision set.
-	const std::vector<Body *> &Bodies() const;
-	
 	
 private:
 	class Entry {
@@ -79,8 +76,6 @@ private:
 	// The current game engine step.
 	int step;
 	
-	// A vector to store all bodies tracked by the collision set.
-	std::vector<Body *> bodies;
 	// Vectors to store the objects in the collision set.
 	std::vector<Entry> added;
 	std::vector<Entry> sorted;

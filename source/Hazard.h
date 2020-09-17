@@ -48,7 +48,8 @@ private:
 	double minStrength = 1.;
 	double maxStrength = 1.;
 	double minRange = 0.;
-	double maxRange = 0.;
+	// Hazards given no range only extend out to the invisible fence defined in AI.cpp.
+	double maxRange = 10000.;
 	bool deviates = true;
 	
 	std::map<const Effect *, int> environmentalEffects;
