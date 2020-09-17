@@ -1842,7 +1842,7 @@ mission "Nanachi 4"
 		event "Nanachi: payment" 180
 		log "Minor People" "Nanachi" `A young Hai merchant captain who struggled in the beginning of her career. Her fortune turned when she was able, against difficult circumstances, to deliver a valuable collection of human arts on time to the organizers of a Hai festival.`
 		conversation
-			`Landing back on Allhome, the festival group gives you and Nanachi a warm hug, "We sold tens of thousands of tickets for the festival by promising to host a great art exhibition with pieces from all over human space. Without them it'd be a complete failure, and we'd be in serious trouble with our sponsors," Narancia explains.`
+			`Landing back on Allhome, the festival group gives you and Nanachi a warm hug. "We sold tens of thousands of tickets for the festival by promising to host a great art exhibition with pieces from all over human space. Without them it'd be a complete failure, and we'd be in serious trouble with our sponsors," Narancia explains.`
 			`	As the cargo is rushed to the exhibition site, Nanachi shows you the chip she got as payment, and the balance of her bank account: this last payment allowed her to fully pay off her loan. "Captain," she speaks with some difficulty, and tries to hide her face, as if to wipe away some tears. "I'll never be able to thank you properly, if not for you I'd still be lost in that spaceport, and would eventually have to go back to my mining job. I'll work hard now; I'll save up and pay you for everything!" She hugs you and bows to you in a way you'd see in movies, as if trying to imitate the gesture. You two finally say goodbye, and head back to your ships.`
 
 event "Nanachi: payment"
