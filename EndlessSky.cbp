@@ -58,8 +58,9 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add option="-Werror" />
 			<Add directory="C:/dev64/include" />
 		</Compiler>
 		<Linker>
@@ -226,10 +227,10 @@
 		<Unit filename="source/Mortgage.h" />
 		<Unit filename="source/Music.cpp" />
 		<Unit filename="source/Music.h" />
-		<Unit filename="source/News.cpp" />
-		<Unit filename="source/News.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
+		<Unit filename="source/News.cpp" />
+		<Unit filename="source/News.h" />
 		<Unit filename="source/Outfit.cpp" />
 		<Unit filename="source/Outfit.h" />
 		<Unit filename="source/OutfitInfoDisplay.cpp" />
@@ -324,6 +325,8 @@
 		<Unit filename="source/TradingPanel.h" />
 		<Unit filename="source/UI.cpp" />
 		<Unit filename="source/UI.h" />
+		<Unit filename="source/Utf8.cpp" />
+		<Unit filename="source/Utf8.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weather.cpp" />
@@ -340,9 +343,6 @@
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

@@ -27,13 +27,11 @@ using namespace std;
 namespace {
 	const double EPS = 0.0000000001;
 	
-	// A whitelist of attributes which do not have minimum values of 0.
-	// The key is the attribute name and the value is the minimum value
-	// that the attribute is allowed to have. A value of 0 means that the
-	// attribute can have any value. Non-zero values mean that the attributes
-	// cannot be allowed to go below that value when installing or selling
-	// outfits.
-	const map<string, double> WHITELIST = {
+	// A mapping of attribute names to specifically-allowed minimum values. Based on the
+	// specific usage of the attribute, the allowed minimum value is chosen to avoid
+	// disallowed or undesirable behaviors (such as dividing by zero).
+	const auto MINIMUM_OVERRIDES = map<string, double>{
+		// Attributes which are present and map to zero may have any value.
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
@@ -41,6 +39,7 @@ namespace {
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
 		
+		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
 		{"force protection", -0.99},
 		{"fuel protection", -0.99},
@@ -50,7 +49,8 @@ namespace {
 		{"piercing protection", -0.99},
 		{"shield protection", -0.99},
 		{"slowing protection", -0.99},
-    
+		
+		// "Multiplier" attributes appear in numerators and are incremented by 1.
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
@@ -63,16 +63,30 @@ namespace {
 	
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
-		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
-			[&it](pair<Body, int> flare)
+		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
+			[&it](const pair<Body, int> &flare)
 			{
 				return it.first.GetSprite() == flare.first.GetSprite();
-			});
+			}
+		);
 		
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);
 		else
 			oit->second += count * it.second;
+	}
+	
+	// Used to add the contents of one outfit's map to another, while also
+	// erasing any key with a value of zero.
+	template <class T>
+	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
+	{
+		for(const auto &it : otherMap)
+		{
+			thisMap[it.first] += count * it.second;
+			if(thisMap[it.first] == 0)
+				thisMap.erase(it.first);
+		}
 	}
 }
 
@@ -127,6 +141,20 @@ void Outfit::Load(const DataNode &node)
 			++steeringFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "jump effect" && child.Size() >= 2)
+			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
+			++hyperSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
+			++hyperInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
+			++hyperOutSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump sound" && child.Size() >= 2)
+			++jumpSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
+			++jumpInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
+			++jumpOutSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -268,11 +296,11 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
 		double minimum = 0.;
-		auto it = WHITELIST.find(at.first);
-		if(it != WHITELIST.end())
+		auto it = MINIMUM_OVERRIDES.find(at.first);
+		if(it != MINIMUM_OVERRIDES.end())
 		{
 			minimum = it->second;
-			// Whitelisted attributes with a value of 0 can have any value.
+			// An override of exactly 0 means the attribute may have any value.
 			if(!minimum)
 				continue;
 		}
@@ -306,14 +334,17 @@ void Outfit::Add(const Outfit &other, int count)
 		AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
 		AddFlareSprites(steeringFlareSprites, it, count);
-	for(const auto &it : other.flareSounds)
-		flareSounds[it.first] += count * it.second;
-	for(const auto &it : other.reverseFlareSounds)
-		reverseFlareSounds[it.first] += count * it.second;
-	for(const auto &it : other.steeringFlareSounds)
-		steeringFlareSounds[it.first] += count * it.second;
-	for(const auto &it : other.afterburnerEffects)
-		afterburnerEffects[it.first] += count * it.second;
+	MergeMaps(flareSounds, other.flareSounds, count);
+	MergeMaps(reverseFlareSounds, other.reverseFlareSounds, count);
+	MergeMaps(steeringFlareSounds, other.steeringFlareSounds, count);
+	MergeMaps(afterburnerEffects, other.afterburnerEffects, count);
+	MergeMaps(jumpEffects, other.jumpEffects, count);
+	MergeMaps(hyperSounds, other.hyperSounds, count);
+	MergeMaps(hyperInSounds, other.hyperInSounds, count);
+	MergeMaps(hyperOutSounds, other.hyperOutSounds, count);
+	MergeMaps(jumpSounds, other.jumpSounds, count);
+	MergeMaps(jumpInSounds, other.jumpInSounds, count);
+	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
 }
 
 
@@ -373,6 +404,56 @@ const map<const Sound *, int> &Outfit::SteeringFlareSounds() const
 const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
 	return afterburnerEffects;
+}
+
+
+
+// Get this oufit's jump effects and sounds, if any.
+const map<const Effect *, int> &Outfit::JumpEffects() const
+{
+	return jumpEffects;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperSounds() const
+{
+	return hyperSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperInSounds() const
+{
+	return hyperInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperOutSounds() const
+{
+	return hyperOutSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpSounds() const
+{
+	return jumpSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpInSounds() const
+{
+	return jumpInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpOutSounds() const
+{
+	return jumpOutSounds;
 }
 
 

@@ -114,6 +114,8 @@ namespace {
 	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
+	// Whether sprites and audio have finished loading at game startup.
+	bool initiallyLoaded = false;
 	
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
@@ -311,7 +313,17 @@ void GameData::LoadShaders()
 
 double GameData::Progress()
 {
-	return min(spriteQueue.Progress(), Audio::Progress());
+	auto progress = min(spriteQueue.Progress(), Audio::GetProgress());
+	if(progress == 1.)
+		initiallyLoaded = true;
+	return progress;
+}
+
+
+
+bool GameData::IsLoaded()
+{
+	return initiallyLoaded;
 }
 
 
@@ -448,9 +460,15 @@ void GameData::WriteEconomy(DataWriter &out)
 		{
 			out.Write("purchases");
 			out.BeginChild();
-			for(const auto &pit : purchases)
-				for(const auto &cit : pit.second)
-					out.Write(pit.first->Name(), cit.first, cit.second);
+			using Purchase = pair<const System *const, map<string, int>>;
+			WriteSorted(purchases,
+				[](const Purchase *lhs, const Purchase *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const Purchase &pit)
+				{
+					for(const auto &cit : pit.second)
+						out.Write(pit.first->Name(), cit.first, cit.second);
+				});
 			out.EndChild();
 		}
 		out.WriteToken("system");
@@ -556,7 +574,12 @@ void GameData::Change(const DataNode &node)
 void GameData::UpdateNeighbors()
 {
 	for(auto &it : systems)
+	{
+		// Skip systems that have no name.
+		if(it.first.empty() || it.second.Name().empty())
+			continue;
 		it.second.UpdateNeighbors(systems);
+	}
 }
 
 
@@ -655,6 +678,13 @@ const Set<Minable> &GameData::Minables()
 const Set<Mission> &GameData::Missions()
 {
 	return missions;
+}
+
+
+
+const Set<News> &GameData::SpaceportNews()
+{
+	return news;
 }
 
 
@@ -781,20 +811,6 @@ double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = solarWind.find(sprite);
 	return (it == solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Pick a random news object that applies to the given planet. If there is
-// no applicable news, this returns null.
-const News *GameData::PickNews(const Planet *planet)
-{
-	vector<const News *> matches;
-	for(const auto &it : news)
-		if(it.second.Matches(planet))
-			matches.push_back(&it.second);
-	
-	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }
 
 
@@ -1056,10 +1072,12 @@ void GameData::PrintShipTable()
 		<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
 		<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
 		<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
-		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
+		<< "energy generation" << '\t' << "max energy usage" << '\t' << "energy capacity" << '\t'
+		<< "idle/max heat" << '\t' << "max heat generation" << '\t' << "max heat dissipation" << '\t'
+		<< "gun mounts" << '\t' << "turret mounts" << '\n';
 	for(auto &it : ships)
 	{
-		// Skip variants.
+		// Skip variants and unnamed / partially-defined ships.
 		if(it.second.ModelName() != it.first)
 			continue;
 		
@@ -1068,9 +1086,10 @@ void GameData::PrintShipTable()
 		cout << ship.Cost() << '\t';
 		
 		const Outfit &attributes = ship.Attributes();
+		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
 		cout << attributes.Get("shields") << '\t';
 		cout << attributes.Get("hull") << '\t';
-		cout << attributes.Mass() << '\t';
+		cout << mass << '\t';
 		cout << attributes.Get("required crew") << '\t';
 		cout << attributes.Get("cargo space") << '\t';
 		cout << attributes.Get("bunks") << '\t';
@@ -1079,27 +1098,55 @@ void GameData::PrintShipTable()
 		cout << ship.BaseAttributes().Get("outfit space") << '\t';
 		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
 		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
-		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
-		cout << 3600. * attributes.Get("thrust") / attributes.Mass() << '\t';
-		cout << 60. * attributes.Get("turn") / attributes.Mass() << '\t';
+		cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << '\t';
+		cout << 3600. * attributes.Get("thrust") / mass << '\t';
+		cout << 60. * attributes.Get("turn") / mass << '\t';
 		
-		double energy = attributes.Get("thrusting energy")
-			+ attributes.Get("turning energy");
-		double heat = attributes.Get("heat generation") - attributes.Get("cooling")
-			+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
+		double energyConsumed = attributes.Get("energy consumption")
+			+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+			+ attributes.Get("turning energy")
+			+ attributes.Get("afterburner energy")
+			+ attributes.Get("fuel energy")
+			+ (attributes.Get("hull energy") * (1 + attributes.Get("hull energy multiplier")))
+			+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
+			+ attributes.Get("cooling energy")
+			+ attributes.Get("cloaking energy");
+		
+		double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
+			+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
+			+ attributes.Get("turning heat")
+			+ attributes.Get("afterburner heat")
+			+ attributes.Get("fuel heat")
+			+ (attributes.Get("hull heat") * (1 + attributes.Get("hull heat multiplier")))
+			+ (attributes.Get("shield heat") * (1 + attributes.Get("shield heat multiplier")))
+			+ attributes.Get("solar heat")
+			+ attributes.Get("cloaking heat");
+		
 		for(const auto &oit : ship.Outfits())
 			if(oit.first->IsWeapon() && oit.first->Reload())
 			{
 				double reload = oit.first->Reload();
-				energy += oit.second * oit.first->FiringEnergy() / reload;
-				heat += oit.second * oit.first->FiringHeat() / reload;
+				energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
+				heatProduced += oit.second * oit.first->FiringHeat() / reload;
 			}
-		cout << 60. * attributes.Get("energy generation") << '\t';
-		cout << 60. * energy << '\t';
-		cout << 60. * heat << '\t';
-		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
-		// per 60th of a second, so:
-		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\n';
+		cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << '\t';
+		cout << 60. * energyConsumed << '\t';
+		cout << attributes.Get("energy capacity") << '\t';
+		cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << '\t';
+		cout << 60. * heatProduced << '\t';
+		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
+		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\t';
+
+		int numTurrets = 0;
+		int numGuns = 0;
+		for(auto &hardpoint : ship.Weapons())
+		{
+			if(hardpoint.IsTurret())
+				++numTurrets;
+			else
+				++numGuns;
+		}
+		cout << numGuns << '\t' << numTurrets << '\n';
 	}
 	cout.flush();
 }

@@ -55,6 +55,7 @@ private:
 	void OnCallback(int value);
 	// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
+	void WriteSnapshot(const std::string &sourceFile, const std::string &snapshotName);
 	// Load snapshot callback.
 	void LoadCallback();
 	// Delete callbacks.
@@ -70,6 +71,8 @@ private:
 	std::map<std::string, std::vector<std::pair<std::string, std::time_t>>> files;
 	std::string selectedPilot;
 	std::string selectedFile;
+	// If the player enters a filename that exists, prompt before overwriting it.
+	std::string nameToConfirm;
 	
 	Point hoverPoint;
 	int hoverCount = 0;
