@@ -317,6 +317,13 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 
 
+bool MapPanel::AllowFastForward() const
+{
+	return true;
+}
+
+
+
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
@@ -538,8 +545,13 @@ void MapPanel::Select(const System *system)
 	bool isJumping = flagship->IsEnteringHyperspace();
 	const System *source = isJumping ? flagship->GetTargetSystem() : playerSystem;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
-	if(system == source && !shift)
+	auto mod = SDL_GetModState();
+	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
+	// possibly manipulating it both here and there. Or, we entirely separate Select from travel plan modifications.
+	bool shift = (mod & KMOD_SHIFT) && !plan.empty();
+	if(mod & KMOD_CTRL)
+		return;
+	else if(system == source && !shift)
 	{
 		plan.clear();
 		if(!isJumping)

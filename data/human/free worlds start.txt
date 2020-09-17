@@ -22,7 +22,7 @@ mission "Liberate Kornephoros"
 	on offer
 		conversation
 			`The mood in the spaceport is solemn. No one has had time yet to count up the losses, on both sides of the battle, but it is likely that over a thousand lives were lost. And because the Navy is held in such high regard even here where Parliament and the Paradise Planets are viewed with disgust, many of the militia captains are almost as saddened by the loss of Navy lives as by the loss of some of their own.`
-			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your '<ship>' holding together?"`
+			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your <ship> holding together?"`
 			choice
 				`	"She took a bit of a pounding, but I've patched her up."`
 				`	"Just fine. It'd take more than a few Cruisers to destroy the <ship>."`
@@ -516,7 +516,7 @@ mission "FW Syndicate Diplomacy 1D"
 
 mission "FW Hope Recon 1"
 	name "Early Warning Systems"
-	description "Land on the abandoned planet <destination> and place sensor there to monitor Navy fleet activity in the system."
+	description "Land on the abandoned planet <destination> and place sensors there to monitor Navy fleet activity in the system."
 	autosave
 	source Longjump
 	destination Hope
@@ -553,6 +553,24 @@ mission "FW Hope Recon 1B"
 
 
 
+ship "Gunboat" "Gunboat (Bunks)"
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		
+		"Bunk Room"
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		
+		"X3700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+
 mission "FW Hope Recon 1C"
 	landing
 	invisible
@@ -565,7 +583,7 @@ mission "FW Hope Recon 1C"
 	npc
 		personality fleeing uninterested timid
 		government Republic
-		ship "Gunboat" "R.N.S. Susquehanna"
+		ship "Gunboat (Bunks)" "R.N.S. Susquehanna"
 	
 	on offer
 		log "Planted some sensors on the abandoned world of Hope, as an early warning system for Navy raids on Free Worlds space. The Navy appears to be doing something on this world, as well."
@@ -580,7 +598,7 @@ mission "FW Hope Recon 1C"
 				set "fw caught navy planting sensors"
 			`	You approach the location, flying low to avoid detection, and come upon a Navy Gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the Gunboat is powered down.`
 			`	The moment your ship comes over the horizon, they start running back toward the Gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
-			`	You count seven crew members in the group, which is the typical crew complement of a Gunboat. That may mean the Gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
+			`	You count eight crew members in the group, which is the typical crew complement of a Gunboat. That may mean the Gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
 			choice
 				`	(Destroy the ship, then finish off the crew.)`
 					goto destroy
@@ -748,7 +766,7 @@ mission "FW Plasma Testing 1B"
 			label plan
 			`	"So, where do I come in?" you ask.`
 			`	"Well, the Council says no testing against the Navy yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile, that's been haunting the <waypoints> system, sniping on merchants that take a wrong turn and end up there."`
-			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <waypoints>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?`
+			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <waypoints>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?"`
 			choice
 				`	"You bet!"`
 					accept
