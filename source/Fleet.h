@@ -31,7 +31,6 @@ class Phrase;
 class Planet;
 class Ship;
 class System;
-class Variant;
 
 
 

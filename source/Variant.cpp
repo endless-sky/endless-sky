@@ -10,7 +10,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "Fleet.h"
+#include "Variant.h"
 
 #include "DataNode.h"
 #include "GameData.h"
@@ -44,6 +44,11 @@ void Variant::Load(const DataNode &node, const bool global)
 	}
 	if(node.Size() >= 2 && !node.IsNumber(1))
 		name = node.Token(1);
+	else if(global && node.IsNumber(1))
+	{
+		node.PrintTrace("Variant names cannot be only numbers:");
+		return;
+	}
 	
 	// If Load() has already been called once on this variant, any subsequent
 	// calls will replace the contents instead of adding to them.
@@ -162,7 +167,7 @@ void Variant::Load(const DataNode &node, const bool global)
 				if(child.Size() >= 2 + add && child.Value(1 + add) >= 1.)
 					n = child.Value(1 + add);
 				total += n;
-				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
+				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(add)));
 			}
 		}
 	}
@@ -287,7 +292,6 @@ int64_t Variant::Strength() const
 		sum += variant.first->NestedStrength() * variant.second;
 	return sum;
 }
-
 
 
 

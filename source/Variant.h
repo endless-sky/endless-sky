@@ -13,9 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef VARIANT_H_
 #define VARIANT_H_
 
-#include <list>
-#include <memory>
-#include <set>
 #include <string>
 #include <utility>
 #include <vector>

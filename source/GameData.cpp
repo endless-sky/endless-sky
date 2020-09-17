@@ -53,6 +53,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "Variant.h"
 
 #include <algorithm>
 #include <iostream>
