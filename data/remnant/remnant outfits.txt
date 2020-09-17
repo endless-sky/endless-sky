@@ -387,9 +387,9 @@ outfit "Research Laboratory"
 		Remnant
 	cost 500000
 	thumbnail "outfit/remnant laboratory"
-	"mass" 13
-	"outfit space" -9
-	"asteroid scan power" 40
+	"mass" 11
+	"outfit space" -6
+	"asteroid scan power" 60
 	"cargo scan power" 10
 	"cargo scan speed" 1
 	"outfit scan power" 10

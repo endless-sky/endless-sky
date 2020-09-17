@@ -3452,14 +3452,14 @@ mission "Remnant: Expanded Horizons Astral 1"
 	name "Update scans of Sagittarius A*"
 	description "Dawn has asked you to take some scientists and their equipment to scan Sagittarius A**"
 	blocked "You need at least 1 free bunk and 9 cargo space to take this mission."
-	cargo "Scientific equipment" 9
 	passengers 1
 	minor
-	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 3"
 		random < 30
 	source
+		government "Remnant"
+	destination
 		government "Remnant"
 	on offer
 		conversation
@@ -3489,10 +3489,84 @@ mission "Remnant: Expanded Horizons Astral 1"
 			label worry
 			`	"Thanks for the advice, but that is our purpose here - to worry about all the stuff that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
 			label help
-			`	"If you would like to help, yes, there is something you can do. I am currently putting together an expedition to Sagittarius A*"`
+			`	"If you would like to help, there is something you can do. I am currently putting together an expedition to Sagittarius A*, and I could use a transport..."`
 			branch sagittarius
 				has visited "Sagittarius A*"
 			choice
 				`	"I don't know where that is."`
-				`	"Isn't that the center of the galaxy?"`
 					goto center
+				`	"Isn't that the center of the galaxy?"`
+			`	"Yes, that is correct." She signs firmly.`
+				goto center
+			label sagittarius
+			choice
+				`	"I have been there."`
+				`	"I have visited it a few times."`
+			`	"Really?" She looks surprised. "I have seen sensor logs and recordings from previous visits, but not many people have actually been there." She pauses to take a bite from her neglected meal. "Being able to take part in these expeditions is something I have been looking forward to for ages, so of course Sagitarius A* is the first place on my list."`
+			label center
+			`	Her signs take on a rythmic pace as if reciting something "Sagitarius A* is a strong astronomical radio source and a supermassive black hole that is located at the Center of the Milky Way. According to our best measurements, it has a mass of 3F6290 solar masses, and is surrounded by a ring of gas and dust that can range from 63 to 24D2 degrees Kelvin."`
+			`	She returns to a conversational cadence "Would you be interested in taking part in this expedition?"`
+			choice
+				`	"Sure, what do you need?"`
+				`	"I'm busy right now, maybe later?"`
+					defer
+			`	"For this mission we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. I will put in a requisition, and when we arrive at <destination> they will have the equipment ready to install. Just be aware that it will require 6 outfit space, and comes with a scientist, so you will need a free bunk for them, too.`
+			`	"Once the laboratory module is installed, it will simplly be a matter of travelling to Sagitarius A* where we will conduct a variety of measurements, recordings, and observations. After that is complete, we return and report on our findings."`
+			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done my meal."`
+			branch dawnsymbiont
+				"remnant symbionts info" >= 1
+			choice
+				`	"OK, I will meet you onboard the ship."`
+					accept
+				`	"If you are full, you are full. Why push to eat more?"`
+			branch dawnlicense
+				has "license: Remnant Capital"
+			`	She shrugs. "I burn a lot of calories, and eating healthy is important. Besides, I don't know how good food will be on your ship." She resumes eating with vigor and does not seem inclined to continue the conversation.`
+				accept
+			label dawnlicense
+			`	"I am not yet used to the nutrient intake required to maintain my symbiont, so I have to consciously make sure that I eat enough to sustain it."`
+			choice
+				`	"Symbiont? What is that?"`
+					goto whatis
+				`	"You're just joking with me, forget I asked."`
+			`	"Suit yourself. I will meet you onboard once I'm done." She shrugs, and returns to eating."`
+				accept
+			label whatis
+			apply
+				"remnant symbionts info" += 1
+			`	"Oh, noone has told you about them? I thought once you'd demonstrated your trustworthiness and earned your Capital Ship License you would have found out." She pauses to take another bite, then continues.`
+				goto dawndetails
+			label dawnsymbiont
+			choice
+				`	"OK, I will meet you onboard the ship."`
+					accept
+				`	"You are eating for two, too?"`
+			`	She nods. "Yeah, I am not yet used to the nutrient intake required to maintain my symbiont, so I have to consciously make sure that I eat enough to sustain it."`
+			choice
+				`	"Interesting. Anyway, I will see you onboard the <ship>."`
+					accept
+				`	"I am curious to know more about them."`			
+			label dawndetails
+			apply
+				"remnant symbionts info" += 1
+			`	"Basically, ages ago we domesticated some of the creatures found here, and discovered that they could be attached to us to form a symbiotic relationship." She pauses again to eat. "I only recently received mine, so I am not fully adjusted to it yet."`
+			choice
+				`	"OK, that's as much as I need to know."`
+					goto onwards
+				`	"What is it like to have a symbiont?"`
+			`	"Oh, it is wonderful. It is very hard to describe. At first it is just slimy, then a lot of tingling. The tingling lasted for several hours, and then it was just like waking up: Rising up out of darkness to a brighter world with just so much to see and learn. Suddenly, it was as if everything was moving slower and I could take a long hard look at everything." Dawn is visibly excited, signing so fast you have trouble following.`
+			choice
+				`	"Thanks for the description. I should go prep the <ship> now."`
+					accept
+				`	"Where is your symbiont? Yours does not seem to be obvious."`
+					goto dawnwhere
+				`	"Could I see your symbiont? The ones I have seen are visible, like gloves or neck braces."`
+			`	Dawn looks at you with an amused expression. "We don't know each other nearly well enough for that. Better to focus on the expedition. I will catch up to you on the ship."`
+				accept
+			label dawnwhere
+			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. Mine is located primarily along my spine." She twists around, and you can see a small layer of the tell-tale scaly leather extending up the back of her neck.`
+			`	"We should probably be focusing on the expedition, though. You go get the <ship> ready for launch, and I will be there shortly."`
+				accept
+				
+			
+			
