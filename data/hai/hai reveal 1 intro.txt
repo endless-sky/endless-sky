@@ -86,7 +86,7 @@ mission "Event: Pug Media Coverage"
 	on offer
 		event "hai secret leaks" 10 15
 		conversation
-			`It's been weeks now but as you walk through the spaceport you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines.`
+			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
 			`	As you look around you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect, that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict and learn not to tolerate the sorts of extremism that lead to the events that precipitated the war.`
 			`	Others...`
 			`	You sigh deeply as you watch some paranoid fringe world politician demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known and that it was the responsibility of the government to find out and inform the people.`
