@@ -1090,7 +1090,7 @@ news "human pirate"
 			"You look like a good captain. I'd bet you'd be a better slave!"
 			"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
 			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
-			"Look at me like that one more time, and I've give you plastic surgery free of charge."
+			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
 		word
 			`"`
 
@@ -1156,5 +1156,36 @@ news "human farming in pirate space"
 			"Pirates may look fierce, but the moment you start pushing against most of them, they fold like paper."
 			"I came here due to all of those oppressive rules and regulations that the Republic force down your throat. Now I'm dealing with all the oppressive demands and threats that pirates force down my throat. It's a start."
 			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path and could return to living normally. I'm talking from personal experience."
+		word
+			`"`
+
+
+
+news "graffiti on spaceport wall"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+	name
+		word
+			"Graffiti painted on a wall"
+	message
+		word
+			`"`
+		word
+			"A lone, soulless husk. / Appointed immortal king. / To sulk forever. - fgnt"
+			"The galaxy's child / Cursed with madness of time / Behind bloody chains - fgnt"
+			"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
+			"A small cosmological speck drifting in and out of time - Swiren"
+			"Tear down the planet / Draw the most perfect circle / Idle endlessly - fgnt"
+			"Polish hull plating / Bring guns and ammunition / When will the blood stop? -fgnt"
+			"Farmer's family / Where's our guardian fleet? / Trapped in Paradise - fgnt"
+			"Built on graveyards / Our infant species pretends / No bodies remain - fgnt"
+			"The honest soldier / Rescue children when Hope dies / Fired by Earth's wisest - fgnt"
+			"What lies beyond life / A Rampant AI wonders / Exit door leads in - Warlord Mike"
+			"There once was a man from New Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
+			"There once was a man from New Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
+			"There once was a man from New Boston / His loan officer advised caution / He purchased a sparrow / Took off like an arrow- / That sparrow soon turned up at auction. - Lake"
+			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
+			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
+			"A long time ago / I was respected by all, / but now I sit here."
 		word
 			`"`
