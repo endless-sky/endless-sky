@@ -3172,11 +3172,11 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			cargo.SetSize(attributes.Get("cargo space"));
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
+		// If the added or removed outfit is a jump drive, recalculate
+		// and cache this ship's jump range.
+		if(outfit->Get("jump drive"))
+			jumpRange = JumpRange(false);
 	}
-	// If the added or removed outfit is a jump drive, recalculate
-	// and cache this ship's jump range.
-	if(outfit->Get("jump drive"))
-		jumpRange = JumpRange(false);
 }
 
 
