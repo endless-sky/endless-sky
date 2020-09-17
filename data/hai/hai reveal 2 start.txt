@@ -48,7 +48,7 @@ mission "Hai Rescue: Yeertle Family"
 			label far
 			`	He pauses for a second, perhaps pondering if he can trust you with the answer.`
 			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here."`
-			`	"My daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was undercrewed, so we overpowered them, but they had already landed. The ship was locked down; we could not take off. Since then, we've been hiding near here."`
+			`	"My daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was under-crewed, so we overpowered them, but they had already landed. The ship was locked down; we could not take off. Since then, we've been hiding near here."`
 			`	"Can you take us back to <destination>? I have considerable savings back there, and can pay you well. Say, <payment>?"`
 			choice
 				`	"Sure!"`
@@ -134,7 +134,7 @@ mission "Hai Rescue: Prison Role-Players"
 			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is at <destination> so you'll have to fly us there first."`
 				goto questions
 			label go
-			`	"Excellent! Everyone pile onboard. Let's go back to <destination>!"`
+			`	"Excellent! Everyone pile aboard. Let's go back to <destination>!"`
 				accept
 	on complete
 		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. I returned the Hai to <destination>.`
@@ -204,8 +204,8 @@ mission "Hai Rescue: Ooonem"
 				`	"You should find a different ride then."`
 					decline
 			`	"Okay. I guess I should have introduced myself... it's easy to forget social niceties in a place like this. My name is Ooonem, and I'm a researcher from <planet>. Thank you for agreeing to take me home."`
-			`	You notice several men nearby looking intently at Ooonem. The two of you run towards your ship and make it to cover before the men start shooting. Ooonem pulls a grenade out of her cloak and throws it at the men. Gas explodes outward and the men drop dead in seconds.`
-			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades "tabun gas: twenty-meter radius." This was a nerve gas grenade, using one of the older varieties of the gas. Cheap and plentiful in pirate space.`
+			`	You notice several men nearby looking intently at Ooonem. The two of you run towards your ship and make it to cover before the men start shooting. Ooonem pulls a grenade out of her cloak and throws it at the men. Gas explodes outward and the men drop to the ground clutching their throats, dead in seconds.`
+			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades "sarin gas: twenty-meter radius." This was a nerve gas grenade, using one of the older varieties of the gas. Cheap and plentiful in pirate space.`
 			`	You run into your ship and immediately take off.`
 				launch
 			label decline
@@ -240,7 +240,7 @@ mission "Hai Rescue: Meroot and Lucy"
 	on offer
 		"Hai Rescue: Meroot and Lucy (offer count)" ++
 		conversation
-			`As you walk through a major street, you notice a small alcove in the side of one building. Your sharp pilot eyes spot a woman within, with tufts of hair across her body. It's probably a Hai. Another woman, clearly human, is walking nearby carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel.`
+			`As you walk through a major street, you notice a small alcove in the side of one building. Your sharp pilot eyes spot a woman within, with tufts of hair across her body. She's probably a Hai. Another woman, clearly human, is walking nearby carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel.`
 			`	Do you want to investigate?`
 			choice
 				`	(Investigate.)`

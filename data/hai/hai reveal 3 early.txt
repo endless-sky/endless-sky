@@ -95,7 +95,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				`	"Maybe in a bit, I should do something else first."`
 					defer
 			label council
-			`Following Sayari you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you to a private antechamber.`
+			`Following Sayari you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you towards a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she glances at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
 			choice
 				`	"Yes, actually I found proof."`
@@ -132,19 +132,19 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 					goto wise
 			`	There is a collection of chittering laughs from the various council members. You're not sure if there was something wrong with what you said but you aren't left long to ponder.`
 			`	"It seems the human agent is an honest fool, but an honest fool can at least be trusted to be foolish honestly on all fronts."`
-			`	You're pretty sure you should be offended by that, but the councilmembers are smiling and don't look like they're about to evict you.`
+			`	You're pretty sure you should be offended by that, but the council members are smiling and don't look like they're about to evict you.`
 				goto end
 			label wise
 			`	"It seems you learnt the correct lesson from the crisis of your species," he says.`
 			`	You see several appreciative nods happening around the room out of the corner of your eyes.`
 			label end
 			`	"You may act as the oversight for the human governments in this project. Proposal D-86513-7P4 is approved. Council adjourned."`
-			`	When you meet Sayari afterwards a touch of her usual enthusiasm has returned.`
+			`	When you meet Sayari afterwards a touch of her usual enthusiasm returns as you share the news.`
 			`	"This is fantastic news, now all that remains to be done is for you to escort the construction fleet from Makerplace to Ultima Thule and observe the initial stages. They'll be waiting for your arrival on Makerplace."`
 				accept
 	on accept
 		event "role-play station before construction"
-		log `The diplomats have elected to double-down on the role-play community angle, citing it's success. However, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. You have been asked to fulfill the role of supervisor as a result. The Elders asked you some odd questions, but agreed that you were an acceptable individual for the task.`
+		log `The diplomats have elected to double-down on the role-play community angle, citing its success. However, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. You have been asked to fulfill the role of supervisor as a result. The Elders asked you some odd questions, but agreed that you were an acceptable individual for the task.`
 	on stopover
 		dialog `A fleet of seven Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come into land. They will follow you to the site where the new station will be built.`
 	on complete
@@ -315,6 +315,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 				`	"How do you know all this?"`
 			`	Terry raises an eyebrow at you, "You remember we have a supercomputer that could predict the economic situation across the whole of human habited space up to fifty years in the future to within 1% accuracy right?"`
 			`	When she puts it that way, it does suddenly feel like a bit of a stupid question.`
+			# And how did that turn out for you eh? lol
 			`	"As it turns out, that same computer is predicting that the Syndicate stands to lose billions of credits, per day, for the duration of any crisis evolving from this which involves the uncontrolled release of the Hai secret; however, we have a plan."`
 			choice
 				`	"Oh yes?"`
@@ -375,7 +376,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 		conversation
 			`As you and Terry offload her remaining supplies on Mountaintop where she intends to manage the arrivals and setup personally, you get a communication from Sayari come to your personal device.`
 			`	"Captain <last>! Glad I could get a hold of you on the other side of the wormhole there, I see the new relays are working."`
-			`	"We've just discovered a problem, interest has soared in sign-ups for Mountaintop, but we've realised that most of our 'human' furnishings produced in Hai space aren't going to pass as having been manufactured with your technology. Mr Yang has pulled some strings, but now we urgently need someone to go pick them up from Prime in Betelgeuse."`
+			`	"We've just discovered a problem, interest has soared in sign-ups for Mountaintop, but we've realized that most of our 'human' furnishings produced in Hai space aren't going to pass as having been manufactured with your technology. Mr Yang has pulled some strings, but now we urgently need someone to go pick them up from Prime in Betelgeuse."`
 			`	"Everything else should be ready on our end soon enough, if you can just handle that pick-up and delivery we'll be ok."`
 			`	You assure her you can handle a simple pick-up.`
 				accept
@@ -428,7 +429,7 @@ event "role-play station active"
 		government "Neutral"
 		attributes station tourism
 		landscape land/station5
-		description `This brand new station is built with wide spacious interiors, though that is largely because it was built for having expansion room inside it to accomodate the Hai's preferred geometric development pattern and long-term perspectives. At the moment there is a number of hai pretending to be humans in costume, and a number of volunteer humans from Hai space helping to make up the act. A powerful holoprojection system is projecting an 'anomaly' into space nearby as a novelty. Some 'investigators' following rumours of the Hai are being entertained at most any time.`
+		description `This brand new station is built with wide spacious interiors, though that is largely because it was built for having expansion room inside it to accommodate the Hai's preferred geometric development pattern and long-term perspectives. At the moment there is a number of hai pretending to be humans in costume, and a number of volunteer humans from Hai space helping to make up the act. A powerful holoprojection system is projecting an 'anomaly' into space nearby as a novelty. Some 'investigators' following rumors of the Hai are being entertained at most any time.`
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 0.7
 		"required reputation" -10

@@ -348,7 +348,7 @@ mission "Hai Rescue [B02B] Diplomacy: Syndicate (Retry)"
 	on enter "Waypoint"
 		dialog `There is a massive fleet of Hai ships here, and more coming in all the time. If this fleet were to enter human space, we might be overrun.`
 	on enter "Ultima Thule"
-		dialog `Although it is reassuring to see humans come together for a common cause, you don't look forward to seeing two species enter an all-out war over a misunderstanding. You also wonder just how effectively the human authorities are keeping the Hai a secret with a huge fleet at an alien station broadcasting Syndicate advertisments...`
+		dialog `Although it is reassuring to see humans come together for a common cause, you don't look forward to seeing two species enter an all-out war over a misunderstanding. You also wonder just how effectively the human authorities are keeping the Hai a secret with a huge fleet at an alien station broadcasting Syndicate advertisements...`
 	on enter "Mirfak"
 		dialog `As you enter the system, authorities ask you to land as soon as possible with Teeneep and meet a Syndicate representative.`
 	on offer
@@ -685,7 +685,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 				`	(Walk to her.)`
 			`	"Captain <first> <last> led great fleets during a civil war of the humans. I have seen his valor in battle as he's escorted my ship through pirate space. We will have the honor of fighting alongside him."`
 			`	The Unfettered leader turns to you and says, "I look forward to seeing you fight. We cannot spare a large fleet though, so I will need your people to upgrade ten Shield Beetles to our specifications. We'll return your outfits after the battle." He motions to another officer who hands him a data card, "These are the instructions."`
-			`	Teeneep smiles at you, "Return to Hai-home and inform the Elders that an Unfettered fleet will arrive. We must then arrange for Prime to outfit our ships. When all is ready I and the Unfettered ships will rendezvous with you at Allhome."`
+			`	Teeneep smiles at you, "Return to Hai-home and inform the Elders that an Unfettered fleet will arrive. We must then arrange for somewhere to outfit our ships. When all is ready I and the Unfettered ships will rendezvous with you at Allhome."`
 			`	You return to your ship and prepare to leave.`
 				accept
 	on stopover
@@ -701,7 +701,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			choice
 				`	"You're in luck, friend."`
 			`	You explain to him about the upgrades the Unfettered need to their ships in order to join battle, and the plan to rescue the Hai and end the standoff before anyone does anything stupid.`
-			`	"And of course," he says, "you're not an official representative of the Republic, so you need someone to authorise and organise things if it's to happen quickly."`
+			`	"And of course," he says, "you're not an official representative of the Republic, so you need someone to authorize and organize things if it's to happen quickly."`
 			`	"Well have no fear, I can definitely do that!" Within a few short minutes you seem to have lifted a handful of years off of Xilin's worried features.`
 			`	"I'll sort out the approvals, and I'm sure the Marshal can sort out the logistics. Give me the details and we'll have it all waiting for you on Prime by the time you arrive."`
 			`	You thank him, and as he seems eager to get that ball rolling you leave him to return to your ship.`
@@ -739,7 +739,7 @@ mission "Hai Rescue [C02] Escort to Arms Purchase"
 	on complete
 		payment 600000
 		conversation
-			`As you come in to land the local Republic officials inform you that the outfitters have emptied ten large bays so nobody notices the Hai on the ships. There are few planets with such a large excess capacity for capital ship outfitter bays; no wonder the Hai picked Prime.`
+			`As you come in to land the local Republic officials inform you that the outfitters have emptied ten large bays so nobody notices the Hai on the ships. There are few planets with such a large excess capacity for capital ship outfitter bays; no wonder Xilin picked Prime.`
 
 
 mission "Hai Rescue [C03] Unfettered Escort"
@@ -956,7 +956,7 @@ mission "Hai Rescue [C08] Freedom"
 		conversation
 			`General Choot'k cuts open the doors of a large hangar and your ships land. Two hundred operatives pour out. They're wearing exoskeletons with built-in shields. As they storm through the complex, you follow some of them.`
 			`	Their guns are able to literally melt away meter-thick walls in seconds. They have gas bombs that release an extremely powerful stun gas which knocks people out for hours. The pirates outnumber the Republic operatives twenty-five to one, but this huge advantage in equipment, combined with training, gives the operatives a fighting chance.`
-			`	The operatives move room to room, neutralising all opposition with ease until the pirates switch tactics. They begin using electromagnetic pulse devices to shut down the suits (and all other electronics nearby). This leaves the operatives helpless for about ten seconds.`
+			`	The operatives move room to room, neutralizing all opposition with ease until the pirates switch tactics. They begin using electromagnetic pulse devices to shut down the suits (and all other electronics nearby). This leaves the operatives helpless for about ten seconds.`
 			`	After a bloody struggle, forty-three surviving operatives win the fight, clearing the way to a large blast door. The vast door is twelve meters high and wide, and scanners show it to be six meters deep. The operatives focus all of their suits' firepower on one part of the door, eventually burning a hole through it. They pass through into the darkness of the next room.`
 			choice
 				`	Follow them.`
@@ -1021,7 +1021,7 @@ mission "Hai Rescue [C08] Freedom"
 				goto questions
 			label place
 			`	"We understand you have heard most of the story from your spy. This place was founded over a hundred twenty years ago by anarchists from the colony of Freedom. With the Syndicate on their doorstep, some of them evolved into anarcho-syndicalists and attempted to bring it down from within. To do this, they allied with less peaceful anarchists and pirates. Those less savory types kidnapped researchers and engineers, forcing them to devise new weapons or medicines, and who eventually inherited control here after the syndicalists were wiped out. Our city also has manufacturing facilities where we created goods the pirates could not easily build in human space where their facilities are destroyed regularly."`
-			`	"There have been various attempts to take the city by force or by money. Early on there were attempts by Alpha groups, and then various illegal organizations who tracked this place down from rumours about their rivals. There was even someone from the Syndicate who came with his personal fleet, though none of them returned home from that attempt. Some used chemical or biological weapons, others sent ships. Many offered money or favors. Philosopher's Paradise has always been an independent country, and always will be."`
+			`	"There have been various attempts to take the city by force or by money. Early on there were attempts by Alpha groups, and then various illegal organizations who tracked this place down from rumors about their rivals. There was even someone from the Syndicate who came with his personal fleet, though none of them returned home from that attempt. Some used chemical or biological weapons, others sent ships. Many offered money or favors. Philosopher's Paradise has always been an independent country, and always will be."`
 			`	"Now that the pirates are gone, us civilians may rule without fear, and for that you have our gratitude. As the upper region of the city has already been destroyed, we have little to fear from attack by space creatures in the short-term, and soon we'll have our shipyards at full capacity such that we may defend ourselves."`
 			`	"We won't ever join the Republic or any other government beyond the wormhole but you personally will always be welcome, along with those you trust, for what you have done today. Our research and manufacturing facilities are damaged now, but as they are repaired we will make them available to you."`
 			# (That refers to advanced ships and outfits available after quests.)

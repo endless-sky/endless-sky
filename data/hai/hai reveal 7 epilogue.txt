@@ -32,13 +32,13 @@ mission "HRF 01A Summoned to Mountaintop"
 	destination "Mountaintop"
 	to offer
 		not "HRF 01B Summoned to Mountaintop: offered"
-		#This makes sure that the background missions for the danger of travelling to Hai space can still happen (as they definitely don't work after this section).
+		#This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
 		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
 		has "event: hai-human treaty prepared"
 		has "Nanachi 4: done"
 		# Nanachi is too long a chain to do in the middle of the main story, the starting conditions have been changed to be available as soon as you're famous and not busy.
 		has "Expanding Business [4]: done"
-		# Expanding Business capitalises on the situation to get the first part started.
+		# Expanding Business capitalizes on the situation to get the first part started.
 		has "Wanderers: Alpha Surveillance J: done"
 		# Sets the right characters and ensures the Unfettered are well distracted out of the picture.
 	on offer
@@ -46,7 +46,7 @@ mission "HRF 01A Summoned to Mountaintop"
 		conversation
 			#A message summons you for the treaty resolution.
 			`When you land at the spaceport you find a message waiting for you from Teneep in the system buffer.`
-			`	The message has travelled a very long way and filtered through a great many buffers and relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
+			`	The message has traveled a very long way and filtered through a great many buffers and relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
 			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on Mountaintop when you're ready.`
 				accept
 	
@@ -60,13 +60,13 @@ mission "HRF 01B Summoned to Mountaintop"
 	destination "Mountaintop"
 	to offer
 		not "HRF 01A Summoned to Mountaintop: offered"
-		#This makes sure that the background missions for the danger of travelling to Hai space can still happen (as they definitely don't work after this section).
+		#This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
 		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
 		has "event: hai-human treaty prepared"
 		has "Nanachi 4: done"
 		# Nanachi is too long a chain to do in the middle of the main story, the starting conditions have been changed to be available as soon as you're famous and not busy.
 		has "Expanding Business [4]: done"
-		# Expanding Business capitalises on the situation to get the first part started.
+		# Expanding Business capitalizes on the situation to get the first part started.
 		has "Wanderers: Alpha Surveillance J: done"
 		# Sets the right characters and ensures the Unfettered are well distracted out of the picture.
 	on offer
@@ -144,7 +144,7 @@ mission "HRF 02 Escort to Cardax"
 				`	"Yes, we met briefly over some business with Alphas."`
 					goto alphas
 				`	"I'm sorry but I'm afraid I don't recall the occasion."`
-			`	Hiyamaharu looks hurt for a moment but quickly saves face, "Not to worry, I'm sure the famous Captain has a great many adventures to recall. A short chat with an old Hai is no offence to have forgotten."`
+			`	Hiyamaharu looks hurt for a moment but quickly saves face, "Not to worry, I'm sure the famous Captain has a great many adventures to recall. A short chat with an old Hai is no offense to have forgotten."`
 				goto main
 			label alphas
 			`	Hiyamaharu looks faintly pleased that you remember him, "Yes that is quite right, I'm only sorry I wasn't able to offer more assistance at the time."`
@@ -152,15 +152,15 @@ mission "HRF 02 Escort to Cardax"
 			`	He waves his hand dismissively and continues though.`
 			label main
 			`	"In any event," says Xilin, "Hiyamaharu and I would like you to do something similar to when this station was built."`
-			`	"The pirate threat to ships travelling to and from Hai space is just as bad as it ever was, possibly worse for the increased number of ships. So, on top of a mountain of legalese, an endless stipulation of trade obligations, and a nightmare of judicial jurisprudence jurisdiction boundaries, there is a very physical and tangible action that needs to be taken."`
-			`	"The Navy base on Farpoint helps to limit the mobility of pirates coming from the far north, but there is no resstraint other than distance to put a check on the pirates that come out of Stormhold. Something needs to be done to secure the space lanes, and so the solution that has been agreed upon is to build a station in Cardax. The volume of pirate activity there is intense enough though that the Hai's rapid ship conversion approach to building a station is the only really viable approach."`
+			`	"The pirate threat to ships traveling to and from Hai space is just as bad as it ever was, possibly worse for the increased number of ships. So, on top of a mountain of legalese, an endless stipulation of trade obligations, and a nightmare of judicial jurisprudence jurisdiction boundaries, there is a very physical and tangible action that needs to be taken."`
+			`	"The Navy base on Farpoint helps to limit the mobility of pirates coming from the far north, but there is no restraint other than distance to put a check on the pirates that come out of Stormhold. Something needs to be done to secure the space lanes, and so the solution that has been agreed upon is to build a station in Cardax. The volume of pirate activity there is intense enough though that the Hai's rapid ship conversion approach to building a station is the only really viable approach."`
 			choice
 				`	"So what am I going to do?"`
 			`	"Well," says Hiyamaharu, "the number of ships involved in this represents a considerable investment, and we'd hate for them to be destroyed during a vulnerable construction phase. The prior concerns about human agents observing the inner core of the station also continues to apply."`
 			`	"So, we would like you to escort a security force and the core Geocoris to the site in Cardax, clear out any threats in the system, and get the ship through the first construction phase so it can safely raise its shield again. Once that has been completed the rest of the Geocoris' will travel with their escort to join you. You and the security force will have to protect the station while the rest of the convoy arrives to finish the construction."`
 			choice
 				` "Why not just send all of them with their entire escort at once? Surely that would be safer?"`
-			`	Xilin shrugs, "We have heard a rumour that the pirates might have caught wind of what we're doing. The reality is that the marauders up here can, if they really get their act together, field a truly formiddable force. They've overrun the Navy outpost on Farpoint a number of times before, and it would be devastating if an entire naval flotilla, a whole Hai construction fleet, and a whole security force were all caught out in the open by such a fleet, possibly attacked from both sides."`
+			`	Xilin shrugs, "We have heard a rumor that the pirates might have caught wind of what we're doing. The reality is that the marauders up here can, if they really get their act together, field a truly formidable force. They've overrun the Navy outpost on Farpoint a number of times before, and it would be devastating if an entire naval flotilla, a whole Hai construction fleet, and a whole security force were all caught out in the open by such a fleet, possibly attacked from both sides."`
 			`	"By separating them it's less likely to tip them off to when exactly we choose to act, and once the station is up the fleet can use the station's projector and facilities to support their presence. Plus, if they are tipped off already and we can't deal with them, then we only lose the one Geocoris, and we expect that you and the Hai security ships are capable enough to escape from trouble if it's more than you can handle."`
 			choice
 				` 	"Makes sense."`
@@ -313,12 +313,12 @@ mission "HRF 04 Escort Republic Outfitters"
 				`	"Yeah, it was fairly chill."`
 					goto fantastic
 				`	"It was very close out there, there were some losses."`
-			`	Hiyamaharu is inscrutable but Xilin adopts a sombre expression, "Unfortunately there was always a risk of that in this endeavour."`
+			`	Hiyamaharu is inscrutable but Xilin adopts a sombre expression, "Unfortunately there was always a risk of that in this endeavor."`
 			`	"Still," says Hiyamaharu.`
 			label fantastic
 			`	"A great success all round," says Xilin.`
 			`	"The Republic and Hai governments have approved a reward of <payment> by the way, as thanks for your considerable assistance here."`
-			`	"If you have a moment though, we'd appreciate your continued assistance with a bit of PR now. To finalise the station the plan is to facilitate some of the major outfitters to set up on the new station, both from Hai space and from ours. Predominantly this would be so that we can ensure a ready supply of munitions on the station at all times. As well, the long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops."`
+			`	"If you have a moment though, we'd appreciate your continued assistance with a bit of PR now. To finalize the station the plan is to facilitate some of the major outfitters to set up on the new station, both from Hai space and from ours. Predominantly this would be so that we can ensure a ready supply of munitions on the station at all times. As well, the long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops."`
 			`	"Of course," says Xilin, "we'll understand if you're too busy now."`
 			choice
 				`	"Sure, why not?"`
@@ -425,7 +425,7 @@ mission "HRF 06 Escort Syndicate Outfitters"
 		conversation
 			`The Republic garrison and Lovelace transports arrive to suitable fanfare and media pomp. Xilin and Hiyamaharu appear to have hitched a ride to Mooncreek in your abence and they greet you in what passes for a spaceport that is not yet serving drinks.`
 			`	"Good job there <last>," says Xilin.`
-			`	"I know it's trivial but don't underestimate the impact of a stately arrival. After the crisis last time it's really very important to penetrate the public conciousness and get people to know what's going on."`
+			`	"I know it's trivial but don't underestimate the impact of a stately arrival. After the crisis last time it's really very important to penetrate the public consciousness and get people to know what's going on."`
 			choice
 				`	"I understand."`
 				`	"As long as I get paid for it."`
@@ -555,7 +555,7 @@ mission "HRF 10 Escort Free World Outfitters"
 			`	"Good, good," he says, "now I know that the last thing you probably want to do right now is traipse from one end of space to the other, but I need to ask you a favour."`
 			`	He finds somewhere to sit down with you and begins, "So you may recall I was helping the Free Worlds set up their diplomatic corps. Obviously I wanted no part of the ambassadorial business to the Republic, but when all this Hai business started up well, let's just say they struggled to find anyone qualified. As it turns out someone in the senate doesn't particularly like me and they've been using my extended time away up here to try and influence the diplomatic corps. Meanwhile, the Hai want the Free Worlds to have some involvement with this station we're on so that everyone is tied in, but obviously the Free Worlds don't particularly care when they could hardly be further from it."`
 			`	"I have devised a compromise, where the Free Worlds will not supply ships to the garrison here but they will instead sponsor both Kraz and Delta V to set up outfitters here, with full upfront costs paid by the Free World government. A defining success will allow me to return to the corps with the influence I need to counter this senator's influence. Otherwise I fear I shall be stuck here on the other side of space for the rest of my career."`
-			`	You look at your firned and you can tell he's waiting for you to accept his premise first, holding something back...`
+			`	You look at your friend and you can tell he's waiting for you to accept his premise first, holding something back...`
 			choice
 				`	"What's the catch?"`
 			`	He chuckles, "You're getting to know me too well."`
@@ -589,7 +589,7 @@ mission "HRF 11 Escort Free World Outfitters"
 		has "HRF 10 Escort Free World Outfitters: done"
 	on offer
 		conversation
-			`When you arrive on Solace the Delta V convoy is ready and waiting along with one of their head engineers. They also seem to have sent their most blustery and arrogant sales representative, much to the chagrin of their engineer. Fortunately for everyone they will each be travelling on separate ships, and not on yours.`
+			`When you arrive on Solace the Delta V convoy is ready and waiting along with one of their head engineers. They also seem to have sent their most blustery and arrogant sales representative, much to the chagrin of their engineer. Fortunately for everyone they will each be traveling on separate ships, and not on yours.`
 				accept
 	npc accompany save
 		personality escort timid
@@ -614,7 +614,7 @@ mission "HRF 12 Escort Free World Outfitters"
 	on offer
 		conversation
 			`On Rust it is tempting to take the time to go and catch up with Barmy Edward but the Kraz convoy were prepared a day early and were near enough to meeting you in orbit.`
-			`	While you are briefly touched down though you are greeted by a message from Alondo, "<first>! Navy intelligence has, in their infinite wisdom, deigned to let us know about a suggested pirate threat. The marauders got outmanoeuvred when Mooncreek went up so quickly, it seems they might attempt to intercept the convoy. Please be safe out there!"`
+			`	While you are briefly touched down though you are greeted by a message from Alondo, "<first>! Navy intelligence has, in their infinite wisdom, deigned to let us know about a suggested pirate threat. The marauders got outmaneuvered when Mooncreek went up so quickly, it seems they might attempt to intercept the convoy. Please be safe out there!"`
 			`	It seems you'll have to keep your eyes peeled on your way back.`
 				accept
 	on fail
@@ -736,8 +736,8 @@ mission "HRF 14 Hai-Human Treaty"
 		event "mooncreek realised" 15
 		payment 12000000
 		conversation
-			`Arriving on Mountaintop once again brings with it full diplomatic regalia. The gallery Where Mountains Touch The Sky is filled to brimming with a great many representatives from the Core and Paradise worlds, and some of the more notable representatives from the Syndicate and Free Worlds. The entire Hai Elder Council is in attendance, and the Chancellor of the Free Worlds and President of the Republic are again schmoozing about in their most respectable suits. Alondo, Xilin and Hiyamaharu have their symbols of office, and it looks like the Free Worlds have now finalised their design for Alondo's.`
-			`	The speeches in the grand Borealis Chamber turn out to be rather long and dry. Teeneep makes an appearance along with one of the other Elder Hai whom you think you recognise from asking you strange questions once before. Only the Republic President makes a head of state address but the highest officer of the Navy also makes an address on the value of the Mooncreek station to the security of both nations and and the benefits of long-term cooperation with mutual friends.`
+			`Arriving on Mountaintop once again brings with it full diplomatic regalia. The gallery Where Mountains Touch The Sky is filled to brimming with a great many representatives from the Core and Paradise worlds, and some of the more notable representatives from the Syndicate and Free Worlds. The entire Hai Elder Council is in attendance, and the Chancellor of the Free Worlds and President of the Republic are again schmoozing about in their most respectable suits. Alondo, Xilin and Hiyamaharu have their symbols of office, and it looks like the Free Worlds have now finalized their design for Alondo's.`
+			`	The speeches in the grand Borealis Chamber turn out to be rather long and dry. Teeneep makes an appearance along with one of the other Elder Hai whom you think you recognize from asking you strange questions once before. Only the Republic President makes a head of state address but the highest officer of the Navy also makes an address on the value of the Mooncreek station to the security of both nations and and the benefits of long-term cooperation with mutual friends.`
 			`	You are asked to stand for a great many photos, make occasional comments, and shake an absolutely endless series of hands. Xilin is kind enough to make sure you get some of the better hors d'oeuvres in between making nice.`
 			`	When it's over Xilin and Hiyamaharu quietly inform you that you have a reward of <payment> for your earlier efforts setting up Mooncreek. You're free to go back about your business now.`
 				decline
@@ -793,7 +793,7 @@ event "mooncreek realised"
 	system Cardax
 		add fleet "Cardax Miners" 1800
 	planet Mooncreek
-		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typically of military fare. There are few shops or other services catering to civilians, and a very busy section devoted to the fighter groups that mine the astroids here to keep the outfitters supplied with basic resources for manufacture.`
+		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typically of military fare. There are few shops or other services catering to civilians, and a very busy section devoted to the fighter groups that mine the asteroids here to keep the outfitters supplied with basic resources for manufacture.`
 		add shipyard "Cardax Miners"
 		security 0.9
 	system Moktar
