@@ -1198,7 +1198,6 @@ void Engine::EnterSystem()
 			}
 	}
 	
-	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGovernment && raidGovernment->IsEnemy())
@@ -1669,6 +1668,7 @@ void Engine::SpawnPersons()
 
 
 
+// Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
 	// If this system has any hazards, see if any have activated this frame.
@@ -1987,6 +1987,9 @@ void Engine::DoCollisions(Projectile &projectile)
 
 
 
+// Determine whether any active weather events have impacted the ships within
+// the system. As with DoCollisions, this function adds visuals directly to
+// the main visuals list.
 void Engine::DoWeather(Weather &weather)
 {
 	if(weather.HasWeapon() && !Random::Int(weather.Period()))

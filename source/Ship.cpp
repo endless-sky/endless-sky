@@ -2830,7 +2830,7 @@ double Ship::MaxReverseVelocity() const
 
 
 
-// Take environmental hazard damage from the current system.
+// Create effects and take damage from the given hazard.
 void Ship::DoHazard(vector<Visual> &visuals, const Hazard *hazard, double strength)
 {
 	TakeDamage(*hazard, strength, Point(), hazard->BlastRadius() > 0.);

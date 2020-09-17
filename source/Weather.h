@@ -19,18 +19,20 @@ class Hazard;
 class Visual;
 
 
-// Weather is used to contain an active system hazard, keeping track of the hazard's lifetime, its strength, and if it should cause any damage.
+// Weather is used to contain an active system hazard, keeping track of the hazard's
+// lifetime, its strength, and if it should cause any damage.
 class Weather {
 public:
 	Weather() = default;
 	explicit Weather(const Hazard *hazard, int lifetime, double strength, int totalLifetime = -1);
 	
+	// The hazard that is associated with this weather event.
 	const Hazard *GetHazard() const;
 	// Whether the hazard of this weather deals damage or not.
 	bool HasWeapon() const;
 	// The period of this weather, dictating how often it deals damage while active.
 	int Period() const;
-	// What the hazard's damage is multiplied by given the current strength.
+	// What the hazard's damage is multiplied by given the current weather strength.
 	double DamageMultiplier() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
 	void Step(std::vector<Visual> &newVisuals);
@@ -47,9 +49,9 @@ private:
 	
 private:
 	const Hazard *hazard = nullptr;
-	int totalLifetime = 0;
 	int lifetime = 0;
 	double strength = 0.;
+	int totalLifetime = 0;
 	double deviation = 0.;
 	
 	// Record when this object is marked for removal from the game.

@@ -22,7 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 Weather::Weather(const Hazard *hazard, int lifetime, double strength, int totalLifetime)
-	: hazard(hazard), totalLifetime((totalLifetime > 0) ? totalLifetime : lifetime), lifetime(lifetime), strength(strength)
+	: hazard(hazard), lifetime(lifetime), strength(strength), totalLifetime((totalLifetime > 0) ? totalLifetime : lifetime)
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the weather to start and end at about 10% the maximum.
 	deviation = totalLifetime / 4.3;
@@ -30,6 +30,7 @@ Weather::Weather(const Hazard *hazard, int lifetime, double strength, int totalL
 
 
 
+// The hazard that is associated with this weather event.
 const Hazard *Weather::GetHazard() const
 {
 	return hazard;
@@ -37,6 +38,7 @@ const Hazard *Weather::GetHazard() const
 
 
 
+// Whether the hazard of this weather deals damage or not.
 bool Weather::HasWeapon() const
 {
 	return hazard->IsWeapon();
@@ -44,19 +46,18 @@ bool Weather::HasWeapon() const
 
 
 
+// The period of this weather, dictating how often it deals damage while active.
 int Weather::Period() const
 {
 	// If a hazard deviates, then the period is divided by the square root of the
 	// strength. This is so that as the strength of a hazard increases, it gets both
 	// more likely to impact the ships in the system and each impact hits harder.
-	if(hazard->Deviates())
-		return max(1, static_cast<int>(hazard->Period() / sqrt(Strength())));
-	else
-		return hazard->Period();
+	return hazard->Deviates() ? max(1, static_cast<int>(hazard->Period() / sqrt(Strength()))) : hazard->Period();
 }
 
 
 
+// What the hazard's damage is multiplied by given the current weather strength.
 double Weather::DamageMultiplier() const
 {
 	// If a hazard deviates, then the damage is multiplied by the square root of the
@@ -82,6 +83,7 @@ double Weather::DamageMultiplier() const
 
 
 
+// Create any environmental effects and decrease the lifetime of this weather.
 void Weather::Step(vector<Visual> &visuals)
 {
 	// Environmental effects are created by choosing a random angle and distance from
@@ -112,13 +114,13 @@ bool Weather::ShouldBeRemoved() const
 
 
 
+// The current strength of this weather, to be used to find out what the
+// current period and damage multipliers are.
 double Weather::Strength() const
 {
 	// If this hazard deviates, modulate strength by the current lifetime.
 	// Strength follows a normal curve, peaking when the lifetime has
 	// reached half the totalLifetime.
-	if(hazard->Deviates())
-		return strength * exp(-pow(lifetime - totalLifetime / 2., 2.) / (2. * pow(deviation, 2.)));
-	else
-		return strength;
+	return hazard->Deviates() ? 
+		strength * exp(-pow(lifetime - totalLifetime / 2., 2.) / (2. * pow(deviation, 2.))) : strength;
 }

@@ -309,7 +309,7 @@ public:
 	double MaxVelocity() const;
 	double MaxReverseVelocity() const;
 	
-	// Take environmental hazard damage from the current system.
+	// Create effects and take damage from the given hazard.
 	void DoHazard(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
 	
 	// This ship just got hit by the given projectile. Take damage according to

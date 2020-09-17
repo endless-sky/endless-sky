@@ -32,11 +32,11 @@ public:
 	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double RandomStrength() const;
-	// How far from this hazard's origin that it will have an effect.
+	// The minimum and maximum points from the origin in which this hazard has an effect.
 	double MinRange() const;
 	double MaxRange() const;
 	
-	// Effects to be created while this hazard is active.
+	// Visuals to be created while this hazard is active.
 	const std::map<const Effect *, int> &EnvironmentalEffects() const;
 	
 	
