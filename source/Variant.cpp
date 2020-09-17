@@ -75,6 +75,7 @@ void Variant::Load(const DataNode &node, const bool global)
 				// If toRemove is named, check if a stockVariant shares that name.
 				// Else, check if toRemove is equal to any of the variants.
 				if(!toRemove.Name().empty())
+				{
 					for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
 						if(it->first->Name() == toRemove.Name())
 						{
@@ -85,7 +86,9 @@ void Variant::Load(const DataNode &node, const bool global)
 							didRemove = true;
 							break;
 						}
+				}
 				else
+				{
 					for(auto it = variants.begin(); it != variants.end(); ++it)
 						if(it->first == toRemove)
 						{
@@ -95,6 +98,7 @@ void Variant::Load(const DataNode &node, const bool global)
 							didRemove = true;
 							break;
 						}
+				}
 				
 				if(!didRemove)
 					child.PrintTrace("Did not find matching variant for specified operation:");
