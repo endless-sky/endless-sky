@@ -281,10 +281,10 @@ public:
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
 	// Get the distance that this ship can jump.
-	double JumpRange() const;
+	double JumpRange(bool getCached = true) const;
 	// Get the cost of making a jump of the given type (if possible).
 	double HyperdriveFuel() const;
-	double JumpDriveFuel(double distance = 0.) const;
+	double JumpDriveFuel(double jumpDistance = 0.) const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
@@ -407,7 +407,7 @@ private:
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
-	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel, double distance = 0.) const;
+	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel, double jumpDistance = 0.) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
@@ -519,6 +519,8 @@ private:
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
+	
+	double jumpRange = 0.;
 	
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
 	// when the ship is dying.

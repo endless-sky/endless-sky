@@ -185,7 +185,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
 	// neighbor distances to be updated.
-	NeighborDistance(System::DEFAULT_NEIGHBOR_DISTANCE);
+	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
@@ -569,7 +569,7 @@ void GameData::UpdateSystems()
 
 
 
-void GameData::NeighborDistance(double neighborDistance)
+void GameData::AddJumpRange(double neighborDistance)
 {
 	neighborDistances.insert(neighborDistance);
 }

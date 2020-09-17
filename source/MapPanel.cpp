@@ -97,6 +97,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	playerSystem(player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
+	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
 	commodity(commodity)
 {
 	SetIsFullScreen(true);
@@ -120,7 +121,8 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// takes priority over the range of the player's flagship.
 	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
 	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
-	playerJumpDistance = systemRange ? systemRange : (playerRange ? playerRange : System::DEFAULT_NEIGHBOR_DISTANCE);
+	if(systemRange || playerRange)
+		playerJumpDistance = systemRange ? systemRange : playerRange;
 	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem, true);

@@ -196,7 +196,7 @@ void Outfit::Load(const DataNode &node)
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
 	if(attributes.Get("jump drive") && attributes.Get("jump range"))
-		GameData::NeighborDistance(attributes.Get("jump range"));
+		GameData::AddJumpRange(attributes.Get("jump range"));
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())

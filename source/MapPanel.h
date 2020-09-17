@@ -100,7 +100,6 @@ protected:
 	
 protected:
 	PlayerInfo &player;
-	double playerJumpDistance;
 	
 	DistanceMap distance;
 	
@@ -109,6 +108,8 @@ protected:
 	const Planet *selectedPlanet = nullptr;
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
+	
+	double playerJumpDistance;
 	
 	Point center;
 	Point recenterVector;

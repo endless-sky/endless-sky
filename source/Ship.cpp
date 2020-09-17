@@ -642,6 +642,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Perform a full IsDisabled calculation.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Cache this ship's jump range so that it doesn't need calculated when needed.
+	jumpRange = JumpRange(false);
 }
 
 
@@ -2639,8 +2642,11 @@ double Ship::JumpFuel(const System *destination) const
 
 
 
-double Ship::JumpRange() const
+double Ship::JumpRange(bool getCached) const
 {
+	if(getCached)
+		return jumpRange;
+	
 	// Ships without a jump drive have no jump range.
 	if(!attributes.Get("jump drive"))
 		return 0.;
@@ -2684,20 +2690,20 @@ double Ship::HyperdriveFuel() const
 
 
 
-double Ship::JumpDriveFuel(double distance) const
+double Ship::JumpDriveFuel(double jumpDistance) const
 {
 	// Don't bother searching through the outfits if there is no jump drive.
 	if(!attributes.Get("jump drive"))
 		return 0.;
 	
-	return BestFuel("jump drive", "", 200., distance);
+	return BestFuel("jump drive", "", 200., jumpDistance);
 }
 
 
 
 double Ship::JumpFuelMissing() const
 {
-	// Used for smart refuelling: transfer only as much as really needed
+	// Used for smart refueling: transfer only as much as really needed
 	// includes checking if fuel cap is high enough at all
 	double jumpFuel = JumpFuel(targetSystem);
 	if(!jumpFuel || fuel > jumpFuel || jumpFuel > attributes.Get("fuel capacity"))
@@ -3167,6 +3173,10 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
 	}
+	// If the added or removed outfit is a jump drive, recalculate
+	// and cache this ship's jump range.
+	if(outfit->Get("jump drive"))
+		jumpRange = JumpRange(false);
 }
 
 
@@ -3386,7 +3396,7 @@ double Ship::MinimumHull() const
 
 
 // Find out how much fuel is consumed by the hyperdrive of the given type.
-double Ship::BestFuel(const string &type, const string &subtype, double defaultFuel, double distance) const
+double Ship::BestFuel(const string &type, const string &subtype, double defaultFuel, double jumpDistance) const
 {
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
@@ -3404,7 +3414,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
 		// always pass.
-		if(jumpRange >= distance)
+		if(jumpRange >= jumpDistance)
 		{
 			best = baseAttributes.Get("jump fuel");
 			if(!best)
@@ -3418,7 +3428,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 			double jumpRange = it.first->Get("jump range");
 			if(!jumpRange)
 				jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
-			if(jumpRange >= distance)
+			if(jumpRange >= jumpDistance)
 			{
 				double fuel = it.first->Get("jump fuel");
 				if(!fuel)
