@@ -54,6 +54,7 @@ protected:
 private:
 	// Handle a change to what ship is shown.
 	void UpdateInfo();
+	void ClearZones();
 	
 	// Draw the ship tab (and its subsections).
 	void DrawShipStats(const Rectangle &bounds);
