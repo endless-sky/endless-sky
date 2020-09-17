@@ -666,7 +666,7 @@ mission "Expanding Business [1]"
 			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
 				goto choices
 			label public
-			`	"Allow me to explain. The journey to the Hai can be a dangerous one, even with the new commitment to safety made by both governments. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Even now those pirates roam almost un-challenged many merchants are trapped here without the means to safely return. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
+			`	"Allow me to explain. The journey to the Hai can be a dangerous one, even with the new commitment to safety made by both governments. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Even now those pirates roam almost unchallenged, and many merchants are trapped here without the means to safely return. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
 			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
 			label choices
 			choice
@@ -788,7 +788,7 @@ mission "Expanding Business [4]"
 			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
 			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end."`
 			`	"The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day."`
-			`	Turner pats you on the back, "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
+			`	Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
 
 event "outfitter on greenwater"
 	planet "Greenwater"
@@ -855,7 +855,7 @@ mission "Expanding Business [6]"
 				`	"You need me to help you escort freighters again?"`
 				`	"Do you want to build a shipyard selling human ships?"`
 			
-			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. You'd think they could just get passage and buy a human ship over there, but the banks over there don't recognise credit histories from over here for loans. It's preposterous, Captain <last>!`
+			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. You'd think they could just get passage and buy a human ship over there, but the banks over there don't recognize credit histories from over here for loans. It's preposterous, Captain <last>!`
 			`	"I've already made arrangements with the local Hai government. The rest of the park next to the outfitter is now my property, and I intend to use it to build the shipyard. I've also contacted Megaparsec and bought a license to build their ships and some of the outfits they sell on <planet>. My freighters are at the ready in the spaceport right now. All I need you to do is escort them to <destination> and back, and in six to seven months' time when the shipyard is done, you'll reap the rewards. What do you say, Captain <last>? Do you want to be a hero to millions once again?"`
 			choice
 				`	"Sure, this sounds like a great idea."`
@@ -1004,7 +1004,7 @@ mission "Expanding Business: shipyard complete"
 		has "event: shipyard on greenwater"
 	on offer
 		"salary: Turner Incorporated" = 4000
-		dialog "On receipt of a new and unexpected deposit you realise that the shipyard on Greenwater must now be operational."
+		dialog "On receipt of a new and unexpected deposit, you realize that the shipyard on Greenwater must now be operational."
 		fail
 
 
@@ -1034,7 +1034,7 @@ mission "Hiding in Plain Sight"
 			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
 				goto return
 			label public
-			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' Now that Kiru doesn't have to worry about pretending to be a cosplayer full time we're really keen to go."`
+			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' Now that Kiru doesn't have to worry about pretending to be a cosplayer the whole time, we're really keen to go."`
 			label return
 			`	"Arthur and I have <payment> to give you if you bring us to the <planet>," Kiru says. "We can find our own way back to the Hai space, as well."`
 			choice
@@ -1091,7 +1091,7 @@ mission "Hai Honeymoon"
 			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. I know it's risky to bring Touhar into human space, but <planet> is a sparsely inhabited world, and I have a friend who owns a house in the mountains far from anyone who could see him."`
 				goto return
 			label public
-			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. Some people still tell us it's risky to bring Touhar into human space, especially to such a sparsely inhabited world as <planet>, but I have a friend who owns a house in the mountains and it just seems like everything is working out so well right now."`
+			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. Some people still tell us it's risky to bring Touhar into human space, especially to such a sparsely inhabited world as <planet>, but I have a friend who owns a house in the mountains, and it just seems like everything is working out so well right now."`
 			label return
 			`	"Said friend will be able to arrange for our return to <origin> as well," Touhar adds. "Will you take us?"`
 			choice
@@ -1737,12 +1737,12 @@ mission "Nanachi 4"
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
 				goto return2
 			label public2
-			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! Even if we contact the navy it will take weeks before they can mobilise to hunt them down and guarantee that they've made it safe for the convoy to come here, and the hazard pay to request a carrier escort is frankly ridiculous. The art exhibition is scheduled only three weeks from now!"`
+			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! Even if we contact the Navy it will take weeks before they can mobilize to hunt them down and guarantee that they've made it safe for the convoy to come here, and the hazard pay to request a carrier escort is frankly ridiculous. The art exhibition is scheduled for only three weeks from now!"`
 			`	Some of them eye you as they try to figure out what to do but before any well-formed ideas are reached, Nanachi speaks up, "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either so it's much more likely to go unnoticed or uncared for."`
 			label return2
 			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught your chances of outrunning the pirates are next to nothing!"`
 			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?"`
-			`	While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous. You're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
+			`	It's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous. You're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
 			choice
 				`	"Alright, I'll make sure we reach Prime and get back here safely."`
 				`	"No, I agreed to help you find and deal with some simple jobs, but I can't risk fighting such a fleet by myself."`
@@ -1754,7 +1754,7 @@ mission "Nanachi 4"
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're just trying to help this girl, but don't get killed over this. If you run into those pirates don't try to fight them, just rush to Prime."`
 				accept
 			label public3
-			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're no stranger to combat and danger but don't get killed over this. The girl won't know what's senssible for her if it gets hairy and she shouldn't have to get killed over this. If you run into those pirates don't try to fight them, just rush her through. I have faith in a man such as yourself."`
+			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly. "<last>, I know you're no stranger to combat and danger, but don't get killed over this. The girl won't know what's sensible for her if it gets hairy, and she shouldn't have to get killed over this. If you run into those pirates don't try to fight them, just rush her through. I have faith in a person such as yourself."`
 				accept
 	npc
 		personality nemesis waiting
