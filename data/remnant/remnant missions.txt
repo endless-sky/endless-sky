@@ -3491,7 +3491,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			label help
 			`	"If you would like to help, there is something you can do. I am currently putting together an expedition to Sagittarius A*, and I could use a transport..."`
 			branch sagittarius
-				has visited "Sagittarius A*"
+				has `visited "Sagittarius A*"`
 			choice
 				`	"I don't know where that is."`
 					goto center
@@ -3563,6 +3563,8 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Could I see your symbiont? The ones I have seen are visible, like gloves or neck braces."`
 			`	Dawn looks at you with an amused expression. "We don't know each other nearly well enough for that. Better to focus on the expedition. I will catch up to you on the ship."`
 				accept
+			label onwards
+				`	She nods. "Well, I will finish my meal and meet you on the <ship> shortly." With that, she returns to her meal.`
 			label dawnwhere
 			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. Mine is located primarily along my spine." She twists around, and you can see a small layer of the tell-tale scaly leather extending up the back of her neck.`
 			`	"We should probably be focusing on the expedition, though. You go get the <ship> ready for launch, and I will be there shortly."`
