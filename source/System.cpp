@@ -368,10 +368,6 @@ void System::Link(System *other)
 {
 	links.insert(other);
 	other->links.insert(this);
-	
-	// After any Link or Unlink occurs, UpdateSystem gets
-	// called by GameData, so we don't need to update the
-	// neighbors here.
 }
 
 
@@ -746,7 +742,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 		neighborSet.insert(system);
 	
 	// Any other star system that is within the neighbor distance is also a
-	// neighbor. This will include any nearby linked systems.
+	// neighbor.
 	for(const auto &it : systems)
 	{
 		// Skip systems that have no name.
