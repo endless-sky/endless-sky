@@ -2494,14 +2494,14 @@ ship "Osprey"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -40 67
-	engine 40 67
-	gun -8 -100 "Plasma Cannon"
-	gun 8 -100 "Plasma Cannon"
-	gun -26 -53 "Plasma Cannon"
-	gun 26 -53 "Plasma Cannon"
-	turret -16 -16 "Quad Blaster Turret"
-	turret 16 -16 "Heavy Anti-Missile Turret"
+	engine -45.5 62.5
+	engine 45.5 62.5
+	gun -6.5 -100 "Plasma Cannon"
+	gun 6.5 -100 "Plasma Cannon"
+	gun -26.5 -54 "Plasma Cannon"
+	gun 26.5 -54 "Plasma Cannon"
+	turret -13 -17 "Quad Blaster Turret"
+	turret 13 -17 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
