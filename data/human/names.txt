@@ -525,6 +525,13 @@ phrase "plural nouns"
 		"Dukes"
 		"Barons"
 		"Masters"
+		# Need to duplicate gender-neutral titles as well
+		"Saints"
+		"Captains"
+		"Champions"
+		"Admirals"
+		"Sovereigns"
+		"Commodores"
 
 phrase "nouns of indeterminate quantity"
 	word
@@ -669,6 +676,7 @@ phrase "female titles"
 		"Duchess"
 		"Mistress"
 
+# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "gender-neutral titles"
 	word
 		"Saint"
@@ -2456,6 +2464,7 @@ phrase "republic small"
 		Lachlan
 		Macquarie
 		Waikato
+		Tauranga
 		Yarra
 		Avon
 		Boyne

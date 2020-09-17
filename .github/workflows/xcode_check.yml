@@ -31,7 +31,7 @@ jobs:
         ./tests/check_xcode.sh
     - name: Upload XCode patch
       if: failure()
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: xcode-project.patch
         path: xcode-project.patch
