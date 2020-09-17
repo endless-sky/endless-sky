@@ -1518,6 +1518,60 @@ phrase "friendly civilian"
 		"."
 		"!"
 
+phrase "friendly civilian"
+	word
+		"The other day"
+		"A couple weeks ago"
+		"Last week"
+	word
+		" "
+	word
+		"someone"
+		"some invertebrate"
+		"some idiot"
+		"some cheapskate"
+	word
+		" "
+	word
+		"tried to get me to do"
+		"wanted me to do"
+		"tried to trick me into doing"
+	word
+		" "
+	word
+		"a job that paid only" 
+		"a gig for only"
+		"something for just"
+	word
+		" "
+	word
+		"1,"
+		"2,"
+		"3,"
+		"4,"
+		"5,"
+	word
+		"000"
+		"250"
+		"500"
+		"750"
+	word
+		" "
+	word
+		"credits per jump"
+		"credits for every day of travel"
+	word
+		"! "
+		". "
+	word
+		"It's becoming an epidemic."
+		"People these days are so reluctant to pay us what we're worth."
+		"How stupid did that guy think I was?"
+		"What idiot would take that kind of job?"
+		"I regret being so polite."
+		"Apparently people think we'll work for exposure."
+		"Not to mention this ship is not designed for a job like it."
+
 phrase "friendly navy"
 	word
 		"The Navy"
@@ -1775,9 +1829,11 @@ phrase "friendly syndicate"
 	word
 		" "
 	word
-		"of the galactic economy."
-		"of galactic trade."
+		"of the galactic economy"
+		"of galactic trade"
 		"of galactic civilization"
+	word
+		"."
 		
 		
 phrase "friendly syndicate"
@@ -2420,7 +2476,7 @@ phrase "friendly pirate"
 		""
 		" More interference plating would have helped."
 		" This interference plating is useless!"
-		" I could have gotten out faster if I had a Scram Drive."
+		" I could have gotten out faster if I had a scram drive."
 		" I know I should have installed more interference plating."
 		" If only I was strong enough to stand up to them."
 

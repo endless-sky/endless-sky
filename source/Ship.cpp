@@ -236,10 +236,22 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
+			Angle gunPortAngle = Angle(0.);
+			bool gunPortParallel = false;
+			if(child.HasChildren())
+			{
+				for(const DataNode &grand : child)
+					if(grand.Token(0) == "angle" && grand.Size() >= 2)
+						gunPortAngle = grand.Value(1);
+					else if(grand.Token(0) == "parallel")
+						gunPortParallel = true;
+					else
+						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
+			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, outfit);
+				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
@@ -253,7 +265,7 @@ void Ship::Load(const DataNode &node)
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
 			(key == "bay" && child.Size() >= 4))
 		{
-			// While the `drone` and `fighter` keywords are supported for backwards compatiblity, the
+			// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
 			// standard format is `bay <ship-category>`, with the same signature for other values.
 			string category = "Fighter";
 			int childOffset = 0;
@@ -484,7 +496,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), outfit);
 					if(nextGun != end)
 					{
 						if(outfit)
@@ -692,14 +704,16 @@ void Ship::Save(DataWriter &out) const
 		out.Write("outfits");
 		out.BeginChild();
 		{
-			for(const auto &it : outfits)
-				if(it.first && it.second)
-				{
+			using OutfitElement = pair<const Outfit *const, int>;
+			WriteSorted(outfits,
+				[](const OutfitElement *lhs, const OutfitElement *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const OutfitElement &it){
 					if(it.second == 1)
 						out.Write(it.first->Name());
 					else
 						out.Write(it.first->Name(), it.second);
-				}
+				});
 		}
 		out.EndChild();
 		
@@ -747,6 +761,18 @@ void Ship::Save(DataWriter &out) const
 					hardpoint.GetOutfit()->Name());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
+			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
+			if(hardpoint.IsParallel() || hardpointAngle)
+			{
+				out.BeginChild();
+				{
+					if(hardpointAngle)
+						out.Write("angle", hardpointAngle);
+					if(hardpoint.IsParallel())
+						out.Write("parallel");
+				}
+				out.EndChild();
+			}
 		}
 		for(const Bay &bay : bays)
 		{
@@ -771,12 +797,20 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const Leak &leak : leaks)
 			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
-		for(const auto &it : explosionEffects)
-			if(it.first && it.second)
+		
+		using EffectElement = pair<const Effect *const, int>;
+		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
+			{ return lhs->first->Name() < rhs->first->Name(); };
+		WriteSorted(explosionEffects, effectSort, [&out](const EffectElement &it)
+		{
+			if(it.second)
 				out.Write("explode", it.first->Name(), it.second);
-		for(const auto &it : finalExplosions)
-			if(it.first && it.second)
+		});
+		WriteSorted(finalExplosions, effectSort, [&out](const EffectElement &it)
+		{
+			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
+		});
 		
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
@@ -1302,7 +1336,19 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
 		if(isUsingJumpDrive && !forget)
-			CreateSparks(visuals, "jump drive", hyperspaceCount * Width() * Height() * .000006);
+		{
+			double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
+			const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
+			if(jumpEffects.empty())
+				CreateSparks(visuals, "jump drive", sparkAmount);
+			else
+			{
+				// Spread the amount of particle effects created among all jump effects.
+				sparkAmount /= jumpEffects.size();
+				for(const auto &effect : jumpEffects)
+					CreateSparks(visuals, effect.first, sparkAmount);
+			}
+		}
 		
 		if(hyperspaceCount == HYPER_C)
 		{
@@ -1723,15 +1769,11 @@ void Ship::DoGeneration()
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
-				{
-					return lhs.first > rhs.first;
-				}
+					{ return lhs.first > rhs.first; }
 				// The default strategy is to prioritize the healthiest ship first, in
 				// order to get fighters back out into the battle as soon as possible.
 				: [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
-				{
-					return lhs.first < rhs.first;
-				}
+					{ return lhs.first < rhs.first; }
 			);
 			
 			// Apply shield and hull repair to carried fighters.
@@ -3409,13 +3451,19 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 // Place a "spark" effect, like ionization or disruption.
 void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
 {
+	CreateSparks(visuals, GameData::Effects().Get(name), amount);
+}
+
+
+
+void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
+{
 	if(forget)
 		return;
 	
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
 	
-	const Effect *effect = GameData::Effects().Get(name);
 	while(true)
 	{
 		amount -= Random::Real();
