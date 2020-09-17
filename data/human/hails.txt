@@ -1582,7 +1582,6 @@ phrase "friendly civilian"
 		"badly organized races"
 		"inheritance scams"
 		"shady transport jobs"
-		"syndicate garbage transports"
 		"hitman transports"
 	word
 		"."
@@ -1595,7 +1594,7 @@ phrase "friendly civilian"
 		"The Navy almost arrested me."
 		"Those can ruin your life!"
 		"They are usually too good to be true."
-		"They take your money but you won't get anything in return."
+		"They take your money and you won't get anything in return."
 
 phrase "friendly civilian"
 	word
