@@ -747,7 +747,6 @@ phrase "friendly civilian"
 		"uninstall any radar jammers on your ship. They're useless"
 		"use loans to get money to make money"
 		"reduce the cost of your ships by using batteries over bigger generators"
-		"jump into hostile systems at a large distance from the center"
 		"always keep sufficient distance to fire your long-range weapons first"
 	word
 		"."
@@ -1612,13 +1611,11 @@ phrase "friendly civilian"
 		"Norn"
 		"Skillet"
 	word
-		"; "
-	word
-		"but my starmap doesn't list it."
-		"do you know where I can find that planet?"
-		"have you ever heard of a planet with that name?"
-		"that planet shouldn't be too far from here."
-		"which hyperlane should I take to get there?"
+		", but my starmap doesn't list it."
+		"; do you know where I can find that planet?"
+		"; have you ever heard of a planet with that name?"
+		"; that planet shouldn't be too far from here."
+		"; which hyperlane should I take to get there?"
 
 phrase "friendly civilian"
 	word
@@ -1669,7 +1666,7 @@ phrase "friendly civilian"
 		"! "
 	word
 		""
-		"I was there three days ago."
+		"I was there last month."
 		"The next event will be great!"
 		"That's real entertainment!"
 
