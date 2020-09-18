@@ -1095,7 +1095,7 @@ news "human pirate"
 			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
 			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
 			"Crime pays and the hours are good!"
-			"I will retire as security adviser in the paradise worlds. You know the saying; An old poacher makes the best gamekeeper."
+			"I will retire as a security adviser in the paradise worlds. You know the saying; An old poacher makes the best gamekeeper."
 		word
 			`"`
 

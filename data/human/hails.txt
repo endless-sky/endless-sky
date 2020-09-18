@@ -1663,7 +1663,7 @@ phrase "friendly civilian"
 	word
 		"in the Deep"
 		"in Syndicate space"
-		"on Earths Day"
+		"on Earth Day"
 	word
 		". "
 		"! "
