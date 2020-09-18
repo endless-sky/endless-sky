@@ -40,49 +40,24 @@ public:
 	public:
 		// The different types of teststeps.
 		enum StepType {
-			// Step that assigns a value to a condition.
-			// TODO: Does not cause the game to step.
+			// Step that assigns a value to a condition. Does not cause the game to step.
 			ASSIGN,
-			// Step that verifies if a certain condition is true
-			// TODO: Does not cause the game to step.
+			// Step that verifies if a certain condition is true. Does not cause the game to step.
 			ASSERT,
 			// Branch with a label to jump to when the condition in child is true.
 			// When a second label is given, then the second is to jump to on false.
-			// TODO: use LABEL and BRANCH as replacement for REPEAT, BREAK_IF and WAITFOR
-			// TODO: Does not cause the game to step, except when no step was done since last branch.
+			// Does not cause the game to step, except when no step was done since last BRANCH or GOTO.
 			BRANCH,
-			// Step that breaks execution of a REPEAT loop (or stops the execution
-			// of the test itself if at toplevel) when a certain condition is
-			// true.
-			BREAK_IF,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
-			// Step that performs input (key, mouse, command).
-			// TODO: Does cause the game to step (to proces the inputs).
+			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
 			INPUT,
 			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
 			INVALID,
-			// Label to jump to (similar as is done in conversations)
-			// TODO: use LABEL and BRANCH as replacement for REPEAT, BREAK_IF and WAITFOR
-			// TODO: Does not cause the game to step.
+			// Label to jump to (similar as is done in conversations). Does not cause the game to step.
 			LABEL,
-			// Step that performs land of the players flagship.
-			// TODO: replace by regular scan, mouse and keyboard inputs
-			LAND,
-			// Step that launches the players flagship.
-			// TODO: replace by regular keyboard inputs
-			LAUNCH,
-			// Step to perform loading of a savegame
-			// TODO: replace by regular mouse and keyboard inputs
-			LOAD_GAME,
 			// Instructs the game to set navigation / travel plan to a target system
 			NAVIGATE,
-			// Step that contains a set of test-steps below it. Repeats the
-			// steps inside it a number of times or until a break is given within
-			// the step.
-			REPEAT,
-			// Step that waits for a certain condition to become true
-			WAITFOR,
 			// Sets the watchdog timer. No value or zero disables the watchdog. Non-zero gives
 			// a watchdog in number of frames/steps.
 			WATCHDOG,
@@ -96,60 +71,17 @@ public:
 			RESULT_FAIL,
 			// Teststep incomplete (waiting for a condition). Retry teststep in next frame-step.
 			RESULT_RETRY,
-			// Teststep incomplete (but some action was done). Retry, but with action counter one higher.
-			RESULT_NEXTACTION,
-			// Teststep indicates to break of an outer loop or break off a test (succesfully)
-			// Teststep should use RESULT_FAIL for breaking off a test with a failure.
-			RESULT_BREAK,
-			// Teststep indicated to start a loop under the current step (in case of REPEAT).
-			RESULT_LOOP
+			// Teststep ok, but triggered a jump (GOTO or BRANCH to a label).
+			RESULT_GOTO
 		};
-
-		TestStep(const DataNode &node);
-
-		void Load(const DataNode &node);
-		TestResult Step(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
-		
-		// Get TestSteps embedded in the current teststep (in case of loop/REPEAT type).
-		const std::vector<TestStep> SubSteps() const;
-		
-	private:
-		// The type of this step
-		StepType stepType = INVALID;
-		// Checked condition, for teststeps of types ASSERT, WAITFOR and BREAK_IF.
-		ConditionSet checkedCondition;
-		// Savegame pilot and name to load or save to, for teststeps of type LOAD_GAME (and SAVE_GAME).
-		std::string stepInputString = "";
-		// Command to send if this test-step sends a command.
-		Command command {};
-		// Set of teststeps under the current teststep, used for REPEAT type.
-		std::vector<Test::TestStep> testSteps;
-		// Variables for travelpan/NAVIGATE steps.
-		std::vector<const System *> travelPlan;
-		const Planet *travelDestination = nullptr;
-		
-		// Inputkeys pressed by this test-step.
-		std::set<std::string> inputKeys;
-		// Mouse inputs given by this test-step.
-		bool mouseInput = false;
-		bool mouseXpercent = false;
-		bool mouseYpercent = false;
-		bool mouseLeftClick = false;
-		bool mouseRightClick = false;
-		double mousePosX;
-		double mousePosY;
 	};
 	
 	class Context {
 	friend class Test;
 	
 	protected:
-		// Vector with the step to run. This array typically has only one element,
-		// but when a loop (REPEAT) is active, then it will have another element
-		// where the highest element gives the step within the loop and the lowest
-		// element gives the test-step on toplevel that has the loop.
-		std::vector<unsigned int> stepToRun = { 0 };
-		int stepAction = 0;
+		// Teststep to run.
+		unsigned int stepToRun = 0;
 	};
 	
 	
@@ -168,7 +100,6 @@ public:
 	
 	
 private:
-	std::vector<Test::TestStep> testSteps;
 	std::string name = "";
 	TestStatus status = STATUS_ACTIVE;
 };
