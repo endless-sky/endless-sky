@@ -1592,8 +1592,8 @@ phrase "friendly civilian"
 		"I nearly got killed in one."
 		"The Navy almost arrested me."
 		"Those can ruin your life!"
-		"They are usually too good to be true."
-		"They take your money and you won't get anything in return."
+		"They're usually too good to be true."
+		"They take your money, and you won't get anything in return."
 
 phrase "friendly civilian"
 	word
@@ -1612,8 +1612,8 @@ phrase "friendly civilian"
 		"Skillet"
 	word
 		", but my starmap doesn't list it."
-		"; do you know where I can find that planet?"
-		"; have you ever heard of a planet with that name?"
+		"; do you know where I can find it?"
+		"; have you ever heard of it?"
 		"; that planet shouldn't be too far from here."
 		"; which hyperlane should I take to get there?"
 
@@ -1644,7 +1644,7 @@ phrase "friendly civilian"
 		"Do you want to see it?"
 		"It was in an unstable orbit."
 		"Must have been launched in the old days."
-		"Unbelieveable what people sent into space."
+		"Unbelievable what people sent into space back then."
 
 phrase "friendly civilian"
 	word
@@ -1660,7 +1660,7 @@ phrase "friendly civilian"
 	word
 		"in the Deep"
 		"in Syndicate space"
-		"on Earth Day"
+		"through the paradise worlds"
 	word
 		". "
 		"! "
