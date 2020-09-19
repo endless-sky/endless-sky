@@ -89,7 +89,11 @@ news "kor efret station friendly"
 			"A local greets you by holding its hands up with its palms facing toward you."
 			
 news "wanderer at kor efret spaceport"
+	to show
+		has "Translator Development 4: done"
 	location
+		government "Kor Efret"
+		not attributes "station"
 	name
 		word
 			"Wanderer"

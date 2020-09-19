@@ -196,10 +196,6 @@ mission "Translator Development 4"
 			`	Siclyss speaks through Rek. "She says, 'A translation device is not the only thing Rek and I have been developing. We've been brainstorming ways for our populations to communicate without translators should the project fall through, and this is what we've come up with. The Wanderers were kind enough to lend us the resources to build these - though it took some discourse to decide accepting the gift would not be an insult to Korath honor. Similar terminals were recently installed in other Kor Efret systems and are being built on the new Wanderer colonies as we speak. You are welcome to use these terminals as well, Captain <last>.'" She holds her hands up, palms forward, says a few words, then departs. "She has other things to take care of," Rek explains. "In fact, I do too. Thanks again for all your help, <first>. The Wanderers and Kor Efreti will both benefit from it, and I hope these new jobs will benefit you as well. Until next time," Rek says, then she leaves to catch up with Siclyss. You're left to explore the new jobs available in Korath space.`
 			
 event "wanderers taking jobs from kor efreti"
-	news "wanderer at kor efret spaceport"
-		location
-			government "Kor Efret"
-			not attributes "station"
 	system "Sumprast"
 		add fleet "Wanderer Kor Efret Traders" 1500
 	system "Sevrelect"
