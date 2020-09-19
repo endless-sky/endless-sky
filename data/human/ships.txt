@@ -1393,16 +1393,16 @@ ship "Falcon"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -17 143
-	engine 17 143
-	gun -17 -88 "Plasma Cannon"
-	gun 17 -88 "Plasma Cannon"
-	gun -17 -88 "Torpedo Launcher"
-	gun 17 -88 "Torpedo Launcher"
-	turret -16 -24 "Heavy Anti-Missile Turret"
-	turret 16 -24 "Quad Blaster Turret"
-	turret -57 40 "Quad Blaster Turret"
-	turret 57 40 "Quad Blaster Turret"
+	engine -16.5 143
+	engine 16.5 143
+	gun -16 -86.5 "Plasma Cannon"
+	gun 16 -86.5 "Plasma Cannon"
+	gun -19 -76.5 "Torpedo Launcher"
+	gun 19 -76.5 "Torpedo Launcher"
+	turret -16 -29 "Heavy Anti-Missile Turret"
+	turret 16 -29 "Quad Blaster Turret"
+	turret -50 39.5 "Quad Blaster Turret"
+	turret 50 39.5 "Quad Blaster Turret"
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 60 30
