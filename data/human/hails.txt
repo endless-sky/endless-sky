@@ -1588,7 +1588,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"I lost 20000 credits on one of those."
+		"I lost 20,000 credits on one of those."
 		"I nearly got killed in one."
 		"The Navy almost arrested me."
 		"Those can ruin your life!"
