@@ -76,8 +76,8 @@ mission "Kor Efreti: Food Cargo [1]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo "Food" 5 3 .14
 	to offer
-		random < 70
 		has "Translator Development 4: done"
+		random < 70
 	source
 		government "Kor Efret"
 		not attributes "station"
