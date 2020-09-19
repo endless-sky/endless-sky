@@ -1653,7 +1653,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"race that is organized"
+		"race"
 		"stunt pilots flying in formation"
 	word
 		" "

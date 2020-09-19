@@ -239,7 +239,7 @@ news "company psychologist"
 			"My job is to help workers deal with stress and channel it in healthy directions. A little bit of stress is not a bad thing, if it drives someone to be more productive."
 			"We routinely evaluate employees for sociopathic tendencies, narcissism, and other signs that they might be excellent candidates for upper management positions."
 			"I've gotten incredibly good at doing this thing with my face that makes it look like I care."
-			"A trouble shared is a trouble halved, so most of the time I just need to pretend to listen to get some resource issue within acceptable limits."
+			"A trouble shared is a trouble halved, so most resource issues can be brought within acceptable limits by just pretending to listen."
 			"A man is judged by his deeds, not by his words, except in my profession; the more I talk, the more people value me."
 		word
 			`"`
