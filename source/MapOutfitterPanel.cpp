@@ -247,5 +247,5 @@ void MapOutfitterPanel::Init()
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Outfit *a, const Outfit *b) {return a->Name() < b->Name();});
+			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });
 }
