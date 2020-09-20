@@ -115,8 +115,7 @@ namespace {
 					outOfAmmo = true;
 				}	
 				if(outOfAmmo)
-				continue;
-				
+				continue;				
 				return true;
 			}
 		}
@@ -2861,8 +2860,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		if(!weapon.IsReady())
 			continue;
 		
-		bool weaponUsesAmmo = !weapon.GetOutfit()->Ammo().empty();
-	
+		bool weaponUsesAmmo = !weapon.GetOutfit()->Ammo().empty();	
 		if(weapon.IsReady()
 				&& !(!currentTarget && weapon.IsHoming() && weaponUsesAmmo)
 				&& !(!secondary && weapon.GetOutfit()->Icon())
@@ -3009,8 +3007,7 @@ void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 		if(!hardpoint.IsReady())
 			continue;
 		
-		bool hardpointUsesAmmo = !hardpoint.GetOutfit()->Ammo().empty();
-		
+		bool hardpointUsesAmmo = !hardpoint.GetOutfit()->Ammo().empty();		
 		if(hardpointUsesAmmo || hardpoint.GetOutfit()->Icon())
 			continue;
 		
