@@ -3850,4 +3850,3 @@ void AI::UpdateOrders(const Ship &ship)
 		order.targetSystem = ship.GetSystem();
 	}
 }
-
