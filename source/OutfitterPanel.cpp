@@ -539,8 +539,7 @@ void OutfitterPanel::Sell(bool toCargo)
 					int mustSell = 0;
 					for(const pair<const char *, double> &it : ship->Attributes().Attributes())
 						if(it.second < 0.)
-							mustSell = max<int>(mustSell, it.second / ammo.first->Get(it.first));
-					
+							mustSell = max<int>(mustSell, it.second / ammo.first->Get(it.first));				
 					if(mustSell)
 					{
 						ship->AddOutfit(ammo.first, -mustSell);
@@ -553,10 +552,8 @@ void OutfitterPanel::Sell(bool toCargo)
 						player.AddStock(ammo.first, mustSell);
 						}
 					}	
-				}
-			
-			}	
-			
+				}			
+			}				
 		}
 	}
 }
@@ -707,7 +704,6 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 		attributes.Add(*ammo.first, -ship->OutfitCount(ammo.first));
 	}
 	return attributes.CanAdd(*outfit, -1);
-
 	// Now, check whether this ship can sell this outfit.
 	return ship->Attributes().CanAdd(*outfit, -1);
 }
@@ -736,7 +732,7 @@ bool OutfitterPanel::HasMapped(int mapSize) const
 	DistanceMap distance(player.GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
 		if(!player.HasVisited(system))
-			return false;
+			return false;	
 	
 	return true;
 }
@@ -785,11 +781,9 @@ void OutfitterPanel::CheckRefill()
 			continue;
 		
 		++count;
-		set<const Outfit *> toRefill;
-		
+		set<const Outfit *> toRefill;		
 		for(const Hardpoint &it : ship->Weapons())
 		{	
-
 			if(it.GetOutfit())
 			{	
 				for(const auto &sit : it.GetOutfit()->Ammo())
@@ -837,8 +831,7 @@ void OutfitterPanel::Refill()
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 		
-		set<const Outfit *> toRefill;
-		
+		set<const Outfit *> toRefill;		
 		for(const Hardpoint &it : ship->Weapons())
 		{	
 
