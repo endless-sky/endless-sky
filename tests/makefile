@@ -61,10 +61,6 @@ endef
 # Generate implicit rules for all source directories from the pattern rule.
 $(foreach bdir,$(obj_build_dirs),$(eval $(call make-goal,$(bdir))))
 
-# Pattern rule for main.cpp
-$(obj_dir)/main.o: $(SRC_ROOT)/test_main.cpp | $(obj_dir)
-	$(CXX) -c $(CXXFLAGS) $< -o $@
-
 # Rules for making the output and build directories
 $(OBJECT_DIR) \
 $(obj_build_dirs) \

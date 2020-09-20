@@ -91,9 +91,6 @@ $(foreach bdir,$(obj_build_dirs),$(eval $(call make-goal,$(bdir))))
 # Pattern rule for compiling .rc
 $(obj_dir)/WinApp.o: $(SRC_ROOT)/WinApp.rc | $(obj_dir)
 	$(WINDRES) --input-format rc --output-format coff $(include_dir) $< $@
-# Pattern rule for main.cpp
-$(obj_dir)/main.o: $(SRC_ROOT)/main.cpp | $(obj_dir)
-	$(CXX) -c $(CXXFLAGS) $< -o $@
 
 # Rules for making the output and build directories
 $(OBJECT_DIR) \
