@@ -58,6 +58,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <string>
+#include <climits> 
 
 using namespace std;
 
@@ -535,9 +536,17 @@ void Engine::Step(bool isActive)
 			if(!it.first->Icon())
 				continue;
 			
-			if(it.first->Ammo())
-				ammo.emplace_back(it.first,
-					flagship->OutfitCount(it.first->Ammo()));
+			if(!it.first->Ammo().empty())
+			{
+   			 // Keep track of the remaining number of shots this weapon has.
+    			int remaining = INT_MAX;
+   			 for(const auto &sit : it.first->Ammo())
+			if(sit.second > 0)	 
+      			remaining = min(remaining, flagship->OutfitCount(sit.first) / sit.second);	
+   			 // Emplace this weapon and the number of shots that this weapon has remaining in the ammo vector.
+   			 ammo.emplace_back(it.first, remaining);	 
+			}
+			
 			else if(it.first->FiringFuel())
 			{
 				double remaining = flagship->Fuel()
