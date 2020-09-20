@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Outfit.h"
+#include "OutfitterPanel.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -3163,11 +3165,28 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(!weapon || !weapon->IsWeapon())
 		return false;
 	
-	if(weapon->Ammo())
+	for(const auto &ammo : weapon->Ammo())
 	{
-		auto it = outfits.find(weapon->Ammo());
-		if(it == outfits.end() || it->second < weapon->AmmoUsage())
+		// check for negative ammo useage, if created outfit is ammunition check if there is capacity to store it
+		if(ammo.second < 0 && ammo.first->Category() == "Ammunition")
+		{	
+		int amount = Attributes().CanAdd(*ammo.first, numeric_limits<int>::max());
+		if(-ammo.second > amount)
+			return false;	
+		}
+		// check for negative ammo useage, if created outfit is not ammunition check if there is cargo space to store it
+		else if(ammo.second < 0 && ammo.first->Category() != "Ammunition")
+		{		
+		if(ammo.first->Mass() > cargo.Free())	
+			return false;			
+		}	
+		// positive ammo useage, check for sufficient ammo to fire weapon		
+		else
+		{	
+		auto it = outfits.find(ammo.first);
+		if(it == outfits.end() || it->second < ammo.second)
 			return false;
+		}			
 	}
 	
 	if(energy < weapon->FiringEnergy())
@@ -3190,15 +3209,19 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 {
 	if(!weapon)
 		return;
-	if(weapon->Ammo())
-		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
 	
 	energy -= weapon->FiringEnergy();
 	fuel -= weapon->FiringFuel();
 	heat += weapon->FiringHeat();
 }
 
-
+	for(const auto &ammo : weapon->Ammo())
+	{
+	if(ammo.first->Category() == "Ammunition")
+		AddOutfit(ammo.first, -ammo.second);
+	else
+		cargo.Add(ammo.first, -ammo.second);
+	}
 
 // Each ship can have a target system (to travel to), a target planet (to
 // land on) and a target ship (to move to, and attack if hostile).
