@@ -1027,7 +1027,7 @@ mission "Remnant: Deep Surveillance"
 				`	"I'm sorry, but I helped them before coming to understand this."`
 			
 			`	Torza seems to relax slightly. "This is unfortunate. I can not get angry at you for that which you did not understand. But now that you do understand, seek to not make this same mistake in the future.`
-			`	"What do they know?"
+			`	"What do they know?"`
 				goto knowledge
 			
 			label threat
@@ -1073,16 +1073,16 @@ mission "Remnant: Deep Surveillance"
 			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
-					goto threat
+					goto threat2
 				`	"I'm sorry, but I helped them before coming to understand this."`
 			
 			apply
 				set "remnant: lied to torza: understanding"
 			`	"Liar!" Torza yells at you while standing up from the bench. "You told us of these scientists after we had already trusted you with a license." Torza walks away from you angrily, then turns his head.`
-			`	"What do they know?"
+			`	"What do they know?"`
 				goto knowledge
 			
-			label threat
+			label threat2
 			`	"It is not a matter of them being a threat," Torza says angrily. "They may be peaceful, but who they tell or who may learn from them may not.`
 			`	"What do they know?"`
 				goto knowledge
@@ -1108,7 +1108,7 @@ mission "Remnant: Deep Surveillance"
 			label technology
 			choice
 				`	"They know where the Remnant are in the Ember Waste."`
-					goto lcoation
+					goto location
 				`	"They have scans of a few Remnant ships."`
 					goto scans
 				`	"They have samples of some Remnant technology."`
@@ -1271,6 +1271,27 @@ mission "Remnant: Deep Surveillance"
 				set "remnant: player is surveilled"
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreed to bring us this information, but we can not allow another situation like this to occur."`
 				accept
+	
+	# Just Terminus = get info no problem.
+	
+	# Just Deep: Remnant + never told of remnant = get classified info no problem
+	# Terminus + Deep + never told of remnant = get classified info, comments on your scientific interest
+	
+	# Just Deep + told of remnant + knew after + didn't bring tech = get old info, slight suspicion
+	# Just Deep + told of remnant + knew after + brought tech + no surveillance = get classified info, no suspicion
+	# Just Deep + told of remnant + knew after + brought tech + did surveillance = get classified info, no suspicion
+	
+	# Just Deep + told of remnant + knew before + didn't bring tech = get old info, suspicion
+	# Just Deep + told of remnant + knew before + brought tech + no surveillance = get old info, slight suspicion
+	# Just Deep + told of remnant + knew before + brought tech + did surveillance = get classified info, no suspicion
+	
+	# Terminus + Deep + told of remnant + knew after + didn't bring tech = get old info, moderate suspicion
+	# Terminus + Deep + told of remnant + knew after + brought tech + no surveillance = get old info, suspicion
+	# Terminus + Deep + told of remnant + knew after + brought tech + did surveillance = get classified info, no suspicion
+	
+	# Terminus + Deep + told of remnant + knew before + didn't bring tech = super suspicious, get nothing
+	# Terminus + Deep + told of remnant + knew before + brought tech + no surveillance = get old info, moderate suspicion
+	# Terminus + Deep + told of remnant + knew before + brought tech + did surveillance = get classified info, no suspicion
 	
 	# Multiple visits + knowing about the Remnant before + not doing surveillance + not bringing tech all raise suspicion.
 	# Doing surveillance = no suspicion
