@@ -244,15 +244,13 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			int available = count;
 			// Keep track of how many you actually took.
 			count = 0;
-			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->Ammo() == outfit)
-				{
-					// Figure out how many of these outfits you can install.
-					count = you->Attributes().CanAdd(*outfit, available);
-					you->AddOutfit(outfit, count);
-					// You have now installed as many of these items as possible.
-					break;
-				}
+			if(outfit->Category() == "Ammunition")
+			{
+			// Figure out how many of these outfits you can install.
+			count = you->Attributes().CanAdd(*outfit, available);
+			you->AddOutfit(outfit, count);
+			} 
+
 			// Transfer as many as possible of these outfits to your cargo hold.
 			count += cargo.Add(outfit, available - count);
 			// Take outfits from cargo first, then from the ship itself.
@@ -599,9 +597,10 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	// Otherwise, check if it is ammo for any of your weapons. If so, check if
 	// you can install it as an outfit.
 	if(outfit)
-		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->Ammo() == outfit && ship.Attributes().CanAdd(*outfit))
-				return true;
+	{
+	if(outfit->Category() == "Ammunition" && ship.Attributes().CanAdd(*outfit))
+		return true;
+	}
 	
 	return false;
 }
