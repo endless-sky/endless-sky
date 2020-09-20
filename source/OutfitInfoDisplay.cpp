@@ -266,15 +266,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 10;
 	}
 	
-	if(outfit.Ammo())
+	for(const auto &ammo : outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
-		attributeValues.emplace_back(outfit.Ammo()->Name());
+		attributeValues.emplace_back(ammo.first->Name());
 		attributesHeight += 20;
-		if(outfit.AmmoUsage() != 1)
+		if(ammo.second != 1)
 		{
 			attributeLabels.emplace_back("ammo usage:");
-			attributeValues.emplace_back(Format::Number(outfit.AmmoUsage()));
+			attributeValues.emplace_back(Format::Number(ammo.second));
 			attributesHeight += 20;
 		}
 	}
