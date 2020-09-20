@@ -1010,9 +1010,9 @@ mission "Remnant: Deep Surveillance"
 				set "remnant: told about deep"
 			`	You ask one of the Remnant in the spaceport where you would be able to find a prefect and they point you to what looks like an information desk of sorts. There you tell the attendant that you have something potentially important to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
 			`	"Greetings, Captain. I am Prefect Torza. I was told you had information that could be important to our security." He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same. "What do you have to tell us?"`
-			
 			branch terminus2
 				not "Deep: Remnant Research: done"
+			
 			choice
 				`	"I helped a group of scientists from the Deep to discover the Ember Waste."`
 				`	"A group of scientists from the Deep has discovered the Ember Waste."`
@@ -1094,6 +1094,7 @@ mission "Remnant: Deep Surveillance"
 			
 			branch surveillance
 				has "Deep: Remnant Surveillance: done"
+			
 			choice
 				`	"They know where the Remnant are in the Ember Waste."`
 					goto location
@@ -1145,6 +1146,7 @@ mission "Remnant: Deep Surveillance"
 			`	"And you were the one who brought it to them," Torza responds.`
 			branch reciprocal 
 				has "Remnant: Tech Retrieval: done"
+			
 			choice
 				`	"Yes, but what I do with your technology after buying it is none of your concern."`
 					goto concern
@@ -1255,6 +1257,7 @@ mission "Remnant: Deep Surveillance"
 				or
 					has "remnant: lied to torza: technology"
 					has "remnant: lied to torza: understanding"
+			
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out without another word.`
 				accept
 			
