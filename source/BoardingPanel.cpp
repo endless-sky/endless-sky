@@ -250,7 +250,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			count = you->Attributes().CanAdd(*outfit, available);
 			you->AddOutfit(outfit, count);
 			} 
-
 			// Transfer as many as possible of these outfits to your cargo hold.
 			count += cargo.Add(outfit, available - count);
 			// Take outfits from cargo first, then from the ship itself.
