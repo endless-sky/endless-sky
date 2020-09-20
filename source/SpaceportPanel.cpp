@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpaceportPanel.h"
 
 #include "Color.h"
+#include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
@@ -32,17 +33,13 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 {
 	SetTrapAllEvents(false);
 	
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Font::JUSTIFIED);
-	text.SetWrapWidth(480);
-	text.Wrap(player.GetPlanet()->SpaceportDescription());
+	text = player.GetPlanet()->SpaceportDescription();
 	
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
 	const Interface *interface = GameData::Interfaces().Get("news");
 	portraitWidth = interface->GetBox("message portrait").Width();
 	normalWidth = interface->GetBox("message").Width();
-	newsMessage.SetFont(FontSet::Get(14));
 }
 
 
@@ -61,8 +58,7 @@ void SpaceportPanel::UpdateNews()
 	hasPortrait = portrait;
 	newsInfo.SetSprite("portrait", portrait);
 	newsInfo.SetString("name", news->Name() + ':');
-	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
-	newsMessage.Wrap(news->Message());
+	newsMessage = news->Message();
 }
 
 
@@ -90,7 +86,8 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 	
-	text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
+	const Font &font = FontSet::Get(14);
+	font.Draw(text, Point(-300., 80.), *GameData::Colors().Get("bright"), {480, Font::JUSTIFIED});
 	
 	if(hasNews)
 	{
@@ -98,8 +95,8 @@ void SpaceportPanel::Draw()
 		interface->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
-		newsMessage.Draw(interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
-			*GameData::Colors().Get("medium"));
+		font.Draw(newsMessage, interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
+			*GameData::Colors().Get("medium"), {hasPortrait ? portraitWidth : normalWidth, Font::JUSTIFIED});
 	}
 }
 

@@ -117,10 +117,6 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 	
-	wrap.SetWrapWidth(380);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(Font::JUSTIFIED);
-	
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
@@ -164,10 +160,6 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 	
-	wrap.SetWrapWidth(380);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(Font::JUSTIFIED);
-
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem)
@@ -574,8 +566,8 @@ void MissionPanel::DrawSelectedSystem() const
 		text += " (" + to_string(jumps) + " jumps away)";
 	
 	const Font &font = FontSet::Get(14);
-	Point pos(-.5 * font.Width(text), Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, *GameData::Colors().Get("bright"));
+	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
+	font.Draw(text, pos, *GameData::Colors().Get("bright"), {350, Font::TRUNC_MIDDLE, Font::CENTER});
 }
 
 
@@ -682,7 +674,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 		
 		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
 		font.Draw(it->Name(), pos,
-			(!canAccept ? dim : isSelected ? selected : unselected));
+			(!canAccept ? dim : isSelected ? selected : unselected),
+			{SIDE_WIDTH - 11, Font::TRUNC_BACK});
 	}
 	
 	return pos;
@@ -710,13 +703,16 @@ void MissionPanel::DrawMissionInfo()
 	interface->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
+	string description;
 	if(availableIt != available.end())
-		wrap.Wrap(availableIt->Description());
+		description = availableIt->Description();
 	else if(acceptedIt != accepted.end())
-		wrap.Wrap(acceptedIt->Description());
+		description = acceptedIt->Description();
 	else
 		return;
-	wrap.Draw(Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
+	const Font &font = FontSet::Get(14);
+	font.Draw(description, Point(-190., Screen::Bottom() - 213.),
+		*GameData::Colors().Get("bright"), {380, Font::JUSTIFIED});
 }
 
 

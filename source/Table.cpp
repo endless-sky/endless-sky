@@ -163,7 +163,7 @@ void Table::Draw(const string &text, const Color &color, const Font::Layout *spe
 			layout.align == Font::RIGHT ? -1. : 0.;
 		if(it != columns.end())
 			pos += Point(it->offset + alignAdjust * layout.width, 0.);
-		font->Draw(text, pos, color, &layout);
+		font->Draw(text, pos, color, layout);
 	}
 	
 	Advance();
@@ -181,6 +181,30 @@ void Table::Draw(double value, const Font::Layout *special) const
 void Table::Draw(double value, const Color &color, const Font::Layout *special) const
 {
 	Draw(Format::Number(value), color, special);
+}
+
+
+
+void Table::DrawOppositeTruncRight(int width, const string &left, const Color &leftColor,
+	const string &right, const Color &rightColor, Font::Truncate trunc)
+{
+	const Font::Layout layoutLeft{-1, Font::TRUNC_NONE, Font::LEFT};
+	const int leftWidth = font->Width(left, layoutLeft);
+	Draw(left, leftColor, &layoutLeft);
+	const Font::Layout layoutRight{width - leftWidth, trunc, Font::RIGHT};
+	Draw(right, rightColor, &layoutRight);
+}
+
+
+
+void Table::DrawOppositeTruncLeft(int width, const string &left, const Color &leftColor,
+	const string &right, const Color &rightColor, Font::Truncate trunc)
+{
+	const Font::Layout layoutRight{-1, Font::TRUNC_NONE, Font::LEFT};
+	const int rightWidth = font->Width(right, layoutRight);
+	const Font::Layout layoutLeft{width - rightWidth, trunc, Font::LEFT};
+	Draw(left, leftColor, &layoutLeft);
+	Draw(right, rightColor, &layoutRight);
 }
 
 

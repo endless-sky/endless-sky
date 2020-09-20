@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Information.h"
-#include "WrappedText.h"
 
 class News;
 class PlayerInfo;
@@ -41,7 +40,7 @@ private:
 	
 private:
 	PlayerInfo &player;
-	WrappedText text;
+	std::string text;
 	
 	// Current news item (if any):
 	bool hasNews = false;
@@ -49,7 +48,7 @@ private:
 	int portraitWidth;
 	int normalWidth;
 	Information newsInfo;
-	WrappedText newsMessage;
+	std::string newsMessage;
 };
 
 

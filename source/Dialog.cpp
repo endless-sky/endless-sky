@@ -81,23 +81,25 @@ namespace {
 	};
 }
 
+Font::Layout Dialog::defaultDialogLayout{0, Font::JUSTIFIED};
+
 
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, Font::Truncate trunc)
+Dialog::Dialog(const string &text, const Font::Layout &layout)
 {
-	Init(text, false, false, trunc);
+	Init(text, layout, false);
 }
 
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const Font::Layout &layout)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
-	Init(text, true, true);
+	Init(text, layout, true, true);
 }
 
 
@@ -158,7 +160,7 @@ void Dialog::Draw()
 	font.Draw(okText, labelPos, okIsActive ? bright : dim);
 	
 	// Draw the text.
-	text.Draw(textPos, dim);
+	font.Draw(dialogText, textPos, dim, textLayout);
 	
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
@@ -168,11 +170,11 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		const Font::Layout layout{Font::TRUNC_FRONT, WIDTH - 30};
+		const Font::Layout layout{WIDTH - 30, Font::TRUNC_FRONT};
 		const string validatedInput = Font::EscapeMarkupHasError(input);
-		font.Draw(validatedInput, stringPos, bright, &layout);
+		font.Draw(validatedInput, stringPos, bright, layout);
 		
-		Point barPos(stringPos.X() + font.Width(validatedInput, &layout) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(validatedInput, layout) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -277,24 +279,22 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, bool canCancel, bool isMission, Font::Truncate trunc)
+void Dialog::Init(const string &message, const Font::Layout &layout, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 	
-	text.SetAlignment(Font::JUSTIFIED);
-	text.SetWrapWidth(WIDTH - 20);
-	text.SetTruncate(trunc);
-	text.SetFont(FontSet::Get(14));
-	
-	text.Wrap(message);
+	textLayout = layout;
+	textLayout.width = WIDTH - 20;
+	dialogText = message;
 	
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about
 	// 5 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (text.Height() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
+	const Font &font = FontSet::Get(14);
+	height = 10 + (font.Height(dialogText, textLayout) - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;

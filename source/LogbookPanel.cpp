@@ -24,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
-#include "WrappedText.h"
 
 #include <algorithm>
 #include <set>
@@ -120,9 +119,7 @@ void LogbookPanel::Draw()
 	}
 	
 	// Parameters for drawing the main text:
-	WrappedText wrap(font);
-	wrap.SetAlignment(Font::JUSTIFIED);
-	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
+	Font::Layout textLayout{static_cast<int>(ceil(TEXT_WIDTH - 2. * PAD)), Font::JUSTIFIED};
 	
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
@@ -134,13 +131,12 @@ void LogbookPanel::Draw()
 		for(auto it = begin; it != end; ++it)
 		{
 			string date = it->first.ToString();
-			Font::Layout layout{Font::TRUNC_NONE, static_cast<int>(TEXT_WIDTH - 2. * PAD), Font::RIGHT};
-			font.Draw(date, pos + Point(0., textOffset.Y()), dim, &layout);
+			font.Draw(date, pos + Point(0., textOffset.Y()), dim,
+				{static_cast<int>(TEXT_WIDTH - 2. * PAD), Font::RIGHT});
 			pos.Y() += LINE_HEIGHT;
-		
-			wrap.Wrap(it->second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			
+			font.Draw(it->second, pos, medium, textLayout);
+			pos.Y() += font.Height(it->second, textLayout) + GAP;
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
@@ -149,10 +145,8 @@ void LogbookPanel::Draw()
 		{
 			font.Draw(it.first, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
-		
-			wrap.Wrap(it.second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			font.Draw(it.second, pos, medium, textLayout);
+			pos.Y() += font.Height(it.second, textLayout) + GAP;
 		}
 	}
 	

@@ -15,8 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
-#include "WrappedText.h"
-
 #include <list>
 
 class Color;
@@ -83,7 +81,6 @@ private:
 	double acceptedScroll = 0.;
 	
 	int dragSide = 0;
-	WrappedText wrap;
 };
 
 

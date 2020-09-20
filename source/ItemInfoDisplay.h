@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ITEM_INFO_DISPLAY_H_
 #define ITEM_INFO_DISPLAY_H_
 
+#include "Font.h"
 #include "Point.h"
-#include "WrappedText.h"
 
 #include <string>
 #include <vector>
@@ -56,8 +56,9 @@ protected:
 protected:
 	static const int WIDTH = 250;
 	
-	WrappedText description;
+	std::string description;
 	int descriptionHeight = 0;
+	const Font::Layout descriptionLayout;
 	
 	std::vector<std::string> attributeLabels;
 	std::vector<std::string> attributeValues;
@@ -70,7 +71,8 @@ protected:
 	mutable std::string hover;
 	mutable int hoverCount = 0;
 	bool hasHover = false;
-	mutable WrappedText hoverText;
+	mutable std::string hoverText;
+	const Font::Layout hoverLayout;
 };
 
 

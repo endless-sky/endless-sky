@@ -136,7 +136,7 @@ void ConversationPanel::Draw()
 	{
 		// This conversation node is prompting the player to enter their name.
 		Point fieldSize(150, 20);
-		const Font::Layout layout{Font::TRUNC_FRONT, static_cast<int>(fieldSize.X() - 10)};
+		const Font::Layout layout{static_cast<int>(fieldSize.X() - 10), Font::TRUNC_FRONT};
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
@@ -150,15 +150,15 @@ void ConversationPanel::Draw()
 			// Fill in whichever entry box is active right now.
 			FillShader::Fill(center, fieldSize, selectionColor);
 			// Draw the text cursor.
-			center.X() += font.Width(choice ? lastName : firstName, &layout) - 67;
+			center.X() += font.Width(choice ? lastName : firstName, layout) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
 		}
 		
 		font.Draw("First name:", point + Point(40, 0), dim);
-		font.Draw(firstName, point + Point(120, 0), choice ? grey : bright, &layout);
+		font.Draw(firstName, point + Point(120, 0), choice ? grey : bright, layout);
 		
 		font.Draw("Last name:", point + Point(270, 0), dim);
-		font.Draw(lastName, point + Point(350, 0), choice ? bright : grey, &layout);
+		font.Draw(lastName, point + Point(350, 0), choice ? bright : grey, layout);
 		
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
@@ -407,14 +407,12 @@ void ConversationPanel::ClickChoice(int index)
 
 
 // Paragraph constructor.
-ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
-	: scene(scene), isFirst(isFirst)
+ConversationPanel::Paragraph::Paragraph(const string &t, const Sprite *scene, bool isFirst)
+	: scene(scene), text(t), textLayout(WIDTH, Font::JUSTIFIED), isFirst(isFirst)
 {
-	wrap.SetAlignment(Font::JUSTIFIED);
-	wrap.SetWrapWidth(WIDTH);
-	wrap.SetFont(FontSet::Get(14));
-	
-	wrap.Wrap(text);
+	const Font &font = FontSet::Get(14);
+	textHeight = font.Height(text, textLayout);
+	textParagraphBreak = font.ParagraphBreak(textLayout);
 }
 
 
@@ -422,7 +420,7 @@ ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene,
 // Get the height of this paragraph (including any "scene" image).
 int ConversationPanel::Paragraph::Height() const
 {
-	int height = wrap.Height();
+	int height = textHeight;
 	if(scene)
 		height += 20 * !isFirst + scene->Height() + 20;
 	return height;
@@ -433,7 +431,7 @@ int ConversationPanel::Paragraph::Height() const
 // Get the center point of this paragraph.
 Point ConversationPanel::Paragraph::Center() const
 {
-	return Point(.5 * WIDTH, .5 * (Height() - wrap.ParagraphBreak()));
+	return Point(.5 * WIDTH, .5 * (Height() - textParagraphBreak));
 }
 
 
@@ -448,8 +446,9 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 		SpriteShader::Draw(scene, point + offset);
 		point.Y() += 20 * !isFirst + scene->Height() + 20;
 	}
-	wrap.Draw(point, color);
-	point.Y() += wrap.Height();
+	const Font &font = FontSet::Get(14);
+	font.Draw(text, point, color, textLayout);
+	point.Y() += textHeight;
 	return point;
 }
 
@@ -458,5 +457,6 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 // Bottom Margin
 int ConversationPanel::Paragraph::BottomMargin() const
 {
-	return wrap.BottomMargin();
+	const Font &font = FontSet::Get(14);
+	return textParagraphBreak + font.LineHeight(textLayout) - font.Height();
 }

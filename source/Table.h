@@ -67,6 +67,13 @@ public:
 	void Draw(double value, const Font::Layout *special = nullptr) const;
 	void Draw(double value, const Color &color, const Font::Layout *special = nullptr) const;
 	
+	// Draw a left-aligned column and a right-aligned,
+	// and truncate the left or right column adaptively.
+	void DrawOppositeTruncRight(int width, const std::string &left, const Color &leftColor,
+		const std::string &right, const Color &rightColor, Font::Truncate trunc);
+	void DrawOppositeTruncLeft(int width, const std::string &left, const Color &leftColor,
+		const std::string &right, const Color &rightColor, Font::Truncate trunc);
+	
 	// Draw an underline under the text for the current row.
 	void DrawUnderline() const;
 	void DrawUnderline(const Color &color) const;

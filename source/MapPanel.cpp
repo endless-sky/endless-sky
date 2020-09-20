@@ -111,11 +111,6 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	if(Preferences::Has("Show escort systems on map"))
 		TallyEscorts(player.Ships(), escortSystems);
 	
-	// Initialize a centered tooltip.
-	hoverText.SetFont(FontSet::Get(14));
-	hoverText.SetWrapWidth(150);
-	hoverText.SetAlignment(Font::LEFT);
-	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem, true);
 }
@@ -1133,13 +1128,13 @@ void MapPanel::DrawTooltips()
 			tooltip += to_string(t.first) + (t.first == 1 ? " escort" : " escorts");
 		if(t.second)
 			tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
-		
-		hoverText.Wrap(tooltip);
 	}
 	if(!tooltip.empty())
 	{
 		// Add 10px margin to all sides of the text.
-		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+		const Font &font = FontSet::Get(14);
+		const Font::Layout layout{150, Font::LEFT};
+		Point size(font.Width(tooltip, layout), font.Height(tooltip, layout) - font.ParagraphBreak(layout));
 		size += Point(20., 20.);
 		Point topLeft = (hoverSystem->Position() + center) * Zoom();
 		// Do not overflow the screen dimensions.
@@ -1149,7 +1144,7 @@ void MapPanel::DrawTooltips()
 			topLeft.Y() -= size.Y();
 		// Draw the background fill and the tooltip text.
 		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+		font.Draw(tooltip, topLeft + Point(10., 10.), *GameData::Colors().Get("medium"), layout);
 	}
 }
 

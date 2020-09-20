@@ -25,8 +25,13 @@ namespace {
 	map<int, Font> fonts;
 	
 	const string defaultFontDescription = "Ubuntu";
-	string fontDescription = defaultFontDescription;
-	string fontLanguage = "en";
+	Font::DrawingSettings drawingSettings
+	{
+		defaultFontDescription,
+		"en",
+		1.12,
+		0.36
+	};
 	char envBackend[] = "PANGOCAIRO_BACKEND=fc";
 }
 
@@ -52,27 +57,17 @@ const Font &FontSet::Get(int size)
 	{
 		putenv(envBackend);
 		Font &font = fonts[size];
-		font.SetFontDescription(fontDescription);
+		font.SetDrawingSettings(drawingSettings);
 		font.SetPixelSize(size);
-		font.SetLanguage(fontLanguage);
 	}
 	return fonts[size];
 }
 
 
 
-void FontSet::SetFontDescription(const string &desc)
+void FontSet::SetDrawingSettings(const Font::DrawingSettings &settings)
 {
-	fontDescription = desc.empty() ? defaultFontDescription : desc;
+	drawingSettings = settings;
 	for(auto &it : fonts)
-		it.second.SetFontDescription(fontDescription);
-}
-
-
-
-void FontSet::SetLanguage(const string &lang)
-{
-	fontLanguage = lang;
-	for(auto &it : fonts)
-		it.second.SetLanguage(lang);
+		it.second.SetDrawingSettings(drawingSettings);
 }

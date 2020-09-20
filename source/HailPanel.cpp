@@ -30,7 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
-#include "WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -161,8 +160,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	const Font::Layout layout{Font::TRUNC_BACK, 330};
-	info.SetString("header", header, layout);
+	info.SetString("header", header, {330, Font::TRUNC_BACK});
 	if(ship)
 	{
 		info.SetCondition("show assist");
@@ -218,12 +216,8 @@ void HailPanel::Draw()
 	draw.Draw();
 	
 	// Draw the current message.
-	WrappedText wrap;
-	wrap.SetAlignment(Font::JUSTIFIED);
-	wrap.SetWrapWidth(330);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.Wrap(message);
-	wrap.Draw(Point(-50., -50.), *GameData::Colors().Get("medium"));
+	const Font &font = FontSet::Get(14);
+	font.Draw(message, Point(-50., -50.), *GameData::Colors().Get("medium"), {330, Font::JUSTIFIED});
 }
 
 

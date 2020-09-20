@@ -53,7 +53,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
-#include "WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -624,7 +623,7 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
 	}
 	if(currentSystem)
-		info.SetString("location", currentSystem->Name());
+		info.SetString("location", currentSystem->Name(), {140, Font::TRUNC_BACK});
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
@@ -646,6 +645,7 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
+	const Font::Layout destLayout{135, Font::TRUNC_BACK};
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetStellar();
@@ -654,7 +654,7 @@ void Engine::Step(bool isActive)
 			"Cannot land on:";
 		info.SetString("navigation mode", navigationMode);
 		const string &name = object->Name();
-		info.SetString("destination", name);
+		info.SetString("destination", name, destLayout);
 		
 		targets.push_back({
 			object->Position() - center,
@@ -667,9 +667,9 @@ void Engine::Step(bool isActive)
 	{
 		info.SetString("navigation mode", "Hyperspace:");
 		if(player.HasVisited(flagship->GetTargetSystem()))
-			info.SetString("destination", flagship->GetTargetSystem()->Name());
+			info.SetString("destination", flagship->GetTargetSystem()->Name(), destLayout);
 		else
-			info.SetString("destination", "unexplored system");
+			info.SetString("destination", "unexplored system", destLayout);
 	}
 	else
 	{
@@ -716,13 +716,13 @@ void Engine::Step(bool isActive)
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
-		const Font::Layout layout{Font::TRUNC_MIDDLE, 150};
+		const Font::Layout layout{150, Font::TRUNC_MIDDLE};
 		info.SetString("target name", target->Name(), layout);
-		info.SetString("target type", target->ModelName());
+		info.SetString("target type", target->ModelName(), layout);
 		if(!target->GetGovernment())
-			info.SetString("target government", "No Government");
+			info.SetString("target government", "No Government", layout);
 		else
-			info.SetString("target government", target->GetGovernment()->GetName());
+			info.SetString("target government", target->GetGovernment()->GetName(), layout);
 		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 		
@@ -924,19 +924,18 @@ void Engine::Draw() const
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = interface->GetBox("messages");
-	WrappedText messageLine(font);
-	messageLine.SetWrapWidth(messageBox.Width());
-	messageLine.SetParagraphBreak(0.);
+	Font::Layout messageLayout{static_cast<int>(ceil(messageBox.Width())), Font::JUSTIFIED};
+	messageLayout.paragraphBreak = 0;
+	string messageLine;
 	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom());
 	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
 	{
-		messageLine.Wrap(it->message);
-		messagePoint.Y() -= messageLine.Height();
+		messagePoint.Y() -= font.Height(it->message, messageLayout);
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
 		Color color(alpha, 0.f);
-		messageLine.Draw(messagePoint, color);
+		font.Draw(it->message, messagePoint, color, messageLayout);
 	}
 	
 	// Draw crosshairs around anything that is targeted.

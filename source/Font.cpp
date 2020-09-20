@@ -40,15 +40,21 @@ namespace {
 	}
 }
 
+const Font::Layout Font::defaultLayout;
+
 
 
 Font::Font()
 	: shader(), vao(0), vbo(0), scaleI(0), centerI(0), sizeI(0), colorI(0),
-	screenWidth(1), screenHeight(1), viewWidth(1), viewHeight(1), cr(nullptr),
-	fontDescName(), context(nullptr), layout(nullptr), lang(nullptr),
-	pixelSize(0), fontViewHeight(0), surfaceWidth(256), surfaceHeight(64), cache()
+	screenWidth(1), screenHeight(1), viewWidth(1), viewHeight(1), viewFontHeight(0),
+	viewDefaultLineHeight(0), viewDefaultParagraphBreak(0), pixelSize(0),
+	drawingSettings(), space(0), cr(nullptr), context(nullptr), pangoLayout(nullptr),
+	surfaceWidth(256), surfaceHeight(64), cache()
 {
-	lang = pango_language_from_string("en");
+	drawingSettings.language = "en";
+	drawingSettings.lineHeightScale = 1.0;
+	drawingSettings.paragraphBreakScale = 1.0;
+	
 	SetUpShader();
 	UpdateSurfaceSize();
 	
@@ -61,59 +67,50 @@ Font::~Font()
 {
 	if(cr)
 		cairo_destroy(cr);
-	if(layout)
-		g_object_unref(layout);
+	if(pangoLayout)
+		g_object_unref(pangoLayout);
 }
-
-
-
-void Font::SetFontDescription(const string &desc)
-{
-	fontDescName = desc;
-	UpdateFontDesc();
-}
-
 
 
 
 void Font::SetPixelSize(int size)
 {
 	pixelSize = size;
-	UpdateFontDesc();
+	UpdateFont();
 }
 
 
 
-void Font::SetLanguage(const string &langCode)
+void Font::SetDrawingSettings(const DrawingSettings &newSettings)
 {
-	lang = pango_language_from_string(langCode.c_str());
-	UpdateFontDesc();
+	drawingSettings = newSettings;
+	UpdateFont();
 }
 
 
 
 void Font::Draw(const string &str, const Point &point, const Color &color,
-	const Layout *params) const
+	const Layout &layout) const
 {
-	DrawCommon(str, point.X(), point.Y(), color, params, true);
+	DrawCommon(str, point.X(), point.Y(), color, layout, true);
 }
 
 
 
 void Font::DrawAliased(const string &str, double x, double y, const Color &color,
-	const Layout *params) const
+	const Layout &layout) const
 {
-	DrawCommon(str, x, y, color, params, false);
+	DrawCommon(str, x, y, color, layout, false);
 }
 
 
 
-int Font::Height(const string &str, const Layout *params) const
+int Font::Height(const string &str, const Layout &layout) const
 {
 	if(str.empty())
 		return 0;
 	
-	const RenderedText &text = Render(str, params);
+	const RenderedText &text = Render(str, layout);
 	if(!text.texture)
 		return 0;
 	return TextFromViewCeilY(text.height);
@@ -121,16 +118,36 @@ int Font::Height(const string &str, const Layout *params) const
 
 
 
-int Font::Width(const string &str, const Layout *params) const
+int Font::Width(const string &str, const Layout &layout) const
 {
-	return TextFromViewCeilX(ViewWidth(str, params));
+	return TextFromViewCeilX(ViewWidth(str, layout));
 }
 
 
 
 int Font::Height() const
 {
-	return TextFromViewCeilY(fontViewHeight);
+	return TextFromViewCeilY(viewFontHeight);
+}
+
+
+
+int Font::LineHeight(const Layout &layout) const
+{
+	if(layout.lineHeight == DEFAULT_LINE_HEIGHT)
+		return TextFromViewCeilY(viewDefaultLineHeight);
+	else
+		return layout.lineHeight;
+}
+
+
+
+int Font::ParagraphBreak(const Layout &layout) const
+{
+	if(layout.paragraphBreak == DEFAULT_PARAGRAPH_BREAK)
+		return TextFromViewCeilY(viewDefaultParagraphBreak);
+	else
+		return layout.paragraphBreak;
 }
 
 
@@ -174,40 +191,49 @@ void Font::UpdateSurfaceSize() const
 	cr = cairo_create(sf);
 	cairo_surface_destroy(sf);
 	
-	if(layout)
-		g_object_unref(layout);
-	layout = pango_cairo_create_layout(cr);
-	context = pango_layout_get_context(layout);
+	if(pangoLayout)
+		g_object_unref(pangoLayout);
+	pangoLayout = pango_cairo_create_layout(cr);
+	context = pango_layout_get_context(pangoLayout);
 	
-	pango_layout_set_wrap(layout, PANGO_WRAP_WORD);
+	pango_layout_set_wrap(pangoLayout, PANGO_WRAP_WORD);
 	
-	UpdateFontDesc();
+	UpdateFont();
 }
 
 
-void Font::UpdateFontDesc() const
+void Font::UpdateFont() const
 {
 	if(pixelSize <= 0)
 		return;
 	
 	// Get font descriptions.
-	PangoFontDescription *fontDesc = pango_font_description_from_string(fontDescName.c_str());
+	PangoFontDescription *fontDesc = pango_font_description_from_string(drawingSettings.description.c_str());
 	
 	// Set the pixel size.
 	const int fontSize = ViewFromTextFloorY(pixelSize) * PANGO_SCALE;
 	pango_font_description_set_absolute_size(fontDesc, fontSize);
 	
 	// Update the context.
+	PangoLanguage *lang = pango_language_from_string(drawingSettings.language.c_str());
 	pango_context_set_language(context, lang);
 	
 	// Update the layout.
-	pango_layout_set_font_description(layout, fontDesc);
+	pango_layout_set_font_description(pangoLayout, fontDesc);
 	
 	// Update layout parameters.
 	PangoFontMetrics *metrics = pango_context_get_metrics(context, fontDesc, lang);
 	const int ascent = pango_font_metrics_get_ascent(metrics);
 	const int descent = pango_font_metrics_get_descent(metrics);
-	fontViewHeight = PixelFromPangoCeil(ascent + descent);
+	viewFontHeight = PixelFromPangoCeil(ascent + descent);
+	if (drawingSettings.lineHeightScale >= 0)
+		viewDefaultLineHeight = viewFontHeight * drawingSettings.lineHeightScale;
+	else
+		viewDefaultLineHeight = 0;
+	if (drawingSettings.paragraphBreakScale >= 0)
+		viewDefaultParagraphBreak = viewFontHeight * drawingSettings.paragraphBreakScale;
+	else
+		viewDefaultParagraphBreak = 0;
 	
 	// Clean up.
 	pango_font_metrics_unref(metrics);
@@ -220,7 +246,7 @@ void Font::UpdateFontDesc() const
 	PangoTabArray *tb = pango_tab_array_new(TOTAL_TAB_STOPS, FALSE);
 	for(int i = 0; i < TOTAL_TAB_STOPS; ++i)
 		pango_tab_array_set_tab(tb, i, PANGO_TAB_LEFT, i * tabSize);
-	pango_layout_set_tabs(layout, tb);
+	pango_layout_set_tabs(pangoLayout, tb);
 	pango_tab_array_free(tb);
 }
 
@@ -311,7 +337,7 @@ string Font::RemoveAccelerator(const string &str)
 
 
 void Font::DrawCommon(const string &str, double x, double y, const Color &color,
-	const Layout *params, bool alignToDot) const
+	const Layout &layout, bool alignToDot) const
 {
 	if(str.empty())
 		return;
@@ -326,10 +352,10 @@ void Font::DrawCommon(const string &str, double x, double y, const Color &color,
 		viewWidth = xyhw[2];
 		viewHeight = xyhw[3];
 		
-		UpdateFontDesc();
+		UpdateFont();
 	}
 	
-	const RenderedText &text = Render(str, params);
+	const RenderedText &text = Render(str, layout);
 	if(!text.texture)
 		return;
 	
@@ -368,33 +394,34 @@ void Font::DrawCommon(const string &str, double x, double y, const Color &color,
 }
 
 
-
+#include <iostream>
 // Render the text.
-const Font::RenderedText &Font::Render(const string &str, const Layout *params) const
+const Font::RenderedText &Font::Render(const string &str, const Layout &layout) const
 {
-	if(!params)
-		params = &defaultParams;
-	
 	// Return if already cached.
-	const CacheKey key(str, *params, showUnderlines);
+	const CacheKey key(str, layout, showUnderlines);
 	auto cached = cache.Use(key);
 	if(cached.second)
 		return *cached.first;
 	
-	// Convert to viewport coodinates.
-	Layout viewParams = *params;
-	if(params->width > 0)
-		viewParams.width = ViewFromTextX(params->width);
-	if(params->lineHeight != DEFAULT_LINE_HEIGHT)
-		viewParams.lineHeight = ViewFromTextFloorY(params->lineHeight);
-	if(params->paragraphBreak != 0)
-		viewParams.paragraphBreak = ViewFromTextFloorY(params->paragraphBreak);
+	// Convert to viewport coodinates except align and truncate.
+	Layout viewLayout = layout;
+	if(layout.width > 0)
+		viewLayout.width = ViewFromTextX(layout.width);
+	if(layout.lineHeight == DEFAULT_LINE_HEIGHT)
+		viewLayout.lineHeight = viewDefaultLineHeight;
+	else
+		viewLayout.lineHeight = ViewFromTextFloorY(layout.lineHeight);
+	if(layout.paragraphBreak == DEFAULT_PARAGRAPH_BREAK)
+		viewLayout.paragraphBreak = viewDefaultParagraphBreak;
+	else
+		viewLayout.paragraphBreak = ViewFromTextFloorY(layout.paragraphBreak);
 	
 	// Truncate
-	const int layoutWidth = viewParams.width < 0 ? -1 : viewParams.width * PANGO_SCALE;
-	pango_layout_set_width(layout, layoutWidth);
+	const int layoutWidth = viewLayout.width < 0 ? -1 : viewLayout.width * PANGO_SCALE;
+	pango_layout_set_width(pangoLayout, layoutWidth);
 	PangoEllipsizeMode ellipsize;
-	switch(viewParams.truncate)
+	switch(viewLayout.truncate)
 	{
 	case TRUNC_NONE:
 		ellipsize = PANGO_ELLIPSIZE_NONE;
@@ -411,12 +438,12 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	default:
 		ellipsize = PANGO_ELLIPSIZE_NONE;
 	}
-	pango_layout_set_ellipsize(layout, ellipsize);
+	pango_layout_set_ellipsize(pangoLayout, ellipsize);
 	
 	// Align and justification
 	PangoAlignment align;
 	gboolean justify;
-	switch(viewParams.align)
+	switch(viewLayout.align)
 	{
 	case LEFT:
 		align = PANGO_ALIGN_LEFT;
@@ -438,8 +465,8 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		align = PANGO_ALIGN_LEFT;
 		justify = FALSE;
 	}
-	pango_layout_set_justify(layout, justify);
-	pango_layout_set_alignment(layout, align);
+	pango_layout_set_justify(pangoLayout, justify);
+	pango_layout_set_alignment(pangoLayout, align);
 	
 	// Replaces straight quotation marks with curly ones.
 	const string text = ReplaceCharacters(str);
@@ -462,18 +489,18 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	}
 	
 	// Set the text and attributes to layout.
-	pango_layout_set_text(layout, drawingText, -1);
-	pango_layout_set_attributes(layout, al);
+	pango_layout_set_text(pangoLayout, drawingText, -1);
+	pango_layout_set_attributes(pangoLayout, al);
 	pango_attr_list_unref(al);
 	
 	// Check the image buffer size.
 	int textWidth;
 	int textHeight;
-	pango_layout_get_pixel_size(layout, &textWidth, &textHeight);
+	pango_layout_get_pixel_size(pangoLayout, &textWidth, &textHeight);
 	// Pango draws a PANGO_UNDERLINE_LOW under the logical rectangle,
 	// and an underline may be longer than a text width.
 	PangoRectangle ink_rect;
-	pango_layout_get_pixel_extents(layout, &ink_rect, nullptr);
+	pango_layout_get_pixel_extents(pangoLayout, &ink_rect, nullptr);
 	textHeight = max(textHeight, ink_rect.y + ink_rect.height);
 	textWidth = max(textWidth, ink_rect.x + ink_rect.width);
 	// Check this surface has enough width.
@@ -481,65 +508,58 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	{
 		surfaceWidth *= (textWidth / surfaceWidth) + 1;
 		UpdateSurfaceSize();
-		return Render(str, params);
+		return Render(str, layout);
 	}
 	
 	// Render
-	const bool isDefaultLineHeight = viewParams.lineHeight == DEFAULT_LINE_HEIGHT;
-	const bool isDefaultSkip = isDefaultLineHeight && viewParams.paragraphBreak == 0;
 	cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
-	if(isDefaultSkip)
+	
+	// Control line skips and paragraph breaks manually.
+	const char *layoutText = pango_layout_get_text(pangoLayout);
+	PangoLayoutIter *it = pango_layout_get_iter(pangoLayout);
+	int y0 = pango_layout_iter_get_baseline(it);
+	int baselineY = PixelFromPangoCeil(y0);
+	int sumExtraY = 0;
+	PangoRectangle logicalRect;
+	pango_layout_iter_get_line_extents(it, nullptr, &logicalRect);
+	cairo_move_to(cr, PixelFromPangoCeil(logicalRect.x), baselineY);
+	pango_cairo_update_layout(cr, pangoLayout);
+	PangoLayoutLine *line = pango_layout_iter_get_line_readonly(it);
+	pango_cairo_show_layout_line(cr, line);
+	while(pango_layout_iter_next_line(it))
 	{
-		cairo_move_to(cr, 0, 0);
-		pango_cairo_show_layout(cr, layout);
-	}
-	else
-	{
-		// Control line skips and paragraph breaks manually.
-		const char *layoutText = pango_layout_get_text(layout);
-		PangoLayoutIter *it = pango_layout_get_iter(layout);
-		int y0 = pango_layout_iter_get_baseline(it);
-		int baselineY = PixelFromPangoCeil(y0);
-		int sumExtraY = 0;
-		PangoRectangle logical_rect;
-		pango_layout_iter_get_line_extents(it, nullptr, &logical_rect);
-		cairo_move_to(cr, PixelFromPangoCeil(logical_rect.x), baselineY);
-		pango_cairo_update_layout(cr, layout);
-		PangoLayoutLine *line = pango_layout_iter_get_line_readonly(it);
-		pango_cairo_show_layout_line(cr, line);
-		while(pango_layout_iter_next_line(it))
+		const int y1 = pango_layout_iter_get_baseline(it);
+		const int index = pango_layout_iter_get_index(it);
+		const int diffY = PixelFromPangoCeil(y1 - y0);
+		if(layoutText[index] == '\0')
 		{
-			const int y1 = pango_layout_iter_get_baseline(it);
-			const int index = pango_layout_iter_get_index(it);
-			const int diffY = PixelFromPangoCeil(y1 - y0);
-			if(layoutText[index] == '\0')
-			{
-				sumExtraY -= diffY;
-				break;
-			}
-			int add = isDefaultLineHeight ? diffY : max(diffY, static_cast<int>(viewParams.lineHeight));
-			if(layoutText[index-1] == '\n')
-				add += viewParams.paragraphBreak;
-			baselineY += add;
-			sumExtraY += add - diffY;
-			pango_layout_iter_get_line_extents(it, nullptr, &logical_rect);
-			cairo_move_to(cr, PixelFromPangoCeil(logical_rect.x), baselineY);
-			pango_cairo_update_layout(cr, layout);
-			line = pango_layout_iter_get_line_readonly(it);
-			pango_cairo_show_layout_line(cr, line);
-			y0 = y1;
+			sumExtraY -= diffY;
+			break;
 		}
-		textHeight += sumExtraY + viewParams.paragraphBreak;
-		if(!isDefaultLineHeight)
-			textHeight +=  viewParams.lineHeight - fontViewHeight;
-		pango_layout_iter_free(it);
+		int add = max(diffY, static_cast<int>(viewLayout.lineHeight));
+		if(layoutText[index-1] == '\n')
+			add += viewLayout.paragraphBreak;
+		baselineY += add;
+		sumExtraY += add - diffY;
+		pango_layout_iter_get_line_extents(it, nullptr, &logicalRect);
+		cairo_move_to(cr, PixelFromPangoCeil(logicalRect.x), baselineY);
+		pango_cairo_update_layout(cr, pangoLayout);
+		line = pango_layout_iter_get_line_readonly(it);
+		pango_cairo_show_layout_line(cr, line);
+		y0 = y1;
 	}
+	textHeight += sumExtraY + viewLayout.paragraphBreak;
+	if (viewLayout.lineHeight > viewFontHeight)
+		textHeight += viewLayout.lineHeight - viewFontHeight;
+	
+	pango_layout_iter_free(it);
+	
 	// Check this surface has enough height.
 	if(surfaceHeight < textHeight)
 	{
 		surfaceHeight *= (textHeight / surfaceHeight) + 1;
 		UpdateSurfaceSize();
-		return Render(str, params);
+		return Render(str, layout);
 	}
 	
 	// Copy to image buffer and clear the surface.
@@ -682,12 +702,12 @@ void Font::SetUpShader()
 
 
 
-int Font::ViewWidth(const string &str, const Layout *params) const
+int Font::ViewWidth(const string &str, const Layout &layout) const
 {
 	if(str.empty())
 		return 0;
 	
-	const RenderedText &text = Render(str, params);
+	const RenderedText &text = Render(str, layout);
 	if(!text.texture)
 		return 0;
 	return text.width;

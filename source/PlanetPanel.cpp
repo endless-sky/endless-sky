@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
+#include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
 #include "HiringPanel.h"
@@ -51,10 +52,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
 	
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Font::JUSTIFIED);
-	text.SetWrapWidth(480);
-	text.Wrap(planet.Description());
+	text = planet.Description();
 	
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
@@ -132,7 +130,10 @@ void PlanetPanel::Draw()
 	ui.Draw(info, this);
 	
 	if(!selectedPanel)
-		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
+	{
+		const Font &font = FontSet::Get(14);
+		font.Draw(text, Point(-300., 80.), *GameData::Colors().Get("bright"), {480, Font::JUSTIFIED});
+	}
 }
 
 

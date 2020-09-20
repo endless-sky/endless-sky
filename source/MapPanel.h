@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "WrappedText.h"
 
 #include <map>
 #include <string>
@@ -133,7 +132,6 @@ protected:
 	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
 	std::string tooltip;
-	WrappedText hoverText;
 	
 	
 private:

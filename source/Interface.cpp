@@ -542,7 +542,7 @@ Point Interface::TextElement::NativeDimensions(const Information &info, int stat
 {
 	const Font &font = FontSet::Get(fontSize);
 	const auto text = GetString(info);
-	return Point(font.Width(text.first, &text.second), font.Height());
+	return Point(font.Width(text.first, text.second), font.Height());
 }
 
 
@@ -555,7 +555,7 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 		return;
 	
 	const auto text = GetString(info);
-	FontSet::Get(fontSize).Draw(text.first, rect.TopLeft(), *color[state], &text.second);
+	FontSet::Get(fontSize).Draw(text.first, rect.TopLeft(), *color[state], text.second);
 }
 
 

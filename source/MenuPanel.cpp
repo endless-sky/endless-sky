@@ -87,7 +87,8 @@ void MenuPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	
 	Information info;
-	const Font::Layout layout{Font::TRUNC_MIDDLE, 165};
+	const Font::Layout layout{165, Font::TRUNC_MIDDLE};
+	const Font::Layout backLayout{165, Font::TRUNC_BACK};
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
@@ -99,9 +100,9 @@ void MenuPanel::Draw()
 			info.SetString("ship", flagship.Name(), layout);
 		}
 		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->Name());
+			info.SetString("system", player.GetSystem()->Name(), backLayout);
 		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->Name());
+			info.SetString("planet", player.GetPlanet()->Name(), backLayout);
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 	}

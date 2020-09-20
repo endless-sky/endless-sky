@@ -32,14 +32,8 @@ namespace {
 
 
 ItemInfoDisplay::ItemInfoDisplay()
+	: descriptionLayout(WIDTH - 20, Font::JUSTIFIED), hoverLayout(WIDTH - 20, Font::JUSTIFIED)
 {
-	description.SetAlignment(Font::JUSTIFIED);
-	description.SetWrapWidth(WIDTH - 20);
-	description.SetFont(FontSet::Get(14));
-	
-	hoverText.SetAlignment(Font::JUSTIFIED);
-	hoverText.SetWrapWidth(WIDTH - 20);
-	hoverText.SetFont(FontSet::Get(14));
 }
 
 
@@ -79,7 +73,8 @@ void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 {
 	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), DescriptionHeight()));
 	Color color = hoverTarget.Contains(hoverPoint) ? *GameData::Colors().Get("bright") : *GameData::Colors().Get("medium");
-	description.Draw(topLeft + Point(10., 12.), color);
+	const Font &font = FontSet::Get(14);
+	font.Draw(description, topLeft + Point(10., 12.), color, descriptionLayout);
 }
 
 
@@ -93,10 +88,14 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ItemInfoDisplay::DrawTooltips() const
 {
-	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
+	if(!hoverCount || hoverCount-- < HOVER_TIME || hoverText.empty())
 		return;
 	
-	Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+	const Font &font = FontSet::Get(14);
+	int hoverHeight = font.Height(hoverText, hoverLayout);
+	int hoverParagraphBreak = font.ParagraphBreak(hoverLayout);
+	int hoverWidth = font.Width(hoverText, hoverLayout);
+	Point textSize(hoverWidth, hoverHeight - hoverParagraphBreak);
 	Point boxSize = textSize + Point(20., 20.);
 	
 	Point topLeft = hoverPoint;
@@ -106,7 +105,7 @@ void ItemInfoDisplay::DrawTooltips() const
 		topLeft.Y() -= boxSize.Y();
 	
 	FillShader::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
-	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+	font.Draw(hoverText, topLeft + Point(10., 10.), *GameData::Colors().Get("medium"), hoverLayout);
 }
 
 
@@ -130,7 +129,7 @@ void ItemInfoDisplay::ClearHover()
 void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
 {
 	if(licenses.empty())
-		description.Wrap(text);
+		description = text;
 	else
 	{
 		static const string NOUN[2] = {"outfit", "ship"};
@@ -153,11 +152,12 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 			fullText += (isVoweled ? "an " : "a ") + licenses[i] + " License";
 		}
 		fullText += ".\n";
-		description.Wrap(fullText);
+		description = fullText;
 	}
 	
 	// Pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height() + 20;
+	const Font &font = FontSet::Get(14);
+	descriptionHeight = font.Height(description, descriptionLayout) + 20;
 }
 
 
@@ -172,7 +172,7 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 	const Color &valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
-	Font::Layout layout{Font::TRUNC_NONE, WIDTH - 20, Font::LEFT};
+	Font::Layout layout{WIDTH - 20, Font::LEFT};
 	// Use 10-pixel margins on both sides.
 	table.AddColumn(10, layout);
 	layout.align = Font::RIGHT;
@@ -211,7 +211,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		if(hoverCount >= HOVER_TIME)
 		{
 			hoverCount = HOVER_TIME;
-			hoverText.Wrap(GameData::Tooltip(label));
+			hoverText = GameData::Tooltip(label);
 		}
 	}
 }

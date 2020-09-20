@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FONT_SET_H_
 #define FONT_SET_H_
 
-#include <string>
+#include "Font.h"
 
-class Font;
+#include <string>
 
 
 
@@ -25,10 +25,8 @@ public:
 	static void Add(const std::string &fontsDir);
 	static const Font &Get(int size);
 	
-	// Set the font description. "desc" is a comma separated list of font families.
-	static void SetFontDescription(const std::string &desc);
-	// Set the language for layouting.
-	static void SetLanguage(const std::string &lang);
+	// Set the drawing settins.
+	static void SetDrawingSettings(const Font::DrawingSettings &setting);
 };
 
 

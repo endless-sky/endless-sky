@@ -13,9 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CONVERSATION_PANEL_H_
 #define CONVERSATION_PANEL_H_
 
+#include "Font.h"
 #include "Panel.h"
-
-#include "WrappedText.h"
 
 #include <functional>
 #include <list>
@@ -89,7 +88,10 @@ private:
 		
 	private:
 		const Sprite *scene = nullptr;
-		WrappedText wrap;
+		std::string text;
+		int textHeight;
+		Font::Layout textLayout;
+		int textParagraphBreak;
 		// Special case: if this is the very first paragraph and it begins with
 		// a "scene" image, there is no need for padding above the image.
 		bool isFirst = false;

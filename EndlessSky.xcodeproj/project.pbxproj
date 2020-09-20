@@ -123,7 +123,6 @@
 		A96864031AE6FD0E004FE1FE /* TradingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863981AE6FD0D004FE1FE /* TradingPanel.cpp */; };
 		A96864041AE6FD0E004FE1FE /* UI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968639A1AE6FD0D004FE1FE /* UI.cpp */; };
 		A96864051AE6FD0E004FE1FE /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968639C1AE6FD0D004FE1FE /* Weapon.cpp */; };
-		A96864061AE6FD0E004FE1FE /* WrappedText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */; };
 		A97C24EA1B17BE35007DDFA1 /* MapOutfitterPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97C24E81B17BE35007DDFA1 /* MapOutfitterPanel.cpp */; };
 		A97C24ED1B17BE3C007DDFA1 /* MapShipyardPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97C24EB1B17BE3C007DDFA1 /* MapShipyardPanel.cpp */; };
 		A98150821EA9634A00428AD6 /* ShipInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A98150801EA9634A00428AD6 /* ShipInfoPanel.cpp */; };
@@ -417,8 +416,6 @@
 		A968639B1AE6FD0D004FE1FE /* UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UI.h; path = source/UI.h; sourceTree = "<group>"; };
 		A968639C1AE6FD0D004FE1FE /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weapon.cpp; path = source/Weapon.cpp; sourceTree = "<group>"; };
 		A968639D1AE6FD0D004FE1FE /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weapon.h; path = source/Weapon.h; sourceTree = "<group>"; };
-		A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WrappedText.cpp; path = source/WrappedText.cpp; sourceTree = "<group>"; };
-		A968639F1AE6FD0E004FE1FE /* WrappedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrappedText.h; path = source/WrappedText.h; sourceTree = "<group>"; };
 		A97C24E81B17BE35007DDFA1 /* MapOutfitterPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapOutfitterPanel.cpp; path = source/MapOutfitterPanel.cpp; sourceTree = "<group>"; };
 		A97C24E91B17BE35007DDFA1 /* MapOutfitterPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapOutfitterPanel.h; path = source/MapOutfitterPanel.h; sourceTree = "<group>"; };
 		A97C24EB1B17BE3C007DDFA1 /* MapShipyardPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapShipyardPanel.cpp; path = source/MapShipyardPanel.cpp; sourceTree = "<group>"; };
@@ -761,8 +758,6 @@
 				DF8D57E31FC25889001525DA /* Visual.h */,
 				A968639C1AE6FD0D004FE1FE /* Weapon.cpp */,
 				A968639D1AE6FD0D004FE1FE /* Weapon.h */,
-				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
-				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -948,7 +943,6 @@
 				A96863DA1AE6FD0E004FE1FE /* Mortgage.cpp in Sources */,
 				A96863C31AE6FD0E004FE1FE /* Galaxy.cpp in Sources */,
 				A97C24EA1B17BE35007DDFA1 /* MapOutfitterPanel.cpp in Sources */,
-				A96864061AE6FD0E004FE1FE /* WrappedText.cpp in Sources */,
 				A96863D91AE6FD0E004FE1FE /* MissionPanel.cpp in Sources */,
 				A96863DB1AE6FD0E004FE1FE /* NPC.cpp in Sources */,
 				A96863F81AE6FD0E004FE1FE /* SpaceportPanel.cpp in Sources */,

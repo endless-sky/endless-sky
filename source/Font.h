@@ -38,45 +38,62 @@ public:
 	Font(const Font &a) = delete;
 	Font &operator=(const Font &a) = delete;
 	
-	// Font settings.
-	void SetFontDescription(const std::string &desc);
+	// Set the font size by pixel size of the text coordinate.
+	// It's a rough estimate of the actual font size.
 	void SetPixelSize(int size);
-	void SetLanguage(const std::string &langCode);
+	
+	// Font and laying out settings except the pixel size when drawing.
+	struct DrawingSettings {
+		// A font description is a comma separated list of font families.
+		std::string description;
+		// The language for laying out.
+		std::string language;
+		// The line height is lineHeightScale times larger than the font height.
+		double lineHeightScale;
+		// The paragraph break is paragraphBreakScale times larger than the font height.
+		double paragraphBreakScale;
+	};
+	void SetDrawingSettings(const DrawingSettings &drawingSettings);
 	
 	// Layout parameters.
 	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
 	enum Truncate {TRUNC_NONE, TRUNC_FRONT, TRUNC_MIDDLE, TRUNC_BACK};
 	static const uint_fast8_t DEFAULT_LINE_HEIGHT = 255;
+	static const uint_fast8_t DEFAULT_PARAGRAPH_BREAK = 255;
 	struct Layout {
+		// Wrap and trancate width. No wrap or trancate if width is negative.
+		int width = -1;
 		// Set the alignment mode.
 		Align align = LEFT;
 		// Set the truncate mode.
 		Truncate truncate = TRUNC_NONE;
-		// Wrap and trancate width. No wrap or trancate if width is negative.
-		int width = -1;
-		// Line height in pixels.
+		// Minimum Line height in pixels.
 		uint_fast8_t lineHeight = DEFAULT_LINE_HEIGHT;
 		// Extra spacing in pixel between paragraphs.
-		uint_fast8_t paragraphBreak = 0;
+		uint_fast8_t paragraphBreak = DEFAULT_PARAGRAPH_BREAK;
 		
-		Layout() noexcept = default;
-		Layout(Truncate t, int w, Align a = LEFT) noexcept;
-		Layout(const Layout& a) noexcept = default;
-		Layout &operator=(const Layout& a) noexcept = default;
-		bool operator==(const Layout &a) const;
+		Layout() noexcept;
+		Layout(int w, Align a) noexcept;
+		Layout(int w, Truncate t) noexcept;
+		Layout(int w, Truncate t, Align a) noexcept;
+		bool operator==(const Layout &a) const noexcept;
 	};
 	
 	void Draw(const std::string &str, const Point &point, const Color &color,
-		const Layout *params = nullptr) const;
+		const Layout &layout = defaultLayout) const;
 	void DrawAliased(const std::string &str, double x, double y, const Color &color,
-		const Layout *params = nullptr) const;
+		const Layout &params = defaultLayout) const;
 	
 	// Get the height and width of the rendered text.
-	int Width(const std::string &str, const Layout *params = nullptr) const;
-	int Height(const std::string &str, const Layout *params = nullptr) const;
+	int Width(const std::string &str, const Layout &layout = defaultLayout) const;
+	int Height(const std::string &str, const Layout &layout = defaultLayout) const;
 	
 	// Get the height of the fonts.
 	int Height() const;
+	
+	// Get the line height and paragraph break.
+	int LineHeight(const Layout &layout = defaultLayout) const;
+	int ParagraphBreak(const Layout &layout = defaultLayout) const;
 	
 	static void ShowUnderlines(bool show);
 	
@@ -97,11 +114,11 @@ private:
 	// A key mapping the text and layout parameters, underline status to RenderedText.
 	struct CacheKey {
 		std::string text;
-		Layout params;
+		Layout layout;
 		bool showUnderline;
 		
-		CacheKey(const std::string &s, const Layout &p, bool underline) noexcept;
-		bool operator==(const CacheKey &a) const;
+		CacheKey(const std::string &s, const Layout &l, bool underline) noexcept;
+		bool operator==(const CacheKey &a) const noexcept;
 	};
 	
 	// Hash function of CacheKey.
@@ -120,17 +137,17 @@ private:
 	
 private:
 	void UpdateSurfaceSize() const;
-	void UpdateFontDesc() const;
+	void UpdateFont() const;
 	
 	static std::string ReplaceCharacters(const std::string &str);
 	static std::string RemoveAccelerator(const std::string &str);
 		
 	void DrawCommon(const std::string &str, double x, double y, const Color &color,
-		const Layout *params, bool alignToDot) const;
-	const RenderedText &Render(const std::string &str, const Layout *params) const;
+		const Layout &layout, bool alignToDot) const;
+	const RenderedText &Render(const std::string &str, const Layout &layout) const;
 	void SetUpShader();
 	
-	int ViewWidth(const std::string &str, const Layout *params = nullptr) const;
+	int ViewWidth(const std::string &str, const Layout &layout = defaultLayout) const;
 	
 	// Convert Viewport to/from Text coordinates.
 	double ViewFromTextX(double x) const;
@@ -152,6 +169,9 @@ private:
 	
 	
 private:
+	static const Layout defaultLayout;
+	
+	
 	
 	Shader shader;
 	GLuint vao;
@@ -163,19 +183,24 @@ private:
 	GLint sizeI;
 	GLint colorI;
 	
+	// Screen settings.
 	mutable int screenWidth;
 	mutable int screenHeight;
 	mutable int viewWidth;
 	mutable int viewHeight;
+	mutable int viewFontHeight;
+	mutable unsigned int viewDefaultLineHeight;
+	mutable unsigned int viewDefaultParagraphBreak;
 	
-	mutable cairo_t *cr;
-	std::string fontDescName;
-	mutable PangoContext *context;
-	mutable PangoLayout *layout;
-	PangoLanguage *lang;
+	// Variables related to the font.
 	int pixelSize;
-	mutable int fontViewHeight;
+	DrawingSettings drawingSettings;
 	mutable int space;
+	
+	// For rendering.
+	mutable cairo_t *cr;
+	mutable PangoContext *context;
+	mutable PangoLayout *pangoLayout;
 	mutable int surfaceWidth;
 	mutable int surfaceHeight;
 	
@@ -186,34 +211,57 @@ private:
 
 
 inline
-Font::Layout::Layout(Truncate t, int w, Align a) noexcept
-	: align(a), truncate(t), width(w)
+Font::Layout::Layout() noexcept
 {
 }
 
 
 
 inline
-bool Font::Layout::operator==(const Layout &a) const
+Font::Layout::Layout(int w, Align a) noexcept
+	: width(w), align(a)
 {
-	return align == a.align && truncate == a.truncate && width == a.width
+}
+
+
+
+inline
+Font::Layout::Layout(int w, Truncate t) noexcept
+	: width(w), truncate(t)
+{
+}
+
+
+
+inline
+Font::Layout::Layout(int w, Truncate t, Align a) noexcept
+	: width(w), align(a), truncate(t)
+{
+}
+
+
+
+inline
+bool Font::Layout::operator==(const Layout &a) const noexcept
+{
+	return width == a.width && align == a.align && truncate == a.truncate
 		&& lineHeight == a.lineHeight && paragraphBreak == a.paragraphBreak;
 }
 
 
 
 inline
-Font::CacheKey::CacheKey(const std::string &s, const Layout &p, bool underline) noexcept
-	: text(s), params(p), showUnderline(underline)
+Font::CacheKey::CacheKey(const std::string &s, const Layout &l, bool underline) noexcept
+	: text(s), layout(l), showUnderline(underline)
 {
 }
 
 
 
 inline
-bool Font::CacheKey::operator==(const CacheKey &a) const
+bool Font::CacheKey::operator==(const CacheKey &a) const noexcept
 {
-	return text == a.text && params == a.params && showUnderline == a.showUnderline;
+	return text == a.text && layout == a.layout && showUnderline == a.showUnderline;
 }
 
 
@@ -222,10 +270,10 @@ inline
 Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type const &s) const noexcept
 {
 	const result_type h1 = std::hash<std::string>()(s.text);
-	const result_type h2 = std::hash<unsigned int>()(s.params.width);
-	const std::uint_fast32_t pack = s.showUnderline | (s.params.align << 1) | (s.params.truncate << 3)
-		| (s.params.lineHeight << 5) | (s.params.paragraphBreak << 13);
-	const result_type h3 = std::hash<uint_fast32_t>()(pack);
+	const result_type h2 = std::hash<int>()(s.layout.width);
+	const unsigned int pack = s.showUnderline | (s.layout.align << 1) | (s.layout.truncate << 3)
+		| (s.layout.lineHeight << 5) | (s.layout.paragraphBreak << 13);
+	const result_type h3 = std::hash<unsigned int>()(pack);
 	return h1 ^ (h2 << 1) ^ (h3 << 2);
 }
 
