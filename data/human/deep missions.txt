@@ -1517,7 +1517,6 @@ conversation "deep: remnant"
 
 	label end
 	`	"But, first and foremost, we should continue our work on understanding these wormholes. You mentioned a strange series of wormholes. Their behavior is definitely noteworthy. Could you return to this region of space while carrying a suite of astronomic instruments? If you travel through these wormholes, we may learn more about what makes them tick."`
-```Subjective change for clarity because astronomical also means big.
 	choice
 		`	"Okay, I'm willing to do it."`
 		`	"Sorry, but I didn't agree to help you beyond that first job. Goodbye."`
