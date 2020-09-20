@@ -430,7 +430,7 @@ void Engine::Step(bool isActive)
 	events.swap(eventQueue);
 	eventQueue.clear();
 	
-	// The calculation thread is now paused, so it is safe to access things.
+	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
@@ -1037,6 +1037,14 @@ void Engine::Draw() const
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
+}
+
+
+
+// Give an (automated/scripted) command on behalf of the player.
+void Engine::GiveCommand(const Command &command)
+{
+	activeCommands.Set(command);
 }
 
 
@@ -2110,15 +2118,20 @@ void Engine::AddSprites(const Ship &ship)
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
+	auto &itemsToDraw = draw[calcTickTock];
+	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
+	{
+		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
+		// sprite with an increasingly transparent "regular" sprite.
+		if(drawCloaked)
+			itemsToDraw.AddSwizzled(body, 7);
+		itemsToDraw.Add(body, cloak);
+	};
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
-			{
-				if(drawCloaked)
-					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
-				draw[calcTickTock].Add(*bay.ship, cloak);
-			}
+				drawObject(*bay.ship);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
@@ -2127,9 +2140,7 @@ void Engine::AddSprites(const Ship &ship)
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
-	if(drawCloaked)
-		draw[calcTickTock].AddSwizzled(ship, 7);
-	draw[calcTickTock].Add(ship, cloak);
+	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
@@ -2139,7 +2150,7 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());
-			draw[calcTickTock].Add(body, cloak);
+			drawObject(body);
 		}
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
@@ -2152,11 +2163,7 @@ void Engine::AddSprites(const Ship &ship)
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::OVER && bay.ship)
-			{
-				if(drawCloaked)
-					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
-				draw[calcTickTock].Add(*bay.ship, cloak);
-			}
+				drawObject(*bay.ship);
 }
 
 

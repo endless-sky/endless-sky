@@ -773,10 +773,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				// Mission ships should only pick amongst ships from the same mission.
 				auto missionIt = it->IsSpecial() && !it->IsYours()
 					? find_if(player.Missions().begin(), player.Missions().end(),
-						[&it](const Mission &m) -> bool
-						{
-							return m.HasShip(it);
-						})
+						[&it](const Mission &m) { return m.HasShip(it); })
 					: player.Missions().end();
 				
 				shared_ptr<Ship> newParent;

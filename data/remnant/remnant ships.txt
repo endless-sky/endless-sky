@@ -88,7 +88,8 @@ ship "Albatross" "Albatross (Sniper)"
 		"Inhibitor Cannon" 5
 		"EMP Torpedo Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 18
+		"EMP Torpedo" 39
+		"EMP Torpedo Storage Bay" 3
 
 		"Aeon Cell"
 		"Epoch Cell"
@@ -102,7 +103,6 @@ ship "Albatross" "Albatross (Sniper)"
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
-		"Forge-Class Steering"
 		"Scram Drive"
 
 	gun "Inhibitor Cannon"
@@ -128,7 +128,9 @@ ship "Albatross" "Albatross (Turret)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Thermoelectric Cooler"
+		"Quantum Key Stone"
 		"Outfits Expansion" 2
 		"Tuning Rifle" 49
 
@@ -152,7 +154,9 @@ ship "Albatross" "Albatross (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor" 2
+		"Quantum Key Stone"
 		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
 		"Outfits Expansion" 4
 		"Tuning Rifle" 65
 
@@ -182,7 +186,9 @@ ship "Albatross" "Albatross (Shield)"
 
 		"Aeon Cell"
 		"Millennium Cell"
+		"Quantum Key Stone"
 		"Thermoelectric Cooler" 1
+		"Quantum Key Stone"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 3
 		"Small Heat Shunt" 1
@@ -200,6 +206,30 @@ ship "Albatross" "Albatross (Shield)"
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 
+ship "Albatross" "Albatross (Ember Shield)"
+	outfits
+		"Thrasher Turret" 2
+
+		"Aeon Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Quantum Key Stone"
+		"Emergency Ramscoop"
+		"Outfits Expansion" 6
+		"Systems Core (Large)" 4
+		"Large Heat Shunt"
+		
+		"Tuning Rifle" 47
+
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret
+	turret
+	turret
 
 
 ship "Gull"
@@ -278,6 +308,7 @@ ship "Gull" "Gull (Sniper)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Salvage Scanner" 2
 		"Outfits Expansion"
 		"Tuning Rifle" 4
@@ -291,13 +322,16 @@ ship "Gull" "Gull (Support)"
 		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"EMP Torpedo" 5
+		"EMP Torpedo" 16
+		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
 		"Salvage Scanner" 2
-		"Outfits Expansion"
+		"Outfits Expansion" 2
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -310,6 +344,7 @@ ship "Gull" "Gull (Cargo)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 3
 
@@ -323,6 +358,7 @@ ship "Gull" "Gull (Bunks)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 3
 
@@ -474,6 +510,19 @@ ship "Pelican"
 	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
 	description "The Pelican is closely based on the original semi-organic materials the Remnant found in the Ember Waste. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. One key feature of this living resemblance is the innate sensory capabilities they possess, akin to sensor suites less advanced ships require for detailed scanning. These ships serve as the backbone of Remnant bulk salvage efforts, as well as their fast-logistics distribution network."
+
+ship "Pelican" "Pelican (Heavy Lift)"
+	outfits
+		"Small Heat Shunt" 2
+		"Cargo Expansion" 5
+		"Scram Drive"
+		"Smelter-Class Thruster"
+		"Crystal Capacitor" 2
+		"Quantum Key Stone"
+		"Smelter-Class Steering"
+		"Tuning Rifle" 15
+		"Emergency Ramscoop" 5
+		"Aeon Cell"
 
 
 
@@ -694,6 +743,7 @@ ship "Petrel"
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		
 		"Anvil-Class Engine"
@@ -721,7 +771,7 @@ ship "Puffin"
 		"hull" 1500
 		"required crew" 1
 		"bunks" 2
-		"mass" 44
+		"mass" 40
 		"drag" 1.27
 		"heat dissipation" 0.9
 		"fuel capacity" 700
@@ -821,7 +871,7 @@ ship "Starling"
 	explode "small explosion" 20
 	explode "medium explosion" 10
 	"final explode" "final explosion small" 1
-	description "One of the strangest and most useful things that the Remnant discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They designed their scout ships to be able to cloak when needed, in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
+	description "One of the strangest and most useful things that the Remnant have discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They have designed their scout ships to cloak when needed in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
 	description "	The cloaking technology is built into the Starling's hull; it cannot be removed or transferred to another ship."
 
 ship "Starling" "Starling (Heavy)"
@@ -832,6 +882,7 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Tuning Rifle" 10
 
 		"Forge-Class Thruster"
@@ -842,12 +893,14 @@ ship "Starling" "Starling (Sniper)"
 	outfits
 		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 4
-		"EMP Torpedo" 9
+		"EMP Torpedo" 16
+		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Emergency Ramscoop"
+		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Outfits Expansion"
 		"Tuning Rifle" 9
 
 		"Forge-Class Thruster"
@@ -868,6 +921,7 @@ ship "Starling" "Starling (Hunter)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Emergency Ramscoop"
 		"Tuning Rifle" 11
 
@@ -922,7 +976,7 @@ ship "Tern"
 		"fuel capacity" 50
 		"energy capacity" 500
 		"ramscoop" 0.5
-		"outfit space" 75
+		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
 		"shield generation" 0.25
@@ -944,6 +998,7 @@ ship "Tern"
 		"Inhibitor Cannon"
 		
 		"Millennium Cell"
+		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		
 		"Anvil-Class Engine"
