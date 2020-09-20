@@ -545,8 +545,7 @@ void Engine::Step(bool isActive)
       			remaining = min(remaining, flagship->OutfitCount(sit.first) / sit.second);	
    			 // Emplace this weapon and the number of shots that this weapon has remaining in the ammo vector.
    			 ammo.emplace_back(it.first, remaining);	 
-			}
-			
+			}		
 			else if(it.first->FiringFuel())
 			{
 				double remaining = flagship->Fuel()
