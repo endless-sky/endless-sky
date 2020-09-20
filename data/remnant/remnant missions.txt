@@ -1016,12 +1016,24 @@ mission "Remnant: Deep Surveillance"
 			choice
 				`	"I helped a group of scientists from the Deep to discover the Ember Waste."`
 				`	"A group of scientists from the Deep has discovered the Ember Waste."`
-					goto discovered1
+					goto discovered
 			
-			`	`
+			apply
+				set "remnant: admitted to helping deep"
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			choice
+				`	"I don't believe that they will be a threat to you."`
+					goto threat
+				`	"I'm sorry, but I helped them before coming to understand this."`
 			
-			label discovered1
-			`	`
+			`	Torza seems to relax slightly. "This is unfortunate. I can not get angry at you for that which you did not understand. But now that you do understand, seek to not make this same mistake in the future.`
+			`	"What do they know?"
+				goto knowledge
+			
+			label threat
+			`	"It is not a matter of them being a threat," Torza says angrily. "They may be peaceful, but who they tell or who may learn from them may not.`
+			`	"What do they know?"`
+				goto knowledge
 			
 			label terminus2
 			choice
@@ -1033,12 +1045,12 @@ mission "Remnant: Deep Surveillance"
 			`	"Well it is unlikely that they will ever learn. The only way to stabilize the wormholes is by using a Key Stone, but I have never heard of one being found in Ancestral space. Learning what these scientists know would still be helpful, though. Would you be able to get us a copy of their findings?"`
 			choice
 				`	"I'll try. The lead scientists told me where his office is."`
-					goto accept2
+					goto accept
 				`	"I'm sorry, but I don't believe I'll be able to."`
 			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. I do not expect anything to come of this for now, but should anything occur we can be more prepared than we otherwise would have been." Torza gets up from the bench and shows you out. "May the Embers burn bright for you."`
 				decline
 			
-			label accept2
+			label accept
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. May the Embers burn bright for you."`
 				accept
 			
@@ -1054,12 +1066,211 @@ mission "Remnant: Deep Surveillance"
 			choice
 				`	"I've helped the scientists learn how to pass through the wormhole."`
 				`	"The scientists have discovered how to pass through the wormhole."`
-					goto discovered2
+					goto discovered
 			
-			`	`
+			apply
+				set "remnant: admitted to helping deep"
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			choice
+				`	"I don't believe that they will be a threat to you."`
+					goto threat
+				`	"I'm sorry, but I helped them before coming to understand this."`
 			
-			label discovered2
-			`	`
+			apply
+				set "remnant: lied to torza: understanding"
+			`	"Liar!" Torza yells at you while standing up from the bench. "You told us of these scientists after we had already trusted you with a license." Torza walks away from you angrily, then turns his head.`
+			`	"What do they know?"
+				goto knowledge
+			
+			label threat
+			`	"It is not a matter of them being a threat," Torza says angrily. "They may be peaceful, but who they tell or who may learn from them may not.`
+			`	"What do they know?"`
+				goto knowledge
+			
+			label discovered
+			`	Torza's eyes go wide. "What do they know?"`
+			
+			label knowledge
+			branch unknown
+				has "deep: did not reveal remnant"
+			
+			branch technology
+				has "Deep: Remnant: Engines: done"
+			
+			branch surveillance
+				has "Deep: Remnant Surveillance: done"
+			choice
+				`	"They know where the Remnant are in the Ember Waste."`
+					goto location
+				`	"They have scans of a few Remnant ships."`
+					goto scans
+			
+			label technology
+			choice
+				`	"They know where the Remnant are in the Ember Waste."`
+					goto lcoation
+				`	"They have scans of a few Remnant ships."`
+					goto scans
+				`	"They have samples of some Remnant technology."`
+					goto tech
+			
+			label surveillance
+			choice
+				`	"They know where the Remnant are in the Ember Waste."`
+					goto location
+				`	"They have scans of a few Remnant ships."`
+					goto scans
+				`	"They have samples of some Remnant technology."`
+					goto tech
+				`	"They are actively surveilling Remnant worlds."`
+					goto surveilled
+			
+			label unknown
+			choice
+				`	"They don't know about the Remnant, at least not yet."`
+				`	"They have only discovered the void sprites."`
+					goto sprites
+			
+			`	Torza seems to calm down greatly after hearing this. "This is most fortunate. We will need to work to ensure that this remains the case."`
+				goto end
+			
+			label sprites
+			`	Torza seems to calm down greatly after hearing this. "Then may they not anger the Archon with their curiosity as we have."`
+				goto end
+			
+			label location
+			`	Torza pauses for a long while. "I assume it only makes sense that they would know of us after discovering the Ember Waste."`
+				goto end
+			
+			label scans
+			`	Torza pauses for a long while. "These scientists knowing of our whereabouts is much more of a concern than them having scans of our ships."`
+				goto end
+			
+			label tech
+			`	"And you were the one who brought it to them," Torza responds.`
+			branch reciprocal 
+				has "Remnant: Tech Retrieval: done"
+			choice
+				`	"Yes, but what I do with your technology after buying it is none of your concern."`
+					goto concern
+				`	"No, they obtain it by other means."`
+					goto other
+			
+			label reciprocal
+			choice
+				`	"Yes, but it is no different than me bringing technology from the Republic to you."`
+				`	"No, they obtained it by other means."`
+					goto other
+			
+			`	Torza scowls in response to this, but doesn't say anything.`
+				goto end
+			
+			label concern
+			`	"What you do with our technology is much of a concern to us!" Torza yells.`
+				goto end
+			
+			label other
+			apply
+				set "remnant: lied to torza: technology"
+			`	Torza grits his teeth. "There are no reports of missing ships or outfits, and the only visitor capable of delivering our technology is you."`
+				goto end
+			
+			label surveilled
+			apply
+				set "remnant: told about surveillance"
+			`	"How are they doing this?" Torza asks.`
+			choice
+				`	"Surveillance devices have been placed in each of your spaceports."`
+				`	"I don't know, I only know that they are."`
+					goto secret
+			
+			apply
+				set "remnant: told about cubes"
+			`	Torza punches a wall, then relaxes. "Thank you for telling us this. We will search for and remove these devices immediately."`
+				goto end
+			
+			label secret
+			`	"Whatever methods they are using, we will discover them in due time," Torza says.`
+			
+			label end
+			`	Torza begins tapping on a data pad. "We must act to rectify this situation," he says calmly.`
+			branch repeat
+				has "retreived before"
+			
+			`	"I presume that you know of the whereabouts of these scientists. Would you be able to get us a copy of their findings?"`
+			choice
+				`	"I'll try. The lead scientists told me where his office is."`
+					goto accepted
+				`	"I'm sorry, but I don't believe I'll be able to."`
+					goto decline
+			
+			label repeat
+			`	"You have brought us the information that these scientists had before. I ask that you do so again."`
+			choice
+				`	"I'll return with their information as quickly as I can."`
+					goto accepted
+				`	"I'm sorry, but I don't believe I'll be able to."`
+					goto decline
+			
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out.`
+				accept
+			
+			label decline
+			branch revealed
+				has "deep: did reveal remnant"
+			
+			branch admitted
+				has "remnant: admitted to helping deep"
+			
+			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. We will be on high alert to see if these scientists make any moves deeper into the Ember Waste." Torza gets up from the bench and shows you out. "May the Embers burn bright for you."`
+				decline
+			
+			label admitted
+			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. We will be on high alert to see if these scientists make any moves deeper into the Ember Waste." Torza gets up from the bench and shows you out. "We may also be keeping a closer eye on you going forward to avoid another situation like this."`
+				decline
+			
+			label revealed
+			branch liar
+				or
+					has "remnant: lied to torza: technology"
+					has "remnant: lied to torza: understanding"
+			
+			`	"This is unfortunate," Torza responds. "Very unfortunate. We will be on high alert to see if these scientists make any moves. I at least commend you for giving what information you have to us." Torza gets up from the bench and shows you out without another word.`
+				decline
+			
+			label liar
+			apply
+				set "remnant: player is surveilled"
+			`	"Then perhaps the Remnant should reasses their trust placed in you," Torza responds. "We will be on high alert to see if these scientists make any moves. I at least commend you for giving what information you have to us, but know that you will be watched closely by us from now on." Torza gets up from the bench and shows you out without another word.`
+				decline
+			
+			label accepted
+			branch revealed2
+				has "deep: did reveal remnant"
+			
+			branch admitted2
+				has "remnant: admitted to helping deep"
+			
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. May the Embers burn bright for you."`
+				accept
+			
+			label admitted2
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. But know that we may be keeping a closer eye on you going forward to avoid another situation like this."`
+				accept
+			
+			label revealed2
+			branch liar2
+				or
+					has "remnant: lied to torza: technology"
+					has "remnant: lied to torza: understanding"
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out without another word.`
+				accept
+			
+			label liar2
+			apply
+				set "remnant: player is surveilled"
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreed to bring us this information, but we can not allow another situation like this to occur."`
+				accept
 	
 	# Multiple visits + knowing about the Remnant before + not doing surveillance + not bringing tech all raise suspicion.
 	# Doing surveillance = no suspicion
