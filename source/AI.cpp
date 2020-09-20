@@ -107,9 +107,16 @@ namespace {
 		{
 			const Weapon *weapon = hardpoint.GetOutfit();
 			if(weapon && !hardpoint.IsAntiMissile())
-			{
-				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
-					continue;
+			{	
+				bool outOfAmmo = false;
+				for(const auto &ammo : weapon->Ammo())
+				{	
+				if(!outOfAmmo && ammo.first && ship.OutfitCount(ammo.first) < ammo.second)
+					outOfAmmo = true;
+				}	
+				if(outOfAmmo)
+				continue;
+				
 				return true;
 			}
 		}
@@ -2022,7 +2029,13 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		if(weapon && !hardpoint.IsAntiMissile())
 		{
 			isArmed = true;
-			bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
+			bool outOfAmmo = false;
+			for(const auto &ammo : weapon->Ammo())
+			{	
+			if(!outOfAmmo && ammo.first && ship.OutfitCount(ammo.first) < ammo.second)
+				outOfAmmo = true;
+			}			
+			bool hasThisAmmo = !outOfAmmo;
 			hasAmmo |= hasThisAmmo;
 			
 			// Exploding weaponry that can damage this ship requires special
@@ -2844,12 +2857,19 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	// that don't consume ammo may also fire in non-homing mode.
 	double maxRange = 0.;
 	for(const Hardpoint &weapon : ship.Weapons())
+	{	
+		if(!weapon.IsReady())
+			continue;
+		
+		bool weaponUsesAmmo = !weapon.GetOutfit()->Ammo().empty();
+	
 		if(weapon.IsReady()
-				&& !(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
+				&& !(!currentTarget && weapon.IsHoming() && weaponUsesAmmo)
 				&& !(!secondary && weapon.GetOutfit()->Icon())
-				&& !(beFrugal && weapon.GetOutfit()->Ammo())
+				&& !(beFrugal && weaponUsesAmmo)
 				&& !(isWaitingToJump && weapon.GetOutfit()->FiringForce()))
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
+	}
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
 	
@@ -2867,16 +2887,19 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		++index;
 		// Skip weapons that are not ready to fire.
 		if(!hardpoint.IsReady())
-			continue;			
+			continue;
+		
+		bool hardpointUsesAmmo = !hardpoint.GetOutfit()->Ammo().empty(); 
+		
 		const Weapon *weapon = hardpoint.GetOutfit();
 		// Don't expend ammo for homing weapons that have no target selected.
-		if(!currentTarget && weapon->Homing() && weapon->Ammo())
+		if(!currentTarget && weapon->Homing() && hardpointUsesAmmo)
 			continue;
 		// Don't fire secondary weapons if told not to.
 		if(!secondary && weapon->Icon())
 			continue;
 		// Don't expend ammo if trying to be frugal.
-		if(beFrugal && weapon->Ammo())
+		if(beFrugal && hardpointUsesAmmo)
 			continue;
 		// Don't use weapons with firing force if you are preparing to jump.
 		if(isWaitingToJump && weapon->FiringForce())
@@ -2983,7 +3006,12 @@ void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 	{
 		++index;
 		// Only auto-fire primary weapons that take no ammunition.
-		if(!hardpoint.IsReady() || hardpoint.GetOutfit()->Icon() || hardpoint.GetOutfit()->Ammo())
+		if(!hardpoint.IsReady())
+			continue;
+		
+		bool hardpointUsesAmmo = !hardpoint.GetOutfit()->Ammo().empty();
+		
+		if(hardpointUsesAmmo || hardpoint.GetOutfit()->Icon())
 			continue;
 		
 		// Figure out where this weapon will fire from, but add some randomness
@@ -3822,3 +3850,4 @@ void AI::UpdateOrders(const Ship &ship)
 		order.targetSystem = ship.GetSystem();
 	}
 }
+
