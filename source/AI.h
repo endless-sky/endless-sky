@@ -88,7 +88,7 @@ private:
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
-	bool ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const;
+	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 	
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
@@ -151,7 +151,10 @@ private:
 	class Orders {
 	public:
 		static const int HOLD_POSITION = 0x000;
-		static const int MOVE_TO = 0x001;
+		// Hold active is the same command as hold position, but it is given when a ship
+		// actively needs to move back to the position it was holding.
+		static const int HOLD_ACTIVE = 0x001;
+		static const int MOVE_TO = 0x002;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
@@ -186,7 +189,6 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	
-	bool isLaunching = false;
 	bool isCloaking = false;
 	
 	bool escortsAreFrugal = true;
