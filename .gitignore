@@ -16,6 +16,7 @@ Release/
 *.layout
 *.depend
 .sconsign.dblite
+/*.d
 
 # User-installed plugins
 plugins/
@@ -51,3 +52,6 @@ ipch/
 *.userosscache
 *.sln.docstates
 *.xcodeproj/**
+.idea/
+.idea_modules/
+CMakeLists.txt

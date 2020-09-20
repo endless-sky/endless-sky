@@ -37,14 +37,19 @@ public:
 	
 	// Get the number of tokens in this node.
 	int Size() const;
+	// Get all the tokens in this node as an iterable vector.
+	const std::vector<std::string> &Tokens() const;
 	// Get the token at the given index. No bounds checking is done internally.
+	// DataFile loading guarantees index 0 always exists.
 	const std::string &Token(int index) const;
 	// Convert the token at the given index to a number. This returns 0 if the
 	// index is out of range or the token cannot be interpreted as a number.
 	double Value(int index) const;
+	static double Value(const std::string &token);
 	// Check if the token at the given index is a number in a format that this
 	// class is able to parse.
 	bool IsNumber(int index) const;
+	static bool IsNumber(const std::string &token);
 	
 	// Check if this node has any children. If so, the iterator functions below
 	// can be used to access them.
@@ -68,6 +73,8 @@ private:
 	std::vector<std::string> tokens;
 	// The parent pointer is used only for printing stack traces.
 	const DataNode *parent = nullptr;
+	// The line number in the given file that produced this node.
+	size_t lineNumber = 0;
 	
 	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;

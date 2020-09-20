@@ -26,8 +26,10 @@ File::File(const string &path, bool write)
 
 
 File::File(File &&other)
-	: file(other.file)
 {
+	if(file)
+		fclose(file);
+	file = other.file;
 	other.file = nullptr;
 }
 
@@ -37,6 +39,17 @@ File::~File()
 {
 	if(file)
 		fclose(file);
+}
+
+
+
+File &File::operator=(File &&other)
+{
+	if(file)
+		fclose(file);
+	file = other.file;
+	other.file = nullptr;
+	return *this;
 }
 
 

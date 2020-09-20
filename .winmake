@@ -24,28 +24,34 @@
 #    that has `libmingw32.a` and `libopengl32.a` in the lib subfolder
 # 3. Set OUTPUT_DIR to where you want the exe to be placed (it will ship in a
 #    config-dependent subfolder, e.g. OUTPUT_DIR\Debug\EndlessSky.exe)
-# 4. Set SOURCE_DIR to where the games source files are located
+# 4. Set SRC_ROOT to where the games source files are located
 # 5. Set OBJECT_DIR to where you would like the intermediate .o files to reside
 #
 DIR_ESLIB ?= C:\dev64
 DIR_MINGW64 ?= C:\Program\ Files\mingw64\x86_64-w64-mingw32
 OUTPUT_DIR ?= bin
-SOURCE_DIR ?= source
+SRC_ROOT ?= source
 OBJECT_DIR ?= obj
 
 #######
 # You should not need to modify the lines below.
 ifdef build_dir
 # The build directory is defined, so proceed to build the invoked target
-exe := $(OUTPUT_DIR)\$(build_dir)\EndlessSky.exe
+target_dir ::= $(OUTPUT_DIR)/$(build_dir)/
+exe := $(target_dir)EndlessSky.exe
 
-# Get all .cpp files in the source directory.
-sources ::= $(sort $(wildcard $(SOURCE_DIR)/*.cpp))
+# Get the source directory and its immediate subdirectories.
+source_dirs ::= $(sort $(dir $(wildcard $(SRC_ROOT)/*/)))
+# Get all .cpp files in all source directories.
+sources ::= $(foreach dir,$(source_dirs),$(wildcard $(dir)*.cpp))
+
 # Compute needed objects by swapping the .cpp extension for .o, and swapping
-# the basepath component (i.e. $(SOURCE_DIR)) for the build directory.
-objects ::= $(addprefix $(OBJECT_DIR)\$(build_dir)\,$(notdir $(sources:.cpp=.o)))
+# the basepath component (i.e. $(SRC_ROOT)) for the build (sub)directory.
+obj_dir ::= $(OBJECT_DIR)/$(build_dir)/
+obj_build_dirs ::= $(patsubst $(SRC_ROOT)/%,$(obj_dir)%,$(source_dirs))
+objects ::= $(sort $(foreach obj,$(sources:.cpp=.o),$(patsubst $(SRC_ROOT)/%,$(obj_dir)%,$(obj))))
 # Include the target made from WinApp.rc
-objects += $(OBJECT_DIR)\$(build_dir)\WinApp.o
+objects += $(obj_dir)/WinApp.o
 depends ::= $(objects:.o=.d)
 
 # Define non-default compilers and linkers
@@ -53,42 +59,48 @@ WINDRES = windres.exe
 LD = g++.exe
 
 # Compiler and linker flags
-include_dir = -I$(DIR_ESLIB)\include
-CXXFLAGS += -std=c++11 -Wall -MMD $(cxx_extra) $(include_dir)
+include_dir = -I$(DIR_ESLIB)/include
+CXXFLAGS += -std=c++11 -Wall -Werror -MMD $(cxx_extra) $(include_dir)
 # Require the linker uses WinMainCRTStartup as the entry point.
-LDFLAGS += -mwindows -L$(DIR_ESLIB)\lib $(ldd_extra)
+LDFLAGS += -mwindows -L$(DIR_ESLIB)/lib $(ldd_extra)
 # Include the Windows Multimedia API.
 LDLIBS += -lwinmm
 
 archives ::= $(wildcard $(DIR_ESLIB)/lib/*.a) \
-	$(DIR_MINGW64)\lib\libmingw32.a \
-	$(DIR_MINGW64)\lib\libopengl32.a
+	$(DIR_MINGW64)/lib/libmingw32.a \
+	$(DIR_MINGW64)/lib/libopengl32.a
 
 # Default target (linker step)
-$(exe): $(objects) | $(OUTPUT_DIR)\$(build_dir)
+$(exe): $(objects) | $(target_dir)
 	$(LD) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Wl,-\( $(archives) -Wl,-\)
 
 # Include .o dependencies to ensure changing any of the .cpp's included headers
 # triggers the .o recompilation (this must be defined after the desired exe definition).
 -include $(depends)
-# Pattern rule for compiling .cpps
-$(OBJECT_DIR)\$(build_dir)\\%.o: $(SOURCE_DIR)\\%.cpp | $(OBJECT_DIR)\$(build_dir)
-	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+# Pattern rule for compiling .cpps in SRC_ROOT and its child directories.
+# Search for *.cpp in each source directory, using lexical sort order.
+vpath %.cpp $(source_dirs)
+define make-goal
+$(1)%.o: %.cpp | $(obj_build_dirs)
+	$(CXX) -c $(CXXFLAGS) $$< -o $$@
+endef
+# Generate implicit rules for all source directories from the pattern rule.
+$(foreach bdir,$(obj_build_dirs),$(eval $(call make-goal,$(bdir))))
+
 # Pattern rule for compiling .rc
-$(OBJECT_DIR)\$(build_dir)\WinApp.o: $(SOURCE_DIR)\WinApp.rc | $(OBJECT_DIR)\$(build_dir)
+$(obj_dir)/WinApp.o: $(SRC_ROOT)/WinApp.rc | $(obj_dir)
 	$(WINDRES) --input-format rc --output-format coff $(include_dir) $< $@
 # Pattern rule for main.cpp
-$(OBJECT_DIR)\$(build_dir)\main.o: $(SOURCE_DIR)\main.cpp | $(OBJECT_DIR)\$(build_dir)
+$(obj_dir)/main.o: $(SRC_ROOT)/main.cpp | $(obj_dir)
 	$(CXX) -c $(CXXFLAGS) $< -o $@
+
 # Rules for making the output and build directories
-$(OBJECT_DIR):
-	-@cmd /c 'if not exist $@ md $@'
-$(OBJECT_DIR)\$(build_dir): | $(OBJECT_DIR)
-	-@cmd /c 'if not exist $@ md $@'
-$(OUTPUT_DIR):
-	-@cmd /c 'if not exist $@ md $@'
-$(OUTPUT_DIR)\$(build_dir): | $(OUTPUT_DIR)
-	-@cmd /c 'if not exist $@ md $@'
+$(OBJECT_DIR) \
+$(obj_build_dirs) \
+$(OUTPUT_DIR) \
+$(target_dir):
+	-@cmd /c 'if not exist $(subst /,\,$@) md $(subst /,\,$@)'
 
 else # build_dir not yet defined
 # Define variables to be consumed by invoked make subprocess (which will have a target)

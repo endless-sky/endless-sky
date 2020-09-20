@@ -1,0 +1,339 @@
+
+# Copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2018 by Nate Graham
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Frontier delivery [0]"
+	name "Frontier delivery to <planet>"
+	job
+	repeat
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so prepare to defend yourself. Payment is <payment>.`
+	cargo random 5 2 .1
+	to offer
+		random < 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "frontier"
+	destination
+		not government "Pirate"
+		distance 2 10
+		attributes "frontier"
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders
+			confusion 30
+		system destination
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+			confusion 30
+		system destination
+		fleet "Small Northern Pirates" 2
+	on complete
+		payment 4000 180
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Frontier delivery [1]"
+	name "Frontier delivery to <planet>"
+	job
+	repeat
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so prepare to defend yourself. Payment is <payment>.`
+	cargo random 25 2 .05
+	to offer
+		random < 25
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "frontier"
+	destination
+		not government "Pirate"
+		distance 2 10
+		attributes "frontier"
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders
+			confusion 20
+		system destination
+		fleet "Small Northern Pirates" 2
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+			confusion 20
+		system destination
+		fleet "Small Northern Pirates" 3
+	on complete
+		payment 4000 180
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Frontier delivery [2]"
+	name "Frontier delivery to <planet>"
+	job
+	repeat
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so prepare to defend yourself. Payment is <payment>.`
+	cargo random 40 2 .02
+	to offer
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "frontier"
+	destination
+		not government "Pirate"
+		distance 2 10
+		attributes "frontier"
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders
+		system destination
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+		system destination
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+	on complete
+		payment 4000 180
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Frontier Emigration [0]"
+	name "Emigration to <planet>"
+	job
+	repeat
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
+	passengers 2 10 .9
+	to offer
+		random < 30
+	source
+		not government "Pirate"
+		attributes "frontier"
+		not planet "Shangri-La"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "frontier"
+	on complete
+		payment 3000 140
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Frontier Emigration [1]"
+	name "Emigration to <planet>"
+	job
+	repeat
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
+	passengers 4 10 .8
+	to offer
+		random < 25
+	source
+		not government "Pirate"
+		attributes "frontier"
+		not planet "Shangri-La"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "frontier"
+	on complete
+		payment 3000 140
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Frontier Emigration [2]"
+	name "Emigration to <planet>"
+	job
+	repeat
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
+	passengers 6 10 .7
+	to offer
+		random < 20
+	source
+		not government "Pirate"
+		attributes "frontier"
+		not planet "Shangri-La"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "frontier"
+	on complete
+		payment 3000 140
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Disaster Relief"
+	name "Disaster relief to <planet>"
+	job
+	repeat
+	description "A disaster has occurred in a colony on the frontier world of <destination>. Deliver <cargo> to the planet by <date> for <payment>."
+	cargo "disaster relief supplies" 25 2 .05
+	deadline
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "frontier"
+	destination
+		not government "Pirate"
+		distance 2 10
+		attributes "frontier"
+		not planet "Shangri-La"
+	on complete
+		payment 10000 160
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell."
+
+
+mission "Instruct Novice Pilot"
+	job
+	repeat
+	description "A novice pilot seeks instruction from an experienced captain, and requests an escort to <stopovers>. After that, return to <origin> and you will receive payment of <payment>."
+	to offer
+		random < 5
+		"combat rating" > 100
+	source
+		government "Republic" "Free Worlds" "Neutral" "Independent"
+		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
+	stopover
+		not government "Pirate"
+		attributes "frontier"
+		attributes "outfitter"
+		attributes "spaceport"
+		distance 3 7
+	on stopover
+		dialog "After a smooth landing, you guide your student through an especially rough part of the spaceport, full of trash, homeless drifters, and poorly-lit alleyways. You explain the ins and outs of avoiding pickpockets, keeping out of bar fights, and how to spot a lousy deal at an outfitter's shop. After a few hours in one of the seedier parts of the galaxy, both of you are eager to return to <origin>."
+	on visit
+		dialog "You've returned to <planet>, but forgot to escort the <npc> to <stopovers> first! Better head there first."
+	on complete
+		payment 75000
+		dialog "Your student thanks you for the instruction and for providing a guided view of some of the galaxy's rougher areas. You receive your payment of <payment>."
+	npc
+		government "Pirate"
+		personality nemesis waiting
+		fleet "Small Northern Pirates"
+		system
+			distance 3 7
+	npc accompany save
+		government "Merchant"
+		personality escort heroic vindictive
+		fleet
+			names "civilian"
+			variant
+				"Sparrow"
+			variant
+				"Star Barge"
+			variant
+				"Shuttle"
+			variant
+				"Heavy Shuttle"
+
+
+mission "Small Pirate gambling"
+	description "Survive the pirate attack!"
+	minor
+	repeat
+	to offer
+		random < 3
+		"reputation: Pirates" < 0
+		"combat rating" < 200
+		credits > 14357
+	source
+		attributes "dirt belt" "south" "rim" "pirate" "frontier"
+	on offer
+		conversation
+			`You're having a drink in a dimly lit spaceport bar when you notice a group of young men in crimson leather outfits gambling in a dark corner. The barman eyes them warily. One of them raises his drink and waves you over, beckoning to join their game.`
+			choice
+				`(Join their game.)`
+					goto gamble
+				`(Ignore them and leave quickly.)`
+					defer
+
+			label gamble
+			`	You walk over to the table. A closer examination indicates a strong likelihood that they are pirates; not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. After a few rounds of cards it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
+			branch "good luck" "bad luck"
+				random < 30
+
+			label "good luck"
+			`	Fortunately, you're able to outsmart them anyway and win the game, winding up with a sizable pile of credit chips. They don't look too happy about it, but do not bother you as you quickly leave. You thank your lucky stars: you're nearly 25,000 credits richer and still in one piece after a face-to-face encounter with pirates.`
+				accept
+
+			label "bad luck"
+			`	You're starting to bleed money, with more than 10,000 credits in losses already.`
+			choice
+				`(Call them out on their cheating.)`
+					goto call
+				`(Say nothing and continue playing.)`
+					goto lose
+
+			label lose
+			`	You grit your teeth and lose hand after hand before the game finally ends. The pirates gloat over their "winnings" of almost 15,000 credits as you leave.`
+				decline
+
+			label call
+			`	You confront them on their blatant cheating when the meanest-looking one growls at you, "We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you! We can make this ugly real fast."`
+			`	The thugs stare at you menacingly and start to reach for their guns.`
+			choice
+				`(Shoot first!)`
+					goto shoot
+				`(Grab the pot and run!)`
+					goto run
+				`(Let them fleece you.)`
+					goto lose
+
+			label shoot
+			branch "shoot and die" "shoot and run"
+				random < 30
+
+			label "shoot and die"
+			`	Unfortunately they're faster than you. Your mutilated corpse hits the floor with a wet thump.`
+				die
+
+			label "shoot and run"
+			`	Grateful that you never leave your ship unarmed, your hand flies toward the pistol at your thigh. You draw the weapon and fire at the pirate who just threatened you. The slug punches a hole in the center of his chest, and he collapses to the ground. His shocked comrades fumble in horror for their weapons, but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the credits on the table on the way out!`
+			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, the remaining two pirates hurl obscenities over the comms from their own ships, which are in hot pursuit.`
+				launch
+
+			label run
+			branch "grab and die" "grab and run"
+				random < 30
+
+			label "grab and die"
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. Dodging gunfire, you run towards the door and get halfway there before one of the slugs finds its mark. You fall to the floor in pain, watching a pool of your own blood expand around you. You try to struggle to your feet, but the toughest-looking pirate kicks you to the ground and finishes you off with another shot.`
+				die
+
+			label "grab and run"
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion as bullets fly past you and tear chips out of the walls. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with an enormous shotgun. The remaining three chase after you.`
+			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended two of the pirates, the remaining two made it to their ships and are in hot pursuit.`
+				launch
+
+	on decline
+		payment -14357
+		fail
+
+	on accept
+		payment 23974
+		fail
+
+	npc
+		personality
+			launching
+			heroic
+			plunders
+			vindictive
+			confusion 20
+		government "Pirate"
+		fleet
+			names "pirate"
+			variant
+				"Sparrow" 2
+			variant
+				"Wasp" 2
+			variant
+				"Wasp"
+				"Sparrow"

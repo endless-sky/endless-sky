@@ -27,6 +27,7 @@ color "conversation background" .125 .125 .125 1.
 color "map side panel background" .125 .125 .125 1.
 color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
+color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
@@ -70,8 +71,10 @@ color "escort hostile" 1. .6 .4 1.
 # Colors used when "status overlays" are enabled, and to show scan progress.
 color "overlay friendly shields" 0. .5 0. .25
 color "overlay friendly hull" .45 .5 0. .25
+color "overlay friendly disabled" .5 0 0 .25
 color "overlay hostile shields" .5 .15 0. .25
 color "overlay hostile hull" .5 .3 0. .25
+color "overlay hostile disabled" .3 .3 0 .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
@@ -560,13 +563,16 @@ interface "news"
 	sprite "ui/news"
 		center -160 -45
 	image "portrait"
-		center -340 -40
+		center 20 -40
 	string "name"
-		from -270 -100
+		from -400 -100
 		align center left
 		color "bright"
+	box "message portrait"
+		from -400 -80
+		to -50 10
 	box "message"
-		from -270 -80
+		from -400 -80
 		to 80 10
 
 

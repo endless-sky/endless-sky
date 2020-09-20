@@ -62,7 +62,16 @@ int DataNode::Size() const
 
 
 
+// Get all tokens.
+const vector<string> &DataNode::Tokens() const
+{
+	return tokens;
+}
+
+
+
 // Get the token with the given index. No bounds checking is done.
+// DataFile loading guarantees index 0 always exists.
 const string &DataNode::Token(int index) const
 {
 	return tokens[index];
@@ -75,18 +84,27 @@ double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-	{
 		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
-		return 0.;
-	}
-	
-	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
-	const char *it = tokens[index].c_str();
-	if(*it != '-' && *it != '.' && *it != '+' && !(*it >= '0' && *it <= '9'))
-	{
+	else if(!IsNumber(tokens[index]))
 		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
+	else
+		return Value(tokens[index]);
+	
+	return 0.;
+}
+
+
+
+// Static helper function for any class which needs to parse string -> number.
+double DataNode::Value(const string &token)
+{
+	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
+	if(!IsNumber(token))
+	{
+		Files::LogError("Cannot convert value \"" + token + "\" to a number.");
 		return 0.;
 	}
+	const char *it = token.c_str();
 	
 	// Check for leading sign.
 	double sign = (*it == '-') ? -1. : 1.;
@@ -137,10 +155,17 @@ bool DataNode::IsNumber(int index) const
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return false;
 	
+	return IsNumber(tokens[index]);
+}
+
+
+
+bool DataNode::IsNumber(const string &token)
+{
 	bool hasDecimalPoint = false;
 	bool hasExponent = false;
 	bool isLeading = true;
-	for(const char *it = tokens[index].c_str(); *it; ++it)
+	for(const char *it = token.c_str(); *it; ++it)
 	{
 		// If this is the start of the number or the exponent, it is allowed to
 		// be a '-' or '+' sign.
@@ -209,14 +234,15 @@ int DataNode::PrintTrace(const string &message) const
 	
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
-	int indent = 0;
+	size_t indent = 0;
 	if(parent)
 		indent = parent->PrintTrace() + 2;
 	if(tokens.empty())
 		return indent;
 	
 	// Convert this node back to tokenized text, with quotes used as necessary.
-	string line(indent, ' ');
+	string line = !parent ? "" : "L" + to_string(lineNumber) + ": ";
+	line.append(string(indent, ' '));
 	for(const string &token : tokens)
 	{
 		if(&token != &tokens.front())

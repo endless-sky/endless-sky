@@ -26,11 +26,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const vector<pair<double, string>> UNIT_PAIRS = {
+	const vector<pair<double, string>> SCALE_LABELS = {
 		make_pair(60., ""),
 		make_pair(60. * 60., ""),
 		make_pair(60. * 100., ""),
 		make_pair(100., "%"),
+		make_pair(100., ""),
 		make_pair(1. / 60., "")
 	};
 	
@@ -60,11 +61,13 @@ namespace {
 		{"jump speed", 0},
 		{"reverse thrusting energy", 0},
 		{"reverse thrusting heat", 0},
+		{"scram drive", 0},
 		{"shield generation", 0},
 		{"shield energy", 0},
 		{"shield fuel", 0},
 		{"shield heat", 0},
 		{"solar collection", 0},
+		{"solar heat", 0},
 		{"thrusting energy", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
@@ -77,7 +80,27 @@ namespace {
 		
 		{"ion resistance", 2},
 		{"disruption resistance", 2},
-		{"slowing resistance", 2}
+		{"slowing resistance", 2},
+		
+		{"hull repair multiplier", 3},
+		{"hull energy multiplier", 3},
+		{"hull fuel multiplier", 3},
+		{"hull heat multiplier", 3},
+		{"piercing resistance", 3},
+		{"shield generation multiplier", 3},
+		{"shield energy multiplier", 3},
+		{"shield fuel multiplier", 3},
+		{"shield heat multiplier", 3},
+    
+		{"disruption protection", 4},
+		{"force protection", 4},
+		{"fuel protection", 4},
+		{"heat protection", 4},
+		{"hull protection", 4},
+		{"ion protection", 4},
+		{"piercing protection", 4},
+		{"shield protection", 4},
+		{"slowing protection", 4}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -213,8 +236,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			continue;
 		
 		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : UNIT_PAIRS[sit->second].first);
-		string units = (sit == SCALE.end() ? "" : UNIT_PAIRS[sit->second].second);
+		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
 		
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end()) 
@@ -248,6 +271,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeLabels.emplace_back("ammo:");
 		attributeValues.emplace_back(outfit.Ammo()->Name());
 		attributesHeight += 20;
+		if(outfit.AmmoUsage() != 1)
+		{
+			attributeLabels.emplace_back("ammo usage:");
+			attributeValues.emplace_back(Format::Number(outfit.AmmoUsage()));
+			attributesHeight += 20;
+		}
 	}
 	
 	attributeLabels.emplace_back("range:");

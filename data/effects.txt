@@ -16,6 +16,14 @@ effect "jump drive"
 	"random angle" 180
 	"velocity scale" 0.
 
+effect "jump drive red"
+	sprite "effect/jump drive red"
+		"no repeat"
+		"frame rate" 8
+		"rewind"
+	"lifetime" 8
+	"velocity scale" 3
+
 effect "ion spark"
 	sprite "effect/spark"
 		"no repeat"
@@ -64,6 +72,24 @@ effect "leak"
 
 effect "big leak"
 	sprite "effect/leak big"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+effect "remnant leak"
+	sprite "effect/remnant leak"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+effect "remnant leak sparkle"
+	sprite "effect/remnant leak sparkle"
 		"no repeat"
 		"frame rate" 30
 	"lifetime" 7

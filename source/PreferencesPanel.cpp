@@ -52,6 +52,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string SHIP_OUTLINES = "Ship outlines in shops";
 }
 
 
@@ -298,7 +299,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
-		"Menus",
+		"Interface",
 		"Fleet"
 	};
 	const string *category = CATEGORIES;
@@ -327,6 +328,7 @@ void PreferencesPanel::DrawControls()
 		Command::MAP,
 		Command::INFO,
 		Command::FULLSCREEN,
+		Command::FASTFORWARD,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -360,7 +362,7 @@ void PreferencesPanel::DrawControls()
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing)
 			{
-				table.SetHighlight(66, 120);
+				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim: red);
 			}
 			
@@ -368,7 +370,7 @@ void PreferencesPanel::DrawControls()
 			bool isHovering = (index == hover && !isEditing);
 			if(!isHovering && index == selected)
 			{
-				table.SetHighlight(-120, 64);
+				table.SetHighlight(-120, 54);
 				table.DrawHighlight(back);
 			}
 			
@@ -437,7 +439,9 @@ void PreferencesPanel::DrawSettings()
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
+		"Draw starfield",
 		"Show hyperspace flash",
+		SHIP_OUTLINES,
 		"",
 		"Other",
 		"Clickable radar display",
@@ -446,7 +450,8 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
-		"Warning siren"
+		"Warning siren",
+		"Interrupt fast-forward"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
@@ -499,6 +504,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+		}
+		else if(setting == SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -566,7 +576,7 @@ void PreferencesPanel::DrawPlugins()
 	
 	const int MAX_TEXT_WIDTH = 230;
 	const Font &font = FontSet::Get(14);
-	for(const pair<string, string> &plugin : GameData::PluginAboutText())
+	for(const auto &plugin : GameData::PluginAboutText())
 	{
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 		

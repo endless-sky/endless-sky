@@ -1,7 +1,10 @@
 import os
+from SCons.Node.FS import Dir
 
 # Load environment variables, including some that should be renamed.
 env = Environment(ENV = os.environ)
+if 'CXX' in os.environ:
+	env['CXX'] = os.environ['CXX']
 if 'CXXFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CXXFLAGS'])
 if 'LDFLAGS' in os.environ:
@@ -20,7 +23,7 @@ opts.Update(env)
 
 Help(opts.GenerateHelpText(env))
 
-flags = ["-std=c++11", "-Wall"]
+flags = ["-std=c++11", "-Wall", "-Werror"]
 if env["mode"] != "debug":
 	flags += ["-O3"]
 if env["mode"] == "debug":
@@ -53,7 +56,16 @@ else:
 buildDirectory = env["BUILDDIR"] + "/" + env["mode"]
 VariantDir(buildDirectory, "source", duplicate = 0)
 
-sky = env.Program("endless-sky", Glob(buildDirectory + "/*.cpp"))
+# Find all source files.
+def RecursiveGlob(pattern, dir_name=buildDirectory):
+	# Start with source files in subdirectories.
+	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(str(dir_name)+"/*")
+			   if isinstance(sub_dir, Dir)]
+	# Add source files in this directory
+	matches += Glob(str(dir_name) + "/" + pattern)
+	return matches
+
+sky = env.Program("endless-sky", RecursiveGlob("*.cpp", buildDirectory))
 
 
 # Install the binary:

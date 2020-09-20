@@ -27,10 +27,10 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
-	double FULL_DEPRECIATION = 0.25;
-	double DAILY_DEPRECIATION = 0.997;
-	int MAX_AGE = 1000;
-	int GRACE_PERIOD = 7;
+	constexpr double FULL_DEPRECIATION = 0.25;
+	constexpr double DAILY_DEPRECIATION = 0.997;
+	constexpr int GRACE_PERIOD = 7;
+	constexpr int MAX_AGE = 1000 + GRACE_PERIOD;
 }
 
 
@@ -77,32 +77,40 @@ void Depreciation::Save(DataWriter &out, int day) const
 	out.Write(NAME[isStock]);
 	out.BeginChild();
 	{
-		for(const auto &sit : ships)
-		{
-			out.Write("ship", sit.first->ModelName());
-			out.BeginChild();
+		using ShipElement = pair<const Ship *const, map<int, int>>;
+		WriteSorted(ships,
+			[](const ShipElement *lhs, const ShipElement *rhs)
+				{ return lhs->first->ModelName() < rhs->first->ModelName(); },
+			[=, &out](const ShipElement &sit)
 			{
-				// If this is a planet's stock, remember how many outfits in
-				// stock are fully depreciated. If it's the player's stock,
-				// anything not recorded is considered fully depreciated, so
-				// there is no reason to save records for those items.
-				for(const auto &it : sit.second)
-					if(isStock || (it.second && it.first > day - MAX_AGE))
-						out.Write(it.first, it.second);
-			}
-			out.EndChild();
-		}
-		for(const auto &oit : outfits)
-		{
-			out.Write("outfit", oit.first->Name());
-			out.BeginChild();
+				out.Write("ship", sit.first->ModelName());
+				out.BeginChild();
+				{
+					// If this is a planet's stock, remember how many outfits in
+					// stock are fully depreciated. If it's the player's stock,
+					// anything not recorded is considered fully depreciated, so
+					// there is no reason to save records for those items.
+					for(const auto &it : sit.second)
+						if(isStock || (it.second && it.first > day - MAX_AGE))
+							out.Write(it.first, it.second);
+				}
+				out.EndChild();
+			});
+		using OutfitElement = pair<const Outfit *const, map<int, int>>;
+		WriteSorted(outfits,
+			[](const OutfitElement *lhs, const OutfitElement *rhs)
+				{ return lhs->first->Name() < rhs->first->Name(); },
+			[=, &out](const OutfitElement &oit)
 			{
-				for(const auto &it : oit.second)
-					if(isStock || (it.second && it.first > day - MAX_AGE))
-						out.Write(it.first, it.second);
-			}
-			out.EndChild();
-		}
+				out.Write("outfit", oit.first->Name());
+				out.BeginChild();
+				{
+					for(const auto &it : oit.second)
+						if(isStock || (it.second && it.first > day - MAX_AGE))
+							out.Write(it.first, it.second);
+				}
+				out.EndChild();
+			});
 	}
 	out.EndChild();
 }
@@ -334,11 +342,11 @@ double Depreciation::Depreciate(int age) const
 {
 	if(age <= GRACE_PERIOD)
 		return 1.;
-	if(age >= MAX_AGE + GRACE_PERIOD)
+	if(age >= MAX_AGE)
 		return FULL_DEPRECIATION;
 	
 	double daily = pow(DAILY_DEPRECIATION, age - GRACE_PERIOD);
-	double linear = static_cast<double>(MAX_AGE - (age - GRACE_PERIOD)) / MAX_AGE;
+	double linear = static_cast<double>(MAX_AGE - age) / (MAX_AGE - GRACE_PERIOD);
 	return FULL_DEPRECIATION + (1. - FULL_DEPRECIATION) * daily * linear;
 }
 

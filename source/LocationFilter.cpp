@@ -181,7 +181,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Government *government : governments)
-					out.Write(government->GetName());
+					out.Write(government->GetTrueName());
 			}
 			out.EndChild();
 		}
@@ -295,8 +295,8 @@ bool LocationFilter::Matches(const Ship &ship) const
 	{
 		// Create a set from the positive-valued attributes of this ship.
 		set<string> shipAttributes;
-		for(const pair<string, int> &attr : ship.Attributes().Attributes())
-			if(attr.second > 0)
+		for(const auto &attr : ship.Attributes().Attributes())
+			if(attr.second > 0.)
 				shipAttributes.insert(shipAttributes.end(), attr.first);
 		for(const set<string> &attr : attributes)
 			if(!SetsIntersect(attr, shipAttributes))
@@ -381,7 +381,7 @@ const System *LocationFilter::PickSystem(const System *origin) const
 
 
 // Pick a random planet that matches this filter, based on the given origin.
-const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance) const
+const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance, bool requireSpaceport) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
@@ -391,9 +391,10 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		// Skip entries with incomplete data.
 		if(planet.Name().empty() || !planet.GetSystem())
 			continue;
-		// Skip planets that do not offer jobs or missions.
-		if(planet.IsWormhole() || !planet.HasSpaceport() || (!hasClearance && !planet.CanLand()))
-			continue;
+		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
+		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
+			if(planets.empty() || !planets.count(&planet))
+				continue;
 		if(Matches(&planet, origin))
 			options.push_back(&planet);
 	}

@@ -1,0 +1,254 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "First Contact: Quarg"
+	landing
+	source
+		attributes "quarg"
+	on offer
+		log "Factions" "Quarg" `The Quarg are tall, thin, inscrutable aliens who evolved on a very small planet and can live comfortably on worlds with atmosphere so thin that a human being could not breathe it. They discovered spaceflight millions of years ago. Many of them live on artificially constructed ringworlds, including one in human space. They live at peace with most sentient species and claim to be in communication with an even older species named the Drak.`
+		log "Factions" "Drak" `The Drak are supposedly the oldest living species in the galaxy. The Quarg say that the Drak act as something like galactic peacekeepers or police, and will intervene if a species invents a weapon so terrible that it could drive that species to extinction.`
+		conversation
+			`You had seen pictures and videos of the Quarg before, but this is your first time in a spaceport that is owned by them. The architecture is truly alien: uncomfortably tall ceilings, strange colors, and walls that never quite seem to meet at right angles. The Quarg themselves are equally strange, towering above you, some nearly three meters tall. Their legs bend backwards at the bottom, like a dog walking on its hind feet, and they move gracefully and almost silently.`
+			`	Most of the Quarg you see are dressed entirely in shades of grey, or only slight hints of color. Quarg fashion seems to revolve not around color, but texture: coarse and fine woven fabrics, patterns like lizard scales or cobblestones, and occasional decorative fringes of sponge-like material. Their skin is deep grey, sometimes with a hint of green or blue or brown beneath it, with a fine scale pattern like a reptile. But what makes their eyes startling is that they look very human, except that some of them have gold or violet irises instead of green or blue or brown. They have no hair, but many are wearing small cloth caps or hoods.`
+			`	One of the Quarg notices you gawking at them and walks over. It squats down on its haunches so that its eyes are level with your own, and says, "Hello." Its voice is deep, sounding like an accordion or the buzz of a beehive blended with the hum of a starship engine.`
+			choice
+				`	"Hello."`
+			`	Speaking slowly and deliberately, it says, "I think you are new here. Are you what is called a tourist?"`
+			choice
+				`	"Yes."`
+				`	"No, I'm a merchant captain, I'm here to buy and sell cargo."`
+			`	"I see." The Quarg blinks slowly. Its eyelids come from the sides of its eyes, instead of up and down. In an otherwise so human eye, the effect is disconcerting. "Many humans have many questions when they see us, and we the Quarg live for many lifetimes of humans, so it is not burdensome for this one to speak with you."`
+			
+			label choice
+			choice
+				`	"Can you tell me about the Quarg?"`
+					goto quarg
+				`	"Are there other alien species in the galaxy?"`
+				`	"It is an honor to speak with you, but I do not have any questions."`
+					decline
+			
+			`	"Many. Most of them young, so much younger than the Quarg. Many foolish. A few wise. Many travel only along the ancient roads between the stars. A few need no roads to travel by. And some reshape the galaxy at will. But the Quarg are like no other, because we have nothing that the others covet."`
+			choice
+				`	"What do you mean?"`
+			
+			label quarg
+			`	"We the Quarg are unique of all the species in the galaxy. Our species began on the moon of a great gas giant, on a planet most small, that gathered about itself very little air. We cannot step many steps on the worlds that the Hai, the Korath, the other species desire. And the worlds like our home, you could not breathe their so thin air, for our lungs are very subtle. And we are an old race, and do not kill for sport or whimsy, so the Drak gave us the gift, that we may go among the other races and settle where we please, and make friends of all, because none dare be our enemy."`
+			choice
+				`	"Who are the Drak?"`
+					goto drak
+				`	"Why do none dare to be your enemy?"`
+			
+			`	"Because we are very strong, and because we speak with the Drak."`
+			choice
+				`	"Who are the Drak?"`
+			
+			label drak
+			`	"The Drak are the eldest living. Not the firstborn, for they are long gone, but the eldest living, and yet they are far younger than the stars. They tend and cultivate the pathways between the stars, and prune away the paths that any species could travel to make war against another. And they hold the secret of travel beyond those pathways, and give the secret only to a worthy few, so that peace may prevail." It taps its chest with one hand, signaling that the Quarg are among those few.`
+			`	"Not that the Drak are strangers to war. Planets and moons and even stars were consumed in their wars and are no more. But then they learned wisdom, and have fought no more wars, many millions of human years. They live nearby, but they keep to themselves, and intervene in the affairs of other races only to prevent their destruction or the use of obscene technologies of war."`
+			choice
+				`	"We humans have used some rather destructive weapons against each other, and no alien species ever stepped in to put a stop to it."`
+				`	"Well, I hope we never do anything bad enough to force them to intervene."`
+					goto closing
+			
+			`	"You have done what? Awakened the atom? There are weapons far worse than that. Consuming planets. Snuffing out stars. Tearing the flesh of space and time itself. Weapons of chaos I pray your reckless race cannot yet even conceive of. These things will attract the attention of the Drak, because they nearly destroyed this galaxy once, and must not be allowed to do so again."`
+			choice
+				`	"Well, if there are technologies that dangerous out there, I hope the Drak do continue to succeed in keeping them from being used."`
+			
+			label closing
+			`	"I hope so too, human." The Quarg stands up, towering over you once again. "As long as you are a seeker of peace, you are most welcome on our worlds at any time." It bows to you. You are not sure if that is a Quarg gesture too, or if it is simply imitating a human custom, but you bow in return, and the Quarg walks quietly away.`
+				decline
+
+
+
+mission "First Contact: Kuwaru Efreti"
+	landing
+	source "Kuwaru Efreti"
+	to offer
+		has "First Contact: Quarg: offered"
+	on offer
+		conversation
+			`In your past experience, you've never seen the Quarg move with anything approaching haste or excitement, but when you land on this station a group of them run up to you, moving faster than you thought they were able to. For a minute or two they just gawk at you and talk amongst themselves in their own language; you think you recognize the word "Humani," and perhaps, "Eartha."`
+			`	Finally a Quarg appears who speaks your language, or at least is willing to try. It says, "Salutations, astonishing sojourner. Whither came you, and wherefore visit you us here in the unquiet graveyard of the Korathi?"`
+			choice
+				`	"I'm just here to explore. Can you tell me more about the Korath?"`
+				`	"I came here to learn what happened to the Korath."`
+			`	"Ah, the unwise Korath," it says. "Once a mighty empire, now sadly splintered and diminished. Their own thinking war machines, now breeding with abandon and inimical to all, hunt the survivors. And of them some, too, were exiled for their great crimes."`
+			choice
+				`	"What crimes did they commit?"`
+					goto crimes
+				`	"What do you mean, 'thinking war machines'?"`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
+			choice
+				`	"You mentioned 'crimes.' What crimes did they commit?"`
+			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But you may observe the wreckage of their abominations and take warning."`
+				goto korath
+			
+			label crimes
+			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But you may observe the wreckage of their abominations and take warning."`
+			choice
+				`	"You mentioned 'thinking war machines.' What are those?"`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
+			
+			label korath
+			`	You are interrupted as one of the Korath who inhabit this ringworld walks by, and the Quarg says, "Friend Korath, meet the human."`
+			`	"<first> <last>," you say, holding out a hand automatically. The Korath does not shake your hand, but instead greets you by holding up both hands, palms toward you. It says something in its own language, then hurries away.`
+			`	The Quarg says to you, "One faction among the Korathi sought peace. 'Korath Efreti,' they name themselves, which means 'Korath Friends.' They are under our protection and intend you no harm. But, they have not your language; here humans are rare. Another question have you?"`
+			choice
+				`	"Will the friendly Korath let me purchase their technology?"`
+				`	"Why don't you destroy the robots, if they're such a threat?"`
+					goto destroy
+				`	"No, but I'm glad to meet you."`
+					decline
+			`	"Visit their worlds," says the Quarg. "Though they learn not your words, you are clever and may speak as does one without words, by pointing at things." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
+				decline
+			
+			label destroy
+			`	It clicks its teeth together, which might be the Quarg equivalent of laughter. "It was hoped that one faction of robots would destroy the other, and leave for us less work to do, but they are sadly too evenly matched. Instead we merely restrain them from expanding, as one isolates a fire one cannot extinguish and for it to burn out waits." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
+				decline
+
+
+
+mission "Quarg Satellites"
+	minor
+	name "Deploy Quarg Scanners"
+	description "Head to each of the marked systems to deploy the Quarg scanning satellites, then head to <destination> to collect your payment."
+	source
+		near "Umbral" 1 3
+		government "Quarg"
+		not planet "Humanika"
+	waypoint "Kappa Centauri"
+	waypoint "Graffias"
+	waypoint "Antares"
+	waypoint "Han"
+	to offer
+		has "main plot completed"
+		has "First Contact: Quarg: offered"
+		not "Coalition: First Contact: offered"
+		"pirate attraction" <= 1
+	on offer
+		conversation
+			`A Quarg slowly makes its way to you when it notices you in the spaceport. "Greetings, human friend. Would you happen to have the time to listen to a proposal? We are looking for a pilot willing to help us deploy some scanning satellites."`
+			choice
+				`	"Sure, where am I deploying them?"`
+					goto where
+				`	"What are the satellites for?"`
+				`	"I don't have the time, no."`
+					decline
+			`	"To help humans in the other end of this region, the South, be better prepared against incoming attacks, and help them keep track of ships that pass by their systems."`
+			choice
+				`	"I'd like to help with that then. Where am I deploying them?"`
+					goto where
+				`	"Help? Why do you want to help people there all of a sudden?"`
+				`	"I am actually headed to a different part of the galaxy now, sorry."`
+					decline
+			`	"Why?" It pauses for a second. "Surely you have seen the foolish thugs that plague this whole region. We can deal with them here, but we do not usually travel far. To promote peace all around, without even more needless slaughter, providing some measures to deter further attacks is but a courtesy."`
+			choice
+				`	"I'd like to help with that then. Where am I deploying them?"`
+				`	"I am actually headed to a different part of the galaxy now, sorry."`
+					decline
+			label where
+			`	"To <waypoints>. Once you are done, return here and you will receive <payment>."`
+			`	As soon as you arrive at your ship, you find various Quarg with loaderbots, putting the four satellites inside your ship's cargo hold. The satellites are shaped like triangular pyramids, with each point of the main pyramid being tipped with another, smaller triangular pyramid. You can't quite make it out from this distance, but you wonder if the smaller pyramids are also tipped with even smaller pyramids. Each of the devices is roughly half your size, but probably weigh a lot more than you.`
+				accept
+	on enter "Kappa Centauri"
+		dialog "You open your cargo hold, and let a Quarg scanner drift out to the void."
+	on enter "Graffias"
+		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why decided to help with surveillance."
+	on enter "Antares"
+		dialog "You set a Quarg scanner free, and let it leave your ship."
+	on enter "Han"
+		dialog "Although those that live on the planet here don't seem to mind the occasional pirates demanding tribute, maybe they will come to appreciate the reduced pirate presence here, assuming the Quarg scanner really does help with that."
+	on complete
+		payment 263000
+		dialog `You land to find a Quarg waiting right at the docks. It hands you <payment>, and thanks you for your help.`
+
+
+
+mission "Lagrange Ring: Cargo"
+	minor
+	name "Humane Construction Materials"
+	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visit."
+	cargo "Construction Materials" 254
+	source
+		near "Enif" 1
+		government "Quarg"
+		not planet "Humanika"
+	stopover "Chiron"
+	destination "Lagrange"
+	to offer
+		has "First Contact: Quarg: offered"
+		"pirate attraction" <= 3
+	on offer
+		conversation
+			`In the spaceport, a group of Quarg is talking to dozens of human captains. Some nod and head right back to their ships, while a few others remain and appear to discuss a bit more with the Quarg.`
+			choice
+				`	(Join them to see what's going on.)`
+				`	(Ignore them.)`
+					decline
+			`	You join the group, and one of the Quarg diverts its attention to you, while the others continue speaking with the human merchants.`
+			`	"Would you also be someone willing to provide us a cargo service, Captain?" it asks, all the while checking a data pad, which seems to be related to the ships docked here. "Not many of you humans in this region have the cargo space required, much less proper defenses for cargo convoys. We are willing to pay adequately for whoever meets the criteria and is willing to help us."`
+			choice
+				`	"Are those other Captains also doing this? What do you need so much cargo for?"`
+				`	"I'm not looking for any more cargo jobs right now, sorry."`
+					decline
+			`	"Many have agreed to help us already, but we still need many more. Those that have agreed to help are headed all to different portions of human space, to safely bring us the materials we have ordered.`
+			`	"Our ringworld, under construction in the nearby system, <system>, is to have a special open section for humans to visit soon. We wish to make the internal style and decoration of that section closer to human standards, so we are asking every capable captain to help. You are one such captain, are you willing to help us?"`
+			choice
+				`	"Alright, I'm interested. Where should I go to pick up the cargo?"`
+				`	"Sorry, I'm not looking for any cargo job right now, I was just curious."`
+					decline
+			`	It fiddles with the data pad a bit more, then says, "You are to pick up <cargo> on <stopovers>, then deliver that cargo to <destination>. You will be paid <payment> for the service. Be well, human."`
+			`	It gestures a bow to you, then leaves to speak with another merchant captain that got curious as well.`
+				accept
+	on stopover
+		dialog `The <cargo> is loaded into your ship under strict supervision, each crate carefully accounted for.`
+	on complete
+		payment 953000
+		conversation
+			`Much like your own ship, several other human freighters and convoys are arriving, and the cargo being meticulously checked by the Quarg, as they use their own machinery to unload what must be tens of thousands of tons from all the ships.`
+			`	About halfway through the unload of your own cargo, a Quarg comes up to you and hands you <payment>.`
+
+
+
+mission "Ask Quarg About Coalition Early"
+	landing
+	to offer
+		has "First Contact: Quarg: offered"
+		has "Coalition: First Contact: done"
+		not "assisted heliarch"
+		not "Heliarch Recon 1: offered"
+		not "Resistance: Introductions: offered"
+	source
+		attributes "quarg"
+		attributes "station"
+	on offer
+		conversation
+			`You've met the Coalition, and the Heliarchs that rule their space from within the ringworlds the Quarg built there who claim that they "defeated the Quarg oppressors." Would you like to look for some Quarg here and ask for their side of the story?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You stop the first Quarg that passes by you, and ask if they could tell their side of the story about the Coalition.`
+			`	"Ah, so you have encountered the foolish Coalition," it begins. "They once were three promising species, before they succumbed to the unwise desire for usurpation of the great deeds of others.`
+			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs"`
+			choice
+				`	"Is it true that they defeated you?"`
+					goto defeat
+				`	"Is it true what they told me? That you oppressed them and hindered their development?"`
+					goto oppress
+			label defeat
+			`	It clicks it's teeth together for a moment, and frowns a bit. "Do not underestimate us, human. We are numerous, and we are strong." It pauses for a moment, with a blank expression on its face, as if trying to remember something. "We just know better than to slaughter billions for the sake of maintaining our position."`
+				goto end
+			label oppress
+			`	"Of course not. Have you seen us do such things with humanity? Or with any other alien species you might have reached in your travels with a jump drive? The Heliarchs, like any other fanatical military, merely fabricated an excuse to justify attacking us."`
+			label end
+			`	Before you can ask it anything else, the Quarg bids you farewell, and walks away.`
+				decline

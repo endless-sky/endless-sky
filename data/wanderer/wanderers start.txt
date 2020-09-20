@@ -1,0 +1,2673 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "First Contact: Wanderer (Before Hai)"
+	landing
+	source
+		attributes "wanderer"
+	to offer
+		not "First Contact: Hai: offered"
+	on offer
+		conversation
+			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
+			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
+			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
+			choice
+				`	"Hello. I come in peace."`
+				`	"My name is <first>. I am glad to meet you."`
+			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, you suspect that it is the language of a different species entirely, but unfortunately it is no more comprehensible to you than the bird's own language.`
+			`	They make some further attempts to communicate with you, but without success. Eventually they give up and all but the leader leaves. The leader makes a sweeping gesture to the rest of the spaceport, apparently inviting you to explore.`
+				decline
+
+
+
+mission "First Contact: Wanderer"
+	name "Hai Interpreter?"
+	description "The aliens north of Hai space seem to speak the Hai language. If you can find one of the Hai who is willing to interpret, perhaps you can communicate with them."
+	landing
+	source
+		attributes "wanderer"
+	to offer
+		has "First Contact: Hai: offered"
+	to complete
+		has "Wanderers: Diplomacy: offered"
+	on offer
+		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
+		conversation
+			branch revisit
+				has "First Contact: Wanderer (Before Hai): offered"
+			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
+			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
+			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
+			choice
+				`	"Hello. I come in peace."`
+				`	"My name is <first>. I am glad to meet you."`
+			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
+				goto hai
+			
+			label revisit
+			`As before, you are ushered to the ground by a flock of the small alien ships, and a few of them fly over to your ship and wait for your to come out and try to talk to them. Also as before, you do not recognize their language and they do not understand yours, although their leader seems to be focused intently on trying to understand you.`
+			
+			label hai
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai.`
+			`	"Hai, you speak the Hai language?" you ask. You cup your hands above your ears to mimic the large, rodent-like ears of the Hai.`
+			`	"Iy, ka'hai!" says the alien, rustling its wings in what you take as a gesture of excitement, "Speru ek ka'hai?" At the same time, though, one of the other aliens takes a step back and flexes its talons at you. It occurs to you that the Hai may or may not be viewed favorably here.`
+			choice
+				`	"Sorry, I don't speak their language."`
+				`	"Are there any Hai here?"`
+			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think it is telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
+				accept
+	on visit
+		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
+
+
+
+mission "Discovered Wanderer Space"
+	landing
+	invisible
+	source
+		government "Wanderer"
+	on offer
+		event "label wanderer space"
+		fail
+
+event "label wanderer space"
+	galaxy "label wanderers"
+		sprite "label/wanderers"
+
+
+
+mission "Wanderers: Hai Diplomat"
+	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
+	landing
+	source
+		near "Ya Hai" 1 100
+		attributes "hai"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "First Contact: Wanderer: offered"
+		not "Wanderers: Diplomacy: offered"
+	on offer
+		conversation
+			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			`	You manage to contact the local governor's office, but when you speak with the governor he says, "First contact? Human, this is not a task for just any Hai. You must go to our home world, where an official ambassador can join you. I will contact them and tell them to expect you."`
+				accept
+	on accept
+		"reputation: Hai" >?= 20
+		"reputation: Hai" += 30
+
+
+
+mission "Wanderers: Diplomacy"
+	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
+	landing
+	source "Hai-home"
+	destination "Vara K'chrai"
+	clearance
+	passengers 1
+	to offer
+		has "First Contact: Wanderer: offered"
+	on offer
+		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
+		conversation
+			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago." To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
+			choice
+				`	"Wait, the human Republic knows that the Hai exist? I had heard nothing but vague rumors of your existence before I found the wormhole."`
+				`	"I'm pleased to meet you. Are you willing to travel with me?"`
+					goto travel
+			
+			`	She laughs, in the Hai manner: a rapid chittering sound. "Yes, the humans and the Hai both worried that too many humans would emigrate all at once if they knew of our peaceful lands. So we agreed that the Hai would be a secret, always here for the adventurous to discover, but difficult to find, so that the human immigration would be slow enough for us to gradually adjust to it."`
+			`	"Are you the translator who will travel with me?" you ask.`
+			label travel
+			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery grey - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
+			choice
+				`	"I'm glad to have the company of such a distinguished ambassador. Let's go visit these aliens immediately!"`
+					accept
+				`	"What if the humans want our own envoy to these aliens?"`
+			`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
+				accept
+	
+	on accept
+		fail "First Contact: Wanderer"
+	on visit
+		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You attempt to gesture to Sayari, but become embarrassed when you realize that you left her on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
+
+
+
+mission "Wanderers: Translation Machine"
+	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
+	landing
+	source "Vara K'chrai"
+	destination "Greenwater"
+	to offer
+		has "Wanderers: Diplomacy: done"
+	on offer
+		log `Was able to communicate with the birdlike "Wanderers" with the help of a Hai ambassador. It turns out that they have been under attack by the Unfettered Hai for some time, and have learned the Hai language by taking captives.`
+		log "Factions" "Wanderers" `The Wanderers are a bird-like species who inhabit a small region of space adjacent to the Hai. They have been under attack by the "Unfettered" Hai for some time. The Wanderers claim to be peaceful, and most of their ships are not designed for military use.`
+		conversation
+			`Once again, the Wanderers allow you to land, but with a large flock of their light warships surrounding you to herd you into a particular landing zone. A small delegation of Wanderers meets you and Sayari, whom they greet hesitantly in the Hai language. She responds, and a heated exchange follows. You do not understand any of what they are saying.`
+			choice
+				`	(Ask her what they are talking about.)`
+				`	(Wait for a break in the conversation.)`
+			`	She holds up a paw to you while speaking a few more sentences to them, then says, "They are saying that the Hai are attacking them, and they want to know why. It must be the Unfettered who are raiding them, and I am trying to explain that the Unfettered do not represent the Hai people as a whole."`
+			`	They continue talking for a while, and then the Wanderers ask you a question. Sayari translates, "They want to know what human beings want, and why you have come to their territory."`
+			choice
+				`	"I'm just an individual explorer. I don't represent my species or their governments."`
+					goto explorer
+				`	"My hope is that our species might both benefit from trading goods and technologies with each other."`
+					goto trade
+				`	"I believe that different species should communicate with each other rather than remaining in forced isolation."`
+					goto communication
+			
+			label explorer
+			`	They respond, and Sayari translates, "They say that like you, they are travelers, and this region of space is not their home, so they will gladly welcome other sojourners here. But they warn you that if you betray their trust, you will not find that trust easy to regain. They also say..." She pauses as the Wanderers speak again, then continues translating. "They say that in their travels, they have met few species truly capable of living in peace, and they hope that yours is one of them, because..." Again she pauses as the Wanderers speak, then says, "Because, they hate to make new friends only to lose them again."`
+				goto end
+			
+			label trade
+			`	They respond, and Sayari translates, "They say that they would perhaps be willing to trade with you, although to form a broader trade agreement with humans would be a serious decision and one they cannot make lightly." She pauses to listen again, and then continues, "They also say that they will discuss among themselves whether you should be given access to Wanderer technology, but again, that will not be a swiftly made decision." She pauses as the Wanderers speak again, then continues translating. "They say that in their travels, they have met few species truly capable of living in peace, and they hope that yours is one of them, because..." Again she pauses as the Wanderers speak, then says, "Because, they hate to make new friends only to lose them again."`
+				goto end
+			
+			label communication
+			`	They respond, and Sayari translates, "They say that their species has encountered many other species in the past, and always has found those encounters to be valuable. Although..." She pauses to listen as the Wanderers continue speaking. "Although, they say that in their travels, far more often than they encounter living species, they instead only find themselves sifting through the refuse of a species that has destroyed itself through war or carelessness. They hope that you are not such a species, because..." Again she pauses as the Wanderers speak, then says, "Because, they hate to make new friends only to lose them again."`
+			
+			label end
+			`	Speaking through Sayari, you try to reassure the Wanderers that you have peaceful intentions. They speak with her for a while longer. She tells you, "They say that I will be allowed to stay here as an ambassador, and they will also let you land on most of their worlds. But they will not welcome any other Hai into their territory. I fear that they distrust the Hai because of the actions of the Unfettered, and being associated with me may harm your chances to win their favor. For your sake, we should find a different way for you to communicate with them."`
+			choice
+				`	"How can we do that?"`
+			`	She says, "There are scientists on the Hai world of <planet> who develop speaking machines, to allow the Hai who do not know the human language to communicate with humans. I will write a letter asking them to give you one of these speaking machines, so that you may talk with the Wanderers without needing me as an intermediary."`
+				accept
+	on accept
+		"reputation: Wanderer" >?= 10
+
+
+
+mission "Human Cultural Archives"
+	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
+	landing
+	source "Greenwater"
+	destination "Alexandria"
+	to offer
+		has "Wanderers: Translation Machine: done"
+	on offer
+		conversation
+			`You land on <origin> and seek out the technologist that Sayari told you to contact: a Hai named Eruk. His eyes light up when you describe what you need from him, and why. "Contact with a new species! How very exciting," he says. "I am glad for Sayari that such an opportunity has been presented to her. But our speaking machines are very valuable. Before I give one to you, will you do a small favor for me?"`
+			choice
+				`	"Of course. What do you need?"`
+					goto need
+				`	"Can't I just pay you for one?"`
+					goto money
+			
+			label need
+			`	He says, "The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
+				goto end
+			
+			label money
+			`	"Money?" he says, with a dismissive gesture. "What use is money? No, from you I desire something far more valuable. The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
+				goto end
+			
+			label end
+			choice
+				`	"No problem, I'll bring you a copy of the database as soon as I can."`
+					accept
+				`	"How will I convince them to give me a copy of their data?"`
+			`	Your question seems to utterly confuse him. "Information," he says. "It is what you call a non-rival good, is it not? When I give information, I do not lose it. Sharing it costs me nothing. The librarians, surely they will understand this. Have no fear."`
+				accept
+	on visit
+		dialog
+			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
+			`	Go earn some money, then return here.`
+	on complete
+		payment -40
+
+
+
+mission "Cultural Data to Greenwater"
+	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
+	landing
+	source "Alexandria"
+	destination "Greenwater"
+	to offer
+		has "Human Cultural Archives: done"
+	on offer
+		conversation
+			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Eruk.`
+				accept
+
+
+
+mission "Visit Wanderers Again"
+	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
+	landing
+	source "Greenwater"
+	destination "Vara K'chrai"
+	to offer
+		has "Human Cultural Archives: done"
+	on offer
+		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
+		conversation
+			`You return to Eruk's workshop and give him the data card. His eyes light up with excitement. "I have spent my whole life studying human culture," he says. "This is a treasure to me. And now, here is your speaking machine." He hands you a small, spherical device, with speakers and microphones mounted on it, as well as what look like camera lenses. "The device is programmed with the human and Hai languages," he says. "It is not always possible to translate perfectly between our two languages, but it will try to give you a sense of the range of meanings in what is being said."`
+			choice
+				`	"Thank you. I'm eager to try it out!"`
+					accept
+				`	"Is there anything else I need to know?"`
+			`	He humors you by demonstrating how the machine works, holding a conversation with you where he speaks in the Hai language, and the machine automatically translates for you and then translates your responses back into his language. It apparently uses its cameras to track who you are speaking to or listening to. It's an impressive piece of technology, and easy enough to use. You thank him for his help, and return to your ship.`
+				accept
+	
+	on accept
+		set "language: Wanderer"
+		event "wanderer technology available"
+
+event "wanderer technology available" # Name unchanged for compatibility
+	government "Wanderer"
+		"friendly hail" "friendly wanderer"
+		"friendly disabled hail" "friendly disabled wanderer"
+		"hostile hail" "hostile wanderer"
+		"hostile disabled hail" "hostile disabled wanderer"
+
+
+
+# Compatibility patch for users pre-0.9.7 who don't have hostile Wanderer hails.
+mission "Wanderer Hail Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderer technology available"
+	on offer
+		event "wanderer technology available"
+		fail
+
+
+
+mission "Wanderers Conversation"
+	landing
+	source "Vara K'chrai"
+	to offer
+		has "Visit Wanderers Again: done"
+	on offer
+		set "license: Wanderer Outfits"
+		log "Spoke with a Wanderer ambassador named Iktat Rek, using the translation device. Received permission to purchase some of their technology, but not their ships."
+		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
+			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
+		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
+		conversation
+			`With the help of your new translation device, you are able to contact the Wanderer government. They welcome you back and tell you that a Wanderer named "Iktat Rek" has been appointed as the official envoy to deal with human visitors, and he should be arriving at your landing pad shortly.`
+			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once." He is speaking the Hai language, and the translation device does its best to render his words in your own language.`
+			choice
+				`	"How did you learn the Hai language?"`
+					goto language
+				`	"How long have you been fighting the Unfettered Hai?"`
+			
+			`	"It has been nearly twenty [years, cycles] now," he says. "At first only a single Hai ship [visited, invaded] us, but back then we had no defenses in place to stop it. For years the ship only [harvested, stole] food from our frontier worlds, and avoided combat. In our culture it is an [obligation, duty] to share our food with one who [asks for, demands] it, so we did not oppose the Hai ship. But then more Hai ships came, attacked one of our worlds and took it for themselves, and killed many of our people. We built warships and drove them back, and yet their [raids, attacks] still continue."`
+				goto food
+			
+			label language
+			`	"Recently we managed to [take, capture] some of them as prisoners," he says. "They have been [raiding, visiting] us for twenty [years, cycles]. At first they only stole unguarded stores of food, and fled if we approached. We allowed them to take it, because in our culture it is a [duty, obligation] to share our food with those who [ask for, demand] it. But recently they have become far more [aggressive, desperate]. They captured one of our worlds and killed many Wanderers, and we built warships and drove them back. Some of them tried to hide on the planet, and we made them our [prisoners, guests] and slowly learned their language."`
+			label food
+			`	"Do you know what the Unfettered want?" you ask.`
+			`	"They want food, and [land, elbowroom]," says Rek. "This we guessed when they first raided us, and the Hai named Sayari has confirmed this to me, that the Unfettered have [squandered, consumed] their own worlds and now make war to gain others."`
+			choice
+				`	"What is the history of your species?"`
+					goto history
+				`	"How long have the Wanderers been in this region of space?"`
+			`	"It is now nearly ten thousand [years, cycles] since we passed through the Eye and entered this [region, territory]," he says.`
+				goto eye
+			label history
+			`	"We are an ancient people," he says. "This [region, territory] is not our homeland. We came here through the Eye nearly ten thousand [years, cycles] ago."`
+			label eye
+			`	"The Eye?" you ask.`
+			`	"A wormhole," he says. "Once in an [eon, era] the Eye opens, and the Wanderers journey through it to a new home. Since the time of our oldest [history, legends] it has been so. A hundred times, maybe a thousand, we have left one home and journeyed to another. Each new home the Eye brings us to is full of [devastation, destruction], and it takes many lifetimes to set things right. Then the Eye beckons again, and we move on. And each time we pass through the Eye we become something new."`
+			choice
+				`	"Why would you travel through the wormhole, if you are leaving fruitful worlds you have worked hard to develop, and only ruined worlds await you on the other side?"`
+					goto reason
+				`	"What do you mean, you become something new?"`
+			`	"The first generation of Wanderers that passes through the wormhole [receive, undergo] the Molt," says Iktat Rek. "They are altered in their [being, essence] and become [giants, people of renown]. Those who stay behind in the safety of the old worlds remain only themselves, and slowly diminish. So all Wanderers who have [courage, ambition] yearn for the Eye to open so our species may once again [grow, evolve]."`
+				goto molt
+			label reason
+			`	"The reason we travel through the Eye is that those who [remain behind, settle] in the easy life on the worlds that need no further [healing, repair] are diminished. But those that pass through the Eye and face the challenge of new worlds undergo the Molt. They are altered in their [being, essence] and become [giants, people of renown]. So all Wanderers who have [courage, ambition] yearn for the Eye to open so our species may once again [grow, evolve]."`
+			label molt
+			choice
+				`	"What makes the wormhole open? Who or what controls it?"`
+				`	"Why does the Molt happen? How does it work?"`
+			`	"Those are questions that we do not ask," he says. "It is a [taboo? religion? mystery?] for us."`
+			`	You ask a few other questions, but do not gain much more information. He does mention that the other Wanderer worlds have agreed to sell you some of their technology, and that you will be allowed to "[view, admire, envy]" their ships, but not to purchase them. You thank him for his time and his willingness to trust a member of an entirely unknown species, and return to your ship.`
+				decline
+
+
+
+mission "Tell Wanderers about the Pug"
+	landing
+	source "Vara K'chrai"
+	to offer
+		has "Wanderers Conversation: offered"
+		has "Pug in Wanderer Space: offered"
+	on offer
+		log "There is a Pug world close to Wanderer space. Given their ability to control wormholes, it is likely that they are the ones who have been controlling where the Wanderers go and when. But, the Wanderers are not particularly disturbed by this information."
+		conversation
+			`You have discovered that there is a Pug outpost north of Wanderer space. Since the Pug are known to be able to control wormholes, it is likely that they are the ones that control where and when the Wanderers travel to new worlds. Do you want to tell Iktat Rek about this?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You meet with Rek and explain that the Pug are a species known for interfering in the affairs of others, and that you suspect that they are the ones who open the wormhole that causes the whole Wanderer species to migrate. Rek seems unfazed by this information. "I hope you will do nothing to [anger, offend] them," he says.`
+			choice
+				`	"Of course, but doesn't it bother you that they are controlling your species?"`
+				`	"They are manipulating your whole species, using you as a planetary cleanup crew. Don't you want to be free from their control?"`
+			`	His feathers ruffle up a bit in response to your comment, but all he says is, "It is a great [gift, blessing] to our species that the Eye leads us to new lands and new challenges whenever we become [complacent, bored]. If another species gains some [advantage, benefit] from our work as well, should that not make us more [glad, eager] to do that work, rather than less?"`
+			choice
+				`	"But wouldn't you rather be free from their control, free to remain on these worlds you have worked so hard to restore?"`
+				`	"If your species is being secretly controlled by another, doesn't that bother you?"`
+				`	"Alright. I understand. It's just that I would be concerned if my species were being controlled in this way."`
+			`	"Are we being controlled," he says, "or is it a partnership? We have gifts for making [ruined, corrupted] worlds bloom with new life. They give us worlds where our gifts can be [put to use, valuable]. We need new challenges to drive our species to greater [transformation, perfection]. They open new galaxies to us."`
+			`	He pauses, and then says, "Of course we know that how the Eye works is too [convenient, tailor-made] to be a random phenomenon. But it is a [gift, blessing] to us, and you must do nothing to drive them away, or we will be [trapped, stranded] on these few worlds and will stagnate and decline."`
+				decline
+
+
+mission "Wanderers: Defend Vara Ke'sok Hint"
+	name "Wanderer supplies to <planet>"
+	description "Transport <cargo> to <destination>, where repairs are needed from Unfettered attacks."
+	passengers 1
+	cargo "building supplies" 10
+	source 
+		near "Sich'ka'ara" 1 100
+	destination "Vara Ke'sok"
+	to offer
+		random < 60
+		has "Wanderers Conversation: offered"
+		not "Wanderers: Defend Vara Ke'sok: done"
+	on offer
+		conversation
+			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you are capable of [providing, gifting] help. Is this correct?"`
+			choice
+				`	"Yes it is. What do you need?"`
+					goto proposal
+				`	"Depends on how much you are willing to pay."`
+					goto jerk
+				`	"What do you mean?"`
+			branch hai
+				"reputation: Hai" > 100
+			branch war
+				has "main plot completed"
+			`	"Ambassador Sayari mentioned humans do many [jobs, hobbies] in their space. Or are we mistaken?"`
+			choice
+				`	"Indeed we do."`
+					goto proposal
+				`	"We only do those jobs to get paid."`
+					goto jerk
+			label war
+			`	"Ambassador Sayari mentioned you are great [hero, explorer] in human space, and solved many [issues, disasters]. Or are we mistaken?"`
+				goto choice2
+			label hai
+			`	"Ambassador Sayari mentioned you are great [hero, explorer], even in Hai space, and solved many [issues, disasters]. Or are we mistaken?"`
+				goto choice2
+			label choice2
+			choice
+				`	"I guess I could be considered a hero."`
+					goto proposal
+				`	"Calling me a 'great' hero would be an understatement."`
+					goto proposal
+				`	"That's me, but I would prefer some payment as well."`
+					goto jerk
+			label jerk
+			`	The speaking Wanderer looks at you with a blank expression, and simply says, "There can be [compensation, arrangements] of <payment> for the work.`
+			label proposal
+			`	"At the [body, planet] named Vara Ke'sok, there are [raids, conquests] by Unfettered that take place. During these, various structures get [damaged, hurt]. We wish you to help [fix, mend] these by carrying <tons> of [supplies, materials]."`
+			choice
+				`	"I'd be happy to do that."`
+				`	"Sorry, but I have more important matters to attend to."`
+					defer
+			`	When the Wanderer hears your translated response, they chatter in the Wanderer language to their friend, who nods and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
+				accept
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 10000 20
+
+
+mission "Wanderers: Defend Vara Ke'sok"
+	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
+	landing
+	source "Vara Ke'sok"
+	to offer
+		has "Wanderers Conversation: offered"
+		not "Wanderers: Defend Vara Ke'sok Hint: active"
+		or
+			random < 50
+			has "Wanderers: Defend Vara Ke'sok Hint: done"
+	on offer
+		conversation
+			branch hint
+				has "Wanderers: Defend Vara Ke'sok Hint: done"
+			`Soon after you land in the spaceport, there is a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
+			`	You are buffeted by wind as one of the Wanderers lands next to your ship and says, in the Hai language, "Unfettered [raider, pirate] fleet comes. We have put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
+				goto choice
+			label hint
+			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air.`
+			`	Looking around, you suddenly see a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
+			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. [Understand, empathise]?"`
+			choice
+				`	"I will help drive the Unfettered away."`
+					goto yes
+				`	"Why do I need to help? I only accepted a transport mission."`
+			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failure] if you do not help. Will you aid us now?"`
+			label choice
+			choice
+				`	"Yes, I will help drive the Unfettered away."`
+					goto yes
+				`	"No, I will not help you fight them."`
+			`	The Wanderer flies off to join the defense effort. A few hours later, the flashes in the sky end; the Unfettered have either been destroyed, or have gotten what they wanted and left.`
+				defer
+			label yes
+			`	The Wanderer leaves to join one of the ships that is taking off, and you quickly ready your own ship to follow...`
+				launch
+	on accept
+		"reputation: Hai (Unfettered)" <?= -1
+		event "Sich'ka'ara empty"
+	on visit
+		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
+	on complete
+		event "Sich'ka'ara restored"
+	
+	npc
+		government "Wanderer"
+		personality derelict fleeing uninterested waiting pacifist
+		fleet
+			names "wanderer"
+			variant
+				"Deep River"
+				"Deep River 4"
+				"Strong Wind" 2
+	npc evade
+		government "Hai (Unfettered)"
+		personality coward waiting disables plunders
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle (Jump)" 4
+	npc
+		government "Wanderer"
+		personality waiting heroic uninterested
+		fleet
+			names "wanderer"
+			variant
+				"Strong Wind"
+				"Summer Leaf" 2
+	npc
+		government "Wanderer"
+		personality heroic uninterested
+		fleet
+			names "wanderer"
+			variant
+				"Summer Leaf" 4
+
+event "Sich'ka'ara empty"
+	system "Sich'ka'ara"
+		fleet "Wanderer Drones" 3000
+
+event "Sich'ka'ara restored"
+	system "Sich'ka'ara"
+		add fleet "Wanderer Freight" 600
+		add fleet "Wanderer Defense" 2000
+
+
+
+mission "Wanderers: Defended Vara Ke'sok"
+	name "Report to <planet>"
+	description "Report to the Wanderer elders on <destination> that the Unfettered attacks are intensifying and moving farther in from the front."
+	landing
+	source "Vara Ke'sok"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers: Defend Vara Ke'sok: done"
+	on offer
+		log "Helped to defend a Wanderer world against a raid by Unfettered Hai ships."
+		conversation
+			`One of the Wanderers thanks you for your assistance. "These foes become more [dangerous, aggressive]," it says. "You will report to [leaders, elders] on <planet>. They must decide our [action, response]."`
+				accept
+
+
+
+mission "Wanderers: Unfettered Diplomacy 1"
+	name "Unfettered Diplomacy"
+	description "Pick up a shipment of food on the Wanderer planet <destination>, to be delivered to the Unfettered as a peace offering."
+	landing
+	source "Vara K'chrai"
+	destination "Var' Kar'i'i"
+	passengers 1
+	to offer
+		has "Wanderers: Defended Vara Ke'sok: done"
+	on offer
+		conversation
+			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, and tell them that you just helped to drive off an Unfettered raid on the Wanderer water world of Vara Ke'sok. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
+			choice
+				`	"You're saying that after working so hard to restore these worlds, you would give them to someone as destructive as the Unfettered?"`
+				`	"That can't be right. The Unfettered wrecked their own worlds. They would wreck yours as well."`
+			`	"That is the [way, calling] of the Wanderers," says Rek. "We [restore, repair] worlds and leave them to others, knowing that their new [caretakers, overseers] will squander their wealth."`
+			`	"But why?" you ask. "Why do so much work for the sake of others who will waste what you have made?"`
+			`	"Because we have tended the graveyards of a hundred failed species," says Rek, "who [spent, burned] all their resources before learning [wisdom, balance]. Put any creature in too small a cage, and it will [befoul, soil, defile] its own home and die. Give it more [space, opportunity] and it may flourish." He says to Sayari, "Ambassador, are we [foolish, simple] to have this hope?"`
+			`	Sayari says, "The Unfettered did not make war with you or with us until recently, when their three worlds began to die. Give them a new frontier, and we may have peace again."`
+			choice
+				`	"But what can we do about their attacks?"`
+					goto attacks
+				`	"Rather than helping to expand and clean up those 'cages,' why not do something about the ones who built those cages in the first place?"`
+			`	Sayari says, "Set every species loose to make war on each other? That would be foolishness. War favors the strong, not the wise."`
+			`	Iktat Rek nods in agreement. "Life is too [prolific, creative]," he says. "New species are born too often, and new planets, too seldom, if each species were to take all that it [demands, covets]. So, there must be [limits, divisions]."`
+			`	"Then what can we do about the Unfettered?" you ask, "Won't they eventually desire even more?"`
+			label attacks
+			`	Sayari says, "To buy time, you can offer them food in exchange for peace. Call it 'tribute,' not charity, or you will offend their pride."`
+			`	Rek says, "This is the best [plan, option] I have heard. <last>, will you carry me to <planet> to arrange for a shipment of food?"`
+			choice
+				`	"Sure, I can do that."`
+					accept
+				`	"Sorry, I don't want to assist the Wanderers any more."`
+					decline
+	on accept
+		log `Volunteered to help bring a shipment of food to the Unfettered, as "tribute" from the Wanderers, in the hope that it will placate the Unfettered into making peace.`
+	on visit
+		dialog `When you land on <planet>, you ask one of the Wanderers where the food shipment is. They only tilt their head and respond to you in the Wanderer language. You look around for Iktat Rek to translate, but you realize that you left him on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
+
+ship "Deep River" "Deep River (Jump, Unarmed)"
+	outfits
+		"White Sun Reactor"
+		"Dark Storm Shielding" 3
+		"Fuel Pod"
+		"Type 2 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Jump Drive"
+
+
+
+mission "Wanderers: Unfettered Diplomacy 1A"
+	name "Unfettered Diplomacy"
+	description `Escort a freighter carrying "tribute" to the Unfettered world of <destination>. You may need to bribe the Unfettered to keep them from attacking you.`
+	landing
+	source "Var' Kar'i'i"
+	destination "Firelode"
+	clearance
+	passengers 1
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1: done"
+	on offer
+		conversation
+			`Once you arrive on <origin>, Iktat Rek explains, "We have [captured, salvaged] a few jump drives from the Unfettered, and installed one in a freighter. To avoid [provoking, threatening] the Unfettered, the freighter is unarmed. It would be a bad start to our [diplomacy, peacemaking] to strike the Unfettered with Wanderer weapons."`
+			choice
+				`	"Does that mean I should not fire on them either?"`
+				`	"What should we do if they attack us, then?"`
+			`	"I would prefer that you avoid combat," he says. "The Unfettered are said to be [greedy, eager] for bribes, if you are willing to spend money to buy peace. Or simply avoid returning fire; the freighter is well shielded."`
+			`	It takes several hours for the massive Wanderer freighter to be loaded. Rek explains that they have kept track of which kinds of food the Unfettered prefer to steal, so they know what will be edible for them. He says, "Our destination is called <planet>. Sayari tells me that all Hai share a [custom, taboo] concerning guests, so once we land on their planet we will be able to [speak, parley] with them in safety."`
+				accept
+	on visit
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
+
+
+
+mission "Wanderers: Unfettered Diplomacy 1B"
+	name "Unfettered Diplomacy"
+	description "Escort this Wanderer freighter safely back to <destination>."
+	landing
+	source "Firelode"
+	destination "Var' Kar'i'i"
+	passengers 1
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1A: done"
+	on offer
+		conversation
+			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Iktat Rek explains that the food is a peace offering.`
+			`	"It is far too little," says the Unfettered leader, "too little to pay us back for the ships you have destroyed and the worlds you have stolen. Until you give us back our worlds, we cannot have peace."`
+			choice
+				`	(Let Iktat Rek do the talking.)`
+					goto rek
+				`	"You mean the ships that were destroyed while they were pillaging the Wanderers? You expect them to pay you back for those?"`
+			`	"Peace, human," says Iktat Rek. "We are not here to decide who is right." He gestures to you to step back and allow him to speak with the Hai alone.`
+			label rek
+			`	"This is indeed only a [token, foretaste]," says Iktat Rek. "We have plenty more to offer, and surely you see that for us to fight each other is wasteful."`
+			`	They talk for a while longer. Eventually the Hai leader settles on a deal: "We will send you freighters. Whenever the freighter comes, you will fill it with food. If not, it is war. If you attack the freighter, it is war. And you must let us reclaim one of our worlds."`
+			`	Iktat Rek says, "We will give you food, but I am not [authorized, permitted] to give you a world. I must speak to our [government, elders]." The Hai agree to that, and you get ready to return the freighter to <planet>.`
+				accept
+	on accept
+		event "wanderer / unfettered peace"
+	on visit
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
+
+fleet "Unfettered Tribute"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 3
+	variant
+		"Water Bug (Jump)"
+
+event "wanderer / unfettered peace"
+	"reputation: Hai (Unfettered)" >?= 1
+	government "Hai (Unfettered)"
+		"attitude toward"
+			"Wanderer" 0
+	system "Ehma Ti"
+		remove fleet "Unfettered Raid"
+		add fleet "Unfettered Tribute" 1000
+	system "Chy'chra"
+		remove fleet "Unfettered Raid"
+		add fleet "Unfettered Tribute" 2000
+	system "Prakacha'a"
+		remove fleet "Unfettered Raid"
+		add fleet "Unfettered Tribute" 2000
+
+
+
+mission "Wanderers: Unfettered Diplomacy 1C"
+	name "Unfettered Diplomacy"
+	description "Return Iktat Rek to <destination>."
+	landing
+	source "Var' Kar'i'i"
+	destination "Vara K'chrai"
+	passengers 1
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1B: done"
+	on offer
+		conversation
+			`You drop the freighter off safely on <origin>. Iktat Rek says, "Now I must return to our home, to [discuss, plan] with our elders. We cannot trust the Unfettered with a world in our space; they would build a [garrison, war fleet] there and attack us. But perhaps this [agreement, settlement] will give us peace for long enough to find a better solution."`
+				accept
+	on visit
+		dialog `When you return to <planet>, you're approached by Sayari and a few of the Wanderer elders. "Where is Iktat Rek?" Sayari asks. You realize that you left him on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		"reputation: Wanderer" >?= 20
+		set "license: Wanderer"
+		log "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
+		conversation
+			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our ships, all but the [ship of war, battleship]."`
+			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
+			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
+
+
+
+mission "Wanderers: Truce Timer"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1C: done"
+	on offer
+		event "wanderers: truce timer" 40
+		fail
+
+event "wanderers: truce timer"
+
+mission "Wanderers: Truce Check"
+	landing
+	name "Check with Iktat Rek?"
+	description "Meet up with Iktat Rek on <planet> to see if there is anything more you can do to help the Wanderers now that they have established a ceasefire with the Unfettered."
+	to offer
+		has "main plot completed"
+		has "event: wanderers: truce timer"
+		not "Wanderers: Jump Drive Source: offered"
+	source
+		government "Wanderer"
+		near "Ka'ch'chrai" 1 100
+	destination "Vara K'chrai"
+	on offer
+		conversation
+			`It has been a while since you negotiated the ceasefire between the Wanderers and the Unfettered, and so far the truce seems to be holding. Now that the immediate crisis is under control, maybe it's time to meet up with Iktat Rek to talk about finding a more permanent response to the Unfettered incursion.`
+				accept
+
+
+
+mission "Wanderers: Jump Drive Source"
+	landing
+	name "Jump drive source?"
+	description "Iktat Rek asked you to acquire a spare jump drive and sell it to the Unfettered in exchange for information on where they are getting jump drives from. Then, return to <destination>."
+	autosave
+	source "Vara K'chrai"
+	to offer
+		has "main plot completed"
+		has "event: wanderers: truce timer"
+	on offer
+		conversation
+			`When you arrive on <origin>, Iktat Rek greets you warmly. "Human," he says, "it is a [relief, delight] to have [peace, safety] within our territory. But the Unfettered will not be [placated, satisfied] forever. I have spoken with ambassador Sayari about this and we are agreed that we must know what [allies, accomplices] the Unfettered have, what their [strength, capability] is, and how they have acquired jump drives."`
+			branch naughty
+				has "Unfettered Jump Drive 3: offered"
+			choice
+				`	"Agreed. How can I help you?"`
+					goto help
+			label naughty
+			choice
+				`	"Agreed. How can I help you?"`
+					goto help
+				`	"Umm... they may actually have gotten some of those jump drives from me."`
+			`	Rek seems startled, but finally says, "I see. It is [understandable, forgivable] that you would want to placate them. So I will not [fault, censure] you for that. In fact it may help us that you have done so. What we [ask, desire] of you is to sell them another drive, but this time find a [pretense, excuse] to ask who else supplies them with jump drives. Since you have [helped, abetted] them, they may trust you with that information."`
+				goto end
+			label help
+			`	Rek says, "What we [ask, desire] of you is to acquire a jump drive and sell it to them, to [earn, curry] more favor with them. Then find a [pretense, excuse] to ask who else supplies them with jump drives. Because you [brokered, negotiated] the ceasefire, they may trust you with that information."`
+			label end
+			choice
+				`	"Sure, I can do that."`
+					accept
+				`	"But, won't it hurt you in the long run for the Unfettered to have another jump drive?"`
+			`	Rek says, "Over a hundred of their ships have [raided, violated] our space in the past few years. Someone is [equipping, supplying] them with many jump drives, and one more will make little difference. We must [cut off, eliminate] the source."`
+			`	You promise to do your best to cajole information from the Unfettered, and he wishes you luck in doing so.`
+				accept
+	on accept
+		log "Agreed to try to sell a jump drive to the Unfettered Hai, as a way to get more information from them about who else is providing them with jump drives and enabling their attacks on the Wanderers."
+	
+	to complete
+		has "Unfettered: Jump Drive Source: offered"
+	on visit
+		dialog `You have not yet tried to sell the Unfettered Hai a jump drive. Return here after doing so.`
+	on complete
+		conversation
+			`You report to Iktat Rek. "Most [intriguing, disturbing]," he says. "If what you say of these Alpha humans is [correct, unbiased], they are a dangerous foe. And in exchange for so many jump drives, no doubt the Unfettered have [supplied, furnished] them with many weapons." He pauses to think for a minute, then says, "You must track them. There is a Wanderer [device, technology] that can help you. But I must ask our [elders, government] for permission before giving you access to it. I will meet you back in the spaceport soon."`
+
+
+
+mission "Unfettered: Jump Drive Source"
+	landing
+	invisible
+	source
+		attributes "unfettered"
+	to offer
+		has "Wanderers: Jump Drive Source: active"
+	on offer
+		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (whom they refer to as "unfettered humans").`
+		conversation
+			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+			`	You eventually find one of the Unfettered who speaks your language. She directs you to the office of the "governor" (or perhaps warlord) in charge of the spaceport. The governor says, "I offer you same terms as to the other humans. One million credits, and we give you hyperdrive in place of jump drive. Is this acceptable?"`
+			choice
+				`	"Yes."`
+				`	"Sorry, let me come back when I have a jump drive to spare."`
+					defer
+			`	Carefully, almost reverently, the Unfettered technicians remove the jump drive from your ship. The governor pays you and then stands by to watch them work. Perhaps you can get more information from him.`
+			choice
+				`	"If I want to find more jump drives to give you, where should I look?"`
+				`	"You said that 'other humans' have been selling you jump drives as well?"`
+					goto others
+			`	He says, "The unfettered humans will not tell us their source, but we suspect they steal from our old foe, the Korathi invaders. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
+				goto prometheus
+			label others
+			`	"Yes," he says, "the unfettered humans. They sell us many jump drives. They say it is their calling to help us. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
+			label prometheus
+			`	You explain the myth to him as best you can, then ask, "What do you mean, 'unfettered humans'?"`
+			`	He seems surprised that you do not know what he is talking about. "The green ones," he says.`
+			choice
+				`	"Alphas? You shouldn't trade with the Alphas! They're dangerous, uncontrollable criminals!"`
+				`	"Oh, of course. The green humans are held in as high esteem as Prometheus himself. Can you tell me where to find them, so I can give them the honor they deserve?"`
+					goto honor
+			`	"That is what the altered Hai say about we the Unfettered," he says. "They say that because they are weak and afraid. Perhaps you are weak and afraid also, and I was wrong to deal with you."`
+				goto end
+			label honor
+			`	He is silent and looks at you with a wary, calculating expression. "They did not say where they come from," he says, "and they said others would come seeking to ensnare them. Perhaps I was wrong to trust you."`
+			label end
+			`	You are able to get no further information from him, but what you already know is quite valuable. You should report back to Iktat Rek and see what he says.`
+				accept
+	on accept
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		payment 1000000
+		"reputation: Hai (Unfettered)" >?= 10
+		fail
+
+
+
+mission "Wanderers: Alpha Surveillance A"
+	name "Alpha Surveillance"
+	description "Drop off surveillance micro-satellites in the three Unfettered home systems, then stop by <destination> to see if the Hai government knows anything about an Alpha enclave nearby."
+	autosave
+	source "Vara K'chrai"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Wanderers: Jump Drive Source: done"
+	
+	waypoint "Ehma Ti"
+	on enter "Ehma Ti"
+		dialog "You cycle the airlock and dump a handful of the tiny Wanderer surveillance cubes into space. By the time they've drifted a few meters away, your ship's sensors are unable to detect them."
+	waypoint "Wah Yoot"
+	on enter "Wah Yoot"
+		dialog "You cycle the airlock and dump a handful of the tiny Wanderer surveillance cubes into space. By the time they've drifted a few meters away, your ship's sensors are unable to detect them."
+	waypoint "Hi Yahr"
+	on enter "Hi Yahr"
+		dialog "You cycle the airlock and dump a handful of the tiny Wanderer surveillance cubes into space. By the time they've drifted a few meters away, your ship's sensors are unable to detect them."
+	
+	on offer
+		conversation
+			`When you meet Iktat Rek, he hands you a small box containing several small, charcoal black cubes, about two centimeters wide. "These are the [eyes, sensors] of our [communications? surveillance? information?] network," he says. "Until they receive the [request, query] command they generate no [signal, electromagnetic radiation] and almost no heat. But they watch, and [record, remember]. [Sow, scatter, deploy] several of these in each Unfettered system. Then you should visit the Hai [center, homeworld] and see if they know anything of the [activities, presence] of the Alphas."`
+			`	You bring the surveillance devices back to your ship. It looks like Rek gave you extra, presumably so that you can deploy enough in each system to have redundancy if some of them fail. It probably wouldn't make a difference to the success of the mission if you kept one for yourself, and based on what Rek said this technology might be very valuable.`
+			choice
+				`	(Use all of them for the mission, as instructed.)`
+				`	(Steal one of the devices to keep for myself.)`
+					goto steal
+			`	You split the devices up into three groups to launch out your airlock in each of the three Unfettered systems. Hopefully the Unfettered will not notice what you are doing.`
+				accept
+			label steal
+			apply
+				set "stole a wanderer micro-sat"
+			`	You split the devices up into three piles, one for each of the Unfettered systems, and keep one of them for yourself, well hidden in a safe place on your ship.`
+				accept
+	
+	on visit
+		dialog phrase "generic waypoint on visit"
+	on complete
+		log "Planted some surveillance devices, designed by the Wanderers, in Unfettered Hai space. A month from now, they will be done collecting data on ship movements in the area, and may provide a hint of where the Alphas who are selling jump drives to the Unfettered are coming from."
+		event "wanderers: alpha surveillance done" 30
+		conversation
+			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. When they realize that you are the one who made contact with the Wanderers, they quickly give you an appointment.`
+			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
+			choice
+				`	"Thank you." (Explain about the Alphas.)`
+			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
+			choice
+				`	"Is it possible that they have a hidden base on one of your worlds?"`
+				`	"Do you know where they went when you banned them from your space?"`
+					goto where
+			`	"No," he says, "It has been two hundred years, and our worlds are populous and overseen with great diligence. Unless they have taken refuge with the Unfettered, they are not in our space."`
+			`	"Then where could they have gone?" you ask.`
+			label where
+			`	"We do not know," he says. "It is not our business to track the doings of other species, outside our territory. And during the time of the Korath raids, we would not have had the capacity to track them, anyway."`
+			`	You thank him for his time. Now you just have to wait long enough for the surveillance cubes to collect their data, and hope they record something useful.`
+
+event "wanderers: alpha surveillance done"
+
+
+
+mission "Wanderers: Alpha Surveillance B"
+	landing
+	name "Alpha Surveillance"
+	description "Travel through the three Unfettered systems to retrieve the surveillance recordings, then report back to Iktat Rek on <destination>."
+	destination "Vara K'chrai"
+	to offer
+		has "event: wanderers: alpha surveillance done"
+	
+	waypoint "Ehma Ti"
+	on enter "Ehma Ti"
+		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
+		"reputation: Hai (Unfettered)" <?= -1
+	waypoint "Wah Yoot"
+	on enter "Wah Yoot"
+		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
+		"reputation: Hai (Unfettered)" <?= -1
+	waypoint "Hi Yahr"
+	on enter "Hi Yahr"
+		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
+		"reputation: Hai (Unfettered)" <?= -1
+	
+	on offer
+		conversation
+			`It has been a month since you deployed the surveillance devices in the Unfettered home systems. It's time for you to go back and retrieve whatever recordings they made. You'll then be able to bring the recordings back to Iktat Rek on <planet> to decrypt and analyze them.`
+			`	Hopefully you will be able to collect the data without the Unfettered intercepting the transmissions and realizing they have been spied on.`
+				accept
+	
+	on visit
+		dialog phrase "generic waypoint on visit"
+	on complete
+		conversation
+			`When you arrive at the spaceport, you contact Iktat Rek and send him a copy of the encrypted recordings. You also mention to him that the Unfettered attacked you after you sent out the data retrieval signal. "That is [unfortunate, regrettable]," says Rek. "I hope they will [cool off, calm down] in time. I suspect you could buy their [friendship, favor] back with another jump drive, or just ignore their [attacks, antagonism] for now."`
+			`	You ask what you should do next, and Rek says, "We need some time to [analyze, inspect] the sensor logs. Meet me in the spaceport in an hour."`
+
+
+
+mission "Wanderers: Alpha Surveillance C"
+	name "Alpha Surveillance"
+	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	source "Vara K'chrai"
+	destination "Alta Hai"
+	to offer
+		has "Wanderers: Alpha Surveillance B: done"
+		not "stole a wanderer micro-sat"
+		not "Wanderers: Alpha Surveillance C (Naughty): offered"
+	on offer
+		conversation
+			`When you meet up with Iktat Rek, he shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via jump drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
+			choice
+				`	"It's possible, but it could also be a stolen ship. I wouldn't expect the Navy to side with the Unfettered."`
+					goto no
+				`	"I wouldn't put it past them. It could be some sort of hidden program to gain access to alien technology."`
+			`	Iktat Rek says, "I see. So either your [leadership, government] knows about this secret, or it is a [private, separate] military conspiracy. Either way, that worries me."`
+			`	"What should we do about it?" you ask.`
+				goto end
+			label no
+			`	"I hope you are right," says Rek. "I do not wish our [conflict, tension] with the Unfettered to place us at war with humans. We must [investigate, explore] this matter further."`
+			`	"How can we do that?" you ask.`
+			label end
+			`	"You must track this ship," says Rek. "A jump drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] jump drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
+			`	You agree to make a visit to the Quarg ringworld in Hai space, and he wishes you luck on your journey.`
+				accept
+	
+	on complete
+		conversation
+			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the jump drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Return to the spaceport in an hour and one will meet you to hear your petition."`
+
+
+
+mission "Wanderers: Alpha Surveillance C (Naughty)"
+	name "Alpha Surveillance"
+	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	source "Vara K'chrai"
+	destination "Alta Hai"
+	to offer
+		has "Wanderers: Alpha Surveillance B: done"
+		has "stole a wanderer micro-sat"
+		not "Wanderers: Alpha Surveillance C: offered"
+	on offer
+		conversation
+			`Iktat Rek arrives carrying a handheld device with two long antennas. "You must [pardon, forgive] me," he says. "It appears you have [dropped, misplaced] one of the tracking devices. Fortunately I have the [means, capability] to determine where on your ship it is [located, concealed]. Shall I assist you in finding it?"`
+			choice
+				`	"No, umm... I bet it just fell out of the box in my cargo hold. I'll look around and see if I can find it."`
+				`	"I'm sorry, I kept one of them to try to figure out how it works. I'll go get it and give it back to you."`
+					goto apologized
+				`	(Get back in my ship and flee.)`
+					goto fail
+			`	"I see," says Rek. You wish you were able to read Wanderer facial expressions; you are not sure if he believes you. You go into your ship, wait long enough to make it appear that you needed to search, then return and give the device back to him.`
+				goto carrier
+			label apologized
+			apply
+				clear "stole a wanderer micro-sat"
+			`	"I am glad you [admitted, confessed] that," says Rek. "Please be more [honest, obedient] in the future." You retrieve the hidden surveillance device and return it to him.`
+			label carrier
+			`	"Thank you," says Rek. "Now, here is what we discovered." He shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via jump drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
+			choice
+				`	"It's possible, but it could also be a stolen ship. I wouldn't expect the Navy to side with the Unfettered."`
+					goto no
+				`	"I wouldn't put it past them. It could be some sort of hidden program to gain access to alien technology."`
+			`	Iktat Rek says, "I see. So either your [leadership, government] knows about this secret, or it is a [private, separate] military conspiracy. Either way, that worries me."`
+			`	"What should we do about it?" you ask.`
+				goto end
+			label no
+			`	"I hope you are right," says Rek. "I do not wish our [conflict, tension] with the Unfettered to place us at war with humans. We must [investigate, explore] this matter further."`
+			`	"How can we do that?" you ask.`
+			label end
+			`	"You must track this ship," says Rek. "A jump drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] jump drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
+			`	You agree to make a visit to the Quarg ringworld in Hai space, and he wishes you luck on your journey.`
+				accept
+			label fail
+			`	As your ship is leaving the atmosphere, the surveillance cube suddenly glows red hot and collapses in on itself, melting down into a tiny pile of slag. Not only have you betrayed the Wanderers, but you are left with nothing to show for it.`
+				flee
+	on decline
+		event "robbed the wanderers"
+	
+	on complete
+		conversation
+			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the jump drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Go to the spaceport, and one will meet you to hear your petition."`
+
+event "robbed the wanderers"
+	"reputation: Wanderer" = 1
+	planet "Vara K'chrai"
+		"required reputation" 5
+
+
+
+mission "Wanderers: Alpha Surveillance C (Pug)"
+	landing
+	source "Vara Pug"
+	to offer
+		or
+			has "Wanderers: Alpha Surveillance C: active"
+			has "Wanderers: Alpha Surveillance C (Naughty): active"
+	on offer
+		log `The Pug in Wanderer space are not interested in helping the Wanderers to fight the Alphas. They say that interfering in Hai and human affairs is beyond their "jurisdiction."`
+		conversation
+			`You recall hearing hints that the Pug assisted the humans of the Deep in battle against the Alphas, so the Pug might be natural allies in your current mission. Would you like to see if any of them here will help you?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You try to get several of the Pug to talk to you, but most of them pointedly ignore you. Eventually, probably because you've made it clear that you are not going away, one of them approaches you carrying a small black box. It speaks to the box in its language, and the box says, "Hello you are a human you are from planet earth are you not." It seems that the box is a rudimentary translation device.`
+			`	You say, "Yes, that's correct."`
+			`	The box appears to translate your words, and the Pug responds to it. The box says, "Humans are not our responsibility why have you come to our planet."`
+			choice
+				`	"The Alphas are causing trouble again, and I've heard that you helped us fight them in the past."`
+				`	"The Alphas have sided with the ones who are invading the Wanderers. Can you help us track them down?"`
+			`	The Pug speaks again. "Who are the alphas that name is not known to us."`
+			`	You do your best to explain. Perhaps the humans of the Deep were wrong that the Pug knew about the Alphas? The Pug responds, "We can defend the Wanderers but the Hai and humans are beyond our jurisdiction we will not enter their space."`
+			choice
+				`	(Give up and leave.)`
+					decline
+				`	(Try to convince them to help.)`
+			`	You do your best, but the Pug here are clearly not interested in helping you. Eventually you give up and return to your ship.`
+				decline
+
+
+
+ship "Carrier" "Carrier (Alpha)"
+	outfits
+		"Ion Cannon" 2
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Korath Disruptor" 2
+		"Korath Slicer Turret" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 3
+		"Small Heat Shunt"
+		"Wanderer Ramscoop"
+		"Outfits Expansion" 4
+		"Laser Rifle" 120
+		
+		`"Bondir" Atomic Thruster`
+		"Steering (Stellar Class)"
+		"Jump Drive"
+	
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun
+	gun
+	turret "Korath Disruptor"
+	turret "Korath Slicer Turret"
+	turret "Korath Disruptor"
+	turret "Korath Slicer Turret"
+
+mission "Wanderers: Alpha Surveillance D"
+	name "Find the Alphas"
+	description "With the help of Elias Hanover and his tracker device, locate the Alpha Base and then return to the Quarg ringworld of <planet>."
+	autosave
+	source "Alta Hai"
+	to offer
+		or
+			has "Wanderers: Alpha Surveillance C: done"
+			has "Wanderers: Alpha Surveillance C (Naughty): done"
+	passengers 1
+	blocked "You need a bunk free in order to take on this mission."
+	
+	on offer
+		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
+		log "People" "Elias Hanover" `Elias has been living with the Quarg in Hai space for a long time, and they trust him enough to give him access to some of their restricted technology.`
+		"reputation: Alpha" <?= -1
+		conversation
+			`You are met in the spaceport by a bearded, middle-aged human man and a Quarg with exceptionally wrinkly skin. The Quarg says, "I hear that you need help against the Alphas. My friend Elias here has lived among us for a long time, and has told me much about the Alphas, their wars and their depredations."`
+			`	The human shakes hands with you and introduces himself as Elias Hanover. He says, "The Quarg are very hesitant to take sides in what they view as an internal human conflict. And they are equally hesitant to entrust their technology to a stranger like you. But if the Alphas are gathering strength and amassing alien technology, they must be stopped."`
+			`	The Quarg says, "Elias is a trusted friend of ours. We have given him a device for tracking a ship traveling by jump drive, and programmed it with the parameters of a human Carrier. Do not try to take the device from him. He will lead you to find your quarry, and then you must return the device to us immediately."`
+			`	Elias asks, "If we find them, are you prepared to take on a Carrier by yourself?"`
+			choice
+				`	"Yes, my ship is stronger than anything in human space."`
+					goto end
+				`	"I don't think so. Are you sure that will be necessary?"`
+			`	"You think the Alphas are likely to surrender without a fight?" he asks. "Maybe you should invest in a Hai warship before we begin chasing them down."`
+			label end
+			`	You thank the Quarg for being willing to help you, and you and Elias return to your ship.`
+				accept
+	
+	on enter "Hi Yahr"
+		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."`
+	on enter "Celeborim"
+		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
+	on enter "Asikafarnut"
+		dialog `Elias checks the tracker. "Still due southeast," he says. "And I hope those Korath ships aren't on the same side as the Alphas."`
+	on enter "Sobarati"
+		dialog `Elias fiddles with his tracking device for a while, and then gives up. "Sorry, I'm not reading any signals here. Maybe they jumped right over this system?"`
+	on enter "Ferukistek"
+		dialog `Elias says, "Found their trail. They've turned and headed east again, and maybe a little bit north."`
+	on enter "Makferuti"
+		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
+	on enter "Host"
+		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+	
+	npc
+		government "Kor Sestor"
+		system "Celeborim"
+		personality heroic nemesis staying vindictive
+		fleet
+			names "kor sestor"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Met Par Tek 53"
+				"Met Par Tek 53 (Sniper)"
+	npc kill
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying vindictive target
+		ship "Carrier (Alpha)" "Giftbringer"
+		dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
+	npc
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying vindictive
+		ship "Far Osk 27" "Dasher"
+		ship "Far Osk 27" "Dancer"
+		ship "Far Osk 27" "Prancer"
+		ship "Far Osk 27" "Vixen"
+		ship "Far Lek 14" "Cupid"
+		ship "Far Lek 14" "Comet"
+		ship "Far Lek 14" "Donner"
+		ship "Far Lek 14" "Blitzen"
+		ship "Far Lek 14" "Rudolph"
+		ship "Far Lek 14" "Ralph"
+	
+	on visit
+		dialog `You've returned to <planet>, but you have a feeling that your job isn't done. Either find where the Alphas are hiding, or return to where they are hiding and finish what you started.`
+	on complete
+		log "Defeated a Navy Carrier, presumably being operated by the Alphas, that was equipped with Korath fighters and drones. Presumably there is an Alpha base hidden somewhere on the earth-like planet that the Carrier was guarding."
+		conversation
+			`When you land back on <planet>, Elias says that he should go and immediately return the tracking device to his Quarg friend. "After that," he says, "we'll need to figure out who can help us to locate and bust open the Alpha base. Meet me in the spaceport when you're ready."`
+
+
+
+mission "Wanderers: Alpha Surveillance D (Avalon)"
+	landing
+	source "Avalon"
+	to offer
+		has "Wanderers: Alpha Surveillance D: active"
+	on offer
+		conversation
+			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, but your sensors are not able to locate it, and even if you could you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
+				decline
+
+
+
+mission "Wanderers: Alpha Surveillance E"
+	name "Visit Danforth"
+	description "Visit Admiral Danforth on <planet> and see if he is able to supply you with an attack force to locate and destroy the Alpha base."
+	source "Alta Hai"
+	destination "Farpoint"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance D: done"
+	
+	on offer
+		conversation
+			`When you meet up with Elias Hanover in the spaceport, he says, "I can't think of any other way to go about it: we need to involve the Navy in this. No one else has the capability to launch a ground attack."`
+			choice
+				`	"Are you sure we can trust them? The Alphas were in a Navy ship, after all."`
+				`	"We could go to Admiral Danforth. He's a Navy officer who I trust to be on the right side."`
+					goto danforth
+			`	"Can you think of any other option?" he says.`
+			`	"There's a branch of the Navy called the 'Oathkeepers,'" you tell him, "led by Admiral Danforth. If there is anyone in the Navy whom we can trust, it's them."`
+			label danforth
+			`	"Danforth?" says Elias. "William Danforth? The Hero of Hope? He's still in the service?" You nod. "Well then yes, let's go to him," says Elias.`
+			`	He comes back aboard your ship, and you prepare to travel to Danforth's base on <destination>.`
+				accept
+	
+	on visit
+		dialog `You've landed on <planet>, but you realize that Elias is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive before meeting with Admiral Danforth.`
+	on complete
+		conversation
+			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come. When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
+
+
+
+mission "Wanderers: Alpha Surveillance F"
+	name "Invade Avalon"
+	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	autosave
+	source "Farpoint"
+	destination "Avalon"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance E: done"
+	
+	on offer
+		log "Admiral Danforth agreed to bring his Cruiser to the planet in Korath space where the Alphas seem to be hiding, with enough troops and equipment to launch an assault on the base."
+		log "Factions" "Oathkeepers" `However, the true reason that the powerful Oathkeeper fleet is positioned in the North is not just to keep the pirates at bay, but also to stand as a last defense in case the Hai decide to invade human space. Apparently the Navy has known about the Hai and the wormhole linking their space to human space for some time, but chooses not to make that knowledge public.`
+		conversation
+			`Danforth welcomes you into his private office and uses a device to sweep the room for bugs. "Please forgive my caution," he says when he is done. "Now, show me where this planet is."`
+			`	You show him the planet on your map. "That's a long way out from human space," says Danforth. "All the way on the other side of Hai territory. Are the Hai rebels still occupying these systems?" He points to the three systems where the Unfettered live.`
+			choice
+				`	"Yes."`
+					goto jump
+				`	"Wait, you know about the Hai?"`
+			`	Danforth looks bemused. "Living on their doorstep? Of course I do. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
+			label jump
+			`	"It's not just the distance," says Elias. "The only way to get there is by jump drive. Fortunately Captain <last> has one."`
+			`	"As do I," says Danforth, a bit smugly. When he sees your surprised expressions he elaborates. "Recovered it from the Pug. Accidentally forgot to file the paperwork reporting it. You know how it is. Old men like me can be absent-minded." He smiles. "My engineers are installing it in my flagship even as we speak."`
+			choice
+				`	"So you're willing to come with us?"`
+				`	"Are you sure you want to take the risk of traveling with us?"`
+			`	"Wouldn't miss it for the world," he says. "With a mission like this, if I want it done right, I need to be there in person. Now, let's get going before the rumors start to fly. It's hard for three squadrons to prep for a secret mission without anyone else noticing."`
+				accept
+	
+	on visit
+		dialog "You have reached <planet>, but you left Danforth's ship behind. Wait for him to arrive (or go back and refuel him, if necessary) and then return here."
+	
+	npc accompany save
+		government "Navy (Oathkeeper)"
+		personality escort heroic
+		ship "Cruiser (Jump)" "N.S. Peacemaker"
+
+
+
+mission "Wanderers: Alpha Surveillance G"
+	landing
+	name "Return to <planet>"
+	description "Escort Admiral Danforth's ship safely back to <destination>."
+	source "Avalon"
+	destination "Farpoint"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance F: done"
+	
+	on offer
+		log "The Alphas have fled from the base on Avalon. The Oathkeepers destroyed what is left of the base, which will hopefully set the Alphas back quite a bit."
+		conversation
+			`It does not take long for Danforth's team to locate the Alpha base, buried deep underground in a network of limestone caves. You and Danforth hover your ships above the site to catch anyone who tries to take off and escape. Danforth keeps you updated on the progress of the troops. "Breached the perimeter. Dealing with some booby traps. Explosives, poison gas. Nasty stuff. No sign of inhabitants, but they were here recently. Place looks cleaned out. Extensive base. Hangars, labs, supply rooms. Probably took them a century to build."`
+			`	His troops spend a while exploring the base and eventually conclude that the Alphas packed up and left soon after you destroyed the Carrier. Once the place has been thoroughly explored and they are sure there are no more clues to be found, Danforth tells them, "Okay, blow the place. No sense in leaving them a base to return to."`
+			choice
+				`	"So this was all for nothing?"`
+				`	"I wish we had been able to catch them."`
+			`	"Don't feel so bad," says Danforth. "At least you took out their Carrier. If you had come for me without engaging them, chances are they would still have figured their cover was blown and fled. And now they're on the run, which is going to limit their ability to make mischief."`
+			`	Danforth's ship collects his troops and takes off. A few seconds later he hails you. "Captain, we have incoming ships from the far side of the planet," he says. "My ship is no match for them. Let's get out of here." It looks like this world is not completely uninhabited, after all...`
+				launch
+	
+	npc accompany save
+		government "Navy (Oathkeeper)"
+		personality escort heroic
+		ship "Cruiser (Jump)" "N.S. Peacemaker"
+	npc
+		government "Alpha"
+		personality heroic staying vindictive
+		fleet
+			names "kor sestor"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Met Par Tek 53 (Sniper)" 2
+	
+	on visit
+		dialog "You have reached <planet>, but you left Danforth's ship behind. Wait for him to arrive (or go back and refuel him, if necessary) and then return here."
+	
+	on complete
+		conversation
+			`You and Elias return to Danforth's private office to debrief, but a few minutes after you arrive there is a knock on the door. Danforth pulls up a video monitor to check who it is, swears, takes a brief glance around the room as if to check that he hasn't left anything incriminating out in plain sight, then opens the door. An officer in an unmarked uniform walks in along with several armed guards. "Admiral Danforth," says the officer, "I trust your expedition went well?"`
+			`	Danforth mumbles something in reply. "And you, Captain <last>," says the officer, "Always in the thick of things, eh?"`
+			choice
+				`	"I suppose so."`
+				`	"Only when the galaxy needs saving."`
+				`	"Just trying to do what's right."`
+			`	The officer turns to Elias. "And Mister Hanover," he says, "I want to thank you personally for assisting us in the fight against the Alphas, once again."`
+			`	"You're welcome," says Hanover, warily.`
+			`	"You're very camera shy," says the officer. "You didn't stick around long enough to receive our thanks after helping to liberate those worlds in the Dirt Belt back in 2894 AD. Of course, you went by 'Jeremy Hanover' back then." He hands Hanover a photo of some Navy officers talking with a man who looks very much like Hanover himself.`
+			`	"That was my grandfather," says Hanover.`
+			`	"I see," says the officer. "Of course, what you deserve even more thanks for is your assistance during the Second Alpha War. Here's a photo of you from 2461 AD." He displays another photo, again apparently of Hanover himself, with some men in archaic pre-Republic uniforms. The guards standing behind you raise their weapons and point them at you and Elias.`
+			choice
+				`	(Stay where I am.)`
+					goto stay
+				`	(Try to fight.)`
+				`	(Try to run away.)`
+			`	You jump up from your seat. The guards fire, and everything goes black.`
+				accept
+			label stay
+			`	You raise your hands in surrender. The guards fire, and everything goes black.`
+				accept
+
+
+
+mission "Wanderers: Alpha Surveillance H"
+	name "Meet up with Danforth"
+	description "Meet Admiral Danforth in the spaceport on <origin>, and talk about what to do next about the Alphas."
+	landing
+	source "Farpoint"
+	to offer
+		has "Wanderers: Alpha Surveillance G: done"
+	
+	on offer
+		log "Was taken captive, along with Elias Hanover, by some nameless Republic officers who thought Elias was an Alpha. They discovered that he is not one, although he appears to have some of the same genetically engineered advantages that the Alphas have."
+		log "People" "Elias Hanover" `Certain Navy officers believe that Elias may actually be more than five centuries old, and that he may be a genetically modified individual, perhaps specifically designed to have capabilities similar to the Alphas so that he can fight against them.`
+		conversation
+			`You wake up with a pounding headache and the groggy, hung-over feeling of having been shot with a military grade stun gun. You are strapped into a metal chair with at least a dozen electrodes connected to your head and body. Elias is in a similar chair facing you. A technician stands behind a bank of computer displays in one corner, with the nameless officer looking on.`
+			choice
+				`	"What's going on?"`
+					goto what
+				`	"I demand that you let me go!"`
+					goto demand
+				`	(Say nothing.)`
+			`	Seeing that you are both awake, the officer walks over and looks at you for a second with a cool, appraising expression. Then without warning, he punches you in the face.`
+				goto punched
+			label what
+			`	"Standard operating procedure," says the officer, walking over to you. Then, without warning, he punches you in the face.`
+				goto punched
+			label demand
+			`	The officer walks over to you. "Sorry, I can't let you go just yet," he says. Then, without warning, he punches you in the face.`
+			label punched
+			`	While you are still reeling from the blow, the officer walks over to Elias and punches him, as well. He pauses to adjust one of the electrodes that was loosened by the blow, then walks back to you and punches you again. The technician stares down at the computer screens with an intense frown on his face as the officer hits Elias again and then walks back to you.`
+			choice
+				`	"What the hell are you doing?"`
+					goto question
+				`	"Please just tell me what you want."`
+					goto question
+				`	(Spit in his face.)`
+					goto spit
+				`	(Do nothing.)`
+			`	The officer glances over at the technician, who says, "<last> appears to be well within human parameters, sir."`
+				goto human
+			label question
+			`	He ignores your question and glances over at the technician, who says, "<last> appears to be well within human parameters, sir."`
+				goto human
+			label spit
+			`	"Interesting," he says, as he wipes the spittle off his face with his sleeve. Then he glances over at the technician. "Did you get a read on that?"`
+			`	"<last> is well within human parameters, sir," says the technician.`
+			label human
+			`	The officer nods in acknowledgement, then unclips your arm restraints. "It seems I owe you an apology, Captain," he says. "Would you like to hit me back?" He leans in toward you to put his face within striking range.`
+			choice
+				`	"No thanks."`
+				`	(Punch him back.)`
+					goto retaliate
+			`	"How kind of you," he says. Then he asks the technician, "What about Hanover?"`
+			`	The technician says, "Hanover isn't human. Or Alpha. I've never seen readings like this before, except maybe from an empath."`
+				goto hanover
+			label retaliate
+			`	You punch him. He staggers back, then looks over at the technician, who reports, "Hanover felt that, sir. Empathetic response."`
+			label hanover
+			`	"What?" says the officer. He walks over and studies the monitors for a minute, then says, "Mister Hanover, you have the skin of a human. You have the physique of an Alpha. But you registered more sympathetic pain from watching someone else get struck in the face than you did when you yourself were punched, which makes your brain the complete opposite of an Alpha's. So, what the hell are you? Who made you, and why?"`
+			`	Elias says nothing.`
+			`	"Sir," says the technician, "could the stories be true?" The look in his eyes is something approaching awe.`
+			`	"Yes, there are the old legends," says the officer thoughtfully. "A secret weapon against the Alphas. Made in government labs with forbidden technology. Like the Alphas in some ways, but designed to serve, not to master all. Is that what you are? Are you a Beta?" Elias says nothing.`
+			choice
+				`	"If he's not an Alpha, you have no right to imprison us."`
+				`	"If you're convinced that neither of us is an Alpha, will you please let us go?"`
+			`	"I suppose so," says the officer. As they release you from the chairs, he says to Elias, "If you are what I believe you are, we can help you to complete your work at last. Gather your siblings. Join us. Together we can put an end to the Alphas." Still, Elias says nothing.`
+			`	They lead you out into the hallway and you realize you are on board a Navy Cruiser. As you leave the ship, the officer tells Elias, "Think about what I said."`
+			`	Elias remains quiet while you are in earshot of the ship, then says, "Let's meet up with Danforth back in the spaceport and see what he thinks we should do next."`
+				accept
+
+
+
+mission "Wanderers: Alpha Surveillance I"
+	name "Return Elias to <planet>"
+	description "Bring Elias Hanover back to <destination>, where he will hopefully be safe from Alpha retaliation for driving them out of their base on Avalon."
+	autosave
+	source "Farpoint"
+	destination "Alta Hai"
+	to offer
+		has "Wanderers: Alpha Surveillance G: done"
+	passengers 1
+	blocked "You don't have enough passenger space to take on this mission. Return here when you have a bunk free."
+	
+	on offer
+		fail "Wanderers: Alpha Surveillance H"
+		conversation
+			`Danforth looks relieved to see you both alive. "Damned Republic Intelligence Agency," he says. "They think they're above the law. And after all that they decided you both are clean?" He looks intently at Elias.`
+			choice
+				`	"Yes, in fact now they're trying to get us to work together with them against the Alphas."`
+				`	"Yes, and they think Elias can help them against the Alphas."`
+			`	"I see," says Danforth. "I wish I could tell you that they can be trusted. I wish I could tell you that there is no safer place for an enemy of the Alphas than here with me."`
+			branch know
+				has "event: death of nguyen"
+			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a man you do not recognize, but Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
+				goto leave
+			label know
+			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a photo of Commander Nguyen, and to your surprise Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
+				goto leave
+			label leave
+			`	You agree that you will take Elias back to Alta Hai. Whatever Elias is, whoever might wish him harm, you can only hope that a Quarg ringworld is the safest place for him right now.`
+				accept
+	on visit
+		dialog `You've landed on <planet>, but you realize that Elias is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+
+mission "Wanderers: Alpha Surveillance J"
+	name "Return to Iktat Rek on <planet>"
+	description "Check in with Iktat Rek on <planet> in the <system> system, now that the Alpha base has been eliminated."
+	landing
+	source "Alta Hai"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers: Alpha Surveillance I: done"
+	
+	on offer
+		event "wanderers: first tech increase"
+		conversation
+			`You drop Elias off on <origin>. "Don't worry about me," he says, "The Quarg have kept me safe here for a long time. Thanks for being willing to risk your life against the Alphas."`
+			choice
+				`	"Wait, won't you tell me whether anything that officer said about you was true?"`
+				`	(Let him go without pressing him for more information.)`
+					goto end
+			`	He says, "It is true that I am six centuries old. It is true that I am not strictly human. It is true that I oppose the Alphas. More than that, I will not share, both for my own safety and for yours."`
+			label end
+			`	You wish Elias the best of luck and tell him that you hope to meet again one day. Now you should probably return to Wanderer space and check in with Iktat Rek.`
+				accept
+	
+	on complete
+		"reputation: Wanderer" >?= 30
+		event "wanderers: unfettered invasion starts" 64
+		log "Reported to the Wanderers that the Alphas who had been selling jump drives to the Unfettered have been weakened and driven into hiding. The Wanderers are ramping up production of military ships to try to face the continuing Unfettered onslaught."
+		conversation
+			`It's hard to be certain, but the activity around the spaceport seems more hectic than usual, and the Wanderers seem to have put some new ship models into production as well. When you ask Iktat Rek about it, he says, "When the Unfettered first [invaded, occupied] our territory, we had almost no weapons of [war, defense]. Since then we have retrieved old [designs, instructions] and begun preparing for what is to come, [unpleasant, unfortunate] though it may be."`
+			`	As you describe your mixed success at dealing with the Alphas, he shakes his wings and ruffles out his feathers in what seems to be a nervous, agitated gesture. "These Alpha [beings, creatures] sound more [dangerous, unreasonable, ruthless] than the Unfettered," he says. "Any [social, gregarious] species that evolves naturally develops certain [limits, checks, restraints] that an [artificial, constructed] species may not possess. How can we best [respond to, deal with] them?"`
+			choice
+				`	"It may be wisest to leave them alone."`
+				`	"I think the only answer is to be strong enough that they leave you alone."`
+				`	"Sooner or later we will have to hunt them down and destroy them."`
+			`	"You are probably right," he says, uncertainly. He stares absently up into the sky and scratches at his wing with one talon. A few feathers fall out. "If only the Eye would open," he says. "I feel the air is [charged, tense] like the moment before a storm. Like we are [waiting, anticipating] something that ought to be here and is not. Though it may bring [catastrophe, upheaval, transition] I wish the wait would end."`
+			`	You talk for a while longer, but it seems that for now there is nothing more the Wanderers need from you. Iktat Rek mentions that you should stop by the outfitter before you leave and see "our [grim, regrettable] new devices," then thanks you once more and departs.`
+
+# Patching a mistake in 0.9.1:
+mission "Wanderers: Unfettered Invasion Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: unfettered invasion"
+	on offer
+		event "wanderers: unfettered invasion starts"
+		fail
+
+
+
+mission "Wanderers Invaded 0"
+	landing
+	name "Unfettered Invasion"
+	description `Travel to <destination> to ask Iktat Rek if you can assist the Wanderers against the Unfettered invasion.`
+	source
+		government "Wanderer"
+		near "Ka'ch'chrai" 1 100
+	destination "Vara K'chrai"
+	to offer
+		has "event: wanderers: unfettered invasion starts"
+		not "Wanderers Invaded 1: offered"
+	on offer
+		conversation
+			`The Wanderers on <origin> are in a panic. Apparently the Unfettered have finally succeeded in capturing one of the Wanderer planets, and are now amassing a war fleet there. You should probably check with Iktat Rek and see if he needs your help to drive the Unfettered back.`
+				accept
+
+
+
+mission "Wanderers Invaded 1"
+	landing
+	name "Evacuate <planet>"
+	description `Escort a fleet of freighters, refitted for carrying refugees, to <destination>.`
+	autosave
+	source "Vara K'chrai"
+	destination "Varu Mer'ek"
+	to offer
+		has "event: wanderers: unfettered invasion starts"
+	on offer
+		log "The Unfettered have established a beachhead on one of the Wanderer worlds and are now apparently using what few jump drives they possess to shuttle more and more warships into Wanderer space. War has begun in earnest."
+		conversation
+			`Iktat Rek looks more harried and anxious than you have ever seen him: his feathers, normally perfectly preened, stick out at odd angles in patches on his face and shoulders, and he paces back and forth restlessly as you converse. "We have begun building warships," he says, "but do not yet have the [strength, numbers] to resist the invaders. We must retreat to a more [narrow? defensible?] position. Will you assist us in the evacuation?"`
+			choice
+				`	"I would be glad to."`
+					goto end
+				`	"Why not strike back at the Unfettered and drive them out, before they can gain a stronger foothold?"`
+			`	"That is not who we are," he says. "You are not Wanderer. You cannot [understand, empathize]. Our work is not complete until the worlds we have [tended, cared for] are [gifted, bequeathed] to another. [Art, creation] is lifeless until it is [enjoyed, experienced] by others. If the Unfettered are the ones [destined, chosen] to enjoy what we have [created, accomplished], then we will gladly give our [territory, worlds] to them."`
+			choice
+				`	"Okay, I'll help you to evacuate."`
+			label end
+			`	"Thank you," he says. "We have assembled a fleet of freighters, refitted to carry [refugees, evacuees]. These ships are not ideal, but they will suffice for now until we can produce dedicated [transportation, evacuation] ships. Please escort the fleet to <planet>. You will receive further [orders, directions] when you land."`
+				accept
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Deep River Transport" "Espret Si'yakar"
+		ship "Deep River Transport" "Fel'tar Kor'meti'i"
+		ship "Deep River Transport" "Tok'tobar'tek La'a"
+		ship "Deep River Transport" "Eka'ta Turuk'ta"
+	on visit
+		dialog
+			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+
+
+
+mission "Wanderers Invaded 1B"
+	landing
+	name "Evacuate <origin>"
+	description `Escort a fleet of freighters, refitted for carrying refugees, to <destination>.`
+	autosave
+	source "Varu Mer'ek"
+	destination "Var' Kar'i'i"
+	to offer
+		has "Wanderers Invaded 1: done"
+	on offer
+		conversation
+			`A female Wanderer named Emeka'a Isai meets you when you land with the freighter fleet. From the way others are obeying her orders, you would guess she is a local governor or someone of similar status. "Iktat Rek told me to expect you," she says. "We will evacuate civilians first, then the [defenders, warriors], then our [goods, possessions] if time is given. A [cohort, group] of civilians is prepared to depart already. Please escort them to <planet>." She turns away to speak to someone else. Apparently she is too busy to give you more details.`
+			choice
+				`	(Leave her to her work, and prepare to escort the freighters.)`
+					accept
+				`	"Could I assist you with the fighting, instead?"`
+			`	Surprised, she halts her other conversation and turns back to you. "It is not yet the [proper, strategic] time to fight," she says. "They come like a tide; we must fall back to higher ground where their waves will be [stretched, spent] in striving to reach us."`
+			`	You apologize for the interruption and agree to help escort the refugees to safety.`
+				accept
+	
+	npc evade
+		government "Hai (Unfettered)"
+		personality staying
+		system "Prakacha'a"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle"
+				"Shield Beetle (Tracker)"
+				"Shield Beetle (Pulse)"
+				"Water Bug" 3
+				"Water Bug (Pulse)" 4
+	
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Deep River Transport" "Espret Si'yakar"
+		ship "Deep River Transport" "Fel'tar Kor'meti'i"
+		ship "Deep River Transport" "Tok'tobar'tek La'a"
+		ship "Deep River Transport" "Eka'ta Turuk'ta"
+	on visit
+		dialog
+			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+	on complete
+		log "Helped to evacuate some Wanderers from one of their worlds that is closest to Unfettered space."
+		conversation
+			`You drop off the Wanderer refugees. One of the Wanderer officials who is here to meet them tells you, "We are grateful for your [assistance, friendship]. If you are [available, willing] to help us further, go talk with Sobari Tele'ek, the military commander." The Wanderer official points toward one section of the spaceport where many Wanderers are busy loading supplies into some Wanderer ships unlike any you have seen before.`
+
+
+
+event "battle for ik'kara'ka"
+	system "Ik'kara'ka"
+		fleet "Wanderer Flycatchers" 400
+
+mission "Wanderers Invaded 2"
+	name "Defend <planet>"
+	description `Drive off the Unfettered fleet attacking <system> to buy the Wanderers more time, then land on <planet>.`
+	autosave
+	source "Var' Kar'i'i"
+	destination "Varu Mer'ek"
+	to offer
+		has "Wanderers Invaded 1B: done"
+	on offer
+		log "People" "Sobari Tele'ek" `Tele'ek is a Wanderer military commander. It is not clear what his rank is or whether or not the Wanderer military is even organized enough for individuals to have ranks, but he has been placed in charge of holding back the Hai while the remaining Wanderer worlds near the front are evacuated.`
+		conversation
+			scene "scene/tempest"
+			`The ships in this corner of the spaceport are indeed a new design, stockier and less streamlined than most Wanderer ships. Sobari Tele'ek, who turns out to be a military commander, greets you and says, "For the first time in ten thousand years, we have made ships [designed, intended] for war. How do you [view, judge] them?"`
+			choice
+				`	"That's a beautiful design."`
+				`	"They look like very powerful ships."`
+			`	His pupils dilate and contract with some inscrutable Wanderer emotion. "They are ugly ships," he says, "[ungraceful, inelegant, crude], like all things of war. An [unfortunate, regrettable] necessity."`
+			`	As you are talking, his communication device beeps, and an urgent voice speaks to him in the Wanderer tongue. Tele'ek turns to you and says, "<planet> is under attack. We must [drive off, push back] the Hai for long enough to prepare more of our people to evacuate. Will you help us [fight, resist] them?"`
+			choice
+				`	"Gladly."`
+				`	"Sorry, I don't want to assist the Wanderers anymore."`
+					decline
+			`	"I am glad of your [help, company]," he says, "though not of our circumstances. My ships will follow you to the <system> system. There we must fight off the Hai until the next [convoy, fleet] is ready."`
+				accept
+	on accept
+		event "battle for ik'kara'ka"
+	on visit
+		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
+	npc evade
+		personality staying
+		system "Ik'kara'ka"
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle" 2
+				"Shield Beetle (Tracker)" 2
+				"Shield Beetle (Pulse)" 3
+				"Water Bug" 4
+				"Water Bug (Pulse)" 7
+	npc
+		personality heroic escort
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Tempest (Heavy)"
+				"Tempest"
+				"Tempest (Missile)"
+	npc
+		personality heroic staying
+		system "Ik'kara'ka"
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Strong Wind" 1
+				"Autumn Leaf" 2
+				"Summer Leaf" 3
+	npc
+		personality staying derelict
+		system "Ik'kara'ka"
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Strong Wind" 1
+				"Autumn Leaf" 3
+				"Summer Leaf" 5
+
+
+
+event "capture of ik'kara'ka"
+	system "Ik'kara'ka"
+		government "Hai (Unfettered)"
+		fleet "Wanderer Defense" 1000
+		fleet "Small Unfettered" 600
+		fleet "Large Unfettered" 400
+	planet "Varu Mer'ek"
+		attributes "unfettered" "factory"
+		description `This Wanderer factory world was recently captured by the Unfettered Hai, who are now busy trying to repurpose the Wanderer factories and equipment that were left behind, to build more ships for their war fleets. The Wanderers did not have time to demolish any of their equipment or to carry it off-world before the planet was lost. As a result, they have given the Unfettered a significant technological advantage here.`
+		spaceport `The Unfettered seem to be quite at home in the tree house dwellings that the Wanderers left behind, and the Unfettered youth living here scramble up trunks and leap from tree to tree with reckless abandon, exulting in this new world they have captured and trying to outdo each other with their daredevil escapades.`
+		shipyard clear
+		outfitter clear
+
+mission "Wanderers Invaded 3"
+	landing
+	name "Evacuate <origin>"
+	description `Escort another fleet of Wanderer refugee transports to <destination>.`
+	autosave
+	source "Varu Mer'ek"
+	destination "Var' Kar'i'i"
+	passengers 1
+	to offer
+		has "Wanderers Invaded 2: done"
+	on offer
+		log "Helped to defend a Wanderer planet from an Unfettered attack. But, the Wanderers now plan to abandon that planet. The Wanderers seem very hesitant to actually stand their ground and fight back."
+		conversation
+			`It appears that the very last of the civilians are ready for transport to <planet>; a large crowd is gathered in the spaceport, but nearly all the buildings are vacant. Incongruously, a few Wanderers are busy sweeping the sidewalks, watering plants, and making other efforts to tidy up the port, as if to make it as presentable as possible for the Unfettered when they land.`
+			`	Isai greets you and asks if she can ride along with you. "These are the last of the civilians," she says. "The [warriors, defenders] will remain behind until everyone is [safe, away], then they will join us on <planet>. But most important is that the transports reach <planet> unharmed. Will you escort them?"`
+			choice
+				`	"I will. I'm sorry you have to abandon your home."`
+					goto end
+				`	"I would be glad to stay and fight, if you want."`
+			`	"You are strange," she says. "You are not the one who suffers [loss, indignity] here. You have no [right, reason] to desire to strike back. Is fighting a greater [delight, enjoyment] to you than the saving of lives?"`
+			choice
+				`	"Okay, I'll help protect the transports."`
+					goto end
+				`	"Sorry, I just thought I could be of more use to you in helping to fight than in helping to retreat."`
+			`	"I [predict, foresee] you will have plenty of opportunity to help with the [fighting, violence] before this situation is resolved," she says, "but for now our goal is to [avoid, minimize] conflict until we can understand the Hai better."`
+			`	"Okay," you say, "I'll help protect the transports."`
+			label end
+			`	"Thank you," she says. "As before, do not [wait, tarry] or join in the fighting. Just bring our people safely to <planet>."`
+				accept
+	on accept
+		event "capture of ik'kara'ka" 2
+	
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Deep River Transport" "Espret Si'yakar"
+		ship "Deep River Transport" "Fel'tar Kor'meti'i"
+		ship "Deep River Transport" "Tok'tobar'tek La'a"
+		ship "Deep River Transport" "Eka'ta Turuk'ta"
+	on visit
+		dialog
+			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+
+
+
+mission "Wanderers Invaded 3B"
+	landing
+	name "Wanderer Meeting"
+	description `Join the Wanderer leaders on <planet> for a meeting to discuss strategy against the Unfettered.`
+	autosave
+	source "Var' Kar'i'i"
+	destination "Vara K'chrai"
+	passengers 1
+	to offer
+		has "Wanderers Invaded 3: done"
+	on offer
+		conversation
+			`As the transports come in for a landing, Isai receives a message, which she passes on to you: "A council of leaders is meeting soon in our capital, and they have agreed to [permit, invite] you to join us because you are a [stakeholder, interested party] in this conflict. Can you transport me to <planet>?"`
+			choice
+				`	"Sure."`
+				`	"Sorry, I don't want to help the Wanderers anymore."`
+					decline
+			`	"Thank you," she says. "We should go there quickly, so that we can decide our next [gambit, strategy] before the Hai attack us again."`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Isai hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+
+mission "Wanderers Invaded 3C"
+	landing
+	name "Waiting for the Eye"
+	description `Figure out what controls the wormhole that the Wanderers call the "Eye," and try to find information on when it will open and where.`
+	autosave
+	source "Vara K'chrai"
+	to offer
+		has "Wanderers Invaded 3B: done"
+	to complete
+		has "Wanderers Invaded 3C (Pug): offered"
+	on offer
+		conversation
+			`You land on <origin>, and Emeka'a Isai leads you to the building where the council of war is taking place. Sayari, the Hai diplomat, has also been invited, along with Iktat Rek and various other leaders. Rek looks even more bedraggled than before: his wings are drooping, and more of his feathers are out of place.`
+			`	It is not entirely clear to you who outranks whom in the meeting, or even what roles the different participants have. To make matters worse, you are uncomfortably reminded that your translator only understands the Hai language. Rek and Isai speak mostly in Hai so that you and Sayari can be included, but when the conversation gets heated they all switch into their native tongue, a cacophony of clicks and whistles.`
+			`	They are looking at a map of Wanderer space, and it's clear from their gestures that the discussion is about how far they can afford to retreat in order to form a more defensive position. Rek explains to you, "When the Eye opens, we must leave this [territory, space] anyway, so a retreat now will just position us better to [embark, journey on] when the time comes."`
+			choice
+				`	"But what if the Eye does not open and you are trapped here?"`
+					goto trapped
+				`	"Do you know when the Eye is going to open?"`
+			`	"No," says Isai, "we do not. It may not open for another hundred [years]. The Eye is a thing of [myth, mystery] and it may not answer to our need. Which is why I say that where we choose to [take a stand, draw a line], we must [hold, defend] that place firmly."`
+				goto end
+			label trapped
+			`	"That is my concern too," says Isai. "The Eye is a thing of [myth, mystery] and it may not answer to our need. We cannot afford to make plans [assuming, expecting] that it will open this year, or even in the next hundred years. So we must choose what we can afford to [lose, cede, give up] now, and [hold, defend] the rest of our territory firmly."`
+			label end
+			`	The Wanderer leaders decide to begin evacuating four more of their worlds closest to the Unfettered, hoping that they will not be attacked until the evacuation is complete. If necessary, they will fall back to the Ap'arak system, immediately east of this one, and take their final stand there.`
+			`	In the meantime, the entire Wanderer strategy depends on where and when the mythical Eye will open, the portal that will carry them to their next home. As the only Wanderer ally with access to a jump drive, perhaps you will be able to answer that question.`
+				accept
+	on accept
+		"reputation: Pug (Wanderer)" >?= 1
+	on visit
+		dialog `You return to <planet> without any more information on who or what controls the Eye. Perhaps the answer is closer than you think.`
+	on complete
+		dialog
+			`You have collected some useful information on the nature of the "Eye." You should probably head to the spaceport and meet up with Iktat Rek.`
+
+
+
+mission "Wanderers Invaded 3C (Pug)"
+	landing
+	source "Vara Pug"
+	to offer
+		has "Wanderers Invaded 3C: active"
+	on offer
+		log "Visited the Pug planet adjacent to Wanderer space to see if they are willing to step in and help the Wanderers now that the Unfettered Hai pose such a threat and have captured several Wanderer worlds. But for whatever reason, the Pug insist on the Wanderers fighting for themselves."
+		conversation
+			branch revisiting
+				has "Pug in Wanderer Space: offered"
+			`This world is populated by the Pug, the same enigmatic species that recently invaded human space - and left without giving you any clear answers about why they did so. You already know that the Pug have the ability to control wormholes, so it's quite likely that they have something to do with the "Eye" wormhole that the Wanderers hope will open soon.`
+				goto opening
+			label revisiting
+			`You return to this Pug world hoping to get a few more answers than they offered to you last time. As before, they seem peaceful enough, but most of them are acting as if you do not exist.`
+			label opening
+			`	After you've stood around for at least 20 minutes, one of the Pug walks over to you and says, "It appears to this one that the human is not intending to just politely return to its vessel and leave. Can this one help hurry the human on its way?"`
+			choice
+				`	"I need to know: do you control the wormhole that the Wanderers call the Eye?"`
+				`	"The Wanderers are being attacked. They are dying. Do you care about them?"`
+					goto care
+			`	"We do," it says.`
+				goto second
+			label care
+			`	"We care deeply," it says. "They are irreplaceable, and most useful to us."`
+			label second
+			choice
+				`	"You must open the Eye so that the Wanderers can escape from the Unfettered."`
+				`	"Can you tell me when you plan to open the portal?"`
+					goto when
+			`	"Must we, human? Must we?"`
+			label when
+			`	You are beginning to draw a crowd. Two more Pug walk over. One is armed with a staff. The other says to you, "Tell the world-shapers, it is not yet time for the portal to open. They must prepare to fight. Now, go."`
+			choice
+				`	(Return to my ship.)`
+					decline
+				`	"They aren't strong enough. They will be killed."`
+			`	"They must become strong enough," says the Pug with the staff. "They must remember how to fight."`
+			choice
+				`	(Return to my ship.)`
+					decline
+				`	"No. They are peaceful people. Don't force them to make war. Don't force them to kill."`
+			`	The Pug do not reply. Instead, they start to walk away.`
+			choice
+				`	(Return to my ship.)`
+					decline
+				`	"I demand that you listen to me."`
+			`	As you try to follow the group of Pug, the first one says to the others, "The human must like getting hit with the happy stick." The one with the staff waves it menacingly in your direction.`
+			choice
+				`	(Return to my ship.)`
+					decline
+				`	(Keep insisting that they listen to you.)`
+			`	With a somewhat contemptuous gesture, the Pug points the staff toward your face and a wave of wonderful rainbow light washes over you and bathes the whole world in iridescent sparkles that leap nimbly from the whiskers of things and nuzzle into your contented consciousness like flashing minnows of pure joy. You caper off to chase a trail of floating soapy baubles that burst with the sound of wind chimes and distant trumpets as you touch each one and the smell of ripe peaches fills the air until you stagger through your airlock and throw up in a corner.`
+			`	It may be time to leave this planet.`
+				decline
+
+
+
+mission "Wanderers Hai Assistance 1"
+	name "Hai Assistance"
+	description `Travel to <planet> with Ambassador Sayari and see if she can convince the Hai to help restrain the Unfettered from attacking the Wanderers.`
+	autosave
+	source "Vara K'chrai"
+	destination "Hai-home"
+	clearance
+	passengers 1
+	blocked "To continue helping the Wanderers, you will need a bunk free for a passenger. Return here when you have space available."
+	to offer
+		has "Wanderers Invaded 3C: done"
+	on offer
+		conversation
+			`You meet up with Ambassador Sayari and Iktat Rek and tell them what the Pug said. "The Keepers of the Eye speak [subtly, carefully]," Rek says, "and hide truths in the [shades, distinctions] of their words. What precisely did they say?"`
+			choice
+				`	"It is not yet time for the portal to open. You must prepare to fight."`
+			`	"We must [make preparations, become ready] to fight," repeats Iktat Rek, slowly. He runs a claw through the ruffled feathers of his scalp, in something akin to the human gesture of scratching your head in confusion. Quite a few feathers fall out. "I see," he says, and his wings droop even lower than before. "I will tell the [war-chiefs, strategists] to tell the [builders, designers] that we must make more and bigger warships."`
+			choice
+				`	"How can I help in the meantime?"`
+			`	Sayari says, "I have offered to speak to the Hai governors, to see if they can do anything to restrain the Unfettered from making further incursions into Wanderer space. Would you be willing to transport me to <planet>?"`
+			`	"Of course," you say. She leaves to gather some traveling gear and to meet you at your ship.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+
+mission "Wanderers Hai Assistance 2"
+	landing
+	name "Unfettered Negotiations"
+	description "Travel to the Unfettered military planet <destination>, and see if they will agree to give the Wanderers time to evacuate their worlds near the front."
+	autosave
+	source "Hai-home"
+	destination "Darkcloak"
+	clearance "After a long and tense conversation, Ambassador Sayari convinces the Unfettered war chiefs to let you land and meet with them."
+	passengers 1
+	to offer
+		has "Wanderers Hai Assistance 1: done"
+	on offer
+		log "Traveled to the Hai homeworld with Ambassador Sayari to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
+		conversation
+			`The Hai are ruled by an elected "council of elders" who agree to meet with you and Sayari. After you describe the situation with the Wanderers, one of the elders says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
+			`	Sayari says, "We must not allow the Unfettered to commit genocide in the name of the Hai people."`
+			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
+			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
+			choice
+				`	"Could you threaten to cut off aid to the Unfettered if they continue their aggression?"`
+				`	"Could you launch an attack on the Unfettered, force them to fight a war on two fronts?"`
+					goto attack
+			`	"I fear that would only drive them to further acts of desperation," says Sayari.`
+				goto threaten
+			label attack
+			`	"I will not authorize preemptive violence against our own flesh and blood," says one of the elders. "We only defend ourselves against them, never willingly initiate an attack."`
+			label threaten
+			`	"Perhaps it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
+			`	After well over an hour of further discussion, they reach consensus that that is their best option. As you leave the meeting, Sayari says, "And now, I would like to visit the Unfettered themselves. Perhaps we can talk sense into them."`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+mission "Wanderers Hai Assistance Fleet"
+	landing
+	invisible
+	to offer
+		has "Wanderers Hai Assistance 1: done"
+	npc kill
+		government "Hai"
+		personality heroic staying uninterested frugal
+		system "Wah Ki"
+		fleet "Large Hai" 6
+
+
+
+mission "Wanderers Hai Assistance 3"
+	landing
+	name "Return to <planet>"
+	description "Return with Sayari to <destination>, and tell Iktat Rek that you had some success in convincing the Hai to interfere with the Unfettered."
+	autosave
+	source "Darkcloak"
+	destination "Vara K'chrai"
+	passengers 1
+	to offer
+		has "Wanderers Hai Assistance 2: done"
+	on offer
+		log "The Unfettered are unwilling to agree to even a temporary ceasefire with the Wanderers. They seem to think that they will win this war easily."
+		event "wanderers: tempest mass production"
+		conversation
+			`The Unfettered war chiefs listen to Sayari's plea with condescending smiles on their faces. When she is done speaking, one of them says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
+			`	"But people will die, on your side as well as the Wanderers," says Sayari. "They are willing to give you these worlds if you only give them time, perhaps no more than a few months or a year. Why lose your lives to claim what will be yours soon enough?"`
+			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says another of the chiefs.`
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends they insist that you leave their planet. "Our warriors in orbit are eager to test this human's strength," says one of the chiefs, laughing.`
+				launch
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+
+mission "Wanderers Solifuge Recon 1"
+	landing
+	name "Report to <planet>"
+	description "Report to the Wanderer military base on <destination>, and see if there is anything you can help them with."
+	autosave
+	source "Vara K'chrai"
+	destination "Vara Ke'sok"
+	to offer
+		has "Wanderers Hai Assistance 3: done"
+		not "Wanderers Pond Strider Recon 1: offered"
+	on offer
+		log `Returned to Wanderer space, and discovered that Iktat Rek has begun the "Molt." He is afraid that because the Eye has not yet opened, the Molt will not be viable and it will end up killing him.`
+		conversation
+			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly grey skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
+			choice
+				`	"What is happening to you? Are you ill?"`
+				`	"Are you molting?"`
+			`	Rek says wearily, "The doctors believe it is what you would call a cancer, what my people would call a [premature, non-viable] molt. If so it will kill me. But I hope it may be the true Molt, come earlier than the [stories, myths] claim is possible - for the Eye is not yet open."`
+			choice
+				`	"You can't tell the difference between a cancer and the Molt?"`
+			`	"They are the same thing," he says. "Only the [outcome, result] is different. The Molt is a cancer so [successful, virulent] that it [consumes? displaces?] every cell in one's body. But since the first Unfettered attacks a [decade] ago, hundreds of Wanderers have undergone a false Molt. All of them have died. I may be a fool to hope that I might survive."`
+			choice
+				`	"Well, I hope that your doctors are wrong to be so pessimistic."`
+					goto end
+				`	"Isn't there anything your doctors can do?"`
+			`	"They could try to kill the [mutant, cancerous] cells," he says, "but if it is the true Molt, killing it would kill my future, my [true form? destiny?]. And in any case, the treatment would weaken me and leave me no [strength, attention] to help my people in this time of necessity. So for now I choose neither to hasten nor to halt the [process, progression]."`
+			`	"Well," you say, "I hope for your sake that it is a true Molt."`
+			label end
+			`	"Thank you," he says. "And now, if you are willing to help my people further, they have asked for your [assistance, expertise] on <planet>. Do not worry about me; I will [face, deal with] whatever future comes, when it comes."`
+				accept
+
+
+
+mission "Wanderers Solifuge Recon 2"
+	landing
+	name "New Unfettered ships"
+	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
+	autosave
+	source "Vara Ke'sok"
+	to offer
+		not "Wanderers Pond Strider Recon 2: offered"
+		or
+			has "Wanderers Solifuge Recon 1: done"
+			has "Wanderers Pond Strider Recon 1: done"
+	on offer
+		log "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
+		set "license: Wanderer Military"
+		conversation
+			`Sobari Tele'ek, the military commander whom you met earlier, greets you when you land. "The human who enjoys taking part in fights!" he says. "I am glad you have come. We have two [pieces, items] of good news for you. The first is that we have decided it is [permissible? prudent?] to allow you to purchase our warships. That will include the new [ugly, brutish] one, the Tempest."`
+			`	"Thank you," you say.`
+			`	"The other news is even better!" he says. "We have [saved, set aside] a fight for you. Unfettered ships of unknown design have been [spotted, discovered] in the Prakacha'a system. I ask you to destroy all these ships, then report to me what their [capabilities, strengths] are."`
+			`	You tell him that you will do your best. Now that you are able to purchase Wanderer warships, you should be able to match anything the Unfettered throw at you.`
+				accept
+	waypoint "Prakacha'a"
+	npc kill
+		personality staying heroic target
+		government "Hai (Unfettered)"
+		system "Prakacha'a"
+		fleet
+			names "hai"
+			variant
+				"Solifuge"
+				"Solifuge (Tracker)"
+				"Violin Spider" 6
+				"Violin Spider (Pulse)" 6
+		dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
+	on visit
+		dialog `Tele'ek approaches you when you land. "I have [reports, word] that the Unfettered ships are still [present, alive] within Prakacha'a. Please destroy them all before returning."`
+	on complete
+		conversation
+			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
+
+
+
+event "eastern evacuation"
+	planet "Vara Ke'stai"
+		add attributes "evacuation"
+	planet "Var' Kar'i'i"
+		add attributes "evacuation"
+	planet "Vara Ke'sok"
+		add attributes "evacuation"
+	planet "Kort Vek'kri"
+		add attributes "evacuation"
+
+# Patch mission for v0.9.13 to make sure that some Wanderer jobs don't offer
+# after the number of Wanderer systems has decreased.
+mission "eastern evacuation"
+	landing
+	invisible
+	to offer
+		or
+			has "Wanderers Solifuge Recon 2: done"
+			has "Wanderers Pond Strider Recon 2: done"
+	on offer
+		event "eastern evacuation"
+		fail
+
+mission "Wanderers Evacuation 1"
+	name "Evacuate <planet>"
+	description `Escort another fleet of Wanderer refugee transports to <destination>.`
+	autosave
+	source "Vara Ke'sok"
+	destination "Vara Ke'stai"
+	to offer
+		or
+			has "Wanderers Solifuge Recon 2: done"
+			has "Wanderers Pond Strider Recon 2: done"
+	on offer
+		conversation
+			`Four Wanderer ships that you've never seen before are parked here. These must be the dedicated transport ships that Iktat Rek mentioned. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
+			choice
+				`	"I would be glad to."`
+					accept
+				`	"Not now - I will come back when I am ready."`
+					defer
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
+	npc
+		government "Hai (Unfettered)"
+		personality heroic staying
+		fleet "Large Unfettered" 2
+	on visit
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+
+
+
+# The Riptide was added after these missions, so it is triggered separately for backward compatibility.
+mission "Wanderers Riptide Patch"
+	invisible
+	landing
+	to offer
+		has "Wanderers Evacuation 1: offered"
+	on offer
+		event "wanderers: riptide mass production" 30
+		fail
+
+
+
+mission "Wanderers Evacuation 1B"
+	landing
+	name "Refugees to <planet>"
+	description `Escort these transports carrying Wanderer refugees to their home world of <destination>, where they will hopefully be safe.`
+	autosave
+	source "Vara Ke'stai"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers Evacuation 1: done"
+	on offer
+		conversation
+			`The Wanderer transports land in the spaceport and begin loading passengers. The village appears to be almost empty; all but the last few stragglers have already left. As on Varu Mer'ek before it was captured, they seem to have taken pains to leave their village as neat and tidy as possible. In similar circumstances, a human government would probably have chosen to burn everything of value to the ground rather than let it fall into enemy hands.`
+				accept
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
+	npc
+		government "Hai (Unfettered)"
+		personality heroic staying
+		system "Sich'ka'ara"
+		fleet "Large Unfettered" 3
+	on visit
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+
+
+
+mission "Wanderers Evacuation 1C"
+	landing
+	name "Escort to <planet>"
+	description `Escort these transports back to <destination>.`
+	autosave
+	source "Vara K'chrai"
+	destination "Vara Ke'sok"
+	to offer
+		has "Wanderers Evacuation 1B: done"
+	on offer
+		conversation
+			`The transports offload the refugees, and one of the captains tells you that they are wanted back on <planet>. But now that you know that Iktat Rek may be dying, perhaps you should visit him while you are here.`
+			choice
+				`	(Check in on Iktat Rek.)`
+				`	(No, I can always visit him next time I'm here.)`
+					goto end
+			`	You contact Rek, and he invites you to come visit him in the house where he is staying - a Wanderer tree house near the outskirts of the city. He looks even more tired than before, and the bare patches of skin are spreading. In a few places a new set of black, oily feathers seem to be growing in, but they are thin and hairlike - not enough even to cover his skin, let alone to allow him to fly.`
+			`	You sit and talk with him for a while. He is moving and speaking more slowly, but you are glad to see that his mind is as sharp as ever, and to pass the time he asks you all sorts of questions about human culture and history, which you answer as best you can. Eventually, you say goodbye and return to the spaceport.`
+			label end
+			`	The transports finish unloading the last of the passengers, and get ready to follow you back to <planet>.`
+				accept
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
+	npc
+		government "Hai (Unfettered)"
+		personality heroic staying
+		system "Sich'ka'ara"
+		fleet "Large Unfettered" 4
+	on visit
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+
+
+
+event "battle for sich'ka'ara begins"
+	system "Sich'ka'ara"
+		fleet "Wanderer Flycatchers" 300
+
+mission "Wanderers Defend Sich'ka'ara"
+	landing
+	name "Defend <planet>"
+	description `Drive off the Unfettered fleet attacking <system>, then land on <planet>.`
+	autosave
+	source "Vara Ke'sok"
+	to offer
+		has "Wanderers Evacuation 1C: done"
+	on offer
+		event "battle for sich'ka'ara begins"
+		conversation
+			`Soon after the transports land, an alarm begins to sound and you see many Wanderers, the warriors in particular, rushing to board their ships. Sobari Tele'ek swoops down and lands next to your ship, and explains quickly, "We have detected a large Unfettered fleet [incoming, approaching]. Will you join in the defense?"`
+			`	You agree to help them, and begin preparing your ship for takeoff...`
+				launch
+	on visit
+		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
+	npc evade
+		personality staying coward
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle" 2
+				"Shield Beetle (Tracker)" 1
+				"Shield Beetle (Pulse)" 2
+				"Water Bug" 3
+				"Water Bug (Pulse)" 4
+	npc evade
+		personality entering coward
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle" 1
+				"Shield Beetle (Tracker)" 3
+				"Shield Beetle (Pulse)" 2
+				"Water Bug" 7
+				"Water Bug (Pulse)" 2
+	npc
+		personality heroic
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Tempest (Missile)" 2
+				"Autumn Leaf" 3
+				"Summer Leaf" 1
+	npc
+		personality heroic staying
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Tempest (Heavy)"
+				"Tempest"
+				"Strong Wind" 1
+				"Autumn Leaf" 2
+				"Summer Leaf" 3
+	on complete
+		log "Helped to defend a Wanderer world from yet another Unfettered attack. Meanwhile, the Wanderers are trying to move as many civilians as possible back to their home world, where they will be safe. But, their strategy seems to be based on the hope that sometime soon a wormhole will open and allow the Wanderer people to flee to a new territory and leave their old planets behind for the Unfettered to claim."
+		event "battle for sich'ka'ara ends"
+		conversation
+			`The Unfettered fleet has been driven off. Tele'ek thanks you for taking part in defending this world. "Unfortunately," he says, "I just received news that this was only half of the Unfettered [assault, attack]. An equally large fleet attacked the Chirr'ay'akai system, and overwhelmed the defenses there so [quickly, unexpectedly] that some of our people did not have time to [escape, evacuate] and have been forced into hiding. If you're willing to help rescue them, please meet me in the spaceport once I am done [debriefing, informing] the warriors."`
+
+event "battle for sich'ka'ara ends"
+	system "Sich'ka'ara"
+		add fleet "Wanderer Freight" 900
+		add fleet "Wanderer Defense" 400
+		add fleet "Large Unfettered" 400
+	system "Chirr'ay'akai"
+		government "Hai (Unfettered)"
+		fleet "Wanderer Defense" 800
+		fleet "Large Unfettered" 400
+		fleet "Small Unfettered" 400
+	system "Prakacha'a"
+		government "Hai (Unfettered)"
+		fleet "Wanderer Defense" 2000
+		fleet "Large Unfettered" 600
+		fleet "Small Unfettered" 600
+	planet "Kort Vek'kri"
+		attributes "unfettered"
+		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`
+	fleet "Large Unfettered"
+		add variant 3
+			"Solifuge"
+			"Violin Spider" 3
+			"Violin Spider (Pulse)" 3
+		add variant 1
+			"Solifuge (Pulse)"
+			"Solifuge (Tracker)"
+			"Violin Spider" 6
+			"Violin Spider (Pulse)" 6
+		add variant 2
+			"Shield Beetle (Pulse)"
+			"Solifuge"
+			"Violin Spider" 3
+			"Violin Spider (Pulse)" 3
+		add variant 1
+			"Shield Beetle"
+			"Solifuge (Tracker)"
+			"Violin Spider" 2
+			"Violin Spider (Pulse)" 4
+		add variant 2
+			"Solifuge (Pulse)"
+			"Violin Spider" 4
+			"Violin Spider (Pulse)" 2
+			"Lightning Bug" 2
+
+
+
+mission "Wanderers Rescue 1"
+	name "Wanderer Rescue"
+	description "Some Wanderer warriors were left behind on <planet> when the Unfettered captured the planet. Land on the planet with two Wanderer warships, and rescue them."
+	autosave
+	source "Vara Ke'sok"
+	destination "Kort Vek'kri"
+	clearance
+	infiltrating
+	to offer
+		has "Wanderers Defend Sich'ka'ara: done"
+	on offer
+		conversation
+			`Sobari Tele'ek explains the situation to you. "Nearly a hundred warriors were on the ground on <planet> when it was captured," he says. "They [scattered, evaded capture] and flew away from the spaceport, then regrouped in hiding in one of the forests. I'm sending two warships to land on the planet and [retrieve, rescue] them, and I'd like you to [join, accompany] them. Any questions?"`
+			choice
+				`	"No, I'm ready to go."`
+					accept
+				`	"Why do you need me to take part in this mission?"`
+			`	He says, "It matters deeply to some of our people to know that a member of another species is [assisting, journeying with] us in this conflict. Not merely for [morale? public relations?] but because your [support? acceptance?] gives our [self-defense, struggle] [moral weight? legitimacy?]." Your translator seems to be having trouble with the exact shades of meaning in his explanation.`
+			`	You agree to join the expedition, and he introduces you to the captains of the two ships that will travel with you.`
+				accept
+	npc accompany save
+		personality escort heroic
+		government "Wanderer"
+		ship "Tempest (Heavy)" "Ka'asildi"
+		ship "Tempest" "Eska'ata'ka"
+	npc
+		personality staying
+		government "Hai (Unfettered)"
+		system "Chirr'ay'akai"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle (Tracker)" 5
+	on visit
+		dialog
+			"You have reached <planet>, but you will need to take off again and wait for both the Wanderer warships to be in-system as well."
+
+
+
+mission "Wanderers Rescue 1B"
+	landing
+	name "Wanderer Rescue"
+	description "Escort these two Wanderer warships, carrying rescued warriors from <origin>, safely back to <destination>."
+	source "Kort Vek'kri"
+	destination "Vara Ke'sok"
+	to offer
+		has "Wanderers Rescue 1: done"
+	on offer
+		log "Helped to rescue some Wanderers who were stranded and had to go into hiding in the forest when their planet was taken over by the Unfettered."
+		conversation
+			`The Wanderer warships come to a stop hovering above one of the largest forests on the planet. You see the flash of many different colors of wings as the Wanderer warriors who were hiding in the trees fly up to meet the ships, which open their airlocks to receive them. After less than five minutes, the Wanderer captains signal you that everyone is aboard, and you can return to <planet>.`
+				launch
+	npc accompany save
+		personality escort heroic
+		government "Wanderer"
+		ship "Tempest (Heavy)" "Ka'asildi"
+		ship "Tempest" "Eska'ata'ka"
+	npc
+		personality staying
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Lightning Bug" 12
+	on visit
+		dialog
+			"You have reached <planet>, but you will need to take off again and wait for both the Wanderer warships to be in-system as well."
+
+
+
+mission "Wanderers Rescue 1C"
+	landing
+	name "Visit Iktat Rek"
+	description "Return to <destination>, where Iktat Rek's condition has continued to deteriorate."
+	autosave
+	source "Vara Ke'sok"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers Rescue 1B: done"
+	on offer
+		"reputation: Wanderer" >?= 40
+		conversation
+			`The Wanderers on <origin> are overjoyed that the rescue succeeded, and many of them thank you personally even though you feel like your role in the mission was rather minor. As the celebration continues, Tele'ek pulls you aside and says, "We must go somewhere [quiet, private] and speak."`
+			`	He leads you into what looks like an officers' lounge, and you sit down at a table. "Rek who was called 'Iktat' was your [designated contact? cultural guide? species companion?], yes?" he asks. You nod, although it's clear your translator doesn't know exactly what the word means. "Rek is very sick and needs [advanced, intensive] medical care," he says. "He desires that you be the one to transport him to the [hospital, medical facility] on Tik Klai. You must return to <planet> and meet him."`
+			choice
+				`	"Okay, I'll go there immediately."`
+					accept
+				`	"But, it's just the Molt. He'll be fine."`
+			`	"It is probably [beneficial, encouraging] for Rek to maintain that hope," he says, "but our [stories, myths] say that never before has a Molt been [viable, successful] if it began when the Eye was not open."`
+			`	You promise that you will go visit Rek as quickly as possible, and bring him wherever he needs to go.`
+				accept
+
+
+
+mission "Wanderers Rek 0"
+	landing
+	name "Bring Rek to <planet>"
+	description "Bring Iktat Rek to <destination>, where there is an advanced medical facility that can hopefully treat him."
+	autosave
+	source "Vara K'chrai"
+	destination "Tik Klai"
+	passengers 1
+	blocked "You need a bunk free in order to carry Iktat Rek."
+	to offer
+		has "Wanderers Rescue 1C: done"
+	on offer
+		conversation
+			`When Rek meets you in the spaceport, he is in the Wanderer equivalent of a motorized wheelchair. He has lost even more of his brown and grey plumage, and nothing but thin, withered, black feathers have grown in their place, like dark hairs growing from diseased skin. You are not sure if he has lost weight, or the loss of feathers simply makes him appear more gaunt. "I am glad you are here, <first> <last>," he says.`
+			choice
+				`	"Don't worry, Iktat Rek. You'll make it through this."`
+			`	He winces when you say his name. "You must not call me that anymore," he says. "'Iktat' was my role-name, and I can serve in that role no longer. I am now known only by my core-name of Rek, or my child-name Rek d' Esta'a i' Veruk. If I survive the Molt, I will become someone new, and will receive a new role-name as well."`
+			choice
+				`	"You're strong. I'm sure you will survive."`
+				`	"Do you have any idea what you will become?"`
+					goto become
+			`	"I hope so," he says, "but I cannot avoid overhearing the whispers of those around me. And the doctors say the Molt is rearranging and shutting down some of my internal organs. My primary hope now is just to live long enough to know that my people will have a future."`
+				goto end
+			label become
+			`	"It is impossible to know," he says. "The Molt can make us not just a new individual, but almost a new species, with new abilities no Wanderers had before. I have some suspicions of what may be changing inside me, but I do not wish to invite ill fortune by voicing those hopes aloud."`
+			label end
+			`	It is not until you have wheeled him halfway up the ramp into your ship that you realize something: throughout the entire conversation, Rek was speaking to you in your native language, without using the translator. You had not realized that Wanderer vocal organs could mimic human speech so perfectly.`
+			choice
+				`	"Rek, when did you learn to speak my language?"`
+			`	He makes a sound halfway between a laugh and a cough, and says, "Even as my body decays, my mind has grown sharper. The more I listened to your box speaking to you, the more its words began to make sense to me."`
+			`	He seems too tired to answer any more questions. You make sure Rek is comfortable in one of your bunk rooms, then prepare to travel to <planet>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Iktat Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+
+mission "Wanderers Rek 1"
+	landing
+	name "Visit Sko'karak"
+	description "Rek asked you to visit the Sko'karak system, then return to <planet> and tell him what you found there."
+	source "Tik Klai"
+	waypoint "Sko'karak"
+	to offer
+		has "Wanderers Rek 0: done"
+	on offer
+		log "Brought Iktat Rek to a Wanderer hospital facility. His illness, or molt, is progressing, and he has grown much weaker. But his mind is still as sharp as ever, and in fact he has somehow managed to pick up human language just by listening to the words of the translation machine."
+		conversation
+			`A Wanderer hospital is not too different from a human one. You stand in a corner trying not to get in the way as they transfer Rek to a bed and connect him to various tubes and wires. Without his feathers he looks unbelievably fragile, almost skeletal, but the Wanderer nurses and doctors are handling him as gently as possible.`
+			`	Eventually you are left alone with him. For a while he seems to just be gazing off into the distance, his eyes unfocused. Then he seems to realize that you are here and his eyes take on a new depth and alertness as he turns to look at you. Again speaking in your own language, he says, "Go visit the Sko'karak system and tell me what you find there." Then he shuts his eyes and falls asleep.`
+				accept
+	on enter "Sko'karak"
+		dialog
+			`You enter this system with high hopes that Rek, despite his weakened state, has sensed something significant happening here and sent you to discover it. But, your sensors pick up nothing out of the ordinary.`
+	on visit
+		dialog `You've returned to <planet>, but you haven't yet entered the Sko'karak system to investigate. Better depart and make sure you visit it before returning.`
+
+
+
+mission "Wanderers Rek 2"
+	landing
+	name "Visit Sko'karak again"
+	description "Rek asked you to visit the Sko'karak system again, and see if anything has changed there. Then, return to <destination>."
+	source "Tik Klai"
+	waypoint "Sko'karak"
+	to offer
+		has "Wanderers Rek 1: done"
+	on offer
+		event "wanderers: more systems lost"
+		conversation
+			`When you arrive, you can tell that the locals are agitated about something. Finally one of them switches into the Hai language and explains to you what is going on. "We have just heard that the Unfettered have [stolen, captured] three more of our worlds," he says, "but do not tell Rek the news."`
+			`	You visit Iktat Rek and tell him that you found nothing out of the ordinary in the Sko'karak system. He barely even opens his eyes as you speak to him. "Go back and look again," he says.`
+			choice
+				`	"Okay, I'll go and look again."`
+					accept
+				`	"You should know, another three systems were lost to the Unfettered."`
+			`	He sighs. "If the Eye would only open, it would not matter. I do not understand why the keepers of the portal will not open it and let us flee from this war into a place of safety. Go again to Sko'karak, and look."`
+				accept
+	on enter "Sko'karak"
+		dialog
+			`You enter the system again, and do an even more detailed sensor sweep in case you missed something the first time. You find nothing.`
+	on visit
+		dialog `You've returned to <planet>, but you haven't yet entered the Sko'karak system to investigate. Better depart and make sure you visit it before returning.`
+
+
+
+mission "Wanderers Rek 3"
+	landing
+	name "Visit Sko'karak"
+	description "Visit the Sko'karak system for a third time, and see if anything has changed there. Then, return to <planet> to report to Rek."
+	source "Tik Klai"
+	waypoint "Sko'karak"
+	to offer
+		has "Wanderers Rek 2: done"
+	on offer
+		event "wanderers: the eye begins to open" 2
+		conversation
+			`When you enter the spaceport, a white-plumed Wanderer who looks eerily similar to Rek comes out of the hospital to meet you. For a brief confused moment you wonder if Rek has indeed completed the Molt and is now standing before you healed, then she introduces herself as Melaka Esta'a, Rek's mother. "Rek is asleep," she says. "Do you bring good news?"`
+			choice
+				`	"No, I found nothing."`
+			`	She says, "Rek's body is destroying itself [fighting, resisting] the Molt. Soon we must give him the drugs that will [disable, eliminate] his immune system and allow the new cells to finish their [conquest, invasion] of his body. For that treatment he must enter [seclusion, isolation] to protect him from infection. But he will not go until you bring him the [word, news] he awaits."`
+			choice
+				`	"I will go back one more time and see if anything has changed."`
+					accept
+				`	"Should I lie to him and say the Eye is open?"`
+			`	"No," she says, "go back one more time and look. If there is still nothing, we will [decide, consider] what to do next."`
+				accept
+	on enter "Sko'karak"
+		dialog
+			`This time when you enter the system, your sensors pick up some strange astronomical phenomenon out beyond the orbit of the farthest planet, a wisp of light like a gathering raincloud. It's not a wormhole, but it is a change. Perhaps it will be enough to give Rek hope.`
+	on visit
+		dialog `You've returned to <planet>, but you haven't yet entered the Sko'karak system to investigate. Better depart and make sure you visit it before returning.`
+
+
+
+mission "Wanderers Ap'arak 1"
+	landing
+	name "Help defend <planet>"
+	description "Return to <destination>, where the Wanderers have chosen to take their stand against the Unfettered incursion."
+	autosave
+	source "Tik Klai"
+	destination "Varu Tev'kei"
+	to offer
+		has "Wanderers Rek 3: done"
+	on offer
+		log "Iktat Rek has been placed in protective quarantine in a germ-free room, where he will receive drugs that will suppress his immune system and allow the genetic change that is taking place in his body to be completed. Even if he survives the process, it may change him beyond recognition."
+		conversation
+			`You hurry into the hospital room. Rek's skin is now almost entirely bare aside from the withered, stringy black feathers that have grown in place of the once rich plumage. Rek's eyes spring open when you enter the room. "You have news," Rek says. "I can see it in your expression. What did you see?" Given how hard it is to read alien facial expressions, it would be quite remarkable if Rek could actually tell anything from looking at your face, but it would not be polite to say so.`
+			choice
+				`	"Something has begun in the Sko'karak system, a cosmological phenomenon my ship's sensors did not recognize. It may be the Eye, beginning to open."`
+				`	"There is some sort of cosmological phenomenon, but it is not a wormhole. I do not want to offer you false hope."`
+			`	"It is the Eye," says Rek. "I am sure of it. It comes too late to save us from the great losses we have suffered, but perhaps not too late to preserve our species from destruction. So, my waiting is at an end."`
+			`	Rek calls to one of the nurses. The hospital bed is on wheels, and they quickly detach it from the various machines on the walls. Esta'a, Rek's mother, comes into the room and explains to you, "The room of [seclusion, isolation] is deeper underground. They will [wash, sterilize] Rek's body, then wait a week to check for any [residual, hidden] contamination, then begin to administer the drugs that will stop Rek's body from [fighting, resisting] the transformation. Even if all goes well, we will not see Rek again for a long time, and never again in this [body, form]."`
+			choice
+				`	"Don't worry. Rek is strong enough to survive this."`
+					goto hallway
+				`	"Will you let me know what happens, regardless of the outcome?"`
+			`	"I will," she says. "Unless, of course, some great [calamity? upheaval?] befalls us and we are too caught up in other [matters, necessities]."`
+			label hallway
+			`	Three Wanderer nurses come and wheel Rek's bed out the door and into an elevator. At Rek's request, you join them. The elevator opens up to a wide and vaulted hallway lined on either side by Wanderers dressed in black, come to pay their last respects to Rek. It is like something out of a dream: the subterranean passage dense with the stately forms of Wanderer officials, the black-cloaked wings and shadows contrasting with the bright linen of the hospital bed and the white plumage of Rek's mother as she follows the cart to the threshold of the isolation chamber.`
+			`	The door of the chamber snaps shut with a pneumatic hiss, and you make your way back up to the spaceport with the other visitors. One of the visitors is Emeka'a Isai, the former governor of Varu Mer'ek. She pulls you aside and says, "You should not [remain, dawdle] here, human. They will have need of you at the [front, battle line]. And the sight of you may be unwelcome to some of the [mourners? associates?] of Rek who are here."`
+			choice
+				`	"Okay, I'll go to <planet> and aid in the defense."`
+					accept
+				`	"Wait, why would people be angry at me after all I've done to help?"`
+			`	"Not angry at you," she says, "but some say the Molt is [triggered, provoked] by exposure to [alien, foreign] things: that your coming is what made Rek's body begin its [change, metamorphosis] too soon." She is silent for a moment, then says, "Please, do not be [concerned, grieved]. Rek may yet live, and rise to great renown as the first of a new [generation, race]. In any event, that is the past. Go, now, and help us to [secure, obtain] a future."`
+				accept
+
+
+
+event "battle for ap'arak"
+	system "Ap'arak"
+		fleet "Wanderer Flycatchers" 400
+
+event "battle for ap'arak ends"
+	government "Wanderer"
+		"attitude toward"
+			"Pug (Wanderer)" .01
+	system "Ap'arak"
+		add fleet "Wanderer Freight" 2000
+		add fleet "Wanderer Drones" 4000
+		add fleet "Wanderer Defense" 600
+		add fleet "Large Unfettered" 700
+
+mission "pug defend wanderers"
+	invisible
+	landing
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	on offer
+		event "pug defend wanderers"
+		fail
+
+event "pug defend wanderers"
+	government "Pug (Wanderer)"
+		"attitude toward"
+			"Wanderer" .01
+	government "Pug"
+		"attitude toward"
+			"Wanderer" .01
+
+mission "Wanderers Ap'arak 2"
+	landing
+	name "Help defend <planet>"
+	description "Defend <planet> from an Unfettered invasion fleet, then land back on the planet."
+	source "Varu Tev'kei"
+	to offer
+		has "Wanderers Ap'arak 1: done"
+	on offer
+		conversation
+			`As you are coming in for a landing here you think you see a few Wanderer ships of yet another unfamiliar design, even larger than the Tempest. Their level of military technology has risen at an incredible rate since the Unfettered invasion began, even if it is true that they are just putting ancient ship and weapon designs back into production rather than inventing them anew.`
+			`	But the new technology cannot completely offset the fact that no living Wanderer has any real military experience. So, several of their leaders here are eager to talk with you, and you spend hours telling them stories from your recent experience in the war in human space. Sobari Tele'ek, the military commander, is among them. Your conversation is interrupted when sirens begin to sound in the spaceport. "The Hai are approaching!" says Tele'ek. "Please join us in battle, one more time."`
+				launch
+	on accept
+		event "battle for ap'arak"
+	on complete
+		event "battle for ap'arak ends"
+	on visit
+		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
+	npc evade
+		personality staying heroic
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle" 2
+				"Shield Beetle (Tracker)" 1
+				"Shield Beetle (Pulse)" 2
+				"Water Bug" 3
+				"Water Bug (Pulse)" 2
+	npc evade
+		personality heroic
+		system "Sich'ka'ara"
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Solifuge" 2
+				"Solifuge (Pulse)" 2
+				"Solifuge (Tracker)" 1
+				"Violin Spider" 12
+				"Violin Spider (Pulse)" 18
+	npc evade
+		personality heroic
+		system "Chy'chra"
+		government "Hai (Unfettered)"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle" 1
+				"Shield Beetle (Tracker)" 1
+				"Shield Beetle (Pulse)" 2
+				"Water Bug" 4
+				"Water Bug (Pulse)" 2
+				"Solifuge" 1
+				"Solifuge (Pulse)" 1
+				"Solifuge (Tracker)" 1
+				"Violin Spider" 8
+				"Violin Spider (Pulse)" 10
+	npc
+		personality heroic
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Derecho (Tough)"
+				"Tempest"
+				"Tempest (Heavy)"
+				"Strong Wind" 1
+				"Autumn Leaf" 3
+				"Summer Leaf" 4
+	npc
+		personality heroic staying
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Derecho (Turret)"
+				"Derecho"
+				"Strong Wind" 2
+				"Autumn Leaf" 4
+				"Summer Leaf" 3
+	npc
+		personality staying derelict
+		government "Wanderer"
+		fleet
+			names "wanderer"
+			variant
+				"Strong Wind" 1
+				"Autumn Leaf" 2
+
+
+
+mission "Wanderers Ap'arak 3: Pug"
+	landing
+	invisible
+	source "Varu Tev'kei"
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	npc kill
+		personality staying unconstrained uninterested
+		government "Pug (Wanderer)"
+		ship "Pug Arfecta" "Hork Ekekek Ptui"
+		ship "Pug Arfecta" "Graak Sput Kchoo"
+	on complete
+		dialog `Shortly after defeating the Pug ships, you receive a message from Sobari Tele'ek: "We are [aware? incredulous?] of reports that you have [exterminated, eradicated] our Keepers in the Ap'arak system. This is unacceptable! From now on, you are no longer welcome in our [territory, space]."`
+		"reputation: Wanderer" <?= -1
+
+mission "Wanderers Ap'arak 3"
+	landing
+	name "Report to <planet>"
+	description "Return to the Wanderer capital on <destination>."
+	autosave
+	source "Varu Tev'kei"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	on offer
+		log `The Wanderers have begun producing even larger warships, and have succeeded in driving off yet another Unfettered assault. Afterwards the Pug, whom the Wanderers refer to as the "Keepers," finally sent assistance... in the form of two ships, which they claim are powerful enough to keep the entire Unfettered fleet at bay.`
+		log "Factions" "Unfettered Hai" `After obtaining a sufficient number of jump drives, the Unfettered expanded into Wanderer space and managed to conquer six worlds from the Wanderers before their advance was stopped due to Pug interference.`
+		conversation
+			`The Wanderers here seem incredulous that they managed to drive off such a powerful Unfettered attack force. As you walk through the spaceport, many of them stop to thank you for your assistance in defending their home.`
+			`	Just as you reach the pavilion where the military leaders are gathering, a shadow falls over you, and you look up to see two ships approaching with the unmistakable horned silhouettes of Pug warships. Throughout the spaceport you hear Wanderer voices raised in excitement, and hundreds of them leap into the air to accompany the Pug ships to the landing pad. Sobari Tele'ek says to you, "It is a [visitation, appearance] of the Keepers! In our hour of [need, desperation] they make themselves known at last." A small delegation of Pug disembarks from the ships and approaches the pavilion on foot.`
+			choice
+				`	"Let's hope that they offer you more help than they did last time I talked with them."`
+				`	"The Pug are dangerous and unpredictable. You should not trust them."`
+				`	"If they really cared about you, they would have intervened before so many of you died fighting the Unfettered."`
+				`	(Hear what the Pug have to say.)`
+					goto pug
+			`	"The Keepers are [subtle, mysterious]," says Tele'ek, "but always their [intervention, action] has been for our [benefit, good]. Now be silent, and allow them to speak."`
+			label pug
+			`	The Pug delegation reaches the pavilion, and one of them begins speaking in the Wanderer language. You have no idea what they are saying, and they all seem to be ignoring your presence. A few of the Wanderer leaders respond. There's an awful lot of fanning of wings, flipping of tails, and preening of feathers going on. That might be the Wanderer way of trying to make a good impression, or else they're just feeling pleased with themselves. Or maybe they're nervous; it's hard to tell.`
+			`	The Pug finish their conversation with the Wanderers and return to their ships, and only then does Sobari Tele'ek turn to you and say, "Great news! They say that their two ships will [patrol, remain in] this system and [hold off, hold at bay] the Hai fleets. Also," he adds, preening himself, "they are very pleased with us for [growing, becoming] so strong. And, they say we need not [fight? worry about?] the Hai anymore."`
+			choice
+				`	"I've fought Pug ships. There's no way two of them can stand against the entire Unfettered war fleet."`
+				`	"Does this mean they're finally willing to open the wormhole for you?"`
+					goto eye
+			`	"Maybe they have grown stronger, too," says Tele'ek. "In any case, we are [safe, secure] here now, so we do not need your [help, protection]. Perhaps you should return to our capital and see if they need you there."`
+				goto end
+			label eye
+			`	Tele'ek's crest droops a little bit. "I suppose they did not make any [promises, predictions] about that," he says. "But in any case, we are [safe, secure] here now, so we do not need your [help, protection]. Perhaps you should return to our capital and see if they need you there."`
+			label end
+			choice
+				`	"Very well, I'll go check if they need me on <planet>."`
+					accept
+				`	"You really think that nothing can go wrong here, just because the Pug have arrived?"`
+			`	You try to convince Tele'ek that the Pug may not be completely trustworthy, but it's clear you cannot change his mind. To the Wanderers, the Pug must have the status of gods; speaking against them is fruitless. Eventually you give up and agree to go visit <planet>.`
+				accept
+	
+	on complete
+		event "wanderers: the eye opens"
+		event "wanderers: derecho mass production" 16
+		event "wanderers: spera anatrusk colony" 40
+		conversation
+			`A few minutes after you land on <planet>, a sudden uproar passes through the Wanderers in the spaceport. It's hard to be sure, but you think they sound excited, not frightened. Ships start taking off, more and more of them until the spaceport is almost deserted, and no one who is left seems at all interested in talking with you or explaining what is going on. You're probably going to have to return to your ship and see for yourself what all the fuss is about.`
