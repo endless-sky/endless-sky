@@ -1012,8 +1012,15 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 			if(hardpoint.GetOutfit())
 			{
 				const Outfit *weapon = hardpoint.GetOutfit();
-				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
-					continue;
+				// if the weapon uses ammo and does not have sufficient to fire, do not count towards deterrence
+				bool outOfAmmo = false;
+				for(const auto &ammo : weapon->Ammo())
+				{	
+				if(!outOfAmmo && ammo.first && ship->OutfitCount(ammo.first) < ammo.second)
+					outOfAmmo = true;
+				}	
+				if(outOfAmmo)
+				continue;
 				double damage = weapon->ShieldDamage() + weapon->HullDamage();
 				deterrence += .12 * damage / weapon->Reload();
 			}
