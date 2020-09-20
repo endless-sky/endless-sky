@@ -1207,9 +1207,6 @@ mission "Remnant: Deep Surveillance"
 				`	"I'm sorry, but I don't believe I'll be able to."`
 					goto decline
 			
-			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out.`
-				accept
-			
 			label decline
 			branch revealed
 				has "deep: did reveal remnant"
@@ -1236,7 +1233,7 @@ mission "Remnant: Deep Surveillance"
 			label liar
 			apply
 				set "remnant: player is surveilled"
-			`	"Then perhaps the Remnant should reasses their trust placed in you," Torza responds. "We will be on high alert to see if these scientists make any moves. I at least commend you for giving what information you have to us, but know that you will be watched closely by us from now on." Torza gets up from the bench and shows you out without another word.`
+			`	"Then perhaps the Remnant should reassess their trust placed in you," Torza responds. "We will be on high alert to see if these scientists make any moves. I at least commend you for giving what information you have to us, but know that you will be watched closely by us from now on." Torza gets up from the bench and shows you out without another word.`
 				decline
 			
 			label accepted
