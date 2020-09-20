@@ -1030,11 +1030,6 @@ mission "Remnant: Deep Surveillance"
 			`	"What do they know?"`
 				goto knowledge
 			
-			label threat
-			`	"It is not a matter of them being a threat," Torza says angrily. "They may be peaceful, but who they tell or who may learn from them may not.`
-			`	"What do they know?"`
-				goto knowledge
-			
 			label terminus2
 			choice
 				`	"I helped a group of scientists who were researching the wormhole in Terminus."`
@@ -1073,7 +1068,7 @@ mission "Remnant: Deep Surveillance"
 			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
-					goto threat2
+					goto threat
 				`	"I'm sorry, but I helped them before coming to understand this."`
 			
 			apply
@@ -1082,7 +1077,7 @@ mission "Remnant: Deep Surveillance"
 			`	"What do they know?"`
 				goto knowledge
 			
-			label threat2
+			label threat
 			`	"It is not a matter of them being a threat," Torza says angrily. "They may be peaceful, but who they tell or who may learn from them may not.`
 			`	"What do they know?"`
 				goto knowledge
