@@ -42,7 +42,7 @@ public:
 	const Body &WeaponSprite() const;
 	const Body &HardpointSprite() const;
 	const Sound *WeaponSound() const;
-	const Outfit *Ammo() const;
+	const std::map<const Outfit *, int> &Ammo() const;
 	const Sprite *Icon() const;
 	
 	// Effects to be created at the start or end of the weapon's lifetime.
@@ -59,8 +59,6 @@ public:
 	double BurstReload() const;
 	int BurstCount() const;
 	int Homing() const;
-	
-	int AmmoUsage() const;
 	
 	int MissileStrength() const;
 	int AntiMissile() const;
@@ -127,9 +125,9 @@ protected:
 	// default turnrate.
 	void SetTurretTurn(double rate);
 	
-	// A pair representing the outfit that is consumed as ammo and the number
-	// of that outfit consumed upon fire.
-	std::pair<const Outfit*, int> ammo;
+	// A map representing the outfit that is consumed as ammo and the number
+	// of that outfit consumed upon fire.	
+	std::map<const Outfit*, int> ammo;
 	
 	
 private:
