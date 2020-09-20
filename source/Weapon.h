@@ -27,7 +27,7 @@ class Sprite;
 
 
 
-// Class representing all the characteristics of a weapon, including sprites and 
+// Class representing all the characteristics of a weapon, including sprites and
 // effects, sounds, icons, ammo, submunitions, and other attributes. Storing
 // these parameters in a separate class keeps each Projectile from needing a
 // copy of them, and storing them as class variables instead of in a map of
@@ -126,7 +126,7 @@ protected:
 	void SetTurretTurn(double rate);
 	
 	// A map representing the outfit that is consumed as ammo and the number
-	// of that outfit consumed upon fire.	
+	// of that outfit consumed upon fire.
 	std::map<const Outfit*, int> ammo;
 	
 	
