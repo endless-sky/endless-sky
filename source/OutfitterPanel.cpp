@@ -530,29 +530,33 @@ void OutfitterPanel::Sell(bool toCargo)
 				player.Accounts().AddCredits(price);
 				player.AddStock(selectedOutfit, 1);
 			}
-			
-			const Outfit *ammo = selectedOutfit->Ammo();
-			if(ammo && ship->OutfitCount(ammo))
-			{
-				// Determine how many of this ammo I must sell to also sell the launcher.
-				int mustSell = 0;
-				for(const pair<const char *, double> &it : ship->Attributes().Attributes())
-					if(it.second < 0.)
-						mustSell = max<int>(mustSell, it.second / ammo->Get(it.first));
 				
-				if(mustSell)
+			for(const auto &ammo : selectedOutfit->Ammo())
+			{	
+				if(ammo.first && ship->OutfitCount(ammo.first))
 				{
-					ship->AddOutfit(ammo, -mustSell);
-					if(toCargo)
-						mustSell -= player.Cargo().Add(ammo, mustSell);
+					// Determine how many of this ammo I must sell to also sell the launcher.
+					int mustSell = 0;
+					for(const pair<const char *, double> &it : ship->Attributes().Attributes())
+						if(it.second < 0.)
+							mustSell = max<int>(mustSell, it.second / ammo.first->Get(it.first));
+					
 					if(mustSell)
 					{
-						int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
+						ship->AddOutfit(ammo.first, -mustSell);
+						if(toCargo)
+							mustSell -= player.Cargo().Add(ammo.first, mustSell);
+						if(mustSell)
+						{
+						int64_t price = player.FleetDepreciation().Value(ammo.first, day, mustSell);
 						player.Accounts().AddCredits(price);
-						player.AddStock(ammo, mustSell);
-					}
+						player.AddStock(ammo.first, mustSell);
+						}
+					}	
 				}
-			}
+			
+			}	
+			
 		}
 	}
 }
@@ -696,14 +700,14 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 	
 	// If this outfit requires ammo, check if we could sell it if we sold all
 	// the ammo for it first.
-	const Outfit *ammo = outfit->Ammo();
-	if(ammo && ship->OutfitCount(ammo))
+	Outfit attributes = ship->Attributes();
+	for(const auto &ammo : outfit->Ammo())
 	{
-		Outfit attributes = ship->Attributes();
-		attributes.Add(*ammo, -ship->OutfitCount(ammo));
-		return attributes.CanAdd(*outfit, -1);
+		if(ammo.first && ship->OutfitCount(ammo.first))	
+		attributes.Add(*ammo.first, -ship->OutfitCount(ammo.first));
 	}
-	
+	return attributes.CanAdd(*outfit, -1);
+
 	// Now, check whether this ship can sell this outfit.
 	return ship->Attributes().CanAdd(*outfit, -1);
 }
@@ -782,9 +786,20 @@ void OutfitterPanel::CheckRefill()
 		
 		++count;
 		set<const Outfit *> toRefill;
+		
 		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo())
-				toRefill.insert(it.GetOutfit()->Ammo());
+		{	
+
+			if(it.GetOutfit())
+			{	
+				for(const auto &sit : it.GetOutfit()->Ammo())
+				{	
+				// don't autorefill if outfit is not ammunition or if useage zero or negative	
+				if(sit.first->Category() == "Ammunition" && sit.second >0)	
+				toRefill.insert(sit.first);
+				}	
+			}	
+		}
 		
 		for(const Outfit *outfit : toRefill)
 		{
@@ -823,9 +838,18 @@ void OutfitterPanel::Refill()
 			continue;
 		
 		set<const Outfit *> toRefill;
+		
 		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo())
-				toRefill.insert(it.GetOutfit()->Ammo());
+		{	
+
+			if(it.GetOutfit())
+			{	
+				for(const auto &sit : it.GetOutfit()->Ammo())
+				// don't autorefill if outfit is not ammunition or if useage zero or negative		
+				if(sit.first->Category() == "Ammunition" && sit.second >0)	
+				toRefill.insert(sit.first);
+			}	
+		}
 		
 		for(const Outfit *outfit : toRefill)
 		{
