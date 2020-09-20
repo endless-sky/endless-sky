@@ -3213,7 +3213,6 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 	energy -= weapon->FiringEnergy();
 	fuel -= weapon->FiringFuel();
 	heat += weapon->FiringHeat();
-}
 
 	for(const auto &ammo : weapon->Ammo())
 	{
@@ -3222,6 +3221,8 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 	else
 		cargo.Add(ammo.first, -ammo.second);
 	}
+}
+
 
 // Each ship can have a target system (to travel to), a target planet (to
 // land on) and a target ship (to move to, and attack if hostile).
