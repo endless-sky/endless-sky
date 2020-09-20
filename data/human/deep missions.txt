@@ -1603,7 +1603,7 @@ conversation "deep: remnant c"
 	`	"At first glance, this series of wormholes seems no different than the one that is used to enter this region of space, but it will require some time for us to go over all the data the sensors collected," Ivan explains to you.`
 	branch revealed
 		has "deep: did reveal remnant"
-	`	"While you wait, though, I have another job you could do. You mentioned something about strange alien creatures beyond the wormhole that seemed to be able to survive in the vacuum of space. Would you be able to return there and scan them for us? These alien creatures won't have 'outfits' for the scanners to pick up, but a typical outfits scanner is likely to give us the most information."`
+	`	"While you wait, though, I have another job you could do. You mentioned something about strange alien creatures beyond the wormhole that seemed to be able to survive in the vacuum of space. Would you be able to return there and scan them for us? These alien creatures won't have 'outfits' for the scanners to pick up, but a typical outfits scanner is still likely to give us the most information."`
 		goto end
 
 	label revealed
