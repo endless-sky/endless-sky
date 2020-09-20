@@ -30,9 +30,6 @@ class Panel;
 // starting with whichever one is on the bottom.
 class UI {
 public:
-	// Default constructor.
-	UI();
-	
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);
@@ -82,10 +79,12 @@ private:
 	
 	
 private:
-	std::vector<std::shared_ptr<Panel>> stack;
-	
+	// Whether the player has taken actions that enable us to save the game.
 	bool canSave = false;
-	bool isDone;
+	// Whether the player has requested the game to shut down.
+	bool isDone = false;
+	
+	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 };

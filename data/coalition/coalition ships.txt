@@ -274,6 +274,7 @@ ship "Heliarch Interdictor"
 		"mass" 520
 		"drag" 7.4
 		"heat dissipation" .70
+		"ion protection" .2
 		"fuel capacity" 800
 		"cargo space" 79
 		"outfit space" 544
@@ -396,6 +397,7 @@ ship "Heliarch Neutralizer"
 		"mass" 270
 		"drag" 4.1
 		"heat dissipation" .75
+		"ion protection" .1
 		"fuel capacity" 1000
 		"cargo space" 36
 		"outfit space" 367
@@ -515,6 +517,7 @@ ship "Heliarch Punisher"
 		"mass" 780
 		"drag" 12.2
 		"heat dissipation" .60
+		"ion protection" .3
 		"fuel capacity" 600
 		"cargo space" 94
 		"outfit space" 885
