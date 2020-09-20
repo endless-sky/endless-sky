@@ -162,10 +162,8 @@ void Outfit::Load(const DataNode &node)
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
 		{
-			// Non-weapon outfits can have ammo so that storage outfits
-			// properly remove excess ammo when the storage is sold, instead
-			// of blocking the sale of the outfit until the ammo is sold first.
-			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			ammo[GameData::Outfits().Get(child.Token(1))] += count;
 		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
