@@ -133,6 +133,8 @@ public:
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Update which NPCs are active based on their spawn and despawn conditions.
+	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
 	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares

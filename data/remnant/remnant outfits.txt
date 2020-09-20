@@ -216,6 +216,19 @@ outfit "EMP Torpedo"
 	"emp torpedo capacity" -1
 	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
 
+outfit "EMP Torpedo Storage Bay"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 98000
+	thumbnail "outfit/emp rack"
+	"mass" 5
+	"outfit space" -12
+	"energy capacity" 400
+	"emp torpedo capacity" 7
+	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
+
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
 	licenses
@@ -508,6 +521,9 @@ outfit "Crucible-Class Steering"
 	"turn" 448.0
 	"turning energy" 1.32
 	"turning heat" 1.4
+	"steering flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
 	description "This steering system is tiny enough to fit in even an interceptor, but the Remnant mostly use them to provide an extra bit of maneuverability for their larger ships."
 
 outfit "Forge-Class Steering"
@@ -522,6 +538,9 @@ outfit "Forge-Class Steering"
 	"turn" 952.0
 	"turning energy" 2.64
 	"turning heat" 3.0
+	"steering flare sprite" "effect/remnant flare/medium"
+		"frame rate" 4
+	"steering flare sound" "plasma small"
 	description "This unusually power-hungry steering system packs a lot of power into a relatively small space. It seems that engine technology has progressed more rapidly for the Remnant than it has for the rest of humanity."
 
 outfit "Smelter-Class Steering"
@@ -536,6 +555,9 @@ outfit "Smelter-Class Steering"
 	"turn" 1980.0
 	"turning energy" 5.21
 	"turning heat" 6.2
+	"steering flare sprite" "effect/remnant flare/large"
+		"frame rate" 3
+	"steering flare sound" "plasma medium"
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
 
 outfit "Tuning Rifle"

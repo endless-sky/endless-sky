@@ -35,7 +35,7 @@ namespace {
 			sortedOutfits.emplace_back(it.first);
 		
 		sort(sortedOutfits.begin(), sortedOutfits.end(),
-			[] (const Outfit *lhs, const Outfit *rhs)
+			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();
 			}

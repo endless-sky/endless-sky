@@ -17,12 +17,14 @@ mission "Wanderer Workers [0]"
 	to offer
 		has "language: Wanderer"
 		random < 70
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
 		attributes "factory" "urban"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -41,10 +43,12 @@ mission "Wanderer Workers [1]"
 		has "language: Wanderer"
 		random < 60
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
 		attributes "factory" "urban"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -62,12 +66,14 @@ mission "Wanderer Farmers [0]"
 	to offer
 		has "language: Wanderer"
 		random < 70
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
 		attributes "farming"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -85,12 +91,14 @@ mission "Wanderer Farmers [1]"
 	to offer
 		has "language: Wanderer"
 		random < 60
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
 		attributes "farming"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -108,11 +116,13 @@ mission "Wanderer Younglings [0]"
 	to offer
 		has "language: Wanderer"
 		random < 60
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -130,11 +140,13 @@ mission "Wanderer Younglings [1]"
 	to offer
 		has "language: Wanderer"
 		random < 50
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -154,12 +166,14 @@ mission "Wanderer Scientists (Pollution) [0]"
 	to offer
 		has "language: Wanderer"
 		random < 30
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
 		attributes "mining" "oil" "factory"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -178,12 +192,14 @@ mission "Wanderer Scientists (Pollution) [1]"
 	to offer
 		has "language: Wanderer"
 		random < 20
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
 		attributes "mining" "oil" "factory"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -202,11 +218,13 @@ mission "Wanderer Scientists (Phenomenon) [0]"
 	to offer
 		has "language: Wanderer"
 		random < 30
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -225,11 +243,13 @@ mission "Wanderer Scientists (Phenomenon) [1]"
 	to offer
 		has "language: Wanderer"
 		random < 20
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -248,10 +268,12 @@ mission "Wanderer Biologists [0]"
 		has "language: Wanderer"
 		random < 60
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -271,9 +293,11 @@ mission "Wanderer Biologists [1]"
 		has "language: Wanderer"
 		random < 50
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -293,10 +317,12 @@ mission "Wanderer Botanists [0]"
 		has "language: Wanderer"
 		random < 60
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -316,9 +342,11 @@ mission "Wanderer Botanists [1]"
 		has "language: Wanderer"
 		random < 50
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -337,11 +365,13 @@ mission "Wanderer Harvest [0]"
 		has "language: Wanderer"
 		random < 50
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		attributes "farming"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -360,11 +390,13 @@ mission "Wanderer Harvest [1]"
 		has "language: Wanderer"
 		random < 40
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
 		attributes "farming"
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -384,11 +416,13 @@ mission "Wanderer Invasive Species [0]"
 	to offer
 		has "language: Wanderer"
 		random < 30
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	stopover
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on stopover
 		dialog `The Wanderers quickly make their way out of your ship with their equipment to contain the invasive animals. After roughly an hour, they return to your ship with cages that they place into your cargo hold. Now return to <origin> for payment.`
@@ -410,10 +444,12 @@ mission "Wanderer Invasive Species [1]"
 		has "language: Wanderer"
 		random < 30
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	stopover
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on stopover
 		dialog `The Wanderers quickly make their way out of your ship with their equipment to contain the invasive plant. After roughly an hour, they return to your ship with plants in containers of some sort that they place into your cargo hold. Now return to <origin> for payment.`
@@ -438,11 +474,13 @@ mission "Wanderer Cargo [0]"
 	to offer
 		has "language: Wanderer"
 		random < 70
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -461,10 +499,12 @@ mission "Wanderer Cargo [1]"
 		has "language: Wanderer"
 		random < 60
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -482,11 +522,13 @@ mission "Wanderer Cargo [2]"
 	to offer
 		has "language: Wanderer"
 		random < 50
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -505,9 +547,11 @@ mission "Wanderer Cargo [3]"
 		has "language: Wanderer"
 		random < 40
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -526,9 +570,11 @@ mission "Wanderer Cargo [4]"
 		has "language: Wanderer"
 		random < 30
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -548,11 +594,13 @@ mission "Wanderer Rush Delivery [0]"
 	to offer
 		has "language: Wanderer"
 		random < 50
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -572,10 +620,12 @@ mission "Wanderer Rush Delivery [1]"
 		has "language: Wanderer"
 		random < 40
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -595,9 +645,11 @@ mission "Wanderer Rush Delivery [2]"
 		has "language: Wanderer"
 		random < 30
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -617,9 +669,11 @@ mission "Wanderer Rush Delivery [3]"
 		has "language: Wanderer"
 		random < 20
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -638,11 +692,13 @@ mission "Wanderer Bulk Delivery [0]"
 	to offer
 		has "language: Wanderer"
 		random < 50
-		not "event: battle for sich'ka'ara ends"
+		not "event: eastern evacuation"
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -661,10 +717,12 @@ mission "Wanderer Bulk Delivery [1]"
 		has "language: Wanderer"
 		random < 40
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -683,9 +741,11 @@ mission "Wanderer Bulk Delivery [2]"
 		has "language: Wanderer"
 		random < 30
 	source
+		not attributes "evacuation"
 		government "Wanderer"
 	destination
 		distance 2 8
+		not attributes "evacuation"
 		government "Wanderer"
 	on visit
 		dialog phrase "generic cargo on visit"

@@ -46,6 +46,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isPhasing = true;
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
+		else if(key == "parallel")
+			isParallel = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -258,6 +260,13 @@ int Weapon::AmmoUsage() const
 
 
 
+bool Weapon::IsParallel() const
+{
+	return isParallel;
+}
+
+
+
 const Sprite *Weapon::Icon() const
 {
 	return icon;
@@ -337,14 +346,13 @@ double Weapon::TotalDamage(int index) const
 {
 	if(!calculatedDamage)
 	{
+		calculatedDamage = true;
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
 			for(const auto &it : submunitions)
 				damage[i] += it.first->TotalDamage(i) * it.second;
 			doesDamage |= (damage[i] > 0.);
 		}
-		
-		calculatedDamage = true;
 	}
 	return damage[index];
 }
