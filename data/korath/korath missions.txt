@@ -68,7 +68,7 @@ mission "Translator Development 0"
 	minor
 	source
 		government "Kor Efret" "Wanderer"
-		not "Setar Fort"
+		not planet "Setar Fort"
 	to offer
 		has "event: wanderers: sestor eliminated"
 		random < 15
