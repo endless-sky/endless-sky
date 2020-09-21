@@ -761,7 +761,7 @@ mission "Wanderer Kor Efreti: Equipment"
 		description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
 		cargo "Equipment" 5 3 .15
 	to offer
-		has "Translator Development 4: done"
+		has "Wanderers: Sestor: Final: done"
 		random < 70
 	source
 		government "Wanderer"
@@ -782,7 +782,7 @@ mission "Wanderer Kor Efreti: Cargo [0]"
 		description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
 		cargo random 5 4 .12
 	to offer
-		has "Translator Development 4: done"
+		has "Wanderers: Sestor: Final: done"
 		random < 40
 	source
 		government "Wanderer"
@@ -803,7 +803,7 @@ mission "Wanderer Kor Efreti: Cargo [1]"
 		description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
 		cargo random 5 4 .10
 	to offer
-		has "Translator Development 4: done"
+		has "Wanderers: Sestor: Final: done"
 		random < 15
 	source
 		government "Wanderer"
