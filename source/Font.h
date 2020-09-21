@@ -36,14 +36,29 @@ public:
 	
 	void Load(const std::string &imagePath);
 	
-	void Draw(const std::string &str, const Point &point, const Color &color) const;
-	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
+	// Layout parameters.
+	enum Align {LEFT, CENTER, RIGHT};
+	enum Truncate {TRUNC_NONE, TRUNC_FRONT, TRUNC_MIDDLE, TRUNC_BACK};
+	struct Layout {
+			// Align and trancate width. No align or trancate if width is negative.
+			int width = -1;
+			// Set the alignment mode.
+			Align align = LEFT;
+			// Set the truncate mode.
+			Truncate truncate = TRUNC_NONE;
+			
+			Layout() noexcept;
+			Layout(int w, Align a) noexcept;
+			Layout(int w, Truncate t) noexcept;
+			Layout(int w, Truncate t, Align a) noexcept;
+	};
 	
-	int Width(const std::string &str, char after = ' ') const;
-	int Width(const char *str, char after = ' ') const;
-	std::string Truncate(const std::string &str, int width) const;
-	std::string TruncateFront(const std::string &str, int width) const;
-	std::string TruncateMiddle(const std::string &str, int width) const;
+	void Draw(const std::string &str, const Point &point, const Color &color,
+		const Layout &layout = defaultLayout) const;
+	void DrawAliased(const std::string &str, double x, double y, const Color &color,
+		const Layout &layout = defaultLayout) const;
+	
+	int Width(const std::string &str, const Layout &layout = defaultLayout, char after = ' ') const;
 	
 	int Height() const;
 	
@@ -58,8 +73,20 @@ private:
 	void CalculateAdvances(ImageBuffer &image);
 	void SetUpShader(float glyphW, float glyphH);
 	
+	int WidthRawString(const char *str, char after = ' ') const;
+	
+	std::string TruncateText(const std::string &str, const Layout &layout, int &width) const;
+	std::string TruncateBack(const std::string &str, int &width) const;
+	std::string TruncateFront(const std::string &str, int &width) const;
+	std::string TruncateMiddle(const std::string &str, int &width) const;
+	
 	
 private:
+	static const Layout defaultLayout;
+	
+	
+	
+	
 	Shader shader;
 	GLuint texture;
 	GLuint vao;
@@ -78,7 +105,39 @@ private:
 	
 	static const int GLYPHS = 98;
 	int advance[GLYPHS * GLYPHS];
+	int widthEllipses;
 };
+
+
+
+inline
+Font::Layout::Layout() noexcept
+{
+}
+
+
+
+inline
+Font::Layout::Layout(int w, Align a) noexcept
+        : width(w), align(a)
+{
+}
+
+
+
+inline
+Font::Layout::Layout(int w, Truncate t) noexcept
+        : width(w), truncate(t)
+{
+}
+
+
+
+inline
+Font::Layout::Layout(int w, Truncate t, Align a) noexcept
+        : width(w), align(a), truncate(t)
+{
+}
 
 
 

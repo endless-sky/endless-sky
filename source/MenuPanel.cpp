@@ -87,27 +87,29 @@ void MenuPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	
 	Information info;
+	const Font::Layout layout{165, Font::TRUNC_MIDDLE};
+	const Font::Layout backLayout{165, Font::TRUNC_BACK};
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName(), layout);
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", font.TruncateMiddle(flagship.Name(), 165));
+			info.SetString("ship", flagship.Name(), layout);
 		}
 		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->Name());
+			info.SetString("system", player.GetSystem()->Name(), backLayout);
 		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->Name());
+			info.SetString("planet", player.GetPlanet()->Name(), backLayout);
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 	}
 	else if(player.IsLoaded())
 	{
 		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName(), layout);
 		info.SetString("ship", "You have died.");
 	}
 	else

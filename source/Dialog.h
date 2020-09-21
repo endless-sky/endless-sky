@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DIALOG_H_
 #define DIALOG_H_
 
+#include "Font.h"
 #include "Panel.h"
 
 #include "Point.h"
@@ -36,24 +37,28 @@ class Dialog : public Panel {
 public:
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
-	explicit Dialog(const std::string &text);
+	// width and align in layout will be ignored.
+	explicit Dialog(const std::string &text, const Font::Layout &layout = Font::Layout{});
 	// Mission accept / decline dialog.
-	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr);
+	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr,
+		const Font::Layout &layout = Font::Layout{});
 	virtual ~Dialog() = default;
 	
 	// Three different kinds of dialogs can be constructed: requesting numerical
 	// input, requesting text input, or not requesting any input at all. In any
 	// case, the callback is called only if the user selects "ok", not "cancel."
 template <class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text);
+	Dialog(T *t, void (T::*fun)(int), const std::string &text, const Font::Layout &layout = Font::Layout{});
 template <class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue);
+	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue,
+		const Font::Layout &layout = Font::Layout{});
 	
 template <class T>
-	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "");
+	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
+		const Font::Layout &layout = Font::Layout{});
 	
 template <class T>
-	Dialog(T *t, void (T::*fun)(), const std::string &text);
+	Dialog(T *t, void (T::*fun)(), const std::string &text, const Font::Layout &layout = Font::Layout{});
 	
 	// Draw this panel.
 	virtual void Draw() override;
@@ -71,7 +76,8 @@ protected:
 	
 private:
 	// Common code from all three constructors:
-	void Init(const std::string &message, bool canCancel = true, bool isMission = false);
+	void Init(const std::string &message, const Font::Layout &layout,
+		bool canCancel = true, bool isMission = false);
 	void DoCallback() const;
 	
 	
@@ -99,37 +105,38 @@ protected:
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text)
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, const Font::Layout &layout)
 	: intFun(std::bind(fun, t, std::placeholders::_1))
 {
-	Init(text);
+	Init(text, layout);
 }
 
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue)
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue, const Font::Layout &layout)
 	: intFun(std::bind(fun, t, std::placeholders::_1)), input(std::to_string(initialValue))
 {
-	Init(text);
+	Init(text, layout);
 }
 
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue)
+Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+	std::string initialValue, const Font::Layout &layout)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)), input(initialValue)
 {
-	Init(text);
+	Init(text, layout);
 }
 
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text)
+Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, const Font::Layout &layout)
 	: voidFun(std::bind(fun, t))
 {
-	Init(text);
+	Init(text, layout);
 }
 
 

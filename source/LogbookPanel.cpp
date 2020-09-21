@@ -134,8 +134,8 @@ void LogbookPanel::Draw()
 		for(auto it = begin; it != end; ++it)
 		{
 			string date = it->first.ToString();
-			double dateWidth = font.Width(date);
-			font.Draw(date, pos + Point(TEXT_WIDTH - dateWidth - 2. * PAD, textOffset.Y()), dim);
+			font.Draw(date, pos + Point(0., textOffset.Y()), dim,
+				{static_cast<int>(TEXT_WIDTH - 2. * PAD), Font::RIGHT});
 			pos.Y() += LINE_HEIGHT;
 		
 			wrap.Wrap(it->second);

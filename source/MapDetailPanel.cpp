@@ -410,12 +410,13 @@ void MapDetailPanel::DrawInfo()
 	const Font &font = FontSet::Get(14);
 	string systemName = player.KnowsName(selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
-	font.Draw(systemName, uiPoint + Point(-90., -7.), medium);
+	Font::Layout layout{140, Font::TRUNC_BACK};
+	font.Draw(systemName, uiPoint + Point(-90., -7.), medium, layout);
 	
 	governmentY = uiPoint.Y() + 10.;
 	string gov = player.HasVisited(selectedSystem) ?
 		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
-	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
+	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim, layout);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
@@ -440,10 +441,11 @@ void MapDetailPanel::DrawInfo()
 				
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[planet] = uiPoint.Y() - 60;
-			
+				
 				font.Draw(object.Name(),
 					uiPoint + Point(-70., -52.),
-					planet == selectedPlanet ? medium : dim);
+					planet == selectedPlanet ? medium : dim,
+					layout);
 				
 				bool hasSpaceport = planet->HasSpaceport();
 				string reputationLabel = !hasSpaceport ? "No Spaceport" :
@@ -528,8 +530,8 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (hasVisited ? "n/a" : "?");
 		
-		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
-		font.Draw(price, pos, color);
+		layout.align = Font::RIGHT;
+		font.Draw(price, uiPoint, color, layout);
 		
 		if(isSelected)
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
@@ -640,8 +642,8 @@ void MapDetailPanel::DrawOrbits()
 	
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
-	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
-	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
+	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
+	font.Draw(name, namePos, *GameData::Colors().Get("medium"), {180, Font::TRUNC_BACK, Font::CENTER});
 }
 
 

@@ -13,13 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WRAPPED_TEXT_H_
 #define WRAPPED_TEXT_H_
 
+#include "Font.h"
 #include "Point.h"
 
 #include <string>
 #include <vector>
 
 class Color;
-class Font;
 
 
 
@@ -34,6 +34,11 @@ public:
 	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
 	Align Alignment() const;
 	void SetAlignment(Align align);
+	
+	// Set the truncate mode.
+	// Apply the truncation to a word only if a line has a single word.
+	Font::Truncate Truncate() const;
+	void SetTruncate(Font::Truncate trunc);
 	
 	// Set the wrap width. This does not include any margins.
 	int WrapWidth() const;
@@ -59,6 +64,8 @@ public:
 	// Wrap the given text. Use Draw() to draw it.
 	void Wrap(const std::string &str);
 	void Wrap(const char *str);
+	// Wrap the preserved text.
+	void Wrap();
 	
 	// Get the height of the wrapped text.
 	int Height() const;
@@ -69,7 +76,6 @@ public:
 	
 private:
 	void SetText(const char *it, size_t length);
-	void Wrap();
 	void AdjustLine(unsigned &lineBegin, int &lineWidth, bool isEnd);
 	int Space(char c) const;
 	
@@ -101,6 +107,7 @@ private:
 	int lineHeight;
 	int paragraphBreak;
 	Align alignment;
+	Font::Truncate truncate;
 	
 	std::string text;
 	std::vector<Word> words;

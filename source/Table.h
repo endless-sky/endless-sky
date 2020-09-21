@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define TABLE_H_
 
 #include "Color.h"
+#include "Font.h"
 #include "Point.h"
 
 #include <string>
@@ -29,16 +30,12 @@ class Rectangle;
 // between table rows, underlines, selection highlights, etc.
 class Table {
 public:
-	enum Align {LEFT = 0, CENTER = 1, RIGHT = 2};
-	
-	
-public:
 	Table();
 	
 	// Set the column positions. If no columns are set, the Table will draw a
 	// list (one column of text, left aligned).
 	void Clear();
-	void AddColumn(int x, Align align);
+	void AddColumn(int x, const Font::Layout &layout);
 	
 	// Set the font size. Default is 14 pixels.
 	void SetFontSize(int size);
@@ -63,12 +60,19 @@ public:
 	void Advance(int fields = 1) const;
 	
 	// Draw a single text field, and move on to the next one.
-	void Draw(const std::string &text) const;
+	void Draw(const std::string &text, const Font::Layout *special = nullptr) const;
 	// If a color is given, this field is drawn using that color, but the
 	// previously set color will be used for future fields.
-	void Draw(const std::string &text, const Color &color) const;
-	void Draw(double value) const;
-	void Draw(double value, const Color &color) const;
+	void Draw(const std::string &text, const Color &color, const Font::Layout *special = nullptr) const;
+	void Draw(double value, const Font::Layout *special = nullptr) const;
+	void Draw(double value, const Color &color, const Font::Layout *special = nullptr) const;
+	
+	// Draw a left-aligned column and a right-aligned,
+	// and truncate the left or right column adaptively.
+	void DrawOppositeTruncRight(int width, const std::string &left, const Color &leftColor,
+		const std::string &right, const Color &rightColor, Font::Truncate trunc);
+	void DrawOppositeTruncLeft(int width, const std::string &left, const Color &leftColor,
+		const std::string &right, const Color &rightColor, Font::Truncate trunc);
 	
 	// Draw an underline under the text for the current row.
 	void DrawUnderline() const;
@@ -100,10 +104,10 @@ private:
 	class Column {
 	public:
 		Column();
-		Column(double offset, double align);
+		Column(double offset, const Font::Layout &layout);
 		
 		double offset;
-		double align;
+		Font::Layout layout;
 	};
 	
 	

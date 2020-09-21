@@ -184,10 +184,8 @@ void ShopPanel::DrawShipsSidebar()
 	
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
-	Point yoursPoint(
-		Screen::Right() - SIDEBAR_WIDTH / 2 - font.Width(YOURS) / 2,
-		Screen::Top() + 10 - sidebarScroll);
-	font.Draw(YOURS, yoursPoint, bright);
+	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll);
+	font.Draw(YOURS, yoursPoint, bright, {SIDEBAR_WIDTH, Font::CENTER});
 	
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
@@ -279,8 +277,7 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw("cargo space:", point, medium);
 		
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		Point right(Screen::Right() - font.Width(space) - 10, point.Y());
-		font.Draw(space, right, bright);
+		font.Draw(space, point, bright, {SIDE_WIDTH - 20, Font::RIGHT});
 		point.Y() += 20.;
 	}
 	maxSidebarScroll = max(0., point.Y() + sidebarScroll - Screen::Bottom() + BUTTON_HEIGHT);
@@ -343,8 +340,8 @@ void ShopPanel::DrawButtons()
 	font.Draw("You have:", point, dim);
 	
 	string credits = Format::Credits(player.Accounts().Credits()) + " credits";
+	font.Draw(credits, point, bright, {SIDEBAR_WIDTH - 20, Font::RIGHT});
 	point.X() += (SIDEBAR_WIDTH - 20) - font.Width(credits);
-	font.Draw(credits, point, bright);
 	
 	const Font &bigFont = FontSet::Get(18);
 	const Color &hover = *GameData::Colors().Get("hover");
@@ -501,9 +498,10 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.ModelName() : font.TruncateMiddle(ship.Name(), SIDE_WIDTH - 61);
-	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
-	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
+	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
+	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
+	font.Draw(name, center + offset, *GameData::Colors().Get("bright"),
+		{SIDEBAR_WIDTH, Font::TRUNC_MIDDLE, Font::CENTER});
 	
 	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();

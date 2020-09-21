@@ -35,7 +35,20 @@ namespace {
 	// Column headings.
 	const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 	// X coordinates of the columns of the table.
-	const int COLUMN[5] = {-290, -180, -100, -30, 20};
+	struct Columns {
+		int offset;
+		int width;
+		Font::Align align;
+	};
+	// The last column is for the "pay extra" button.
+	const Columns COLUMNS[6] = {
+		{ -290, 110, Font::LEFT },
+		{ -180, 80, Font::LEFT },
+		{ -100, 70, Font::LEFT },
+		{ -30, 50, Font::LEFT },
+		{ 20, 70, Font::LEFT },
+		{ MAX_X - 20, 80, Font::RIGHT },
+	};
 	const int EXTRA_X = 100;
 	
 	// Position of the first line of the table.
@@ -71,10 +84,8 @@ void BankPanel::Draw()
 {
 	// Set up the table that will contain most of the information.
 	Table table;
-	for(int x : COLUMN)
-		table.AddColumn(x, Table::LEFT);
-	// The last column is for the "pay extra" button.
-	table.AddColumn(MAX_X - 20, Table::RIGHT);
+	for(auto x : COLUMNS)
+		table.AddColumn(x.offset, {x.width, x.align});
 	table.SetHighlight(MIN_X + 10, MAX_X - 10);
 	table.DrawAt(Point(0., FIRST_Y));
 	
@@ -211,7 +222,8 @@ void BankPanel::Draw()
 		totalPayment -= income[0] + income[1];
 		
 		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income"};
-		table.Draw(LABEL[(income[0] != 0) + 2 * (income[1] != 0)]);
+		const Font::Layout incomeLayout{310, Font::TRUNC_BACK, Font::LEFT};
+		table.Draw(LABEL[(income[0] != 0) + 2 * (income[1] != 0)], &incomeLayout);
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
 		table.Draw(-(income[0] + income[1]));
@@ -227,7 +239,8 @@ void BankPanel::Draw()
 	// Draw the credit score.
 	table.DrawAt(Point(0., FIRST_Y + 210.));
 	string credit = "Your credit score is " + to_string(player.Accounts().CreditScore()) + ".";
-	table.Draw(credit);
+	const Font::Layout scoreLayout{460, Font::TRUNC_MIDDLE, Font::LEFT};
+	table.Draw(credit, &scoreLayout);
 	table.Advance(5);
 	
 	// Report whether the player qualifies for a new loan.
@@ -238,7 +251,8 @@ void BankPanel::Draw()
 		amount = "You qualify for a new loan of up to " + Format::Credits(qualify) + " credits.";
 	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
-	table.Draw(amount, unselected);
+	const Font::Layout amountLayout{380, Font::TRUNC_MIDDLE, Font::LEFT};
+	table.Draw(amount, unselected, &amountLayout);
 	if(qualify)
 	{
 		table.Advance(4);

@@ -278,9 +278,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 	
 	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(
-		center.X() - font.Width(selectedItem) / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright);
+	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::TRUNC_MIDDLE, Font::CENTER});
 	
 	return heightOffset;
 }
@@ -690,7 +689,7 @@ void OutfitterPanel::DrawKey()
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 	
-	Font font = FontSet::Get(14);
+	const Font &font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 	
@@ -783,8 +782,9 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	// Draw the outfit name.
 	const string &name = outfit.Name();
 	const Font &font = FontSet::Get(14);
-	Point offset(-.5f * font.Width(name), -.5f * OUTFIT_SIZE + 10.f);
-	font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
+	Point offset(-OUTFIT_SIZE / 2., -.5f * OUTFIT_SIZE + 10.f);
+	font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.),
+		{OUTFIT_SIZE, Font::TRUNC_MIDDLE, Font::CENTER});
 }
 
 

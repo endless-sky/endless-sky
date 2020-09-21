@@ -85,19 +85,19 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text)
+Dialog::Dialog(const string &text, const Font::Layout &layout)
 {
-	Init(text, false);
+	Init(text, layout, false);
 }
 
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const Font::Layout &layout)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
-	Init(text, true, true);
+	Init(text, layout, true, true);
 }
 
 
@@ -168,10 +168,10 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		string truncated = font.TruncateFront(input, WIDTH - 30);
-		font.Draw(truncated, stringPos, bright);
+		const Font::Layout layout{WIDTH - 30, Font::TRUNC_FRONT};
+		font.Draw(input, stringPos, bright, layout);
 		
-		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(input, layout) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -276,7 +276,7 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, const Font::Layout &layout, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
@@ -285,6 +285,7 @@ void Dialog::Init(const string &message, bool canCancel, bool isMission)
 	text.SetAlignment(WrappedText::JUSTIFIED);
 	text.SetWrapWidth(WIDTH - 20);
 	text.SetFont(FontSet::Get(14));
+	text.SetTruncate(layout.truncate);
 	
 	text.Wrap(message);
 	

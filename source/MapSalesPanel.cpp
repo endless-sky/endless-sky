@@ -356,9 +356,10 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 		DrawSprite(corner, sprite);
 		
 		const Color &textColor = *GameData::Colors().Get(isForSale ? "medium" : "dim");
-		font.Draw(name, corner + nameOffset, textColor);
-		font.Draw(price, corner + priceOffset, textColor);
-		font.Draw(info, corner + infoOffset, textColor);
+		Font::Layout layout{static_cast<int>(WIDTH - ICON_HEIGHT - 1), Font::TRUNC_BACK};
+		font.Draw(name, corner + nameOffset, textColor, layout);
+		font.Draw(price, corner + priceOffset, textColor, layout);
+		font.Draw(info, corner + infoOffset, textColor, layout);
 	}
 	zones.emplace_back(corner + .5 * blockSize, blockSize, zones.size());
 	corner.Y() += ICON_HEIGHT;

@@ -48,9 +48,9 @@ void Table::Clear()
 
 
 
-void Table::AddColumn(int x, Align align)
+void Table::AddColumn(int x, const Font::Layout &layout)
 {
-	columns.emplace_back(x, align == LEFT ? 0. : align == RIGHT ? -1. : -.5);
+	columns.emplace_back(x, layout);
 	
 	// This may invalidate iterators, so:
 	it = columns.begin();
@@ -143,23 +143,27 @@ void Table::Advance(int fields) const
 
 
 // Draw a single text field, and move on to the next one.
-void Table::Draw(const string &text) const
+void Table::Draw(const string &text, const Font::Layout *special) const
 {
-	Draw(text, color);
+	Draw(text, color, special);
 }
 
 
 
 // If a color is given, this field is drawn using that color, but the
 // previously set color will be used for future fields.
-void Table::Draw(const string &text, const Color &color) const
+void Table::Draw(const string &text, const Color &color, const Font::Layout *special) const
 {
 	if(font)
 	{
 		Point pos = point;
+		const Font::Layout layout = special ? *special :
+			it != columns.end() ? it->layout : Font::Layout{};
+		const double alignAdjust = layout.align == Font::CENTER ? -.5 :
+			layout.align == Font::RIGHT ? -1. : 0.;
 		if(it != columns.end())
-			pos += Point(it->offset + it->align * font->Width(text), 0.);
-		font->Draw(text, pos, color);
+			pos += Point(it->offset + alignAdjust * layout.width, 0.);
+		font->Draw(text, pos, color, layout);
 	}
 	
 	Advance();
@@ -167,16 +171,40 @@ void Table::Draw(const string &text, const Color &color) const
 
 
 
-void Table::Draw(double value) const
+void Table::Draw(double value, const Font::Layout *special) const
 {
-	Draw(value, color);
+	Draw(value, color, special);
 }
 
 
 
-void Table::Draw(double value, const Color &color) const
+void Table::Draw(double value, const Color &color, const Font::Layout *special) const
 {
-	Draw(Format::Number(value), color);
+	Draw(Format::Number(value), color, special);
+}
+
+
+
+void Table::DrawOppositeTruncRight(int width, const string &left, const Color &leftColor,
+	const string &right, const Color &rightColor, Font::Truncate trunc)
+{
+	const Font::Layout layoutLeft{-1, Font::TRUNC_NONE, Font::LEFT};
+	const int leftWidth = font->Width(left, layoutLeft);
+	Draw(left, leftColor, &layoutLeft);
+	const Font::Layout layoutRight{width - leftWidth, trunc, Font::RIGHT};
+	Draw(right, rightColor, &layoutRight);
+}
+
+
+
+void Table::DrawOppositeTruncLeft(int width, const string &left, const Color &leftColor,
+	const string &right, const Color &rightColor, Font::Truncate trunc)
+{
+	const Font::Layout layoutRight{-1, Font::TRUNC_NONE, Font::LEFT};
+	const int rightWidth = font->Width(right, layoutRight);
+	const Font::Layout layoutLeft{width - rightWidth, trunc, Font::LEFT};
+	Draw(left, leftColor, &layoutLeft);
+	Draw(right, rightColor, &layoutRight);
 }
 
 
@@ -253,13 +281,13 @@ Rectangle Table::GetRowBounds() const
 
 
 Table::Column::Column()
-	: offset(0.), align(0.)
+	: offset(0.), layout()
 {
 }
 
 
 
-Table::Column::Column(double offset, double align)
-	: offset(offset), align(align)
+Table::Column::Column(double offset, const Font::Layout &layout)
+	: offset(offset), layout(layout)
 {
 }

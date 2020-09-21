@@ -51,6 +51,21 @@ void WrappedText::SetAlignment(Align align)
 
 
 
+// Set the truncate mode.
+Font::Truncate WrappedText::Truncate() const
+{
+	return truncate;
+}
+
+
+
+void WrappedText::SetTruncate(Font::Truncate trunc)
+{
+	truncate = trunc;
+}
+
+
+
 // Set the wrap width. This does not include any margins.
 int WrappedText::WrapWidth() const
 {
@@ -157,8 +172,26 @@ int WrappedText::Height() const
 // Draw the text.
 void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
-	for(const Word &w : words)
-		font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+	if(words.empty())
+		return;
+	
+	if(truncate == Font::TRUNC_NONE)
+		for(const Word &w : words)
+			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+	else
+	{
+		// Apply the truncation to a word only if a line has a single word.
+		int h = words[0].y - 1;
+		for(size_t i = 0; i < words.size(); ++i)
+		{
+			const Word &w = words[i];
+			if(h == w.y && (i != words.size() - 1 && w.y == words[i+1].y))
+				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+			else
+				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color, {wrapWidth, truncate});
+			h = w.y;
+		}
+	}
 }
 
 
@@ -186,10 +219,6 @@ Point WrappedText::Word::Pos() const
 
 void WrappedText::SetText(const char *it, size_t length)
 {
-	// Clear any previous word-wrapping data. It becomes invalid as soon as the
-	// underlying text buffer changes.
-	words.clear();
-	
 	// Reallocate that buffer.
 	text.assign(it, length);
 }
@@ -198,6 +227,10 @@ void WrappedText::SetText(const char *it, size_t length)
 
 void WrappedText::Wrap()
 {
+	// Clear any previous word-wrapping data. It becomes invalid as soon as the
+	// underlying text buffer changes.
+	words.clear();
+	
 	height = 0;
 	if(text.empty() || !font)
 		return;

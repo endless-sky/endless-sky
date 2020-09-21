@@ -45,9 +45,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	SetInterruptible(false);
 	
 	const Government *gov = ship->GetGovernment();
-	const Font &font = FontSet::Get(14);
 	if(!ship->Name().empty())
-		header = font.Truncate(gov->GetName() + " " + ship->Noun() + " \"" + ship->Name(), 328) + "\":";
+		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
 	else
 		header = ship->ModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
@@ -162,7 +161,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	info.SetString("header", header);
+	info.SetString("header", header, {330, Font::TRUNC_BACK});
 	if(ship)
 	{
 		info.SetCondition("show assist");
