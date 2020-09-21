@@ -61,15 +61,28 @@ mission "Discovered Korath Space"
 event "label korath space"
 	galaxy "label korath"
 		sprite "label/korath"
+		
+mission "Translator Development 0"
+	name "Meet Rek on <planet>"
+	description "Travel to meet Ektasi Rek on <destination>. She has a request from the Kor Efreti to translate to you."
+	minor
+	source
+		government "Kor Efret" "Wanderer"
+		not "Setar Fort"
+	to offer
+		has "event: wanderers: sestor eliminated"
+		random < 15
+	on offer
+		dialog `After you land, you receive a message from Ektasi Rek. "Hello, Captain <first>. The Kor Efreti on Setar Fort and myself have a favor we would like to ask of you. If you have time, could you please stop by <planet> to hear us out?`
+		
 
 mission "Translator Development 1"
 	name "Translator Development"
 	description "Go to <destination> to ask Eruk if his translation device could be modified for the Wanderers and Korath to use."
-	minor
 	source "Setar Fort"
 	destination "Greenwater"
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "Translator Development 0: done"
 	on offer
 		log "People" "Siclyss" `Siclyss is a Kor Efret ambassador on Setar Fort. She ensures Ektasi Rek has accomodations and whatever else she may need. Along with Rek, she is investigating ways to improve relations between the Wanderers and Kor Efreti.`
 		conversation
@@ -83,7 +96,8 @@ mission "Translator Development 1"
 			`	Rek continues to speak. "Siclyss and I have been discussing how we could improve our peoples' relations. Obviously, our main hindrance is the language barrier. When I was telling her about how we shut down the Kor Sestor, she asked how you communicate with other Wanderers who don't speak your language. It's strange that I never thought of this before, but I suppose I've been too busy here to think about it. Could your translation device be converted for Wanderer and Korath languages?"`
 			choice
 				`	"A Hai named Eruk gave the translator to me; he might have an answer."`
-			`	"Let me tell Siclyss," Rek says, then turns to her and repeats your answer. When she's done, Siclyss holds her hands up with her palms toward you and moves them in a circular motion while speaking. "That's a gesture of gratitude. She says, 'Thank you. Your help will benefit both the Wanderers and Kor Efreti.' We would go with you, but both of us are busy with another project right now. If you make any progress, come back to Setar Fort and let us know." Rek and Scyiil depart. It sounds like you should visit Eruk on <planet>.`
+			`	"Let me tell Siclyss," Rek says, then turns to her and repeats your answer. When she's done, Siclyss holds her hands up with her palms toward you and moves them in a circular motion while speaking. "That's a gesture of gratitude. She says, 'Thank you. Your help will benefit both the Wanderers and Kor Efreti.'" Rek finishes translating and then quietly says to you, "This isn't very relevant to what the rest of the Wanderer leadership is doing on the new colonies right now, so this is something of a personal project for me. I think this is important for both our species in the long run, especially the Kor Efreti. They're too prideful to admit it, but from what I've seen here, they could really use some help.`
+			`	"We would go with you, but both of us are busy with another project right now. If you make any progress, come back to Setar Fort and let us know." Rek and Scyiil depart. It sounds like you should visit Eruk on <planet>.`
 				accept
 
 mission "Translator Development 2A"
@@ -129,14 +143,14 @@ mission "Translator Development 2A"
 mission "Translator Development 2B"
 	landing
 	name "Information Exchange"
-	description "Bring the copy of the Library of Parliament to Eruk on <destination> in exchange for information about the translation device."
+	description "Bring the copy of the Library of Parliament to Eruk on <destination> in exchange for information about the translation device he helped create."
 	source "Earth"
 	destination "Greenwater"
 	to offer
 		has "Translator Development 2A: done"
 	on offer
 		conversation
-			`Earth's massive tourism industry means it isn't hard to find transportation to virtually any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. You buy a data card for 20 credits at a nearby convenience store and download the information from a terminal inside the library. Time to head back.`
+			`Earth's massive tourism industry means it isn't hard to find transportation to any possible destination. You're easily able to locate the Library of Parliament. Since it contains information about laws and policies, it is required to be accessible to the public. You buy a data card for 20 credits at a nearby convenience store and download the information from a terminal inside the library. Time to head back.`
 				accept
 			
 
@@ -168,7 +182,7 @@ mission "Translator Development 4"
 	on offer
 		conversation
 			`When you exit your ship, the spaceport is different. Every Kor Efret city you've visited so far was dotted with ruined buildings and dirty alleyways long-since abandoned. One such area, however, is now fenced off, and you can hear sounds of construction from behind it. Rek and Siclyss emerge from a nearby building - also under construction - and approach you.`
-			`	"Were you able to make any progress, Captain <first>?" Rek asks. As you explain Eruk's response and show them the data card he gave you, Rek translates to Siclyss. The two have a brief conversation in Korath language, then Rek turns to you and says, "While it's unfortunate Eruk can't help us himself, this information is definitely better than nothing. Can you deliver the data card to Wanderer technologists on <stopovers>? I'll contact them ahead of time so they can get started right away."`
+			`	"Were you able to make any progress, Captain <first>?" Rek asks. As you explain Eruk's response and show them the data card he gave you, Rek translates to Siclyss. The two have a brief conversation in Korath language, then Rek turns to you and says, "While it's unfortunate Eruk can't help us himself, this information is definitely better than nothing. I was able to contact some technologist friends of mine who have extra time on their hands between work. Can you deliver the data card to them on <stopovers>? I'll contact them ahead of time so they'll know to expect you."`
 			choice
 				`	"Sure, I'll go drop it off."`
 					goto noquestions
@@ -182,18 +196,18 @@ mission "Translator Development 4"
 	on stopover
 		dialog `Sure enough, a team of Wanderer technologists is waiting for you when you arrive. You hand off the data card, and they rush away, obviously eager to dive into its contents. Time to return to <planet> and see what Rek has in store for you.`
 	on complete
-		payment 200000
+		payment 25000
 		event "wanderers taking jobs from kor efreti"
 		log "Brought a copy of the information used to develop the Hai-human translator to Wanderer researchers trying to make one for them and the Korath. The Kor Efreti have created terminals allowing job offerings to be communicated without the use of language."
 		conversation
-			`When you land on <planet>, the construction is finished. Rek and Siclyss meet you as you disembark. Siclyss gestures with her palms toward you, moving in a circular motion again. When she is finished, she hands you <payment> and speaks in her own language. Rek translates: "She says, 'Rek and I thank you for your help in this project. This payment represents a joint contribution between the Kor Efret and Wanderer governments.'"`
+			`When you land on <planet>, the construction is finished. Rek and Siclyss meet you as you disembark. Siclyss gestures with her palms toward you, moving in a circular motion again. When she is finished, she hands you <payment> and speaks in her own language. Rek translates: "She says, 'Rek and I thank you for your help in this project. I would feel... 'shameful'? to not compensate you with what I can give.'" Rek adds, "The Korath have a strange word for something that may insult their pride or honor. The closest translation I can think of is shameful, but it doesn't entirely encapsulate the meaning."`
 			choice
-				`	"I'm happy to help in whatever way I can."`
-				`	"You're welcome. Do you know how long it will take for them to make a working translator?"`
-			`	Rek translates your acknowledgement to Siclyss, then continues speaking to you. "I spoke with the technologists after you dropped off the information. They say converting the Hai technology and methods into something they can use will take time, and it'll take even longer to program two entirely new languages once they figure that out. From what I understand, it's too early to tell if the translator's programming would even work with Wanderer or Korath languages. I'll have to start working with them to create a database of the Korath language soon.`
-			`	"The device probably won't be done for a long time - if ever - but it's a big step in the right direction, and we appreciate your help. That brings me to my next point: I'm sure you're curious about what the new part of the spaceport is. Follow me." You, Rek, and Siclyss walk to the newly-developed area.`
-			`	The centerpiece of the area is several large, two-sided monitors. Each displays a map of local Korath space with settlements and hyperspace lanes labeled. Siclyss holds her hand up to one, and a few different listings appear. Each shows the destination and displays the passengers and cargo. The most intuitive aspect of the setup is that it's entirely visual: there are no numbers or writing anywhere.`
-			`	Siclyss speaks through Rek. "She says, 'A translation device is not the only thing Rek and I have been developing. We've been brainstorming ways for our populations to communicate without translators should the project fall through, and this is what we've come up with. The Wanderers were kind enough to lend us the resources to build these - though it took some discourse to decide accepting the gift would not be an insult to Korath honor. Similar terminals were recently installed in other Kor Efret systems and are being built on the new Wanderer colonies as we speak. You are welcome to use these terminals as well, Captain <last>.'" She holds her hands up, palms forward, says a few words, then departs. "She has other things to take care of," Rek explains. "In fact, I do too. Thanks again for all your help, <first>. The Wanderers and Kor Efreti will both benefit from it, and I hope these new jobs will benefit you as well. Until next time," Rek says, then she leaves to catch up with Siclyss. You're left to explore the new jobs available in Korath space.`
+				`	"Tell her I'm happy to help in whatever way I can."`
+				`	"You can tell her it's no problem. Do you know how long it will take for them to make a working translator?"`
+			`	Rek translates your acknowledgement to Siclyss, then continues speaking to you. "I spoke with the technologists after you dropped off the information. They say converting the Hai technology and methods into something they can use will take time, it'll take even longer to program two entirely new languages once they figure that out, and they have no idea how much free time they'll have in the coming months - or years, for that matter. It'll depend on how many people are able to contibute and how often they can do so. From what I understand, it's too early to tell if the translator's programming would even work with Wanderer or Korath languages. I'll have to start working with them to create a database of the Korath language soon.`
+			`	"The device probably won't be done for a long time - if ever - but it's a big step in the right direction, and we appreciate your help on this little side project. That brings me to my next point: I'm sure you're curious about what the new part of the spaceport is. Follow me." You, Rek, and Siclyss walk to the newly-developed area.`
+			`	The centerpiece of the area is several large, two-sided monitors. Each displays a map of local Korath space with settlements and hyperspace lanes labeled. Siclyss holds her hand up to one, and a few different listings appear. Each shows the destination and displays the passengers and cargo with signs and pictures. The most intuitive aspect of the setup is that it's entirely visual: there's no  writing or numbering anywhere.`
+			`	Siclyss speaks through Rek. "She says, 'A translation device is not the only thing Rek and I have been developing. We've been brainstorming ways for our populations to communicate without translators should the project fall through, and this is what we've come up with. Rek's Wanderer contacts were kind enough to lend us the resources to build these from leftover materials - though it took some discourse to decide accepting the gift would not be 'shameful' to us. Similar terminals were recently installed in other Kor Efret systems and are being built on the new Wanderer colonies as we speak. You are welcome to use these terminals as well, Captain <last>.'" She holds her hands up, palms forward, says a few words, then departs. "She has other things to take care of," Rek explains. "In fact, I do too. Thanks again for all your help, <first>. The Wanderers and Kor Efreti will both benefit from it, and I hope these new jobs will benefit you as well. Until next time," Rek says, then she leaves to catch up with Siclyss. You're left to explore the new jobs available in Korath space.`
 			
 event "wanderers taking jobs from kor efreti"
 	system "Sumprast"
@@ -233,7 +247,7 @@ mission "Setar Fort Heating"
 			choice
 				`	"Yes, that's me."`
 				`	"The one and only."`
-			`	"I am [relieved, happy] to see you, Captain. We have heard of your assistance in our translation project with the Kor Efreti, and I [believe, assume] you have spent some time on Korath worlds. Would you be interested in taking 30 tons of [supplies, aid] to <planet>? I can offer you 5,000 credits."`
+			`	"I am [relieved, happy] to see you, Captain. We have heard of your assistance in Ektasi Rek's translation project with the Kor Efreti, and I [believe, assume] you have spent some time on Korath worlds. Would you be interested in taking 30 tons of [supplies, aid] to <planet>? I can offer you 5,000 credits."`
 			choice
 				`	"I can do that. Load it up, and I'll be ready to leave."`
 					goto agree
@@ -289,22 +303,22 @@ mission "Korath Family to Ringworld"
 		random < 60
 	on offer
 		conversation
-			`The smog is so thick on Laki Nemparu that even the brightest hours of the day feel like evening to you. Most of the Korath are a few shades darker than those of other planets, more a result of dirtiness rather than skin pigmentation. Within minutes, a small layer of soot clings to your skin as well.`
-			`	As you observe your surroundings, a Kor Efret approaches you followed by two others, one likely a child, based on its size, and the other hunched over a cane it uses for support - probably elderly. The one in front tries the Korath language and quickly realizes you don't understand it at all. The Kor Efret pauses to take a deep breath, then erupts into a coughing fit as they inhale far too much smog. The older Korath behind begins coughing too, and it's almost a full minute before they've both recovered.`
-			`	The Korath who had spoken to you points up to the sky and says, "<planet>. <planet>," while gesturing to the three Korath. They press 500 credits into your hands and continue to mutter in the Korath language. <planet> is the name of the Quarg ringworld in Korath space. They must want transportation to it. 500 credits is shockingly low for any transport job, but based on their look they can't afford to pay you any more. Do you want to take them to <planet>?`
+			`The smog is so thick on Laki Nemparu that even the brightest hours of the day feel like evening to you. Everything here is so dirty that most of the Korath look a few shades darker than those of other planets. Within minutes, a small layer of soot clings to your skin as well.`
+			`	As you observe your surroundings, a Kor Efret approaches you followed by two others, one likely a child, based on its size, and the other hunched over a cane it uses for support - probably elderly. The one in front tries the Korath language and quickly realizes you don't understand it at all. The Kor Efret pauses to take a deep breath, then erupts into a coughing fit as they inhale far too much smog. It's almost a full minute before they recover.`
+			`	The Korath points up to the sky and says, "<planet>, <planet>," while gesturing to the three Korath. They press 500 credits into your hands and continue to mutter in the Korath language. <planet> is the name of the Quarg ringworld in Korath space. They must want transportation to it. 500 credits is shockingly low for any transport job, but based on their look they can't afford to pay you any more. Do you want to take them to <planet>?`
 			choice
 				`	(Yes.)`
 				`	(Yes, and give their credits back to them.)`
 					goto forfree
 				`	(No.)`
 					goto heartless
-			`	You pocket the credits and gesture for them to follow to your ship. When the Korath realizes you've agreed, they sigh in relief and rapidly gestures in gratitude. You show them to their bunks and the shower - they're all covered in soot.`
+			`	You pocket the credits and gesture for them to follow to your ship. When the Korath realizes you've agreed, they sigh in relief and rapidly gestures in gratitude. You show them to their bunks and the shower - all three are covered in soot.`
 				accept
 			label forfree
-			`	The Korath's shoulders slump when you hand back the credits, but their disappointment turns to surprise when you gesture to your ship. When they realize you're trying to refuse the money, they puff their chest out and push the credits into your hands again. They won't take no for an answer, so you pocket the credits and take them to your ship. You show them to their bunks and the shower - they're covered in soot.`
+			`	The Korath's shoulders slump when you hand back the credits, but their disappointment turns to surprise when you gesture to your ship. When they realize you're trying to refuse the money, they puff their chest out and push the credits into your hands again. They won't take no for an answer, so you pocket the credits and take them to your ship. You show them to their bunks and the shower - all three are covered in soot.`
 			accept
 			label heartless
-			`	You give the credits back to the Korath, and their shoulders slump. The trio wanders off, all three coughing, until the smog envelops them. You can't help but feel a little bad.`
+			`	You give the credits back to the Korath, and their shoulders slump. You watch the trio wander off until they're no longer visible through the thick smog. You can't help but feel a little bad.`
 				decline
 	on accept
 		payment 500
@@ -312,7 +326,7 @@ mission "Korath Family to Ringworld"
 		conversation
 			`You enjoy the new company on your ship. The child has taught you a game where you take turns throwing a ball against the wall. You spend an hour or two playing with them in the cargo hold.`
 			`	When you arrive, you decide to accompany the family into the spaceport. Waiting near the docking bay are two more Korath, one an adult and the other elderly, and the three you've transported rush to meet them. After the happy reunion has died down, the Korath who had originally asked you for transportation turns to a nearby Quarg and chatters off something. The Quarg responds and then turns to you.`
-			`	"This fellow pridefulest has claimed he regarded my indebted translation with reverence and asks my usage of it be preferred. I am inclined to acquiesce his request happyifully." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to roughly gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our camaraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
+			`	"This fellow pridefulest has claimed he regarded my indebted translation with reverence and asks my usage of it be preferred. I am inclined to acquiesce his request happyifully." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to more or less gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our camaraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
 			choice
 				`	"Tell him it's no problem at all."`
 				`	"Tell him he has a wonderful family, and I was glad to help."`
@@ -336,13 +350,13 @@ mission "Korath Livestock"
 				`	(Follow into the alleyway.)`
 				`	(Play it safe and leave.)`
 					decline
-			`	You weigh your options and decide to enter the alleyway. The Korath weaves through the buildings, heading deeper into an abandoned section of the city. The Korath turns a corner, and an alarmingly loud bleating noise emanates from it. Is it an alarm of some kind?`
+			`	You weigh your options and decide to enter the alleyway. The Korath weaves through the buildings, heading deeper into an abandoned section of the city. The Korath turns a corner, and as a cold wind rushes over you, an alarmingly loud bleating noise emanates from it. Is it an alarm of some kind?`
 			choice
 				`	(Turn the corner.)`
 				`	(Turn around and try to run back to the spaceport.)`
 			`	You hear the shuffling of feet behind you and turn around. Three towering Korath wearing similar heavy clothing have stepped out of a nearby doorway and are making their way toward you. The bleating noise returns, and you turn again, only to see the original Kor Efret has returned from around the corner. Whatever chance you had of getting out of this is gone now.`
 			`	The one in front turns back to where it came from, and the Korath behind you hisses and gestures forward. It looks like you should follow. You brace yourself and turn the corner to see - animals?`
-			`	The rusting buildings have given way to a massive abandoned plaza, and the entire space is taken up by a mix of large livestock and supplies. They remind you of sheep, but they're around five times larger, have six legs, and come in a variety of brown-black colors. Each has a full coat of fur and an additional blanket made of their own wool-like fabric on them. It's the same material the Korath - the one who led you here, the three behind you, and three more walking around tending to the herd - are wearing. Even with their extra blanket, the "sheep" are huddled in small groups and look uncomfortably cold. They occasionally bleat loudly whenever a cold wind rushes through the plaza. Fortunately for you, these Kor Efreti look to be farmers, not muggers. This must have been the only place near the spaceport that they could keep their entire herd together.`
+			`	The rusting buildings have given way to a massive abandoned plaza, and the entire space is taken up by a mix of large livestock and supplies. They remind you of sheep, but they're around five times larger, have six legs, and come in a variety of brown-black colors. Each has a full coat of fur and an additional blanket made of their own wool-like fabric on them. It's the same material the Korath - the one who led you here, the three behind you, and three more walking around tending to the herd - are wearing. Even with their extra blanket, the "sheep" are huddled in small groups and look uncomfortably cold. They occasionally bleat loudly whenever a cold wind rushes through the plaza. Fortunately for you, these Kor Efreti look to be farmers, not muggers. This must have been the only place near the spaceport where they could keep their entire herd together.`
 			`	The one who led you here, who also seems to be the leader, gestures for you to come over to it. It's opened a paper map - a rare sight in the era of interstellar travel. When you take a look, you realize it's not of the local area, but space: it seems to show the surroundings systems. The Korath points to one, pauses and gestures broadly at the mix of livestock and supplies, then draws its finger to another system and says something that sounds roughly like Karek Fornati. "Karek Fornati?" you confirm, and the Korath hisses in approval. It looks like they want transportation there. You wager the livestock and supplies will take up roughly 40 tons, and there are seven Korath.`
 			`	It pulls a stack of 200 credits from its pocket and sets it on the ground before drawing a circle around it with a piece of chalk. It then draws four more, makes a large circle around the five total smaller ones, then draws nine additional large circles. Your best guess is it's offering 10,000 credits for their transport.`
 			choice
@@ -350,7 +364,7 @@ mission "Korath Livestock"
 				`	(Decline the job.)`
 					decline
 			`	You indicate your agreement by pointing to Karek Fornati on the map and gesturing to yourself. Once it understands you've agreed, the Korath holds its palms toward you and moves them in a circular motion. You lead one to your ship while the rest stay behind to prepare the animals. When you arrive, it immediately goes to work spreading tarps over the floor and scattering a type of straw over them. After some time, you notice one of the "sheep" emerge from an alleyway led by a farmer that had stayed behind. Behind it is another animal, then another. The line of livestock, interspersed with the farmers keeping things moving, slowly makes it way into your hangar over the next hour.`
-			`	As they enter your climate-controlled ship, the farmers take the hefty, wool-like blankets off the "sheep" and remove most of their own layers. One takes the entire pile of fabric to a nearby vendor and pockets a small pile of credits while the others go back and grab the supplies still in the plaza. By nightfall, everything and everyone is finally loaded onto your ship. The Korath who had sold the clothes to the merchant gives you the entire stack of 4,100 credits. Hopefully you'll get the rest after you get to <planet>.`
+			`	As they enter your climate-controlled ship, the farmers take the hefty, wool-like blankets off the "sheep" and remove most of their own layers. One takes the entire pile of fabric to a nearby vendor and exchanges it for credits while the others go back and grab the supplies still in the plaza. By nightfall, everything and everyone is finally loaded onto your ship. The Korath who had sold the clothes to the merchant gives you the entire stack of 4,100 credits. Hopefully you'll get the rest after you get to <planet>.`
 				accept
 	on accept
 		payment 4100
@@ -383,13 +397,19 @@ phrase "kor efret small package offer"
 	word
 		` `
 	word
-		`to <destination> for <payment>. It shouldn't take up any significant room on your ship.`
-		
+		`to <destination> for <payment>.`
+	word
+		` `
+	word
+		`It shouldn't take up any significant room on your ship.`
+		`It's small enough to fit below your seat.`
+		`The item is small enough for you to hold in your hands.`
+		`It's small enough that it won't take up any cargo space.`	
 
 mission "Small Scale Delivery"
 	name "Package to <planet>"
 	repeat
-	description "Take a small delivery to <destination> for <payment>."
+	description "Take a small delivery to <destination> for <payment> for a Kor Efret."
 	minor
 	to offer
 		has "Translator Development 4: done"
