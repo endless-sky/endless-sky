@@ -646,7 +646,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	turret "Korath Repeater Turret"
 
 
-ship "Tek Far 78 - Osk"
+ship "Tek Far 79 - Osk"
 	sprite "ship/tek far 78 osk"
 	thumbnail "thumbnail/tek far 78 osk"
 	attributes
@@ -715,7 +715,7 @@ ship "Tek Far 78 - Osk"
 	"final explode" "final explosion large"
 	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
 
-ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
+ship "Tek Far 79 - Osk" "Tek Far 79 - Osk (Close Quarters)"
 	outfits
 		"Korath Detainer"
 		"Korath Warder" 2
@@ -898,7 +898,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	turret
 
 
-ship "Far Lek 14"
+ship "Far Lek 13"
 	sprite "ship/far lek 14"
 	thumbnail "thumbnail/far lek 14"
 	attributes
@@ -936,7 +936,7 @@ ship "Far Lek 14"
 	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
 
 
-ship "Far Osk 27"
+ship "Far Osk 29"
 	sprite "ship/far osk 27"
 	thumbnail "thumbnail/far osk 27"
 	attributes
@@ -972,7 +972,7 @@ ship "Far Osk 27"
 	gun 13 -8
 	explode "tiny explosion" 25
 	explode "small explosion" 15
-	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS29 fighter is able to carry far more weaponry than any comparable human ship."
 
 
 

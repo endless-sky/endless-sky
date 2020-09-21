@@ -224,3 +224,170 @@ mission "Navy Carrier License Compatibility"
 	on offer
 		set "license: Navy Carrier"
 		fail
+
+# Deprecated in order to maintain compatability as Sestor ships undergo name-change to conform to prime numbered designations
+ship "Tek Far 78 - Osk"
+	sprite "ship/tek far 78 osk"
+	thumbnail "thumbnail/tek far 78 osk"
+	attributes
+		category "Medium Warship"
+		"cost" 25630000
+		"shields" 27600
+		"hull" 34100
+		"automaton" 1
+		"mass" 690
+		"drag" 10.2
+		"heat dissipation" .55
+		"fuel capacity" 400
+		"cargo space" 43
+		"outfit space" 611
+		"weapon capacity" 272
+		"engine capacity" 117
+		"self destruct" .7
+		"ramscoop" 3
+		weapon
+			"blast radius" 340
+			"shield damage" 4400
+			"hull damage" 2200
+			"hit force" 6600
+	outfits
+		"Korath Detainer"
+		"Korath Piercer Launcher" 3
+		"Korath Piercer" 93
+		"Korath Banisher"
+		"Korath Warder" 2
+		
+		"Double Plasma Core"
+		"Generator (Inferno Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	engine -9 245
+	engine 9 245
+	gun 0 -239 "Korath Detainer"
+	gun 0 -239 "Korath Piercer Launcher"
+	gun -9 -220 "Korath Piercer Launcher"
+	gun -9 -220 "Korath Piercer Launcher"
+	turret 17 -133 "Korath Warder"
+	turret 19 -110
+	turret 21 -87
+	turret 23 -64 "Korath Banisher"
+	turret 38 145 "Korath Warder"
+	fighter -18.5 -163 over
+	fighter -43.5 -103.5 over
+	fighter -16.5 -32.5 over
+	fighter -30 57 over
+	fighter -55.5 96.5 over
+	fighter -21.5 150.5 over
+	fighter -32.5 -76.5 under
+	fighter -14.5 43.5 under
+	fighter -42.5 193.5 under
+	explode "tiny explosion" 90
+	explode "small explosion" 50
+	explode "medium explosion" 55
+	explode "large explosion" 45
+	explode "huge explosion" 12
+	"final explode" "final explosion large"
+	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
+
+ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
+	outfits
+		"Korath Detainer"
+		"Korath Warder" 2
+		"Korath Repeater Turret" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	turret "Korath Warder"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Warder"
+	
+ship "Far Lek 14"
+	sprite "ship/far lek 14"
+	thumbnail "thumbnail/far lek 14"
+	attributes
+		category "Drone"
+		"cost" 573000
+		"shields" 900
+		"hull" 1600
+		"automaton" 1
+		"mass" 26
+		"drag" .8
+		"heat dissipation" 1.1
+		"outfit space" 65
+		"weapon capacity" 11
+		"engine capacity" 24
+		"self destruct" .6
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
+	outfits
+		"Korath Repeater"
+		
+		"Generator (Candle Class)"
+		"Small Heat Shunt"
+		
+		"Thruster (Asteroid Class)"
+		"Steering (Asteroid Class)"
+		
+	engine -2 28
+	engine 8 28
+	gun 0 -30
+	explode "tiny explosion" 20
+	explode "small explosion" 10
+	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
+	
+ship "Far Osk 27"
+	sprite "ship/far osk 27"
+	thumbnail "thumbnail/far osk 27"
+	attributes
+		category "Fighter"
+		"cost" 761000
+		"shields" 1500
+		"hull" 2400
+		"automaton" 1
+		"mass" 34
+		"drag" 1.1
+		"heat dissipation" 1.0
+		"outfit space" 99
+		"weapon capacity" 22
+		"engine capacity" 24
+		"self destruct" .6
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Korath Repeater" 2
+		
+		"Generator (Furnace Class)"
+		"Small Heat Shunt" 2
+		
+		"Thruster (Asteroid Class)"
+		"Steering (Asteroid Class)"
+		
+	engine -4 37
+	engine 4 37
+	gun 7 -15
+	gun 13 -8
+	explode "tiny explosion" 25
+	explode "small explosion" 15
+	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
