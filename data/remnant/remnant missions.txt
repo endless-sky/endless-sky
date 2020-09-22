@@ -3449,7 +3449,7 @@ event "remnant: cognizance timer"
 
 
 mission "Remnant: Expanded Horizons Astral 1"
-	name "Update scans of Sagittarius A*"
+	name "Prep for an expedition to Sagittarius A*"
 	description "To prepare for an expedition, you need to go to <destination> and have 6 space available for a new outfit."
 	blocked "You need at least 1 free bunk to take this mission."
 	passengers 1
@@ -3586,11 +3586,42 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"OK. So what next?"`
 					goto labnext
 				`	"I thought all Remnant were spacefarers?"`
-			`	"Oh, we are. Every Remnant has had some experience in space.
+			`	"Oh, we are. Every Remnant has had some experience in space. But there is a big difference between a rotation of a month or two of duty in a spacefaring post and spending months or years drifting in the void surrounding distant systems."`
+			choice
+				`	"OK. Let's get on with this."`
+					goto labnext
+				`	"Months or years drifing in the void?"`
+			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be colecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment.`
+			label labnext
+			`	"That is neither here nor there, however. I need to check in with a few people. Could you verify that the research laboratory is installed properly on the <ship>? I will meet you in the starport when you are done." She taps her commlink, and heads off into the bustle.`
 
 
-event "remnant: cognizance timer"
+
+event "remnant: lab availability"
 	outfitter "Remnant"
 		add "Research Laboratory"
-			
-			
+
+
+
+mission "Remnant: Expanded Horizons Astral 2A"
+	name "Outfitting for travel to Sagitarius A*"
+	description "You will need a jump drive. Acquire one from a Korath raider."
+	blocked "You need at least 1 free bunk to take this mission."
+	passengers 1
+	to offer
+		has "Remnant: Expanded Horizons Astral 1"
+		require "Jump Drive" 0
+		require "Research Laboratory" >= 1
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+	on offer
+		conversation
+			"
+		
+
+
+
+mission "Remnant: Expanded Horizons Astral 1"
+	name "Update scans of Sagittarius A*"
