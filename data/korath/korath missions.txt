@@ -241,7 +241,7 @@ mission "Small Scale Delivery"
 	minor
 	to offer
 		has "Wanderers: Sestor: Final: done"
-		random < 20
+		random < 10
 	source
 		government "Kor Efret"
 	destination
@@ -251,4 +251,4 @@ mission "Small Scale Delivery"
 		dialog phrase "kor efret small package offer"
 	on complete
 		payment 1000
-		dialog `You hand off the small delivery and collect your payment of <payment>.`
+		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`
