@@ -514,7 +514,7 @@ mission "Hai Leaks Response 2"
 	on offer
 		event "pirates respond to leaks"
 		event "hai ladybug available"
-		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man with a firm handshake. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and the recent peace.`
+		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
 		conversation
 			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you doesn't hurt either.`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a private room at the spaceport.`
@@ -543,7 +543,7 @@ mission "Hai Leaks Response 2"
 	on complete
 		log `You have brought a number of diplomatic representatives from each of the main human factions to Hai-home to attend to the crisis in a collaborative manner. They do not believe any of their automatic responses that have already been engaged will be enough to suppress the information leak, though there is a reasonable model for how long they have to work with. While they work on the problem though you have been asked to help route some pirates. Apparently less scrupulous individuals have reacted swiftly to the leak and investigated in the hopes of scoring quickly.`
 		conversation
-			`You are directed to an official landing pad on your return to Hai-home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
+			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business when Sayari inquires how your journey went.`
 			choice
 				`	"I don't recall there being nearly so many pirates."`
