@@ -134,19 +134,21 @@ mission "Korath Family to Ringworld"
 	on offer
 		conversation
 			`The smog is so thick on Laki Nemparu that even the brightest hours of the day feel like evening to you. Everything here is so dirty that most of the Korath look a few shades darker than those of other planets. Within minutes, a small layer of soot clings to your skin as well.`
-			`	As you observe your surroundings, a Kor Efret approaches you followed by two others, one likely a child, based on its size, and the other hunched over a cane it uses for support - probably elderly. The one in front tries the Korath language and quickly realizes you don't understand it at all. The Kor Efret pauses to take a deep breath, then erupts into a coughing fit as they inhale far too much smog. It's almost a full minute before they recover.`
-			`	The Korath points up to the sky and says, "<planet>, <planet>," while gesturing to the three Korath. They press 500 credits into your hands and continue to mutter in the Korath language. <planet> is the name of the Quarg ringworld in Korath space. They must want transportation to it. 500 credits is shockingly low for any transport job, but based on their look they can't afford to pay you any more. Do you want to take them to <planet>?`
+			`	As you observe your surroundings, a Kor Efret approaches you followed by two others, one likely a child based on its size and the other hunched over a cane it uses for support - probably elderly. The one in front speaks in the Korath language and quickly realizes you don't understand it at all. The Kor Efret pauses to take a deep breath, then erupts into a coughing fit as they inhale far too much smog. It's almost a full minute before they recover.`
+			`	The Korath points up to the sky and says, "<planet>, <planet>," while gesturing to the two Korath with them. They press 500 credits into your hands and continue to mutter in the Korath language. <planet> is the name of the Quarg ringworld in Korath space. They must want transportation to it. 500 credits is shockingly low for any transport job, but based on their appearance they can't afford to pay you any more. Do you want to take them to <planet>?`
 			choice
 				`	(Yes.)`
 				`	(Yes, and give their credits back to them.)`
-					goto forfree
+					goto free
 				`	(No.)`
 					goto heartless
-			`	You pocket the credits and gesture for them to follow to your ship. When the Korath realizes you've agreed, they sigh in relief and rapidly gestures in gratitude. You show them to their bunks and the shower - all three are covered in soot.`
+			`	You pocket the credits and gesture for them to follow to your ship. When the Korath realizes you've agreed, they sigh in relief and rapidly gesture in gratitude. You show them to their bunks... and the shower.`
 				accept
-			label forfree
-			`	The Korath's shoulders slump when you hand back the credits, but their disappointment turns to surprise when you gesture to your ship. When they realize you're trying to refuse the money, they puff their chest out and push the credits into your hands again. They won't take no for an answer, so you pocket the credits and take them to your ship. You show them to their bunks and the shower - all three are covered in soot.`
-			accept
+			
+			label free
+			`	The Korath's shoulders slump when you hand back the credits, but their disappointment turns to surprise when you gesture to your ship. When they realize you're trying to refuse the money, they puff their chest out and push the credits into your hands again. They won't take no for an answer, so you pocket the credits and take them to your ship. You show them to their bunks... and the shower.`
+				accept
+			
 			label heartless
 			`	You give the credits back to the Korath, and their shoulders slump. You watch the trio wander off until they're no longer visible through the thick smog. You can't help but feel a little bad.`
 				decline
@@ -155,12 +157,12 @@ mission "Korath Family to Ringworld"
 	on complete
 		conversation
 			`You enjoy the new company on your ship. The child has taught you a game where you take turns throwing a ball against the wall. You spend an hour or two playing with them in the cargo hold.`
-			`	When you arrive, you decide to accompany the family into the spaceport. Waiting near the docking bay are two more Korath, one an adult and the other elderly, and the three you've transported rush to meet them. After the happy reunion has died down, the Korath who had originally asked you for transportation turns to a nearby Quarg and chatters off something. The Quarg responds and then turns to you.`
+			`	When you arrive, you decide to accompany the family into the spaceport. Waiting near the docking bay are two more Korath, one an adult and the other elderly, and the three you've transported rush to meet them. After the happy reunion has died down, the Korath who had originally asked you for transportation turns to a nearby Quarg and says something. The Quarg responds and then turns to you.`
 			`	"This fellow pridefulest has claimed he regarded my indebted translation with reverence and asks my usage of it be preferred. I am inclined to acquiesce his request happyifully." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to more or less gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our camaraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
 			choice
 				`	"Tell him it's no problem at all."`
 				`	"Tell him he has a wonderful family, and I was glad to help."`
-			`	The Quarg nods and turns to translate. The Korath responds while holding his palms toward you and moving them in a wide circular motion. "This is indicating of thankfulness of wholesomest measure. He thanks you for your fortunate words and wishes you kind travels." You acknowledge the response, thank the Quarg for its (rough) translation services, and return to your ship."`
+			`	The Quarg nods and turns to translate. The Korath responds while holding his palms toward you and moving them in a wide circular motion. "This is indicating of thankfulness of wholesomest measure. He thanks you for your fortunate words and wishes you kind travels," the Quarg says. You acknowledge the response, thank the Quarg for its (rough) translation services, and return to your ship."`
 		
 mission "Korath Livestock"
 	name "Livestock to <planet>"
