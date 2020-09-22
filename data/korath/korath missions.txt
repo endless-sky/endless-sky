@@ -64,56 +64,53 @@ event "label korath space"
 		
 mission "Setar Fort Heating"
 	name "Supplies to <planet>"
-	description "Take <cargo> from the Wanderers to the Kor Efreti on <destination>. Payment is 5,000 credits."
+	description "Take <cargo> from the Wanderers to the Kor Efreti on <destination>. Payment is <payment> credits."
 	minor
 	cargo "heating supplies" 30
 	source
 		government "Wanderer"
-		attributes "korath"
+		near "Kaliptari" 100
 	destination "Setar Fort"
 	to offer
-		random < 60
 		has "Wanderers: Sestor: Final: done"
+		random < 60
 	on offer
 		conversation
 			`As you're exploring the spaceport, a Wanderer you've not met waves you down. It says, "You are Captain <last>, correct?"`
 			choice
 				`	"Yes, that's me."`
 				`	"The one and only."`
-			`	"I am [relieved, happy] to see you, Captain. We have heard of your assistance in our migration here, and I [believe, assume] you have spent some time on Korath worlds. Would you be interested in taking 30 tons of [supplies, aid] to <planet>? I can offer you 5,000 credits."`
+			`	"I am [relieved, happy] to see you, Captain. We have heard of your assistance in our migration here, and I [believe, assume] you have spent some time on Korath worlds. Would you be interested in taking <tons> of [supplies, aid] to <planet>? I can offer you <payment> credits."`
 			choice
 				`	"I can do that. Load it up, and I'll be ready to leave."`
 					goto agree
-				`	"5,000 credits? That's an unusually low payment for the amount of cargo I'll be carrying."`
-					goto lizardpoverty
+				`	"Only <payment> credits? That's an unusually low payment for the amount of cargo I'll be carrying."`
+					goto payment
 				`	"What exactly would I be transporting?"`
-					goto whatsinside
 				`	"Sorry, but I'm too busy at the moment to take on another job."`
-					goto nocando
-			label whatsinside		
-			`	"As I am sure you are aware, <planet> is cold - uncomfortably so for most species. Based on our [research, information], the planet is experiencing an accelerated [descent, transition] into an ice age. The Kor Efreti have no effective means of stopping this, and their [pride, honor] means they will not accept our terraforming assistance unless they have no other options. They will, however, pay us for equipment to offset this [descent, transition]. Your [supplies, aid] would include warmer clothing, greenhouse building material, [insulation, shelter], and other technology for the Korath to use.`
+					goto decline
+			
+			`	"As I am sure you are aware, <planet> is cold - uncomfortably so for most species. Based on our [research, information], the planet is experiencing an accelerated [descent, transition] into an ice age. The Kor Efreti have no effective means of stopping this, and their [pride, honor] means they will not accept our terraforming assistance unless they have no other options. They will, however, pay us for equipment to offset this [descent, transition]. Your [supplies, aid] would include warmer clothing, greenhouse building material, [insulation, shelter], and other technology for the Korath to use. The payment, while [unfortunately, sadly] low, is all the Korath were able to offer.`
 			`	"I was originally going to make the journey myself, but my ship has encountered [errors, complications] due to a faulty component. I need someone to go in my place."`
 			choice
 				`	"I'd be happy to, especially since it's for a good cause. You're welcome to load it up onto my ship."`
 					goto agree
-				`	"5,000 credits? That's an unusually low payout for the amount of cargo I'll be carrying."`
-					goto lizardpoverty
 				`	"Sorry, but I'm too busy at the moment to take on another job."`
-					goto nocando
-			label lizardpoverty
-			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... Yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment. It has made finding a pilot... difficult, though."`
+					goto decline
+			
+			label payment
+			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... Yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagarie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
 			choice
 				`	"I understand, and the money isn't a huge problem. I was just curious. Load it up onto my ship, and I'll be ready to go."`
 					goto agree
 				`	"Oh. Well, I'll make an exception too. Load it up, and I'll head out."`
 					goto agree
-				`	"What exactly would I be transporting?"`
-					goto whatsinside
 				`	"Sorry, but I can't make that trip for only <payment>. You'll have to find someone else."`
-					goto nocando
-			label nocando
+			
+			label decline
 			`	The Wanderer deflates a little when it hears your response. "Oh. I understand. Thank you for your time, Captain <last>," it says, then it wanders off to look for another pilot.`
 				decline
+			
 			label agree
 			`	The Wanderer is happy to hear your response. "Wonderful! I will ensure the supplies are loaded onto your ship [immediately, quickly]. Thank you, Captain." It hurries off to a group of Wanderers nearby and starts barking orders. The group breaks up, and within minutes they're at your ship loading the supplies.`
 				accept
@@ -123,7 +120,7 @@ mission "Setar Fort Heating"
 		payment 5000
 		conversation
 			`When you arrive on <planet>, a group of Korath is waiting to unload the cargo. You try and imitate their gesture of greeting, holding your hands up with your palms toward the group. The look surprised but hiss approvingly.`
-			`	Soon, all the supplies are off of your ship. The Korath thank you, then they begin unpacking it right in the middle of the spaceport. Already, a crowd has begun to gather around the equipment. It looks like it will be put to good use here. When you return to your ship, you see the Wanderer who offered you the job has transferred you your payment of <payment>.`
+			`	Soon, all the supplies are off of your ship. The Korath give you a gesture of appreciation, then they begin unpacking it right in the middle of the spaceport. Already, a crowd has begun to gather around the equipment. It looks like it will be put to good use here. When you return to your ship, you see the Wanderer who offered you the job has transferred you your payment of <payment>.`
 				
 mission "Korath Family to Ringworld"				
 	name "Korath to <planet>"
