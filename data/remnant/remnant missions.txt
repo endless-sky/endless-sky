@@ -3450,13 +3450,13 @@ event "remnant: cognizance timer"
 
 mission "Remnant: Expanded Horizons Astral 1"
 	name "Update scans of Sagittarius A*"
-	description "Dawn has asked you to take some scientists and their equipment to scan Sagittarius A**"
-	blocked "You need at least 1 free bunk and 9 cargo space to take this mission."
+	description "To prepare for an expedition, you need to go to <destination> and have 6 space available for a new outfit."
+	blocked "You need at least 1 free bunk to take this mission."
 	passengers 1
 	minor
 	to offer
 		has "Remnant: Expanded Horizons Quarg 3"
-		random < 30
+		random < 25
 	source
 		government "Remnant"
 	destination
@@ -3554,7 +3554,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"OK, that's as much as I need to know."`
 					goto onwards
 				`	"What is it like to have a symbiont?"`
-			`	"Oh, it is wonderful. It is very hard to describe. At first it is just slimy, then a lot of tingling. The tingling lasted for several hours, and then it was just like waking up: Rising up out of darkness to a brighter world with just so much to see and learn. Suddenly, it was as if everything was moving slower and I could take a long hard look at everything." Dawn is visibly excited, signing so fast you have trouble following.`
+			`	"Oh, it is wonderful. It is very hard to describe. At first it is just slimy, then a lot of tingling. The tingling lasted for several hours, and then it was just like waking up: Rising up out of darkness to a brighter world with just so much to see and learn. Suddenly, it was as if everything was moving slower and I could take a long hard look at everything..." Dawn is visibly excited, signing so fast you have trouble following.`
 			choice
 				`	"Thanks for the description. I should go prep the <ship> now."`
 					accept
@@ -3564,11 +3564,33 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	Dawn looks at you with an amused expression. "We don't know each other nearly well enough for that. Better to focus on the expedition. I will catch up to you on the ship."`
 				accept
 			label onwards
-				`	She nods. "Well, I will finish my meal and meet you on the <ship> shortly." With that, she returns to her meal.`
+			`	She nods. "Well, I will finish my meal and meet you on the <ship> shortly." With that, she returns to her meal.`
+				accept
 			label dawnwhere
 			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. Mine is located primarily along my spine." She twists around, and you can see a small layer of the tell-tale scaly leather extending up the back of her neck.`
 			`	"We should probably be focusing on the expedition, though. You go get the <ship> ready for launch, and I will be there shortly."`
 				accept
-				
+	on accept
+		event "remnant: lab availability"
+	on complete
+		outfit "Research Laboratory"
+		conversation
+			`You follow the directions of the starport control and settle onto a pad next to the outfitter. You barely have a chance to finish your landing checks before a team of Remnant have a compact pod waiting on your loading ramp. Once you open the cargo bay doors they pick it up and maneuver it inside. They start securing it to the ship while one approaches you and Dawn.`
+			`	"As requested, Dawn, we have loaded the research laboratory onboard. The team will install it if they can find the space, but if they do not, it will be secured in the cargo bay." The Remnant turns to you as she continues. "Before you depart, please verify that the laboratory is installed in the correct location. You know your ship better that we do, after all." She turns back to Dawn and makes a gesture of respect. "Embers guide your path, Seeker." With that, she strides away into the hive of activity that is the outfitting bays.`
+			choice
+				`	"So, what is our next step?"`
+					goto labnext
+				`	"Seeker?" you ask.`
+			`	Dawn looks a little embarassed. "Seeker is a title of respect for deep space explorers. It is unofficial - just a token of respect - but it is both a title that I aspire to earn and one I do not feel that I deserve."`
+			choice
+				`	"OK. So what next?"`
+					goto labnext
+				`	"I thought all Remnant were spacefarers?"`
+			`	"Oh, we are. Every Remnant has had some experience in space.
+
+
+event "remnant: cognizance timer"
+	outfitter "Remnant"
+		add "Research Laboratory"
 			
 			
