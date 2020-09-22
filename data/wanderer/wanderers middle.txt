@@ -3397,7 +3397,6 @@ mission "Wanderers: Sestor: Final"
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
-		event "wanderers taking jobs from kor efreti" 5
 		conversation
 			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
@@ -3410,6 +3409,15 @@ mission "Wanderers: Sestor: Patch"
 		has "event: wanderers: sestor eliminated"
 	on offer
 		event "wanderers: sestor planets unrestricted"
+		fail
+
+mission "Wanderers: Sestor: Patch 2"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	on offer
+		event "wanderers taking jobs from kor efreti" 5
 		fail
 
 event "wanderers: sestor planets unrestricted"
