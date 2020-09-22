@@ -56,9 +56,6 @@ public:
 	// Get the filename from a path.
 	static std::string Name(const std::string &path);
 	
-	// Get the last extension (.ext) of the filename from a path.
-	static std::string Extension(const std::string &path);
-	
 	// File IO.
 	static FILE *Open(const std::string &path, bool write = false);
 	static std::string Read(const std::string &path);

@@ -476,16 +476,6 @@ string Files::Name(const string &path)
 
 
 
-// Get the last extension (.ext) of the filename from a path.
-string Files::Extension(const string &path)
-{
-	string name = Files::Name(path);
-	size_t i = name.rfind('.');
-	return i == string::npos ? "" : name.substr(i);
-}
-
-
-
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
