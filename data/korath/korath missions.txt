@@ -121,8 +121,8 @@ mission "Setar Fort Heating"
 		conversation
 			`When you arrive on <planet>, a group of Korath is waiting to unload the cargo. You try and imitate their gesture of greeting, holding your hands up with your palms toward the group. The look surprised but hiss approvingly.`
 			`	Soon, all the supplies are off of your ship. The Korath give you a gesture of appreciation, then they begin unpacking it right in the middle of the spaceport. Already, a crowd has begun to gather around the equipment. It looks like it will be put to good use here. When you return to your ship, you see the Wanderer who offered you the job has transferred you your payment of <payment>.`
-				
-mission "Korath Family to Ringworld"				
+			
+mission "Korath Family to Ringworld"
 	name "Korath to <planet>"
 	description "A Korath family of <bunks> has paid you <payment> to take them to the Quarg ringworld of <destination>."
 	minor
