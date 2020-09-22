@@ -217,13 +217,13 @@ mission "Kor Efreti: Settlers"
 	on complete
 		payment
 		payment 2000
-		dialog "While the settlers depart your ship, the Korath in charge hands you <payment>."
+		dialog "The Korath settlers slowly depart your ship with their cargo, seemingly apprehensive to step onto this once-dead world. The Korath in charge gives you a gesture of thanks and hands you <payment>."
 
 mission "Kor Efreti to Wanderers: Farming"
-	name "Learning Wanderer farming methods"
+	name "Teaching Wanderer farming methods"
 	job
 	repeat
-	description "Take <bunks> Kor Efreti to learn Wanderer farming methods on <stopovers>, and return them to <destination>. Payment is <payment>."
+	description "Take <bunks> Kor Efreti to learn Wanderer farming methods on <stopovers>, then return them to <planet>. Payment is <payment>."
 	passengers 5 1 .2
 	to offer
 		has "Wanderers: Sestor: Final: done"

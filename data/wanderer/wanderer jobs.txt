@@ -755,11 +755,11 @@ mission "Wanderer Bulk Delivery [2]"
 		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Kor Efreti: Equipment"
-		name "Delivery to <planet>"
-		job
-		repeat
-		description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
-		cargo "Equipment" 5 3 .15
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
+	cargo "Equipment" 5 3 .15
 	to offer
 		has "Wanderers: Sestor: Final: done"
 		random < 70
@@ -776,11 +776,11 @@ mission "Wanderer Kor Efreti: Equipment"
 		dialog phrase "generic cargo delivery payment"
 
 mission "Wanderer Kor Efreti: Cargo [0]"
-		name "Delivery to <planet>"
-		job
-		repeat
-		description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
-		cargo random 5 4 .12
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
+	cargo random 5 4 .12
 	to offer
 		has "Wanderers: Sestor: Final: done"
 		random < 40
@@ -797,11 +797,11 @@ mission "Wanderer Kor Efreti: Cargo [0]"
 		dialog phrase "generic cargo delivery payment"
 
 mission "Wanderer Kor Efreti: Cargo [1]"
-		name "Delivery to <planet>"
-		job
-		repeat
-		description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
-		cargo random 5 4 .10
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
+	cargo random 5 4 .10
 	to offer
 		has "Wanderers: Sestor: Final: done"
 		random < 15
@@ -821,7 +821,7 @@ mission "Wanderers to Kor Efreti"
 	name "Investigating Kor Efreti worlds"
 	job
 	repeat
-	description "Take this mix of <bunks> Wanderer scientists, botanists, and terraforming experts to the Kor Efret world of <destination> and back. Payment is <payment>."
+	description "Take this mix of <bunks> Wanderer scientists, botanists, and terraforming experts to the Kor Efret world of <stopovers> and back. Payment is <payment>."
 	passengers 5 1 .2
 	to offer
 		has "Wanderers: Tour 7: done"
@@ -837,4 +837,4 @@ mission "Wanderers to Kor Efreti"
 		dialog `The Wanderers tour the planet to investigate the envoronmental problems this Kor Efret world faces. They try to point out specific things to the Korath accompanying them, but it's not very effective. After a few hours, they've gathered enough data and are ready to return home.`
 	on complete
 		payment 35000 300
-		dialog `When you return, the Wanderers thank you and hand you <payment> before disembarking.`
+		dialog `When you return, the Wanderers thank you for taking them to the Kor Efreti and hand you <payment> before disembarking.`
