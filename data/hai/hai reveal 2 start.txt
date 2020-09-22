@@ -49,7 +49,7 @@ mission "Hai Rescue: Yeertle Family"
 			`	He pauses for a second, perhaps pondering if he can trust you with the answer.`
 			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
 			`	"My youngest daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was under-crewed and so we overpowered them. Unfortunately, they had already landed and the ship was locked down. I didn't know how to disable the lock so we could not take off, and for lack of options we've been hiding near here ever since.`
-			`	"Can you take us back to <destination>? I have considerable savings back there, and can pay you well. Say, <payment>?"`
+			`	"Can you take us back to <destination>? I have considerable savings back there and can pay you well. Say, <payment>?"`
 			choice
 				`	"Sure!"`
 				`	"No, I can't."`
@@ -63,7 +63,7 @@ mission "Hai Rescue: Yeertle Family"
 			`	"Follow me back to my house, and we will make our preparations."`
 			choice
 				`	(Follow him.)`
-			`	You walk down a corridor to a stairway that leads to a brick wall. Duniip walks through the wall; apparently this is another of his holograms. You pass through and see a triad of energetic Hai children eating dinner with their mother.`
+			`	You walk down a corridor to a stairway that leads to a brick wall. Duniip walks through the wall; apparently this is another of his holograms. You pass through and see a trio of energetic Hai children eating dinner with their mother.`
 			`	Duniip turns off his hologram and addresses his family, "I found us a pilot! He's going to take us all the way home." This announcement was followed by three cheering children and a relieved mother.`
 			`	The family was already packed to leave. Duniip explains they move regularly so they're not found. It takes them under two minutes to finish preparations and don their holoprojectors.`
 			`	Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with all computers within twenty meters. Fortunately, your ship is outside that range.`
@@ -131,13 +131,13 @@ mission "Hai Rescue: Prison Role-Players"
 			`	"They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. The other pirate crashed the ship and used an escape pod. Now we're stuck here."`
 				goto questions
 			label pay
-			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is at <destination> so you'll have to fly us there first."`
+			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <destination>, so you'll have to fly us there first."`
 				goto questions
 			label go
 			`	"Excellent! Everyone pile aboard. Let's go back to <destination>!"`
 				accept
 	on complete
-		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. I returned the Hai to <destination>.`
+		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. Returned the Hai to <destination>.`
 		payment 565000
 		"hai slave prereq" ++
 		dialog `The Hai researchers thank you for rescuing them from their ill-fated "prison role-play cruise" and promise to stick to safer pastimes in the future. They happily give you <payment>.`
@@ -169,7 +169,7 @@ mission "Hai Rescue: Ooonem"
 				`	(Come back later.)`
 					defer
 			`	As you approach, she pulls a laser rifle out of her cloak, points it at you, and says, "No! I'm not going back to them!"`
-			`	She sees your confusion and calms down, "You're not one of them. What do you want with me?"`
+			`	She sees your confusion and calms down. "You're not one of them. What do you want with me?"`
 			choice
 				`	"I was wondering why a Hai is on a pirate planet."`
 					goto hai
@@ -184,7 +184,7 @@ mission "Hai Rescue: Ooonem"
 			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up."`
 				goto "more questions"
 			label pay
-			`	"I have no money but my family on <planet> can pay."`
+			`	"I have no money, but my family on <planet> can pay."`
 				goto "more questions"
 			label "more questions"
 			`	Can you take me back to <destination>? My family can pay for my return.`
@@ -205,7 +205,7 @@ mission "Hai Rescue: Ooonem"
 					decline
 			`	"Okay. I guess I should have introduced myself... it's easy to forget social niceties in a place like this. My name is Ooonem, and I'm a researcher from <planet>. Thank you for agreeing to take me home."`
 			`	You notice several men nearby looking intently at Ooonem. The two of you run towards your ship and make it to cover before the men start shooting. Ooonem pulls a grenade out of her cloak and throws it at the men. Gas explodes outward and the men drop to the ground clutching their throats, dead in seconds.`
-			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades "sarin gas: twenty-meter radius." This was a nerve gas grenade, using one of the older varieties of the gas. Cheap and plentiful in pirate space.`
+			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades: "Sarin Gas: twenty-meter radius." This was a nerve gas grenade that uses one of the older varieties of the gas. They're cheap and plentiful in pirate space.`
 			`	You run into your ship and immediately take off.`
 				launch
 			label decline
@@ -246,7 +246,7 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	(Investigate.)`
 				`	(Come back later.)`
 					defer
-			`	You knock on the steel sheet and a woman within the alcove slides it to the side. As she emerges, she carefully moves her body to block your view of the alcove.`
+			`	You knock on the steel sheet, and a woman within the alcove slides it to the side. As she emerges, she carefully moves her body to block your view of the alcove.`
 			`	She asks nervously, "Yes, can I help you?"`
 			choice
 				`	"Why are you hiding a Hai in there?"`
@@ -256,11 +256,11 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"No, I was just walking by. Sorry to bother you."`
 					decline
 			label hiding
-			`	"Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping the men don't find us again."`
+			`	"Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping the men don't find us again.`
 			`	"Actually, if you can give us a ride to <planet>, we can pay when we get there. You'll be followed though, so I hope you have a fast ship."`
 				goto "come in"
 			label help
-			`	"Yes! Some men kidnapped my friend and I, but we managed to escape. We've been hiding here, hoping they don't find us again. If you can fly us to <planet>, we can pay you when we arrive. I hope you have a fast ship; they'll probably chase us."`
+			`	"Yes! Some men kidnapped my friend and I, but she got us out and we managed to escape. We've been hiding here, hoping they don't find us again. If you can fly us to <planet>, we can pay you when we arrive. I hope you have a fast ship; they'll probably chase us."`
 				goto "come in"
 			label "come in"
 			`	"Come in, and we'll talk about it."`
@@ -270,7 +270,7 @@ mission "Hai Rescue: Meroot and Lucy"
 					decline
 			`	The alcove is a dead air space between two utility rooms in the basement of a warehouse. The hole in the wall looks like it was recently dug out by a laser cutter. There's a small refrigerator, a two-person cot, an air processor, and a shelf with typical household items. Books are strewn everywhere; the women must be avid readers. It seems they've set up this tiny space as a decent, albeit small, apartment.`
 			`	The human woman slides the sheet of steel back into place behind you both once you're in and says, "I'm Lucy."`
-			`	"And I'm Meroot," adds the Hai woman. "I was on Newhome walking to my research lab when some men pulled me into an alley and zapped me with a tazer. I woke up in the brig of a space ship."`
+			`	"And I'm Meroot," adds the Hai woman. "I was on Newhome walking to my research lab when some men pulled me into an alley and zapped me with a taser. I woke up in the brig of a space ship."`
 			`	"My experience was similar. I was walking from my biolab to my house on Serpens. Some men jumped out from behind a dune and zapped me."`
 			`	Meroot continues, "They took us both here. I was able to struggle out of my handcuffs and sneak the keys from the guard. We escaped together, and we've been hiding for weeks. Please take us to <destination>!"`
 			choice
@@ -318,13 +318,13 @@ mission "Hai Rescue: Gipeep"
 				`	(Leave.)`
 					decline
 			`	You put the key in the lock, turn, and the next thump you hear pushes the crate open so hard it falls over. An angry-looking Hai jumps out and starts yelling at you in its own language.`
-			`	After a few seconds, the Hai calms down and speaks in your own tongue, "They locked me in a box! I was walking home from a store on <destination> and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?"`
+			`	After a few seconds, the Hai calms down and speaks in your own tongue. "They locked me in a box! I was walking home from a store on <planet>, and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?`
 			`	"Please take me home. I'm a ship architect from <destination>. We should hurry before they come back."`
 			choice
 				`	"Of course. Just hop in my ship."`
 					goto accept
 				`	"No, I'm not going that way any time soon."`
-			`	"I have nowhere else to go! I'm not exactly conspicuous. I'll be caught soon. Please, I can pay you well."`
+			`	"I have nowhere else to go! I'm not exactly inconspicuous. I'll be caught soon. Please, I can pay you well."`
 			choice
 				`	"In that case, I'll take you."`
 				`	"No. You'll have to find another pilot."`
@@ -364,4 +364,3 @@ mission "Hai Rescue [A00] Darkwaste Timer"
 
 
 event "hai rescue: teeneep message"
-
