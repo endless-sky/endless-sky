@@ -162,7 +162,7 @@ mission "Korath Family to Ringworld"
 			choice
 				`	"Tell him it's no problem at all."`
 				`	"Tell him he has a wonderful family, and I was glad to help."`
-			`	The Quarg nods and turns to translate. The Korath responds while holding his palms toward you and moving them in a wide circular motion. "This is indicating of thankfulness of wholesomest measure. He thanks you for your fortunate words and wishes you kind travels," the Quarg says. You acknowledge the response, thank the Quarg for its (rough) translation services, and return to your ship."`
+			`	The Quarg nods and turns to translate. The Korath responds while holding his palms toward you and moving them in a wide circular motion. "This is indicating of thankfulness of wholesomest measure. He thanks you for your fortunate words and wishes you kind travels," the Quarg says. You acknowledge the response, thank the Quarg for its (rough) translation services, and return to your ship.`
 		
 mission "Korath Livestock"
 	name "Livestock to <planet>"
