@@ -655,10 +655,10 @@ ship "Blackbird"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -40 55
-	engine 40 55
-	turret -18 0 "Heavy Laser Turret"
-	turret 18 0 "Heavy Anti-Missile Turret"
+	engine -42.5 52
+	engine 42.5 52
+	turret -26 15 "Heavy Laser Turret"
+	turret 26 15 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 70 80
 	explode "tiny explosion" 15
