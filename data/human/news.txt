@@ -1192,5 +1192,7 @@ news "graffiti on spaceport wall"
 			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
 			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
 			"A long time ago / I was respected by all, / but now I sit here."
+			"A handsome young cyborg named Ace / Wooed women at every base / But once ladies glanced at / His special enhancement / They vanished with nary a trace"
+			"Mary had a little lamb / Little lamb little lamb / Mary had a little lamb / Whose fleece was white as snow"
 		word
 			`"`
