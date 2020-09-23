@@ -3612,7 +3612,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 	description "Travel to Sagitarius A* and then return to <destination>."
 	blocked "You need at least 1 free bunk to take this mission."
 	passengers 1
-	waypoint "Sagitarius A*"
+	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1"
 		require "Jump Drive" >= 1
@@ -3639,11 +3639,16 @@ mission "Remnant: Expanded Horizons Astral 2"
 				`	"Alright, let's get going."`
 					goto astralmoving
 			`	"Well, what we are doing is dangerous. We will be crossing Korath territory, a wide expanse of uninhabited space, and then scanning a black hole. I have confidence that we will return, but nonetheless there is still a chance that we die in the process.`
-			`	"Long ago we, as a people, decided that we must face the fear of the unknown and the danger. One of the ways we do that is by holding these informal ceremonies. When one of us is going to depart on their first long distance voyage into hostile territory, some of their closest friends and colleagues gather to bid them farewell. It is a way to strengthen ourselves and remind each other of our connections."`
+			`	"Long ago we, as a people, decided that we must face the fear of separation, the unknown, and the danger. One of the ways we do that is by holding these informal ceremonies. When one of us is going to depart on their first long distance voyage into hostile territory, a group of Remnant gather to bid them farewell. It is a way to strengthen ourselves and remind each other of our connections."`
+			choice
+				`	"Thanks for the explanation."`
+					goto astralmoving
+				`	"Kind of like a funeral, with friends and family gathering to see you off?"`
+			`	"Oh, no. I said my farewells to my friends and relatives before we left. Those who gathered to see me off today were more of a representation of Remnant society. I only recognized a few of them, but they took the time to come down to the <ship> to see me before I left. They came to see me, and wish me well, so that no matter what challenges I face, I will know that the Remnant remember me and appreicate what I am doing." Her gestures fade into contemplative stillness for a moment, then resume motion.`
 			label astralmoving
 			`	She gestures towards the airlock door. "Lead the way, Captain."`
 				accept
 	on stopover
 		conversation
-		
+			
 

@@ -757,7 +757,6 @@ outfitter "Remnant"
 	"Outfit Scanner"
 	"Tuning Rifle"
 	"Salvage Scanner"
-	"Research Laboratory"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"
