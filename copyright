@@ -7,11 +7,6 @@ Files: *
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: GPL-3+
 
-Files: fonts/fonts.conf
-Copyright: 2019 OOTA, Masato
-License: GPL-3+
-Comment: Derived from works by the Battle for Wesnoth Project https://www.wesnoth.org/
-
 Files: fonts/Ubuntu-R.ttf
 Copyright: 2010–2011 Canonical Ltd
 License: Ubuntu-Font-Licence-1.0
@@ -824,10 +819,6 @@ Files: images/planet/*-hot*
 Copyright: Tommaso Becca
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
-
-Files: source/Utf8.*
-Copyright: 2017, 2018 by Flávio J. Saraiva
-License: GPL-3+
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
