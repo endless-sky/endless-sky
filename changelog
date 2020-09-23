@@ -4,7 +4,7 @@ Version 0.9.13:
     * Added over 25 new missions to Remnant space, as well as a new region of the Ember Waste. (@Zitchas)
     * Added 15 new archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@AzureNyoki)
   * Bug fixes:
-    * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @beccabunny, @Darcman99, @Galaucus, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
+    * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @arkhne, @beccabunny, @Darcman99, @Galaucus, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
     * Missions with illegal cargo that fail when scanned can no longer be scanned again before landing. (@Amazinite)
     * The outfitter will no longer allow purchasing licensed outfits under certain circumstances where the player didn't have a license. (@Rakete1111)
     * Planets without a spaceport but with a jobs board will no longer skip generating jobs. (@Amazinite)
@@ -27,7 +27,7 @@ Version 0.9.13:
   * Game content:
     * New content:
       * The Penguin now uses the new engine flare mechanics. (@Zitchas)
-      * Created a storage outfit for the Finisher Torpedo. (@Arachi-Lover)
+      * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
       * Ka'het ships now have power generation and storage outfits. (@beccabunny)
       * Added new civilian hails. (@Anarchist2, @Naminson, @petervdmeer)
       * New missions offered by the Quarg. (@Arachi-Lover)
@@ -43,7 +43,7 @@ Version 0.9.13:
       * Added a new Builder station to the Graveyard. (@beccabunny)
       * Created two short spaceport missions for human space. (@Naminson)
       * The background haze now changes in intensity according to where you are in the galaxy. (@ravenshining)
-      * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @petervdmeer, Swiren, @W1zrad, @WarlordMike, @Zitchas)
+      * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @petervdmeer, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
       * Created an ammo storage outfit for EMP torpedoes. (@Anarchist2)
       * Created graphics for hot Jupiter planet sprites. (@beccabunny)
       * Gave the ramscoop a new high-detail sprite. (@beccabunny)
