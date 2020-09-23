@@ -3593,7 +3593,11 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Months or years drifing in the void?"`
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be colecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment.`
 			label labnext
-			`	"That is neither here nor there, however. I need to check in with a few people. Could you verify that the research laboratory is installed properly on the <ship>? I will meet you in the starport when you are done." She taps her commlink, and heads off into the bustle.`
+			branch jumpdrive
+				has "Jump Drive" >= 1
+			`	"That is neither here nor there, however. Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagitarius A*." She pauses and checks her commlink. "That shouldn't be too hard. Our early warning system indicates that there are several incoming Korath fleets that should be here in the next day or two. Any one of them should have a Jump Drive you can take. Meet me in the Starport once you have a Jump Drive."`
+			label jumpdrive
+			`	""That is neither here nor there, however. Now that you have both the research laboratory and a jump drive, we will be able to reach Sagitarius A*." She pauses and checks her commlink. "I just need to take care of a few things, then I will meet you in the spaceport."`
 
 
 
@@ -3603,14 +3607,15 @@ event "remnant: lab availability"
 
 
 
-mission "Remnant: Expanded Horizons Astral 2A"
-	name "Outfitting for travel to Sagitarius A*"
-	description "You will need a jump drive. Acquire one from a Korath raider."
+mission "Remnant: Expanded Horizons Astral 2"
+	name "Research expedition to Sagitarius A*"
+	description "Travel to Sagitarius A* and then return to <destination>."
 	blocked "You need at least 1 free bunk to take this mission."
 	passengers 1
+	waypoint "Sagitarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1"
-		require "Jump Drive" 0
+		require "Jump Drive" >= 1
 		require "Research Laboratory" >= 1
 	source
 		government "Remnant"
@@ -3618,10 +3623,27 @@ mission "Remnant: Expanded Horizons Astral 2A"
 		government "Remnant"
 	on offer
 		conversation
-			"
+			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach, and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
+			choice
+				`	"Yes."`
+					goto astralonwards
+				`	"I should double check everything."`
+			`	She nods. "I am ready, so I will come with you and wait onboard the <ship> while you do your checks."`
+			label astralonwards
+			`	She gestures towards the exit closest to your ship, and heads off at a quick pace. Outside, she moves calmly through the bustle of the starport, stepping around quick-moving freight movers and camel wagons alike. Arriving at the <ship>, she turns, and waits for you to catch up.`
+			`	Just as you arrive and reach for the console to open the airlock, you sense a change in your surroundings. Looking around, you see that a group of Remnant gathered around the two of you, focused on Dawn. A young Remnant -scarecly more than a child - steps forward. "Thank you for your patience." He says, then steps back. An elderly Remnant steps forward. "Thank you for your curiosity." She says, then steps back. A middle-aged Remnant steps forward. "Go with our blessing, Seeker, and know that wherever you go, the Remnant go with you." She says it simply, but you feel the weight of tradition behind them. She turns to you. "And you, stranger who walks the stars... May the Embers guide your steps as you walk among us." She nods respectfully, then steps back.`
+			`	As soon as the third steps back there is a flurry of movement as each of the Remnant present quickly step forward, give her a quick hug, and then scurry off into the starport. Before you process what is going on all the Remnant gathered around you have vanished. You look at Dawn, and her expression is a mixture of awe and humility.`
+			choice
+				`	"They know you are coming back, right?"`
+				`	"What was that about?"`
+				`	"Alright, let's get going."`
+					goto astralmoving
+			`	"Well, what we are doing is dangerous. We will be crossing Korath territory, a wide expanse of uninhabited space, and then scanning a black hole. I have confidence that we will return, but nonetheless there is still a chance that we die in the process.`
+			`	"Long ago we, as a people, decided that we must face the fear of the unknown and the danger. One of the ways we do that is by holding these informal ceremonies. When one of us is going to depart on their first long distance voyage into hostile territory, some of their closest friends and colleagues gather to bid them farewell. It is a way to strengthen ourselves and remind each other of our connections."`
+			label astralmoving
+			`	She gestures towards the airlock door. "Lead the way, Captain."`
+				accept
+	on stopover
+		conversation
 		
 
-
-
-mission "Remnant: Expanded Horizons Astral 1"
-	name "Update scans of Sagittarius A*"
