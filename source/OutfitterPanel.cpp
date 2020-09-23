@@ -585,7 +585,7 @@ void OutfitterPanel::Sell(bool toCargo)
 			if(toCargo)
 			{
 				// Transfer to cargo even if it would exceed the capacity
-				player.Cargo().Add(selectedOutfit, 1, true)
+				player.Cargo().Add(selectedOutfit, 1, true);
 			}
 			else
 			{
