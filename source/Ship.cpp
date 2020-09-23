@@ -2659,12 +2659,16 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 	
+	bool linked = currentSystem->Links().count(destination);
 	// Figure out what sort of jump we're making.
-	if(attributes.Get("hyperdrive") && currentSystem->Links().count(destination))
+	if(attributes.Get("hyperdrive") && linked)
 		return HyperdriveFuel();
 	
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel(currentSystem->Position().Distance(destination->Position()));
+	{
+		double jumpDistance = currentSystem->Position().Distance(destination->Position());
+		return JumpDriveFuel(linked ? 0. : jumpDistance);
+	}
 	
 	// If the given system is not a possible destination, return 0.
 	return 0.;
