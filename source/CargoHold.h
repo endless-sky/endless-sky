@@ -86,8 +86,8 @@ public:
 	
 	// These functions do the same thing as Transfer() with no destination
 	// specified, but they have clearer names to make the code more readable.
-	int Add(const std::string &commodity, int amount = 1);
-	int Add(const Outfit *outfit, int amount = 1);
+	int Add(const std::string &commodity, int amount = 1, bool force = false);
+	int Add(const Outfit *outfit, int amount = 1, bool force = false);
 	int Remove(const std::string &commodity, int amount = 1);
 	int Remove(const Outfit *outfit, int amount = 1);
 	
