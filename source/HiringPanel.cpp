@@ -117,6 +117,16 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
 		player.UpdateCargoCapacities();
 	}
+	else if(key == 'H')
+	{
+		player.Flagship()->AddCrew(maxHire);
+		player.UpdateCargoCapacities();
+	}
+	else if(key == 'F')
+	{
+		player.Flagship()->AddCrew(-maxFire);
+		player.UpdateCargoCapacities();
+	}
 	
 	return false;
 }
