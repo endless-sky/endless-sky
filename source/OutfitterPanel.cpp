@@ -582,9 +582,10 @@ void OutfitterPanel::Sell(bool toCargo)
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			ship->Recharge();
-			if(toCargo && player.Cargo().Add(selectedOutfit))
+			if(toCargo)
 			{
-				// Transfer to cargo completed.
+				// Transfer to cargo even if it would exceed the capacity
+				player.Cargo().Add(selectedOutfit, 1, true)
 			}
 			else
 			{
