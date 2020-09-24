@@ -3411,6 +3411,15 @@ mission "Wanderers: Sestor: Patch"
 		event "wanderers: sestor planets unrestricted"
 		fail
 
+mission "Wanderers: Sestor: Patch 2"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	on offer
+		event "wanderers taking jobs from kor efreti" 5
+		fail
+
 event "wanderers: sestor planets unrestricted"
 	planet "Drekag Firask"
 		"required reputation" 0
@@ -3430,3 +3439,23 @@ event "wanderers: sestor planets unrestricted"
 	planet "Sopi Lefarkata"
 		"required reputation" 0
 		spaceport clear
+
+event "wanderers taking jobs from kor efreti"
+	system "Sumprast"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Sevrelect"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kashikt"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Dokdobaru"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Furmeliki"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Meftarkata"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Skeruto"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kaliptari"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Solifar"
+		add fleet "Wanderer Kor Efret Traders" 1500		
