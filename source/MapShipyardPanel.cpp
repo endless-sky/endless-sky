@@ -118,9 +118,10 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !system->IsInhabited(player.Flagship()))
+	if(!system || !player.HasVisited(system) || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
+	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
