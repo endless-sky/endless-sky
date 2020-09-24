@@ -68,6 +68,7 @@ public:
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	bool IsStreamed() const;
+	bool IsParallel() const;
 	
 	double Velocity() const;
 	double RandomVelocity() const;
@@ -156,6 +157,12 @@ private:
 	bool isSafe = false;
 	bool isPhasing = false;
 	bool isDamageScaled = true;
+	// Guns and missiles are by default aimed a converged point at the
+	// maximum weapons range in front of the ship. When either the installed
+	// weapon or the gun-port (or both) have the isParallel attribute set
+	// to true, then this convergence will not be used and the weapon will
+	// be aimed directly in the gunport angle/direction.
+	bool isParallel = false;
 	
 	// Attributes.
 	int lifetime = 0;

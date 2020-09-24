@@ -27,6 +27,7 @@ color "conversation background" .125 .125 .125 1.
 color "map side panel background" .125 .125 .125 1.
 color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
+color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.

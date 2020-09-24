@@ -747,6 +747,7 @@ phrase "friendly civilian"
 		"uninstall any radar jammers on your ship. They're useless"
 		"use loans to get money to make money"
 		"reduce the cost of your ships by using batteries over bigger generators"
+		"always keep sufficient distance to fire your long-range weapons first"
 	word
 		"."
 		"!"
@@ -1477,7 +1478,7 @@ phrase "friendly civilian"
 		"I just don't get it"
 		"I'm not that into music"
 		"I prefer classical works"
-		"I don't hate them"
+		"I don't care for them"
 	word
 		", but "
 	word
@@ -1567,6 +1568,107 @@ phrase "friendly civilian"
 		"I regret being so polite."
 		"Apparently people think we'll work for exposure."
 		"Not to mention this ship is not designed for a job like it."
+
+phrase "friendly civilian"
+	word
+		"Don't go for"
+		"Don't participate in"
+		"Stay away from"
+		"Watch out for"
+	word
+		" "
+	word
+		"badly organized races"
+		"inheritance scams"
+		"shady transport jobs"
+		"hitman transports"
+	word
+		"."
+		"!"
+	word
+		" "
+	word
+		"I lost 20,000 credits on one of those."
+		"I nearly got killed in one."
+		"The Navy almost arrested me."
+		"Those can ruin your life!"
+		"They're usually too good to be true."
+		"They take your money, and you won't get anything in return."
+
+phrase "friendly civilian"
+	word
+		"I have a delivery for"
+		"I'm looking for"
+		"My passengers need to go to"
+	word
+		" "
+	word
+		"Dune"
+		"Earth"
+		"Foundry"
+		"Glaze"
+		"Moonshake"
+		"Norn"
+		"Skillet"
+	word
+		", but my starmap doesn't list it."
+		"; do you know where I can find it?"
+		"; have you ever heard of it?"
+		"; that planet shouldn't be too far from here."
+		"; which hyperlane should I take to get there?"
+
+phrase "friendly civilian"
+	word
+		"I almost collided with"
+		"I bumped into"
+		"I found"
+		"I picked up"
+	word
+		" "
+	word
+		"an antique teapot"
+		"a convertable car"
+		"some old memory capsule"
+	word
+		" "
+	word
+		"between Earth and Mars"
+		"around Earth"
+		"around Mars"
+	word
+		"."
+		"!"
+	word
+		""
+		"Can you believe that?"
+		"Do you want to see it?"
+		"It was in an unstable orbit."
+		"Must have been launched in the old days."
+		"Unbelievable what people sent into space back then."
+
+phrase "friendly civilian"
+	word
+		"Check out the"
+		"Look for the"
+	word
+		" "
+	word
+		"race"
+		"stunt pilots flying in formation"
+	word
+		" "
+	word
+		"in the Deep"
+		"in Syndicate space"
+		"through the paradise worlds"
+	word
+		". "
+		"! "
+	word
+		""
+		"I was there last month."
+		"The next event will be great!"
+		"That's real entertainment!"
 
 phrase "friendly navy"
 	word
@@ -2472,7 +2574,7 @@ phrase "friendly pirate"
 		""
 		" More interference plating would have helped."
 		" This interference plating is useless!"
-		" I could have gotten out faster if I had a Scram Drive."
+		" I could have gotten out faster if I had a scram drive."
 		" I know I should have installed more interference plating."
 		" If only I was strong enough to stand up to them."
 

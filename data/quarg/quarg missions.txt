@@ -248,7 +248,7 @@ mission "Ask Quarg About Coalition Early"
 			`	It clicks it's teeth together for a moment, and frowns a bit. "Do not underestimate us, human. We are numerous, and we are strong." It pauses for a moment, with a blank expression on its face, as if trying to remember something. "We just know better than to slaughter billions for the sake of maintaining our position."`
 				goto end
 			label oppress
-			`	"Of course not. Have you seen us do such things with humanity? Or with any other alien species you might have reached in your travels with a Jump Drive? The Heliarchs, like any other fanatical military, merely fabricated an excuse to justify attacking us."`
+			`	"Of course not. Have you seen us do such things with humanity? Or with any other alien species you might have reached in your travels with a jump drive? The Heliarchs, like any other fanatical military, merely fabricated an excuse to justify attacking us."`
 			label end
 			`	Before you can ask it anything else, the Quarg bids you farewell, and walks away.`
 				decline
