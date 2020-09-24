@@ -611,26 +611,26 @@ ship "Modified Osprey"
 		"Hyperdrive"
 		"Jump Drive"
 		
-	engine -46 67
-	engine 46 67
+	engine -45.5 65.5
+	engine 45.5 65.5
 	engine -17 105.5 .0
 	engine 17 105.5 .0
-	gun 0 -108 "Nuclear Missile"
-	gun -9 -99 "Korath Slicer"
-	gun 9 -99 "Korath Slicer"
-	gun -9 -99 "Korath Slicer"
-	gun 9 -99 "Korath Slicer"
-	gun -21 -61 "Korath Detainer"
-	gun 21 -61 "Korath Detainer"
+	gun 0 -114 "Nuclear Missile"
+	gun -6.5 -100 "Korath Slicer"
+	gun 6.5 -100 "Korath Slicer"
+	gun -14 -91 "Korath Slicer"
+	gun 14 -91 "Korath Slicer"
+	gun -19 -59 "Korath Detainer"
+	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
 	gun 26.5 -53 "Korath Detainer"
-	gun -60 17 "Finisher Pod"
-	gun 60 17 "Finisher Pod"
-	turret 0 -91 "Point Defense Turret"
-	turret -19.5 -16 "Korath Disruptor"
-	turret 19.5 -16 "Korath Disruptor"
-	turret -60 17 "Heliarch Repulsor"
-	turret 60 17 "Heliarch Repulsor"
+	gun -67 -1.5 "Finisher Pod"
+	gun 67 -1.5 "Finisher Pod"
+	turret 0 -91.5 "Point Defense Turret"
+	turret -13.5 -15.5 "Korath Disruptor"
+	turret 13.5 -15.5 "Korath Disruptor"
+	turret -49.5 20 "Heliarch Repulsor"
+	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
 	turret 0 89.5 "Point Defense Turret"
 	
