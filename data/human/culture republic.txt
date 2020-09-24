@@ -9,3 +9,30 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 # "Missions" which add culture events to the spaceport.
+
+#mission "cultural holiday template"
+	landing
+	to offer
+		and
+			month == placeholder
+			day >= placeholder
+			day <= placeholder
+	source
+		government "placeholder"
+		attributes "spaceport"
+	on offer
+		dialog
+		` placeholder`
+			fail
+			
+#mission "cultural random template"
+	landing
+	to offer
+		random == 1
+	source
+		government "placeholder"
+		attributes "spaceport"
+	on offer
+		dialog
+		` placeholder`
+			fail
