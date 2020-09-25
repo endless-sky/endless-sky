@@ -75,6 +75,7 @@ galaxy "label graveyard"
 system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 745.92
 	belt 1112
 	link "Sol Kimek"
@@ -152,6 +153,7 @@ system "1 Axis"
 system "10 Pole"
 	pos -1356.63 19.2137
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 486.68
 	belt 1765
 	haze _menu/haze-67
@@ -223,6 +225,7 @@ system "10 Pole"
 system "11 Autumn Above"
 	pos -1278.63 148.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1566.68
 	belt 1099
 	haze _menu/haze-133
@@ -304,6 +307,7 @@ system "11 Autumn Above"
 system "11 Spring Below"
 	pos -1272.63 380.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 912.6
 	belt 1932
 	link "4 Spring Rising"
@@ -383,6 +387,7 @@ system "11 Spring Below"
 system "12 Autumn Above"
 	pos -1276.63 -19.7863
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1050.92
 	belt 1283
 	link "14 Pole"
@@ -476,6 +481,7 @@ system "12 Autumn Above"
 system "14 Pole"
 	pos -1343.63 -119.786
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 625
 	belt 1881
 	haze _menu/haze-67
@@ -536,6 +542,7 @@ system "14 Pole"
 system "14 Summer Above"
 	pos -1436.63 182.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1400
 	belt 1093
 	haze _menu/haze-67
@@ -601,6 +608,7 @@ system "14 Summer Above"
 system "14 Winter Below"
 	pos -1143.63 341.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1111.68
 	belt 1173
 	link "8 Winter Below"
@@ -676,6 +684,7 @@ system "14 Winter Below"
 system "16 Autumn Rising"
 	pos -1305.63 74.2137
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1715
 	belt 1424
 	link "12 Autumn Above"
@@ -745,6 +754,7 @@ system "16 Autumn Rising"
 system "3 Axis"
 	pos -1235.63 299.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 2372.76
 	belt 1202
 	link "1 Axis"
@@ -812,6 +822,7 @@ system "3 Axis"
 system "3 Pole"
 	pos -1344.63 162.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 625
 	belt 1617
 	link "16 Autumn Rising"
@@ -871,6 +882,7 @@ system "3 Pole"
 system "3 Spring Rising"
 	pos -1414.63 356.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1080
 	belt 1613
 	haze _menu/haze-33
@@ -943,6 +955,7 @@ system "3 Spring Rising"
 system "4 Axis"
 	pos -1169.63 365.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 425.92
 	belt 1838
 	link "14 Winter Below"
@@ -1005,6 +1018,7 @@ system "4 Axis"
 system "4 Spring Rising"
 	pos -1309.63 321.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 320
 	belt 1801
 	link "1 Axis"
@@ -1069,6 +1083,7 @@ system "4 Spring Rising"
 system "4 Summer Rising"
 	pos -1377.63 207.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 320
 	belt 1860
 	link "3 Pole"
@@ -1128,6 +1143,7 @@ system "4 Summer Rising"
 system "4 Winter Rising"
 	pos -1259.63 248.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 135
 	belt 1345
 	link "Sol Kimek"
@@ -1202,6 +1218,7 @@ system "4 Winter Rising"
 system "5 Axis"
 	pos -1142.63 394.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 233.28
 	belt 1775
 	link "4 Axis"
@@ -1274,6 +1291,7 @@ system "5 Axis"
 system "5 Spring Below"
 	pos -1213.63 415.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1313.28
 	belt 1104
 	link "4 Axis"
@@ -1345,6 +1363,7 @@ system "5 Spring Below"
 system "5 Summer Above"
 	pos -1387.63 118.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 425.92
 	belt 1133
 	haze _menu/haze-133
@@ -1411,6 +1430,7 @@ system "5 Summer Above"
 system "5 Winter Above"
 	pos -1216.63 208.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 320
 	belt 1414
 	link "4 Winter Rising"
@@ -1474,6 +1494,7 @@ system "5 Winter Above"
 system "7 Autumn Rising"
 	pos -1235.63 177.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 425.92
 	belt 1289
 	link "11 Autumn Above"
@@ -1539,6 +1560,7 @@ system "7 Autumn Rising"
 system "8 Winter Below"
 	pos -1179.63 284.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 486.68
 	belt 1285
 	link "3 Axis"
@@ -1603,6 +1625,7 @@ system "8 Winter Below"
 system "9 Spring Above"
 	pos -1377.63 281.214
 	government Coalition
+	attributes "!kimek" "!coalition"
 	habitable 1050.92
 	belt 1397
 	haze _menu/haze-67
@@ -1677,6 +1700,7 @@ system "9 Spring Above"
 system Ablodab
 	pos -854.587 592.051
 	government Coalition
+	attributes "!arach" "!coalition"
 	habitable 425.92
 	belt 1368
 	link Debrugt
@@ -1751,6 +1775,7 @@ system Ablodab
 system Ablub
 	pos -581.587 637.051
 	government Coalition
+	attributes "!arach" "!coalition"
 	habitable 233.28
 	belt 1641
 	haze _menu/haze-133
@@ -1804,6 +1829,7 @@ system Ablub
 system Acamar
 	pos -284 -3
 	government Syndicate
+	attributes "!human" "!syndicate" "!core"
 	habitable 1080
 	belt 1013
 	link Diphda
@@ -1862,6 +1888,7 @@ system Acamar
 system Achernar
 	pos -93 154
 	government Syndicate
+	attributes "!human" "!syndicate" "!core"
 	habitable 625
 	belt 1963
 	haze _menu/haze-133
@@ -1933,6 +1960,7 @@ system Achernar
 system Acrux
 	pos -808 192
 	government Republic
+	attributes "!human" "!free worlds" "!rim"
 	habitable 590.625
 	belt 1407
 	haze _menu/haze-67
@@ -2012,6 +2040,7 @@ system Acrux
 system Adhara
 	pos -669 -200
 	government Republic
+	attributes "!human" "!republic" "!deep"
 	habitable 670
 	belt 1014
 	link "Epsilon Leonis"
@@ -2173,6 +2202,7 @@ system "Aki'il"
 system "Al Dhanab"
 	pos -177 207
 	government Syndicate
+	attributes "!human" "!syndicate" "!core"
 	habitable 1080
 	belt 1432
 	haze _menu/haze-133
@@ -2242,6 +2272,7 @@ system "Al Dhanab"
 system Albaldah
 	pos -350 484
 	government Republic
+	attributes "!human" "!free worlds" "!south"
 	habitable 534.375
 	belt 1622
 	haze _menu/haze-133
@@ -2316,6 +2347,7 @@ system Albaldah
 system Albireo
 	pos -270 503
 	government Republic
+	attributes "!human" "!free worlds" "!south"
 	habitable 760
 	belt 1030
 	link Tarazed
@@ -2373,6 +2405,7 @@ system Albireo
 system Alcyone
 	pos -80 -144
 	government Pirate
+	attributes "!human" "!core"
 	habitable 270
 	belt 1438
 	haze _menu/haze-133
@@ -2439,6 +2472,7 @@ system Alcyone
 system Aldebaran
 	pos -356 -26
 	government Republic
+	attributes "!human" "!republic" "!paradise"
 	habitable 625
 	belt 1296
 	link Capella
@@ -2484,6 +2518,7 @@ system Aldebaran
 system Alderamin
 	pos -272 258
 	government Syndicate
+	attributes "!human" "!syndicate" "!core"
 	habitable 1705
 	belt 1908
 	haze _menu/haze-133
@@ -2548,6 +2583,7 @@ system Alderamin
 system Aldhibain
 	pos -659 451
 	government Republic
+	attributes "!human" "!free worlds" "!south"
 	habitable 455.625
 	belt 1840
 	link Kornephoros
@@ -2605,6 +2641,7 @@ system Aldhibain
 			period 13.622
 
 system Algenib
+	attributes "!human" "!core" "!fringe"
 	pos -118 341
 	government Pirate
 	habitable 455.625
@@ -2661,6 +2698,7 @@ system Algenib
 			period 42.6838
 
 system Algieba
+	attributes "!human" "!republic" "!deep"
 	pos -691 -52
 	government Republic
 	habitable 2695
@@ -2732,6 +2770,7 @@ system Algieba
 system Algol
 	pos -210 17
 	government Syndicate
+	attributes "!human" "!syndicate" "!core"
 	habitable 534.375
 	belt 1839
 	haze _menu/haze-133
@@ -2793,6 +2832,7 @@ system Algol
 system Algorel
 	pos -631 145
 	government Republic
+	attributes "!human" "!republic" "!dirt belt"
 	habitable 320
 	belt 1993
 	haze _menu/haze-67
@@ -2857,6 +2897,7 @@ system Algorel
 system Alheka
 	pos -350 -271
 	government Republic
+	attributes "!human" "!republic" "!north"
 	habitable 1080
 	belt 1380
 	haze _menu/haze-67
@@ -2915,6 +2956,7 @@ system Alheka
 system Alhena
 	pos -430 -80
 	government Republic
+	attributes "!human" "!republic" "!paradise"
 	habitable 945
 	belt 1078
 	haze _menu/haze-67
@@ -2984,6 +3026,7 @@ system Alhena
 system Alioth
 	pos -620 315
 	government Republic
+	attributes "!human" "!republic" "!dirt belt"
 	habitable 455.625
 	belt 1889
 	link Wei
@@ -3036,6 +3079,7 @@ system Alioth
 system Alkaid
 	pos -825 318
 	government Republic
+	attributes "!human" "!republic" "!rim"
 	habitable 1080
 	belt 1142
 	haze _menu/haze-67
@@ -3103,6 +3147,7 @@ system Alkaid
 system Almaaz
 	pos -349 -538
 	government Pirate
+	attributes "!human" "!north" "!fringe"
 	habitable 1080
 	belt 1873
 	haze _menu/haze-33
@@ -3149,6 +3194,7 @@ system Almaaz
 system Almach
 	pos -7 232
 	government Pirate
+	attributes "!human" "!core" "!fringe"
 	habitable 320
 	belt 1914
 	haze _menu/haze-133
@@ -3211,6 +3257,7 @@ system Almach
 system Alnair
 	pos -272 314
 	government Syndicate
+	attributes "!human" "!syndicate" "!core"
 	habitable 135
 	belt 1969
 	haze _menu/haze-133
@@ -3279,6 +3326,7 @@ system Alnair
 system Alnasl
 	pos -553 380
 	government Republic
+	attributes "!human" "!republic" "!dirt belt"
 	habitable 640
 	belt 1412
 	haze _menu/haze-133
@@ -3338,9 +3386,10 @@ system Alnasl
 		distance 1788.8
 		period 1196.22
 
-system Alnilam
+system Alnilam 
 	pos -487 -513
 	government Pirate
+	attributes "!human" "!north" "!fringe"
 	habitable 1715
 	belt 1099
 	haze _menu/haze-33
