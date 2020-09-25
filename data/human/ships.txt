@@ -2001,10 +2001,10 @@ ship "Hawk"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -24 41
-	engine 24 41
-	gun -9 -17
-	gun 9 -17
+	engine -23.5 41
+	engine 23.5 41
+	gun -8.5 -17.5
+	gun 8.5 -17.5
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
