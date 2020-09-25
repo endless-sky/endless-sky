@@ -3451,7 +3451,6 @@ event "remnant: cognizance timer"
 mission "Remnant: Expanded Horizons Astral 1"
 	name "Preparation for expedition"
 	description "To prepare for an expedition to Sagittarius A*, go to <destination> with 6 outfit space available."
-	blocked "You need at least 1 free bunk to take this mission."
 	passengers 1
 	minor
 	to offer
