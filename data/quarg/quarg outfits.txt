@@ -15,7 +15,9 @@ outfit "Nanotech Battery"
 	thumbnail "outfit/quarg nanotech battery"
 	"mass" 50
 	"outfit space" -50
-	"energy capacity" 30000
+	"energy capacity" 30000	
+	description "This Quarg battery contains trillions of small energy-carrying nanobots that can recharge, providing unparalled battery storage."
+	description "	The extreme few captains that have obtained one of these incredible feats of technology often only have this as their energy source."
 
 outfit "Antimatter Core"
 	category "Power"
@@ -26,8 +28,8 @@ outfit "Antimatter Core"
 	"energy generation" 80
 	"heat generation" 20
 	"unplunderable" 1
+	description "This generator harnesses the incredible power of antimatter, in the quaintly small and efficient Quarg method."
 	
-
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
@@ -82,6 +84,7 @@ outfit "Quarg Anti-Missile"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 50
+	description "Drawing upon their Skylance beam weapon technology, the Quarg invented a remarkably powerful anti-missile capable of destroying most missiles with rapid efficiency."
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
@@ -111,6 +114,7 @@ outfit "Medium Graviton Thruster"
 	"thrusting energy" 20
 	"thrusting heat" 10
 	"flare sprite" "effect/medium graviton flare"
+	description "These steering thrusters are easily beaten out by the best human alternatives, but are a significantly reduced outfit size for what they do offer." 
 
 outfit "Medium Graviton Steering"
 	category "Engines"
@@ -123,6 +127,7 @@ outfit "Medium Graviton Steering"
 	"turning energy" 10
 	"turning heat" 5
 	"steering flare sprite" "effect/medium graviton flare"
+	description "These steering thrusters are easily beaten out by the best human alternatives, but are a significantly reduced outfit size for what they do offer." 
 
 outfit "Quantum Shield Generator"
 	category "Systems"
@@ -132,3 +137,4 @@ outfit "Quantum Shield Generator"
 	"outfit space" -120
 	"shield generation" 10
 	"shield energy" 10
+	description "One of the greatest Quarg inventions is their ability to use quantum physics in their favor. This generator takes your ship's depleted shield ions and almost instantly replaces them, refreshed and ready to take another beating."
