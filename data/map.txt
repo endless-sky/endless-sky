@@ -23695,7 +23695,7 @@ system Terminus
 system "Terra Incognita"
 	pos 9921.5 7086.5
 	government Uninhabited
-	attributes "pleiades" "wormhole"
+	attributes "pleiades"
 	link "Over the Rainbow"
 	habitable 455.625
 	haze _menu/haze-blackbody
@@ -25000,6 +25000,7 @@ system Wezen
 system "World's End"
 	pos 9966.5 7017.5
 	government Uninhabited
+	attributes "pleiades"
 	habitable 700
 	haze _menu/haze-blackbody
 	object
