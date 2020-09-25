@@ -219,6 +219,7 @@ news "street vendor"
 			"Want some budget caviar? What's caviar? It's horse beef, duh. Why do you think that people who ride horses are called cavalry... Fish eggs?"
 			"Here, have a sample of my famous lemonsausage. What's a lemonsausage? It's, erm... It's a blend of lemon and pig meat! Trust me! No, don't go away!"
 			"I wish I had enough money to ask captains roaming around the spaceport for transport to somewhere nicer."
+			"Sell a man a fish and you can sell him fish every day; teach a man to fish and you lose your customer."
 		word
 			`"`
 
@@ -238,6 +239,8 @@ news "company psychologist"
 			"My job is to help workers deal with stress and channel it in healthy directions. A little bit of stress is not a bad thing, if it drives someone to be more productive."
 			"We routinely evaluate employees for sociopathic tendencies, narcissism, and other signs that they might be excellent candidates for upper management positions."
 			"I've gotten incredibly good at doing this thing with my face that makes it look like I care."
+			"A trouble shared is a trouble halved, so most resource issues can be brought within acceptable limits by just pretending to listen."
+			"A man is judged by his deeds, not by his words, except in my profession; the more I talk, the more people value me."
 		word
 			`"`
 
@@ -1090,7 +1093,9 @@ news "human pirate"
 			"You look like a good captain. I'd bet you'd be a better slave!"
 			"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
 			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
-			"Look at me like that one more time, and I've give you plastic surgery free of charge."
+			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
+			"Crime pays, and the hours are good!"
+			"I'll retire as a security adviser in the paradise worlds. You know the saying: An old poacher makes the best gamekeeper."
 		word
 			`"`
 
@@ -1169,8 +1174,6 @@ news "graffiti on spaceport wall"
 			"Graffiti painted on a wall"
 	message
 		word
-			`"`
-		word
 			"A lone, soulless husk. / Appointed immortal king. / To sulk forever. - fgnt"
 			"The galaxy's child / Cursed with madness of time / Behind bloody chains - fgnt"
 			"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
@@ -1187,5 +1190,5 @@ news "graffiti on spaceport wall"
 			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
 			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
 			"A long time ago / I was respected by all, / but now I sit here."
-		word
-			`"`
+			"A handsome young cyborg named Ace / Wooed women at every base / But once ladies glanced at / His special enhancement / They vanished with nary a trace"
+			"Mary had a little lamb / Little lamb little lamb / Mary had a little lamb / Whose fleece was white as snow"
