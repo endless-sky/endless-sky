@@ -474,30 +474,6 @@ ship "Pond Strider"
 	"final explode" "final explosion large"
 	description "The Hai upgraded their original Pond Strider after acquiring technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
 
-ship "Pond Strider" "Pond Strider (Old)"
-	add attributes
-		"cost" -2250000
-		"hull" -500
-		"mass" -36
-		"hull repair rate" -1
-		"heat dissipation" .15
-		"fuel capacity" 100
-	outfits
-		"Railgun" 3
-		"Railgun Slug" 9630
-		"Chameleon Anti-Missile" 3
-		"Hai Corundum Regenerator"
-		"Hai Diamond Regenerator"
-		"Hai Chasm Batteries"
-		"Boulder Reactor"
-		"Hai Williwaw Cooling" 3
-		"Quantum Keystone"
-		"Pulse Rifle" 9
-		`"Benga" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Hyperdrive"
-	description "This short-range drone carrier was built by the Hai to contain the increasingly aggressive Unfettered with their new Solifuge and Violin Spider ships. The Hai's greater value for life is evident in the remotely-piloted robotic fighter craft, preferring to keep valuable pilots out of harm's way."
-
 ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
 		"Hai Tracker Pod"
@@ -566,6 +542,8 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
+
 
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
