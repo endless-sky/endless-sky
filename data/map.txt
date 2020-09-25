@@ -17931,6 +17931,7 @@ system Ossipago
 system "Over the Rainbow"
 	pos 9904 7176
 	government Uninhabited
+	attributes "pleiades" "wormhole"
 	link "Terra Incognita"
 	habitable 1215
 	haze _menu/haze-blackbody
@@ -23694,6 +23695,7 @@ system Terminus
 system "Terra Incognita"
 	pos 9921.5 7086.5
 	government Uninhabited
+	attributes "pleiades" "wormhole"
 	link "Over the Rainbow"
 	habitable 455.625
 	haze _menu/haze-blackbody

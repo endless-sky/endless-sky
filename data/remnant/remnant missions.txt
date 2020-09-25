@@ -3617,6 +3617,10 @@ mission "Remnant: Expanded Horizons Astral 2"
 		has "Remnant: Expanded Horizons Astral 1"
 		require "Jump Drive" >= 1
 		require "Research Laboratory" >= 1
+	to complete
+		require "Research Laboratory" >= 1
+	to fail
+		has "Research Laboratory" == 0
 	source
 		government "Remnant"
 	destination
@@ -3656,7 +3660,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 			choice
 				`	"Good work. What kind of data are you recording?`
 				`	"Sounds good. Just let me know when you are ready to leave."`
-					goto astraldepart
+					goto astraldone
 			`	She smiles, and replies. "It might be easier to ask what data we are leaving out. The data we are collecting broadly falls into three data sets: Data on Sagittarius A* itself, data on its environment, and observations of the surrounding galaxy from here. Obviously, we cannot go take samples of Sagittarius A* itself, nor take direct measurements of most of its properties, but we can get data from increasingly minute distances from the event horizon. We can then add this data to that gathered by previous expeditions, note the differences, and use it in our modeling."`
 			choice
 				`	"So this is not the first expedition here?"`
@@ -3677,16 +3681,44 @@ mission "Remnant: Expanded Horizons Astral 2"
 					goto astralfirst
 				`	"How much longer does the equipment need?"`
 			label astralfinish 
-			`	"The equipment will be finished shortly, Captain <first>. I just need to make a a few observations and we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."
-			`	"I will be going outside for a few minutes." Dawn declares. "I shall just be on the hull."
+			`	"The equipment will be finished shortly, Captain <first>. I just need to make a a few observations and we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
+			`	"I will be going outside for a few minutes." Dawn declares. "I shall just be on the hull."`
 			choice
 				`	"Let me know when you are done."`
 					goto astraldone
 				`	"Would you mind if I came too?"`
 			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit, and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs ocassionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
-			`	After what feels like hours you go inside to find that the equipment has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
+			label astraldone
+			`	After what feels like hours the equipment notifies you that it has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
 	on complete
 		payment 500000
 		conversation
-			``
+			`The journey back is a blur as the <ship> jumps through countless systems. Gradually the brilliant density of stars that make up the inner core fades into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally you slide into the approach patterns of <destination>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
+			`You settle onto your assigned pad, and within seconds Remnant technicians have the resupply cables hooked up, while a cheerful group greet Dawn and help her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. I have transfered our expedition's logistics alotment of <payment> to you. And in case you are interested, you are now eligble to do the regular data update missions, which will be located in the job board. We always need fresh data, after all." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
 
+
+
+mission "Remnant: Expanded Horizons Astral job"
+	name "Research Expedition to <waypoint>."
+	description "Travel to <waypoint> with a research laboratory and then return to <destination>."
+	job
+	repeat
+	waypoint
+		not attributes "pleiades"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		require "Research Laboratory" >= 1
+	to complete
+		require "Research Laboratory" >= 1
+	to fail
+		has "Research Laboratory" == 0
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+	on offer
+		dialog "Please take a research laboratory to <waypoint> to collect fresh data"
+	on complete
+		payment 400000
+		"reputation: Remnant" ++
+		dialog "A researcher quickly retrieves the data crystals and hands you the logistics allotment of <payment>."
