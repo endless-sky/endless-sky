@@ -114,7 +114,7 @@ outfit "Medium Graviton Thruster"
 	"thrusting energy" 20
 	"thrusting heat" 10
 	"flare sprite" "effect/medium graviton flare"
-	description "These steering thrusters are easily beaten out by the best human alternatives, but are a significantly reduced outfit size for what they do offer." 
+	description "These relatively small thrusters somehow manage to contain almost the same thrust as the largest Korath thruster."
 
 outfit "Medium Graviton Steering"
 	category "Engines"
