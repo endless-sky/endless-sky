@@ -3449,7 +3449,7 @@ event "remnant: cognizance timer"
 
 
 mission "Remnant: Expanded Horizons Astral 1"
-	name "Prep for an expedition to Sagittarius A*"
+	name "Preparation for expedition"
 	description "To prepare for an expedition to Sagittarius A*, go to <destination> with 6 outfit space available."
 	blocked "You need at least 1 free bunk to take this mission."
 	passengers 1
@@ -3518,7 +3518,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"Okay, I will meet you onboard the ship."`
 					accept
-				`	"If you are full, you are full. Why push to eat more?"`
+				`	"Why do you need to finish your food?"`
 			branch dawnlicense
 				has "license: Remnant Capital"
 			`	She shrugs. "I burn a lot of calories, and eating healthy is important. Besides, I don't know how good food will be on your ship." She resumes eating with vigor and does not seem inclined to continue the conversation.`
@@ -3590,7 +3590,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"Okay, let's get on with this."`
 					goto labnext
-				`	"Months or years drifing in the void?"`
+				`	"Years drifting in the void?"`
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment.`
 			label labnext
 			branch jumpdrive
@@ -3714,8 +3714,6 @@ mission "Remnant: Expanded Horizons Astral job"
 		has "Research Laboratory" == 0
 	source
 		government "Remnant"
-	on offer
-		dialog "Please take a research laboratory to <waypoint> to collect fresh data"
 	on complete
 		payment 400000
 		"reputation: Remnant" ++
