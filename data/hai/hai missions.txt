@@ -2009,7 +2009,7 @@ mission "Strider: Remnant 2"
 	destination "Deadman's Cove"
 	infiltrating
 	passengers 3
-	blocked "The Hai are sending a delegation to <destination>, and will require 3 bunks for the trip."
+	blocked "The Hai are sending a delegation to <destination> and will require 3 bunks for the trip."
 	to offer
 		has "Strider: Remnant 1: done"
 	on offer
@@ -2068,7 +2068,7 @@ mission "Strider: Coalition 1"
 	source "Hai-home"
 	destination "Ring of Friendship"
 	passengers 3
-	blocked "The Hai are sending a delegation to <destination>, and will require 3 bunks for the trip."
+	blocked "The Hai are sending a delegation to <destination> and will require 3 bunks for the trip."
 	to offer
 		has "strider: coalition"
 	on offer
@@ -2087,9 +2087,9 @@ mission "Strider: Coalition 1"
 		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet. Take off and wait for them.`
 	on complete
 		conversation
-			`You notify the Heliarch that you're bringing alien ambassators to meet with them, and surely enough a delegation is waiting for you when you land. They briefly salute you, but appear to be much more interested in the strange new beings you've brought to their center of government.`
+			`You notify the Heliarch that you're bringing alien ambassadors to meet with them, and sure enough a delegation is waiting for you when you land. They briefly salute you, but appear to be much more interested in the strange new beings you've brought to their center of government.`
 			`	The Hai delegation is momentarily confused by the unusual speech pattern the Coalition species have, but snap out of it shortly.`
-			`	The Heliarch then start breaking it to the Hai their story, the same they told you when you first met them. While both delegations are engaged in conversation, a Heliarch agent approaches you, asking, "To this precious encounter, with what purpose have you brought these people, Captain?"`
+			`	The Heliarch then start explaining their story to the Hai, the same they told you when you first met them. While both delegations are engaged in conversation, a Heliarch agent approaches you, asking, "To this precious encounter, with what purpose have you brought these people, Captain?"`
 			choice
 				`	"They're in need of your help."`
 				`	"They come seeking technology."`
@@ -2105,8 +2105,8 @@ mission "Strider: Coalition 1"
 			`	"Had I known we would be interrogated on the engineering aspects and the inner workings of a ringworld, I would have had an engineer come with us here," Yashili whispers to you.`
 			
 			label nottheirbusiness
-			`	The Heliarchs once again warn the Hai to be careful with the Quarg, and not to trust them, before finally letting the Hai say the reason for their trip here.`
-			`	The delegation still looks a bit overwhelmed, as if still processing all the history the Heliarch just told them, but Yashili has kept her composure and begins speaking. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a new ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you obtain such technology, with ship hulls that repair themselves."`
+			`	The Heliarchs once again warn the Hai to be careful with the Quarg before finally letting the Hai explain the reason for their trip here.`
+			`	The delegation still looks a bit overwhelmed, as if still processing all the history the Heliarch just told them, but Yashili has kept her composure and begins speaking. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a new ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you possess such technology."`
 			`	"Developed such technology, indeed we have," an Arach agent responds. "Composed of several dozens of small repair bots, and their center of command, such outfits are."`
 			choice
 				`	"So are you willing to give or sell one of those outfits to the Hai?"`
@@ -2128,7 +2128,7 @@ mission "Strider: Coalition 2"
 		has "Strider: Coalition 1: done"
 	on offer
 		conversation
-			`The Hai are waiting for you, and confirm the Heliarchs handed them a data chip containing schematics for the hull repair modules and their hull-walking robots, as well as a and load a crate with two small hull repair modules onto your ship for the Hai. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`
+			`The Hai are waiting for you, and confirm the Heliarchs handed them a data chip containing schematics for the hull repair modules and their hull-walking robots. Some workers load a crate with two small hull repair modules onto your ship for the Hai. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`
 				accept
 
 
