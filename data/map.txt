@@ -2146,7 +2146,7 @@ system Aescolanus
 system "Aki'il"
 	pos -83 722
 	government Uninhabited
-	attributes "ember waste" "graveyard"
+	attributes "ember waste" "graveyard" "!isolated"
 	habitable 1505.92
 	asteroids "large metal" 47 5
 	asteroids "large rock" 2 10
@@ -6571,7 +6571,7 @@ system Cebalrai
 system Celeborim
 	pos 181.431 -633.812
 	government "Kor Sestor"
-	attributes "!korath" "!automata"
+	attributes "!korath" "!automata" "!fringe"
 	habitable 320
 	belt 1296
 	link Asikafarnut
@@ -8168,7 +8168,7 @@ system Dixere
 system Dokdobaru
 	pos -21.5695 -241.812
 	government Quarg
-	attributes "!korath"
+	attributes "!korath" "!efreti" "!ringworld"
 	habitable 700
 	belt 1935
 	haze _menu/haze-133
@@ -9243,7 +9243,7 @@ system Eneremprukt
 system Enif
 	pos -177 498
 	government Quarg
-	attributes "!human" "!south"
+	attributes "!human" "!south" "!ringworld"
 	habitable 700
 	belt 1974
 	link Sadalmelik
@@ -9667,6 +9667,7 @@ system Eteron
 system "Fah Root"
 	pos -264.065 -400.135
 	government Hai
+	attributes "!hai" "!fringe"
 	habitable 486.68
 	belt 1057
 	haze _menu/haze-67
@@ -9735,6 +9736,7 @@ system "Fah Root"
 system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
+	attributes "!hai"
 	habitable 425.92
 	belt 1185
 	haze _menu/haze-67
@@ -9795,6 +9797,7 @@ system "Fah Soom"
 system Fala
 	pos -690 64
 	government Republic
+	attributes "!human" "!dirt belt"
 	habitable 625
 	belt 1264
 	link "Tania Australis"
@@ -9855,6 +9858,7 @@ system Fala
 system "Fallen Leaf"
 	pos -903.587 717.051
 	government Coalition
+	attributes "!coalition" "!saryd"
 	habitable 320
 	belt 1327
 	link Beginning
@@ -9907,6 +9911,7 @@ system "Fallen Leaf"
 system "Far Horizon"
 	pos -1108.59 726.051
 	government Coalition
+	attributes "!coalition" "!saryd"
 	habitable 320
 	belt 1242
 	haze _menu/haze-67
@@ -9962,6 +9967,7 @@ system "Far Horizon"
 system Farbutero
 	pos 93.4305 -251.812
 	government Uninhabited
+	attributes "!korath" "!automata"
 	habitable 625
 	belt 1175
 	haze _menu/haze-133
@@ -10107,6 +10113,7 @@ system Farinus
 system Faronektu
 	pos 292.431 -309.812
 	government "Kor Mereti"
+	attributes "!korath" "!automata"
 	habitable 1080
 	belt 1630
 	haze _menu/haze-133
@@ -10174,7 +10181,7 @@ system Faronektu
 system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
-	attributes "archon"
+	attributes "archon" "!korath" "!isolated" "!nova"
 	habitable 100
 	belt 1670
 	haze _menu/haze-blackbody
@@ -10282,6 +10289,7 @@ system Fearis
 system "Fell Omen"
 	pos -1156.59 475.051
 	government Coalition
+	attributes "!coalition" "!saryd"
 	habitable 425.92
 	belt 1240
 	link "Last Word"
@@ -10472,6 +10480,7 @@ system Fereti
 system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
+	attributes "!korath" "!automata"
 	habitable 5425.92
 	belt 1419
 	haze _menu/haze-blackbody
@@ -10555,6 +10564,7 @@ system Feroteri
 system Ferukistek
 	pos 307.431 -515.812
 	government "Kor Sestor"
+	attributes "!korath" "!automata"
 	habitable 486.68
 	belt 1520
 	link Eneremprukt
@@ -10608,6 +10618,7 @@ system Ferukistek
 system Fingol
 	pos -482 113
 	government Republic
+	attributes "!human" "!near earth"
 	habitable 135
 	belt 1976
 	haze _menu/haze-none
@@ -10665,6 +10676,7 @@ system Fingol
 system Flugbu
 	pos -903.587 534.051
 	government Coalition
+	attributes "!coalition" "!arach"
 	habitable 425.92
 	belt 1843
 	link Torbab
@@ -10729,6 +10741,7 @@ system Flugbu
 system Fomalhaut
 	pos -314 124
 	government Syndicate
+	attributes "!human" "!near earth"
 	habitable 455.625
 	belt 1854
 	link Altair
@@ -10791,6 +10804,7 @@ system Fomalhaut
 system Fornarep
 	pos 79.4305 -309.812
 	government Uninhabited
+	attributes "!korath" "!automata"
 	habitable 320
 	belt 1922
 	haze _menu/haze-133
@@ -10857,6 +10871,7 @@ system Fornarep
 system "Four Pillars"
 	pos -1210.59 772.051
 	government Coalition
+	attributes "!coalition" "!saryd"
 	habitable 486.68
 	belt 1061
 	link "Far Horizon"
@@ -10918,6 +10933,7 @@ system "Four Pillars"
 system Furmeliki
 	pos -35.5695 -281.812
 	government Uninhabited
+	attributes "!korath" "!efreti"
 	habitable 486.68
 	belt 1577
 	link Dokdobaru
@@ -10979,6 +10995,7 @@ system Furmeliki
 system Gacrux
 	pos -713 184
 	government Republic
+	attributes "!human" "!dirt belt"
 	habitable 534.375
 	belt 1188
 	link "Cor Caroli"
@@ -11046,6 +11063,7 @@ system Gacrux
 system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
+	attributes "!human" "!core"
 	habitable 455.625
 	belt 1779
 	haze _menu/haze-133
@@ -11104,6 +11122,7 @@ system "Gamma Cassiopeiae"
 system "Gamma Corvi"
 	pos -906 64
 	government Republic
+	attributes "!coalition" "!rim"
 	habitable 1535.62
 	belt 1556
 	haze _menu/haze-none
@@ -11226,6 +11245,7 @@ system Gerenus
 system Gienah
 	pos -176 354
 	government Pirate
+	attributes "!human" "!core"
 	habitable 534.375
 	belt 1939
 	link Persian
@@ -11360,6 +11380,7 @@ system Giribea
 system Girtab
 	pos -430 481
 	government Republic
+	attributes "!human" "!south"
 	habitable 1080
 	belt 1387
 	link Lesath
@@ -11424,6 +11445,7 @@ system Girtab
 system Glubatub
 	pos -650.587 693.051
 	government Coalition
+	attributes "!coalition" "!arach"
 	habitable 233.28
 	belt 1093
 	link "Sol Arach"
@@ -11501,6 +11523,7 @@ system Glubatub
 system Gomeisa
 	pos -600 -161
 	government Republic
+	attributes "!human" "!deep"
 	habitable 911.25
 	belt 1616
 	link Zosma
@@ -11570,6 +11593,7 @@ system Gomeisa
 system "Good Omen"
 	pos -941.587 746.051
 	government Coalition
+	attributes "!coalition" "!saryd"
 	habitable 1715
 	belt 1598
 	haze _menu/haze-67
@@ -11631,6 +11655,7 @@ system "Good Omen"
 system Gorvi
 	pos -250 -483
 	government Republic
+	attributes "!human" "!north" "!fringe"
 	habitable 670
 	belt 1345
 	haze _menu/haze-133
@@ -11688,6 +11713,7 @@ system Gorvi
 system Graffias
 	pos -784 517
 	government Republic
+	attributes "!human" "!south"
 	habitable 911.25
 	belt 1977
 	link Alniyat
@@ -11751,6 +11777,7 @@ system Graffias
 system Gupta
 	pos -808.587 625.051
 	government Coalition
+	attributes "!coalition" "!arach"
 	habitable 912.6
 	belt 1771
 	link Ablodab
@@ -11811,6 +11838,7 @@ system Gupta
 system Hadar
 	pos -788 283
 	government Republic
+	attributes "!human" "!rim"
 	habitable 455.625
 	belt 1520
 	link "Zeta Centauri"
@@ -11870,6 +11898,7 @@ system Hadar
 system Hamal
 	pos -129 24
 	government Syndicate
+	attributes "!human" "!core"
 	habitable 1080
 	belt 1241
 	haze _menu/haze-133
@@ -11924,6 +11953,7 @@ system Hamal
 system Han
 	pos -610 561
 	government Republic
+	attributes "!human" "!south"
 	habitable 1080.62
 	belt 1517
 	link Alniyat
@@ -11982,6 +12012,7 @@ system Han
 system Hassaleh
 	pos -291 -287
 	government Republic
+	attributes "!human" "!north"
 	habitable 670
 	belt 1924
 	haze _menu/haze-67
@@ -12042,6 +12073,7 @@ system Hassaleh
 system Hatysa
 	pos -474 -542
 	government Pirate
+	attributes "!human" "!north"
 	habitable 533.75
 	belt 1163
 	haze _menu/haze-33
@@ -12102,6 +12134,7 @@ system Hatysa
 system "Heia Due"
 	pos -146.177 -481.694
 	government Hai
+	attributes "!hai"
 	habitable 1215
 	belt 1079
 	haze _menu/haze-67
@@ -12173,6 +12206,7 @@ system "Heia Due"
 system Hesselpost
 	pos -30.5695 -187.812
 	government Uninhabited
+	attributes "!korath" "!efreti" "!fringe"
 	habitable 486.68
 	belt 1327
 	haze _menu/haze-133
@@ -12243,6 +12277,7 @@ system Hesselpost
 system "Hevru Hai"
 	pos -189 -310
 	government Quarg
+	attributes "!hai" "!ringworld"
 	habitable 700
 	belt 1245
 	link "Fah Soom"
@@ -12357,6 +12392,7 @@ system "Hevru Hai"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
+	attributes "!hai"
 	habitable 625
 	belt 1655
 	link "Wah Yoot"
@@ -12414,6 +12450,7 @@ system "Hi Yahr"
 system Hintar
 	pos -422 311
 	government Republic
+	attributes "!human" "!dirt belt"
 	habitable 625
 	belt 1725
 	haze _menu/haze-133
@@ -12473,6 +12510,7 @@ system Hintar
 system Holeb
 	pos -590 287
 	government Republic
+	attributes "!human" "!dirt belt"
 	habitable 1715
 	belt 1181
 	link Alioth
@@ -12520,6 +12558,7 @@ system Holeb
 system Homeward
 	pos -1045.59 477.051
 	government Coalition
+	attributes "!coalition" "!saryd"
 	habitable 425.92
 	belt 1499
 	link "Silver Bell"
@@ -12585,6 +12624,7 @@ system Homeward
 system Host
 	pos 384.431 -543.812
 	government Uninhabited
+	attributes "!isolated" "!TBD"
 	habitable 486.68
 	belt 1669
 	asteroids "large metal" 1 0.732
@@ -12633,6 +12673,7 @@ system Host
 system Hunter
 	pos -968.587 590.051
 	government Coalition
+	attributes "!coalition" "!saryd"
 	habitable 425.92
 	belt 1498
 	link "Bright Void"
@@ -12694,6 +12735,7 @@ system Hunter
 system Ik'kara'ka
 	pos 56.2159 -888.296
 	government Wanderer
+	attributes "!wanderer"
 	habitable 625
 	belt 1497
 	haze _menu/haze-none
@@ -12755,6 +12797,7 @@ system Ik'kara'ka
 system Ildaria
 	pos -702 317
 	government Republic
+	attributes "!human" "!rim"
 	habitable 625
 	belt 1132
 	haze _menu/haze-133
@@ -12808,6 +12851,7 @@ system Ildaria
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
+	attributes "!hai"
 	habitable 1715
 	belt 1416
 	haze _menu/haze-67
@@ -12932,6 +12976,7 @@ system Insitor
 system "Io Lowe"
 	pos -94.7566 -527.728
 	government Hai
+	attributes "!hai"
 	habitable 135
 	belt 1552
 	haze _menu/haze-67
@@ -12993,6 +13038,7 @@ system "Io Lowe"
 system "Io Mann"
 	pos -192.955 -447.669
 	government Hai
+	attributes "!hai"
 	habitable 973.36
 	belt 1132
 	haze _menu/haze-67
@@ -13067,6 +13113,7 @@ system "Io Mann"
 system Ipsing
 	pos -549 160
 	government Republic
+	attributes "!human" "!dirt belt"
 	habitable 1400
 	belt 1107
 	haze _menu/haze-67
@@ -13133,6 +13180,7 @@ system Ipsing
 system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
+	attributes "!wanderer"
 	habitable 320
 	belt 1613
 	haze _menu/haze-33
@@ -13186,6 +13234,7 @@ system Iyech'yek
 system Izar
 	pos -784 231
 	government Republic
+	attributes "!human" "!rim"
 	habitable 1294.38
 	belt 1449
 	haze _menu/haze-67
@@ -13250,6 +13299,7 @@ system Izar
 system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
+	attributes "!wanderer"
 	habitable 425.92
 	belt 1745
 	haze _menu/haze-none
@@ -13307,6 +13357,7 @@ system Ka'ch'chrai
 system Ka'pru
 	pos -76.6756 -994.955
 	government Wanderer
+	attributes "!wanderer"
 	habitable 1505.92
 	belt 1808
 	haze _menu/haze-33
@@ -13377,6 +13428,7 @@ system Ka'pru
 system Kaliptari
 	pos 85.4305 -402.812
 	government Uninhabited
+	attributes "!korath" "!automata"
 	habitable 320
 	belt 1089
 	link Skeruto
@@ -13451,6 +13503,7 @@ system Kaliptari
 system "Kappa Centauri"
 	pos -867 480
 	government Republic
+	attributes "!human" "!south"
 	habitable 1215
 	belt 1508
 	link Pherkad
@@ -13511,6 +13564,7 @@ system "Kappa Centauri"
 system Kashikt
 	pos -73.5695 -219.812
 	government "Kor Efret"
+	attributes "!korath" "!efreti"
 	habitable 1715
 	belt 1013
 	link Dokdobaru
@@ -13578,7 +13632,7 @@ system Kashikt
 system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
-	attributes "archon"
+	attributes "archon" "!isolated" "!korath" "!nova"
 	habitable 100
 	belt 1539
 	haze _menu/haze-blackbody
@@ -13619,6 +13673,7 @@ system Kasikfar
 system "Kaus Australis"
 	pos -284 395
 	government Republic
+	attributes "!human" "!dirt belt"
 	habitable 320
 	belt 1281
 	haze _menu/haze-133
@@ -13670,6 +13725,7 @@ system "Kaus Australis"
 system "Kaus Borealis"
 	pos -456 350
 	government Republic
+	attributes "!human" "!dirt belt"
 	habitable 590.625
 	belt 1074
 	haze _menu/haze-133
@@ -13732,6 +13788,7 @@ system "Kaus Borealis"
 system "Ki War Ek"
 	pos -1106.63 368.214
 	government Heliarch
+	attributes "!coalition" "!ringworld"
 	habitable 700
 	belt 1777
 	haze _menu/haze-133
