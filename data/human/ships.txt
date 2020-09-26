@@ -2494,8 +2494,10 @@ ship "Osprey"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45.5 62.5
-	engine 45.5 62.5
+	engine -45.5 62.5 .8
+	engine 45.5 62.5 .8
+	engine -16.5 105 .6
+	engine 16.5 105 .6
 	gun -6.5 -100 "Plasma Cannon"
 	gun 6.5 -100 "Plasma Cannon"
 	gun -26.5 -54 "Plasma Cannon"
