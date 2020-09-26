@@ -12624,7 +12624,7 @@ system Homeward
 system Host
 	pos 384.431 -543.812
 	government Uninhabited
-	attributes "!isolated" "!TBD"
+	attributes "!isolated"
 	habitable 486.68
 	belt 1669
 	asteroids "large metal" 1 0.732
