@@ -2046,11 +2046,11 @@ mission "Wanderers Solifuge Recon 4"
 			`	"It would only be a few weeks for us to have a number of prototype ships ready, but I highly suggest that we wait until we have created hull repair technology. If these Unfettered Solifuges do not have such technology, then having it will give our ship an advantage by being able to redeploy damaged drones, but we believe that we are still many years away from developing technology strong enough to be of any real use."`
 			`	The elders once again mumble among themselves. They continue to ask Torsa a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
 			`	After having all their questions answered, the elders seem to be interested in the idea of Torsa's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
-			`	Torsa's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help by bringing us such technology from elsewhere in the galaxy, should it exist."`
+			`	Torsa's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
 			choice
 				`	"I'm sorry, but I can't help right now. I need to return to the Wanderers."`
 					goto busy
-				`	"I'd be glad to help. I'm sure I could bring you technology that would help."`
+				`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
 			
 			`	"Sayari's message mentions that you are still needed by the Wanderers," Torsa's father responds. "Perhaps you should return to where you are needed the most, but when you are able to help us, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you a safe travel back to <planet>.`
 				accept

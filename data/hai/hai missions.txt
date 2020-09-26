@@ -1871,115 +1871,91 @@ mission "Strider 1"
 	to offer
 		has "Strider 0: active"
 	on offer
-		conversation "pond strider"
-	to complete
-		or
-			has "remnant blood test pure"
-			has "First Contact: Coalition: offered"
-	on complete
-		conversation "pond strider"
-
-conversation "pond strider"
-	branch returning
-		has "Strider 1: done"
-	
-	``
-	choice
-		`	`
-		`	`
-			defer
-	`	`
-		goto branches
-	
-	label returning
-	`You return to <planet> and inform the elders that you have discovered a group that could help them with creating hull repair technology. They ask that you come to the council chambers in an hour while they find Torsa.`
-	`	"Now, tell us what it is you found," one of the elders says once you arrive.`
-	
-	label branches
-	branch "know both"
-		has "license: Remnant"
-		has "Coalition: First Contact: done"
-	branch "know remnant"
-		has "license: Remnant"
-	branch "know coalition"
-		has "Coalition: First Contact: done"
-	
-	choice
-		`	"No. I don't know of any species that could help."`
-	
-	label "know none"
-	`	"This is unfortunate. But you are a resourceful being. Perhaps you could explore the galaxy for a group able to help us." The elders and Torsa continue to discuss for a short while longer, deciding that Torsa and his team should create a small number of new ships to defend Cloudfire while you go searching for hull repair technology to finish the ship.`
-		accept
-	
-	label "know both"
-	choice
-		`	"I know a reclusive group of humans who have ships that can repair themselves."`
-			goto remnant
-		`	"There are a group of three alien species far from here known as the Coalition that have outfits able to repair a ship in flight."`
-			goto coalition
-		`	"No. I don't know of any species that could help."`
-			goto stridernone
-	label "know remnant"
-	choice
-		`	"A group of humans in an area of space known as the Ember Waste have ships that are able to repair themselves."`
-			goto remnant
-		`	"No. I don't know of any species that could help."`
-			goto "know none"
-	label "know coalition"
-	choice
-		`	"There are a group of three alien species far from here known as the Coalition that have outfits able to repair a ship in flight."`
-			goto coalition
-		`	"No. I don't know of any species that could help."`
-			goto "know none"
+		conversation
+			branch "know both"
+				has "license: Remnant"
+				has "license: Coalition"
 			
-	label remnant
-	apply
-		set "strider: remnant"
-	`	"Wonderful!" Torsa says. "This should turn many years of working into only a few months to finish our ship."`
-		goto end
-	label coalition
-	apply
-		set "strider: coalition"
-	`	"Wonderful!" Torsa says. "This should turn many years of working into only a few months to finish our ship."`
-	
-	label end
-	`	The elders and Torsa continue to discuss for a short while longer, deciding that Torsa and his team should create a small number of new ships to defend Cloudfire while you travel to acquire hull repair technology to finish the ship. "We will put together a delegation for you to transport to these people you mention. They will be waiting in the spaceport shortly."`
-		decline
-
-
-
-mission "Strider: Remnant Hull Repair"
-	landing
-	source
-		government "Remnant"
-		attributes shipyard
-	to offer
-		has "Strider: Find Hull Repair: active"
-		has "remnant blood test pure"
-	on offer
-		conversation
-			`You enter the Remnant shipyard here and begin speaking with the shipwright about Remnant ships. One of the aspects of Remnant ships that the shipwright mentions to you is that they are able to repair their own hull. You should return to Hai-home and inform the Hai about this technology.`
+			branch "know coalition"
+				has "license: Coalition"
+			
+			branch "know remnant"
+				has "license: Remnant"
+			
+			`You've returned to <planet>, but you don't have access to any hull repair technology. Explore the galaxy and earn the trust of an alien faction that has hull repair technology before returning.`
+				defer
+			
+			label "know both"
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairs hulls, and the Remnant, who have ships that repair themselves. Would you like to tell the elders about one of these groups?`
+			choice
+				`	(Yes.)`
+					goto start
+				`	(Not right now.)`
+					defer
+			
+			label "know coalition"
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairs hulls. Would you like to tell the elders about the Coalition?`
+			choice
+				`	(Yes.)`
+					goto start
+				`	(Not right now.)`
+					defer
+			
+			label "know remnant"
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Remnant, who have ships that repair themselves. Would you like to tell the elders about the Remnant?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			
+			label start
+			`	You inform the elders that you have discovered a group that could help them with creating hull repair technology and they invite you to the council chamber. "Greetings, Captain <last>," one of the elders says to you upon entering the chamber. "What news do you have to bring us on your search for hull repair technology?"`
+			branch "tell both"
+				has "license: Remnant"
+				has "license: Coalition"
+			
+			branch "tell remnant"
+				has "license: Remnant"
+			
+			branch "tell coalition"
+				has "license: Coalition"
+			
+			label "tell both"
+			choice
+				`	"There is a group of three alien species far from here known as the Coalition that have outfits able to repair a ship in flight."`
+					goto coalition
+				`	"There is a group of humans far from here known as the Remnant who have ships that can repair themselves."`
+					goto remnant
+			
+			label "tell remnant"
+			choice
+				`	"There is a group of humans far from here known as the Remnant who have ships that can repair themselves."`
+					goto remnant
+			
+			label "tell coalition"
+			choice
+				`	"There is a group of three alien species far from here known as the Coalition that have outfits able to repair a ship in flight."`
+					goto coalition
+			
+			label remnant
+			apply
+				set "strider: remnant"
+			`	"A group of humans with hull repair technology?" one of the elders asks with a puzzled look. "I am surprised that we have not heard of these humans before. Are they well known among the Republic?"`
+			`	"No," you explain. "They are a reclusive group unknown to most of humanity. They likely wouldn't take kindly to being visited by aliens."`
+				goto end
+			
+			label coalition
+			apply
+				set "strider: coalition"
+			`	"A group of three aliens?" one of the elders asks with a puzzled look. "It is not often in the galaxy that such groups appear."`
+			
+			label end
+			`	"We will put together a delegation for you to transport to these people you mention. They will be waiting in the spaceport shortly," another elder says. "From there you can lead them how you see fit to make contact with this group. We trust that you will be capable in doing so."`
 				decline
 
 
 
-mission "Strider: Coalition Hull Repair"
-	landing
-	source
-		government "Coalition" "Heliarch"
-		attributes outfitter
-	to offer
-		has "Strider: Find Hull Repair: active"
-		has "Coalition: First Contact: done"
-	on offer
-		conversation
-			`While looking at the outfits that the Coalition have for sale, the hull repair module catches your eye. It uses a small robot to repair the hull of a ship while in flight. You should return to Hai-home and inform the Hai about this technology.`
-				decline
-
-
-
-mission "Strider 2 (Remnant)"
-	landing
+mission "Strider: Remnant 1"
 	name "Contact the Remnant"
 	description "Take a message from the Hai to <destination> to set up a meeting between the Remnant and the Hai."
 	source "Hai-home"
@@ -2026,7 +2002,7 @@ mission "Strider 2 (Remnant)"
 
 
 
-mission "Strider 3 (Remnant)"
+mission "Strider: Remnant 2"
 	name "Contact the Remnant"
 	description "Transport Ambassador Yashili and her delegation to <destination> to attempt to obtain hull repair technology from the Remnant."
 	source "Hai-home"
@@ -2035,7 +2011,7 @@ mission "Strider 3 (Remnant)"
 	passengers 3
 	blocked "The Hai are sending a delegation to <destination>, and will require 3 bunks for the trip."
 	to offer
-		has "strider: remnant 2 (Remnant)"
+		has "Strider: Remnant 1: done"
 	on offer
 		conversation
 			`You enter the spaceport and find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be travelling a great distance across the galaxy. May we have a safe journey."`
@@ -2066,7 +2042,7 @@ mission "Strider 3 (Remnant)"
 
 
 
-mission "Strider 4 (Remnant)"
+mission "Strider: Remnant 3"
 	name "Technology Obtained"
 	description "The delegation has successfully obtained hull repair technology from the Remnant. Return to <destination> so that the Hai can begin developing this technology for their new ship."
 	landing
@@ -2076,7 +2052,7 @@ mission "Strider 4 (Remnant)"
 	cargo "repair technology" 12
 	blocked "You need <capacity> in order to return the Hai delegation and the repair technology back to <planet>."
 	to offer
-		has "Strider 3 (Remnant): done"
+		has "Strider: Remnant 2: done"
 	on offer
 		conversation
 			`An hour later the ambassador's assistant returns with a large data drive, and hands it to Ambassador Yashili. The Remnant pull out a datachip of their own, and the two groups formally exchange the data. In response to an unseen signal, another Remnant pulls back one side of the tent and a team carries in a segment from a systems core with several of the small robots. "There is more of these waiting outside for you, but here is a sample for you to inspect. Using the instructions we have provided, you should have no problem making use of this technology." They poke at the console, and the robots promptly spring to life and assembled a small pile of parts into a model ship.`
@@ -2086,8 +2062,7 @@ mission "Strider 4 (Remnant)"
 
 
 
-mission "Strider 2 (Coalition)"
-	landing
+mission "Strider: Coalition 1"
 	name "Contact the Coalition"
 	description "Transport Ambassador Yashili and her delegation to <destination> to attempt to obtain hull repair technology from the Coalition."
 	source "Hai-home"
@@ -2141,7 +2116,7 @@ mission "Strider 2 (Coalition)"
 
 
 
-mission "Strider 3 (Coalition)"
+mission "Strider: Coalition 2"
 	name "Technology Obtained"
 	description "The delegation has successfully obtained hull repair technology from the Coalition. Return to <destination> so that the Hai can begin developing this technology for their new ship."
 	source "Ring of Friendship"
@@ -2150,7 +2125,7 @@ mission "Strider 3 (Coalition)"
 	cargo "repair technology" 12
 	blocked "You need <capacity> in order to return the Hai delegation and the repair technology back to <planet>."
 	to offer
-		has "Strider 2 (Coalition): done"
+		has "Strider: Coalition 1: done"
 	on offer
 		conversation
 			`The Hai are waiting for you, and confirm the Heliarchs handed them a data chip containing schematics for the hull repair modules and their hull-walking robots, as well as a and load a crate with two small hull repair modules onto your ship for the Hai. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`
@@ -2282,13 +2257,13 @@ event "pond strider mass production"
 			"Pond Strider" 3
 			"Flea" 24
 
-mission "Strider 4"
+mission "Strider 3"
 	landing
 	source "Hai-home"
 	to offer
 		or
-			has "Strider 3 (Remnant): done"
-			has "Strider 3 (Coalition): done"
+			has "Strider: Coalition 2: done"
+			has "Strider: Remnant 3: done"
 	on offer
 		event "pond strider mass production" 30
 		conversation
