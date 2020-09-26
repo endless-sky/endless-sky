@@ -40,6 +40,7 @@ public:
 	// Get all the tokens in this node as an iterable vector.
 	const std::vector<std::string> &Tokens() const;
 	// Get the token at the given index. No bounds checking is done internally.
+	// DataFile loading guarantees index 0 always exists.
 	const std::string &Token(int index) const;
 	// Convert the token at the given index to a number. This returns 0 if the
 	// index is out of range or the token cannot be interpreted as a number.
