@@ -2027,12 +2027,12 @@ mission "Wanderers Solifuge Recon 4"
 			`	"Greetings again, <first> <last>," one of the elders says to you. "It is our understanding that our Unfettered brothers and sisters have created a carrier ship. How difficult was it for you to combat it?"`
 			choice
 				`	"The carrier is strong, but not strong enough, and can be easily taken down."`
-				`	"It was easy for me, but I can not say it will be the same for your ships to combat."`
+				`	"It was easy for me, but I can't say it will be the same for your ships to combat."`
 				`	"It was a difficult fight, as the carrier is very powerful."`
 			`	The elders mumble among themselves about this information, periodically glancing down at what must be the message from Sayari detailing the Solifuge.`
-			`	"We gathered a large fleet above Cloudfire," one of the elders says, "and shortly afterward the Unfettered unveil this new ship. Perhaps it is only right that we respond in kind with a ship of our own."`
+			`	"We gather a large fleet above Cloudfire," one of the elders says, "and shortly afterward the Unfettered unveil this new ship. Perhaps it is only right that we respond in kind with a ship of our own."`
 			`	"My son is an engineer," another elder says. "He helped create our Centipede and Geocoris ships, both as a result of the humans living among us. Perhaps he would be of assistance in creating a ship to respond to the Unfettered." The elder presses a button and leans over to a microphone. "Please bring Torsa into the council chamber."`
-			`	A short while later, the elder's son enters the chamber and introduces himself to the council. They tell him the situation about the Unfettered having created a carrier and the need for a new ship to be created as a response, and Torsa's eyes go wide.`
+			`	A short while later, the elder's son enters the chamber and introduces himself to the council. They tell him about the Unfettered having created a carrier and the need for a new ship to be created as a response, and Torsa's eyes go wide.`
 			`	Torsa begins speaking very quickly in the Hai langauage, so fast that your translation device seems to barely be able to keep up.`
 			`	"I have [exactly, precisely] the ship! My team has been [developing, producing] a ship for many [years, cycles] that carries a [fleet, squadron] of drones. We have [working, functional] [prototypes, models], but they are not yet [finished, complete]. We are still [developing, producing] technology to repair the [hull, armor] of a ship in flight, which would make this ship and its drones much more [effective, powerful]."`
 			`	The device continues speaking to you for nearly a minute after Torsa stops talking (which is a little awkward as everyone stares at you). "Sorry, I wasn't aware that you had a translation device," Torsa says, no longer speaking in Hai.`
