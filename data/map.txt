@@ -21234,7 +21234,7 @@ system Salipastart
 system Saquergen
 	pos -482 561
 	government Uninhabited
-	attributes "!human"	"!south" "!isolated" "!nova"
+	attributes "!isolated" "!nova"
 	habitable 100
 	belt 1435
 	asteroids "small rock" 3 3.9105
