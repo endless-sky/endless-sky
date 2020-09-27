@@ -145,10 +145,10 @@ outfit "Energy Lens System"
         velocity 64
         lifetime 512
         inaccuracy 0
-        "shield damage" 16000
-        "hull damage" 32000
-        reload 60
+        "shield damage" 4000
+        "hull damage" 16000
+        reload 90
         "firing energy" 2000
         "firing heat" 4
         "ion damage" 32
-    description "This is the most powerful weapon in existence, greater even than the Drak's dreaded Antimatter Cannon. It symbolizes the Monads' quest for perfect engineering, and it is very nearly perfect itself. It generates very little heat and uses a complex system of prisms and lenses to maximize its firepower. For obvious reasons, the Drak destroyed all copies of the Energy Lens System, and killed those who knew its secrets. Still, there are rumors that some ancient Lens Systems may yet survive."
+    description "This is perhaps the most powerful weapon in existence, greater even than the Drak's dreaded Antimatter Cannon. It symbolizes the Monads' quest for perfect engineering, and it is very nearly perfect itself. It generates very little heat and uses a complex system of prisms and lenses to maximize its firepower. It is extremely effective against unshielded hulls, vaporizing most ships in mere seconds the instant their shields are down. For obvious reasons, the Drak destroyed all copies of the Energy Lens System, and killed those who knew its secrets. Still, there are rumors that some ancient Lens Systems may yet survive."
