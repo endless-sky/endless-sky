@@ -47,7 +47,7 @@ namespace {
 	// Helper function to collapse (summarize, multiply or otherwise combine) a number of
 	// conditions (that start with the same prefix) into a single value.
 	// The caller of this function should provide the lamba expression that performs the
-	// actual collapsing. This function just calls the collapse-funtion once for every
+	// actual collapsing. This function just calls the collapse-function once for every
 	// condition that matches the prefix.
 	template <typename A>
 	void CollapseConditions(const map<string, int64_t> &conditions, const string &prefix, A collapseFun)
