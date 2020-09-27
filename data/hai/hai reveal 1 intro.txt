@@ -715,12 +715,10 @@ mission "Hai Leaks Response 4"
 			branch "saved geocoris2"
 				has "00 Hai Leaks Response 4B: declined"
 			`	With a final nod of thanks, he departs to attend to his business: leaving you free to go about your own.`
-				goto end2
+				decline
 			label "saved geocoris2"
 			`	With a final nod of thanks, he departs to attend to his business: leaving you free to wander the spaceport until they release your new ship.`
-			label "end2"
-			`	 `
-			
+				decline			
 	
 event "waypoint pirates vanquished"
 	#Update pirate and anti-pirate spawns in Waypoint and Heia Due

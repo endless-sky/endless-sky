@@ -22,7 +22,6 @@ mission "Hai Reveal [D01] Cleanup"
 		has "Hai Rescue [C08] Freedom: done"
 	on offer
 		event "mountaintop ascendant"
-		event "news: hai are public"
 		fail "Hai Rescue [C07A] Devil-Hide Fleet"
 		log `Returned the Hai to their own space to bring an end to the missing Hai saga. All that remains is to work out what to do about the leak, and the cover story so thin as to provide no modesty to its wearers.`
 		log `Teeneep and General Choot'k together, prominent leaders of the Fettered and Unfettered Hai, kissed in a romantic goodbye. They spoke of a future peaceful unification of the Hai.`

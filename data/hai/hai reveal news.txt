@@ -9,61 +9,12 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-mission "news: add alien paranoia"
-	landing
-	invisible
-	to offer
-		has "main plot completed"
-	on offer
-		event "news: add alien paranoia"
-		fail
-
-event "news: add alien paranoia"
-
-	news "alien paranoia: generic citizen"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-			not system Deneb
-			
-	news "Pug paranoia: generic citizen"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-			not system Deneb
-			
-	news "Quarg paranoia: generic citizen"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-			near Tarazed 0 10
-			not system Deneb
-
-	news "Korath ship sightings: generic citizen"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-			attributes core
-			not system Deneb
-
-	news "Hai sightings: generic citizen"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-			near Cardax 12
-
-	news "Deneb scientist"
-		location
-			system Deneb
-
-	news "pirate: smug about Pug"
-		location
-			government "Pirate"
-	
-	news "pirate: korath collector"
-		location
-			attributes "core pirate"
-
-
-
-
-# Visual suggestion: highly varied, not too psychotic, not dressed in occupation-specific gear
 news "alien paranoia: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system Deneb
 	name
 		word
 			"Concerned citizen"
@@ -73,40 +24,16 @@ news "alien paranoia: generic citizen"
 			"Bystander"
 			"Pug war survivor"
 			"Conspiracy theorist"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		phrase
 			"paranoia: generic alien fear"
 		
-# Visual suggestion: highly varied, not too psychotic, not dressed in occupation-specific gear
 news "Pug paranoia: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system Deneb
 	name
 		word
 			"Concerned citizen"
@@ -116,34 +43,6 @@ news "Pug paranoia: generic citizen"
 			"Bystander"
 			"Pug war survivor"
 			"Conspiracy theorist"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		word
 			"I never realized how vulnerable we were until the Pug attacked Earth."
@@ -159,8 +58,13 @@ news "Pug paranoia: generic citizen"
 			"Do the Pug even see us as people? They act like we're just stories in a big game of theirs."
 			"I bet the Pug caused the Ten Plagues. And World War II, and the Great Chinese Famine, and the Yangtze river floods, and the Black Plague, and the Minoan Eruption, and the Alpha Wars, and the fall of the Tower of Babel, and..."
 		
-# Visual suggestion: highly varied, not too psychotic, not dressed in occupation-specific gear
 news "Quarg paranoia: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		near Tarazed 0 10
+		not system Deneb
 	name
 		word
 			"Concerned citizen"
@@ -170,34 +74,6 @@ news "Quarg paranoia: generic citizen"
 			"Bystander"
 			"Pug war survivor"
 			"Conspiracy theorist"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		word
 			"Did you hear about the smashed ringworld? I bet that came from a Pug-Quarg war. If the Quarg can't beat the Pug, why did we win our war?"
@@ -207,8 +83,13 @@ news "Quarg paranoia: generic citizen"
 			"I wonder if the Quarg have been manipulating our society for millennia. Or was it the Pug? Or another alien race? Biblical plagues? World War II? How many atrocities did they cause?"
 			"I'm never going to a Quarg planet again. I swear they read your mind and plant nightmares within. I keep dreaming of mighty space-cockroaches, reptiles, and big robot-ships. Owls! Owls everywhere!"
 
-# Visual suggestion: highly varied, not too psychotic, not dressed in occupation-specific gear
 news "Korath ship sightings: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes core
+		not system Deneb
 	name
 		word
 			"Concerned citizen"
@@ -218,34 +99,6 @@ news "Korath ship sightings: generic citizen"
 			"Bystander"
 			"Pug war survivor"
 			"Conspiracy theorist"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		word
 			"I saw a video of a big I-shaped ship shooting Syndicate vessels. I wonder if it was faked?"
@@ -256,9 +109,13 @@ news "Korath ship sightings: generic citizen"
 			"The local maps say there are planets east of the core worlds. Do you think there are aliens there? Do they visit us?"
 			"I went on a school trip long ago, out to Canyon. One of the school ships' escorts was blown out of the sky by a ship shooting little yellow dots. We barely escaped."
 
-
-# Visual suggestion: highly varied, not too psychotic, not dressed in occupation-specific gear
 news "Hai sightings: generic citizen"
+	to show
+		has "main plot completed"
+		not "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		near Cardax 12
 	name
 		word
 			"Concerned citizen"
@@ -268,34 +125,6 @@ news "Hai sightings: generic citizen"
 			"Bystander"
 			"Pug war survivor"
 			"Conspiracy theorist"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		word
 			"I thought I saw a squirrel jumping in a tree, until I looked harder. It was the size of a person! And it was eating acorns! I was going to call the police but I was so mesmerized by its cuteness that I forgot."
@@ -306,9 +135,11 @@ news "Hai sightings: generic citizen"
 			"There was a crashed ship near me, and I heard rumors of some crazy squirrel inside. The police cleaned it up really quick and now all we see is some scorch marks. The authorities won't say anything."
 			"The pickled acorns they sell in the store taste so good they can't possibly be of human manufacture."
 
-
-# Visual suggestion: glasses, clean-cut attire, possibly scientific accoutrements
 news "Deneb scientist"
+	to show
+		has "main plot completed"
+	location
+		system Deneb
 	name
 		word
 			"Astrophysicist"
@@ -319,13 +150,6 @@ news "Deneb scientist"
 			"Xenoarchaeologist"
 			"Historian"
 			"Cryptozoologist"
-	portrait
-		portrait/human13
-		portrait/human37
-		portrait/human43
-		portrait/human64
-		portrait/human71
-		portrait/human83
 	message
 		word
 			"We assumed this planet was always inhabitable, but it turns out it had a dangerously-toxic atmosphere a while ago. The Pug made it fertile again, and according to our studies, they did it in under 40 years."
@@ -344,21 +168,14 @@ news "Deneb scientist"
 			"There are residual space-time distortions at the Quarg ringworld past the wormhole. We suspect it was moved in minutes. The energy required would be more than the total energy ever produced by the human race."
 			"A ringworld is such a stupid idea. If you break clean through one piece, the centrifugal force tears the whole ring apart. If the Quarg were smart, they would've made a Dyson swarm instead."
 
-# Visual suggestion: dangerous mofos, lunatics, reavers
 news "pirate: smug about Pug"
+	to show
+		has "main plot completed"
+	location
+		government "Pirate"
 	name
 		word
 			"Pirate"
-	portrait
-		portrait/human19
-		portrait/human24
-		portrait/human25
-		portrait/human27
-		portrait/human34
-		portrait/human44
-		portrait/human51
-		portrait/human59
-		portrait/human62
 	message
 		word
 			"When I saw the Pug attacking Earth, I laughed so hard I almost cried. Smug navy keeps shooting up our ships, and now it's their turn to die!"
@@ -368,21 +185,14 @@ news "pirate: smug about Pug"
 			"Psychological manipulation, that's all it is. Any good anarchist will tell you that's what the Pug are all about. Murder, death, kill... to trick you into doing what THEY want."
 			"I wish the Pug hadn't stopped the Syndicate from nuking Earth. Can you imagine the collapse of the galactic Republic? Galactic anarchy! It's how the galaxy should be."
 
-# Visual suggestion: dangerous mofos, lunatics, reavers
 news "pirate: korath collector"
+	to show
+		has "main plot completed"
+	location
+		attributes "core pirate"
 	name
 		word
 			"Pirate"
-	portrait
-		portrait/human19
-		portrait/human24
-		portrait/human25
-		portrait/human27
-		portrait/human34
-		portrait/human44
-		portrait/human51
-		portrait/human59
-		portrait/human62
 	message
 		word
 			`We flew near Stormhold and saw this big ship that looked like a huge letter "I" and it destroyed half our fleet. We nearly blew it up, but it disappeared in a bunch of sparkles.`
@@ -676,14 +486,15 @@ phrase "person you could suspect to be aliens"
 
 ########################################################################
 
+#Many different missions have the potential to trigger this so an event is used instead of missions in the "to show".
 event "news: hai video clip published"
 
-	news "Hai video: human response"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
-
-
 news "Hai video: human response"
+	to show
+		has "event: news: hai video clip published"
+		not "event: news: hai video clip debunked"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
 	name
 		word
 			"Concerned citizen"
@@ -693,34 +504,6 @@ news "Hai video: human response"
 			"Bystander"
 			"Pug war survivor"
 			"Conspiracy theorist"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		word
 			"Did you see that video of the alien ships fighting? I heard that my sister's best friend's husband saw a bunch of those ships near Cardax."
@@ -735,16 +518,14 @@ news "Hai video: human response"
 
 ########################################################################
 
-
 event "news: hai video clip debunked"
-	news "Hai video: human response"
-		remove location
-	news "Hai roleplay station: human response"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
-
 
 news "Hai roleplay station: human response"
+	to show
+		has "event: news: hai video clip debunked"
+		not "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
 	name
 		word
 			"Concerned citizen"
@@ -754,34 +535,6 @@ news "Hai roleplay station: human response"
 			"Bystander"
 			"Pug war survivor"
 			"Conspiracy theorist"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		word
 			"I visited the new Syndicate station at Ultima Thule. It's hilarious. They have alien-looking architecture and a huge ad banner."
@@ -790,62 +543,18 @@ news "Hai roleplay station: human response"
 			"I don't like how the Syndicate tricked us with that fake alien video as a silly marketing gimmick, but at least they're not trying to nuke Earth or destroy starlanes."
 
 
-
-
-
 ########################################################################
 
-event "news: hai are public"
-	news "Hai sightings: generic citizen"
-		remove location
-	news "Hai roleplay station: human response"
-		remove location
-		
-	news "Hai news: generic citizen"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-
-
-	# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
-	news "Hai news: merchant captain"
-		location
-			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-
-	
 news "Hai news: generic citizen"
+	to show
+		has "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	name
 		word
 			"Reporter"
 			"Citizen"
 			"Parent"
-	portrait
-		portrait/human01
-		portrait/human05
-		portrait/human08
-		portrait/human09
-		portrait/human13
-		portrait/human16
-		portrait/human20
-		portrait/human23
-		portrait/human27
-		portrait/human29
-		portrait/human36
-		portrait/human40
-		portrait/human42
-		portrait/human48
-		portrait/human54
-		portrait/human66
-		portrait/human69
-		portrait/human80
-		portrait/human83
-		portrait/human89
-		portrait/human92
-		portrait/human105
-		portrait/human108
-		portrait/human111
-		portrait/human116
-		portrait/human121
-		portrait/human125
 	message
 		word
 			"Did you try the Hai beer made of fermented nuts? It's amazing."
@@ -865,25 +574,13 @@ news "Hai news: generic citizen"
 
 # Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "Hai news: merchant captain"
+	to show
+		has "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	name
 		word
 			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human112
 	message
 		word
 			"I wonder if Hai have pirates of their own, like we do?"
@@ -899,8 +596,3 @@ news "Hai news: merchant captain"
 			"Don't go too far north in Hai space. They have their own pirates, and they're much more powerful than anything we're used to in human space."
 			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
 
-
-
-
-
-			
