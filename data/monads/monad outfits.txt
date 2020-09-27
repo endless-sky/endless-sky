@@ -40,6 +40,7 @@ outfit "Energy Lance Turret"
         sprite "projectile/energy lance"
         "hit effect" "drak bolt impact"
         "die effect" "drak bolt impact"
+		"turret turn" 4
         velocity 16
         lifetime 256
         inaccuracy 0.5
@@ -68,6 +69,7 @@ outfit "Energy Minelayer"
         sprite "projectile/energy mine"
         "hit effect" "piercer explosion"
         "die effect" "piercer explosion"
+		"turret turn" 8
         velocity 0
         lifetime 16384
         inaccuracy 8
@@ -116,6 +118,7 @@ outfit "Energy Shadow Turret"
     weapon
         sprite "projectile/energy shadow"
         "hit effect" "banisher impact"
+		"turret turn" 4
         velocity 512
         lifetime 1
         inaccuracy 1
@@ -138,6 +141,7 @@ outfit "Energy Lens System"
         sprite "projectile/energy lens"
         "hit effect" "finisher impact"
         "die effect" "finisher impact"
+		"turret turn" 2
         velocity 64
         lifetime 512
         inaccuracy 0
