@@ -43,6 +43,19 @@ namespace {
 	
 	// Maximum number of rows of mortages, etc. to draw.
 	const int MAX_ROWS = 8;
+	
+	// Helper function to collapse (summarize, multiply or otherwise combine) a number of
+	// conditions (that start with the same prefix) into a single value.
+	// The caller of this function should provide the lamba expression that performs the
+	// actual collapsing. This function just calls the collapse-funtion once for every
+	// condition that matches the prefix.
+	template <typename A>
+	void CollapseConditions(const map<string, int64_t> &conditions, const string &prefix, A collapseFun)
+	{
+		auto it = conditions.lower_bound(prefix);
+		for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
+			collapseFun(it->second);
+	}
 }
 
 
@@ -108,9 +121,10 @@ void BankPanel::Draw()
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
 	{
-		auto it = player.Conditions().lower_bound(prefix[i]);
-		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
-			income[i] += it->second;
+		CollapseConditions(player.Conditions(), prefix[i],
+			[&income, i](int64_t a) {
+				income[i] += a;
+			});
 	}
 	// Check if maintenance needs to be drawn.
 	int64_t maintenance = player.Maintenance();
