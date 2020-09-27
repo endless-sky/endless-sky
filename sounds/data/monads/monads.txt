@@ -1,0 +1,8 @@
+
+outfitter "Hai Advanced"
+    "Energy Lance"
+    "Energy Lance Turret"
+    "Energy Minelayer"
+    "Energy Shadow Generator"
+    "Energy Shadow Turret"
+    "Energy Lens System"

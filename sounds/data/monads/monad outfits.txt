@@ -1,0 +1,150 @@
+
+# Monad weapons
+
+outfit "Energy Lance"
+    category "Secondary Weapons"
+    thumbnail "outfit/unknown"
+    mass 8
+    "outfit space" -8
+    "weapon capacity" -8
+    "gun ports" -1
+    weapon
+        sprite "projectile/energy lance"
+        "hit effect" "drak bolt impact"
+        "die effect" "drak bolt impact"
+        velocity 16
+        lifetime 256
+        inaccuracy 0.5
+        "shield damage" 64
+        "hull damage" 64
+        reload 16
+        homing 1
+        tracking 1
+        turn 4
+        acceleration 1
+        drag 0.1
+        "hit force" 4
+        "firing energy" 64
+        "firing heat" 16
+        "missile strength" 32
+    description "The Monads hate traditional missile launchers because of their one fatal weakness: running out of ammunition. So they created the Energy Lance: an energy-based weapon that can track its target independently."
+
+outfit "Energy Lance Turret"
+    category "Secondary Weapons"
+    thumbnail "outfit/unknown"
+    mass 32
+    "outfit space" -32
+    "weapon capacity" -32
+    "turret mounts" -1
+    weapon
+        sprite "projectile/energy lance"
+        "hit effect" "drak bolt impact"
+        "die effect" "drak bolt impact"
+        velocity 16
+        lifetime 256
+        inaccuracy 0.5
+        "shield damage" 64
+        "hull damage" 64
+        reload 8
+        homing 1
+        tracking 1
+        turn 4
+        acceleration 1
+        drag 0.1
+        "hit force" 4
+        "firing energy" 64
+        "firing heat" 16
+        "missile strength" 32
+    description "This Monad weapon mounts two Energy Lances on a single turret mount for a devastating amount of firepower compared with its relatively small size."
+
+outfit "Energy Minelayer"
+    category "Turrets"
+    thumbnail "outfit/unknown"
+    mass 64
+    "outfit space" -64
+    "weapon capacity" -64
+    "turret mounts" -1
+    weapon
+        sprite "projectile/energy mine"
+        "hit effect" "piercer explosion"
+        "die effect" "piercer explosion"
+        velocity 0
+        lifetime 16384
+        inaccuracy 8
+        "shield damage" 256
+        "hull damage" 256
+        reload 32
+        homing 0
+        tracking 0
+        turn 0
+        acceleration 0
+        "hit force" 8
+        "firing energy" 256
+        "firing heat" 32
+        "missile strength" 64
+    description "This is the Monads' primary defensive weapon, a turret that lays mines made of pure energy, encased in a weak force field. Hitting the mines will cause them to explode and do large amounts of damage."
+
+outfit "Energy Shadow Generator"
+    category "Guns"
+    thumbnail "outfit/unknown"
+    mass 32
+    "outfit space" -32
+    "weapon capacity" -32
+    "gun ports" -1
+    weapon
+        sprite "projectile/energy shadow"
+            "frame rate" 1
+        "hit effect" "banisher impact"
+        velocity 400
+        lifetime 1
+        inaccuracy 1
+        "shield damage" 0
+        "hull damage" 0
+        reload 1
+        "firing energy" 1
+        "firing heat" 1
+        "ion damage" 1
+    description "The Energy Shadow Generator does no damage, but its true purpose is to create a beam of negative energy that will absorb a target's energy and disable it."
+
+outfit "Energy Shadow Turret"
+    category "Turrets"
+    thumbnail "outfit/unknown"
+    mass 64
+    "outfit space" -64
+    "weapon capacity" -64
+    "turret mounts" -1
+    weapon
+        sprite "projectile/energy shadow"
+        "hit effect" "banisher impact"
+        velocity 512
+        lifetime 1
+        inaccuracy 1
+        "shield damage" .1
+        "hull damage" .01
+        reload 1
+        "firing energy" 1
+        "firing heat" 1
+        "ion damage" 1
+    description "This formidable weapon is an Energy Shadow Generator that can fire in any direction, delivering devastating negative energy signatures and disabling the target."
+
+outfit "Energy Lens System"
+    category "Turrets"
+    thumbnail "outfit/unknown"
+    mass 128
+    "outfit space" -128
+    "weapon capacity" -128
+    "turret mounts" -1
+    weapon
+        sprite "projectile/energy lens"
+        "hit effect" "finisher impact"
+        "die effect" "finisher impact"
+        velocity 64
+        lifetime 512
+        inaccuracy 0
+        "shield damage" 16000
+        "hull damage" 32000
+        reload 60
+        "firing energy" 2000
+        "firing heat" 4
+        "ion damage" 32
+    description "This is the most powerful weapon in existence, greater even than the Drak's dreaded Antimatter Cannon. It symbolizes the Monads' quest for perfect engineering, and it is very nearly perfect itself. It generates very little heat and uses a complex system of prisms and lenses to maximize its firepower. For obvious reasons, the Drak destroyed all copies of the Energy Lens System, and killed those who knew its secrets. Still, there are rumors that some ancient Lens Systems may yet survive."
