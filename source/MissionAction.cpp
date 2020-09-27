@@ -46,8 +46,7 @@ namespace {
 		bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
 		message = (isVowel ? "An " : "A ");
 		message += noun;
-		if(ui)
-			ui->Push(new Dialog(message + ", the " + model->ModelName() + " \"" + name + ",\" was added to your fleet!"));
+		Messages::Add(message + ", the " + model->ModelName() + " \"" + name + ",\" was added to your fleet.");
 	}
 	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
