@@ -33,6 +33,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name, UI *ui)
+	{
+		if(model->ModelName().empty())
+			return;
+		
+		player.BuyShip(model, name, true);
+		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet.");
+	}
+	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
 		Ship *flagship = player.Flagship();
@@ -186,11 +195,18 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation.Load(child);
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
+		else if(key == "give" && hasValue)
+		{
+			if(child.Token(1) == "ship" && child.Size() >= 3)
+				giftShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
+			else
+				child.PrintTrace("Skipping unsupported \"give\" syntax:");
+		}
 		else if(key == "outfit" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			if(count)
-				gifts[GameData::Outfits().Get(child.Token(1))] = count;
+				giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 			else
 			{
 				// outfit <outfit> 0 means the player must have this outfit.
@@ -297,7 +313,9 @@ void MissionAction::Save(DataWriter &out) const
 		if(!conversation.IsEmpty())
 			conversation.Save(out);
 		
-		for(const auto &it : gifts)
+		for(const auto &it : giftShips)
+			out.Write("ship", it.first->ModelName(), it.second);
+		for(const auto &it : giftOutfits)
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
@@ -342,7 +360,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		return false;
 	
 	const Ship *flagship = player.Flagship();
-	for(const auto &it : gifts)
+	for(const auto &it : giftOutfits)
 	{
 		// If this outfit is being given, the player doesn't need to have it.
 		if(it.second > 0)
@@ -445,12 +463,14 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		for(const auto &eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
+	for(const auto &it : giftShips)
+		DoGift(player, it.first, it.second, ui);
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
-	for(const auto &it : gifts)
+	for(const auto &it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
-	for(const auto &it : gifts)
+	for(const auto &it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
 	
@@ -494,7 +514,9 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}
-	result.gifts = gifts;
+	for(const auto &it : giftShips)
+		result.giftShips[it.first] = !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get();
+	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
