@@ -39,14 +39,7 @@ namespace {
 			return;
 		
 		player.BuyShip(model, name, true);
-		
-		string noun = model->Noun();
-		string message;
-		char c = tolower(noun.front());
-		bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
-		message = (isVowel ? "An " : "A ");
-		message += noun;
-		Messages::Add(message + ", the " + model->ModelName() + " \"" + name + ",\" was added to your fleet.");
+		Messages::Add("The " + model->ModelName() + " \"" + name + ",\" was added to your fleet.");
 	}
 	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
