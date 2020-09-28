@@ -39,7 +39,7 @@ namespace {
 			return;
 		
 		player.BuyShip(model, name, true);
-		Messages::Add("The " + model->ModelName() + " \"" + name + ",\" was added to your fleet.");
+		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet.");
 	}
 	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
@@ -200,7 +200,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(child.Token(1) == "ship" && child.Size() >= 3)
 				giftShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
 			else
-				child.PrintTrace("Skipping unsupported give syntax:");
+				child.PrintTrace("Skipping unsupported \"give\" syntax:");
 		}
 		else if(key == "outfit" && hasValue)
 		{
