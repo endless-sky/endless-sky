@@ -73,7 +73,7 @@ mission "Hai Rescue: Yeertle Family"
 		log `Found a Hai family that had been locked up by some crooked merchants meant to be providing transport. A lively bunch, returned them to <destination>.`
 		payment 350000
 		"hai slave prereq" ++
-		dialog `The Yeertle family is ecstatic to be home after their long ordeal and gladly give you <payment>. They promise to look at the background checks of human pilots before hiring next time.`
+		dialog `The Yeertle family is ecstatic to be home after their long ordeal and gladly give you <payment>. They promise to run background checks of human pilots before hiring next time.`
 	npc
 		government "Bounty Hunter that Won't Enter Hai Space"
 		personality plunders disables unconstrained
@@ -194,7 +194,7 @@ mission "Hai Rescue: Ooonem"
 					goto pay
 				`	"Why are you on a pirate planet?"`
 					goto hai
-				`	"I'm not one of who?"`
+				`	"I'm not one of whom?"`
 					goto who
 				`	"Sorry, but you'll have to find another ride."`
 					goto decline
@@ -240,7 +240,7 @@ mission "Hai Rescue: Meroot and Lucy"
 	on offer
 		"Hai Rescue: Meroot and Lucy (offer count)" ++
 		conversation
-			`As you walk through a major street, you notice a small alcove in the side of one building. Your sharp pilot eyes spot a woman within, with tufts of hair across her body. She's probably a Hai. Another woman, clearly human, is walking nearby carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel.`
+			`As you walk through a major street, you notice a small alcove in the side of one building. Your sharp pilot eyes spot something hiding inside with tufts of hair across its body. It's probably a Hai, and it looks to be a female one. A woman approaches the alcove carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel..`
 			`	Do you want to investigate?`
 			choice
 				`	(Investigate.)`
@@ -283,7 +283,7 @@ mission "Hai Rescue: Meroot and Lucy"
 		log `Rescued a pair of researchers: a Hai woman named Meroot and a human woman named Lucy. They were kidnapped by men who brought them to Canyon. Returned them to <destination> where they now live together. They don't know the identities of the kidnappers.`
 		payment 315000
 		"hai slave prereq" ++
-		dialog `Meroot and Lucy thank you for your help and give you <payment>. Lucy decides to live in Hai space with Meroot, "It's safer here." The two don't know who the men were that kidnapped them.`
+		dialog `Meroot and Lucy thank you for your help and give you <payment>. Lucy decides to live in Hai space with Meroot. "It's safer here," she explains. You ask, but the two have no idea who the men that kidnapped them were.`
 	npc
 		government "Bounty Hunter that Won't Enter Hai Space"
 		personality plunders disables unconstrained

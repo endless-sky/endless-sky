@@ -539,7 +539,7 @@ mission "Hai Leaks Response 2"
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
-		log `You have brought a number of diplomatic representatives from each of the main human factions to Hai-home to attend to the crisis in a collaborative manner. They do not believe any of their automatic responses that have already been engaged will be enough to suppress the information leak, though there is a reasonable model for how long they have to work with. While they work on the problem though you have been asked to help route some pirates. Apparently less scrupulous individuals have reacted swiftly to the leak and investigated in the hopes of scoring quickly.`
+		log `Brought human diplomatic representatives from each human faction to Hai-home to address the crisis. Something drastic needs to be done to keep the secret from entirely bursting, but they know how long they will have to work with. Asked to route pirates hoping to benefit from the chaos while they work on a solution.`
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business when Sayari inquires how your journey went.`
@@ -890,7 +890,7 @@ mission "Hai Leaks Response 6"
 				`	"Hmm. No, I probably didn't miss much."`
 			`	He chuckles. "Anyway, I have a hunch that we'll need you before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part', as it were, of an exclusive role-play community, just chilling out here and having fun."`
 			`	"I hear you've been instrumental in driving off some opportunistic pirates and helping stem the information leak. Come on, I'll buy you a drink on the others' behalf."`
-			`	Some hours later you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep, your cabin by far seems to be the best place to not be bothered.`
+			`	Some hours later, you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep. Your cabin by far seems to be the best place to not be bothered.`
 			`	Partway there, a hooded figure suddenly falls in step beside you.`
 			choice
 				`	(Keep walking.)`
@@ -933,7 +933,7 @@ mission "Hai Leaks Response 7"
 		"hai slave prereq" >= 3
 	on offer
 		conversation
-			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you have enough information for Sayari.`
+			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you should go tell Sayari first to see how to proceed.`
 				decline
 
 event "role-play fleet deception"
