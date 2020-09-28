@@ -3454,8 +3454,8 @@ mission "Remnant: Expanded Horizons Astral 1"
 	passengers 1
 	minor
 	to offer
-		has "Remnant: Expanded Horizons Quarg 3"
-		random < 25
+		has "Remnant: Expanded Horizons Quarg 3: done"
+		# random < 25
 	source
 		government "Remnant"
 	destination
@@ -3489,19 +3489,18 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"Thanks for the advice, but that is our purpose here - to worry about all the stuff that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
 			label help
 			`	"If you would like to help, there is something you can do. I am currently putting together an expedition to Sagittarius A*, and I could use a transport..."`
-			branch sagittarius
-				has `visited "Sagittarius A*"`
 			choice
 				`	"I don't know where that is."`
 					goto center
 				`	"Isn't that the center of the galaxy?"`
-			`	"Yes, that is correct." She signs firmly.`
-				goto center
-			label sagittarius
-			choice
+					goto centeralt
 				`	"I have been there."`
 				`	"I have visited it a few times."`
+			label sagittarius
 			`	"Really?" She looks surprised. "I have seen sensor logs and recordings from previous visits, but not many people have actually been there." She pauses to take a bite from her neglected meal. "Being able to take part in these expeditions is something I have been looking forward to for ages, so of course Sagittarius A* is the first place on my list."`
+				goto center
+			label centeralt
+			`	"Yes, that is correct." She signs firmly.`
 			label center
 			`	Her signs take on a rhythmic pace as if reciting something. "Sagittarius A* is a strong astronomical radio source and a supermassive black hole that is located at the Center of the Milky Way. According to our best measurements, it has a mass of 3F6290 solar masses, and is surrounded by a ring of gas and dust that can range from 63 to 24D2 degrees Kelvin."`
 			`	She returns to a conversational cadence. "Would you be interested in taking part in this expedition?"`
@@ -3613,7 +3612,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 	passengers 1
 	waypoint "Sagittarius A*"
 	to offer
-		has "Remnant: Expanded Horizons Astral 1"
+		has "Remnant: Expanded Horizons Astral 1: done"
 		require "Jump Drive" >= 1
 		require "Research Laboratory" >= 1
 	to complete
