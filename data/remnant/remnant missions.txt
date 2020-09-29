@@ -2261,7 +2261,6 @@ mission "Remnant: Face to Maw 2"
 	on complete
 		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
 		"remnant met taely" ++
-		payment 1000000
 		conversation
 			branch taely
 				"remnant met taely" > 1
@@ -2288,7 +2287,8 @@ mission "Remnant: Face to Maw 2"
 			label skip
 			`	The ship before you has some faint traces of the Puffin you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
-			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the Penguin and it makes a whooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
+			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one." She pats the nose of the Penguin and it makes a whooshing noise. "I call her the 'Shadow Hope,' but you can rename her whatever you like." After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
+		give ship "Penguin" "Shadow Hope"
 
 event "remnant: penguin"
 	shipyard "Remnant Puffin"

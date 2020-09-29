@@ -546,7 +546,7 @@ ship "Penguin"
 		"energy capacity" 300
 		"ramscoop" 0.5
 		"cargo space" 19
-		"outfit space" 108
+		"outfit space" 109
 		"weapon capacity" 33
 		"engine capacity" 54
 		"shield generation" 1
