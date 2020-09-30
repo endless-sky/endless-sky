@@ -2264,7 +2264,7 @@ mission "Remnant: Face to Maw 2"
 		payment 1000000
 		conversation
 			branch taely
-				"remnant met taely" > 1
+				"remnant met taely" >= 1
 			`When you land on Viminal a solidly built female Remnant in coveralls is waiting for you. "Greetings, Captain <first>. My name is Taely, and I am a Prefect among the Remnant. Above all else, I study motion, and in particular how our starships move."`
 				goto main
 			label taely
