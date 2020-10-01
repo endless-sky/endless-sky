@@ -1636,15 +1636,15 @@ phrase "friendly civilian"
 		"around Earth"
 		"around Mars"
 	word
-		". "
-		"! "
+		"."
+		"!"
 	word
 		""
-		"Can you believe that?"
-		"Do you want to see it?"
-		"It was in an unstable orbit."
-		"Must have been launched in the old days."
-		"Unbelievable what people sent into space back then."
+		" Can you believe that?"
+		" Do you want to see it?"
+		" It was in an unstable orbit."
+		" Must have been launched in the old days."
+		" Unbelievable what people sent into space back then."
 
 phrase "friendly civilian"
 	word
