@@ -5,7 +5,6 @@ DIR_ESLIB ?= C:\dev64
 DIR_MINGW64 ?= C:\Program\ Files\mingw64\x86_64-w64-mingw32
 OUTPUT_DIR ?= bin
 SRC_ROOT ?= src
-IMPL_DIR ?= ../obj/Debug
 OBJECT_DIR ?= obj
 
 # You should not need to modify the lines below.
@@ -17,9 +16,6 @@ exe := $(OUTPUT_DIR)/endless-sky-tests.exe
 source_dirs ::= $(sort $(dir $(wildcard $(SRC_ROOT)/*/)))
 # Get all .cpp files in all test source directories.
 sources ::= $(foreach dir,$(source_dirs),$(wildcard $(dir)*.cpp))
-
-# Get the actual implementation files, to enable test code to resolve references.
-implementations ::= $(filter-out $(IMPL_DIR)/main.o,$(wildcard $(IMPL_DIR)/*.o))
 
 # Compute needed objects by swapping the .cpp extension for .o, and swapping
 # the basepath component (i.e. $(SRC_ROOT)) for the build (sub)directory.
@@ -40,14 +36,15 @@ LDFLAGS += -L$(DIR_ESLIB)/lib $(ldd_extra)
 # Include the Windows Multimedia API.
 LDLIBS += -lwinmm
 
-# MAYBE: Don't pull in the dev64 static libs either.
-archives ::= $(wildcard $(DIR_ESLIB)/lib/*.a) \
-	$(DIR_MINGW64)/lib/libmingw32.a \
-	$(DIR_MINGW64)/lib/libopengl32.a
+archives ::= ../lib/Release/libendless-sky.a \
+# Don't pull in the dev64 static libs (this will likely change as more classes are tested).
+#	$(wildcard $(DIR_ESLIB)/lib/*.a) \
+#	$(DIR_MINGW64)/lib/libmingw32.a \
+#	$(DIR_MINGW64)/lib/libopengl32.a
 
 # Default target (linker step)
 $(exe): $(objects) | $(OUTPUT_DIR)
-	$(LD) -o $@ $^ $(implementations) $(LDFLAGS) $(LDLIBS) -Wl,-\( $(archives) -Wl,-\)
+	$(LD) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Wl,-\( $(archives) -Wl,-\)
 
 # Include .o dependencies to ensure changing any of the .cpp's included headers
 # triggers the .o recompilation (this must be defined after the desired exe definition).
@@ -82,9 +79,10 @@ default all: test
 test: export build_dir := foo
 
 # Define compiler and linker flags for use by subprocess
-test: export cxx_extra := -g
-# release: export cxx_extra := -O2 -march=native
-# release dist: export ldd_extra := -Wl,-O2 -s
+# need to ensure test flags are same as those used to compile the library
+test: export cxx_extra := -O2 -march=native
+coverage: export cxx_extra := -g --coverage
+coverage: export ldd_extra := lgcov --coverage # need to also add linker lib ref to mingw's libgcov.a
 
 # Invoke the subprocess (-f flag is not sent in MAKEFLAGS)
 test:

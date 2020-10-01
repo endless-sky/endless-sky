@@ -5,5 +5,8 @@
 			<Depends filename="EndlessSkyLib.cbp" />
 		</Project>
 		<Project filename="EndlessSkyLib.cbp" />
+		<Project filename="EndlessSkyTests.cbp">
+			<Depends filename="EndlessSkyLib.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>
