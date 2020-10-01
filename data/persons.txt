@@ -799,6 +799,7 @@ ship "Ursa Polaris"
 	explode "huge explosion" 50
 
 
+
 person "Subsidurial"
 	government "Indigenous Lifeform"
 	frequency 100
