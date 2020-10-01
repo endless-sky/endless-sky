@@ -2264,7 +2264,7 @@ mission "Remnant: Face to Maw 2"
 		payment 1000000
 		conversation
 			branch taely
-				"remnant met taely" >= 1
+				has "remnant met taely"
 			`When you land on Viminal a solidly built female Remnant in coveralls is waiting for you. "Greetings, Captain <first>. My name is Taely, and I am a Prefect among the Remnant. Above all else, I study motion, and in particular how our starships move."`
 				goto main
 			label taely
@@ -2320,7 +2320,7 @@ mission "Remnant: Face to Maw 2B"
 		outfit "Void Rifle"
 		conversation
 			branch chilia
-				"remnant chilia" > 1
+				has "remnant chilia"
 			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly. "I say 'nominal' as virtually all our activities are militaristic in some way, but usually fall under the purview of those who better understand them."`
 				goto main
 			label chilia
@@ -2403,7 +2403,7 @@ mission "Remnant: Crystal Research 1"
 				`	"Sounds good."`
 					accept
 			branch remnantuntrusted
-				"remnant untrusted" >= 1
+				has "remnant untrusted"
 			`	Aeolus looks faintly amused. "While you are certainly adventurous, you are not the only one to have traveled widely. We mapped the Hai systems long ago with cloaked ships, but never landed or contacted any of them. So we never knew anything more than what we could observe from orbit or from scanning ships. But you are known to them, and have a fairly public reputation. By using your transponder codes, we can place and pay for orders through hyperspace relays. All we need is a ship in position to feed the signal into the network."`
 				accept
 			label remnantuntrusted
@@ -2902,7 +2902,7 @@ mission "Remnant: Cognizance 4"
 		"remnant chilia" ++
 		conversation
 			branch chilia
-				"remnant chilia" > 1
+				has "remnant chilia"
 			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A glance at the viewscreen shows a fit young man with a military bearing standing at your airlock. You quickly check with the starport control and confirm that the prefect in charge of Remnant military activities is indeed waiting to board your ship. You hit the unlock button and watch as Prefect Chilia strides onboard.`
 			`	"Greetings, Captain <first>," he signs. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly. "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them.`
 				goto main
