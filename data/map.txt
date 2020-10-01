@@ -20652,6 +20652,7 @@ system Saquergen
 	government Uninhabited
 	habitable 100
 	belt 1435
+	haze _menu/haze-blackbody
 	asteroids "small rock" 3 3.9105
 	asteroids "medium rock" 1 4.3255
 	asteroids "small metal" 2 6.7143
