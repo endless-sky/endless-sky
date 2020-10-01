@@ -1636,8 +1636,8 @@ phrase "friendly civilian"
 		"around Earth"
 		"around Mars"
 	word
-		"."
-		"!"
+		". "
+		"! "
 	word
 		""
 		"Can you believe that?"
