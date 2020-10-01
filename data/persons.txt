@@ -673,7 +673,7 @@ person "Local God"
 			" and "
 		word
 			"retire as an outfit dealer."
-			"open a univeral outfitter."
+			"open a universal outfitter."
 			"start dealing exotic outfits."
 			"sell outfits from everywhere."
 			"stock outfits from all over the place."
