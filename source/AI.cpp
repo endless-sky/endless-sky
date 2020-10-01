@@ -1755,7 +1755,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
-	if(dp.Length() < radius && shouldReverse)
+	if(shouldReverse && dp.Length() < radius)
 	{
 		// We can directly use the reverse thrusters to stop at the target.
 		command |= Command::BACK;
@@ -1900,7 +1900,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 	command.SetTurn(TurnToward(ship, direction));
 
 	double length = direction.Length();
-	if(ship.Facing().Unit().Dot(direction) >= 0. && length > 200.)
+	if(length > 200. && ship.Facing().Unit().Dot(direction) >= 0.)
 	{
 		command |= Command::FORWARD;
 
