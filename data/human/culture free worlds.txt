@@ -9,3 +9,22 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 # "Missions" which add culture events to the spaceport.
+
+#mission "War of the Pig"
+	landing
+	to offer
+		and
+			month == 6
+			day >= 10
+			day <= 20
+	source
+			attributes "spaceport" "farming" "south"
+	on offer
+		conversation
+		`Farm world spaceports tend to be lonely affairs outside of harvesting season, but this one is bustling with festive energy. A statue of a bronze pig seems to be a permanent feature of the spaceport. Today it's surrounded by rows of colorful tents and throngs of the planet's natives. Most spaces that aren't taken by a silo, barn, or hangar of some sort have had a refreshment stand, game, or exhibition set up - the remaining few patches of ground are occupied by the feet of the planet's inhabitants. Music fills the air, cheap beer flows like water, and fried food sizzles enticingly as it exits vats of oil.`
+		choice
+			`	Carry on with your business. You can always come back next year.`
+				defer
+			`	Stop and take in the sights - and maybe a soft pretzel or three.`
+		
+		fail
