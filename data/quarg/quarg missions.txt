@@ -238,7 +238,7 @@ mission "Ask Quarg About Coalition Early"
 					decline
 			`	You stop the first Quarg that passes by you, and ask if they could tell their side of the story about the Coalition.`
 			`	"Ah, so you have encountered the foolish Coalition," it begins. "They once were three promising species, before they succumbed to the unwise desire for usurpation of the great deeds of others.`
-			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs"`
+			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs."`
 			choice
 				`	"Is it true that they defeated you?"`
 					goto defeat
