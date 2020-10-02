@@ -1709,7 +1709,7 @@ mission "FWC Pug 3D: Reinforcements"
 mission "FWC Pug 4"
 	landing
 	name "Defend <system>"
-	description "Drive off the Pug fleet that is invading <system>"
+	description "Drive off the Pug fleet that is invading <system>."
 	source Oblivion
 	destination Oblivion
 	clearance
