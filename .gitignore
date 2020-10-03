@@ -1,5 +1,6 @@
 # Compiled Binaries and shortcuts
-/endless-sky
+endless-sky
+libendless-sky.a
 *.exe
 *.lnk
 
