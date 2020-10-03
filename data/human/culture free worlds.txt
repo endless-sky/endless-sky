@@ -10,7 +10,7 @@
 
 # "Missions" which add culture events to the spaceport.
 
-#mission "War of the Pig"
+#mission "The Great Pig War"
 	landing
 	to offer
 		and
@@ -21,10 +21,15 @@
 			attributes "spaceport" "farming" "south"
 	on offer
 		conversation
-		`Farm world spaceports tend to be lonely affairs outside of harvesting season, but this one is bustling with festive energy. A statue of a bronze pig seems to be a permanent feature of the spaceport. Today it's surrounded by rows of colorful tents and throngs of the planet's natives. Most spaces that aren't taken by a silo, barn, or hangar of some sort have had a refreshment stand, game, or exhibition set up - the remaining few patches of ground are occupied by the feet of the planet's inhabitants. Music fills the air, cheap beer flows like water, and fried food sizzles enticingly as it exits vats of oil.`
+		`Farm world spaceports tend to be lonely affairs outside of harvesting season, but this one is bustling with festive energy. A statue of a bronze pig seems to be a permanent feature of the spaceport. Today it's surrounded by rows of colorful tents and throngs of the planet's natives. Most spaces that aren't taken by a silo, barn, or hangar of some sort have had a refreshment stand, game, or exhibition set up - the remaining few patches of ground are occupied by the feet of the planet's inhabitants. Live music fills the air, cheap beer flows like water, and fried food sizzles enticingly as it vacates vats of oil.`
 		choice
 			`	Carry on with your business. You can always come back next year.`
 				defer
 			`	Stop and take in the sights - and maybe a soft pretzel or three.`
-		
+		'Conversation with the locals eventually turns to the matter of what they're celebrating in the first place. As it turns out, the bronzed pig holds the clue. Today is the anniversary of the Great Pig War, a conflict which apparently raged between the Southern Defense Pact and the Syndicate unbeknowst to the larger galaxy. Toasts are raised in honor of nine heroic pilots - and to the memory of a single martyrd swine.`
+		`"Back in thousun'eight," a reveler drunkenly explains to you, "Half the farms'n'ranches'honesfolks about this planet were either about ready to leave or takin' out a second mortgage on their property. Bankers from richer worlds were always comin' about to reposess something or another." A passer-by spits on the ground in disgust at the mention of those times - or perhaps he'd just succeeded in extricating some shredded pork from his teeth. "So some good honest boys decided they'd had enough of payin' tariffs and honoring exclusive shipping rights n' rot like that. They came 'round, bought up a whole herd of swine, and took off to feed some hungry folks in the Syndicate. Trouble is, back in those days the Syndicate had a stranglehold on shipping grain n' livestock. Either you signed up with this one shipping company and let them eat all your profits, or you let your harvest rot. Getting to market without being a member was... Somewhat frowned upon."`
+		`By this point several others have gathered around the speaker. It would appear that recounting the tale of the Great Pig War to strangers is part of the tradition. "... Mnh. S'anyways. Some boys flew over to Maker with a hundred-"`
+		`The speaker is interrupted by a shout of "I'd heard it was a thousand!"`
+		`"Quiet down! Ain't no way you could fit a thousand swine onto a hauler. Alright, so they've got two hundred pigs in their hold when they try to land on Maker. Syndicate Security shows up-" Boos echo throughout the crowd "- and tell these good, upright, honest smugglers that they're to match velocity n' prepare to be boarded. Now, they aren't about to bow down, so they make a break for the edges of the system but start taking hits. Quicksilvers are buzzin', protectors lumberin' after them, and their shields go down. A particle cannon punches straight through the hull, and our good, kind, noble, brave boys n' girls stop their ship and start patchin' the whole, ready to surrender."`
+		`The listeners go quiet. Tense anticipation fills the air. If not for the jolly music and overwhelming clamor of the crowd around your little huddle, all would be hushed. "And that's when nine green-painted angels punched outta' hyperspace and began streaking towards our little drama. 
 		fail
