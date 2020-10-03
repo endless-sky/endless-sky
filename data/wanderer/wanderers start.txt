@@ -1995,7 +1995,7 @@ mission "Wanderers Solifuge Recon 2"
 mission "Wanderers Solifuge Recon 3"
 	landing
 	name "New Unfettered ships"
-	description "Ambassador Sayari is concerned that the development of the Solifuge could become a problem for the Hai, and has asked that you deliver a message to the council of elders on <destination>."
+	description "Ambassador Sayari is concerned that the development of the Solifuge could become a problem for the Hai and has asked that you deliver a message to the council of elders on <destination>."
 	source "Vara Ke'sok"
 	destination "Hai-home"
 	clearance
@@ -2016,7 +2016,7 @@ mission "Wanderers Solifuge Recon 3"
 mission "Wanderers Solifuge Recon 4"
 	landing
 	name "Return to <planet>"
-	description "Return to <destination> where an evacuation fleet is waiting to be escorted."
+	description "Return to <destination>, where an evacuation fleet is waiting to be escorted."
 	source "Hai-home"
 	destination "Vara Ke'sok"
 	to offer
@@ -2052,11 +2052,11 @@ mission "Wanderers Solifuge Recon 4"
 					goto busy
 				`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
 			
-			`	"Sayari's message mentions that you are still needed by the Wanderers," Torsa's father responds. "Perhaps you should return to where you are needed the most, but when you are able to help us, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you a safe travel back to <planet>.`
+			`	"Sayari's message mentions that you are still needed by the Wanderers," Torsa's father responds. "Perhaps you should return to where you are needed the most, but when you are able to help us, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
 				accept
 			
 			label busy
-			`	"This is understandable," Torsa's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you a safe travel back to <planet>.`
+			`	"This is understandable," Torsa's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
 				accept
 
 
