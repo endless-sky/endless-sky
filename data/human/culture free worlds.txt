@@ -10,7 +10,7 @@
 
 # "Missions" which add culture events to the spaceport.
 
-#mission "The Great Pig War"
+mission "The Great Pig War"
 	landing
 	to offer
 		and
