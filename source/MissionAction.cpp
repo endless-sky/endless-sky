@@ -33,7 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const string &name, UI *ui)
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
 	{
 		if(model->ModelName().empty())
 			return;
@@ -195,10 +195,23 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation.Load(child);
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		else if(key == "give" && hasValue)
+		else if(key == "give")
 		{
-			if(child.Token(1) == "ship" && child.Size() >= 3)
-				giftShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
+			if(child.Size() >= 3 && child.Token(1) == "ship")
+				giftStockShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
+			else if(!hasValue && child.HasChildren())
+			{
+				for(const DataNode &grand : child)
+					if(grand.Token(0) == "ship" && grand.Size() >= 2)
+					{
+						shared_ptr<Ship> ship = make_shared<Ship>(grand);
+						if(grand.Size() >= 3)
+							ship->SetName(grand.Token(2));
+						giftShips.emplace_back(ship);
+					}
+					else
+						grand.PrintTrace("Skipping unsupported \"give\" syntax:");
+			}
 			else
 				child.PrintTrace("Skipping unsupported \"give\" syntax:");
 		}
@@ -314,7 +327,14 @@ void MissionAction::Save(DataWriter &out) const
 			conversation.Save(out);
 		
 		for(const auto &it : giftShips)
-			out.Write("give", "ship", it.first->ModelName(), it.second);
+		{
+			out.Write("give");
+			out.BeginChild();
+			{
+				it->Save(out);
+			}
+			out.EndChild();
+		}
 		for(const auto &it : giftOutfits)
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
@@ -464,7 +484,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
 	for(const auto &it : giftShips)
-		DoGift(player, it.first, it.second, ui);
+		DoGift(player, it.get(), it.get()->Name());
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(const auto &it : giftOutfits)
@@ -514,8 +534,22 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}
-	for(const auto &it : giftShips)
-		result.giftShips[it.first] = !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get();
+	
+	for(const shared_ptr<Ship> &it : giftShips)
+	{
+		// This ship is being defined from scratch.
+		shared_ptr<Ship> ship = make_shared<Ship>(*it);
+		ship->FinishLoading(true);
+		if(ship->Name().empty())
+			ship->SetName(GameData::Phrases().Get("civilian")->Get());
+		result.giftShips.push_back(ship);
+	}
+	for(const auto &it : giftStockShips)
+	{
+		shared_ptr<Ship> ship = make_shared<Ship>(*it.first);
+		ship->SetName(!it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
+		result.giftShips.push_back(ship);
+	}
 	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;

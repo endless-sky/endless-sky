@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LocationFilter.h"
 #include "Phrase.h"
 
+#include <list>
 #include <map>
 #include <memory>
 #include <set>
@@ -83,7 +84,8 @@ private:
 	Conversation conversation;
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::map<const Ship *, std::string> giftShips;
+	std::map<const Ship *, std::string> giftStockShips;
+	std::list<std::shared_ptr<Ship>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 	std::map<const Outfit *, int> requiredOutfits;
 	int64_t payment = 0;
