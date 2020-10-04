@@ -33,7 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const string &name, UI *ui)
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
 	{
 		if(model->ModelName().empty())
 			return;
@@ -314,7 +314,7 @@ void MissionAction::Save(DataWriter &out) const
 			conversation.Save(out);
 		
 		for(const auto &it : giftShips)
-			out.Write("give", "ship", it.first->ModelName(), it.second);
+			out.Write("give", "ship", it.first->VariantName(), it.second);
 		for(const auto &it : giftOutfits)
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
@@ -464,7 +464,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
 	for(const auto &it : giftShips)
-		DoGift(player, it.first, it.second, ui);
+		DoGift(player, it.first, it.second);
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(const auto &it : giftOutfits)
