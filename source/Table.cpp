@@ -200,7 +200,7 @@ void Table::DrawOppositeTruncRight(int width, const string &left, const Color &l
 void Table::DrawOppositeTruncLeft(int width, const string &left, const Color &leftColor,
 	const string &right, const Color &rightColor, Font::Truncate trunc)
 {
-	const Font::Layout layoutRight{-1, Font::TRUNC_NONE, Font::LEFT};
+	const Font::Layout layoutRight{width, Font::TRUNC_NONE, Font::RIGHT};
 	const int rightWidth = font->Width(right, layoutRight);
 	const Font::Layout layoutLeft{width - rightWidth, trunc, Font::LEFT};
 	Draw(left, leftColor, &layoutLeft);
