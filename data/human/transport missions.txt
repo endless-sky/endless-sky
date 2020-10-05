@@ -3225,7 +3225,7 @@ mission "Earth Retirement"
 
 mission  	"The Arthifac"
 	name "Transport Arthifac and group of the researcher to Earth"
-	description "Transport the arthifacs and group of researcher back to destination,but they only have <payment> to pay the transport"
+	description "Transport the arthifacs and group of researcher back to <destination>,but they only have <payment> to pay the transport"
 	minor	
 	source "Asgard"
 	destination "Earth"	
