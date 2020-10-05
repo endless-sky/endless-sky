@@ -3223,37 +3223,46 @@ mission "Earth Retirement"
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 
 
-mission "Help rebel,Part 1"
-	name  "Suply Rebellion"
-	description "Deliver <cargo> to support rebellion in <destination>
-	source  
-		atrributes    "the rim"
-		government "Free Worlds"
-	destination "Kraz"
+mission  	"The Arthifac"
+	name "Transport Arthifac and group of the researcher to Earth"
+	description "Transport the arthifacs and group of researcher back to destination,but they only have <payment> to pay the transport"
+	minor	
+	source "Asgard"
+	destination "Earth"	
 
-	cargo "weapon"  20
-	stealth
-	
+	to offer 
+		random < 20
+
+	passenger 5
+	cargo "The Arthifacs" 2
+
 	on offer
 		conversation
-			`when you were getting off your plane and checking the cargo,suddenly someone approaches you to chat for a while`
+			`As you leave your ship and walking to the spaceport canteen, you see a group of researchers talking, they seem so confused because doesn't have any money to transport them back to Earth`
 			choice
-				`	(Accept their invitation.)`
-				`	( refused their invitation.)`
-					decline	
-				`"Hello captain, my name is rob and I really need help to transport these special cargo to  kraz, but don't let any Republics sheep scan it" He says`
-			choice
-				'	"Can i see the cargo"`
-				`	"Why the Republics sheep can't scan it"`
-				`	"very suspicious, i'm sorry i can't"`
+				`	(offer them a transport.)`
+				`	(ignore.)`
 					decline
-				` 	(accept)`
+			`"Hey, can I help you?" you ask them, "oh yeah, we need help, we don't have enough money to pay transport back us to earth, all of the money is spent to find this valuable artifact," said one of them while pointing out a strange artifact. (it looks like he was the leader of the group)`
+			`The artifact looks very strange, looks very unique and looks like it comes from a very old civilization`
+			`"we hope on earth we can research it even further"he said'
+			choice
+				`"	Wow, what a discovery, let's get on the ship I'll take you to earth "`
 					accept
-				'"umm..,in this cargo there are supplies to help my friends"`
-			choice	
-				`"	okay alright then"`
+				`"	How much money do you have?"`
+			`"We only have <payment>,what do you think?"`
+			choice
+				`"	No problem,get on my ship"`
 					accept
-				`"	So what's in it?"`
-				`"ok ok, i will explain it I'm actually a member of the rebels who want to free this system from the Republic, and the cargo is a weapon to support the other rebel members on the skymoot."`
-					
-	
+				`"	That's to small, i'm sory i can't transport you"`
+					decline
+			`	"oh really?!,thank you sir, i'm very grateful"he and his groups looks very happy after knowing they will return to earth`
+			`	You escorted them to your ship and helped transport the artifact`
+				accept
+	on complete
+		payment 35000
+		conversation
+			'	the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact".`
+			`	"Thank you captain <last>,here your payment"he gave you <payment> credits`
+			`	"Thanks for you too, i wish you can research more about that arthifacs"you say`
+			`	they say goodbye to you and head to their research facility`				
