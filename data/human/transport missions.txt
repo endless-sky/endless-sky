@@ -3221,3 +3221,48 @@ mission "Earth Retirement"
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			
+mission "The Arthifact"
+	name "Transport a strange Arthifact and group of the researcher to Earth"
+	description "Transport a strange Arthifact and group of researcher back to <destination>,but they only have <payment> to pay the transport"
+	minor	
+	source "Asgard"
+	destination "Earth"	
+
+	to offer 
+		random < 20
+
+	passengers 5
+	cargo "The Arthifact" 2
+
+	on offer
+		conversation
+			`As you leave your ship and walking to the spaceport canteen, you see a group of researchers talking, they seem so confused because doesn't have any money to transport them back to Earth`
+			choice
+				`	(offer them a transport.)`
+				`	(ignore.)`
+					decline
+			`"Hey, can I help you?" you ask them, "oh yeah, we need help, we don't have enough money to pay transport back us to earth, all of the money is spent to find this valuable artifact," said one of them while pointing 
+
+out a strange artifact. (it looks like he was the leader of the group)`
+			`The artifact looks very strange, looks very unique and looks like it comes from a very old civilization`
+			`"we hope on earth we can research it even further"he said.`
+			choice
+				`"	Wow, what a discovery, let's get on the ship I'll take you to earth "`
+					accept
+				`"	How much money do you have?"`
+			`"We only have <payment>,what do you think?"`
+			choice
+				`"	No problem,get on my ship"`
+					accept
+				`"	That's to small, i'm sory i can't transport you"`
+					decline
+			`	"oh really?!,thank you sir, i'm very grateful"he and his groups looks very happy after knowing they will return to earth`
+			`	You escorted them to your ship and helped transport the artifact`
+				accept
+	on complete
+		payment 35000
+		conversation
+				`the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact"."Thank you captain <last>,here your payment"he gave you <payment> 
+
+credits."Thanks for you too, i wish you can research more about that arthifact"you say.they say goodbye to you and head to their research facility.`				
