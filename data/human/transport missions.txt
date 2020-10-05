@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Michael Zahniser
+﻿# Copyright (c) 2014 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -3221,3 +3221,39 @@ mission "Earth Retirement"
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+
+
+mission "Help rebel,Part 1"
+	name  "Suply Rebellion"
+	description "Deliver <cargo> to support rebellion in <destination>
+	source  
+		atrributes    "the rim"
+		government "Free Worlds"
+	destination "Kraz"
+
+	cargo "weapon"  20
+	stealth
+	
+	on offer
+		conversation
+			`when you were getting off your plane and checking the cargo,suddenly someone approaches you to chat for a while`
+			choice
+				`	(Accept their invitation.)`
+				`	( refused their invitation.)`
+					decline	
+				`"Hello captain, my name is rob and I really need help to transport these special cargo to  kraz, but don't let any Republics sheep scan it" He says`
+			choice
+				'	"Can i see the cargo"`
+				`	"Why the Republics sheep can't scan it"`
+				`	"very suspicious, i'm sorry i can't"`
+					decline
+				` 	(accept)`
+					accept
+				'"umm..,in this cargo there are supplies to help my friends"`
+			choice	
+				`"	okay alright then"`
+					accept
+				`"	So what's in it?"`
+				`"ok ok, i will explain it I'm actually a member of the rebels who want to free this system from the Republic, and the cargo is a weapon to support the other rebel members on the skymoot."`
+					
+	
