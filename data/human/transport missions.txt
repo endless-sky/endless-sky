@@ -3223,9 +3223,9 @@ mission "Earth Retirement"
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 
 
-mission  	"The Arthifac"
-	name "Transport Arthifac and group of the researcher to Earth"
-	description "Transport the arthifacs and group of researcher back to <destination>,but they only have <payment> to pay the transport"
+mission  	"The Arthifact"
+	name "Transport a strange Arthifact and group of the researcher to Earth"
+	description "Transport a strange Arthifact and group of researcher back to <destination>,but they only have <payment> to pay the transport"
 	minor	
 	source "Asgard"
 	destination "Earth"	
@@ -3234,7 +3234,7 @@ mission  	"The Arthifac"
 		random < 20
 
 	passenger 5
-	cargo "The Arthifacs" 2
+	cargo "The Arthifact" 2
 
 	on offer
 		conversation
@@ -3264,5 +3264,5 @@ mission  	"The Arthifac"
 		conversation
 			'	the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact".`
 			`	"Thank you captain <last>,here your payment"he gave you <payment> credits`
-			`	"Thanks for you too, i wish you can research more about that arthifacs"you say`
+			`	"Thanks for you too, i wish you can research more about that arthifact"you say`
 			`	they say goodbye to you and head to their research facility`				
