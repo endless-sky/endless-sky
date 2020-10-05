@@ -3263,6 +3263,4 @@ out a strange artifact. (it looks like he was the leader of the group)`
 	on complete
 		payment 35000
 		conversation
-				`the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact"."Thank you captain <last>,here your payment"he gave you <payment> 
-
-credits."Thanks for you too, i wish you can research more about that arthifact"you say.they say goodbye to you and head to their research facility.`				
+				`the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact"."Thank you captain <last>,here your payment"he gave you <payment> credits."Thanks for you too, i wish you can research more about that arthifact"you say.they say goodbye to you and head to their research facility.`				
