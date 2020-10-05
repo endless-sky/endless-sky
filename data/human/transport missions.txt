@@ -3233,7 +3233,7 @@ mission  	"The Arthifact"
 	to offer 
 		random < 20
 
-	passenger 5
+	passengers 5
 	cargo "The Arthifact" 2
 
 	on offer
@@ -3245,7 +3245,7 @@ mission  	"The Arthifact"
 					decline
 			`"Hey, can I help you?" you ask them, "oh yeah, we need help, we don't have enough money to pay transport back us to earth, all of the money is spent to find this valuable artifact," said one of them while pointing out a strange artifact. (it looks like he was the leader of the group)`
 			`The artifact looks very strange, looks very unique and looks like it comes from a very old civilization`
-			`"we hope on earth we can research it even further"he said'
+			`"we hope on earth we can research it even further"he said.`
 			choice
 				`"	Wow, what a discovery, let's get on the ship I'll take you to earth "`
 					accept
@@ -3262,4 +3262,4 @@ mission  	"The Arthifact"
 	on complete
 		payment 35000
 		conversation
-				the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact"."Thank you captain <last>,here your payment"he gave you <payment> credits."Thanks for you too, i wish you can research more about that arthifact"you say.they say goodbye to you and head to their research facility.`				
+				`the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact"."Thank you captain <last>,here your payment"he gave you <payment> credits."Thanks for you too, i wish you can research more about that arthifact"you say.they say goodbye to you and head to their research facility.`				
