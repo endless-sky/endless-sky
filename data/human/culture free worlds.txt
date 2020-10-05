@@ -47,3 +47,17 @@ mission "South Culture: Reposessed"
 		dialog
 		`You arrive at the spaceport just in time to witness a shuttle being towed off its landing pad by a tractor, a familiar blazon displayed upon the spacecraft's doors. Though it's made somewhat harder to recognize by the fact that somebody has spray-painted "REPOSESED" over the logo, it appears that this shuttle belongs to - or used to belong to - the very same galactic bank that cut you the loan for your first ship. If the crowd of jeering locals is anything to go by, it looks like popular opinion here doesn't favor the galaxy's financial instutitons. A group of militia members observe the blatant ship-theft, evidently unwilling to intercede. In fact, some of them are cheering on the hijackers.`
 		fail
+		
+mission "Rim Culture: Reposessed"
+	landing
+	to offer
+		and
+			random < 2
+			"event: war begins"
+	source
+		government "Free Worlds"
+		attributes "spaceport" "urban" "rim"
+	on offer
+		dialog
+		`As you exit your ship, you run overhear a spaceport technician attempting to have an animated conversation with another. "Piracy? And the milita does nothing? That goes against everything we stand for." Stern disapproval colors the speaker's voice. "These clowns're assaulting bankers and taking their shuttles, last I heard. I get that they're frustated out there on the farms and owe money, but that doesn't excuse theft." The technician's partner, currently shoulder-deep in an engine, responds distractedly. "Cool. You gonna' pass me that buffer or not? This Port and Polish ain't about to finish itself." The pair continue to converse as you carry on your way, but it's out of earshot before long.`
+		fail
