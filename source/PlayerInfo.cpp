@@ -2356,7 +2356,8 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 			for(const auto &outfit : ship->Outfits())
 				conditions["outfit: " + outfit.first->Name()] += outfit.second;
 		}
-		++conditions["total ships"];
+		if(!ship->IsDestroyed())
+			++conditions["total ships"];
 	}
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
