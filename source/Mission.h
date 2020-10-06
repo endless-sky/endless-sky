@@ -89,7 +89,7 @@ public:
 	// marked as failing already, mark it and return true.
 	bool CheckDeadline(const Date &today);
 	// Check if you have special clearance to land on your destination.
-	bool HasClearance(const Planet *planet) const;
+	bool HasClearance(const PlayerInfo &player, const Planet *planet) const;
 	// Get the string to be shown in the destination planet's hailing dialog. If
 	// this is "auto", you don't have to hail them to get landing permission.
 	const std::string &ClearanceMessage() const;

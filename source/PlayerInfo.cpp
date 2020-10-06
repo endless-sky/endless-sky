@@ -2809,13 +2809,13 @@ void PlayerInfo::Fine(UI *ui)
 	
 	// Planets should not fine you if you have mission clearance or are infiltrating.
 	for(const Mission &mission : missions)
-		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
+		if(mission.HasClearance(*this, planet) || (!mission.HasFullClearance() &&
 					(mission.Destination() == planet || mission.Stopovers().count(planet))))
 			return;
 	
 	// The planet's government must have the authority to enforce laws.
 	const Government *gov = planet->GetGovernment();
-	if(!gov->CanEnforce(planet))
+	if(!gov->CanEnforce(*this, planet))
 		return;
 	
 	string message = gov->Fine(*this, 0, nullptr, planet->Security());

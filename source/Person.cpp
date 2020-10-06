@@ -63,14 +63,14 @@ void Person::FinishLoading()
 
 // Find out how often this person should appear in the given system. If this
 // person is dead or already active, this will return zero.
-int Person::Frequency(const System *system) const
+int Person::Frequency(const PlayerInfo &player, const System *system) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
 	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
 		return 0;
 	
-	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
+	return (location.IsEmpty() || location.Matches(player, system)) ? frequency : 0;
 }
 
 

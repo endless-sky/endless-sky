@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
 #include "StellarObject.h"
@@ -89,13 +90,13 @@ namespace {
 	
 	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
 	// False if at least one filter fails to match, true if all filters find at least one match.
-	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
+	bool MatchesNeighborFilters(const PlayerInfo &player, const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
 	{
 		for(const LocationFilter &filter : neighborFilters)
 		{
 			bool hasMatch = false;
 			for(const System *neighbor : hub->Links())
-				if(filter.Matches(neighbor, origin))
+				if(filter.Matches(player, neighbor, origin))
 				{
 					hasMatch = true;
 					break;
@@ -216,6 +217,10 @@ void LocationFilter::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+		if(visitedPlanet)
+			out.Write("visited planet");
+		if(visitedSystem)
+			out.Write("visited system");
 		if(center)
 			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
 	}
@@ -235,9 +240,11 @@ bool LocationFilter::IsEmpty() const
 
 
 // If the player is in the given system, does this filter match?
-bool LocationFilter::Matches(const Planet *planet, const System *origin) const
+bool LocationFilter::Matches(const PlayerInfo &player, const Planet *planet, const System *origin) const
 {
 	if(!planet || !planet->GetSystem())
+		return false;
+	if(visitedPlanet && !player.HasVisited(planet))
 		return false;
 	
 	// If a ship class was given, do not match planets.
@@ -254,7 +261,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 			return false;
 	
 	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(planet, origin))
+		if(filter.Matches(player, planet, origin))
 			return false;
 	
 	// If outfits are specified, make sure they can be bought here.
@@ -262,25 +269,25 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 		if(!SetsIntersect(outfitList, planet->Outfitter()))
 			return false;
 	
-	return Matches(planet->GetSystem(), origin, true);
+	return Matches(player, planet->GetSystem(), origin, true);
 }
 
 
 
-bool LocationFilter::Matches(const System *system, const System *origin) const
+bool LocationFilter::Matches(const PlayerInfo &player, const System *system, const System *origin) const
 {
 	// If a ship class was given, do not match systems.
 	if(!shipCategory.empty())
 		return false;
 	
-	return Matches(system, origin, false);
+	return Matches(player, system, origin, false);
 }
 
 
 
 // Check for matches with the ship's system, government, category,
 // outfits (installed and carried), and attributes.
-bool LocationFilter::Matches(const Ship &ship) const
+bool LocationFilter::Matches(const PlayerInfo &player, const Ship &ship) const
 {
 	const System *origin = ship.GetSystem();
 	if(!systems.empty() && !systems.count(origin))
@@ -319,10 +326,10 @@ bool LocationFilter::Matches(const Ship &ship) const
 	}
 	
 	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(ship))
+		if(filter.Matches(player, ship))
 			return false;
 	
-	if(!MatchesNeighborFilters(neighborFilters, origin, origin))
+	if(!MatchesNeighborFilters(player, neighborFilters, origin, origin))
 		return false;
 	
 	// Check if this ship's current system meets a "near <system>" criterion.
@@ -363,7 +370,7 @@ LocationFilter LocationFilter::SetOrigin(const System *origin) const
 
 
 // Pick a random system that matches this filter, based on the given origin.
-const System *LocationFilter::PickSystem(const System *origin) const
+const System *LocationFilter::PickSystem(const PlayerInfo &player, const System *origin) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const System *> options;
@@ -372,7 +379,7 @@ const System *LocationFilter::PickSystem(const System *origin) const
 		// Skip entries with incomplete data.
 		if(it.second.Name().empty())
 			continue;
-		if(Matches(&it.second, origin))
+		if(Matches(player, &it.second, origin))
 			options.push_back(&it.second);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
@@ -381,7 +388,7 @@ const System *LocationFilter::PickSystem(const System *origin) const
 
 
 // Pick a random planet that matches this filter, based on the given origin.
-const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance, bool requireSpaceport) const
+const Planet *LocationFilter::PickPlanet(const PlayerInfo &player, const System *origin, bool hasClearance, bool requireSpaceport) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
@@ -395,7 +402,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
 			if(planets.empty() || !planets.count(&planet))
 				continue;
-		if(Matches(&planet, origin))
+		if(Matches(player, &planet, origin))
 			options.push_back(&planet);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
@@ -502,17 +509,23 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(outfits.back().empty())
 			outfits.pop_back();
 	}
+	else if(key == "visited planet")
+		visitedPlanet = true;
+	else if(key == "visited system")
+		visitedSystem = true;
 	else
 		child.PrintTrace("Unrecognized location filter:");
 }
 
 
 
-bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
+bool LocationFilter::Matches(const PlayerInfo &player, const System *system, const System *origin, bool didPlanet) const
 {
 	if(!system)
 		return false;
 	if(!systems.empty() && !systems.count(system))
+		return false;
+	if(visitedSystem && !player.HasVisited(system))
 		return false;
 	
 	// Don't check these filters again if they were already checked as a part of
@@ -540,11 +553,11 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		}
 		
 		for(const LocationFilter &filter : notFilters)
-			if(filter.Matches(system, origin))
+			if(filter.Matches(player, system, origin))
 				return false;
 	}
 	
-	if(!MatchesNeighborFilters(neighborFilters, system, origin))
+	if(!MatchesNeighborFilters(player, neighborFilters, system, origin))
 		return false;
 	
 	// Check this system's distance from the desired reference system.

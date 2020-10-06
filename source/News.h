@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Planet;
+class PlayerInfo;
 class Sprite;
 
 
@@ -35,7 +36,7 @@ public:
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;
 	// Check if this news item is available given the player's planet and conditions.
-	bool Matches(const Planet *planet, const std::map<std::string, std::int64_t> &conditions) const;
+	bool Matches(const PlayerInfo &player, const Planet *planet, const std::map<std::string, std::int64_t> &conditions) const;
 	
 	// Get the speaker's name.
 	std::string Name() const;

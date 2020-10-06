@@ -412,7 +412,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	
 	// An `on enter` MissionAction may have defined a LocationFilter that
 	// specifies the systems in which it can occur.
-	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
+	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player, player.GetSystem()))
 		return false;
 	return true;
 }

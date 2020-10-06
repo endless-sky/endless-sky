@@ -22,6 +22,7 @@ class DataWriter;
 class Government;
 class Outfit;
 class Planet;
+class PlayerInfo;
 class Ship;
 class System;
 
@@ -47,19 +48,19 @@ public:
 	bool IsEmpty() const;
 	
 	// If the player is in the given system, does this filter match?
-	bool Matches(const Planet *planet, const System *origin = nullptr) const;
-	bool Matches(const System *system, const System *origin = nullptr) const;
+	bool Matches(const PlayerInfo &player, const Planet *planet, const System *origin = nullptr) const;
+	bool Matches(const PlayerInfo &player, const System *system, const System *origin = nullptr) const;
 	// Ships are chosen based on system/"near" filters, government, category
 	// of ship, outfits installed/carried, and their total attributes.
-	bool Matches(const Ship &ship) const;
+	bool Matches(const PlayerInfo &player, const Ship &ship) const;
 	
 	// Return a new LocationFilter with any "distance" conditions converted
 	// into "near" references, relative to the given system.
 	LocationFilter SetOrigin(const System *origin) const;
 	// Generic find system / find planet methods, based on the given origin
 	// system (e.g. the player's current system) and ability to land.
-	const System *PickSystem(const System *origin) const;
-	const Planet *PickPlanet(const System *origin, bool hasClearance = false, bool requireSpaceport = true) const;
+	const System *PickSystem(const PlayerInfo &player, const System *origin) const;
+	const Planet *PickPlanet(const PlayerInfo &player, const System *origin, bool hasClearance = false, bool requireSpaceport = true) const;
 	
 	
 private:
@@ -68,7 +69,7 @@ private:
 	// Check if the filter matches the given system. If it did not, return true
 	// only if the filter wasn't looking for planet characteristics or if the
 	// didPlanet argument is set (meaning we already checked those).
-	bool Matches(const System *system, const System *origin, bool didPlanet) const;
+	bool Matches(const PlayerInfo &player, const System *system, const System *origin, bool didPlanet) const;
 	
 	
 private:
@@ -87,6 +88,9 @@ private:
 	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
+	
+	bool visitedPlanet = false;
+	bool visitedSystem = false;
 	
 	// At least one of the outfits from each set must be available
 	// (to purchase or plunder):

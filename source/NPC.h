@@ -68,7 +68,7 @@ public:
 	
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
+	NPC Instantiate(const PlayerInfo &player, std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
 	
 	
 private:

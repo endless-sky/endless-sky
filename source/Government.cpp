@@ -226,10 +226,10 @@ double Government::GetFineFraction() const
 
 // Returns true if this government has no enforcement restrictions, or if the
 // indicated system matches at least one enforcement zone.
-bool Government::CanEnforce(const System *system) const
+bool Government::CanEnforce(const PlayerInfo &player, const System *system) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(system))
+		if(filter.Matches(player, system))
 			return true;
 	return enforcementZones.empty();
 }
@@ -238,10 +238,10 @@ bool Government::CanEnforce(const System *system) const
 
 // Returns true if this government has no enforcement restrictions, or if the
 // indicated planet matches at least one enforcement zone.
-bool Government::CanEnforce(const Planet *planet) const
+bool Government::CanEnforce(const PlayerInfo &player, const Planet *planet) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(planet))
+		if(filter.Matches(player, planet))
 			return true;
 	return enforcementZones.empty();
 }

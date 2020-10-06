@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Government;
+class PlayerInfo;
 class Ship;
 class System;
 
@@ -36,7 +37,7 @@ public:
 	
 	// Find out how often this person should appear in the given system. If this
 	// person is dead or already active, this will return zero.
-	int Frequency(const System *system) const;
+	int Frequency(const PlayerInfo &player, const System *system) const;
 	
 	// Get the person's characteristics. The ship object is persistent, i.e. it
 	// will be recycled every time this person appears.

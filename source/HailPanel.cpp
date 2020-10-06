@@ -134,7 +134,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	else if(planet && player.Flagship())
 	{
 		for(const Mission &mission : player.Missions())
-			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
+			if(mission.HasClearance(player, planet) && mission.ClearanceMessage() != "auto"
 					&& mission.HasFullClearance())
 			{
 				planet->Bribe();

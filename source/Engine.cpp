@@ -1599,7 +1599,7 @@ void Engine::SpawnPersons()
 	// this system.
 	int sum = 0;
 	for(const auto &it : GameData::Persons())
-		sum += it.second.Frequency(player.GetSystem());
+		sum += it.second.Frequency(player, player.GetSystem());
 	// Bail out if there are no eligible persons.
 	if(!sum)
 		return;
@@ -1612,7 +1612,7 @@ void Engine::SpawnPersons()
 	for(const auto &it : GameData::Persons())
 	{
 		const Person &person = it.second;
-		sum -= person.Frequency(player.GetSystem());
+		sum -= person.Frequency(player, player.GetSystem());
 		if(sum < 0)
 		{
 			const System *source = nullptr;

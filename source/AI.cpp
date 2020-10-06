@@ -478,7 +478,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
 	map<const Government *, int64_t> strength;
-	UpdateStrengths(strength, playerSystem);
+	UpdateStrengths(player, strength, playerSystem);
 	CacheShipLists();
 	
 	// Update the counts of how long ships have been outside the "invisible fence."
@@ -3624,7 +3624,7 @@ bool AI::Has(const Ship &ship, const Government *government, int type) const
 
 
 
-void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const System *playerSystem)
+void AI::UpdateStrengths(const PlayerInfo &player, map<const Government *, int64_t> &strength, const System *playerSystem)
 {
 	// Tally the strength of a government by the cost of its present and able ships.
 	governmentRosters.clear();
@@ -3664,7 +3664,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	
 		// Check if this ship's government has the authority to enforce scans & fines in this system.
 		if(!scanPermissions.count(gov))
-			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
+			scanPermissions.emplace(gov, gov && gov->CanEnforce(player, playerSystem));
 
 		// Only have ships update their strength estimate once per second on average.
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
