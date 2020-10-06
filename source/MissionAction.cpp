@@ -314,7 +314,7 @@ void MissionAction::Save(DataWriter &out) const
 			conversation.Save(out);
 		
 		for(const auto &it : giftShips)
-			out.Write("ship", it.first->ModelName(), it.second);
+			out.Write("give", "ship", it.first->ModelName(), it.second);
 		for(const auto &it : giftOutfits)
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
