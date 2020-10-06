@@ -965,6 +965,38 @@ ship "Class C Freighter"
 
 
 
+ship "Nock"
+	sprite "ship/nock"
+	thumbnail "thumbnail/nock"
+	attributes
+		category "Drone"
+		"cost" 55000
+		"shields" 450
+		"hull" 500
+		"mass" 12
+		"drag" .45
+		"heat dissipation" .9
+		"outfit space" 55
+		"weapon capacity" 12
+		"engine capacity" 20
+		weapon
+			"blast radius" 7
+			"shield damage" 75
+			"hull damage" 20
+			"hit force" 65
+	outfits
+		"KP-6 Photovoltaic Panel" 4
+		"X1050 Ion Engines"
+		"LP036a Battery Pack"
+		"Energy Blaster" 2
+	engine 0 29
+	gun 0 -29 "Energy Blaster"
+	gun -12 -25 "Energy Blaster"
+	explode "tiny explosion" 10
+	description "The Nock was released on market shortly after the Barb, although its development started almost a decade beforehand. It is easy to assume that the Nock was developed by the same team, since neither are particularly pretty, and appear pretty cramped by design. Despite the fact that it still requires to be remotely controlled by its carrier, the on-board AI has been developed to the point where it can sustain a shield matrix. This lets its carriers recharge it enough to be deployed again, making it reusable in prolonged battles."
+
+
+
 ship "Clipper"
 	sprite "ship/clipper"
 	thumbnail "thumbnail/clipper"
