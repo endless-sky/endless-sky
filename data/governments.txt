@@ -39,6 +39,7 @@ government "Bounty"
 	"hostile hail" "hostile bounty"
 
 government "Bounty (Disguised)"
+	"display name" "Merchant"
 	swizzle 5
 	"player reputation" 1
 	"fine" 0
