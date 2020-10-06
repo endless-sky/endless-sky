@@ -3239,15 +3239,15 @@ mission "The Artifact"
 		random < 20
 	on offer
 		conversation
-			`As you leave your ship and walking to the spaceport canteen, you see a group of researchers talking, they seem so confused because doesn't have any money to transport them back to Earth`
+			`As you leave your ship and walking to the spaceport canteen, you see a group of researchers talking, they seem so confused because doesn't have enough money to transport them and the Artifact to Earth`
 			choice
 				`	(offer them transport..)`
 				`	(ignore.)`
 					decline
 			`"	Hey, can I help you?" you ask them` 
 			`"	oh yeah, we need help, we don't have enough money to pay transport back us to earth, most of the money is spent to find this valuable artifact, only <payment> has left," said one of them while pointing out a strange artifact. (it looks like he was the leader of the group)`
-			`	The artifact looks so strange, looks very unique and looks like it comes from a very old civilization`
-			`	"we hope, on earth we can research it even further," he said.`
+			`	"We hope, on earth we can research it even further," he said.`
+			`	The artifact looks so strange, looks very unique and looks like it comes from a very old civilization.`
 			choice
 				`"	Wow, what a discovery, let's get on the ship I'll take you to earth "`
 					accept
@@ -3255,11 +3255,10 @@ mission "The Artifact"
 			`	"We only have <payment>,what do you think?"`
 			choice
 				`"	No problem,get on my ship"`
-					accept
 				`"	That's to small, i'm sory i can't transport you"`
 					decline
-			`	"oh really?!,thank you sir, i'm very grateful"he and his groups looks very happy after knowing they will return to earth`
-			`	You escorted them to your ship and helped transport the artifact`
+			`	"oh really?!,thank you captain, we are really"he and his groups looks very happy after knowing they would return to earth after a long expedition.`
+			`	You take them and the artifact to your ship and prepare to go to earth`
 				accept
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
