@@ -3538,7 +3538,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"Okay, I will meet you onboard the ship."`
 					accept
-				`	"You have one of those?"`
+				`	"You have a symbiont?"`
 			`	She nods. "Yeah, I am not yet used to the nutrient intake required to maintain my symbiont, so I have to consciously make sure that I eat enough to sustain it."`
 			choice
 				`	"Interesting. I'll see you onboard the <ship>."`
@@ -3591,11 +3591,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Years drifting in the void?"`
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment.`
 			label labnext
-			branch jumpdrive
-				has "Jump Drive" >= 1
-			`	"That is neither here nor there, however. Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "That shouldn't be too hard. Our early warning system indicates that there are several incoming Korath fleets that should be here in the next day or two. Any one of them should have a Jump Drive you can take. Meet me in the Starport once you have a Jump Drive."`
-			label jumpdrive
-			`	""That is neither here nor there, however.." She pauses and checks her commlink. "I just need to take care of a few things, then I will meet you in the spaceport to embark to Sagittarius A*."`
+			`	"That is neither here nor there, however. Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath Raider. Our early warning system indicates that there are several incoming Korath fleets that should be here in the next day or two. Any one of them should have a Jump Drive you can take. Meet me in the Starport once you have a Jump Drive."`
 
 
 
@@ -3613,17 +3609,13 @@ mission "Remnant: Expanded Horizons Astral 2"
 	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"
-		require "Jump Drive" >= 1
-		require "Research Laboratory" >= 1
-	to complete
-		require "Research Laboratory" >= 1
-	to fail
-		has "Research Laboratory" == 0
 	source
 		government "Remnant"
 	destination
 		government "Remnant"
 	on offer
+		require "Jump Drive" 1
+		require "Research Laboratory" 1
 		conversation
 			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach, and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
 			choice
@@ -3650,9 +3642,9 @@ mission "Remnant: Expanded Horizons Astral 2"
 			label astralmoving
 			`	She gestures towards the airlock door. "Lead the way, Captain."`
 				accept
-	on stopover
+	on enter "Sagittarius A*"
 		conversation
-			`As the energy ripples from the Jump Drive fade, the spectacular void that is Sagittarius A* takes shape before you. You can make out a rough silhouette against the background of stars and the glow of the acretion disk. As you slowly fall towards the singularity, you activate the anti-gravity systems while various alarms start to trigger. While vastly underpowered for dealing with the immense pull of a black hole, they provide a degree of protection while you maintain a safe distance from it.`
+			`As the energy ripples from the Jump Drive fade, the spectacular void that is Sagittarius A* takes shape before you. You can make out a rough silhouette against the background of stars and the glow of the acretion disk. As you slowly fall towards the singularity, you activate the anti-gravity systems while various alarms start to trigger. While vastly underpowered for dealing with the immense pull of a black hole, they provide a degree of protection so long as you maintain a safe distance from it.`
 			`	After a few minutes of just absorbing the spectacle before you, Dawn pulls herself away from the cockpit windows and scurries down to the lab. Leaving you to your thoughts, she quickly has the lab set up and running a variety of recordings, test, and observation equipment. After a few hours of work, she reappears on the bridge.`
 			`	"Things are proceeding smoothly, Captain. All the sensors are working nominally and we are creating extensive archives of astronomical data as well. Another few hours and we should have all the data we need."`
 			choice
@@ -3697,22 +3689,19 @@ mission "Remnant: Expanded Horizons Astral 2"
 
 
 mission "Remnant: Expanded Horizons Astral job"
-	name "Research Expedition to <waypoint>."
-	description "Travel to <waypoint> with a research laboratory to collect data, then return to <destination>."
+	name "Research Expedition to <waypoints>."
+	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
 	job
 	repeat
 	waypoint
 		not attributes "pleiades"
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
-		require "Research Laboratory" >= 1
-	to complete
-		require "Research Laboratory" >= 1
-	to fail
-		has "Research Laboratory" == 0
+	on offer
+		require "Research Laboratory" 1
 	source
 		government "Remnant"
 	on complete
-		payment 400000
+		payment 500000
 		"reputation: Remnant" ++
 		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
