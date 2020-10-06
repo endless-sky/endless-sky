@@ -3226,8 +3226,8 @@ mission "Earth Retirement"
 
 
 mission "The Artifact"
-	name "Transport a strange Artifact and group of the researcher to Earth"
-	description "Transport a strange Artifact and group of researcher back to <destination>, but they only have <payment> to pay the transport"
+	name "Transport a strange Artifact and group of the archaeologist to Earth"
+	description "Transport a strange Artifact and group of archaeologist back to <destination>, but they only have <payment> to pay the transport"
 	minor
 	
 	source "Asgard"
@@ -3239,13 +3239,14 @@ mission "The Artifact"
 		random < 20
 	on offer
 		conversation
-			`As you leave your ship and walking to the spaceport canteen, you see a group of researchers talking, they seem so confused because doesn't have enough money to transport them and the Artifact to Earth`
+			`As you leave your ship and walking to the spaceport canteen, you see a group of archaeologist talking, they seem so confused because doesn't have enough money to transport them and the Artifact to Earth`
 			choice
 				`	(offer them transport..)`
 				`	(ignore.)`
 					decline
 			`"	Hey, can I help you?" you ask them` 
-			`"	oh yeah, we need help, we don't have enough money to pay transport back us to earth, most of the money is spent to find this valuable artifact, only <payment> has left," said one of them while pointing out a strange artifact. (it looks like he was the leader of the group)`
+			`"	oh yeah, we need help, we don't have enough money to pay transport back us to earth, most of the money is spent to find this valuable artifact, 
+only a small amount remains," said one of them while pointing out a strange artifact. (it looks like he was the leader of the group)`
 			`	"We hope, on earth we can research it even further," he said.`
 			`	The artifact looks so strange, looks very unique and looks like it comes from a very old civilization.`
 			choice
@@ -3265,4 +3266,4 @@ mission "The Artifact"
 	on complete
 		payment 35000
 		conversation
-			`	the ship has landed on earth, all the research members were delighted after their long journey in search of the "artifact"."Thank you captain <last>,here your payment"he gave you <payment> credits."Thanks for you too, i wish you can research more about that arthifact"you say.they say goodbye to you and head to their research facility.`				
+			`	the ship has landed on earth, all the archaeologist members were delighted after their long journey in search of the "artifact"."Thank you captain <last>,here your payment"he gave you <payment> credits."Thanks for you too, i wish you can study more about that arthifact"you say.they say goodbye to you and head to their research facility.`				
