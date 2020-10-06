@@ -2339,18 +2339,25 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		if(first != last)
 			conditionsMap.erase(first, last);
 	};
-	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
+	// Clear any existing ships: or outfit: conditions. (Note: '!' = ' ' + 1.)
 	clearRange(conditions, "ships: ", "ships:!");
+	clearRange(conditions, "outfit: ", "outfits:!");
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
+	conditions["total ships"] = 0;
 	for(const shared_ptr<Ship> &ship : ships)
+	{
 		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
 		{
 			conditions["cargo space"] += ship->Attributes().Get("cargo space");
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 			++conditions["ships: " + ship->Attributes().Category()];
+			for(const auto &outfit : ship->Outfits())
+				conditions["outfit: " + outfit.first->Name()] += outfit.second;
 		}
+		++conditions["total ships"];
+	}
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
@@ -2360,9 +2367,10 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		conditions["passenger space"] = flagship->Cargo().BunksFree();
 	}
 	
-	// Clear any existing flagship system: and planet: conditions. (Note: '!' = ' ' + 1.)
+	// Clear any existing flagship system:, planet:, and outfit: conditions. (Note: '!' = ' ' + 1.)
 	clearRange(conditions, "flagship system: ", "flagship system:!");
 	clearRange(conditions, "flagship planet: ", "flagship planet:!");
+	clearRange(conditions, "flagship outfit: ", "flagship outfits:!");
 	
 	// Store conditions for flagship current crew, required crew, and bunks.
 	if(flagship)
@@ -2374,6 +2382,8 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 			conditions["flagship system: " + flagship->GetSystem()->Name()] = 1;
 		if(flagship->GetPlanet())
 			conditions["flagship planet: " + flagship->GetPlanet()->TrueName()] = 1;
+		for(const auto &outfit : flagship->Outfits())
+			conditions["flagship outfit: " + outfit.first->Name()] += outfit.second;
 	}
 	else
 	{
@@ -2387,6 +2397,16 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	conditions["cargo attractiveness"] = factors.first;
 	conditions["armament deterrence"] = factors.second;
 	conditions["pirate attraction"] = factors.first - factors.second;
+	
+	// Clear any visited system: and planet: conditions. (Note: '!' = ' ' + 1.)
+	clearRange(conditions, "visited system: ", "visited system:!");
+	clearRange(conditions, "visited planet: ", "visited planet:!");
+	
+	// Conditions for where you've visited:
+	for(const System *system : visitedSystems)
+		conditions["visited system: " + system->Name()] = 1;
+	for(const Planet *planet : visitedPlanets)
+		conditions["visited planet: " + planet->TrueName()] = 1;
 }
 
 
