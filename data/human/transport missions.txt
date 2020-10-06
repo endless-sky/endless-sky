@@ -3245,8 +3245,7 @@ mission "The Artifact"
 				`	(ignore.)`
 					decline
 			`"	Hey, can I help you?" you ask them` 
-			`"	oh yeah, we need help, we don't have enough money to pay transport back us to earth, most of the money is spent to find this valuable artifact, 
-only a small amount remains," said one of them while pointing out a strange artifact. (it looks like he was the leader of the group)`
+			`"	oh yeah, we need help, we don't have enough money to pay transport back us to earth, most of the money is spent to find this valuable artifact, only few are left," said one of them while pointing out a strange artifact. (it looks like he was the leader of the group)`
 			`	"We hope, on earth we can research it even further," he said.`
 			`	The artifact looks so strange, looks very unique and looks like it comes from a very old civilization.`
 			choice
