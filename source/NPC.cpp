@@ -64,6 +64,8 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
 		else if(node.Token(i) == "capture")
 			succeedIf |= ShipEvent::CAPTURE;
+		else if(node.Token(i) == "provoke")
+			succeedIf |= ShipEvent::PROVOKE;
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
@@ -357,10 +359,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		actions[ship.get()] &= ~(ShipEvent::DISABLE);
 	
 	// Certain events only count towards the NPC's status if originated by
-	// the player: scanning, boarding, or assisting.
+	// the player: scanning, boarding, assisting, or provoking.
 	if(!event.ActorGovernment()->IsPlayer())
 		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS
-				| ShipEvent::ASSIST | ShipEvent::BOARD);
+				| ShipEvent::ASSIST | ShipEvent::BOARD | ShipEvent::PROVOKE);
 	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
