@@ -62,6 +62,8 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::SCAN_CARGO;
 		else if(node.Token(i) == "scan outfits")
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
+		else if(node.Token(i) == "capture")
+			succeedIf |= ShipEvent::CAPTURE;
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
