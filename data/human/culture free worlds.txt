@@ -21,7 +21,7 @@ mission "South: The Great Pig War"
 			attributes "spaceport" "farming" "south"
 	on offer
 		conversation
-		`Farm world spaceports tend to be lonely affairs outside of harvesting season, but this one is bustling with festive energy. A statue of a bronze pig seems to be a permanent feature of the spaceport. Today it's surrounded by rows of colorful tents and throngs of the planet's natives. Most spaces that aren't taken by a silo, barn, or hangar of some sort have had a refreshment stand, game, or exhibition set up - the remaining few patches of ground are occupied by the feet of the planet's inhabitants. Live music fills the air, cheap beer flows like water, and fried food sizzles enticingly as it vacates vats of oil.`
+		`Farm world spaceports tend to be lonely affairs outside of harvesting season, but this one is bustling with festive energy. Rows of colorful tents and throngs of the planet's natives fill the area, as well as a proliferation of craftwork pig-sculptures; some are built from hay, some papier-mache and paint - one even appears to have been carved from butter. Most spaces that aren't taken by a silo, barn, or hangar of some sort have had a refreshment stand, game, or exhibition set up - the remaining few patches of ground are occupied by the feet of the planet's inhabitants. Live music fills the air, cheap beer flows like water, and fried food sizzles enticingly as it vacates vats of oil.`
 		choice
 			`	Carry on with your business. You can always come back next year.`
 				defer
