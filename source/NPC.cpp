@@ -337,7 +337,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			// displayed a second time below. 
 			// The only exception to this is if the ship was suppose to be captured,
 			// in which case we still want to keep track of this mission ship.
-			if(event.Type() & ShipEvent::CAPTURE && !(succeedIf & ShipEvent::CAPTURE))
+			if(event.Type() & ShipEvent::CAPTURE)
 			{
 				Ship *copy = new Ship(*ptr);
 				copy->Destroy();
