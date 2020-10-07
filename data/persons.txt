@@ -799,26 +799,26 @@ ship "Ursa Polaris"
 	explode "huge explosion" 50
 
 outfit "LG Gridfire Turret"
-          category "Turrets"
-          "turret mounts" -1
-          weapon
-                    "hardpoint sprite" "hardpoint/pug gridfire turret"
-                    "fire effect" "gridfire fire"
-                    "hit effect" "gridfire hit" 2
-                    "hit effect" "gridfire cloud"
-                    "phasing"
-                    "velocity" 1440
-                    "lifetime" 1
-                    "reload" 20
-                    "turret turn" 20
-                    "firing energy" 800
-                    "firing heat" 400
-                    "firing force" 150
-                    "shield damage" 600
-                    "hull damage" 600
-                    "blast radius" 40
-                    "piercing" .3
-                    "safe"
+	category "Turrets"
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/pug gridfire turret"
+		"fire effect" "gridfire fire"
+		"hit effect" "gridfire hit" 2
+		"hit effect" "gridfire cloud"
+		"phasing"
+		"velocity" 1440
+		"lifetime" 1
+		"reload" 20
+		"turret turn" 20
+		"firing energy" 800
+		"firing heat" 400
+		"firing force" 150
+		"shield damage" 600
+		"hull damage" 600
+		"blast radius" 40
+		"piercing" .3
+		"safe"
 
 
 person "Subsidurial"
