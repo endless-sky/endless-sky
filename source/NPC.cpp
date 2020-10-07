@@ -335,7 +335,9 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			// momentarily reactivating a ship you're supposed to evade would
 			// clear the success status and cause the success message to be
 			// displayed a second time below. 
-			if(event.Type() & ShipEvent::CAPTURE)
+			// The only exception to this is if the ship was suppose to be captured,
+			// in which case we still want to keep track of this mission ship.
+			if(event.Type() & ShipEvent::CAPTURE && !(succeedIf & ShipEvent::CAPTURE))
 			{
 				Ship *copy = new Ship(*ptr);
 				copy->Destroy();
@@ -359,10 +361,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		actions[ship.get()] &= ~(ShipEvent::DISABLE);
 	
 	// Certain events only count towards the NPC's status if originated by
-	// the player: scanning, boarding, assisting, or provoking.
+	// the player: scanning, boarding, assisting, capturing, or provoking.
 	if(!event.ActorGovernment()->IsPlayer())
-		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS
-				| ShipEvent::ASSIST | ShipEvent::BOARD | ShipEvent::PROVOKE);
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST
+				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
