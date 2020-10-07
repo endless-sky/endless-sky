@@ -334,9 +334,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			// before we check the mission's success status because otherwise
 			// momentarily reactivating a ship you're supposed to evade would
 			// clear the success status and cause the success message to be
-			// displayed a second time below. 
-			// The only exception to this is if the ship was suppose to be captured,
-			// in which case we still want to keep track of this mission ship.
+			// displayed a second time below.
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
 				Ship *copy = new Ship(*ptr);
