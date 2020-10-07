@@ -2798,12 +2798,14 @@ mission "Remnant: Cognizance 1"
 				"Korath Chaser" 2
 	on enter "Nenia"
 		dialog
-			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and disappearing into the clouds whenever your ship moves towards them.`
-			`	After several minutes of recording the elusive void sprites, you decide to visit the next gas giant, recalling that Plume will want footage from both planets.`
-	on stopover
+			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and dropping down into the cloud deck whenever your ship moves towards them.`
+	on stopover Slylandro
 		conversation
-			`Here you find the same behavior as before: void sprites have suddenly become timid and prone to diving into the shrouded depths of their world at the slightest quick movement.`
-			`	Despite the new challenge, you manage to record a variety of different void sprites before deciding to head back to <destination>.`
+			`	The void sprites in Slylandro prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get into visual range of a small flock of void sprites. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
+	on stopover Nasqueron
+		conversation
+			`The void sprites in Nasqueron are easy to find, but hard to approach. Upon trying to get good footage you discover that they are prone to diving into the shrouded depths of their world at the slightest quick movement.`
+			`	Despite the new challenge, you manage to record a variety of different void sprites before deciding to head back up into space.`
 	on complete
 		conversation
 			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. He quickly takes them and reviews the footage. He makes a gesture that you think means 'curious dejection', then seems to notice something, and resumes his usual intent bearing.`
