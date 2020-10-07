@@ -760,7 +760,7 @@ ship "Ursa Polaris"
 			"hit force" 6000
 	outfits
 		"Quarg Skylance"
-		"Pug Gridfire Turret" 3
+		"LG Gridfire Turret" 3
 		"Plasma Turret"
 		"Korath Disruptor" 5
 		"Quarg Anti-Missile" 5
@@ -781,13 +781,13 @@ ship "Ursa Polaris"
 	turret 27 -162 "Quarg Skylance"
 	turret 27 -162 "Korath Disruptor"
 	turret 94.5 -52.5 "Quarg Anti-Missile"
-	turret 94.5 -52.5 "Pug Gridfire Turret"
+	turret 94.5 -52.5 "LG Gridfire Turret"
 	turret 94.5 -52.5 "Korath Disruptor"
 	turret 80.5 53 "Quarg Anti-Missile"
-	turret 80.5 53 "Pug Gridfire Turret"
+	turret 80.5 53 "LG Gridfire Turret"
 	turret 80.5 53 "Korath Disruptor"
 	turret 21 25.5 "Quarg Anti-Missile"
-	turret 21 25.5 "Pug Gridfire Turret"
+	turret 21 25.5 "LG Gridfire Turret"
 	turret 21 25.5 "Korath Disruptor"
 	turret -69.5 -43 "Quarg Anti-Missile"
 	turret -69.5 -43 "Plasma Turret"
@@ -798,6 +798,27 @@ ship "Ursa Polaris"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 
+outfit "LG Gridfire Turret"
+          category "Turrets"
+          "turret mounts" -1
+          weapon
+                    "hardpoint sprite" "hardpoint/pug gridfire turret"
+                    "fire effect" "gridfire fire"
+                    "hit effect" "gridfire hit" 2
+                    "hit effect" "gridfire cloud"
+                    "phasing"
+                    "velocity" 1440
+                    "lifetime" 1
+                    "reload" 20
+                    "turret turn" 20
+                    "firing energy" 800
+                    "firing heat" 400
+                    "firing force" 150
+                    "shield damage" 600
+                    "hull damage" 600
+                    "blast radius" 40
+                    "piercing" .3
+                    "safe"
 
 
 person "Subsidurial"
