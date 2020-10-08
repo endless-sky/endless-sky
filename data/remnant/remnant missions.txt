@@ -2801,7 +2801,7 @@ mission "Remnant: Cognizance 1"
 			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and dropping down into the cloud deck whenever your ship moves towards them. You recall that Plume asked you to visit both planets.`
 	on stopover # "Slylandro"
 		conversation
-			`	The void sprites here prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get into visual range of a small flock of void sprites. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
+			`	The void sprites here prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get a small flock of them into visual range. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
 	# on stopover "Nasqueron"
 	# 	conversation
 	#		`The void sprites here are easy to find, but hard to approach. Upon trying to get good footage you discover that they are prone to diving into the shrouded depths of their world at the slightest quick movement.`
