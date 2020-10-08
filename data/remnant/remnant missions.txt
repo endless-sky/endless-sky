@@ -3194,7 +3194,13 @@ mission "Remnant: Cognizance 12"
 		has "Remnant: Cognizance 11: done"
 	on offer
 		conversation
-			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to <planet> and offload what you have collected to the station.`
+			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to <planet> and offload what you have collected to the station."`
+			branch usepenguin
+				has "Remnant: Face to Maw 2: done"
+			`	She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
+				accept
+			label usepenguin
+			`	She nods at you and continues. "The penguin will be even better than the puffin for this task, and you are welcome to use her, but we do not have any available to accompany you. Continuing to rely on puffins is not ideal, but we will make do with what we have." She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
 				accept
 	on stopover
 		dialog
@@ -3202,7 +3208,7 @@ mission "Remnant: Cognizance 12"
 	on complete
 		event "remnant: postverta reveal"
 		conversation
-			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffin up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
+			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
 			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
 
 
