@@ -3200,7 +3200,7 @@ mission "Remnant: Cognizance 12"
 			`	She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
 				accept
 			label usepenguin
-			`	She nods at you and continues. "The penguin will be even better than the puffin for this task, and you are welcome to use her, but we do not have any available to accompany you. Continuing to rely on puffins is not ideal, but we will make do with what we have." She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
+			`	She nods at you and continues. "The Penguin will be even better than the Puffin for this task, and you are welcome to use her, but we do not have any available to accompany you. Continuing to rely on Puffins is not ideal, but we will make do with what we have." She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
 				accept
 	on stopover
 		dialog
