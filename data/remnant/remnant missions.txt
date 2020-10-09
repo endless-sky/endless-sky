@@ -983,10 +983,16 @@ mission "Remnant: Learn Sign 1"
 	destination "Aventine"
 	repeat 3
 	to offer
-		has "Remnant: Technology Available: done"
+		has "Remnant: Void Sprites 3: done"
+		has "Remnant: Defense 3: done"
 		not "Remnant: Learn Sign 1: done"
 		not "Remnant: Learn Sign 1: active"
 		random < 30
+		or
+			has "Remnant: Key Stones: done"
+			has "Remnant: Key Stones (Hai): done"
+			has "Remnant: Key Stones (Pre-Hai) 2: done"
+			has "Remnant: Broken Jump Drive 2: done"
 	on offer
 		conversation
 			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single one.`
