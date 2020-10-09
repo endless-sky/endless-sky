@@ -476,9 +476,8 @@ void AI::ClearOrders()
 void AI::Step(const PlayerInfo &player, Command &activeCommands)
 {
 	// First, figure out the comparative strengths of the present governments.
-	const System *playerSystem = player.GetSystem();
 	map<const Government *, int64_t> strength;
-	UpdateStrengths(player, strength, playerSystem);
+	UpdateStrengths(player, strength);
 	CacheShipLists();
 	
 	// Update the counts of how long ships have been outside the "invisible fence."
@@ -500,6 +499,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 	
 	const Ship *flagship = player.Flagship();
+	const System *playerSystem = player.GetSystem();
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	int minerCount = 0;
@@ -3624,8 +3624,9 @@ bool AI::Has(const Ship &ship, const Government *government, int type) const
 
 
 
-void AI::UpdateStrengths(const PlayerInfo &player, map<const Government *, int64_t> &strength, const System *playerSystem)
+void AI::UpdateStrengths(const PlayerInfo &player, map<const Government *, int64_t> &strength)
 {
+	const System *playerSystem = player.GetSystem();
 	// Tally the strength of a government by the cost of its present and able ships.
 	governmentRosters.clear();
 	for(const auto &it : ships)

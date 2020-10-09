@@ -143,7 +143,7 @@ private:
 	bool Has(const Ship &ship, const Government *government, int type) const;
 	
 	// Functions to classify ships based on government and system.
-	void UpdateStrengths(const PlayerInfo &player, std::map<const Government *, int64_t> &strength, const System *playerSystem);
+	void UpdateStrengths(const PlayerInfo &player, std::map<const Government *, int64_t> &strength);
 	void CacheShipLists();
 	
 	

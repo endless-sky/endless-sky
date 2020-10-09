@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Government.h"
+#include "PlayerInfo.h"
 #include "Ship.h"
 #include "System.h"
 
@@ -61,16 +62,17 @@ void Person::FinishLoading()
 
 
 
-// Find out how often this person should appear in the given system. If this
+// Find out how often this person should appear in the player's system. If this
 // person is dead or already active, this will return zero.
-int Person::Frequency(const PlayerInfo &player, const System *system) const
+int Person::Frequency(const PlayerInfo &player) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
-	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
+	const System *playerSystem = player.GetSystem();
+	if(!playerSystem || IsDestroyed() || IsPlaced() || playerSystem->Links().empty())
 		return 0;
 	
-	return (location.IsEmpty() || location.Matches(player, system)) ? frequency : 0;
+	return (location.IsEmpty() || location.Matches(player, playerSystem)) ? frequency : 0;
 }
 
 
