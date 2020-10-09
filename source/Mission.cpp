@@ -244,6 +244,7 @@ void Mission::Load(const DataNode &node)
 				{"accept", ACCEPT},
 				{"decline", DECLINE},
 				{"fail", FAIL},
+				{"abort", ABORT},
 				{"defer", DEFER},
 				{"visit", VISIT},
 				{"stopover", STOPOVER}
@@ -808,7 +809,8 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	bool hasAction = it != actions.end();
+	if(hasAction && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	if(trigger == ACCEPT)
@@ -829,6 +831,20 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		--player.Conditions()[name + ": active"];
 		++player.Conditions()[name + ": failed"];
 	}
+	else if(trigger == ABORT)
+	{
+		// Only decrement the active mission condition if an ABORT action
+		// exists. Otherwise, this condition will be decremented when the
+		// FAIL trigger is done.
+		if(hasAction)
+		{
+			--player.Conditions()[name + ": active"];
+			// Set the failed mission condition here as well for
+			// backwards compatibility.
+			++player.Conditions()[name + ": failed"];
+		}
+		++player.Conditions()[name + ": aborted"];
+	}
 	else if(trigger == COMPLETE)
 	{
 		--player.Conditions()[name + ": active"];
@@ -843,10 +859,15 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// If this trigger has actions tied to it, perform them. Otherwise, check
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
-	if(it != actions.end())
+	if(hasAction)
 		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
+	// If this mission was aborted but no abort action exists, look for a fail
+	// action instead. This is done for backwards compatibility purposes from
+	// when aborting a mission activated the FAIL trigger.
+	else if(!hasAction && trigger == ABORT)
+		return Do(FAIL, player, ui, boardingShip);
 	
 	return true;
 }
