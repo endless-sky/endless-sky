@@ -218,9 +218,9 @@ void LocationFilter::Save(DataWriter &out) const
 			out.EndChild();
 		}
 		if(visitedPlanet)
-			out.Write("visited planet");
-		if(visitedSystem)
-			out.Write("visited system");
+			out.Write("visited", "planet");
+		else if(visitedSystem)
+			out.Write("visited");
 		if(center)
 			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
 	}
@@ -509,10 +509,12 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(outfits.back().empty())
 			outfits.pop_back();
 	}
-	else if(key == "visited planet")
-		visitedPlanet = true;
-	else if(key == "visited system")
+	else if(key == "visited")
+	{
 		visitedSystem = true;
+		if(child.Size() >= 2 + isNot && child.Token(valueIndex) == "planet")
+			visitedPlanet = true;
+	}
 	else
 		child.PrintTrace("Unrecognized location filter:");
 }
