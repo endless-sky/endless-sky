@@ -368,6 +368,132 @@ ship "Gull" "Gull (Bunks)"
 
 
 
+ship "Heron"
+	sprite "ship/heron"
+	attributes
+		category "Transport"
+		licenses
+			"Remnant Capital"
+		"cost" 256375000
+		"shields" 250500
+		"hull" 250500
+		"required crew" 1000
+		"bunks" 3000
+		"mass" 5000
+		"drag" 25
+		"heat dissipation" .80
+		"fuel capacity" 2500
+		"ramscoop" 10
+		"cargo space" 1110
+		"outfit space" 2150
+		"weapon capacity" 470
+		"engine capacity" 800
+		"shield generation" 15
+		"shield energy" 1.8
+		"hull repair rate" 15
+		"hull energy" 0.75
+		"cloak" .05
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"gaslining" 1
+		"atmosphere scan" 100
+		"outfit scan power" 175
+		"outfit scan speed" 1
+		"tactical scan power" 350
+		"force protection" 1
+		"heat protection" 1.5
+		"ion resistance" 0.3
+		"slowing resistance" 3
+		"remnant node" 11
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
+	outfits
+		"Inhibitor Turret" 6
+		"Point Defense Turret" 3
+
+		"Aeon Cell" 4
+		"Crystal Capacitor" 10
+		"Emergency Ramscoop" 10
+		"Large Heat Shunt" 5
+		"Quantum Key Stone"
+		"Salvage Scanner" 5
+		"Thermoelectric Cooler" 5
+		
+		"Bellows-Class Afterburner" 3
+		"Smelter-Class Thruster" 4
+		"Smelter-Class Steering" 5
+		"Hyperdrive"
+		"Jump Drive"
+		"Scram Drive"
+		
+	engine -111 307.5
+	engine 111 307.5
+	engine -88 289
+	engine 88 289
+	engine -53.5 274
+	engine 53.5 274
+	engine 1 328
+	gun 0 -325
+	gun -23.5 -302.5
+	gun 23.5 -302.5
+	turret -34.5 -134.5 "Inhibitor Turret"
+	turret 34.5 -134.5 "Inhibitor Turret"
+	turret -53 -17.5 "Inhibitor Turret"
+	turret 53 -17.5 "Inhibitor Turret"
+	turret -123.5 125.5 "Inhibitor Turret"
+	turret 123.5 125.5 "Inhibitor Turret"
+	turret 0 -240.5 "Point Defense Turret"
+	turret 0 0 "Point Defense Turret"
+	turret 0 250 "Point Defense Turret"
+	drone -124 -122.5
+	drone 124 -122.5
+	drone -176 -50.5
+	drone 176 -50.5
+	drone -148.5 4
+	drone 148.5 4
+	drone -56 -150
+	drone 56 -150
+	drone -37 -121.5
+	drone 37 -121.5
+	drone -33.5 -99
+	drone 33.5 -99
+	drone -27 -81
+	drone 27 -81
+	drone -24 -49.5
+	drone 24 -49.5
+	drone -40 -3
+	drone 40 -3
+	drone -28 22.5
+	drone 28 22.5
+	drone -77.5 71.5
+	drone 77.5 71.5
+	drone -89.5 114
+	drone 89.5 114
+	drone -138.5 152.5
+	drone 138.5 152.5
+	drone -171 165.5
+	drone 171 165.5
+	drone -190.5 197.5
+	drone 190.5 197.5
+	drone -105 229.5
+	drone 105 229.5
+	fighter -31 70.5
+	fighter 31 70.5
+	fighter -40 190
+	fighter 40 190
+	explode "small explosion" 40
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description `The Heron is the Remnant's ultimate last resort: Flight. These mobile starports are built to serve as the core elements of evacuation fleets when the Remnant are ultimately pushed to the brink of destruction in their home systems. These massive ships are capable of lifting enormous amounts of resources and operate both in space and on land, and are continuously updated to make full use of the latest technological innovations.`
+	description `The few Herons in existence are carefully guarded secrets that embody the Remnant's core tactics of speed, stealth, and survival. Given the tiny number of them in existance, they are never available for discretionary use by Remnant captains and are always operated under the authority and direction of a prefect.`
+
+
+
 ship "Ibis"
 	sprite "ship/ibis"
 	thumbnail "thumbnail/ibis"
