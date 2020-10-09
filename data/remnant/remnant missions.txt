@@ -983,7 +983,7 @@ mission "Remnant: Learn Sign 1"
 	destination "Aventine"
 	repeat 3
 	to offer
-		has "remnant blood test pure"
+		has "Remnant: Technology Available: done"
 		not "Remnant: Learn Sign 1: done"
 		not "Remnant: Learn Sign 1: active"
 		random < 30
