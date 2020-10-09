@@ -807,10 +807,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		if(!stopovers.empty())
 			return false;
 	}
-	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
-	bool hasAction = it != actions.end();
-	if(hasAction && !it->second.CanBeDone(player, boardingShip))
+	// If this mission was aborted but no ABORT action exists, look for a FAIL
+	// action instead. This is done for backwards compatibility purposes from
+	// when aborting a mission activated the FAIL trigger.
+	if(it == actions.end() && trigger == ABORTED)
+		it = actions.find(FAIL);
+	// Don't update any conditions if this action exists and can't be completed.
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	if(trigger == ACCEPT)
@@ -833,17 +837,11 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 	else if(trigger == ABORT)
 	{
-		// Only decrement the active mission condition if an ABORT action
-		// exists. Otherwise, this condition will be decremented when the
-		// FAIL trigger is done.
-		if(hasAction)
-		{
-			--player.Conditions()[name + ": active"];
-			// Set the failed mission condition here as well for
-			// backwards compatibility.
-			++player.Conditions()[name + ": failed"];
-		}
+		--player.Conditions()[name + ": active"];
 		++player.Conditions()[name + ": aborted"];
+		// Set the failed mission condition here as well for
+		// backwards compatibility.
+		++player.Conditions()[name + ": failed"];
 	}
 	else if(trigger == COMPLETE)
 	{
@@ -859,15 +857,10 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// If this trigger has actions tied to it, perform them. Otherwise, check
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
-	if(hasAction)
+	if(it != actions.end())
 		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
-	// If this mission was aborted but no abort action exists, look for a fail
-	// action instead. This is done for backwards compatibility purposes from
-	// when aborting a mission activated the FAIL trigger.
-	else if(!hasAction && trigger == ABORT)
-		return Do(FAIL, player, ui, boardingShip);
 	
 	return true;
 }
