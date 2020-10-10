@@ -84,7 +84,9 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: scons -j $(nproc);
+      run: |
+        scons -v
+        scons -Qj $(nproc);
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:

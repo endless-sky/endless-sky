@@ -1,5 +1,6 @@
 # Compiled Binaries and shortcuts
 endless-sky
+endless-sky-tests
 libendless-sky.a
 *.exe
 *.lnk
@@ -9,8 +10,9 @@ libendless-sky.a
 
 # Build Directories and toolchain-generated files
 build/
-obj
+obj/
 bin/
+lib/
 x64/
 Debug/
 Release/
