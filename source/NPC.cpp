@@ -75,6 +75,12 @@ void NPC::Load(const DataNode &node)
 		}
 	}
 	
+	// Check for incorrect objective combinations.
+	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
+		node.PrintTrace("Warning: conflicting NPC mission objective to save and destroy or capture.");
+	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
+		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "system")
