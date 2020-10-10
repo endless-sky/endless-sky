@@ -132,7 +132,8 @@ namespace {
 			return false;
 		
 		// Player ships shouldn't send hails.
-		if(!ship->GetGovernment() || ship->IsYours())
+		const Government *gov = ship->GetGovernment();
+		if(!gov || ship->IsYours())
 			return false;
 		
 		// Make sure this ship is able to send a hail.
@@ -141,7 +142,6 @@ namespace {
 			return false;
 		
 		// Ships that don't share a language with the player shouldn't send hails.
-		const Government *gov = ship->GetGovernment();
 		if(!gov->Language().empty() && !player.GetCondition("language: " + gov->Language()))
 			return false;
 		
