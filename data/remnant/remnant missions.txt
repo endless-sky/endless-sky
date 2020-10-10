@@ -1711,7 +1711,9 @@ mission "Remnant: Salvage 5"
 	to offer
 		or
 			has "Remnant: Salvage 4: done"
-			has "Remnant: Salvage 4: failed"
+			and
+				has "Remnant: Salvage 4: failed"
+				not "Remnant: Salvage 4: aborted"
 	on offer
 		conversation
 			`As you stroll across the tarmac under the great dome you spot Taely heading your way with a flatbed tractor filled with components in tow.`
@@ -2959,7 +2961,9 @@ mission "Remnant: Cognizance 5"
 	to offer
 		or
 			has "Remnant: Cognizance 4: done"
-			has "Remnant: Cognizance 4: failed"
+			and
+				has "Remnant: Cognizance 4: failed"
+				not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled
