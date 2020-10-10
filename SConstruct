@@ -43,7 +43,7 @@ env.Append(LIBS = [
 	"GLEW",
 	"openal",
 	"pthread"
-]);
+])
 # libmad is not in the Steam runtime, so link it statically:
 if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_i386' in os.environ['SCHROOT_CHROOT_NAME']:
 	env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))
@@ -54,18 +54,20 @@ else:
 
 
 buildDirectory = env["BUILDDIR"] + "/" + env["mode"]
+libDirectory = "lib/" + env["mode"]
 VariantDir(buildDirectory, "source", duplicate = 0)
 
-# Find all source files.
+# Find all regular source files.
 def RecursiveGlob(pattern, dir_name=buildDirectory):
 	# Start with source files in subdirectories.
 	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(str(dir_name)+"/*")
 			   if isinstance(sub_dir, Dir)]
-	# Add source files in this directory
-	matches += Glob(str(dir_name) + "/" + pattern)
+	# Add source files in this directory, except for main.cpp
+	matches += Glob(str(dir_name) + "/" + pattern, exclude=["*/main.cpp"])
 	return matches
 
-sky = env.Program("endless-sky", RecursiveGlob("*.cpp", buildDirectory))
+sourceLib = env.StaticLibrary(libDirectory + "/endless-sky", RecursiveGlob("*.cpp", buildDirectory))
+sky = env.Program("endless-sky", Glob(buildDirectory + "/main.cpp") + sourceLib)
 
 
 # Install the binary:
