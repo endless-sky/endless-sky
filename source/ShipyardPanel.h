@@ -46,8 +46,8 @@ protected:
 	virtual bool CanBuy() const override;
 	virtual void Buy(bool alreadyOwned = false) override;
 	virtual void FailBuy() const override;
-	virtual bool CanSell(bool toCargo = false, bool toStorage = false) const override;
-	virtual void Sell(bool toCargo = false, bool toStorage = false) override;
+	virtual bool CanSell(bool toStorage = false) const override;
+	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
 	
 	

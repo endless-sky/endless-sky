@@ -299,14 +299,14 @@ void ShipyardPanel::FailBuy() const
 
 
 
-bool ShipyardPanel::CanSell(bool toCargo, bool toStorage) const
+bool ShipyardPanel::CanSell(bool toStorage) const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell(bool toCargo, bool toStorage)
+void ShipyardPanel::Sell(bool toStorage)
 {
 	static const int MAX_LIST = 20;
 	static const int MAX_NAME_WIDTH = 250 - 30;

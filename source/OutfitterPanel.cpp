@@ -572,12 +572,12 @@ void OutfitterPanel::FailBuy() const
 
 
 
-bool OutfitterPanel::CanSell(bool toCargo, bool toStorage) const
+bool OutfitterPanel::CanSell(bool toStorage) const
 {
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	if(!toCargo && player.Cargo().Get(selectedOutfit))
+	if(player.Cargo().Get(selectedOutfit))
 		return true;
 		
 	if(!toStorage && player.Storage() && player.Storage()->Get(selectedOutfit))
@@ -592,14 +592,14 @@ bool OutfitterPanel::CanSell(bool toCargo, bool toStorage) const
 
 
 
-void OutfitterPanel::Sell(bool toCargo, bool toStorage)
+void OutfitterPanel::Sell(bool toStorage)
 {
 	// Retrieve the players storage. If we want to store to storage, then
 	// we also request storage to be created if possible.
 	// Will be nullptr if no storage is available.
 	CargoHold *storage = player.Storage(toStorage);
 	
-	if(!toCargo && player.Cargo().Get(selectedOutfit))
+	if(player.Cargo().Get(selectedOutfit))
 	{
 		player.Cargo().Remove(selectedOutfit);
 		if(toStorage && storage && storage->Add(selectedOutfit))
@@ -633,10 +633,6 @@ void OutfitterPanel::Sell(bool toCargo, bool toStorage)
 			{
 				// Transfer to planetary storage completed.
 			}
-			else if(toCargo && player.Cargo().Add(selectedOutfit))
-			{
-				// Transfer to cargo completed.
-			}
 			else
 			{
 				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
@@ -658,8 +654,6 @@ void OutfitterPanel::Sell(bool toCargo, bool toStorage)
 					ship->AddOutfit(ammo, -mustSell);
 					if(toStorage && storage)
 						mustSell -= storage->Add(ammo, mustSell);
-					if(mustSell && toCargo)
-						mustSell -= player.Cargo().Add(ammo, mustSell);
 					if(mustSell)
 					{
 						int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
@@ -675,24 +669,17 @@ void OutfitterPanel::Sell(bool toCargo, bool toStorage)
 	if(!toStorage && storage && storage->Get(selectedOutfit))
 	{
 		storage->Remove(selectedOutfit);
-		if(toCargo && player.Cargo().Add(selectedOutfit))
-		{
-			// Transfer to cargo completed.
-		}
-		else
-		{
-			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(price);
-			player.AddStock(selectedOutfit, 1);
-		}
+		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+		player.Accounts().AddCredits(price);
+		player.AddStock(selectedOutfit, 1);
 	}
 }
 
 
 
-void OutfitterPanel::FailSell(bool toCargo, bool toStorage) const
+void OutfitterPanel::FailSell(bool toStorage) const
 {
-	const string &verb = (toCargo || toStorage) ? "uninstall" : "sell";
+	const string &verb = toStorage ? "uninstall" : "sell";
 	if(!planet || !selectedOutfit)
 		return;
 	else if(selectedOutfit->Get("map"))
@@ -701,7 +688,7 @@ void OutfitterPanel::FailSell(bool toCargo, bool toStorage) const
 		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
-		bool hasOutfit = !toCargo && player.Cargo().Get(selectedOutfit);
+		bool hasOutfit = player.Cargo().Get(selectedOutfit);
 		hasOutfit = hasOutfit || (!toStorage && player.Storage() && player.Storage()->Get(selectedOutfit));
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(selectedOutfit))

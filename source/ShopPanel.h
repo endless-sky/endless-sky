@@ -60,9 +60,9 @@ protected:
 	virtual bool CanBuy() const = 0;
 	virtual void Buy(bool alreadyOwned = false) = 0;
 	virtual void FailBuy() const = 0;
-	virtual bool CanSell(bool toCargo = false, bool toStorage = false) const = 0;
-	virtual void Sell(bool toCargo = false, bool toStorage = false) = 0;
-	virtual void FailSell(bool toCargo = false, bool toStorage = false) const;
+	virtual bool CanSell(bool toStorage = false) const = 0;
+	virtual void Sell(bool toStorage = false) = 0;
+	virtual void FailSell(bool toStorage = false) const;
 	virtual bool CanSellMultiple() const;
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();

@@ -54,9 +54,9 @@ protected:
 	virtual bool CanBuy() const override;
 	virtual void Buy(bool alreadyOwned = false) override;
 	virtual void FailBuy() const override;
-	virtual bool CanSell(bool toCargo = false, bool toStorage = false) const override;
-	virtual void Sell(bool toCargo = false, bool toStorage = false) override;
-	virtual void FailSell(bool toCargo = false, bool toStorage = false) const override;
+	virtual bool CanSell(bool toStorage = false) const override;
+	virtual void Sell(bool toStorage = false) override;
+	virtual void FailSell(bool toStorage = false) const override;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
