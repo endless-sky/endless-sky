@@ -2675,15 +2675,7 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save accounting information, cargo, and cargo cost bases.
 	accounts.Save(out);
-	if (!cargo.IsEmpty())
-	{
-		out.Write("cargo");
-		out.BeginChild();
-		{
-			cargo.Save(out);
-		}
-		out.EndChild();
-	}
+	cargo.Save(out);
 	if(!costBasis.empty())
 	{
 		out.Write("basis");

@@ -717,15 +717,7 @@ void Ship::Save(DataWriter &out) const
 		}
 		out.EndChild();
 		
-		if (!cargo.IsEmpty())
-		{
-			out.Write("cargo");
-			out.BeginChild();
-			{
-				cargo.Save(out);
-			}
-			out.EndChild();
-		}
+		cargo.Save(out);
 		out.Write("crew", crew);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
