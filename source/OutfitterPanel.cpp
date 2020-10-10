@@ -305,7 +305,7 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	
 	bool isInCargo = player.Cargo().Get(selectedOutfit) && playerShip;
-	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit) && playerShip;
+	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
 	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
 		return false;
 	
@@ -385,13 +385,24 @@ void OutfitterPanel::Buy(bool fromCargoOrStorage)
 			return;
 		}
 		
+		// Buying into cargo, either from storage or from stock/supply.
 		if(!playerShip)
 		{
-			player.Cargo().Add(selectedOutfit);
-			int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(-price);
-			player.AddStock(selectedOutfit, -1);
-			continue;
+			if(fromCargoOrStorage)
+			{
+				if(!player.Storage() || !player.Storage()->Get(selectedOutfit))
+					continue;
+				player.Cargo().Add(selectedOutfit);
+				player.Storage()->Remove(selectedOutfit);
+			}
+			else
+			{
+				player.Cargo().Add(selectedOutfit);
+				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
+				player.Accounts().AddCredits(-price);
+				player.AddStock(selectedOutfit, -1);
+				continue;
+			}
 		}
 		
 		// Find the ships with the fewest number of these outfits.
