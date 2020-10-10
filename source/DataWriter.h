@@ -13,8 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
+#include <algorithm>
+#include <map>
 #include <sstream>
 #include <string>
+#include <vector>
 
 class DataNode;
 
@@ -29,6 +32,10 @@ class DataWriter {
 public:
 	// Constructor, specifying the file to write.
 	explicit DataWriter(const std::string &path);
+	DataWriter(const DataWriter &) = delete;
+	DataWriter(DataWriter &&) = delete;
+	DataWriter &operator=(const DataWriter &) = delete;
+	DataWriter operator=(DataWriter &&) = delete;
 	// The file is not actually saved until the destructor is called. This makes
 	// it possible to write the whole file in a single chunk.
 	~DataWriter();
@@ -98,6 +105,36 @@ void DataWriter::WriteToken(const A &a)
 	
 	out << *before << a;
 	before = &space;
+}
+
+
+
+// Encapsulate the logic for writing the contents of a collection in a sorted manner. The caller
+// should provide a sorting method; it will be called with pointers to the type of the container.
+// The provided write method will be called for each element of the container.
+template <class T, template<class, class...> class C, class... Args, typename A, typename B>
+void WriteSorted(const C<T, Args...> &container, A sortFn, B writeFn)
+{
+	std::vector<const T *> sorted;
+	sorted.reserve(container.size());
+	for(const auto &it : container)
+		sorted.emplace_back(&it);
+	std::sort(sorted.begin(), sorted.end(), sortFn);
+	
+	for(const auto &sit : sorted)
+		writeFn(*sit);
+}
+template <class K, class V, class... Args, typename A, typename B>
+void WriteSorted(const std::map<const K *, V, Args...> &container, A sortFn, B writeFn)
+{
+	std::vector<const std::pair<const K *const, V> *> sorted;
+	sorted.reserve(container.size());
+	for(const auto &it : container)
+		sorted.emplace_back(&it);
+	std::sort(sorted.begin(), sorted.end(), sortFn);
+	
+	for(const auto &sit : sorted)
+		writeFn(*sit);
 }
 
 

@@ -1170,7 +1170,7 @@ mission "Sheragi Archaeology: The Box 8"
 			choice
 				`	"I wasn't expecting to see you here."`
 				`	"Can I help you?"`
-			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but I must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
+			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but I must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel that it would be safer in the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
 			`	It turns around and leaves you to think about it.`
 
 
@@ -1196,7 +1196,7 @@ mission "Sheragi Archaeology: The Emerald Sword 1"
 mission "Sheragi Archaeology: The Emerald Sword 2"
 	landing
 	name "The Emerald Sword"
-	description "Bring an additional Jump Drive to Zug."
+	description "Bring an additional jump drive to Zug."
 	source "Zug"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 1: done"
@@ -1305,7 +1305,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	on complete
 		conversation
 			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. You eventually park your ships over a mesa. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be otherwise unbreathable for long periods of time.`
-			`	Over the course of the next day, the workers unload some outfitting and repairing equipment, while scientists slowly work out the functions of the ship, and brief you and your crew on how to operate it. One of the workers invite you to visit the temporary outfitter and oversee the proper installation of the Outfits Expansion and the Jump Drive in the Emerald Sword.`
+			`	Over the course of the next day, the workers unload some outfitting and repairing equipment, while scientists slowly work out the functions of the ship, and brief you and your crew on how to operate it. One of the workers invite you to visit the temporary outfitter and oversee the proper installation of the Outfits Expansion and the jump drive in the Emerald Sword.`
 			`[You need to remove the Damaged Sheragi Systems to repair it.]`
 
 

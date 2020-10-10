@@ -958,7 +958,7 @@ const string &Mission::Identifier() const
 const MissionAction &Mission::GetAction(Trigger trigger) const
 {
 	auto ait = actions.find(trigger);
-	static const MissionAction EMPTY;
+	static const MissionAction EMPTY{};
 	if(ait != actions.end())
 		return ait->second;
 	else
@@ -1008,7 +1008,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	for(const LocationFilter &filter : stopoverFilters)
 	{
-		const Planet *planet = filter.PickPlanet(source, !clearance.empty());
+		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
+		const Planet *planet = filter.PickPlanet(source, !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1026,7 +1027,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			return result;
 	}
 	// If no destination is specified, it is the same as the source planet. Also
-	// use the source planet if the given destination is not a valid planet name.
+	// use the source planet if the given destination is not a valid planet.
 	if(!result.destination || !result.destination->GetSystem())
 	{
 		if(player.GetPlanet())
