@@ -1,0 +1,1474 @@
+# Copyright (c) 2014 by Michael Zahniser
+# Copyright (c) 2020 by Fernando S. Sáez
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Deep Archaeology 1"
+	name "Deep Archaeology"
+	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
+	minor
+	source
+		attributes "paradise" "north" "near earth"
+		near Miaplacidus 1 20
+	destination Vinci
+	to offer
+		random < 15
+		"combat rating" > 15
+	passengers 1
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, a man in an expensive suit approaches you. "Pardon me, Captain," he says. "I wonder if you would be willing to talk privately about a very lucrative job opportunity."`
+			choice
+				`	"Is this something illegal?"`
+				`	"Sure, let's return to my ship and talk there."`
+					goto ship
+			`	"Not illegal," he says, "but it could help to uncover a secret with enormous ramifications. A secret that certain people do not want known."`
+			`	"Okay," you say, "let's return to my ship, and I'll hear you out."`
+			label ship
+			`	You lead him back to your ship. "I'm an archaeologist," he explains, "studying the early history of the space era. And in particular, a set of persistent folk tales about contact with alien species. Many of these tales have to do with the region of the galaxy we call the Deep. I need someone to travel to Midgard and retrieve some samples from an ancient site there."`
+			choice
+				`	"Why can't you travel there yourself?"`
+				`	"What sort of samples? Will this get me in trouble?"`
+					goto samples
+			`	"Well, let's just say I've made myself somewhat unpopular in the Deep," he says. "Asking too many questions. If I were seen walking around on Midgard, they would probably ask me to leave immediately."`
+			`	You say, "And, is the work you're asking me to do going to make me equally unpopular?"`
+			label samples
+			`	"Not if you are circumspect," he says. "I need two samples from a certain village. One is simple: wood from a living or recently deceased tree. Any tree will do."`
+			`	He pauses for a minute, then continues. "The other is more... sensitive. There is a historical site on Midgard, an ancient church. Not something they publish in the official tourist guides, mind you. I need a small sample of the wood that the church is built with. A small splinter would suffice."`
+			choice
+				`	"Sure, if it's in the interest of science, I can do that."`
+					goto yes
+				`	"You're asking me to vandalize a historical site?"`
+			`	"I need only the tiniest of samples," he says, "maybe a splinter of wood that is already peeling off, or from a place where the wood is worn and cracked. And what we discover from that sample could be of immense importance."`
+			choice
+				`	"Sorry, that sounds a bit too shady to me."`
+					decline
+				`	"Okay, I'm willing to do that."`
+			label yes
+			`	"Thank you," he says. "Trust me, this could give us some very important information. I'll need you to drop me off on Vinci first, to meet with some scientists. We can then meet up back on Vinci once you have the samples."`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the archaeologist hasn't entered the system yet. Better depart and wait for it.`
+
+
+
+mission "Deep Archaeology 2"
+	landing
+	name "Deep Archaeology"
+	description "Travel to <destination> and take wood fiber samples from an ancient church and from the trees that grow nearby."
+	source Vinci
+	destination Midgard
+	to offer
+		has "Deep Archaeology 1: done"
+	
+	on offer
+		conversation
+			`You drop off the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
+				accept
+
+
+
+mission "Deep Archaeology 3"
+	landing
+	name "Deep Archaeology"
+	description "Return to <destination> with the wood samples that you retrieved from the church on <origin>."
+	source Midgard
+	destination Vinci
+	to offer
+		has "Deep Archaeology 2: done"
+	
+	on offer
+		conversation
+			`Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
+			`	The church itself is unlike any building you have seen before, clearly very ancient, built of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
+			choice
+				`	(Walk into the church.)`
+					goto inside
+				`	(Take a sample from the outside.)`
+				`	(Give up on this mission and leave, before I get into trouble.)`
+					decline
+			`	You walk around the outside of the building until you find one corner where the wood has been recently scuffed, and a few hairs of it are hanging loose. You carefully pick the splinters off and put them in the second envelope. Then, you return to your ship. Although you see no one following you, you can't shake the feeling that you are being watched.`
+				accept
+			label inside
+			`	This church must still be used for services: candles are lit up front, and a man in a white surplice is playing the organ. A few people sit in the pews with their heads bowed. Trying to be as unobtrusive as possible, you join them, and look around at the ornately carved pillars and wood panels. The air in here smells of incense and musty wood.`
+			choice
+				`	(Take a sample.)`
+				`	(Give up on this mission, and leave.)`
+					decline
+			`	Pretending to pray, you kneel on the ground, take your pocket knife, and shave the tiniest sliver off the bottom corner of the pew in front of you. It leaves a small white scar in the dark weathered wood of the pew. You pocket the sample, wait a few more minutes, and then leave and walk back to the spaceport. Although you see no one following you, you cannot shake the feeling that you are being watched.`
+				accept
+	
+	npc
+		personality waiting
+		government "Deep Security"
+		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+	
+	npc
+		personality waiting
+		system Aspidiske
+		government "Deep Security"
+		ship "Raven (Afterburner)" "D.P.S. Skuld"
+	
+	npc
+		personality waiting
+		system Gomeisa
+		government "Deep Security"
+		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+	
+	on complete
+		payment 200000
+		log `Agreed to take a piece of wood from a church on Midgard for an archaeologist. Carbon dating suggests that the church was built many centuries before the discovery of the hyperdrive.`
+		conversation
+			`You return to the lab where you dropped off the anonymous archaeologist. Soon after you arrive, he appears and eagerly collects the two samples, giving you a payment of <payment> for your troubles. "But please," he says, "stick around long enough to learn the results." He hands the two envelopes to a lab technologist, and says, "Here you go, John, take a look and let us know what you find."`
+			`	After the lab tech leaves, he explains, "You see, the ratio of Carbon 12 to Carbon 14 varies from world to world, so accurate dating can only be done if you have a control sample to compare against. Only a handful of archaeological studies have been done in the Deep, and those were sloppy - they used the standard tables of Earth's carbon ratios instead of determining the local concentrations."`
+			choice
+				`	(Wait and see what the results are.)`
+			`	About thirty minutes later, John reappears, looking somewhat shaken. "Where did you get those samples?" he asks.`
+			`	"Never mind that," says the archaeologist. "What are your results?"`
+			`	"The second sample is infused with some sort of oil or tar," he says. "A varnish. And therefore it is from furniture or a building. A man-made artifact. The control sample has an isotopic ratio different from Earth, so unless you're playing games with me, these samples are not from Earth."`
+			`	"Go on," says the archaeologist.`
+			`	"However," says the lab tech, "again assuming the two samples are from the same planet, the second sample is between fifteen hundred and twenty-five hundred years old. Which means it predates the discovery of the hyperdrive by, at minimum, five centuries. So again I ask you, where did you get these samples?" His voice is raised.`
+			`	"Intriguing, isn't it?" says the archaeologist. "Captain <last>, if you'd like to help us get to the bottom of this, make sure you've got space for us and some equipment, and meet us in the spaceport."`
+
+
+
+mission "Deep Archaeology 4"
+	name "Deep Archaeology"
+	description "Return to <destination> with some specialized equipment for subterranean mapping."
+	source Vinci
+	destination Midgard
+	to offer
+		has "Deep Archaeology 3: done"
+	cargo "mapping equipment" 4
+	passengers 2
+	
+	on offer
+		log "People" "Albert Foster" `An archaeologist who is famous for using dubious methods: he has been banned from Quarg space for trying to collect an alloy sample from their ringworld, and is rumored to have also been involved in a scheme involving dinosaur fossils and an illegal genetic resequencer. He is currently based on Vinci, on the edge of the Paradise sector.`
+		conversation
+			`You find John the lab tech in one of the spaceport bars, along with the archaeologist, who says, "I suppose I should introduce myself. Albert Foster. You may have heard of me." Indeed, you have: he made headlines about a decade ago by being driven out of Quarg space after trying unsuccessfully to collect an alloy sample from their ringworld.`
+			`	"We've purchased some equipment for gravitational field mapping," he says, "in addition to a very sensitive radar array. We're hoping to map the area around the church, see if there are signs of any ancient settlements. Are you willing to help us?"`
+			choice
+				`	"Sure, I'd love to help solve this mystery."`
+				`	"Sorry, I can't. I'm worried we're going to make people in the Deep angry."`
+					decline
+			`	"Excellent," says Albert. "We just need to do a flyover of <planet>, and see what our radar turns up."`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Albert, John, and the mapping equipment hasn't entered the system yet. Better depart and wait for it.`
+
+
+
+mission "Deep Archaeology 5"
+	landing
+	name "Deep Archaeology"
+	description "Evade the ships that are chasing you and return to <destination>."
+	source Midgard
+	destination Vinci
+	to offer
+		has "Deep Archaeology 4: done"
+	cargo "mapping equipment" 4
+	passengers 2
+	
+	on offer
+		conversation
+			`You cruise high above the surface of <origin> as John calibrates his instruments. "Sorry it's taking so long," he says, "there's some sort of glitch in the gravitational sensors, messing up my measurements."`
+			`	"What sort of glitch?" asks Albert.`
+			`	"Just a sensor artifact," he says, "some sort of echo. No, wait..." He trails off and starts turning dials on the instrument, then turns very pale.`
+			`	Albert looks over his shoulder at the monitor, but clearly doesn't understand what he's looking at. "What is it?" he asks.`
+			`	"It's not a sensor glitch," says John. "It's an artificial singularity."`
+			choice
+				`	"Some sort of illegal research?"`
+					goto illegal
+				`	"A what?"`
+					goto what
+			label illegal
+			`	"No, not illegal," says Albert. "No need to make laws against them, for the simple reason that no one knows how to make them. That's alien technology, very advanced."`
+				goto attack
+			label what
+			`	"A miniature black hole," says John. "An alien power source. Far more sophisticated than anything human beings have ever created. That is, unless someone in the Deep has found a way to reverse engineer alien technology."`
+			label attack
+			`	Suddenly, a warning light flashes on your ship's radar. Three ships have taken off from the planet's surface and are headed straight towards you. "Let's get out of here," says Albert. "Head back to <planet>!"`
+				launch
+	
+	npc
+		personality heroic
+		government Deep
+		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+		ship "Raven (Afterburner)" "D.P.S. Skuld"
+		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Albert, John, and the mapping equipment hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		payment 300000
+		log `Returned to Midgard with Albert Foster, the archaeologist, to map the area around the church. The instruments discovered what looked like an artificial singularity. Got chased away by Deep ships before being able to look closer.`
+		conversation
+			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
+			`	"I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
+			choice
+				`	"For what purpose?"`
+					goto purpose
+				`	"What aliens? The Quarg?"`
+					goto aliens
+			label purpose
+			`	"I'm not sure," he says. "But I first became interested in the Deep while researching the Alpha Wars. I'm sure you know the history, how humanity was nearly enslaved by psychopathic 'super' humans that we ourselves had created by dabbling in genetic engineering. At that time, the Deep made a sudden, improbable technological leap that allowed them to construct weapons and ships far more powerful than what the Alphas had, and the war against them was won."`
+				goto end
+			label aliens
+			`	"There are popular folk tales in the Deep about 'elves,'" says Albert. "Thin, pale, graceful creatures, with blue blood."`
+			`	John frowns. "Hemocyanic blood. Not the Quarg, then. Their lungs are odd, but their blood uses hemoglobin for oxygen transport, just like ours."`
+			label end
+			`	Albert continues, "What I think is that an unknown alien species has been involved in events in the Deep since the beginning, and is perhaps still involved there today. I think this is known to at least some of the Deep's inhabitants."`
+			choice
+				`	"So, what do we do now?"`
+				`	"How can we find out more information?"`
+			`	"Well," he says, "unfortunately, Captain, they're going to be watching you. I'll have to seek out someone else for the next stages of my research. But I will keep you notified if I discover anything further."`
+			`	It is an unsatisfactory conclusion to your work, with so many questions unanswered. But to make up for that, Albert gives you <payment> as payment for your services. "You will hear from me again," he promises.`
+
+
+
+ship "Timer Ship"
+	attributes
+		"heat dissipation" 1
+		"hull" 3
+		"hull repair rate" .001
+		"mass" 100
+		"drag" 5
+		"automaton" 1
+		"thrust" 10
+		"turn" 600
+	outfits
+		"Timer Weapon"
+	gun 0 0
+
+outfit "Timer Weapon"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"gun ports" -1
+	weapon
+		"velocity" 10
+		"lifetime" 2
+		"reload" 100
+		"blast radius" 10
+		"split range" 200
+		"submunition" "Timer Submunition"
+
+outfit "Timer Submunition"
+	weapon
+		"lifetime" 20
+		"trigger radius" 200
+		"blast radius" 20
+		"hull damage" .15
+		"no damage scaling"
+
+mission "Sad Archie"
+	landing
+	invisible
+	to offer
+		has "There Might Be Riots part 3B: done"
+	destination "Zug"
+	
+	npc disable
+		government "Test Dummy"
+		system "Ildaria"
+		personality unconstrained heroic nemesis
+		ship "Timer Ship" "Timer"
+		conversation
+			`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`
+			scene "scene/eso0"
+			`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
+			`	Time speeds up, and you watch as the dragon cities grow and spread out. You see one city buried under a massive lava flow, starships buzzing around it like a cloud of flies to carry people and goods to safety. Other cities are destroyed by war, and then abruptly the dragon-people are all gone and their cities lie vacant. Buildings crumble, and the forests reclaim the land.`
+			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
+	
+	on complete
+		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
+		conversation
+			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
+
+
+
+mission "Rim Archaeology 1"
+	landing
+	name "Archaeology on <planet>"
+	description "Bring the famous archaeologist Albert Foster to <destination> to look for signs of an ancient alien civilization."
+	source "Vinci"
+	destination "Zug"
+	passengers 1
+	to offer
+		has "Sad Archie: done"
+	
+	on offer
+		conversation
+			`This planet is where the archaeologist Albert Foster has his lab, the one who sent you on a mission to collect samples from a planet in the Deep. Would you like to try to convince him to look for signs of an ancient alien civilization in the Rim systems?`
+			choice
+				`	(Of course!)`
+				`	(Not right now.)`
+					defer
+			`Foster seems glad to see you. You do your best to pique his interest without saying anything that will make him think you're crazy, but he's clearly not buying it. "I'm sorry," he says, "but I'm not mounting an expedition just because you have a 'hunch.' So unless you're willing to tell me the source of your information, I'm not interested." He turns his attention back to the data pad that he was reading before you walked into his office.`
+			choice
+				`	"I'd rather not say."`
+				`	"I had this dream about dragon-people on Zug."`
+					goto dream
+				`	"I think a telepathic space alien spoke to me."`
+					goto telepath
+			`	"Then I'd rather not help you," he says, without looking up from the data pad.`
+			choice
+				`	"I had this dream about dragon-people on Zug."`
+				`	"I think a telepathic space alien spoke to me."`
+					goto telepath
+			label dream
+			`	"You had a dream," he says. "Sorry, no. Oneirological archaeology is notoriously unreliable." From his tone of voice, you think he's being sarcastic.`
+			choice
+				`	"I think a telepathic space alien spoke to me."`
+					goto telepath
+			label telepath
+			`	You expect him to laugh at you, but instead he's so shocked that he drops the data pad he's holding. "An Archon?" he says. "How the hell did you get tangled up with one of those?" You tell him the story, and he listens intently.`
+			`	"It's feasible," he says. "We've heard rumors from the Quarg that an alien civilization used to exist in the Rim, a hundred thousand years ago. No signs of it, of course - any artifacts they left behind have been destroyed by the elements, or perhaps intentionally removed. But if a city were encased in lava, that could preserve signs of it even over such a long time frame."`
+			`	Foster makes a few phone calls to cancel his upcoming plans, and then shows up at your ship with a large collection of geological surveying tools. "Let's go check it out," he says.`
+				accept
+	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Albert hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		log `Found the archaeologist Albert Foster and told him about the vision of the dragon-people on Zug. Foster suggested that the vision was the doing of an Archon. He discovered a buried city under the lava flows on Zug; perhaps the vision was a real view of the past.`
+		conversation
+			`You land your ship on the lava flow, and Albert Foster fires up his surveying equipment. "This will show me a density profile of different layers of rock beneath us," he says. As he gradually dials the instrument down to deeper and deeper layers, a few irregular white spots appear on the screen.`
+			choice
+				`	"What are those?"`
+				`	(Be quiet and let him focus.)`
+					goto scan
+			`	"Air pockets," he says, "some of them filled in with ground water. Nothing out of the ordinary."`
+			label scan
+			`	When the scan reaches about thirty meters below the surface, suddenly the view changes...`
+			scene "scene/geoscan"
+			`	"Great burning suns!" says Foster. "There is something down there! Roads in a triangular grid. That ain't no human city." You both stare at the monitor for a minute, then Foster says, "I'm going to need to pull some permits. Meet me in the spaceport in an hour if you're willing to help pick up some of the other stuff we'll need."`
+
+
+
+mission "Rim Archaeology 2A"
+	name "Archaeological Equipment"
+	description "Fetch some excavation equipment from <destination>, and return with it to the dig site on Zug."
+	source "Zug"
+	destination "Crossroads"
+	to offer
+		has "Rim Archaeology 1: done"
+	
+	on offer
+		conversation
+			`When you meet up with Foster, he tells you, "This is going to be tricky. We're going to have to dig through a twenty meter thick slab of solid basalt to get at those ruins. We have to work fast, or my competitors will catch wind of what we're doing and beat us to the punch. But we have to work delicately, too, or we'll damage what's underneath. Blasting won't work. I think some of the Syndicate's strip mining equipment could do the job, though. Would you be able to pick up maybe twenty or thirty tons of heavy machinery from <planet>?"`
+			choice
+				`	"Sure."`
+					accept
+				`	"Sorry, I don't have time to help out anymore."`
+			`	He seems incredulous. "No time to participate in what could be one of the biggest discoveries of the last hundred years? You'll be well paid for your services too, if that's what's holding you back."`
+			choice
+				`	"Okay, I'll pick up your equipment from <planet>."`
+					accept
+				`	"Sorry, I'm just not interested."`
+					decline
+
+
+
+mission "Rim Archaeology 2B"
+	landing
+	name "Archaeological Equipment"
+	description "Deliver this excavation equipment to <destination>."
+	source "Crossroads"
+	destination "Zug"
+	cargo "Excavation equipment" 28
+	to offer
+		has "Rim Archaeology 2A: done"
+	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 28 tons of space free."
+	
+	on offer
+		conversation
+			`When you arrive on <origin>, the excavation machines requested by Albert Foster are already waiting for you at the spaceport. They are some of the largest terrestrial vehicles you have ever seen: a truck with enormous toothed grinding wheels for cutting through stone, and a front-end loader for carrying the loose stone away. You are barely able to fit them through the entrance of your cargo bay.`
+				accept
+	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the excavation equipment hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		payment 300000
+
+
+
+mission "Rim Archaeology 3A"
+	landing
+	name "Archaeological Equipment"
+	description "Fetch some excavation equipment from <destination>, and return with it to the dig site on Zug."
+	source "Zug"
+	destination "Asgard"
+	to offer
+		has "Rim Archaeology 2B: done"
+	
+	on offer
+		conversation
+			`You drop off the excavation machines at the dig site on Zug, and receive your payment of three hundred thousand credits. Foster has already marked out lines of where he wants to dig and has completed a much more detailed geological scan. "We'll be starting with a narrow trench," he tells you, "and expanding out from there. It'll need to be wide enough to include a ramp for the vehicles, of course, so we'll still need to move a lot of rock. And when we get within the last five meters or so, I'm worried that the vibration from the grinders may be too destructive. So, I need some laser excavation equipment from <planet>, next."`
+			`	You agree to fetch the equipment, and he begins directing the work crews to get the digging started.`
+				accept
+
+
+
+mission "Rim Archaeology 3B"
+	landing
+	name "Archaeological Equipment"
+	description `Deliver this excavation equipment to <destination>. Be sure that the ship "Oxyrhynchus" is not in the system when you land.`
+	source "Asgard"
+	destination "Zug"
+	cargo "Laser excavation equipment" 17
+	to offer
+		has "Rim Archaeology 3A: done"
+	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have <capacity>."
+	
+	on offer
+		conversation
+			`Once again, the equipment that Foster needs is waiting for you when you land. It's a truck carrying a power generator and an articulated arm with a laser cannon mounted on the end. You can't help imagining what would happen if it malfunctioned and began firing while inside your cargo bay, but the engineer who delivers it assures you that it has many redundant safeties in place.`
+			`	Also waiting for you is an encrypted message from Foster: "Hi there, <first>. I've been told that one of my competitors, Sibyl Greythatch, has been asking around trying to figure out where my dig site is. She's an antiquities thief - robs archaeological sites and sells the artifacts on the black market. I think my equipment purchase on <origin> may have caught her attention. If so, her ship, the Oxyrhynchus, will be following you. Don't return to the dig site until you're certain you've shaken her."`
+				accept
+	
+	npc evade
+		government " Independent "
+		personality waiting
+		ship "Marauder Falcon (Engines)" "Oxyrhynchus"
+	
+	on visit
+		dialog
+			`As you are approaching Zug, you notice on your radar that the ship Foster warned you about has been following you: the Oxyrhynchus. You land in the main spaceport to avoid leading her to the dig site. You will need to shake her pursuit before delivering the equipment.`
+	
+	on complete
+		payment 300000
+
+
+
+mission "Rim Archaeology 4A"
+	landing
+	name "Transport a Xenobiologist"
+	description "Travel to the Quarg station <destination>, and meet a xenobiologist who will help interpret the findings at Albert Foster's dig site."
+	source "Zug"
+	destination "Lagrange"
+	to offer
+		has "Rim Archaeology 3B: done"
+	
+	on offer
+		conversation
+			`When you return to the dig, Foster's trench is already almost ten meters deep. You tell him that you saw the Oxyrhynchus on your scanners, but you were able to evade it. "Good job," he says. "Now, we need a xenobiologist who can help us make sense of what we find. A friend of mine, Amelia Lee, has been living on the Quarg ringworld for the last decade or so, and she agreed to come visit the dig, and also to see what the Quarg can tell us about this old alien civilization. Also, here's your pay for transporting the laser cutter." He hands you another three hundred thousand credits.`
+			`	You agree to pick her up, and he returns to supervising the excavation.`
+				accept
+
+
+
+mission "Rim Archaeology 4B"
+	landing
+	name "Transport a Xenobiologist"
+	description `Transport the xenobiologist Amelia Lee and her Quarg friend Yarthis to the dig site on Zug.`
+	source "Lagrange"
+	destination "Zug"
+	passengers 2
+	to offer
+		has "Rim Archaeology 4A: done"
+	blocked "You will need <capacity> to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
+	
+	on offer
+		conversation
+			`Amelia Lee meets you at the spaceport, along with a Quarg who is a bit shorter than normal, but still tall enough to tower over you. "Captain <last>?" she says. "Let me introduce my friend Yarthis Amorthee Dek-Farsook Nai," she says. "Yarthis will be accompanying us to the site."`
+			choice
+				`	"No problem. Welcome aboard!"`
+					goto welcome
+				`	"Do we really need to get the Quarg involved directly in this?"`
+			`	To your human eyes, unused to reading their expressions, the Quarg almost always seem grim and serious. But Yarthis seems particularly grave as it says, "You are digging in a graveyard, Captain. Someone must be present to see that the dead are given their due respect."`
+			label welcome
+			`	As both of them board your ship, Amelia chats enthusiastically with you. "One ringworld can sustain a population in excess of a trillion," she says, "so the Quarg need long names in order to unambiguously identify themselves." She goes on to ask questions about the progress of the dig, using so much technical jargon that at times it almost sounds like she is speaking the Quarg language rather than your own. Clearly she is very knowledgeable about the study of alien societies, and you are surprised to learn that she was actually born in Hai space, as the granddaughter of some of the first humans who settled there.`
+				accept
+	
+	npc
+		government Merchant
+		personality waiting
+		system Dabih
+		ship "Marauder Arrow (Engines)" "Naukratis"
+	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Amelia and Yarthis hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		payment 200000
+
+
+
+mission "Rim Archaeology 5A"
+	landing
+	name "Defend Zug"
+	description "Drive off the pirates who are attacking Zug, or at least distract them for long enough for reinforcements to arrive."
+	source "Zug"
+	to offer
+		has "Rim Archaeology 4B: done"
+	
+	on offer
+		conversation
+			`Foster greets Amelia enthusiastically when you land, but seems less enthusiastic about having Yarthis here as well. The dig has nearly reached the target depth, and at the deepest part of the trench they are now slicing out blocks of stone with the laser and hoisting them out of the pit rather than just grinding through the rock. "Thanks again, Captain," he says, as he hands you a chip worth two hundred thousand credits.`
+			`	As Foster is showing the three of you around the dig, one of the workers runs up. "Mister Foster," he says, "there's a ton of traffic on the emergency militia channel. I think the planet is under attack."`
+			`	Foster swears and looks up at the sky as if expecting pirates to swoop down and steal his precious artifacts at any moment. "Captain <last>," he says, "We have to keep those pirates away from the dig at all costs, or they could destroy priceless information. Can you assist in defending the planet?"`
+			choice
+				`	"Of course."`
+					goto end
+				`	"My ship is not a warship."`
+			`	"Then just get up there and lead them around in circles until reinforcements arrive," he says. "I don't care how you do it, just keep whoever is up there occupied."`
+			label end
+			`	As you run for your ship, you see Yarthis pull out some sort of communication device and speak into it. Perhaps the Quarg will be joining in this fight as well...`
+				launch
+	
+	npc evade
+		government Pirate
+		personality heroic waiting
+		ship "Marauder Falcon (Weapons)" "Akhetaten"
+		ship "Marauder Splinter (Weapons)" "Itjtawy"
+		ship "Marauder Firebird (Weapons)" "Tanis"
+		ship "Marauder Leviathan (Weapons)" "Buhen"
+		ship "Marauder Manta (Weapons)" "Athribis"
+		ship "Marauder Quicksilver (Weapons)" "Philae"
+		ship "Marauder Raven (Weapons)" "Esna"
+		dialog `The last of the pirate raiders have been driven off. Time to land and check if any damage was done to the dig.`
+	
+	npc
+		government Quarg
+		system "Gamma Corvi"
+		personality heroic
+		ship "Quarg Wardragon" "Gloref Esa Kurayi"
+	
+	on visit
+		dialog
+			`You try to land near the dig, but pirate ships are still circling nearby. Better deal with them before returning to check in on Foster.`
+	
+	on complete
+		payment 400000
+		event "rim archaeology results" 97
+		log `With the help of a Quarg ship, fought off a group of antique thieves looking to rob the archaeological site that Albert Foster dug up. Foster will need some time to study what he has found and release the results of his findings.`
+		conversation
+			`A plume of smoke is rising from the dig site. Fearing the worst, you land and find out that a missile fired by one of the pirates destroyed one of the huts where the workers were living, but fortunately no one was inside it at the time. Foster is shaken but still committed to finishing the work. "It will be months before we've excavated enough to be able to publish any findings," he says, "but Yarthis has told me that the Quarg will be stationing a Wardragon here for the remainder of the project, to prevent any further foul play." Foster gives you one last payment: four hundred thousand credits for your help driving off the pirates. "And I'll be sure to give you credit for your help when the news goes public," he says.`
+
+
+
+mission "Rim Archaeology 5B"
+	landing
+	invisible
+	source Zug
+	to offer
+		has "Rim Archaeology 5A: done"
+	npc kill
+		government Quarg
+		personality heroic staying uninterested
+		ship "Quarg Wardragon" "Gloref Esa Kurayi"
+
+
+
+event "rim archaeology results"
+	planet Zug
+		add attributes "tourism"
+		description `Zug is a pleasant world of rolling hills, fertile fields, and a few small oceans. Hundreds of millions of people live here, with more immigrants arriving every day, almost faster than the construction industry can keep up with them. In addition to the larger cities, many people live in smaller farming villages, making this one of the few worlds in the region that is truly self-sufficient both in industry and in agriculture.`
+		description `	The largest industry on Zug is Southbound Shipyards. However, in the wake of some extraordinary archaeological discoveries of a lost civilization, Zug has suddenly also become a popular destination for tourists.`
+
+
+
+mission "Rim Archaeology 6"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		near "Sol" 100
+		attributes spaceport
+	to offer
+		has "event: rim archaeology results"
+	on offer
+		log "Factions" "Sheragi" `Recent archaeological discoveries on Zug, a planet in the southern rim of human space, have turned up evidence of a lost alien civilization. The Quarg say that the ruins were left behind by a species called the Sheragi.`
+		conversation
+			`When you give your name to the spaceport traffic controller, he says, "Wait, you're Captain <first> <last>? You're all over the news right now!"`
+			`	You land and find that Albert Foster has published an initial report on the dig on Zug. The ruins under the lava flow did indeed turn out to be an alien city. The houses are built on a gargantuan scale, with most of the doorways at least ten meters tall. What's more, some of the buildings have no exterior doors on the street level, just doors facing balconies or inner courtyards, which supports the theory that the inhabitants were capable of flight. Most of the artifacts left behind are just everyday items, and in fact the technology seems less advanced than present human society, but scientists are studying the artifacts eagerly to glean hints about how these aliens lived.`
+			`	The Quarg, who at other times seem quite willing to share their knowledge with human beings, are being surprisingly reticent with information about this lost civilization. Aside from telling Foster that the aliens were known as the Sheragi, their only comments have been vague warnings that if human beings persist in developing weapons of war, they will end up like the Sheragi. From this, Foster has surmised that the alien civilization was most likely destroyed by a civil war, not by natural disaster or an attack by another species.`
+			`	It may not yield any great advances in human technology, but the dig will be providing clues to the history of the galaxy for years to come, and you can be proud to have played a part in that.`
+				decline
+
+
+
+mission "Sheragi Archaeology: The Box 1"
+	landing
+	name "The Sheragi Bunker"
+	description "Visit Albert Foster on <destination> to see what he has discovered."
+	source
+		near "Zubeneschamali" 1 100
+	destination "Zug"
+	
+	to offer
+		has "event: rim archaeology results"
+		has "First Contact: Unfettered: declined"
+		has "main plot completed"
+		random < 4
+	
+	on offer
+		dialog
+			`You receive an encoded message from Albert Foster, the archaeologist who you helped uncover the mysterious Sheragi ruins on Zug. He seems to be very excited.`
+			`	"<first>! Been a while, hasn't it? Remember the Sheragi dig site? We've just found something incredible here. Please, come visit me on Zug. I don't think I can trust anyone else with this."`
+
+
+
+mission "Sheragi Archaeology: The Box 2"
+	landing
+	name "The Mysterious Box"
+	description "Take the mysterious box to a trusted scientist on <destination>."
+	source "Zug"
+	destination "Vinci"
+	
+	to offer
+		has "Sheragi Archaeology: The Box 1: done"
+	
+	on offer
+		conversation
+			`You land at the dig site and notice that Albert was already waiting for you, watching your descent. He greets you as soon as the ship doors open.`
+			`	"Hello, <first>! Would you like to go on a little tour of the museum?"`
+			choice
+				`	"Museum? What museum?`
+				`	"Sure, I'm eager to see what you discovered."`
+					goto eager
+				`	"Just tell me what's so important."`
+					goto hurry
+			`	"Didn't you know? There is a museum open within the dig site now, full of interesting artifacts. We turned it into quite the tourist trap. Here, follow me and I'll show you."`
+			label eager
+			`	You take the chance to catch up as he leads you into the ancient city's ruins, talking about the "minor" discoveries he has made so far, though he insists on keeping the reason he brought you here a surprise. He leads you to one of the Sheragi buildings that have been uncovered, skipping a long queue lined before the entrance to find that a museum has been set up inside it with various artifacts on display.`
+			`	It's strange to see so many technological devices as old as some of the prehistoric tools from ancient Earth, most of them so deteriorated you wouldn't even be able to imagine what they were used for if it wasn't for the descriptions next to their display cases. One of the most intact relics is a small metal statue of an individual Sheragi in flight, possibly a trophy for some event, or perhaps a mere sculpture of a popular character of their time. It's impossible to know now, but one thing is certain: it's the most faithful representation available of what they looked like. The figure matches almost perfectly the ones you saw in your dream, back in Ildaria. As you turn your head to look at how tall the doors of this house are, then back at the statue again, you realize how big they must have been. It's hard to imagine the size their spaceships must have been to even hope to fit a creature this large.`
+			choice
+				`	"This is an impressive collection."`
+			`	"It is! But it's not even the main attraction for you today. Follow me."`
+			`	After the tour is over, he leads you to another building in an area that is off-limits to the general public.`
+				goto offlimit
+			label hurry
+			`	"Straight to the point? Fair enough, I'm eager as well, but do come visit the museum some time in the future. There are so many interesting objects."`
+			`	You take the chance to catch up as he leads you into the ancient city's ruins, talking about the "minor" discoveries he made so far, but he quickly gets to the reason you're here: an artifact found buried even further underground. He leads you into one of the buildings, in an area that is off-limits to the public.`
+			label offlimit
+			`	"Here it is!"`
+			`	There is a tunnel going deep underground inside the room, but Albert sets his attention on a large safe instead. As he opens it up, he begins to explain the situation.`
+			`	"So, from what we know, the Sheragi died off in a war of catastrophic proportions. One of our interns suggested we survey deeper underground, to check for military facilities or bunkers, even though our previous scans didn't show anything interesting, so we allowed her to play around with the ground-penetrating radar. And wouldn't you believe it, there were some angled pieces of metal under the dirt. Clearly man-made. Well... Sheragi-made, in this case. So we dug deeper, and found what we can only assume to have been a bunker, showing signs of having been hit by a powerful kinetic weapon. Despite the damage, we could still salvage some artifacts from the debris. Particularly, this thing."`
+			`	Albert opens the safe and shows you a weathered, red metal cube, around half a meter on each side. He struggles with the weight, but manages to set it down on the floor.`
+			`	"This appears to be a data storage device of some sort. It was connected to what we think were once computers, but nothing else was salvageable after spending thousands of years under the wet soil. Based on how sturdy this thing is, it's plausible that some of the data could have survived, like a time capsule.`
+			`	"I have a contact back on Vinci who could probably figure this out, and this is where you come in. You remember John, right? I can't leave the dig site, but I also don't have anyone else I could trust to carry such a valuable artifact. Will you take it there for me?"`
+			choice
+				`	"Who's John again?"`
+				`	"I'm sorry, but that sounds sketchier than all the other jobs I did for you. The Quarg were very clear in saying that some things are not meant to be found."`
+					goto sketchy
+				`	"Sure, I'll take the cube to him."`
+					goto take
+			`	"Oh, you don't remember him? He's the scientist who worked with us when we were investigating the Deep. He has all the fancy equipment needed to look into this cube."`
+				goto finalchoice
+			label sketchy
+			`	"What?" He seems incredulous. "After going this far, you're abandoning me? Knowledge by itself isn't dangerous. This cube could be the key to lost eons of history, to secrets of the Sheragi we couldn't even dream of!"`
+			label finalchoice
+			choice
+				`	"All right, I'll take it to him."`
+					goto take
+				`	"Sorry, but I'm not crossing that line."`
+					decline
+			label take
+			`	"Splendid!"`
+			`	The two of you put the cube in an inconspicuous backpack and carry it back to your ship. Albert gives you an address where you'll deliver the cube, mentions that you will be paid after transporting it, and wishes you good luck on your travel.`
+				accept
+	
+	on complete
+		payment 500000
+		event "cube stolen" 20 30
+		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and tell you when it's done.`
+		conversation
+			`You arrive on Vinci and carry the cube to the address Foster gave you. You find that John has been waiting for you. "So, Foster is up to no good again, huh?" He laughs as he lets you into his lab.`
+			choice
+				`	"It doesn't seem likely that we'll get in trouble this time."`
+				`	"I'm slightly concerned myself, but I'm sure he knows what he's doing."`
+			`	You set the backpack with the cube down on a table and open it up.`
+			`	"Well, he's paying me to help with this, so no problem with me. It's not like everyone gets to see the exotic things he finds first hand. I mean, an artificial singularity..." he trails off, reminiscing about the adventure the three of you had in the Deep.`
+			`	John proceeds to examine the cube. He's strong enough to pick it up with no problems and look at it from different angles, trying to find some port to connect to. He finds one, but it's so deteriorated that any attempts to use it would be fruitless. He places the cube inside a machine to take a deeper scan of the object, and watches it silently working, staring patiently at the screen.`
+			`	"Yes, this seems to be a data storage device of some sort... it's made to be sturdy, like a black box, so it's plausible that we could recover some data from it. This is going to take a very long time, though."`
+			`	"How long?" you ask.`
+			`	"A couple months, probably. It depends on how alien this thing is, and if it's encrypted or not, but I should at least figure out if there is any recoverable data in here by then."`
+			`	John says he'll drop you a message once his results come out, and you part ways and return to your ship.`
+
+
+
+mission "Sheragi Archaeology: The Box 3"
+	landing
+	name "The Information Dealer"
+	description "Discover the whereabouts of the box from an information broker on the pirate world of <destination>."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		near "Sol" 100
+		attributes spaceport
+	destination "Stormhold"
+	
+	to offer
+		has "event: cube stolen"
+	
+	on offer
+		conversation
+			`You receive an urgent call from John, who has been working on the mysterious Sheragi black box for about a month now.`
+			`	"Captain <last>! I have some bad news and some worse news. Which one do you want to hear first?"`
+			choice
+				`	"The bad news."`
+					goto bad
+				`	"The worse news."`
+					goto worse
+			label bad
+			`	"The bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
+			`	"And the worse news?" you ask.`
+			`	"Well... Some people invaded my lab during the night and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+				goto whatnow
+			label worse
+			`	"Well... Some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+			`	"And the bad news?" you ask`
+			`	"The less bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
+			label whatnow
+			`	Your heart sinks. "What do we do now? Do you have any idea where to find the box? Did you contact law enforcement?"`
+			`	"I did what I could, but if this was mandated as I suspect, the police aren't going to help, and the box is probably off-world by now. However... if you have some cash on hand, and you're willing to go the extra mile to recover the box, there might be a way."`
+			choice
+				`	"What do you mean?"`
+					goto info
+				`	"Are you trying to extort me?"`
+			`	"What? No, of course not! Do you think I would steal my own work? Let me explain..."`
+			label info
+			`	"Albert's methods are... nonstandard, to say the least, and we've dealt with a certain individual once. An information dealer who lives on Stormhold. Sketchy person, seems to have informants nearly everywhere and knows about everything. The individual in question is known as Mammon. If you want to find the box, dealing with Mammon is probably your best bet."`
+			choice
+				`	"Thank you, I'll see if I can find this Mammon person."`
+				`	"I'm sorry, but I think nothing good can come out of this. Better to forget about the cube."`
+					decline
+			`	"Knowing their methods, they'll likely find you first. But don't be alarmed, they're not... evil, per se. Just be careful, alright?"`
+				accept
+	
+	to complete
+		never
+
+
+
+mission "Sheragi Archaeology: The Box 4"
+	landing
+	name "The Search for the Artifact"
+	description "Confront the mercenaries who stole the cube on <destination>."
+	source "Stormhold"
+	destination "Watcher"
+	
+	to offer
+		has "Sheragi Archaeology: The Box 3: offered"
+		
+	on offer
+		conversation
+			branch visited
+				has "visited mammon"
+			`Despite the obvious hostility the locals display towards you, you've safely entered Stormhold's atmosphere. You're still halfway through the descent when a robotic, modulated voice hails you.`
+			`	"I heard you were looking for me, <first> <last>," the person on the other end says.`
+			
+			choice
+				`	"Who are you? How do you know my name?"`
+					goto who
+				`	"You did? How?"`
+			`	"In my line of business, I have to know everything. That includes the identities of any potential clients, such as yourself. How else would you hope to find me?"`	
+				goto intro
+			
+			label who
+			`	The mysterious person laughs.`
+			`	"It looks like I know you more than you know yourself. I am who you're looking for, of course."`
+			
+			label intro
+			`	"Mammon, information vendor. At your service," the voice states ominously. "Come meet me in person to discuss the specifics of what you're looking for." The connection cuts and you receive coordinates to land in a seemingly random location that appears to be in the middle of the sea.`
+			``
+			`	You arrive at the coordinates in the middle of nowhere under stormy conditions. You begin to question whether you received the correct coordinates until a massive submarine emerges from the waves. It is a gargantuan vessel, and as lights guide you to land on its deck, you notice that despite the size of your ship, it comfortably fits on the deck, where it is automatically secured in place by magnetic locks. Armed men in business suits surround your ship, and once you disembark, two of them guide you inside. You're led into a dimly lit room with a holographic map of the galaxy on the ceiling and a desk, behind which a hooded figure sits.`
+			`	"There we are, away from prying eyes. Please, take a seat," they say. Their voice has a strange tone with no distinguishable gender, with a sibilating, guttural accent, and it's not until you sit down that you notice a reptilian snout poking out of the hood. You don't know whether this is natural or an extreme body modification.`
+			choice
+				`	"Are you a..."`
+				`	(Say nothing.)`
+					goto middle
+			`	They cut you off, grinning. "Forget it. You'd need to steal whole planets for that information."`
+			
+			label middle
+			`	"Let's get to what matters. You want to find that alien artifact, yes?" You nod in response. "I have the information you need. Finding lost objects is the most trivial of my services, but as with everything, it has a price.`
+			`	"Ten million credits," they say. "Non-negotiable. And don't try anything funny."`
+			
+			branch cash
+				credits >= 10000000
+			choice
+				`	"What? I don't have that much money!"`
+					goto nomoney
+				`	"That's expensive. If it's such a trivial service, can't I have a discount?"`
+					goto haggle
+			
+			label visited
+			`You come back to Stormhold and receive new coordinates to meet with Mammon. Would you like to visit them?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	You follow the new coordinates, arriving again in a random place in the sea, again under stormy conditions, which seems to be the norm on this planet. The submarine emerges, you land, and follow the men to Mammon's room once again.`
+			`	"Welcome back," they say.`
+			`	"I hope you are ready to make your payment."`
+			
+			label question
+			branch cash
+				credits >= 10000000
+			branch haggled
+				has haggled
+			choice
+				`	"You should know that I don't have that much money to spare."`
+					goto nomoney
+				`	"Are you ready to give me a discount?"`
+					goto haggle
+			label haggled
+			choice
+				`	"You should know that I don't have that much money to spare."`
+					goto nomoney
+				`	"How about you tell me what I want and I don't blow up your ship and your pirate friends?"`
+					goto threat
+
+			label cash
+			branch haggledcash
+				has haggled
+			choice
+				`	"I need to think about this. Give me some time."`
+					goto time
+				`	"That's a lot of money just for information. Can you make it cheaper?"`
+					goto haggle
+				`	"Here's the money."`
+					goto pay
+			label haggledcash
+			choice
+				`	"I need to think about this. Give me some time."`
+					goto time
+				`	"How about you tell me what I want and I don't blow up your ship and your pirate friends?"`
+					goto threat
+				`	"Here's the money."`
+					goto pay
+
+			label nomoney
+			`	"I know you don't. I can arrange for the payment to be made in different ways. Organ donation, prostitution, volunteering as a test subject... We'll need an appraisal first, though."`
+			`	You politely decline.`
+			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is.`
+				goto exit
+			
+			label time
+			`	"Come back when you're ready, then. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is. It's all up to you."`
+			
+			label exit
+			`	They gesture, and the men promptly and diligently escort you back out to your ship.`
+				defer
+			
+			label haggle
+			apply
+				set haggled
+			`	Mammon doesn't look pleased.`
+			`	"What part of non-negotiable did you not understand? You're pushing your luck, Captain <last>. I didn't expect you to be such a petty money pincher."`
+				goto question
+
+			label threat
+			`	Mammon just smiles, displaying sharp teeth and licking them with a forked tongue, more entertained than intimidated.`
+			`	"Really? You think you can intimidate me? It's your funeral, human. If you were smart, you would know that my power far exceeds yours, especially in my own home. You know I can't let you leave here alive now. It would set a bad precedent for me. Safety is my top priority."`
+			`	You look around, and the men in suits are pointing guns at you. Alien guns. Before you can react, Mammon shoots you from under the table, fatally injuring your abdomen. Your half conscious body is dragged out of the submarine, and your ship being shredded to pieces by alien weapons is the last thing you see.`
+				die
+			
+			label pay
+			`	You slide the credit chips to Mammon, but they decline it, grinning with their sharp teeth.`
+			`	"Don't worry about paying right now. I only needed you to agree to the deal. I will withdraw the money in the future, when I desire.`
+			`	"Now that we're done with that, the artifact you're looking for has been taken by some mercenaries. It seems to me that your friend messed with the wrong people, but I digress. That is not the information you paid for."`
+			`	Mammon lifts their hands to the holographic map of the galaxy in the ceiling. It zooms in, filling up the entire room with stars. In front of you, you recognize the border betwen the Deep and the Dirt Belt.`
+			`	"They have kept the artifact for themselves to sell on the black market, and their base of operations is right... here. Algieba."`
+			`	The hologram zooms further in on Watcher, one of the system's moons, and continues until it finally stops over a large forest.`
+			`	"You will find them on this uninhabited moon. They are hiding out in this forest, and the artifact is with them. The exact coordinates will be forwarded to your ship. Expect hostilities."`
+			`	You thank Mammon for the service and get up to leave.`
+			`	"See you, Captain <last>. Remember I always do."`
+				accept
+	
+	on defer
+		set "visited mammon"
+	
+	on accept
+		set "paid mammon"
+		fail "Sheragi Archaeology: The Box 3"
+
+
+
+mission "Mammon Payment"               
+	landing
+	invisible
+
+	to offer
+		random < 10
+		has "Sheragi Archaeology: Emerald Sword Epilogue: done"
+		has "paid mammon"
+		credits >= 12000000
+
+	on offer
+		payment -10000000
+		conversation     
+			`You receive a message informing you of a very large transaction: 10 million credits. With it, a message containing only the image of a reptilian eye logo. It seems Mammon's crew have withdrawn the money you agreed to pay for the information about the Sheragi black box.`
+				decline
+
+
+
+mission "Sheragi Archaeology: The Box 5"
+	landing
+	name "The Fight for the Artifact"
+	description "Destroy the mercenary fleet, then land on <planet>."
+	source "Watcher"
+	
+	to offer
+		has "Sheragi Archaeology: The Box 4: done"
+	
+	on offer
+		conversation
+			`You arrive at the uninhabited moon of Watcher and scout the area around the coordinates Mammon sent you. It's relatively easy to find some smoke rising from a campfire in a clearing, but as you approach to investigate, you're surprised by several large ships taking off to greet you, ditching the green tarps used to hide among the trees. It looks like they really don't want you here.`
+				launch
+	
+	npc disable
+		government "Bounty Hunter"
+		personality unconstrained launching nemesis heroic plunders harvests target marked
+			confusion 20
+		system "Algieba"
+		fleet "Marauder fleet X"
+		dialog
+			`You managed to destroy the entire mercenary fleet. You should have no problem landing on their camp now and recovering the cube.`
+	
+	on visit
+		conversation
+			`You attempt to evade the mercenary ships and make a quick assault on their encampment, but the ships follow you through the atmosphere, and ground personnel start shooting at you. Bombing it on a pass means you risk destroying the cube. You have no choice but to go back to space and eliminate the mercenary fleet.`
+				launch
+	
+
+
+mission "Sheragi Archaeology: The Box 6a"
+	landing
+	invisible
+	source "Watcher"
+	destination "Vinci"
+	
+	to offer
+		has "Sheragi Archaeology: The Box 5: done"
+	
+	on offer
+		conversation
+			`You come in for a landing, and the few mercenaries that stayed on the ground march towards your ship carrying a makeshift white flag. Dozens of tough-looking men and women approach in uniform but unarmed. They remain calm and organized. These aren't ordinary criminals, it seems.`
+			`	"We know when we've lost," one of them yells to your ship on a megaphone. "What is it that you want?"`
+			choice
+				`	(Shoot them.)`
+					goto shoot
+				`	(Talk to them.)`
+			
+			`	You land and cautiously open the hatch to talk with them.`
+			`	"Who do you work for? Where is the cube you stole?" you ask.`
+			`	"So that old thing was yours?" One woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
+			`	"If you want the cube, you can have it if you spare us. It's not worth our lives."`
+			choice
+				`	(Spare them.)`
+					goto spare
+				`	(Open fire.)`
+					goto fire
+			
+			label fire
+			`	Feeling distrustful, you immediately close the hatch and get back into your ship while they scatter.`
+			
+			label shoot
+			apply
+				set "burned white flag"
+			`	Disregarding their surrender, you turn your ship towards them and open fire on the small army. Using your ship-mounted guns against ground personnel is honestly excessive, and they didn't stand a chance. There is now a smoldering clearing around the place where they once stood, and a forest fire is beginning to spread.`
+			`	You enter the camp, shooting any mercenaries that remained hidden, and pillage their tents. You find hundreds of thousands of credits, in chips and valuables, and eventually, you find the cube as well. With that in hand, you go back to your ship, ready to take it back to John.`
+				decline
+			
+			label spare
+			`	"Deal. Bring it to me," you say.`
+			`	While one of them goes fetch it, you wait in an uncomfortable silence, watching their every move while they watch yours. Eventually the young man who left to get the cube comes back and gives it to you. You examine it, confirming it is the artifact you were looking for.`
+			`	"You have it, now go away. We won't get in your way again," The woman who spoke before says, and the other mercenaries begin to disband, going back to their tents.`
+			`	With the cube in your arms, you have no more reason to stay here. You go back to your ship, ready to take it back to John.`
+				accept
+	
+	on decline
+		payment 926621
+
+
+
+mission "Sheragi Archaeology: The Box 6b"
+	landing
+	name "The Box Recovered"
+	description "Bring the cube back to John on <destination>."
+	source "Watcher"
+	destination "Vinci"
+	
+	to offer
+		has "Sheragi Archaeology: The Box 5: done"
+	
+	on complete
+		conversation
+			`Carrying the mysterious box again, you make your way to John's lab. He lets you in, and you tell him about what you just went through.`
+			`	"So, retribution, huh? You think it was the officials from the Deep that got angry at us last time? Or maybe Foster's competitors for that dig site? I should have seen that coming."`
+			`	"Possibly," you say. "I can't imagine any other reason."`
+			`	"At least you got it back. But I don't know if it would be wise to continue to work on it here, and I can't just leave the planet for a couple months with no consequences. I don't even have a clue on how to read that data yet."`
+			`	"And what, do you happen to have another shady contact who can help?" you ask.`
+			`	"Unfortunately not. And now we seem to be running against time. If only the Quarg would be willing to work with us and give us the information we need to crack this box..."`
+			`	As soon as you hear that phrase, it suddenly hits you. You've met the Hai up north, and you heard from the Unfettered that they've met the Sheragi many millenia ago. Perhaps the Hai could be able to help.`
+			`	"I think I know what to do. You're not the only person with contacts in strange places."`
+			`	You pick up your things, placing the cube back inside the backpack.`
+			`	"Well, I wish I could study it longer, but if you have a lead, it's worth pursuing. I trust you'll return the cube to either myself or Albert once you're done with it. Good luck, Captain. Don't get in too much trouble."`
+
+
+
+mission "Sheragi Archaeology: The Box 6c"
+	landing
+	name "Hai Knowledge"
+	description "Ask the Hai if they know more about the Sheragi."
+	source "Vinci"
+	destination "Allhome"
+	
+	to offer
+		has "Sheragi Archaeology: The Box 6b: done"
+
+
+
+mission "Sheragi Archaeology: The Box 7a"
+	landing
+	name "The Museum of Galactic History"
+	description "Travel to <destination> to visit the Hai Museum of Galactic History."
+	source "Allhome"
+	destination "Mirrorlake"
+	
+	to offer
+		has "Sheragi Archaeology: The Box 6c: done"
+	
+	on offer
+		conversation
+			`You ask around the spaceport until you manage to find a Hai tourist guide. You ask him if there's any place where you could find more information about the Sheragi.`
+			`	"A human knows about them? I'm surprised. This is ancient history. If there's any place where you can find out more about them, it's the Museum of Galactic History on Mirrorlake."`
+			`	You thank the guide and return to your ship, plotting a course to the Ya Hai system.`
+				accept
+
+
+
+mission "Sheragi Archaeology: The Box 7b"
+	landing
+	name "The Hai Ministry of Culture"
+	description "Land on <destination> to speak with the Ministry of Culture."
+	source "Mirrorlake"
+	destination "Hai-home"
+	clearance
+	
+	to offer
+		has "Sheragi Archaeology: The Box 7a: done"
+	
+	on offer
+		conversation
+			`Arriving on Mirrorlake, you ask around for a while, and eventually, someone directs you to the Museum of Galactic History: a huge, and very important place, but surprisingly not a very popular tourist spot. Most Hai aren't very fond of looking at the past, and most humans have no idea this place exists. The museum staff is surprised to see a human face, and as you wander you feel like you're drawing more attention from the locals than the exhibits themselves.`
+			`	The place has a very unusual architecture vaguely resembling Earth's Ancient Greece, but clearly not based on any human design. Touches of metal, concrete, glass, and plastic add a modern aspect to its design. Exhibit rooms branch off a long corridor that makes up the majority of the building.  The rooms are arranged such that history proceeds backwards as you walk through the museum, with recent events at the front and the earliest at the back. One room you enter is dominated by a mural depicting the Hai's history of contact with humanity. It begins with the Alphas: most of the space is taken up by pictures of warships and artwork detailing battles between the Hai and Alphas. Around halfway through the mural, the green-skinned humans are replaced by ordinary ones. Here, there are surprisingly rich insights on human biology and culture.`
+			`	As you continue to wander further down the aisle, you find rooms dedicated to the Korath raids, their civil war, and the first contact with them, along with a very poetic recounting of the origins of the Unfettered. Going deeper, you find even more sections: A long one detailing Hai culture on several different worlds and how they shifted with time, another on the fall of the trans-wormhole government and the decision to pull back into a small territory, one on the completion of the Quarg ringworld, one for Hai trade and military culture during their imperial phase, and a very grim-looking room on the Hai Civil Wars. Finally, after a very long walk, you arrive at a room nearly at the end of the aisle, recounting the history of the Sheragi.`
+			choice
+				`	(Continue into the Sheragi room.)`
+			`	What you see here is much richer than what Albert Foster's little museum could ever hope to display. There are pictures of Sheragi military officials of the time, as well as their names and roles. Details on their culture, their biology, and their territorial fights with the Hai are provided as well. There is a huge statue of a bipedal dragon at the center of the room, around 8 meters tall, so large that the ceiling had to be raised. The inscription on the plaque at its feet indicates it is a reproduction of a life-sized Sheragi. A smaller interactive holographic display of one shows details on their biology and behavior. Samples of culture are scarce, but it indicates that they lived under a military meritocracy that valued strength and leadership above all else. Their fleets were fearsome, even with the pre-modern level of technology they had at the time of their demise. You see pictures and rough blueprints of their ships. They had angular, multi-layered armor that rivaled the strength of modern Hai vessels by sheer mass. If your measurement conversions are correct, their ships were bigger than anything else in human space, dwarfing even the Navy Carrier. A few of them display equally impressive spinal cannons of unknown capability, with grim descriptions suggesting that they were responsible for the extinction of the Sheragi... Weapons of mass destruction in the hands of a warlike and immature species that used them carelessly.`
+			`	While you are looking around the room, one of the curators approaches you, speaking your own language albeit with a heavy accent.`
+			`	"Sad, isn't it? I don't think they ever had a peaceful time in their spacefaring history."`
+			choice
+				`	"They lived fast, died young, and left good-looking corpses."`
+					goto approve
+				`	"It's a pity they had to focus so much on conflict. They seemed very capable."`
+			`	"Well, it's not like we are ones to talk. At the time, we Hai were a troubled species too. We even tried invading Sheragi territory. Perhaps if we had been successful, they might have united against a common enemy and might have even survived their rebellious phase, at our own expense."`
+				goto next
+			label approve
+			`	The curator laughs in the distinctive Hai way.`
+			`	"That's one way to put it. I can't deny the scale of their engineering was a marvel even for the Hai of that time, and our civilization was already old. Some things scale well with size, and they had no choice but to build big. But it's still a shame. Imagine such capability being used for peace."`
+			label next
+			`	"Anyway, it's rare to see a human face here, and even more intriguing for them to be staring at Sheragi artifacts."`
+			`	You explain about the ruins recently discovered on Zug.`
+			`	"Ohhh, right. They used to inhabit the part of human space that is now called the Rim. Are you looking for anything in particular?"`
+			`	"I would like to know more about Sheragi computers," you respond.`
+			`	"Hmmm, computers. The Sheragi built their hardware to last. Very sturdy electronics with redundancies, designed to be able to take a shot and survive. But still, I doubt they would have survived so many thousand years. If you want to identify how their hardware used to work, there are a few documents and manuals the ancient Hai stole from them."`
+			`	"Are they for sale?" you inquire.`
+			`	"You want to buy a copy of the documents? Right now? I'm intrigued. Did you actually find something that still works?"`
+			choice
+				`	"We found a kind of storage device that seems to still be functioning. A black box."`
+					goto truth
+				`	"I'm just curious. Studying their technology might allow us to improve ours."`
+			`	"I see. I'll have to warn you though, following the footsteps of a doomed species can only get you so far.`
+				goto end
+			label truth
+			`	"A Sheragi black box? That's an incredible find! Be careful about the information it contains, though. They are a doomed species. Don't you humans have a legend about a cursed box? What was it... Pandora's Box?`
+			label end
+			`	"In any case... I am not authorized to sell you documents, I just take care of artifacts here. Giving Sheragi technology to humans will likely be a very bureaucratic process. I suggest you contact the Ministry of Culture on Hai-home."`
+			`	You thank him for his help, and make your way back to the spaceport, mentally preparing yourself for what is likely to be a long meeting.`
+				accept
+
+	on complete
+		conversation
+			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
+			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table, you explain the situation, and they begin inquiring about the dig site on Zug, curious about the state of preservation of the ruins and what artifacts were found. They seem excited about it.`
+			`	"This is a unique opportunity! Even when our species were in... active contact, millenia ago, we Hai never had the opportunity to study Sheragi cities up close. Brief skirmishes and diplomatic meetings was as close as our ancestors got."`
+			`	"You'll understand, however, that we can't simply sell you the documents you're requesting. Instead, we have a proposition for you: cooperation between our species, so both Hai and human can mutually benefit in ways more significant than the financial one."`
+			`	Given this opportunity, you tell them about the Sheragi black box found in the dig site, and the possibility of decrypting it and uncovering its secrets.`
+			`	"With the proper tools, we could decode it. But in return, we'd like to have a copy of the contents as well, and to learn more about your findings."`
+			choice
+				`	"Wait, can't I just pay for some help?"`
+				`	"Sounds fair to me."`
+					goto accept
+			`	"This is an excellent opportunity for us to learn as well, Captain <last>. We're not going to take anything from you, but rather, it's a mutual benefit."`
+			`	You ponder your choices for a moment. There is no way you could solve this puzzle without their help. You've gone this far, so you agree.`
+			label accept
+			`	"Excellent!"`
+			`	They chat with you a bit more, and the leader excuses himself for a moment to make a call. A moment later he returns.`
+			`	"We have arranged for a very capable team of archaeologists to meet you in the spaceport in a few hours. They specialize in Sheragi artifacts. I would advise you to make room for 3 passengers and some cargo for their equipment."`
+			`	You thank them for their help, and leave the building, ready to meet your new team in the spaceport.`
+
+
+
+mission "Sheragi Archaeology: The Box 8"
+	name "Assembling the Team"
+	description "Take the Hai archaeologists to meet Albert Foster on <destination>."
+	source "Hai-home"
+	destination "Zug"
+	passengers 3
+	cargo "Archaeological Equipment" 1
+	blocked `You arrive at the spaceport, but then you realize your ships don't have enough free bunks or cargo space required to bring the archaeologist team with you. You manage to contact them, and in an embarrassing conversation ask them to wait for you while you make sure you're ready.`
+	
+	to offer
+		has "Sheragi Archaeology: The Box 7b: done"
+	
+	on offer
+		conversation
+			`You meet up with the Hai archaeologists that will accompany you to human space, an all female team. They introduce themselves to you as Eyama, Rakei, and Desyo.`
+			`	Eyama is a linguist specializing in the Sheragi language. She playfully greets you in the dragons' rather guttural tongue, with strange tones.`
+			`	Rakei is an archaeological engineer, who immediately takes a liking to the cube as soon as she sees it, examining its structure.`
+			`	Finally, Desyo is a xenoprogramming expert who studies alien software, and seemingly has a lot of experience with Sheragi code. Apparently, the displays of the Sheragi room of the museum all run in this exotic language, unseen by the usual public.`
+			`	After the brief introduction, they each take their equipment and load it into the cargo bay of your ship. Rakei approaches you after everything is in place.`
+			`	"We want to meet the human archaeologist who uncovered the ruins in the Rim. Can you take us there? We will start examining the cube along the way. I think by the time we get there, we'll have something to work with."`
+				accept
+	
+	on complete
+		event "cube decoded" 40 50
+		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people and often coordinates the work in the Hai archeologist team, despite her introversion and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
+		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She is part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
+		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you would expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
+		conversation
+			`It was a long trip, almost halfway across the galaxy. The Hai archaeologists have been quite friendly and amiable, giving you updates every time they made a new breakthrough. During this time, the cube, previously thought to be impenetrable, had been disassembled and cleaned. Components that decayed into a mess of oxidized wires and goopy paste over the eons have been identified and removed to substitute for equivalent ones, and a blueprint of the box and its circuits has started to take shape.`
+			`	As soon as you land, you call Albert Foster, who doesn't believe you when you say you've gotten alien archaeologists to help. You then look for the three Hai to figure out how they're going to go unnoticed on a human world. You're surprised to find Eyama wearing long, dark but colorful human clothing with an equally oversized hoodie and a bandanna. You recognize this outfit, very popular with the youth these days, who are generally regarded as delinquents by the previous generation. Additionally, she's carrying two more sets, for her Hai partners as well. It hides her body really well at the cost of making her look like a young boy, and the Hai's relatively short stature doesn't help.`
+			`	"Call me Miss Deus ex Machina, because I thought ahead and bought these from a merchant back home. Perfect disguise. The humans will never notice. How do I look?"`
+			choice
+				`	"That's... clever. It hides you well."`
+				`	"Well, it works, but you look like a child."`
+					goto child
+			`	"Right? I can even hide my tail in the back of the hoodie!" She spins around happily.`
+				goto anyway
+			label child
+			`	"That's not that bad, is it? I always considered myself young at heart, anyway!" she giggles a little.`
+			label anyway
+			`	"Anyway, can you take us to Mr. Foster's museum? We'll take the cube and fill him in on the details."`
+			`	You agree, and after they're all ready, you make your way out to the dig site. Surprisingly, the three Hai don't get many weird looks if they walk a bit further behind you. You arrive at the museum and they immediately break character by being very obviously excited to see the exhibits. This probably comes as a relief to onlookers, however, who would normally expect that type of kid to vandalize priceless artifacts.`
+			`	Finally, you arrive at Albert's workshop. He stops brushing layers of hardened soil off of what looks like it was once a television, and looks startled at you and the three "kids." The Hai take off their hoods and bandannas, causing his jaw to nearly drop to the floor.`
+			`	"I'll be damned. The Hai really exist!" He exclaims.`
+			`	"Of course we do," Eyama laughs. "Haven't you heard all the stories?"`
+			`	"I had my doubts. Merchants are not usually the most reputable sources." He smiles. "I'm Albert Foster, archaeologist, pleased to meet you all."`
+			`	They introduce themselves, and very soon the conversation evolves to a kind of jargon even Albert has trouble following. They talk about the box and their findings, while Albert talks about the history uncovered in the dig site and insights on the Sheragi daily life and culture. You close the door to make sure nobody else is listening in.`
+			`	"We've managed to open the box and we're making a blueprint of it," says Desyo. "Once that's done, we might be able to rebuild the broken pieces and recover the data. We already have documentation on how their hardware worked."`
+			`	"The catch is that this is a collaboration now. We'll help you, if you share your findings with us," Rakei continues.`
+			`	"Sounds like a fair deal to me," Albert says. "We'll arrange the details later. <first>, thank you so much for your help. We'll continue studying this artifact, and we'll send you a message when we're done."`
+			`	You say goodbye to Albert, Rakei, Eyama, and Desyo, and make your way back to your ship. However, as you're walking back to the ship, you feel a heavy hand on your shoulder. You look back, and you're startled to see a Quarg. It's Yarthis, who you had brought here to help protect the dig site during the early days of the project.`
+			choice
+				`	"I wasn't expecting to see you here."`
+				`	"Can I help you?"`
+			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but please understand we only work to prevent extinction. I've been told not to interfere, but I must advise you to be careful with its contents. While it is nothing inherently dangerous, we feel that it would be safer in the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
+			`	It turns around and leaves you to think about it.`
+
+
+
+mission "Sheragi Archaeology: The Emerald Sword 1"
+	landing
+	name "Black Box Decoded"
+	description "Visit Albert Foster on Zug."
+	source
+		near "Zubeneschamali" 1 100
+	destination "Zug"
+	
+	to offer
+		has "event: cube decoded"
+	
+	on offer
+		dialog
+			`You're still in the middle of the post-flight check when you receive a new encoded message from Albert Foster.`
+			`	"Hello <first>. I have some good news! We have decoded what's in the black box. You should come visit us on Zug; we have plenty to tell you!"`
+
+
+
+mission "Sheragi Archaeology: The Emerald Sword 2"
+	landing
+	name "The Emerald Sword"
+	description "Bring an additional jump drive to Zug."
+	source "Zug"
+	to offer
+		has "Sheragi Archaeology: The Emerald Sword 1: done"
+	
+	on offer
+		conversation
+			`You arrive on Zug, and after contacting Albert and the three Hai archaeologists and following their directions, you find them in an ice cream shop. They're still wearing the youngster clothes, but not even bothering to hide their faces with bandannas anymore. Surprisingly, nobody seems too distressed at the sight. Rakei waves for you and stands up, coming to you with ice creams in paw.`
+			`	"Hello <first>! It seems our disguise worked better than intended. The humans around here think we're wearing a costume. Apparently young humans like to dress up as aliens?" she says confusedly.`
+			`	"I had a feeling we'd fit right in with the furry crowd," Eyama responds proudly.`
+			`	"It has been an interesting cultural exchange. Human space might be a great vacation spot for us. But we're not on vacation yet. We have a mystery to solve," she continues.`
+			`	You sit down with your group on a bench in a nearby park, mostly empty, and Desyo picks up the conversation.`
+			`	"So, the files in the black box were thankfully standard for Sheragi. Not very difficult to decode, once we managed to read them."`
+			choice
+				`	"What did it contain?"`
+			`	Desyo responds, "It was all fleet movement data and military strategy details. This system was apparently on the border of one of the factions' territories. On the final moments of the recording, a large transport fleet had entered the system, unarmed ships. They were followed by military vessels in pursuit. There's no telling what they thought at the time, but a military fleet was immediately dispatched to eliminate both fleets. One particular ship, the name of which Eyama has translated as 'Emerald Sword,' started behaving erratically when given orders. It fired and missed a few shots until it eventually stopped and fled. Clear signs of a mutiny. However, what is perhaps most interesting is that when it fled, it fled in an unexpected direction, away from any hyperlanes."`
+			`	Albert continues, "We think they wanted to flee from the fighting. These were soldiers scarred by the horrors of the war, and they just got ordered to attack what we assume to be refugees. The Emerald Sword was a big ship, likely with an equally large crew, and from the movement data, it's engines were very powerful too, possibly capable of crossing interstellar distances within a Sheragi lifetime. This has some interesting implications. The ship was moving precisely towards a star named Zubenelhakrabi. Not significant enough to show up in the star maps, but we did our survey, and there is a potentially habitable planet there, but zero signs of intelligent life. We think they failed in colonizing it, but the ship might still be there. It's a priceless artifact. Thing is, there is no way to get there."`
+			`	"Unless you have a jump drive," Rakei adds. "And you do have one, don't you?"`
+			choice
+				`	"I used to, but not anymore."`
+					goto notanymore
+				`	"I do."`
+			`	"This is perfect! Do you think you can get another one? If we're going there, we're going to need one to install on the Emerald Sword and bring it back home."`
+				goto return
+			label notanymore
+			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword."`
+			label return
+			`	"What do I get in return?" you ask.`
+			`	"The ship, of course," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. We're going to spend a day or so studying the ship after we get it, making a blueprint and all that, but afterwards, it's all yours to keep! I just can't wait to see what that ship even looks like. Give us some time to assemble a crew to help refurbish the ship, and in the meantime, get us a jump drive. Come back to us once you have it."`
+				accept
+	
+	to complete
+		never
+
+
+
+mission "Sheragi Archaeology: The Emerald Sword 3"
+	landing
+	name "The Emerald Sword"
+	description "Capture the Emerald Sword."
+	source "Zug"
+	destination "Echoes of Tragedy"
+	cargo "Outfitting Equipment" 50
+	passengers 20
+	blocked `You arrive to make the preparations to capture the Emerald Sword, but Albert stops you. "Captain, we're going to need 50 tons of cargo to take our materials and the jump drive, and 20 additional crew to help, including us. I'd also advise that you save enough bunks to hire some additional crew. The Emerald Sword is an alien ship, so we have no idea how many people we will need to man it. I would recommend erring on the side of caution by bringing along 100 or so extra crew members."`
+	
+	to offer
+		has "Sheragi Archaeology: The Emerald Sword 2: active"
+	
+	on offer
+		require "Jump Drive" 2
+		conversation
+			`You have a jump drive in your possession. Would you like to give it to Albert's crew?`
+			choice
+				`    (Yes.)`
+				`    (No.)`
+					defer
+			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment, along with the jump drive you brought. He has assembled a crew of around 20 people, including him and the three Hai archaeologists, who are comfortable to let go of their disguise once they're back in your ship.`
+			`	"<first>, meet the people who will help us recover the Emerald Sword. I've just briefed them on the situation and what we plan to do. We're going to take some specialized tools with us, along with the jump drive, which will allow us to repair and outfit the ship in any world we can land on. I suggest you also hire some additional crew to man the ship once we capture it, since it's likely not going to pilot itself. Remember, this is an alien warship, so I would recommend erring on the side of caution by bringing along around 100 extra crew members to deal with any potential problems in piloting the ship. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
+			`	You thank Albert, and make your preparations for the voyage into the unknown.`
+				accept
+	
+	on accept
+		fail "Sheragi Archaeology: The Emerald Sword 2"
+		outfit "Jump Drive" -1
+		event "zubenelhakrabi discovered"
+
+	on enter "Zubenelhakrabi"
+		conversation
+			`The trip to Zubenelhakrabi is completely normal and calm. Excessively so for everyone's overflowing expectations though, the trip's uneventfulness only managing to keep everyone on edge. When you arrive, a simple scan reveals the system's star is unremarkable, nearing the end of its main sequence phase. Among the planets orbiting it, one is in the habitable zone and shows apparent signs of life, covered in dark green spots under the clouds.`
+			scene "scene/emeraldswordderelict"
+			`	You also find the Emerald Sword, but strangely, it is not on the planet, but drifting through space. An enormous ship of angular design, its most striking feature is an incredibly large cannon going through the center of the ship. It is so large the ship might as well have been built around it; you can only wonder about its power. Thankfully, you won't have to find out the hard way; the ship is inert, derelict, ruined from lack of maintenance, and abandoned to the mercy of micrometeorite showers and decay. It looks like it could fall apart if looked at the wrong way... luckily, you have just the right crew for the job.`
+			`	But before you can initiate the approach to the ship, a strange feeling washes over you. First, a feeling of being watched by something far greater. Then, a void in your chest, a deep apprehension you can't shake. A thought forms in your mind, but it's not your own:`
+			`	"You have arrived, human. This was the Sheragi's last stand before their extinction. You would do well not to disturb this place of remembrance."`
+			`	A strong shiver washes over you as the thoughts of "extinction" and "remembrance" are punctuated by an indescribable feeling. As if there is a cold deep within your bones.`
+			choice
+				`	"Who are you?"`
+					goto who
+				`	"What... What is this feeling?"`
+			`	There is a pause. The feeling of being watched becomes intense, as if you're being studied intently.`
+			`	"A human would call it... dread. Regret. Loss. You are standing in the last untouched graveyard of a lost civilization.`
+			label who
+			`	"I am the guardian of this site. I am also the one who guided you towards the buried city, so your species would bear witness and take heed of the lessons of ones who have long succumbed to their own folly. I did not intend for you to reach this far.`
+			`	"Here is where the Sheragi came to an end. The tools that drove them to extinction are long gone. We witnessed as they cast those tools into the heart of this star."`
+			choice
+				`	"You mean this ship? Its weapons systems seem to be intact."`
+					goto cannon
+				`	"What tools?"`
+			`	"Ones capable of crippling an entire world's worth of life."`
+				goto next
+			label cannon
+			`	"That ship is just a relic, its weapons a mere trinket. The weapon that perished the Sheragi was indiscriminate. An irrational decision they made for themselves, failing to judge the risk."`
+			label next
+			`	As that is said, you're overcome by glimpses of memories that are not yours, not clear enough for you to identify what exactly is happening, but you can feel the sadness in them.`
+			`	The voice continues: "I know what you seek here. The trinket you covet is of little relevance, even for your own, human standards. But if you wish to possess it, then take it. Show your respect to those who have perished here, learn their lessons, and I will allow it. Perhaps the sight of that vessel will remind the living races of those who have come and gone... and how, despite their great accomplishments, their decision to make war reduced them to graveyards, relics, memories... and dust."`
+			`	The voice, and the overwhelming emotions that came alongside it, disappear as mysteriously as they came. Desyo, who witnessed you speaking into the void, asks whether you feel okay. It seems like no one else heard it.`
+
+	npc board
+		government "Sheragi"
+		personality derelict mute
+		system "Zubenelhakrabi"
+		ship "Emerald Sword" "Emerald Sword"
+		conversation
+			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it as the life support has long since ceased to work, and it takes a long time to restore it through your ship's own life support and patch tiny micrometeorite holes. Once it's in inhabitable conditions, it still smells like a tomb. The crew starts going in, separated in teams by the archaeologists, to perform various tasks. Albert and Eyama go in first, taking notes and carefully collecting artifacts`
+			`You find many Sheragi skeletons and mummified remains. A few of them have prosthetics that survived better than their host. Your crew gets to work cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life and take advantage of the zero-G environment to move the jump drive into the ship more easily. You'll need to land to properly install it, however. All that is left for you to do is relocate the many corpses littering the living spaces with your crew.`
+	
+	on complete
+		conversation
+			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. You eventually park your ships over a mesa. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be otherwise unbreathable for long periods of time.`
+			`	Over the course of the next day, the workers unload some outfitting and repairing equipment, while scientists slowly work out the functions of the ship, and brief you and your crew on how to operate it. One of the workers invite you to visit the temporary outfitter and oversee the proper installation of the Outfits Expansion and the jump drive in the Emerald Sword.`
+			`[You need to remove the Damaged Sheragi Systems to repair it.]`
+
+
+
+mission "Sheragi Archaeology: Emerald Sword Epilogue"
+	landing
+	name "The Emerald Sword"
+	description "Return to Zug."
+	source "Echoes of Tragedy"
+	destination "Zug"
+	passengers 20
+	cargo "Outfitting Equipment" 25
+	
+	to offer
+		has "Sheragi Archaeology: The Emerald Sword 3: done"
+	
+	on complete
+		log `Obtained an ancient Sheragi warship whose name translates to the Emerald Sword. It was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, it is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size.`
+		event "temporary outfitter removed"
+		conversation
+			`Your exotic new ship draws a lot of attention from the dockworkers, partly because it is unique and never-before-seen, but probably even more so due to the unprecedentedly large cannon. Albert and the Hai archaeologists spend most of the day examining your ship in more detail and recovering the corpses now that it's in a proper spaceport and they can access more complex equipment. Everything is completed in one particularly busy afternoon, and as night falls, the immense scale of the inside of the ship allows more floors to be installed, giving you even more living space.`
+			`	You go back to the same park as before with Albert and the three Hai in partial disguise, ice creams in hand and paws to commemorate the new acquisition.`
+			`	"That is one impressive ship," you mention.`
+			`	"True," Desyo says. "I've never seen a cannon that big before."`
+			choice
+				`	"That's what she said."`
+				`	"I wonder how it works."`
+					goto works
+			`	Desyo doesn't understand, but Eyama bursts into laughter. "Classic human joke. You see, it implies-"`
+			`	"God, don't explain it," Albert interrupts. "That was terrible. She's right though, that isn't something you see every day. Do you have any idea how it works?"`
+			label works
+			`	Rakei, who is more knowledgeable in this area, responds. "It's a fusion-pumped gamma-ray laser, or GRASER for short. The device is simple in concept, but the cost involved and the proportion of everything makes it impractical to develop, not to mention the way it works would probably be considered a war crime in many civilizations, thus making R&D not worth it. It's essentially using a nuclear flash to power a laser beam that penetrates and melts everything. Fascinating, but I'm hoping you'll only use it for peacekeeping purposes."`
+			`	Eyama adds, "I've been calling it the Dragonflame cannon. I think it's appropriate, even though it's technically not a flame in the chemical sense. The dragons of human legends could breathe fire, and although it's unlikely the Sheragi could actually do that, this cannon more than makes up for it."`
+			choice
+				`	"Do you think I could get in trouble by using it?"`
+					goto trouble
+				`	"It's not going to blow up my own ship, is it?"`
+			`	Rakei laughs. "Don't worry, the Sheragi did their homework. The simple materials they used means the cannon can be maintained and repaired, so it continues to be structurally strong. Many of the components are active anyway, and they basically only exist for the short amount of time that the GRASER takes to fire."`
+				goto catch
+			label trouble
+			`	"I don't think you will, as long as you don't fire it into a planet. It doesn't cause unnecessary suffering like nerve gas, and it isn't as indiscriminate as a nuclear bomb. This is a focused beam. It's going to poke holes straight through any ship subject to its wrath."`
+			label catch
+			`	"Then what's the catch?" you ask.`
+			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon.`
+			`	Desyo adds. "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried."`
+			`	"So what are you going to do now?" you ask them.`
+			`	Eyama responds. "We'll continue working with Albert. These two nerds like technology and ships, but I'm far more interested in the treasure trove of cultural artifacts the buried city holds. Not to mention the humans here are very interesting!"`
+			`	You all finish your ice creams and continue chatting for a while longer before you say goodbye and return to your ship. By tomorrow, it will be in full working condition, ready to take to the endless void.`
+
+# Events
+
+event "cube stolen"
+
+event "cube decoded"
+
+event "zubenelhakrabi discovered"
+	system "Zubenelhakrabi"
+		pos -755.265 364.932
+
+event "temporary outfitter removed"
+	planet "Echoes of Tragedy"
+		remove outfitter
+
+# Additional data
+
+government "Sheragi"
+	"player reputation" -1000
+	swizzle 3
+	"crew attack" 0
+	"crew defense" 0
+
+outfitter empty
+	"Local Map"
+
+system Zubenelhakrabi
+	pos -9743.265 9377.932
+	government Uninhabited
+	habitable 486.68
+	belt 1669
+	asteroids "medium rock" 7 1.5946
+	asteroids "large rock" 1 1.5946
+	asteroids "medium metal" 12 2.8798
+	asteroids "large metal" 2 3.1654
+	minables uranium 6 4.40134
+	minables platinum 3 4.48669
+	minables tungsten 3 3.76004
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava4
+		distance 147
+		period 32.3158
+		offset 98.3841
+	object "Echoes of Tragedy"
+		sprite planet/earth
+		distance 502.704
+		period 204.365
+		offset 314.841
+	object
+		sprite planet/gas8
+		distance 1345.85
+		period 895.229
+		offset 153.957
+		object
+			sprite planet/luna
+			distance 288.272
+			period 26.0544
+			offset 72.9809
+		object
+			sprite planet/ice8
+			distance 373.272
+			period 38.3898
+			offset 185.14
+	object
+		sprite planet/rock17
+		distance 2322.59
+		period 2029.54
+		offset 267.221
+		object
+			sprite planet/oberon
+			distance 83
+			period 41.6711
+			offset 44.2239
+	object
+		sprite planet/gas6
+		distance 3672.78
+		period 4035.81
+		offset 46.4282
+		object
+			sprite planet/lava0
+			distance 281.814
+			period 12.0839
+			offset 337.102
+		object
+			sprite planet/dust5
+			distance 464.272
+			period 25.5519
+			offset 284.511
+		object
+			sprite planet/ice7
+			distance 568.272
+			period 34.6019
+			offset 45.9014
+		object
+			sprite planet/callisto
+			distance 672.272
+			period 44.5228
+			offset 128.448
+
+planet "Echoes of Tragedy"
+	attributes uninhabited
+	landscape land/fog4
+	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has a high concentration of water vapor in its atmosphere and hosts primitive life, with mosses covering nearly all moist surfaces and exotic crustacean-like animals roaming the land, their carapaces made of what would be considered synthetic plastic elsewhere.`
+	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Any trace of colonization by the Sheragi has long since eroded away.`
+	outfitter "empty"

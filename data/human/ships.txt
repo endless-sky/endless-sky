@@ -195,7 +195,7 @@ ship "Auxiliary"
 		"shields" 17100
 		"hull" 5900
 		"required crew" 87
-		"bunks" 260
+		"bunks" 250
 		"mass" 820
 		"drag" 13.3
 		"heat dissipation" .45
@@ -655,10 +655,10 @@ ship "Blackbird"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -40 55
-	engine 40 55
-	turret -18 0 "Heavy Laser Turret"
-	turret 18 0 "Heavy Anti-Missile Turret"
+	engine -42.5 52
+	engine 42.5 52
+	turret -26 15 "Heavy Laser Turret"
+	turret 26 15 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 70 80
 	explode "tiny explosion" 15
@@ -1393,16 +1393,16 @@ ship "Falcon"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -17 143
-	engine 17 143
-	gun -17 -88 "Plasma Cannon"
-	gun 17 -88 "Plasma Cannon"
-	gun -17 -88 "Torpedo Launcher"
-	gun 17 -88 "Torpedo Launcher"
-	turret -16 -24 "Heavy Anti-Missile Turret"
-	turret 16 -24 "Quad Blaster Turret"
-	turret -57 40 "Quad Blaster Turret"
-	turret 57 40 "Quad Blaster Turret"
+	engine -16.5 143
+	engine 16.5 143
+	gun -16 -86.5 "Plasma Cannon"
+	gun 16 -86.5 "Plasma Cannon"
+	gun -19 -76.5 "Torpedo Launcher"
+	gun 19 -76.5 "Torpedo Launcher"
+	turret -16 -29 "Heavy Anti-Missile Turret"
+	turret 16 -29 "Quad Blaster Turret"
+	turret -50 39.5 "Quad Blaster Turret"
+	turret 50 39.5 "Quad Blaster Turret"
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 60 30
@@ -1677,7 +1677,7 @@ ship "Frigate"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
-	description "For centuries, the Frigate was the largest warship produced by the Republic Navy Yard, but now they seem quite small compared to a Cruiser or a Carrier. Armed with a variety of weapons, and with relatively good maneuverability for a ship its size, the Frigate is equally capable at fending off small fighters or bombarding larger ships."
+	description "For centuries, the Frigate was the largest warship produced by the Republic Navy Yard, but now they seem quite small compared to a Cruiser or a Carrier. Armed with a variety of weapons, the Frigate is equally capable at fending off small fighters or bombarding larger ships. In its time it possessed relatively good maneuverability for a ship of its size, but now it sees continued use mostly due to the sheer number of them already built for service."
 
 
 
@@ -2001,10 +2001,10 @@ ship "Hawk"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -24 41
-	engine 24 41
-	gun -9 -17
-	gun 9 -17
+	engine -23.5 41
+	engine 23.5 41
+	gun -8.5 -17.5
+	gun 8.5 -17.5
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -2494,14 +2494,16 @@ ship "Osprey"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -40 67
-	engine 40 67
-	gun -8 -100 "Plasma Cannon"
-	gun 8 -100 "Plasma Cannon"
-	gun -26 -53 "Plasma Cannon"
-	gun 26 -53 "Plasma Cannon"
-	turret -16 -16 "Quad Blaster Turret"
-	turret 16 -16 "Heavy Anti-Missile Turret"
+	engine -45.5 62.5 .8
+	engine 45.5 62.5 .8
+	engine -16.5 105 .6
+	engine 16.5 105 .6
+	gun -6.5 -100 "Plasma Cannon"
+	gun 6.5 -100 "Plasma Cannon"
+	gun -26.5 -54 "Plasma Cannon"
+	gun 26.5 -54 "Plasma Cannon"
+	turret -13 -17 "Quad Blaster Turret"
+	turret 13 -17 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2618,7 +2620,7 @@ ship "Quicksilver"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
-	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two particle cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed."
+	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two particle cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
 
 
 

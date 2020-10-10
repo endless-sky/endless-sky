@@ -63,16 +63,30 @@ namespace {
 	
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
-		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
-			[&it](pair<Body, int> flare)
+		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
+			[&it](const pair<Body, int> &flare)
 			{
 				return it.first.GetSprite() == flare.first.GetSprite();
-			});
+			}
+		);
 		
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);
 		else
 			oit->second += count * it.second;
+	}
+	
+	// Used to add the contents of one outfit's map to another, while also
+	// erasing any key with a value of zero.
+	template <class T>
+	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
+	{
+		for(const auto &it : otherMap)
+		{
+			thisMap[it.first] += count * it.second;
+			if(thisMap[it.first] == 0)
+				thisMap.erase(it.first);
+		}
 	}
 }
 
@@ -127,6 +141,20 @@ void Outfit::Load(const DataNode &node)
 			++steeringFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "jump effect" && child.Size() >= 2)
+			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
+			++hyperSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
+			++hyperInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
+			++hyperOutSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump sound" && child.Size() >= 2)
+			++jumpSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
+			++jumpInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
+			++jumpOutSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -306,14 +334,17 @@ void Outfit::Add(const Outfit &other, int count)
 		AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
 		AddFlareSprites(steeringFlareSprites, it, count);
-	for(const auto &it : other.flareSounds)
-		flareSounds[it.first] += count * it.second;
-	for(const auto &it : other.reverseFlareSounds)
-		reverseFlareSounds[it.first] += count * it.second;
-	for(const auto &it : other.steeringFlareSounds)
-		steeringFlareSounds[it.first] += count * it.second;
-	for(const auto &it : other.afterburnerEffects)
-		afterburnerEffects[it.first] += count * it.second;
+	MergeMaps(flareSounds, other.flareSounds, count);
+	MergeMaps(reverseFlareSounds, other.reverseFlareSounds, count);
+	MergeMaps(steeringFlareSounds, other.steeringFlareSounds, count);
+	MergeMaps(afterburnerEffects, other.afterburnerEffects, count);
+	MergeMaps(jumpEffects, other.jumpEffects, count);
+	MergeMaps(hyperSounds, other.hyperSounds, count);
+	MergeMaps(hyperInSounds, other.hyperInSounds, count);
+	MergeMaps(hyperOutSounds, other.hyperOutSounds, count);
+	MergeMaps(jumpSounds, other.jumpSounds, count);
+	MergeMaps(jumpInSounds, other.jumpInSounds, count);
+	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
 }
 
 
@@ -373,6 +404,56 @@ const map<const Sound *, int> &Outfit::SteeringFlareSounds() const
 const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
 	return afterburnerEffects;
+}
+
+
+
+// Get this oufit's jump effects and sounds, if any.
+const map<const Effect *, int> &Outfit::JumpEffects() const
+{
+	return jumpEffects;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperSounds() const
+{
+	return hyperSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperInSounds() const
+{
+	return hyperInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperOutSounds() const
+{
+	return hyperOutSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpSounds() const
+{
+	return jumpSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpInSounds() const
+{
+	return jumpInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpOutSounds() const
+{
+	return jumpOutSounds;
 }
 
 
