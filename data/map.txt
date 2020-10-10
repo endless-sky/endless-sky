@@ -26093,10 +26093,10 @@ planet "Ceaseless Toil"
 	"required reputation" 15
 
 planet Celeatis
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/canyon4
-	description `Celeatis is a mountainous planet, once home to one of the largest Builder research centers. They were focused on studying the anomaly in the system. If they found out how to stabilize and use it as a wormhole, perhaps their species would have survived, spreading to the rest of the galaxy; the ruined, lifeless and half-buried buildings here are evidence of their failure.`
-	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants had to rely on the food produced abroad. When the Ka'het came, the supplies stopped arriving. In less than a year the planetary food reserves were depleted and the whole population had died of starvation.`
+	description `Celeatis is a barren planet, with mountains covering most of the surface. On some slopes the outline of an outpost can still be recognised, but they are all uninhabited: Some of the villages have been partially destroyed and large amounts of dust cover the remains, to the point that the original colour can't be recognised anymore.`
+	description `	Even in the few flat highlands there isn't any kind of vegetation present, as the planet is too distant from the star and the terrain is too sterile for them to grow in its natural enviroment.
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
@@ -26105,15 +26105,15 @@ planet "Celestial Third"
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
 
 planet Ceilia'sei
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/loc2
-	description `This station used to act as some sort of anti-missile platform. It is covered in a large number of defensive turrets capable of shooting down even the strongest of torpedoes. During the Ka'het invasion it must have been able to stop the incoming EMPs, but it had no way to defend itself against the Ravager Beams; the crew quarters were completely destroyed by the Ka'het, and the Builders soon lost control of all the station's defense systems.`
-	description `	Given the location of the station, it's likely that it was originally built to stop everything coming out of the wormhole rather than the Ka'het themselves.`
+	description `Apart from one large, solid module, very few of this space station remains intact: the cloud of debris surrounding the core makes it very hard to be docked with, and one side of it even appears to have been blown up. The other part, instead, has suffered much less damage, and the surface bristles with dozens of well-maintained turrets.
 
 planet Veliante
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/fog5
-	description `The world that suffered the heaviest damage during the invasion was probably Veliante. Here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable. While most of the planet has returned to safe level of radiation, the areas around the ancient facility are still too irradiated to survive for long without some form of protective equipment.`
+	description `Veliante may have been a livable place once, but it is not like that anymore. Part of its southern hemisphere is filled with deadly levels of radiations, and even on the rest of the planet it would be safer not to remain on the surface without a suit for too long.`
+	description `	While the animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.
 
 planet "Charon Station"
 	attributes south station
@@ -26470,10 +26470,9 @@ planet Earth
 		fleet "Large Republic" 50
 
 planet Eavine
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/snow8
-	description `The moon of Eavine played a crucial role in the demise of the Builders: here, the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems.`
-	description `	The Builders had terraformed Eavine to make it a more suitable place to live, but after their civilization collapsed the moon began to return to its natural state, and a few thousand years ago the moon became so cold that the Ka'het production came to an end. As an example of their instability, the Ka'het themselves inflicted superficial damage to most facilities.`
+	description `Although its climate is very cold and most of the surface is covered in snow, Eavine also has a crust rich of rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped out of their resources, likely to be used in the massive complex of half buried buildings which appears to be the only settlement on this moon that resisted up to this day.`
 
 planet Echo
 	attributes quarg moon
@@ -27959,10 +27958,9 @@ planet Osaeli
 	description `	When the invasion broke out, Osaeli kept being devastated by the largest part of the Ka'het fleet until there was no safe place anymore and almost every Builder had been killed. But, soon after the attacks stopped, vegetation started growing around the ruins and slowly replaced the buildings there.`
 
 planet Palarei
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/valley5
-	description `Thanks to their earlier exploration vessels, here the Builders encountered the first lifeforms evolved outside of their own planet under the form of some kinds of plants. Due to its hot climate the planet was only barely capable of supporting life, but the fruits the local flora produced were popular enough that Palarei became a major farming planet for many millennium.`
-	description `	The farms on Palarei were one of the few successful Builder attempts at creating fully automatic facilities. Due to that, less than a hundred people were present here at the time of the invasion, who were quickly killed by one of the initial Ka'het attacks. Even now a few farms keep working, but only partially: there is no one to pick the fruits harvested, and the reserves now only attract wildlife.`
+	description `While its short distance from the Gerenus star makes it considered to be only barely capable of supporting life, the surface of Palarei is full of thickets a small spiky bush native of this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapon fire; most facilities are covered in meters of dust and sand, but other than that appear to be quite operative.`
 
 planet Palatine
 	attributes "requires: gaslining" "gas giant" uninhabited
@@ -28557,10 +28555,9 @@ planet Sinter
 		fleet "Small Militia" 28
 
 planet Siteria
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/water0
-	description `Siteria is the Builders homeworld, both the place where their journey began and where it ended. After a dozen millennia of underpopulation due to its closeness to the Quarg ring, the Ka'het invasion forced them to retreat. As one of the few remaining planets capable of sustaining farming and by far the one with the best climate, for a few centuries it had again the highest number of inhabitants of all the Builders planets.`
-	description `	When the second invasion began, the large number of fields and farms around the planet allowed the Builders to survive for centuries, hiding in sparse strongholds. Almost three hundred years passed before the Ka'het were able to destroy the last colony.`
+	description `A quite earth-like planet, the main sign of notability of Siteria is the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which which even today still haven't been completely covered by vegetation. A couple cities even have a few tall buildings still partially holding together, as a sign of how durable the constructions of the planet's original inhabitants were.`
 
 planet Skillet
 	attributes north mining farming frontier
