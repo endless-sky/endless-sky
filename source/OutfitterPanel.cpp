@@ -342,7 +342,7 @@ bool OutfitterPanel::CanBuy() const
 
 
 
-void OutfitterPanel::Buy(bool fromCargoOrStorage)
+void OutfitterPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost)
@@ -388,7 +388,7 @@ void OutfitterPanel::Buy(bool fromCargoOrStorage)
 		// Buying into cargo, either from storage or from stock/supply.
 		if(!playerShip)
 		{
-			if(fromCargoOrStorage)
+			if(alreadyOwned)
 			{
 				if(!player.Storage() || !player.Storage()->Get(selectedOutfit))
 					continue;
@@ -417,7 +417,7 @@ void OutfitterPanel::Buy(bool fromCargoOrStorage)
 				player.Cargo().Remove(selectedOutfit);
 			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
 				player.Storage()->Remove(selectedOutfit);
-			else if(fromCargoOrStorage || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{

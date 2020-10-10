@@ -238,7 +238,7 @@ bool ShipyardPanel::CanBuy() const
 
 
 
-void ShipyardPanel::Buy(bool fromCargoOrStorage)
+void ShipyardPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
