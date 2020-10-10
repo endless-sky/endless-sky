@@ -430,12 +430,12 @@ ship "Heron"
 		"Scram Drive"
 		
 	engine -111 307.5
-	engine 111 307.5
-	engine -88 289
-	engine 88 289
-	engine -53.5 274
-	engine 53.5 274
-	engine 1 328
+	engine 112 307.5
+	engine -86 289 1.5
+	engine 86 289 1.5
+	engine -52 274 1.5
+	engine 52 274 1.5
+	engine 0 328 1.5
 	gun 0 -325
 	gun -23.5 -302.5
 	gun 23.5 -302.5
