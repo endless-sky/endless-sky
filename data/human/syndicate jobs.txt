@@ -193,7 +193,7 @@ mission "Syndicate target practice [0]"
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
 	on abort
-		#No penalty
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
@@ -229,7 +229,7 @@ mission "Syndicate target practice [1]"
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
 	on abort
-		#No penalty
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
@@ -265,7 +265,7 @@ mission "Syndicate target practice [2]"
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
 	on abort
-		#No penalty
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
@@ -300,7 +300,7 @@ mission "Syndicate target practice [3]"
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
 	on abort
-		#No penalty
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
