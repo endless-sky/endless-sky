@@ -1909,7 +1909,7 @@ mission "Strider 1"
 					defer
 			
 			label start
-			`	You inform the elders that you have discovered a group that could help them with creating hull repair technology and they invite you to the council chamber. "Greetings, Captain <last>," one of the elders says to you upon entering the chamber. "What news do you have to bring us on your search for hull repair technology?"`
+			`	You inform the elders that you have discovered a group that could help them with creating hull repair technology, and they invite you to the council chamber. "Greetings, Captain <last>," one of the elders says to you upon entering the chamber. "What news do you have to bring us on your search for hull repair technology?"`
 			branch "tell both"
 				has "license: Remnant"
 				has "license: Coalition"
