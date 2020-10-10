@@ -811,7 +811,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// If this mission was aborted but no ABORT action exists, look for a FAIL
 	// action instead. This is done for backwards compatibility purposes from
 	// when aborting a mission activated the FAIL trigger.
-	if(it == actions.end() && trigger == ABORT)
+	if(trigger == ABORT && it == actions.end())
 		it = actions.find(FAIL);
 	// Don't update any conditions if this action exists and can't be completed.
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
