@@ -431,16 +431,11 @@ ship "Heron"
 		
 	engine -111 307.5
 	engine 112 307.5
-	engine -86 289
-		zoom 1.5
-	engine 86 289
-		zoom 1.5
-	engine -52 274
-		zoom 1.5
-	engine 52 274
-		zoom 1.5
-	engine 0 328
-		zoom 1.5
+	engine -86 289 1.5
+	engine 86 289 1.5
+	engine -52 274 1.5
+	engine 52 274 1.5
+	engine 0 328 1.5
 	gun 0 -325
 	gun -23.5 -302.5
 	gun 23.5 -302.5
