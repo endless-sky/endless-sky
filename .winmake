@@ -83,7 +83,7 @@ $(exe): $(exe_objects) $(lib) | $(target_dir)
 # Linker command for the backing static library archive, which will attempt to re-use
 # the existing library, updating any sections invalidated by a newer .o file.
 $(lib): $(lib_objects) | $(target_lib_dir)
-	$(AR) -ru -s $@ $^
+	$(AR) -rc -s $@ $^
 
 # If we are working in a "dirty" configuration where some object files already exist,
 # we can use dependency information generated from the last compilation to limit what
