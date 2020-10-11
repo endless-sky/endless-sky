@@ -125,7 +125,7 @@ mission "Republic Bounty 2"
 
 mission "Republic Bounty 3"
 	name "Republic Bounty Hunting"
-	description `Disable the <npc> which seems to be holding merchants for ransom. Do not destroy or attempt to capture the ship. It was last spotted in the Tais system`
+	description `Disable the <npc> which seems to be holding merchants for ransom. Do not destroy or attempt to capture the ship. It was last spotted in the Tais system.`
 	source
 		government "Republic"
 		attributes "dirt belt"
