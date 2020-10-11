@@ -343,7 +343,7 @@ mission "Republic Shipping 1"
 
 mission "Republic Shipping 2"
 	name "Navy Interior Design to <destination>"
-	description "Transport furniture to the navy offices on <destination>."
+	description "Transport furniture to the Navy offices on <destination>."
 	cargo "furniture" 20
 	to offer
 	source
