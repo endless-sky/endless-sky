@@ -85,7 +85,10 @@ mission "Republic Bounty 2"
 
 	on offer
 		conversation
-			`Before you can decide where you want to go in the spaceport, you are flagged down by a Republic officer. This time, they're a dour woman with black hair in a tight bun. "Captain <last>?" she asks. You nod. "I'm Captain Shah. Commander Kent has you listed as a privateer." she says in a quick, clipped tone. "We've been made aware that a criminal has been spotted near Alnasl. He is wanted dead."`
+			`Before you can decide where you want to go in the spaceport, you are flagged down by a Republic officer. This time, they're a dour woman with black hair in a tight bun. "Captain <last>?" she asks.`
+			choice
+						`			"That's me."`
+			`"Good, good. I'm Captain Shah. I've been keeping an eye out for someone to deal with a little problem for us." she says in a quick, clipped tone. "We've been made aware that a notable criminal has been spotted near Alnasl and our system flagged you for being listed as a privateer. He is wanted dead."`
 			choice
 				`	"Dead. Got it."`
 				` 	"You have an interesting way of asking."`
