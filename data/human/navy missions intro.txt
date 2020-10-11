@@ -695,7 +695,7 @@ mission "Navy vs Pirate"
 		dialog `You have failed an essential Navy mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 	npc kill
-		personality heroic staying nemesis target unconstrained opportunistic appeasing mining harvests
+		personality heroic staying nemesis target unconstrained opportunistic
 		government "Pirate"
 		system "Saiph"
 		names "pirate"
