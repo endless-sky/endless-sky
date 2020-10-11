@@ -464,7 +464,7 @@ mission "Joining the Navy"
 			``
 			`	[Hello, Captain <last>,] the message begins, [as of now, the Republic Navy is seeking captains skilled in combat to serve in the Navy. However, to discourage people hoping for handouts, applicants need to prove that they want to serve in the Navy. Recently, we've been having issues with a pirate vessel called the <npc> - our intel reports that it was spotted skulking around the <system> system. Destroy the <npc>, and return to <destination> to be formally accepted into the Navy.]`
 			choice
-				`	I'm interested - I'll take on that ship.`
+				`	I'll take on that ship.`
 					goto jobAccept
 				`	Sorry, but I have no desire to join the Navy at this time.`
 					defer
