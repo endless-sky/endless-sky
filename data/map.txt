@@ -27953,7 +27953,7 @@ planet Oblivion
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/forest4
-	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, fields of ruined buildings and antique pieces of debris are scattered in large areas; scans reveal many underground bunkers that have been filled of water for a long time, and are now rather similar to normal caves.`
+	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, fields of ruined buildings and antique pieces of debris are scattered in large areas; scans reveal many underground bunkers that have been filled with water for a long time and are now rather similar to normal caves.`
 
 planet Palarei
 	attributes ka'het uninhabited
