@@ -699,12 +699,7 @@ mission "Navy vs Pirate"
 		system "Saiph"
 		names "pirate"
 		fleet
-			variant
 				"Leviathan"
-			variant
-				"Leviathan (Heavy)"
-			variant
-				"Leviathan (Laser)"
 
 		dialog "The <npc> has been eliminated. Return to <destination> for additional orders."
 	on offer
