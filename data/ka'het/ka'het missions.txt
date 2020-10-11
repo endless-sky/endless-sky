@@ -39,7 +39,7 @@ mission "First Contact: Ka'het: Remnant 1A"
 	invisible
 	source
 		government "Remnant"
-		not "Viminal"
+		not planet "Viminal"
 	to offer
 		or
 			has "Graveyard Label: offered"

@@ -26096,7 +26096,7 @@ planet Celeatis
 	attributes ka'het uninhabited
 	landscape land/canyon4
 	description `Celeatis is a barren planet, with mountains covering most of the surface. On some slopes the outline of an outpost can still be recognised, but they are all uninhabited: Some of the villages have been partially destroyed and large amounts of dust cover the remains, to the point that the original colour can't be recognised anymore.`
-	description `	Even in the few flat highlands there isn't any kind of vegetation present, as the planet is too distant from the star and the terrain is too sterile for them to grow in its natural enviroment.
+	description `	Even in the few flat highlands there isn't any kind of vegetation present, as the planet is too distant from the star and the terrain is too sterile for them to grow in its natural enviroment.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
@@ -26107,13 +26107,13 @@ planet "Celestial Third"
 planet Ceilia'sei
 	attributes ka'het uninhabited
 	landscape land/loc2
-	description `Apart from one large, solid module, very few of this space station remains intact: the cloud of debris surrounding the core makes it very hard to be docked with, and one side of it even appears to have been blown up. The other part, instead, has suffered much less damage, and the surface bristles with dozens of well-maintained turrets.
+	description `Apart from one large, solid module, very few of this space station remains intact: the cloud of debris surrounding the core makes it very hard to be docked with, and one side of it even appears to have been blown up. The other part, instead, has suffered much less damage, and the surface bristles with dozens of well-maintained turrets.`
 
 planet Veliante
 	attributes ka'het uninhabited
 	landscape land/fog5
 	description `Veliante may have been a livable place once, but it is not like that anymore. Part of its southern hemisphere is filled with deadly levels of radiations, and even on the rest of the planet it would be safer not to remain on the surface without a suit for too long.`
-	description `	While the animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.
+	description `	While the animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.`
 
 planet "Charon Station"
 	attributes south station
