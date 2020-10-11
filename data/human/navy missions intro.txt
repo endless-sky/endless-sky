@@ -541,7 +541,7 @@ mission "Report to Danforth"
 			`	Alnilam...`
 			`	...and Hatysa."`
 			``
-			`Several of the enlisted present quietly chatter amongst themselves in various tones. "I cannot emphasize this enough, ladies and gentlemen," Danforth warns. "With all the ships we lost in the nuclear attack, we simply can NOT afford to lose more ships. Each of you will report to the base on <destination> for your first assignment. Any questions?"`
+			`Several of the enlisted present quietly chatter amongst themselves in various tones. "I cannot emphasize this enough, ladies and gentlemen," Danforth warns. "With all the ships we lost in the nuclear attack, we simply cannot afford to lose more ships. Each of you will report to the base on <destination> for your first assignment. Any questions?"`
 			``
 			`	A long, awkward silence falls over the room. Danforth gazes over the group a few times before a small smile is visible on his face.`
 			``
