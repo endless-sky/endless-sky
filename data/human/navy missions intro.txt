@@ -305,7 +305,7 @@ mission "Republic Shipping 1"
 			`	"I was hired to take these fine individuals and their cargo to <destination>," the captain replies. "Unfortunately, I don't think I can make it the rest of the way. Would you be willing to take over? Oh, and don't bother asking what they are transporting, they won't tell me."`
 			choice
 				`	"I can do that."`
-				`	I'd prefer knowing what it's in my hold, sorry."`
+				`	"I'd prefer knowing what it's in my hold, sorry."`
 					decline
 			`	"Great! The name's Jeff Haas, by the way. I run a shipping company mostly taking contracts for the Navy," Jeff says enthusiastically.`
 			`	"Complete this job and I will gladly hire you to do more in the future."`
@@ -1474,5 +1474,4 @@ mission "Tier Boost"
 				decline
 
 ########    <end intro, electron sequence here>
-
 
