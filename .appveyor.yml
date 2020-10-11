@@ -9,7 +9,7 @@ clone_depth: 2
 environment:
   # Building with MinGW-w64 version 6.3.0. These env settings are used by the makefile.
   MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
-  IMPL_DIR: ../obj/pkgd
+  ES_SRCLIB_DIR: ../lib/pkgd
   TEST_REPORT_FILE: .\tests\test-report.xml
   matrix:
     - es_run_mode: 'dist'

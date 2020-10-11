@@ -6,6 +6,7 @@ DIR_MINGW64 ?= C:\Program\ Files\mingw64\x86_64-w64-mingw32
 OUTPUT_DIR ?= bin
 SRC_ROOT ?= src
 OBJECT_DIR ?= obj
+ES_SRCLIB_DIR ?= Release
 
 # You should not need to modify the lines below.
 ifdef build_dir
@@ -36,7 +37,7 @@ LDFLAGS += -L$(DIR_ESLIB)/lib $(ldd_extra)
 # Include the Windows Multimedia API.
 LDLIBS += -lwinmm
 
-archives ::= ../lib/Release/libendless-sky.a \
+archives ::= $(ES_SRCLIB_DIR)/libendless-sky.a \
 # Don't pull in the dev64 static libs (this will likely change as more classes are tested).
 #	$(wildcard $(DIR_ESLIB)/lib/*.a) \
 #	$(DIR_MINGW64)/lib/libmingw32.a \
