@@ -481,7 +481,7 @@ mission "Joining the Navy"
             
 	npc kill
 		personality heroic staying nemesis target
-		government "Pirate"
+		government "Bounty"
 		system "Castor"
 		ship "Raven" "Blackfury"
 				
@@ -589,7 +589,6 @@ mission "Navy Pirate Patrol 1"
 
 
 mission "Navy Pirate Patrol 2"
-	landing
 	name "Pirate Patrol"
 	description "Fly through Almaaz and Unagi, then deliver you sensor logs to Farpoint."
 	waypoint "Almaaz"
