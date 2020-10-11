@@ -25729,10 +25729,9 @@ planet Alfheim
 		fleet "Small Deep Security" 27
 
 planet Alix
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/canyon05
-	description `Alix is a small moon the Builders were stripping to build the nearby Het station, as well as to produce the Ka'het hulls. Every inhabited settlement was completely destroyed long ago, but some of the automatic mining facilities and drones that replenish the station's reserves seem to have survived and are still active today.`
-	description `	This could mean the Ka'het developed some sort of basic intelligence, or simply that their scanners weren't good enough to detect the drones.`
+	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been blown up to the extent that all that remains is debris scattered across the terrain, some automated mining facilities are still functioning and see a constant traffic of cargo drones, passing here to gather the raw material and bringing it to the reserves of the nearby station in a short time.`
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -27345,10 +27344,10 @@ planet "Leviathan Station"
 		fleet "Small Deep Security" 27
 
 planet "Letis'sei"
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/loc3
-	description `Letis'sei was disabled long ago, but it seems the destruction it suffered was relatively small: with only a tiny fraction of the station designed to be inhabited, it didn't take much for the Ka'het to eliminate the crew. Today, all the air once inside the station is gone, and few of the original rooms can still be recognised.`
-	description `	Outside, three impressive, cannon-like structures slowly rotate around the living section. Each of them is more than twice as large as the crew quarters, and despite their age they still seem to be mostly intact.`
+	description `Letis'sei is an ancient station, with cramped interiors and massive inaccessible sections: completely unpressurised and lacking an internal atmosphere, it is hard to imagine how this station was originally intended to look like.`
+	description `	Nonetheless, three impressive cannon-like structures are still recognisable, floating outside the rest of the station. The ring that used to keep them together is destroyed, but they are still rotating around the main body in the circular formation that they were made to follow.`
 
 planet Lichen
 	attributes south farming frontier
@@ -27952,10 +27951,9 @@ planet Oblivion
 		fleet "Large Militia" 8
 
 planet Osaeli
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/forest4
-	description `This is an Earth-like planet, a pristine and idyllic world with a large biodiversity. For millennia this was the de facto capital of the Builders, having both the largest population and being the most developed planet in this region of space.`
-	description `	When the invasion broke out, Osaeli kept being devastated by the largest part of the Ka'het fleet until there was no safe place anymore and almost every Builder had been killed. But, soon after the attacks stopped, vegetation started growing around the ruins and slowly replaced the buildings there.`
+	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, fields of ruined buildings and antique pieces of debris are scattered in large areas; scans reveal many underground bunkers that have been filled of water for a long time, and are now rather similar to normal caves.`
 
 planet Palarei
 	attributes ka'het uninhabited
@@ -27971,10 +27969,9 @@ planet Palatine
 	government Uninhabited
 
 planet Parii'het
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/space6
-	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operations on Alix and the occasional harvest taken here by the youngest Ka'het, most of the facilities are still fully operational even to this day.`
-	description `	Differently from most of the Graveyard, the station doesn't seem to have ever suffered any damage from the Ka'het, nor from the Builders trying to regain control over it.`
+	description `Very similar to its sister station of Seli'het, Parii'het was still under construction when it was abandoned by its creators. Today it floats uninhabited in this rarely visited section of space, approached occasionally by the automated drones that mindlessly keep carrying new supplies to the massive cargo section. If the Ka'het attacked this station, it would be made entirely inoperable in a short time.`
 	government Builder
 
 planet Pearl
@@ -28184,10 +28181,10 @@ planet "Remote Blue"
 	"required reputation" 15
 
 planet Retilie
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/sea1
-	description `Retilie is an oceanic world, where more than 95% of the planet's surfaces is covered by deep oceans that go down for many kilometers. The planet was mainly used for fishing, leading to a lack of infrastructural development. The few buildings that had been built on the coast lines were swiftly destroyed by the Ka'het and have since been washed away by the ocean waves. The ruins that remain are of a small city, well inside the mainland, far from where the oceans could erase it.`
-	description `	In the oceans, the many species of fish continue to prosper, unaware of the destruction the planet has undergone.`
+	description `Retilie is an oceanic world, where more than 95% of the planet's surfaces is covered by deep oceans that go down for many kilometers. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing a few kilometers from the seaside, where the occasional high waves couldn't reach them.`
+	description `	A few small cities in the mainland are in a better state, but without anyone to take care of them, the vegetation has completely covered many buildings.`
 
 planet Reunion
 	attributes "near earth" urban factory
@@ -28385,10 +28382,10 @@ planet "Seleptra Nak"
 	description `	Outside the cities, plant and animal life has begun to flourish, and some of the smaller villages have already been swallowed up by the growing forests. The climate is temperate, and rainfall is plentiful; aside from the reduction in biodiversity, it will not take this planet long to forget its former owners.`
 
 planet Seli'het
-	attributes ka'het
+	attributes ka'het uninhabited
 	landscape land/space7
-	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
-	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
+	description `This massive station, despite its age, does not appear to have any visible damage: everything inside it is perfectly in order, and no section shows signs of weapon fire on it. If it wasn't for the absence of its inhabitants and the complete lack of atmosphere, it would probably be identical to when it was first constructed.`
+	description `	Most of the traffic the station sees is composed of the automated drones carrying new material to replenish the station's reserves, or from an occasional Ka'het departing the docking area.`
 	government Builder
 
 
