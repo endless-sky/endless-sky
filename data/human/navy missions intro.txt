@@ -497,7 +497,7 @@ mission "Joining the Navy"
 			`	"I assume you are <first> <last>?" he asks. You nod, saluting with your right hand. "Yes sir. And you are...?"`
 			`	"Colonel Marcus Howell," he replies. "Well met, Captain <last> - or rather, Ensign <last>."`
 			`	You nod, still saluting. "Thank you, sir. I hope to be of great service to the Republic."`
-			`	"I have a feeling you'll be just the man we need, <last>," he states while making a slight bounce on the tips of his feet, smiling. "The speed and skill with which your ship, the <ship>, destroyed that Raven, in addition to your past endeavors, proves you are both serious about joining the Navy...and it's ready for battle."`
+			`	"I have a feeling you'll be just the pilot we need, <last>," he states while making a slight bounce on the tips of his feet, smiling. "The speed and skill with which your ship, the <ship>, destroyed that Raven, in addition to your past endeavors, proves you are both serious about joining the Navy... and it's ready for battle."`
 			``
 			`Howell's expression hardens as his gaze turns left and skyward. "With rumblings of war starting in the South, and pirates massing in the North, the Navy is going to be stretched thin." His gaze returns to you. "As of today, you haved been approved for Navy Tier I Enlistment status. As part of being inducted as a Navy Private, you'll receive a daily stipend of 500 credits per day. At ease."`
 			``
