@@ -25731,7 +25731,7 @@ planet Alfheim
 planet Alix
 	attributes ka'het uninhabited
 	landscape land/canyon05
-	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been blown up to the extent that all that remains is debris scattered across the terrain, some automated mining facilities are still functioning and see a constant traffic of cargo drones, passing here to gather the raw material and bringing it to the reserves of the nearby station in a short time.`
+	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated mining facilities are still functioning and see a constant traffic of cargo drones, passing here to gather the raw material and bringing it to the reserves of the nearby station in a short time.`
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -26094,7 +26094,7 @@ planet "Ceaseless Toil"
 planet Celeatis
 	attributes ka'het uninhabited
 	landscape land/canyon4
-	description `Celeatis is a barren planet, with mountains covering most of the surface. On some slopes the outline of an outpost can still be recognised, but they are all uninhabited: Some of the villages have been partially destroyed and large amounts of dust cover the remains, to the point that the original colour can't be recognised anymore.`
+	description `Celeatis is a barren planet with mountains covering most of the surface. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: Some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
 	description `	Even in the few flat highlands there isn't any kind of vegetation present, as the planet is too distant from the star and the terrain is too sterile for them to grow in its natural enviroment.`
 
 planet "Celestial Third"
@@ -26106,7 +26106,7 @@ planet "Celestial Third"
 planet Ceilia'sei
 	attributes ka'het uninhabited
 	landscape land/loc2
-	description `Apart from one large, solid module, very few of this space station remains intact: the cloud of debris surrounding the core makes it very hard to be docked with, and one side of it even appears to have been blown up. The other part, instead, has suffered much less damage, and the surface bristles with dozens of well-maintained turrets.`
+	description `Apart from one large, solid module, very little of this space station remains intact: the cloud of debris surrounding the core makes it very hard to be docked with, and one side of it even appears to have been blown up. The other part, however, has suffered much less damage, and the surface bristles with dozens of well-maintained turrets.`
 
 planet Veliante
 	attributes ka'het uninhabited
@@ -26471,7 +26471,7 @@ planet Earth
 planet Eavine
 	attributes ka'het uninhabited
 	landscape land/snow8
-	description `Although its climate is very cold and most of the surface is covered in snow, Eavine also has a crust rich of rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped out of their resources, likely to be used in the massive complex of half buried buildings which appears to be the only settlement on this moon that resisted up to this day.`
+	description `Although its climate is very cold and most of the surface is covered in snow, Eavine has a crust rich with rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped of their resources, likely used in the massive complex of half buried buildings which appears to be the only settlement on this moon that remains today.`
 
 planet Echo
 	attributes quarg moon
@@ -27346,8 +27346,8 @@ planet "Leviathan Station"
 planet "Letis'sei"
 	attributes ka'het uninhabited
 	landscape land/loc3
-	description `Letis'sei is an ancient station, with cramped interiors and massive inaccessible sections: completely unpressurised and lacking an internal atmosphere, it is hard to imagine how this station was originally intended to look like.`
-	description `	Nonetheless, three impressive cannon-like structures are still recognisable, floating outside the rest of the station. The ring that used to keep them together is destroyed, but they are still rotating around the main body in the circular formation that they were made to follow.`
+	description `Letis'sei is an ancient station with cramped interiors and massive inaccessible sections. Completely unpressurized and lacking an internal atmosphere, it is hard to imagine what this station originally looked like.`
+	description `	Nonetheless, three impressive cannon-like structures are still recognizable floating outside the rest of the station. The ring that used to keep them together is destroyed, but they are still rotating around the main body in the circular formation that they were made to follow.`
 
 planet Lichen
 	attributes south farming frontier
@@ -27958,7 +27958,7 @@ planet Osaeli
 planet Palarei
 	attributes ka'het uninhabited
 	landscape land/valley5
-	description `While its short distance from the Gerenus star makes it considered to be only barely capable of supporting life, the surface of Palarei is full of thickets a small spiky bush native of this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapon fire; most facilities are covered in meters of dust and sand, but other than that appear to be quite operative.`
+	description `While its short distance from the Gerenus star makes it seem only barely capable of supporting life, the surface of Palarei is full of thickets of a small spiky bush native of this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapon fire; most facilities are covered in meters of dust and sand, but other than that appear to be quite operative.`
 
 planet Palatine
 	attributes "requires: gaslining" "gas giant" uninhabited
@@ -27971,7 +27971,7 @@ planet Palatine
 planet Parii'het
 	attributes ka'het uninhabited
 	landscape land/space6
-	description `Very similar to its sister station of Seli'het, Parii'het was still under construction when it was abandoned by its creators. Today it floats uninhabited in this rarely visited section of space, approached occasionally by the automated drones that mindlessly keep carrying new supplies to the massive cargo section. If the Ka'het attacked this station, it would be made entirely inoperable in a short time.`
+	description `Very similar to its sister station of Seli'het, Parii'het was still under construction when it was abandoned by its creators. Today, it floats uninhabited in this rarely visited section of space, approached occasionally by the automated drones that mindlessly continue to carry new supplies to the massive cargo section. If the Ka'het attacked this station, it would be made entirely inoperable in a short time.`
 	government Builder
 
 planet Pearl
@@ -28554,7 +28554,7 @@ planet Sinter
 planet Siteria
 	attributes ka'het uninhabited
 	landscape land/water0
-	description `A quite earth-like planet, the main sign of notability of Siteria is the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which which even today still haven't been completely covered by vegetation. A couple cities even have a few tall buildings still partially holding together, as a sign of how durable the constructions of the planet's original inhabitants were.`
+	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which which still haven't been completely covered by vegetation even today. A couple cities even have tall buildings still partially held together, signifying how durable the constructions of the planet's original inhabitants were.`
 
 planet Skillet
 	attributes north mining farming frontier
