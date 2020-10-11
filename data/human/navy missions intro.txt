@@ -454,7 +454,6 @@ mission "Joining the Navy"
 		dialog `You have failed an essential Navy mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	to offer
 		has "event: war begins"
-		not "event: joined the free worlds"
 		has "event: enlistment begins"
 		not "event: naval employment earned"
 		has "enlistment announced: offered"
