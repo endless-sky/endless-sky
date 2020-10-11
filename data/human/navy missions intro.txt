@@ -301,7 +301,7 @@ mission "Republic Scouting 3"
 
 
 mission "Republic Shipping 1"
-	name "Secret cargo to <destination>."
+	name "Secret cargo to <planet>"
 	description "Transport a squad of Navy marines and their undisclosed cargo to <destination>."
 	minor
 	passengers 5
@@ -345,7 +345,7 @@ mission "Republic Shipping 1"
 
 
 mission "Republic Shipping 2"
-	name "Navy Interior Design to <destination>"
+	name "Navy Interior Design to <planet>"
 	description "Transport furniture to the Navy offices on <destination>."
 	cargo "furniture" 20
 	to offer
@@ -386,7 +386,7 @@ mission "Republic Shipping 2"
 
 
 mission "Republic Shipping 3"
-	name "Convoy to <destination>"
+	name "Convoy to <planet>"
 	description "Carry 52 tons of cargo and <bunks> Navy observer as part of a convoy to <destination>."
 	passengers 1
 	cargo "restricted cargo" 52
@@ -575,7 +575,7 @@ mission "Navy Pirate Patrol 1"
 					goto missionDecline
 
 			label missionAccept
-			`	"Very good. Now, remember - this is a *scouting* mission. I do not expect, much less require, that you destroy every pirate ship you find. Engage them if you feel you must, but if it becomes clear you're in over your head, jump to hyperspace. Make it back here once your patrol is complete, and there's 100,000 credits waiting for you, in addition to whatever financial gratitude other Navy ships will lend."`
+			`	"Very good. Now, remember - this is a scouting mission. I do not expect, much less require, that you destroy every pirate ship you find. Engage them if you feel you must, but if it becomes clear you're in over your head, jump to hyperspace. Make it back here once your patrol is complete, and there's 100,000 credits waiting for you, in addition to whatever financial gratitude other Navy ships will lend."`
 					accept
 
 			label missionDecline
@@ -589,7 +589,6 @@ mission "Navy Pirate Patrol 1"
 
 
 mission "Navy Pirate Patrol 2"
-	priority
 	landing
 	name "Pirate Patrol"
 	description "Fly through Almaaz and Unagi, then deliver you sensor logs to Farpoint."
@@ -638,7 +637,7 @@ mission "Navy Pirate Patrol 3"
 		has "Navy Pirate Patrol 2: done"
 	on offer
 		conversation
-			`	While there are scant few establishments to begin with, the Stardust Pub appears to be one of the more popular places to eat, judging by the crowd at the entrance. Among those gathered, you notice, and subsequently join, Admiral Danforth; however, his expression is one that you can only describe as "hesistant."`
+			`While there are scant few establishments to begin with, the Stardust Pub appears to be one of the more popular places to eat, judging by the crowd at the entrance. Among those gathered, you notice, and subsequently join, Admiral Danforth; however, his expression is one that you can only describe as "hesistant."`
 			`	"You've done a fantastic job so far, Ensign <last>," he begins, looking straight ahead, "and I need your talents once more. We're sending you straight into the heart of the Northern Pirates to track their fleet presence in Arneb, Alnilam and Hatsya. I won't lie to you - even most Navy recruits tend to be wary operating so remotely, and you will be compensated appropriately."`
 			`	Danforth then turns his head slightly in your direction. "Can I count on you to scan these systems?"`
 			choice
@@ -653,7 +652,7 @@ mission "Navy Pirate Patrol 3"
 			`	"You probably guessed it already, but there's an ulterior motive to meet here, <last>. I've been reviewing the logs you collected, and what I'm seeing bothers me. So far, it doesn't look like much has changed in the level of activity we're used to seeing in those systems - frankly, if anything, there's actually been *less* activity in those systems. You know that old saying: 'It's quiet. *Too* quiet.'"`
 			`	"Yeah," you agree, looking slightly downward as you put a hand to your chin. "It feels like the calm before the storm."`
 			`	"Indeed. They're planning something...but what, I don't know. Hopefully this last round of scanning will clear things up."`
-			`A moment later, the waitstaff bring your meals to you and the two of you begin eating. As the two of you continue idle banter, you realize that not many officers usually have such a personal relationship with Admirals - Danforth is truly a rarity among them. Even though he far outranks you, he still insists on paying the bill for both of you. "One thing I've learned over the years," he comments, "is what actually being an Admiral entails. It's not just about the medals you earned and the battles you fought to reach this position - it's also the relationships you build and the friends you make along the way. Anyone can give orders, but if you only see your men as expendable resources, all those stars, medals and badges don't mean a damned thing."`
+			`	A moment later, the waitstaff bring your meals to you and the two of you begin eating. As the two of you continue idle banter, you realize that not many officers usually have such a personal relationship with Admirals - Danforth is truly a rarity among them. Even though he far outranks you, he still insists on paying the bill for both of you. "One thing I've learned over the years," he comments, "is what actually being an Admiral entails. It's not just about the medals you earned and the battles you fought to reach this position - it's also the relationships you build and the friends you make along the way. Anyone can give orders, but if you only see your men as expendable resources, all those stars, medals and badges don't mean a damned thing."`
 			`	"That's the other reason I brought you here, <last>," he adds while the two of you exit the Stardust. "I wanted to make it clear that just because I have a higher rank, that does *not* mean I should also feel superior to you. We're both humans, and on that note, equals. I'm sure my actions have proved as much, but my position does *not* give me the right to treat you like dirt, and any Admiral who tells you otherwise is either delusional, drunk, a liar or an idiot. Or all of the above."`
 			`The two of you laugh for a second at his comment. "Anyway," he continues, "just like before, there's no need to engage any hostiles on your patrol. Just beware of Zenith and Haven - considering their locations, they're fairly well-guarded. Report back to me with the logs, and I'll personally make sure that you'll receive 250,000 credits for your work. Furthermore...I'm going to put in a good word on possibly getting you promoted straight to Lieutenant-grade."`
 			`	"That is very gracious of you, sir," you reply with a nod. "And thank you for taking the time to talk to me - I promise you, I won't let you down."`
