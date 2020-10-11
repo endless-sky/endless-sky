@@ -446,7 +446,7 @@ mission "Republic Shipping 3"
 mission "Joining the Navy"
 	autosave
 	name "Navy Candidate"
-	description "Destroy the pirate vessel named <npc> near the <system> system and return to <planet> for an opportunity to join the republic navy."
+	description "Destroy the pirate vessel named <npc> near the <system> system and return to <planet> for an opportunity to join the Republic Navy."
 	source
 		government "Republic"
 	destination "Geminus"
