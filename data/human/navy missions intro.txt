@@ -13,6 +13,25 @@
 # Opening Missions Writing Credit to: Disiuze, Kiko, Moonbeam, Kat
 # 
 
+event "enlistment announced"
+	date 11 7 3014
+
+
+mission "enlistment announced"
+	landing
+	source
+		government "Republic"
+	to offer
+		has "event: enlistment announced"
+	on offer
+		log "The Republic Navy announced it will begin recruiting."
+		conversation
+			`On behalf of the republic the navy will begin accepting volunteers into navy service next week. With the loss of ships in the devastating nuclear attack on our ship yard we need all combat capable ship captains. Volunteers will be paid a per diem. Interested ship captains will be required to prove their worth to earn their place. More information will be provided at a later point in time.`
+
+
+event "enlistment begins"
+	date 18 7 3014
+
 mission "Republic Bounty 1"
 	name "Republic Bounty Hunting"
 	description `Hunt down the <npc>, a pirate ship that has been assaulting miners in the Boral system.`
