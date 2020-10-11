@@ -711,7 +711,7 @@ mission "Navy vs Pirate"
 	on offer
 		conversation
 			`Farpoint feels a lot different when the entire base is on alert. Normally, you could easily see from one side of the compound to the other and only have the odd soldier or vehicle break your vision. Since the pirate ship that broke through, however, the farthest you can see is maybe 50 feet due to the mass of guards, crewmen, machinery and munitions.`
-			`	Eventually, you find the Admiral near his ship, the N.S. Peacemaker; other crewmen are busily loading his ship while he stares intently at a clipboard, clearly distraught about something.`
+			`	Eventually, you find the Admiral near his ship, the R.N.S. Peacemaker; other crewmen are busily loading his ship while he stares intently at a clipboard, clearly distraught about something.`
 			choice
 				`	(Ask him what he's looking at.)`
 					goto ask
