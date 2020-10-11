@@ -177,7 +177,7 @@ mission "Republic Scouting 1"
 	source
 		government "Republic"
 		attributes "paradise"
-	destination "Glaze"
+	destination "Farpoint"
 	to offer
 		has "event: war begins"
 		not "chosen sides"
@@ -1493,4 +1493,3 @@ mission "Tier Boost"
 				decline
 
 ########    <end intro, electron sequence here>
-
