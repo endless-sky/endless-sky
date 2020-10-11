@@ -424,7 +424,7 @@ mission "Republic Shipping 3"
 			`	As you approach, you can hear the merchants bickering over how much the fleet can move. A familiar face looks up and notices you.`
 			`	"Captain!" Jeff shouts, "An answer to our prayers. Would you be interested in joining our convoy? We're moving supplies to that new Navy base again. 52 tons of cargo and one bunk is all we need of you, and you'll join our fleet."`
 			`	The moment he mentions where the supplies are being moved, the Navy officers glare at him and shake their heads.`
-			`	"If you are trying to get us ambushed, you are doing a good job," one of them says. "Maybe don't tell everyone where we are going?"`
+			`	"If you're trying to get us ambushed, you're doing a good job," one of them says. "Maybe don't tell everyone where we're going?"`
 			` 	The captain of the Alba Oro and Jeff explain together that you have worked with them before.`
 			choice
 				`	"Sure!"`
