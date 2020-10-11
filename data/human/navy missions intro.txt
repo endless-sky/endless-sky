@@ -384,7 +384,7 @@ mission "Republic Shipping 2"
 
 mission "Republic Shipping 3"
 	name "Convoy to <destination>"
-	description "Carry 52 tons of cargo and <bunks> Navy observer as part of a convoy to <destination>"
+	description "Carry 52 tons of cargo and <bunks> Navy observer as part of a convoy to <destination>."
 	passengers 1
 	cargo "restricted cargo" 52
 	source
