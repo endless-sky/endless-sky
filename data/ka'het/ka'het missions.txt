@@ -103,6 +103,16 @@ mission "First Contact: Ka'het: Remnant 1B"
 		log `Asked Taely about the Graveyard and the Ka'het and learned of the Remnant's previous contacts between them.`
 		log "Factions" "Ka'het" `The Ka'het are a species which live in the Graveyard, an area south of the Ember Waste. They are large lifeforms which can travel in space using artificial exoskeletons and will attack anyone on sight, even other Ka'het.`
 
+mission "Graveyard Insights Compatibility"
+	landing
+	invisible
+	to offer
+		has "First Contact: Ka'het: Remnant 1B: offered"
+		not "event: Graveyard insights"
+	on offer
+		event "Graveyard insights"
+		fail
+
 event "Graveyard insights"
 	planet Alix
 		spaceport `Long ago, the Builders were stripping this moon to build the nearby Parii'het space station, as well as to produce the Ka'het hulls. The Ka'het attacks limited to the inhabited settlements on Alix; had they also destroyed the mining bases and the unmanned drones, the station would have run out of supplies thousands of years ago.`
