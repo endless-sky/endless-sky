@@ -428,7 +428,7 @@ mission "Republic Shipping 3"
 			` 	The captain of the Alba Oro and Jeff explain together that you have worked with them before.`
 			choice
 				`	"Sure!"`
-				`	"Sorry, but I go my own way.`
+				`	"Sorry, but I go my own way."`
 					decline
 			`	They thank you for your assistance, and you give them a hand pushing the heavy cart into your cargo bay.`
 				accept
