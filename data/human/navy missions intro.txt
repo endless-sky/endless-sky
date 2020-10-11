@@ -363,7 +363,7 @@ mission "Republic Shipping 2"
 
 	on offer
 		conversation
-			`As you wander around the spaceport, a merchant captain calls you over and asks you to help transport some furniture to the navy base on <destination>. You can clearly see the Jeff Haas Shipping logo on the cargo ramp of her ship.`
+			`As you wander around the spaceport, a merchant captain calls you over and asks you to help transport some furniture to the Navy base on <destination>. You can clearly see the Jeff Haas Shipping logo on the cargo ramp of her ship.`
 			choice
 				`	"Of course."`
 					accept
