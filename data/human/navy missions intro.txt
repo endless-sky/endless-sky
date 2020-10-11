@@ -473,7 +473,7 @@ mission "Joining the Navy"
 					defer
                     
 			label jobAccept
-			`	[We look forward to seeing you on <destination> once the mission is over,] the message reads. [Good luck!]`
+			`	"We look forward to seeing you on <destination> once the mission is over," the message reads. "Good luck!"`
 					accept
 
 	on accept
