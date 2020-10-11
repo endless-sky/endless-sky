@@ -19,6 +19,7 @@ install:
       # Update env variables to use the desired MinGW version
       Set-AppveyorBuildVariable -Name PATH -Value "$Env:MINGW_ROOT\bin\;$Env:PATH";
       Set-AppveyorBuildVariable -Name DIR_MINGW64 -Value "$Env:MINGW_ROOT\x86_64-w64-mingw32";
+
       # Ensure we have the precompiled libraries to link with (SDL, etc.).
       if (!(Test-Path 'C:\dev64')) { New-Item 'C:\dev64' -ItemType Directory; }
       if (!(Test-Path 'C:\dev64\bin'))
@@ -55,6 +56,7 @@ after_test:
       Copy-Item -Path "$Env:DIR_MINGW64\lib\libstdc++-6.dll" -Destination $here;
       Copy-Item -Path "$Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll" -Destination $here;
       Copy-Item -Path "$Env:DIR_MINGW64\lib\libwinpthread-1.dll" -Destination $here;
+
       # Zip the directory for release
       $ARCHIVE_NAME = "$Env:APPVEYOR_REPO_NAME-$Env:APPVEYOR_REPO_BRANCH-$Env:APPVEYOR_REPO_COMMIT-win64.7z";
       $ZIP_ARGS = "a $ARCHIVE_NAME .\*.exe -i!.\*.dll -i!.\data\ -i!.\icons\ -i!.\images\ -i!.\sounds\ -i!.\source\ -i!license.txt -i!copyright -i!README.md -i!changelog -i!credits.txt -i!keys.txt";
@@ -64,7 +66,7 @@ after_test:
 # Upload the test report even if tests failed.
 on_finish:
   - ps: |
-      if ([System.IO.File]::Exists($Env:TEST_REPORT_FILE))
+      if (Test-Path $Env:TEST_REPORT_FILE))
       {
         (New-Object 'System.Net.WebClient').UploadFile(
           "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)",

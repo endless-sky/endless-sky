@@ -1,61 +1,81 @@
 language: cpp
 
-matrix:
-    include:
-      - dist: xenial
-      - dist: bionic
-      - os: osx
-        osx_image: xcode10.3
-        env: MODE=Release
+# Default job
+os: linux
+dist: xenial
+
+stages:
+  - compile & unit test
+  - test
+
+# Additional jobs
+jobs:
+  fast_finish: true
+  include:
+    - dist: xenial
+      stage: compile & unit test
+      script: scons -Q -j2 && scons -Q -j2 test;
+    - dist: bionic
+      script: scons -Q -j2 && scons -Q -j2 test;
+    - dist: focal
+      script: scons -Q -j2 && scons -Q -j2 test;
+    - dist: xenial
+      stage: test
+    - os: osx
+      osx_image: xcode10.3
+      env: ES_PATH='/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky'
+      script: |
+          xcodebuild -configuration Release install -quiet
+          ./tests/test_parse.sh "$ES_PATH"
 
 addons:
-    homebrew:
-        packages:
-        - libmad
-        - libpng
-        - jpeg-turbo
-        - sdl2
-        update: true
-    apt:
-        packages:
-        - libsdl2-dev
-        - libpng-dev
-        - libjpeg-turbo8-dev
-        - libopenal-dev
-        - libmad0-dev
-        - libglew-dev
-        - libgl1-mesa-dev
-        - libegl1-mesa-dev
-        - libgles2-mesa-dev
-        - scons
+  homebrew:
+    packages:
+      - libmad
+      - libpng
+      - jpeg-turbo
+      - sdl2
+    update: true
+  apt:
+    packages:
+      - libsdl2-dev
+      - libpng-dev
+      - libjpeg-turbo8-dev
+      - libopenal-dev
+      - libmad0-dev
+      - libglew-dev
+      - libgl1-mesa-dev
+      - libegl1-mesa-dev
+      - libgles2-mesa-dev
+      - scons
 
 git:
-    quiet: true
-    depth: 5
+  quiet: true
+  depth: 2
 
 branches:
-    except:
-        - gh-pages
+  except:
+    - gh-pages
 
+# Default script, in the 'test' stage
 script:
-    - |
-        if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-            scons -j2;
-            es_path=./endless-sky;
-        elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-            xcodebuild -configuration $MODE install -quiet
-            es_path='/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky'
-        fi
-    - ./tests/test_parse.sh "$es_path"
+  - |
+      scons -Q -j2;
+      ES_PATH=./endless-sky;
+  - ./tests/test_parse.sh "$ES_PATH"
 
 before_cache:
-    - brew cleanup
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew cleanup; fi
+# Credit https://discourse.brew.sh/t/best-practice-for-homebrew-on-travis-brew-update-is-5min-to-build-time/5215/9
+# Cache only .git files under "/usr/local/Homebrew" so "brew update" does not take 5min every build
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then find /usr/local/Homebrew \! -regex ".+\.git.+" -delete; fi
 
 cache:
-    directories:
-        - $HOME/Library/Caches/Homebrew
+  directories:
+    - $HOME/Library/Caches/Homebrew
+    - /usr/local/Homebrew
 
 notifications:
-    email:
-        on_success: never
-        on_failure: change
+  email:
+    on_success: never
+    on_failure: change
