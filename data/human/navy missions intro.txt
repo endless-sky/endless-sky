@@ -552,7 +552,6 @@ mission "Report to Danforth"
 		log "People" "William Danforth" `Danforth is a famous Navy Admiral who is a folk hero throughout human space due to his fair and honorable behavior and his willingness to use his fleet to assist people in need, even when he has to go against Parliament's orders to do so. He serves as the commanding officer at the base on Farpoint, and, by extension, uses it as his base of operations.`
 
 mission "Navy Pirate Patrol 1"
-	priority
 	landing
 	name "Pirate Patrol"
 	description "Fly through Mintaka, Gorvi and Tortor then deliver you sensor logs to Farpoint."
