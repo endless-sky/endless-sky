@@ -760,7 +760,7 @@ mission "Navy vs Pirate"
 		log "Succeeded in destroying the pirate ship in Saiph. For my efforts, I have been promoted to the rank of Lieutenant, with an impending increase to my salary."
 		payment 350000
 		conversation
-			`As your ship pierces <destination>'s atmosphere, you notice that the base has reverted to its much-less active state. It isn't long before the control tower radios in: [Ensign <last>, proceed to Hangar 357 - Admiral Danforth is expecting you.]`
+			`As your ship pierces <destination>'s atmosphere, you notice that the base has reverted to its much-less active state. It isn't long before the control tower radios in. "Ensign <last>, proceed to Hangar 357 - Admiral Danforth is expecting you."`
 			`Sure enough, Admiral Danforth is present to greet you at Hangar 357, accompanied by Colonel Howell and, to your dismay, Hines. Howell appears as chipper as he was when you first met, but the scowl on Hines' face is worse than you remember. Nonetheless, you salute the trio as you exit the <ship>. "Ensign <last>," Danforth begins, "with the destruction of <npc>, you did more than just prove your mettle in combat - you kept what could have become an interstellar incident contained to the Far North."`
 			`	"Just doing my job, Admiral," you reply, maintaining your salute.`
 			`Danforth smiles. "I wish we had more men and women who had your definition of 'just doing their job,' Ensign...or should I say, 'Lieutenant.'"`
