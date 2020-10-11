@@ -186,7 +186,7 @@ mission "Republic Scouting 1"
 	on offer
 		conversation
 			`As you wander the spaceport you overhear a woman in a Navy uniform telling a bored-looking merchant about satellite dishes in the empty systems to the north.`
-			`	"That sounds interesting." The merchant tells her, "But I've got a cargo bay full of medical supplies headed the other direction."`
+			`	"That sounds interesting," the merchant tells her. "But I've got a cargo bay full of medical supplies headed the other direction."`
 			`	"Also an important mission," she replies. "I wish you safe travels."`
 			choice
 				`	(Ask her what's going on.)`
