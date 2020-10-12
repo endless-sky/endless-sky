@@ -125,4 +125,5 @@ mission "Paradise Cleaner Incident"
 			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one right before he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen a mother go so deathly pale as the cleaner who scurried to fix things before the man had even drawn breath.`
 			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her children out of harms way.`
 				fail
-
+ 
+ 

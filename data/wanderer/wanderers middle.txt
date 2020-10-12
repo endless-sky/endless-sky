@@ -1594,7 +1594,7 @@ mission "Wanderers: Sestor Attack"
 		conversation
 			`A few hours after you present the scanning data to the scientists, you are called into a meeting with the Wanderer leaders. "We may have found the [facility, center]," says, Tele'ek, "but we are not [certain, confident]. There is indeed an underground [bunker, fortress] on one of the planets, but it must have been [damaged, overrun] in the course of their war." He calls up a holographic display of the facility, showing that one section of it has been breached, and a tunnel leads from there to the surface.`
 			choice
-				`	"You're probably right that they wouldn't have kept using the facility once it was been breached."`
+				`	"You're probably right that they wouldn't have kept using the facility once it had been breached."`
 				`	"Is there any sign that they tried to rebuild it after the damage? Or that it's still in use?"`
 
 			`	Iriket walks up closer to the display to look on it. She adjusts some controls, and an overlay shows up in another color. "The Kor Efret said their [civil war, cultural collapse] ended a century ago, yes?" she asks. You nod. She walks around the display, examining it carefully, then says, "These [cracks, fractures] in the [bedrock?] have not yet been [infiltrated, saturated] with ground water. This damage is not a century old. It is from at most one [month?] ago."`
@@ -1622,7 +1622,7 @@ mission "Wanderers: Sestor Attack"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 7
+				"Far Lek 13" 7
 				"Met Par Tek 53"
 				"Met Par Tek 53 (Sniper)"
 		fleet
@@ -1630,8 +1630,8 @@ mission "Wanderers: Sestor Attack"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 7
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 7
 				"Met Par Tek 53"
 	npc evade
 		government "Kor Sestor"
@@ -1642,26 +1642,26 @@ mission "Wanderers: Sestor Attack"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
-				"Tek Far 78 - Osk"
-				"Far Lek 14" 17
-				"Far Osk 27" 13
+				"Tek Far 79 - Osk"
+				"Far Lek 13" 17
+				"Far Osk 29" 13
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Tek Far 109" 3
-				"Far Lek 14" 27
-				"Far Osk 27" 21
+				"Far Lek 13" 27
+				"Far Osk 29" 21
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 7
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 6
+				"Far Lek 13" 7
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 6
 	npc
 		government "Wanderer"
 		personality staying heroic
@@ -1862,7 +1862,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					decline
 			
 			label approach
-			`	You get a better view of the Behemoth - the "Heart of Gold", as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
+			`	You get a better view of the Behemoth - the Heart of Gold, as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
 			choice
 				`	"How did your ship end up in such a state?"`
 				`	"Was this beauty the victim of a pirate attack?"`
@@ -1993,15 +1993,15 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
-				"Far Lek 14" 10
+				"Far Lek 13" 10
 				"Met Par Tek 53" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 78 - Osk"
-				"Far Osk 27" 8
+				"Tek Far 79 - Osk"
+				"Far Osk 29" 8
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
@@ -2134,7 +2134,7 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 10
+				"Far Lek 13" 10
 
 
 
@@ -2255,7 +2255,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
-				"Far Lek 14" 10
+				"Far Lek 13" 10
 				"Met Par Tek 53" 2
 		fleet
 			names "kor sestor"
@@ -2263,23 +2263,23 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 8
+				"Far Lek 13" 8
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 78 - Osk"
-				"Far Osk 27" 8
+				"Tek Far 79 - Osk"
+				"Far Osk 29" 8
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 6
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 6
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
@@ -2287,27 +2287,27 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 8
-				"Tek Far 78 - Osk"
-				"Far Osk 27" 8
+				"Far Lek 13" 8
+				"Tek Far 79 - Osk"
+				"Far Osk 29" 8
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 71 - Lek"
-				"Far Lek 14" 9
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 7
+				"Far Lek 13" 9
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 7
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 7
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 6
+				"Far Lek 13" 7
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 6
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
@@ -2334,9 +2334,9 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
-				"Tek Far 78 - Osk"
-				"Far Lek 14" 17
-				"Far Osk 27" 13
+				"Tek Far 79 - Osk"
+				"Far Lek 13" 17
+				"Far Osk 29" 13
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
@@ -2344,9 +2344,9 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Lek 14" 17
-				"Far Osk 27" 13
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Lek 13" 17
+				"Far Osk 29" 13
 				"Met Par Tek 53" 2
 		dialog `Against all odds, all the Kor Sestor ships attacking the Oathkeepers have been destroyed. Maybe you won't have to use Danforth's bomb after all.`
 
@@ -2369,7 +2369,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
-				"Far Lek 14" 10
+				"Far Lek 13" 10
 				"Met Par Tek 53" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
@@ -2382,7 +2382,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 8
+				"Far Lek 13" 8
 				"Met Par Tek 53 (Sniper)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
@@ -2394,16 +2394,16 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 78 - Osk"
-				"Far Osk 27" 8
+				"Tek Far 79 - Osk"
+				"Far Osk 29" 8
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 6
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 6
 				"Met Par Tek 53 (Sniper)"
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
@@ -2416,9 +2416,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 8
-				"Tek Far 78 - Osk"
-				"Far Osk 27" 8
+				"Far Lek 13" 8
+				"Tek Far 79 - Osk"
+				"Far Osk 29" 8
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Mebsuta"
@@ -2430,9 +2430,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 71 - Lek"
-				"Far Lek 14" 9
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 7
+				"Far Lek 13" 9
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 7
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Rigel"
@@ -2444,9 +2444,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Far Lek 14" 7
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 6
+				"Far Lek 13" 7
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Osk 29" 6
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
 		system "Castor"
@@ -2493,9 +2493,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
-				"Tek Far 78 - Osk"
-				"Far Lek 14" 17
-				"Far Osk 27" 13
+				"Tek Far 79 - Osk"
+				"Far Lek 13" 17
+				"Far Osk 29" 13
 				"Met Par Tek 53 (Sniper)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 	npc kill
@@ -2508,9 +2508,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek (Close Quarters)"
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Lek 14" 17
-				"Far Osk 27" 13
+				"Tek Far 79 - Osk (Close Quarters)"
+				"Far Lek 13" 17
+				"Far Osk 29" 13
 				"Met Par Tek 53" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
 		
@@ -2938,7 +2938,7 @@ mission "Wanderers: Sestor: Scan Drones"
 		government "Kor Sestor"
 		personality heroic staying
 		ship "Kar Ik Vot 349" "07-134.2"
-		ship "Tek Far 78 - Osk" "07-894.0"
+		ship "Tek Far 79 - Osk" "07-894.0"
 		ship "Tek Far 71 - Lek" "07-554.3"
 		ship "Met Par Tek 53" "07-983.2"
 		ship "Met Par Tek 53" "07-992.1"
@@ -3179,15 +3179,15 @@ mission "Wanderers: Sestor: Factory 2"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
-				"Far Lek 14" 10
+				"Far Lek 13" 10
 				"Met Par Tek 53" 2
 		fleet
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
-				"Tek Far 78 - Osk"
-				"Far Osk 27" 8
+				"Tek Far 79 - Osk"
+				"Far Osk 29" 8
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
@@ -3195,9 +3195,9 @@ mission "Wanderers: Sestor: Factory 2"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
-				"Tek Far 78 - Osk"
-				"Far Lek 14" 17
-				"Far Osk 27" 13
+				"Tek Far 79 - Osk"
+				"Far Lek 13" 17
+				"Far Osk 29" 13
 
 
 
@@ -3268,20 +3268,20 @@ event "wanderers: exiles have drones"
 	fleet "Korath Home"
 		add variant 2
 			"Tek Far 71 - Lek"
-			"Far Lek 14" 6
+			"Far Lek 13" 6
 		add variant 2
 			"Tek Far 71 - Lek (Close Quarters)"
-			"Far Lek 14" 4
+			"Far Lek 13" 4
 		add variant 2
-			"Tek Far 78 - Osk (Close Quarters)"
-			"Far Osk 27" 5
+			"Tek Far 79 - Osk (Close Quarters)"
+			"Far Osk 29" 5
 		add variant 2
-			"Tek Far 78 - Osk"
-			"Far Osk 27" 2
+			"Tek Far 79 - Osk"
+			"Far Osk 29" 2
 		add variant 3
 			"Tek Far 109"
-			"Far Lek 14" 9
-			"Far Osk 27" 7
+			"Far Lek 13" 9
+			"Far Osk 29" 7
 		add variant 3
 			"Met Par Tek 53" 3
 		add variant 2
@@ -3386,7 +3386,7 @@ mission "Wanderers: Sestor: Final"
 			variant
 				"Model 32"
 				"Model 16" 3
-				"Tek Far 78 - Osk"
+				"Tek Far 79 - Osk"
 				"Met Par Tek 53 (Sniper)" 2
 	on visit
 		dialog phrase "generic waypoint on visit"
@@ -3411,6 +3411,15 @@ mission "Wanderers: Sestor: Patch"
 		event "wanderers: sestor planets unrestricted"
 		fail
 
+mission "Wanderers: Sestor: Patch 2"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	on offer
+		event "wanderers taking jobs from kor efreti" 5
+		fail
+
 event "wanderers: sestor planets unrestricted"
 	planet "Drekag Firask"
 		"required reputation" 0
@@ -3430,3 +3439,23 @@ event "wanderers: sestor planets unrestricted"
 	planet "Sopi Lefarkata"
 		"required reputation" 0
 		spaceport clear
+
+event "wanderers taking jobs from kor efreti"
+	system "Sumprast"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Sevrelect"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kashikt"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Dokdobaru"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Furmeliki"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Meftarkata"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Skeruto"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kaliptari"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Solifar"
+		add fleet "Wanderer Kor Efret Traders" 1500		
