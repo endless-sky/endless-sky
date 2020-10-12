@@ -11,28 +11,119 @@
 # "Missions" which add culture events to the spaceport.
 
 #mission "cultural holiday template"
-	landing
-	to offer
-		and
-			month == placeholder
-			day >= placeholder
-			day <= placeholder
-	source
-		government "placeholder"
-		attributes "spaceport"
-	on offer
-		dialog
-		` placeholder`
-			fail
+#	minor
+#	source
+#		government "placeholder"
+#		attributes "placeholder"
+#		not attributes "station"
+#	to offer
+#		and
+#			month == placeholder
+#			day >= placeholder
+#			day <= placeholder
+#	on offer
+#		conversation
+#			`placeholder`
+#				fail
 			
 #mission "cultural random template"
-	landing
+#	minor
+#	source
+#		government "placeholder"
+#		attributes "placeholder"
+#		not attributes "station"
+#	to offer
+#		random == 1
+#	on offer
+#		conversation
+#			`placeholder`
+#				fail
+
+
+#############################################
+#           Republic or Syndicate           #
+#############################################
+
+mission "Sad Gamblers"
+	minor
+	source
+		or
+			and
+				government "republic"
+				attributes "near earth"
+			government "syndicate"
+		not attributes "station"
 	to offer
 		random == 1
-	source
-		government "placeholder"
-		attributes "spaceport"
 	on offer
-		dialog
-		` placeholder`
-			fail
+		conversation
+			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success and your attention is drawn as one of them wins a moderate sum in an 12th division win (a day or two worth of standard pay).`
+			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
+				fail
+
+#############################################
+#               Republic Only               #
+#############################################
+
+mission "Gift Store Interaction"
+	minor
+	source
+		government "republic"
+		attributes "deep"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`As you wander the spaceport with a snack, waiting for your ship to be refuelled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "<source>" printed underneath an attractive, stylised representation of the spaceport you are presently standing in and pick it up to see how it feels. The handle is solid, and not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
+			`	Two young adults wander into the aisle just a couple of meters away. They're clearly from abroad judging by their conversation occurring in some local dialect which is niether local nor one you understand. They're cooing over an item they've found but when one flips it over to look at the price tag there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a headshake.`
+			`	Curious you turn over your own mug and see that it is indeed at least five times what you would expect to pay for a mug, even a good one. Still, t is certainly a novelty...`
+			choice
+				`	(Buy the mug.)`
+					goto buy
+				`	(Put it back.)`
+			`	You roll your eyes and put it back. Some experiences really are universal.`
+				fail
+			label buy
+			`	You purchase the mug on an impulse. At least you can ditch your other one with a chip in it.`
+				fail
+
+
+mission "Trash Fire Crops"
+	minor
+	source
+		government "republic"
+		attributes "dirt belt"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`As you move about the spaceport you can't avoid the smell. It's like a trash fire, but nothing more than the smell is in the air.`
+			choice
+				`	(Ignore it.)`
+					goto ignore
+				`	(Ask around.)`
+			`	You ask one of the locals who doesn't look too busy. They sadly inform you that there's been a bumper banana crop, but unfortunately other, wealthier, worlds had a bumper crop at the same time, and there's nowhere to either sell or store a significant excess. Distressed farmers are burning the excess fruit to make fertiliser for the next season, the wind has carried the smell all over town.`
+				fail
+			label ignore
+			`	You leave the mysterious smell to the locals and continue on your business.`
+				fail
+
+
+mission "Paradise Cleaner Incident"
+	minor
+	source
+		government "republic"
+		attributes "paradise"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You catch yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. Perhaps it is because of your background, but you notice them even when they are avoiding notice, and so you are able to notice something seconds before it happens.`
+			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one right before he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen a mother go so deathly pale as the cleaner who scurried to fix things before the man had even drawn breath.`
+			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her children out of harms way.`
+				fail
+ 
+ 
