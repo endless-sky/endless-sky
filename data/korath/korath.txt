@@ -259,46 +259,46 @@ fleet "Small Kor Sestor"
 		"Met Par Tek 53 (Sniper)" 3
 	variant 8
 		"Tek Far 71 - Lek"
-		"Far Lek 14" 10
+		"Far Lek 13" 10
 	variant 5
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Far Lek 14" 10
+		"Far Lek 13" 10
 	variant
 		"Tek Far 71 - Lek"
-		"Far Lek 14" 6
+		"Far Lek 13" 6
 	variant
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Far Lek 14" 4
+		"Far Lek 13" 4
 	variant
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Far Lek 14" 2
+		"Far Lek 13" 2
 	variant 6
-		"Tek Far 78 - Osk"
-		"Far Osk 27" 9
+		"Tek Far 79 - Osk"
+		"Far Osk 29" 9
 	variant 4
-		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Osk 27" 9
+		"Tek Far 79 - Osk (Close Quarters)"
+		"Far Osk 29" 9
 	variant
-		"Tek Far 78 - Osk"
-		"Far Osk 27" 7
+		"Tek Far 79 - Osk"
+		"Far Osk 29" 7
 	variant
-		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Osk 27" 5
+		"Tek Far 79 - Osk (Close Quarters)"
+		"Far Osk 29" 5
 	variant
-		"Tek Far 78 - Osk"
-		"Far Osk 27" 2
+		"Tek Far 79 - Osk"
+		"Far Osk 29" 2
 	variant 3
 		"Tek Far 109"
-		"Far Lek 14" 9
-		"Far Osk 27" 7
+		"Far Lek 13" 9
+		"Far Osk 29" 7
 	variant
 		"Tek Far 109"
-		"Far Lek 14" 6
-		"Far Osk 27" 3
+		"Far Lek 13" 6
+		"Far Osk 29" 3
 	variant
 		"Tek Far 109"
-		"Far Lek 14" 3
-		"Far Osk 27" 2
+		"Far Lek 13" 3
+		"Far Osk 29" 2
 
 fleet "Large Kor Sestor"
 	government "Kor Sestor"
@@ -308,69 +308,69 @@ fleet "Large Kor Sestor"
 	variant 8
 		"Kar Ik Vot 349"
 		"Tek Far 71 - Lek"
-		"Far Lek 14" 10
+		"Far Lek 13" 10
 		"Met Par Tek 53" 2
 	variant 4
 		"Kar Ik Vot 349 (Defense)"
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Far Lek 14" 8
+		"Far Lek 13" 8
 		"Met Par Tek 53 (Sniper)" 2
 	variant 4
 		"Kar Ik Vot 349 (Offense)"
 		"Tek Far 71 - Lek"
-		"Far Lek 14" 9
+		"Far Lek 13" 9
 		"Met Par Tek 53"
 		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349 (Trapper)"
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Far Lek 14" 7
+		"Far Lek 13" 7
 		"Met Par Tek 53"
 		"Met Par Tek 53 (Sniper)"
 	variant 8
 		"Kar Ik Vot 349"
-		"Tek Far 78 - Osk"
-		"Far Osk 27" 9
+		"Tek Far 79 - Osk"
+		"Far Osk 29" 9
 		"Met Par Tek 53"
 	variant 4
 		"Kar Ik Vot 349 (Defense)"
-		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Osk 27" 7
+		"Tek Far 79 - Osk (Close Quarters)"
+		"Far Osk 29" 7
 		"Met Par Tek 53"
 	variant 4
 		"Kar Ik Vot 349 (Offense)"
-		"Tek Far 78 - Osk"
-		"Far Osk 27" 8
+		"Tek Far 79 - Osk"
+		"Far Osk 29" 8
 		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349 (Trapper)"
-		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Osk 27" 6
+		"Tek Far 79 - Osk (Close Quarters)"
+		"Far Osk 29" 6
 		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349"
 		"Tek Far 71 - Lek"
-		"Far Lek 14" 10
-		"Tek Far 78 - Osk"
-		"Far Osk 27" 9
+		"Far Lek 13" 10
+		"Tek Far 79 - Osk"
+		"Far Osk 29" 9
 	variant 2
 		"Kar Ik Vot 349 (Defense)"
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Far Lek 14" 8
-		"Tek Far 78 - Osk"
-		"Far Osk 27" 8
+		"Far Lek 13" 8
+		"Tek Far 79 - Osk"
+		"Far Osk 29" 8
 	variant 2
 		"Kar Ik Vot 349 (Offense)"
 		"Tek Far 71 - Lek"
-		"Far Lek 14" 9
-		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Osk 27" 7
+		"Far Lek 13" 9
+		"Tek Far 79 - Osk (Close Quarters)"
+		"Far Osk 29" 7
 	variant 2
 		"Kar Ik Vot 349 (Trapper)"
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Far Lek 14" 7
-		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Osk 27" 6
+		"Far Lek 13" 7
+		"Tek Far 79 - Osk (Close Quarters)"
+		"Far Osk 29" 6
 	variant 2
 		"Kar Ik Vot 349"
 	variant 1
@@ -395,21 +395,21 @@ fleet "Large Kor Sestor"
 		"Met Par Tek 53 (Sniper)" 3
 	variant 5
 		"Tek Far 109" 3
-		"Far Lek 14" 27
-		"Far Osk 27" 21
+		"Far Lek 13" 27
+		"Far Osk 29" 21
 	variant 3
 		"Tek Far 109"
 		"Tek Far 71 - Lek"
-		"Tek Far 78 - Osk"
-		"Far Lek 14" 17
-		"Far Osk 27" 13
+		"Tek Far 79 - Osk"
+		"Far Lek 13" 17
+		"Far Osk 29" 13
 		"Met Par Tek 53 (Sniper)" 2
 	variant 3
 		"Tek Far 109"
 		"Tek Far 71 - Lek (Close Quarters)"
-		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Lek 14" 17
-		"Far Osk 27" 13
+		"Tek Far 79 - Osk (Close Quarters)"
+		"Far Lek 13" 17
+		"Far Osk 29" 13
 		"Met Par Tek 53" 2
 
 

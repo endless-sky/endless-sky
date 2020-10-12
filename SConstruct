@@ -23,7 +23,7 @@ opts.Update(env)
 
 Help(opts.GenerateHelpText(env))
 
-flags = ["-std=c++11", "-Wall"]
+flags = ["-std=c++11", "-Wall", "-Werror"]
 if env["mode"] != "debug":
 	flags += ["-O3"]
 if env["mode"] == "debug":
