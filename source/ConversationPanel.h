@@ -111,9 +111,10 @@ private:
 
 	// The "history" of the conversation up to this point:
 	std::list<Paragraph> text;
-	// The current choices being presented to you:
-	std::list<Paragraph> choices;
+	// The current choices being presented to you, and their indices:
+	std::list<std::pair<Paragraph, int>> choices;
 	int choice;
+	int MapChoice(int n) const;
 
 	// Text entry fields for changing the player's name.
 	std::string firstName;
