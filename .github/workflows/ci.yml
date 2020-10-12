@@ -1,7 +1,7 @@
 name: Build & Parse
 
 # TODO:
-# - Run unit tests for all platforms (Blocked by XCode / Scons build file creation.)
+# - Run unit tests for all platforms (Blocked by XCode build file creation.)
 # - Reduce duplicate code (Blocking: https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 # - Investigate using scoop as package manager on windows
 # - MacOS artifact uploads are still slow (https://github.com/actions/upload-artifact/issues/69)
@@ -63,7 +63,7 @@ jobs:
     - name: Restore cached artifact
       id: cache-artifact
       uses: actions/cache@v2
-      with: 
+      with:
         path: ${{ env.ARTIFACT }}
         key: ${{ matrix.os }}-artifact-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }} # Any of these files will trigger a rebuild
     - name: Install dependencies
@@ -78,7 +78,7 @@ jobs:
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
-        restore-keys: | 
+        restore-keys: |
           ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
           ${{ matrix.os }}-ccache-${{ github.repository }}-
           ${{ matrix.os }}-ccache-
@@ -90,7 +90,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: binary-${{ matrix.os }} 
+        name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
 
 
@@ -103,8 +103,9 @@ jobs:
         SCCACHE_DIR: ./sccache/
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: .\dev64
+        ES_SRCLIB_DIR: ../lib/pkgd
         CXX: sccache g++
-        ARTIFACT: EndlessSky.exe 
+        ARTIFACT: EndlessSky.exe
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached artifact
@@ -153,7 +154,7 @@ jobs:
         SCCACHE_DIR: ./sccache/
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: .\dev64
-        CXX: sccache g++ 
+        CXX: sccache g++
         TEST_BINARY: endless-sky-tests.exe
     steps:
     - uses: actions/checkout@v2
@@ -217,7 +218,7 @@ jobs:
     - name: Restore cached artifact
       id: cache-artifact
       uses: actions/cache@v2
-      with: 
+      with:
         path: ${{ env.ARTIFACT }}
         key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
     - name: Install dependencies

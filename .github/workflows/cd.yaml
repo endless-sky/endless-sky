@@ -5,8 +5,8 @@ on:
     branches:
       - master
   pull_request:
-    types: 
-      - synchronize # New commit has been pushed
+    types:
+      - synchronize
       - opened
 
 jobs:
@@ -26,7 +26,9 @@ jobs:
         run: ./utils/cd_update_versions.sh
         shell: bash
       - name: Build Application
-        run: scons -j $(nproc)
+        run: scons -Q -j $(nproc)
+      - name: Run Unit Tests
+        run: scons -Q -j $(nproc) test
       - name: Package Application
         run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
       - name: Upload artifact
@@ -152,9 +154,9 @@ jobs:
       - name: Setup continuous release
         run: |
           DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})
-          
+
           This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
-          
+
           https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           if ! github-release info -t continuous > /dev/null 2>&1; then
             github-release release \
@@ -201,4 +203,3 @@ jobs:
             --replace \
             --name ${{ env.OUTPUT_MACOS }} \
             --file ${{ env.OUTPUT_MACOS }}/${{ env.OUTPUT_MACOS }}
-    
