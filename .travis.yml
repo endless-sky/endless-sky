@@ -23,10 +23,12 @@ jobs:
       stage: test
     - os: osx
       osx_image: xcode10.3
-      env: ES_PATH='/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky'
-      script: |
-          xcodebuild -configuration Release install -quiet
-          ./tests/test_parse.sh "$ES_PATH"
+      env:
+        ES_PATH: "'/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky'"
+      script:
+        - export PATH="/usr/local/opt/ccache/libexec:$PATH"
+        - xcodebuild -configuration Release install -quiet
+        - ./tests/test_parse.sh "$ES_PATH"
 
 addons:
   homebrew:
@@ -35,6 +37,7 @@ addons:
       - libpng
       - jpeg-turbo
       - sdl2
+      - ccache
     update: true
   apt:
     packages:
@@ -54,15 +57,14 @@ git:
   depth: 2
 
 branches:
-  except:
-    - gh-pages
+  only:
+    - master
+    - /^v[\d.]+$/
 
 # Default script, in the 'test' stage
 script:
-  - |
-      scons -Q -j2;
-      ES_PATH=./endless-sky;
-  - ./tests/test_parse.sh "$ES_PATH"
+  - scons -Q -j2;
+  - ./tests/test_parse.sh ./endless-sky
 
 before_cache:
   - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew cleanup; fi
@@ -71,9 +73,13 @@ before_cache:
   - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then find /usr/local/Homebrew \! -regex ".+\.git.+" -delete; fi
 
 cache:
+  ccache: true
   directories:
     - $HOME/Library/Caches/Homebrew
     - /usr/local/Homebrew
+
+before_install:
+  - export CXX="ccache ${CXX}"
 
 notifications:
   email:

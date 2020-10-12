@@ -1,8 +1,7 @@
 version: '{branch}.{build}'
 
-branches:
-  except:
-    - gh-pages
+skip_tags: true
+skip_branch_with_pr: true
 
 clone_depth: 2
 
@@ -47,7 +46,7 @@ before_test:
 
 test_script:
   - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
-  - ps: .\tests\bin\endless-sky-tests.exe -r junit -o $Env:TEST_REPORT_FILE;
+  - ps: .\tests\bin\endless-sky-tests.exe -n es-ci -i --warn NoAssertions --order rand --rng-seed 'time' --filenames-as-tags -r junit -o $Env:TEST_REPORT_FILE;
 
 # Upload the build if tests passed.
 after_test:
@@ -66,7 +65,7 @@ after_test:
 # Upload the test report even if tests failed.
 on_finish:
   - ps: |
-      if (Test-Path $Env:TEST_REPORT_FILE))
+      if (Test-Path $Env:TEST_REPORT_FILE)
       {
         (New-Object 'System.Net.WebClient').UploadFile(
           "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)",
