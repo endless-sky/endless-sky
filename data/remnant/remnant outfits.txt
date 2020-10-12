@@ -386,7 +386,7 @@ outfit "Research Laboratory"
 	licenses
 		Remnant
 	cost 500000
-	thumbnail "outfit/remnant laboratory"
+	thumbnail "outfit/research laboratory"
 	"mass" 11
 	"outfit space" -6
 	"asteroid scan power" 84
