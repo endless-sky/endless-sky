@@ -45,8 +45,8 @@ before_test:
       Copy-Item -Path "C:\dev64\bin\*.dll" -Exclude "libstdc*" -Destination $here;
 
 test_script:
-  - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
   - ps: .\tests\bin\endless-sky-tests.exe -n es-ci -i --warn NoAssertions --order rand --rng-seed 'time' --filenames-as-tags -r junit -o $Env:TEST_REPORT_FILE;
+  - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
 
 # Upload the build if tests passed.
 after_test:
