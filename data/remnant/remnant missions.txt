@@ -983,10 +983,16 @@ mission "Remnant: Learn Sign 1"
 	destination "Aventine"
 	repeat 3
 	to offer
-		has "remnant blood test pure"
+		has "Remnant: Void Sprites 3: done"
+		has "Remnant: Defense 3: done"
 		not "Remnant: Learn Sign 1: done"
 		not "Remnant: Learn Sign 1: active"
 		random < 30
+		or
+			has "Remnant: Key Stones: done"
+			has "Remnant: Key Stones (Hai): done"
+			has "Remnant: Key Stones (Pre-Hai) 2: done"
+			has "Remnant: Broken Jump Drive 2: done"
 	on offer
 		conversation
 			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single one.`
@@ -1690,6 +1696,8 @@ mission "Remnant: Salvage 4"
 			variant
 				"Korath Raider (Hyperdrive)"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
+	on abort
+		# No action, the player choose to just walk away from this mission(string)
 	on fail
 		payment 350000
 		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Taely might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
@@ -1709,7 +1717,9 @@ mission "Remnant: Salvage 5"
 	to offer
 		or
 			has "Remnant: Salvage 4: done"
-			has "Remnant: Salvage 4: failed"
+			and
+				has "Remnant: Salvage 4: failed"
+				not "Remnant: Salvage 4: aborted"
 	on offer
 		conversation
 			`As you stroll across the tarmac under the great dome you spot Taely heading your way with a flatbed tractor filled with components in tow.`
@@ -2798,12 +2808,10 @@ mission "Remnant: Cognizance 1"
 				"Korath Chaser" 2
 	on enter "Nenia"
 		dialog
-			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and disappearing into the clouds whenever your ship moves towards them.`
-			`	After several minutes of recording the elusive void sprites, you decide to visit the next gas giant, recalling that Plume will want footage from both planets.`
+			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and dropping down into the cloud deck whenever your ship moves towards them. You recall that Plume asked you to visit both planets.`
 	on stopover
 		conversation
-			`Here you find the same behavior as before: void sprites have suddenly become timid and prone to diving into the shrouded depths of their world at the slightest quick movement.`
-			`	Despite the new challenge, you manage to record a variety of different void sprites before deciding to head back to <destination>.`
+			`	The void sprites here prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get a small flock of them into visual range. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
 	on complete
 		conversation
 			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. He quickly takes them and reviews the footage. He makes a gesture that you think means 'curious dejection', then seems to notice something, and resumes his usual intent bearing.`
@@ -2933,6 +2941,8 @@ mission "Remnant: Cognizance 4"
 				"Korath Chaser" 8
 	on enter "Aescolanus"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
+	on abort
+		# No action, the player choose to just walk away from this mission(string)
 	on complete
 		payment 500000
 		conversation
@@ -2955,7 +2965,9 @@ mission "Remnant: Cognizance 5"
 	to offer
 		or
 			has "Remnant: Cognizance 4: done"
-			has "Remnant: Cognizance 4: failed"
+			and
+				has "Remnant: Cognizance 4: failed"
+				not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled
@@ -3194,7 +3206,13 @@ mission "Remnant: Cognizance 12"
 		has "Remnant: Cognizance 11: done"
 	on offer
 		conversation
-			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to <planet> and offload what you have collected to the station.`
+			`In the cafeteria, you are met by Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with equipment designed to harvest some atmosphere from the void sprite's worlds before bringing it back to Esquiline. The equipment on the puffins will collect, compress, and store the gas, which you can offload to specially prepared tanks on the Pelican. Then proceed to <planet> and offload what you have collected to the station."`
+			branch penguin
+				has "event: remnant: penguin"
+			`	She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
+				accept
+			label penguin
+			`	She nods at you and continues. "The Penguin will be even better than the Puffin for this task, and you are welcome to use her, but we do not have any available to accompany you. Continuing to rely on Puffins is not ideal, but we will make do with what we have." She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
 				accept
 	on stopover
 		dialog
@@ -3202,7 +3220,7 @@ mission "Remnant: Cognizance 12"
 	on complete
 		event "remnant: postverta reveal"
 		conversation
-			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffin up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
+			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
 			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
 
 

@@ -244,6 +244,7 @@ void Mission::Load(const DataNode &node)
 				{"accept", ACCEPT},
 				{"decline", DECLINE},
 				{"fail", FAIL},
+				{"abort", ABORT},
 				{"defer", DEFER},
 				{"visit", VISIT},
 				{"stopover", STOPOVER},
@@ -807,11 +808,19 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		if(!stopovers.empty())
 			return false;
 	}
+	if(trigger == ABORT && HasFailed(player))
+		return false;
 	if(trigger == WAYPOINT && !waypoints.empty())
 		return false;
 	
 	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
+	// If this mission was aborted but no ABORT action exists, look for a FAIL
+	// action instead. This is done for backwards compatibility purposes from
+	// when aborting a mission activated the FAIL trigger.
+	if(trigger == ABORT && it == actions.end())
+		it = actions.find(FAIL);
+	// Don't update any conditions if this action exists and can't be completed.
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
@@ -831,6 +840,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	else if(trigger == FAIL)
 	{
 		--player.Conditions()[name + ": active"];
+		++player.Conditions()[name + ": failed"];
+	}
+	else if(trigger == ABORT)
+	{
+		--player.Conditions()[name + ": active"];
+		++player.Conditions()[name + ": aborted"];
+		// Set the failed mission condition here as well for
+		// backwards compatibility.
 		++player.Conditions()[name + ": failed"];
 	}
 	else if(trigger == COMPLETE)
