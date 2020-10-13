@@ -147,6 +147,7 @@ jobs:
 
   test_windows:
     runs-on: ${{ matrix.os }}
+    needs: build_windows
     strategy:
       matrix:
         os: [windows-latest]
@@ -194,7 +195,9 @@ jobs:
     - name: Run tests
       run: |
         .\endless-sky-tests.exe -r compact -o test-result.log
-        echo ::set-env name=TEST_RESULT::$( cat test-result.log )
+        echo "TEST_RESULT<<EOF" >> $GITHUB_ENV
+        cat test-result.log >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
     # TODO: when running tests on multiple platforms, we should amalgamate failures and only report them once.
     # TODO: this action only works on linux containers
     # - name: Report failures on PR
