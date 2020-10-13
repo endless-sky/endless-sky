@@ -807,6 +807,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		if(!stopovers.empty())
 			return false;
 	}
+	if(trigger == ABORT && HasFailed(player))
+		return false;
+	
 	auto it = actions.find(trigger);
 	// If this mission was aborted but no ABORT action exists, look for a FAIL
 	// action instead. This is done for backwards compatibility purposes from
