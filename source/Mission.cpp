@@ -247,7 +247,8 @@ void Mission::Load(const DataNode &node)
 				{"abort", ABORT},
 				{"defer", DEFER},
 				{"visit", VISIT},
-				{"stopover", STOPOVER}
+				{"stopover", STOPOVER},
+				{"waypoint", WAYPOINT}
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -809,6 +810,8 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 	if(trigger == ABORT && HasFailed(player))
 		return false;
+	if(trigger == WAYPOINT && !waypoints.empty())
+		return false;
 	
 	auto it = actions.find(trigger);
 	// If this mission was aborted but no ABORT action exists, look for a FAIL
@@ -943,7 +946,10 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
 		if(waypoints.erase(system))
+		{
 			visitedWaypoints.insert(system);
+			Do(WAYPOINT, player, ui);
+		}
 		
 		// Perform an "on enter" action for this system, if possible.
 		Enter(system, player, ui);
@@ -976,10 +982,7 @@ const MissionAction &Mission::GetAction(Trigger trigger) const
 {
 	auto ait = actions.find(trigger);
 	static const MissionAction EMPTY{};
-	if(ait != actions.end())
-		return ait->second;
-	else
-		return EMPTY;
+	return ait != actions.end() ? ait->second : EMPTY;
 }
 
 
