@@ -160,9 +160,16 @@ void Audio::Init(const vector<string> &sources)
 			}
 		}
 	}
+
+#ifndef __EMSCRIPTEN__
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
+#else
+	// emscripten-compiled code freezes here in the browser
+	// so just load synchronously
+	Load();
+#endif
 	
 	// Create the music-streaming threads.
 	currentTrack.reset(new Music());

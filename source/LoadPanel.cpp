@@ -43,6 +43,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <stdexcept>
 
+#ifdef __EMSCRIPTEN__
+#    include <emscripten.h>
+#endif
+
 using namespace std;
 
 namespace {
@@ -479,6 +483,14 @@ void LoadPanel::WriteSnapshot(const string &sourceFile, const string &snapshotNa
 		UpdateLists();
 		selectedFile = Files::Name(snapshotName);
 		loadedInfo.Load(Files::Saves() + selectedFile);
+
+#ifdef __EMSCRIPTEN__
+		// sync from persisted state into memory and then
+		EM_ASM(FS.syncfs(function(err) {
+			assert(!err);
+			console.log("save snapshot synced to IndexedDB");
+		}););
+#endif
 	}
 	else
 		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName + "\"."));

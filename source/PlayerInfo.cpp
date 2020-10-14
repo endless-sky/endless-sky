@@ -46,6 +46,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <sstream>
 #include <stdexcept>
 
+#ifdef __EMSCRIPTEN__
+#    include <emscripten.h>
+#endif
+
 using namespace std;
 
 
@@ -359,6 +363,15 @@ void PlayerInfo::Save() const
 	}
 		
 	Save(filePath);
+
+#ifdef __EMSCRIPTEN__
+	EM_ASM(
+	   // syncfs(false) means save in-memory fs to persistent storage
+	   FS.syncfs(false, function(err) {
+		   assert(!err);
+		   console.log("persisted save file to IndexedDB.");
+	}););
+#endif
 }
 
 

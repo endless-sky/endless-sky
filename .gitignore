@@ -25,6 +25,18 @@ scons-local*
 .sconsign.dblite
 /*.d
 
+# emscripten build generated files
+endless-sky.html
+endless-sky.data
+endless-sky.js
+endless-sky.worker.js
+endless-sky.wasm
+endless-sky.wasm.map
+
+# libjpeg-turbo
+2.1.0.tar.gz
+libjpeg-turbo-2.1.0
+
 # Test Reports
 test-report.xml
 
