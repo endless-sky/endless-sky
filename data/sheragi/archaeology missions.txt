@@ -1331,7 +1331,7 @@ mission "Sheragi Archaeology: give ship 2"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
-		give ship "White Wizard" "Discount Flak Round"
+		give ship "Demonheart" "Discount Flak Round"
 
 mission "Sheragi Archaeology: give ship 3"
 	landing
@@ -1341,7 +1341,7 @@ mission "Sheragi Archaeology: give ship 3"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
-		give ship "White Wizard" "How Do I Steer"
+		give ship "Demonheart" "How Do I Steer"
 
 mission "Sheragi Archaeology: give ship 4"
 	landing
@@ -1351,7 +1351,7 @@ mission "Sheragi Archaeology: give ship 4"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
-		give ship "White Wizard" "An Implicit Comparison To Fleas"
+		give ship "Demonheart" "An Implicit Comparison To Fleas"
 
 mission "Sheragi Archaeology: give ship 5"
 	landing
@@ -1361,7 +1361,7 @@ mission "Sheragi Archaeology: give ship 5"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
-		give ship "White Wizard" "Punch Biopsy"
+		give ship "Demonheart" "Punch Biopsy"
 
 mission "Sheragi Archaeology: give ship 6"
 	landing
@@ -1371,7 +1371,7 @@ mission "Sheragi Archaeology: give ship 6"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
-		give ship "White Wizard" "Just The Letter H"
+		give ship "Demonheart" "Just The Letter H"
 
 mission "Sheragi Archaeology: give ship 7 and epilogue"
 	landing
@@ -1383,7 +1383,7 @@ mission "Sheragi Archaeology: give ship 7 and epilogue"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
-		give ship "White Wizard" "I Got The Bees You Need"
+		give ship "Demonheart" "I Got The Bees You Need"
 	on complete
 		log `Obtained an ancient Sheragi warship whose name translates to the Emerald Sword. It was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, it is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size.`
 		payment 5000000

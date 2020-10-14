@@ -155,9 +155,9 @@ ship "Emerald Sword" "Emerald Sword (Fixed)"
 	turret "Sheragi Anti-Missile"
 	gun "Dragonflame Cannon"
 
-ship "White Wizard"
-	sprite "ship/whitewizard"
-	thumbnail "thumbnail/whitewizard"
+ship "Demonheart"
+	sprite "ship/demonheart"
+	thumbnail "thumbnail/demonheart"
 	attributes
 		category "Fighter"
 		"cost" 200000
