@@ -3463,16 +3463,16 @@ mission "Remnant: Expanded Horizons Astral 1"
 	description "To prepare for an expedition to Sagittarius A*, go to <destination> with 6 outfit space available."
 	passengers 1
 	minor
-	to offer
-		has "Remnant: Expanded Horizons Quarg 3: done"
-		# random < 25
 	source
 		government "Remnant"
 	destination
 		government "Remnant"
+	to offer
+		has "Remnant: Expanded Horizons Quarg 3: done"
+		# random < 25
 	on offer
 		conversation
-			`"In the starport cafeteria you come across Dawn sitting at a table looking worried. She smiles when she sees you, and waves you to the seat opposite her. "Back from gallivanting around the galaxy with more tales to share?" she signs.`
+			`In the starport cafeteria you come across Dawn sitting at a table looking worried. She smiles when she sees you, and waves you to the seat opposite her. "Back from gallivanting around the galaxy with more tales to share?" she signs.`
 			choice
 				`	"Yes, as a matter of fact..."`
 				`	"No, just hunting Korath..."`
@@ -3523,7 +3523,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"Once the laboratory module is installed, it will simply be a matter of travelling to Sagittarius A*. After our measurements, recordings, and observations are complete, we will return and report on our findings."`
 			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done eating."`
 			branch dawnsymbiont
-				"remnant symbionts info" >= 1
+				has "remnant symbionts info"
 			choice
 				`	"Okay, I will meet you onboard the ship."`
 					accept
@@ -3589,7 +3589,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"So, what is our next step?"`
 					goto labnext
-				`	"Seeker?" you ask.`
+				`	"Seeker?"`
 			`	Dawn looks a little embarassed. "Seeker is a title of respect for deep space explorers. It is unofficial - just a token of respect - but it is both a title that I aspire to earn and one I do not feel that I deserve."`
 			choice
 				`	"Okay. So what next?"`
@@ -3618,15 +3618,15 @@ mission "Remnant: Expanded Horizons Astral 2"
 	blocked "You need at least 1 free bunk to take this mission."
 	passengers 1
 	waypoint "Sagittarius A*"
-	to offer
-		has "Remnant: Expanded Horizons Astral 1: done"
 	source
 		government "Remnant"
 	destination
 		government "Remnant"
+	to offer
+		has "Remnant: Expanded Horizons Astral 1: done"
 	on offer
-		require "Jump Drive" 1
-		require "Research Laboratory" 1
+		require "Jump Drive"
+		require "Research Laboratory"
 		conversation
 			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach, and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
 			choice
@@ -3700,7 +3700,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 
 
 mission "Remnant: Expanded Horizons Astral job"
-	name "Research Expedition to <waypoints>."
+	name "Research Expedition to <waypoints>"
 	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
 	job
 	repeat
@@ -3709,7 +3709,7 @@ mission "Remnant: Expanded Horizons Astral job"
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
 	on offer
-		require "Research Laboratory" 1
+		require "Research Laboratory"
 	source
 		government "Remnant"
 	on complete
