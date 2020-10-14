@@ -3490,9 +3490,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	She listens for a minute or two as you tell her about what you have been up to, but it is obvious that she has something on her mind.`
 			choice
 				`	"You look worried. Is everything alright?"`
-					goto worried
-				`	"You look distracted. We can talk later."`
-					defer
+				`	"You look distracted. Do you want to talk about it?"`
 			label worried
 			`	She makes a gesture of appreciation. "Yes, I'm worried, <first>. I keep feeling like there's something I'm missing." She frowns, contemplating something unseen. "I should back up a step. While I do not have a permanent position yet, I am currently serving with an astrophysics team. We have been studying a variety of things, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there's a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
 			choice
@@ -3501,6 +3499,8 @@ mission "Remnant: Expanded Horizons Astral 1"
 					goto worry
 				`	"Can I help with something?"`
 					goto help
+				`	"I have to go. I will stop by to talk more later."`
+					defer
 			`	"I did. The senior researcher told me that most of the team feels it. There are some concrete theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
 			label worry
@@ -3515,7 +3515,8 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"You want me to go near a blackhole?!"`
 					goto centeralt
 				`	"I have been there."`
-			label sagittarius
+				`	"Sorry, I'm not interested in visiting a blackhole."`
+					decline
 			`	"Really?" She looks surprised. "I have seen sensor logs and recordings from previous visits, but not many people have actually been there." She pauses to take a bite from her neglected meal. "Being able to take part in these expeditions is something I have been looking forward to for ages, so of course Sagittarius A* is the first place on my list."`
 				goto center
 			label centeralt
@@ -3623,7 +3624,7 @@ event "remnant: lab availability"
 mission "Remnant: Expanded Horizons Astral 2"
 	name "Research expedition to Sagittarius A*"
 	description "Travel to Sagittarius A* and then return to <destination>."
-	blocked "You need at least 1 free bunk to take this mission."
+	blocked "You need at least 1 free bunk, a jump drive, and a research laboratory to take this mission."
 	passengers 1
 	waypoint "Sagittarius A*"
 	source
