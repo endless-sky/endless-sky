@@ -1696,6 +1696,8 @@ mission "Remnant: Salvage 4"
 			variant
 				"Korath Raider (Hyperdrive)"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
+	on abort
+		# No action, the player choose to just walk away from this mission(string)
 	on fail
 		payment 350000
 		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Taely might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
@@ -1715,7 +1717,9 @@ mission "Remnant: Salvage 5"
 	to offer
 		or
 			has "Remnant: Salvage 4: done"
-			has "Remnant: Salvage 4: failed"
+			and
+				has "Remnant: Salvage 4: failed"
+				not "Remnant: Salvage 4: aborted"
 	on offer
 		conversation
 			`As you stroll across the tarmac under the great dome you spot Taely heading your way with a flatbed tractor filled with components in tow.`
@@ -2937,6 +2941,8 @@ mission "Remnant: Cognizance 4"
 				"Korath Chaser" 8
 	on enter "Aescolanus"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
+	on abort
+		# No action, the player choose to just walk away from this mission(string)
 	on complete
 		payment 500000
 		conversation
@@ -2959,7 +2965,9 @@ mission "Remnant: Cognizance 5"
 	to offer
 		or
 			has "Remnant: Cognizance 4: done"
-			has "Remnant: Cognizance 4: failed"
+			and
+				has "Remnant: Cognizance 4: failed"
+				not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled
