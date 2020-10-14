@@ -45,7 +45,6 @@ mission "First Contact: Ka'het: Remnant 1A"
 			has "Graveyard Label: offered"
 			has "Ringworld Debris: offered"
 		has "remnant blood test pure"
-		not "remnant met taely"
 	on offer
 		conversation
 			`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
@@ -53,11 +52,11 @@ mission "First Contact: Ka'het: Remnant 1A"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			branch Taely
+			branch taely
 				has "remnant met taely"
 			`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Either the information is too confidential to be given to a stranger like you, or you didn't ask the right people.`
 				decline
-			label Taely
+			label taely
 			`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Perhaps you might have more luck asking Taely on Viminal.`
 				decline
 
@@ -103,7 +102,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 		log `Asked Taely about the Graveyard and the Ka'het and learned of the Remnant's previous contacts between them.`
 		log "Factions" "Ka'het" `The Ka'het are a species which live in the Graveyard, an area south of the Ember Waste. They are large lifeforms which can travel in space using artificial exoskeletons and will attack anyone on sight, even other Ka'het.`
 
-mission "Graveyard Insights Compatibility"
+mission "graveyard insights compatibility"
 	landing
 	invisible
 	to offer
