@@ -28,7 +28,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cstdlib>
-#include <vector>
 
 using namespace std;
 
@@ -198,7 +197,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(key == "give" && hasValue)
 		{
 			if(child.Token(1) == "ship" && child.Size() >= 3)
-				giftShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
+				giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
 			else
 				child.PrintTrace("Skipping unsupported \"give\" syntax:");
 		}
@@ -515,7 +514,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		result.events[it.first] = make_pair(day, day);
 	}
 	for(const auto &it : giftShips)
-		result.giftShips[it.first] = !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get();
+		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
 	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
