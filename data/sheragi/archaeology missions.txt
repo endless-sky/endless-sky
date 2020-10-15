@@ -1306,74 +1306,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 
 
 
-mission "Sheragi Archaeology: give ship 1"
-	landing
-	invisible
-	source "Echoes of Tragedy"
-	destination "Zug"
-	
-	to offer
-		has "Sheragi Archaeology: The Emerald Sword 3: done"
-	
-	on offer
-		give ship "Emerald Sword (Fixed)" "Emerald Sword"
-		conversation
-			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. As luck would have it, the shipboard scanner reveal anomalous structures over a mesa, and as you come in for a landing, it becomes apparent that these are the ruins of a large settlement. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term`
-			`	While the crew starts to work on the Emerald Sword, you and the archaeologists head into the settlement, documenting what they see. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
-			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room, holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery, with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they could have survived to this day. The archaeologists take pictures, samples, and minor artifacts, but leave the place mostly undisturbed in respect for a lost civilization, discussing the possible history of this place.`			
-			`	For most of the next day, the workers unload some outfitting and repairing equipment, while the spare crew take turns thinking of names for each fighter, and scientists slowly work out the functions of the ship, briefing you and your crew on how to operate it. With the Jump Drive installed, all that is left is to return the ship to human space for further work.`
-
-mission "Sheragi Archaeology: give ship 2"
-	landing
-	invisible
-	source "Echoes of Tragedy"
-	destination "Zug"
-	to offer
-		has "Sheragi Archaeology: The Emerald Sword 3: done"
-	on offer
-		give ship "Demonheart" "Discount Flak Round"
-
-mission "Sheragi Archaeology: give ship 3"
-	landing
-	invisible
-	source "Echoes of Tragedy"
-	destination "Zug"
-	to offer
-		has "Sheragi Archaeology: The Emerald Sword 3: done"
-	on offer
-		give ship "Demonheart" "How Do I Steer"
-
-mission "Sheragi Archaeology: give ship 4"
-	landing
-	invisible
-	source "Echoes of Tragedy"
-	destination "Zug"
-	to offer
-		has "Sheragi Archaeology: The Emerald Sword 3: done"
-	on offer
-		give ship "Demonheart" "An Implicit Comparison To Fleas"
-
-mission "Sheragi Archaeology: give ship 5"
-	landing
-	invisible
-	source "Echoes of Tragedy"
-	destination "Zug"
-	to offer
-		has "Sheragi Archaeology: The Emerald Sword 3: done"
-	on offer
-		give ship "Demonheart" "Punch Biopsy"
-
-mission "Sheragi Archaeology: give ship 6"
-	landing
-	invisible
-	source "Echoes of Tragedy"
-	destination "Zug"
-	to offer
-		has "Sheragi Archaeology: The Emerald Sword 3: done"
-	on offer
-		give ship "Demonheart" "Just The Letter H"
-
-mission "Sheragi Archaeology: give ship 7 and epilogue"
+mission "Sheragi Archaeology: Epilogue"
 	landing
 	name "The Emerald Sword"
 	description "Return to Zug."
@@ -1383,7 +1316,19 @@ mission "Sheragi Archaeology: give ship 7 and epilogue"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
+		give ship "Emerald Sword (Fixed)" "Emerald Sword"
+		give ship "Demonheart" "Discount Flak Round"
+		give ship "Demonheart" "How Do I Steer"
+		give ship "Demonheart" "An Implicit Comparison To Fleas"
+		give ship "Demonheart" "Punch Biopsy"
+		give ship "Demonheart" "Just The Letter H"
 		give ship "Demonheart" "I Got The Bees You Need"
+		conversation
+			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. As luck would have it, the shipboard scanner reveal anomalous structures over a mesa, and as you come in for a landing, it becomes apparent that these are the ruins of a large settlement. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term`
+			`	While the crew starts to work on the Emerald Sword, you and the archaeologists head into the settlement, documenting what they see. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
+			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room, holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery, with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they could have survived to this day. The archaeologists take pictures, samples, and minor artifacts, but leave the place mostly undisturbed in respect for a lost civilization, discussing the possible history of this place.`			
+			`	For most of the next day, the workers unload some outfitting and repairing equipment, while the spare crew take turns thinking of names for each fighter, and scientists slowly work out the functions of the ship, briefing you and your crew on how to operate it. With the Jump Drive installed, all that is left is to return the ship to human space for further work.`
+				accept
 	on complete
 		log `Obtained an ancient Sheragi warship whose name translates to the Emerald Sword. It was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, it is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size.`
 		payment 5000000
