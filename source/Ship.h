@@ -331,6 +331,9 @@ public:
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
+	// Mark this ship as being the player's flagship, meaning it can't be
+	// carried regardless of its category.
+	void IsFlagship(bool isFlagshipChange);
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
@@ -436,6 +439,7 @@ private:
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	std::string name;
+	bool isFlagship = false;
 	bool canBeCarried = false;
 	
 	int forget = 0;

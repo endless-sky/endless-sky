@@ -1178,10 +1178,13 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(!system || !planet)
 		return false;
 	
+	if(flagship)
+		flagship->IsFlagship(false);
 	flagship.reset();
 	flagship = FlagshipPtr();
 	if(!flagship)
 		return false;
+	flagship->IsFlagship(true);
 	
 	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
