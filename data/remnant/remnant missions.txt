@@ -3578,7 +3578,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 					accept
 				`	"Where is your symbiont? Yours does not seem to be obvious."`
 					goto dawnwhere
-				`	"Could I see your symbiont? The ones I have seen are visible, like gloves or neck braces."`
+				`	"Could I see your symbiont?"`
 			`	Dawn looks at you with an amused expression. "We don't know each other nearly well enough for that. Better to focus on the expedition. I will catch up to you on the ship."`
 				accept
 			label onwards
@@ -3664,7 +3664,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 				accept
 	on enter "Sagittarius A*"
 		conversation
-			`As the energy ripples from the Jump Drive fade, the spectacular void that is Sagittarius A* takes shape before you. You can make out a rough silhouette against the background of stars and the glow of the acretion disk. As you slowly fall towards the singularity, you activate the anti-gravity systems while various alarms start to trigger. While vastly underpowered for dealing with the immense pull of a black hole, they provide a degree of protection so long as you maintain a safe distance from it.`
+			`As the energy ripples from the Jump Drive fade, the spectacular void that is Sagittarius A* takes shape before you. Compared to the vast darkness of space that you are accustomed to, reality here feels almost like a color negative: Even with the automatic filtering in your windows, space is incredibly bright with the densely packed stars that provide a backdrop for Sagittarius A*. The moment of awe is shattered by your alarms warning you of your impending doom as the <ship> begins to fall inwards towards the black hole. You quickly activate your anti-gravity system, which, although vastly underpowered for dealing with the immense pull of a black hole, does provide a degree of protection so long as you maintain a safe distance from it.`
 			`	After a few minutes of just absorbing the spectacle before you, Dawn pulls herself away from the cockpit windows and scurries down to the lab. Leaving you to your thoughts, she quickly has the lab set up and running a variety of recordings, test, and observation equipment. After a few hours of work, she reappears on the bridge.`
 			`	"Things are proceeding smoothly, Captain. All the sensors are working nominally and we are creating extensive archives of astronomical data as well. Another few hours and we should have all the data we need."`
 			choice
