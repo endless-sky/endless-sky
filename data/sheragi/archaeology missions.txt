@@ -1237,7 +1237,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	name "The Emerald Sword"
 	description "Capture the Emerald Sword."
 	source "Zug"
-	destination "Echoes of Tragedy"
+	destination "Valley of the Damned"
 	cargo "Outfitting Equipment" 50
 	passengers 150
 	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, we're going to need 50 tons of cargo to take our materials and the jump drive, and 150 additional crew to help, including us. The Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so i took the liberty of hiring some extra crew on top of the specialist team."`
@@ -1310,19 +1310,19 @@ mission "Sheragi Archaeology: Epilogue"
 	landing
 	name "The Emerald Sword"
 	description "Return to Zug."
-	source "Echoes of Tragedy"
+	source "Valley of the Damned"
 	destination "Zug"
 	cargo "Outfitting Equipment" 25
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
 		give ship "Emerald Sword (Fixed)" "Emerald Sword"
-		give ship "Demonheart" "Discount Flak Round"
-		give ship "Demonheart" "How Do I Steer"
-		give ship "Demonheart" "An Implicit Comparison To Fleas"
-		give ship "Demonheart" "Punch Biopsy"
-		give ship "Demonheart" "Just The Letter H"
-		give ship "Demonheart" "I Got The Bees You Need"
+		give ship "Black Diamond" "Discount Flak Round"
+		give ship "Black Diamond" "How Do I Steer"
+		give ship "Black Diamond" "An Implicit Comparison To Fleas"
+		give ship "Black Diamond" "Punch Biopsy"
+		give ship "Black Diamond" "Just The Letter H"
+		give ship "Black Diamond" "I Got The Bees You Need"
 		conversation
 			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. As luck would have it, the shipboard scanner reveal anomalous structures over a mesa, and as you come in for a landing, it becomes apparent that these are the ruins of a large settlement. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term`
 			`	While the crew starts to work on the Emerald Sword, you and the archaeologists head into the settlement, documenting what they see. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
@@ -1410,7 +1410,7 @@ system Zubenelhakrabi
 		distance 147
 		period 32.3158
 		offset 98.3841
-	object "Echoes of Tragedy"
+	object "Valley of the Damned"
 		sprite planet/earth
 		distance 502.704
 		period 204.365
@@ -1466,7 +1466,7 @@ system Zubenelhakrabi
 			period 44.5228
 			offset 128.448
 
-planet "Echoes of Tragedy"
+planet "Valley of the Damned"
 	attributes uninhabited
 	landscape land/fog4
 	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has a high concentration of water vapor in its atmosphere and hosts primitive life, with mosses covering nearly all moist surfaces and exotic crustacean-like animals roaming the land, their carapaces made of what would be considered synthetic plastic elsewhere.`
