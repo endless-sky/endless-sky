@@ -1179,12 +1179,12 @@ bool PlayerInfo::TakeOff(UI *ui)
 		return false;
 	
 	if(flagship)
-		flagship->IsFlagship(false);
+		flagship->AllowCarried(true);
 	flagship.reset();
 	flagship = FlagshipPtr();
 	if(!flagship)
 		return false;
-	flagship->IsFlagship(true);
+	flagship->AllowCarried(false);
 	
 	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));

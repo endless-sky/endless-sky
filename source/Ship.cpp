@@ -2990,16 +2990,16 @@ bool Ship::CanCarry(const Ship &ship) const
 
 
 
-void Ship::IsFlagship(bool isFlagshipChange)
+void Ship::AllowCarried(bool allowCarried)
 {
-	isFlagship = isFlagshipChange;
+	canBeCarried = allowCarried && BAY_TYPES.count(attributes.Category()) > 0;
 }
 
 
 
 bool Ship::CanBeCarried() const
 {
-	return isFlagship ? false : canBeCarried;
+	return canBeCarried;
 }
 
 
