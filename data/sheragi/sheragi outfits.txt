@@ -42,15 +42,15 @@ outfit "Fusion Drive"
 	"reverse thrust" 44.8
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3
-	"flare sprite" "effect/fdrive"
+	"flare sprite" "effect/fusionflare"
 		"frame rate" 30
 		"rewind"
 	"flare sound" "atomic huge"
-	"steering flare sprite" "effect/fdrive"
+	"steering flare sprite" "effect/fusionflare"
 		"frame rate" 30
 		"rewind"
 	"steering flare sound" "atomic medium"
-	"reverse flare sprite" "effect/fdrive"
+	"reverse flare sprite" "effect/fusionflare"
 		"frame rate" 30
 		"rewind"
 	"reverse flare sound" "atomic large"
@@ -92,7 +92,7 @@ outfit "Fission Drive"
 		"frame rate" 30
 		"rewind"
 	"steering flare sound" "atomic tiny"
-	description "A much smaller cousin of the fusion drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Accelerator."
+	description "A much smaller cousin of the fusion drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
 
 outfit "Small Hybrid Cooling"
 	category "Systems"
@@ -100,7 +100,7 @@ outfit "Small Hybrid Cooling"
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
 	"outfit space" -8
-	"active cooling" 19
+	"active cooling" 17
 	"cooling" 9
 	"cooling energy" 3.1
 	description `This small cooling solution was designed with fighters in mind, and as such, it does not store fuel. However, it provides more passive cooling than it's big brother.`

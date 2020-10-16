@@ -1350,14 +1350,14 @@ mission "Sheragi Archaeology: Epilogue"
 				`	"Do you think I could get in trouble by using it?"`
 					goto trouble
 				`	"It's not going to blow up my own ship, is it?"`
-			`	Rakei laughs. "Don't worry, the Sheragi did their homework. The simple materials they used means the cannon can be maintained and repaired, so it continues to be structurally strong. Many of the components are active anyway, and they basically only exist for the short amount of time that the GRASER takes to fire."`
+			`	Rakei laughs. "Don't worry, the Sheragi did their homework. The simple materials they used means the cannon can be maintained and repaired, so it continues to be structurally strong. Many of the components are active anyway, and they basically only exist for the short amount of time that the GRASER takes to fire. I only advise against firing it at point blank range."`
 				goto catch
 			label trouble
 			`	"I don't think you will, as long as you don't fire it into a planet. It doesn't cause unnecessary suffering like nerve gas, and it isn't as indiscriminate as a nuclear bomb. This is a focused beam. It's going to poke holes straight through any ship subject to its wrath."`
 			label catch
 			`	"Then what's the catch?" you ask.`
 			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon.`
-			`	Desyo adds. "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried."`
+			`	Desyo adds. "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried. No offense."`
 			`	"So what are you going to do now?" you ask them.`
 			`	Eyama responds. "We'll continue working with Albert. These two nerds like technology and ships, but I'm far more interested in the treasure trove of cultural artifacts the buried city holds. Not to mention the humans here are very interesting!"`
 			`	You all finish your ice creams and continue chatting for a while longer before you say goodbye and return to your ship. By tomorrow, it will be in full working condition, ready to take to the endless void.`
