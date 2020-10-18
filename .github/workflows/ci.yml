@@ -58,22 +58,33 @@ jobs:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
         ARTIFACT: endless-sky
+        LIBRARY_DIR: lib/
     steps:
     - uses: actions/checkout@v2
-    - name: Restore cached artifact
+    - name: Restore cached game binary
       id: cache-artifact
       uses: actions/cache@v2
       with:
         path: ${{ env.ARTIFACT }}
-        key: ${{ matrix.os }}-artifact-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }} # Any of these files will trigger a rebuild
-    - name: Install dependencies
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+        # Rebuild the game binary if source code changed, or if instructions on building the game changed.
+        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+    - name: Restore cached development library
+      id: cache-lib
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ env.LIBRARY_DIR }}
+          .sconsign.dblite
+        # We don't need to recompile individual source files unless they or the compilation commands changed.
+        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }}
+    - name: Install development dependencies
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
     - name: Cache ccache results
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
       uses: actions/cache@v2
       with:
         path: ${{ env.CCACHE_DIR }}
@@ -83,15 +94,18 @@ jobs:
           ${{ matrix.os }}-ccache-${{ github.repository }}-
           ${{ matrix.os }}-ccache-
     - name: Compile
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: |
-        scons -v
-        scons -Qj $(nproc);
-    - name: Upload artifact
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+      run: scons -Qj $(nproc);
+    - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
+    - name: Upload compiled source archive
+      uses: actions/upload-artifact@v2
+      with:
+        name: libendless-sky-${{ matrix.os }}
+        path: ${{ env.LIBRARY_DIR }}
 
 
   build_windows:
@@ -108,13 +122,13 @@ jobs:
         ARTIFACT: EndlessSky.exe
     steps:
     - uses: actions/checkout@v2
-    - name: Restore cached artifact
+    - name: Restore cached game binary
       id: cache-artifact
       uses: actions/cache@v2
       with:
         path: ${{ env.ARTIFACT }}
         key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }} # Any of these files will trigger a rebuild
-    - name: Install dependencies
+    - name: Install development dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: choco install sccache
     - name: Fetch development libraries
@@ -136,10 +150,10 @@ jobs:
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
-    - name: Prepare artifact
+    - name: Prepare game binary
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
-    - name: Upload artifact
+    - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
         name: binary-${{ matrix.os }}
@@ -284,7 +298,7 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1
-    - name: Download artifact
+    - name: Download game binary
       uses: actions/download-artifact@v2
       with:
         name: binary-${{ matrix.os }}
@@ -304,7 +318,7 @@ jobs:
     needs: build_windows
     steps:
     - uses: actions/checkout@v2
-    - name: Fetch development libraries
+    - name: Install runtime dependencies
       run: |
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
         Expand-Archive win64-dev.zip -DestinationPath . -Force
@@ -313,7 +327,7 @@ jobs:
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
-    - name: Download artifact
+    - name: Download game binary
       uses: actions/download-artifact@v2
       with:
         name: binary-${{ matrix.os }}
@@ -335,7 +349,7 @@ jobs:
       run: |
         brew update
         brew install libmad libpng jpeg-turbo sdl2
-    - name: Download artifact
+    - name: Download game binary
       uses: actions/download-artifact@v2
       with:
         name: app-${{ matrix.os }}

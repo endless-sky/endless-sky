@@ -14,11 +14,11 @@ jobs:
   include:
     - dist: xenial
       stage: compile & unit test
-      script: scons -Q -j2 && scons -Q -j2 test;
+      script: scons -Qj 2 && scons -Qj 2 test;
     - dist: bionic
-      script: scons -Q -j2 && scons -Q -j2 test;
+      script: scons -Qj 2 && scons -Qj 2 test;
     - dist: focal
-      script: scons -Q -j2 && scons -Q -j2 test;
+      script: scons -Qj 2 && scons -Qj 2 test;
     - dist: xenial
       stage: test
     - os: osx
@@ -63,7 +63,7 @@ branches:
 
 # Default script, in the 'test' stage
 script:
-  - scons -Q -j2;
+  - scons -Qj 2;
   - ./tests/test_parse.sh ./endless-sky
 
 before_cache:
@@ -77,6 +77,7 @@ cache:
   directories:
     - $HOME/Library/Caches/Homebrew
     - /usr/local/Homebrew
+    - lib/**
 
 before_install:
   - export CXX="ccache ${CXX}"
