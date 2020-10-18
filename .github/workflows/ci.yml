@@ -101,11 +101,65 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
-    - name: Upload compiled source archive
-      uses: actions/upload-artifact@v2
+
+  test_ubuntu-unit:
+    needs: build_ubuntu
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+    env:
+        CCACHE_DIR: ./ccache/
+        CXX: ccache g++
+        TEST_BINARY: tests/endless-sky-tests
+        LIBRARY_DIR: lib/
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore cached test binary
+      id: cache-tests
+      uses: actions/cache@v2
       with:
-        name: libendless-sky-${{ matrix.os }}
-        path: ${{ env.LIBRARY_DIR }}
+        path: ${{ env.TEST_BINARY }}
+        # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed. TODO: Restore ", '.github/workflows/ci.yml'" dependency below
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct') }}
+    - name: Restore cached development library
+      if: steps.cache-tests.outputs.cache-hit != 'true'
+      id: cache-lib
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ env.LIBRARY_DIR }}
+          .sconsign.dblite
+        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }}
+    - name: 'debug cache use'
+      run: |
+        ls -aghtr .sconsign.dblite lib source
+        echo "cache-tests had result cache-hit=${{ steps.cache-tests.outputs.cache-hit }}"
+        echo "cache-lib had result cache-hit=${{ steps.cache-lib.outputs.cache-hit }}"
+    - name: 'Install core dependencies'
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends scons ccache
+    # We likely need these deps even if restoring from cache, but only if we link against the actual libs (which currently is not done)
+    - name: 'Install development dependencies'
+      if: steps.cache-lib.outputs.cache-hit != 'true'
+      run: sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev
+    - name: Cache ccache results
+      if: steps.cache-tests.outputs.cache-hit != 'true'
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.CCACHE_DIR }}
+        key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
+        restore-keys: |
+          ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
+          ${{ matrix.os }}-ccache-${{ github.repository }}-
+          ${{ matrix.os }}-ccache-
+    - name: 'Compile tests'
+      if: steps.cache-tests.outputs.cache-hit != 'true'
+      run: scons -Qj $(nproc) --debug=explain build-tests
+    - name: 'Run tests'
+      run: scons -Qj $(nproc) test
 
 
   build_windows:
@@ -120,6 +174,7 @@ jobs:
         ES_SRCLIB_DIR: ../lib/pkgd
         CXX: sccache g++
         ARTIFACT: EndlessSky.exe
+        LIBRARY_DIR: lib/
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -127,18 +182,26 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.ARTIFACT }}
-        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }} # Any of these files will trigger a rebuild
+        # Rebuild the game binary if source code changed, or if instructions on building the game changed.
+        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml') }}
+    # Depending on behavior of GitHub Actions w.r.t. file modification times, the cached library might be wholly ignored
+    - name: Restore cached development library
+      id: cache-lib
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.LIBRARY_DIR }}
+        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }}
     - name: Install development dependencies
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
       run: choco install sccache
     - name: Fetch development libraries
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
       run: |
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
     - name: Cache sccache results
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
       uses: actions/cache@v2
       with:
         path: ${{ env.SCCACHE_DIR }}
@@ -148,10 +211,10 @@ jobs:
           ${{ matrix.os }}-sccache-${{ github.repository }}-
           ${{ matrix.os }}-sccache
     - name: Compile
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
       run: make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
     - name: Prepare game binary
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
       run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
     - name: Upload game binary
       uses: actions/upload-artifact@v2
@@ -160,37 +223,46 @@ jobs:
         path: ${{ env.ARTIFACT }}
 
   test_windows:
-    runs-on: ${{ matrix.os }}
     needs: build_windows
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-latest]
     env:
         SCCACHE_DIR: ./sccache/
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+        ES_SRCLIB_DIR: ../lib/pkgd
         DIR_ESLIB: .\dev64
         CXX: sccache g++
         TEST_BINARY: endless-sky-tests.exe
+        LIBRARY_DIR: lib
     steps:
     - uses: actions/checkout@v2
-    - name: Restore test binary
-      id: cache-binary
+    - name: Restore cached test binary
+      id: cache-tests
       uses: actions/cache@v2
       with:
         path: ${{ env.TEST_BINARY }}
-        # Rebuild upon changes to the game source code or tests.
-        key: ${{ matrix.os }}-test-artifacts-${{ hashFiles('source/**') }}-${{ hashFiles('tests/**') }}
-    - name: Install dependencies
-      if: steps.cache-binary.outputs.cache-hit != 'true'
+        # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed. TODO: Restore ", '.github/workflows/ci.yml'" dependency below
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', 'tests/makefile') }}
+    - name: Restore cached development library
+      if: steps.cache-tests.outputs.cache-hit != 'true'
+      id: cache-lib
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.LIBRARY_DIR }}
+        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }}
+    - name: Install core dependencies
+      if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
-    - name: Fetch development libraries
-      if: steps.cache-binary.outputs.cache-hit != 'true'
-      run: |
-        Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
-        Expand-Archive win64-dev.zip -DestinationPath . -Force
-        Remove-Item win64-dev.zip
+    # - name: Install development dependencies
+    #   if: steps.cache-tests.outputs.cache-hit != 'true'
+    #   run: |
+    #     Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+    #     Expand-Archive win64-dev.zip -DestinationPath . -Force
+    #     Remove-Item win64-dev.zip
     - name: Cache sccache results
-      if: steps.cache-binary.outputs.cache-hit != 'true'
+      if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
       with:
         path: ${{ env.SCCACHE_DIR }}
@@ -199,8 +271,8 @@ jobs:
           ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-
           ${{ matrix.os }}-sccache-${{ github.repository }}-
           ${{ matrix.os }}-sccache
-    - name: Compile Tests
-      if: steps.cache-binary.outputs.cache-hit != 'true'
+    - name: Compile tests
+      if: steps.cache-tests.outputs.cache-hit != 'true'
       run: |
         cd tests
         make -e -f makefile test -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
@@ -232,7 +304,7 @@ jobs:
       ARTIFACT: /tmp/EndlessSky.dst/Applications/
     steps:
     - uses: actions/checkout@v2
-    - name: Restore cached artifact
+    - name: Restore cached game binary
       id: cache-artifact
       uses: actions/cache@v2
       with:
@@ -255,9 +327,12 @@ jobs:
 
   # This section is for tests on ubuntu 16 (and on ubuntu 20).
   # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
-  autotest_ubuntu16:
-    runs-on: [ubuntu-20.04, ubuntu-16.04]
+  test_ubuntu-integration:
     needs: build_ubuntu
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-16.04]
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
@@ -277,7 +352,8 @@ jobs:
         ./tests/run_tests_headless.sh
 
 
-  parsetest_ubuntu:
+  test_ubuntu-parse:
+    needs: build_ubuntu
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -288,7 +364,6 @@ jobs:
             glew: libglew2.0
           - os: ubuntu-16.04
             glew: libglew1.13
-    needs: build_ubuntu
     steps:
     - uses: actions/checkout@v2
     # xenial, bionic, and focal generally have packages with the same name, but not always.
@@ -310,12 +385,12 @@ jobs:
       run: ./tests/test_parse.sh ./endless-sky
 
 
-  parsetest_windows:
+  test_windows-parse:
+    needs: build_windows
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-latest]
-    needs: build_windows
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
@@ -335,14 +410,14 @@ jobs:
       run: .\tests\test_parse.ps1 EndlessSky.exe
 
 
-  parsetest_macos:
+  test_macos-parse:
+    needs: [build_macos, test_ubuntu-parse]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest]
     env:
-      ES_BINARY: "./Endless Sky.app/Contents/MacOS/Endless Sky"
-    needs: build_macos
+      ES_BINARY: "'./Endless Sky.app/Contents/MacOS/Endless Sky'"
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
