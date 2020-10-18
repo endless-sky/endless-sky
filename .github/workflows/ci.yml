@@ -12,6 +12,7 @@ name: CI
 #    e.g.
 #      data/* -> use "latest" build for triggering branch, only run parse and/or acceptance tests
 #      source/* -> build new binary, run all tests, cache binary
+#      use an "only-checks-paths" job to condition all other jobs (e.g. dorny/paths-filter action)
 #      PR opened -> upload artifact ZIPs to PR as comment, and edit/replace as new commits come in
 # - Windows: Allow programmers to use their own copy of development libs without hacking a temporary URL in the windows step
 
@@ -58,7 +59,6 @@ jobs:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
         ARTIFACT: endless-sky
-        LIBRARY_DIR: lib/
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -68,23 +68,14 @@ jobs:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
         key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
-    - name: Restore cached development library
-      id: cache-lib
-      uses: actions/cache@v2
-      with:
-        path: |
-          ${{ env.LIBRARY_DIR }}
-          .sconsign.dblite
-        # We don't need to recompile individual source files unless they or the compilation commands changed.
-        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }}
     - name: Install development dependencies
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
     - name: Cache ccache results
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
       with:
         path: ${{ env.CCACHE_DIR }}
@@ -94,10 +85,8 @@ jobs:
           ${{ matrix.os }}-ccache-${{ github.repository }}-
           ${{ matrix.os }}-ccache-
     - name: Compile
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
-      run: |
-        scons -Qj $(nproc);
-        sconsign -r -e libendless-sky.a .sconsign.dblite
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: scons -Qj $(nproc);
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
@@ -114,7 +103,6 @@ jobs:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
         TEST_BINARY: tests/endless-sky-tests
-        LIBRARY_DIR: lib/
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -122,26 +110,14 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.TEST_BINARY }}
-        # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed. TODO: Restore ", '.github/workflows/ci.yml'" dependency below
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct') }}
-    - name: Restore cached development library
+        # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+    - name: 'Install development dependencies'
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      id: cache-lib
-      uses: actions/cache@v2
-      with:
-        path: |
-          ${{ env.LIBRARY_DIR }}
-          .sconsign.dblite
-        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }}
-    - name: 'Install core dependencies'
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends scons ccache
-    # We likely need these deps even if restoring from cache, but only if we link against the actual libs (which currently is not done)
-    - name: 'Install development dependencies'
-      if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
     - name: Cache ccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -152,18 +128,11 @@ jobs:
           ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
           ${{ matrix.os }}-ccache-${{ github.repository }}-
           ${{ matrix.os }}-ccache-
-    - name: 'debug cache & sconsign'
-      run: |
-        echo "cache-tests had result cache-hit=${{ steps.cache-tests.outputs.cache-hit }}"
-        echo "cache-lib had result cache-hit=${{ steps.cache-lib.outputs.cache-hit }}"
-        sconsign -r -e libendless-sky.a .sconsign.dblite
-    - name: 'Compile tests'
+    - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: scons -Qj $(nproc) --debug=prepare,explain,includes,findlibs build-tests
-    - name: 'Run tests'
+      run: scons -Qj $(nproc) build-tests
+    - name: Run tests
       run: scons -Qj $(nproc) test
-    - name: debug sconsign again
-      run: sconsign -r -e libendless-sky.a .sconsign.dblite
 
 
   build_windows:
@@ -178,7 +147,6 @@ jobs:
         ES_SRCLIB_DIR: ../lib/pkgd
         CXX: sccache g++
         ARTIFACT: EndlessSky.exe
-        LIBRARY_DIR: lib/
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -188,24 +156,17 @@ jobs:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
         key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml') }}
-    # Depending on behavior of GitHub Actions w.r.t. file modification times, the cached library might be wholly ignored
-    - name: Restore cached development library
-      id: cache-lib
-      uses: actions/cache@v2
-      with:
-        path: ${{ env.LIBRARY_DIR }}
-        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }}
     - name: Install development dependencies
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: choco install sccache
-    - name: Fetch development libraries
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+    - name: Install development dependencies
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
     - name: Cache sccache results
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
       with:
         path: ${{ env.SCCACHE_DIR }}
@@ -215,10 +176,10 @@ jobs:
           ${{ matrix.os }}-sccache-${{ github.repository }}-
           ${{ matrix.os }}-sccache
     - name: Compile
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
     - name: Prepare game binary
-      if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
     - name: Upload game binary
       uses: actions/upload-artifact@v2
@@ -235,11 +196,10 @@ jobs:
     env:
         SCCACHE_DIR: ./sccache/
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
-        ES_SRCLIB_DIR: ../lib/pkgd
         DIR_ESLIB: .\dev64
+        ES_SRCLIB_DIR: ../lib/pkgd
         CXX: sccache g++
         TEST_BINARY: endless-sky-tests.exe
-        LIBRARY_DIR: lib
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -247,24 +207,17 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.TEST_BINARY }}
-        # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed. TODO: Restore ", '.github/workflows/ci.yml'" dependency below
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', 'tests/makefile') }}
-    - name: Restore cached development library
-      if: steps.cache-tests.outputs.cache-hit != 'true'
-      id: cache-lib
-      uses: actions/cache@v2
-      with:
-        path: ${{ env.LIBRARY_DIR }}
-        key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake') }}
-    - name: Install core dependencies
+        # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', 'tests/makefile', '.github/workflows/ci.yml') }}
+    - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
-    # - name: Install development dependencies
-    #   if: steps.cache-tests.outputs.cache-hit != 'true'
-    #   run: |
-    #     Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
-    #     Expand-Archive win64-dev.zip -DestinationPath . -Force
-    #     Remove-Item win64-dev.zip
+    - name: Fetch precompiled libraries
+      if: steps.cache-tests.outputs.cache-hit != 'true'
+      run: |
+        Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+        Expand-Archive win64-dev.zip -DestinationPath . -Force
+        Remove-Item win64-dev.zip
     - name: Cache sccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -288,16 +241,7 @@ jobs:
         echo "TEST_RESULT<<EOF" >> $GITHUB_ENV
         cat test-result.log >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
-    # TODO: when running tests on multiple platforms, we should amalgamate failures and only report them once.
-    # TODO: this action only works on linux containers
-    # - name: Report failures on PR
-    #   if: failure() && github.event_name =='pull_request'
-    #   uses: unsplash/comment-on-pr@v1.2.0
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     msg: ${{ env.TEST_RESULT }}
-    #     check_for_duplicate_msg: true # not in v1.2.0
+
 
   build_macos:
     runs-on: ${{ matrix.os }}
@@ -341,8 +285,8 @@ jobs:
         include:
           - os: ubuntu-20.04
             glew: libglew2.1
-          - os: ubuntu-18.04
-            glew: libglew2.0
+          # - os: ubuntu-18.04
+          #   glew: libglew2.0
           - os: ubuntu-16.04
             glew: libglew1.13
     steps:
@@ -352,7 +296,8 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1
-    #     sudo apt-get install -y --no-install-recommends xvfb # mesa-utils libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6
+    #    # Install additional xvfb runtime dependencies
+    #    sudo apt-get install -y --no-install-recommends mesa-utils libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6
     - name: Download artifact
       uses: actions/download-artifact@v1.0.0
       with:
@@ -363,7 +308,7 @@ jobs:
     - name: Run Integration tests
       uses: GabrielBB/xvfb-action@v1
       with:
-        run: ./endless-sky --test "empty_testcase" && exit 1
+        run: ./endless-sky --test "empty_testcase"
 
 
   test_ubuntu-parse:
@@ -380,8 +325,6 @@ jobs:
             glew: libglew1.13
     steps:
     - uses: actions/checkout@v2
-    # xenial, bionic, and focal generally have packages with the same name, but not always.
-    # might still need: libegl1-mesa-dev libgles2-mesa-dev or libgl1-mesa-glx instead of libgl1
     - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists

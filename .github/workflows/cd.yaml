@@ -26,9 +26,9 @@ jobs:
         run: ./utils/cd_update_versions.sh
         shell: bash
       - name: Build Application
-        run: scons -Q -j $(nproc)
+        run: scons -Qj $(nproc)
       - name: Run Unit Tests
-        run: scons -Q -j $(nproc) test
+        run: scons -Qj $(nproc) test
       - name: Package Application
         run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
       - name: Upload artifact
