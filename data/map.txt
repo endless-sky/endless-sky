@@ -25731,7 +25731,8 @@ planet Alfheim
 planet Alix
 	attributes ka'het uninhabited
 	landscape land/canyon05
-	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated mining facilities are still functioning and see a constant traffic of cargo drones, passing here to gather the raw material and bringing it to the reserves of the nearby station in a short time.`
+	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated facilities are still functioning and see a constant traffic of cargo drones, passing here to gather raw materials and bringing them to the reserves of the nearby station in a short time.`
+	description `	 Here the Ka'het attacks were limited to the inhabited settlements; had they also destroyed the mining bases and the unmanned vessels, the station would have run out of supplies thousands of years ago.`
 
 planet Allhome
 	attributes hai farming "human tourism"
