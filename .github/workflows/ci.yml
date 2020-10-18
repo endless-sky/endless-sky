@@ -95,7 +95,9 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true' || steps.cache-lib.outputs.cache-hit != 'true'
-      run: scons -Qj $(nproc);
+      run: |
+        scons -Qj $(nproc);
+        sconsign -r -e libendless-sky.a .sconsign.dblite
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
@@ -131,11 +133,6 @@ jobs:
           ${{ env.LIBRARY_DIR }}
           .sconsign.dblite
         key: ${{ matrix.os }}-library-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct') }}
-    - name: 'debug cache use'
-      run: |
-        ls -aghtr .sconsign.dblite lib source
-        echo "cache-tests had result cache-hit=${{ steps.cache-tests.outputs.cache-hit }}"
-        echo "cache-lib had result cache-hit=${{ steps.cache-lib.outputs.cache-hit }}"
     - name: 'Install core dependencies'
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -143,7 +140,7 @@ jobs:
         sudo apt-get install -y --no-install-recommends scons ccache
     # We likely need these deps even if restoring from cache, but only if we link against the actual libs (which currently is not done)
     - name: 'Install development dependencies'
-      if: steps.cache-lib.outputs.cache-hit != 'true'
+      if: steps.cache-tests.outputs.cache-hit != 'true'
       run: sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev
     - name: Cache ccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
@@ -155,11 +152,18 @@ jobs:
           ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
           ${{ matrix.os }}-ccache-${{ github.repository }}-
           ${{ matrix.os }}-ccache-
+    - name: 'debug cache & sconsign'
+      run: |
+        echo "cache-tests had result cache-hit=${{ steps.cache-tests.outputs.cache-hit }}"
+        echo "cache-lib had result cache-hit=${{ steps.cache-lib.outputs.cache-hit }}"
+        sconsign -r -e libendless-sky.a .sconsign.dblite
     - name: 'Compile tests'
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: scons -Qj $(nproc) --debug=explain build-tests
+      run: scons -Qj $(nproc) --debug=prepare,explain,includes,findlibs build-tests
     - name: 'Run tests'
       run: scons -Qj $(nproc) test
+    - name: debug sconsign again
+      run: sconsign -r -e libendless-sky.a .sconsign.dblite
 
 
   build_windows:
@@ -330,26 +334,36 @@ jobs:
   test_ubuntu-integration:
     needs: build_ubuntu
     runs-on: ${{ matrix.os }}
+    env:
+      LIBGL_ALWAYS_SOFTWARE: 1
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-16.04]
+        include:
+          - os: ubuntu-20.04
+            glew: libglew2.1
+          - os: ubuntu-18.04
+            glew: libglew2.0
+          - os: ubuntu-16.04
+            glew: libglew1.13
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependencies
+    - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev
-        sudo apt-get install -y --no-install-recommends mesa-utils libmad0 libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6 xvfb
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1
+    #     sudo apt-get install -y --no-install-recommends xvfb # mesa-utils libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6
     - name: Download artifact
       uses: actions/download-artifact@v1.0.0
       with:
         name: binary-${{ matrix.os }}
         path: .
+    - name: Verify Executable
+      run: chmod +x endless-sky && ./endless-sky -v
     - name: Run Integration tests
-      run: |
-        chmod +x endless-sky
-        ./tests/run_tests_headless.sh
+      uses: GabrielBB/xvfb-action@v1
+      with:
+        run: ./endless-sky --test "empty_testcase" && exit 1
 
 
   test_ubuntu-parse:
@@ -378,9 +392,7 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
     - name: Verify Executable
-      run: |
-        chmod +x endless-sky
-        ./endless-sky -v
+      run: chmod +x endless-sky && ./endless-sky -v
     - name: Parse Datafiles
       run: ./tests/test_parse.sh ./endless-sky
 
@@ -429,8 +441,6 @@ jobs:
       with:
         name: app-${{ matrix.os }}
     - name: Verify Executable
-      run: |
-        chmod +x "${ES_BINARY}"
-        ${ES_BINARY} -v
+      run: chmod +x "${ES_BINARY}" && ${ES_BINARY} -v
     - name: Parse Datafiles
       run: ./tests/test_parse.sh "${ES_BINARY}"
