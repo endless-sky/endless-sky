@@ -25732,7 +25732,6 @@ planet Alix
 	attributes ka'het uninhabited
 	landscape land/canyon05
 	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated facilities are still functioning and see a constant traffic of cargo drones, passing here to gather raw materials and bringing them to the reserves of the nearby station in a short time.`
-	description `	 Here the Ka'het attacks were limited to the inhabited settlements; had they also destroyed the mining bases and the unmanned vessels, the station would have run out of supplies thousands of years ago.`
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -26095,8 +26094,7 @@ planet "Ceaseless Toil"
 planet Celeatis
 	attributes ka'het uninhabited
 	landscape land/canyon4
-	description `Celeatis is a barren planet with mountains covering most of the surface. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: Some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
-	description `	Even in the few flat highlands there isn't any kind of vegetation present, as the planet is too distant from the star and the terrain is too sterile for them to grow in its natural enviroment.`
+	description `Celeatis is a barren planet with mountains covering most of the surface. Even in the few flat highlands there isn't any kind of vegetation present, as the terrain is too sterile for them to grow in its natural enviroment. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
@@ -26108,12 +26106,6 @@ planet Ceilia'sei
 	attributes ka'het uninhabited
 	landscape land/loc2
 	description `Apart from one large, solid module, very little of this space station remains intact: the cloud of debris surrounding the core makes it very hard to be docked with, and one side of it even appears to have been blown up. The other part, however, has suffered much less damage, and the surface bristles with dozens of well-maintained turrets.`
-
-planet Veliante
-	attributes ka'het uninhabited
-	landscape land/fog5
-	description `Veliante may have been a livable place once, but it is not like that anymore. Part of its southern hemisphere is filled with deadly levels of radiations, and even on the rest of the planet it would be safer not to remain on the surface without a suit for too long.`
-	description `	While the animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.`
 
 planet "Charon Station"
 	attributes south station
@@ -27347,8 +27339,7 @@ planet "Leviathan Station"
 planet "Letis'sei"
 	attributes ka'het uninhabited
 	landscape land/loc3
-	description `Letis'sei is an ancient station with cramped interiors and massive inaccessible sections. Completely unpressurized and lacking an internal atmosphere, it is hard to imagine what this station originally looked like.`
-	description `	Nonetheless, three impressive cannon-like structures are still recognizable floating outside the rest of the station. The ring that used to keep them together is destroyed, but they are still rotating around the main body in the circular formation that they were made to follow.`
+	description `Letis'sei is an ancient station with cramped interiors and massive inaccessible sections. Completely unpressurized and lacking an internal atmosphere, it is hard to imagine what this station originally looked like. Nonetheless, three impressive cannon-like structures are still recognizable, floating outside the rest of the station. The ring that used to keep them together is destroyed, but they continue rotating around the main body in the circular formation that they were made to follow.`
 
 planet Lichen
 	attributes south farming frontier
@@ -27954,7 +27945,7 @@ planet Oblivion
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/forest4
-	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, fields of ruined buildings and antique pieces of debris are scattered in large areas; scans reveal many underground bunkers that have been filled with water for a long time and are now rather similar to normal caves.`
+	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, a huge amount of debris is scattered in large areas; scans reveal many underground bunkers, semi destroyed and filled with water.`
 
 planet Palarei
 	attributes ka'het uninhabited
@@ -28184,8 +28175,7 @@ planet "Remote Blue"
 planet Retilie
 	attributes ka'het uninhabited
 	landscape land/sea1
-	description `Retilie is an oceanic world where more than 95% of the planet's surfaces is covered by oceans kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing a few kilometers from the seaside, where the occasional high waves couldn't reach them.`
-	description `	A few small cities in the mainland are in a better state, but without anyone to take care of them, the vegetation has completely covered many buildings.`
+	description `Retilie is an oceanic world where more than 95% of the planet's surfaces is covered by oceans kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves couldn't reach them. A few small cities in the mainland are in a better state, but without anyone to take care of them, the vegetation has completely covered many buildings.`
 
 planet Reunion
 	attributes "near earth" urban factory
@@ -28386,9 +28376,7 @@ planet Seli'het
 	attributes ka'het uninhabited
 	landscape land/space7
 	description `This massive station, despite its age, does not appear to have any visible damage: everything inside it is perfectly in order, and no section shows signs of weapon fire on it. If it wasn't for the absence of its inhabitants and the complete lack of atmosphere, it would probably be identical to when it was first constructed.`
-	description `	Most of the traffic the station sees is composed of the automated drones carrying new material to replenish the station's reserves, or from an occasional Ka'het departing the docking area.`
 	government Builder
-
 
 planet "Separa Tiklar"
 	attributes korath station
@@ -29142,6 +29130,11 @@ planet Vatican
 	description `Vatican's propensity for constant renewal of the surface has resulted in a flourishing astrogeological academic program. While it has frequently been dismissed as a low priority for Remnant efforts, it has nonetheless received continued support from the defense prefects. Why they would be concerned with the geological formations of an uninhabited planet is unknown, but the research continues.`
 	security 0
 	government Uninhabited
+
+planet Veliante
+	attributes ka'het uninhabited
+	landscape land/fog5
+	description `Veliante may have been a livable place once, but it is not like that anymore. Part of its southern hemisphere is filled with deadly levels of radiations, and even on the rest of the planet it would be safer not to remain on the surface without a suit for too long. While the animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.`
 
 planet "Vibrant Water"
 	attributes saryd farming
