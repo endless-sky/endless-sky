@@ -39,9 +39,30 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel)
+Hardpoint::Hardpoint(const Point &point, const vector<Angle> &angles, bool isTurret, bool isParallel, const Outfit *outfit)
+	: outfit(outfit), point(point * .5), isTurret(isTurret), isParallel(isParallel)
 {
+	if(isTurret)
+		switch (angles.size())
+		{
+		case 0:
+			isOmnidirectional = true;
+			break;
+		case 1:
+			isOmnidirectional = true;
+			baseAngle = angles[0];
+			break;
+		default:
+			isOmnidirectional = false;
+			movableAngle = make_pair(angles[0], angles[1]);
+			if(angles.size() >= 3 && angles[2].isInRange(angles[0], angles[1]))
+				baseAngle = angles[2];
+			else
+				baseAngle = angles[0] + (angles[1] - angles[0]).AbsDegrees() / 2.0;
+			break;
+		}
+	else if(!angles.empty())
+		baseAngle = angles[0];
 }
 
 
@@ -79,6 +100,14 @@ const Angle &Hardpoint::GetBaseAngle() const
 
 
 
+// Get the movable angle. Return value is invalid if this is omnidirectional.
+std::pair<Angle, Angle> Hardpoint::GetMovableAngle() const
+{
+	return movableAngle;
+}
+
+
+
 // Get the angle this weapon ought to point at for ideal gun harmonization.
 Angle Hardpoint::HarmonizedAngle() const
 {
@@ -112,6 +141,13 @@ bool Hardpoint::IsTurret() const
 bool Hardpoint::IsParallel() const
 {
 	return isParallel;
+}
+
+
+
+bool Hardpoint::IsOmnidirectional() const
+{
+	return isOmnidirectional;
 }
 
 
@@ -193,7 +229,19 @@ void Hardpoint::Aim(double amount)
 	if(!outfit)
 		return;
 	
-	angle += outfit->TurretTurn() * amount;
+	const double add = outfit->TurretTurn() * amount;
+	if(isOmnidirectional)
+		angle += add;
+	else
+	{
+		const Angle newAngle = angle + add;
+		if(add < 0. && movableAngle.first.isInRange(newAngle, angle))
+			angle = movableAngle.first;
+		else if (add > 0. && movableAngle.second.isInRange(angle, newAngle))
+			angle = movableAngle.second;
+		else
+			angle += add;
+	}
 }
 
 
@@ -295,7 +343,7 @@ void Hardpoint::Install(const Outfit *outfit)
 				angle += HarmonizedAngle();
 		}
 		else
-			angle = Angle(point);
+			angle = baseAngle;
 	}
 }
 

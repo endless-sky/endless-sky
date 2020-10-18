@@ -239,13 +239,20 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
-			Angle gunPortAngle = Angle(0.);
+			vector<Angle> angles{};
 			bool gunPortParallel = false;
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "angle" && grand.Size() >= 2)
-						gunPortAngle = grand.Value(1);
+					{
+						const int end = min(4, grand.Size());
+						for(int i = 1; i < end; ++i)
+							angles.push_back(grand.Value(i));
+						if(angles.size() >= 3 && key == "turret"
+							&& !angles[2].isInRange(angles[0], angles[1]))
+							grand.PrintTrace("Warning: The hold angle must be in the movable angle:");
+					}
 					else if(grand.Token(0) == "parallel")
 						gunPortParallel = true;
 					else
@@ -254,9 +261,12 @@ void Ship::Load(const DataNode &node)
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, outfit);
+			{
+				angles.resize(1);
+				armament.AddGunPort(hardpoint, angles[0], gunPortParallel, outfit);
+			}
 			else
-				armament.AddTurret(hardpoint, outfit);
+				armament.AddTurret(hardpoint, angles, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
 			if(armament.Get().size() == 33)
 				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
@@ -512,7 +522,18 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., outfit);
+					vector<Angle> angles;
+					if(bit->IsOmnidirectional())
+						angles.push_back(bit->GetBaseAngle());
+					else
+					{
+						angles.resize(3);
+						const auto range = bit->GetMovableAngle();
+						angles[0] = range.first;
+						angles[1] = range.second;
+						angles[2] = bit->GetBaseAngle();
+					}
+					merged.AddTurret(bit->GetPoint() * 2., angles, outfit);
 					if(nextTurret != end)
 					{
 						if(outfit)
@@ -765,17 +786,35 @@ void Ship::Save(DataWriter &out) const
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
-			if(hardpoint.IsParallel() || hardpointAngle)
+			if(hardpoint.IsTurret())
 			{
-				out.BeginChild();
+				if(!hardpoint.IsOmnidirectional() || hardpointAngle)
 				{
-					if(hardpointAngle)
-						out.Write("angle", hardpointAngle);
-					if(hardpoint.IsParallel())
-						out.Write("parallel");
+					out.BeginChild();
+					{
+						if(hardpoint.IsOmnidirectional())
+							out.Write("angle", hardpointAngle);
+						else
+						{
+							const auto range = hardpoint.GetMovableAngle();
+							out.Write("angle", range.first.Degrees(), range.second.Degrees(), hardpointAngle);
+						}
+					}
+					out.EndChild();
 				}
-				out.EndChild();
 			}
+			else
+				if(hardpoint.IsParallel() || hardpointAngle)
+				{
+					out.BeginChild();
+					{
+						if(hardpointAngle)
+							out.Write("angle", hardpointAngle);
+						if(hardpoint.IsParallel())
+							out.Write("parallel");
+					}
+					out.EndChild();
+				}
 		}
 		for(const Bay &bay : bays)
 		{

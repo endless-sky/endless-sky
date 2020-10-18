@@ -50,9 +50,15 @@ public:
 	Point Unit() const;
 	// Convert an Angle object to degrees, in the range -180 to 180.
 	double Degrees() const;
+	// Convert an Angle object to degrees, in the range 0 to 360.
+	double AbsDegrees() const;
 	
 	// Return a point rotated by this angle around (0, 0).
 	Point Rotate(const Point &point) const;
+	
+	// Judge whether this is inside from "base" to "limit."
+	// The range from "base" to "limit" is expressed by "clock" orientation.
+	bool isInRange(const Angle& base, const Angle& limit) const;
 	
 	
 private:

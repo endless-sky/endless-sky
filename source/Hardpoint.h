@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Point.h"
 
+#include <utility>
 #include <vector>
 
 class Outfit;
@@ -30,7 +31,13 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, const Outfit *outfit = nullptr);
+	// If isTurret is true, angles have various parameters according to the size:
+	//  0: The turret is omnidirectional and points to the front when holding.
+	//  1: The turret is omnidirectional and points to the angles[0] when holding.
+	//  2: The turret can rotate in the range from angles[0] to angles[1] and points to the center of the range when holding.
+	//  >=3: The turret can rotate in the range from angles[0] to angles[1] and points to the angles[2] when holding.
+	// If isTurret is false, angles[0] specify the angle of firing direction.
+	Hardpoint(const Point &point, const std::vector<Angle> &angles, bool isTurret, bool isParallel, const Outfit *outfit = nullptr);
 	
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -42,11 +49,14 @@ public:
 	const Angle &GetAngle() const;
 	// Get the base angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
 	const Angle &GetBaseAngle() const;
+	// Get the movable angle. Return value is invalid if this is omnidirectional.
+	std::pair<Angle, Angle> GetMovableAngle() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
-	bool IsParallel() const;
 	bool IsTurret() const;
+	bool IsParallel() const;
+	bool IsOmnidirectional() const;
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
@@ -89,12 +99,16 @@ private:
 	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
-	// Angle of firing direction (guns only).
+	// Angle of firing direction (guns) or holding position (turret).
 	Angle baseAngle;
+	// Range of the capable angle to point to the target (turret only).
+	std::pair<Angle, Angle> movableAngle;
 	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
 	// Indicates if this hardpoint disallows converging (guns only).
 	bool isParallel = false;
+	// Indicates if this hardpoint is omnidirectional (turret only).
+	bool isOmnidirectional = true;
 	
 	// Angle adjustment for convergence.
 	Angle angle;
