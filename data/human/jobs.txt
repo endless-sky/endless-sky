@@ -2739,7 +2739,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
-	description "A low-end pirate warship named the <npc> has masqueraded as a merchant ship near the <system> system to avoid detection. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	description "A low-end pirate warship named the <npc> is masquerading as a merchant ship near the <system> system to avoid detection. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2782,7 +2782,7 @@ mission "Bounty Hunting (Small, Hidden)"
 
 mission "Bounty Hunting (Medium, Hidden)"
 	name "Disguised pirate near <system>"
-	description "A medium pirate warship named the <npc> has masqueraded as a merchant ship near the <system> system to avoid detection. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> is masquerading as a merchant ship near the <system> system to avoid detection. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2819,7 +2819,7 @@ mission "Bounty Hunting (Medium, Hidden)"
 
 mission "Bounty Hunting (Big, Hidden)"
 	name "Disguised warlord near <system>"
-	description "A heavy warship known as the <npc> has masqueraded as a merchant ship near the <system> system to avoid detection. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	description "A heavy warship known as the <npc> is masquerading as a merchant ship near the <system> system to avoid detection. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
