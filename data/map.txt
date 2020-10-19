@@ -26094,7 +26094,7 @@ planet "Ceaseless Toil"
 planet Celeatis
 	attributes ka'het uninhabited
 	landscape land/canyon4
-	description `Celeatis is a barren planet with mountains covering most of the surface. Even in the few flat highlands there isn't any kind of vegetation present, as the terrain is too sterile for them to grow in its natural enviroment. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
+	description `Celeatis is a barren planet with mountains covering most of the surface. Even in the few flat highlands, the terrain is too sterile for any kind of vegetation to grow naturally. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
@@ -27945,7 +27945,7 @@ planet Oblivion
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/forest4
-	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, a huge amount of debris is scattered in large areas; scans reveal many underground bunkers, semi destroyed and filled with water.`
+	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered in large areas; scans reveal many underground bunkers, partly destroyed and filled with water.`
 
 planet Palarei
 	attributes ka'het uninhabited
@@ -29134,7 +29134,7 @@ planet Vatican
 planet Veliante
 	attributes ka'het uninhabited
 	landscape land/fog5
-	description `Veliante may have been a livable place once, but it is not like that anymore. Part of its southern hemisphere is filled with deadly levels of radiations, and even on the rest of the planet it would be safer not to remain on the surface without a suit for too long. While the animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.`
+	description `Veliante may have been inhabitable once, but it is not anymore. Part of its southern hemisphere is filled with deadly levels of radiation, and even on the rest of the planet it would be safer not to remain on the surface without adequate protection for too long. While the animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.`
 
 planet "Vibrant Water"
 	attributes saryd farming
