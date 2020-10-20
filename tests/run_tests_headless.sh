@@ -1,43 +1,53 @@
 #!/bin/bash
+# Run headless "acceptance tests" using Xvfb
+# These tests involve booting the game, loading particular saved games, and making assertions
+# about the state of the game universe. Some tests will involve issuing basic commands.
+
 # TODO: When this script is made cross-platform, replace this OS check with a check for Xvfb and other required resources.
 if [[ $OSTYPE == 'msys' ]] || [[ $OS == 'Windows_NT' ]] || [[ $(uname) == 'Darwin' ]]; then
 	echo "Headless testing is not supported on this platform"
-	exit 1
+	exit 126
 fi
 
 HERE=$(cd `dirname $0` && pwd)
 cd "${HERE}"
 
-# Running headless using Xvfb
 Xvfb :99 -screen 0 1280x1024x24 &
 XSERVER_PID=$!
+if ! ps -p ${XSERVER_PID} > /dev/null 2>&1; then
+	echo "You must install Xvfb to run headless tests"
+	exit 127
+fi
 echo "XServer PID: ${XSERVER_PID}"
 export DISPLAY=:99
 
-# Force openGL software mode
+# Force OpenGL software mode
 export LIBGL_ALWAYS_SOFTWARE=1
 
 # Use the query for OpenGL settings to check if the XServer runs
+function has_no_display() {
+	if glxinfo > /dev/null 2>&1; then
+		return 1
+	else
+		return 0
+	fi
+}
 MAX_RETRY=15
-GLXINFO=$(glxinfo 2>/dev/null)
-RETURN_VALUE=$?
-while [ "${RETURN_VALUE}" -ne "0" ] && [ "${MAX_RETRY}" -ge "0" ]
+while has_no_display && [[ ${MAX_RETRY} -ge "0" ]]
 do
 	sleep 1
 	echo "Waiting for start of xserver (max-retry=${MAX_RETRY})"
 	MAX_RETRY=$(( MAX_RETRY - 1 ))
-	# Use the query for OpenGL settings to check if the XServer runs
-	GLXINFO=$(glxinfo 2>/dev/null)
-	RETURN_VALUE=$?
 done
-if [ "${RETURN_VALUE}" -ne "0" ]
-then
+if (( MAX_RETRY < 0 )); then
 	echo "Error: Xserver did not start within waiting time"
-	exit ${RETURN_VALUE}
+	exit 126
 fi
 
-echo "OpenGL settings"
-echo "${GLXINFO}" | grep -E "OpenGL|GL_"
+if [[ ! -z ${PRINT_GLXINFO} ]]; then
+	echo "OpenGL versions & available extensions:"
+	echo $(glxinfo | grep -E "OpenGL|GL_")
+fi
 
 # Enable for debugging (and add some secret password file to make it more secure):
 #
@@ -53,4 +63,4 @@ kill -s SIGTERM ${XSERVER_PID}
 # Enable for debugging:
 # kill -s SIGTERM ${X11VNC_PID}
 
-exit $RETURN_VALUE
+exit ${RETURN_VALUE}

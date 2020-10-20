@@ -278,6 +278,7 @@ jobs:
     needs: build_ubuntu
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-20.04
@@ -300,11 +301,11 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
         path: .
-    - name: Query OpenGL, GL extensions
-      run: glxinfo | grep -E "OpenGL|GL_"
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
     - name: Run Integration tests
+      env:
+        PRINT_GLXINFO: true
       run: ./tests/run_tests_headless.sh
 
 
