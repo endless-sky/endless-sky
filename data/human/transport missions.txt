@@ -1565,6 +1565,7 @@ mission "Terraforming 2"
 
 
 ship "Asteroid"
+	noun "asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
@@ -1626,7 +1627,7 @@ mission "Terraforming 3"
 			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
 	
-	npc assist
+	npc save assist
 		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
 		ship "Asteroid" "Target Asteroid"
