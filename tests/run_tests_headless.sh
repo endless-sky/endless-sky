@@ -37,7 +37,7 @@ then
 fi
 
 echo "OpenGL settings"
-echo "${GLXINFO}" | grep OpenGL
+echo "${GLXINFO}" | grep -E "OpenGL|GL_"
 
 # Enable for debugging (and add some secret password file to make it more secure):
 #

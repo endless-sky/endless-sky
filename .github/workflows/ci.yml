@@ -112,8 +112,7 @@ jobs:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
         key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
-    - name: 'Install development dependencies'
-      if: steps.cache-tests.outputs.cache-hit != 'true'
+    - name: 'Install dependencies'
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
@@ -213,7 +212,6 @@ jobs:
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
     - name: Fetch precompiled libraries
-      if: steps.cache-tests.outputs.cache-hit != 'true'
       run: |
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
         Expand-Archive win64-dev.zip -DestinationPath . -Force
@@ -275,11 +273,10 @@ jobs:
 
   # This section is for tests on ubuntu 16 (and on ubuntu 20).
   # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
+  # (Both 18.04 & 20.04 have the same Open GL extension support, but the SDL library fails to initialize for 18.04)
   test_ubuntu-integration:
     needs: build_ubuntu
     runs-on: ${{ matrix.os }}
-    env:
-      LIBGL_ALWAYS_SOFTWARE: 1
     strategy:
       matrix:
         include:
@@ -296,19 +293,19 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1
-    #    # Install additional xvfb runtime dependencies
-    #    sudo apt-get install -y --no-install-recommends mesa-utils libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6
+    - name: Install xvfb runtime dependencies
+      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils # TODO: ALSA mocking?
     - name: Download artifact
       uses: actions/download-artifact@v1.0.0
       with:
         name: binary-${{ matrix.os }}
         path: .
+    - name: Query OpenGL, GL extensions
+      run: glxinfo | grep -E "OpenGL|GL_"
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
     - name: Run Integration tests
-      uses: GabrielBB/xvfb-action@v1
-      with:
-        run: ./endless-sky --test "empty_testcase"
+      run: ./tests/run_tests_headless.sh
 
 
   test_ubuntu-parse:
