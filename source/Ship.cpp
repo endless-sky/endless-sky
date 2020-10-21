@@ -251,7 +251,7 @@ void Ship::Load(const DataNode &node)
 							angles.push_back(grand.Value(i));
 						if(angles.size() >= 3 && key == "turret"
 							&& !angles[2].isInRange(angles[0], angles[1]))
-							grand.PrintTrace("Warning: The hold angle must be in the movable angle:");
+							grand.PrintTrace("Warning: The holding angle must be in the angle of traverse:");
 					}
 					else if(grand.Token(0) == "parallel")
 						gunPortParallel = true;
@@ -528,7 +528,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					else
 					{
 						angles.resize(3);
-						const auto range = bit->GetMovableAngle();
+						const auto range = bit->GetAngleOfTraverse();
 						angles[0] = range.first;
 						angles[1] = range.second;
 						angles[2] = bit->GetBaseAngle();
@@ -796,7 +796,7 @@ void Ship::Save(DataWriter &out) const
 							out.Write("angle", hardpointAngle);
 						else
 						{
-							const auto range = hardpoint.GetMovableAngle();
+							const auto range = hardpoint.GetAngleOfTraverse();
 							out.Write("angle", range.first.Degrees(), range.second.Degrees(), hardpointAngle);
 						}
 					}

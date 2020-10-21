@@ -49,8 +49,8 @@ public:
 	const Angle &GetAngle() const;
 	// Get the base angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
 	const Angle &GetBaseAngle() const;
-	// Get the movable angle. Return value is invalid if this is omnidirectional.
-	std::pair<Angle, Angle> GetMovableAngle() const;
+	// Get the angle of traverse. Return value is invalid if this is omnidirectional or a gun port.
+	std::pair<Angle, Angle> GetAngleOfTraverse() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
@@ -101,8 +101,8 @@ private:
 	Point point;
 	// Angle of firing direction (guns) or holding position (turret).
 	Angle baseAngle;
-	// Range of the capable angle to point to the target (turret only).
-	std::pair<Angle, Angle> movableAngle;
+	// The range where the weapon can traverse to point to the target (turret only).
+	std::pair<Angle, Angle> angleOfTraverse;
 	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
 	// Indicates if this hardpoint disallows converging (guns only).

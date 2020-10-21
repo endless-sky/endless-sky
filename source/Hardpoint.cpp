@@ -54,7 +54,7 @@ Hardpoint::Hardpoint(const Point &point, const vector<Angle> &angles, bool isTur
 			break;
 		default:
 			isOmnidirectional = false;
-			movableAngle = make_pair(angles[0], angles[1]);
+			angleOfTraverse = make_pair(angles[0], angles[1]);
 			if(angles.size() >= 3 && angles[2].isInRange(angles[0], angles[1]))
 				baseAngle = angles[2];
 			else
@@ -100,10 +100,10 @@ const Angle &Hardpoint::GetBaseAngle() const
 
 
 
-// Get the movable angle. Return value is invalid if this is omnidirectional.
-std::pair<Angle, Angle> Hardpoint::GetMovableAngle() const
+// Get the angle of traverse. Return value is invalid if this is omnidirectional.
+std::pair<Angle, Angle> Hardpoint::GetAngleOfTraverse() const
 {
-	return movableAngle;
+	return angleOfTraverse;
 }
 
 
@@ -235,10 +235,10 @@ void Hardpoint::Aim(double amount)
 	else
 	{
 		const Angle newAngle = angle + add;
-		if(add < 0. && movableAngle.first.isInRange(newAngle, angle))
-			angle = movableAngle.first;
-		else if (add > 0. && movableAngle.second.isInRange(angle, newAngle))
-			angle = movableAngle.second;
+		if(add < 0. && angleOfTraverse.first.isInRange(newAngle, angle))
+			angle = angleOfTraverse.first;
+		else if (add > 0. && angleOfTraverse.second.isInRange(angle, newAngle))
+			angle = angleOfTraverse.second;
 		else
 			angle += add;
 	}
