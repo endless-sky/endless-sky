@@ -161,8 +161,8 @@ ship "Black Diamond"
 	attributes
 		category "Fighter"
 		"cost" 200000
-		"hull" 2400
 		"shields" 600
+		"hull" 2400
 		"automaton" 1
 		"mass" 50
 		"drag" .9
