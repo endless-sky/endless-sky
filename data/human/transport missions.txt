@@ -4112,7 +4112,7 @@ mission "Freedom Uprising 2"
 	passengers 3
 	on offer
 		conversation
-			`You find Ale and Bunker in the 'Common Ground Cafe' chatting with a young man in his mid-twenties. You notice they have backpacks and some cases with them. "There you are," says Bunker. "I was just telling them how you handled those pirate slavers."`
+			`You find Ale and Bunker in the Common Grounds Cafe chatting with a young man in his mid-twenties. You notice they have backpacks and some cases with them. "There you are," says Bunker. "I was just telling them how you handled those pirate slavers."`
 			`	"For like the hundredth time," says Ale, rolling her eyes.`
 			`	"That's because it was epic. Aside from the thought of that pirate sensing the drones. If that's even what happened. It still gives me the chills.`
 			choice
