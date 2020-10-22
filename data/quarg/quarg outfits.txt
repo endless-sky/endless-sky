@@ -16,6 +16,7 @@ outfit "Nanotech Battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 30000
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy destiny of Quarg batteries is unparalleled, storing nearly a third more energy than the best human battries while being less than a third the size."
 
 outfit "Antimatter Core"
 	category "Power"
@@ -26,6 +27,7 @@ outfit "Antimatter Core"
 	"energy generation" 80
 	"heat generation" 20
 	"unplunderable" 1
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient antimatter core, producing extreme amounts of energy with surprisingly little waste heat."
 	
 
 outfit "Quarg Skylance"
@@ -82,6 +84,7 @@ outfit "Quarg Anti-Missile"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 50
+	description "Quarg anti-missile defenses can target projectiles from considerable range compared to human technology, ensuring that only the most powerful missiles are capable of even getting near a Quarg ship."
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
@@ -111,6 +114,7 @@ outfit "Medium Graviton Thruster"
 	"thrusting energy" 20
 	"thrusting heat" 10
 	"flare sprite" "effect/medium graviton flare"
+	description "Quarg thrusters are extremely powerful for their size, but at the cost of consuming immense amounts of energy."
 
 outfit "Medium Graviton Steering"
 	category "Engines"
@@ -123,6 +127,7 @@ outfit "Medium Graviton Steering"
 	"turning energy" 10
 	"turning heat" 5
 	"steering flare sprite" "effect/medium graviton flare"
+	description "Quarg steering are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though given the unmatched strength of their reactors."
 
 outfit "Quantum Shield Generator"
 	category "Systems"
@@ -132,3 +137,4 @@ outfit "Quantum Shield Generator"
 	"outfit space" -120
 	"shield generation" 10
 	"shield energy" 10
+	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
