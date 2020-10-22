@@ -3468,7 +3468,7 @@ event "remnant: cognizance timer"
 
 mission "Remnant: Expanded Horizons Astral 1"
 	name "Preparation for expedition"
-	description "To prepare for an expedition to Sagittarius A*, go to <destination> with 6 outfit space available."
+	description "Travel to <destination> to prepare for an expedition to Sagittarius A*. Ensure that you have at least six tons of outfit space available."
 	passengers 1
 	minor
 	source
@@ -3522,13 +3522,13 @@ mission "Remnant: Expanded Horizons Astral 1"
 			label centeralt
 			`	"Yes, that is correct." She signs firmly.`
 			label center
-			`	Her signs take on a rhythmic pace as if reciting something. "Sagittarius A* is a strong astronomical radio source and a supermassive black hole that is located at the Center of the Milky Way. According to our best measurements, it has a mass of 3F6290 solar masses, and is surrounded by a ring of gas and dust that can range from 63 to 24D2 degrees Kelvin."`
+			`	Her signs take on a rhythmic pace as if reciting something. "Sagittarius A* is a strong astronomical radio source and a supermassive black hole that is located at the center of the Milky Way. According to our best measurements, it has a mass of 3F6290 solar masses, and is surrounded by a ring of gas and dust that can range from 63 to 24D2 degrees Kelvin."`
 			`	She returns to a conversational cadence. "Would you be interested in taking part in this expedition?"`
 			choice
 				`	"Sure, what do you need?"`
 				`	"I'm busy right now, maybe later?"`
 					defer
-			`	"For this mission we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require 6 outfit space, and comes with a scientist, so you will need a free bunk for them, too.`
+			`	"For this mission we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six outfit space, and comes with a scientist, so you will need a free bunk for them, too.`
 			`	"Once the laboratory module is installed, it will simply be a matter of travelling to Sagittarius A*. After our measurements, recordings, and observations are complete, we will return and report on our findings."`
 			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done eating."`
 			branch dawnsymbiont
@@ -3552,7 +3552,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			label whatis
 			apply
 				"remnant symbionts info" += 1
-			`	"Oh, no one has told you about them? I thought once you'd demonstrated your trustworthiness and earned your Capital Ship License you would have found out." She pauses to take another bite, then continues.`
+			`	"Oh, no one has told you about them? I thought once you'd demonstrated your trustworthiness and earned your capital ship license you would have found out." She pauses to take another bite, then continues.`
 				goto dawndetails
 			label dawnsymbiont
 			choice
@@ -3572,7 +3572,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Okay, that's as much as I need to know."`
 					goto onwards
 				`	"What is it like to have a symbiont?"`
-			`	"Oh, it is wonderful. It is very hard to describe. At first it is just slimy, then a lot of tingling. The tingling lasted for several hours, and then it was just like waking up: Rising up out of darkness to a brighter world with just so much to see and learn. Suddenly, it was as if everything was moving slower and I could take a long hard look at everything..." Dawn is visibly excited, signing so fast you have trouble following.`
+			`	"Oh, it is wonderful. It is very hard to describe. At first it is just slimy, then a lot of tingling. The tingling lasted for several hours, and then it was just like waking up: rising up out of darkness to a brighter world with just so much to see and learn. Suddenly, it was as if everything was moving slower and I could take a long hard look at everything..." Dawn is visibly excited, signing so fast you have trouble following.`
 			choice
 				`	"Thanks for the description. I should go prep the <ship> now."`
 					accept
@@ -3601,17 +3601,17 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Seeker?"`
 			`	Dawn looks a little embarassed. "Seeker is a title of respect for deep space explorers. It is unofficial - just a token of respect - but it is both a title that I aspire to earn and one I do not feel that I deserve."`
 			choice
+				`	"I thought all Remnant were spacefarers?"`
 				`	"Okay. So what next?"`
 					goto labnext
-				`	"I thought all Remnant were spacefarers?"`
 			`	"Oh, we are. Every Remnant has had some experience in space. But there is a big difference between a rotation of a month or two of duty in a spacefaring post and spending months or years drifting in the void surrounding distant systems."`
 			choice
+				`	"Years drifting in the void?"`
 				`	"Okay, let's get on with this."`
 					goto labnext
-				`	"Years drifting in the void?"`
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment.`
 			label labnext
-			`	"That is neither here nor there, however. Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath Raider. Our early warning system indicates that there are several incoming Korath fleets that should be here in the next day or two. Any one of them should have a Jump Drive you can take. Meet me in the Starport once you have a Jump Drive."`
+			`	"That is neither here nor there, however. Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath Raider. Our early warning system indicates that there are several incoming Korath fleets that should be here in the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
 
 
 
@@ -3623,7 +3623,7 @@ event "remnant: lab availability"
 
 mission "Remnant: Expanded Horizons Astral 2"
 	name "Research expedition to Sagittarius A*"
-	description "Travel to Sagittarius A* and then return to <destination>."
+	description "Travel to Sagittarius A* with a research laboratory installed in order to make measurements on the supermassive black hole and then return to <destination>."
 	blocked "You need at least 1 free bunk, a jump drive, and a research laboratory to take this mission."
 	passengers 1
 	waypoint "Sagittarius A*"
@@ -3645,7 +3645,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 			`	She nods. "I am ready, so I will come with you and wait onboard the <ship> while you do your checks."`
 			label astralonwards
 			`	She gestures towards the exit closest to your ship, and heads off at a quick pace. Outside, she moves calmly through the bustle of the starport, stepping around quick-moving freight movers and camel wagons alike. Arriving at the <ship>, she turns, and waits for you to catch up.`
-			`	Just as you arrive and reach for the console to open the airlock, you sense a change in your surroundings. Looking around, you see that a group of Remnant gathered around the two of you, focused on Dawn. A young Remnant - scarcely more than a child - steps forward. "Thank you for your patience." He says, then steps back. An elderly Remnant steps forward. "Thank you for your curiosity." She says, then steps back. A middle-aged Remnant steps forward. "Go with our blessing, Seeker, and know that wherever you go, the Remnant go with you." She says it simply, but you feel the weight of tradition behind them. She turns to you. "And you, stranger who walks the stars... May the Embers guide your steps as you walk among us." She nods respectfully, then steps back.`
+			`	Just as you arrive and reach for the console to open the airlock, you sense a change in your surroundings. Looking around, you see that a group of Remnant gathered around the two of you, focused on Dawn. A young Remnant - scarcely more than a child - steps forward. "Thank you for your patience," he says, then steps back. An elderly Remnant steps forward. "Thank you for your curiosity," she says, then steps back. A middle-aged Remnant steps forward. "Go with our blessing, Seeker, and know that wherever you go, the Remnant go with you." She says it simply, but you feel the weight of tradition behind them. She turns to you. "And you, stranger who walks the stars... May the Embers guide your steps as you walk among us." She nods respectfully, then steps back.`
 			`	As soon as the third steps back there is a flurry of movement as each of the Remnant present quickly step forward, give her a quick hug, and then scurry off into the starport. Before you process what is going on all the Remnant gathered around you have vanished. You look at Dawn, and her expression is a mixture of awe and humility.`
 			choice
 				`	"They know you are coming back, right?"`
@@ -3664,14 +3664,14 @@ mission "Remnant: Expanded Horizons Astral 2"
 				accept
 	on enter "Sagittarius A*"
 		conversation
-			`As the energy ripples from the Jump Drive fade, the spectacular void that is Sagittarius A* takes shape before you. Compared to the vast darkness of space that you are accustomed to, reality here feels almost like a color negative: Even with the automatic filtering in your windows, space is incredibly bright with the densely packed stars that provide a backdrop for Sagittarius A*. The moment of awe is shattered by your alarms warning you of your impending doom as the <ship> begins to fall inwards towards the black hole. You quickly activate your anti-gravity system, which, although vastly under-powered for dealing with the immense pull of a black hole, does provide a degree of protection so long as you maintain a safe distance from it.`
+			`As the energy ripples from the jump drive fade, the spectacular void that is Sagittarius A* takes shape before you. Compared to the vast darkness of space that you are accustomed to, reality here feels almost like a color negative: even with the automatic filtering in your windows, space is incredibly bright with the densely packed stars that provide a backdrop for Sagittarius A*. The moment of awe is shattered by your alarms warning you of your impending doom as the <ship> begins to fall inwards towards the black hole. You quickly activate your repulsor engines, which, although vastly under-powered for dealing with the immense pull of a black hole, does provide a degree of protection so long as you maintain a safe distance from it.`
 			`	After a few minutes of just absorbing the spectacle before you, Dawn pulls herself away from the cockpit windows and scurries down to the lab. Leaving you to your thoughts, she quickly has the lab set up and running a variety of recordings, test, and observation equipment. After a few hours of work, she reappears on the bridge.`
 			`	"Things are proceeding smoothly, Captain. All the sensors are working nominally and we are creating extensive archives of astronomical data as well. Another few hours and we should have all the data we need."`
 			choice
 				`	"Good work. What kind of data are you recording?`
 				`	"Sounds good. Just let me know when you are ready to leave."`
 					goto astraldone
-			`	She smiles, and replies. "It might be easier to ask what data we are leaving out. The data we are collecting broadly falls into three data sets: Data on Sagittarius A* itself, data on its environment, and observations of the surrounding galaxy from here. Obviously, we cannot go take samples of Sagittarius A* itself, nor take direct measurements of most of its properties, but we can get data from increasingly minute distances from the event horizon. We can then add this data to that gathered by previous expeditions, note the differences, and use it in our modeling."`
+			`	She smiles, and replies. "It might be easier to ask what data we are leaving out. The data we are collecting broadly falls into three data sets: data on Sagittarius A* itself, data on its environment, and observations of the surrounding galaxy from here. Obviously, we cannot go take samples of Sagittarius A* itself, nor take direct measurements of most of its properties, but we can get data from increasingly minute distances from the event horizon. We can then add this data to that gathered by previous expeditions, note the differences, and use it in our modeling."`
 			choice
 				`	"So this is not the first expedition here?"`
 				`	"Anything unusual in the data?"`
@@ -3679,7 +3679,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 				`	"How much longer does the equipment need?"`
 					goto astralfinish
 			label astralfirst
-			`	"No, this is the forty-third such expedition. Sagittarius A* was one of the first places our explorers sought to visit after we acquired Jump Drives, and we have been coming back regularly ever since. I know some of our reconnaissance pilots consider visiting here a pilgrimage of sorts. It is humbling to be here myself after reviewing so many data sets of past expeditions." She looks thoughtful, staring out the window at the the hub of the galaxy, as if her thoughts are jumping from idea to idea.`
+			`	"No, this is the forty-third such expedition. Sagittarius A* was one of the first places our explorers sought to visit after we acquired jump drives, and we have been coming back regularly ever since. I know some of our reconnaissance pilots consider visiting here a pilgrimage of sorts. It is humbling to be here myself after reviewing so many data sets of past expeditions." She looks thoughtful, staring out the window at the the hub of the galaxy, as if her thoughts are jumping from idea to idea.`
 			choice
 				`	"Anything unusual in the data?"`
 				`	"How much longer does the equipment need?"`
@@ -3691,20 +3691,20 @@ mission "Remnant: Expanded Horizons Astral 2"
 					goto astralfirst
 				`	"How much longer does the equipment need?"`
 			label astralfinish 
-			`	"The equipment will be finished shortly, Captain <first>. I just need to make a a few observations and we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
-			`	"I will be going outside for a few minutes." Dawn declares. "I shall just be on the hull."`
+			`	"The equipment will be finished shortly, Captain <first>. I just need to make a few observations and we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
+			`	"I will be going outside for a few minutes," Dawn declares. "I shall just be on the hull."`
 			choice
 				`	"Let me know when you are done."`
 					goto astraldone
 				`	"Would you mind if I came too?"`
-			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit, and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs ocassionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
+			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs occasionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
 			label astraldone
 			`	After what feels like hours the equipment notifies you that it has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
 	on complete
 		payment 500000
 		conversation
 			`The journey back to <planet> was blur as the <ship> jumped through countless systems. Gradually the brilliant density of stars that make up the inner core faded into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally you slide into the approach patterns of <planet>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
-			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up, while a cheerful group greet Dawn and help her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your Research Laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
+			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up, while a cheerful group greet Dawn and help her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
 
 
 
