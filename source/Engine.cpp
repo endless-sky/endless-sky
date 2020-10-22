@@ -447,7 +447,7 @@ void Engine::Step(bool isActive)
 	else if(flagship)
 	{
 		center = flagship->Position();
-		centerVelocity = flagship->Velocity();
+		centerVelocity = flagship->IsDestroyed() ? Point(0,0) : flagship->Velocity();
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
 			doEnter = false;
