@@ -4102,7 +4102,7 @@ mission "Freedom Uprising 1"
 mission "Freedom Uprising 2"
 	name "Road to Freedom"
 	landing
-	description "Take Ale, Beto and Bunker to <destination>."
+	description "Take Ale, Beto, and Bunker to <destination>."
 	deadline 14
 	source "Moonshake"
 	destination "Sunracer"
