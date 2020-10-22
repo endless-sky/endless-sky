@@ -3624,7 +3624,7 @@ mission "Family back to Paradise - no luxury"
 	on complete
 		payment 66999
 		conversation
-			`You're not sure if you have ever met a more pretentious and entitled family. The girls fought non-stop and they all complained constantly of the lack of luxury accommodation on your ship. The lady gives you <payment> and they leave without a word. They never even told you their names. You are glad to finally be free of them. Although you feel you should have been paid more for how terrible they were.`
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every member complained constantly about the lack of luxury accommodations on your ship. The lady gives you <payment> and they leave without a word of thanks. They never even told you their names. Although you wish you'd been paid more considering how terrible they were, you're happy to be rid of them.`
 
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
