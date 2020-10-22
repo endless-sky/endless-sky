@@ -57,7 +57,8 @@ mission "First Contact: Ka'het: Remnant 1A"
 	to offer
 		or
 			has "Graveyard Label: offered"
-			has "Ringworld Debris: offered"
+			has "ringworld debris"
+			has "Ringworld Debris: Quarg: offered"
 		has "remnant blood test pure"
 		not "First Contact: Ka'het: Remnant 1B: offered"
 	on offer
@@ -70,7 +71,8 @@ mission "First Contact: Ka'het: Remnant 2A"
 	to offer
 		or
 			has "Graveyard Label: offered"
-			has "Ringworld Debris: offered"
+			has "ringworld debris"
+			has "Ringworld Debris: Quarg: offered"
 		has "remnant blood test pure"
 		not "remnant met taely"
 		not "First Contact: Ka'het: Remnant 1B: offered"
