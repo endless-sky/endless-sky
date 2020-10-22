@@ -4095,7 +4095,7 @@ mission "Freedom Uprising 1"
 		has "Journalism 5: done"
 	on offer
 		conversation
-			`	Back on your ship you notice a new message from Ale: "Hey. We are nearly done with the Syndicate Slavery project but it will still be a while for the exposition is ready to tour. In the meantime we have another project, but as usual it's time sensitive. Meet up with us on Moonshake soon or we will leave without you. Same place as before."`
+			`	Back on your ship, you notice a new message from Ale: "Hey. We're nearly done with the Syndicate Slavery project, but it will still be a while before the exhibition is ready to tour. In the meantime, we have another project. As usual, it's time sensitive. Meet up with us on Moonshake soon or we'll have to leave without you. Same place as before."`
 				accept
 
 
