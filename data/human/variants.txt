@@ -2193,4 +2193,4 @@ ship "Splinter" "Splinter (Far North)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ramscoop"
-		"Fuel Pod"3
+		"Fuel Pod" 3
