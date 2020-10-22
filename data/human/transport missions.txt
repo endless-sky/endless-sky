@@ -3813,7 +3813,7 @@ mission "Journalism 4"
 
 	on offer
 		conversation
-			`It's not hard to find a remote canyon within range of the target area. You stay hovering in case you need a quick escape but are well inside the atmosphere so Bunker releases the drones from the open cargo bay without a pressure suit. They are so small you can't make them out from the cockpit, nor can you see them on your ships scanners. When Bunker returns he sets up a mini-3D display and sits at the controller. "OK, they are on auto-pilot to the rendezvous site."`
+			`It's not hard to find a remote canyon within range of the target area. You keep the <ship> hovering in case you need to make a quick escape, but as you are well within the atmosphere Bunker releases the drones from the open cargo bay without needing a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a mini-3D display and sits at the controller. "OK, they are on auto-pilot to the rendezvous site."`
 			`	Once the drones are on site you can see a lone syndicate ship with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
 			`	He hums to himself for awhile before making small talk, "You know, there's a part of me that would much rather be liberating slaves instead of filming them. But for now it seems like this is the best way for me to help. Say we did liberate them right now. There is just going to be another slave ship tomorrow. But if we create political and social will; that could stop the slave ships forever."`
 			choice
