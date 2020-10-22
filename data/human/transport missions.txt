@@ -3841,7 +3841,7 @@ mission "Journalism 4"
 				`	"That's an order!"`
 				`	"OK. Call the drones back."`
 					goto calldrones
-			`	"You're the captain," he responds giving up. You continue to watch the display. The last of the slaves are loaded followed by the security team. The two men are last to get to their ships. You notice a slight hum from outside before getting raked with fire from one of the pirate escorts. You try pull out to space but another escort appears, cutting you off and laying down a stream of fire. Your engines are hit and your ship falls from the sky, exploding on impact.`
+			`	"You're the captain," he responds giving up. You continue to watch the display. The last of the slaves are loaded followed by the security team. The two men are last to get to their ships. You notice a slight hum from outside before getting raked with fire from one of the pirate escorts. You try to pull out to space but another escort appears, cutting you off and laying down a stream of fire. Your engines are hit and your ship falls from the sky, exploding on impact.`
 				explode
 			label seeus
 			`	"I have no idea! Right now we have bigger things to worry about."`
