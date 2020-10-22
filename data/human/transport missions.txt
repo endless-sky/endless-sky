@@ -4062,7 +4062,7 @@ mission "Journalism 10"
 			`	"Ready?" asks River.`
 			choice
 				`	"As I'll ever be."`
-			`	You are more prepared this time, but instead of the wind and cold of Hope, there is the heat and noise of the sweatshop. There is a large factory with its forth wall removed so you can see inside. There are hundreds of people sweating over dirty machines. Armed guards patrol and dole out beatings at random. Many are crying as they work. It's heart wrenching.`
+			`	You are more prepared this time, but instead of the wind and cold of Hope, there is the heat and noise of the sweatshop. There is a large factory with its fourth wall removed so you can see inside. There are hundreds of people sweating over dirty machines. Armed guards patrol and dole out beatings at random. Many are crying as they work. It's heart wrenching.`
 			` Your contribution to the project is front and center. A stream of slaves passes from the pirate to the Syndicate ship. It's much more visceral in life size than the little projector Bunker had. As a guard brings down a baton on a woman's head you find yourself trying to stop him, only to stumble through the hologram. Your heart is pounding.`
 			`	"I must have seen a hundred people do that just today," says Mariel. "Everyone either leaves crying or with their fists clenched. It definitely gets people emotional." Shes right. Even though you were out gunned and didn't have a choice, you still find yourself deeply regretting not trying to help these people. You see Ale and River are crying.`
 			`	"We are out of time. We need to reopen," says Mariel, pushing you toward the exit.`
