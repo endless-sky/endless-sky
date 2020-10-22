@@ -3932,7 +3932,7 @@ mission "Journalism 6"
 			`After talking with Ferya you receive an encrypted message from Ale. 'Hello there. The exposition is finally finished! We decided to start the tour in the Free Worlds. You're invited of course.'`
 			branch noexslaves
 				not "Anarco Uprising 3: done"
-			`	'Adding all the extra content we got from the Freedom Fighters and ex-slaves took a lot of time but it was worth it. It adds so much more depth to the story.'`
+			`	'Adding all the extra content we got from the Freedom Fighters and ex-slaves took a lot of time, but it was worth it. It adds so much more depth to the story.'`
 			label noexslaves
 			`	'Anyways, on to the point. Bunker and I flew to The Deep ahead of the exposition because our sources tell us there is going to be a big battle coming up soon. We want to document that battle and show ordinary people on all sides the brutality of war. The plan was to make our proposal directly to the Council but then our sources also told us that you are somewhat of a rising star. So naturally we figured you would make the introduction. We will wait for you on <planet> for a week, after that we will strike out on our own. Meet us at the spaceport in Harmony if you can make it. We will be at 'The Old Order Cafe'. Hope to see you there!'`
 				accept
