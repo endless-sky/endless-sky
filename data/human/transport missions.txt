@@ -4118,7 +4118,7 @@ mission "Freedom Uprising 2"
 			choice
 				`	"I haven't slept well since that day."`
 				`	"I think it was just a coincidence."`
-			`	"Whatever it was, it was weird. Ah, remember when we talked about liberating slave instead of filming them. Well this is Beto," he says, now more quietly.`
+			`	"Whatever it was, it was weird. Ah, remember when we talked about liberating slaves instead of filming them. Well this is Beto," he says, now more quietly.`
 			`	"It's a pleasure to meet you Captain <last>," says Beto in a thick accent. "We have heard you played no small part in the recent independence of the Man system. This is exactly what we want too. But unfortunately the Republic is not as flexible as the Free Worlds, they would never help us."`
 			`	"You see Beto here works with a group on Freedom," says Bunker. "They want to liberate their planet from the pirates and return to the ways of their ancestors; a system of autonomous assemblies and unions cooperating in mutual aid. You can say we support their work and they support ours. They recently made quite the stir on Freedom with a daylight raid on a slave market."`
 			choice
