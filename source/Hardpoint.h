@@ -88,10 +88,16 @@ public:
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 	
+	// Get the angles that can be used as a parameter of the constructor when cloning this.
+	const std::vector<Angle> &GetAnglesParameter() const;
+	
 	
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
+	
+	// Update the angles of traverse.
+	void UpdateAngleOfTraverse();
 	
 	
 private:
@@ -103,6 +109,8 @@ private:
 	Angle baseAngle;
 	// The range where the weapon can traverse to point to the target (turret only).
 	std::pair<Angle, Angle> angleOfTraverse;
+	// The value of the angles parameter in the constructor.
+	std::vector<Angle> anglesParameter;
 	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
 	// Indicates if this hardpoint disallows converging (guns only).

@@ -522,18 +522,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					vector<Angle> angles;
-					if(bit->IsOmnidirectional())
-						angles.push_back(bit->GetBaseAngle());
-					else
-					{
-						angles.resize(3);
-						const auto range = bit->GetAngleOfTraverse();
-						angles[0] = range.first;
-						angles[1] = range.second;
-						angles[2] = bit->GetBaseAngle();
-					}
-					merged.AddTurret(bit->GetPoint() * 2., angles, outfit);
+					merged.AddTurret(bit->GetPoint() * 2., bit->GetAnglesParameter(), outfit);
 					if(nextTurret != end)
 					{
 						if(outfit)
@@ -785,25 +774,24 @@ void Ship::Save(DataWriter &out) const
 					hardpoint.GetOutfit()->Name());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
-			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
 			if(hardpoint.IsTurret())
 			{
-				if(!hardpoint.IsOmnidirectional() || hardpointAngle)
+				const auto &angles = hardpoint.GetAnglesParameter();
+				if(!angles.empty())
 				{
 					out.BeginChild();
 					{
-						if(hardpoint.IsOmnidirectional())
-							out.Write("angle", hardpointAngle);
-						else
-						{
-							const auto range = hardpoint.GetAngleOfTraverse();
-							out.Write("angle", range.first.Degrees(), range.second.Degrees(), hardpointAngle);
-						}
+						out.WriteToken("angle");
+						for(auto &angle : angles)
+							out.WriteToken(angle.Degrees());
+						out.Write();
 					}
 					out.EndChild();
 				}
 			}
 			else
+			{
+				double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
 				if(hardpoint.IsParallel() || hardpointAngle)
 				{
 					out.BeginChild();
@@ -815,6 +803,7 @@ void Ship::Save(DataWriter &out) const
 					}
 					out.EndChild();
 				}
+			}
 		}
 		for(const Bay &bay : bays)
 		{

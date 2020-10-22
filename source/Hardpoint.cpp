@@ -40,29 +40,9 @@ namespace {
 
 // Constructor.
 Hardpoint::Hardpoint(const Point &point, const vector<Angle> &angles, bool isTurret, bool isParallel, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), isTurret(isTurret), isParallel(isParallel)
+	: outfit(outfit), point(point * .5), anglesParameter(angles), isTurret(isTurret), isParallel(isParallel)
 {
-	if(isTurret)
-		switch (angles.size())
-		{
-		case 0:
-			isOmnidirectional = true;
-			break;
-		case 1:
-			isOmnidirectional = true;
-			baseAngle = angles[0];
-			break;
-		default:
-			isOmnidirectional = false;
-			angleOfTraverse = make_pair(angles[0], angles[1]);
-			if(angles.size() >= 3 && angles[2].isInRange(angles[0], angles[1]))
-				baseAngle = angles[2];
-			else
-				baseAngle = angles[0] + (angles[1] - angles[0]).AbsDegrees() / 2.0;
-			break;
-		}
-	else if(!angles.empty())
-		baseAngle = angles[0];
+	UpdateAngleOfTraverse();
 }
 
 
@@ -330,6 +310,9 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 		
+		// Update angles.
+		UpdateAngleOfTraverse();
+		
 		// For fixed weapons, apply "gun harmonization," pointing them slightly
 		// inward so the projectiles will converge. For turrets, start them out
 		// pointing outward from the center of the ship.
@@ -363,6 +346,17 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
+	
+	// Update angles.
+	UpdateAngleOfTraverse();
+}
+
+
+
+// Get the angles that can be used as a parameter of the constructor when cloning this.
+const std::vector<Angle> &Hardpoint::GetAnglesParameter() const
+{
+	return anglesParameter;
 }
 
 
@@ -391,4 +385,33 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
 	ship.ExpendAmmo(outfit);
+}
+
+
+
+// Update the angles of traverse.
+void Hardpoint::UpdateAngleOfTraverse()
+{
+	std::vector<Angle> &angles = anglesParameter;
+	if(isTurret)
+		switch (angles.size())
+		{
+		case 0:
+			isOmnidirectional = true;
+			break;
+		case 1:
+			isOmnidirectional = true;
+			baseAngle = angles[0];
+			break;
+		default:
+			isOmnidirectional = false;
+			angleOfTraverse = make_pair(angles[0], angles[1]);
+			if(angles.size() >= 3 && angles[2].isInRange(angles[0], angles[1]))
+				baseAngle = angles[2];
+			else
+				baseAngle = angles[0] + (angles[1] - angles[0]).AbsDegrees() / 2.0;
+			break;
+		}
+	else if(!angles.empty())
+		baseAngle = angles[0];
 }
