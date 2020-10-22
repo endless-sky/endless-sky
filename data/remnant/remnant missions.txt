@@ -3477,7 +3477,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 		government "Remnant"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 3: done"
-		# random < 25
+		random < 25
 	on offer
 		conversation
 			`In the starport cafeteria you come across Dawn sitting at a table looking worried. She smiles when she sees you, and waves you to the seat opposite her. "Back from gallivanting around the galaxy with more tales to share?" she signs.`
@@ -3687,8 +3687,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 			label astraldata
 			`	"There are many oddities about this place. Every visit helps revise our physics models a little closer. But they also reveal problems." She frowns, her gestures taking on a curious tone. "For instance, you will note that your ramscoops are not picking up anything. According to standard astronomical theory, this system should be a veritable river of suitable material, and yet there is nothing. Not even the normal background trace amounts we find in deep space. We have visited other black holes, and they conform to the standard models in this respect. But not Sagittarius A*." She pauses, thinking about it for a moment.`
 			choice
-				`	"So this is not the first expedition here?"`
-					goto astralfirst
+				`	"Is the equipment loaded?"`
 				`	"How much longer does the equipment need?"`
 			label astralfinish 
 			`	"The equipment will be finished shortly, Captain <first>. I just need to make a few observations and we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
