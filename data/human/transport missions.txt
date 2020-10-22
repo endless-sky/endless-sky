@@ -3706,7 +3706,7 @@ mission "Journalism 1"
 			`	"How rude of me," she says. "My name is Mariel, I organize these expositions and act as a spokesperson for Adelita. And you are?"`
 			choice
 				`	"Captain <last>."`
-			`	"Captain," she says, her eyes lighting up. "Well, as you may know this is the last day of the expo. The captain I hired to transport everything back to <destination> is not only rude but now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60000, but will pay you 80000. What do you say?"`
+			`	"Captain," she says, her eyes lighting up. "Well, as you may know this is the last day of the expo. The captain I hired to transport everything back to <destination> is not only rude but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60000, but will pay you 80000. What do you say?"`
 			choice
 				`	"I would love to."`
 				`	"Why not."`
