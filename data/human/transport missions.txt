@@ -4200,7 +4200,7 @@ mission "Freedom Uprising 3"
 
 	on complete
 		payment 1000000
-		outfit "Ramscoop" +1
+		outfit "Ramscoop" 1
 		conversation
 			`	A few people are waiting with a Ramscoop when you land. "So far so good," says Bunker. "Beto wants us to interview some allies and ex-slaves here on <planet>. While we do that can you go to the outfitter and buy 100 Laser Rifles and 10 boxes of Frag Grenades? Here's the credits, keep the change. And can you make sure the Ramscoop is installed? Meet us at 'The Giving Tree' when we're done."`
 
