@@ -57,10 +57,9 @@ double StellarObject::Radius() const
 // If it is possible to land on this planet, this returns the Planet
 // objects that gives more information about it. Otherwise, this
 // function will just return nullptr.
-// Planets without sprites are not landable
 const Planet *StellarObject::GetPlanet() const
 {
-	return HasSprite() ? planet : nullptr;
+	return planet;
 }
 
 
