@@ -16,7 +16,7 @@ outfit "Nanotech Battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 30000
-	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy destiny of Quarg batteries is unparalleled, storing nearly a third more energy than the best human battries while being less than a third the size."
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human battries while being less than a third the size."
 
 outfit "Antimatter Core"
 	category "Power"
@@ -127,7 +127,7 @@ outfit "Medium Graviton Steering"
 	"turning energy" 10
 	"turning heat" 5
 	"steering flare sprite" "effect/medium graviton flare"
-	description "Quarg steering are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though given the unmatched strength of their reactors."
+	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
 
 outfit "Quantum Shield Generator"
 	category "Systems"
