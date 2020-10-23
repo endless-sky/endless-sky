@@ -131,7 +131,10 @@ void Ship::Load(const DataNode &node)
 		pluralModelName = modelName + 's';
 	}
 	if(node.Size() >= 3)
+	{
 		base = GameData::Ships().Get(modelName);
+		variantName = node.Token(2);
+	}
 	
 	government = GameData::PlayerGovernment();
 	equipped.clear();
@@ -853,6 +856,14 @@ const string &Ship::PluralModelName() const
 
 
 
+// Get the name of this ship as a variant.
+const string &Ship::VariantName() const
+{
+	return variantName.empty() ? modelName : variantName;
+}
+
+
+
 // Get the generic noun (e.g. "ship") to be used when describing this ship.
 const string &Ship::Noun() const
 {
@@ -1281,6 +1292,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			heat = 0.;
 			ionization = 0.;
 			fuel = 0.;
+			velocity = Point();
 			MarkForRemoval();
 			return;
 		}
@@ -2784,7 +2796,7 @@ void Ship::AddCrew(int count)
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
-	return !CanBeCarried() && RequiredCrew() && Crew() && !IsDisabled();
+	return RequiredCrew() && Crew() && !IsDisabled();
 }
 
 
@@ -2975,6 +2987,13 @@ bool Ship::CanCarry(const Ship &ship) const
 			--free;
 	}
 	return (free > 0);
+}
+
+
+
+void Ship::AllowCarried(bool allowCarried)
+{
+	canBeCarried = allowCarried && BAY_TYPES.count(attributes.Category()) > 0;
 }
 
 

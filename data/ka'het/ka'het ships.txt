@@ -65,16 +65,16 @@ ship "Maeri'het"
 
 		"Hyperdrive"
 
-	engine -20 66 0.6
-	engine -26.5 66 0.8
-	engine 20 66 0.6
-	engine 26.5 66 0.8
-	gun -9 -74 "Ka'het Ravager Beam"
-	gun 9 -74 "Ka'het Ravager Beam"
-	turret -13.5 -29 "Ka'het Annihilator Turret"
-	turret -14 -12.5 "Ka'het Ravager Turret"
-	turret 13.5 -29 "Ka'het Annihilator Turret"
-	turret 14 -12.5 "Ka'het Ravager Turret"
+	engine -26 67.5 0.8
+	engine 26 67.5 0.8
+	engine -19.5 67 0.6
+	engine 19.5 67 0.6
+	gun -18 -68.5 "Ka'het Ravager Beam"
+	gun 18 -68.5 "Ka'het Ravager Beam"
+	turret -13.5 -31 "Ka'het Annihilator Turret"
+	turret 13.5 -31 "Ka'het Annihilator Turret"
+	turret -15 -14.5 "Ka'het Ravager Turret"
+	turret 15 -14.5 "Ka'het Ravager Turret"
 	explode "tiny explosion" 5
 	explode "small explosion" 20
 	explode "medium explosion" 25
@@ -171,19 +171,19 @@ ship "Telis'het"
 
 		"Hyperdrive"
 
-	engine -27 75.5 0.6
-	engine -39.5 82.5 0.8
-	engine 27 75.5 0.6
-	engine 39.5 82.5 0.8
-	gun -11.5 -94 "Ka'het EMP Deployer"
-	gun -23.5 -87.5 "Ka'het Annihilator"
-	gun 11.5 -94 "Ka'het EMP Deployer"
-	gun 23.5 -87.5 "Ka'het Annihilator"
-	turret -27 -41 "Ka'het Annihilator Turret"
-	turret -41.5 -50.5 "Ka'het Ravager Turret"
-	turret 0 -53 "Ka'het Ravager Turret"
-	turret 27 -41 "Ka'het Annihilator Turret"
-	turret 41.5 -50.5 "Ka'het Ravager Turret"
+	engine -40.5 87 0.8
+	engine 40.5 87 0.8
+	engine -34.5 85.5 0.6
+	engine 34.5 85.5 0.6
+	gun -31 -83 "Ka'het Annihilator"
+	gun 31 -83 "Ka'het Annihilator"
+	gun -20.5 -90.5 "Ka'het EMP Deployer"
+	gun 20.5 -90.5 "Ka'het EMP Deployer"
+	turret -43 -51 "Ka'het Ravager Turret"
+	turret 43 -51 "Ka'het Ravager Turret"
+	turret -17.5 -51.5 "Ka'het Annihilator Turret"
+	turret 17.5 -51.5 "Ka'het Annihilator Turret"
+	turret 0 -19 "Ka'het Ravager Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 30
 	explode "large explosion" 20
