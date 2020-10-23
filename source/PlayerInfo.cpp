@@ -178,11 +178,13 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "storage")
 		{
 			for(const DataNode &grand : child)
-				if (grand.Size() >= 2 && grand.Token(0) == "planet")
-				{
-					CargoHold& storage = planetaryStorage[GameData::Planets().Get(grand.Token(1))];
-					storage.Load(grand);
-				}
+				if(grand.Size() >= 2 && grand.Token(0) == "planet")
+					for(const DataNode &grandGrand : grand)
+						if(grandGrand.Token(0) == "cargo")
+						{
+							CargoHold &storage = planetaryStorage[GameData::Planets().Get(grand.Token(1))];
+							storage.Load(grandGrand);
+						}
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
