@@ -134,6 +134,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				inaccuracy = value;
 			else if(key == "turret turn")
 				turretTurn = value;
+			else if(key == "angle of traverse")
+				angleOfTraverse = max(0., value);
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
 			else if(key == "optical tracking")

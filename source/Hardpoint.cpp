@@ -393,7 +393,14 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 void Hardpoint::UpdateAngleOfTraverse()
 {
 	std::vector<Angle> &angles = anglesParameter;
-	if(isTurret)
+	if(!isTurret)
+	{
+		if(!angles.empty())
+			baseAngle = angles[0];
+	}
+	else
+	{
+		double hardpointsArc = 360.;
 		switch (angles.size())
 		{
 		case 0:
@@ -406,12 +413,40 @@ void Hardpoint::UpdateAngleOfTraverse()
 		default:
 			isOmnidirectional = false;
 			angleOfTraverse = make_pair(angles[0], angles[1]);
+			hardpointsArc = (angles[1] - angles[0]).AbsDegrees();
 			if(angles.size() >= 3 && angles[2].isInRange(angles[0], angles[1]))
 				baseAngle = angles[2];
 			else
-				baseAngle = angles[0] + (angles[1] - angles[0]).AbsDegrees() / 2.0;
-			break;
+				baseAngle = angles[0] + hardpointsArc / 2.0;
 		}
-	else if(!angles.empty())
-		baseAngle = angles[0];
+		if(outfit && outfit->AngleOfTraverse() < hardpointsArc)
+		{
+			// The installed weapon restricts the angle of traverse.
+			const double weaponsArc = outfit->AngleOfTraverse();
+			const double weaponsHalf = weaponsArc / 2.;
+			if(isOmnidirectional)
+			{
+				isOmnidirectional = false;
+				angleOfTraverse = make_pair(baseAngle - weaponsHalf, baseAngle + weaponsHalf);
+			}
+			else
+			{
+				// The base angle is placed at center as possible.
+				const Angle &firstAngle = angleOfTraverse.first;
+				const Angle &secondAngle = angleOfTraverse.second;
+				double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();
+				double hardpointsSecondArc = (secondAngle - baseAngle).AbsDegrees();
+				if(hardpointsFirstArc < weaponsHalf)
+					hardpointsSecondArc = weaponsArc - hardpointsFirstArc;
+				else if(hardpointsSecondArc < weaponsHalf)
+					hardpointsFirstArc = weaponsArc - hardpointsSecondArc;
+				else
+				{
+					hardpointsFirstArc = weaponsHalf;
+					hardpointsSecondArc = weaponsHalf;
+				}
+				angleOfTraverse = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
+			}
+		}
+	}
 }
