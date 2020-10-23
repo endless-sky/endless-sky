@@ -3480,7 +3480,12 @@ mission "Remnant: Expanded Horizons Astral 1"
 		random < 25
 	on offer
 		conversation
-			`In the starport cafeteria you come across Dawn sitting at a table looking worried. She smiles when she sees you, and waves you to the seat opposite her. "Back from gallivanting around the galaxy with more tales to share?" she signs.`
+			`You glance into the starport cafeteria and see Dawn sitting at a table looking worried. She hasn't noticed you yet. Do you approach her?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			`	She smiles when she sees you, and waves you to the seat opposite her. "Back from gallivanting around the galaxy with more tales to share?" she signs.`
 			choice
 				`	"Yes, as a matter of fact..."`
 				`	"No, just hunting Korath..."`
@@ -3492,32 +3497,26 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"You look worried. Is everything alright?"`
 				`	"You look distracted. Do you want to talk about it?"`
 			label worried
-			`	She makes a gesture of appreciation. "Yes, I'm worried, <first>. I keep feeling like there's something I'm missing." She frowns, contemplating something unseen. "I should back up a step. While I do not have a permanent position yet, I am currently serving with an astrophysics team. We have been studying a variety of things, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there's a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
+			`	She makes a gesture of appreciation. "Yes, I'm worried, <first>. I keep feeling like there's something I'm missing." She frowns, contemplating something unseen. "I should back up a step. Since we last talked, I was assigned to serve with an astrophysics team for a year. My current work is part of the quantum condensate fabric density project, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there's a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
 			choice
 				`	"Have you asked someone with more experience for advice?"`
 				`	"Don't worry about it."`
 					goto worry
 				`	"Can I help with something?"`
 					goto help
-				`	"I have to go. I will stop by to talk more later."`
-					defer
-			`	"I did. The senior researcher told me that most of the team feels it. There are some concrete theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
+			`	"I did. The senior researcher told me that most of the team feels that something is not quite right here. They say there are some potential theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
 			label worry
 			`	"Thanks for the advice, but that is our purpose here - to worry about all the stuff that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
 			label help
-			`	"If you would like to help, there is something you can do. I am currently putting together an expedition to Sagittarius A*, and I could use a transport..."`
+			`	"If you would like to help, there is something you can do. I am currently putting together an expedition to Sagittarius A* to collect some fresh data I can use to check our records, and I could use a transport..."`
 			choice
 				`	"I don't know where that is."`
 					goto center
 				`	"Isn't that the center of the galaxy?"`
 					goto centeralt
-				`	"You want me to go near a blackhole?!"`
-					goto centeralt
 				`	"I have been there."`
-				`	"Sorry, I'm not interested in visiting a blackhole."`
-					decline
-			`	"Really?" She looks surprised. "I have seen sensor logs and recordings from previous visits, but not many people have actually been there." She pauses to take a bite from her neglected meal. "Being able to take part in these expeditions is something I have been looking forward to for ages, so of course Sagittarius A* is the first place on my list."`
+			`	"Really?" She looks surprised. "I have seen sensor logs and recordings from previous visits, but not many people have actually been there." She pauses to take a bite from her neglected meal. "Being able to take part in these fieldwork expeditions is something I have been looking forward to for ages, so of course Sagittarius A* is the first place on my list."`
 				goto center
 			label centeralt
 			`	"Yes, that is correct." She signs firmly.`
@@ -3526,9 +3525,13 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	She returns to a conversational cadence. "Would you be interested in taking part in this expedition?"`
 			choice
 				`	"Sure, what do you need?"`
-				`	"I'm busy right now, maybe later?"`
-					defer
-			`	"For this mission we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six outfit space, and comes with a scientist, so you will need a free bunk for them, too.`
+					goto scienceequipment
+				`	"You want me to take you to a black hole?!"`
+				`	"Sorry, I'm not interested in visiting a blackhole."`
+					decline
+			`	She looks momentarily surprised by your reaction. "Yes, exactly that. Current gravitational repulsor engines can nullify most of the gravitational pull, and an extra thermoelectric cooler or two should be sufficient to manage the heat. As such, the risks are mangeable so long as you do not try to approach the event horizon.`
+			label scienceequipment
+			`	"For this mission in specific, however, we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six outfit space, and comes with a scientist, so you will need a free bunk for them, too.`
 			`	"Once the laboratory module is installed, it will simply be a matter of travelling to Sagittarius A*. After our measurements, recordings, and observations are complete, we will return and report on our findings."`
 			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done eating."`
 			branch dawnsymbiont
@@ -3536,7 +3539,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"Okay, I will meet you onboard the ship."`
 					accept
-				`	"Why do you need to finish your food?"`
+				`	"Developed quite the appetite, haven't you?"`
 			branch dawnlicense
 				has "license: Remnant Capital"
 			`	She shrugs. "I burn a lot of calories, and eating healthy is important. Besides, I don't know how good food will be on your ship." She resumes eating with vigor and does not seem inclined to continue the conversation.`
@@ -3558,7 +3561,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"Okay, I will meet you onboard the ship."`
 					accept
-				`	"You have a symbiont?"`
+				`	"Developed quite the appetite, haven't you?"`
 			`	She nods. "Yeah, I am not yet used to the nutrient intake required to maintain my symbiont, so I have to consciously make sure that I eat enough to sustain it."`
 			choice
 				`	"Interesting. I'll see you onboard the <ship>."`
@@ -3642,6 +3645,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 				`	"Yes."`
 					goto astralonwards
 				`	"I should double check everything."`
+					defer
 			`	She nods. "I am ready, so I will come with you and wait onboard the <ship> while you do your checks."`
 			label astralonwards
 			`	She gestures towards the exit closest to your ship, and heads off at a quick pace. Outside, she moves calmly through the bustle of the starport, stepping around quick-moving freight movers and camel wagons alike. Arriving at the <ship>, she turns, and waits for you to catch up.`
@@ -3702,7 +3706,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 	on complete
 		payment 500000
 		conversation
-			`The journey back to <planet> was blur as the <ship> jumped through countless systems. Gradually the brilliant density of stars that make up the inner core faded into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally you slide into the approach patterns of <planet>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
+			`The journey back to <planet> was was a lesson in galactic formation as the <ship> jumped through a steady stream of systems. Gradually the brilliant density of stars that make up the inner core faded into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally you slide into the approach patterns of <planet>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
 			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up, while a cheerful group greet Dawn and help her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
 
 
