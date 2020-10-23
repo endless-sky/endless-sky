@@ -353,8 +353,8 @@ void ShopPanel::DrawButtons()
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = (playerShip && selectedOutfit && (player.Cargo().Get(selectedOutfit)
-		|| (player.Storage() && player.Storage()->Get(selectedOutfit)) )) ? "_Install" : "_Buy";
+	string BUY = ((playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
+		|| (player.Storage() && player.Storage()->Get(selectedOutfit))) ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
