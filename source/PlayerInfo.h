@@ -136,9 +136,9 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
-	// Get planetary storage for players current planet
+	// Get planetary storage for players current planet.
 	CargoHold *Storage(bool forceCreate = false);
-	// Get planetary storage for all planets (for map display)
+	// Get planetary storage for all planets (for map display).
 	const std::map<const Planet *, CargoHold> &PlanetaryStorage() const;
 	// Get cost basis for commodities.
 	void AdjustBasis(const std::string &commodity, int64_t adjustment);

@@ -1055,21 +1055,21 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
-// Get planetary storage information for current planet
-// Pointer, since we might not be on a planet, or since the storage might be empty
+// Get planetary storage information for current planet. Returns a pointer,
+// since we might not be on a planet, or since the storage might be empty.
 CargoHold *PlayerInfo::Storage(bool forceCreate)
 {
 	if(planet && (forceCreate || planetaryStorage.count(planet)))
 		return &(planetaryStorage[planet]);
 
-	// nullptr can be returned when forceCreate is true if there is no planet
-	// but nullptr is the best we can offer in such cases.
+	// Nullptr can be returned when forceCreate is true if there is no
+	// planet; nullptr is the best we can offer in such cases.
 	return nullptr;
 }
 
 
 
-// Get planetary storage information for all planets (for map and overviews)
+// Get planetary storage information for all planets (for map and overviews).
 const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;

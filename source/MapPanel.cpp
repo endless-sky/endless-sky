@@ -79,10 +79,10 @@ namespace {
 		}
 		for(const auto &hold : outfits)
 		{
-			// Get the system based on the planet where the storing was done
+			// Get the system in which the planet storage is located.
 			const System* system = hold.first->GetSystem();
 			for(const auto &outfit: hold.second.Outfits())
-				// Only count systems if it actually stores outfits
+				// Only count a system if it actually stores outfits.
 				if(outfit.second)
 					locations[system].second += outfit.second;
 		}
