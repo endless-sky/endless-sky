@@ -2472,7 +2472,7 @@ system Alcyone
 system Aldebaran
 	pos -356 -26
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 625
 	belt 1296
 	link Capella
@@ -2897,7 +2897,7 @@ system Algorel
 system Alheka
 	pos -350 -271
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1080
 	belt 1380
 	haze _menu/haze-67
@@ -2956,7 +2956,7 @@ system Alheka
 system Alhena
 	pos -430 -80
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 945
 	belt 1078
 	haze _menu/haze-67
@@ -3147,7 +3147,7 @@ system Alkaid
 system Almaaz
 	pos -349 -538
 	government Pirate
-	attributes "far north"
+	attributes "north"
 	habitable 1080
 	belt 1873
 	haze _menu/haze-33
@@ -3389,7 +3389,7 @@ system Alnasl
 system Alnilam
 	pos -487 -513
 	government Pirate
-	attributes "far north"
+	attributes "north"
 	habitable 1715
 	belt 1099
 	haze _menu/haze-33
@@ -3467,7 +3467,7 @@ system Alnilam
 system Alnitak
 	pos -331 -412
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 349.375
 	belt 1907
 	haze _menu/haze-67
@@ -3785,7 +3785,7 @@ system "Alpha Hydri"
 system Alphard
 	pos -588 -47
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 1080.62
 	belt 1101
 	link Algieba
@@ -4603,7 +4603,7 @@ system Arculus
 system Arneb
 	pos -523 -580
 	government Pirate
-	attributes "far north"
+	attributes "north"
 	habitable 1715
 	belt 1947
 	haze _menu/haze-none
@@ -5422,7 +5422,7 @@ system "Beta Lupi"
 system Betelgeuse
 	pos -384 -322
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1080
 	belt 1641
 	haze _menu/haze-67
@@ -6111,7 +6111,7 @@ system Caeculus
 system Canopus
 	pos -421 -225
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 214.375
 	belt 1530
 	haze _menu/haze-67
@@ -6158,7 +6158,7 @@ system Canopus
 system Capella
 	pos -378 -13
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 455.625
 	belt 1722
 	haze _menu/haze-67
@@ -6293,7 +6293,7 @@ system Caph
 system Cardax
 	pos -211 -215
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1705
 	belt 1228
 	link Moktar
@@ -6421,7 +6421,7 @@ system Cardea
 system Castor
 	pos -452 -17
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 1715
 	belt 1675
 	haze _menu/haze-67
@@ -7396,7 +7396,7 @@ system Dabih
 system Danoa
 	pos -239 -321
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 135
 	belt 1689
 	haze _menu/haze-67
@@ -8867,7 +8867,7 @@ system Ek'kek'ru
 system Ekuarik
 	pos -1029.63 426.214
 	government Heliarch
-	attributes
+	attributes "ringworld"
 	habitable 700
 	belt 1711
 	link "Ki War Ek"
@@ -9050,7 +9050,7 @@ system Ekuarik
 system Elnath
 	pos -288 -77
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1715
 	belt 1462
 	link Acamar
@@ -11640,7 +11640,7 @@ system "Good Omen"
 system Gorvi
 	pos -250 -483
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 670
 	belt 1345
 	haze _menu/haze-133
@@ -11997,7 +11997,7 @@ system Han
 system Hassaleh
 	pos -291 -287
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 670
 	belt 1924
 	haze _menu/haze-67
@@ -12058,7 +12058,7 @@ system Hassaleh
 system Hatysa
 	pos -474 -542
 	government Pirate
-	attributes "far north"
+	attributes "north"
 	habitable 533.75
 	belt 1163
 	haze _menu/haze-33
@@ -14855,7 +14855,7 @@ system Kugel
 system Kursa
 	pos -366 -105
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 455
 	belt 1624
 	haze _menu/haze-67
@@ -15868,7 +15868,7 @@ system Mebla
 system Mebsuta
 	pos -482 -394
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 670
 	belt 1740
 	haze _menu/haze-33
@@ -16266,7 +16266,7 @@ system Men
 system Menkalinan
 	pos -400 -61
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 3430
 	belt 1424
 	haze _menu/haze-67
@@ -16600,7 +16600,7 @@ system Mesuket
 system Miaplacidus
 	pos -524 -69
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 455.625
 	belt 1236
 	link Tejat
@@ -16874,7 +16874,7 @@ system Minkar
 system Mintaka
 	pos -304 -462
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 775.625
 	belt 1753
 	haze _menu/haze-67
@@ -17063,7 +17063,7 @@ system Mirfak
 system Mirzam
 	pos -498 -301
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1080
 	belt 1025
 	haze _menu/haze-67
@@ -17625,7 +17625,7 @@ system Nenia
 system Nihal
 	pos -262 -121
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 534.375
 	belt 1329
 	link Elnath
@@ -18149,7 +18149,7 @@ system Ossipago
 system "Over the Rainbow"
 	pos 9904 7176
 	government Uninhabited
-	attributes "pleiades" "wormhole"
+	attributes "pleiades"
 	link "Terra Incognita"
 	habitable 1215
 	haze _menu/haze-blackbody
@@ -18792,7 +18792,7 @@ system Persitar
 system Phact
 	pos -375 -191
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1080.62
 	belt 1704
 	haze _menu/haze-67
@@ -18979,7 +18979,7 @@ system Pherkad
 system Phurad
 	pos -494 -153
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 1080
 	belt 1881
 	link Tejat
@@ -19265,7 +19265,7 @@ system Polerius
 system Pollux
 	pos -465 4
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 1080
 	belt 1161
 	haze _menu/haze-67
@@ -19971,7 +19971,7 @@ system Queri
 system Rajak
 	pos -270 -236
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 78.125
 	belt 1410
 	haze _menu/haze-67
@@ -20487,7 +20487,7 @@ system Remembrance
 system Rigel
 	pos -324 -363
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1080
 	belt 1782
 	link Saiph
@@ -21079,7 +21079,7 @@ system "Sagittarius A*"
 system Saiph
 	pos -375 -390
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 320
 	belt 1690
 	haze _menu/haze-33
@@ -22970,7 +22970,7 @@ system Solifar
 system Sospi
 	pos -317 -161
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1715
 	belt 1715
 	haze _menu/haze-133
@@ -23403,7 +23403,7 @@ system Suhail
 system Sumar
 	pos -236 -273
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 2560
 	belt 1778
 	link Cardax
@@ -23587,7 +23587,7 @@ system Tais
 system Talita
 	pos -519 -26
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 1705
 	belt 1403
 	link Miaplacidus
@@ -23851,7 +23851,7 @@ system Tebuteb
 system Tejat
 	pos -489 -107
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 1158.12
 	belt 1447
 	link Phurad
@@ -24103,7 +24103,7 @@ system Torbab
 system Tortor
 	pos -255 -424
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 455.625
 	belt 1243
 	haze _menu/haze-67
@@ -24301,7 +24301,7 @@ system "Ula Mon"
 system "Ultima Thule"
 	pos -336 -211
 	government Republic
-	attributes "wormhole" "far north"
+	attributes "wormhole" "north"
 	habitable 2560
 	belt 1635
 	haze _menu/haze-67
@@ -24433,7 +24433,7 @@ system Umbral
 system Unagi
 	pos -306 -578
 	government Pirate
-	attributes "far north"
+	attributes "north"
 	habitable 320
 	belt 1960
 	haze _menu/haze-33
@@ -24770,7 +24770,7 @@ system Vindemiatrix
 system Volax
 	pos -256 -179
 	government Republic
-	attributes "far north"
+	attributes "north"
 	habitable 1715
 	belt 1424
 	haze _menu/haze-67
@@ -25035,7 +25035,7 @@ system "Wah Yoot"
 system Waypoint
 	pos -184 -515
 	government Hai
-	attributes "wormhole" "hai"
+	attributes "wormhole"
 	habitable 78.125
 	belt 1610
 	haze _menu/haze-67
@@ -25093,7 +25093,7 @@ system Waypoint
 system Wazn
 	pos -385 -131
 	government Republic
-	attributes "paradise planets"
+	attributes "paradise"
 	habitable 534.375
 	belt 1414
 	haze _menu/haze-67
