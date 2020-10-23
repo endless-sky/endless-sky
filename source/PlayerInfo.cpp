@@ -1068,7 +1068,7 @@ CargoHold *PlayerInfo::Storage(bool forceCreate)
 
 
 // Get planetary storage information for all planets (for map and overviews)
-const std::map<const Planet *, CargoHold> PlayerInfo::PlanetaryStorage() const
+const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;
 }
