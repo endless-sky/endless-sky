@@ -4413,7 +4413,6 @@ system Antevorta
 system Ap'arak
 	pos -164.62 -781.858
 	government Wanderer
-	attributes "wanderer"
 	habitable 1080
 	belt 1385
 	haze _menu/haze-none
@@ -4977,7 +4976,6 @@ system Avior
 system Aya'k'k
 	pos -434.245 -616.57
 	government Wanderer
-	attributes "wanderer"
 	habitable 486.68
 	belt 1586
 	haze _menu/haze-67
@@ -5755,7 +5753,6 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
-	attributes "hai"
 	habitable 625
 	belt 1823
 	link "Wah Ki"
@@ -5815,7 +5812,6 @@ system "Bore Fah"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
-	attributes "hai"
 	habitable 2859.44
 	belt 1613
 	link "Wah Ki"
@@ -6759,7 +6755,6 @@ system Chimitarp
 system Chirr'ay'akai
 	pos -102.761 -749.614
 	government Wanderer
-	attributes "wanderer"
 	habitable 486.68
 	belt 1425
 	haze _menu/haze-33
@@ -6870,7 +6865,6 @@ system Chornifath
 system Chy'chra
 	pos 85.5308 -829.667
 	government Wanderer
-	attributes "wanderer"
 	habitable 625
 	belt 1120
 	haze _menu/haze-33
@@ -7228,7 +7222,6 @@ system "Cor Caroli"
 system "Da Ent"
 	pos -6.22391 -462.536
 	government Hai
-	attributes "hai"
 	habitable 233.28
 	belt 1161
 	link "Ya Hai"
@@ -7289,7 +7282,6 @@ system "Da Ent"
 system "Da Lest"
 	pos -23.2239 -413.536
 	government Hai
-	attributes "hai"
 	habitable 320
 	belt 1108
 	link "Lom Tahr"
@@ -8403,7 +8395,6 @@ system Dubhe
 system "Due Yoot"
 	pos -167.547 -426.683
 	government Hai
-	attributes "hai"
 	habitable 233.28
 	belt 1854
 	link "Wah Oh"
@@ -8750,7 +8741,6 @@ system Egeria
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
-	attributes "hai"
 	habitable 486.68
 	belt 1094
 	link "Wah Yoot"
@@ -8818,7 +8808,6 @@ system "Ehma Ti"
 system Ek'kek'ru
 	pos -287.517 -727.738
 	government Wanderer
-	attributes "wanderer"
 	habitable 320
 	belt 1517
 	haze _menu/haze-none
@@ -9406,7 +9395,6 @@ system "Epsilon Leonis"
 system Es'sprak'ai
 	pos -469.044 -733.375
 	government Wanderer
-	attributes "wanderer"
 	habitable 486.68
 	belt 1928
 	haze _menu/haze-none
@@ -9666,7 +9654,6 @@ system Eteron
 system "Fah Root"
 	pos -264.065 -400.135
 	government Hai
-	attributes "hai"
 	habitable 486.68
 	belt 1057
 	haze _menu/haze-67
@@ -9735,7 +9722,6 @@ system "Fah Root"
 system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
-	attributes "hai"
 	habitable 425.92
 	belt 1185
 	haze _menu/haze-67
@@ -12133,7 +12119,6 @@ system Hatysa
 system "Heia Due"
 	pos -146.177 -481.694
 	government Hai
-	attributes "hai"
 	habitable 1215
 	belt 1079
 	haze _menu/haze-67
@@ -12276,7 +12261,7 @@ system Hesselpost
 system "Hevru Hai"
 	pos -189 -310
 	government Quarg
-	attributes "hai" "ringworld"
+	attributes "ringworld"
 	habitable 700
 	belt 1245
 	link "Fah Soom"
@@ -12391,7 +12376,6 @@ system "Hevru Hai"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
-	attributes "hai"
 	habitable 625
 	belt 1655
 	link "Wah Yoot"
@@ -12733,7 +12717,6 @@ system Hunter
 system Ik'kara'ka
 	pos 56.2159 -888.296
 	government Wanderer
-	attributes "wanderer"
 	habitable 625
 	belt 1497
 	haze _menu/haze-none
@@ -12849,7 +12832,6 @@ system Ildaria
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
-	attributes "hai"
 	habitable 1715
 	belt 1416
 	haze _menu/haze-67
@@ -12974,7 +12956,6 @@ system Insitor
 system "Io Lowe"
 	pos -94.7566 -527.728
 	government Hai
-	attributes "hai"
 	habitable 135
 	belt 1552
 	haze _menu/haze-67
@@ -13036,7 +13017,6 @@ system "Io Lowe"
 system "Io Mann"
 	pos -192.955 -447.669
 	government Hai
-	attributes "hai"
 	habitable 973.36
 	belt 1132
 	haze _menu/haze-67
@@ -13178,7 +13158,6 @@ system Ipsing
 system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
-	attributes "wanderer"
 	habitable 320
 	belt 1613
 	haze _menu/haze-33
@@ -13297,7 +13276,6 @@ system Izar
 system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
-	attributes "wanderer"
 	habitable 425.92
 	belt 1745
 	haze _menu/haze-none
@@ -13355,7 +13333,6 @@ system Ka'ch'chrai
 system Ka'pru
 	pos -76.6756 -994.955
 	government Wanderer
-	attributes "wanderer"
 	habitable 1505.92
 	belt 1808
 	haze _menu/haze-33
@@ -14005,7 +13982,6 @@ system "Ki War Ek"
 system Kiro'ku
 	pos -131.923 -884.46
 	government Wanderer
-	attributes "wanderer"
 	habitable 1111.68
 	belt 1308
 	haze _menu/haze-none
@@ -14082,7 +14058,6 @@ system Kiro'ku
 system Kiru'kichi
 	pos -195.063 -662.343
 	government Wanderer
-	attributes "wanderer"
 	habitable 2795
 	belt 1465
 	haze _menu/haze-33
@@ -15308,7 +15283,6 @@ system Lolami
 system "Lom Tahr"
 	pos -94.0437 -446.586
 	government Hai
-	attributes "hai"
 	habitable 2372.76
 	belt 1445
 	link "Ya Hai"
@@ -16032,7 +16006,6 @@ system Meftarkata
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
-	attributes "hai"
 	habitable 425.92
 	belt 1075
 	haze _menu/haze-67
@@ -19066,7 +19039,6 @@ system Phurad
 system Pik'ro'iyak
 	pos -378.845 -677.001
 	government Wanderer
-	attributes "wanderer"
 	habitable 233.28
 	belt 1279
 	haze _menu/haze-none
@@ -19449,7 +19421,6 @@ system Postverta
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
-	attributes "wanderer"
 	habitable 1505.92
 	belt 1637
 	haze _menu/haze-33
@@ -20190,7 +20161,6 @@ system Rastaban
 system "Rati Cal"
 	pos -116.765 -391.123
 	government Hai
-	attributes "hai"
 	habitable 425.92
 	belt 1538
 	link "Due Yoot"
@@ -22018,7 +21988,6 @@ system Sheratan
 system Si'yak'ku
 	pos -329.235 -760.435
 	government Wanderer
-	attributes "wanderer"
 	habitable 1313.28
 	belt 1985
 	haze _menu/haze-none
@@ -22099,7 +22068,6 @@ system Si'yak'ku
 system Sich'ka'ara
 	pos -97.1237 -831.921
 	government Wanderer
-	attributes "wanderer"
 	habitable 1715
 	belt 1744
 	haze _menu/haze-none
@@ -22522,7 +22490,6 @@ system Skeruto
 system Sko'karak
 	pos -304.43 -930.688
 	government Wanderer
-	attributes "wanderer"
 	habitable 320
 	belt 1805
 	haze _menu/haze-none
@@ -24260,7 +24227,6 @@ system Turais
 system "Ula Mon"
 	pos -64.1218 -559.868
 	government Hai
-	attributes "hai"
 	habitable 640
 	belt 1574
 	link "Bote Asu"
@@ -24582,7 +24548,6 @@ system Unukalhai
 system "Uwa Fahn"
 	pos 35.1585 -491.67
 	government Hai
-	attributes "hai"
 	habitable 320
 	belt 1913
 	link "Ya Hai"
@@ -24860,7 +24825,6 @@ system Volax
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
-	attributes "hai"
 	habitable 425.92
 	belt 1585
 	link "Zuba Zub"
@@ -24929,7 +24893,6 @@ system "Wah Ki"
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
-	attributes "hai"
 	habitable 5000
 	belt 1194
 	haze _menu/haze-67
@@ -25008,7 +24971,6 @@ system "Wah Oh"
 system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
-	attributes "hai"
 	habitable 1080
 	belt 1222
 	link "Wah Ki"
@@ -25396,7 +25358,6 @@ system "World's End"
 system "Ya Hai"
 	pos -24.9453 -505.571
 	government Hai
-	attributes "hai"
 	habitable 425.92
 	belt 1120
 	link "Ula Mon"
@@ -25783,7 +25744,6 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
-	attributes "hai"
 	habitable 425.92
 	belt 1911
 	haze _menu/haze-67
