@@ -127,7 +127,7 @@ outfit "Medium Graviton Steering"
 	"turning energy" 10
 	"turning heat" 5
 	"steering flare sprite" "effect/medium graviton flare"
-	description "Quarg steering engines are only matched by their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
+	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
 
 outfit "Quantum Shield Generator"
 	category "Systems"
