@@ -267,7 +267,7 @@ namespace {
 			for(const StellarObject &object : from->Objects())
 			{
 				const Planet *planet = object.GetPlanet();
-				if(planet && planet->IsWormhole() && planet->IsAccessible(&ship)
+				if(object.HasSprite() && planet && planet->IsWormhole() && planet->IsAccessible(&ship)
 						&& planet->WormholeDestination(from) == to)
 				{
 					ship.SetTargetStellar(&object);
@@ -1223,7 +1223,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			target.reset();
 		else
 			for(const StellarObject &object : system->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->HasSpaceport()
 						&& object.GetPlanet()->CanLand(ship))
 				{
 					target.reset();
@@ -1436,7 +1436,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+			if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->HasSpaceport()
 					&& object.GetPlanet()->CanLand(ship))
 			{
 				planets.push_back(&object);
@@ -1446,7 +1446,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// landing on uninhabited planets.
 		if(!totalWeight)
 			for(const StellarObject &object : origin->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->CanLand(ship))
+				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
 				{
 					planets.push_back(&object);
 					totalWeight += planetWeight;
@@ -1500,7 +1500,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.Attributes().Get("fuel capacity")
+		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
@@ -1534,6 +1534,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			// refuel or use a wormhole to route toward the parent.
 			const Planet *targetPlanet = ship.GetTargetStellar()->GetPlanet();
 			if(!targetPlanet || !targetPlanet->CanLand(ship)
+					|| !ship.GetTargetStellar()->HasSprite()
 					|| (!targetPlanet->IsWormhole() && ship.Fuel() == 1.))
 				ship.SetTargetStellar(nullptr);
 		}
@@ -3086,7 +3087,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Determine if the player is jumping to their target system or landing on a wormhole.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
+			if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
 				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(system))
 			{
 				isWormhole = true;
@@ -3280,7 +3281,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 		{
-			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
+			if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 				landables.emplace_back(&object);
 			else if(object.HasSprite())
 			{

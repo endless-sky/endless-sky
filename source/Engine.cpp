@@ -607,7 +607,7 @@ void Engine::Step(bool isActive)
 	{
 		for(const StellarObject &object : currentSystem->Objects())
 		{
-			if(!object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
+			if(!object.HasSprite() || !object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
 				continue;
 			
 			Point pos = object.Position() - center;
