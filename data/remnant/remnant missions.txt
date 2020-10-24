@@ -3497,7 +3497,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"You look worried. Is everything alright?"`
 				`	"You look distracted. Do you want to talk about it?"`
 			label worried
-			`	She makes a gesture of appreciation. "Yes, I am worried, <first>. I keep feeling like there is something I am missing." She frowns, contemplating something unseen. "I should back up a step. Since we last talked, I was assigned to serve with an astrophysics team for a year. My current work is part of the quantum condensate fabric density project, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there is a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
+			`	She makes a gesture of appreciation. "Yes, I am worried, <first>. I keep feeling like there is something I am missing." She frowns, contemplating something unseen. "I should back up a step. Since we last talked, I was assigned to serve with an astrophysics team for a year. My current work is part of the quantum condensate fabric density project, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there is a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something explicit or repetitive very quickly. But the feeling just will not go away."`
 			choice
 				`	"Have you asked someone with more experience for advice?"`
 				`	"Don't worry about it."`
