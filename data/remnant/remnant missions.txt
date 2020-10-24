@@ -3497,7 +3497,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"You look worried. Is everything alright?"`
 				`	"You look distracted. Do you want to talk about it?"`
 			label worried
-			`	She makes a gesture of appreciation. "Yes, I'm worried, <first>. I keep feeling like there's something I'm missing." She frowns, contemplating something unseen. "I should back up a step. Since we last talked, I was assigned to serve with an astrophysics team for a year. My current work is part of the quantum condensate fabric density project, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there's a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
+			`	She makes a gesture of appreciation. "Yes, I am worried, <first>. I keep feeling like there is something I am missing." She frowns, contemplating something unseen. "I should back up a step. Since we last talked, I was assigned to serve with an astrophysics team for a year. My current work is part of the quantum condensate fabric density project, and I have been tasked with reviewing our bulk astrophysical data. It is fairly routine,  but I keep getting this prickly feeling that there is a problem that I am missing. Nothing obvious, of course. Our neural networks would pick up something obvious or repetitious really quickly. But the feeling just will not go away."`
 			choice
 				`	"Have you asked someone with more experience for advice?"`
 				`	"Don't worry about it."`
@@ -3628,7 +3628,6 @@ mission "Remnant: Expanded Horizons Astral 2"
 	name "Research expedition to Sagittarius A*"
 	description "Travel to Sagittarius A* with a research laboratory installed in order to make measurements on the supermassive black hole and then return to <destination>."
 	blocked "You need at least 1 free bunk, a jump drive, and a research laboratory to take this mission."
-	passengers 1
 	waypoint "Sagittarius A*"
 	source
 		government "Remnant"
@@ -3707,7 +3706,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 		payment 500000
 		conversation
 			`The journey back to <planet> was a lesson in galactic formation as the <ship> jumped through a steady stream of systems. Gradually, the brilliant density of stars that make up the inner core faded into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally, you slide into the approach patterns of <planet>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
-			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up while a cheerful group greet Dawn before helping her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
+			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up while a cheerful group greet Dawn before helping her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board. While I handled the science on this expedition, if you keep it installed your ship systems will automatically hire a scientist to run it." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
 
 
 
@@ -3720,6 +3719,7 @@ mission "Remnant: Expanded Horizons Astral job"
 		not attributes "pleiades"
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
+		random < 50
 	on offer
 		require "Research Laboratory"
 	source
