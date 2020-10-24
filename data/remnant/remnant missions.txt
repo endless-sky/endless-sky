@@ -3504,8 +3504,12 @@ mission "Remnant: Expanded Horizons Astral 1"
 					goto worry
 				`	"Can I help with something?"`
 					goto help
+				`	"What is the quantum condensate fabric density project?"`
+					goto quantumcondensate
 			`	"I did. The senior researcher told me that most of the team feels something is not quite right here. They say there are some potential theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
+			label quantumcondensate
+			`	"It is basically a project examining the density of Bose–Einstein condensates as correlated to the revised relativity paradign's conceptualization of the fabric of space-time.
 			label worry
 			`	"Thanks for the advice, but that is our purpose here - to worry about all the things that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
 			label help
@@ -3701,7 +3705,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 				`	"Would you mind if I came too?"`
 			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs occasionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
 			label astraldone
-			`	After what feels like hours the equipment notifies you that it has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
+			`	After what feels like hours, the equipment notifies you that it has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
 	on complete
 		payment 500000
 		conversation
