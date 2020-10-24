@@ -397,7 +397,7 @@ outfit "Research Laboratory"
 	"required crew" 1
 	"unplunderable" 1
 	description "From the very beginning, the Remnant have relied on their ability to study everything they encounter. This knowledge has enabled them to survive and even prosper in the harsh environment of the Ember Waste. To enable this pursuit of knowledge, the Remnant designed this compact laboratory that is built onto the side of a cargo bay, mess hall, or other larger room. When the room isn't otherwise occupied, this module expands out to convert it into a fully fledged laboratory."
-	description "	While planetbound scientists might consider it little more than a closet packed with scanners and equipment, to the Remnant it is a forward base of operations used to investigate countless alien phenomena on-site. For captains, having advanced equipment to support their sensor suites as well as a trained scientist to serve as science officer is a strong benefit."
+	description "	While planetbound scientists might consider it little more than a closet packed with scanners and equipment, to the Remnant it is a base of operations used to investigate alien and stellar phenomena on-site. For captains, having advanced equipment to support their sensor suites as well as a trained scientist to serve in their crew is a strong benefit."
 
 outfit "Quantum Key Stone"
 	category "Systems"
