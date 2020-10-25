@@ -3600,7 +3600,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	She nods. "Well, I will finish my meal and meet you on the <ship> shortly." With that, she returns to her meal.`
 				accept
 			label dawnwhere
-			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. Mine is located primarily along my spine." She twists around, and you can see a small layer of the tell-tale scaly leather extending up the back of her neck.`
+			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. Mine is located primarily along my spine.`
 			`	"We should probably be focusing on the expedition, though. You go get the <ship> ready for launch, and I will be there shortly."`
 				accept
 	on accept
