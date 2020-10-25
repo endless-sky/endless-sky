@@ -2341,7 +2341,7 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	};
 	// Clear any existing ships: or outfit: conditions. (Note: '!' = ' ' + 1.)
 	clearRange(conditions, "ships: ", "ships:!");
-	clearRange(conditions, "outfit: ", "outfits:!");
+	clearRange(conditions, "outfit: ", "outfit:!");
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
@@ -2371,7 +2371,7 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	// Clear any existing flagship system:, planet:, and outfit: conditions. (Note: '!' = ' ' + 1.)
 	clearRange(conditions, "flagship system: ", "flagship system:!");
 	clearRange(conditions, "flagship planet: ", "flagship planet:!");
-	clearRange(conditions, "flagship outfit: ", "flagship outfits:!");
+	clearRange(conditions, "flagship outfit: ", "flagship outfit:!");
 	
 	// Store conditions for flagship current crew, required crew, and bunks.
 	if(flagship)
