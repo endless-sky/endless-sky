@@ -30,14 +30,22 @@ class Visual;
 // which may or may not have a weapon installed.
 class Hardpoint {
 public:
+	// The parameters related to the angles of a hardpoint.
+	struct AnglesParameter {
+		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
+		// The turret shuold point this angle when idling.
+		Angle baseAngle;
+		// Indicates if this hardpoint disallows converging (guns only).
+		bool isParallel;
+		// An omnidirectional turret can rotate infinitely.
+		bool isOmnidirectional;
+		// Range over which the turret can turn, from leftmost position to rightmost position.
+		// (directional turret only)
+		std::pair<Angle, Angle> angleOfTraverse;
+	};
+	
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	// If isTurret is true, angles have various parameters according to the size:
-	//  0: The turret is omnidirectional and points to the front when holding.
-	//  1: The turret is omnidirectional and points to the angles[0] when holding.
-	//  2: The turret can rotate in the range from angles[0] to angles[1] and points to the center of the range when holding.
-	//  >=3: The turret can rotate in the range from angles[0] to angles[1] and points to the angles[2] when holding.
-	// If isTurret is false, angles[0] specify the angle of firing direction.
-	Hardpoint(const Point &point, const std::vector<Angle> &angles, bool isTurret, bool isParallel, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const AnglesParameter &angles, bool isTurret, const Outfit *outfit = nullptr);
 	
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -48,8 +56,10 @@ public:
 	// Get the angle that this weapon is aimed at, relative to the ship.
 	const Angle &GetAngle() const;
 	// Get the base angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
+	// The turret shuold point this angle when idling.
 	const Angle &GetBaseAngle() const;
-	// Get the angle of traverse. Return value is invalid if this is omnidirectional or a gun port.
+	// Get the angle of traverse if this is a directional turret,
+	// otherwise a pair of 180 degree + baseAngle.
 	std::pair<Angle, Angle> GetAngleOfTraverse() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
@@ -89,7 +99,7 @@ public:
 	void Uninstall();
 	
 	// Get the angles that can be used as a parameter of the constructor when cloning this.
-	const std::vector<Angle> &GetAnglesParameter() const;
+	const AnglesParameter &GetAnglesParameter() const;
 	
 	
 private:
@@ -105,12 +115,13 @@ private:
 	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
-	// Angle of firing direction (guns) or holding position (turret).
+	// Angle of firing direction (guns) or idle position (turret).
 	Angle baseAngle;
-	// The range where the weapon can traverse to point to the target (turret only).
+	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
+	// otherwise a pair of 180 degree + baseAngle.
 	std::pair<Angle, Angle> angleOfTraverse;
 	// The value of the angles parameter in the constructor.
-	std::vector<Angle> anglesParameter;
+	AnglesParameter anglesParameter;
 	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
 	// Indicates if this hardpoint disallows converging (guns only).

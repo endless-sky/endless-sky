@@ -39,8 +39,9 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const vector<Angle> &angles, bool isTurret, bool isParallel, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), anglesParameter(angles), isTurret(isTurret), isParallel(isParallel)
+Hardpoint::Hardpoint(const Point &point, const AnglesParameter &angles, bool isTurret, const Outfit *outfit)
+	: outfit(outfit), point(point * .5), baseAngle(angles.baseAngle), anglesParameter(angles),
+	isTurret(isTurret), isParallel(angles.isParallel)
 {
 	UpdateAngleOfTraverse();
 }
@@ -321,7 +322,7 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 		
-		// Update angles.
+		// Update angle of traverse.
 		UpdateAngleOfTraverse();
 		
 		// For fixed weapons, apply "gun harmonization," pointing them slightly
@@ -358,14 +359,14 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 	
-	// Update angles.
+	// Update angle of traverse.
 	UpdateAngleOfTraverse();
 }
 
 
 
 // Get the angles that can be used as a parameter of the constructor when cloning this.
-const std::vector<Angle> &Hardpoint::GetAnglesParameter() const
+const Hardpoint::AnglesParameter &Hardpoint::GetAnglesParameter() const
 {
 	return anglesParameter;
 }
@@ -403,61 +404,42 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 // Update the angles of traverse.
 void Hardpoint::UpdateAngleOfTraverse()
 {
-	std::vector<Angle> &angles = anglesParameter;
-	if(!isTurret)
+	const AnglesParameter &angles = anglesParameter;
+	// Restore the initial value.
+	isOmnidirectional = angles.isOmnidirectional;
+	if(isOmnidirectional)
 	{
-		if(!angles.empty())
-			baseAngle = angles[0];
+		const Angle opposite = baseAngle + Angle(180.);
+		angleOfTraverse = make_pair(opposite, opposite);
 	}
 	else
+		angleOfTraverse = angles.angleOfTraverse;
+	
+	if(!outfit)
+		return;
+	
+	// The installed weapon restricts the angle of traverse.
+	const double hardpointsArc = (angleOfTraverse.second - angleOfTraverse.first).AbsDegrees();
+	const double weaponsArc = outfit->AngleOfTraverse();
+	if(isOmnidirectional || weaponsArc < hardpointsArc)
 	{
-		double hardpointsArc = 360.;
-		switch (angles.size())
+		isOmnidirectional = false;
+		const double weaponsHalf = weaponsArc / 2.;
+		
+		// The base angle is placed at center as possible.
+		const Angle &firstAngle = angleOfTraverse.first;
+		const Angle &secondAngle = angleOfTraverse.second;
+		double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();
+		double hardpointsSecondArc = (secondAngle - baseAngle).AbsDegrees();
+		if(hardpointsFirstArc < weaponsHalf)
+			hardpointsSecondArc = weaponsArc - hardpointsFirstArc;
+		else if(hardpointsSecondArc < weaponsHalf)
+			hardpointsFirstArc = weaponsArc - hardpointsSecondArc;
+		else
 		{
-		case 0:
-			isOmnidirectional = true;
-			break;
-		case 1:
-			isOmnidirectional = true;
-			baseAngle = angles[0];
-			break;
-		default:
-			isOmnidirectional = false;
-			angleOfTraverse = make_pair(angles[0], angles[1]);
-			hardpointsArc = (angles[1] - angles[0]).AbsDegrees();
-			if(angles.size() >= 3 && angles[2].isInRange(angles[0], angles[1]))
-				baseAngle = angles[2];
-			else
-				baseAngle = angles[0] + hardpointsArc / 2.0;
+			hardpointsFirstArc = weaponsHalf;
+			hardpointsSecondArc = weaponsHalf;
 		}
-		if(outfit && outfit->AngleOfTraverse() < hardpointsArc)
-		{
-			// The installed weapon restricts the angle of traverse.
-			const double weaponsArc = outfit->AngleOfTraverse();
-			const double weaponsHalf = weaponsArc / 2.;
-			if(isOmnidirectional)
-			{
-				isOmnidirectional = false;
-				angleOfTraverse = make_pair(baseAngle - weaponsHalf, baseAngle + weaponsHalf);
-			}
-			else
-			{
-				// The base angle is placed at center as possible.
-				const Angle &firstAngle = angleOfTraverse.first;
-				const Angle &secondAngle = angleOfTraverse.second;
-				double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();
-				double hardpointsSecondArc = (secondAngle - baseAngle).AbsDegrees();
-				if(hardpointsFirstArc < weaponsHalf)
-					hardpointsSecondArc = weaponsArc - hardpointsFirstArc;
-				else if(hardpointsSecondArc < weaponsHalf)
-					hardpointsFirstArc = weaponsArc - hardpointsSecondArc;
-				else
-				{
-					hardpointsFirstArc = weaponsHalf;
-					hardpointsSecondArc = weaponsHalf;
-				}
-				angleOfTraverse = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
-			}
-		}
+		angleOfTraverse = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
 	}
 }

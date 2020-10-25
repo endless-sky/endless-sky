@@ -239,32 +239,56 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
-			vector<Angle> angles{};
-			bool gunPortParallel = false;
+			Hardpoint::AnglesParameter angles;
+			angles.baseAngle = Angle(0.);
+			angles.isParallel = false;
+			angles.isOmnidirectional = true;
 			if(child.HasChildren())
 			{
+				bool defaultBaseAngle = true;
 				for(const DataNode &grand : child)
+				{
+					bool needToCheckAngles = false;
 					if(grand.Token(0) == "angle" && grand.Size() >= 2)
 					{
-						const int end = min(4, grand.Size());
-						for(int i = 1; i < end; ++i)
-							angles.push_back(grand.Value(i));
-						if(angles.size() >= 3 && key == "turret"
-							&& !angles[2].isInRange(angles[0], angles[1]))
-							grand.PrintTrace("Warning: The holding angle must be in the angle of traverse:");
+						angles.baseAngle = grand.Value(1);
+						needToCheckAngles = true;
+						defaultBaseAngle = false;
 					}
 					else if(grand.Token(0) == "parallel")
-						gunPortParallel = true;
+						angles.isParallel = true;
+					else if(grand.Token(0) == "angle of traverse" && grand.Size() >= 3)
+					{
+						angles.isOmnidirectional = false;
+						angles.angleOfTraverse = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
+						needToCheckAngles = true;
+					}
 					else
 						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
+					
+					if(needToCheckAngles && !angles.isOmnidirectional)
+					{
+						const Angle &base = angles.baseAngle;
+						const Angle &first = angles.angleOfTraverse.first;
+						const Angle &second = angles.angleOfTraverse.second;
+						if(!base.isInRange(first, second))
+						{
+							grand.PrintTrace("Warning: The angle must be in the angle of traverse:");
+							defaultBaseAngle = true;
+						}
+					}
+				}
+				if(!angles.isOmnidirectional && defaultBaseAngle)
+				{
+					const Angle &first = angles.angleOfTraverse.first;
+					const Angle &second = angles.angleOfTraverse.second;
+					angles.baseAngle = first + (second - first).AbsDegrees() / 2.;
+				}
 			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-			{
-				angles.resize(1);
-				armament.AddGunPort(hardpoint, angles[0], gunPortParallel, outfit);
-			}
+				armament.AddGunPort(hardpoint, angles, outfit);
 			else
 				armament.AddTurret(hardpoint, angles, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
@@ -509,7 +533,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetAnglesParameter(), outfit);
 					if(nextGun != end)
 					{
 						if(outfit)
@@ -774,35 +798,21 @@ void Ship::Save(DataWriter &out) const
 					hardpoint.GetOutfit()->Name());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
-			if(hardpoint.IsTurret())
+			const auto &angles = hardpoint.GetAnglesParameter();
+			const double baseDegree = angles.baseAngle.Degrees();
+			if(angles.isParallel || baseDegree || !angles.isOmnidirectional)
 			{
-				const auto &angles = hardpoint.GetAnglesParameter();
-				if(!angles.empty())
+				out.BeginChild();
 				{
-					out.BeginChild();
-					{
-						out.WriteToken("angle");
-						for(auto &angle : angles)
-							out.WriteToken(angle.Degrees());
-						out.Write();
-					}
-					out.EndChild();
+					if(baseDegree)
+						out.Write("angle", baseDegree);
+					if(angles.isParallel)
+						out.Write("parallel");
+					if(!angles.isOmnidirectional)
+						out.Write("angle of traverse",
+							angles.angleOfTraverse.first.Degrees(), angles.angleOfTraverse.second.Degrees());
 				}
-			}
-			else
-			{
-				double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
-				if(hardpoint.IsParallel() || hardpointAngle)
-				{
-					out.BeginChild();
-					{
-						if(hardpointAngle)
-							out.Write("angle", hardpointAngle);
-						if(hardpoint.IsParallel())
-							out.Write("parallel");
-					}
-					out.EndChild();
-				}
+				out.EndChild();
 			}
 		}
 		for(const Bay &bay : bays)

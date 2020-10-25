@@ -183,6 +183,8 @@ Point Angle::Rotate(const Point &point) const
 // The range from "base" to "limit" is expressed by "clock" orientation.
 bool Angle::isInRange(const Angle& base, const Angle& limit) const
 {
+	// Choose an edge of the arc as the reference angle (base) and
+	// compare relative angles to decide whether this is in the range.
 	Angle normalizedLimit = limit - base;
 	Angle normalizedTarget = *this - base;
 	return normalizedTarget.angle <= normalizedLimit.angle;
