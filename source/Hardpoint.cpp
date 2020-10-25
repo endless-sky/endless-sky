@@ -269,14 +269,25 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	double range = outfit->Velocity();
 	
 	// Check if the missile is within range of this hardpoint.
-	Point start = ship.Position() + ship.Facing().Rotate(point);
+	const Angle facing = ship.Facing();
+	Point start = ship.Position() + facing.Rotate(point);
 	Point offset = projectile.Position() - start;
 	if(offset.Length() > range)
 		return false;
 	
-	// Firing effects are displayed at the anti-missile hardpoint that just fired.
+	// Check if the missile is within angle of traverse.
 	Angle aim(offset);
-	angle = aim - ship.Facing();
+	if(!IsOmnidirectional())
+	{
+		auto range = GetAngleOfTraverse();
+		range.first += facing;
+		range.second += facing;
+		if(!aim.isInRange(range.first, range.second))
+			return false;
+	}
+	
+	// Firing effects are displayed at the anti-missile hardpoint that just fired.
+	angle = aim - facing;
 	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 	
