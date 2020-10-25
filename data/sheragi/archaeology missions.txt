@@ -1317,12 +1317,12 @@ mission "Sheragi Archaeology: Epilogue"
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
 		give ship "Emerald Sword (Fixed)" "Emerald Sword"
-		give ship "Black Diamond" "Discount Flak Round"
-		give ship "Black Diamond" "How Do I Steer"
-		give ship "Black Diamond" "An Implicit Comparison To Fleas"
-		give ship "Black Diamond" "Punch Biopsy"
-		give ship "Black Diamond" "Just The Letter H"
-		give ship "Black Diamond" "I Got The Bees You Need"
+		give ship "Black Diamond" "Stormheart"
+		give ship "Black Diamond" "Onyx Chariot"
+		give ship "Black Diamond" "Firebrand"
+		give ship "Black Diamond" "Frostherald"
+		give ship "Black Diamond" "Ivory Talon"
+		give ship "Black Diamond" "Skeleton Key"
 		conversation
 			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. As luck would have it, the shipboard scanner reveal anomalous structures over a mesa, and as you come in for a landing, it becomes apparent that these are the ruins of a large settlement. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term`
 			`	While the crew starts to work on the Emerald Sword, you and the archaeologists head into the settlement, documenting what you see. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
@@ -1331,7 +1331,6 @@ mission "Sheragi Archaeology: Epilogue"
 				accept
 	on complete
 		log `Obtained an ancient Sheragi warship whose name translates to the Emerald Sword. It was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, it is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size.`
-		payment 5000000
 		conversation
 			`Your exotic new ship draws a lot of attention from the dockworkers, partly because it is unique and never-before-seen, but probably even more so due to the unprecedentedly large cannon. Albert and the Hai archaeologists spend most of the day examining your ship in more detail and recovering the corpses now that it's in a proper spaceport and they can access more complex equipment. Everything is completed in one particularly busy afternoon, and as night falls, the immense scale of the inside of the ship allows more floors to be installed, giving you even more living space.`
 			`	You go back to the same park as before with Albert and the three Hai in partial disguise, ice creams in hand and paws to commemorate the new acquisition.`

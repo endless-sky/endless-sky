@@ -208,7 +208,7 @@ outfit "Particle Waveform Turret"
 		"shield damage" 95
 		"hull damage" 270
 		"heat damage" 224
-		"ion damage" 5.6
+		"ion damage" 4.2
 		"turret turn" 1.8
 	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and disrupts electrical systems. By the nature of these weapons, one can deduce that their tactics likely involved using the Dragonflame Cannon at long range to break the enemy shields and finishing them off at relatively close range with the Particle Waveform Turrets."
 
@@ -227,7 +227,6 @@ outfit "Shard Fabricator"
 			"frame rate" 30
 			"random start frame"
 		sound "grab-strike"
-		"firing fuel" 2
 		icon "icon/shard"
 		"fire effect" "basic launch"
 		"hit effect" "Shard impact"
@@ -247,6 +246,7 @@ outfit "Shard Fabricator"
 		"burst reload" 2
 		"firing energy" 40
 		"firing heat" 60
+		"firing fuel" 2
 	description `To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce simple kinetic missiles from stock materials and a small amount of stored fuel; their guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility. However, the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload.`
 
 outfit "Shard inactive"
