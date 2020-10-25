@@ -3594,13 +3594,13 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Where is your symbiont? Yours does not seem to be obvious."`
 					goto dawnwhere
 				`	"Could I see your symbiont?"`
-			`	Dawn looks at you with an amused expression. "We don't know each other nearly well enough for that. Better to focus on the expedition. I will catch up to you on the ship."`
+			`	Dawn looks at you with an amused expression. "We do not know each other nearly well enough for that. Better to focus on the expedition. I will catch up to you on the ship."`
 				accept
 			label onwards
 			`	She nods. "Well, I will finish my meal and meet you on the <ship> shortly." With that, she returns to her meal.`
 				accept
 			label dawnwhere
-			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. Mine is located primarily along my spine.`
+			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. We do not know each other well enough for me to tell you more than that.`
 			`	"We should probably be focusing on the expedition, though. You go get the <ship> ready for launch, and I will be there shortly."`
 				accept
 	on accept
