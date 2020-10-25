@@ -103,7 +103,7 @@ outfit "Small Hybrid Cooling"
 	"active cooling" 17
 	"cooling" 9
 	"cooling energy" 3.1
-	description `This small cooling solution was designed with fighters in mind, and as such, it does not store fuel. However, it provides more passive cooling than it's big brother.`
+	description `This small cooling solution was designed with fighters in mind, and as such, it does not store fuel. However, it provides more passive cooling than its big brother.`
 
 outfit "Small EM Battery"
 	category "Power"
@@ -247,7 +247,7 @@ outfit "Shard Fabricator"
 		"burst reload" 2
 		"firing energy" 40
 		"firing heat" 60
-	description `To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce very simple kinetic missiles from stock materials and a small amount of stored fuel; their simple guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility, but the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload.`
+	description `To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce simple kinetic missiles from stock materials and a small amount of stored fuel; their guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility. However, the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload.`
 
 outfit "Shard inactive"
 	weapon

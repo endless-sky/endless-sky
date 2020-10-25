@@ -214,4 +214,4 @@ ship "Black Diamond"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	"final explode" "final explosion small"
-	description "The Sheragi, being too large to effectively pilot ships this small, invested heavily on the development of autonomous fighters. The hardware that controls this isn't much more complex than the combat drones in human space, but it is much bigger, and the lack of life support systems and amenities for a pilot allows it to carry much more extra outfits."
+	description "The Sheragi, being too large to effectively pilot ships this small, invested heavily in the development of autonomous fighters. The hardware that controls this isn't much more complex than the combat drones in human space, but it is bigger, and the lack of life support systems and amenities for a pilot allows it to carry extra outfitting space."

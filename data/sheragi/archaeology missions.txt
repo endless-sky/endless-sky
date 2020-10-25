@@ -1224,7 +1224,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword, if its remains are still there."`
 			label return
 			`	"What do I get in return?" you ask.`
-			`	"Fame and fortune, my friend. And if the ship is still there, i think you deserve to keep it." Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a jump drive. Come back to us once you have it."`
+			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it." Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a jump drive. Come back to us once you have it."`
 				accept
 	
 	to complete
@@ -1240,7 +1240,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	destination "Valley of the Damned"
 	cargo "Outfitting Equipment" 50
 	passengers 150
-	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, we're going to need 50 tons of cargo to take our materials and the jump drive, and 150 additional crew to help, including us. The Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so i took the liberty of hiring some extra crew on top of the specialist team."`
+	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, we're going to need 150 additional crew to help, including us, and 50 tons of cargo to take our materials and the jump drive. The Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so I've taken the liberty of hiring some extra crew on top of the specialist team."`
 	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
@@ -1254,7 +1254,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`    (No.)`
 					defer
 			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment, along with the jump drive you brought. He has assembled a crew of around 150 people, including a specialized team of shipyard workers, a large amount of veteran crew members, himself, and the three Hai archaeologists, who are comfortable to let go of their disguise once they're back in your ship.`
-			`	"<first>, meet the people who will help us uncover the fate of the Emerald Sword. I've just briefed them on the situation and what we plan to do. We're going to take some specialized tools with us, along with the jump drive, which should allow us to repair and outfit the ship in any world we can land on. This might look like a lot of people, but if we want to recover a derelict ship, I suspect it will be no easy task. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
+			`	"<first>, meet the people who will help us uncover the fate of the Emerald Sword. I've just briefed them on the situation and what we plan to do. Along with the jump drive, we're going to take some specialized tools with us, which should allow us to repair and outfit the ship in any world we can land on. This might look like a lot of people, but if we want to recover a derelict ship, I suspect we'll need just this many. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
 			`	You thank Albert, and make your preparations for the voyage into the unknown.`
 				accept
 	
