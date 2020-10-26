@@ -3,6 +3,8 @@
 // Include only the tested class's header.
 #include "../../source/Point.h"
 
+// ... and any system includes needed for the test file.
+
 namespace { // test namespace
 // #region mock data
 // #endregion mock data
@@ -14,15 +16,15 @@ SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) 
 		Point a;
 		WHEN( "the point is created" ) {
 			THEN( "it represents (0, 0)" ) {
-				REQUIRE( a.X() == 0. );
-				REQUIRE( a.Y() == 0. );
+				CHECK( a.X() == 0. );
+				CHECK( a.Y() == 0. );
 			}
 		}
 		WHEN( "Set is called" ) {
 			a.Set(1, 3);
 			THEN( "X and Y are updated" ) {
-				REQUIRE( a.X() == 1. );
-				REQUIRE( a.Y() == 3. );
+				CHECK( a.X() == 1. );
+				CHECK( a.Y() == 3. );
 			}
 		}
 	}
@@ -33,21 +35,21 @@ SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) 
 			a.X() = 0.;
 			a.Y() = 0.;
 			THEN( "it can be converted to boolean FALSE" ) {
-				REQUIRE( static_cast<bool>(a) == false );
+				CHECK( static_cast<bool>(a) == false );
 			}
 		}
 		WHEN( "the point has non-zero X" ) {
 			a.X() = 0.00001;
 			THEN( "it can be converted to boolean TRUE" ) {
 				REQUIRE( a.Y() == 0. );
-				REQUIRE( static_cast<bool>(a) == true );
+				CHECK( static_cast<bool>(a) == true );
 			}
 		}
 		WHEN( "the point has non-zero Y") {
 			a.Y() = 0.00001;
 			THEN( "it can be converted to boolean TRUE" ) {
 				REQUIRE( a.X() == 0. );
-				REQUIRE( static_cast<bool>(a) == true );
+				CHECK( static_cast<bool>(a) == true );
 			}
 		}
 	}
