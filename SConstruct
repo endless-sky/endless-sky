@@ -30,7 +30,8 @@ Help(opts.GenerateHelpText(env))
 # or modify the `flags` variable:
 flags = ["-std=c++11", "-Wall", "-Werror"]
 if env["mode"] != "debug":
-	flags += ["-O3"]
+	flags += ["-O3", "-flto"]
+	env.Append(LINKFLAGS = ["-flto", "-O3"])
 if env["mode"] == "debug":
 	flags += ["-g"]
 elif env["mode"] == "profile":

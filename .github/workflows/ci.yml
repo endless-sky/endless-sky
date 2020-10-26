@@ -74,6 +74,12 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
+    - name: Print toolchain versions
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: |
+        g++ --version
+        ar --version
+        scons --version
     - name: Cache ccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
