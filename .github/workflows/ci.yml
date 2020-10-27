@@ -54,7 +54,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+        os: [ubuntu-20.04, ubuntu-18.04]
+        include:
+          - os: ubuntu-16.04
+            env:
+              CXX: ccache g++7
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
@@ -77,9 +81,11 @@ jobs:
     - name: Print toolchain versions
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
-        g++ --version
+        g++ -v
         ar --version
-        scons --version
+        gcc-ar --version
+        objdump -i
+        echo "LTO plugin found in file=$(g++ --print-file-name=liblto_plugin.so)"
     - name: Cache ccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -247,34 +253,34 @@ jobs:
         echo "EOF" >> $GITHUB_ENV
 
 
-  build_macos:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest]
-    env:
-      ARTIFACT: /tmp/EndlessSky.dst/Applications/
-    steps:
-    - uses: actions/checkout@v2
-    - name: Restore cached game binary
-      id: cache-artifact
-      uses: actions/cache@v2
-      with:
-        path: ${{ env.ARTIFACT }}
-        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
-    - name: Install dependencies
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: |
-        brew update
-        brew install libmad libpng jpeg-turbo sdl2
-    - name: Compile
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet install
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: app-${{ matrix.os }}
-        path: ${{ env.ARTIFACT }}
+  # build_macos:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [macos-latest]
+  #   env:
+  #     ARTIFACT: /tmp/EndlessSky.dst/Applications/
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Restore cached game binary
+  #     id: cache-artifact
+  #     uses: actions/cache@v2
+  #     with:
+  #       path: ${{ env.ARTIFACT }}
+  #       key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
+  #   - name: Install dependencies
+  #     if: steps.cache-artifact.outputs.cache-hit != 'true'
+  #     run: |
+  #       brew update
+  #       brew install libmad libpng jpeg-turbo sdl2
+  #   - name: Compile
+  #     if: steps.cache-artifact.outputs.cache-hit != 'true'
+  #     run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet install
+  #   - name: Upload artifact
+  #     uses: actions/upload-artifact@v2
+  #     with:
+  #       name: app-${{ matrix.os }}
+  #       path: ${{ env.ARTIFACT }}
 
 
   # This section is for tests on ubuntu 16 (and on ubuntu 20).
@@ -369,25 +375,25 @@ jobs:
       run: .\tests\test_parse.ps1 EndlessSky.exe
 
 
-  test_macos-parse:
-    needs: [build_macos, test_ubuntu-parse]
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest]
-    env:
-      ES_BINARY: "'./Endless Sky.app/Contents/MacOS/Endless Sky'"
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: |
-        brew update
-        brew install libmad libpng jpeg-turbo sdl2
-    - name: Download game binary
-      uses: actions/download-artifact@v2
-      with:
-        name: app-${{ matrix.os }}
-    - name: Verify Executable
-      run: chmod +x "${ES_BINARY}" && ${ES_BINARY} -v
-    - name: Parse Datafiles
-      run: ./tests/test_parse.sh "${ES_BINARY}"
+  # test_macos-parse:
+  #   needs: [build_macos, test_ubuntu-parse]
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [macos-latest]
+  #   env:
+  #     ES_BINARY: "'./Endless Sky.app/Contents/MacOS/Endless Sky'"
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Install dependencies
+  #     run: |
+  #       brew update
+  #       brew install libmad libpng jpeg-turbo sdl2
+  #   - name: Download game binary
+  #     uses: actions/download-artifact@v2
+  #     with:
+  #       name: app-${{ matrix.os }}
+  #   - name: Verify Executable
+  #     run: chmod +x "${ES_BINARY}" && ${ES_BINARY} -v
+  #   - name: Parse Datafiles
+  #     run: ./tests/test_parse.sh "${ES_BINARY}"
