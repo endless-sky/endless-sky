@@ -5,6 +5,7 @@ Source: https://github.com/endless-sky/endless-sky
 
 Files: *
 Copyright: Michael Zahniser <mzahniser@gmail.com>
+           endless-sky contributors (see credits.txt and changelog)
 License: GPL-3+
 
 Files: images/*
