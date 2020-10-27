@@ -1702,7 +1702,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment()->IsPlayer())
-		if((event.Type() & ShipEvent::DISABLE) && event.Target())
+		if((event.Type() & ShipEvent::DISABLE) && event.Target() && !event.Target()->IsYours())
 		{
 			auto &rating = conditions["combat rating"];
 			static const int64_t maxRating = 2000000000;
