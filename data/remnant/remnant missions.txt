@@ -3639,7 +3639,7 @@ event "remnant: lab availability"
 mission "Remnant: Expanded Horizons Astral 2"
 	name "Research expedition to Sagittarius A*"
 	description "Travel to Sagittarius A* with a research laboratory installed in order to make measurements on the supermassive black hole and then return to <destination>."
-	blocked "You need at least 1 free bunk, a jump drive, and a research laboratory to take this mission."
+	blocked "You need a jump drive and a research laboratory to take this mission."
 	waypoint "Sagittarius A*"
 	source
 		government "Remnant"
@@ -3693,7 +3693,6 @@ mission "Remnant: Expanded Horizons Astral 2"
 					goto astraldata
 				`	"How much longer does the equipment need?"`
 					goto astralfinish
-			label astralfirst
 			`	"No, this is the forty-third such expedition. Sagittarius A* was one of the first places our explorers sought to visit after we acquired jump drives, and we have been coming back regularly ever since. I know some of our reconnaissance pilots consider visiting here a pilgrimage of sorts. It is humbling to be here myself after reviewing so many data sets of past expeditions." She looks thoughtful, staring out the window at the the hub of the galaxy, as if her thoughts are jumping from idea to idea.`
 			choice
 				`	"Anything unusual in the data?"`
@@ -3702,7 +3701,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 			label astraldata
 			`	"There are many oddities about this place. Every visit helps revise our physics models a little closer. But they also reveal problems." She frowns, her gestures taking on a curious tone. "For instance, you will note that your ramscoops are not picking up anything. According to standard astronomical theory, this system should be a veritable river of suitable material, and yet there is nothing. Not even the normal background trace amounts we find in deep space. We have visited other black holes, and they conform to the standard models in this respect. But not Sagittarius A*." She pauses, thinking about it for a moment.`
 			choice
-				`	"Is the equipment loaded?"`
+				`	"Is the equipment finished?"`
 				`	"How much longer does the equipment need?"`
 			label astralfinish 
 			`	"The equipment will be finished shortly, Captain <first>. I just need to make a few observations, and then we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
