@@ -1731,19 +1731,6 @@ void PlayerInfo::GetConditions(map<string, int64_t> &targetMap, const string &pr
 
 
 
-// Get the sum (addition) of all conditions starting with the given prefix.
-int64_t PlayerInfo::GetConditionSum(const string &prefix) const
-{
-	auto it = conditions.lower_bound(prefix);
-	int64_t returnValue = 0;
-	for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
-		returnValue += it->second;
-	
-	return returnValue;
-}
-
-
-
 // Set a condition to the given value.
 bool PlayerInfo::SetCondition(const string &name, int64_t value)
 {
