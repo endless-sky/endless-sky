@@ -1262,6 +1262,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 		fail "Sheragi Archaeology: The Emerald Sword 2"
 		outfit "Jump Drive" -1
 		event "zubenelhakrabi discovered"
+		"reputation: Sheragi" = 1
 
 	on enter "Zubenelhakrabi"
 		conversation
@@ -1295,7 +1296,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 
 	npc assist
 		government "Sheragi"
-		personality derelict mute
+		personality derelict mute pacifist
 		system "Zubenelhakrabi"
 		ship "Emerald Sword" "Emerald Sword"
 		conversation
