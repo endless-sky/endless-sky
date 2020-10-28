@@ -1240,7 +1240,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	destination "Valley of the Damned"
 	cargo "Outfitting Equipment" 50
 	passengers 150
-	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, we're going to need 150 additional crew to help, including us, and 50 tons of cargo to take our materials and the jump drive. The Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so I've taken the liberty of hiring some extra crew on top of the specialist team."`
+	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, the Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so I've taken the liberty of hiring some extra crew on top of the specialist team. We're going to need 150 additional crew to help, including us, and 50 tons of cargo to take our materials and the spare jump drive."`
 	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
