@@ -9,6 +9,12 @@ if 'CXXFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CXXFLAGS'])
 if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
+if 'AR' in os.environ:
+	env['AR'] = os.environ['AR']
+if 'ARFLAGS' in os.environ:
+	env.Append(ARFLAGS = os.environ['ARFLAGS'])
+if 'RANLIB' in os.environ:
+	env['RANLIB'] = os.environ['RANLIB']
 
 # The Steam runtime has an out-of-date libstdc++, so link it in statically:
 chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')

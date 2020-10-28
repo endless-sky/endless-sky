@@ -54,11 +54,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
-        include:
-          - os: ubuntu-16.04
-            env:
-              CXX: ccache g++7
+        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
@@ -82,10 +78,8 @@ jobs:
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
         g++ -v
-        ar --version
         gcc-ar --version
-        objdump -i
-        echo "LTO plugin found in file=$(g++ --print-file-name=liblto_plugin.so)"
+        ld -v
     - name: Cache ccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -98,7 +92,7 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: scons -Qj $(nproc);
+      run: AR=gcc-ar RANLIB=gcc-ranlib scons -Qj $(nproc);
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
@@ -141,9 +135,9 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: scons -Qj $(nproc) build-tests
+      run: AR=gcc-ar RANLIB=gcc-ranlib scons -Qj $(nproc) build-tests
     - name: Run tests
-      run: scons -Qj $(nproc) test
+      run: AR=gcc-ar RANLIB=gcc-ranlib scons -Qj $(nproc) test
 
 
   build_windows:
