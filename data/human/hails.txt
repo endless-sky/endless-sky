@@ -1670,6 +1670,47 @@ phrase "friendly civilian"
 		"The next event will be great!"
 		"That's real entertainment!"
 
+phrase "friendly civilian"
+	word
+		"I"
+		"Me and my friend"
+	word
+		" "
+	word
+		"had a job"
+		"used to spend time on"
+		"worked for years on"
+		"worked in the business of"
+	word
+		" "
+	word
+		"creating pixel art"
+		"creating computer games"
+		"creating 3D computer models"
+		"creating websites on the worlds wide web"
+		"cleaning corridors in an university"
+		"delivering furniture to peoples houses"
+		"documenting complex processes"
+		"farming in the dirt belt"
+		"installing domotics into rich customers houses"
+		"making large amounts of ketchap"
+		"moving furniture from warehouses to shopping centers"
+		"painting car tires black"
+		"packing fastfood into boxes"
+		"setting up software integration processes"
+		"spreading news to hundreds of people"
+		"teaching mathematics to highschool kids"
+		"tending bars"
+		"testing computer fabrication machines"
+		"writing firmware for embedded computerchips"
+	word
+		" and look what a nice ship I'm flying now."
+		" and now I am retired and flying spaceships for fun."
+		", but being a pilot on a spaceship beats it all."
+		", but I still had to take a big loan to buy my first ship."
+		", but it was my grandma's inheritance that allowed me to buy this ship."
+
+
 phrase "friendly navy"
 	word
 		"The Navy"
@@ -3930,6 +3971,7 @@ phrase "test dummy"
 		"We have normality. I repeat, we have normality. Anything you still can't cope with is therefore your own problem."
 		"Look at your precious human ship, for the last time!"
 		"This is not a pre-recorded message."
+		"The answer is 42, I'm quite certain of it. Do you want me to calculate the question?"
 
 phrase "disabled test dummy"
 	word
