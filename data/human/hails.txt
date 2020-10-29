@@ -1678,16 +1678,14 @@ phrase "friendly civilian"
 		" "
 	word
 		"had a job"
-		"used to spend time"
 		"worked for years"
-		"worked in the business of"
 	word
 		" "
 	word
 		"creating pixel art"
 		"creating computer games"
 		"creating 3D computer models"
-		"creating websites on the World Wide Web"
+		"creating websites on the Worlds Wide Web"
 		"cleaning corridors in an university"
 		"delivering furniture to people's houses"
 		"documenting complex processes"
