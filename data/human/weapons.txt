@@ -537,6 +537,32 @@ outfit "Plasma Turret"
 		"hull damage" 25
 		"heat damage" 340
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
+	
+outfit "Plasma Repeater"
+	category "Guns"
+	cost 274000
+	thumbnail "outfit/plasma_repeater"
+	mass 32
+	"outfit space" -32
+	"weapon capacity" -32
+	"gun ports" -1
+	weapon
+		sprite "projectile/plasma"
+			"frame rate" 3
+		sound "plasma"
+		"hit effect" "plasma explosion"
+		lifetime 38
+		velocity 12
+		inaccuracy 5
+		reload 7
+		"firing energy" 13
+		"firing heat" 110
+		"shield damage" 33
+		"hull damage" 13
+		"heat damage" 144
+		"hit force" 19
+	description `Decades after buying the rights for the Plasma Cannon, Kraz Cybernetics put this weapon on the shelves of every high-end outfitter of the southern rim. The Plasma Repeater was the golden egg of Kraz Cybernetics and its ticket for interstellar government funding.`
+	description `Derived from the original Plasma Cannon, this larger version trades off its larger bursts for a much faster rate of fire of less concentrated bursts. Although the smaller bursts of superheated plasma deal far less damage than its predecessor, it imparts more damage onto the enemy overall.`
 
 effect "plasma explosion"
 	sprite "effect/plasma explosion"
