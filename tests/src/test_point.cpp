@@ -10,6 +10,7 @@ namespace { // test namespace
 // #endregion mock data
 
 
+
 // #region unit tests
 SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) {
 	GIVEN( "No initial values" ) {
@@ -40,15 +41,15 @@ SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) 
 		}
 		WHEN( "the point has non-zero X" ) {
 			a.X() = 0.00001;
+			REQUIRE( a.Y() == 0. );
 			THEN( "it can be converted to boolean TRUE" ) {
-				REQUIRE( a.Y() == 0. );
 				CHECK( static_cast<bool>(a) == true );
 			}
 		}
 		WHEN( "the point has non-zero Y") {
 			a.Y() = 0.00001;
+			REQUIRE( a.X() == 0. );
 			THEN( "it can be converted to boolean TRUE" ) {
-				REQUIRE( a.X() == 0. );
 				CHECK( static_cast<bool>(a) == true );
 			}
 		}

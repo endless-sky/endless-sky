@@ -128,7 +128,6 @@ SCENARIO( "A Set can be reverted to an earlier state", "[Set]" ) {
 		}
 	}
 }
-
 // #endregion unit tests
 
 

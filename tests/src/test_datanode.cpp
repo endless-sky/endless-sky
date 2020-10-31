@@ -7,17 +7,11 @@
 #include <string>
 #include <vector>
 
-// Any mocks we define should not be exposed to other .cpp files,
-// so we declare everything in an anonymous namespace.
 namespace { // test namespace
-
 // #region mock data
 
-// Often we cannot test a class using just the class and primitives such as ints or doubles - we need
-// classes, classes that expose a particular interface, or even calls to third party libraries like
-// SDL. For unit tests, we do _NOT_ want to actually make these calls to other implementations, so we
-// declare file-local mocks and/or stubs that allow us to inspect or control these calls, for the sake
-// of testing our particular implementation.
+// Insert file-local data here, e.g. classes, structs, or fixtures that will be useful
+// to help test this class/method.
 
 // #endregion mock data
 
