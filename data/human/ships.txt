@@ -169,11 +169,11 @@ ship "Arrow"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -10 60
-	engine 10 60
-	gun -8 -34 "Sidewinder Missile Launcher"
-	gun 8 -34
-	turret 0 16 "Anti-Missile Turret"
+	engine -9.5 59
+	engine 9.5 59
+	gun -7 -41.5 "Sidewinder Missile Launcher"
+	gun 7 -41.5
+	turret 0 17 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
 	explode "small explosion" 18
@@ -390,10 +390,10 @@ ship "Barb"
 
 		"X1050 Ion Engines"
 		
-	engine -10 28
-	engine 9 28
+	engine -9 28
+	engine 9 28.5
 	gun -9 -29 "Energy Blaster"
-	turret 8 6 "Blaster Turret"
+	turret 8.5 10 "Blaster Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -431,8 +431,8 @@ ship "Barb" "Barb (Proton)"
 
 		"X1050 Ion Engines"
 		
-	engine -10 28
-	engine 9 28
+	engine -9 28
+	engine 9 28.5
 	gun -9 -29 "Proton Gun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
@@ -793,15 +793,15 @@ ship "Bulk Freighter"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -22 198
-	engine 22 198
-	gun -20 -175 "Sidewinder Missile Launcher"
-	gun 20 -175 "Sidewinder Missile Launcher"
-	turret -12 -155 "Laser Turret"
-	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 0 5 "Laser Turret"
-	turret -30 175 "Heavy Anti-Missile Turret"
-	turret 30 175 "Laser Turret"
+	engine -20 197
+	engine 20 197
+	gun -21 -183 "Sidewinder Missile Launcher"
+	gun 21 -183 "Sidewinder Missile Launcher"
+	turret -13 -159.5 "Laser Turret"
+	turret 13 -159.5 "Heavy Anti-Missile Turret"
+	turret 0 10 "Laser Turret"
+	turret -10.5 175 "Heavy Anti-Missile Turret"
+	turret 10.5 175 "Laser Turret"
 	leak "leak" 40 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -1600,11 +1600,11 @@ ship "Freighter"
 		"X2200 Ion Steering"
 		"Scram Drive"
 		
-	engine -9 97
-	engine 9 97
+	engine -8.5 96.5
+	engine 8.5 96.5
 	turret 0 -52 "Blaster Turret"
-	turret 0 6 "Heavy Anti-Missile Turret"
-	turret 0 65 "Blaster Turret"
+	turret 0 6.5 "Heavy Anti-Missile Turret"
+	turret 0 64.5 "Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 10
@@ -2556,16 +2556,16 @@ ship "Protector"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -11 125
-	engine 11 125
-	gun -15 -100 "Sidewinder Missile Launcher"
-	gun 15 -100 "Sidewinder Missile Launcher"
-	turret -54 -54 "Quad Blaster Turret"
-	turret 54 -54 "Quad Blaster Turret"
-	turret -73 0 "Heavy Anti-Missile Turret"
-	turret 73 0 "Heavy Anti-Missile Turret"
-	turret -54 54 "Quad Blaster Turret"
-	turret 54 54 "Quad Blaster Turret"
+	engine -11 124
+	engine 11 124
+	gun -15 -109.5 "Sidewinder Missile Launcher"
+	gun 15 -109.5 "Sidewinder Missile Launcher"
+	turret -56 -56 "Quad Blaster Turret"
+	turret 56 -56 "Quad Blaster Turret"
+	turret -79 0 "Heavy Anti-Missile Turret"
+	turret 79 0 "Heavy Anti-Missile Turret"
+	turret -56 56 "Quad Blaster Turret"
+	turret 56 56 "Quad Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
@@ -3105,9 +3105,9 @@ ship "Star Barge"
 		"X1200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -9 38
-	engine 9 38
-	turret 0 -8 "Anti-Missile Turret"
+	engine -9.5 39
+	engine 9.5 39
+	turret 0 -9.5 "Anti-Missile Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
@@ -3245,16 +3245,16 @@ ship "Vanguard"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 	
-	engine -15 130
-	engine 15 130
+	engine -15.5 133
+	engine 15.5 133
 	gun 0 -132 "Proton Gun"
 	gun -22 -122 "Proton Gun"
 	gun 22 -122 "Proton Gun"
-	gun -21 -45 "Proton Gun"
-	gun 21 -45 "Proton Gun"
-	gun -31 -45 "Proton Gun"
-	gun 31 -45 "Proton Gun"
-	turret 0 42 "Anti-Missile Turret"
+	gun -24 -44 "Proton Gun"
+	gun 24 -44 "Proton Gun"
+	gun -30.5 -45 "Proton Gun"
+	gun 30.5 -45 "Proton Gun"
+	turret 0 40.5 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
@@ -3303,8 +3303,8 @@ ship "Wasp"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -6 33
-	engine 6 33
+	engine -7 33
+	engine 7 33
 	gun 0 -38 "Sidewinder Missile Launcher"
 	gun -13 -31 "Energy Blaster"
 	gun 13 -31 "Energy Blaster"
