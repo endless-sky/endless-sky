@@ -462,13 +462,14 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	
-	// connect the xy to the "vert" attribute of the vertex shader
+	// Connect the xy to the "vert" attribute of the vertex shader.
+	constexpr auto stride = 4 * sizeof(GLfloat);
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 	
 	glEnableVertexAttribArray(shader.Attrib("corner"));
 	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
