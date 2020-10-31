@@ -73,16 +73,7 @@ namespace {
 
 
 
-Font::Font()
-	: texture(0), vao(0), vbo(0), colorI(0), scaleI(0), glyphI(0), aspectI(0),
-	  positionI(0), height(0), space(0), screenWidth(0), screenHeight(0)
-{
-}
-
-
-
 Font::Font(const string &imagePath)
-	: Font()
 {
 	Load(imagePath);
 }
