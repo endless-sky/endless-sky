@@ -20,7 +20,6 @@ Files:
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
  images/outfit/heavy?anti-missile?hai*
- images/ship/marrow*
  images/ship/mbounder*
  images/ship/mfury*
  images/ship/mmanta*
@@ -45,12 +44,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
 
 Files:
- images/ship/pointedstick_vanguard*
-Copyright: Maximilian Korber
-License: CC-BY-SA-4.0
-Comment: Derived from works by Nate Graham (under the same license).
-
-Files:
  images/effect/railspark*
  images/projectile/tinyflare*
  images/outfit/*engines?hai*
@@ -70,7 +63,6 @@ Comment: Derived from works by Jonathan Steck derived from works by Michael Zahn
 
 Files:
  images/ship/hai?pond?strider*
- images/ship/barb*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
@@ -83,7 +75,6 @@ Copyright: Matthew Smestad
 License: CC-BY-SA-4.0
 
 Files:
- images/ship/vanguard*
  images/outfit/luxury accommodations*
  images/outfit/proton turret*
  images/hardpoint/proton turret*
@@ -658,29 +649,45 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/arrow*
  images/ship/blackbird*
+ images/ship/bulk?freighter*
  images/ship/falcon*
+ images/ship/freighter*
  images/ship/hawk*
  images/ship/osprey*
+ images/ship/protector*
  images/ship/sparrow*
+ images/ship/star?barge*
+ images/ship/wasp*
+ images/thumbanil/arrow*
  images/thumbnail/blackbird*
+ images/thumbnail/bulk?freighter*
  images/thumbnail/falcon*
+ images/thumbnail/freighter*
  images/thumbnail/hawk*
  images/thumbnail/osprey*
+ images/thumbnail/protector*
  images/thumbnail/sparrow*
+ images/thumbnail/star?barge*
+ images/thumbnail/wasp*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Anarchist2.
 
 Files:
+ images/ship/marrow*
  images/ship/mfalcon*
+ images/thumbnail/marrow*
  images/thumbnail/mfalcon*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 
 Files:
+ images/ship/barb*
  images/ship/finch*
+ images/thumbnail/barb*
  images/thumbnail/finch*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
@@ -690,6 +697,19 @@ Files: images/ship/mosprey*
 Copyright: tehhowch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files:
+ images/ship/vanguard*
+ images/thumnail/vanguard*
+Copyright: Nate Graham <pointedstick@zoho.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Anarchist2.
+
+Files:
+ images/ship/pointedstick_vanguard*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license) and detailed by Anarchist2.
 
 Files:
  images/outfit/pug?staff*
