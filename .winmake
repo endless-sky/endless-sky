@@ -72,25 +72,26 @@ SCONS_VERSION ?= 4.0.1
 # * pass down the CLI arguments, or map scons options into makefile targets with defined options
 # * map above environment variables into scons format
 # * parse $(MAKEFLAGS) / $(MAKECMDGOALS) into scons options (e.g. defer to input -j override, etc)?
-# * avoid re-downloading the zip if `scons-local` dir exists
 
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
 all release debug profile: get_scons
-	@$(scons_exe)
+	@$(scons_exe) -Q
 
-# Download the compressed package, and mark it as up-to-date (rather than having a date
-# associated with when it was packaged by the SCons developers.)
+needs_tarball ::= $(strip $(shell ls scons-local/scons.py 2>/dev/null || echo true))
+ifeq ($(needs_tarball),true)
+# Download / Unpack the tarball, and mark it as up-to-date (rather than inherit
+# the date associated with when it was packaged by the SCons developers.)
 scons-local-%.tar.gz:
 	@echo "No system installation of SCons, downloading version $(SCONS_VERSION)"
 	curl -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/scons-local-$(SCONS_VERSION).tar.gz > scons-local-$(SCONS_VERSION).tar.gz
 	@touch scons-local-$(SCONS_VERSION).tar.gz
-
-# Unpack the downloaded compressed package, and mark it as up-to-date.
 scons-local: scons-local-$(SCONS_VERSION).tar.gz
+	@echo "Unpacking tarball into scons-local"
 	@mkdir -p scons-local
 	@tar xzf scons-local-$(SCONS_VERSION).tar.gz --directory scons-local
 	@touch scons-local
+endif
 
 # Conditional recipe that either invokes the system install, or triggers the download &
 # use of `scons-local`
@@ -98,11 +99,11 @@ native_scons ::= $(strip $(shell which scons 2>/dev/null))
 ifeq ($(native_scons),)
 scons_exe = py ./scons-local/scons.py
 get_scons: scons-local
-	@echo "Using local SCons v$(SCONS_VERSION)"
+	@echo "Using locally installed scons"
 else
 scons_exe ::= $(native_scons)
 get_scons:
-	@echo "Found SCons installation at $(scons_exe)"
+	@echo "Using system scons $(scons_exe)"
 endif
 
 clean:
