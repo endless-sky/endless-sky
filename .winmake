@@ -84,13 +84,13 @@ ifeq ($(needs_tarball),true)
 # the date associated with when it was packaged by the SCons developers.)
 scons-local-%.tar.gz:
 	@echo "No system installation of SCons, downloading version $(SCONS_VERSION)"
-	curl -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/scons-local-$(SCONS_VERSION).tar.gz > scons-local-$(SCONS_VERSION).tar.gz
-	@touch scons-local-$(SCONS_VERSION).tar.gz
+	curl -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/$@ > $@
+	@touch $@
 scons-local: scons-local-$(SCONS_VERSION).tar.gz
-	@echo "Unpacking tarball into scons-local"
-	@mkdir -p scons-local
-	@tar xzf scons-local-$(SCONS_VERSION).tar.gz --directory scons-local
-	@touch scons-local
+	@echo "Unpacking tarball into $@"
+	@mkdir -p $@
+	@tar xzf $< --directory $@
+	@touch $@
 endif
 
 # Conditional recipe that either invokes the system install, or triggers the download &
