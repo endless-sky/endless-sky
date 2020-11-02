@@ -149,7 +149,6 @@ jobs:
         SCCACHE_DIR: ./sccache/
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: .\dev64
-        ES_SRCLIB_DIR: ../lib/pkgd
         CXX: sccache g++
         ARTIFACT: EndlessSky.exe
     steps:
@@ -182,7 +181,8 @@ jobs:
           ${{ matrix.os }}-sccache
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
+      # TODO: pass -j as custom flag, rather than something make interprets
+      run: make -r -e -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
     - name: Prepare game binary
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
@@ -202,7 +202,6 @@ jobs:
         SCCACHE_DIR: ./sccache/
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: .\dev64
-        ES_SRCLIB_DIR: ../lib/pkgd
         CXX: sccache g++
         TEST_BINARY: endless-sky-tests.exe
     steps:
@@ -235,9 +234,9 @@ jobs:
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: |
-        cd tests
-        make -e -f makefile test -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
-        cd ..
+        # TODO: pass -j as custom flag, rather than something make interprets
+        make -r -e -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
+        # TODO: update copy-from directory
         COPY ".\tests\bin\endless-sky-tests.exe" .
     - name: Run tests
       run: |

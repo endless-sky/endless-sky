@@ -78,10 +78,10 @@ PYTHON_BINARY ?= py
 
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
-all release debug profile test: get_scons
+all release debug profile test build-tests: get_scons
 	@$(scons_exe) -Q
 
-.PHONY: all release debug profile test clean clean-all get_scons
+.PHONY: all release debug profile test build-tests clean clean-all get_scons
 
 needs_tarball ::= $(strip $(shell ls scons-local/scons.py 2>/dev/null || echo true))
 ifeq ($(needs_tarball),true)
