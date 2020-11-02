@@ -11,7 +11,8 @@ environment:
   ES_SRCLIB_DIR: ../lib/pkgd
   TEST_REPORT_FILE: .\tests\test-report.xml
   matrix:
-    - es_run_mode: 'dist'
+    # - es_run_mode: 'dist'
+    - es_run_mode: 'release'
 
 install:
   - ps: |
@@ -30,13 +31,11 @@ install:
 
 cache:
   - C:\dev64
+  - scons-local
 
 build_script:
-  - ps: mingw32-make.exe -k -j2 -e -f .winmake $Env:es_run_mode;
-  - ps: |
-      cd tests;
-      mingw32-make.exe -j2 -e -f makefile test;
-      cd ..;
+  - ps: mingw32-make.exe -r -e -f .winmake $Env:es_run_mode;
+  - ps: mingw32-make.exe -r -e -f .winmake test;
 
 before_test:
   - ps: |
@@ -64,6 +63,7 @@ after_test:
 
 # Upload the test report even if tests failed.
 on_finish:
+  - ps: ls . scons*
   - ps: |
       if (Test-Path $Env:TEST_REPORT_FILE)
       {

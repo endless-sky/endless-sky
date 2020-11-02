@@ -1,4 +1,7 @@
-# Makefile wrapping a SCons build (SConstruct), fetching a local scons installation if needed
+# This makefile wraps the Endless Sky SCons build instructions and supports the same targets
+# and options it does, by simply passing them through to the SCons program. If you have Scons
+# installed, this makefile will defer to your installed version. Otherwise, a local SCons package
+# will be obtained from SourceForge and made available to the Endless Sky tooling.
 #
 # The MIT License (MIT)
 #
@@ -23,11 +26,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-# This makefile wraps the Endless Sky SCons build instructions and supports the same targets
-# and options it does, by simply passing them through to the SCons program. If you have Scons
-# installed, this makefile will defer to your installed version. Otherwise, a local SCons package
-# will be obtained from SourceForge and made available to the Endless Sky tooling.
 
 # Build targets:
 # 'release' - a 64-bit optimized (-O3 -march=native) version of Endless Sky for local consumption
@@ -67,6 +65,9 @@ SCONS_VERSION ?= 4.0.1
 # 2. `tar` - command-line compression client, used to unzip the downloaded `scons-local` package
 
 #######
+# Turn off all implicit rules, because we want scons to do all the work.
+# Additional builtin rules can be disabled by passing -r on the invoking CLI
+.SUFFIXES:
 
 # TODOs:
 # * pass down the CLI arguments, or map scons options into makefile targets with defined options
@@ -75,7 +76,7 @@ SCONS_VERSION ?= 4.0.1
 
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
-all release debug profile: get_scons
+all release debug profile test: get_scons
 	@$(scons_exe) -Q
 
 needs_tarball ::= $(strip $(shell ls scons-local/scons.py 2>/dev/null || echo true))
@@ -112,4 +113,4 @@ clean-all: clean
 	rm -rf scons-local
 	rm -f scons-local-*.tar.gz
 
-.PHONY: all release debug profile clean clean-all get_scons
+.PHONY: all release debug profile test clean clean-all get_scons
