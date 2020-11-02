@@ -81,13 +81,15 @@ PYTHON_BINARY ?= py
 all release debug profile test: get_scons
 	@$(scons_exe) -Q
 
+.PHONY: all release debug profile test clean clean-all get_scons
+
 needs_tarball ::= $(strip $(shell ls scons-local/scons.py 2>/dev/null || echo true))
 ifeq ($(needs_tarball),true)
 # Download / Unpack the tarball, and mark it as up-to-date (rather than inherit
 # the date associated with when it was packaged by the SCons developers.)
 scons-local-%.tar.gz:
 	@echo "No system installation of SCons, downloading version $(SCONS_VERSION)"
-	curl -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/$@ > $@
+	curl -sS -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/$@ > $@
 	@touch $@
 scons-local: scons-local-$(SCONS_VERSION).tar.gz
 	@echo "Unpacking tarball into $@"
@@ -115,5 +117,3 @@ clean:
 clean-all: clean
 	rm -rf scons-local
 	rm -f scons-local-*.tar.gz
-
-.PHONY: all release debug profile test clean clean-all get_scons
