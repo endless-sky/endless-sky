@@ -53,12 +53,14 @@
 # 4. Set BUILDDIR to where you would like the intermediate .o files to reside
 # 5. Set SCONS_VERSION to the version of the SCons program you would like to use
 #    if SCons is not found in PATH
+# 6. Set PYTHON_BINARY to the name or path of a Python3 binary. Python v2 is not supported.
 #
 DIR_ESLIB ?= C:\dev64
 DIR_MINGW64 ?= C:\Program\ Files\mingw64\x86_64-w64-mingw32
 OUTPUT_DIR ?= bin
 BUILDDIR ?= build
 SCONS_VERSION ?= 4.0.1
+PYTHON_BINARY ?= py
 
 # Note: Several tools provided by MinGW & MSYS are required.
 # 1. `cURL` - command-line HTTP client, used to download the `scons-local` package from SourceForge
@@ -98,10 +100,11 @@ endif
 # use of `scons-local`
 native_scons ::= $(strip $(shell which scons 2>/dev/null))
 ifeq ($(native_scons),)
-scons_exe = py ./scons-local/scons.py
+scons_exe = $(PYTHON_BINARY) ./scons-local/scons.py
 get_scons: scons-local
 	@echo "Using locally installed scons"
 else
+# (A system-installed SCons also implies that a python binary is located in the user's PATH.)
 scons_exe ::= $(native_scons)
 get_scons:
 	@echo "Using system scons $(scons_exe)"

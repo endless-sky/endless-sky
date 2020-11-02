@@ -8,8 +8,8 @@ clone_depth: 2
 environment:
   # Building with MinGW-w64 version 6.3.0. These env settings are used by the makefile.
   MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
-  ES_SRCLIB_DIR: ../lib/pkgd
   TEST_REPORT_FILE: .\tests\test-report.xml
+  PYTHON_BINARY: C:\Python38-x64\python.exe
   matrix:
     # - es_run_mode: 'dist'
     - es_run_mode: 'release'
@@ -63,7 +63,6 @@ after_test:
 
 # Upload the test report even if tests failed.
 on_finish:
-  - ps: ls . scons*
   - ps: |
       if (Test-Path $Env:TEST_REPORT_FILE)
       {
