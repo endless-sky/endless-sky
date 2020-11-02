@@ -25,11 +25,12 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-flto" />
+					<Add option="-O3" />
 					<Add option="-msse3" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
+					<Add option="-flto" />
 				</Linker>
 			</Target>
 			<Target title="Win32">
@@ -42,11 +43,12 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Option projectIncludeDirsRelation="1" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-flto" />
+					<Add option="-O3" />
 					<Add directory="C:/dev32/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
+					<Add option="-flto" />
 				</Linker>
 			</Target>
 		</Build>

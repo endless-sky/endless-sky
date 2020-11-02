@@ -28,11 +28,12 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-flto" />
+					<Add option="-O3" />
 					<Add option="-msse3" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
+					<Add option="-flto" />
 					<Add library="lib/Release/libendless-sky.a" />
 				</Linker>
 			</Target>
@@ -46,11 +47,12 @@
 				<Option projectIncludeDirsRelation="1" />
 				<Option projectLibDirsRelation="1" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-flto" />
+					<Add option="-O3" />
 					<Add directory="C:/dev32/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
+					<Add option="-flto" />
 					<Add option="-Wl,--subsystem,windows" />
 					<Add option="-lwinmm" />
 					<Add library="lib/Win32/libendless-sky.a" />

@@ -34,11 +34,12 @@
 				<Option projectIncludeDirsRelation="2" />
 				<Option projectLibDirsRelation="2" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-flto" />
+					<Add option="-O3" />
 					<Add option="-msse3" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
+					<Add option="-flto" />
 					<Add library="lib/Release/libendless-sky.a" />
 				</Linker>
 			</Target>
