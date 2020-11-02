@@ -8375,7 +8375,7 @@ system Durax
 	trade Plastic 372
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
-	fleet "Large Syndicate" 2500
+	fleet "Large Syndicate Core" 2500
 	fleet "Korath Raid" 5000
 	object
 		sprite star/g0-old
@@ -18941,8 +18941,8 @@ system Polaris
 	trade Plastic 418
 	fleet "Small Core Merchants" 600
 	fleet "Large Core Merchants" 700
-	fleet "Small Syndicate" 1000
-	fleet "Large Syndicate" 2000
+	fleet "Small Syndicate Core" 1000
+	fleet "Large Syndicate Core" 2000
 	fleet "Small Core Pirates" 1500
 	fleet "Korath Raid" 50000
 	object
@@ -21686,6 +21686,8 @@ system Sheratan
 	trade Plastic 355
 	fleet "Small Core Merchants" 1500
 	fleet "Large Core Merchants" 1800
+	fleet "Small Syndicate Core" 4000
+	fleet "Large Syndicate Core" 6000
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
 	fleet "Korath Raid" 30000
