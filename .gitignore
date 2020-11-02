@@ -18,6 +18,7 @@ Debug/
 Release/
 *.layout
 *.depend
+scons-local*
 .sconsign.dblite
 /*.d
 
@@ -30,11 +31,6 @@ plugins/
 # OS-specific generated files
 .DS_Store
 *.db
-
-# CI configs (allow local edits)
-.winmake
-.appveyor.yml
-.travis.yml
 
 # IDEs (no support implied)
 .vscode
