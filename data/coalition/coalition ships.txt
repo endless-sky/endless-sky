@@ -825,7 +825,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Overcharged Shield Module"
 		"Overclocked Repair Module" 3
 		"Cooling Module" 3
-		"Scanning Moddule"
+		"Scanning Module"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 83
 		"Enforcer Confrontation Gear" 33
