@@ -160,7 +160,7 @@ jobs:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
         key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml') }}
-    - name: Install development dependencies
+    - name: Install sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: choco install sccache
     - name: Install development dependencies
@@ -387,6 +387,6 @@ jobs:
       with:
         name: app-${{ matrix.os }}
     - name: Verify Executable
-      run: chmod +x "${ES_BINARY}" && ${ES_BINARY} -v
+      run: chmod +x ${ES_BINARY} && ${ES_BINARY} -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh "${ES_BINARY}"
+      run: ./tests/test_parse.sh ${ES_BINARY}
