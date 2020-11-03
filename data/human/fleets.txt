@@ -68,6 +68,8 @@ fleet "Small Southern Merchants"
 	variant 7
 		"Hauler"
 		"Berserker"
+	variant 1
+		"Scout" 
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -215,6 +217,10 @@ fleet "Small Core Merchants"
 		"Flivver (Luxury)"
 	variant 1
 		"Flivver (Racing)"
+	variant 2
+		"Scout"
+	variant 1
+		"Scout (Speedy)"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -392,6 +398,9 @@ fleet "Paradise Merchants"
 	variant 3
 		"Blackbird"
 		"Berserker" 2
+	variant 5
+		"Scout (Speedy)"
+
 
 
 fleet "Small Northern Merchants"
@@ -458,6 +467,10 @@ fleet "Small Northern Merchants"
 	variant 2
 		"Hauler II"
 		"Hauler"
+	variant 10
+		"Scout" 
+	variant 5
+		"Scout (Speedy)"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -638,6 +651,10 @@ fleet "Large Northern Merchants"
 		"Hauler III"
 		"Hauler II"
 		"Headhunter" 3
+	variant 1
+		"Scout" 3
+	variant 1
+		"Scout (Speedy)" 3
 
 fleet "Small Human Merchants (Hai)"
 	government "Merchant"
@@ -697,6 +714,8 @@ fleet "Small Human Merchants (Hai)"
 	variant 1
 		"Star Barge"
 		"Aphid"
+	variant 10
+		"Scout (Speedy)" 1
 
 fleet "Large Human Merchants (Hai)"
 	government "Merchant"
@@ -854,6 +873,8 @@ fleet "Large Human Merchants (Hai)"
 		"Water Bug" 2
 	variant 1
 		"Shield Beetle"
+	variant 1
+		"Scout (Speedy)" 3
 
 fleet "Human Miners"
 	government "Merchant"
@@ -1327,6 +1348,8 @@ fleet "Small Deep Merchants"
 		"Flivver"
 	variant 2
 		"Flivver (Racing)"
+	variant 1
+		"Scout"
 
 fleet "Large Deep Merchants"
 	government "Merchant"
@@ -2106,6 +2129,10 @@ fleet "Small Northern Pirates"
 		"Corvette (Missile)"
 	variant 1
 		"Corvette (Speedy)"
+	variant 1
+		"Scout"
+	variant 4
+		"Scout (Speedy)"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -2342,6 +2369,8 @@ fleet "pirate raid"
 		"Berserker (Afterburner)" 3
 	variant 2
 		"Berserker (Afterburner)" 2
+	variant 3
+		"Scout (Speedy)" 3
 
 fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"
