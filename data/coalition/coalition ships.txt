@@ -316,7 +316,7 @@ ship "Heliarch Breacher"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
-	description `The Breacher isn't the most durable Heliarch ship, but its impressive forward speed and high firepower for a ship of this size make it ideal for strafing runs.`
+	description `The Breacher isn't the most durable Heliarch vessel, but its impressive forward speed and high firepower for its size make this ship ideal for strafing runs.`
 
 ship "Heliarch Breacher" "Heliarch Breacher (Ions)"
 	outfits
@@ -440,7 +440,7 @@ ship "Heliarch Hunter"
 	explode "large explosion" 25
 	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
-	description `Even if they mostly serve as patrol vessels due to the lack of conflict in Coalition space, Hunters were originally designed to quickly track down dissidents and bring them to justice.`
+	description `Although they mostly serve as patrol vessels nowadays in peacetime, Hunters were originally designed to quickly track down dissidents and bring them to justice.`
 
 ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 	outfits
@@ -726,8 +726,8 @@ ship "Heliarch Judicator"
 	explode "large explosion" 20
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description `During their time battling the Quarg, the species of the Coalition focused on producing the strongest, toughest warships they could, so fightercraft was something out of question. Now however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently started experimenting with such ships, and out of a need for something to carry them, the Judicator was made.`
-	description `	Alongside their six fighter bays, Judicators come with a large bunk count and higher cargo space than other Heliarch warships, doubling as a logistics vessel for transporting troops and equipment.`
+	description `During their time battling the Quarg, the species of the Coalition focused on producing the strongest, toughest warships they could, so fightercraft were out of question. Now, however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently experimented with such ships. The Judicator was made for transportation of these fightercraft.`
+	description `	Alongside their six fighter bays, Judicators come with a large bunk count and higher cargo space than other Heliarch warships, thus doubling as a logistics vessel for transporting troops and equipment.`
 
 ship "Heliarch Judicator" "Heliarch Judicator (Interdicting-Attractor)"
 	outfits
@@ -1191,8 +1191,8 @@ ship "Heliarch Pursuer"
 	gun 0 -35.5
 	explode "tiny explosion" 20
 	explode "small explosion" 10
-	description `Occasionally, when a Heliarch cadet shows promising results in dogfighting simulations, they are allowed to fly a ship of their own, that being the Pursuer.`
-	description `	Though certainly not as durable as the other fighters in Coalition space, this Kimek design is cheaper to produce, and is capable of outrunning any other Coalition ship.`
+	description `Occasionally, when a Heliarch cadet shows promising results in dogfighting simulations, they are allowed to fly a ship of their own: the Pursuer.`
+	description `	Though certainly not as durable as the other fighters in Coalition space, this Kimek design is cheaper to produce and capable of outrunning any other Coalition ship.`
 
 ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 	outfits
@@ -1248,7 +1248,7 @@ ship "Heliarch Rover"
 	gun -5 -30
 	explode "tiny explosion" 25
 	explode "small explosion" 15
-	description `The very first Fighter the Heliarchs designed, Rovers are well-rounded ships that the Heliarchs employ regularly due to their reliability in any situation.`
+	description `The very first fighter they designed, Rovers are well-rounded ships that the Heliarchs employ regularly due to their reliability in any situation.`
 
 ship "Heliarch Rover" "Heliarch Rover (Ions)"
 	outfits
@@ -1303,7 +1303,7 @@ ship "Heliarch Stalker"
 	turret 0 -1.5
 	explode "tiny explosion" 25
 	explode "small explosion" 15
-	description `Boasting incredible durability for a ship this size, the Stalker is a compact fortress that can take a lot of punishment and recover faster than some warships. Its speed and maneuverability, however, are all but impressive.`
+	description `Boasting incredible durability for a ship this size, the Stalker is a compact fortress that can take serious punishment and recover faster than some warships. Its speed and maneuverability, however, leave much to be desired.`
 
 ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 	outfits
