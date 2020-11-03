@@ -287,7 +287,8 @@ ship "Heliarch Interdictor"
 			"hit force" 3800
 	outfits
 		"Finisher Pod" 2
-		"Finisher Torpedo" 80
+		"Finisher Storage Tube"
+		"Finisher Torpedo" 100
 		"Heliarch Attractor"
 		"Heliarch Repulsor"
 		
