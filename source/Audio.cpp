@@ -576,6 +576,10 @@ namespace {
 					return;
 				name = loadQueue.begin()->first;
 				path = loadQueue.begin()->second;
+
+				// Since we need to unlock the mutex below, create the map entry to
+				// avoid a race condition when accessing sounds' size.
+				sounds[name];
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
