@@ -35,9 +35,9 @@ cache:
 
 build_script:
   - ps: mingw32-make.exe -r -e -f .winmake $Env:es_run_mode;
-  - ps: mingw32-make.exe -r -e -f .winmake test;
 
 before_test:
+  - ps: mingw32-make.exe -r -e -f .winmake build-tests;
   - ps: |
       $here = (Get-Location).Path;
       Copy-Item -Path "bin\*\EndlessSky.exe" -Destination $here;
