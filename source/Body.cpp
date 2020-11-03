@@ -94,6 +94,14 @@ int Body::GetSwizzle() const
 
 
 
+// Offset used when drawing the sprite (in direction of velocity).
+int Body::GetDrawOffset() const
+{
+	return drawOffset;
+}
+
+
+
 // Get the frame index for the given time step. If no time step is given, this
 // will return the frame from the most recently given step.
 float Body::GetFrame(int step) const
@@ -210,6 +218,8 @@ void Body::LoadSprite(const DataNode &node)
 		}
 		else if(child.Token(0) == "rewind")
 			rewind = true;
+		else if(child.Token(0) == "draw offset" && child.Size() >= 2)
+			drawOffset = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}

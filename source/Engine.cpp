@@ -1454,7 +1454,7 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
-		batchDraw[calcTickTock].AddVisual(visual);
+		batchDraw[calcTickTock].Add(visual);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();

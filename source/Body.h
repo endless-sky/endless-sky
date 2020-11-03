@@ -47,6 +47,8 @@ public:
 	double Radius() const;
 	// Which color swizzle should be applied to the sprite?
 	int GetSwizzle() const;
+	// Offset used when drawing the sprite (in direction of velocity).
+	int GetDrawOffset() const;
 	// Get the sprite and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
@@ -118,6 +120,7 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
+	int drawOffset = 0;
 	int pause = 0;
 	
 	// Record when this object is marked for removal from the game.

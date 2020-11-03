@@ -52,32 +52,6 @@ void BatchDrawList::SetCenter(const Point &center)
 
 
 
-// Add an unswizzled object based on the Body class.
-bool BatchDrawList::Add(const Body &body, float clip)
-{
-	// TODO: Rather than compensate using 1/2 the Visual | Projectile velocity, we should
-	// extend the Sprite class to know its reference point. For most sprites, this will be
-	// the horizontal and vertical middle of the sprite, but for "laser" projectiles, this
-	// would be the middle of a sprite end. Adding such support will then help resolve issues
-	// with drawing things such as very large effects that simulate projectiles. This offset
-	// exists because we use the current position of a projectile, but have varied expectations
-	// of what that position means. For a "laser" projectile, it is created at the ship hardpoint but
-	// we want it to be drawn with its center halfway to the target. For longer-lived projectiles, we
-	// expect the position to be the actual location of the projectile at that point in time.
-	Point position = (body.Position() + .5 * body.Velocity() - center) * zoom;
-	return Add(body, position, clip);
-}
-
-
-
-// TODO: Once we have sprite reference positions, this method will not be needed.
-bool BatchDrawList::AddVisual(const Body &visual)
-{
-	return Add(visual, (visual.Position() - center) * zoom, 1.f);
-}
-
-
-
 // Draw all the items in this list.
 void BatchDrawList::Draw() const
 {
@@ -114,8 +88,11 @@ bool BatchDrawList::Cull(const Body &body, const Point &position) const
 
 
 
-bool BatchDrawList::Add(const Body &body, Point position, float clip)
+bool BatchDrawList::Add(const Body &body, float clip)
 {
+	Point offset = body.GetDrawOffset() * body.Velocity().Unit();
+	Point position = (body.Position() + offset - center) * zoom;
+
 	if(Cull(body, position))
 		return false;
 	
