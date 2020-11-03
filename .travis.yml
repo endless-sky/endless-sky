@@ -14,6 +14,9 @@ jobs:
   include:
     - dist: xenial
       stage: compile & unit test
+      env:
+        AR: gcc-ar
+        RANLIB: gcc-ranlib
       script: scons -Qj 2 && scons -Qj 2 test;
     - dist: bionic
       script: scons -Qj 2 && scons -Qj 2 test;
@@ -21,6 +24,9 @@ jobs:
       script: scons -Qj 2 && scons -Qj 2 test;
     - dist: xenial
       stage: test
+      env:
+        AR: gcc-ar
+        RANLIB: gcc-ranlib
     - os: osx
       osx_image: xcode10.3
       env:
