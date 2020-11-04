@@ -16,12 +16,8 @@ if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
 if 'AR' in os.environ:
 	env['AR'] = os.environ['AR']
-	print('Using env AR=' + env['AR'])
-if 'ARFLAGS' in os.environ:
-	env.Append(ARFLAGS = os.environ['ARFLAGS'])
 if 'RANLIB' in os.environ:
 	env['RANLIB'] = os.environ['RANLIB']
-	print('Using env RANLIB=' + env['RANLIB'])
 if 'DIR_ESLIB' in os.environ:
 	path = os.environ['DIR_ESLIB']
 	env.Prepend(CPPPATH = [path + '/include'])
@@ -55,6 +51,10 @@ elif env["mode"] == "profile":
 	flags += ["-pg"]
 	env.Append(LINKFLAGS = ["-pg"])
 env.Append(CCFLAGS = flags)
+# Omit emitting a symbol table when creating/updating static libraries, because Scons
+# will run ranlib. If we are using gcc-ranlib, assume support for thin archives as well.
+create_thin_archives = any(env.get(var, '').startswith('gcc') for var in ('AR', 'RANLIB'))
+env.Replace(ARFLAGS = 'rcST' if create_thin_archives else 'rcS')
 
 game_libs = [
 	"winmm",
