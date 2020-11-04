@@ -563,6 +563,7 @@ namespace {
 	{
 		string name;
 		string path;
+		Sound *sound;
 		while(true)
 		{
 			{
@@ -579,11 +580,11 @@ namespace {
 
 				// Since we need to unlock the mutex below, create the map entry to
 				// avoid a race condition when accessing sounds' size.
-				sounds[name];
+				sound = &sounds[name];
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			if(!sounds[name].Load(path, name))
+			if(!sound->Load(path, name))
 				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}
