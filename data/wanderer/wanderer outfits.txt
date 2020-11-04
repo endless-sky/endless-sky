@@ -22,6 +22,7 @@ outfit "Sunbeam"
 		sprite "projectile/sunbeam"
 			"frame rate" 1.3
 			"random start frame"
+			"draw offset" 270
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -60,6 +61,7 @@ outfit "Sunbeam Turret"
 		sprite "projectile/sunbeam"
 			"frame rate" 1.3
 			"random start frame"
+			"draw offset" 270
 		"hardpoint sprite" "hardpoint/sunbeam turret"
 		"hardpoint offset" 12.
 		sound "sunbeam"
@@ -91,6 +93,7 @@ outfit "Dual Sunbeam Turret"
 		sprite "projectile/2x sunbeam"
 			"frame rate" 1.3
 			"random start frame"
+			"draw offset" 270
 		"hardpoint sprite" "hardpoint/dual sunbeam turret"
 		"hardpoint offset" 12.
 		sound "sunbeam"

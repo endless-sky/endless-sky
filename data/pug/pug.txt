@@ -178,6 +178,7 @@ outfit "Pug Zapper"
 			"frame rate" 60
 			"random start frame"
 			"delay" 6
+			"draw offset" 160
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
@@ -203,6 +204,7 @@ outfit "Pug Zapper Turret"
 		sprite "projectile/lightning"
 			"frame rate" 60
 			"random start frame"
+			"draw offset" 160
 		"hardpoint sprite" "hardpoint/pug zapper turret"
 		"hardpoint offset" 7.
 		sound "zapper"

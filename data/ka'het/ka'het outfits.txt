@@ -21,6 +21,7 @@ outfit "Ka'het Ravager Beam"
 	weapon
 		sprite "projectile/ravager beam"
 			"frame rate" 15
+			"draw offset" 240
 		sound "disruptor"
 		"hit effect" "ravager impact"
 		"inaccuracy" .2
@@ -44,6 +45,7 @@ outfit "Ka'het Ravager Turret"
 	weapon
 		sprite "projectile/ravager beam"
 			"frame rate" 15
+			"draw offset" 240
 		"hardpoint sprite" "hardpoint/ravager turret"
 		"hardpoint offset" 3.
 		sound "disruptor"

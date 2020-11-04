@@ -274,6 +274,7 @@ outfit "Heavy Ion Cyclotron"
 	weapon
 		sprite "projectile/hion"
 			"frame rate" 30
+			"draw offset" 10
 		sound "hion"
 		"hit effect" "proton impact" 3
 		"submunition" "Heavy Ion Fragment" 3

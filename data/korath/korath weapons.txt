@@ -65,6 +65,7 @@ outfit "Korath Banisher"
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60
+			"draw offset" 295
 		"hardpoint sprite" "hardpoint/banisher"
 		"hardpoint offset" 5.
 		sound "banisher"
@@ -131,6 +132,7 @@ outfit "Korath Fire-Lance"
 		sprite "projectile/fire-lance"
 			"frame rate" 12
 			"random start frame"
+			"draw offset" 275
 		sound "fire-lance"
 		"hit effect" "fire-lance impact"
 		"inaccuracy" .4
@@ -486,6 +488,7 @@ outfit "Korath Disruptor"
 	weapon
 		sprite "projectile/disruptor"
 			"frame rate" 15
+			"draw offset" 240
 		"hardpoint sprite" "hardpoint/disruptor"
 		"hardpoint offset" 15.
 		sound "disruptor"

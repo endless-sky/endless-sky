@@ -207,6 +207,7 @@ outfit "Heliarch Attractor"
 		sprite "projectile/attractor"
 			"frame rate" 5.2
 			"random start frame"
+			"draw offset" 320
 		"hardpoint sprite" "hardpoint/heliarch attractor"
 		"hardpoint offset" 9.
 		sound "heliarch attractor"
@@ -250,6 +251,7 @@ outfit "Heliarch Repulsor"
 		sprite "projectile/repulsor"
 			"frame rate" 3.2
 			"random start frame"
+			"draw offset" 280
 		"hardpoint sprite" "hardpoint/heliarch repulsor"
 		"hardpoint offset" 9.
 		sound "heliarch repulsor"

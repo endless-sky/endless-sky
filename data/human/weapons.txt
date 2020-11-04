@@ -151,6 +151,7 @@ outfit "Beam Laser"
 	weapon
 		sprite "projectile/laser"
 			"frame rate" 1
+			"draw offset" 150
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
@@ -175,6 +176,7 @@ outfit "Laser Turret"
 	weapon
 		sprite "projectile/2x laser"
 			"frame rate" 1
+			"draw offset" 150
 		"hardpoint sprite" "hardpoint/laser turret"
 		"hardpoint offset" -0.5 8.
 		sound "laser"
@@ -211,6 +213,7 @@ outfit "Heavy Laser"
 	weapon
 		sprite "projectile/heavy laser"
 			"frame rate" 1
+			"draw offset" 200
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
@@ -235,6 +238,7 @@ outfit "Heavy Laser Turret"
 	weapon
 		sprite "projectile/2x heavy laser"
 			"frame rate" 1
+			"draw offset" 200
 		"hardpoint sprite" "hardpoint/heavy laser turret"
 		"hardpoint offset" 8.
 		sound "heavy laser"
@@ -272,6 +276,7 @@ outfit "Electron Beam"
 	weapon
 		sprite "projectile/electron"
 			"frame rate" 60
+			"draw offset" 225
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
@@ -296,6 +301,7 @@ outfit "Electron Turret"
 	weapon
 		sprite "projectile/2x electron"
 			"frame rate" 60
+			"draw offset" 225
 		"hardpoint sprite" "hardpoint/electron turret"
 		"hardpoint offset" 8.
 		sound "electron beam"
