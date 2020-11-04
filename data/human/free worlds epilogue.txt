@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "FW Epilogue: Ijs and Katya"
-	minor
 	landing
 	source "Winter"
 	to offer
@@ -54,7 +53,6 @@ mission "FW Epilogue: Ijs and Katya"
 
 
 mission "FW Epilogue: Alondo"
-	minor
 	landing
 	source "Bourne"
 	to offer
@@ -92,7 +90,6 @@ mission "FW Epilogue: Alondo"
 
 
 mission "FW Epilogue: Freya"
-	minor
 	landing
 	source "Pugglemug"
 	to offer
@@ -144,7 +141,6 @@ mission "FW Epilogue: Freya"
 
 
 mission "FW Epilogue: Danforth"
-	minor
 	landing
 	source "Farpoint"
 	to offer
