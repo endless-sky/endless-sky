@@ -375,7 +375,7 @@ jobs:
       matrix:
         os: [macos-latest]
     env:
-      ES_BINARY: "'./Endless Sky.app/Contents/MacOS/Endless Sky'"
+      ES_BINARY: "'Endless Sky.app/Contents/MacOS/Endless Sky'"
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
@@ -388,6 +388,8 @@ jobs:
         name: app-${{ matrix.os }}
     - name: Verify Executable
       run: |
+        ls -lghtr .
+        ls -lghtr 'Endless Sky.app/Contents/MacOS'
         chmod +x "${ES_BINARY}"
         "${ES_BINARY}" -v
     - name: Parse Datafiles
