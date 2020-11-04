@@ -2,6 +2,9 @@ import os
 import platform
 from SCons.Node.FS import Dir
 
+def pathjoin(*args):
+	return os.path.join(*args)
+
 # Load environment variables, including some that should be renamed.
 # If we are compiling on Windows, then we need to change the toolset to MinGW.
 is_windows_host = platform.system().startswith('Windows')
@@ -20,8 +23,8 @@ if 'RANLIB' in os.environ:
 	env['RANLIB'] = os.environ['RANLIB']
 if 'DIR_ESLIB' in os.environ:
 	path = os.environ['DIR_ESLIB']
-	env.Prepend(CPPPATH = [path + '/include'])
-	env.Append(LIBPATH = [path + '/lib'])
+	env.Prepend(CPPPATH = [pathjoin(path, 'include')])
+	env.Append(LIBPATH = [pathjoin(path, 'lib')])
 
 # The Steam runtime has an out-of-date libstdc++, so link it in statically:
 chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
@@ -88,34 +91,34 @@ else:
 	env.Append(LIBS = "mad")
 
 
-buildDirectory = env["BUILDDIR"] + "/" + env["mode"]
-libDirectory = "lib/" + env["mode"]
+buildDirectory = pathjoin(env["BUILDDIR"], env["mode"])
+libDirectory = pathjoin("lib", env["mode"])
 VariantDir(buildDirectory, "source", duplicate = 0)
 
 # Find all regular source files.
 def RecursiveGlob(pattern, dir_name=buildDirectory):
 	# Start with source files in subdirectories.
-	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(str(dir_name)+"/*")
+	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(pathjoin(str(dir_name), "*"))
 		if isinstance(sub_dir, Dir)]
 	# Add source files in this directory, except for main.cpp
-	matches += Glob(str(dir_name) + "/" + pattern, exclude=["*/main.cpp"])
+	matches += Glob(pathjoin(str(dir_name), pattern), exclude=["*/main.cpp"])
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
-sourceLib = env.StaticLibrary(libDirectory + "/endless-sky", RecursiveGlob("*.cpp", buildDirectory))
-sky = env.Program("endless-sky", Glob(buildDirectory + "/main.cpp") + sourceLib)
+sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
+sky = env.Program("endless-sky", Glob(pathjoin(buildDirectory, "main.cpp")) + sourceLib)
 env.Default(sky)
 
 
 # The testing infrastructure ignores "mode" specification (i.e. we only test optimized output).
 # (If we add support for code coverage output, this will likely need to change.)
-testBuildDirectory = "tests/" + env["BUILDDIR"]
-VariantDir(testBuildDirectory, "tests/src", duplicate = 0)
+testBuildDirectory = pathjoin("tests", env["BUILDDIR"])
+VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
 test = env.Program(
-	target="tests/endless-sky-tests",
+	target=pathjoin("tests", "endless-sky-tests"),
 	source=RecursiveGlob("test_*.cpp", testBuildDirectory) + sourceLib,
 	 # Add Catch header & additional test includes to the existing search paths
-	CPPPATH=(env.get('CPPPATH', []) + ['tests/include']),
+	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=[],
 )
@@ -170,10 +173,10 @@ env.Command(
 # Install the data files.
 def RecursiveInstall(env, target, source):
 	rootIndex = len(env.Dir(source).abspath) + 1
-	for node in env.Glob(os.path.join(source, '*')):
+	for node in env.Glob(pathjoin(source, '*')):
 		if node.isdir():
 			name = node.abspath[rootIndex:]
-			RecursiveInstall(env, os.path.join(target, name), node.abspath)
+			RecursiveInstall(env, pathjoin(target, name), node.abspath)
 		else:
 			env.Install(target, node)
 RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/data", "data")
