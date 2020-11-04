@@ -73,6 +73,8 @@ RANLIB ?= gcc-ranlib
 # Turn off all implicit rules, because we want scons to do all the work.
 # Additional builtin rules can be disabled by passing -r on the invoking CLI
 .SUFFIXES:
+# Don't invoke the wrapper targets via multiple processes.
+.NOTPARALLEL:
 
 # TODOs:
 # * pass down the CLI arguments, or map scons options into makefile targets with defined options
