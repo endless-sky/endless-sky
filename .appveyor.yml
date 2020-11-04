@@ -9,7 +9,7 @@ environment:
   # Building with MinGW-w64 version 6.3.0. These env settings are used by the makefile.
   MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
   TEST_REPORT_FILE: .\tests\test-report.xml
-  PYTHON_BINARY: C:\Python38-x64\python.exe
+  PYTHON_BINARY: C:/Python38-x64/python.exe
   matrix:
     # - es_run_mode: 'dist'
     - es_run_mode: 'release'
@@ -40,12 +40,11 @@ before_test:
   - ps: mingw32-make.exe -r -e -f .winmake build-tests;
   - ps: |
       $here = (Get-Location).Path;
-      Copy-Item -Path "bin\*\EndlessSky.exe" -Destination $here;
       Copy-Item -Path "C:\dev64\bin\*.dll" -Exclude "libstdc*" -Destination $here;
 
 test_script:
-  - ps: .\tests\bin\endless-sky-tests.exe -n es-ci -i --warn NoAssertions --order rand --rng-seed 'time' --filenames-as-tags -r junit -o $Env:TEST_REPORT_FILE;
-  - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
+  - ps: .\tests\endless-sky-tests.exe -n es-ci -i --warn NoAssertions --order rand --rng-seed 'time' --filenames-as-tags -r junit -o $Env:TEST_REPORT_FILE;
+  - ps: .\tests\test_parse.ps1 'endless-sky.exe';
 
 # Upload the build if tests passed.
 after_test:
