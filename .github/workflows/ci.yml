@@ -79,6 +79,7 @@ jobs:
       run: |
         g++ -v
         gcc-ar --version
+        gcc-ranlib --version
         ld -v
     - name: Cache ccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
@@ -150,7 +151,7 @@ jobs:
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: .\dev64
         CXX: sccache g++
-        ARTIFACT: EndlessSky.exe
+        ARTIFACT: endless-sky.exe
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -182,10 +183,10 @@ jobs:
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       # TODO: pass -j as custom flag, rather than something make interprets
-      run: make -r -e -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
-    - name: Prepare game binary
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
+      run: make -r -e -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake release
+    # - name: Prepare game binary
+    #   if: steps.cache-artifact.outputs.cache-hit != 'true'
+    #   run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
@@ -236,11 +237,10 @@ jobs:
       run: |
         # TODO: pass -j as custom flag, rather than something make interprets
         make -r -e -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
-        # TODO: update copy-from directory
-        COPY ".\tests\bin\endless-sky-tests.exe" .
+        COPY ".\tests\${{ env.TEST_BINARY }}" .
     - name: Run tests
       run: |
-        .\endless-sky-tests.exe -r compact -o test-result.log
+        .\${{ env.TEST_BINARY }} -r compact -o test-result.log
         echo "TEST_RESULT<<EOF" >> $GITHUB_ENV
         cat test-result.log >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
@@ -365,7 +365,7 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
     - name: Parse Datafiles
-      run: .\tests\test_parse.ps1 EndlessSky.exe
+      run: .\tests\test_parse.ps1 endless-sky.exe
 
 
   test_macos-parse:
@@ -387,6 +387,8 @@ jobs:
       with:
         name: app-${{ matrix.os }}
     - name: Verify Executable
-      run: chmod +x ${ES_BINARY} && ${ES_BINARY} -v
+      run: |
+        chmod +x "${ES_BINARY}"
+        "${ES_BINARY}" -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ${ES_BINARY}
+      run: ./tests/test_parse.sh "${ES_BINARY}"
