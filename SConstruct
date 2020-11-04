@@ -1,8 +1,13 @@
 import os
+import platform
 from SCons.Node.FS import Dir
 
 # Load environment variables, including some that should be renamed.
-env = Environment(ENV = os.environ)
+# If we are compiling on Windows, then we need to change the toolset to MinGW.
+is_windows_host = platform.system().startswith('Windows')
+scons_toolset = ['mingw' if is_windows_host else 'default']
+env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ)
+
 if 'CXX' in os.environ:
 	env['CXX'] = os.environ['CXX']
 if 'CXXFLAGS' in os.environ:
@@ -11,10 +16,16 @@ if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
 if 'AR' in os.environ:
 	env['AR'] = os.environ['AR']
+	print('Using env AR=' + env['AR'])
 if 'ARFLAGS' in os.environ:
 	env.Append(ARFLAGS = os.environ['ARFLAGS'])
 if 'RANLIB' in os.environ:
 	env['RANLIB'] = os.environ['RANLIB']
+	print('Using env RANLIB=' + env['RANLIB'])
+if 'DIR_ESLIB' in os.environ:
+	path = os.environ['DIR_ESLIB']
+	env.Prepend(CPPPATH = [path + '/include'])
+	env.Append(LIBPATH = [path + '/lib'])
 
 # The Steam runtime has an out-of-date libstdc++, so link it in statically:
 chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
@@ -45,15 +56,29 @@ elif env["mode"] == "profile":
 	env.Append(LINKFLAGS = ["-pg"])
 env.Append(CCFLAGS = flags)
 
-env.Append(LIBS = [
+game_libs = [
+	"winmm",
+	"mingw32",
+	"sdl2main",
+	"sdl2.dll",
+	"png.dll",
+	"turbojpeg.dll",
+	"jpeg.dll",
+	"mad.dll",
+	"openal32.dll",
+	"glew32.dll",
+	"opengl32",
+] if is_windows_host else [
 	"SDL2",
 	"png",
 	"jpeg",
 	"GL",
 	"GLEW",
 	"openal",
-	"pthread"
-])
+	"pthread",
+]
+env.Append(LIBS = game_libs)
+
 # libmad is not in the Steam runtime, so link it statically:
 if 'steamrt_scout_i386' in chroot_name:
 	env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))

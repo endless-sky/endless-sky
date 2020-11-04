@@ -54,6 +54,7 @@
 # 5. Set SCONS_VERSION to the version of the SCons program you would like to use
 #    if SCons is not found in PATH
 # 6. Set PYTHON_BINARY to the name or path of a Python3 binary. Python v2 is not supported.
+# 7. Set AR and RANLIB to the binary archive tooling that is capable of link-time optimization
 #
 DIR_ESLIB ?= C:\dev64
 DIR_MINGW64 ?= C:\Program\ Files\mingw64\x86_64-w64-mingw32
@@ -61,6 +62,8 @@ OUTPUT_DIR ?= bin
 BUILDDIR ?= build
 SCONS_VERSION ?= 4.0.1
 PYTHON_BINARY ?= py
+AR ?= gcc-ar
+RANLIB ?= gcc-ranlib
 
 # Note: Several tools provided by MinGW & MSYS are required.
 # 1. `cURL` - command-line HTTP client, used to download the `scons-local` package from SourceForge
@@ -76,10 +79,14 @@ PYTHON_BINARY ?= py
 # * map above environment variables into scons format
 # * parse $(MAKEFLAGS) / $(MAKECMDGOALS) into scons options (e.g. defer to input -j override, etc)?
 
+enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
-all release debug profile test build-tests: get_scons
-	@$(scons_exe) -Q
+all: release debug profile
+release debug profile: get_scons
+	@$(enable_lto) $(scons_exe) -Qj 2 mode=$@
+build-tests test: get_scons
+	@$(enable_lto) $(scons_exe) -Qj 2 $(MAKECMDGOALS)
 
 .PHONY: all release debug profile test build-tests clean clean-all get_scons
 
