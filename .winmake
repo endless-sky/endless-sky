@@ -33,7 +33,7 @@
 # 'profile' - a 64-bit version of Endless Sky with debugging symbols and profiling hooks for gprof (-pg)
 # 'clean'   - removes all compiled objects and binaries.
 # 'clean-all' - runs clean, and also removes `scons-local`
-# TODO 'dist' - a 64-bit general-release version of Endless Sky (non-specific architecture)
+# 'dist' - a 64-bit general-release version of Endless Sky (non-specific architecture)
 
 # End-user configuration
 # https://github.com/endless-sky/endless-sky/wiki/BuildInstructions
@@ -69,25 +69,30 @@ RANLIB ?= gcc-ranlib
 # Don't invoke the wrapper targets via multiple processes.
 .NOTPARALLEL:
 
-# TODOs:
-# * pass down the CLI arguments, or map scons options into makefile targets with defined options
-# * map above environment variables into scons format
-# * parse $(MAKEFLAGS) / $(MAKECMDGOALS) into scons options (e.g. defer to input -j override, etc)?
-
 enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
 es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)"
+# Pass the input "-j" flag down to SCons
 thread_count = $(filter -j -j%,$(MAKEFLAGS))
+# For the release target, append native architecture optimization to the user's flags.
+additional_release_cxxflags ::= "$(strip $(CXXFLAGS) -march=native)"
 
-# Invoke SCons, either the system / virtualenv installation or the downloaded version.
+# Configure target dependencies to invoke SCons
 all: release debug
-release debug: get_scons
+release debug dist build-tests test: get_scons
+
+# Specify target recipes
+debug:
 	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) mode=$@
-build-tests test: get_scons
+release:
+	$(es_search_dirs) $(enable_lto) CXXFLAGS=$(additional_release_cxxflags) $(scons_exe) -Q $(thread_count) mode=$@
+dist:
+	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) mode=release BUILDDIR="$(BUILDDIR)/pkgd"
+build-tests test:
 	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) $(MAKECMDGOALS)
 profile:
 	@echo "Profiling is currently only supported on linux"
 
-.PHONY: all release debug profile test build-tests clean clean-all get_scons
+.PHONY: all release debug dist profile test build-tests clean clean-all get_scons
 
 needs_tarball ::= $(strip $(shell ls scons-local/scons.py 2>/dev/null || echo true))
 ifeq ($(needs_tarball),true)
