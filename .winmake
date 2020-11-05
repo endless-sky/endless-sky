@@ -35,13 +35,6 @@
 # 'clean-all' - runs clean, and also removes `scons-local`
 # TODO 'dist' - a 64-bit general-release version of Endless Sky (non-specific architecture)
 
-# Intended Usage:
-# CAPS VARIABLE -> override via command line / environment, or modify here directly.
-# lowercase variable -> should not need modification
-#
-#     avoid paths with spaces. (escape with \ if necessary)
-#
-
 # End-user configuration
 # https://github.com/endless-sky/endless-sky/wiki/BuildInstructions
 # 1. Obtain the 'dev64' zip archive from the Endless Sky wiki, unzip it, and
@@ -71,7 +64,7 @@ RANLIB ?= gcc-ranlib
 
 #######
 # Turn off all implicit rules, because we want scons to do all the work.
-# Additional builtin rules can be disabled by passing -r on the invoking CLI
+# (Additional builtin rules can be disabled by passing -r on the invoking CLI.)
 .SUFFIXES:
 # Don't invoke the wrapper targets via multiple processes.
 .NOTPARALLEL:
@@ -82,7 +75,7 @@ RANLIB ?= gcc-ranlib
 # * parse $(MAKEFLAGS) / $(MAKECMDGOALS) into scons options (e.g. defer to input -j override, etc)?
 
 enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
-es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)" DIR_MINGW64="$(DIR_MINGW64)"
+es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)"
 thread_count = $(filter -j -j%,$(MAKEFLAGS))
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
@@ -98,8 +91,7 @@ profile:
 
 needs_tarball ::= $(strip $(shell ls scons-local/scons.py 2>/dev/null || echo true))
 ifeq ($(needs_tarball),true)
-# Download / Unpack the tarball, and mark it as up-to-date (rather than inherit
-# the date associated with when it was packaged by the SCons developers.)
+# Download / Unpack the tarball, and mark it as up-to-date (vs. the packaged-on date).
 scons-local-%.tar.gz:
 	@echo "No system installation of SCons, downloading version $(SCONS_VERSION)"
 	curl -sS -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/$@ > $@
@@ -111,13 +103,11 @@ scons-local: scons-local-$(SCONS_VERSION).tar.gz
 	@touch $@
 endif
 
-# Conditional recipe that either invokes the system install, or triggers the download &
-# use of `scons-local`
+# Conditional recipe to invoke the system's SCons, or obtain a substitute `scons-local` package.
 native_scons ::= $(strip $(shell which scons 2>/dev/null))
 ifeq ($(native_scons),)
 scons_exe = $(PYTHON_BINARY) ./scons-local/scons.py
-get_scons: scons-local
-	@echo "Using locally installed scons"
+get_scons: scons-local; @echo "Using locally installed scons"
 else
 # (A system-installed SCons also implies that a python binary is located in the user's PATH.)
 scons_exe ::= $(native_scons)
