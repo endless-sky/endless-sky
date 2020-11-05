@@ -71,8 +71,10 @@ RANLIB ?= gcc-ranlib
 
 enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
 es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)"
-# Pass the input "-j" flag down to SCons
-thread_count = $(filter -j -j%,$(MAKEFLAGS))
+# Common environment variables to pass to SCons, expanded immediately:
+scons_env ::= $(es_search_dirs) $(enable_lto)
+# Common options to pass, expanded in-recipe:
+scons_opts = -Q $(filter -j -j%,$(MAKEFLAGS)) BUILDDIR=$(BUILDDIR)
 # For the release target, append native architecture optimization to the user's flags.
 additional_release_cxxflags ::= "$(strip $(CXXFLAGS) -march=native)"
 
@@ -80,15 +82,17 @@ additional_release_cxxflags ::= "$(strip $(CXXFLAGS) -march=native)"
 all: release debug
 release debug dist build-tests test: get_scons
 
-# Specify target recipes
-debug:
-	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) mode=$@
-release:
-	$(es_search_dirs) $(enable_lto) CXXFLAGS=$(additional_release_cxxflags) $(scons_exe) -Q $(thread_count) mode=$@
+# Target-specific variable overrides
+dist: BUILDDIR ::= "$(BUILDDIR)/pkgd"
+build-tests test release: scons_env += CXXFLAGS=$(additional_release_cxxflags)
+
+# Target-specific build recipes
+debug release:
+	$(scons_env) $(scons_exe) $(scons_opts) mode=$@
 dist:
-	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) mode=release BUILDDIR="$(BUILDDIR)/pkgd"
+	$(scons_env) $(scons_exe) $(scons_opts) mode=release
 build-tests test:
-	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) $(MAKECMDGOALS)
+	$(scons_env) $(scons_exe) $(scons_opts) $(MAKECMDGOALS)
 profile:
 	@echo "Profiling is currently only supported on linux"
 
