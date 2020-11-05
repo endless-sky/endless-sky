@@ -182,8 +182,7 @@ jobs:
           ${{ matrix.os }}-sccache
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      # TODO: pass -j as custom flag, rather than something make interprets
-      run: make -r -e -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake release
+      run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake release
     # - name: Prepare game binary
     #   if: steps.cache-artifact.outputs.cache-hit != 'true'
     #   run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
@@ -213,7 +212,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', 'tests/makefile', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml') }}
     - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -235,8 +234,7 @@ jobs:
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: |
-        # TODO: pass -j as custom flag, rather than something make interprets
-        make -r -e -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
+        make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
         COPY ".\tests\${{ env.TEST_BINARY }}" .
     - name: Run tests
       run: |
