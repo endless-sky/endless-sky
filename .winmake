@@ -82,7 +82,7 @@ RANLIB ?= gcc-ranlib
 # * parse $(MAKEFLAGS) / $(MAKECMDGOALS) into scons options (e.g. defer to input -j override, etc)?
 
 enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
-es_search_dirs ::= DIR_ESLIB=$(DIR_ESLIB) DIR_MINGW64=$(DIR_MINGW64)
+es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)" DIR_MINGW64="$(DIR_MINGW64)"
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
 all: release debug
