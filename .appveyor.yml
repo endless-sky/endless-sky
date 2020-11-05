@@ -29,6 +29,12 @@ install:
         Start-Process '7z.exe' -ArgumentList $zipArgs -Wait;
       }
 
+      # Enable threaded python builds (and don't fail because pip is outdated).
+      $originalSetting = $ErrorActionPreference;
+      $ErrorActionPreference = 'SilentlyContinue';
+      C:/Python38-x64/python.exe -m pip install pywin32 2> $null;
+      $ErrorActionPreference = $originalSetting;
+
 cache:
   - C:\dev64
   - scons-local

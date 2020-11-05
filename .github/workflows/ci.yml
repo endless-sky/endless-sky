@@ -375,7 +375,7 @@ jobs:
       matrix:
         os: [macos-latest]
     env:
-      ES_BINARY: "'Endless Sky.app/Contents/MacOS/Endless Sky'"
+      ES_BINARY: Endless Sky.app/Contents/MacOS/Endless Sky
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
