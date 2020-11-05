@@ -85,11 +85,13 @@ enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
 es_search_dirs ::= DIR_ESLIB=$(DIR_ESLIB) DIR_MINGW64=$(DIR_MINGW64)
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
-all: release debug profile
-release debug profile: get_scons
-	@$(es_search_dirs) $(enable_lto) $(scons_exe) -Qj 2 mode=$@
+all: release debug
+release debug: get_scons
+	$(es_search_dirs) $(enable_lto) $(scons_exe) -Qj 2 mode=$@
 build-tests test: get_scons
-	@$(es_search_dirs) $(enable_lto) $(scons_exe) -Qj 2 $(MAKECMDGOALS)
+	$(es_search_dirs) $(enable_lto) $(scons_exe) -Qj 2 $(MAKECMDGOALS)
+profile:
+	@echo "Profiling is currently only supported on linux"
 
 .PHONY: all release debug profile test build-tests clean clean-all get_scons
 

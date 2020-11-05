@@ -149,7 +149,7 @@ jobs:
     env:
         SCCACHE_DIR: ./sccache/
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
-        DIR_ESLIB: .\dev64
+        DIR_ESLIB: dev64
         CXX: sccache g++
         ARTIFACT: endless-sky.exe
     steps:
@@ -387,10 +387,6 @@ jobs:
       with:
         name: app-${{ matrix.os }}
     - name: Verify Executable
-      run: |
-        ls -lghtr .
-        ls -lghtr 'Endless Sky.app/Contents/MacOS'
-        chmod +x "${ES_BINARY}"
-        "${ES_BINARY}" -v
+      run: chmod +x ./"${ES_BINARY}" && ./"${ES_BINARY}" -v
     - name: Parse Datafiles
       run: ./tests/test_parse.sh "${ES_BINARY}"

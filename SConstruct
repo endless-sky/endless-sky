@@ -23,6 +23,7 @@ if 'RANLIB' in os.environ:
 	env['RANLIB'] = os.environ['RANLIB']
 if 'DIR_ESLIB' in os.environ:
 	path = os.environ['DIR_ESLIB']
+	print('env DIR_ESLIB={}, joined CPPPATH={}'.format(path, pathjoin(path, 'include')))
 	env.Prepend(CPPPATH = [pathjoin(path, 'include')])
 	env.Append(LIBPATH = [pathjoin(path, 'lib')])
 
