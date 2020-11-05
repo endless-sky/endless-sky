@@ -83,13 +83,14 @@ RANLIB ?= gcc-ranlib
 
 enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
 es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)" DIR_MINGW64="$(DIR_MINGW64)"
+thread_count = $(filter -j -j%,$(MAKEFLAGS))
 
 # Invoke SCons, either the system / virtualenv installation or the downloaded version.
 all: release debug
 release debug: get_scons
-	$(es_search_dirs) $(enable_lto) $(scons_exe) -Qj 2 mode=$@
+	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) mode=$@
 build-tests test: get_scons
-	$(es_search_dirs) $(enable_lto) $(scons_exe) -Qj 2 $(MAKECMDGOALS)
+	$(es_search_dirs) $(enable_lto) $(scons_exe) -Q $(thread_count) $(MAKECMDGOALS)
 profile:
 	@echo "Profiling is currently only supported on linux"
 
