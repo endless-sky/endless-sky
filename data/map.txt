@@ -11,6 +11,7 @@
 galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
+	scale 1
 
 galaxy "pug empty galaxy"
 	pos 10000 7000

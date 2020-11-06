@@ -141,7 +141,7 @@ void MapPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	for(const auto &it : GameData::Galaxies())
-		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
+		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom() * it.second.Scale());
 	
 	if(Preferences::Has("Hide unexplored map regions"))
 		FogShader::Draw(center, Zoom(), player);

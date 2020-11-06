@@ -29,11 +29,13 @@ public:
 	
 	const Point &Position() const;
 	const Sprite *GetSprite() const;
+    const float Scale() const;
 	
 	
 private:
 	Point position;
 	const Sprite *sprite = nullptr;
+    float scale = 1;
 };
 
 #endif
