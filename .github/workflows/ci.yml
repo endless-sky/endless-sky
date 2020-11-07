@@ -58,6 +58,8 @@ jobs:
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
+        AR: gcc-ar
+        RANLIB: gcc-ranlib
         ARTIFACT: endless-sky
     steps:
     - uses: actions/checkout@v2
@@ -93,7 +95,7 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: AR=gcc-ar RANLIB=gcc-ranlib scons -Qj $(nproc);
+      run: scons -Qj $(nproc);
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
@@ -109,6 +111,8 @@ jobs:
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
+        AR: gcc-ar
+        RANLIB: gcc-ranlib
         TEST_BINARY: tests/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
@@ -136,9 +140,9 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: AR=gcc-ar RANLIB=gcc-ranlib scons -Qj $(nproc) build-tests
+      run: scons -Qj $(nproc) build-tests
     - name: Run tests
-      run: AR=gcc-ar RANLIB=gcc-ranlib scons -Qj $(nproc) test
+      run: scons -Qj $(nproc) test
 
 
   build_windows:
@@ -151,7 +155,7 @@ jobs:
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: dev64
         CXX: sccache g++
-        ARTIFACT: endless-sky.exe
+        ARTIFACT: EndlessSky.exe
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -192,7 +196,7 @@ jobs:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
 
-  test_windows:
+  test_windows-unit:
     needs: build_windows
     runs-on: ${{ matrix.os }}
     strategy:
@@ -344,6 +348,8 @@ jobs:
   test_windows-parse:
     needs: build_windows
     runs-on: ${{ matrix.os }}
+    env:
+      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
     strategy:
       matrix:
         os: [windows-latest]
@@ -355,9 +361,9 @@ jobs:
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
         COPY ".\dev64\bin\*.dll" .
-        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
-        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
-        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
+        COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
+        COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
+        COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:

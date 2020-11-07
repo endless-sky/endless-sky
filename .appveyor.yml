@@ -37,7 +37,7 @@ install:
 
 cache:
   - C:\dev64
-  - scons-local
+  - .\scons-local
 
 build_script:
   - ps: mingw32-make.exe -re -j $Env:NPROC -f .winmake $Env:es_run_mode;

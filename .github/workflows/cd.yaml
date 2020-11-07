@@ -42,6 +42,7 @@ jobs:
     env:
       ARCH: x86_64
       OUTPUT: endless-sky-x86_64-continuous.AppImage
+      RANLIB: gcc-ranlib
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -81,9 +82,9 @@ jobs:
         run: |
           COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
           COPY ".\dev64\bin\*.dll" .
-          COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
-          COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
-          COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
+          COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
+          COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
+          COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
           7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
       - name: Upload artifact
         uses: actions/upload-artifact@v2
