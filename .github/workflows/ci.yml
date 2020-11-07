@@ -182,10 +182,10 @@ jobs:
           ${{ matrix.os }}-sccache
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake release
-    # - name: Prepare game binary
-    #   if: steps.cache-artifact.outputs.cache-hit != 'true'
-    #   run: COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
+      run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
+    - name: Prepare game binary
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
@@ -363,7 +363,7 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
     - name: Parse Datafiles
-      run: .\tests\test_parse.ps1 endless-sky.exe
+      run: .\tests\test_parse.ps1 EndlessSky.exe
 
 
   test_macos-parse:

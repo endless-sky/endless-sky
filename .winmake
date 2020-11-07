@@ -28,30 +28,27 @@
 
 
 # Build targets:
+# 'dist'    - a 64-bit general-release version of Endless Sky (non-specific architecture, default target)
 # 'release' - a 64-bit optimized (-O3 -march=native) version of Endless Sky for local consumption
 # 'debug'   - a 64-bit version of Endless Sky with debugging symbols (-g)
 # 'profile' - a 64-bit version of Endless Sky with debugging symbols and profiling hooks for gprof (-pg)
 # 'clean'   - removes all compiled objects and binaries.
 # 'clean-all' - runs clean, and also removes `scons-local`
-# 'dist' - a 64-bit general-release version of Endless Sky (non-specific architecture)
 
 # End-user configuration
 # https://github.com/endless-sky/endless-sky/wiki/BuildInstructions
 # 1. Obtain the 'dev64' zip archive from the Endless Sky wiki, unzip it, and
 #    set DIR_ESLIB to its location
-# 2. Set DIR_MINGW64 to the MinGW directory with a `bin` and `lib` subfolders
-#    that has `libmingw32.a` and `libopengl32.a` in the lib subfolder
-# 3. Set OUTPUT_DIR to where you want the exe to be placed (it will ship in a
-#    config-dependent subfolder, e.g. OUTPUT_DIR\Debug\EndlessSky.exe)
-# 4. Set BUILDDIR to where you would like the intermediate .o files to reside
-# 5. Set SCONS_VERSION to the version of the SCons program you would like to use
+# 2. Set BIN_DIR to where you want the exe to be placed (it will ship in a
+#    config-dependent subfolder, e.g. BIN_DIR\debug\endless-sky.exe)
+# 3. Set BUILDDIR to where you would like the intermediate .o files to reside
+# 4. Set SCONS_VERSION to the version of the SCons program you would like to use
 #    if SCons is not found in PATH
-# 6. Set PYTHON_BINARY to the name or path of a Python3 binary. Python v2 is not supported.
-# 7. Set AR and RANLIB to the binary archive tooling that is capable of link-time optimization
+# 5. Set PYTHON_BINARY to the name or path of a Python3 binary. Python v2 is not supported.
+# 6. Set AR and RANLIB to the binary archive tooling that is capable of link-time optimization
 #
 DIR_ESLIB ?= C:\dev64
-DIR_MINGW64 ?= C:\Program\ Files\mingw64\x86_64-w64-mingw32
-OUTPUT_DIR ?= bin
+BIN_DIR ?= bin
 BUILDDIR ?= build
 SCONS_VERSION ?= 4.0.1
 PYTHON_BINARY ?= py
@@ -74,25 +71,27 @@ es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)"
 # Common environment variables to pass to SCons, expanded immediately:
 scons_env ::= $(es_search_dirs) $(enable_lto)
 # Common options to pass, expanded in-recipe:
-scons_opts = -Q $(filter -j -j%,$(MAKEFLAGS)) BUILDDIR=$(BUILDDIR)
+scons_opts = -Q $(filter -j -j%,$(MAKEFLAGS)) BUILDDIR=$(BUILDDIR) BIN_DIR=$(BIN_DIR)
 # For the release target, append native architecture optimization to the user's flags.
 additional_release_cxxflags ::= "$(strip $(CXXFLAGS) -march=native)"
 
 # Configure target dependencies to invoke SCons
+dist:
 all: release debug
 release debug dist build-tests test: get_scons
 
 # Target-specific variable overrides
 dist: BUILDDIR ::= "$(BUILDDIR)/pkgd"
+dist: BIN_DIR ::= "$(BIN_DIR)/pkgd"
 build-tests test release: scons_env += CXXFLAGS=$(additional_release_cxxflags)
 
 # Target-specific build recipes
-debug release:
-	$(scons_env) $(scons_exe) $(scons_opts) mode=$@
 dist:
 	$(scons_env) $(scons_exe) $(scons_opts) mode=release
+debug release:
+	$(scons_env) $(scons_exe) $(scons_opts) mode=$@
 build-tests test:
-	$(scons_env) $(scons_exe) $(scons_opts) $(MAKECMDGOALS)
+	$(scons_env) $(scons_exe) $(scons_opts) $@
 profile:
 	@echo "Profiling is currently only supported on linux"
 

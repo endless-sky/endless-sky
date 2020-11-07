@@ -32,12 +32,14 @@ if 'steamrt' in chroot_name:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])
 
 opts = Variables()
-opts.Add(PathVariable("PREFIX", "Directory to install under", "/usr/local", PathVariable.PathIsDirCreate))
-opts.Add(PathVariable("DESTDIR", "Destination root directory", "", PathVariable.PathAccept))
-opts.Add(EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")))
-opts.Add(PathVariable("BUILDDIR", "Build directory", "build", PathVariable.PathIsDirCreate))
+opts.AddVariables(
+	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
+	PathVariable("BUILDDIR", "Directory to store compiled object files in", "build", PathVariable.PathIsDirCreate),
+	PathVariable("BIN_DIR", "Directory to store binaries in", ".", PathVariable.PathIsDirCreate),
+	PathVariable("DESTDIR", "Destination root directory, e.g. if building a package", "", PathVariable.PathAccept),
+	PathVariable("PREFIX", "Directory to install under (will be prefixed by DESTDIR)", "/usr/local", PathVariable.PathIsDirCreate),
+)
 opts.Update(env)
-
 Help(opts.GenerateHelpText(env))
 
 # Required build flags. To enable SSE or other optimizations, pass CXXFLAGS via the environment
@@ -91,6 +93,7 @@ else:
 	env.Append(LIBS = "mad")
 
 
+binDirectory = pathjoin(env["BIN_DIR"], env["mode"]) if env["BIN_DIR"] != '.' else '' 
 buildDirectory = pathjoin(env["BUILDDIR"], env["mode"])
 libDirectory = pathjoin("lib", env["mode"])
 VariantDir(buildDirectory, "source", duplicate = 0)
@@ -106,7 +109,7 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
-sky = env.Program("endless-sky", Glob(pathjoin(buildDirectory, "main.cpp")) + sourceLib)
+sky = env.Program(pathjoin(binDirectory,"endless-sky"), Glob(pathjoin(buildDirectory, "main.cpp")) + sourceLib)
 env.Default(sky)
 
 

@@ -76,10 +76,10 @@ jobs:
         run: ./utils/cd_update_versions.sh
         shell: bash
       - name: Build Application
-        run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake dist
+        run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
       - name: Package Application
         run: |
-          COPY .\endless-sky.exe EndlessSky.exe
+          COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
           COPY ".\dev64\bin\*.dll" .
           COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
           COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
