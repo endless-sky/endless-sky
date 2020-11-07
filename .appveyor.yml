@@ -18,7 +18,7 @@ install:
       # Update env variables to use the desired MinGW version
       Set-AppveyorBuildVariable -Name PATH -Value "$Env:MINGW_ROOT\bin\;$Env:PATH";
       Set-AppveyorBuildVariable -Name DIR_MINGW64 -Value "$Env:MINGW_ROOT\x86_64-w64-mingw32";
-      Set-AppveyorBuildVariable -Name NPROC -Value ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors);
+      Set-AppveyorBuildVariable -Name NPROC -Value (Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors;
 
       # Ensure we have the precompiled libraries to link with (SDL, etc.).
       if (!(Test-Path 'C:\dev64')) { New-Item 'C:\dev64' -ItemType Directory; }

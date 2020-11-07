@@ -71,7 +71,7 @@ es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)"
 # Common environment variables to pass to SCons, expanded immediately:
 scons_env ::= $(es_search_dirs) $(enable_lto)
 # Common options to pass, expanded in-recipe:
-scons_opts = -Q $(filter -j -j%,$(MAKEFLAGS)) BUILDDIR=$(BUILDDIR) BIN_DIR=$(BIN_DIR)
+scons_opts = -Q $(patsubst -j,,$(filter -j%,$(MAKEFLAGS))) BUILDDIR=$(BUILDDIR) BIN_DIR=$(BIN_DIR)
 # For the release target, append native architecture optimization to the user's flags.
 additional_release_cxxflags ::= "$(strip $(CXXFLAGS) -march=native)"
 

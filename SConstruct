@@ -93,7 +93,7 @@ else:
 	env.Append(LIBS = "mad")
 
 
-binDirectory = pathjoin(env["BIN_DIR"], env["mode"]) if env["BIN_DIR"] != '.' else '' 
+binDirectory = '' if env["BIN_DIR"] == '.' else pathjoin(env["BIN_DIR"], env["mode"])
 buildDirectory = pathjoin(env["BUILDDIR"], env["mode"])
 libDirectory = pathjoin("lib", env["mode"])
 VariantDir(buildDirectory, "source", duplicate = 0)
@@ -109,7 +109,7 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
-sky = env.Program(pathjoin(binDirectory,"endless-sky"), Glob(pathjoin(buildDirectory, "main.cpp")) + sourceLib)
+sky = env.Program(pathjoin(binDirectory, "endless-sky"), Glob(pathjoin(buildDirectory, "main.cpp")) + sourceLib)
 env.Default(sky)
 
 
