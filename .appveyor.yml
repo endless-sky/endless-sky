@@ -10,17 +10,18 @@ environment:
   # Building with MinGW-w64 version 6.3.0. These env settings are used by the makefile.
   MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
   PYTHON_BINARY: C:/Python38-x64/python.exe
+  SCCACHE_DIR: sccache
+  CXX: sccache g++
   matrix:
     - es_run_mode: 'dist'
 
 install:
+  # Update env variables to use the desired MinGW version
   - ps: |
-      # Update env variables to use the desired MinGW version
       Set-AppveyorBuildVariable -Name PATH -Value "$Env:MINGW_ROOT\bin\;$Env:PATH";
       Set-AppveyorBuildVariable -Name DIR_MINGW64 -Value "$Env:MINGW_ROOT\x86_64-w64-mingw32";
-      Set-AppveyorBuildVariable -Name NPROC -Value (Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors;
-
-      # Ensure we have the precompiled libraries to link with (SDL, etc.).
+  # Ensure we have the precompiled libraries to link with (SDL, etc.).
+  - ps: |
       if (!(Test-Path 'C:\dev64')) { New-Item 'C:\dev64' -ItemType Directory; }
       if (!(Test-Path 'C:\dev64\bin'))
       {
@@ -28,22 +29,28 @@ install:
         $zipArgs = 'x C:\dev64.zip -oC:\';
         Start-Process '7z.exe' -ArgumentList $zipArgs -Wait;
       }
-
-      # Enable warning-free threaded python builds (and don't fail because pip is outdated).
+  # Enable warning-free threaded python builds (and don't fail because pip is outdated).
+  - ps: |
       $originalSetting = $ErrorActionPreference;
       $ErrorActionPreference = 'SilentlyContinue';
       C:/Python38-x64/python.exe -m pip install pywin32 2> $null;
       $ErrorActionPreference = $originalSetting;
+  # Use sccache
+  - ps: choco install sccache
 
 cache:
   - C:\dev64
-  - .\scons-local
+  - C:\ProgramData\chocolatey\bin
+  - C:\ProgramData\chocolatey\lib
+  - scons-local -> .winmake
+  - sccache -> .winmake
+  - .sconsign.dblite -> .winmake
 
 build_script:
-  - ps: mingw32-make.exe -re -j $Env:NPROC -f .winmake $Env:es_run_mode;
+  - ps: mingw32-make.exe -re -j2 -f .winmake $Env:es_run_mode;
 
 before_test:
-  - ps: mingw32-make.exe -re -j $Env:NPROC -f .winmake build-tests;
+  - ps: mingw32-make.exe -re -j2 -f .winmake build-tests;
   - ps: |
       $here = (Get-Location).Path;
       Copy-Item -Path "bin\pkgd\release\endless-sky.exe" -Destination $here;
@@ -62,7 +69,18 @@ after_test:
       Copy-Item -Path "$Env:DIR_MINGW64\lib\libwinpthread-1.dll" -Destination $here;
 
       # Zip the directory for release
-      $ARCHIVE_NAME = "$Env:APPVEYOR_REPO_NAME-$Env:APPVEYOR_REPO_BRANCH-$Env:APPVEYOR_REPO_COMMIT-win64.7z";
+      $BRANCH_NAME = switch ( [string]::IsNullOrEmpty($Env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH) ) {
+        $true { $Env:APPVEYOR_REPO_BRANCH }
+        $false { $Env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH }
+      };
+      $REPO_NAME = $Env:APPVEYOR_REPO_NAME -replace "^.+/";
+      $ARCHIVE_NAME = "$REPO_NAME-$BRANCH_NAME-$Env:APPVEYOR_REPO_COMMIT-win64.7z";
+
+      # Remove invalid characters that would prevent saving the artifact.
+      $INVALID_CHARS = [IO.Path]::GetInvalidFileNameChars() -join '';
+      $REPLACER = "[{0}]" -f [RegEx]::Escape($INVALID_CHARS);
+      $ARCHIVE_NAME = ($ARCHIVE_NAME -replace $REPLACER)
+
       $ZIP_ARGS = "a $ARCHIVE_NAME .\*.exe -i!.\*.dll -i!.\data\ -i!.\icons\ -i!.\images\ -i!.\sounds\ -i!.\source\ -i!license.txt -i!copyright -i!README.md -i!changelog -i!credits.txt -i!keys.txt";
       Start-Process '7z.exe' -ArgumentList $ZIP_ARGS -Wait;
       Push-AppveyorArtifact $ARCHIVE_NAME;
