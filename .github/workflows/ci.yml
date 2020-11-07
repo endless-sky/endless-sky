@@ -225,6 +225,10 @@ jobs:
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
+        COPY ".\dev64\bin\*.dll" .
+        COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
+        COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
+        COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
     - name: Cache sccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -241,11 +245,7 @@ jobs:
         make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
         COPY ".\tests\${{ env.TEST_BINARY }}" .
     - name: Run tests
-      run: |
-        .\${{ env.TEST_BINARY }} -r compact -o test-result.log
-        echo "TEST_RESULT<<EOF" >> $GITHUB_ENV
-        cat test-result.log >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
+      run: .\${{ env.TEST_BINARY }} -r compact
 
 
   build_macos:
