@@ -254,7 +254,8 @@ jobs:
       matrix:
         os: [macos-latest]
     env:
-      ARTIFACT: /tmp/EndlessSky.dst/Applications/
+      ARTIFACT: Endless Sky
+      # ARTIFACT: /tmp/EndlessSky.dst/Applications/
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -262,7 +263,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.ARTIFACT }}
-        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/**') }}-${{ hashFiles('source/**') }}-${{ hashFiles('EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('source/**') }}-${{ hashFiles('EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -270,11 +271,13 @@ jobs:
         brew install libmad libpng jpeg-turbo sdl2
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet install
-    - name: Upload artifact
+      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+    - name: Prepare game binary
+      run: mv "build/Release/Endless Sky.app/Contents/MacOS/Endless Sky" .
+    - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
-        name: app-${{ matrix.os }}
+        name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
 
 
@@ -379,7 +382,8 @@ jobs:
       matrix:
         os: [macos-latest]
     env:
-      ES_BINARY: Endless Sky.app/Contents/MacOS/Endless Sky
+      # ES_BINARY: Endless Sky.app/Contents/MacOS/Endless Sky
+      ES_BINARY: Endless Sky
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
@@ -389,7 +393,7 @@ jobs:
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
-        name: app-${{ matrix.os }}
+        name: binary-${{ matrix.os }}
     - name: Verify Executable
       run: chmod +x ./"${ES_BINARY}" && ./"${ES_BINARY}" -v
     - name: Parse Datafiles
