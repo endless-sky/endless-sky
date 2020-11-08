@@ -7,13 +7,17 @@ clone_depth: 2
 
 environment:
   TEST_REPORT_FILE: .\tests\test-report.xml
-  # Building with MinGW-w64 version 6.3.0. These env settings are used by the makefile.
-  MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
   PYTHON_BINARY: C:/Python38-x64/python.exe
   SCCACHE_DIR: sccache
   CXX: sccache g++
+  es_run_mode: 'dist'
   matrix:
-    - es_run_mode: 'dist'
+    - MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
+      MINGW_VERSION: v6.3.0
+    - MINGW_ROOT: C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64
+      MINGW_VERSION: v7.3.0
+    - MINGW_ROOT: C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64
+      MINGW_VERSION: v8.1.0
 
 install:
   # Update env variables to use the desired MinGW version
@@ -74,7 +78,7 @@ after_test:
         $false { $Env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH }
       };
       $REPO_NAME = $Env:APPVEYOR_REPO_NAME -replace "^.+/";
-      $ARCHIVE_NAME = "$REPO_NAME-$BRANCH_NAME-$Env:APPVEYOR_REPO_COMMIT-win64.7z";
+      $ARCHIVE_NAME = "$REPO_NAME-$BRANCH_NAME-$($Env:APPVEYOR_REPO_COMMIT.SubString(0,7))-MinGW$Env:MINGW_VERSION-win64.7z";
 
       # Remove invalid characters that would prevent saving the artifact.
       $INVALID_CHARS = [IO.Path]::GetInvalidFileNameChars() -join '';
