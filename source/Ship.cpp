@@ -695,9 +695,42 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.FlareSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("flare sound", it.first->Name());
+			for(const auto &it : baseAttributes.ReverseFlareSprites())
+				for(int i = 0; i < it.second; ++i)
+					it.first.SaveSprite(out, "reverse flare sprite");
+			for(const auto &it : baseAttributes.ReverseFlareSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("reverse flare sound", it.first->Name());
+			for(const auto &it : baseAttributes.SteeringFlareSprites())
+				for(int i = 0; i < it.second; ++i)
+					it.first.SaveSprite(out, "steering flare sprite");
+			for(const auto &it : baseAttributes.SteeringFlareSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("steering flare sound", it.first->Name());
 			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("afterburner effect", it.first->Name());
+			for(const auto &it : baseAttributes.JumpEffects())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump effect", it.first->Name());
+			for(const auto &it : baseAttributes.JumpSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump sound", it.first->Name());
+			for(const auto &it : baseAttributes.JumpInSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump in sound", it.first->Name());
+			for(const auto &it : baseAttributes.JumpOutSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump out sound", it.first->Name());
+			for(const auto &it : baseAttributes.HyperSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("hyperdrive sound", it.first->Name());
+			for(const auto &it : baseAttributes.HyperInSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("hyperdrive in sound", it.first->Name());
+			for(const auto &it : baseAttributes.HyperOutSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("hyperdrive out sound", it.first->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);

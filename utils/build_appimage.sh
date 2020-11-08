@@ -8,7 +8,7 @@
 cp icons/icon_512x512.png endless-sky.png
 
 # Build
-scons -j $(nproc) install DESTDIR=AppDir 
+scons -Qj $(nproc) install DESTDIR=AppDir
 
 # Inside an AppImage, the executable is a link called "AppRun" at the root of AppDir/.
 # Keeping the data files next to the executable is perfectly valid, so we just move them to AppDir/ to avoid errors.

@@ -2,12 +2,16 @@ name: Validate XCode Project
 
 on:
   push:
+    branch:
+      - master
+      - v[0-9]+.[0-9]+.[0-9]+
     paths:
     - '.github/workflows/xcode_check.yml'
     - 'EndlessSky.xcodeproj/**'
     - 'source/**'
     - 'tests/check_xcode.sh'
   pull_request:
+    types: [opened, synchronize]
     paths:
     - '.github/workflows/xcode_check.yml'
     - 'EndlessSky.xcodeproj/**'
