@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class Sprite;
+class StartConditions;
 
 
 
@@ -40,9 +41,11 @@ public:
 	
 	const std::string &GetSystem() const;
 	const std::string &GetPlanet() const;
+	const StartConditions *GetChosenStart() const;
 	
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
+	StartConditions *ChosenStart() const;
 	
 	
 private:
@@ -54,6 +57,8 @@ private:
 	
 	std::string system;
 	std::string planet;
+
+	StartConditions *chosenStart;
 	
 	const Sprite *shipSprite = nullptr;
 	std::string shipName;

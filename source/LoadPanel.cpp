@@ -30,8 +30,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -202,12 +204,25 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(key == 'n')
 	{
-		player.New();
-		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &LoadPanel::OnCallback);
+
+		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
+		if(GameData::Start().size() == 1) 
+		{
+			
+			player.New(GameData::Start()[0]);
+
+			ConversationPanel *panel = new ConversationPanel(
+				player, *GameData::Conversations().Get("intro"));
+			GetUI()->Push(panel);
+			panel->SetCallback(this, &LoadPanel::OnCallback);
+		} 
+		else 
+		{
+			// Request that the player chooses a start scenario
+			// StartConditionsPanel also handles the case where there's no scenarios
+			StartConditionsPanel *panel = new StartConditionsPanel(player, gamePanels, this);
+			GetUI()->Push(panel);
+		}
 	}
 	else if(key == 'D' && !selectedPilot.empty())
 	{

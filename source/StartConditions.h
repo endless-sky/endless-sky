@@ -16,6 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Account.h"
 #include "ConditionSet.h"
 #include "Date.h"
+#include "Ship.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
 
 #include <list>
 
@@ -31,14 +34,20 @@ public:
 	void Load(const DataNode &node);
 	// Finish loading the ship definitions.
 	void FinishLoading();
-	
+	// Save the start conditions
+	void Save(DataWriter &out) const;
+
 	Date GetDate() const;
 	const Planet *GetPlanet() const;
 	const System *GetSystem() const;
+	const Sprite *GetSprite() const;
+	const std::string GetName() const;
+	const std::string GetDescription() const;
+
+	// The sprite that will be outlined on StartConditionsPanel.cpp
 	const Account &GetAccounts() const;
 	const ConditionSet &GetConditions() const;
 	const std::list<Ship> &Ships() const;
-	
 	
 private:
 	Date date;
@@ -47,6 +56,9 @@ private:
 	Account accounts;
 	ConditionSet conditions;
 	std::list<Ship> ships;
+	std::string name = "Unnamed start";
+	std::string description = "";
+	const Sprite *sprite = nullptr;
 };
 
 

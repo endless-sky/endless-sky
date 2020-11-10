@@ -235,6 +235,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
 			{
+				printf("FASTFOWARD\n");
 				isFastForward = !isFastForward;
 			}
 		}

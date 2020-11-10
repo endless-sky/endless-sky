@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StartConditions.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "Ship.h"
@@ -32,6 +33,12 @@ void StartConditions::Load(const DataNode &node)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
 			planet = GameData::Planets().Get(child.Token(1));
+		else if(child.Token(0) == "name" && child.Size() >= 2)
+			name = child.Token(1);
+		else if(child.Token(0) == "description" && child.Size() >= 2)
+			description += child.Token(1) + "\n";
+		else if(child.Token(0) == "sprite" && child.Size() >= 2)
+			sprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
@@ -39,6 +46,36 @@ void StartConditions::Load(const DataNode &node)
 		else
 			conditions.Add(child);
 	}
+	if(description == "")
+	{
+		description = "No description provided";
+	}
+}
+
+
+
+void StartConditions::Save(DataWriter &out) const
+{
+	out.Write("start");
+	out.BeginChild();
+	{
+		out.Write("name", name);
+			
+		istringstream iss(description);
+		for(string line; getline(iss, line); )
+		{
+			if(!line.empty())
+			{
+				out.Write("description", line);	
+			}
+			
+		}
+		out.Write("system", system->Name());
+		out.Write("planet", planet->Name());
+		out.Write("date", date.Year(), date.Month(), date.Day());
+		accounts.Save(out);
+	}
+	out.EndChild();
 }
 
 
@@ -90,4 +127,22 @@ const ConditionSet &StartConditions::GetConditions() const
 const list<Ship> &StartConditions::Ships() const
 {
 	return ships;
+}
+
+
+const std::string StartConditions::GetName() const
+{
+	return name;
+}
+
+
+
+const std::string StartConditions::GetDescription() const
+{
+	return description;
+}
+
+const Sprite *StartConditions::GetSprite() const 
+{
+	return sprite;	
 }

@@ -174,6 +174,7 @@ void MenuPanel::OnCallback(int)
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	printf("%s\n", "Clicked");
 	if(!GameData::IsLoaded())
 		return false;
 	
@@ -184,17 +185,32 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
-	else if(key == 'l')
+	else if(key == 'l'){
 		GetUI()->Push(new LoadPanel(player, gamePanels));
+	}
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
-		player.New();
-		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &MenuPanel::OnCallback);
+		if(GameData::Start().size() == 0)  {
+			Files::LogError("No start scenarios were provided!");
+			exit(-1);
+		}
+		else if(GameData::Start().size() == 1) 
+		{
+			
+			player.New(GameData::Start()[0]);
+
+			ConversationPanel *panel = new ConversationPanel(
+				player, *GameData::Conversations().Get("intro"));
+			GetUI()->Push(panel);
+			panel->SetCallback(this, &MenuPanel::OnCallback);
+		} 
+		else 
+		{
+			Files::LogError("Unimplemented :(");
+			exit(-1);
+			// Request that the player chooses a start scenario
+		}
 	}
 	else if(key == 'q')
 		GetUI()->Quit();

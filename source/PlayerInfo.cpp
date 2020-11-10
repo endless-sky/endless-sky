@@ -69,34 +69,35 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New()
+void PlayerInfo::New(StartConditions *chosenStart)
 {
 	// Clear any previously loaded data.
 	Clear();
+
+	this->chosenStart = chosenStart;
 	
-	const StartConditions &start = GameData::Start();
 	// Copy any ships in the start conditions.
-	for(const Ship &ship : start.Ships())
+	for(const Ship &ship : chosenStart->Ships())
 	{
 		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(start.GetSystem());
-		ships.back()->SetPlanet(start.GetPlanet());
+		ships.back()->SetSystem(chosenStart->GetSystem());
+		ships.back()->SetPlanet(chosenStart->GetPlanet());
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
-	date = start.GetDate();
+	date = chosenStart->GetDate();
 	GameData::SetDate(date);
 	// Make sure the fleet depreciation object knows it is tracking the player's
 	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
 	
-	SetSystem(start.GetSystem());
-	SetPlanet(start.GetPlanet());
-	accounts = start.GetAccounts();
-	start.GetConditions().Apply(conditions);
+	SetSystem(chosenStart->GetSystem());
+	SetPlanet(chosenStart->GetPlanet());
+	accounts = chosenStart->GetAccounts();
+	chosenStart->GetConditions().Apply(conditions);
 	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
@@ -177,6 +178,11 @@ void PlayerInfo::Load(const string &path)
 			groups[ships.back().get()] = child.Value(1);
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
+		else if(child.Token(0) == "start")
+		{
+			this->chosenStart = new StartConditions();
+			chosenStart->Load(child);
+		}
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "basis")
@@ -269,6 +275,12 @@ void PlayerInfo::Load(const string &path)
 			}
 		}
 	}
+
+	if(!chosenStart && GameData::Start().size()) // Probably an old save
+	{
+		chosenStart = GameData::Start()[GameData::Start().size()-1]; 
+	}
+
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
 	UpdateCargoCapacities();
@@ -586,6 +598,12 @@ void PlayerInfo::IncrementDate()
 	UpdateAutoConditions();
 }
 
+
+
+StartConditions *PlayerInfo::ChosenStart() const
+{
+	return chosenStart;
+}
 
 
 // Set the player's current start system, and mark that system as visited.
@@ -2260,8 +2278,8 @@ void PlayerInfo::ApplyChanges()
 		system = planet->GetSystem();
 	if(!planet || planet->Name().empty() || !system || system->Name().empty())
 	{
-		system = GameData::Start().GetSystem();
-		planet = GameData::Start().GetPlanet();
+		system = chosenStart->GetSystem();
+		planet = chosenStart->GetPlanet();
 	}
 	
 	// For any ship that did not store what system it is in or what planet it is
@@ -2627,6 +2645,12 @@ void PlayerInfo::Save(const string &path) const
 		if(it != groups.end() && it->second)
 			out.Write("groups", it->second);
 	}
+
+	if (chosenStart)
+	{
+		chosenStart->Save(out);	
+	}
+	
 	
 	// Save accounting information, cargo, and cargo cost bases.
 	accounts.Save(out);

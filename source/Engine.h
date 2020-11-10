@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "StartConditions.h"
 
 #include <condition_variable>
 #include <list>
@@ -86,7 +87,6 @@ public:
 	void Click(const Point &from, const Point &to, bool hasShift);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
-	
 	
 private:
 	void EnterSystem();

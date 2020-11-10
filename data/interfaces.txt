@@ -190,7 +190,64 @@ interface "menu player info"
 		from 310 105
 		align left
 
+interface "menu start info"
+	active if "chosen start"
+	image "start sprite"
+		center 360 -90
+		dimensions 240 240
+	label "name:"
+		from 250 -15
+		align left
+	string "name"
+		from 310 -15
+		align left
+	label "planet:"
+		from 250 35
+		align left
+	string "planet"
+		from 310 35
+		align left
+	label "system:"
+		from 250 55
+		align left
+	string "system"
+		from 310 55
+		align left
+	label "credits:"
+		from 250 85
+		align left
+	string "credits"
+		from 310 85
+		align left
+	label "date:"
+		from 250 105
+		align left
+	string "date"
+		from 310 105
+		align left
 
+
+interface "start conditions menu"
+	sprite "_menu/side panel"
+		center -360 0
+
+	sprite "_menu/buttonless side panel"
+		center 0 0
+
+	sprite "_menu/buttonless side panel"
+		center 360 0
+
+	outline "ship/clipper"
+		center 360 -90
+		dimensions 120 120
+
+	button b "Back to menu"
+		center -420 155
+		dimensions 120 30
+	active if "chosen start"
+	button s "Select"
+		center -285 155
+		dimensions 90 30
 
 interface "load menu"
 	sprite "_menu/side panel"

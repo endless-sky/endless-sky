@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 #include "Format.h"
 #include "SpriteSet.h"
+#include "StartConditions.h"
 
 using namespace std;
 
@@ -54,6 +55,11 @@ void SavedGame::Load(const string &path)
 					credits = Format::Credits(child.Value(1));
 					break;
 				}
+		}
+		else if(node.Token(0) == "start")
+		{
+			chosenStart = new StartConditions();
+			chosenStart->Load(node);
 		}
 		else if(node.Token(0) == "ship" && !shipSprite)
 		{
@@ -132,6 +138,14 @@ const string &SavedGame::GetSystem() const
 const string &SavedGame::GetPlanet() const
 {
 	return planet;
+}
+
+
+
+
+const StartConditions *SavedGame::GetChosenStart() const
+{
+	return chosenStart;
 }
 
 
