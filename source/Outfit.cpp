@@ -21,12 +21,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <numeric>
 
 using namespace std;
 
 namespace {
-	const double EPS = 0.0000000001;
-	
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
 	// disallowed or undesirable behaviors (such as dividing by zero).
@@ -87,6 +86,31 @@ namespace {
 			if(thisMap[it.first] == 0)
 				thisMap.erase(it.first);
 		}
+	}
+	
+	// Summation that avoids a loss of trailing digits as possible.
+	double Sum(const map<double, int> &partialTerms)
+	{
+		vector<double> partialSums;
+		partialSums.reserve(partialTerms.size());
+		for(const auto &it : partialTerms)
+			partialSums.push_back(it.first * it.second);
+		sort(partialSums.begin(), partialSums.end(), [&](double a, double b){ return fabs(a) < fabs(b); });
+		return accumulate(partialSums.begin(), partialSums.end(), 0.);
+	}
+	
+	// Add value * count to an attribute.
+	// This function doesn't modify attribute if valud * count is zero.
+	void AddToAttribute(double &attribute, map<double, int> &partialTerms, double value, int count)
+	{
+		if(value == 0. || count == 0)
+			return;
+		
+		auto &countOfValue = partialTerms[value];
+		countOfValue += count;
+		if(!countOfValue)
+			partialTerms.erase(value);
+		attribute = Sum(partialTerms);
 	}
 }
 
@@ -216,6 +240,10 @@ void Outfit::Load(const DataNode &node)
 	};
 	convertScan("outfit");
 	convertScan("cargo");
+	
+	partialTerms["mass"][mass] = 1;
+	for(const auto &it : attributes)
+		partialTerms[it.first][it.second] = 1;
 }
 
 
@@ -305,9 +333,8 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 				continue;
 		}
 		double value = Get(at.first);
-		// Allow for rounding errors:
-		if(value + at.second * count < minimum - EPS)
-			count = (value - minimum) / -at.second + EPS;
+		if(value + at.second * count < minimum)
+			count = (value - minimum) / -at.second;
 	}
 	
 	return count;
@@ -320,13 +347,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
-	mass += other.mass * count;
+	AddToAttribute(mass, partialTerms["mass"], other.mass, count);
 	for(const auto &at : other.attributes)
-	{
-		attributes[at.first] += at.second * count;
-		if(fabs(attributes[at.first]) < EPS)
-			attributes[at.first] = 0.;
-	}
+		AddToAttribute(attributes[at.first], partialTerms[at.first], at.second, count);
 	
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
@@ -353,6 +376,8 @@ void Outfit::Add(const Outfit &other, int count)
 void Outfit::Set(const char *attribute, double value)
 {
 	attributes[attribute] = value;
+	partialTerms[attribute].clear();
+	partialTerms[attribute][value] = 1;
 }
 
 

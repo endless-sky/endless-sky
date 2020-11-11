@@ -105,6 +105,7 @@ private:
 	std::vector<std::string> licenses;
 	
 	Dictionary attributes;
+	std::map<std::string, std::map<double, int>> partialTerms;
 	
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
