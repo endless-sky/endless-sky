@@ -103,7 +103,7 @@ namespace {
 	// This function doesn't modify attribute if valud * count is zero.
 	void AddToAttribute(double &attribute, map<double, int> &partialTerms, double value, int count)
 	{
-		if(value == 0. || count == 0)
+		if(value == 0. || !count)
 			return;
 		
 		auto &countOfValue = partialTerms[value];
@@ -241,6 +241,7 @@ void Outfit::Load(const DataNode &node)
 	convertScan("outfit");
 	convertScan("cargo");
 	
+	partialTerms.clear();
 	partialTerms["mass"][mass] = 1;
 	for(const auto &it : attributes)
 		partialTerms[it.first][it.second] = 1;
