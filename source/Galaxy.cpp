@@ -28,7 +28,7 @@ void Galaxy::Load(const DataNode &node)
 		else if(child.Token(0) == "sprite" && child.Size() >= 2)
 			sprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "scale" && child.Size() >= 2)
-			scale = atof(child.Token(1).c_str());
+			scale = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -48,7 +48,7 @@ const Sprite *Galaxy::GetSprite() const
 	return sprite;
 }
 
-const float Galaxy::Scale() const
+float Galaxy::Scale() const
 {
 	return scale;
 }

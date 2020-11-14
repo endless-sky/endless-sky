@@ -11,7 +11,7 @@
 galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
-	scale 1
+	scale 1 # Larger numbers make the sprite bigger
 
 galaxy "pug empty galaxy"
 	pos 10000 7000
