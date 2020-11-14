@@ -107,7 +107,7 @@ void LogbookPanel::Draw()
 	Point highlightOffset = Point(4. - PAD, 0.) + .5 * highlightSize;
 	Point textOffset(0., .5 * (LINE_HEIGHT - font.Height()));
 	// Start at this point on the screen:
-	Point pos = Screen::TopLeft() + Point(PAD, PAD);
+	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
 	for(size_t i = 0; i < contents.size(); ++i)
 	{
 		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
@@ -118,6 +118,8 @@ void LogbookPanel::Draw()
 		font.Draw(contents[i], pos + textOffset, dates[i].Month() ? medium : bright);
 		pos.Y() += LINE_HEIGHT;
 	}
+
+	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
 	
 	// Parameters for drawing the main text:
 	WrappedText wrap(font);
@@ -222,7 +224,7 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 	y -= Screen::Top();
 	if(x < SIDEBAR_WIDTH)
 	{
-		size_t index = (y - PAD) / LINE_HEIGHT;
+		size_t index = (y - PAD + categoryScroll) / LINE_HEIGHT;
 		if(index < contents.size())
 		{
 			selectedDate = dates[index];
@@ -243,7 +245,15 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 
 bool LogbookPanel::Drag(double dx, double dy)
 {
-	scroll = max(0., min(maxScroll, scroll - dy));
+	if ((hoverPoint.X() - Screen::Left()) > SIDEBAR_WIDTH)
+	{
+		scroll = max(0., min(maxScroll, scroll - dy));
+	}
+	else
+	{
+		// Scroll sidebar
+		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
+	}
 	
 	return true;
 }
@@ -253,6 +263,15 @@ bool LogbookPanel::Drag(double dx, double dy)
 bool LogbookPanel::Scroll(double dx, double dy)
 {
 	return Drag(0., dy * Preferences::ScrollSpeed());
+}
+
+
+
+bool LogbookPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	
+	return true;
 }
 
 
