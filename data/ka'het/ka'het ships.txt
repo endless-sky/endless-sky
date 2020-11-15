@@ -27,7 +27,7 @@ ship "Maeri'het"
 		"ramscoop" 0.58
 		"cargo space" 43
 		"outfit space" 383
-		"engine space" 86
+		"engine capacity" 86
 		"weapon capacity" 184
 		"energy capacity" 10000
 		"energy generation" 28.3
@@ -54,8 +54,8 @@ ship "Maeri'het"
 		"Ka'het Reserve Accumulator"
 
 		"Hyperdrive"
-		"Ka'het Sustainer Nacelle"
-		"Maeri Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Maeri Engine Nacelles"
 
 	engine -22 61.5
 	engine 22 61
@@ -89,8 +89,8 @@ ship "Maeri'het" "Maeri'het (EMP)"
 		"Ka'het MHD Generator"
 
 		Hyperdrive
-		"Ka'het Sustainer Nacelle"
-		"Maeri Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Maeri Engine Nacelles"
 
 ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 	"uncapturable"
@@ -106,8 +106,8 @@ ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 		"Ka'het MHD Generator"
 
 		Hyperdrive
-		"Ka'het Sustainer Nacelle"
-		"Maeri Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Maeri Engine Nacelles"
 
 ship "Telis'het"
 	plural "Telis'heta"
@@ -128,7 +128,7 @@ ship "Telis'het"
 		"ramscoop" 0.82
 		"cargo space" 71
 		"outfit space" 628
-		"engine space" 108
+		"engine capacity" 108
 		"weapon capacity" 254
 		"energy capacity" 28000
 		"energy generation" 37.4
@@ -154,8 +154,8 @@ ship "Telis'het"
 		"Ka'het Reserve Accumulator"
 
 		"Hyperdrive"
-		"Ka'het Sustainer Nacelle"
-		"Telis Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Telis Engine Nacelles"
 
 	engine -39.5 80
 	engine 39.5 80
@@ -193,8 +193,8 @@ ship "Telis'het" "Telis'het (EMP)"
 		"Ka'het Reserve Accumulator" 3
 
 		Hyperdrive
-		"Ka'het Sustainer Nacelle"
-		"Telis Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Telis Engine Nacelles"
 
 ship "Telis'het" "Telis'het (EMP, Disable-able)"
 	"uncapturable"
@@ -211,8 +211,8 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 		"Ka'het Reserve Accumulator" 3
 
 		Hyperdrive
-		"Ka'het Sustainer Nacelle"
-		"Telis Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Telis Engine Nacelles"
 
 ship "Telis'het" "Telis'het (Guns)"
 	"never disabled"
@@ -227,8 +227,8 @@ ship "Telis'het" "Telis'het (Guns)"
 		"Ka'het Reserve Accumulator" 6
 
 		Hyperdrive
-		"Ka'het Sustainer Nacelle"
-		"Telis Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Telis Engine Nacelles"
 
 ship "Telis'het" "Telis'het (Guns, Disable-able)"
 	"uncapturable"
@@ -243,8 +243,8 @@ ship "Telis'het" "Telis'het (Guns, Disable-able)"
 		"Ka'het Reserve Accumulator" 6
 
 		Hyperdrive
-		"Ka'het Sustainer Nacelle"
-		"Telis Engine Nacelle"
+		"Ka'het Sustainer Nacelles"
+		"Telis Engine Nacelles"
 
 ship "Selii'mar"
 	sprite "ship/selii'mar"
@@ -258,7 +258,7 @@ ship "Selii'mar"
 		"heat dissipation" 1.1
 		"cargo space" 14
 		"outfit space" 77
-		"engine space" 21
+		"engine capacity" 21
 		"weapon capacity" 18
 		weapon
 			"blast radius" 48
@@ -289,7 +289,7 @@ ship "Faes'mar"
 		"heat dissipation" 1.05
 		"cargo space" 102
 		"outfit space" 92
-		"engine space" 21
+		"engine capacity" 21
 		weapon
 			"blast radius" 52
 			"shield damage" 410
