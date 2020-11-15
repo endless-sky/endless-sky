@@ -223,3 +223,79 @@ outfit "Ka'het Reserve Accumulator"
 	"outfit space" -3
 	"energy capacity" 600
 	description "This tiny battery was developed for use by the Ka'mar drones as an emergency energy storage, in case their generators can't quite suffice for the high power demand of most Builder systems."
+
+# Engines:
+
+outfit "Maeri Engine Nacelles"
+	category "Engines"
+	"cost" 928000
+	thumbnail "outfit/ka'het maeri engine"
+	"mass" 52
+	"outfit space" -76
+	"engine capacity" -59
+	"energy consumption" 4.21
+	"heat generation" 1.1
+	"thrust" 35.1
+	"thrusting heat" 1.8
+	"turn" 821.4
+	"turning heat" 0.9
+	"flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"flare sound" "plasma medium"
+	description "The Ka'het engines are peculiar in that they need to be continously charged to with large amounts of energy: while this means that less power remains available for other subsystems, it is somewhat more efficient than most types of propulsions at doing so, and generates only a tiny amount of heat."
+
+outfit "Ka'het Sustainer Nacelles"
+	category "Engines"
+	"cost" 357000
+	thumbnail "outfit/ka'het sustainer engine"
+	"mass" 27
+	"outfit space" -34
+	"engine capacity" -27
+	"heat generation" 0.6
+	"energy consumption" 2.39
+	"thrust" 13.2
+	"thrusting heat" 1.8
+	"turn" 432.1
+	"turning heat" 0.4
+	"flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"flare sound" "plasma small"
+	description "While the Ka'Het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough manuevrability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maitain its thrusters and steerings ready."
+
+outfit "Telis Engine Nacelles"
+	category "Engines"
+	"cost" 1372000
+	thumbnail "outfit/ka'het telis engine"
+	"mass" 81
+	"outfit space" -109
+	"engine capacity" -81
+	"energy consumption" 6.41
+	"heat generation" 1.4
+	"thrust" 48.4
+	"thrusting heat" 3.5
+	"turn" 1179.2
+	"turning heat" 1.9
+	"flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"flare sound" "plasma medium"
+	description "While its size is not impressive compared to other engines, these nacelles that used to be the entire engine block of a Telis'het if used in companion with a sustainer or two can be a powerful form of propulsion, combining both turning and thrusting engines in one."
+
+outfit "Ka'het Compact Engine"
+	category "Engines"
+	"cost" 172000
+	thumbnail "outfit/ka'het compact engine"
+	"mass" 21
+	"outfit space" -26
+	"engine capacity" -21
+	"heat generation" 0.3
+	"energy consumption" 1.78
+	"thrust" 11.2
+	"thrusting energy" 0.4
+	"thrusting heat" 0.61
+	"turn" 189.4
+	"turning energy" 0.22
+	"turning heat" 0.4
+	"flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"flare sound" "plasma small"
+	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Its improvements over the time allowed it to mantain a comparable efficency to the larger models, although unlike those it requires both a constant amount of energy and some more to activate the engines."
