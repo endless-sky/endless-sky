@@ -421,7 +421,7 @@ void Hardpoint::UpdateAngleOfTraverse()
 	// The installed weapon restricts the angle of traverse.
 	const double hardpointsArc = (angleOfTraverse.second - angleOfTraverse.first).AbsDegrees();
 	const double weaponsArc = outfit->AngleOfTraverse();
-	if(isOmnidirectional || weaponsArc < hardpointsArc)
+	if(weaponsArc < 360. && (isOmnidirectional || weaponsArc < hardpointsArc))
 	{
 		isOmnidirectional = false;
 		const double weaponsHalf = weaponsArc / 2.;
