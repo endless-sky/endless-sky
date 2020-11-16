@@ -128,7 +128,7 @@ ship "Telis'het"
 		"ramscoop" 0.82
 		"cargo space" 71
 		"outfit space" 673
-		"engine capacity" 108
+		"engine capacity" 138
 		"weapon capacity" 254
 		"energy capacity" 28000
 		"energy generation" 37.4
@@ -154,7 +154,7 @@ ship "Telis'het"
 		"Ka'het Reserve Accumulator"
 
 		"Hyperdrive"
-		"Ka'het Sustainer Nacelles"
+		"Ka'het Sustainer Nacelles" 2
 		"Telis Engine Nacelles"
 
 	engine -39.5 80
