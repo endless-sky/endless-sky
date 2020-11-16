@@ -58,7 +58,7 @@ ship "Maeri'het"
 		"Maeri Engine Nacelles"
 
 	engine -22 61.5
-	engine 22 61
+	engine 22 61.5
 	gun -17.5 -68.5 "Ka'het Ravager Beam"
 	gun 17.5 -68.5 "Ka'het Ravager Beam"
 	turret -13.5 -31 "Ka'het Annihilator Turret"
