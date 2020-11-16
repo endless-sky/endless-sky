@@ -127,7 +127,7 @@ ship "Telis'het"
 		"fuel capacity" 800
 		"ramscoop" 0.82
 		"cargo space" 71
-		"outfit space" 628
+		"outfit space" 673
 		"engine capacity" 108
 		"weapon capacity" 254
 		"energy capacity" 28000
