@@ -241,6 +241,8 @@ outfit "Maeri Engine Nacelles"
 	"turning heat" 0.9
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
+	"steering flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
 	"flare sound" "plasma medium"
 	description "The Ka'het engines are peculiar in that they need to be continously charged with large amounts of energy: while this means that less power remains available for other subsystems, it is somewhat more efficient than most types of propulsions at doing so, and generates only a tiny amount of heat."
 
@@ -259,6 +261,8 @@ outfit "Ka'het Sustainer Nacelles"
 	"turning heat" 0.4
 	"flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
+	"steering flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
 	"flare sound" "plasma small"
 	description "While the Ka'Het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maitain its thrusters and steerings ready."
 
@@ -276,6 +280,8 @@ outfit "Telis Engine Nacelles"
 	"turn" 1179.2
 	"turning heat" 1.9
 	"flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma medium"
 	description "While its size is not impressive compared to other engines, these nacelles that used to be the entire engine block of a Telis'het if used in companion with a sustainer or two can be a powerful form of propulsion, combining both turning and thrusting engines in one."
@@ -296,6 +302,8 @@ outfit "Ka'het Compact Engine"
 	"turning energy" 0.22
 	"turning heat" 0.4
 	"flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
 	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Its improvements over the time allowed it to mantain a comparable efficency to the larger models, although unlike those it requires both a constant amount of energy and some more to activate the engines."
