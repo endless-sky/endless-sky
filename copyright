@@ -5,6 +5,7 @@ Source: https://github.com/endless-sky/endless-sky
 
 Files: *
 Copyright: Michael Zahniser <mzahniser@gmail.com>
+           endless-sky contributors (see credits.txt and changelog)
 License: GPL-3+
 
 Files: images/*
@@ -803,20 +804,35 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/effect/dragonflame*
- images/effect/fdrive*
+ images/effect/fusionflare*
  images/effect/pwave?shot*
  images/effect/sheragiam*
  images/effect/pwavehp*
  images/effect/ka'het?flare/*-*
+ images/effect/fissionflare*
+ images/icon/dragonflame*
+ images/icon/shard*
  images/outfit/dragonflame*
  images/outfit/pwave?turret*
  images/outfit/embattery*
  images/outfit/sheragicooling*
  images/outfit/fusiondrive*
+ images/outfit/fissiondrive*
+ images/outfit/hion*
+ images/outfit/shard*
+ images/outfit/sheragi?ews*
+ images/outfit/small?embattery*
+ images/outfit/small?sheragi?cooling*
  images/projectile/pwavecannon*
+ images/projectile/hion*
+ images/projectile/hionfrag*
+ images/projectile/shardactive*
+ images/projectile/shardinactive*
  images/scene/emeraldswordderelict*
  images/ship/emeraldsword*
+ images/ship/blackdiamond*
  images/thumbnail/emeraldsword*
+ images/thumbnail/blackdiamond*
 Copyright: Fernando S. Sáez (crim@live.no)
 License: CC-BY-SA-4.0
 
@@ -835,6 +851,11 @@ Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
+
+Files: sounds/hion*
+Copyright: michael_kur95
+License: CC-BY-3.0
+Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
 
 Files: images/outfit/emp?rack*
 Copyright: Anarchist2
