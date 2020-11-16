@@ -16,6 +16,11 @@ name: Build & Parse
 
 on:
   push:
+    # Run for pushes to master or a version branch, e.g. a PR was merged ...
+    branches:
+      - master
+      - v[0-9]+.[0-9]+.[0-9]+
+    # ... and only when we've possibly changed how the game will function.
     paths:
     - 'source/**'
     - 'data/**'
@@ -27,6 +32,8 @@ on:
     - SConstruct
     - .winmake
   pull_request:
+    # Run for any push to any pull request, if it modifies source code or game text.
+    types: [opened, synchronize]
     paths:
     - 'source/**'
     - 'data/**'

@@ -1212,19 +1212,19 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 			choice
 				`	"What did it contain?"`
 			`	Desyo responds, "It was all fleet movement data and military strategy details. This system was apparently on the border of one of the factions' territories. On the final moments of the recording, a large transport fleet had entered the system, unarmed ships. They were followed by military vessels in pursuit. There's no telling what they thought at the time, but a military fleet was immediately dispatched to eliminate both fleets. One particular ship, the name of which Eyama has translated as 'Emerald Sword,' started behaving erratically when given orders. It fired and missed a few shots until it eventually stopped and fled. Clear signs of a mutiny. However, what is perhaps most interesting is that when it fled, it fled in an unexpected direction, away from any hyperlanes."`
-			`	Albert continues, "We think they wanted to flee from the fighting. These were soldiers scarred by the horrors of the war, and they just got ordered to attack what we assume to be refugees. The Emerald Sword was a big ship, likely with an equally large crew, and from the movement data, it's engines were very powerful too, possibly capable of crossing interstellar distances within a Sheragi lifetime. This has some interesting implications. The ship was moving precisely towards a star named Zubenelhakrabi. Not significant enough to show up in the star maps, but we did our survey, and there is a potentially habitable planet there, but zero signs of intelligent life. We think they failed in colonizing it, but the ship might still be there. It's a priceless artifact. Thing is, there is no way to get there."`
+			`	Albert continues, "We think they wanted to flee from the fighting. These were soldiers scarred by the horrors of the war, and they just got ordered to attack what we assume to be refugees. The Emerald Sword was a big ship, likely with an equally large crew, and from the movement data, it's engines were very powerful too, possibly capable of crossing interstellar distances within a Sheragi lifetime. This has some interesting implications. The ship was moving precisely towards a star named Zubenelhakrabi. Not significant enough to show up in the star maps, but we did our survey, and there is a potentially habitable planet there, but zero signs of intelligent life. We think they failed in colonizing it, but the ship might still be there. It's a priceless artifact. We can't know for sure until we get there. Thing is, there is no way to do so."`
 			`	"Unless you have a jump drive," Rakei adds. "And you do have one, don't you?"`
 			choice
 				`	"I used to, but not anymore."`
 					goto notanymore
 				`	"I do."`
-			`	"This is perfect! Do you think you can get another one? If we're going there, we're going to need one to install on the Emerald Sword and bring it back home."`
+			`	"This is perfect! Do you think you can get another one? If we're going there, and the ship's remains are still there, we're going to need one to install on the Emerald Sword and bring it back home."`
 				goto return
 			label notanymore
-			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword."`
+			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword, if its remains are still there."`
 			label return
 			`	"What do I get in return?" you ask.`
-			`	"The ship, of course," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. We're going to spend a day or so studying the ship after we get it, making a blueprint and all that, but afterwards, it's all yours to keep! I just can't wait to see what that ship even looks like. Give us some time to assemble a crew to help refurbish the ship, and in the meantime, get us a jump drive. Come back to us once you have it."`
+			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it." Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a jump drive. Come back to us once you have it."`
 				accept
 	
 	to complete
@@ -1237,10 +1237,10 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	name "The Emerald Sword"
 	description "Capture the Emerald Sword."
 	source "Zug"
-	destination "Echoes of Tragedy"
+	destination "Valley of the Damned"
 	cargo "Outfitting Equipment" 50
-	passengers 20
-	blocked `You arrive to make the preparations to capture the Emerald Sword, but Albert stops you. "Captain, we're going to need 50 tons of cargo to take our materials and the jump drive, and 20 additional crew to help, including us. I'd also advise that you save enough bunks to hire some additional crew. The Emerald Sword is an alien ship, so we have no idea how many people we will need to man it. I would recommend erring on the side of caution by bringing along 100 or so extra crew members."`
+	passengers 150
+	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, the Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so I've taken the liberty of hiring some extra crew on top of the specialist team. We're going to need 150 additional crew to help, including us, and 50 tons of cargo to take our materials and the spare jump drive."`
 	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
@@ -1253,8 +1253,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`    (Yes.)`
 				`    (No.)`
 					defer
-			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment, along with the jump drive you brought. He has assembled a crew of around 20 people, including him and the three Hai archaeologists, who are comfortable to let go of their disguise once they're back in your ship.`
-			`	"<first>, meet the people who will help us recover the Emerald Sword. I've just briefed them on the situation and what we plan to do. We're going to take some specialized tools with us, along with the jump drive, which will allow us to repair and outfit the ship in any world we can land on. I suggest you also hire some additional crew to man the ship once we capture it, since it's likely not going to pilot itself. Remember, this is an alien warship, so I would recommend erring on the side of caution by bringing along around 100 extra crew members to deal with any potential problems in piloting the ship. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
+			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment, along with the jump drive you brought. He has assembled a crew of around 150 people, including a specialized team of shipyard workers, a large amount of veteran crew members, himself, and the three Hai archaeologists, who are comfortable to let go of their disguise once they're back in your ship.`
+			`	"<first>, meet the people who will help us uncover the fate of the Emerald Sword. I've just briefed them on the situation and what we plan to do. Along with the jump drive, we're going to take some specialized tools with us, which should allow us to repair and outfit the ship in any world we can land on. This might look like a lot of people, but if we want to recover a derelict ship, I suspect we'll need just this many. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
 			`	You thank Albert, and make your preparations for the voyage into the unknown.`
 				accept
 	
@@ -1262,6 +1262,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 		fail "Sheragi Archaeology: The Emerald Sword 2"
 		outfit "Jump Drive" -1
 		event "zubenelhakrabi discovered"
+		"reputation: Sheragi" = 1
 
 	on enter "Zubenelhakrabi"
 		conversation
@@ -1289,42 +1290,48 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			label cannon
 			`	"That ship is just a relic, its weapons a mere trinket. The weapon that perished the Sheragi was indiscriminate. An irrational decision they made for themselves, failing to judge the risk."`
 			label next
-			`	As that is said, you're overcome by glimpses of memories that are not yours, not clear enough for you to identify what exactly is happening, but you can feel the sadness in them.`
+			`	As that is said, you're overcome by glimpses of memories that are not yours, not clear enough for you to identify what exactly is happening, but you can feel a hellish panic in them.`
 			`	The voice continues: "I know what you seek here. The trinket you covet is of little relevance, even for your own, human standards. But if you wish to possess it, then take it. Show your respect to those who have perished here, learn their lessons, and I will allow it. Perhaps the sight of that vessel will remind the living races of those who have come and gone... and how, despite their great accomplishments, their decision to make war reduced them to graveyards, relics, memories... and dust."`
 			`	The voice, and the overwhelming emotions that came alongside it, disappear as mysteriously as they came. Desyo, who witnessed you speaking into the void, asks whether you feel okay. It seems like no one else heard it.`
 
-	npc board
+	npc assist
 		government "Sheragi"
-		personality derelict mute
+		personality derelict mute pacifist
 		system "Zubenelhakrabi"
 		ship "Emerald Sword" "Emerald Sword"
 		conversation
-			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it as the life support has long since ceased to work, and it takes a long time to restore it through your ship's own life support and patch tiny micrometeorite holes. Once it's in inhabitable conditions, it still smells like a tomb. The crew starts going in, separated in teams by the archaeologists, to perform various tasks. Albert and Eyama go in first, taking notes and carefully collecting artifacts`
-			`You find many Sheragi skeletons and mummified remains. A few of them have prosthetics that survived better than their host. Your crew gets to work cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life and take advantage of the zero-G environment to move the jump drive into the ship more easily. You'll need to land to properly install it, however. All that is left for you to do is relocate the many corpses littering the living spaces with your crew.`
-	
-	on complete
-		conversation
-			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. You eventually park your ships over a mesa. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be otherwise unbreathable for long periods of time.`
-			`	Over the course of the next day, the workers unload some outfitting and repairing equipment, while scientists slowly work out the functions of the ship, and brief you and your crew on how to operate it. One of the workers invite you to visit the temporary outfitter and oversee the proper installation of the Outfits Expansion and the jump drive in the Emerald Sword.`
-			`[You need to remove the Damaged Sheragi Systems to repair it.]`
+			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it as the life support has long since ceased to work, and it takes a long time to restore it through your ship's own life support and patch tiny micrometeorite holes. Once it's in inhabitable conditions, it still smells like a tomb. The crew starts going in, separated in teams by the archaeologists, to perform various tasks. Albert and Eyama go in first, taking notes and carefully collecting artifacts.`
+			`	You find many Sheragi skeletons and mummified remains, most of them stacked neatly in a room, suggesting that the crew died one by one. A few of them have prosthetics that survived better than their host. Your crew gets to work cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life.`
+			`	Following the archaeologists and listening to their conversations, you find out more about the history of this ship. Other than the mutiny that caused them to flee from Sheragi space in almost unanimous decision, it appears that there was a second, more violent mutiny, with unknown causes. There are battle scars in the walls and corridors, and too few bodies to properly man the ship. The missing Sheragi are nowhere to be seen, with some speculating that they got spaced. Even after this, the remaining Sheragi did all they could to survive, converting a large amount of crew quarters into hydroponic farms, fed sunlight through the windows, with an elaborate system of what used to be bathroom mirrors to spread the light around. It's obviously apparent that this wasn't enough for them to survive. Nowadays, nothing grows here other than colonies of extremophile fungi and bacteria, now dying after being reintroduced to an atmosphere. In the hangars, you see enormous attack drones, still waiting readily in their respective bays, despite the lack of any significant threat in this system. They too have valuable technology, and Rakei advises you to not touch them for now.`
+			`	After many long hours walking around, the lights of the ship finally flicker to life, along with sirens bringing attention to every other damaged subsystem, startling everyone. One of the specialized crew members comes to you, explaining that they finally managed to turn on the power plant and fix enough of the ship to move it around, but that they need to land it in order to bring in the heavier equipment and fix the rest of it.`
 
 
 
-mission "Sheragi Archaeology: Emerald Sword Epilogue"
+mission "Sheragi Archaeology: Epilogue"
 	landing
 	name "The Emerald Sword"
 	description "Return to Zug."
-	source "Echoes of Tragedy"
+	source "Valley of the Damned"
 	destination "Zug"
-	passengers 20
 	cargo "Outfitting Equipment" 25
-	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
-	
+	on offer
+		give ship "Emerald Sword (Fixed)" "Emerald Sword"
+		give ship "Black Diamond" "Stormheart"
+		give ship "Black Diamond" "Onyx Chariot"
+		give ship "Black Diamond" "Firebrand"
+		give ship "Black Diamond" "Frostherald"
+		give ship "Black Diamond" "Ivory Talon"
+		give ship "Black Diamond" "Skeleton Key"
+		conversation
+			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. As luck would have it, the shipboard scanner reveal anomalous structures over a mesa, and as you come in for a landing, it becomes apparent that these are the ruins of a large settlement. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term`
+			`	While the crew starts to work on the Emerald Sword, you and the archaeologists head into the settlement, documenting what you see. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
+			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room, holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery, with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they might have survived to this day. The archaeologists take pictures, samples, and minor artifacts, but leave the place mostly undisturbed in respect for a lost civilization, discussing the possible history of this place.`			
+			`	For most of the next day, the workers unload some outfitting and repairing equipment, while the spare crew take turns thinking of names for each fighter, and scientists slowly work out the functions of the ship, briefing you and your crew on how to operate it. With the jump drive installed, all that is left is to return the ship to human space for further work.`
+				accept
 	on complete
 		log `Obtained an ancient Sheragi warship whose name translates to the Emerald Sword. It was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, it is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size.`
-		event "temporary outfitter removed"
 		conversation
 			`Your exotic new ship draws a lot of attention from the dockworkers, partly because it is unique and never-before-seen, but probably even more so due to the unprecedentedly large cannon. Albert and the Hai archaeologists spend most of the day examining your ship in more detail and recovering the corpses now that it's in a proper spaceport and they can access more complex equipment. Everything is completed in one particularly busy afternoon, and as night falls, the immense scale of the inside of the ship allows more floors to be installed, giving you even more living space.`
 			`	You go back to the same park as before with Albert and the three Hai in partial disguise, ice creams in hand and paws to commemorate the new acquisition.`
@@ -1343,14 +1350,14 @@ mission "Sheragi Archaeology: Emerald Sword Epilogue"
 				`	"Do you think I could get in trouble by using it?"`
 					goto trouble
 				`	"It's not going to blow up my own ship, is it?"`
-			`	Rakei laughs. "Don't worry, the Sheragi did their homework. The simple materials they used means the cannon can be maintained and repaired, so it continues to be structurally strong. Many of the components are active anyway, and they basically only exist for the short amount of time that the GRASER takes to fire."`
+			`	Rakei laughs. "Don't worry, the Sheragi did their homework. The simple materials they used means the cannon can be maintained and repaired, so it continues to be structurally strong. Many of the components are active anyway, and they basically only exist for the short amount of time that the GRASER takes to fire. I only advise against firing it at point blank range."`
 				goto catch
 			label trouble
 			`	"I don't think you will, as long as you don't fire it into a planet. It doesn't cause unnecessary suffering like nerve gas, and it isn't as indiscriminate as a nuclear bomb. This is a focused beam. It's going to poke holes straight through any ship subject to its wrath."`
 			label catch
 			`	"Then what's the catch?" you ask.`
 			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon.`
-			`	Desyo adds. "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried."`
+			`	Desyo adds. "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried. No offense."`
 			`	"So what are you going to do now?" you ask them.`
 			`	Eyama responds. "We'll continue working with Albert. These two nerds like technology and ships, but I'm far more interested in the treasure trove of cultural artifacts the buried city holds. Not to mention the humans here are very interesting!"`
 			`	You all finish your ice creams and continue chatting for a while longer before you say goodbye and return to your ship. By tomorrow, it will be in full working condition, ready to take to the endless void.`
@@ -1365,20 +1372,13 @@ event "zubenelhakrabi discovered"
 	system "Zubenelhakrabi"
 		pos -755.265 364.932
 
-event "temporary outfitter removed"
-	planet "Echoes of Tragedy"
-		remove outfitter
-
 # Additional data
 
 government "Sheragi"
-	"player reputation" -1000
+	"player reputation" 1
 	swizzle 3
 	"crew attack" 0
 	"crew defense" 0
-
-outfitter empty
-	"Local Map"
 
 system Zubenelhakrabi
 	pos -9743.265 9377.932
@@ -1410,7 +1410,7 @@ system Zubenelhakrabi
 		distance 147
 		period 32.3158
 		offset 98.3841
-	object "Echoes of Tragedy"
+	object "Valley of the Damned"
 		sprite planet/earth
 		distance 502.704
 		period 204.365
@@ -1466,9 +1466,8 @@ system Zubenelhakrabi
 			period 44.5228
 			offset 128.448
 
-planet "Echoes of Tragedy"
+planet "Valley of the Damned"
 	attributes uninhabited
 	landscape land/fog4
 	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has a high concentration of water vapor in its atmosphere and hosts primitive life, with mosses covering nearly all moist surfaces and exotic crustacean-like animals roaming the land, their carapaces made of what would be considered synthetic plastic elsewhere.`
-	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Any trace of colonization by the Sheragi has long since eroded away.`
-	outfitter "empty"
+	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Most traces of attempted colonization by the Sheragi have eroded away by now, leaving only broken buildings and decaying bones.`

@@ -20,7 +20,7 @@ if [ -f "$ERR_FILE" ]; then
 fi
 
 # Parse the game data files.
-"$1" -p
+"$1" -p 2>/dev/null
 EXIT_CODE=$?
 
 # If the game executed, then assert there is no 'errors.txt' file,

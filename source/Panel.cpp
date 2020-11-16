@@ -26,13 +26,6 @@ using namespace std;
 
 
 
-// Make the destructor just in case any derived class needs it.
-Panel::~Panel()
-{
-}
-
-
-
 // Move the state of this panel forward one game step.
 void Panel::Step()
 {
