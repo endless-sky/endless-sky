@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿mat: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -807,6 +807,7 @@ Files:
  images/effect/pwave?shot*
  images/effect/sheragiam*
  images/effect/pwavehp*
+ images/effect/ka'het?flare/*-*
  images/outfit/dragonflame*
  images/outfit/pwave?turret*
  images/outfit/embattery*
@@ -844,6 +845,18 @@ Files: images/planet/*-hot*
 Copyright: Tommaso Becca
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
+
+Files:
+ images/outfit/ka'het?maeri?engine*
+ images/outfit/ka'het?telis?engine*
+ images/outfit/ka'het?sustainer?engine*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
+
+Files: images/outfit/ka'het?compact?engine*
+Copyright: Griffin Schutte (theronepic@gmail.com)
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
