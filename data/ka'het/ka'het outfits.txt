@@ -233,12 +233,12 @@ outfit "Maeri Engine Nacelles"
 	"mass" 52
 	"outfit space" -76
 	"engine capacity" -59
-	"energy consumption" 4.21
+	"energy consumption" 5.01
 	"heat generation" 1.1
-	"thrust" 35.1
-	"thrusting heat" 1.8
-	"turn" 821.4
-	"turning heat" 0.9
+	"thrust" 32.1
+	"thrusting heat" 2.8
+	"turn" 791.4
+	"turning heat" 1.8
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sprite" "effect/ka'het flare/large"
@@ -254,11 +254,11 @@ outfit "Ka'het Sustainer Nacelles"
 	"outfit space" -34
 	"engine capacity" -27
 	"heat generation" 0.6
-	"energy consumption" 2.39
-	"thrust" 13.2
-	"thrusting heat" 1.8
-	"turn" 432.1
-	"turning heat" 0.4
+	"energy consumption" 2.49
+	"thrust" 10.2
+	"thrusting heat" 1,2
+	"turn" 482.1
+	"turning heat" 0.7
 	"flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sprite" "effect/ka'het flare/medium"
@@ -294,13 +294,13 @@ outfit "Ka'het Compact Engine"
 	"outfit space" -26
 	"engine capacity" -21
 	"heat generation" 0.3
-	"energy consumption" 1.78
+	"energy consumption" 0.48
 	"thrust" 11.2
-	"thrusting energy" 0.4
-	"thrusting heat" 0.61
+	"thrusting energy" 1.7
+	"thrusting heat" 1.3
 	"turn" 189.4
-	"turning energy" 0.22
-	"turning heat" 0.4
+	"turning energy" 0.42
+	"turning heat" 0.6
 	"flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sprite" "effect/ka'het flare/medium"
