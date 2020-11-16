@@ -260,7 +260,7 @@ outfit "Ka'het Sustainer Nacelles"
 	"flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
-	description "While the Ka'Het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough manuevrability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maitain its thrusters and steerings ready."
+	description "While the Ka'Het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maitain its thrusters and steerings ready."
 
 outfit "Telis Engine Nacelles"
 	category "Engines"
