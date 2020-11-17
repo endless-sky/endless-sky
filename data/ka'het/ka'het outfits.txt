@@ -256,7 +256,7 @@ outfit "Ka'het Sustainer Nacelles"
 	"heat generation" 0.6
 	"energy consumption" 2.49
 	"thrust" 15.1
-	"thrusting heat" 1,0
+	"thrusting heat" 1.0
 	"turn" 432.1
 	"turning heat" 0.5
 	"flare sprite" "effect/ka'het flare/medium"
