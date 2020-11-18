@@ -3543,7 +3543,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 					decline
 			`	She looks momentarily surprised by your reaction. "Yes, exactly that. Current gravitational repulsor engines can nullify most of the gravitational pull, and an extra thermoelectric cooler or two should be sufficient to manage the heat. As such, the risks are mangeable so long as you do not try to approach the event horizon.`
 			label scienceequipment
-			`	"For this mission in specific, however, we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six outfit space, and requires a scientist, so you will need a free bunk for them, too.`
+			`	"For this mission in specific, however, we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six tons of outfit space and a scientist to run it, so you will need a free bunk for them, too.`
 			`	"Once the laboratory module is installed, it will simply be a matter of traveling to Sagittarius A*. After our measurements, recordings, and observations are complete, we will return and report on our findings."`
 			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done eating."`
 			branch dawnsymbiont
@@ -3554,7 +3554,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Developed quite the appetite, haven't you?"`
 			branch dawnlicense
 				has "license: Remnant Capital"
-			`	She shrugs. "I burn a lot of calories, and eating healthy is important. Besides, I don't know how good food will be on your ship." She resumes eating with vigor and does not seem inclined to continue the conversation.`
+			`	She shrugs. "I burn a lot of calories, and healthy eating is important. Besides, I don't know how good food will be on your ship." She resumes eating with vigor and does not seem inclined to continue the conversation.`
 				accept
 			label dawnlicense
 			`	"I am not yet used to the nutrient intake required to maintain my symbiont, so I have to consciously make sure that I eat enough to sustain it."`
@@ -3659,7 +3659,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 					defer
 			`	She nods. "I am ready, so I will come with you and wait onboard the <ship> while you do your checks."`
 			label astralonwards
-			`	She gestures towards the exit closest to your ship and heads off at a quick pace. Outside, she moves calmly through the bustle of the starport, stepping around quick-moving freight movers and camel wagons alike. Arriving at the <ship>, she turns and waits for you to catch up.`
+			`	She gestures towards the exit closest to your ship and heads off at a quick pace. Outside, she moves calmly through the hustle and bustle of the starport, stepping around quick-moving freight movers and camel wagons alike. Arriving at the <ship>, she turns and waits for you to catch up.`
 			`	Just as you arrive and reach for the console to open the airlock, you sense a change in your surroundings. Looking around, you see that a group of Remnant gathered around the two of you, focused on Dawn. A young Remnant - scarcely more than a child - steps forward. "Thank you for your patience," he says, then steps back. An elderly Remnant steps forward. "Thank you for your curiosity," she says, then steps back. A middle-aged Remnant steps forward. "Go with our blessing, Seeker, and know that wherever you go, the Remnant go with you." She says it simply, but you feel the weight of tradition behind them. She turns to you. "And you, stranger who walks the stars... May the Embers guide your steps as you walk among us." She nods respectfully, then steps back.`
 			`	As soon as the third steps back there is a flurry of movement as each of the Remnant present quickly step forward, give her a quick hug, and then scurry off into the starport. Before you process what is going on, all the Remnant gathered around you have vanished. You look at Dawn, and her expression is a mixture of awe and humility.`
 			choice
@@ -3679,8 +3679,8 @@ mission "Remnant: Expanded Horizons Astral 2"
 				accept
 	on enter "Sagittarius A*"
 		conversation
-			`As the energy ripples from the jump drive fade, the spectacular void that is Sagittarius A* takes shape before you. Compared to the vast darkness of space that you are accustomed to, reality here feels almost like a color negative: even with the automatic filtering in your windows, space is incredibly bright with the densely packed stars that provide a backdrop for Sagittarius A*. The moment of awe is shattered by alarms warning of your impending doom as the <ship> begins to fall inwards towards the black hole. You quickly activate your repulsor engines, which, although vastly under-powered for dealing with the immense pull of a black hole, does provide a degree of protection so long as you maintain a safe distance from it.`
-			`	After a few minutes of just absorbing the spectacle before you, Dawn pulls herself away from the cockpit windows and scurries down to the lab. Leaving you to your thoughts, she quickly has the lab set up and running a variety of recordings, test, and observation equipment. After a few hours of work, she reappears on the bridge.`
+			`As the jump drive's energy ripples fade away, the spectacular void that is Sagittarius A* takes shape before you. Compared to the vast darkness of space that you are accustomed to, reality here feels almost like a color negative: even with the automatic filtering in your windows, space is incredibly bright with the densely packed stars that provide a backdrop for its inky mass. The moment of awe is shattered by alarms warning of your impending doom as the <ship> begins to fall inwards towards the black hole. You quickly activate your repulsor engines, which, although vastly under-powered for dealing with the immense pull of a black hole, does provide a degree of protection so long as you maintain a safe distance from it.`
+			`	After a few minutes of just absorbing the spectacle before you, Dawn pulls herself away from the cockpit windows and scurries down to the lab. Leaving you to your thoughts, she quickly has the lab set up and running a variety of recordings, tests, and observations. After a few hours of work, she reappears on the bridge.`
 			`	"Things are proceeding smoothly, Captain. All the sensors are working nominally, and we are creating extensive archives of astronomical data as well. Another few hours, and we should have all the data we need."`
 			choice
 				`	"Good work. What kind of data are you recording?`
@@ -3717,7 +3717,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 		payment 500000
 		conversation
 			`The journey back to <planet> was a lesson in galactic formation as the <ship> jumped through a steady stream of systems. Gradually, the brilliant density of stars that make up the inner core faded into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally, you slide into the approach patterns of <planet>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
-			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up while a cheerful group greet Dawn before helping her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board. While I handled the science on this expedition, if you keep it installed your ship systems will automatically hire a scientist to run it." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
+			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up while a cheerful group greets Dawn before helping her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board. While I handled the science on this expedition, if you keep it installed your ship systems will automatically hire a scientist to run it." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
 
 
 
