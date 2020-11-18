@@ -244,7 +244,7 @@ outfit "Maeri Engine Nacelles"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma medium"
-	description "The Ka'het engines are peculiar in that they need to be continously charged with large amounts of energy: while this means that less power remains available for other subsystems, it is somewhat more efficient than most types of propulsions at doing so, and generates only a tiny amount of heat."
+	description "The Ka'het engines are peculiar in that they need to be continuously charged with large amounts of energy: while this means that less power remains available for other subsystems, it is somewhat more efficient than most types of propulsions at doing so, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
 	category "Engines"
@@ -264,7 +264,7 @@ outfit "Ka'het Sustainer Nacelles"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
-	description "While the Ka'Het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maitain its thrusters and steerings ready."
+	description "While the Ka'Het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maintain its thrusters and steerings ready."
 
 outfit "Telis Engine Nacelles"
 	category "Engines"
@@ -306,4 +306,4 @@ outfit "Ka'het Compact Engine"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
-	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Its improvements over the time allowed it to mantain a comparable efficency to the larger models, although unlike those it requires both a constant amount of energy and some more to activate the engines."
+	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Its improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those it requires both a constant amount of energy and some more to activate the engines."
