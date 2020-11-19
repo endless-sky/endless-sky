@@ -143,6 +143,8 @@ jobs:
       run: scons -Qj $(nproc) build-tests
     - name: Run tests
       run: scons -Qj $(nproc) test
+    - name: Run benchmarks
+      run: ./tests/endless-sky-tests [!benchmark]
 
 
   build_windows:
@@ -207,7 +209,7 @@ jobs:
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: .\dev64
         CXX: sccache g++
-        TEST_BINARY: endless-sky-tests.exe
+        TEST_BINARY: .\tests\endless-sky-tests.exe
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -241,11 +243,11 @@ jobs:
           ${{ matrix.os }}-sccache
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: |
-        make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
-        COPY ".\tests\${{ env.TEST_BINARY }}" .
+      run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
     - name: Run tests
-      run: .\${{ env.TEST_BINARY }} -r compact
+      run: ${{ env.TEST_BINARY }} -r compact
+    - name: Run benchmarks
+      run: ${{ env.TEST_BINARY }} [!benchmark]
 
 
   build_macos:
