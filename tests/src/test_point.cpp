@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "es-test.hpp"
 
 // Include only the tested class's header.
 #include "../../source/Point.h"
