@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - actions-env-fix # TODO
   pull_request:
     types:
       - synchronize
