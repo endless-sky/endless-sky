@@ -3521,7 +3521,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			label worry
 			`	"Thanks for the advice, but that is our purpose here - to worry about all the things that humanity either cannot handle or that it turns a blind eye to. No, if there is something in the data to cause worry, we need to find it."`
 			label help
-			`	"If you would like to help, there is something you can do. I am currently putting together an expedition to Sagittarius A* to collect some fresh data I can use to check our records, and I could use a transport..."`
+			`	"If you would like to help, there is something you can do. I am currently putting together an expedition to Sagittarius A* to collect some fresh data I can use to check our records, and I could use a transport..." She looks at you hopefully.`
 			choice
 				`	"I don't know where that is."`
 					goto center
@@ -3735,6 +3735,8 @@ mission "Remnant: Expanded Horizons Astral job"
 		require "Research Laboratory"
 	source
 		government "Remnant"
+	on waypoint
+		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
 	on complete
 		payment 500000
 		"reputation: Remnant" ++
