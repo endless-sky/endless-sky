@@ -144,7 +144,7 @@ jobs:
         run: |
           go get github.com/github-release/github-release
           echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
-          echo "${GOPATH}/bin" >> $GITHUB_PATH
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
       - name: Set environment variables
         run: |
           echo "GITHUB_USER=$( echo ${{ github.repository }} | cut -d/ -f1 )" >> $GITHUB_ENV
@@ -153,8 +153,8 @@ jobs:
         run: |
           git tag --force continuous ${{ github.sha }}
           git push --tags --force
-      - name: Debugging with tmate
-        uses: mxschmitt/action-tmate@v3.1
+#      - name: Debugging with tmate
+#        uses: mxschmitt/action-tmate@v3.1
       - name: Setup continuous release
         run: |
           DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})
