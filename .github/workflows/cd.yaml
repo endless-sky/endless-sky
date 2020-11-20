@@ -143,7 +143,7 @@ jobs:
         run: |
           go get github.com/github-release/github-release
           echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
-          echo "${GOPATH}/bin" >> $GITHUB_PATH
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
       - name: Set environment variables
         run: |
           echo "GITHUB_USER=$( echo ${{ github.repository }} | cut -d/ -f1 )" >> $GITHUB_ENV
