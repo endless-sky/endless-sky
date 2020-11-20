@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - actions-env-fix # TODO
   pull_request:
     types:
       - synchronize
@@ -153,8 +152,6 @@ jobs:
         run: |
           git tag --force continuous ${{ github.sha }}
           git push --tags --force
-#      - name: Debugging with tmate
-#        uses: mxschmitt/action-tmate@v3.1
       - name: Setup continuous release
         run: |
           DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})
