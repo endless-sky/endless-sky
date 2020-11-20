@@ -7,7 +7,8 @@
 // We require SEH for Windows builds, so we test with SEH support too.
 #define CATCH_CONFIG_WINDOWS_SEH
 // Check for memory leaks from test code.
-#define CATCH_CONFIG_WINDOWS_CRTDBG
+// TODO: enable after patching upstream issue
+// #define CATCH_CONFIG_WINDOWS_CRTDBG
 #endif
 
 #include "catch.hpp"
