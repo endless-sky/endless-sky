@@ -74,7 +74,7 @@ You will probably need to adjust the paths to your compiler binaries, and you sh
 You will also need libmingw32.a and libopengl32.a. Those should be included in the MinGW g++ install. If they are not in C:\Program Files\mingw64\x86_64-w64-mingw32\lib\ you will have to adjust the include directory and library (linker) directory search paths in the Code::Blocks project files.
 
 The Code::Blocks workspace consists of three projects: one for the majority of source code, one for the game binary, and one for the unit tests.
-To get started, open the EndlessSky.workspace file, which will load the three linked projects. As with most IDE-based projects, you must explicitly add new files to the respective project for them to be compiled. 
+To get started, open the EndlessSky.workspace file, which will load the three linked projects. As with most IDE-based projects, you must explicitly add new files to the respective project for them to be compiled.
 
 
 
@@ -104,3 +104,11 @@ To create a Mac OS X binary that will work on systems other than your own, you m
   $ sudo install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
 
 *** Note: there is extremely limited development support for macOS, and no intent to support macOS's new ARM architecture. ***
+
+
+Link-Time Optimization (LTO):
+
+For both the Linux and Windows "release" targets, "link-time optimization" is used. This generally will work without issue with newer versions of g++ / MinGW, but may require an explicit usage of the `gcc-ar` and `gcc-ranlib` binaries.
+For the Code::Blocks project, the default archive program can be configured in the application's compiler settings menu. The Scons builds can be controlled by an environment variable:
+
+  $ AR=gcc-ar RANLIB=gcc-ranlib scons 
