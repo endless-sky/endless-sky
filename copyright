@@ -867,8 +867,8 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
 Files:
- images/ship/raider
- images/thumbnail/raider
+ images/ship/raider*
+ images/thumbnail/raider*
 Copyright: Red-57
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same license).

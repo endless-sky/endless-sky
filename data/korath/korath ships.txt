@@ -35,7 +35,7 @@ ship "Korath Raider"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
@@ -46,7 +46,7 @@ ship "Korath Raider"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-
+	
 	engine -20 130
 	engine 20 130
 	"reverse engine" -8.5 -151.5 0.7
@@ -89,7 +89,7 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
@@ -97,12 +97,12 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		"Outfits Expansion"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		"Hyperdrive"
-
+	
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -116,7 +116,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
@@ -124,12 +124,12 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		"Outfits Expansion"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
-
+	
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -143,13 +143,13 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
 		"Korath Warder"
-
+		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Korath Repeater Rifle" 196
 		"Outfits Expansion"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive (Broken)"
@@ -185,11 +185,11 @@ ship "Korath Chaser"
 			"hit force" 480
 	outfits
 		"Korath Fire-Lance"
-
+		
 		"Generator (Furnace Class)"
 		"Small Heat Shunt"
 		"Korath Repeater Rifle"
-
+		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
 
@@ -228,13 +228,13 @@ ship "Korath World-Ship"
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
 		"Korath Warder" 3
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
@@ -287,17 +287,17 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
 		"Korath Warder" 3
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-
+	
 	turret -76 -157 "Korath Grab-Strike"
 	turret 76 -157 "Korath Banisher"
 	turret -59 -135 "Korath Warder"
@@ -313,17 +313,17 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
 		"Korath Warder" 3
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-
+	
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
@@ -339,17 +339,17 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
 		"Korath Warder" 3
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-
+	
 	turret -45 -247 "Korath Warder"
 	turret 45 -247 "Korath Grab-Strike"
 	turret -47 -140 "Korath Grab-Strike"
@@ -365,19 +365,19 @@ ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
 		"Korath Warder" 3
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
 		"Outfits Expansion"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		"Hyperdrive"
-
+	
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
@@ -392,17 +392,17 @@ ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 	outfits
 		"Korath Banisher" 3
 		"Korath Warder" 1
-
+		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
 		"Korath Repeater Rifle" 150
 		"Outfits Expansion"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
-
+	
 	turret -76 -219
 	turret 76 -219
 	turret -75 -112 "Korath Banisher"
@@ -445,18 +445,18 @@ ship "Kar Ik Vot 349"
 		"Korath Piercer Rack" 2
 		"Korath Warder" 2
 		"Korath Repeater Turret" 6
-
+		
 		"Triple Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 4
 		"Small Heat Shunt" 2
 		"Control Transceiver"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-
+	
 	engine -24 237
 	engine 24 237
 	gun -8 -212 "Korath Detainer"
@@ -485,7 +485,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Korath Piercer" 124
 		"Korath Repeater Turret" 6
 		"Korath Grab-Strike" 2
-
+		
 		"Triple Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
@@ -493,12 +493,12 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Large Heat Shunt" 5
 		"Outfits Expansion"
 		"Control Transceiver"
-
+		
 		"Thruster (Planetary Class)"
 		"Thruster (Asteroid Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-
+	
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
@@ -516,7 +516,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 		"Korath Warder" 3
 		"Korath Grab-Strike" 3
 		"Korath Banisher" 2
-
+		
 		"Triple Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
@@ -524,11 +524,11 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 		"Large Heat Shunt" 3
 		"Outfits Expansion"
 		"Control Transceiver"
-
+		
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-
+	
 	turret "Korath Warder"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -543,7 +543,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 		"Korath Detainer" 2
 		"Korath Grab-Strike" 4
 		"Korath Banisher" 2
-
+		
 		"Triple Plasma Core"
 		"Double Plasma Core"
 		"Systems Core (Large)"
@@ -552,11 +552,11 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 		"Small Heat Shunt"
 		"Outfits Expansion" 4
 		"Control Transceiver"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-
+	
 	gun "Korath Detainer"
 	gun "Korath Detainer"
 	gun
@@ -601,17 +601,17 @@ ship "Tek Far 71 - Lek"
 		"Korath Piercer" 62
 		"Korath Banisher"
 		"Korath Warder" 2
-
+		
 		"Double Plasma Core"
 		"Generator (Furnace Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
 		"Control Transceiver"
-
+		
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
 		"Hyperdrive"
-
+	
 	engine -9 219
 	engine 9 219
 	gun 10 -180 "Korath Detainer"
@@ -645,7 +645,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 		"Korath Repeater" 2
 		"Korath Repeater Turret" 3
 		"Korath Warder"
-
+		
 		"Double Plasma Core"
 		"Generator (Furnace Class)"
 		"Systems Core (Medium)"
@@ -653,11 +653,11 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 		"Small Heat Shunt"
 		"Outfits Expansion"
 		"Control Transceiver"
-
+		
 		"Thruster (Lunar Class)"
 		"Steering (Lunar Class)"
 		"Hyperdrive"
-
+	
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Warder"
@@ -694,17 +694,17 @@ ship "Tek Far 78 - Osk"
 		"Korath Piercer" 93
 		"Korath Banisher"
 		"Korath Warder" 2
-
+		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
 		"Control Transceiver"
-
+		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-
+	
 	engine -9 245
 	engine 9 245
 	gun 0 -239 "Korath Detainer"
@@ -738,17 +738,17 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 		"Korath Detainer"
 		"Korath Warder" 2
 		"Korath Repeater Turret" 3
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
 		"Outfits Expansion"
 		"Control Transceiver"
-
+		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-
+	
 	turret "Korath Warder"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
@@ -785,16 +785,16 @@ ship "Tek Far 109"
 		"Korath Piercer Launcher" 2
 		"Korath Piercer" 62
 		"Korath Banisher" 2
-
+		
 		"Double Plasma Core"
 		"Systems Core (Medium)"
 		"Small Heat Shunt" 2
 		"Control Transceiver"
-
+		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-
+	
 	engine -9 205
 	engine 9 205
 	gun 0 -214 "Korath Detainer"
@@ -854,17 +854,17 @@ ship "Met Par Tek 53"
 	outfits
 		"Korath Repeater" 3
 		"Korath Repeater Turret" 6
-
+		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 3
 		"Control Transceiver"
-
+		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
-
+	
 	engine -24 132
 	engine 24 132
 	gun 0 -92 "Korath Repeater"
@@ -876,7 +876,7 @@ ship "Met Par Tek 53"
 	turret 38 -28 "Korath Repeater Turret"
 	turret -40 -8 "Korath Repeater Turret"
 	turret 40 -8 "Korath Repeater Turret"
-
+	
 	explode "tiny explosion" 60
 	explode "small explosion" 30
 	explode "medium explosion" 35
@@ -892,19 +892,19 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 		"Korath Piercer" 62
 		"Korath Grab-Strike"
 		"Korath Warder"
-
+		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Generator (Candle Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
 		"Control Transceiver"
-
+		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Steering (Comet Class)"
 		"Hyperdrive"
-
+	
 	gun "Korath Detainer"
 	gun "Korath Piercer Launcher"
 	gun "Korath Piercer Launcher"
@@ -939,13 +939,13 @@ ship "Far Lek 14"
 			"hit force" 75
 	outfits
 		"Korath Repeater"
-
+		
 		"Generator (Candle Class)"
 		"Small Heat Shunt"
-
+		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
-
+	
 	engine -2 28
 	engine 8 28
 	gun 0 -30
@@ -977,13 +977,13 @@ ship "Far Osk 27"
 			"hit force" 180
 	outfits
 		"Korath Repeater" 2
-
+		
 		"Generator (Furnace Class)"
 		"Small Heat Shunt" 2
-
+		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
-
+	
 	engine -4 37
 	engine 4 37
 	gun 7 -15
@@ -1020,16 +1020,16 @@ ship "Model 8"
 			"hit force" 1800
 	outfits
 		"Korath Slicer"
-
+		
 		"Generator (Furnace Class)"
 		"Generator (Candle Class)"
 		"Systems Core (Small)"
 		"Reasoning Node"
-
+		
 		"Thruster (Comet Class)"
 		"Steering (Lunar Class)"
 		Hyperdrive
-
+	
 	engine -11 49
 	engine 11 49
 	gun 9 -36 "Korath Slicer"
@@ -1069,17 +1069,17 @@ ship "Model 16"
 		"Korath Mine" 17
 		"Korath Disruptor"
 		"Korath Slicer Turret"
-
+		
 		"Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Small)"
 		"Small Heat Shunt"
 		"Reasoning Node"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
 		Hyperdrive
-
+	
 	engine -10 99
 	engine 10 99
 	gun 0 -99 "Korath Minelayer"
@@ -1122,17 +1122,17 @@ ship "Model 32"
 		"Korath Mine" 17
 		"Korath Disruptor"
 		"Korath Slicer Turret" 2
-
+		
 		"Double Plasma Core"
 		"Generator (Candle Class)"
 		"Systems Core (Small)"
 		"Small Heat Shunt"
 		"Reasoning Node"
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
 		Hyperdrive
-
+	
 	engine -10 128
 	engine 10 128
 	gun 0 -129 "Korath Minelayer"
@@ -1177,17 +1177,17 @@ ship "Model 64"
 		"Korath Mine Rack" 2
 		"Korath Disruptor" 2
 		"Korath Slicer Turret" 2
-
+		
 		"Double Plasma Core"
 		"Generator (Furnace Class)"
 		"Systems Core (Medium)"
 		"Reasoning Node" 2
-
+		
 		"Thruster (Lunar Class)"
 		"Thruster (Asteroid Class)"
 		"Steering (Planetary Class)"
 		Hyperdrive
-
+	
 	engine -19 159
 	engine 19 159
 	gun 0 -159 "Korath Minelayer"
@@ -1232,17 +1232,17 @@ ship "Model 128"
 		"Korath Mine" 34
 		"Korath Disruptor" 2
 		"Korath Slicer Turret" 3
-
+		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Reasoning Node" 2
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Steering (Asteroid Class)"
 		Hyperdrive
-
+	
 	engine -14 178
 	engine 14 178
 	gun -11 -166 "Korath Minelayer"
@@ -1290,17 +1290,17 @@ ship "Model 256"
 		"Korath Mine Rack" 3
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 3
-
+		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt"
 		"Reasoning Node" 3
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Steering (Comet Class)"
 		Hyperdrive
-
+	
 	engine -60 147
 	engine 60 147
 	gun -22 -148 "Korath Minelayer"
@@ -1349,18 +1349,18 @@ ship "Model 512"
 		"Korath Mine Rack" 2
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 4
-
+		
 		"Triple Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt"
 		"Small Heat Shunt" 2
 		"Reasoning Node" 3
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-
+	
 	engine -145 97
 	engine 145 97
 	gun -22 -143 "Korath Minelayer"
