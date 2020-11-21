@@ -284,7 +284,7 @@ outfit "Telis Engine Nacelles"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma medium"
-	description "While its size is not impressive compared to other engines, these nacelles that used to be the entire engine block of a Telis'het if used in companion with a sustainer or two can be a powerful form of propulsion, combining both turning and thrusting engines in one."
+	description "These nacelles used to comprise the entire engine block of a Telis'het. While their size is not impressive compared to other engines, if used in conjunction with a sustainer or two, they can be a powerful form of propulsion, combining both turning and thrusting engines in one."
 
 outfit "Ka'het Compact Engine"
 	category "Engines"
