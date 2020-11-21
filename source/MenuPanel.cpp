@@ -174,7 +174,6 @@ void MenuPanel::OnCallback(int)
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	printf("%s\n", "Clicked");
 	if(!GameData::IsLoaded())
 		return false;
 	
