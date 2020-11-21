@@ -866,6 +866,13 @@ Copyright: Tommaso Becca
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
+Files:
+ images/ship/raider
+ images/thumbnail/raider
+Copyright: Red-57
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same license).
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
