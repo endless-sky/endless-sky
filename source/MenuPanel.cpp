@@ -190,11 +190,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
-		if(GameData::Start().size() == 0)  {
-			Files::LogError("No start scenarios were provided!");
-			exit(-1);
-		}
-		else if(GameData::Start().size() == 1) 
+		if(GameData::Start().size() == 1) 
 		{
 			
 			player.New(GameData::Start()[0]);
@@ -206,9 +202,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		} 
 		else 
 		{
-			Files::LogError("Unimplemented :(");
-			exit(-1);
 			// Request that the player chooses a start scenario
+			// StartConditionsPanel also handles the case where there's no scenarios
+			StartConditionsPanel *panel = new StartConditionsPanel(player, gamePanels, this);
+			GetUI()->Push(panel);
 		}
 	}
 	else if(key == 'q')
