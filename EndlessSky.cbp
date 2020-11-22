@@ -311,6 +311,8 @@
 		<Unit filename="source/StarField.h" />
 		<Unit filename="source/StartConditions.cpp" />
 		<Unit filename="source/StartConditions.h" />
+		<Unit filename="source/StartConditionsPanel.cpp" />
+		<Unit filename="source/StartConditionsPanel.h" />
 		<Unit filename="source/StellarObject.cpp" />
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />

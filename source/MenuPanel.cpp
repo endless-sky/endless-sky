@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
 
