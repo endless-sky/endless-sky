@@ -42,31 +42,13 @@ ship "Korath Raider"
 		"Small Heat Shunt"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
-
+		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	
 	engine -20 130
 	engine 20 130
-	"reverse engine" -8.5 -151.5 0.7
-	"reverse engine" 8.5 -151.5 0.7
-	"steering engine" -35 -93 0.3
-		angle 40
-		right
-		over
-	"steering engine" 35 -93 0.3
-		angle -40
-		left
-		over
-	"steering engine" -40.5 -97.5 0.2
-		angle 40
-		right
-		over
-	"steering engine" 40.5 -97.5 0.2
-		angle -40
-		left
-		over
 	turret -8 -145 "Korath Grab-Strike"
 	turret 8 -145 "Korath Grab-Strike"
 	turret -34 -143 "Korath Grab-Strike"
@@ -102,7 +84,7 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		"Hyperdrive"
-	
+
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -129,7 +111,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Steering (Planetary Class)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
-	
+
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -188,11 +170,11 @@ ship "Korath Chaser"
 		
 		"Generator (Furnace Class)"
 		"Small Heat Shunt"
-		"Korath Repeater Rifle"
+		"Korath Repeater Rifle" 
 		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
-
+	
 	engine -7 23
 	engine 7 23
 	gun 0 -28 "Korath Fire-Lance"
@@ -238,7 +220,7 @@ ship "Korath World-Ship"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
-
+	
 	engine -37 343 .8
 	engine 0 343 .9
 	engine 37 343 .8
@@ -377,7 +359,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		"Hyperdrive"
-	
+		
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
@@ -945,7 +927,7 @@ ship "Far Lek 14"
 		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
-	
+		
 	engine -2 28
 	engine 8 28
 	gun 0 -30
@@ -983,7 +965,7 @@ ship "Far Osk 27"
 		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
-	
+		
 	engine -4 37
 	engine 4 37
 	gun 7 -15
@@ -1132,7 +1114,7 @@ ship "Model 32"
 		"Thruster (Planetary Class)"
 		"Steering (Lunar Class)"
 		Hyperdrive
-	
+
 	engine -10 128
 	engine 10 128
 	gun 0 -129 "Korath Minelayer"
@@ -1242,7 +1224,7 @@ ship "Model 128"
 		"Steering (Planetary Class)"
 		"Steering (Asteroid Class)"
 		Hyperdrive
-	
+
 	engine -14 178
 	engine 14 178
 	gun -11 -166 "Korath Minelayer"
@@ -1300,7 +1282,7 @@ ship "Model 256"
 		"Steering (Planetary Class)"
 		"Steering (Comet Class)"
 		Hyperdrive
-	
+
 	engine -60 147
 	engine 60 147
 	gun -22 -148 "Korath Minelayer"
@@ -1360,7 +1342,7 @@ ship "Model 512"
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
-	
+
 	engine -145 97
 	engine 145 97
 	gun -22 -143 "Korath Minelayer"
