@@ -402,7 +402,6 @@ fleet "Paradise Merchants"
 		"Scout (Speedy)"
 
 
-
 fleet "Small Northern Merchants"
 	government "Merchant"
 	names "civilian"
