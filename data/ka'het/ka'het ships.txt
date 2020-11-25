@@ -226,9 +226,9 @@ ship "Telis'het" "Telis'het (Guns)"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 6
 
-		Hyperdrive
-		"Ka'het Sustainer Nacelles"
 		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het" "Telis'het (Guns, Disable-able)"
 	"uncapturable"
