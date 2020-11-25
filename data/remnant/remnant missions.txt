@@ -3711,6 +3711,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 					goto astraldone
 				`	"Would you mind if I came too?"`
 			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs occasionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
+			scene "scene/Sagittarius A"
 			label astraldone
 			`	After what feels like hours, the equipment notifies you that it has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
 	on complete
