@@ -230,7 +230,7 @@ outfit "Maeri Engine Nacelles"
 	category "Engines"
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
-	"mass" 52
+	"mass" 59
 	"outfit space" -76
 	"engine capacity" -59
 	"energy consumption" 5.01
