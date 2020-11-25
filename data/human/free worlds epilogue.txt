@@ -57,6 +57,9 @@ mission "FW Epilogue: Alondo"
 	source "Bourne"
 	to offer
 		has "free worlds plot completed"
+		or
+			not "Paradise Fortune 3: done"
+			has "Paradise Fortune 4: offered"
 	
 	on offer
 		conversation
