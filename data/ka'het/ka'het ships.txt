@@ -53,9 +53,9 @@ ship "Maeri'het"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator"
 
-		"Hyperdrive"
-		"Ka'het Sustainer Nacelles"
 		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 	engine -22 61.5
 	engine 22 61.5
@@ -88,9 +88,9 @@ ship "Maeri'het" "Maeri'het (EMP)"
 		"Ka'het Shield Restorer" 2
 		"Ka'het MHD Generator"
 
-		Hyperdrive
-		"Ka'het Sustainer Nacelles"
 		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 	"uncapturable"
@@ -105,9 +105,9 @@ ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 		"Ka'het Shield Restorer" 2
 		"Ka'het MHD Generator"
 
-		Hyperdrive
-		"Ka'het Sustainer Nacelles"
 		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het"
 	plural "Telis'heta"
@@ -153,9 +153,9 @@ ship "Telis'het"
 		"Ka'het MHD Generator" 4
 		"Ka'het Reserve Accumulator"
 
-		"Hyperdrive"
-		"Ka'het Sustainer Nacelles" 2
 		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles" 2
+		"Hyperdrive"
 
 	engine -39.5 80
 	engine 39.5 80
@@ -192,9 +192,9 @@ ship "Telis'het" "Telis'het (EMP)"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 3
 
-		Hyperdrive
-		"Ka'het Sustainer Nacelles"
 		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het" "Telis'het (EMP, Disable-able)"
 	"uncapturable"
@@ -210,9 +210,9 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 3
 
-		Hyperdrive
-		"Ka'het Sustainer Nacelles"
 		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het" "Telis'het (Guns)"
 	"never disabled"
@@ -242,9 +242,9 @@ ship "Telis'het" "Telis'het (Guns, Disable-able)"
 		"Ka'het MHD Generator" 2
 		"Ka'het Reserve Accumulator" 6
 
-		Hyperdrive
-		"Ka'het Sustainer Nacelles"
 		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Selii'mar"
 	sprite "ship/selii'mar"

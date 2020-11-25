@@ -264,7 +264,7 @@ outfit "Ka'het Sustainer Nacelles"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
-	description "While the Ka'Het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maintain its thrusters and steerings ready."
+	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maintain its thrusters and steering."
 
 outfit "Telis Engine Nacelles"
 	category "Engines"
@@ -306,4 +306,4 @@ outfit "Ka'het Compact Engine"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
-	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Its improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those it requires both a constant amount of energy and some more to activate the engines."
+	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those, it requires some energy to activate the engines in addition to the constant energy drain that all Builder-designed engines have."
