@@ -1642,7 +1642,7 @@ fleet "Small Syndicate Core"
 	names "syndicate small"
 	cargo 2
 	personality
-		appeasing disables plunders
+		appeasing plunders
 	variant 3
 		"Quicksilver" 3
 	variant 3
@@ -1666,7 +1666,7 @@ fleet "Large Syndicate Core"
 	fighters "syndicate fighter"
 	cargo 2
 	personality
-		appeasing disables plunders
+		appeasing plunders
 	variant 3
 		"Splinter"
 		"Quicksilver" 3
