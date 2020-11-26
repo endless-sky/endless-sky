@@ -12,8 +12,7 @@
 				<Option external_deps="lib/Debug/libendless-sky.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
-				<Option projectLinkerOptionsRelation="2" />
+				<Option projectLinkerOptionsRelation="1" />
 				<Option projectIncludeDirsRelation="2" />
 				<Option projectLibDirsRelation="2" />
 				<Compiler>
@@ -29,8 +28,7 @@
 				<Option external_deps="lib/Release/libendless-sky.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
-				<Option projectLinkerOptionsRelation="2" />
+				<Option projectLinkerOptionsRelation="1" />
 				<Option projectIncludeDirsRelation="2" />
 				<Option projectLibDirsRelation="2" />
 				<Compiler>
@@ -64,10 +62,14 @@
 			<Add directory="C:/dev64/lib" />
 			<Add directory="C:/Program Files/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
-		<Unit filename="tests/src/test_Point.cpp" />
-		<Unit filename="tests/src/test_Set.cpp" />
+		<Unit filename="tests/src/test_conditionSet.cpp" />
+		<Unit filename="tests/src/test_datanode.cpp" />
 		<Unit filename="tests/src/test_main.cpp" />
+		<Unit filename="tests/src/test_point.cpp" />
+		<Unit filename="tests/src/test_random.cpp" />
+		<Unit filename="tests/src/test_set.cpp" />
 		<Extensions>
+			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

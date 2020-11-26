@@ -98,6 +98,7 @@
 		</Unit>
 		<Unit filename="source/main.cpp" />
 		<Extensions>
+			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
