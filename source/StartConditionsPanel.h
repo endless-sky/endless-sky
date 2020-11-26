@@ -19,31 +19,31 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class StartConditionsPanel : public Panel {
 public:
-    StartConditionsPanel(PlayerInfo &player, UI &gamePanels, LoadPanel *LoadPanel);
-    void OnCallback(int);
-    virtual void Draw() override;
-    
-    
+	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, LoadPanel *LoadPanel);
+	void OnCallback(int);
+	virtual void Draw() override;
+	
+	
 protected:
-    // Only override the ones you need; the default action is to return false.
-    virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-    virtual bool Click(int x, int y, int clicks) override;
-    virtual bool Hover(int x, int y) override;
-    virtual bool Drag(double dx, double dy) override;
-    virtual bool Scroll(double dx, double dy) override;
-    
+	// Only override the ones you need; the default action is to return false.
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Hover(int x, int y) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
+	
+	
 private:
-private:
-    PlayerInfo &player;
-    UI &gamePanels;
-    StartConditions *chosenStart;
+	PlayerInfo &player;
+	UI &gamePanels;
+	StartConditions *chosenStart;
 
-    // Stored here  that we can remove it if the player chooses a scenario
-    LoadPanel *loadPanel; 
-    Point hoverPoint;
+	// Stored here  that we can remove it if the player chooses a scenario
+	LoadPanel *loadPanel; 
+	Point hoverPoint;
 
-    double listScroll;
-    double descriptionScroll;
+	double listScroll = 0;
+	double descriptionScroll = 0;
 };
 
 #endif

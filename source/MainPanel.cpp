@@ -108,7 +108,7 @@ void MainPanel::Step()
 		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
 			isActive = !DoHelp("friendly disabled");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-				&& player.GetDate() <= player.ChosenStart()->GetDate() + 4)
+				&& player.GetDate() <= player.ChosenStart().GetDate() + 4)
 		{
 			++lostness;
 			int count = 1 + lostness / 3600;

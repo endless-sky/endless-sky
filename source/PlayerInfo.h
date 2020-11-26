@@ -59,7 +59,7 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(StartConditions* chosenStart);
+	void New(StartConditions chosenStart);
 	// Load an existing player.
 	void Load(const std::string &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
@@ -89,7 +89,7 @@ public:
 	const Date &GetDate() const;
 	void IncrementDate();
 	// Get the chosen start scenario
-	StartConditions *ChosenStart() const;
+	const StartConditions &ChosenStart() const;
 	
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
@@ -346,7 +346,7 @@ private:
 	
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
-	StartConditions *chosenStart;
+	StartConditions chosenStart;
 };
 
 

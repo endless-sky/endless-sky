@@ -69,7 +69,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(StartConditions *chosenStart)
+void PlayerInfo::New(StartConditions chosenStart)
 {
 	// Clear any previously loaded data.
 	Clear();
@@ -77,27 +77,27 @@ void PlayerInfo::New(StartConditions *chosenStart)
 	this->chosenStart = chosenStart;
 	
 	// Copy any ships in the start conditions.
-	for(const Ship &ship : chosenStart->Ships())
+	for(const Ship &ship : chosenStart.Ships())
 	{
 		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(chosenStart->GetSystem());
-		ships.back()->SetPlanet(chosenStart->GetPlanet());
+		ships.back()->SetSystem(chosenStart.GetSystem());
+		ships.back()->SetPlanet(chosenStart.GetPlanet());
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
-	date = chosenStart->GetDate();
+	date = chosenStart.GetDate();
 	GameData::SetDate(date);
 	// Make sure the fleet depreciation object knows it is tracking the player's
 	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
 	
-	SetSystem(chosenStart->GetSystem());
-	SetPlanet(chosenStart->GetPlanet());
-	accounts = chosenStart->GetAccounts();
-	chosenStart->GetConditions().Apply(conditions);
+	SetSystem(chosenStart.GetSystem());
+	SetPlanet(chosenStart.GetPlanet());
+	accounts = chosenStart.GetAccounts();
+	chosenStart.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
@@ -180,8 +180,8 @@ void PlayerInfo::Load(const string &path)
 			accounts.Load(child);
 		else if(child.Token(0) == "start")
 		{
-			this->chosenStart = new StartConditions();
-			chosenStart->Load(child);
+			this->chosenStart = StartConditions();
+			chosenStart.Load(child);
 		}
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
@@ -600,7 +600,7 @@ void PlayerInfo::IncrementDate()
 
 
 
-StartConditions *PlayerInfo::ChosenStart() const
+const StartConditions &PlayerInfo::ChosenStart() const
 {
 	return chosenStart;
 }
@@ -2278,8 +2278,8 @@ void PlayerInfo::ApplyChanges()
 		system = planet->GetSystem();
 	if(!planet || planet->Name().empty() || !system || system->Name().empty())
 	{
-		system = chosenStart->GetSystem();
-		planet = chosenStart->GetPlanet();
+		system = chosenStart.GetSystem();
+		planet = chosenStart.GetPlanet();
 	}
 	
 	// For any ship that did not store what system it is in or what planet it is
@@ -2648,7 +2648,7 @@ void PlayerInfo::Save(const string &path) const
 
 	if (chosenStart)
 	{
-		chosenStart->Save(out);	
+		chosenStart.Save(out);	
 	}
 	
 	

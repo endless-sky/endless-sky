@@ -59,7 +59,7 @@ void SavedGame::Load(const string &path)
 		else if(node.Token(0) == "start")
 		{
 			chosenStart = new StartConditions();
-			chosenStart->Load(node);
+			chosenStart.Load(node);
 		}
 		else if(node.Token(0) == "ship" && !shipSprite)
 		{

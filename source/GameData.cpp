@@ -94,7 +94,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
-	vector<StartConditions*> startConditions;
+	vector<StartConditions> startConditions;
 	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
@@ -190,7 +190,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	for(auto &it : persons)
 		it.second.FinishLoading();
 	for(auto &it : startConditions)
-		it->FinishLoading();
+		it.FinishLoading();
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -751,7 +751,7 @@ Politics &GameData::GetPolitics()
 
 
 
-const vector<StartConditions*> &GameData::Start()
+const vector<StartConditions> &GameData::Start()
 {
 	return startConditions;
 }
@@ -976,8 +976,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			shipSales.Get(node.Token(1))->Load(node, ships);
 		else if(key == "start")
 		{
-			StartConditions *thisConditions = new StartConditions;
-			thisConditions->Load(node);
+			StartConditions thisConditions = StartConditions();
+			thisConditions.Load(node);
 			startConditions.emplace_back(thisConditions);
 		}
 		else if(key == "system" && node.Size() >= 2)

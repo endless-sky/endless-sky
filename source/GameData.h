@@ -116,7 +116,7 @@ public:
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
-	static const std::vector<StartConditions*> &Start();
+	static const std::vector<StartConditions> &Start();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
