@@ -672,7 +672,7 @@ ship "Heliarch Judicator"
 		"hull" 41900
 		"required crew" 31
 		"bunks" 110
-		"mass" 570
+		"mass" 480
 		"drag" 7.9
 		"heat dissipation" .67
 		"ion protection" .2
