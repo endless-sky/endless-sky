@@ -750,28 +750,6 @@ ship "Heliarch Judicator" "Heliarch Judicator (Attractor)"
 		"Large Steering Module" 2
 		"Scram Drive"
 
-ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
-	outfits
-		"Finisher Pod" 2
-		"Finisher Storage Tube" 3
-		"Finisher Torpedo" 140
-		"Heliarch Repulsor"
-		
-		"Large Reactor Module"
-		"Large Battery Module"
-		"Overcharged Shield Module" 2
-		"Overclocked Repair Module"
-		"Cooling Module" 2
-		"Scanning Module" 3
-		"Outfits Expansion" 3
-		"Enforcer Riot Staff" 87
-		"Enforcer Confrontation Gear" 42
-		
-		"Large Thrust Module"
-		"Small Thrust Module" 3
-		"Large Steering Module" 2
-		"Scram Drive"
-
 ship "Heliarch Judicator" "Heliarch Judicator (Ions)"
 	outfits
 		"Ion Rain Gun" 2
@@ -812,6 +790,28 @@ ship "Heliarch Judicator" "Heliarch Judicator (Missile)"
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
 		"Small Steering Module" 3
+		"Scram Drive"
+
+ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Storage Tube" 3
+		"Finisher Torpedo" 140
+		"Heliarch Repulsor"
+		
+		"Large Reactor Module"
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module"
+		"Cooling Module" 2
+		"Scanning Module" 3
+		"Outfits Expansion" 3
+		"Enforcer Riot Staff" 87
+		"Enforcer Confrontation Gear" 42
+		
+		"Large Thrust Module"
+		"Small Thrust Module" 3
+		"Large Steering Module" 2
 		"Scram Drive"
 
 ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
