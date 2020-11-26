@@ -37,9 +37,9 @@ fleet "Heliarch"
 	variant 4
 		"Heliarch Neutralizer (Scrappy)"
 	variant 8
-		"Heliarch Judicator (Interdicting-Attractor)"
+		"Heliarch Judicator (Attractor)"
 		"Heliarch Stalker" 6
-		"Heliarch Judicator (Interdicting-Repulsor)"
+		"Heliarch Judicator (Repulsor)"
 		"Heliarch Pursuer (Scrappy)" 3
 		"Heliarch Rover" 3
 	variant 2
