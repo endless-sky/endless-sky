@@ -2249,7 +2249,7 @@ mission "Remnant: Face to Maw 1B"
 
 
 mission "Remnant: Face to Maw 2"
-	name "Take the slime sample to Viminal"
+	name "Bring slime to <planet>"
 	description "The void sprite slime has properties of interest to a team of engineers on <planet>."
 	to offer
 		has "Remnant: Face to Maw 1: done"
@@ -2307,7 +2307,7 @@ event "remnant: penguin"
 
 
 mission "Remnant: Face to Maw 2B"
-	name "Take the tentacle to Chilia's engineers on Caelian"
+	name "Bring tentacle to <planet>"
 	description "The tentacle has properties that may be put to use by the engineers on <planet>."
 	to offer
 		has "Remnant: Face to Maw 1B: done"
@@ -2621,8 +2621,8 @@ ship "Starling" "Starling (Keystone)"
 
 
 mission "Remnant: Crystal Research 5"
-	name "Scan the <npc> in <waypoints>"
-	description `Go scan the <npc> to record the keystone post-wormhole.`
+	name "Scan the <npc>"
+	description `Go scan the <npc> in <waypoints> to record the keystone post-wormhole.`
 	landing
 	waypoint "Peragenor"
 	source "Viminal"
@@ -2664,8 +2664,8 @@ mission "Remnant: Crystal Research 5"
 
 
 mission "Remnant: Crystal Research 6"
-	name "Scan the <npc> in <waypoints>"
-	description `Go scan the <npc> to record the key stone post-wormhole.`
+	name "Scan the <npc>"
+	description `Go scan the <npc> in <waypoints> to record the key stone post-wormhole.`
 	landing
 	waypoint "Peragenor"
 	source "Viminal"
@@ -2697,7 +2697,7 @@ mission "Remnant: Crystal Research 6"
 
 
 mission "Remnant: Crystal Research 7"
-	name "Deliver Data to <destination>"
+	name "Deliver Data to <planet>"
 	description `A copy of the scanner data needs to be delivered to the researchers on <destination>.`
 	source "Viminal"
 	destination
@@ -2886,7 +2886,7 @@ event "korath hunting"
 
 
 mission "Remnant: Cognizance 3"
-	name "Go to <planet> to meet Prefect Chilia."
+	name "Go to <planet>"
 	description "Prefect Chilia left a message with Plume asking you to meet him on <destination> immediately."
 	landing
 	source "Aventine"
@@ -3014,7 +3014,7 @@ mission "Remnant: Cognizance 5"
 
 
 mission "Remnant: Cognizance 6"
-	name "Transport Plume to a meeting"
+	name "Transport Plume"
 	description "Prefect Chilia needs Plume to consult about the void sprites."
 	deadline 5
 	source "Caelian"
@@ -3045,7 +3045,7 @@ mission "Remnant: Cognizance 6"
 
 
 mission "Remnant: Cognizance 7"
-	name "Take Plume to Nasqueron"
+	name "Take Plume to <planet>"
 	description "Plume wants to witness firsthand what is going on in Nenia."
 	source "Caelian"
 	destination "Nasqueron"
@@ -3080,7 +3080,7 @@ mission "Remnant: Cognizance 7"
 
 
 mission "Remnant: Cognizance 8"
-	name "Return Plume to Caelian"
+	name "Return Plume to <planet>"
 	description "Plume wants to check his records of the research on void sprites to verify some information."
 	landing
 	source "Nasqueron"
@@ -3108,7 +3108,7 @@ mission "Remnant: Cognizance 8"
 
 
 mission "Remnant: Cognizance 9"
-	name "Transport engineer to Esquiline"
+	name "Transport engineer to <planet>"
 	description "An engineer working for Plume needs transportation for himself and some equipment to <planet>."
 	blocked "Plume's engineer needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
 	cargo equipment 8
@@ -3142,7 +3142,7 @@ mission "Remnant: Cognizance 9"
 
 
 mission "Remnant: Cognizance 10"
-	name "Technician and supplies to <planet>."
+	name "Technician and supplies to <planet>"
 	description "You need to pick up a technician and their equipment from <stopovers> and take them to <planet>."
 	blocked "Plume's technician needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
 	cargo equipment 8
@@ -3187,7 +3187,7 @@ mission "Remnant: Cognizance 11"
 
 
 mission "Remnant: Cognizance 12"
-	name "Go meet up with escorts"
+	name "Meet with escorts"
 	description "Travel with the <npc> to pick up a shipment of atmosphere from <stopovers>, and deliver it to <destination>."
 	cargo equipment 8
 	source "Viminal"
@@ -3226,7 +3226,7 @@ mission "Remnant: Cognizance 12"
 
 
 mission "Remnant: Cognizance 13"
-	name "Go meet Prefect Chilia on <planet>."
+	name "Return to <planet>"
 	description "You have been informed that Prefect Chilia would like to meet with you on <destination>."
 	landing
 	source "Esquiline"
@@ -3370,7 +3370,7 @@ event "remnant: nenia ember waste node"
 
 
 mission "Remnant: Cognizance 17"
-	name "Report back to Aventine."
+	name "Report back to <planet>"
 	description "The Remnant will want to know about what happened on Nasqueron."
 	source "Nasqueron"
 	landing
@@ -3380,7 +3380,7 @@ mission "Remnant: Cognizance 17"
 	
 
 mission "Remnant: Cognizance 18"
-	name "Go collect some void sprites"
+	name "Collect void sprites"
 	description "Escort the Pelican fleet to <waypoints> and back to <planet>."
 	source
 		government "Remnant"
