@@ -205,7 +205,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			// Request that the player chooses a start scenario
 			// StartConditionsPanel also handles the case where there's no scenarios
-			StartConditionsPanel *panel = new StartConditionsPanel(player, gamePanels, this);
+			StartConditionsPanel *panel = new StartConditionsPanel(player, gamePanels, nullptr);
 			GetUI()->Push(panel);
 		}
 	}
