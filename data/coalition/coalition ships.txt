@@ -726,7 +726,7 @@ ship "Heliarch Judicator"
 	explode "large explosion" 20
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description `During their time battling the Quarg, the species of the Coalition focused on producing the strongest, toughest warships they could, so fightercraft were out of question. Now, however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently experimented with such ships. The Judicator was made for transportation of these fightercraft.`
+	description `During their time battling the Quarg, the Coalition focused on producing the strongest, toughest warships they could, so fightercraft were out of question. Now, however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently experimented with such ships. The Judicator was made for transportation of these new fighters.`
 	description `	Alongside their six fighter bays, Judicators come with a large bunk count and higher cargo space than other Heliarch warships, thus doubling as a logistics vessel for transporting troops and equipment.`
 
 ship "Heliarch Judicator" "Heliarch Judicator (Interdicting-Attractor)"
