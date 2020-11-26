@@ -34,8 +34,9 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/outfit/gat*
  images/outfit/bullet*
+ images/scene/sagittarius?a*
  images/ship/hai?solifuge*
-Copyright: Maximilian Korber
+Copyright: Maximilian Korber (github.com/wrzlprnft)
 License: CC-BY-SA-4.0
 
 Files:
@@ -365,6 +366,7 @@ Files:
  images/outfit/ramscoop*
  images/outfit/remnant?afterburner*
  images/outfit/remnant?capital?license*
+ images/outfit/research?laboratory*
  images/outfit/salvage?scanner*
  images/outfit/tiny?remnant?engine*
  images/outfit/void?rifle*
