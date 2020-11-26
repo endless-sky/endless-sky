@@ -9,51 +9,65 @@
 			<Target title="Debug">
 				<Option output="bin/Debug/EndlessSky" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
+				<Option external_deps="lib/Debug/libendless-sky.a;" />
 				<Option type="0" />
 				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="lib/Debug/libendless-sky.a" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/EndlessSky" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
+				<Option external_deps="lib/Release/libendless-sky.a;" />
 				<Option type="0" />
 				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-flto" />
+					<Add option="-O3" />
 					<Add option="-msse3" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
+					<Add option="-flto" />
+					<Add library="lib/Release/libendless-sky.a" />
 				</Linker>
 			</Target>
 			<Target title="Win32">
 				<Option output="bin/Win32/EndlessSky" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Win32/" />
+				<Option external_deps="lib/Win32/libendless-sky.a;" />
 				<Option type="0" />
 				<Option compiler="gnu_gcc_compiler_win32" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Option projectIncludeDirsRelation="1" />
 				<Option projectLibDirsRelation="1" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-flto" />
+					<Add option="-O3" />
 					<Add directory="C:/dev32/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-flto" />
 					<Add option="-Wl,--subsystem,windows" />
 					<Add option="-lwinmm" />
-					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libmingw32.a" />
-					<Add library="C:\dev32\lib\libsdl2main.a" />
-					<Add library="C:\dev32\lib\libsdl2.dll.a" />
-					<Add library="C:\dev32\lib\libpng.dll.a" />
-					<Add library="C:\dev32\lib\libturbojpeg.dll.a" />
-					<Add library="C:\dev32\lib\libjpeg.dll.a" />
-					<Add library="C:\dev32\lib\libmad.dll.a" />
-					<Add library="C:\dev32\lib\libopenal32.dll.a" />
-					<Add library="C:\dev32\lib\libglew32.dll.a" />
-					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libopengl32.a" />
+					<Add library="lib/Win32/libendless-sky.a" />
+					<Add library="libmingw32.a" />
+					<Add library="libsdl2main.a" />
+					<Add library="libsdl2.dll.a" />
+					<Add library="libpng.dll.a" />
+					<Add library="libturbojpeg.dll.a" />
+					<Add library="libjpeg.dll.a" />
+					<Add library="libmad.dll.a" />
+					<Add library="libopenal32.dll.a" />
+					<Add library="libglew32.dll.a" />
+					<Add library="libopengl32.a" />
 					<Add directory="C:/dev32/lib" />
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-5.2.0-posix-dwarf-rt_v4-rev0/mingw32/i686-w64-mingw32/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -66,18 +80,20 @@
 		<Linker>
 			<Add option="-Wl,--subsystem,windows" />
 			<Add option="-lwinmm" />
-			<Add library="C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\x86_64-w64-mingw32\lib\libmingw32.a" />
-			<Add library="C:\dev64\lib\libsdl2main.a" />
-			<Add library="C:\dev64\lib\libsdl2.dll.a" />
-			<Add library="C:\dev64\lib\libpng.dll.a" />
-			<Add library="C:\dev64\lib\libturbojpeg.dll.a" />
-			<Add library="C:\dev64\lib\libjpeg.dll.a" />
-			<Add library="C:\dev64\lib\libmad.dll.a" />
-			<Add library="C:\dev64\lib\libopenal32.dll.a" />
-			<Add library="C:\dev64\lib\libglew32.dll.a" />
-			<Add library="C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\x86_64-w64-mingw32\lib\libopengl32.a" />
+			<Add library="libmingw32.a" />
+			<Add library="libsdl2main.a" />
+			<Add library="libsdl2.dll.a" />
+			<Add library="libpng.dll.a" />
+			<Add library="libturbojpeg.dll.a" />
+			<Add library="libjpeg.dll.a" />
+			<Add library="libmad.dll.a" />
+			<Add library="libopenal32.dll.a" />
+			<Add library="libglew32.dll.a" />
+			<Add library="libopengl32.a" />
 			<Add directory="C:/dev64/lib" />
+			<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
+<<<<<<< HEAD
 		<Unit filename="source/AI.cpp" />
 		<Unit filename="source/AI.h" />
 		<Unit filename="source/Account.cpp" />
@@ -311,8 +327,6 @@
 		<Unit filename="source/StarField.h" />
 		<Unit filename="source/StartConditions.cpp" />
 		<Unit filename="source/StartConditions.h" />
-		<Unit filename="source/StartConditionsPanel.cpp" />
-		<Unit filename="source/StartConditionsPanel.h" />
 		<Unit filename="source/StellarObject.cpp" />
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />
@@ -331,15 +345,12 @@
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
+=======
+>>>>>>> upstream/master
 		<Unit filename="source/WinApp.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
-		<Unit filename="source/WrappedText.cpp" />
-		<Unit filename="source/WrappedText.h" />
-		<Unit filename="source/gl_header.h" />
 		<Unit filename="source/main.cpp" />
-		<Unit filename="source/pi.h" />
-		<Unit filename="source/shift.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
