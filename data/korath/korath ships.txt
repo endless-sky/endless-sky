@@ -51,38 +51,6 @@ ship "Korath Raider"
 	engine 20 130
 	"reverse engine" -8.5 -151.5 0.7
 	"reverse engine" 8.5 -151.5 0.7
-	"steering engine" -35 -93 0.3
-		angle 40
-		right
-		over
-	"steering engine" 35 -93 0.3
-		angle -40
-		left
-		over
-	"steering engine" -40.5 -97.5 0.2
-		angle 40
-		right
-		over
-	"steering engine" 40.5 -97.5 0.2
-		angle -40
-		left
-		over
-	"steering engine" -96 80.5 0.3
-		angle 110
-		left
-		under
-	"steering engine" 96 80.5 0.3
-		angle -110
-		right
-		under
-	"steering engine" -98.5 93 0.2
-		angle 110
-		left
-		under
-	"steering engine" 98.5 93 0.2
-		angle -110
-		right
-		under
 	turret -8 -145 "Korath Grab-Strike"
 	turret 8 -145 "Korath Grab-Strike"
 	turret -34 -143 "Korath Grab-Strike"
