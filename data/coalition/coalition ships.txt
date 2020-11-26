@@ -267,8 +267,8 @@ ship "Heliarch Breacher"
 		licenses
 			Heliarch
 		"cost" 17659000
-		"shields" 18800
-		"hull" 16500
+		"shields" 24400
+		"hull" 21500
 		"required crew" 11
 		"bunks" 15
 		"mass" 200
