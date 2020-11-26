@@ -810,6 +810,7 @@ Files:
  images/effect/pwave?shot*
  images/effect/sheragiam*
  images/effect/pwavehp*
+ images/effect/ka'het?flare/*
  images/effect/fissionflare*
  images/icon/dragonflame*
  images/icon/shard*
@@ -871,6 +872,18 @@ Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 Files:
  images/land/clouds*
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/ka'het?maeri?engine*
+ images/outfit/ka'het?telis?engine*
+ images/outfit/ka'het?sustainer?engine*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
+
+Files: images/outfit/ka'het?compact?engine*
+Copyright: Griffin Schutte (theronepic@gmail.com)
 License: CC-BY-SA-4.0
 
 License: GPL-3+
