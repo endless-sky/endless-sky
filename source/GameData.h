@@ -106,6 +106,7 @@ public:
 	static const Set<Interface> &Interfaces();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
+	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
 	static const Set<Sale<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
@@ -130,10 +131,6 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
-	
-	// Pick a random news object that applies to the given planet. If there is
-	// no applicable news, this returns null.
-	static const News *PickNews(const Planet *planet);
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);

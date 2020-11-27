@@ -596,9 +596,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 	
 	double zoom = Zoom();
 	auto drawRing = [&](const System *system, const Color &drawColor)
-	{
-		RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor);
-	};
+		{ RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor); };
 	
 	RingShader::Bind();
 	{
@@ -816,7 +814,7 @@ void MissionPanel::AbortMission()
 	{
 		const Mission &toAbort = *acceptedIt;
 		++acceptedIt;
-		player.RemoveMission(Mission::FAIL, toAbort, GetUI());
+		player.RemoveMission(Mission::ABORT, toAbort, GetUI());
 		if(acceptedIt == accepted.end() && !accepted.empty())
 			--acceptedIt;
 		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
