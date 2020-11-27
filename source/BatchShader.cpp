@@ -88,10 +88,13 @@ void BatchShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	
 	// In this VAO, enable the two vertex arrays and specify their byte offsets.
+	constexpr auto stride = 5 * sizeof(float);
 	glEnableVertexAttribArray(vertI);
-	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+	// The 3 texture fields (s, t, frame) come after the x,y pixel fields.
+	auto textureOffset = reinterpret_cast<const GLvoid *>(2 * sizeof(float));
 	glEnableVertexAttribArray(texCoordI);
-	glVertexAttribPointer(texCoordI, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(2 * sizeof(float)));
+	glVertexAttribPointer(texCoordI, 3, GL_FLOAT, GL_FALSE, stride, textureOffset);
 	
 	// Unbind the buffer and the VAO, but leave the vertex attrib arrays enabled
 	// in the VAO so they will be used when it is bound.

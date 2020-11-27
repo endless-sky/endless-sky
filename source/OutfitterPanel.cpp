@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -212,17 +211,80 @@ int OutfitterPanel::DetailWidth() const
 
 int OutfitterPanel::DrawDetails(const Point &center)
 {
-	if(!selectedOutfit)
-		return 0;
+	string selectedItem = "Nothing Selected";
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	
-	outfitInfo.Update(*selectedOutfit, player, CanSell());
-	Point offset(outfitInfo.PanelWidth(), 0.);
+	int heightOffset = 20;
 	
-	outfitInfo.DrawDescription(center - offset * 1.5 - Point(0., 10.));
-	outfitInfo.DrawRequirements(center - offset * .5 - Point(0., 10.));
-	outfitInfo.DrawAttributes(center + offset * .5 - Point(0., 10.));
+	if(selectedOutfit)
+	{
+		outfitInfo.Update(*selectedOutfit, player, CanSell());
+		selectedItem = selectedOutfit->Name();
+		
+		const Sprite *thumbnail = selectedOutfit->Thumbnail();
+		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
+		
+		float tileSize = thumbnail
+			? max(thumbnail->Height(), static_cast<float>(TileSize()))
+			: static_cast<float>(TileSize());
+		
+		Point thumbnailCenter(center.X(), center.Y() + 20 + tileSize / 2);
+		
+		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
+		
+		double descriptionOffset = 35.;
+		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
+		
+		// Maintenance note: This can be replaced with collapsed.contains() in C++20
+		if(!collapsed.count("description"))
+		{
+			descriptionOffset = outfitInfo.DescriptionHeight();
+			outfitInfo.DrawDescription(startPoint);
+		}
+		else
+		{
+			std::string label = "description";
+			font.Draw(label, startPoint + Point(35., 12.), dim);
+			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+		}
+		
+		// Calculate the new ClickZone for the description.
+		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		
+		// Find the old zone, and replace it with the new zone.
+		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
+		{
+			if(it->Value() == "description")
+			{
+				categoryZones.erase(it);
+				break;
+			}
+		}
+		categoryZones.emplace_back(collapseDescription);
+		
+		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
+		
+		SpriteShader::Draw(background, thumbnailCenter);
+		if(thumbnail)
+			SpriteShader::Draw(thumbnail, thumbnailCenter);
+		
+		outfitInfo.DrawAttributes(attrPoint);
+		outfitInfo.DrawRequirements(reqsPoint);
+		
+		heightOffset = reqsPoint.Y() + outfitInfo.RequirementsHeight();
+	}
 	
-	return outfitInfo.MaximumHeight();
+	// Draw this string representing the selected item (if any), centered in the details side panel
+	Point selectedPoint(
+		center.X() - font.Width(selectedItem) / 2, center.Y());
+	font.Draw(selectedItem, selectedPoint, bright);
+	
+	return heightOffset;
 }
 
 
@@ -522,9 +584,13 @@ void OutfitterPanel::Sell(bool toCargo)
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			ship->Recharge();
-			if(toCargo && player.Cargo().Add(selectedOutfit))
+			if(toCargo)
 			{
-				// Transfer to cargo completed.
+				// Transfer to cargo even if it would exceed the capacity.
+				int size = player.Cargo().Size();
+				player.Cargo().SetSize(-1);
+				player.Cargo().Add(selectedOutfit);
+				player.Cargo().SetSize(size);
 			}
 			else
 			{

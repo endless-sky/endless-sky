@@ -545,8 +545,13 @@ void MapPanel::Select(const System *system)
 	bool isJumping = flagship->IsEnteringHyperspace();
 	const System *source = isJumping ? flagship->GetTargetSystem() : playerSystem;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
-	if(system == source && !shift)
+	auto mod = SDL_GetModState();
+	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
+	// possibly manipulating it both here and there. Or, we entirely separate Select from travel plan modifications.
+	bool shift = (mod & KMOD_SHIFT) && !plan.empty();
+	if(mod & KMOD_CTRL)
+		return;
+	else if(system == source && !shift)
 	{
 		plan.clear();
 		if(!isJumping)
@@ -694,11 +699,12 @@ void MapPanel::UpdateCache()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
+				bool colorSystem = true;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
@@ -728,19 +734,23 @@ void MapPanel::UpdateCache()
 				{
 					bool all = true;
 					bool some = false;
+					colorSystem = false;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
+						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole()
+							&& object.GetPlanet()->IsAccessible(player.Flagship()))
 						{
 							bool visited = player.HasVisited(object.GetPlanet());
 							all &= visited;
 							some |= visited;
+							colorSystem = true;
 						}
 					value = -1 + some + all;
 				}
 				else
 					value = SystemValue(&system);
 				
-				color = MapColor(value);
+				if(colorSystem)
+					color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{

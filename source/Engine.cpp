@@ -121,8 +121,9 @@ namespace {
 		added.clear();
 	}
 	
-	bool CanSendHail(const shared_ptr<const Ship> &ship, const System *playerSystem)
+	bool CanSendHail(const shared_ptr<const Ship> &ship, const PlayerInfo &player)
 	{
+		const System *playerSystem = player.GetSystem();
 		if(!ship || !playerSystem)
 			return false;
 		
@@ -131,12 +132,17 @@ namespace {
 			return false;
 		
 		// Player ships shouldn't send hails.
-		if(!ship->GetGovernment() || ship->IsYours())
+		const Government *gov = ship->GetGovernment();
+		if(!gov || ship->IsYours())
 			return false;
 		
 		// Make sure this ship is able to send a hail.
 		if(ship->IsDisabled() || !ship->Crew()
 				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
+			return false;
+		
+		// Ships that don't share a language with the player shouldn't send hails.
+		if(!gov->Language().empty() && !player.GetCondition("language: " + gov->Language()))
 			return false;
 		
 		return true;
@@ -430,7 +436,7 @@ void Engine::Step(bool isActive)
 	events.swap(eventQueue);
 	eventQueue.clear();
 	
-	// The calculation thread is now paused, so it is safe to access things.
+	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
@@ -1037,6 +1043,14 @@ void Engine::Draw() const
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
+}
+
+
+
+// Give an (automated/scripted) command on behalf of the player.
+void Engine::GiveCommand(const Command &command)
+{
+	activeCommands.Set(command);
 }
 
 
@@ -1649,7 +1663,7 @@ void Engine::SendHails()
 			break;
 		}
 	
-	if(!CanSendHail(source, player.GetSystem()))
+	if(!CanSendHail(source, player))
 		return;
 	
 	// Generate a random hail message.
@@ -2110,15 +2124,20 @@ void Engine::AddSprites(const Ship &ship)
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
+	auto &itemsToDraw = draw[calcTickTock];
+	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
+	{
+		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
+		// sprite with an increasingly transparent "regular" sprite.
+		if(drawCloaked)
+			itemsToDraw.AddSwizzled(body, 7);
+		itemsToDraw.Add(body, cloak);
+	};
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
-			{
-				if(drawCloaked)
-					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
-				draw[calcTickTock].Add(*bay.ship, cloak);
-			}
+				drawObject(*bay.ship);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
@@ -2127,9 +2146,7 @@ void Engine::AddSprites(const Ship &ship)
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
-	if(drawCloaked)
-		draw[calcTickTock].AddSwizzled(ship, 7);
-	draw[calcTickTock].Add(ship, cloak);
+	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
@@ -2139,7 +2156,7 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());
-			draw[calcTickTock].Add(body, cloak);
+			drawObject(body);
 		}
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
@@ -2152,11 +2169,7 @@ void Engine::AddSprites(const Ship &ship)
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::OVER && bay.ship)
-			{
-				if(drawCloaked)
-					draw[calcTickTock].AddSwizzled(*bay.ship, 7);
-				draw[calcTickTock].Add(*bay.ship, cloak);
-			}
+				drawObject(*bay.ship);
 }
 
 
@@ -2168,7 +2181,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(attacker->IsPlayer())
 	{
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
-		if(CanSendHail(previous, player.GetSystem()))
+		if(CanSendHail(previous, player))
 		{
 			grudge[target->GetGovernment()].reset();
 			SendMessage(previous, "Thank you for your assistance, Captain "
@@ -2186,7 +2199,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
 		// If the previous ship is destroyed, or was able to send a
 		// "thank you" already, skip sending a new thanks.
-		if(!previous || CanSendHail(previous, player.GetSystem()))
+		if(!previous || CanSendHail(previous, player))
 			return;
 	}
 	
@@ -2195,13 +2208,9 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(target->GetGovernment()->IsEnemy() || !attacker->IsEnemy())
 		return;
 	// Ensure that this attacked ship is able to send hails (e.g. not mute,
-	// a player ship, automaton, etc.)
-	if(!CanSendHail(target, player.GetSystem()))
+	// a player ship, automaton, shares a language with the player, etc.)
+	if(!CanSendHail(target, player))
 		return;
-	// If the hailer has a special language, the player must understand it.
-	if(!target->GetGovernment()->Language().empty())
-		if(!player.GetCondition("language: " + target->GetGovernment()->Language()))
-			return;
 	
 	// No active ship has a grudge already against this government.
 	// Check the relative strength of this ship and its attackers.
