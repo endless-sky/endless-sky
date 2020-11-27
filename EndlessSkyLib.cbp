@@ -306,6 +306,8 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/Utf8.cpp" />
 		<Unit filename="source/Utf8.h" />
+		<Unit filename="source/Variant.cpp" />
+		<Unit filename="source/Variant.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
