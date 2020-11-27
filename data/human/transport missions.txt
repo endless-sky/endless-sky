@@ -2658,6 +2658,7 @@ mission "Core Blockade"
 	source
 		near "Almach" 2 4
 	destination "Deadman's Cove"
+	clearance
 	cargo "food" 287
 	to offer
 		random < 20

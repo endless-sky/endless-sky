@@ -632,9 +632,19 @@ void OutfitterPanel::Sell(bool toStorage)
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			ship->Recharge();
+
 			if(toStorage && storage && storage->Add(selectedOutfit))
 			{
 				// Transfer to planetary storage completed.
+			}
+			else if(toStorage)
+			{
+				// No storage available; transfer to cargo even if it
+				// would exceed the cargo capacity.
+				int size = player.Cargo().Size();
+				player.Cargo().SetSize(-1);
+				player.Cargo().Add(selectedOutfit);
+				player.Cargo().SetSize(size);
 			}
 			else
 			{

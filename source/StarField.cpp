@@ -330,18 +330,19 @@ void StarField::MakeStars(int stars, int width)
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 	
-	// connect the xy to the "vert" attribute of the vertex shader
+	// Connect the xy to the "vert" attribute of the vertex shader.
+	constexpr auto stride = 4 * sizeof(GLfloat);
 	glEnableVertexAttribArray(offsetI);
 	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), nullptr);
+		stride, nullptr);
 	
 	glEnableVertexAttribArray(sizeI);
 	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 	
 	glEnableVertexAttribArray(cornerI);
 	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
 	
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
