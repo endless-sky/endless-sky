@@ -51,7 +51,7 @@ Shader::Shader(const char *vertex, const char *fragment)
 		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
 		string error(infoLog.data());
 		Files::LogError(error);
-
+		
 		throw runtime_error("Linking OpenGL shader program failed.");
 	}
 }

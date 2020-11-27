@@ -519,7 +519,7 @@ void MainPanel::StepEvents(bool &isActive)
 				ShowScanDialog(event);
 				isActive = false;
 			}
-			else if(event.TargetGovernment()->IsPlayer())
+			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
 				string message = actor->Fine(player, event.Type(), &*event.Target());
 				if(!message.empty())

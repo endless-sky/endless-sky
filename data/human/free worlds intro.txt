@@ -1329,6 +1329,9 @@ mission "FW Escort 1"
 	on accept
 		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently."
 	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	
 	on fail
 		set "fw intro escort failed"
 	
@@ -1397,6 +1400,9 @@ mission "FW Escort 1B"
 		conversation
 			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds Council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
 	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	
 	on fail
 		set "fw intro escort failed"
 	
@@ -1459,6 +1465,9 @@ mission "FW Escort 2"
 			
 			`	"Great!" says Tomek. "Good luck to all of you, and I hope to see you all safely back here in a couple of weeks."`
 				accept
+	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
 	
 	on fail
 		set "fw intro escort failed"
@@ -1526,6 +1535,9 @@ mission "FW Escort 2B"
 		conversation
 			`Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
 	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	
 	on fail
 		set "fw intro escort failed"
 	
@@ -1568,6 +1580,9 @@ mission "FW Escort 3"
 			`Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
 		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
+	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
 	
 	on fail
 		set "fw intro escort failed"
