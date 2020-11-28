@@ -14,6 +14,8 @@ mission "First Contact: Hai"
 		attributes "hai"
 	on offer
 		conversation
+			branch unfettered
+				has "First Contact: Unfettered: offered"
 			`This planet is populated by an alien species that resemble giant, intelligent squirrels. However, the most surprising aspect of the spaceport is not the aliens, but the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
 			choice
 				`	(Sure.)`
@@ -22,22 +24,57 @@ mission "First Contact: Hai"
 			
 			`	You walk up to a human merchant who is busy haggling with one of the aliens. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look totally lost," he says. "First time down the rabbit hole?"`
 			`	You nod. The alien reaches out a paw to shake hands with you. "Welcome to Hai space," it says. "We are people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
+				goto next
+			
+			label unfettered
+			`The Hai here seem more friendly and approachable than those you met earlier. Even more surprising though is the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
+			choice
+				`	(Sure.)`
+				`	(Not right now.)`
+					defer
+			
+			`	You walk up to a human merchant who is busy haggling with one of the Hai. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look lost," he says. "First time down the rabbit hole?"`
+			`	"No, I've actually met with the Hai up north," you respond. The merchant looks slightly concerned with this, but the Hai only seems to sigh.`
+			`	"Ah, you have met our wayward sisters and brothers. I hope that they did not cause you too much trouble, for they are misled in their ways," it says. "Welcome to Hai space. Unlike those that you met before, the rest of us are a people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
+			
+			label next
 			`	You glance quickly at the human merchant to see his expression, wondering if these aliens can indeed be so benign, but his expression is calm and untroubled. "It's true," he says, "look around you. These buildings have stood for thousands of years. Hai society is so advanced, they need almost no resources to maintain it."`
 			choice
 				`	"Why do you allow humans to settle here?"`
 				`	"What do you ask for in return for letting humans settle here?"`
 			
 			`	"Humans are a young species," the Hai says, "full of energy, full of new ideas. And the Hai are old, and everything we do is what we have done before. When humans go on vacation, they travel to a world with perfect weather, sunny every day. When Hai go on vacation, we visit the stormiest world, to find unpredictability and change. Humans are so strange, that to speak with a human is like a small vacation." It smiles, and you catch a glimpse of its massive incisors. Based on your knowledge of xenobiology you would guess that the Hai are herbivores, but you can't be certain.`
+			branch hostile
+				has "First Contact: Unfettered: offered"
 			choice
 				`	"So I'm allowed to travel throughout your territory if I want?"`
 					goto travel
 				`	"How come people back in human space don't know that you are here?"`
+					goto human
 			
+			label hostile
+			choice
+				`	"If your people are peaceful then why are the Hai from the north so hostile?"`
+					goto why
+				`	"How come people back in human space don't know that you are here?"`
+			
+			label human
 			`	The human merchant laughs. "Probably because most of us came here to escape from the chaos and fighting in human space. The last thing we want is for it to follow us here. Not that I'm saying you can't tell anyone about the wormhole, but if I were you I wouldn't go spreading the news too widely either. And take a look around Hai space before you leave; you'll find that we could learn a lot from them."`
+			branch question
+				has "First Contact: Unfettered: offered"
 			`	"So I can travel anywhere I want in your territory?" you ask the Hai.`
 			
 			label travel
-			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
+			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai who are misled in their ways: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
+				goto end
+			
+			label question
+			`	"If your people are peaceful then why are the Hai from the north so hostile?" you ask the Hai.`
+			
+			label why
+			`	"I am young, and the origins of our 'Unfettered' brethren are before my time," it responds. "If you want to know more, it might be wise to find someone much older than myself to ask."`
+			
+			label end
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
 	on decline
@@ -81,6 +118,24 @@ mission "First Contact: Unfettered"
 		attributes "unfettered"
 	on offer
 		conversation
+			branch hai
+				has "First Contact: Hai: offered"
+				
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
+			choice
+				`	(Sure.)`
+				`	(Not now, it's too risky.)`
+					defer
+			`	You catch the eye of one of the alien dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+			choice
+				`	"Hai? Is that what you call yourselves?"`
+					goto name
+				`	"What do you mean, 'true Hai'?"`
+					goto true
+				`	"Why did you shoot at me? Are you at war?"`
+					goto war
+
+			label hai
 			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
 			choice
 				`	(Sure.)`
@@ -103,9 +158,19 @@ mission "First Contact: Unfettered"
 			`	"It means that we are unaltered, Hai as Hai were first born to be. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
+			label name
+			`	"We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+				goto masters
+			
+			label war
+			`	"We fight to defend ourselves from extinction," it says.`
+			`	"Extinction?" you ask. "Do you mean that there are no other Hai?"`
+			`	"We are all that is left of the original Hai," it says. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+				goto masters
+			
 			label everyone
 			`	"We fight to defend ourselves from extinction," it says.`
-			`	"'Extinction?'" you ask. "Do you mean that you are not the same species as the other Hai?"`
+			`	"Extinction'" you ask. "Do you mean that you are not the same species as the other Hai?"`
 			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
@@ -113,7 +178,7 @@ mission "First Contact: Unfettered"
 			choice
 				`	"Where was your territory? Why have I never heard of you before?"`
 				`	"What do you mean, the Hai were altered?"`
-	
+			
 			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
@@ -150,7 +215,7 @@ mission "First Contact: Unfettered"
 			label sell
 			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
-
+	
 	on decline
 		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
 		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
@@ -162,10 +227,11 @@ mission "Ask the Hai about the Unfettered"
 	source
 		attributes "hai"
 	to offer
+		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
 	on offer
 		conversation
-			`The Unfettered Hai told you that they are the "true Hai," and seem to think that the other Hai are oppressing them. Would you like to look for someone here who can tell you the other side of the story?`
+			`The Unfettered Hai say that they are the "true Hai," and seem to think that the other Hai are oppressing them, but another Hai that you spoke to said that the Unfettered Hai are simply misled. Would you like to look for someone here who can tell you more of the story?`
 			choice
 				`	(Yes.)`
 				`	(No.)`
@@ -208,7 +274,7 @@ mission "Ask the Hai about the Unfettered"
 mission "Unfettered Jump Drive 1"
 	name "More Jump Drives"
 	minor
-	description "The Unfettered Hai have promised you rich rewards if you bring them more Jump Drives."
+	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
 	landing
 	to offer
 		has "First Contact: Unfettered: offered"
@@ -268,7 +334,7 @@ mission "Unfettered Jump Drive 1"
 mission "Unfettered Jump Drive 2"
 	name "More Jump Drives"
 	minor
-	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more Jump Drives."
+	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
 	landing
 	to offer
 		has "Unfettered Jump Drive 1: offered"
@@ -311,7 +377,7 @@ mission "Unfettered Jump Drive 2"
 mission "Unfettered Jump Drive 3"
 	name "More Jump Drives"
 	minor
-	description "If you find more Jump Drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
+	description "If you find more jump drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
 	landing
 	to offer
 		has "Unfettered Jump Drive 2: offered"

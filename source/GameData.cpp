@@ -458,9 +458,15 @@ void GameData::WriteEconomy(DataWriter &out)
 		{
 			out.Write("purchases");
 			out.BeginChild();
-			for(const auto &pit : purchases)
-				for(const auto &cit : pit.second)
-					out.Write(pit.first->Name(), cit.first, cit.second);
+			using Purchase = pair<const System *const, map<string, int>>;
+			WriteSorted(purchases,
+				[](const Purchase *lhs, const Purchase *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const Purchase &pit)
+				{
+					for(const auto &cit : pit.second)
+						out.Write(pit.first->Name(), cit.first, cit.second);
+				});
 			out.EndChild();
 		}
 		out.WriteToken("system");
@@ -667,6 +673,13 @@ const Set<Mission> &GameData::Missions()
 
 
 
+const Set<News> &GameData::SpaceportNews()
+{
+	return news;
+}
+
+
+
 const Set<Outfit> &GameData::Outfits()
 {
 	return outfits;
@@ -789,20 +802,6 @@ double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = solarWind.find(sprite);
 	return (it == solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Pick a random news object that applies to the given planet. If there is
-// no applicable news, this returns null.
-const News *GameData::PickNews(const Planet *planet)
-{
-	vector<const News *> matches;
-	for(const auto &it : news)
-		if(it.second.Matches(planet))
-			matches.push_back(&it.second);
-	
-	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }
 
 
