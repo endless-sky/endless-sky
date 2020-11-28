@@ -1052,7 +1052,7 @@ ship "Marauder Bactrian"
 		category "Transport"
 		"cost" 17600000
 		"shields" 30000
-		"hull" 1200
+		"hull" 12000
 		"required crew" 70
 		"bunks" 93
 		"mass" 650
