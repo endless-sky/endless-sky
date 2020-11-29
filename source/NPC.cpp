@@ -361,9 +361,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	if(!ship)
 		return;
 	
-	// Check if this NPC is already in the succeeded state.
-	bool hasSucceeded = HasSucceeded(player.GetSystem(), false);
-	bool hasFailed = HasFailed();
+	// Determine if this NPC is already in the succeeded state,
+	// regardless of whether it will despawn on the next landing.
+	bool alreadySucceeded = HasSucceeded(player.GetSystem(), false);
+	bool alreadyFailed = HasFailed();
 	
 	// If this event was "ASSIST", the ship is now known as not disabled.
 	if(type == ShipEvent::ASSIST)
@@ -382,9 +383,9 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			actions[bay.ship.get()] |= type;
 	
 	// Check if the success status has changed. If so, display a message.
-	if(HasFailed() && !hasFailed && isVisible)
+	if(isVisible && !alreadyFailed && HasFailed())
 		Messages::Add("Mission failed.");
-	else if(ui && HasSucceeded(player.GetSystem(), false) && !hasSucceeded)
+	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
@@ -397,12 +398,13 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 
 
 
-bool NPC::HasSucceeded(const System *playerSystem, bool checkDespawnConditions) const
+bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) const
 {
 	// If this NPC has not yet spawned, or has fully despawned, then ignore its
 	// objectives. An NPC that will despawn on landing is allowed to still enter
 	// a "completed" state and trigger related completion events.
-	if(checkedSpawnConditions && (!passedSpawnConditions || (checkDespawnConditions && passedDespawnConditions)))
+	if(checkedSpawnConditions && (!passedSpawnConditions
+			|| (ignoreIfDespawnable && passedDespawnConditions)))
 		return true;
 	
 	if(HasFailed())
@@ -475,9 +477,6 @@ bool NPC::HasFailed() const
 {
 	// An unspawned NPC, one which will despawn on landing, or that has
 	// already despawned, is not considered "failed."
-	// TODO: Should we re-evaluate this? Should a currently-spawned NPC
-	// influence mission state even if it would despawn on the next landing?
-	// (Removing `passedDespawnConditions` here will enable that behavior.)
 	if(!passedSpawnConditions || passedDespawnConditions)
 		return false;
 	
