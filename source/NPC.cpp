@@ -62,6 +62,10 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::SCAN_CARGO;
 		else if(node.Token(i) == "scan outfits")
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
+		else if(node.Token(i) == "capture")
+			succeedIf |= ShipEvent::CAPTURE;
+		else if(node.Token(i) == "provoke")
+			succeedIf |= ShipEvent::PROVOKE;
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
@@ -70,6 +74,12 @@ void NPC::Load(const DataNode &node)
 			failIf |= ShipEvent::DESTROY;
 		}
 	}
+	
+	// Check for incorrect objective combinations.
+	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
+		node.PrintTrace("Warning: conflicting NPC mission objective to save and destroy or capture.");
+	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
+		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
 	
 	for(const DataNode &child : node)
 	{
@@ -338,7 +348,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			// before we check the mission's success status because otherwise
 			// momentarily reactivating a ship you're supposed to evade would
 			// clear the success status and cause the success message to be
-			// displayed a second time below. 
+			// displayed a second time below.
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
 				Ship *copy = new Ship(*ptr);
@@ -363,10 +373,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		actions[ship.get()] &= ~(ShipEvent::DISABLE);
 	
 	// Certain events only count towards the NPC's status if originated by
-	// the player: scanning, boarding, or assisting.
-	if(!event.ActorGovernment()->IsPlayer())
-		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS
-				| ShipEvent::ASSIST | ShipEvent::BOARD);
+	// the player: scanning, boarding, assisting, capturing, or provoking.
+	if(!event.ActorGovernment() || !event.ActorGovernment()->IsPlayer())
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST
+				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;

@@ -556,7 +556,6 @@ mission "FW Reconciliation Break"
 	passengers 2
 	
 	on offer
-		event "fw reconciliation break" 30
 		log "Dropped off a team of Republic diplomats on Bourne. It seems like for now, the ceasefire is holding, and public opinion is slowly turning to favor the Free Worlds rather than the Syndicate. But the Syndicate leaders must still be brought to justice. The Council will be in touch when they are ready to help launch an attack on the Syndicate."
 		conversation
 			`From the way Alondo's eyes light up when he sees Katya, you can tell that all he wants to do right now is to get caught up with her and celebrate her freedom. But he plays the part of a good diplomat, escorting the Republic ambassadors to their new quarters. Along the way he makes pleasant small talk with them, complimenting their style and sophistication. Knowing him as well as you do, you can tell he is saving up his more scathing comments about them until they are out of earshot.`
@@ -589,6 +588,7 @@ mission "FW Reconciliation Break"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
+		event "fw reconciliation break" 30
 		conversation
 			`You drop Ijs and Katya off on Skymoot, and wish them well. They both seem eager for a chance to relax, enjoy one another's company, and forget about matters of galactic importance for a while. "We'll see you soon, <first>," says Katya. "Just be sure your ship is in good fighting shape when the time comes to bring the Syndicate to justice."`
 
