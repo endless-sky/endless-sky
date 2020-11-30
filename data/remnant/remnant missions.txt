@@ -3722,7 +3722,32 @@ mission "Remnant: Expanded Horizons Astral 2"
 
 
 
-mission "Remnant: Expanded Horizons Astral job"
+mission "Remnant: Expanded Horizons Astral job A"
+	name "Research Expedition to <waypoints>"
+	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
+	job
+	repeat
+	waypoint
+		not attributes "pleiades"
+		not attributes "cognizance 1"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		not "Remnant: Cognizance 18: done"
+		random < 50
+	on offer
+		require "Research Laboratory"
+	source
+		government "Remnant"
+	on waypoint
+		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
+	on complete
+		payment 500000
+		"reputation: Remnant" ++
+		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
+
+
+
+mission "Remnant: Expanded Horizons Astral job B"
 	name "Research Expedition to <waypoints>"
 	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
 	job
@@ -3731,6 +3756,7 @@ mission "Remnant: Expanded Horizons Astral job"
 		not attributes "pleiades"
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
+		has "Remnant: Cognizance 18: done"
 		random < 50
 	on offer
 		require "Research Laboratory"
