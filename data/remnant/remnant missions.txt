@@ -3466,6 +3466,45 @@ event "remnant: cognizance timer"
 
 
 
+mission "Remnant: Cognizance 19"
+	name "Deliver nav data"
+	description "Deliver navigational data on the new systems to <destination>."
+	landing
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 18: done"
+	on offer
+		conversation
+			`As you finish your landing checks your comlink notifies you that you have an incoming message from Dawn. It promptly displays a short message:`
+			`	"Greetings, Captain <first>! We are starting to compile updated navigational data for the new systems, and would like a copy of the data your nav system recorded. Stop by <planet> and the starport automated systems will get a copy of the data during the systems check. It is a pretty small data set, so there should be no need to use data crystals. Thank you!"`
+			`	The end of the message is the location of a starport on <planet>, presumably where you are supposed to go.`
+				accept
+	on complete
+		payment 100000
+		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing your navigational logs. They will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
+		event "remnant: cognizance 1 available"
+
+
+
+event "remnant: cognizance 1 systems available"
+	system Diespiter
+		remove attributes "inaccessible"
+	system Egeria
+		remove attributes "inaccessible"
+	system Porrima
+		remove attributes "inaccessible"
+	system Prosa
+		remove attributes "inaccessible"
+	system Statina
+		remove attributes "inaccessible"
+	system Vaticanus
+		remove attributes "inaccessible"
+
+
+
 mission "Remnant: Expanded Horizons Astral 1"
 	name "Preparation for expedition"
 	description "Travel to <destination> to prepare for an expedition to Sagittarius A*. Ensure that you have at least six tons of outfit space available."
@@ -3722,41 +3761,17 @@ mission "Remnant: Expanded Horizons Astral 2"
 
 
 
-mission "Remnant: Expanded Horizons Astral job A"
+mission "Remnant: Expanded Horizons Astral job"
 	name "Research Expedition to <waypoints>"
 	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
 	job
 	repeat
 	waypoint
 		not attributes "pleiades"
-		not attributes "cognizance 1"
+		not attributes ""inaccessible""
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
 		not "Remnant: Cognizance 18: done"
-		random < 50
-	on offer
-		require "Research Laboratory"
-	source
-		government "Remnant"
-	on waypoint
-		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
-	on complete
-		payment 500000
-		"reputation: Remnant" ++
-		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
-
-
-
-mission "Remnant: Expanded Horizons Astral job B"
-	name "Research Expedition to <waypoints>"
-	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
-	job
-	repeat
-	waypoint
-		not attributes "pleiades"
-	to offer
-		has "Remnant: Expanded Horizons Astral 2: done"
-		has "Remnant: Cognizance 18: done"
 		random < 50
 	on offer
 		require "Research Laboratory"
