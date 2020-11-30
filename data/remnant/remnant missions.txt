@@ -3485,7 +3485,7 @@ mission "Remnant: Cognizance 19"
 	on complete
 		payment 100000
 		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing your navigational logs. They will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
-		event "remnant: cognizance 1 available"
+		event "remnant: cognizance 1 systems available"
 
 
 
