@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef TESTDATA_H_
-#define TESTDATA_H_
+#ifndef ENDLESS_SKY_AC_TESTDATA_H_
+#define ENDLESS_SKY_AC_TESTDATA_H_
 
 #include <string>
 
@@ -29,13 +29,13 @@ public:
 	bool Inject() const;
 
 	// Types of datafiles that can be stored.
-	enum DataType {SAVEGAME};
+	enum DataType {UNSPECIFIED, SAVEGAME};
 	
 private:
 	// Name of the dataset
 	std::string dataSetName;
 	// Type of the dataset
-	int dataSetType;
+	DataType dataSetType = DataType::UNSPECIFIED;
 	// File containing the test-data
 	std::string sourceDataFile;
 };

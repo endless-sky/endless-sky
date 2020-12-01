@@ -48,6 +48,12 @@ void Test::Load(const DataNode &node)
 		node.PrintTrace("Duplicate definition of test");
 		return;
 	}
+	// Validate if the testname contains valid characters.
+	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
+	{
+		node.PrintTrace("Invalid test name");
+		return;
+	}
 	name = node.Token(1);
 
 	for(const DataNode &child : node)

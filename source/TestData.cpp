@@ -57,7 +57,7 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 bool TestData::Inject() const
 {
 	// We only know how to inject savegame data for now.
-	if((dataSetType != TestData::SAVEGAME) || (dataSetName.empty()) || (sourceDataFile.empty()))
+	if(dataSetType != TestData::SAVEGAME || dataSetName.empty() || sourceDataFile.empty())
 		return false;
 
 	// Open the source-file and scan until we find the test-data
@@ -70,7 +70,7 @@ bool TestData::Inject() const
 		{
 			// Scan for the contents tag
 			for(const DataNode &dataNode : rootNode)
-				if(dataNode.Size() > 0 && dataNode.Token(0) == "contents")
+				if(dataNode.Token(0) == "contents")
 				{
 					// Savegame data gets written to the saves directory
 					// in a file with dataSetName as filename and with a .txt

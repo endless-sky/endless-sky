@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef TEST_H_
-#define TEST_H_
+#ifndef ENDLESS_SKY_AC_TEST_H_
+#define ENDLESS_SKY_AC_TEST_H_
 
 #include "Command.h"
 #include "ConditionSet.h"
@@ -81,13 +81,12 @@ public:
 	
 	protected:
 		// Teststep to run.
-		unsigned int stepToRun = 0;
+		int stepToRun = 0;
 	};
 	
 	
 public:
 	const std::string &Name() const;
-	std::string DebugMessage(Context &context) const;
 	std::string StatusText() const;
 
 	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
