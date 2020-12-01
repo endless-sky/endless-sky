@@ -298,6 +298,10 @@
 		<Unit filename="source/System.h" />
 		<Unit filename="source/Table.cpp" />
 		<Unit filename="source/Table.h" />
+		<Unit filename="source/Test.cpp" />
+		<Unit filename="source/Test.h" />
+		<Unit filename="source/TestData.cpp" />
+		<Unit filename="source/TestData.h" />
 		<Unit filename="source/Trade.cpp" />
 		<Unit filename="source/Trade.h" />
 		<Unit filename="source/TradingPanel.cpp" />
