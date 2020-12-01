@@ -1086,12 +1086,12 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 // (active/missing feature/known failure)..
 void GameData::PrintTestsTable()
 {
-	cout << "name" << '\t' << "status" << '\n';
+	cout << "status" << '\t' << "name" << '\n';
 	for(auto &it : tests)
 	{
 		const Test &test = it.second;
-		cout << test.Name() << '\t';
-		cout << test.StatusText() << '\n';
+		cout << test.StatusText() << '\t';
+		cout << "\"" << test.Name() << "\"" << '\n';
 	}
 	cout.flush();
 }

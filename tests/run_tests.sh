@@ -10,25 +10,23 @@ RESOURCES=$(echo "${HERE}/.." | sed "s,/tests/..,,")
 ES_EXEC_PATH="${RESOURCES}/endless-sky"
 ES_CONFIG_TEMPLATE_PATH="${RESOURCES}/tests/config"
 
-if [ ! $? ]
-then
-	echo "Error: couldn't create temporary directory"
-	exit 1
-fi
-
-echo "***********************************************"
-echo "***         ES Autotest-runner              ***"
-echo "***********************************************"
+echo "TAP version 13"
+echo "# ***********************************************"
+echo "# ***         ES Autotest-runner              ***"
+echo "# ***********************************************"
+echo "# Using Test Anything Protocol for reporting test-results"
 
 if [ ! -f "${ES_EXEC_PATH}" ]
 then
-	echo "Endless sky executable not found. Returning failure."
+	echo "1..1"
+	echo "not ok 1 Endless sky executable not found."
 	exit 1
 fi
 
 if [ ! -x "${ES_EXEC_PATH}" ]
 then
-	echo "Warning: Endless sky executable not executable. (did you use artifact downloading?)"
+	echo "1..1"
+	echo "not ok 1 Endless sky executable not executable. (did you use artifact downloading?)"
 	exit 1
 fi
 
@@ -36,20 +34,23 @@ fi
 TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}")
 if [ $? -ne 0 ]
 then
-	echo "Error could not retrieve testcases"
+	echo "1..1"
+	echo "not ok 1 Could not retrieve testcases"
 	exit 1
 fi
-TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
-TESTS_NOK=$(echo "${TESTS}" | grep -e "KNOWN FAILURE$" -e "MISSING FEATURE$" | cut -d$'\t' -f1)
-echo ""
+TESTS_OK=$(echo "${TESTS}" | grep -e "^ACTIVE" | cut -d$'\t' -f2)
+TESTS_NOK=$(echo "${TESTS}" | grep -e "^KNOWN FAILURE" -e "^MISSING FEATURE" | cut -d$'\t' -f2)
+TESTS_TOTAL=$(( 0 + $(echo "${TEST_OK}" | wc -l) ))
 
 #TODO: Allow running known-failures by default as well (to check if they accidentally got solved)
-echo "Tests not to execute (known failure or missing feature):"
-echo "${TESTS_NOK}"
-echo ""
-echo "Tests to execute:"
-echo "${TESTS_OK}"
-echo "***********************************************"
+if [ ${TESTS_TOTAL} -eq 0 ]
+then
+	echo "1..1"
+	echo "not ok 1 Could not find any testcases"
+	exit 1
+fi
+
+echo "1..${TESTS_TOTAL}"
 
 # Set separator to newline (in case tests have spaces in their name)
 IFS_OLD=${IFS}
@@ -61,34 +62,44 @@ for TEST in ${TESTS_OK}
 do
 	# Setup environment for the test
 	ES_CONFIG_PATH=$(mktemp --directory)
+	if [ ! $? ]
+	then
+		echo "not ok Couldn't create temporary directory"
+		echo "Bail out! Serious storage issue if we cannot create a temporary directory."
+		exit 1
+	fi
+
 	ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
 	mkdir -p "${ES_CONFIG_PATH}"
 	mkdir -p "${ES_SAVES_PATH}"
 	cp ${ES_CONFIG_TEMPLATE_PATH}/* ${ES_CONFIG_PATH}
 
-	TEST_RESULT="PASS"
-	echo "Running test \"${TEST}\" with ${ES_CONFIG_PATH}"
+	TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
+	TEST_RESULT="ok"
+	echo "# Running test ${TEST} with ${ES_CONFIG_PATH}"
 	# Use pipefail and use sed to remove ALSA messages that appear due to missing soundcards in the CI environment
 	set -o pipefail
-	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST}" --config "${ES_CONFIG_PATH}" 2>&1 |\
-		sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d"
+	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST_NAME}" --config "${ES_CONFIG_PATH}" 2>&1 |\
+		sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" | sed "s/^/# /"
 	if [ $? -ne 0 ]
 	then
-		echo "errors.txt:"
-		cat "${ES_CONFIG_PATH}/errors.txt"
-		TEST_RESULT="FAIL"
+		if [ -f "${ES_CONFIG_PATH}/errors.txt" ]
+		then
+			echo "# errors.txt:"
+			cat "${ES_CONFIG_PATH}/errors.txt" | sed "s/^/# /"
+		fi
+		TEST_RESULT="not ok"
 		NUM_FAILED=$((NUM_FAILED + 1))
 	fi
-	echo "Test \"${TEST}\": ${TEST_RESULT}"
-	echo ""
+	echo "${TEST_RESULT} ${TEST}"
 done
 
 IFS=${IFS_OLD}
 
 if [ ${NUM_FAILED} -ne 0 ]
 then
-	echo "${NUM_FAILED} tests failed"
+	echo "# ${NUM_FAILED} tests failed"
 	exit 1
 fi
-echo "All executed tests passed"
+echo "# All executed tests passed"
 exit 0
