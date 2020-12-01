@@ -100,9 +100,10 @@ int main(int argc, char *argv[])
 		bool checkedReferences = player.LoadRecent();
 		if(loadOnly)
 		{
+			const auto leak = new PlayerInfo();
 			if(!checkedReferences)
 				GameData::CheckReferences();
-			cout << "Parse completed." << endl;
+			cout << "Parse completed. Leaked address:" << leak << endl;
 			return 0;
 		}
 		
