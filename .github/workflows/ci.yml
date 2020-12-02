@@ -4,7 +4,6 @@ name: CI
 # - Run unit tests for all platforms (Blocked by XCode build file creation.)
 # - Reduce duplicate code (Blocking: https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 # - Investigate using scoop as package manager on windows
-# - MacOS artifact uploads are still slow (https://github.com/actions/upload-artifact/issues/69)
 # - Cache build files on all systems (Looking at you OSX)
 # - Cache development libraries on windows
 # - Run windows builds as matrix with different mingw versions
@@ -399,3 +398,33 @@ jobs:
       run: chmod +x ./"${ES_BINARY}" && ./"${ES_BINARY}" -v
     - name: Parse Datafiles
       run: ./tests/test_parse.sh ./"${ES_BINARY}"
+
+
+  # TODO: run this only if the push modifies source code
+  test_memory-leaks-lite:
+    needs: test_ubuntu-parse
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-20.04
+            glew: libglew2.1
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install runtime dependencies & valgrind
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind
+    - name: Download game binary
+      uses: actions/download-artifact@v2
+      with:
+        name: binary-${{ matrix.os }}
+    - name: Verify Executable
+      run: chmod +x endless-sky && ./endless-sky -v
+    - name: Check for load-time memory leaks
+      # Note: Running valgrind for tests that use a UI results in a slew of errors (>10M) from system libraries, e.g. libSDL2, libX11, libGLX, libGLEW, i965_dri, etc.
+      # Thus, settle for testing our command-line-only parse, which ensures we will catch bugs in the various Class::Load methods and default constructors.
+      # In a perfect world we would run a debug build, but since this will run on PRs, we can limit our search of "what caused the bug" to only the code
+      # added by that PR, which means debugging symbols aren't as necessary. (We can ignore the still-reachable cin, cout, cerr inherited file descriptors.)
+      run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --track-fds=yes --error-exitcode=1 ./endless-sky -p
