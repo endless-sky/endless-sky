@@ -264,11 +264,12 @@ jobs:
       with:
         path: ${{ env.ARTIFACT }}
         key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
+    - name: Update Homebrew
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      run: brew update
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: |
-        brew update
-        brew install libmad libpng jpeg-turbo sdl2
+      run: brew install libpng libjpeg-turbo libmad sdl2
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
