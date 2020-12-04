@@ -27,11 +27,12 @@ using namespace std;
 
 namespace {
 	SDL_Window *mainWindow = nullptr;
-	SDL_GLContext context;
+	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
 	bool hasSwizzle = false;
-		
+	bool supportsAdaptiveVSync = false;
+	
 	// Logs SDL errors and returns true if found
 	bool checkSDLerror()
 	{
@@ -308,6 +309,11 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 		default:
 			return false;
 	}
+	// Do not attempt to enable adaptive VSync when unsupported,
+	// as this can crash older video drivers.
+	if(interval == -1 && !supportsAdaptiveVSync)
+		return false;
+	
 	if(SDL_GL_SetSwapInterval(interval) == -1)
 	{
 		checkSDLerror();
