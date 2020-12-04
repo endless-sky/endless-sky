@@ -46,6 +46,23 @@ namespace {
 		
 		return false;
 	}
+	
+	bool HasOpenGLExtension(const char *name) {
+#ifndef __APPLE__
+		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
+		return strstr(extensions, name);
+#else
+		bool value = false;
+		GLint extensionCount = 0;
+		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
+		for(GLint i = 0; i < extensionCount && !value; ++i)
+		{
+			auto extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
+			value = (extension && strstr(extension, name));
+		}
+		return value;
+#endif
+	}
 }
 
 
@@ -164,34 +181,23 @@ bool GameWindow::Init()
 	glDisable(GL_DEPTH_TEST);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	
+	// Check for support of various graphical features.
+	hasSwizzle = HasOpenGLExtension("_texture_swizzle");
+	supportsAdaptiveVSync = HasOpenGLExtension("_swap_control_tear");
+	
 	// Enable the user's preferred VSync state.
 	SetVSync(Preferences::VSyncState());
 	
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
 	
-	string swizzleName = "_texture_swizzle";
-	
 #ifndef __APPLE__
 	// On OS X, setting the window icon will cause that same icon to be used
 	// in the dock and the application switcher. That's not something we
 	// want, because the ".icns" icon that is used automatically is prettier.
 	SetIcon();
-	
-	const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-	hasSwizzle = strstr(extensions, swizzleName.c_str());
-#else
-	bool swizzled = false;
-	GLint extensionCount;
-	glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
-	for(GLint i = 0; i < extensionCount && !swizzled; ++i)
-	{
-		const char *extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-		swizzled = (extension && strstr(extension, swizzleName.c_str()));
-	}
-	hasSwizzle = swizzled;
 #endif
-
+	
 	return true;
 }
 
