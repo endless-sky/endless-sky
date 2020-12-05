@@ -31,10 +31,24 @@ const Sprite *SpriteSet::Get(const string &name)
 
 
 
+set<string> SpriteSet::CheckReferences()
+{
+	auto unloaded = set<string>{};
+	for(const auto &pair : sprites)
+	{
+		const Sprite &sprite = pair.second;
+		if(sprite.Height() == 0 && sprite.Width() == 0)
+			unloaded.insert(pair.first);
+	}
+	return unloaded;
+}
+
+
+
 Sprite *SpriteSet::Modify(const string &name)
 {
 	auto it = sprites.find(name);
 	if(it == sprites.end())
-		it = sprites.insert(make_pair(name, Sprite(name))).first;
+		it = sprites.emplace(name, Sprite(name)).first;
 	return &it->second;
 }

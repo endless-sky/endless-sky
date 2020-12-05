@@ -890,7 +890,7 @@ mission "Remnant: Technology Available"
 		conversation
 			`An elderly man approaches your ship and introduces himself as a local "prefect," presumably some sort of government position. In a song so elaborate that he must have composed and practiced it ahead of time, he informs you that a scientific study on the void sprites has just been published, and as the co-author you are entitled to a payment of two million credits, which he presents to you.`
 			`	"When your name came up in the study," he says, "I asked around and discovered that you have helped us in other ways as well. The other prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall henceforth be given permission to purchase our ships and technology." He hands you a small cube that looks like it is made of interlocking blocks of material similar to their ships.`
-			scene "images/outfit/remnant license"
+			scene "outfit/remnant license"
 			choice
 				`	"I'm honored. Thank you."`
 					goto onwards
@@ -3711,7 +3711,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 					goto astraldone
 				`	"Would you mind if I came too?"`
 			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs occasionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
-			scene "scene/Sagittarius A"
+			scene "scene/sagittarius a"
 			label astraldone
 			`	After what feels like hours, the equipment notifies you that it has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
 	on complete
