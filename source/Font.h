@@ -31,7 +31,7 @@ class Point;
 // moment only plain ASCII characters are supported, not Unicode.
 class Font {
 public:
-	Font();
+	Font() = default;
 	explicit Font(const std::string &imagePath);
 	
 	void Load(const std::string &imagePath);
@@ -88,24 +88,24 @@ private:
 	
 	
 	Shader shader;
-	GLuint texture;
-	GLuint vao;
-	GLuint vbo;
+	GLuint texture = 0;
+	GLuint vao = 0;
+	GLuint vbo = 0;
 	
-	GLint colorI;
-	GLint scaleI;
-	GLint glyphI;
-	GLint aspectI;
-	GLint positionI;
+	GLint colorI = 0;
+	GLint scaleI = 0;
+	GLint glyphI = 0;
+	GLint aspectI = 0;
+	GLint positionI = 0;
 	
-	int height;
-	int space;
-	mutable int screenWidth;
-	mutable int screenHeight;
+	int height = 0;
+	int space = 0;
+	mutable int screenWidth = 0;
+	mutable int screenHeight = 0;
 	
 	static const int GLYPHS = 98;
-	int advance[GLYPHS * GLYPHS];
-	int widthEllipses;
+	int advance[GLYPHS * GLYPHS] = {};
+	int widthEllipses = 0;
 };
 
 

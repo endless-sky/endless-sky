@@ -27,7 +27,7 @@ class Color;
 // parameters of the formatting, including text alignment.
 class WrappedText {
 public:
-	WrappedText();
+	WrappedText() = default;
 	explicit WrappedText(const Font &font);
 	
 	// Set the alignment mode.
@@ -76,7 +76,7 @@ public:
 	
 private:
 	void SetText(const char *it, size_t length);
-	void AdjustLine(unsigned &lineBegin, int &lineWidth, bool isEnd);
+	void AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd);
 	int Space(char c) const;
 	
 	
@@ -84,34 +84,34 @@ private:
 	// The returned text is a series of words and (x, y) positions:
 	class Word {
 	public:
-		Word();
+		Word() = default;
 		
 		size_t Index() const;
 		Point Pos() const;
 		
 	private:
-		size_t index;
-		int x;
-		int y;
+		size_t index = 0;
+		int x = 0;
+		int y = 0;
 		
 		friend class WrappedText;
 	};
 	
 	
 private:
-	const Font *font;
+	const Font *font = nullptr;
 	
-	int space;
-	int wrapWidth;
-	int tabWidth;
-	int lineHeight;
-	int paragraphBreak;
-	Align alignment;
-	Font::Truncate truncate;
+	int space = 0;
+	int wrapWidth = 1000;
+	int tabWidth = 0;
+	int lineHeight = 0;
+	int paragraphBreak = 0;
+	Align alignment = JUSTIFIED;
+	Font::Truncate truncate = Font::TRUNC_NONE;
 	
 	std::string text;
 	std::vector<Word> words;
-	int height;
+	int height = 0;
 };
 
 

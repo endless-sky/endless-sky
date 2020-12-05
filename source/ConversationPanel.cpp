@@ -206,7 +206,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
-		if(isNewPress && (key == SDLK_RETURN || key == SDLK_KP_ENTER))
+		if(isNewPress && (key == SDLK_RETURN || key == SDLK_KP_ENTER || key == 'd'))
 		{
 			Exit();
 			return true;
