@@ -495,6 +495,7 @@ ship "Heron"
 
 
 ship "Ibis"
+	plural "Ibises"
 	sprite "ship/ibis"
 	thumbnail "thumbnail/ibis"
 	attributes
