@@ -162,14 +162,14 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	menuPanels.Push(new MenuPanel(player, gamePanels));
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
-
+	
 	if(!GameWindow::HasSwizzle())
 		menuPanels.Push(new Dialog(
 			"Note: your computer does not support the \"texture swizzling\" OpenGL feature, "
 			"which Endless Sky uses to draw ships in different colors depending on which "
 			"government they belong to. So, all human ships will be the same color, which "
 			"may be confusing. Consider upgrading your graphics driver (or your OS)."));
-			
+	
 	bool showCursor = true;
 	int cursorTime = 0;
 	int frameRate = 60;
