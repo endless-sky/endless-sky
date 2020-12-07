@@ -321,7 +321,7 @@ person "Captain Nate"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
 	
 	ship Vanguard "Pointedstick"
-		sprite "ship/pointedstick_vanguard"
+		sprite "ship/pointedstick vanguard"
 		"never disabled"
 		attributes
 			category "Heavy Warship"

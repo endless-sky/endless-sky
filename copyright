@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿mat: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -607,6 +607,8 @@ Comment: Derived from works by Michael Zahniser (under the same license) and det
 
 Files:
  images/ship/boxwing*
+ images/ship/barb*
+ images/thumbnail/boxwing*
  images/thumbnail/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
@@ -628,6 +630,13 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/ship/localworldship*
+ images/ship/arrow*
+ images/ship/bulk?freighter*
+ images/ship/freighter*
+ images/ship/protector*
+ images/ship/star?barge*
+ images/ship/wasp*
  images/thumbnail/argosy*
  images/thumbnail/clipper*
  images/thumbnail/dreadnought*
@@ -643,7 +652,6 @@ Files:
  images/thumbnail/leviathan*
  images/thumbnail/shuttle*
  images/thumbnail/star?queen*
- images/ship/localworldship*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -651,11 +659,25 @@ Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
+ images/ship/marrow*
  images/thumbnail/mfirebird*
  images/thumbnail/mleviathan*
+ images/thumbnail/marrow*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/pointedstick vanguard*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/vanguard*
+Copyright: Nate Graham <pointedstick@zoho.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
  images/ship/blackbird*
