@@ -3248,12 +3248,19 @@ ship "Vanguard"
 	engine -16.5 131
 	engine 16.5 131
 	gun 0 -132.5 "Proton Gun"
+		parallel
 	gun -24 -122.5 "Proton Gun"
+		parallel
 	gun 24 -122.5 "Proton Gun"
+		parallel
 	gun -40 -47.5 "Proton Gun"
+		parallel
 	gun 40 -47.5 "Proton Gun"
+		parallel
 	gun -35 -44.5 "Proton Gun"
+		parallel
 	gun 35 -44.5 "Proton Gun"
+		parallel
 	turret 0 42 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 30 80

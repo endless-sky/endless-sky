@@ -364,20 +364,35 @@ person "Captain Nate"
 		engine 31.5 130.5 0.7
 		engine 0 130.5 0.7
 		gun 0 -130.5 "Proton Gun"
+			parallel
 		gun 0 -130.5 "Proton Gun"
+			parallel
 		gun 0 -130.5 "Proton Gun"
+			parallel
 		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
 		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
 		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
 		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
 		gun -40 -46 "Proton Gun"
+			parallel
 		gun -40 -46 "Proton Gun"
+			parallel
 		gun 40 -46 "Proton Gun"
+			parallel
 		gun 40 -46 "Proton Gun"
+			parallel
 		gun -34.5 -43 "Proton Gun"
+			parallel
 		gun -34.5 -43 "Proton Gun"
+			parallel
 		gun 34.5 -43 "Proton Gun"
+			parallel
 		gun 34.5 -43 "Proton Gun"
+			parallel
 		turret 0 42 "Anti-Missile Turret"
 		explode "tiny explosion" 18
 		explode "small explosion" 36
