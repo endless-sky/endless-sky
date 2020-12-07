@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 #include "PlayerInfo.h"
 
+
 class StartConditionsPanel : public Panel {
 public:
 	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, LoadPanel *LoadPanel);
@@ -36,7 +37,10 @@ protected:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
-	StartConditions *chosenStart;
+
+	// Workaround around the absence of std::optional<>
+	StartConditions chosenStart;
+	bool hasChosenStart = false;
 
 	// Stored here  that we can remove it if the player chooses a scenario
 	LoadPanel *loadPanel; 

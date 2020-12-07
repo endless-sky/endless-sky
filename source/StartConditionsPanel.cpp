@@ -57,10 +57,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 	if(GameData::Start().size())
 	{
 		chosenStart = GameData::Start()[GameData::Start().size()-1];	
-	}
-	else
-	{
-		chosenStart = nullptr;
+		hasChosenStart = true;
 	}
 	
 }
@@ -74,7 +71,7 @@ void StartConditionsPanel::Draw()
 
 	string descriptionText; // String that will be shown in the description panel
 
-	if(chosenStart){
+	if(hasChosenStart){
 		info.SetCondition("chosen start");
 		if(chosenStart.GetSprite())
 			info.SetSprite("start sprite", chosenStart.GetSprite());
@@ -131,7 +128,7 @@ void StartConditionsPanel::Draw()
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 		}
 		
-		string name = font.Truncate(it->GetName(), 220);
+		string name = font.Truncate(it.GetName(), 220);
 		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., LIST_ITEM_SIZE);
 	}
@@ -186,7 +183,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		GetUI()->Pop(this);
 	else if(key == 's' || key == 'n' || key == '\n')
 	{
-		if(!chosenStart)
+		if(!hasChosenStart)
 			return true;
 
 		player.New(chosenStart);
@@ -218,9 +215,10 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 		for(const auto &it : GameData::Start())
 			if(i++ == selected)
 			{
-				if(chosenStart != it)
+				if(!(chosenStart == it))
 					descriptionScroll = 0; // Reset scrolling
 				chosenStart = it;
+				hasChosenStart = true;
 			}
 	}
 	

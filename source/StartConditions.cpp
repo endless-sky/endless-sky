@@ -146,3 +146,14 @@ const Sprite *StartConditions::GetSprite() const
 {
 	return sprite;	
 }
+
+bool StartConditions::operator==(StartConditions other) const 
+{
+	return (
+		GetPlanet() == other.GetPlanet() &&
+		GetSystem() == other.GetSystem() &&
+		GetAccounts() == other.GetAccounts() &&
+		GetDescription() == other.GetDescription() &&
+		GetDate() == other.GetDate()
+	);
+}

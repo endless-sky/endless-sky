@@ -49,6 +49,8 @@ public:
 	const ConditionSet &GetConditions() const;
 	const std::list<Ship> &Ships() const;
 	
+	bool operator==(StartConditions other) const;
+	
 private:
 	Date date;
 	const Planet *planet = nullptr;

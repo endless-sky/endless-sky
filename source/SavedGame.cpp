@@ -58,7 +58,7 @@ void SavedGame::Load(const string &path)
 		}
 		else if(node.Token(0) == "start")
 		{
-			chosenStart = new StartConditions();
+			chosenStart = StartConditions();
 			chosenStart.Load(node);
 		}
 		else if(node.Token(0) == "ship" && !shipSprite)
@@ -143,7 +143,7 @@ const string &SavedGame::GetPlanet() const
 
 
 
-const StartConditions *SavedGame::GetChosenStart() const
+const StartConditions SavedGame::GetChosenStart() const
 {
 	return chosenStart;
 }

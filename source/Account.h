@@ -62,7 +62,8 @@ public:
 	int CreditScore() const;
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
-	
+	// Compares two accounts
+	bool operator==(Account other) const;
 	
 private:
 	int64_t YearlyRevenue() const;

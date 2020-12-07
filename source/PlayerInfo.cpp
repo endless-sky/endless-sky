@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Messages.h"
@@ -119,6 +120,8 @@ void PlayerInfo::Load(const string &path)
 	
 	filePath = path;
 	DataFile file(path);
+
+	bool hasChosenStart = false;
 	
 	hasFullClearance = false;
 	for(const DataNode &child : file)
@@ -276,9 +279,13 @@ void PlayerInfo::Load(const string &path)
 		}
 	}
 
-	if(!chosenStart && GameData::Start().size()) // Probably an old save
+	if(!hasChosenStart && GameData::Start().size()) // Probably an old save
 	{
 		chosenStart = GameData::Start()[GameData::Start().size()-1]; 
+	}
+	else if (!hasChosenStart)
+	{
+		GameWindow::ExitWithError("An old save was loaded, but no start conditions were defined! Make sure you have installed the game correctly.");
 	}
 
 	// Based on the ships that were loaded, calculate the player's capacity for
@@ -2646,11 +2653,7 @@ void PlayerInfo::Save(const string &path) const
 			out.Write("groups", it->second);
 	}
 
-	if (chosenStart)
-	{
-		chosenStart.Save(out);	
-	}
-	
+	chosenStart.Save(out);	
 	
 	// Save accounting information, cargo, and cargo cost bases.
 	accounts.Save(out);
