@@ -935,12 +935,12 @@ ship "Class C Freighter"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -22 198
-	engine 22 198
-	turret -12 -155 "Heavy Laser Turret"
-	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 30 175 "Heavy Laser Turret"
-	turret -30 175 "Heavy Anti-Missile Turret"
+	engine -20 195.5
+	engine 20 195.5
+	turret 0 -40.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Laser Turret"
+	turret 0 59.5 "Heavy Anti-Missile Turret"
+	turret 0 109 "Laser Turret"
 	drone -66 -115 left
 	drone -66 -65 left
 	drone -66 -15 left
