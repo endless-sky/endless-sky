@@ -36,8 +36,8 @@ then
 	echo "not ok 1 Could not retrieve testcases"
 	exit 1
 fi
-TESTS_OK=$(echo -n "${TESTS}" | grep -e "^ACTIVE" | cut -f2)
-TESTS_NOK=$(echo "${TESTS}" | grep -e "^KNOWN FAILURE" -e "^MISSING FEATURE" | cut -f2)
+TESTS_OK=$(echo -n "${TESTS}" | grep -e "^active" | cut -f2)
+TESTS_NOK=$(echo "${TESTS}" | grep -e "^known failure" -e "^missing feature" | cut -f2)
 NUM_TOTAL=$(( 0 + $(echo "${TESTS_OK}" | wc -l) ))
 
 #TODO: Allow running known-failures by default as well (to check if they accidentally got solved)

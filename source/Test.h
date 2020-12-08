@@ -33,7 +33,8 @@ class Test {
 public:
 	// Status indicators for the test that we selected (if any).
 	enum class Status {ACTIVE, KNOWN_FAILURE, MISSING_FEATURE};
-	
+
+
 public:
 	// Class representing a single step in a test
 	class TestStep {
@@ -74,6 +75,14 @@ public:
 			// Teststep ok, but triggered a jump (GOTO or BRANCH to a label).
 			GOTO
 		};
+	
+	
+	public:
+		TestStep(Type stepType);
+	
+	
+	public:
+		Type stepType = Type::INVALID;
 	};
 	
 	class Context {
@@ -86,7 +95,7 @@ public:
 	
 	protected:
 		// Teststep to run.
-		int stepToRun = 0;
+		unsigned int stepToRun = 0;
 	};
 	
 	
@@ -104,8 +113,13 @@ public:
 	
 	
 private:
+	void LoadSequence(const DataNode &node);
+
+
+private:
 	std::string name;
 	Status status = Status::ACTIVE;
+	std::vector<TestStep> steps;
 };
 
 #endif

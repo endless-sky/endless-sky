@@ -27,9 +27,58 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <SDL2/SDL.h>
 
+#include <algorithm>
+#include <map>
 #include <stdexcept>
 
 using namespace std;
+
+
+
+namespace{
+	const map<Test::Status, const string> STATUS_TO_TEXT = {
+		{Test::Status::ACTIVE, "active"},
+		{Test::Status::KNOWN_FAILURE, "known failure"},
+		{Test::Status::MISSING_FEATURE, "missing feature"}
+	};
+	
+	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {
+		{Test::TestStep::Type::ASSIGN, "assign"},
+		{Test::TestStep::Type::ASSERT, "assert"},
+		{Test::TestStep::Type::BRANCH, "branch"},
+		{Test::TestStep::Type::INJECT, "inject"},
+		{Test::TestStep::Type::INPUT, "input"},
+		{Test::TestStep::Type::INVALID, "invalid"},
+		{Test::TestStep::Type::LABEL, "label"},
+		{Test::TestStep::Type::NAVIGATE, "navigate"},
+		{Test::TestStep::Type::WATCHDOG, "watchdog"}
+	};
+}
+
+
+Test::TestStep::TestStep(Type stepType) : stepType(stepType)
+{
+};
+
+
+
+void Test::LoadSequence(const DataNode &node)
+{
+	for(const DataNode &child: node)
+	{
+		const string &typeName = child.Token(0);
+		Test::TestStep::Type stepType;
+		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
+			[&typeName](const std::pair<Test::TestStep::Type, string> &e) {
+				return e.second == typeName;
+			});
+		if(it != STEPTYPE_TO_TEXT.end())
+			stepType = it->first;
+		else
+			child.PrintTrace("Unknown teststep type " + child.Token(0));
+		steps.emplace_back(stepType);
+	}
+}
 
 
 
@@ -60,14 +109,15 @@ void Test::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "status" && child.Size() >= 2)
 		{
-			if(child.Token(1) == "Active")
-				status = Status::ACTIVE;
-			else if(child.Token(1) == "Known Failure")
-				status = Status::KNOWN_FAILURE;
-			else if(child.Token(1) == "Missing Feature")
-				status = Status::MISSING_FEATURE;
+			const string &statusText = child.Token(1);
+			auto it = find_if(STATUS_TO_TEXT.begin(), STATUS_TO_TEXT.end(),
+				[&statusText](const std::pair<Test::Status, string> &e) {
+					return e.second == statusText;
+				});
+			if(it != STATUS_TO_TEXT.end())
+				status = it->first;
 			else
-				child.PrintTrace("Unknown test-status " + child.Token(1));
+				child.PrintTrace("Unknown test-status " + statusText);
 		}
 		else if(child.Token(0) == "sequence")
 			// Test-steps are not in the basic framework.
@@ -100,33 +150,37 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	if(!GameData::IsLoaded())
 		return;
 	
-	if(context.stepToRun <= 0)
+	if(context.stepToRun >= steps.size())
 	{
 		// Done, no failures, exit the game with exitcode success.
 		menuPanels.Quit();
 		return;
 	}
 	
-
+	const TestStep &stepToRun = steps[context.stepToRun];
+	
 	// Exit with error on a failing testStep.
+	string stepTypeName = "unknown teststep type";
+	auto it = STEPTYPE_TO_TEXT.find(stepToRun.stepType);
+	if(it != STEPTYPE_TO_TEXT.end())
+		stepTypeName = it->second;
+	
+	string testFailMessage = "Teststep " + to_string(context.stepToRun) + "(" + stepTypeName + ") failed";
+	Files::LogError(testFailMessage);
+
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
-	throw runtime_error("Teststep " + to_string(context.stepToRun) + " failed");
+	throw runtime_error(testFailMessage);
 }
 
 
 
 string Test::StatusText() const
 {
-	switch (status)
-	{
-		case Status::KNOWN_FAILURE:
-			return "KNOWN FAILURE";
-		case Status::MISSING_FEATURE:
-			return "MISSING FEATURE";
-		case Status::ACTIVE:
-		default:
-			return "ACTIVE";
-	}
+	auto it = STATUS_TO_TEXT.find(status);
+	if(it != STATUS_TO_TEXT.end())
+		return it->second;
+	else
+		return "active";
 }
