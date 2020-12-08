@@ -237,6 +237,10 @@ interface "start conditions menu"
 	sprite "_menu/buttonless side panel"
 		center 360 0
 
+	box "start description" # The box that will contain the description text
+		from -105 -160
+		to 105 160
+
 	outline "ship/clipper"
 		center 360 -90
 		dimensions 120 120

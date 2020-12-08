@@ -106,14 +106,21 @@ void StartConditionsPanel::Draw()
 	text->SetWrapWidth(210);
 	text->Wrap(descriptionText);
 
+	Rectangle descriptionBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
+	Rectangle entryBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
+	Rectangle entryListBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
+
 	// Only allow draws inside the description box
 	glScissor(
-		-105 + GameWindow::TrueWidth() / 2,
-		-160 + GameWindow::TrueHeight() / 2,
-		210,
-		320);
+		descriptionBox.Left() + GameWindow::TrueWidth() / 2,
+		descriptionBox.Top() + GameWindow::TrueHeight() / 2,
+		descriptionBox.Width(),
+		descriptionBox.Height());
+
 	glEnable(GL_SCISSOR_TEST);
-	text->Draw(Point(-105, -160+descriptionScroll), Color(1.,1.,1.));
+	text->Draw(
+		Point(descriptionBox.Left(), descriptionBox.Top()+descriptionScroll),
+		Color(1.,1.,1.));
 	glDisable(GL_SCISSOR_TEST);
 
 	Point point(-470., -157. + listScroll);
