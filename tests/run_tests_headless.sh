@@ -9,8 +9,14 @@ if [[ $OSTYPE == 'msys' ]] || [[ $OS == 'Windows_NT' ]] || [[ $(uname) == 'Darwi
 	exit 126
 fi
 
+# Determine path of the current script and change to current working-dir
 HERE=$(cd `dirname $0` && pwd)
 cd "${HERE}"
+
+# Relative paths for linux headless testing relative to this script.
+EXECUTABLE="../endless-sky"
+RESOURCES="../"
+
 
 Xvfb :99 -screen 0 1280x1024x24 &
 XSERVER_PID=$!
@@ -55,7 +61,8 @@ fi
 # X11VNC_PID=$!
 # echo "X11VNC PID: ${X11VNC_PID}"
 
-./run_tests.sh
+./run_tests.sh "${EXECUTABLE}" "${RESOURCES}"
+
 RETURN_VALUE=$?
 
 kill -s SIGTERM ${XSERVER_PID}

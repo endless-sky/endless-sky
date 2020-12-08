@@ -1,11 +1,17 @@
 #!/bin/bash
 
-# Determine path of the current script
-HERE=$(cd `dirname $0` && pwd)
-RESOURCES=$(echo "${HERE}/.." | sed "s,/tests/..,,")
+# Retrieve parameters that give the executable and datafile-paths.
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "You must supply a path to the binary as an argument,"
+  echo "and you must supply a path to the ES resources (data-files), e.g."
+  echo "~$ ./tests/run_tests.sh ./endless-sky ./"
+  exit 1
+fi
+
 
 # Determine paths to endless-sky executable and other relevant data
-ES_EXEC_PATH="${RESOURCES}/endless-sky"
+ES_EXEC_PATH="$1"
+RESOURCES="$2"
 ES_CONFIG_TEMPLATE_PATH="${RESOURCES}/tests/config"
 
 echo "TAP version 13"
