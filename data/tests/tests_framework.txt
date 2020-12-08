@@ -9,12 +9,12 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 test "Test-Framework - Empty Testcase"
-	status "Active"
+	status "active"
 	description "Test with no test sequence. Only starts and exits the game"
 
 
 
 test "Test-Framework - Empty Test Sequence"
-	status "Active"
+	status "active"
 	description "Test with an empty sequence. Only starts and exits the game"
 	sequence
