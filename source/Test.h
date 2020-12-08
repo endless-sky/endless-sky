@@ -66,13 +66,13 @@ public:
 		// Result returned from a TestStep.
 		enum class Result {
 			// Teststep succesfull. Proceed with next teststep.
-			RESULT_DONE,
+			DONE,
 			// Teststep failed. Fail test. Exit program with non-zero exitcode.
-			RESULT_FAIL,
+			FAIL,
 			// Teststep incomplete (waiting for a condition). Retry teststep in next frame-step.
-			RESULT_RETRY,
+			RETRY,
 			// Teststep ok, but triggered a jump (GOTO or BRANCH to a label).
-			RESULT_GOTO
+			GOTO
 		};
 	};
 	
