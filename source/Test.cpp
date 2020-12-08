@@ -61,11 +61,13 @@ void Test::Load(const DataNode &node)
 		if(child.Token(0) == "status" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "Active")
-				status = STATUS_ACTIVE;
+				status = Status::ACTIVE;
 			else if(child.Token(1) == "Known Failure")
-				status = STATUS_KNOWN_FAILURE;
+				status = Status::KNOWN_FAILURE;
 			else if(child.Token(1) == "Missing Feature")
-				status = STATUS_MISSING_FEATURE;
+				status = Status::MISSING_FEATURE;
+			else
+				child.PrintTrace("Unknown test-status " + child.Token(1));
 		}
 		else if(child.Token(0) == "sequence")
 			// Test-steps are not in the basic framework.
@@ -119,11 +121,11 @@ string Test::StatusText() const
 {
 	switch (status)
 	{
-		case Test::STATUS_KNOWN_FAILURE:
+		case Status::KNOWN_FAILURE:
 			return "KNOWN FAILURE";
-		case Test::STATUS_MISSING_FEATURE:
+		case Status::MISSING_FEATURE:
 			return "MISSING FEATURE";
-		case Test::STATUS_ACTIVE:
+		case Status::ACTIVE:
 		default:
 			return "ACTIVE";
 	}

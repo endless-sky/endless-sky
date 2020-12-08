@@ -32,14 +32,14 @@ class System;
 class Test {
 public:
 	// Status indicators for the test that we selected (if any).
-	enum TestStatus {STATUS_ACTIVE, STATUS_KNOWN_FAILURE, STATUS_MISSING_FEATURE};
+	enum class Status {ACTIVE, KNOWN_FAILURE, MISSING_FEATURE};
 	
 public:
 	// Class representing a single step in a test
 	class TestStep {
 	public:
 		// The different types of teststeps.
-		enum StepType {
+		enum class Type {
 			// Step that assigns a value to a condition. Does not cause the game to step.
 			ASSIGN,
 			// Step that verifies if a certain condition is true. Does not cause the game to step.
@@ -64,7 +64,7 @@ public:
 		};
 
 		// Result returned from a TestStep.
-		enum TestResult {
+		enum class Result {
 			// Teststep succesfull. Proceed with next teststep.
 			RESULT_DONE,
 			// Teststep failed. Fail test. Exit program with non-zero exitcode.
@@ -105,7 +105,7 @@ public:
 	
 private:
 	std::string name;
-	TestStatus status = STATUS_ACTIVE;
+	Status status = Status::ACTIVE;
 };
 
 #endif

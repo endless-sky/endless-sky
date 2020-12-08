@@ -29,7 +29,7 @@ public:
 	bool Inject() const;
 
 	// Types of datafiles that can be stored.
-	enum DataType {UNSPECIFIED, SAVEGAME};
+	enum class Type {UNSPECIFIED, SAVEGAME};
 
 
 
@@ -43,7 +43,7 @@ private:
 	// Name of the dataset
 	std::string dataSetName;
 	// Type of the dataset
-	DataType dataSetType = DataType::UNSPECIFIED;
+	Type dataSetType = Type::UNSPECIFIED;
 	// File containing the test-data
 	std::string sourceDataFile;
 };

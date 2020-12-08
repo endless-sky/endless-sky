@@ -47,8 +47,13 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 	for(const DataNode &child : node)
 		// Only need to parse the category for now. The contents will be
 		// scanned for at write-out of the test-data.
-		if(child.Size() > 1 && child.Token(0) == "category" && child.Token(1) == "savegame")
-			dataSetType = TestData::SAVEGAME;
+		if(child.Size() > 1 && child.Token(0) == "category")
+		{
+			if(child.Token(1) == "savegame")
+				dataSetType = Type::SAVEGAME;
+			else
+				node.PrintTrace("Unknown category " + child.Token(1) + " found for test-data.");
+		}
 }
 
 
@@ -102,7 +107,7 @@ bool TestData::Inject() const
 	// Determine data-type and call the relevant function.
 	switch(dataSetType)
 	{
-		case TestData::SAVEGAME:
+		case Type::SAVEGAME:
 			return InjectSavegame();
 		default:
 			return false;
