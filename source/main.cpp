@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
+#include "Files.h"
 #include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -66,7 +67,7 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
-	string testToRun = "";
+	string testToRunName = "";
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -88,7 +89,7 @@ int main(int argc, char *argv[])
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
 		else if(arg == "--test" && *++it)
-			testToRun = *it;
+			testToRunName = *it;
 	}
 	
 	try {
@@ -96,9 +97,9 @@ int main(int argc, char *argv[])
 		if(!GameData::BeginLoad(argv))
 			return 0;
 		
-		if(!testToRun.empty() && !GameData::Tests().Has(testToRun))
+		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
-			cout << "Test " << testToRun << " not found." << endl;
+			Files::LogError("Test " + testToRunName + " not found.");
 			return 1;
 		}
 		
@@ -132,12 +133,12 @@ int main(int argc, char *argv[])
 		Audio::Init(GameData::Sources());
 		
 		// This is the main loop where all the action begins.
-		GameLoop(player, conversation, testToRun, debugMode);
+		GameLoop(player, conversation, testToRunName, debugMode);
 	}
 	catch(const runtime_error &error)
 	{
 		Audio::Quit();
-		bool doPopUp = testToRun.empty();
+		bool doPopUp = testToRunName.empty();
 		GameWindow::ExitWithError(error.what(), doPopUp);
 		return 1;
 	}
@@ -154,7 +155,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode)
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -193,6 +194,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	
 	// Data to track progress of testing if/when a test is running.
 	Test::Context testContext;
+	if(!testToRunName.empty())
+		testContext.testToRun = GameData::Tests().Get(testToRunName);
 	
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
@@ -274,8 +277,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
-		if(!testToRun.empty())
-			(GameData::Tests().Get(testToRun))->Step(testContext, menuPanels, gamePanels, player);
+		if(testContext.testToRun)
+			testContext.testToRun->Step(testContext, menuPanels, gamePanels, player);
 		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.

@@ -67,7 +67,7 @@ public:
 		enum TestResult {
 			// Teststep succesfull. Proceed with next teststep.
 			RESULT_DONE,
-			// Teststep failed. Fail test. Exit program with non-zero exitcode
+			// Teststep failed. Fail test. Exit program with non-zero exitcode.
 			RESULT_FAIL,
 			// Teststep incomplete (waiting for a condition). Retry teststep in next frame-step.
 			RESULT_RETRY,
@@ -78,6 +78,11 @@ public:
 	
 	class Context {
 	friend class Test;
+	
+	public:
+		// Pointer to the test we are running.
+		const Test* testToRun = nullptr;
+	
 	
 	protected:
 		// Teststep to run.

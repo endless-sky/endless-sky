@@ -53,13 +53,13 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 
 
 
-// Inject the test-data to the proper location
-bool TestData::Inject() const
+// Write out testdata as savegame into the saves directory.
+bool TestData::InjectSavegame() const
 {
-	// We only know how to inject savegame data for now.
-	if(dataSetType != TestData::SAVEGAME || dataSetName.empty() || sourceDataFile.empty())
+	// Check if we have the required data to write out the savegame.
+	if(dataSetName.empty() || sourceDataFile.empty())
 		return false;
-
+	
 	// Open the source-file and scan until we find the test-data
 	// Then scan for the contents keyword
 	// Then write out the complete contents to the target file
@@ -92,4 +92,19 @@ bool TestData::Inject() const
 	
 	// Data-section was no longer found.
 	return false;
+}
+
+
+
+// Inject the test-data to the proper location.
+bool TestData::Inject() const
+{
+	// Determine data-type and call the relevant function.
+	switch(dataSetType)
+	{
+		case TestData::SAVEGAME:
+			return InjectSavegame();
+		default:
+			return false;
+	}
 }

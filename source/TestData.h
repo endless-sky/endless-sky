@@ -25,12 +25,20 @@ public:
 	const std::string &Name() const;
 	void Load(const DataNode &node, const std::string &sourceDataFilePath);
 	// Function to inject the test-data into the game or into the games
-	// environment. Savegames would be written as file.
+	// environment.
 	bool Inject() const;
 
 	// Types of datafiles that can be stored.
 	enum DataType {UNSPECIFIED, SAVEGAME};
-	
+
+
+
+private:
+	// Writes out testdata as savegame file.
+	bool InjectSavegame() const;
+
+
+
 private:
 	// Name of the dataset
 	std::string dataSetName;
