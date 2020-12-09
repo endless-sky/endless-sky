@@ -727,6 +727,7 @@ person "Local God"
 		"never disabled"
 
 ship "Ursa Polaris"
+	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
 		category "Heavy Warship"

@@ -252,6 +252,7 @@ ship "Auxiliary"
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 ship "Auxiliary" "Auxiliary (Cargo)"
+	plural "Auxiliaries"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
 	add attributes
@@ -269,6 +270,7 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	fighter 0 83
 
 ship "Auxiliary" "Auxiliary (Transport)"
+	plural "Auxiliaries"
 	sprite "ship/auxiliaryt"
 	thumbnail "thumbnail/auxiliaryt"
 	add attributes
