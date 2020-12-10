@@ -313,7 +313,18 @@ double GameData::Progress()
 {
 	auto progress = min(spriteQueue.Progress(), Audio::GetProgress());
 	if(progress == 1.)
-		initiallyLoaded = true;
+	{
+		if(!initiallyLoaded)
+		{
+			// Now that we have finished loading all the basic sprites, we can look for invalid file paths,
+			// e.g. due to capitalization errors or other typos. Landscapes are allowed to still be empty.
+			auto unloaded = SpriteSet::CheckReferences();
+			for(const auto &path : unloaded)
+				if(path.compare(0, 5, "land/") != 0)
+					Files::LogError("Warning: image \"" + path + "\" is referred to, but has no pixels.");
+			initiallyLoaded = true;
+		}
+	}
 	return progress;
 }
 

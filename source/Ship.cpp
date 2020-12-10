@@ -131,7 +131,10 @@ void Ship::Load(const DataNode &node)
 		pluralModelName = modelName + 's';
 	}
 	if(node.Size() >= 3)
+	{
 		base = GameData::Ships().Get(modelName);
+		variantName = node.Token(2);
+	}
 	
 	government = GameData::PlayerGovernment();
 	equipped.clear();
@@ -692,9 +695,42 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.FlareSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("flare sound", it.first->Name());
+			for(const auto &it : baseAttributes.ReverseFlareSprites())
+				for(int i = 0; i < it.second; ++i)
+					it.first.SaveSprite(out, "reverse flare sprite");
+			for(const auto &it : baseAttributes.ReverseFlareSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("reverse flare sound", it.first->Name());
+			for(const auto &it : baseAttributes.SteeringFlareSprites())
+				for(int i = 0; i < it.second; ++i)
+					it.first.SaveSprite(out, "steering flare sprite");
+			for(const auto &it : baseAttributes.SteeringFlareSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("steering flare sound", it.first->Name());
 			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("afterburner effect", it.first->Name());
+			for(const auto &it : baseAttributes.JumpEffects())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump effect", it.first->Name());
+			for(const auto &it : baseAttributes.JumpSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump sound", it.first->Name());
+			for(const auto &it : baseAttributes.JumpInSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump in sound", it.first->Name());
+			for(const auto &it : baseAttributes.JumpOutSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("jump out sound", it.first->Name());
+			for(const auto &it : baseAttributes.HyperSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("hyperdrive sound", it.first->Name());
+			for(const auto &it : baseAttributes.HyperInSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("hyperdrive in sound", it.first->Name());
+			for(const auto &it : baseAttributes.HyperOutSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("hyperdrive out sound", it.first->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -849,6 +885,14 @@ const string &Ship::ModelName() const
 const string &Ship::PluralModelName() const
 {
 	return pluralModelName;
+}
+
+
+
+// Get the name of this ship as a variant.
+const string &Ship::VariantName() const
+{
+	return variantName.empty() ? modelName : variantName;
 }
 
 
@@ -1281,6 +1325,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			heat = 0.;
 			ionization = 0.;
 			fuel = 0.;
+			velocity = Point();
 			MarkForRemoval();
 			return;
 		}
@@ -2784,7 +2829,7 @@ void Ship::AddCrew(int count)
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
-	return !CanBeCarried() && RequiredCrew() && Crew() && !IsDisabled();
+	return RequiredCrew() && Crew() && !IsDisabled();
 }
 
 
@@ -2977,6 +3022,13 @@ bool Ship::CanCarry(const Ship &ship) const
 			--free;
 	}
 	return (free > 0);
+}
+
+
+
+void Ship::AllowCarried(bool allowCarried)
+{
+	canBeCarried = allowCarried && BAY_TYPES.count(attributes.Category()) > 0;
 }
 
 
@@ -3382,7 +3434,14 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	return floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))));
+	double absoluteThreshold = attributes.Get("absolute threshold");
+	if(absoluteThreshold > 0.)
+		return absoluteThreshold;
+	
+	double thresholdPercent = attributes.Get("threshold percentage");
+	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : max(.15, min(.45, 10. / sqrt(maximumHull))));
+
+	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
 }
 
 
