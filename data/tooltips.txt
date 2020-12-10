@@ -164,6 +164,15 @@ tip "hull heat multiplier:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
+tip "absolute threshold:"
+	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
+
+tip "hull threshold:"
+	`Alters the hull strength value at which the ship will become disabled.`
+
+tip "threshold percentage:"
+	`Alters the percentage of the remaining hull strength at which the ship will become disabled.`
+
 tip "hull protection:"
 	`Protection against weapons that do hull damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hull damage, while a total value of 11 only results in a 10 percent reduction.`
 

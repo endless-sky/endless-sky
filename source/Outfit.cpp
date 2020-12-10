@@ -35,6 +35,7 @@ namespace {
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
+		{"hull threshold", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
