@@ -38,6 +38,7 @@ namespace {
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
+		{"hull threshold", 0.},
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
