@@ -48,6 +48,8 @@ private:
 
 	double listScroll = 0;
 	double descriptionScroll = 0;
+
+	Rectangle descriptionBox, entryBox, entryListBox, entryInternalBox;
 };
 
 #endif

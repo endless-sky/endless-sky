@@ -60,6 +60,11 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 		hasChosenStart = true;
 	}
 	
+	descriptionBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
+	entryBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start entry");
+	entryListBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start entry list");
+	entryInternalBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start entry internal");
+
 }
 
 
@@ -106,10 +111,6 @@ void StartConditionsPanel::Draw()
 	text->SetWrapWidth(210);
 	text->Wrap(descriptionText);
 
-	Rectangle descriptionBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
-	Rectangle entryBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
-	Rectangle entryListBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
-
 	// Only allow draws inside the description box
 	glScissor(
 		descriptionBox.Left() + GameWindow::TrueWidth() / 2,
@@ -119,26 +120,47 @@ void StartConditionsPanel::Draw()
 
 	glEnable(GL_SCISSOR_TEST);
 	text->Draw(
-		Point(descriptionBox.Left(), descriptionBox.Top()+descriptionScroll),
-		Color(1.,1.,1.));
-	glDisable(GL_SCISSOR_TEST);
+		Point(
+			descriptionBox.Left(), 
+			descriptionBox.Top() + descriptionScroll
+		),
+		Color(1.,1.,1.));	
 
-	Point point(-470., -157. + listScroll);
+	Point point(
+		entryListBox.Left(),
+		entryListBox.Top() + listScroll 
+	);
+
+	// Only draw inside the entry list box
+	glScissor(
+		0,
+		entryListBox.Top() + GameWindow::TrueHeight() / 2,
+		GameWindow::TrueWidth(),
+		entryListBox.Height()
+	);
 	for(const auto &it : GameData::Start())
 	{
-		Rectangle zone(point + Point(110., 7.), Point(230., LIST_ITEM_SIZE));
+		Rectangle zone(
+			point  + Point(
+				(entryInternalBox.Width()) / 2, 
+				(entryInternalBox.Height()) / 2), 
+			entryBox.Dimensions()
+		);
 		bool isHighlighted = (it == chosenStart);
 		
-		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
+		// double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
+		double alpha = 1;
 		
 		if(it == chosenStart){
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 		}
 		
-		string name = font.Truncate(it.GetName(), 220);
+		string name = font.Truncate(it.GetName(), entryInternalBox.Width());
 		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
-		point += Point(0., LIST_ITEM_SIZE);
+		point += Point(0., entryBox.Height());
 	}
+
+	glDisable(GL_SCISSOR_TEST);
 }
 
 
@@ -146,12 +168,12 @@ void StartConditionsPanel::Draw()
 bool StartConditionsPanel::Drag(double dx, double dy)
 {
 	int x = hoverPoint.X();
-	if(x >= -470 && x < -250)
+	if(x >= entryListBox.Left() && x < entryListBox.Right())
 	{
 		// Scroll the list
 		// This looks inefficient but it probably gets optimized by the compiler
 		listScroll -= dy;
-		listScroll = max(-LIST_ITEM_SIZE * (GameData::Start().size()-1), listScroll); // Avoid people going too low
+		listScroll = max(-entryBox.Height() * (GameData::Start().size()-1), listScroll); // Avoid people going too low
 		listScroll = min(0.,listScroll); // Snap the list to avoid people scrolling too far up
 	}
 	else

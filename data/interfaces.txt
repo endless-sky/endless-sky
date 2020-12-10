@@ -241,6 +241,20 @@ interface "start conditions menu"
 		from -105 -160
 		to 105 160
 
+	box "start entry list"
+		from -470 -157
+		to -200 157
+
+	box "start entry"
+		from 0 0 # Doesn't matter, never gets used
+		dimensions 230 20
+
+	box "start entry internal"
+		from 0 0 # Doesn't matter, never gets used
+		dimensions 220 14
+		
+
+
 	outline "ship/clipper"
 		center 360 -90
 		dimensions 120 120
