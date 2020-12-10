@@ -608,7 +608,9 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/barb*
  images/ship/boxwing*
+ images/thumbnail/barb*
  images/thumbnail/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
@@ -630,6 +632,13 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/ship/localworldship*
+ images/ship/arrow*
+ images/ship/bulk?freighter*
+ images/ship/freighter*
+ images/ship/protector*
+ images/ship/star?barge*
+ images/ship/wasp*
  images/thumbnail/argosy*
  images/thumbnail/clipper*
  images/thumbnail/dreadnought*
@@ -645,7 +654,12 @@ Files:
  images/thumbnail/leviathan*
  images/thumbnail/shuttle*
  images/thumbnail/star?queen*
- images/ship/localworldship*
+ images/thumbnail/arrow*
+ images/thumbnail/bulk?freighter*
+ images/thumbnail/freighter*
+ images/thumbnail/protector*
+ images/thumbnail/star?barge*
+ images/thumbnail/wasp*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -653,11 +667,26 @@ Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
+ images/ship/marrow*
  images/thumbnail/mfirebird*
  images/thumbnail/mleviathan*
+ images/thumbnail/marrow*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/pointedstick vanguard*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/vanguard*
+ images/thumbnail/vanguard*
+Copyright: Nate Graham <pointedstick@zoho.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
  images/ship/blackbird*

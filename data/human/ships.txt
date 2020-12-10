@@ -169,11 +169,11 @@ ship "Arrow"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -10 60
-	engine 10 60
-	gun -8 -34 "Sidewinder Missile Launcher"
-	gun 8 -34
-	turret 0 16 "Anti-Missile Turret"
+	engine -8 56
+	engine 8 56
+	gun -7.5 -36 "Sidewinder Missile Launcher"
+	gun 7.5 -36
+	turret 0 17.5 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
 	explode "small explosion" 18
@@ -392,10 +392,10 @@ ship "Barb"
 
 		"X1050 Ion Engines"
 		
-	engine -10 28
-	engine 9 28
-	gun -9 -29 "Energy Blaster"
-	turret 8 6 "Blaster Turret"
+	engine 9 25
+	engine -8 25
+	gun -7.5 -24.5 "Energy Blaster"
+	turret 9.5 8.5 "Blaster Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -433,9 +433,9 @@ ship "Barb" "Barb (Proton)"
 
 		"X1050 Ion Engines"
 		
-	engine -10 28
-	engine 9 28
-	gun -9 -29 "Proton Gun"
+	engine 9 25
+	engine -8 25
+	gun -7.5 -24.5 "Proton Gun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -795,15 +795,15 @@ ship "Bulk Freighter"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -22 198
-	engine 22 198
-	gun -20 -175 "Sidewinder Missile Launcher"
-	gun 20 -175 "Sidewinder Missile Launcher"
-	turret -12 -155 "Laser Turret"
-	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 0 5 "Laser Turret"
-	turret -30 175 "Heavy Anti-Missile Turret"
-	turret 30 175 "Laser Turret"
+	engine -20 195.5
+	engine 20 195.5
+	gun -23.5 -182 "Sidewinder Missile Launcher"
+	gun 23.5 -182 "Sidewinder Missile Launcher"
+	turret 0 -90.5 "Laser Turret"
+	turret 0 -40.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Laser Turret"
+	turret 0 59.5 "Heavy Anti-Missile Turret"
+	turret 0 109 "Laser Turret"
 	leak "leak" 40 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -937,12 +937,12 @@ ship "Class C Freighter"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -22 198
-	engine 22 198
-	turret -12 -155 "Heavy Laser Turret"
-	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 30 175 "Heavy Laser Turret"
-	turret -30 175 "Heavy Anti-Missile Turret"
+	engine -20 195.5
+	engine 20 195.5
+	turret 0 -40.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Heavy Laser Turret"
+	turret 0 59.5 "Heavy Anti-Missile Turret"
+	turret 0 109 "Heavy Laser Turret"
 	drone -66 -115 left
 	drone -66 -65 left
 	drone -66 -15 left
@@ -1602,11 +1602,11 @@ ship "Freighter"
 		"X2200 Ion Steering"
 		"Scram Drive"
 		
-	engine -9 97
-	engine 9 97
-	turret 0 -52 "Blaster Turret"
-	turret 0 6 "Heavy Anti-Missile Turret"
-	turret 0 65 "Blaster Turret"
+	engine -7.5 92
+	engine 7.5 92
+	turret 0 -64 "Blaster Turret"
+	turret 0 -4.5 "Heavy Anti-Missile Turret"
+	turret 0 64.5 "Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 10
@@ -2558,16 +2558,16 @@ ship "Protector"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -11 125
-	engine 11 125
-	gun -15 -100 "Sidewinder Missile Launcher"
-	gun 15 -100 "Sidewinder Missile Launcher"
-	turret -54 -54 "Quad Blaster Turret"
-	turret 54 -54 "Quad Blaster Turret"
-	turret -73 0 "Heavy Anti-Missile Turret"
-	turret 73 0 "Heavy Anti-Missile Turret"
-	turret -54 54 "Quad Blaster Turret"
-	turret 54 54 "Quad Blaster Turret"
+	engine -12 122.5
+	engine 12 122.5
+	gun -17.5 -101 "Sidewinder Missile Launcher"
+	gun 17.5 -101 "Sidewinder Missile Launcher"
+	turret -48.5 -48 "Quad Blaster Turret"
+	turret 48.5 -48 "Quad Blaster Turret"
+	turret -68.5 0.5 "Quad Blaster Turret"
+	turret 68.5 0.5 "Quad Blaster Turret"
+	turret -48.5 48.5 "Heavy Anti-Missile Turret"
+	turret 48.5 48.5 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
@@ -3107,9 +3107,9 @@ ship "Star Barge"
 		"X1200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -9 38
-	engine 9 38
-	turret 0 -8 "Anti-Missile Turret"
+	engine -9.5 38
+	engine 9.5 38
+	turret 0 -18 "Anti-Missile Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
@@ -3247,15 +3247,22 @@ ship "Vanguard"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 	
-	engine -15 130
-	engine 15 130
-	gun 0 -132 "Proton Gun"
-	gun -22 -122 "Proton Gun"
-	gun 22 -122 "Proton Gun"
-	gun -21 -45 "Proton Gun"
-	gun 21 -45 "Proton Gun"
-	gun -31 -45 "Proton Gun"
-	gun 31 -45 "Proton Gun"
+	engine -16.5 131
+	engine 16.5 131
+	gun 0 -132.5 "Proton Gun"
+		parallel
+	gun -24 -122.5 "Proton Gun"
+		parallel
+	gun 24 -122.5 "Proton Gun"
+		parallel
+	gun -40 -47.5 "Proton Gun"
+		parallel
+	gun 40 -47.5 "Proton Gun"
+		parallel
+	gun -35 -44.5 "Proton Gun"
+		parallel
+	gun 35 -44.5 "Proton Gun"
+		parallel
 	turret 0 42 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 30 80
@@ -3305,11 +3312,11 @@ ship "Wasp"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -6 33
-	engine 6 33
-	gun 0 -38 "Sidewinder Missile Launcher"
-	gun -13 -31 "Energy Blaster"
-	gun 13 -31 "Energy Blaster"
+	engine -5.5 32.5
+	engine 5.5 32.5
+	gun 0 -41 "Sidewinder Missile Launcher"
+	gun -13 -30.5 "Energy Blaster"
+	gun 13 -30.5 "Energy Blaster"
 	leak "leak" 60 50
 	explode "tiny explosion" 20
 	explode "small explosion" 10
