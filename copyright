@@ -652,6 +652,12 @@ Files:
  images/thumbnail/leviathan*
  images/thumbnail/shuttle*
  images/thumbnail/star?queen*
+ images/thumbnail/arrow*
+ images/thumbnail/bulk?freighter*
+ images/thumbnail/freighter*
+ images/thumbnail/protector*
+ images/thumbnail/star?barge*
+ images/thumbnail/wasp*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -675,6 +681,7 @@ Comment: Derived from works by Nate Graham (under the same license) and detailed
 
 Files:
  images/ship/vanguard*
+ images/thumbnail/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
