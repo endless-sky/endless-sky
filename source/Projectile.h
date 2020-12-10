@@ -76,6 +76,7 @@ public:
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
 	
+	
 private:
 	void CheckLock(const Ship &target);
 	
