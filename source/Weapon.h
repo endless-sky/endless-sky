@@ -290,4 +290,5 @@ inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); r
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
 
 
+
 #endif

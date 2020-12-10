@@ -328,4 +328,3 @@ double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
 }
-
