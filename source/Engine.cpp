@@ -228,7 +228,7 @@ Engine::Engine(PlayerInfo &player)
 	// Add all neighboring systems to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
 	const set<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
-		player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+		player.GetSystem()->JumpNeighbors(flagship->JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
 		radar[calcTickTock].AddPointer(
 			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
@@ -2048,7 +2048,7 @@ void Engine::FillRadar()
 	{
 		const System *targetSystem = flagship->GetTargetSystem();
 		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
-			playerSystem->Neighbors() : playerSystem->Links();
+			playerSystem->JumpNeighbors(flagship->JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
 			radar[calcTickTock].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
