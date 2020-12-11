@@ -76,7 +76,7 @@ Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 		if(!parent.weapon->Acceleration())
 		{
 			// Move in this new direction at the same velocity.
-			// Velocity may be negative.
+			// To maintain the sign of the velocity, Point::Length can’t be used.
 			Point referenceVector = parent.angle.Unit();
 			double parentVelocity = parent.velocity.Y() * referenceVector.Y()
 				+ parent.velocity.X() * referenceVector.X();
