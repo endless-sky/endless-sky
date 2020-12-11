@@ -111,6 +111,8 @@ outfit "Finisher Pod"
 		"homing" 2
 		"radar tracking" .8
 		"missile strength" 50
+		"damage dropoff" 1 1
+		"dropoff modifier" 0.85
 		"submunition" "Active Finisher" 1
 	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
 
@@ -130,6 +132,8 @@ outfit "Active Finisher"
 		"radar tracking" .8
 		"optical tracking" .5
 		"missile strength" 50
+		"damage dropoff" 4000
+		"dropoff modifier" 1.3
 		"shield damage" 1500
 		"hull damage" 1900
 		"hit force" 750
