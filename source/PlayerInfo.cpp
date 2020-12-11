@@ -1137,8 +1137,11 @@ void PlayerInfo::Land(UI *ui)
 	// Bring auto conditions up-to-date for missions to check your current status.
 	UpdateAutoConditions();
 	
+	// Evaluate changes to NPC spawning criteria.
+	if(!freshlyLoaded)
+		UpdateMissionNPCs();
+	
 	// Update missions that are completed, or should be failed.
-	UpdateMissionNPCs();
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
