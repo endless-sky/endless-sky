@@ -383,12 +383,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
-		GameData::UpdateNeighbors();
+		GameData::UpdateSystems();
 		seen.clear();
 		for(const System *system : visitedSystems)
 		{
 			seen.insert(system);
-			for(const System *neighbor : system->Neighbors())
+			for(const System *neighbor : system->VisibleNeighbors())
 				seen.insert(neighbor);
 		}
 	}
@@ -1847,7 +1847,7 @@ void PlayerInfo::Visit(const System *system)
 	
 	visitedSystems.insert(system);
 	seen.insert(system);
-	for(const System *neighbor : system->Neighbors())
+	for(const System *neighbor : system->VisibleNeighbors())
 		seen.insert(neighbor);
 }
 

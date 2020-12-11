@@ -194,6 +194,9 @@ tip "jump speed:"
 tip "jump fuel:"
 	`How much fuel is consumed when you jump between systems using this drive.`
 
+tip "jump range:"
+	`How far you can jump between systems using this drive.`
+
 tip "maintenance costs:"
 	`How many credits per day you need to spend to maintain this outfit. Even if a ship is parked or an outfit is in cargo, you still need to pay for its maintenance.`
 

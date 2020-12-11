@@ -271,11 +271,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// drives and hyperdrives.
 		bool hasJump = false;
 		bool hasHyper = false;
+		double jumpDistance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const Ship *ship : variant.ships)
 		{
 			if(ship->Attributes().Get("jump drive"))
 			{
 				hasJump = true;
+				jumpDistance = ship->JumpRange();
 				break;
 			}
 			if(ship->Attributes().Get("hyperdrive"))
@@ -286,7 +288,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(hasJump || hasHyper)
 		{
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-			for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
+			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
