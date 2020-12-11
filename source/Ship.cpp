@@ -2897,6 +2897,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
+	if(weapon.HasDamageDropoff())
+		damageScaling *= weapon.DamageDropoff(projectile.DistanceTraveled());
 	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
 	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
 	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));

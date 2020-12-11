@@ -122,6 +122,12 @@ public:
 	double TotalLifetime() const;
 	double Range() const;
 	
+	// Check if this weapon has a damage dropoff range.
+	bool HasDamageDropoff() const;
+	// Calculate the percent damage that this weapon deals given the distance
+	// that the projectile traveled if it has a damage dropoff range.
+	double DamageDropoff(double distance) const;
+	
 	
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
@@ -214,6 +220,10 @@ private:
 	
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
+
+	bool hasDamageDropoff = false;
+	std::pair<double, double> damageDropoffRange;
+	double damageDropoffModifier;
 	
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
@@ -276,6 +286,8 @@ inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_D
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
+
+inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
 
 
 
