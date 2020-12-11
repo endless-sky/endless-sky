@@ -57,6 +57,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -81,6 +82,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	set<double> neighborDistances;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -182,8 +184,11 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
-	// Now that all the stars are loaded, update the neighbor lists.
-	UpdateNeighbors();
+	// Now that all data is loaded, update the neighbor lists and other
+	// system information. Make sure that the default jump range is among the
+	// neighbor distances to be updated.
+	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
+	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading(true);
@@ -578,17 +583,24 @@ void GameData::Change(const DataNode &node)
 
 
 
-// Update the neighbor lists of all the systems. This must be done any time
-// that a change creates or moves a system.
-void GameData::UpdateNeighbors()
+// Update the neighbor lists and other information for all the systems.
+// This must be done any time that a change creates or moves a system.
+void GameData::UpdateSystems()
 {
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateNeighbors(systems);
+		it.second.UpdateSystem(systems, neighborDistances);
 	}
+}
+
+
+
+void GameData::AddJumpRange(double neighborDistance)
+{
+	neighborDistances.insert(neighborDistance);
 }
 
 
