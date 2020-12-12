@@ -46,11 +46,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace 
-{
-	const double LIST_ITEM_SIZE = 20.;
-}
-
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, LoadPanel *loadPanel)
 	: player(player), gamePanels(gamePanels), loadPanel(loadPanel)
 {
