@@ -245,15 +245,10 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 
 bool LogbookPanel::Drag(double dx, double dy)
 {
-	if ((hoverPoint.X() - Screen::Left()) > SIDEBAR_WIDTH)
-	{
+	if((hoverPoint.X() - Screen::Left()) > SIDEBAR_WIDTH)
 		scroll = max(0., min(maxScroll, scroll - dy));
-	}
 	else
-	{
-		// Scroll sidebar
 		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
-	}
 	
 	return true;
 }
@@ -270,7 +265,6 @@ bool LogbookPanel::Scroll(double dx, double dy)
 bool LogbookPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
-	
 	return true;
 }
 
