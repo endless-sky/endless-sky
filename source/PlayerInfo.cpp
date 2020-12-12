@@ -70,35 +70,35 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(StartConditions chosenStart)
+void PlayerInfo::New(StartConditions start)
 {
 	// Clear any previously loaded data.
 	Clear();
 
-	this->chosenStart = chosenStart;
+	this->chosenStart = start;
 	
 	// Copy any ships in the start conditions.
-	for(const Ship &ship : chosenStart.Ships())
+	for(const Ship &ship : start.Ships())
 	{
 		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(chosenStart.GetSystem());
-		ships.back()->SetPlanet(chosenStart.GetPlanet());
+		ships.back()->SetSystem(start.GetSystem());
+		ships.back()->SetPlanet(start.GetPlanet());
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
-	date = chosenStart.GetDate();
+	date = start.GetDate();
 	GameData::SetDate(date);
 	// Make sure the fleet depreciation object knows it is tracking the player's
 	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
 	
-	SetSystem(chosenStart.GetSystem());
-	SetPlanet(chosenStart.GetPlanet());
-	accounts = chosenStart.GetAccounts();
-	chosenStart.GetConditions().Apply(conditions);
+	SetSystem(start.GetSystem());
+	SetPlanet(start.GetPlanet());
+	accounts = start.GetAccounts();
+	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
@@ -279,14 +279,11 @@ void PlayerInfo::Load(const string &path)
 		}
 	}
 
-	if(!hasChosenStart && GameData::Start().size()) // Probably an old save
-	{
-		chosenStart = GameData::Start()[GameData::Start().size()-1]; 
-	}
+	// For old saves, default to the first start condition, which is always our default start.
+	if(!hasChosenStart && !GameData::Start().empty())
+		chosenStart = GameData::Start().front(); 
 	else if (!hasChosenStart)
-	{
 		GameWindow::ExitWithError("An old save was loaded, but no start conditions were defined! Make sure you have installed the game correctly.");
-	}
 
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.

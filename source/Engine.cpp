@@ -49,7 +49,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
-#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"

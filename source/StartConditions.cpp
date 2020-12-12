@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Planet.h"
 #include "Ship.h"
+#include "SpriteSet.h"
 #include "System.h"
 
 using namespace std;
@@ -46,7 +47,7 @@ void StartConditions::Load(const DataNode &node)
 		else
 			conditions.Add(child);
 	}
-	if(description == "")
+	if(description.empty())
 	{
 		description = "No description provided";
 	}
@@ -60,7 +61,7 @@ void StartConditions::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("name", name);
-			
+					
 		istringstream iss(description);
 		for(string line; getline(iss, line); )
 		{
@@ -71,7 +72,7 @@ void StartConditions::Save(DataWriter &out) const
 			
 		}
 		out.Write("system", system->Name());
-		out.Write("planet", planet->Name());
+		out.Write("planet", planet->TrueName());
 		out.Write("date", date.Year(), date.Month(), date.Day());
 		accounts.Save(out);
 	}
