@@ -78,8 +78,7 @@ Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 			// Move in this new direction at the same velocity.
 			// To maintain the sign of the velocity, Point::Length can’t be used.
 			Point referenceVector = parent.angle.Unit();
-			double parentVelocity = parent.velocity.Y() * referenceVector.Y()
-				+ parent.velocity.X() * referenceVector.X();
+			double parentVelocity = referenceVector.Dot(parent.velocity);
 			velocity = this->angle.Unit() * parentVelocity;
 		}
 	}
