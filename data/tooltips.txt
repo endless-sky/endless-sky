@@ -173,6 +173,12 @@ tip "hull heat multiplier:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
+tip "repair delay:"
+	`How many seconds it takes for hull repairs to begin after taking hull damage.`
+
+tip "disabled repair delay:"
+	`How many seconds it takes for hull repairs to begin after being disabled.`
+
 tip "absolute threshold:"
 	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
 
@@ -310,6 +316,12 @@ tip "shields charge / max:"
 
 tip "shields:"
 	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
+
+tip "shield delay:"
+	`How many seconds it takes for shield generation to begin after taking shield damage.`
+
+tip "depleted shield delay:"
+	`How many seconds it takes for shield generation to begin after your shields have been depleted.`
 
 tip "shield protection:"
 	`Protection against weapons that do shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
