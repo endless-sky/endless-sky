@@ -1904,7 +1904,6 @@ void Ship::DoGeneration()
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
-		energy -= ionization;
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
@@ -1938,7 +1937,7 @@ void Ship::DoGeneration()
 	
 	// Don't allow any levels to drop below zero.
 	fuel = max(0., fuel);
-	energy = max(0., energy);
+	energy = max(0., energy - ionization);
 	heat = max(0., heat);
 }
 
