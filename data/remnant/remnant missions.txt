@@ -3480,13 +3480,13 @@ mission "Remnant: Cognizance 19"
 	on offer
 		conversation
 			`As you finish your landing checks, your commlink notifies you of an incoming message from Dawn:`
-			`	"Greetings, Captain <first>! We will be compiling updated navigational charts for the new systems and would like a fresh copy of the data your nav system recorded. We are hoping to retrieve some additional data that is not routinely downloaded by the automated starport systems. Stop by <planet> and the starport systems will copy the data during the systems check. It's a pretty small data set, so there's no need to use data crystals. Thank you!"`
+			`	"Greetings, Captain <first>! We will be compiling updated navigational charts for the new systems and would like a fresh copy of the data your nav system recorded. We are hoping to retrieve some additional data that is not routinely downloaded by the automated starport systems. Stop by <planet>, and the starport systems will copy the data during the systems check. It's a pretty small data set, so there's no need to use data crystals. Thank you!"`
 			`	The end of the message is the location of a starport on <planet>, presumably where you are supposed to go.`
 				accept
 	on complete
 		payment 100000
-		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing your navigational logs. They will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
 		event "remnant: cognizance 1 systems available"
+		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing your navigational logs. They will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
 
 
 
