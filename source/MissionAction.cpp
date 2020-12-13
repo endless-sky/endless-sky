@@ -28,12 +28,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cstdlib>
-#include <vector>
 
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const string &name, UI *ui)
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
 	{
 		if(model->ModelName().empty())
 			return;
@@ -198,7 +197,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(key == "give" && hasValue)
 		{
 			if(child.Token(1) == "ship" && child.Size() >= 3)
-				giftShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
+				giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
 			else
 				child.PrintTrace("Skipping unsupported \"give\" syntax:");
 		}
@@ -314,7 +313,7 @@ void MissionAction::Save(DataWriter &out) const
 			conversation.Save(out);
 		
 		for(const auto &it : giftShips)
-			out.Write("give", "ship", it.first->ModelName(), it.second);
+			out.Write("give", "ship", it.first->VariantName(), it.second);
 		for(const auto &it : giftOutfits)
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
@@ -464,7 +463,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
 	for(const auto &it : giftShips)
-		DoGift(player, it.first, it.second, ui);
+		DoGift(player, it.first, it.second);
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(const auto &it : giftOutfits)
@@ -515,7 +514,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		result.events[it.first] = make_pair(day, day);
 	}
 	for(const auto &it : giftShips)
-		result.giftShips[it.first] = !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get();
+		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
 	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;

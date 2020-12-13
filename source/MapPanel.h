@@ -109,6 +109,8 @@ protected:
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
 	
+	double playerJumpDistance;
+	
 	Point center;
 	Point recenterVector;
 	int recentering = 0;

@@ -420,22 +420,31 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 {
 	for(const ShipEvent &event : events)
 	{
-		if(event.Actor() && event.Target())
+		const auto &target = event.Target();
+		if(!target)
+			continue;
+		
+		if(event.Actor())
 		{
-			actions[event.Actor()][event.Target()] |= event.Type();
-			notoriety[event.Actor()][event.TargetGovernment()] |= event.Type();
+			actions[event.Actor()][target] |= event.Type();
+			if(event.TargetGovernment())
+				notoriety[event.Actor()][event.TargetGovernment()] |= event.Type();
 		}
-		if(event.ActorGovernment() && event.Target())
-			governmentActions[event.ActorGovernment()][event.Target()] |= event.Type();
-		if(event.ActorGovernment()->IsPlayer() && event.Target())
+		
+		const auto &actorGovernment = event.ActorGovernment();
+		if(actorGovernment)
 		{
-			int &bitmap = playerActions[event.Target()];
-			int newActions = event.Type() - (event.Type() & bitmap);
-			bitmap |= event.Type();
-			// If you provoke the same ship twice, it should have an effect both times.
-			if(event.Type() & ShipEvent::PROVOKE)
-				newActions |= ShipEvent::PROVOKE;
-			event.TargetGovernment()->Offend(newActions, event.Target()->RequiredCrew());
+			governmentActions[actorGovernment][target] |= event.Type();
+			if(actorGovernment->IsPlayer() && event.TargetGovernment())
+			{
+				int &bitmap = playerActions[target];
+				int newActions = event.Type() - (event.Type() & bitmap);
+				bitmap |= event.Type();
+				// If you provoke the same ship twice, it should have an effect both times.
+				if(event.Type() & ShipEvent::PROVOKE)
+					newActions |= ShipEvent::PROVOKE;
+				event.TargetGovernment()->Offend(newActions, target->RequiredCrew());
+			}
 		}
 	}
 }
@@ -1416,7 +1425,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<int> systemWeights;
 		int totalWeight = 0;
 		const set<const System *> &links = ship.Attributes().Get("jump drive")
-			? origin->Neighbors() : origin->Links();
+			? origin->JumpNeighbors(ship.JumpRange()) : origin->Links();
 		if(jumps)
 		{
 			for(const System *link : links)
@@ -2318,7 +2327,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		vector<const System *> targetSystems;
 		if(ship.JumpsRemaining(false))
 		{
-			const auto &links  = ship.Attributes().Get("jump drive") ? system->Neighbors() : system->Links();
+			const auto &links  = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpRange()) : system->Links();
 			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
 		}
 		
@@ -3390,7 +3399,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.Attributes().Get("jump drive") ?
-				ship.GetSystem()->Neighbors() : ship.GetSystem()->Links());
+				ship.GetSystem()->JumpNeighbors(ship.JumpRange()) : ship.GetSystem()->Links());
 			for(const System *link : links)
 			{
 				Point direction = link->Position() - ship.GetSystem()->Position();

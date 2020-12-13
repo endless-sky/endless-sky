@@ -383,12 +383,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
-		GameData::UpdateNeighbors();
+		GameData::UpdateSystems();
 		seen.clear();
 		for(const System *system : visitedSystems)
 		{
 			seen.insert(system);
-			for(const System *neighbor : system->Neighbors())
+			for(const System *neighbor : system->VisibleNeighbors())
 				seen.insert(neighbor);
 		}
 	}
@@ -1011,7 +1011,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 		
-		attraction += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+		attraction += max(0., .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8);
 		for(const Hardpoint &hardpoint : ship->Weapons())
 			if(hardpoint.GetOutfit())
 			{
@@ -1137,8 +1137,11 @@ void PlayerInfo::Land(UI *ui)
 	// Bring auto conditions up-to-date for missions to check your current status.
 	UpdateAutoConditions();
 	
+	// Evaluate changes to NPC spawning criteria.
+	if(!freshlyLoaded)
+		UpdateMissionNPCs();
+	
 	// Update missions that are completed, or should be failed.
-	UpdateMissionNPCs();
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
@@ -1178,10 +1181,13 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(!system || !planet)
 		return false;
 	
+	if(flagship)
+		flagship->AllowCarried(true);
 	flagship.reset();
 	flagship = FlagshipPtr();
 	if(!flagship)
 		return false;
+	flagship->AllowCarried(false);
 	
 	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
@@ -1698,8 +1704,8 @@ void PlayerInfo::FailMission(const Mission &mission)
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
 	// Combat rating increases when you disable an enemy ship.
-	if(event.ActorGovernment()->IsPlayer())
-		if((event.Type() & ShipEvent::DISABLE) && event.Target())
+	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
+		if((event.Type() & ShipEvent::DISABLE) && event.Target() && !event.Target()->IsYours())
 		{
 			auto &rating = conditions["combat rating"];
 			static const int64_t maxRating = 2000000000;
@@ -1844,7 +1850,7 @@ void PlayerInfo::Visit(const System *system)
 	
 	visitedSystems.insert(system);
 	seen.insert(system);
-	for(const System *neighbor : system->Neighbors())
+	for(const System *neighbor : system->VisibleNeighbors())
 		seen.insert(neighbor);
 }
 
@@ -1991,7 +1997,7 @@ bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
 	
 	bool matched = false;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
+		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
 				&& box.Contains(ship->Position()))
 		{
 			matched = true;
