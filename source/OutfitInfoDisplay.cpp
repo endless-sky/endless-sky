@@ -113,7 +113,7 @@ namespace {
 		{"slowing protection", 4},
 		
 		{"repair delay", 5},
-		{"assisted repair delay", 5},
+		{"disabled repair delay", 5},
 		{"shield delay", 5},
 		{"depleted shield delay", 5}
 	};

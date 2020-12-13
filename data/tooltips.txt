@@ -176,8 +176,8 @@ tip "hull repair rate:"
 tip "repair delay:"
 	`How many seconds it takes for hull repairs to begin after taking hull damage.`
 
-tip "assisted repair delay:"
-	`How many seconds it takes for hull repairs to begin after being assisted from being disabled.`
+tip "disabled repair delay:"
+	`How many seconds it takes for hull repairs to begin after being disabled.`
 
 tip "absolute threshold:"
 	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
@@ -321,7 +321,7 @@ tip "shield delay:"
 	`How many seconds it takes for shield generation to begin after taking shield damage.`
 
 tip "depleted shield delay:"
-	`How many seconds it takes for shield generation to begin after the shields have been depleted.`
+	`How many seconds it takes for shield generation to begin after your shields have been depleted.`
 
 tip "shield protection:"
 	`Protection against weapons that do shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
