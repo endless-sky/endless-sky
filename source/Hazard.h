@@ -32,7 +32,7 @@ public:
 	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double RandomStrength() const;
-	// The minimum and maximum points from the origin in which this hazard has an effect.
+	// The minimum and maximum distances from the origin in which this hazard has an effect.
 	double MinRange() const;
 	double MaxRange() const;
 	

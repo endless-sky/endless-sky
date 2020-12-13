@@ -104,7 +104,7 @@ double Hazard::RandomStrength() const
 
 
 
-// The minimum and maximum points from the origin in which this hazard has an effect.
+// The minimum and maximum distances from the origin in which this hazard has an effect.
 double Hazard::MinRange() const
 {
 	return minRange;
