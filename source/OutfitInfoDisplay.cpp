@@ -117,10 +117,7 @@ namespace {
 		{"unplunderable", "This outfit cannot be plundered."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
-		{"jump drive", "Lets you jump to any nearby system."},
-		{"passive ion resistance", "Resist ionization even if disabled."},
-		{"passive disruption resistance", "Resist disruption even if disabled."},
-		{"passive slowing resistance", "Resist slowing even if disabled."}
+		{"jump drive", "Lets you jump to any nearby system."}
 	};
 }
 
