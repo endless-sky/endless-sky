@@ -383,12 +383,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
-		GameData::UpdateNeighbors();
+		GameData::UpdateSystems();
 		seen.clear();
 		for(const System *system : visitedSystems)
 		{
 			seen.insert(system);
-			for(const System *neighbor : system->Neighbors())
+			for(const System *neighbor : system->VisibleNeighbors())
 				seen.insert(neighbor);
 		}
 	}
@@ -841,14 +841,15 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 
 
-// Buy a ship of the given model, and give it the given name.
-void PlayerInfo::BuyShip(const Ship *model, const string &name)
+// Adds a ship of the given model with the given name to the player's fleet.
+// If this ship is being gifted, it costs nothing and starts fully depreciated.
+void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 {
 	if(!model)
 		return;
 	
 	int day = date.DaysSinceEpoch();
-	int64_t cost = stockDepreciation.Value(*model, day);
+	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
 		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
@@ -863,9 +864,12 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		flagship.reset();
 		
 		// Record the transfer of this ship in the depreciation and stock info.
-		depreciation.Buy(*model, day, &stockDepreciation);
-		for(const auto &it : model->Outfits())
-			stock[it.first] -= it.second;
+		if(!isGift)
+		{
+			depreciation.Buy(*model, day, &stockDepreciation);
+			for(const auto &it : model->Outfits())
+				stock[it.first] -= it.second;
+		}
 	}
 }
 
@@ -1007,7 +1011,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 		
-		attraction += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+		attraction += max(0., .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8);
 		for(const Hardpoint &hardpoint : ship->Weapons())
 			if(hardpoint.GetOutfit())
 			{
@@ -1133,8 +1137,11 @@ void PlayerInfo::Land(UI *ui)
 	// Bring auto conditions up-to-date for missions to check your current status.
 	UpdateAutoConditions();
 	
+	// Evaluate changes to NPC spawning criteria.
+	if(!freshlyLoaded)
+		UpdateMissionNPCs();
+	
 	// Update missions that are completed, or should be failed.
-	UpdateMissionNPCs();
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
@@ -1174,10 +1181,13 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(!system || !planet)
 		return false;
 	
+	if(flagship)
+		flagship->AllowCarried(true);
 	flagship.reset();
 	flagship = FlagshipPtr();
 	if(!flagship)
 		return false;
+	flagship->AllowCarried(false);
 	
 	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
@@ -1249,7 +1259,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Load up your flagship last, so that it will have space free for any
 	// plunder that you happen to acquire.
 	cargo.TransferAll(flagship->Cargo());
-
+	
 	if(cargo.Passengers())
 	{
 		int extra = min(cargo.Passengers(), flagship->Crew() - flagship->RequiredCrew());
@@ -1261,7 +1271,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			cargo.TransferAll(flagship->Cargo());
 		}
 	}
-
+	
 	int extra = flagship->Crew() + flagship->Cargo().Passengers() - flagship->Attributes().Get("bunks");
 	if(extra > 0)
 	{
@@ -1694,8 +1704,8 @@ void PlayerInfo::FailMission(const Mission &mission)
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
 	// Combat rating increases when you disable an enemy ship.
-	if(event.ActorGovernment()->IsPlayer())
-		if((event.Type() & ShipEvent::DISABLE) && event.Target())
+	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
+		if((event.Type() & ShipEvent::DISABLE) && event.Target() && !event.Target()->IsYours())
 		{
 			auto &rating = conditions["combat rating"];
 			static const int64_t maxRating = 2000000000;
@@ -1840,7 +1850,7 @@ void PlayerInfo::Visit(const System *system)
 	
 	visitedSystems.insert(system);
 	seen.insert(system);
-	for(const System *neighbor : system->Neighbors())
+	for(const System *neighbor : system->VisibleNeighbors())
 		seen.insert(neighbor);
 }
 
@@ -1987,7 +1997,7 @@ bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
 	
 	bool matched = false;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
+		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
 				&& box.Contains(ship->Position()))
 		{
 			matched = true;
@@ -2271,7 +2281,7 @@ void PlayerInfo::ApplyChanges()
 	// Government changes may have changed the player's ship swizzles.
 	for(shared_ptr<Ship> &ship : ships)
 		ship->SetGovernment(GameData::PlayerGovernment());
-
+	
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(GetDate());

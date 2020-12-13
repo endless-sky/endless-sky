@@ -74,6 +74,15 @@ tip "disruption protection:"
 tip "disruption resistance:"
 	`How much shield disruption damage this ship can resist per second.`
 
+tip "disruption resistance energy:"
+	`Energy consumed per second when resisting disruption damage.`
+
+tip "disruption resistance fuel:"
+	`Fuel consumed per second when resisting disruption damage.`
+
+tip "disruption resistance heat:"
+	`Heat generated per second when resisting disruption damage.`
+
 tip "drag:"
 	`Limits the maximum speed of a ship.`
 
@@ -170,6 +179,15 @@ tip "repair delay:"
 tip "assisted repair delay:"
 	`How many seconds it takes for hull repairs to begin after being assisted from being disabled.`
 
+tip "absolute threshold:"
+	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
+
+tip "hull threshold:"
+	`Alters the hull strength value at which the ship will become disabled.`
+
+tip "threshold percentage:"
+	`Alters the percentage of the remaining hull strength at which the ship will become disabled.`
+
 tip "hull protection:"
 	`Protection against weapons that do hull damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hull damage, while a total value of 11 only results in a 10 percent reduction.`
 
@@ -185,11 +203,23 @@ tip "ion protection:"
 tip "ion resistance:"
 	`How much ionization damage this ship can resist per second.`
 
+tip "ion resistance energy:"
+	`Energy consumed per second when resisting ion damage.`
+
+tip "ion resistance fuel:"
+	`Fuel consumed per second when resisting ion damage.`
+
+tip "ion resistance heat:"
+	`Heat generated per second when resisting ion damage.`
+
 tip "jump speed:"
 	`How slow the ship must be moving to make a jump.`
 
 tip "jump fuel:"
 	`How much fuel is consumed when you jump between systems using this drive.`
+
+tip "jump range:"
+	`How far you can jump between systems using this drive.`
 
 tip "maintenance costs:"
 	`How many credits per day you need to spend to maintain this outfit. Even if a ship is parked or an outfit is in cargo, you still need to pay for its maintenance.`
@@ -301,6 +331,15 @@ tip "slowing protection:"
 
 tip "slowing resistance:"
 	`How much slowing damage this ship can resist per second.`
+
+tip "slowing resistance energy:"
+	`Energy consumed per second when resisting slowing damage.`
+
+tip "slowing resistance fuel:"
+	`Fuel consumed per second when resisting slowing damage.`
+
+tip "slowing resistance heat:"
+	`Heat generated per second when resisting slowing damage.`
 
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
