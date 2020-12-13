@@ -1,0 +1,34 @@
+#include "es-test.hpp"
+
+// Include only the tested class's header.
+#include "../../source/file-being-tested.h"
+
+// ... and any system includes needed for the test file.
+#include <string>
+
+namespace { // test namespace
+
+// #region mock data
+
+// Insert file-local data here, e.g. classes, structs, or fixtures that will be useful
+// to help test this class/method.
+
+// #endregion mock data
+
+
+
+// #region unit tests
+
+// Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
+// WHEN, and THEN macros. (There will be cases where the more traditional TEST_CASE and SECTION macros
+// are better suited to declaration of the public API.)
+
+// When writing assertions, prefer the CHECK and CHECK_FALSE macros when probing the scenario, and prefer
+// the REQUIRE / REQUIRE_FALSE macros for fundamental / "validity" assertions. If a CHECK fails, the rest
+// of the block's statements will still be evaluated, but a REQUIRE failure will exit the current block.
+
+// #endregion unit tests
+
+
+
+} // test namespace

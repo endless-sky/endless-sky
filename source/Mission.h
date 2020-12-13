@@ -127,7 +127,7 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 	
 	// Get a list of NPCs associated with this mission. Every time the player
@@ -156,7 +156,7 @@ public:
 	
 	
 private:
-	void Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);

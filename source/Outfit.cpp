@@ -35,6 +35,7 @@ namespace {
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
+		{"hull threshold", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
@@ -191,11 +192,22 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "jump range" && child.Size() >= 2)
+		{
+			// Jump range must be positive.
+			attributes[child.Token(0)] = max(0., child.Value(1));
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Only outfits with the jump drive and jump range attributes can
+	// use the jump range, so only keep track of the jump range on
+	// viable outfits.
+	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+		GameData::AddJumpRange(attributes.Get("jump range"));
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
