@@ -2875,8 +2875,9 @@ double Ship::MaxReverseVelocity() const
 
 
 
-// Create effects and take damage from the given hazard.
-void Ship::DoHazard(vector<Visual> &visuals, const Hazard *hazard, double strength)
+// Take damage from the given hazard and create any hit effects from the hazard
+// as sparks.
+void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, double strength)
 {
 	TakeDamage(*hazard, strength, Point(), hazard->BlastRadius() > 0.);
 	for(const auto &effect : hazard->HitEffects())

@@ -312,7 +312,7 @@ public:
 	double MaxReverseVelocity() const;
 	
 	// Create effects and take damage from the given hazard.
-	void DoHazard(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
+	void TakeHazardDamage(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
 	
 	// This ship just got hit by the given projectile. Take damage according to
 	// what sort of weapon the projectile it. The return value is a ShipEvent

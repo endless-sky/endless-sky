@@ -2007,7 +2007,7 @@ void Engine::DoWeather(Weather &weather)
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
 		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
-			reinterpret_cast<Ship *>(body)->DoHazard(visuals, hazard, multiplier);
+			reinterpret_cast<Ship *>(body)->TakeHazardDamage(visuals, hazard, multiplier);
 	}
 }
 
