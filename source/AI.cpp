@@ -1425,7 +1425,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<int> systemWeights;
 		int totalWeight = 0;
 		const set<const System *> &links = ship.Attributes().Get("jump drive")
-			? origin->Neighbors() : origin->Links();
+			? origin->JumpNeighbors(ship.JumpRange()) : origin->Links();
 		if(jumps)
 		{
 			for(const System *link : links)
@@ -2327,7 +2327,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		vector<const System *> targetSystems;
 		if(ship.JumpsRemaining(false))
 		{
-			const auto &links  = ship.Attributes().Get("jump drive") ? system->Neighbors() : system->Links();
+			const auto &links  = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpRange()) : system->Links();
 			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
 		}
 		
@@ -3399,7 +3399,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.Attributes().Get("jump drive") ?
-				ship.GetSystem()->Neighbors() : ship.GetSystem()->Links());
+				ship.GetSystem()->JumpNeighbors(ship.JumpRange()) : ship.GetSystem()->Links());
 			for(const System *link : links)
 			{
 				Point direction = link->Position() - ship.GetSystem()->Position();

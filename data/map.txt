@@ -7996,7 +7996,7 @@ system Diespiter
 	asteroids "small metal" 74 2
 	asteroids "small rock" 65 3
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	link Statina
 	minables iron 22 3
@@ -8709,7 +8709,7 @@ system Egeria
 	asteroids "medium rock" 20 5
 	asteroids "small rock" 1 8
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
@@ -19388,7 +19388,7 @@ system Porrima
 system Postverta
 	pos 15000 15000
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	asteroids "large metal" 9 3
 	asteroids "large rock" 4 3
@@ -19561,7 +19561,7 @@ system Prosa
 	asteroids "medium rock" 16 1
 	asteroids "small rock" 4 1
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	link Vaticanus
 	minables copper 5 2
@@ -23167,7 +23167,7 @@ system Statina
 	asteroids "medium metal" 72 3
 	asteroids "small metal" 39 3
 	government Uninhabited
-	attributes "ember waste" "wormhole"
+	attributes "ember waste" "wormhole" "inaccessible"
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
@@ -23982,6 +23982,7 @@ system Terminus
 system "Terra Incognita"
 	pos 9921.5 7086.5
 	government Uninhabited
+	attributes "pleiades"
 	link "Over the Rainbow"
 	habitable 455.625
 	haze _menu/haze-blackbody
@@ -24611,7 +24612,7 @@ system Vaticanus
 	asteroids "small metal" 14 8
 	asteroids "small rock" 3 6
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
@@ -25299,6 +25300,7 @@ system Wezen
 system "World's End"
 	pos 9966.5 7017.5
 	government Uninhabited
+	attributes "pleiades"
 	habitable 700
 	haze _menu/haze-blackbody
 	object

@@ -156,7 +156,7 @@ public:
 	
 	
 private:
-	void Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);

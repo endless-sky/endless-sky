@@ -50,7 +50,8 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 		}
 	}
 }
-SCENARIO( "Determining if a token is numeric", "[IsNumber],[Parsing],[DataNode]" ) {
+
+SCENARIO( "Determining if a token is numeric", "[IsNumber][Parsing][DataNode]" ) {
 	GIVEN( "An integer string" ) {
 		THEN( "IsNumber returns true" ) {
 			auto strNum = GENERATE(as<std::string>{}

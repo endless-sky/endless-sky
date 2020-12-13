@@ -9,7 +9,7 @@ libendless-sky.a
 *.dll
 
 # Files::LogError output from unit tests
-./errors.txt
+errors.txt
 
 # Build Directories and toolchain-generated files
 build/
