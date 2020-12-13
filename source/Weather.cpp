@@ -24,8 +24,11 @@ using namespace std;
 Weather::Weather(const Hazard *hazard, int lifetime, double strength, int totalLifetime)
 	: hazard(hazard), lifetime(lifetime), strength(strength), totalLifetime((totalLifetime > 0) ? totalLifetime : lifetime)
 {
-	// Using a deviation of totalLifetime / 4.3 causes the strength of the weather to start and end at about 10% the maximum.
-	deviation = totalLifetime / 4.3;
+	// Using a deviation of totalLifetime / 4.3 causes the strength of the
+	// weather to start and end at about 10% the maximum. Store the entire
+	// denominator of the exponent for the normal curve euqation here since
+	// this doesn't change with the elapsed time.
+	deviation = 2. * pow(static_cast<double>(this->totalLifetime) / 4.3, 2.);
 }
 
 
@@ -52,7 +55,7 @@ int Weather::Period() const
 	// If a hazard deviates, then the period is divided by the square root of the
 	// strength. This is so that as the strength of a hazard increases, it gets both
 	// more likely to impact the ships in the system and each impact hits harder.
-	return hazard->Deviates() ? max(1, static_cast<int>(hazard->Period() / sqrt(Strength()))) : hazard->Period();
+	return hazard->Deviates() ? max(1, static_cast<int>(static_cast<double>(hazard->Period()) / sqrt(Strength()))) : hazard->Period();
 }
 
 
@@ -73,8 +76,8 @@ double Weather::DamageMultiplier() const
 		// will always scale properly with the strength.
 		// This also fixes some precision lost by the fact that the period is an integer.
 		double sqrtStrength = sqrt(Strength());
-		double truePeriod = hazard->Period() / sqrtStrength;
-		double multiplier = Period() / truePeriod;
+		double truePeriod = static_cast<double>(hazard->Period()) / sqrtStrength;
+		double multiplier = static_cast<double>(Period()) / truePeriod;
 		return sqrtStrength * multiplier;
 	}
 	else
@@ -121,6 +124,6 @@ double Weather::Strength() const
 	// If this hazard deviates, modulate strength by the current lifetime.
 	// Strength follows a normal curve, peaking when the lifetime has
 	// reached half the totalLifetime.
-	return hazard->Deviates() ? 
-		strength * exp(-pow(lifetime - totalLifetime / 2., 2.) / (2. * pow(deviation, 2.))) : strength;
+	return strength * (hazard->Deviates() ? 
+		exp(-pow(static_cast<double>(lifetime) - static_cast<double>(totalLifetime) / 2., 2.) / deviation) : 1.);
 }
