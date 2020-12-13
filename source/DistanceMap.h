@@ -110,6 +110,7 @@ private:
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
 	bool useWormholes = true;
+	double jumpRange = 0.;
 };
 
 
