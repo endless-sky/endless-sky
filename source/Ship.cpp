@@ -3615,7 +3615,7 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 
 
 // A helper method for taking damage from either a projectile or a hazard.
-int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance, const Point &damagePosition, bool isBlast)
+int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast)
 {
 	int type = 0;
 	
@@ -3635,7 +3635,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
 	if(weapon.HasDamageDropoff())
-		damageScaling *= weapon.DamageDropoff(distance);
+		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 	
 	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
 	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
