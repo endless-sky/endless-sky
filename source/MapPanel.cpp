@@ -205,9 +205,10 @@ void MapPanel::DrawButtons(const string &condition)
 	// Draw the buttons to switch to other map modes.
 	Information info;
 	info.SetCondition(condition);
-	if(player.MapZoom() == 2)
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	if(player.MapZoom() == static_cast<int>(mapInterface->GetValue("max zoom")))
 		info.SetCondition("max zoom");
-	if(player.MapZoom() == -2)
+	if(player.MapZoom() == static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info, this);
@@ -340,6 +341,7 @@ bool MapPanel::AllowFastForward() const
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
@@ -370,9 +372,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == '+' || key == '=')
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(key == '-')
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	else
 		return false;
 	
