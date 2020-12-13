@@ -67,16 +67,18 @@ namespace {
 	}
 	
 	// Helper function to repair a given stat up to its maximum, limited by
-	// how much repair is available and how much energy and fuel are available.
-	// Updates the stat, the available amount, and the energy and fuel amounts.
-	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &fuel, double fuelCost)
+	// how much repair is available and how much energy, heat, and fuel are available.
+	// Updates the stat, the available amount, and the energy, heat, and fuel amounts.
+	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &heat, double heatCost, double &fuel, double fuelCost)
 	{
 		if(available <= 0. || stat >= maximum)
 			return;
 		
-		// Energy and fuel costs are the energy or fuel required per unit repaired.
+		// Energy, heat, and fuel costs are the energy, heat, or fuel required per unit repaired.
 		if(energyCost > 0.)
 			available = min(available, energy / energyCost);
+		if(heatCost < 0.)
+			available = min(available, heat / -heatCost);
 		if(fuelCost > 0.)
 			available = min(available, fuel / fuelCost);
 		
@@ -86,6 +88,7 @@ namespace {
 			stat += transfer;
 			available -= transfer;
 			energy -= transfer * energyCost;
+			heat += transfer * heatCost;
 			fuel -= transfer * fuelCost;
 		}
 	}
@@ -1798,14 +1801,14 @@ void Ship::DoGeneration()
 		const double hullFuel = (attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
 		const double hullHeat = (attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
 		double hullRemaining = hullAvailable;
-		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
+		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
 		
 		const double shieldsAvailable = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
 		const double shieldsEnergy = (attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
 		const double shieldsHeat = (attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
 		
 		if(!bays.empty())
 		{
@@ -1828,8 +1831,8 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
-				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
+				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
 			}
 			
 			// Now that there is no more need to use energy for hull and shield
@@ -1843,14 +1846,6 @@ void Ship::DoGeneration()
 				DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
-		
-		// Add to this ship's heat based on how much repair was actually done.
-		// This can be done at the end of everything else because unlike energy,
-		// heat does not limit how much repair can actually be done.
-		if(hullAvailable)
-			heat += (hullAvailable - hullRemaining) * hullHeat;
-		if(shieldsAvailable)
-			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat;
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
