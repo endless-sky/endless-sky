@@ -347,9 +347,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 {
 	for(const NPC &npc : npcs)
 	{
-		// If this NPC has failed its spawn conditions or passed its despawn
-		// conditions, don't place it.
-		if(!npc.PassedSpawn() || npc.PassedDespawn())
+		if(!npc.ShouldSpawn())
 			continue;
 		
 		map<string, map<Ship *, int>> carriers;

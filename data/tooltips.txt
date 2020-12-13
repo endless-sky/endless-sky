@@ -74,6 +74,15 @@ tip "disruption protection:"
 tip "disruption resistance:"
 	`How much shield disruption damage this ship can resist per second.`
 
+tip "disruption resistance energy:"
+	`Energy consumed per second when resisting disruption damage.`
+
+tip "disruption resistance fuel:"
+	`Fuel consumed per second when resisting disruption damage.`
+
+tip "disruption resistance heat:"
+	`Heat generated per second when resisting disruption damage.`
+
 tip "drag:"
 	`Limits the maximum speed of a ship.`
 
@@ -188,6 +197,15 @@ tip "ion protection:"
 tip "ion resistance:"
 	`How much ionization damage this ship can resist per second.`
 
+tip "ion resistance energy:"
+	`Energy consumed per second when resisting ion damage.`
+
+tip "ion resistance fuel:"
+	`Fuel consumed per second when resisting ion damage.`
+
+tip "ion resistance heat:"
+	`Heat generated per second when resisting ion damage.`
+
 tip "jump speed:"
 	`How slow the ship must be moving to make a jump.`
 
@@ -301,6 +319,15 @@ tip "slowing protection:"
 
 tip "slowing resistance:"
 	`How much slowing damage this ship can resist per second.`
+
+tip "slowing resistance energy:"
+	`Energy consumed per second when resisting slowing damage.`
+
+tip "slowing resistance fuel:"
+	`Fuel consumed per second when resisting slowing damage.`
+
+tip "slowing resistance heat:"
+	`Heat generated per second when resisting slowing damage.`
 
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`

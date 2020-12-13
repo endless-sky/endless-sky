@@ -67,18 +67,20 @@ namespace {
 	}
 	
 	// Helper function to repair a given stat up to its maximum, limited by
-	// how much repair is available and how much energy and fuel are available.
-	// Updates the stat, the available amount, and the energy and fuel amounts.
-	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &fuel, double fuelCost)
+	// how much repair is available and how much energy, fuel, and heat are available.
+	// Updates the stat, the available amount, and the energy, fuel, and heat amounts.
+	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
 	{
 		if(available <= 0. || stat >= maximum)
 			return;
 		
-		// Energy and fuel costs are the energy or fuel required per unit repaired.
+		// Energy, heat, and fuel costs are the energy, fuel, or heat required per unit repaired.
 		if(energyCost > 0.)
 			available = min(available, energy / energyCost);
 		if(fuelCost > 0.)
 			available = min(available, fuel / fuelCost);
+		if(heatCost < 0.)
+			available = min(available, heat / -heatCost);
 		
 		double transfer = min(available, maximum - stat);
 		if(transfer > 0.)
@@ -87,7 +89,43 @@ namespace {
 			available -= transfer;
 			energy -= transfer * energyCost;
 			fuel -= transfer * fuelCost;
+			heat += transfer * heatCost;
 		}
+	}
+	
+	// Helper function to reduce a given status effect according 
+	// to its resistance, limited by how much energy, fuel, and heat are available.
+	// Updates the stat and the energy, fuel, and heat amounts.
+	void DoStatusEffect(bool isDeactivated, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
+	{
+		if(isDeactivated || resistance <= 0.)
+		{
+			stat = .99 * stat;
+			return;
+		}
+		
+		// Calculate how much resistance can be used assuming no
+		// energy or fuel cost.
+		resistance = .99 * stat - max(0., .99 * stat - resistance);
+		
+		// Limit the resistance by the available energy, heat, and fuel.
+		if(energyCost > 0.)
+			resistance = min(resistance, energy / energyCost);
+		if(fuelCost > 0.)
+			resistance = min(resistance, fuel / fuelCost);
+		if(heatCost < 0.)
+			resistance = min(resistance, heat / -heatCost);
+		
+		// Update the stat, energy, heat, and fuel given how much resistance is being used.
+		if(resistance > 0.)
+		{
+			stat = max(0., .99 * stat - resistance);
+			energy -= resistance * energyCost;
+			fuel -= resistance * fuelCost;
+			heat += resistance * heatCost;
+		}
+		else
+			stat = .99 * stat;
 	}
 }
 
@@ -1798,14 +1836,14 @@ void Ship::DoGeneration()
 		const double hullFuel = (attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
 		const double hullHeat = (attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
 		double hullRemaining = hullAvailable;
-		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
+		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 		
 		const double shieldsAvailable = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
 		const double shieldsEnergy = (attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
 		const double shieldsHeat = (attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 		
 		if(!bays.empty())
 		{
@@ -1828,8 +1866,8 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
-				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
+				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
 			}
 			
 			// Now that there is no more need to use energy for hull and shield
@@ -1843,22 +1881,36 @@ void Ship::DoGeneration()
 				DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
-		
-		// Add to this ship's heat based on how much repair was actually done.
-		// This can be done at the end of everything else because unlike energy,
-		// heat does not limit how much repair can actually be done.
-		if(hullAvailable)
-			heat += (hullAvailable - hullRemaining) * hullHeat;
-		if(shieldsAvailable)
-			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat;
 	}
+	
 	// Handle ionization effects, etc.
+	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
-		ionization = max(0., .99 * ionization - attributes.Get("ion resistance"));
+	{
+		double ionResistance = attributes.Get("ion resistance");
+		double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
+		double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
+		double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
+		DoStatusEffect(isDisabled, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
+	}
+	
 	if(disruption)
-		disruption = max(0., .99 * disruption - attributes.Get("disruption resistance"));
+	{
+		double disruptionResistance = attributes.Get("disruption resistance");
+		double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
+		double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
+		double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
+		DoStatusEffect(isDisabled, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
+	}
+	
 	if(slowness)
-		slowness = max(0., .99 * slowness - attributes.Get("slowing resistance"));
+	{
+		double slowingResistance = attributes.Get("slowing resistance");
+		double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
+		double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
+		double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
+		DoStatusEffect(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
+	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -1909,7 +1961,6 @@ void Ship::DoGeneration()
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
-		energy -= ionization;
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
@@ -1943,7 +1994,7 @@ void Ship::DoGeneration()
 	
 	// Don't allow any levels to drop below zero.
 	fuel = max(0., fuel);
-	energy = max(0., energy);
+	energy = max(0., energy - ionization);
 	heat = max(0., heat);
 }
 
