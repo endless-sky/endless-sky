@@ -2108,6 +2108,9 @@ system Aescolanus
 	attributes "ember waste" "wormhole"
 	habitable 233.28
 	belt 1323
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	trade Clothing 262
 	trade Electronics 835
@@ -4352,6 +4355,9 @@ system Antevorta
 	attributes "ember waste"
 	habitable 320
 	belt 1994
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Ossipago
 	link Cardea
@@ -4535,6 +4541,9 @@ system Arculus
 	attributes "ember waste"
 	habitable 625
 	belt 1536
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Edusa
 	link Cinxia
@@ -6046,6 +6055,9 @@ system Caeculus
 	attributes "ember waste"
 	habitable 320
 	belt 1797
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Stercutus
 	asteroids "small rock" 3 0.5704
@@ -6359,6 +6371,9 @@ system Cardea
 	attributes "ember waste" "wormhole"
 	habitable 851.84
 	belt 1725
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Nenia
 	link Antevorta
@@ -6932,6 +6947,9 @@ system Cinxia
 	attributes "ember waste"
 	habitable 425.92
 	belt 1713
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Arculus
 	link Perfica
@@ -6986,6 +7004,9 @@ system Coluber
 	attributes "ember waste" "wormhole"
 	habitable 659.2
 	belt 1590
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Parca
 	link Levana
@@ -7104,6 +7125,9 @@ system Convector
 	attributes "ember waste"
 	habitable 4131.68
 	belt 1961
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 7 1.805
@@ -7603,6 +7627,9 @@ system Delia
 	pos -41 757
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 486.68
 	link Dixere
@@ -7997,6 +8024,9 @@ system Diespiter
 	asteroids "small rock" 65 3
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Statina
 	minables iron 22 3
@@ -8085,6 +8115,9 @@ system Dixere
 	pos 33 708
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 851.84
 	link Delia
@@ -8657,6 +8690,9 @@ system Edusa
 	attributes "ember waste" "wormhole"
 	habitable 2372.76
 	belt 1167
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Arculus
 	asteroids "small rock" 2 0.740133
@@ -8710,6 +8746,9 @@ system Egeria
 	asteroids "small rock" 1 8
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
@@ -9530,6 +9569,9 @@ system Esix
 	pos 142 532
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 8640
 	link Gerenus
@@ -10030,6 +10072,9 @@ system Farinus
 	attributes "ember waste"
 	habitable 745.92
 	belt 1149
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Cinxia
 	link Perfica
@@ -10213,6 +10258,9 @@ system Fearis
 	pos -16 643
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 486.68
 	link Feraticus
@@ -10350,6 +10398,9 @@ system Feraticus
 	pos 58 630
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 320
 	link Dixere
@@ -10412,6 +10463,9 @@ system Fereti
 	pos -39 600
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 486.68
 	link Lire
@@ -11174,6 +11228,9 @@ system Gerenus
 	pos 197 514
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 9065.92
 	link Esix
@@ -11295,6 +11352,9 @@ system Giribea
 	pos -6 674
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 1705
 	link Delia
@@ -12906,6 +12966,9 @@ system Insitor
 	attributes "ember waste" "wormhole"
 	habitable 553.28
 	belt 1170
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 1 2.54427
@@ -15040,6 +15103,9 @@ system Levana
 	attributes "ember waste"
 	habitable 2798.68
 	belt 1202
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Coluber
 	asteroids "medium rock" 3 10.005
@@ -15159,6 +15225,9 @@ system Lire
 	pos -59 676
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 1080
 	link Fearis
@@ -15412,6 +15481,9 @@ system Lucina
 	attributes "ember waste"
 	habitable 320
 	belt 1466
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Parca
 	link Coluber
@@ -17551,6 +17623,9 @@ system Nenia
 	attributes "ember waste" "void sprites" "archon"
 	habitable 2340
 	belt 1343
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Ossipago
 	link Cardea
@@ -17766,6 +17841,9 @@ system Nona
 	pos 166 558
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 1080
 	link Esix
@@ -18086,6 +18164,9 @@ system Ossipago
 	attributes "ember waste" "wormhole"
 	habitable 1948.28
 	belt 1803
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Antevorta
 	link Nenia
@@ -18183,6 +18264,9 @@ system Paeli
 	pos 129 497
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 425.92
 	link Esix
@@ -18250,6 +18334,9 @@ system Pantica
 	attributes "ember waste"
 	habitable 486.68
 	belt 1203
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Arculus
 	link Cinxia
@@ -18305,6 +18392,9 @@ system Parca
 	attributes "ember waste"
 	habitable 760
 	belt 1315
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Coluber
 	link Lucina
@@ -18533,6 +18623,9 @@ system Peragenor
 	attributes "ember waste"
 	habitable 1080
 	belt 1920
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Stercutus
 	asteroids "medium rock" 1 2.646
@@ -18638,6 +18731,9 @@ system Perfica
 	attributes "ember waste"
 	habitable 1080
 	belt 1160
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Cinxia
 	link Farinus
@@ -19201,6 +19297,9 @@ system Polerius
 	pos 88 482
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 1505.92
 	link Paeli
@@ -19389,6 +19488,9 @@ system Postverta
 	pos 15000 15000
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	asteroids "large metal" 9 3
 	asteroids "large rock" 4 3
@@ -19562,6 +19664,9 @@ system Prosa
 	asteroids "small rock" 4 1
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Vaticanus
 	minables copper 5 2
@@ -19948,6 +20053,9 @@ system Queri
 	pos 69 518
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 135
 	link Esix
@@ -20349,6 +20457,9 @@ system Relifer
 	pos 19 603
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 625
 	link Feraticus
@@ -20565,6 +20676,9 @@ system Ritilas
 	pos 11 523
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	habitable 135
 	link Queri
@@ -21068,6 +21182,7 @@ system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
 	habitable 10000
+	hazard "Grav Strong" 1
 	haze _menu/haze-full
 	object
 		sprite "star/black-hole-core"
@@ -21515,6 +21630,9 @@ system Segesta
 	attributes "ember waste" "wormhole"
 	habitable 425.92
 	belt 1120
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Stercutus
 	asteroids "small rock" 6 1.9116
@@ -23168,6 +23286,9 @@ system Statina
 	asteroids "small metal" 39 3
 	government Uninhabited
 	attributes "ember waste" "wormhole" "inaccessible"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
@@ -23282,6 +23403,9 @@ system Stercutus
 	attributes "ember waste" "wormhole"
 	habitable 945
 	belt 1492
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Caeculus
 	link Peragenor
@@ -24613,6 +24737,9 @@ system Vaticanus
 	asteroids "small rock" 3 6
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	hazard "EW Base Heat" 100
+	hazard "EW Base Slow" 500
+	hazard "EW Base Storm" 4000
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
