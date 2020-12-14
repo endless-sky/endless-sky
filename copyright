@@ -810,6 +810,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
+ images/ship/raider*
+ images/thumbnail/raider*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
+
+Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
  images/_menu/haze-yellow+* 
@@ -909,13 +916,6 @@ Files: images/planet/*-hot*
 Copyright: Tommaso Becca
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
-
-Files:
- images/ship/raider*
- images/thumbnail/raider*
-Copyright: Red-57
-License: CC-BY-SA-4.0
-Comment: Derived from work by Michael Zahniser (under the same lisence).
 
 Files:
  images/land/clouds*
