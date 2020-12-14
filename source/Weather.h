@@ -24,7 +24,7 @@ class Visual;
 class Weather {
 public:
 	Weather() = default;
-	explicit Weather(const Hazard *hazard, int lifetime, double strength, int totalLifetime = -1);
+	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength);
 	
 	// The hazard that is associated with this weather event.
 	const Hazard *GetHazard() const;
@@ -49,9 +49,9 @@ private:
 	
 private:
 	const Hazard *hazard = nullptr;
-	int lifetime = 0;
-	double strength = 0.;
 	int totalLifetime = 0;
+	int lifetimeRemaining = 0;
+	double strength = 0.;
 	double deviation = 0.;
 	
 	// Record when this object is marked for removal from the game.

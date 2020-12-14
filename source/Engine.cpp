@@ -1198,7 +1198,7 @@ void Engine::EnterSystem()
 				int hazardLifetime = weather->RandomDuration();
 				// Elapse this weather event by a random amount of time.
 				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
-				activeWeather.emplace_back(weather, elapsedLifetime, weather->RandomStrength(), hazardLifetime);
+				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength());
 			}
 	}
 	
@@ -1682,7 +1682,8 @@ void Engine::GenerateWeather()
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
 			// resulting weather and place it in the list of active weather.
-			activeWeather.emplace_back(weather, weather->RandomDuration(), weather->RandomStrength());
+			int duration = weather->RandomDuration();
+			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength());
 		}
 }
 
