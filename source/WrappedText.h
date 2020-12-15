@@ -64,8 +64,6 @@ public:
 	// Wrap the given text. Use Draw() to draw it.
 	void Wrap(const std::string &str);
 	void Wrap(const char *str);
-	// Wrap the preserved text.
-	void Wrap();
 	
 	// Get the height of the wrapped text.
 	int Height() const;
@@ -76,6 +74,7 @@ public:
 	
 private:
 	void SetText(const char *it, size_t length);
+	void Wrap();
 	void AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd);
 	int Space(char c) const;
 	

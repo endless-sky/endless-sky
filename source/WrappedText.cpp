@@ -203,6 +203,10 @@ Point WrappedText::Word::Pos() const
 
 void WrappedText::SetText(const char *it, size_t length)
 {
+	// Clear any previous word-wrapping data. It becomes invalid as soon as the
+	// underlying text buffer changes.
+	words.clear();
+	
 	// Reallocate that buffer.
 	text.assign(it, length);
 }
@@ -211,10 +215,6 @@ void WrappedText::SetText(const char *it, size_t length)
 
 void WrappedText::Wrap()
 {
-	// Clear any previous word-wrapping data. It becomes invalid as soon as the
-	// underlying text buffer changes.
-	words.clear();
-	
 	height = 0;
 	if(text.empty() || !font)
 		return;
