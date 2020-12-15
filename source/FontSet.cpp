@@ -24,14 +24,7 @@ using namespace std;
 namespace {
 	map<int, Font> fonts;
 	
-	const string defaultFontDescription = "Ubuntu";
-	Font::DrawingSettings drawingSettings
-	{
-		defaultFontDescription,
-		"en",
-		1.12,
-		0.36
-	};
+	Font::DrawingSettings drawingSettings;
 	char envBackend[] = "PANGOCAIRO_BACKEND=fc";
 }
 

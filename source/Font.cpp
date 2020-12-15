@@ -45,16 +45,7 @@ const Font::Layout Font::defaultLayout;
 
 
 Font::Font()
-	: shader(), vao(0), vbo(0), scaleI(0), centerI(0), sizeI(0), colorI(0),
-	screenWidth(1), screenHeight(1), viewWidth(1), viewHeight(1), viewFontHeight(0),
-	viewDefaultLineHeight(0), viewDefaultParagraphBreak(0), pixelSize(0),
-	drawingSettings(), space(0), cr(nullptr), context(nullptr), pangoLayout(nullptr),
-	surfaceWidth(256), surfaceHeight(64), cache()
 {
-	drawingSettings.language = "en";
-	drawingSettings.lineHeightScale = 1.0;
-	drawingSettings.paragraphBreakScale = 1.0;
-	
 	SetUpShader();
 	UpdateSurfaceSize();
 	

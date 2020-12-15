@@ -103,10 +103,10 @@ private:
 	// So, "alignAdjust" will either be 0, -.5, or -1.
 	class Column {
 	public:
-		Column();
+		Column() = default;
 		Column(double offset, const Font::Layout &layout);
 		
-		double offset;
+		double offset = 0.;
 		Font::Layout layout;
 	};
 	

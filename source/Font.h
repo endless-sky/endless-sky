@@ -36,13 +36,13 @@ public:
 	// Font and laying out settings except the pixel size.
 	struct DrawingSettings {
 		// A font description is a comma separated list of font families.
-		std::string description;
+		std::string description = "Ubuntu";
 		// The language for laying out.
-		std::string language;
+		std::string language = "en";
 		// The line height is lineHeightScale times larger than the font height.
-		double lineHeightScale;
+		double lineHeightScale = 1.12;
 		// The paragraph break is paragraphBreakScale times larger than the font height.
-		double paragraphBreakScale;
+		double paragraphBreakScale = 0.36;
 	};
 	
 	// Layout parameters.
@@ -62,7 +62,7 @@ public:
 		// Extra spacing in pixel between paragraphs.
 		uint_fast8_t paragraphBreak = DEFAULT_PARAGRAPH_BREAK;
 		
-		Layout() noexcept;
+		Layout() noexcept = default;
 		Layout(int w, Align a) noexcept;
 		Layout(int w, Truncate t) noexcept;
 		Layout(int w, Align a, Truncate t) noexcept;
@@ -177,46 +177,39 @@ private:
 	
 	
 	Shader shader;
-	GLuint vao;
-	GLuint vbo;
+	GLuint vao = 0;
+	GLuint vbo = 0;
 	
 	// Shader parameters.
-	GLint scaleI;
-	GLint centerI;
-	GLint sizeI;
-	GLint colorI;
+	GLint scaleI = 0;
+	GLint centerI = 0;
+	GLint sizeI = 0;
+	GLint colorI = 0;
 	
 	// Screen settings.
-	mutable int screenWidth;
-	mutable int screenHeight;
-	mutable int viewWidth;
-	mutable int viewHeight;
-	mutable int viewFontHeight;
-	mutable unsigned int viewDefaultLineHeight;
-	mutable unsigned int viewDefaultParagraphBreak;
+	mutable int screenWidth = 1;
+	mutable int screenHeight = 1;
+	mutable int viewWidth = 1;
+	mutable int viewHeight = 1;
+	mutable int viewFontHeight = 0;
+	mutable unsigned int viewDefaultLineHeight = 0;
+	mutable unsigned int viewDefaultParagraphBreak = 0;
 	
 	// Variables related to the font.
-	int pixelSize;
+	int pixelSize = 0;
 	DrawingSettings drawingSettings;
-	mutable int space;
+	mutable int space = 0;
 	
 	// For rendering.
-	mutable cairo_t *cr;
-	mutable PangoContext *context;
-	mutable PangoLayout *pangoLayout;
-	mutable int surfaceWidth;
-	mutable int surfaceHeight;
+	mutable cairo_t *cr = nullptr;
+	mutable PangoContext *context = nullptr;
+	mutable PangoLayout *pangoLayout = nullptr;
+	mutable int surfaceWidth = 256;
+	mutable int surfaceHeight = 64;
 	
 	// Cache of rendered text.
 	mutable Cache<CacheKey, RenderedText, true, CacheKeyHash, AtRecycleForRenderedText> cache;
 };
-
-
-
-inline
-Font::Layout::Layout() noexcept
-{
-}
 
 
 
