@@ -575,7 +575,7 @@ void MissionPanel::DrawSelectedSystem() const
 	
 	const Font &font = FontSet::Get(14);
 	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, *GameData::Colors().Get("bright"), {350, Font::TRUNC_MIDDLE, Font::CENTER});
+	font.Draw(text, pos, *GameData::Colors().Get("bright"), {350, Font::CENTER, Font::TRUNC_MIDDLE});
 }
 
 

@@ -45,7 +45,7 @@ public:
 		Layout() noexcept;
 		Layout(int w, Align a) noexcept;
 		Layout(int w, Truncate t) noexcept;
-		Layout(int w, Truncate t, Align a) noexcept;
+		Layout(int w, Align a, Truncate t) noexcept;
 	};
 	
 public:
@@ -134,7 +134,7 @@ Font::Layout::Layout(int w, Truncate t) noexcept
 
 
 inline
-Font::Layout::Layout(int w, Truncate t, Align a) noexcept
+Font::Layout::Layout(int w, Align a, Truncate t) noexcept
         : width(w), align(a), truncate(t)
 {
 }

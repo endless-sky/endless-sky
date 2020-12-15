@@ -501,7 +501,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"),
-		{SIDEBAR_WIDTH, Font::TRUNC_MIDDLE, Font::CENTER});
+		{SIDEBAR_WIDTH, Font::CENTER, Font::TRUNC_MIDDLE});
 	
 	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();
