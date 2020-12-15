@@ -279,7 +279,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	
 	// Draw this string representing the selected item (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::TRUNC_MIDDLE, Font::CENTER});
+	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::CENTER, Font::TRUNC_MIDDLE});
 	
 	return heightOffset;
 }
@@ -784,7 +784,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const Font &font = FontSet::Get(14);
 	Point offset(-OUTFIT_SIZE / 2., -.5f * OUTFIT_SIZE + 10.f);
 	font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.),
-		{OUTFIT_SIZE, Font::TRUNC_MIDDLE, Font::CENTER});
+		{OUTFIT_SIZE, Font::CENTER, Font::TRUNC_MIDDLE});
 }
 
 

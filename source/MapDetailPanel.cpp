@@ -639,7 +639,7 @@ void MapDetailPanel::DrawOrbits()
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
-	font.Draw(name, namePos, *GameData::Colors().Get("medium"), {180, Font::TRUNC_BACK, Font::CENTER});
+	font.Draw(name, namePos, *GameData::Colors().Get("medium"), {180, Font::CENTER, Font::TRUNC_BACK});
 }
 
 

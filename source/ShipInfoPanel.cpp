@@ -294,7 +294,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	// Table attributes.
 	Table table;
 	table.AddColumn(0, {static_cast<int>(WIDTH - 20), Font::LEFT});
-	table.AddColumn(WIDTH - 20, {static_cast<int>(WIDTH - 20), Font::TRUNC_MIDDLE, Font::RIGHT});
+	table.AddColumn(WIDTH - 20, {static_cast<int>(WIDTH - 20), Font::RIGHT, Font::TRUNC_MIDDLE});
 	table.SetUnderline(0, WIDTH - 20);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	

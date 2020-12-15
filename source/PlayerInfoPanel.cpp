@@ -561,13 +561,13 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {217, Font::TRUNC_MIDDLE, Font::LEFT});
-	table.AddColumn(220, {127, Font::TRUNC_BACK, Font::LEFT});
-	table.AddColumn(350, {137, Font::TRUNC_BACK, Font::LEFT});
-	table.AddColumn(550, {57, Font::TRUNC_BACK, Font::RIGHT});
-	table.AddColumn(610, {57, Font::TRUNC_BACK, Font::RIGHT});
-	table.AddColumn(670, {57, Font::TRUNC_BACK, Font::RIGHT});
-	table.AddColumn(730, {57, Font::TRUNC_BACK, Font::RIGHT});
+	table.AddColumn(0, {217, Font::LEFT, Font::TRUNC_MIDDLE});
+	table.AddColumn(220, {127, Font::LEFT, Font::TRUNC_BACK});
+	table.AddColumn(350, {137, Font::LEFT, Font::TRUNC_BACK});
+	table.AddColumn(550, {57, Font::RIGHT, Font::TRUNC_BACK});
+	table.AddColumn(610, {57, Font::RIGHT, Font::TRUNC_BACK});
+	table.AddColumn(670, {57, Font::RIGHT, Font::TRUNC_BACK});
+	table.AddColumn(730, {57, Font::RIGHT, Font::TRUNC_BACK});
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	

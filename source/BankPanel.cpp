@@ -222,7 +222,7 @@ void BankPanel::Draw()
 		totalPayment -= income[0] + income[1];
 		
 		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income"};
-		const Font::Layout incomeLayout{310, Font::TRUNC_BACK, Font::LEFT};
+		const Font::Layout incomeLayout{310, Font::LEFT, Font::TRUNC_BACK};
 		table.Draw(LABEL[(income[0] != 0) + 2 * (income[1] != 0)], &incomeLayout);
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
@@ -239,7 +239,7 @@ void BankPanel::Draw()
 	// Draw the credit score.
 	table.DrawAt(Point(0., FIRST_Y + 210.));
 	string credit = "Your credit score is " + to_string(player.Accounts().CreditScore()) + ".";
-	const Font::Layout scoreLayout{460, Font::TRUNC_MIDDLE, Font::LEFT};
+	const Font::Layout scoreLayout{460, Font::LEFT, Font::TRUNC_MIDDLE};
 	table.Draw(credit, &scoreLayout);
 	table.Advance(5);
 	
@@ -251,7 +251,7 @@ void BankPanel::Draw()
 		amount = "You qualify for a new loan of up to " + Format::Credits(qualify) + " credits.";
 	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
-	const Font::Layout amountLayout{380, Font::TRUNC_MIDDLE, Font::LEFT};
+	const Font::Layout amountLayout{380, Font::LEFT, Font::TRUNC_MIDDLE};
 	table.Draw(amount, unselected, &amountLayout);
 	if(qualify)
 	{
