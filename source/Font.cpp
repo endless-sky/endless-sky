@@ -110,9 +110,9 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	string truncText = TruncateText(str, layout, width);
 	if(width >= 0)
 	{
-		if(layout.align == CENTER)
+		if(layout.align == Align::CENTER)
 			x += (layout.width - width) / 2;
-		else if(layout.align == RIGHT)
+		else if(layout.align == Align::RIGHT)
 			x += layout.width - width;
 	}
 	
@@ -227,19 +227,19 @@ int Font::WidthRawString(const char *str, char after) const
 string Font::TruncateText(const std::string &str, const Layout &layout, int &width) const
 {
 	width = -1;
-	if(layout.width < 0 || (layout.align == LEFT && layout.truncate == TRUNC_NONE))
+	if(layout.width < 0 || (layout.align == Align::LEFT && layout.truncate == Truncate::NONE))
 		return str;
 	width = layout.width;
 	switch(layout.truncate)
 	{
-	case TRUNC_NONE:
+	case Truncate::NONE:
 		width = WidthRawString(str.c_str());
 		return str;
-	case TRUNC_FRONT:
+	case Truncate::FRONT:
 		return TruncateFront(str, width);
-	case TRUNC_MIDDLE:
+	case Truncate::MIDDLE:
 		return TruncateMiddle(str, width);
-	case TRUNC_BACK:
+	case Truncate::BACK:
 	default:
 		return TruncateBack(str, width);
 	}

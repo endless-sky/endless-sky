@@ -166,7 +166,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 	if(words.empty())
 		return;
 	
-	if(truncate == Font::TRUNC_NONE)
+	if(truncate == Font::Truncate::NONE)
 		for(const Word &w : words)
 			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 	else

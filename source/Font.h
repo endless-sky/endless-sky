@@ -32,15 +32,15 @@ class Point;
 class Font {
 public:
 	// Layout parameters.
-	enum Align {LEFT, CENTER, RIGHT};
-	enum Truncate {TRUNC_NONE, TRUNC_FRONT, TRUNC_MIDDLE, TRUNC_BACK};
+	enum class Align {LEFT, CENTER, RIGHT};
+	enum class Truncate {NONE, FRONT, MIDDLE, BACK};
 	struct Layout {
 		// Align and trancate width. No align or trancate if width is negative.
 		int width = -1;
 		// Set the alignment mode.
-		Align align = LEFT;
+		Align align = Align::LEFT;
 		// Set the truncate mode.
-		Truncate truncate = TRUNC_NONE;
+		Truncate truncate = Truncate::NONE;
 		
 		Layout() noexcept = default;
 		Layout(int w, Align a) noexcept;

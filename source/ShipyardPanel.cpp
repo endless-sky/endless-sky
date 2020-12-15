@@ -212,7 +212,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	
 	// Draw this string representing the selected ship (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::CENTER, Font::TRUNC_MIDDLE});
+	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::Align::CENTER, Font::Truncate::MIDDLE});
 	
 	return heightOffset;
 }
@@ -347,7 +347,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 	
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, {0, Font::TRUNC_MIDDLE}));
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, {0, Font::Truncate::MIDDLE}));
 }
 
 

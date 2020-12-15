@@ -168,7 +168,7 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		const Font::Layout layout{WIDTH - 30, Font::TRUNC_FRONT};
+		const Font::Layout layout{WIDTH - 30, Font::Truncate::FRONT};
 		font.Draw(input, stringPos, bright, layout);
 		
 		Point barPos(stringPos.X() + font.Width(input, layout) + 2., inputPos.Y());

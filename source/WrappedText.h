@@ -106,7 +106,7 @@ private:
 	int lineHeight = 0;
 	int paragraphBreak = 0;
 	Align alignment = JUSTIFIED;
-	Font::Truncate truncate = Font::TRUNC_NONE;
+	Font::Truncate truncate = Font::Truncate::NONE;
 	
 	std::string text;
 	std::vector<Word> words;

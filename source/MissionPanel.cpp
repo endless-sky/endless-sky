@@ -575,7 +575,7 @@ void MissionPanel::DrawSelectedSystem() const
 	
 	const Font &font = FontSet::Get(14);
 	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, *GameData::Colors().Get("bright"), {350, Font::CENTER, Font::TRUNC_MIDDLE});
+	font.Draw(text, pos, *GameData::Colors().Get("bright"), {350, Font::Align::CENTER, Font::Truncate::MIDDLE});
 }
 
 
@@ -683,7 +683,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
 		font.Draw(it->Name(), pos,
 			(!canAccept ? dim : isSelected ? selected : unselected),
-			{SIDE_WIDTH - 11, Font::TRUNC_BACK});
+			{SIDE_WIDTH - 11, Font::Truncate::BACK});
 	}
 	
 	return pos;

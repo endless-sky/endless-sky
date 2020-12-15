@@ -161,7 +161,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	info.SetString("header", header, {330, Font::TRUNC_BACK});
+	info.SetString("header", header, {330, Font::Truncate::BACK});
 	if(ship)
 	{
 		info.SetCondition("show assist");
