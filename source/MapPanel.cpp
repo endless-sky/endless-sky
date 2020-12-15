@@ -1133,7 +1133,7 @@ void MapPanel::DrawTooltips()
 	{
 		// Add 10px margin to all sides of the text.
 		const Font &font = FontSet::Get(14);
-		const Font::Layout layout{150, Font::LEFT};
+		const Font::Layout layout{150, Font::Align::LEFT};
 		Point size(font.Width(tooltip, layout), font.Height(tooltip, layout) - font.ParagraphBreak(layout));
 		size += Point(20., 20.);
 		Point topLeft = (hoverSystem->Position() + center) * Zoom();

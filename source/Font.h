@@ -46,17 +46,17 @@ public:
 	};
 	
 	// Layout parameters.
-	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
-	enum Truncate {TRUNC_NONE, TRUNC_FRONT, TRUNC_MIDDLE, TRUNC_BACK};
+	enum class Align {LEFT, CENTER, RIGHT, JUSTIFIED};
+	enum class Truncate {NONE, FRONT, MIDDLE, BACK};
 	static const uint_fast8_t DEFAULT_LINE_HEIGHT = 255;
 	static const uint_fast8_t DEFAULT_PARAGRAPH_BREAK = 255;
 	struct Layout {
 		// Wrap and trancate width. No wrap or trancate if width is negative.
 		int width = -1;
 		// Set the alignment mode.
-		Align align = LEFT;
+		Align align = Align::LEFT;
 		// Set the truncate mode.
-		Truncate truncate = TRUNC_NONE;
+		Truncate truncate = Truncate::NONE;
 		// Minimum Line height in pixels.
 		uint_fast8_t lineHeight = DEFAULT_LINE_HEIGHT;
 		// Extra spacing in pixel between paragraphs.
@@ -267,7 +267,8 @@ Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type co
 {
 	const result_type h1 = std::hash<std::string>()(s.text);
 	const result_type h2 = std::hash<int>()(s.layout.width);
-	const unsigned int pack = s.showUnderline | (s.layout.align << 1) | (s.layout.truncate << 3)
+	const unsigned int pack = s.showUnderline | (static_cast<unsigned int>(s.layout.align) << 1)
+		| (static_cast<unsigned int>(s.layout.truncate) << 3)
 		| (s.layout.lineHeight << 5) | (s.layout.paragraphBreak << 13);
 	const result_type h3 = std::hash<unsigned int>()(pack);
 	return h1 ^ (h2 << 1) ^ (h3 << 2);

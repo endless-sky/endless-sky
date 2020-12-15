@@ -112,8 +112,8 @@ void LoadPanel::Draw()
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		const Font::Layout layout{165, Font::TRUNC_MIDDLE};
-		const Font::Layout backLayout{165, Font::TRUNC_BACK};
+		const Font::Layout layout{165, Font::Truncate::MIDDLE};
+		const Font::Layout backLayout{165, Font::Truncate::BACK};
 		info.SetString("pilot", loadedInfo.Name(), layout);
 		if(loadedInfo.ShipSprite())
 		{
@@ -154,7 +154,7 @@ void LoadPanel::Draw()
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
-		font.Draw(it.first, point, Color((isHighlighted ? .7 : .5) * alpha, 0.), {220, Font::TRUNC_BACK});
+		font.Draw(it.first, point, Color((isHighlighted ? .7 : .5) * alpha, 0.), {220, Font::Truncate::BACK});
 		point += Point(0., 20.);
 	}
 	
@@ -184,7 +184,7 @@ void LoadPanel::Draw()
 				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
 			const string name = file.substr(pos, file.size() - 4 - pos);
-			font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.), {220, Font::TRUNC_BACK});
+			font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.), {220, Font::Truncate::BACK});
 			point += Point(0., 20.);
 		}
 	}

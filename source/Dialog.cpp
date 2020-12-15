@@ -81,7 +81,7 @@ namespace {
 	};
 }
 
-Font::Layout Dialog::defaultDialogLayout{0, Font::JUSTIFIED};
+Font::Layout Dialog::defaultDialogLayout{0, Font::Align::JUSTIFIED};
 
 
 
@@ -170,7 +170,7 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		const Font::Layout layout{WIDTH - 30, Font::TRUNC_FRONT};
+		const Font::Layout layout{WIDTH - 30, Font::Truncate::FRONT};
 		const string validatedInput = Font::EscapeMarkupHasError(input);
 		font.Draw(validatedInput, stringPos, bright, layout);
 		

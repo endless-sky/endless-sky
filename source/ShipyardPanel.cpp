@@ -212,7 +212,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	
 	// Draw this string representing the selected ship (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::CENTER, Font::TRUNC_MIDDLE});
+	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::Align::CENTER, Font::Truncate::MIDDLE});
 	
 	return heightOffset;
 }
@@ -348,9 +348,9 @@ void ShipyardPanel::Sell(bool toCargo)
 	
 	const bool lineBreaking = initialCount > 2;
 	const string separator(lineBreaking ? "\nfor " : " for ");
-	const Font::Truncate truncation = lineBreaking ? Font::TRUNC_MIDDLE : Font::TRUNC_NONE;
+	const Font::Truncate truncation = lineBreaking ? Font::Truncate::MIDDLE : Font::Truncate::NONE;
 	message += separator + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, {0, Font::JUSTIFIED, truncation}));
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, {0, Font::Align::JUSTIFIED, truncation}));
 }
 
 

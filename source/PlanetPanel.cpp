@@ -132,7 +132,7 @@ void PlanetPanel::Draw()
 	if(!selectedPanel)
 	{
 		const Font &font = FontSet::Get(14);
-		font.Draw(text, Point(-300., 80.), *GameData::Colors().Get("bright"), {480, Font::JUSTIFIED});
+		font.Draw(text, Point(-300., 80.), *GameData::Colors().Get("bright"), {480, Font::Align::JUSTIFIED});
 	}
 }
 

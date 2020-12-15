@@ -87,7 +87,7 @@ void SpaceportPanel::Draw()
 		return;
 	
 	const Font &font = FontSet::Get(14);
-	font.Draw(text, Point(-300., 80.), *GameData::Colors().Get("bright"), {480, Font::JUSTIFIED});
+	font.Draw(text, Point(-300., 80.), *GameData::Colors().Get("bright"), {480, Font::Align::JUSTIFIED});
 	
 	if(hasNews)
 	{
@@ -96,7 +96,7 @@ void SpaceportPanel::Draw()
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
 		font.Draw(newsMessage, interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
-			*GameData::Colors().Get("medium"), {hasPortrait ? portraitWidth : normalWidth, Font::JUSTIFIED});
+			*GameData::Colors().Get("medium"), {hasPortrait ? portraitWidth : normalWidth, Font::Align::JUSTIFIED});
 	}
 }
 

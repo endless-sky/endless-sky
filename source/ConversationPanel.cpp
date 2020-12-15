@@ -136,7 +136,7 @@ void ConversationPanel::Draw()
 	{
 		// This conversation node is prompting the player to enter their name.
 		Point fieldSize(150, 20);
-		const Font::Layout layout{static_cast<int>(fieldSize.X() - 10), Font::TRUNC_FRONT};
+		const Font::Layout layout{static_cast<int>(fieldSize.X() - 10), Font::Truncate::FRONT};
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
@@ -408,7 +408,7 @@ void ConversationPanel::ClickChoice(int index)
 
 // Paragraph constructor.
 ConversationPanel::Paragraph::Paragraph(const string &t, const Sprite *scene, bool isFirst)
-	: scene(scene), text(t), textLayout(WIDTH, Font::JUSTIFIED), isFirst(isFirst)
+	: scene(scene), text(t), textLayout(WIDTH, Font::Align::JUSTIFIED), isFirst(isFirst)
 {
 	const Font &font = FontSet::Get(14);
 	textHeight = font.Height(text, textLayout);

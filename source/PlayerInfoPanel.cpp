@@ -480,13 +480,13 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {230, Font::LEFT});
-	table.AddColumn(230, {230, Font::RIGHT});
+	table.AddColumn(0, {230, Font::Align::LEFT});
+	table.AddColumn(230, {230, Font::Align::RIGHT});
 	table.SetUnderline(0, 230);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	// Header row.
-	table.DrawOppositeTruncRight(225, "player:", dim, player.FirstName() + " " + player.LastName(), bright, Font::TRUNC_MIDDLE);
+	table.DrawOppositeTruncRight(225, "player:", dim, player.FirstName() + " " + player.LastName(), bright, Font::Truncate::MIDDLE);
 	table.Draw("net worth:", dim);
 	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
 	
@@ -561,13 +561,13 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {217, Font::LEFT, Font::TRUNC_MIDDLE});
-	table.AddColumn(220, {127, Font::LEFT, Font::TRUNC_BACK});
-	table.AddColumn(350, {137, Font::LEFT, Font::TRUNC_BACK});
-	table.AddColumn(550, {57, Font::RIGHT, Font::TRUNC_BACK});
-	table.AddColumn(610, {57, Font::RIGHT, Font::TRUNC_BACK});
-	table.AddColumn(670, {57, Font::RIGHT, Font::TRUNC_BACK});
-	table.AddColumn(730, {57, Font::RIGHT, Font::TRUNC_BACK});
+	table.AddColumn(0, {217, Font::Align::LEFT, Font::Truncate::MIDDLE});
+	table.AddColumn(220, {127, Font::Align::LEFT, Font::Truncate::BACK});
+	table.AddColumn(350, {137, Font::Align::LEFT, Font::Truncate::BACK});
+	table.AddColumn(550, {57, Font::Align::RIGHT, Font::Truncate::BACK});
+	table.AddColumn(610, {57, Font::Align::RIGHT, Font::Truncate::BACK});
+	table.AddColumn(670, {57, Font::Align::RIGHT, Font::Truncate::BACK});
+	table.AddColumn(730, {57, Font::Align::RIGHT, Font::Truncate::BACK});
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	

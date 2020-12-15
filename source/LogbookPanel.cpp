@@ -119,7 +119,7 @@ void LogbookPanel::Draw()
 	}
 	
 	// Parameters for drawing the main text:
-	Font::Layout textLayout{static_cast<int>(ceil(TEXT_WIDTH - 2. * PAD)), Font::JUSTIFIED};
+	Font::Layout textLayout{static_cast<int>(ceil(TEXT_WIDTH - 2. * PAD)), Font::Align::JUSTIFIED};
 	
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
@@ -132,7 +132,7 @@ void LogbookPanel::Draw()
 		{
 			string date = it->first.ToString();
 			font.Draw(date, pos + Point(0., textOffset.Y()), dim,
-				{static_cast<int>(TEXT_WIDTH - 2. * PAD), Font::RIGHT});
+				{static_cast<int>(TEXT_WIDTH - 2. * PAD), Font::Align::RIGHT});
 			pos.Y() += LINE_HEIGHT;
 			
 			font.Draw(it->second, pos, medium, textLayout);

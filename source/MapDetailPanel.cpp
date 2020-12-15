@@ -409,7 +409,7 @@ void MapDetailPanel::DrawInfo()
 	const Font &font = FontSet::Get(14);
 	string systemName = player.KnowsName(selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
-	Font::Layout layout{140, Font::TRUNC_BACK};
+	Font::Layout layout{140, Font::Truncate::BACK};
 	font.Draw(systemName, uiPoint + Point(-90., -7.), medium, layout);
 	
 	governmentY = uiPoint.Y() + 10.;
@@ -529,7 +529,7 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (hasVisited ? "n/a" : "?");
 		
-		layout.align = Font::RIGHT;
+		layout.align = Font::Align::RIGHT;
 		font.Draw(price, uiPoint, color, layout);
 		
 		if(isSelected)
@@ -549,7 +549,7 @@ void MapDetailPanel::DrawInfo()
 		SpriteShader::Draw(panelSprite, pos);
 		
 		font.Draw(selectedPlanet->Description(), Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20),
-			medium, {WIDTH - 20, Font::JUSTIFIED});
+			medium, {WIDTH - 20, Font::Align::JUSTIFIED});
 	}
 	
 	DrawButtons("is ports");
@@ -639,7 +639,7 @@ void MapDetailPanel::DrawOrbits()
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
-	font.Draw(name, namePos, *GameData::Colors().Get("medium"), {180, Font::CENTER, Font::TRUNC_BACK});
+	font.Draw(name, namePos, *GameData::Colors().Get("medium"), {180, Font::Align::CENTER, Font::Truncate::BACK});
 }
 
 

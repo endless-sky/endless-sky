@@ -160,7 +160,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	info.SetString("header", header, {330, Font::TRUNC_BACK});
+	info.SetString("header", header, {330, Font::Truncate::BACK});
 	if(ship)
 	{
 		info.SetCondition("show assist");
@@ -217,7 +217,7 @@ void HailPanel::Draw()
 	
 	// Draw the current message.
 	const Font &font = FontSet::Get(14);
-	font.Draw(message, Point(-50., -50.), *GameData::Colors().Get("medium"), {330, Font::JUSTIFIED});
+	font.Draw(message, Point(-50., -50.), *GameData::Colors().Get("medium"), {330, Font::Align::JUSTIFIED});
 }
 
 

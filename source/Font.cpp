@@ -414,16 +414,16 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	PangoEllipsizeMode ellipsize;
 	switch(viewLayout.truncate)
 	{
-	case TRUNC_NONE:
+	case Truncate::NONE:
 		ellipsize = PANGO_ELLIPSIZE_NONE;
 		break;
-	case TRUNC_FRONT:
+	case Truncate::FRONT:
 		ellipsize = PANGO_ELLIPSIZE_START;
 		break;
-	case TRUNC_MIDDLE:
+	case Truncate::MIDDLE:
 		ellipsize = PANGO_ELLIPSIZE_MIDDLE;
 		break;
-	case TRUNC_BACK:
+	case Truncate::BACK:
 		ellipsize = PANGO_ELLIPSIZE_END;
 		break;
 	default:
@@ -436,19 +436,19 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	gboolean justify;
 	switch(viewLayout.align)
 	{
-	case LEFT:
+	case Align::LEFT:
 		align = PANGO_ALIGN_LEFT;
 		justify = FALSE;
 		break;
-	case CENTER:
+	case Align::CENTER:
 		align = PANGO_ALIGN_CENTER;
 		justify = FALSE;
 		break;
-	case RIGHT:
+	case Align::RIGHT:
 		align = PANGO_ALIGN_RIGHT;
 		justify = FALSE;
 		break;
-	case JUSTIFIED:
+	case Align::JUSTIFIED:
 		align = PANGO_ALIGN_LEFT;
 		justify = TRUE;
 		break;

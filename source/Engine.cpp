@@ -623,7 +623,7 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
 	}
 	if(currentSystem)
-		info.SetString("location", currentSystem->Name(), {140, Font::TRUNC_BACK});
+		info.SetString("location", currentSystem->Name(), {140, Font::Truncate::BACK});
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
@@ -645,7 +645,7 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
-	const Font::Layout destLayout{135, Font::TRUNC_BACK};
+	const Font::Layout destLayout{135, Font::Truncate::BACK};
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetStellar();
@@ -716,7 +716,7 @@ void Engine::Step(bool isActive)
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
-		const Font::Layout layout{150, Font::TRUNC_MIDDLE};
+		const Font::Layout layout{150, Font::Truncate::MIDDLE};
 		info.SetString("target name", target->Name(), layout);
 		info.SetString("target type", target->ModelName(), layout);
 		if(!target->GetGovernment())
@@ -924,7 +924,7 @@ void Engine::Draw() const
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = interface->GetBox("messages");
-	Font::Layout messageLayout{static_cast<int>(ceil(messageBox.Width())), Font::JUSTIFIED};
+	Font::Layout messageLayout{static_cast<int>(ceil(messageBox.Width())), Font::Align::JUSTIFIED};
 	messageLayout.paragraphBreak = 0;
 	string messageLine;
 	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom());
