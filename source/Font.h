@@ -31,27 +31,28 @@ class Point;
 // moment only plain ASCII characters are supported, not Unicode.
 class Font {
 public:
-	Font() = default;
-	explicit Font(const std::string &imagePath);
-	
-	void Load(const std::string &imagePath);
-	
 	// Layout parameters.
 	enum Align {LEFT, CENTER, RIGHT};
 	enum Truncate {TRUNC_NONE, TRUNC_FRONT, TRUNC_MIDDLE, TRUNC_BACK};
 	struct Layout {
-			// Align and trancate width. No align or trancate if width is negative.
-			int width = -1;
-			// Set the alignment mode.
-			Align align = LEFT;
-			// Set the truncate mode.
-			Truncate truncate = TRUNC_NONE;
-			
-			Layout() noexcept;
-			Layout(int w, Align a) noexcept;
-			Layout(int w, Truncate t) noexcept;
-			Layout(int w, Truncate t, Align a) noexcept;
+		// Align and trancate width. No align or trancate if width is negative.
+		int width = -1;
+		// Set the alignment mode.
+		Align align = LEFT;
+		// Set the truncate mode.
+		Truncate truncate = TRUNC_NONE;
+		
+		Layout() noexcept;
+		Layout(int w, Align a) noexcept;
+		Layout(int w, Truncate t) noexcept;
+		Layout(int w, Truncate t, Align a) noexcept;
 	};
+	
+public:
+	Font() = default;
+	explicit Font(const std::string &imagePath);
+	
+	void Load(const std::string &imagePath);
 	
 	void Draw(const std::string &str, const Point &point, const Color &color,
 		const Layout &layout = defaultLayout) const;
@@ -83,7 +84,6 @@ private:
 	
 private:
 	static const Layout defaultLayout;
-	
 	
 	
 	
