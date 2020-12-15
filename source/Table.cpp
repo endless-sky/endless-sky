@@ -280,13 +280,6 @@ Rectangle Table::GetRowBounds() const
 
 
 
-Table::Column::Column()
-	: offset(0.), layout()
-{
-}
-
-
-
 Table::Column::Column(double offset, const Font::Layout &layout)
 	: offset(offset), layout(layout)
 {

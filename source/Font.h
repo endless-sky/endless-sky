@@ -42,7 +42,7 @@ public:
 		// Set the truncate mode.
 		Truncate truncate = TRUNC_NONE;
 		
-		Layout() noexcept;
+		Layout() noexcept = default;
 		Layout(int w, Align a) noexcept;
 		Layout(int w, Truncate t) noexcept;
 		Layout(int w, Align a, Truncate t) noexcept;
@@ -107,13 +107,6 @@ private:
 	int advance[GLYPHS * GLYPHS] = {};
 	int widthEllipses = 0;
 };
-
-
-
-inline
-Font::Layout::Layout() noexcept
-{
-}
 
 
 
