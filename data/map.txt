@@ -21145,6 +21145,7 @@ system "Sagittarius A*"
 	government Uninhabited
 	habitable 10000
 	hazard "Grav Strong" 1
+	hazard "Grav Deadly" 1
 	haze _menu/haze-full
 	object
 		sprite "star/black-hole-core"

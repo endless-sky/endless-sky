@@ -35,3 +35,18 @@ hazard "Grav Strong"
 		"hit force" -25
 		"damage dropoff" 100 2500
 		"dropoff modifier" 0
+
+
+
+hazard "Grav Deadly"
+	"constant strength"
+	"period" 10
+	"strength" 0.1 2
+	"range" 0 150
+	weapon
+		"hit effect" "nano spark"
+		"shield damage" 50
+		"hull damage" 50
+		"damage dropoff" 0 150
+		"dropoff modifier" 0
+		"piercing" 0.25
