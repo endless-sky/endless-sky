@@ -101,7 +101,7 @@ namespace {
 		{"shield fuel multiplier", 3},
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
-    
+		
 		{"disruption protection", 4},
 		{"force protection", 4},
 		{"fuel protection", 4},
@@ -110,7 +110,12 @@ namespace {
 		{"ion protection", 4},
 		{"piercing protection", 4},
 		{"shield protection", 4},
-		{"slowing protection", 4}
+		{"slowing protection", 4},
+		
+		{"repair delay", 5},
+		{"disabled repair delay", 5},
+		{"shield delay", 5},
+		{"depleted shield delay", 5}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
