@@ -17,15 +17,6 @@ hazard "EW Base Heat"
 
 
 
-hazard "EW Base Slow"
-	"duration" 1 200
-	"strength" 0.25 2
-	"range" 0 100000
-	weapon
-		"slowing damage" .5
-
-
-
 hazard "EW Base Storm"
 	"duration" 30 150
 	"strength" 0.5 3
