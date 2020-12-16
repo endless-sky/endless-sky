@@ -46,6 +46,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isPhasing = true;
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
+		else if(key == "parallel")
+			isParallel = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -176,13 +178,23 @@ void Weapon::LoadWeapon(const DataNode &node)
 				rangeOverride = max(0., value);
 			else if(key == "velocity override")
 				velocityOverride = max(0., value);
+			else if(key == "damage dropoff")
+			{
+				hasDamageDropoff = true;
+				double maxDropoff = (child.Size() >= 3) ? child.Value(2) : 0.;
+				damageDropoffRange = make_pair(max(0., value), maxDropoff);
+			}
+			else if(key == "dropoff modifier")
+				damageDropoffModifier = max(0., value);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
-	// Sanity check:
+	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
+	if(damageDropoffRange.first > damageDropoffRange.second)
+		damageDropoffRange.second = Range();
 	
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
@@ -258,6 +270,13 @@ int Weapon::AmmoUsage() const
 
 
 
+bool Weapon::IsParallel() const
+{
+	return isParallel;
+}
+
+
+
 const Sprite *Weapon::Icon() const
 {
 	return icon;
@@ -320,6 +339,24 @@ double Weapon::TotalLifetime() const
 double Weapon::Range() const
 {
 	return (rangeOverride > 0) ? rangeOverride : WeightedVelocity() * TotalLifetime();
+}
+
+
+
+// Calculate the fraction of full damage that this weapon deals given the
+// distance that the projectile traveled if it has a damage dropoff range.
+double Weapon::DamageDropoff(double distance) const
+{
+	double minDropoff = damageDropoffRange.first;
+	double maxDropoff = damageDropoffRange.second;
+	
+	if(distance <= minDropoff)
+		return 1.;
+	if(distance >= maxDropoff)
+		return damageDropoffModifier;
+	// Damage modification is linear between the min and max dropoff points.
+	double slope = (1 - damageDropoffModifier) / (minDropoff - maxDropoff);
+	return slope * (distance - minDropoff) + 1;
 }
 
 

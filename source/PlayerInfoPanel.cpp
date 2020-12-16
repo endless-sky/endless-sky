@@ -370,7 +370,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 
 
-bool PlayerInfoPanel::Click(int x, int y, int clicks)
+bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
 {
 	// Do nothing if the click was not on one of the ships in the fleet list.
 	if(hoverIndex < 0)
@@ -385,7 +385,6 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 			allSelected.erase(hoverIndex);
 		else
 		{
-			isDragging = true;
 			if(allSelected.count(hoverIndex))
 			{
 				// If the click is on an already selected line, start dragging
@@ -428,6 +427,7 @@ bool PlayerInfoPanel::Hover(int x, int y)
 
 bool PlayerInfoPanel::Drag(double dx, double dy)
 {
+	isDragging = true;
 	return Hover(hoverPoint + Point(dx, dy));
 }
 
@@ -559,6 +559,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color bright = *GameData::Colors().Get("bright");
 	Color elsewhere = *GameData::Colors().Get("dim");
 	Color dead(.4f, 0.f, 0.f, 0.f);
+	Color disabled(.5f, .3f, .1f, 0.f);
 	
 	// Table attributes.
 	Table table;
@@ -586,9 +587,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Loop through all the player's ships.
 	int index = scroll;
-	auto sit = player.Ships().begin() + scroll;
 	const Font &font = FontSet::Get(14);
-	for( ; sit < player.Ships().end(); ++sit)
+	for(auto sit = player.Ships().begin() + scroll; sit < player.Ships().end(); ++sit)
 	{
 		// Bail out if we've used out the whole drawing area.
 		if(!bounds.Contains(table.GetRowBounds()))
@@ -601,9 +601,10 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
 		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
-		bool isDead = ship.IsDestroyed() || ship.IsDisabled();
+		bool isDead = ship.IsDestroyed();
+		bool isDisabled = ship.IsDisabled();
 		bool isHovered = (index == hoverIndex);
-		table.SetColor(isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim);
+		table.SetColor(isDead ? dead : isDisabled ? disabled : isElsewhere ? elsewhere : isHovered ? bright : dim);
 		
 		// Store this row's position, to handle hovering.
 		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);

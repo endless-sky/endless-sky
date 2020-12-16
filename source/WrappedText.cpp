@@ -20,16 +20,7 @@ using namespace std;
 
 
 
-WrappedText::WrappedText()
-	: font(nullptr), space(0), wrapWidth(1000), tabWidth(0),
-	  lineHeight(0), paragraphBreak(0), alignment(JUSTIFIED), height(0)
-{
-}
-
-
-
 WrappedText::WrappedText(const Font &font)
-	: WrappedText()
 {
 	SetFont(font);
 }
@@ -163,13 +154,6 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 
 
 
-WrappedText::Word::Word()
-	: index(0), x(0), y(0)
-{
-}
-
-
-
 size_t WrappedText::Word::Index() const
 {
 	return index;
@@ -210,7 +194,7 @@ void WrappedText::Wrap()
 	// much extra space must be allotted by the alignment code.
 	int lineWidth = 0;
 	// This is the index in the "words" vector of the first word on this line.
-	unsigned lineBegin = 0;
+	size_t lineBegin = 0;
 	
 	// TODO: handle single words that are longer than the wrap width. Right now
 	// they are simply drawn un-broken, and thus extend beyond the margin.
@@ -296,9 +280,9 @@ void WrappedText::Wrap()
 
 
 
-void WrappedText::AdjustLine(unsigned &lineBegin, int &lineWidth, bool isEnd)
+void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 {
-	int wordCount = words.size() - lineBegin;
+	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
 	
 	// Figure out how much space is left over. Depending on the alignment, we

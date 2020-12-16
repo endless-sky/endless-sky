@@ -276,6 +276,439 @@ phrase "remnant"
 		"Soaring"
 		"Enduring"
 
+phrase "remnant uncontacted"
+	word
+		"(They sent you a hail consisting of a sign language you don't understand.)"
+
+phrase "remnant uncontacted"
+	word
+		"I am"
+		"We are"
+	word
+		" "
+	word
+		"watching"
+		"observing"
+		"analyzing"
+		"overseeing"
+	word
+		" "
+	word
+		"you"
+		"your actions"
+		"your behavior"
+	word
+		"."
+
+phrase "remnant uncontacted hostile"
+	word
+		"Eat space dust"
+		"Time to go"
+		"Sing your last prayers"
+		"Leave this space"
+	word
+		", "
+	word
+		"hostile ship"
+		"pirate"
+		"Alpha"
+	word
+		"!"
+
+phrase "remnant uncontacted hostile"
+	word
+		"I"
+		"My friend"
+		"My comrade"
+		"My gut"
+	word
+		" "
+	word
+		"was right"
+		"was correct"
+		"knew it"
+	word
+		"."
+		"!"
+	word
+		" You're "
+	word
+		"hostile"
+		"here with malicious intent"
+		"an Alpha"
+	word
+		"!"
+
+phrase "remnant uncontacted hostile"
+	word
+		"(They sent you hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
+		"(They sign so quickly that your hail receiver can't process it all.)"
+		"(It seems you are not welcome here.)"
+
+phrase "friendly remnant"
+	word
+		"Greetings"
+		"Hello there"
+		"Salutations"
+	word
+		", "
+		" "
+	word
+		"friend"
+		"comrade"
+		"brethen"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant"
+	word
+		"I almost died"
+		"Several hostiles attacked my ship"
+		"My mission was difficult"
+		"We had an emergency"
+		"There was a swarm of Korath raiders here"
+		"We faced a life-threatening situation"
+	word
+		" "
+	word
+		"last week"
+		"last month"
+		"last year"
+	word
+		". "
+		"! "
+	word
+		"Luckily"
+		"Fortunately"
+		"Miraculously"
+	word
+		", "
+	word
+		"I"
+		"my captain"
+		"we"
+	word
+		" "
+	word
+		"had prepared for this"
+		"had planned for this"
+	word
+		" by having "
+	word
+		"a cloaking device along"
+		"a secret weapon"
+		"fast engines"
+		"a last resort every Remnant should have"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant"
+	word
+		"If"
+	word
+		" "
+	word
+		"you have"
+		"the prefects gave you"
+		"our elders allowed you"
+		"our government granted you"
+	word
+		" "
+	word
+		"a license"
+		"a permit"
+		"permission to buy our outfits"
+	word
+		", "
+	word
+		"I"
+		"our experts"
+		"our veterans"
+		"my friends"
+	word
+		" "
+	word
+		"would suggest"
+		"would recommend"
+	word
+		" "
+	word
+		"buying"
+		"getting"
+	word
+		" "
+	phrase
+		"remnant inhibitor cannon"
+		"remnant thrasher cannon"
+		"remnant emp torpedo bay"
+		"remnant salvage scanner"
+	word
+		" "
+	word
+		"They're the best!"
+		"You should definitely try it!"
+		"Definitely better than those outfits in your space."
+
+phrase "remnant inhibitor cannon"
+	word
+		"some"
+		"those"
+		"our"
+	word
+		" Inhibitor Cannons. "
+	word
+		"They"
+		"Those weapons"
+	word
+		" "
+	word
+		"can"
+		"will"
+	word
+		" "
+	word
+		"disrupt"
+		"disable"
+		"slow"
+	word
+		" "
+	word
+		"the enemy's thrusters"
+		"your target's steering"
+		"any ship's engines"
+	word
+		" "
+	word
+		"and prevent them from escaping"
+		"and they won't stand a chance"
+	word
+		"."
+		"!"
+
+phrase "remnant thrasher cannon"
+	word
+		"a few"
+		"several"
+		"some"
+	word
+		" "
+	word
+		"Thrasher Cannons"
+		"Thrashers"
+		"Thrasher Turrets"
+	word
+		". "
+	word
+		"Compared to"
+		"When placed beside"
+	word
+		" your energy blasters, "
+	word
+		"they're more efficient in terms of heat"
+		"you can deal more damage with our cannons"
+		"they may be consuming more energy, but they have better heat and damage"
+		"our cannons may be more expensive, but they have better damage"
+		"they're larger, but they can deal more damage and release less heat"
+		"they're a force to be reckoned with"
+	word
+		"."
+		"!"
+
+phrase "remnant emp torpedo bay"
+	word
+		"an EMP Torpedo Bay.  "
+	word
+		"With a single shot, it"
+		"Firing one"
+		"One torpedo"
+	word
+		" "
+	word
+		"will"
+		"can"
+	word
+		" "
+	word
+		"disrupt"
+		"disable"
+		"deplete"
+	word
+		" "
+	word
+		"the enemy's systems"
+		"your target's batteries"
+		"your enemy's shields"
+		"the target's engines"
+	word
+		"."
+		"!"
+
+phrase "remnant salvage scanner"
+	word
+		"one or two"
+		"a dozen"
+		"some"
+	word
+		" salvage scanners. "
+	word
+		"They combine outfit and tactical scanners into one package"
+		"Compared to your separated versions, our special scanner is more powerful"
+		"They have a longer range than your outfit scanner"
+		"Those babies scan fast"
+		"They're a must-have for plundering"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant"
+	word
+		"Have you heard"
+		"Do you know"
+		"You know anything"
+	word
+		" about "
+	word
+		"the"
+		"those"
+	word
+		" "
+	word
+		"Quarg"
+		"Pug"
+		"Hai"
+		"Coalition far west of our space"
+	word
+		"? "
+	phrase
+		"friendly remnant (aliens.!)"
+		"friendly remnant (aliens?)"
+	replace
+		"those Coalition" "that Coalition"
+
+phrase "friendly remnant (aliens.!)"
+	word
+		"They look strong"
+		"They look weak"
+		"Maybe we should contact them"
+		"I think they're dangerous"
+		"I think they're good"
+		"I think we can trust them"
+		"I want to plunder their tech"
+		"I want their ships"
+		"I haven't seen them yet"
+		"I wonder if the prefects already knew about them"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant (aliens?)"
+	word
+		"Are they strong"
+		"Are they weak"
+		"Are they friendly"
+		"Are they hostile"
+		"How strong are they"
+		"What are the odds of capturing their ships"
+		"Has your government met them"
+		"Is it worth trying to get my hands on their tech?"
+	word
+		"?"
+
+phrase "friendly remnant"
+	word
+		"Be careful"
+		"Stay alert"
+		"Be vigilant"
+	word
+		" about the "
+	word
+		"Alphas in this galaxy"
+		"pirates in your space"
+		"Korath raiders"
+		"Korath"
+	word
+		"."
+		"!"
+	word
+		" "
+	word
+		"You don't want to get yourself killed"
+		"It's dangerous to encounter them"
+		"Always have some weapons in case you come across them"
+		"We have ships that can cloak in case you find yourself in a tricky situation with them"
+	word
+		"."
+		"!"
+
+phrase "hostile remnant"
+	word
+		"(It consists of signs so complex that any regular human wouldn't understand, but it seems that they don't like you.)"
+
+phrase "hostile remnant"
+	word
+		"Apparently,"
+		"It seems"
+		"I think"
+	word
+		" you're "
+	word
+		"not all that different from"
+		"very similar to"
+		"like"
+	word
+		" "
+	word
+		"an Alpha"
+		"a Korath"
+	word
+		". "
+	word
+		"Too bad"
+		"I hope you go up in flames"
+		"You backstabbed us"
+		"You lied to us"
+		"You betrayed our trust"
+	word
+		"."
+		
+phrase "hostile remnant"
+	word
+		"I"
+		"We"
+	word
+		" thought "
+	phrase
+		"hostile remnant (we're)"
+		"hostile remnant (you're)"
+	word
+		". "
+	word
+		"Why are you doing this"
+		"Are you insane"
+		"Did I hurt you"
+	word
+		"?"
+
+phrase "hostile remnant (we're)"
+	word
+		"we were "
+	word
+		"friends"
+		"comrades"
+		"brethren"
+		"good"
+
+phrase "hostile remnant (you're)"
+	word
+		"you were "
+	word
+		"not like the Alphas"
+		"not hostile"
+		"friendly"
+		"good"
+
 
 
 shipyard "Remnant"
@@ -302,6 +735,7 @@ outfitter "Remnant"
 	"Thermoelectric Cooler"
 	"EMP Torpedo"
 	"EMP Torpedo Bay"
+	"EMP Torpedo Storage Bay"
 	"Emergency Ramscoop"
 	"Quantum Key Stone"
 	"Anvil-Class Engine"

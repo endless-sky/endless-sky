@@ -57,6 +57,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -81,6 +82,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	set<double> neighborDistances;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -112,6 +114,8 @@ namespace {
 	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
+	// Whether sprites and audio have finished loading at game startup.
+	bool initiallyLoaded = false;
 	
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
@@ -180,8 +184,11 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
-	// Now that all the stars are loaded, update the neighbor lists.
-	UpdateNeighbors();
+	// Now that all data is loaded, update the neighbor lists and other
+	// system information. Make sure that the default jump range is among the
+	// neighbor distances to be updated.
+	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
+	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading(true);
@@ -309,7 +316,28 @@ void GameData::LoadShaders()
 
 double GameData::Progress()
 {
-	return min(spriteQueue.Progress(), Audio::Progress());
+	auto progress = min(spriteQueue.Progress(), Audio::GetProgress());
+	if(progress == 1.)
+	{
+		if(!initiallyLoaded)
+		{
+			// Now that we have finished loading all the basic sprites, we can look for invalid file paths,
+			// e.g. due to capitalization errors or other typos. Landscapes are allowed to still be empty.
+			auto unloaded = SpriteSet::CheckReferences();
+			for(const auto &path : unloaded)
+				if(path.compare(0, 5, "land/") != 0)
+					Files::LogError("Warning: image \"" + path + "\" is referred to, but has no pixels.");
+			initiallyLoaded = true;
+		}
+	}
+	return progress;
+}
+
+
+
+bool GameData::IsLoaded()
+{
+	return initiallyLoaded;
 }
 
 
@@ -446,9 +474,15 @@ void GameData::WriteEconomy(DataWriter &out)
 		{
 			out.Write("purchases");
 			out.BeginChild();
-			for(const auto &pit : purchases)
-				for(const auto &cit : pit.second)
-					out.Write(pit.first->Name(), cit.first, cit.second);
+			using Purchase = pair<const System *const, map<string, int>>;
+			WriteSorted(purchases,
+				[](const Purchase *lhs, const Purchase *rhs)
+					{ return lhs->first->Name() < rhs->first->Name(); },
+				[&out](const Purchase &pit)
+				{
+					for(const auto &cit : pit.second)
+						out.Write(pit.first->Name(), cit.first, cit.second);
+				});
 			out.EndChild();
 		}
 		out.WriteToken("system");
@@ -549,17 +583,24 @@ void GameData::Change(const DataNode &node)
 
 
 
-// Update the neighbor lists of all the systems. This must be done any time
-// that a change creates or moves a system.
-void GameData::UpdateNeighbors()
+// Update the neighbor lists and other information for all the systems.
+// This must be done any time that a change creates or moves a system.
+void GameData::UpdateSystems()
 {
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateNeighbors(systems);
+		it.second.UpdateSystem(systems, neighborDistances);
 	}
+}
+
+
+
+void GameData::AddJumpRange(double neighborDistance)
+{
+	neighborDistances.insert(neighborDistance);
 }
 
 
@@ -651,6 +692,13 @@ const Set<Minable> &GameData::Minables()
 const Set<Mission> &GameData::Missions()
 {
 	return missions;
+}
+
+
+
+const Set<News> &GameData::SpaceportNews()
+{
+	return news;
 }
 
 
@@ -777,20 +825,6 @@ double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = solarWind.find(sprite);
 	return (it == solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Pick a random news object that applies to the given planet. If there is
-// no applicable news, this returns null.
-const News *GameData::PickNews(const Planet *planet)
-{
-	vector<const News *> matches;
-	for(const auto &it : news)
-		if(it.second.Matches(planet))
-			matches.push_back(&it.second);
-	
-	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }
 
 

@@ -35,9 +35,19 @@ namespace {
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
+		{"hull threshold", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
+		{"disruption resistance energy", 0.},
+		{"disruption resistance fuel", 0.},
+		{"disruption resistance heat", 0.},
+		{"ion resistance energy", 0.},
+		{"ion resistance fuel", 0.},
+		{"ion resistance heat", 0.},
+		{"slowing resistance energy", 0.},
+		{"slowing resistance fuel", 0.},
+		{"slowing resistance heat", 0.},
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
@@ -63,11 +73,12 @@ namespace {
 	
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
-		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
-			[&it](pair<Body, int> flare)
+		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
+			[&it](const pair<Body, int> &flare)
 			{
 				return it.first.GetSprite() == flare.first.GetSprite();
-			});
+			}
+		);
 		
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);
@@ -181,11 +192,22 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "jump range" && child.Size() >= 2)
+		{
+			// Jump range must be positive.
+			attributes[child.Token(0)] = max(0., child.Value(1));
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Only outfits with the jump drive and jump range attributes can
+	// use the jump range, so only keep track of the jump range on
+	// viable outfits.
+	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+		GameData::AddJumpRange(attributes.Get("jump range"));
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
