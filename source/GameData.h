@@ -63,7 +63,10 @@ public:
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadShaders();
+	// TODO: make Progress() a simple accessor.
 	static double Progress();
+	// Whether initial game loading is complete (sprites and audio are loaded).
+	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
@@ -82,9 +85,10 @@ public:
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
 	static void Change(const DataNode &node);
-	// Update the neighbor lists of all the systems. This must be done any time
-	// that a change creates or moves a system.
-	static void UpdateNeighbors();
+	// Update the neighbor lists and other information for all the systems.
+	// This must be done any time that a change creates or moves a system.
+	static void UpdateSystems();
+	static void AddJumpRange(double neighborDistance);
 	
 	// Re-activate any special persons that were created previously but that are
 	// still alive.
@@ -103,6 +107,7 @@ public:
 	static const Set<Interface> &Interfaces();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
+	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
 	static const Set<Sale<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
@@ -125,10 +130,6 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
-	
-	// Pick a random news object that applies to the given planet. If there is
-	// no applicable news, this returns null.
-	static const News *PickNews(const Planet *planet);
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);

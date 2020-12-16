@@ -26,7 +26,8 @@ ship "Maeri'het"
 		"fuel capacity" 800
 		"ramscoop" 0.58
 		"cargo space" 43
-		"outfit space" 273
+		"outfit space" 383
+		"engine capacity" 86
 		"weapon capacity" 184
 		"energy capacity" 10000
 		"energy generation" 28.3
@@ -36,17 +37,6 @@ ship "Maeri'het"
 		"cloak" .023
 		"cloaking energy" 11.8
 		"cloaking fuel" .08
-		"thrust" 39.2
-		"thrusting energy" 6.17
-		"thrusting heat" 1.8
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sound" "plasma small"
-		"turn" 1286.4
-		"turning energy" 3.44
-		"turning heat" 1.7
 		weapon
 			"blast radius" 180
 			"shield damage" 720
@@ -60,19 +50,21 @@ ship "Maeri'het"
 		"Ka'het Support Cooling" 
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator"
 
+		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
 		"Hyperdrive"
 
-	engine -20 66 0.6
-	engine -26.5 66 0.8
-	engine 20 66 0.6
-	engine 26.5 66 0.8
-	gun -9 -74 "Ka'het Ravager Beam"
-	gun 9 -74 "Ka'het Ravager Beam"
-	turret -13.5 -29 "Ka'het Annihilator Turret"
-	turret -14 -12.5 "Ka'het Ravager Turret"
-	turret 13.5 -29 "Ka'het Annihilator Turret"
-	turret 14 -12.5 "Ka'het Ravager Turret"
+	engine -22 61.5
+	engine 22 61.5
+	gun -17.5 -68.5 "Ka'het Ravager Beam"
+	gun 17.5 -68.5 "Ka'het Ravager Beam"
+	turret -13.5 -31 "Ka'het Annihilator Turret"
+	turret 13.5 -31 "Ka'het Annihilator Turret"
+	turret -15 -14.5 "Ka'het Ravager Turret"
+	turret 15 -14.5 "Ka'het Ravager Turret"
 	explode "tiny explosion" 5
 	explode "small explosion" 20
 	explode "medium explosion" 25
@@ -94,8 +86,11 @@ ship "Maeri'het" "Maeri'het (EMP)"
 		"Ka'het Support Cooling"
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
 
-		Hyperdrive
+		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 	"uncapturable"
@@ -108,8 +103,11 @@ ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 		"Ka'het Support Cooling"
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
 
-		Hyperdrive
+		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het"
 	plural "Telis'heta"
@@ -129,7 +127,8 @@ ship "Telis'het"
 		"fuel capacity" 800
 		"ramscoop" 0.82
 		"cargo space" 71
-		"outfit space" 513
+		"outfit space" 673
+		"engine capacity" 138
 		"weapon capacity" 254
 		"energy capacity" 28000
 		"energy generation" 37.4
@@ -137,17 +136,6 @@ ship "Telis'het"
 		"hull repair" 0.5
 		"shield energy" 0.3
 		"shield heat" 9.2
-		"thrust" 62.8
-		"thrusting energy" 11.4
-		"thrusting heat" 3.5
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sprite" "effect/remnant flare/medium"
-			"frame rate" 4
-		"flare sound" "plasma medium"
-		"turn" 1931.7
-		"turning energy" 6.38
-		"turning heat" 2.9
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
@@ -162,22 +150,24 @@ ship "Telis'het"
 
 		"Ka'het Shield Restorer" 7
 		"Ka'het Primary Cooling" 2
+		"Ka'het MHD Generator" 4
+		"Ka'het Reserve Accumulator"
 
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles" 2
 		"Hyperdrive"
 
-	engine -27 75.5 0.6
-	engine -39.5 82.5 0.8
-	engine 27 75.5 0.6
-	engine 39.5 82.5 0.8
-	gun -11.5 -94 "Ka'het EMP Deployer"
-	gun -23.5 -87.5 "Ka'het Annihilator"
-	gun 11.5 -94 "Ka'het EMP Deployer"
-	gun 23.5 -87.5 "Ka'het Annihilator"
-	turret -27 -41 "Ka'het Annihilator Turret"
-	turret -41.5 -50.5 "Ka'het Ravager Turret"
-	turret 0 -53 "Ka'het Ravager Turret"
-	turret 27 -41 "Ka'het Annihilator Turret"
-	turret 41.5 -50.5 "Ka'het Ravager Turret"
+	engine -39.5 80
+	engine 39.5 80
+	gun -31 -83 "Ka'het Annihilator"
+	gun 31 -83 "Ka'het Annihilator"
+	gun -20.5 -90.5 "Ka'het EMP Deployer"
+	gun 20.5 -90.5 "Ka'het EMP Deployer"
+	turret -43 -51 "Ka'het Ravager Turret"
+	turret 43 -51 "Ka'het Ravager Turret"
+	turret -17.5 -51.5 "Ka'het Annihilator Turret"
+	turret 17.5 -51.5 "Ka'het Annihilator Turret"
+	turret 0 -19 "Ka'het Ravager Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -197,9 +187,14 @@ ship "Telis'het" "Telis'het (EMP)"
 		"EMP Torpedo" 64
 
 		"Ka'het Shield Restorer" 11
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 3
 
-		Hyperdrive
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het" "Telis'het (EMP, Disable-able)"
 	"uncapturable"
@@ -210,9 +205,14 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 		"EMP Torpedo" 64
 
 		"Ka'het Shield Restorer" 11
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 3
 
-		Hyperdrive
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het" "Telis'het (Guns)"
 	"never disabled"
@@ -221,10 +221,14 @@ ship "Telis'het" "Telis'het (Guns)"
 		"Ka'het Annihilator Turret" 5
 
 		"Ka'het Shield Restorer" 10
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 6
 
-		Hyperdrive
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Telis'het" "Telis'het (Guns, Disable-able)"
 	"uncapturable"
@@ -233,10 +237,14 @@ ship "Telis'het" "Telis'het (Guns, Disable-able)"
 		"Ka'het Annihilator Turret" 5
 
 		"Ka'het Shield Restorer" 10
-		"Ka'het Primary Cooling" 2
+		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 6
 
-		Hyperdrive
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
 
 ship "Selii'mar"
 	sprite "ship/selii'mar"
@@ -249,22 +257,9 @@ ship "Selii'mar"
 		"drag" .8
 		"heat dissipation" 1.1
 		"cargo space" 14
-		"outfit space" 18
+		"outfit space" 77
+		"engine capacity" 21
 		"weapon capacity" 18
-		"energy capacity" 1200
-		"energy generation" 6.3
-		"heat generation" 4
-		"thrust" 10.2
-		"thrusting energy" 2.03
-		"thrusting heat" 1.43
-		"turn" 189.4
-		"turning energy" 0.79
-		"turning heat" 0.5
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sound" "plasma tiny"
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -272,6 +267,9 @@ ship "Selii'mar"
 			"hit force" 480
 	outfits
 		"Ka'het Ravager Beam"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 3
+		"Ka'het Compact Engine"
 	
 	gun 0 -32.5
 	engine 0 28 1.5
@@ -286,25 +284,12 @@ ship "Faes'mar"
 		"cost" 1180000
 		"shields" 200
 		"hull" 1900
-		"mass" 6
+		"mass" 46
 		"drag" .7
 		"heat dissipation" 1.05
 		"cargo space" 102
-		"outfit space" 38
-		"energy capacity" 800
-		"energy generation" 5.9
-		"heat generation" 3.2
-		"thrust" 10.2
-		"thrusting energy" 2.03
-		"thrusting heat" 1.23
-		"turn" 189.4
-		"turning energy" 0.79
-		"turning heat" 0.4
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sound" "plasma tiny"
+		"outfit space" 92
+		"engine capacity" 21
 		weapon
 			"blast radius" 52
 			"shield damage" 410
@@ -313,12 +298,18 @@ ship "Faes'mar"
 	outfits
 		"Ka'het Shield Restorer"
 		"Ka'het Support Cooling"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 5
+		"Ka'het Compact Engine"
 	
-	engine -7.5 34.5
-	engine 7.5 34.5
+	engine -7 34.5
+	engine 7 34.5
 	explode "tiny explosion" 19
 	description "The Mar were the last and most successful ships of the Builders in their attempts at creating automatic drones. Today only the Het stations are still aware of their blueprints, and keep producing the Faes'mar to transport the resources mined to the station's cargo bay."
 
 ship "Faes'mar" "Faes'mar (Strong)"
 	outfits
 		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 2
+		"Ka'het Compact Engine"

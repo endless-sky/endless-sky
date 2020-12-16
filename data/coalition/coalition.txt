@@ -11,13 +11,23 @@
 fleet "Heliarch"
 	government "Heliarch"
 	names "heliarch"
+	fighters "heliarch fighter"
 	cargo 1
 	personality
 		heroic opportunistic
 	variant 40
 		"Heliarch Neutralizer"
+	variant 30
+		"Heliarch Judicator"
+		"Heliarch Pursuer" 2
+		"Heliarch Rover" 2
+		"Heliarch Stalker" 2
+	variant 20
+		"Heliarch Breacher"
 	variant 20
 		"Heliarch Interdictor"
+	variant 15
+		"Heliarch Hunter"
 	variant 10
 		"Heliarch Punisher"
 	variant 4
@@ -26,16 +36,52 @@ fleet "Heliarch"
 		"Heliarch Neutralizer (Nimble)"
 	variant 4
 		"Heliarch Neutralizer (Scrappy)"
+	variant 8
+		"Heliarch Judicator (Attractor)"
+		"Heliarch Stalker" 6
+		"Heliarch Judicator (Repulsor)"
+		"Heliarch Pursuer (Scrappy)" 3
+		"Heliarch Rover" 3
+	variant 2
+		"Heliarch Judicator (Ions)"
+		"Heliarch Pursuer" 2
+		"Heliarch Rover (Ions)" 2
+		"Heliarch Stalker" 2
+	variant 2
+		"Heliarch Judicator (Missile)"
+		"Heliarch Stalker (Scrappy)" 6
+	variant 1
+		"Heliarch Judicator (Scrappy)"
+		"Heliarch Rover" 3
+		"Heliarch Stalker (Scrappy)" 3
+	variant 1
+		"Heliarch Breacher (Ions)"
+	variant 1
+		"Heliarch Breacher (Missile)"
+	variant 1
+		"Heliarch Breacher (Scrappy)"
 	variant 2
 		"Heliarch Interdictor (Bombardment)"
 	variant 8
 		"Heliarch Interdictor (Ions)"
+	variant 1
+		"Heliarch Interdictor (Missile)"
+	variant 2
+		"Heliarch Hunter (Interdicting)"
+	variant 2
+		"Heliarch Hunter (Ions)"
+	variant 1
+		"Heliarch Hunter (Missile)"
+	variant 4
+		"Heliarch Hunter (Scrappy)"
 	variant 1
 		"Heliarch Punisher (Interdicting)"
 	variant 7
 		"Heliarch Punisher (Ions)"
 	variant 1
 		"Heliarch Punisher (Missile)"
+	variant 1
+		"Heliarch Punisher (Pure Finishers)"
 	variant 1
 		"Heliarch Punisher (Scrappy)"
 
@@ -226,6 +272,9 @@ outfitter "Coalition Basics"
 	"Small Steering Module"
 	"Cargo Expansion"
 	"Outfits Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
 	"Hyperdrive"
 	"Local Map"
 
@@ -246,6 +295,9 @@ outfitter "Coalition Advanced"
 	"Cargo Expansion"
 	"Outfits Expansion"
 	"Luxury Accommodations"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
 	"Hyperdrive"
 	"Local Map"
 
@@ -601,6 +653,23 @@ phrase "heliarch"
 		"Unwavering"
 		"Obdurate"
 		"Unbending"
+		"Resolute"
+		"Steadfast"
+		"Ardent"
+		"Undefeated"
+		"Enduring"
+		"Impervious"
+		"Honorable"
+		"Brave"
+		"Skilled"
+		"Stoic"
+		"Resilient"
+		"Devout"
+		"Devoted"
+		"Disciplined"
+		"Determined"
+		"Zealous"
+		"Diligent"
 	word
 		" "
 	word
@@ -636,6 +705,71 @@ phrase "heliarch"
 		"Inspector"
 		"Judge"
 		"Manager"
+		"Preserver"
+		"Keeper"
+		"Bulwark"
+		"Bastion"
+		"Mandator"
+		"Convener"
+		"Cooperator"
+		"Arbiter"
+		"Exponent"
+		"Guide"
+		"Leader"
+		"Moderator"
+		"Veteran"
+		"Regulator"
+		"Attendant"
+		"Minister"
+
+
+phrase "heliarch fighter"
+	word
+		"Aspiring"
+		"Eager"
+		"Ambitious"
+		"Striving"
+		"Wishful"
+		"Longing"
+		"Loyal"
+		"Dutiful"
+		"Trustworthy"
+		"Patriotic"
+		"Attached"
+		"Trusty"
+		"Cherished"
+		"Honest"
+		"Reliable"
+		"Dependable"
+		"Responsible"
+		"Virtuous"
+		"Noble"
+		"Fair"
+		"Willing"
+		"Intrepid"
+	word
+		" "
+	word
+		"Comrade"
+		"Confederate"
+		"Backup"
+		"Assistant"
+		"Minder"
+		"Squire"
+		"Companion"
+		"Cadet"
+		"Recruit"
+		"Apprentice"
+		"Student"
+		"Pupil"
+		"Scout"
+		"Patrol"
+		"Accomplice"
+		"Support"
+		"Collaborator"
+		"Novice"
+		"Junior"
+		"Learner"
 
 
 phrase "friendly heliarch"

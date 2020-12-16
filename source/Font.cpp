@@ -28,6 +28,7 @@ namespace {
 	bool showUnderlines = false;
 	
 	const char *vertexCode =
+		"// vertex font shader\n"
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
 		// The (x, y) coordinates of the top left corner of the glyph.
@@ -51,6 +52,7 @@ namespace {
 		"}\n";
 	
 	const char *fragmentCode =
+		"// fragment font shader\n"
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
@@ -71,16 +73,7 @@ namespace {
 
 
 
-Font::Font()
-	: texture(0), vao(0), vbo(0), colorI(0), scaleI(0), glyphI(0), aspectI(0),
-	  positionI(0), height(0), space(0), screenWidth(0), screenHeight(0)
-{
-}
-
-
-
 Font::Font(const string &imagePath)
-	: Font()
 {
 	Load(imagePath);
 }
@@ -460,13 +453,14 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	
-	// connect the xy to the "vert" attribute of the vertex shader
+	// Connect the xy to the "vert" attribute of the vertex shader.
+	constexpr auto stride = 4 * sizeof(GLfloat);
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 	
 	glEnableVertexAttribArray(shader.Attrib("corner"));
 	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

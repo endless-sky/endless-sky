@@ -181,6 +181,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 void StarField::SetUpGraphics()
 {
 	static const char *vertexCode =
+		"// vertex starfield shader\n"
 		"uniform mat2 rotate;\n"
 		"uniform vec2 translate;\n"
 		"uniform vec2 scale;\n"
@@ -201,6 +202,7 @@ void StarField::SetUpGraphics()
 		"}\n";
 
 	static const char *fragmentCode =
+		"// fragment starfield shader\n"
 		"in float fragmentAlpha;\n"
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
@@ -272,7 +274,7 @@ void StarField::MakeStars(int stars, int width)
 	{
 		for(int j = 0; j < 10; ++j)
 		{
-			int index = Random::Int(off.size()) & ~1;
+			int index = Random::Int(static_cast<uint32_t>(off.size())) & ~1;
 			x += off[index];
 			y += off[index + 1];
 			x &= widthMod;
@@ -328,18 +330,19 @@ void StarField::MakeStars(int stars, int width)
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 	
-	// connect the xy to the "vert" attribute of the vertex shader
+	// Connect the xy to the "vert" attribute of the vertex shader.
+	constexpr auto stride = 4 * sizeof(GLfloat);
 	glEnableVertexAttribArray(offsetI);
 	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), nullptr);
+		stride, nullptr);
 	
 	glEnableVertexAttribArray(sizeI);
 	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 	
 	glEnableVertexAttribArray(cornerI);
 	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
 	
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

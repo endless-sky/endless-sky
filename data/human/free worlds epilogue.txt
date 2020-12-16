@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "FW Epilogue: Ijs and Katya"
-	minor
 	landing
 	source "Winter"
 	to offer
@@ -34,7 +33,7 @@ mission "FW Epilogue: Ijs and Katya"
 					goto game
 			
 			label excitement
-			`	"I understand that feeling," says Katya. "But, just remind yourself, this is what we fought for. For peace. For a world where no one has to fear for their lives.`
+			`	"I understand that feeling," says Katya. "But, just remind yourself, this is what we fought for. For peace. For a world where no one has to fear for their lives."`
 				goto end
 			
 			label adjust
@@ -54,11 +53,13 @@ mission "FW Epilogue: Ijs and Katya"
 
 
 mission "FW Epilogue: Alondo"
-	minor
 	landing
 	source "Bourne"
 	to offer
 		has "free worlds plot completed"
+		or
+			not "Paradise Fortune 3: done"
+			has "Paradise Fortune 4: offered"
 	
 	on offer
 		conversation
@@ -92,7 +93,6 @@ mission "FW Epilogue: Alondo"
 
 
 mission "FW Epilogue: Freya"
-	minor
 	landing
 	source "Pugglemug"
 	to offer
@@ -144,7 +144,6 @@ mission "FW Epilogue: Freya"
 
 
 mission "FW Epilogue: Danforth"
-	minor
 	landing
 	source "Farpoint"
 	to offer

@@ -63,6 +63,9 @@ public:
 	void DrawButtons(const std::string &condition);
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 	
+	// Map panels allow fast-forward to stay active.
+	virtual bool AllowFastForward() const override;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -105,6 +108,8 @@ protected:
 	const Planet *selectedPlanet = nullptr;
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
+	
+	double playerJumpDistance;
 	
 	Point center;
 	Point recenterVector;

@@ -113,3 +113,142 @@ mission "First Contact: Kuwaru Efreti"
 			label destroy
 			`	It clicks its teeth together, which might be the Quarg equivalent of laughter. "It was hoped that one faction of robots would destroy the other, and leave for us less work to do, but they are sadly too evenly matched. Instead we merely restrain them from expanding, as one isolates a fire one cannot extinguish and for it to burn out waits." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
 				decline
+
+
+
+mission "Quarg Satellites"
+	minor
+	name "Deploy Quarg Scanners"
+	description "Head to each of the marked systems to deploy the Quarg scanning satellites, then head to <destination> to collect your payment."
+	source
+		near "Umbral" 1 3
+		government "Quarg"
+		not planet "Humanika"
+	waypoint "Kappa Centauri"
+	waypoint "Graffias"
+	waypoint "Antares"
+	waypoint "Han"
+	to offer
+		has "main plot completed"
+		has "First Contact: Quarg: offered"
+		not "Coalition: First Contact: offered"
+		"pirate attraction" <= 1
+	on offer
+		conversation
+			`A Quarg slowly makes its way to you when it notices you in the spaceport. "Greetings, human friend. Would you happen to have the time to listen to a proposal? We are looking for a pilot willing to help us deploy some scanning satellites."`
+			choice
+				`	"Sure, where am I deploying them?"`
+					goto where
+				`	"What are the satellites for?"`
+				`	"I don't have the time, no."`
+					decline
+			`	"To help humans in the other end of this region, the South, be better prepared against incoming attacks, and help them keep track of ships that pass by their systems."`
+			choice
+				`	"I'd like to help with that then. Where am I deploying them?"`
+					goto where
+				`	"Help? Why do you want to help people there all of a sudden?"`
+				`	"I am actually headed to a different part of the galaxy now, sorry."`
+					decline
+			`	"Why?" It pauses for a second. "Surely you have seen the foolish thugs that plague this whole region. We can deal with them here, but we do not usually travel far. To promote peace all around, without even more needless slaughter, providing some measures to deter further attacks is but a courtesy."`
+			choice
+				`	"I'd like to help with that then. Where am I deploying them?"`
+				`	"I am actually headed to a different part of the galaxy now, sorry."`
+					decline
+			label where
+			`	"To <waypoints>. Once you are done, return here and you will receive <payment>."`
+			`	As soon as you arrive at your ship, you find various Quarg with loaderbots, putting the four satellites inside your ship's cargo hold. The satellites are shaped like triangular pyramids, with each point of the main pyramid being tipped with another, smaller triangular pyramid. You can't quite make it out from this distance, but you wonder if the smaller pyramids are also tipped with even smaller pyramids. Each of the devices is roughly half your size, but probably weigh a lot more than you.`
+				accept
+	on enter "Kappa Centauri"
+		dialog "You open your cargo hold, and let a Quarg scanner drift out to the void."
+	on enter "Graffias"
+		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why decided to help with surveillance."
+	on enter "Antares"
+		dialog "You set a Quarg scanner free, and let it leave your ship."
+	on enter "Han"
+		dialog "Although those that live on the planet here don't seem to mind the occasional pirates demanding tribute, maybe they will come to appreciate the reduced pirate presence here, assuming the Quarg scanner really does help with that."
+	on complete
+		payment 263000
+		dialog `You land to find a Quarg waiting right at the docks. It hands you <payment>, and thanks you for your help.`
+
+
+
+mission "Lagrange Ring: Cargo"
+	minor
+	name "Humane Construction Materials"
+	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visit."
+	cargo "Construction Materials" 254
+	source
+		near "Enif" 1
+		government "Quarg"
+		not planet "Humanika"
+	stopover "Chiron"
+	destination "Lagrange"
+	to offer
+		has "First Contact: Quarg: offered"
+		"pirate attraction" <= 3
+	on offer
+		conversation
+			`In the spaceport, a group of Quarg is talking to dozens of human captains. Some nod and head right back to their ships, while a few others remain and appear to discuss a bit more with the Quarg.`
+			choice
+				`	(Join them to see what's going on.)`
+				`	(Ignore them.)`
+					decline
+			`	You join the group, and one of the Quarg diverts its attention to you, while the others continue speaking with the human merchants.`
+			`	"Would you also be someone willing to provide us a cargo service, Captain?" it asks, all the while checking a data pad, which seems to be related to the ships docked here. "Not many of you humans in this region have the cargo space required, much less proper defenses for cargo convoys. We are willing to pay adequately for whoever meets the criteria and is willing to help us."`
+			choice
+				`	"Are those other Captains also doing this? What do you need so much cargo for?"`
+				`	"I'm not looking for any more cargo jobs right now, sorry."`
+					decline
+			`	"Many have agreed to help us already, but we still need many more. Those that have agreed to help are headed all to different portions of human space, to safely bring us the materials we have ordered.`
+			`	"Our ringworld, under construction in the nearby system, <system>, is to have a special open section for humans to visit soon. We wish to make the internal style and decoration of that section closer to human standards, so we are asking every capable captain to help. You are one such captain, are you willing to help us?"`
+			choice
+				`	"Alright, I'm interested. Where should I go to pick up the cargo?"`
+				`	"Sorry, I'm not looking for any cargo job right now, I was just curious."`
+					decline
+			`	It fiddles with the data pad a bit more, then says, "You are to pick up <cargo> on <stopovers>, then deliver that cargo to <destination>. You will be paid <payment> for the service. Be well, human."`
+			`	It gestures a bow to you, then leaves to speak with another merchant captain that got curious as well.`
+				accept
+	on stopover
+		dialog `The <cargo> is loaded into your ship under strict supervision, each crate carefully accounted for.`
+	on complete
+		payment 953000
+		conversation
+			`Much like your own ship, several other human freighters and convoys are arriving, and the cargo being meticulously checked by the Quarg, as they use their own machinery to unload what must be tens of thousands of tons from all the ships.`
+			`	About halfway through the unload of your own cargo, a Quarg comes up to you and hands you <payment>.`
+
+
+
+mission "Ask Quarg About Coalition Early"
+	landing
+	to offer
+		has "First Contact: Quarg: offered"
+		has "Coalition: First Contact: done"
+		not "assisted heliarch"
+		not "Heliarch Recon 1: offered"
+		not "Resistance: Introductions: offered"
+	source
+		attributes "quarg"
+		attributes "station"
+	on offer
+		conversation
+			`You've met the Coalition, and the Heliarchs that rule their space from within the ringworlds the Quarg built there who claim that they "defeated the Quarg oppressors." Would you like to look for some Quarg here and ask for their side of the story?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You stop the first Quarg that passes by you, and ask if they could tell their side of the story about the Coalition.`
+			`	"Ah, so you have encountered the foolish Coalition," it begins. "They once were three promising species, before they succumbed to the unwise desire for usurpation of the great deeds of others.`
+			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs."`
+			choice
+				`	"Is it true that they defeated you?"`
+					goto defeat
+				`	"Is it true what they told me? That you oppressed them and hindered their development?"`
+					goto oppress
+			label defeat
+			`	It clicks it's teeth together for a moment, and frowns a bit. "Do not underestimate us, human. We are numerous, and we are strong." It pauses for a moment, with a blank expression on its face, as if trying to remember something. "We just know better than to slaughter billions for the sake of maintaining our position."`
+				goto end
+			label oppress
+			`	"Of course not. Have you seen us do such things with humanity? Or with any other alien species you might have reached in your travels with a jump drive? The Heliarchs, like any other fanatical military, merely fabricated an excuse to justify attacking us."`
+			label end
+			`	Before you can ask it anything else, the Quarg bids you farewell, and walks away.`
+				decline

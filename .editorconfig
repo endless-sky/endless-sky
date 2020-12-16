@@ -5,7 +5,7 @@ root = true
 insert_final_newline = true
 
 # Data files
-[data/*.txt]
+[data/**.txt]
 trim_trailing_whitespace = false
 indent_style = tab
 
@@ -17,3 +17,12 @@ indent_style = tab
 # Markdown
 [*.md]
 trim_trailing_whitespace = false
+
+[*.xml]
+indent_style = space
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = true

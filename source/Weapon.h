@@ -68,9 +68,11 @@ public:
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	bool IsStreamed() const;
+	bool IsParallel() const;
 	
 	double Velocity() const;
 	double RandomVelocity() const;
+	double WeightedVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
 	const Point &HardpointOffset() const;
@@ -120,6 +122,12 @@ public:
 	double TotalLifetime() const;
 	double Range() const;
 	
+	// Check if this weapon has a damage dropoff range.
+	bool HasDamageDropoff() const;
+	// Calculate the percent damage that this weapon deals given the distance
+	// that the projectile traveled if it has a damage dropoff range.
+	double DamageDropoff(double distance) const;
+	
 	
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
@@ -155,6 +163,12 @@ private:
 	bool isSafe = false;
 	bool isPhasing = false;
 	bool isDamageScaled = true;
+	// Guns and missiles are by default aimed a converged point at the
+	// maximum weapons range in front of the ship. When either the installed
+	// weapon or the gun-port (or both) have the isParallel attribute set
+	// to true, then this convergence will not be used and the weapon will
+	// be aimed directly in the gunport angle/direction.
+	bool isParallel = false;
 	
 	// Attributes.
 	int lifetime = 0;
@@ -204,6 +218,13 @@ private:
 	
 	double piercing = 0.;
 	
+	double rangeOverride = 0.;
+	double velocityOverride = 0.;
+
+	bool hasDamageDropoff = false;
+	std::pair<double, double> damageDropoffRange;
+	double damageDropoffModifier;
+	
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
@@ -226,6 +247,7 @@ inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
+inline double Weapon::WeightedVelocity() const { return (velocityOverride > 0.) ? velocityOverride : velocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
@@ -264,6 +286,8 @@ inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_D
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
+
+inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
 
 
 
