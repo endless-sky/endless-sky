@@ -139,8 +139,8 @@
 		A9B99D021C616AD000BE7C2E /* ItemInfoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */; };
 		A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */; };
 		A9BDFB541E00B8AA00A6B27E /* Music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9BDFB521E00B8AA00A6B27E /* Music.cpp */; };
-		A9BDFB561E00B94700A6B27E /* libmad.0.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */; };
-		A9BDFB571E00BD6A00A6B27E /* libmad.0.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A9BDFB561E00B94700A6B27E /* libmad.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.dylib */; };
+		A9BDFB571E00BD6A00A6B27E /* libmad.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
@@ -163,7 +163,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4C2DEF57201B90310062315E /* libSDL2-2.0.0.dylib in CopyFiles */,
-				A9BDFB571E00BD6A00A6B27E /* libmad.0.2.1.dylib in CopyFiles */,
+				A9BDFB571E00BD6A00A6B27E /* libmad.0.dylib in CopyFiles */,
 				A93931FF1988136F00C2A87B /* libpng16.16.dylib in CopyFiles */,
 				A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */,
 			);
@@ -425,7 +425,7 @@
 		A9B99D041C616AF200BE7C2E /* MapSalesPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapSalesPanel.h; path = source/MapSalesPanel.h; sourceTree = "<group>"; };
 		A9BDFB521E00B8AA00A6B27E /* Music.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Music.cpp; path = source/Music.cpp; sourceTree = "<group>"; };
 		A9BDFB531E00B8AA00A6B27E /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Music.h; path = source/Music.h; sourceTree = "<group>"; };
-		A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.2.1.dylib; path = /usr/local/lib/libmad.0.2.1.dylib; sourceTree = "<absolute>"; };
+		A9BDFB551E00B94700A6B27E /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.dylib; path = /usr/local/lib/libmad.0.dylib; sourceTree = "<absolute>"; };
 		A9C70E0E1C0E5B51000B3D14 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = source/File.cpp; sourceTree = "<group>"; };
 		A9C70E0F1C0E5B51000B3D14 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = source/File.h; sourceTree = "<group>"; };
 		A9CC52691950C9F6004E4E22 /* Endless Sky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Sky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -458,7 +458,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9BDFB561E00B94700A6B27E /* libmad.0.2.1.dylib in Frameworks */,
+				A9BDFB561E00B94700A6B27E /* libmad.0.dylib in Frameworks */,
 				A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */,
 				4C2DEF56201B8FAE0062315E /* libSDL2-2.0.0.dylib in Frameworks */,
 				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
@@ -768,7 +768,7 @@
 				A9A5297519996CC3002D7C35 /* OpenAL.framework */,
 				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
 				A93931FC1988136B00C2A87B /* libpng16.16.dylib */,
-				A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */,
+				A9BDFB551E00B94700A6B27E /* libmad.0.dylib */,
 				4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
 				A9CC526C1950C9F6004E4E22 /* Cocoa.framework */,
@@ -1009,6 +1009,8 @@
 		A9CC52981950C9F6004E4E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
+				VALID_ARCHS = x86_64;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1044,14 +1046,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-Werror";
 				SDKROOT = macosx;
 			};
@@ -1060,6 +1061,8 @@
 		A9CC52991950C9F6004E4E22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
+				VALID_ARCHS = x86_64;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1089,7 +1092,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -1120,7 +1123,7 @@
 					"/usr/local/opt/libjpeg-turbo/lib",
 					/usr/local/lib,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Endless Sky";
 				WRAPPER_EXTENSION = app;
@@ -1146,7 +1149,7 @@
 					"/usr/local/opt/libjpeg-turbo/lib",
 					/usr/local/lib,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Endless Sky";
 				WRAPPER_EXTENSION = app;
