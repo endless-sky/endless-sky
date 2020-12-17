@@ -1997,6 +1997,7 @@ void Engine::DoCollisions(Projectile &projectile)
 // the main visuals list.
 void Engine::DoWeather(Weather &weather)
 {
+	weather.CalculateStrength();
 	if(weather.HasWeapon() && !Random::Int(weather.Period()))
 	{
 		const Hazard *hazard = weather.GetHazard();

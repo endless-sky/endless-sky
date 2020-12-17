@@ -28,7 +28,9 @@ Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining,
 	// weather to start and end at about 10% the maximum. Store the entire
 	// denominator of the exponent for the normal curve euqation here since
 	// this doesn't change with the elapsed time.
-	deviation = 2. * pow(totalLifetime / 4.3, 2.);
+	deivation = totalLifetime / 4.3;
+	deviation = 2. * deviation * deviation;
+	currentStrength = strength;
 }
 
 
@@ -55,7 +57,7 @@ int Weather::Period() const
 	// If a hazard deviates, then the period is divided by the square root of the
 	// strength. This is so that as the strength of a hazard increases, it gets both
 	// more likely to impact the ships in the system and each impact hits harder.
-	return hazard->Deviates() ? max(1, static_cast<int>(hazard->Period() / sqrt(Strength()))) : hazard->Period();
+	return hazard->Deviates() ? max(1, static_cast<int>(hazard->Period() / sqrtStrength)) : hazard->Period();
 }
 
 
@@ -75,9 +77,8 @@ double Weather::DamageMultiplier() const
 		// period in order to correctly scale the damage so that the DPS of the hazard
 		// will always scale properly with the strength.
 		// This also fixes some precision lost by the fact that the period is an integer.
-		double sqrtStrength = sqrt(Strength());
 		double truePeriod = hazard->Period() / sqrtStrength;
-		double multiplier = Period() / truePeriod;
+		double multiplier = max(1, static_cast<int>(truePeriod)) / truePeriod;
 		return sqrtStrength * multiplier;
 	}
 	else
@@ -93,7 +94,6 @@ void Weather::Step(vector<Visual> &visuals)
 	// the system center, then creating the effect there.
 	double minRange = hazard->MinRange();
 	double maxRange = hazard->MaxRange();
-	double currentStrength = Strength();
 	for(const auto &effect : hazard->EnvironmentalEffects())
 		for(int i = 0; i < effect.second * currentStrength; ++i)
 		{
@@ -109,20 +109,25 @@ void Weather::Step(vector<Visual> &visuals)
 
 
 
-// Check if this object is marked for removal from the game.
-bool Weather::ShouldBeRemoved() const
-{
-	return shouldBeRemoved;
-}
-
-
-
-// The current strength of this weather, to be used to find out what the
-// current period and damage multipliers are.
-double Weather::Strength() const
+// Calculate this weather's strength for the current frame, to be used to find
+// out what the current period and damage multipliers are.
+void Weather::CalculateStrength() const
 {
 	// If this hazard deviates, modulate strength by the current lifetime.
 	// Strength follows a normal curve, peaking when the lifetime has
 	// reached half the totalLifetime.
-	return strength * (hazard->Deviates() ? exp(-pow(lifetimeRemaining - totalLifetime / 2., 2.) / deviation) : 1.);
+	if(hazard->Deviates())
+	{
+		double offset = lifetimeRemaining - totalLifetime / 2.
+		currentStrength = strength * exp(-offset * offset / deviation);
+		sqrtStrength = sqrt(currentStrength);
+	}
+}
+
+
+
+// Check if this object is marked for removal from the game.
+bool Weather::ShouldBeRemoved() const
+{
+	return shouldBeRemoved;
 }

@@ -36,15 +36,12 @@ public:
 	double DamageMultiplier() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
 	void Step(std::vector<Visual> &newVisuals);
+	// Calculate this weather's strength for the current frame, to be used to find
+	// out what the current period and damage multipliers are.
+	void CalculateStrength();
 	
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
-	
-	
-private:
-	// The current strength of this weather, to be used to find out what the
-	// current period and damage multipliers are.
-	double Strength() const;
 	
 	
 private:
@@ -52,6 +49,11 @@ private:
 	int totalLifetime = 0;
 	int lifetimeRemaining = 0;
 	double strength = 0.;
+	// The current strength and its square root are calculated at the beginning of
+	// each frame for weather that deviates to avoid needing to calculate it
+	// multiple times.
+	double currentStrength = 0.;
+	double sqrtStrength = 0.;
 	double deviation = 0.;
 	
 	// Record when this object is marked for removal from the game.
