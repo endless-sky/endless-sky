@@ -394,7 +394,7 @@ void Font::DrawCommon(const string &str, double x, double y, const Color &color,
 }
 
 
-#include <iostream>
+
 // Render the text.
 const Font::RenderedText &Font::Render(const string &str, const Layout &layout) const
 {
