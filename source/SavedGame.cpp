@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 #include "Format.h"
 #include "SpriteSet.h"
-#include "StartConditions.h"
 
 using namespace std;
 
@@ -142,8 +141,7 @@ const string &SavedGame::GetPlanet() const
 
 
 
-
-const StartConditions SavedGame::GetChosenStart() const
+const StartConditions &SavedGame::GetChosenStart() const
 {
 	return chosenStart;
 }

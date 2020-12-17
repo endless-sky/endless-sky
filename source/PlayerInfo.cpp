@@ -2649,11 +2649,11 @@ void PlayerInfo::Save(const string &path) const
 		if(it != groups.end() && it->second)
 			out.Write("groups", it->second);
 	}
-
-	chosenStart.Save(out);	
 	
-	// Save accounting information, cargo, and cargo cost bases.
+	
+	// Save accounting information, the start scenario used in this save, cargo, and cargo cost bases.
 	accounts.Save(out);
+	chosenStart.Save(out);
 	cargo.Save(out);
 	if(!costBasis.empty())
 	{

@@ -37,19 +37,22 @@ protected:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
-
+	
 	// Workaround around the absence of std::optional<>
 	StartConditions chosenStart;
 	bool hasChosenStart = false;
-
-	// Stored here  that we can remove it if the player chooses a scenario
-	LoadPanel *loadPanel; 
+	
+	// Stored here so that we can remove it if the player chooses a scenario
+	LoadPanel *loadPanel = nullptr; 
 	Point hoverPoint;
-
+	
 	double listScroll = 0;
 	double descriptionScroll = 0;
-
-	Rectangle descriptionBox, entryBox, entryListBox, entryInternalBox;
+	
+	Rectangle descriptionBox;
+	Rectangle entryBox;
+	Rectangle entryListBox;
+	Rectangle entryInternalBox;
 };
 
 #endif

@@ -22,7 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Planet;
-class Ship;
+class Sprite;
 class System;
 
 
@@ -49,7 +49,7 @@ public:
 	const ConditionSet &GetConditions() const;
 	const std::list<Ship> &Ships() const;
 	
-	bool operator==(StartConditions other) const;
+	bool operator==(const StartConditions &other) const;
 	
 private:
 	Date date;

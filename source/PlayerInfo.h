@@ -36,7 +36,6 @@ class Planet;
 class Rectangle;
 class Ship;
 class ShipEvent;
-class StartConditions;
 class StellarObject;
 class System;
 class UI;

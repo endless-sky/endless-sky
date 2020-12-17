@@ -42,11 +42,10 @@ public:
 	
 	const std::string &GetSystem() const;
 	const std::string &GetPlanet() const;
-	const StartConditions GetChosenStart() const;
+	const StartConditions &GetChosenStart() const;
 	
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
-	StartConditions ChosenStart() const;
 	
 	
 private:

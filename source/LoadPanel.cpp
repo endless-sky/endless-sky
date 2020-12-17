@@ -30,7 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"

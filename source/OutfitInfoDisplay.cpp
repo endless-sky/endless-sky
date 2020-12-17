@@ -175,7 +175,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		else
 		{
 			ostringstream out;
-			out << "sells for(" << (100 * sellValue) / cost << "%):";
+			out << "sells for (" << (100 * sellValue) / cost << "%):";
 			requirementLabels.push_back(out.str());
 		}
 		requirementValues.push_back(Format::Credits(sellValue));

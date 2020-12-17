@@ -33,7 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "System.h"
@@ -49,16 +48,20 @@ using namespace std;
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, LoadPanel *loadPanel)
 	: player(player), gamePanels(gamePanels), loadPanel(loadPanel)
 {
-	if(GameData::Start().size())
+	if(!GameData::Start().empty())
 	{
-		chosenStart = GameData::Start()[GameData::Start().size()-1];	
+		chosenStart = GameData::Start().back();
 		hasChosenStart = true;
 	}
+	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	
-	descriptionBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start description");
-	entryBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start entry");
-	entryListBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start entry list");
-	entryInternalBox = GameData::Interfaces().Get("start conditions menu")->GetBox("start entry internal");
+	if (startConditionsMenu)	
+	{
+		descriptionBox =   startConditionsMenu->GetBox("start description");
+		entryBox =         startConditionsMenu->GetBox("start entry");
+		entryListBox =     startConditionsMenu->GetBox("start entry list");
+		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
+	}
 
 }
 
@@ -67,9 +70,11 @@ void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
+
 	Information info;
 
-	string descriptionText; // String that will be shown in the description panel
+	// String that will be shown in the description panel
+	string descriptionText; 
 
 	if(hasChosenStart){
 		info.SetCondition("chosen start");
@@ -80,17 +85,13 @@ void StartConditionsPanel::Draw()
 		info.SetString("planet", chosenStart.GetPlanet()->Name());
 		info.SetString("system", chosenStart.GetSystem()->Name());
 		info.SetString("date", chosenStart.GetDate().ToString());
-		info.SetString("credits", to_string(chosenStart.GetAccounts().Credits()));
+		info.SetString("credits", Format::Credits(chosenStart.GetAccounts().Credits()));
 
 		descriptionText = chosenStart.GetDescription();
 	}
 	else if (!GameData::Start().size())
 	{
 		descriptionText = "No start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly";
-	}
-	else
-	{
-		descriptionText = "";		
 	}
 
 	GameData::Background().Draw(Point(), Point());
@@ -100,21 +101,13 @@ void StartConditionsPanel::Draw()
 	
 	const Font &font = FontSet::Get(14);
 
-	WrappedText *text = new WrappedText(font);
+	WrappedText text = WrappedText(font);
 
-	text->SetAlignment(WrappedText::LEFT);
-	text->SetWrapWidth(210);
-	text->Wrap(descriptionText);
+	text.SetAlignment(WrappedText::LEFT);
+	text.SetWrapWidth(210);
+	text.Wrap(descriptionText);
 
-	// Only allow draws inside the description box
-	glScissor(
-		descriptionBox.Left() + GameWindow::TrueWidth() / 2,
-		descriptionBox.Top() + GameWindow::TrueHeight() / 2,
-		descriptionBox.Width(),
-		descriptionBox.Height());
-
-	glEnable(GL_SCISSOR_TEST);
-	text->Draw(
+	text.Draw(
 		Point(
 			descriptionBox.Left(), 
 			descriptionBox.Top() + descriptionScroll
@@ -126,13 +119,6 @@ void StartConditionsPanel::Draw()
 		entryListBox.Top() + listScroll 
 	);
 
-	// Only draw inside the entry list box
-	glScissor(
-		0,
-		entryListBox.Top() + GameWindow::TrueHeight() / 2,
-		GameWindow::TrueWidth(),
-		entryListBox.Height()
-	);
 	for(const auto &it : GameData::Start())
 	{
 		Rectangle zone(
@@ -154,8 +140,6 @@ void StartConditionsPanel::Draw()
 		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., entryBox.Height());
 	}
-
-	glDisable(GL_SCISSOR_TEST);
 }
 
 
@@ -183,11 +167,11 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 
 
 
-
 bool StartConditionsPanel::Scroll(double dx, double dy)
 {
 	return Drag(0., dy * Preferences::ScrollSpeed());
 }
+
 
 
 bool StartConditionsPanel::Hover(int x, int y)
@@ -196,14 +180,11 @@ bool StartConditionsPanel::Hover(int x, int y)
 	return true;
 }
 
+
+
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'b')
-	{
-		GetUI()->Pop(this);
-		return true;
-	}
-	else if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 's' || key == 'n' || key == '\n')
 	{
@@ -249,10 +230,11 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 	return true;
 }
 
+
+
 // Called when the conversation ends
 void StartConditionsPanel::OnCallback(int)
 {
-
 	gamePanels.Reset();
 	gamePanels.CanSave(true);
 	gamePanels.Push(new MainPanel(player));
@@ -270,6 +252,4 @@ void StartConditionsPanel::OnCallback(int)
 
 	GetUI()->Pop(GetUI()->Root().get());
 	GetUI()->Pop(this);
-
-
 }

@@ -404,7 +404,7 @@ int64_t Account::YearlyRevenue() const
 }
 
 
-bool Account::operator==(Account other) const
+bool Account::operator==(const Account &other) const
 {
 	return (
 		Credits() == other.Credits() &&

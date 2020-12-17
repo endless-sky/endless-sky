@@ -87,6 +87,7 @@ public:
 	void Click(const Point &from, const Point &to, bool hasShift);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
+
 	
 private:
 	void EnterSystem();

@@ -143,12 +143,16 @@ const std::string StartConditions::GetDescription() const
 	return description;
 }
 
+
+
 const Sprite *StartConditions::GetSprite() const 
 {
 	return sprite;	
 }
 
-bool StartConditions::operator==(StartConditions other) const 
+
+
+bool StartConditions::operator==(const StartConditions &other) const 
 {
 	return (
 		GetPlanet() == other.GetPlanet() &&
