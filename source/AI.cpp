@@ -237,7 +237,7 @@ namespace {
 			double closest = numeric_limits<double>::infinity();
 			const Point &p = ship.Position();
 			for(const StellarObject &object : system->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+				if(object.HasSprite() && object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasFuelFor(ship))
 				{
 					double distance = p.Distance(object.Position());
 					if(distance < closest)
@@ -2312,7 +2312,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
 		if(atmosphereScan)
 			for(const StellarObject &object : system->Objects())
-				if(!object.IsStar() && !object.IsStation())
+				if(object.HasSprite() && !object.IsStar() && !object.IsStation())
 					targetPlanets.push_back(&object);
 		
 		// If this ship can jump away, consider traveling to a nearby system.
