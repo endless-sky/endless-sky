@@ -162,7 +162,16 @@ void Table::Draw(const string &text, const Color &color, const Font::Layout *spe
 		const double alignAdjust = layout.align == Font::Align::CENTER ? -.5 :
 			layout.align == Font::Align::RIGHT ? -1. : 0.;
 		if(it != columns.end())
-			pos += Point(it->offset + alignAdjust * layout.width, 0.);
+		{
+			if(layout.width >= 0)
+				pos += Point(it->offset + alignAdjust * layout.width, 0.);
+			else
+			{
+				// This column has a virtually infinite width.
+				const int width = font->Width(text, layout);
+				pos += Point(it->offset + alignAdjust * width, 0.);
+			}
+		}
 		font->Draw(text, pos, color, layout);
 	}
 	
