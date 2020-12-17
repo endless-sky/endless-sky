@@ -124,6 +124,5 @@ double Weather::Strength() const
 	// If this hazard deviates, modulate strength by the current lifetime.
 	// Strength follows a normal curve, peaking when the lifetime has
 	// reached half the totalLifetime.
-	return strength * (hazard->Deviates() ? 
-		exp(-pow(lifetimeRemaining - totalLifetime / 2., 2.) / deviation) : 1.);
+	return strength * (hazard->Deviates() ? exp(-pow(lifetimeRemaining - totalLifetime / 2., 2.) / deviation) : 1.);
 }
