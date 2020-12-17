@@ -600,6 +600,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
+	it = actions.find(DEFER);
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+		return false;
+	
 	return true;
 }
 
