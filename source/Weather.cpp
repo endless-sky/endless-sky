@@ -82,7 +82,7 @@ double Weather::DamageMultiplier() const
 		return sqrtStrength * multiplier;
 	}
 	else
-		return strength;
+		return currentStrength;
 }
 
 
