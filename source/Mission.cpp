@@ -819,7 +819,25 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// when aborting a mission activated the FAIL trigger.
 	if(trigger == ABORT && it == actions.end())
 		it = actions.find(FAIL);
-	// Don't update any conditions if this action exists and can't be completed.
+	
+	// Fail and abort conditions get updated regardless of whether the action
+	// can be done, as a fail or abort action not being able to be done does
+	// not prevent a mission from being failed or aborted.
+	if(trigger == FAIL)
+	{
+		--player.Conditions()[name + ": active"];
+		++player.Conditions()[name + ": failed"];
+	}
+	else if(trigger == ABORT)
+	{
+		--player.Conditions()[name + ": active"];
+		++player.Conditions()[name + ": aborted"];
+		// Set the failed mission condition here as well for
+		// backwards compatibility.
+		++player.Conditions()[name + ": failed"];
+	}
+	
+	// Don't update any further conditions if this action exists and can't be completed.
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
@@ -835,19 +853,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": declined"];
-	}
-	else if(trigger == FAIL)
-	{
-		--player.Conditions()[name + ": active"];
-		++player.Conditions()[name + ": failed"];
-	}
-	else if(trigger == ABORT)
-	{
-		--player.Conditions()[name + ": active"];
-		++player.Conditions()[name + ": aborted"];
-		// Set the failed mission condition here as well for
-		// backwards compatibility.
-		++player.Conditions()[name + ": failed"];
 	}
 	else if(trigger == COMPLETE)
 	{
