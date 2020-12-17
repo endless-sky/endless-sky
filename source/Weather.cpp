@@ -118,7 +118,7 @@ void Weather::CalculateStrength()
 	// reached half the totalLifetime.
 	if(hazard->Deviates())
 	{
-		double offset = lifetimeRemaining - totalLifetime / 2.
+		double offset = lifetimeRemaining - totalLifetime / 2.;
 		currentStrength = strength * exp(-offset * offset / deviation);
 		sqrtStrength = sqrt(currentStrength);
 	}
