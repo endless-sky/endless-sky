@@ -1276,7 +1276,7 @@ mission "Pirate Troubles [1]: Haven"
 		"scar's legion information" ++
 		conversation
 			`You order a drink from a small rundown bar in the <origin> spaceport and try to make small talk with the bartender to get him open to giving information about Scar's Legion. He seems reluctant at first, but eventually warms up to you. A few other patrons of the bar join in on the conversation. Luckily no one seems mad about you asking about Scar's Legion. One of the patrons makes it clear that Scar's Legion has no friends on this world, "at least not anymore."`
-			`	You leave the bar after an hour or two. Once you return to your ship, you write down all the information you can remember. The gang use to operate exclusively out of the Far North until they crossed one of the larger gangs, causing them to flee the region a few years ago. One of the pirates guesses that they fled for the Core.`
+			`	You leave the bar after an hour or two. Once you return to your ship, you write down all the information you can remember. The gang used to operate exclusively out of the Far North until they crossed one of the larger gangs, causing them to flee the region a few years ago. One of the pirates guesses that they fled for the Core.`
 			`	Another person mentioned that the leader of the gang used to always talk about making their own base in an uninhabited system where no one would find it. "He always talked about hollowing out an asteroid to use as a hideout. My guess is he was just always high on the ringworld shavings his gang was dealing."`
 				decline
 
