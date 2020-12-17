@@ -28,7 +28,7 @@ Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining,
 	// weather to start and end at about 10% the maximum. Store the entire
 	// denominator of the exponent for the normal curve euqation here since
 	// this doesn't change with the elapsed time.
-	deivation = totalLifetime / 4.3;
+	deviation = totalLifetime / 4.3;
 	deviation = 2. * deviation * deviation;
 	currentStrength = strength;
 }
@@ -111,7 +111,7 @@ void Weather::Step(vector<Visual> &visuals)
 
 // Calculate this weather's strength for the current frame, to be used to find
 // out what the current period and damage multipliers are.
-void Weather::CalculateStrength() const
+void Weather::CalculateStrength()
 {
 	// If this hazard deviates, modulate strength by the current lifetime.
 	// Strength follows a normal curve, peaking when the lifetime has
