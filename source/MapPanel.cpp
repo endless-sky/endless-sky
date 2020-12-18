@@ -206,9 +206,9 @@ void MapPanel::DrawButtons(const string &condition)
 	Information info;
 	info.SetCondition(condition);
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(player.MapZoom() == static_cast<int>(mapInterface->GetValue("max zoom")))
+	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
 		info.SetCondition("max zoom");
-	if(player.MapZoom() == static_cast<int>(mapInterface->GetValue("min zoom")))
+	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info, this);
@@ -453,10 +453,11 @@ bool MapPanel::Scroll(double dx, double dy)
 	// The mouse should be pointing to the same map position before and after zooming.
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(dy < 0.)
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
