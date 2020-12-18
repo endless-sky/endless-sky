@@ -49,7 +49,7 @@ public:
 	
 	// VSync setting, either "on", "off", or "adaptive".
 	static void ToggleVSync();
-	static VSync VSyncState();
+	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
 };
 

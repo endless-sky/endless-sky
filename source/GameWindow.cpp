@@ -185,8 +185,10 @@ bool GameWindow::Init()
 	hasSwizzle = HasOpenGLExtension("_texture_swizzle");
 	supportsAdaptiveVSync = HasOpenGLExtension("_swap_control_tear");
 	
-	// Enable the user's preferred VSync state.
-	SetVSync(Preferences::VSyncState());
+	// Enable the user's preferred VSync state, otherwise update to an available
+	// value (e.g. if an external program is forcing a particular VSync state).
+	if(!SetVSync(Preferences::VSyncState()))
+		Preferences::ToggleVSync();
 	
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
