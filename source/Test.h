@@ -90,7 +90,7 @@ public:
 	
 	public:
 		// Pointer to the test we are running.
-		const Test* testToRun = nullptr;
+		const Test *testToRun = nullptr;
 	
 	
 	protected:

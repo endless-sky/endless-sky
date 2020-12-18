@@ -52,7 +52,7 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 			if(child.Token(1) == "savegame")
 				dataSetType = Type::SAVEGAME;
 			else
-				node.PrintTrace("Unknown category " + child.Token(1) + " found for test-data.");
+				node.PrintTrace("Unknown test data category:");
 		}
 }
 

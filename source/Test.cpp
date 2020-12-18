@@ -67,7 +67,7 @@ void Test::LoadSequence(const DataNode &node)
 	for(const DataNode &child: node)
 	{
 		const string &typeName = child.Token(0);
-		Test::TestStep::Type stepType;
+		auto stepType = TestStep::Type::INVALID;
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
 			[&typeName](const std::pair<Test::TestStep::Type, string> &e) {
 				return e.second == typeName;
@@ -165,7 +165,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	if(it != STEPTYPE_TO_TEXT.end())
 		stepTypeName = it->second;
 	
-	string testFailMessage = "Teststep " + to_string(context.stepToRun) + "(" + stepTypeName + ") failed";
+	string testFailMessage = "Test step " + to_string(context.stepToRun) + " (" + stepTypeName + ") failed";
 	Files::LogError(testFailMessage);
 
 	// Throwing a runtime_error is kinda rude, but works for this version of

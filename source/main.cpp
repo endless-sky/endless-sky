@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
 		
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
-			Files::LogError("Test " + testToRunName + " not found.");
+			Files::LogError("Test \"" + testToRunName + "\" not found.");
 			return 1;
 		}
 		
