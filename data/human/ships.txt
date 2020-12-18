@@ -993,7 +993,7 @@ ship "Nock"
 	gun 0 -29 "Energy Blaster"
 	gun -12 -25 "Energy Blaster"
 	explode "tiny explosion" 10
-	description "The Nock was released on market shortly after the Barb, although its development started almost a decade beforehand. It is easy to assume that the Nock was developed by the same team, since neither are particularly pretty, and appear pretty cramped by design. Despite the fact that it still requires to be remotely controlled by its carrier, the on-board AI has been developed to the point where it can sustain a shield matrix. This lets its carriers recharge it enough to be deployed again, making it reusable in prolonged battles."
+	description "The Nock was released shortly after the Barb, although its development began almost a decade earlier. Despite visual similarities, the Nock is a drone fighter with no pilot. Its on-board AI has been developed to the point where it can sustain a shield matrix, enabling it to dock, recharge from its mothership, and re-deploy multiple times in prolonged battles."
 
 
 
