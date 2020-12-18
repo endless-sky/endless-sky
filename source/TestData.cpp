@@ -58,6 +58,21 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 
 
 
+// Inject the test-data to the proper location.
+bool TestData::Inject() const
+{
+	// Determine data-type and call the relevant function.
+	switch(dataSetType)
+	{
+		case Type::SAVEGAME:
+			return InjectSavegame();
+		default:
+			return false;
+	}
+}
+
+
+
 // Write out testdata as savegame into the saves directory.
 bool TestData::InjectSavegame() const
 {
@@ -97,19 +112,4 @@ bool TestData::InjectSavegame() const
 	
 	// Data-section was no longer found.
 	return false;
-}
-
-
-
-// Inject the test-data to the proper location.
-bool TestData::Inject() const
-{
-	// Determine data-type and call the relevant function.
-	switch(dataSetType)
-	{
-		case Type::SAVEGAME:
-			return InjectSavegame();
-		default:
-			return false;
-	}
 }

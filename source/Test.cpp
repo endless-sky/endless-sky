@@ -160,10 +160,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	const TestStep &stepToRun = steps[context.stepToRun];
 	
 	// Exit with error on a failing testStep.
-	string stepTypeName = "unknown teststep type";
-	auto it = STEPTYPE_TO_TEXT.find(stepToRun.stepType);
-	if(it != STEPTYPE_TO_TEXT.end())
-		stepTypeName = it->second;
+	const string &stepTypeName = STEPTYPE_TO_TEXT.at(stepToRun.stepType);
 	
 	string testFailMessage = "Test step " + to_string(context.stepToRun) + " (" + stepTypeName + ") failed";
 	Files::LogError(testFailMessage);
