@@ -38,6 +38,7 @@ using namespace std;
 namespace{
 	const map<Test::Status, const string> STATUS_TO_TEXT = {
 		{Test::Status::ACTIVE, "active"},
+		{Test::Status::BROKEN, "broken"},
 		{Test::Status::KNOWN_FAILURE, "known failure"},
 		{Test::Status::MISSING_FEATURE, "missing feature"}
 	};
@@ -73,10 +74,19 @@ void Test::LoadSequence(const DataNode &node)
 				return e.second == typeName;
 			});
 		if(it != STEPTYPE_TO_TEXT.end())
+		{
 			stepType = it->first;
+			steps.emplace_back(stepType);
+		}
 		else
+		{
 			child.PrintTrace("Unknown teststep type " + child.Token(0));
-		steps.emplace_back(stepType);
+			// Set test-status to broken and break the sequence loading
+			// loop since there is no point in loading more steps of a
+			// broken test.
+			status = Status::BROKEN;
+			break;
+		}
 	}
 }
 
@@ -115,9 +125,20 @@ void Test::Load(const DataNode &node)
 					return e.second == statusText;
 				});
 			if(it != STATUS_TO_TEXT.end())
-				status = it->first;
+			{
+				// If the test already has a broken status (due to anything
+				// else in loading having failed badly), then don't update
+				// the status from broken.
+				if(status != Status::BROKEN)
+					status = it->first;
+				else
+					child.PrintTrace("Setting test-status on broken test.");					
+			}
 			else
+			{
 				child.PrintTrace("Unknown test-status " + statusText);
+				status = Status::BROKEN;
+			}
 		}
 		else if(child.Token(0) == "sequence")
 			// Test-steps are not in the basic framework.
@@ -149,6 +170,9 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	// Wait with testing until the game is fully loaded.
 	if(!GameData::IsLoaded())
 		return;
+		
+	if(status == Status::BROKEN)
+		Fail("Test has a broken status.");
 	
 	if(context.stepToRun >= steps.size())
 	{
@@ -162,13 +186,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	// Exit with error on a failing testStep.
 	const string &stepTypeName = STEPTYPE_TO_TEXT.at(stepToRun.stepType);
 	
-	string testFailMessage = "Test step " + to_string(context.stepToRun) + " (" + stepTypeName + ") failed";
-	Files::LogError(testFailMessage);
-
-	// Throwing a runtime_error is kinda rude, but works for this version of
-	// the tester. Might want to add a menuPanels.QuitError() function in
-	// a later version (which can set a non-zero exitcode and exit properly).
-	throw runtime_error(testFailMessage);
+	Fail("Test step " + to_string(context.stepToRun) + " (" + stepTypeName + ") failed");
 }
 
 
@@ -179,5 +197,19 @@ string Test::StatusText() const
 	if(it != STATUS_TO_TEXT.end())
 		return it->second;
 	else
-		return "active";
+		return STATUS_TO_TEXT.at(Status::BROKEN);
 }
+
+
+
+// Fail the test using the given message as reason.
+void Test::Fail(const string &testFailMessage) const
+{
+	Files::LogError(testFailMessage);
+
+	// Throwing a runtime_error is kinda rude, but works for this version of
+	// the tester. Might want to add a menuPanels.QuitError() function in
+	// a later version (which can set a non-zero exitcode and exit properly).
+	throw runtime_error(testFailMessage);	
+}
+

@@ -32,7 +32,7 @@ class System;
 class Test {
 public:
 	// Status indicators for the test that we selected (if any).
-	enum class Status {ACTIVE, KNOWN_FAILURE, MISSING_FEATURE};
+	enum class Status {ACTIVE, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
 
 
 public:
@@ -114,6 +114,9 @@ public:
 	
 private:
 	void LoadSequence(const DataNode &node);
+	
+	// Fail the test using the given message as reason.
+	void Fail(const std::string &testFailMessage) const;
 
 
 private:
