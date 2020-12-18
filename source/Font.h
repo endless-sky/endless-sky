@@ -40,9 +40,9 @@ public:
 		// The language for laying out.
 		std::string language = "en";
 		// The line height is lineHeightScale times larger than the font height.
-		double lineHeightScale = 1.12;
+		double lineHeightScale = 1.20;
 		// The paragraph break is paragraphBreakScale times larger than the font height.
-		double paragraphBreakScale = 0.36;
+		double paragraphBreakScale = 0.40;
 	};
 	
 	// Layout parameters.
