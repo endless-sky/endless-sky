@@ -33,16 +33,7 @@ class ImageBuffer;
 // The encoding of the text is utf8.
 class Font {
 public:
-	Font();
-	~Font();
-	Font(const Font &a) = delete;
-	Font &operator=(const Font &a) = delete;
-	
-	// Set the font size by pixel size of the text coordinate.
-	// It's a rough estimate of the actual font size.
-	void SetPixelSize(int size);
-	
-	// Font and laying out settings except the pixel size when drawing.
+	// Font and laying out settings except the pixel size.
 	struct DrawingSettings {
 		// A font description is a comma separated list of font families.
 		std::string description;
@@ -53,7 +44,6 @@ public:
 		// The paragraph break is paragraphBreakScale times larger than the font height.
 		double paragraphBreakScale;
 	};
-	void SetDrawingSettings(const DrawingSettings &drawingSettings);
 	
 	// Layout parameters.
 	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
@@ -78,6 +68,19 @@ public:
 		Layout(int w, Truncate t, Align a) noexcept;
 		bool operator==(const Layout &a) const noexcept;
 	};
+	
+public:
+	Font();
+	~Font();
+	Font(const Font &a) = delete;
+	Font &operator=(const Font &a) = delete;
+	
+	// Set the font size by pixel size of the text coordinate.
+	// It's a rough estimate of the actual font size.
+	void SetPixelSize(int size);
+	
+	// Set the font and laying out settings except the pixel size.
+	void SetDrawingSettings(const DrawingSettings &drawingSettings);
 	
 	void Draw(const std::string &str, const Point &point, const Color &color,
 		const Layout &layout = defaultLayout) const;
