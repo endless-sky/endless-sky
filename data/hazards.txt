@@ -11,14 +11,15 @@
 hazard "EW Base Heat"
 	"duration" 1 200
 	"strength" 0.25 2
-	"range" 0 100000
+	"range" 0 25000
+	"environmental effect" "heat hazard" 300
 	weapon
 		"heat damage" 40
 
 
 
 effect "heat hazard"
-	sprite "effect/jump drive red"
+	sprite "effect/ew heat/ew heat"
 		"frame rate" 8
 		"random start frame"
 		"rewind"
@@ -30,8 +31,8 @@ effect "heat hazard"
 hazard "EW Base Storm"
 	"duration" 300 1500
 	"strength" 0.5 3
-	"range" 0 100000
-	"environmental effect" "ion hazard" 100
+	"range" 0 25000
+	"environmental effect" "ion hazard" 300
 	weapon
 		"ion damage" 1
 		"shield damage" 5
