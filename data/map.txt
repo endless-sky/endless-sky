@@ -4540,7 +4540,7 @@ system Arculus
 	habitable 625
 	belt 1536
 	hazard "EW Base Heat" 100
-	hazard "EW Base Storm" 4000
+	hazard "EW Base Storm" 25000
 	haze _menu/haze-red
 	link Edusa
 	link Cinxia
@@ -6943,7 +6943,7 @@ system Cinxia
 	habitable 425.92
 	belt 1713
 	hazard "EW Base Heat" 100
-	hazard "EW Base Storm" 4000
+	hazard "EW Base Storm" 25000
 	haze _menu/haze-red
 	link Arculus
 	link Perfica
@@ -17600,7 +17600,7 @@ system Nenia
 	habitable 2340
 	belt 1343
 	hazard "EW Base Heat" 100
-	hazard "EW Base Storm" 4000
+	hazard "EW Base Storm" 25000
 	haze _menu/haze-red
 	link Ossipago
 	link Cardea
@@ -18307,7 +18307,7 @@ system Pantica
 	habitable 486.68
 	belt 1203
 	hazard "EW Base Heat" 100
-	hazard "EW Base Storm" 4000
+	hazard "EW Base Storm" 25000
 	haze _menu/haze-red
 	link Arculus
 	link Cinxia

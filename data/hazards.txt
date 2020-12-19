@@ -17,14 +17,35 @@ hazard "EW Base Heat"
 
 
 
+effect "heat hazard"
+	sprite "effect/jump drive red"
+		"frame rate" 8
+		"random start frame"
+		"rewind"
+	"lifetime" 60
+	"velocity scale" 3
+
+
+
 hazard "EW Base Storm"
-	"duration" 30 150
+	"duration" 300 1500
 	"strength" 0.5 3
 	"range" 0 100000
+	"environmental effect" "ion hazard" 100
 	weapon
-		"slowing damage" 10
-		"ion damage" 5
-		"shield damage" 10
+		"ion damage" 1
+		"shield damage" 5
+
+
+
+effect "ion hazard"
+	sprite "effect/spark"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
 
 
 
