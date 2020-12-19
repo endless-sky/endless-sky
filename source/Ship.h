@@ -35,6 +35,7 @@ class DataWriter;
 class Effect;
 class Flotsam;
 class Government;
+class Hazard;
 class Minable;
 class Phrase;
 class Planet;
@@ -282,9 +283,11 @@ public:
 	int JumpsRemaining(bool followParent = true) const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
+	// Get the distance that this ship can jump.
+	double JumpRange(bool getCached = true) const;
 	// Get the cost of making a jump of the given type (if possible).
 	double HyperdriveFuel() const;
-	double JumpDriveFuel() const;
+	double JumpDriveFuel(double jumpDistance = 0.) const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
@@ -317,6 +320,9 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
+	// This ship just got hit by the given hazard. Take damage according to what
+	// sort of weapon the hazard has, and create any hit effects as sparks.
+	void TakeHazardDamage(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);
@@ -410,13 +416,15 @@ private:
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
-	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
+	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel, double jumpDistance = 0.) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	// A helper method for taking damage from either a projectile or a hazard.
+	int TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast);
 	
 	
 private:
@@ -505,6 +513,9 @@ private:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	// Delays for shield generation and hull repair.
+	int shieldDelay = 0;
+	int hullDelay = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 	
@@ -523,6 +534,8 @@ private:
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
+	
+	double jumpRange = 0.;
 	
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
 	// when the ship is dying.

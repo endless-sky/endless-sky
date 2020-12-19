@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
+#include "Hazard.h"
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
@@ -57,6 +58,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -72,6 +74,7 @@ namespace {
 	Set<Fleet> fleets;
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
+	Set<Hazard> hazards;
 	Set<Interface> interfaces;
 	Set<Minable> minables;
 	Set<Mission> missions;
@@ -81,6 +84,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	set<double> neighborDistances;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -182,8 +186,11 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
-	// Now that all the stars are loaded, update the neighbor lists.
-	UpdateNeighbors();
+	// Now that all data is loaded, update the neighbor lists and other
+	// system information. Make sure that the default jump range is among the
+	// neighbor distances to be updated.
+	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
+	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading(true);
@@ -313,7 +320,18 @@ double GameData::Progress()
 {
 	auto progress = min(spriteQueue.Progress(), Audio::GetProgress());
 	if(progress == 1.)
-		initiallyLoaded = true;
+	{
+		if(!initiallyLoaded)
+		{
+			// Now that we have finished loading all the basic sprites, we can look for invalid file paths,
+			// e.g. due to capitalization errors or other typos. Landscapes are allowed to still be empty.
+			auto unloaded = SpriteSet::CheckReferences();
+			for(const auto &path : unloaded)
+				if(path.compare(0, 5, "land/") != 0)
+					Files::LogError("Warning: image \"" + path + "\" is referred to, but has no pixels.");
+			initiallyLoaded = true;
+		}
+	}
 	return progress;
 }
 
@@ -567,17 +585,24 @@ void GameData::Change(const DataNode &node)
 
 
 
-// Update the neighbor lists of all the systems. This must be done any time
-// that a change creates or moves a system.
-void GameData::UpdateNeighbors()
+// Update the neighbor lists and other information for all the systems.
+// This must be done any time that a change creates or moves a system.
+void GameData::UpdateSystems()
 {
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateNeighbors(systems);
+		it.second.UpdateSystem(systems, neighborDistances);
 	}
+}
+
+
+
+void GameData::AddJumpRange(double neighborDistance)
+{
+	neighborDistances.insert(neighborDistance);
 }
 
 
@@ -647,6 +672,13 @@ const Set<Galaxy> &GameData::Galaxies()
 const Set<Government> &GameData::Governments()
 {
 	return governments;
+}
+
+
+
+const Set<Hazard> &GameData::Hazards()
+{
+	return hazards;
 }
 
 
@@ -949,6 +981,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)
 			governments.Get(node.Token(1))->Load(node);
+		else if(key == "hazard" && node.Size() >= 2)
+			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
 			interfaces.Get(node.Token(1))->Load(node);
 		else if(key == "minable" && node.Size() >= 2)
