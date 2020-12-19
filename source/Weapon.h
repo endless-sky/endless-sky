@@ -34,7 +34,7 @@ class Sprite;
 // string to double significantly reduces access time.
 class Weapon {
 public:
-	// Load from a "weapon" node, either in an outfit or in a ship (explosion).
+	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
 	

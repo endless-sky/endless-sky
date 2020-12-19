@@ -35,6 +35,7 @@ class DataWriter;
 class Effect;
 class Flotsam;
 class Government;
+class Hazard;
 class Minable;
 class Phrase;
 class Planet;
@@ -319,6 +320,9 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
+	// This ship just got hit by the given hazard. Take damage according to what
+	// sort of weapon the hazard has, and create any hit effects as sparks.
+	void TakeHazardDamage(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);
@@ -419,6 +423,8 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	// A helper method for taking damage from either a projectile or a hazard.
+	int TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast);
 	
 	
 private:
