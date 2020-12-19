@@ -46,6 +46,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isPhasing = true;
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
+		else if(key == "percent scaling")
+			isPercentScaled = true;
 		else if(key == "parallel")
 			isParallel = true;
 		else if(child.Size() < 2)

@@ -3642,6 +3642,11 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	
 	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
 	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
+	if(weapon.IsPercentScaled())
+	{
+		shieldDamage = shieldDamage / 100. * attributes.Get("shields");
+		hullDamage = hullDamage / 100. * attributes.Get("hull");
+	}
 	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
 	double fuelDamage = weapon.FuelDamage() * damageScaling / (1. + attributes.Get("fuel protection"));
 	double heatDamage = weapon.HeatDamage() * damageScaling / (1. + attributes.Get("heat protection"));
