@@ -2999,7 +2999,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 // sort of weapon the hazard has, and create any hit effects as sparks.
 void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, double strength)
 {
-	TakeDamage(*hazard, strength, position.Length(), Point(), hazard->BlastRadius() > 0.);
+	// Rather than exactly compute the distance between the hazard origin and
+	// the closest point on the ship, estimate it using the mask's Radius.
+	double distanceTraveled = position.Length() - GetMask().Radius();
+	TakeDamage(*hazard, strength, distanceTraveled, Point(), hazard->BlastRadius() > 0.);
 	for(const auto &effect : hazard->HitEffects())
 		CreateSparks(visuals, effect.first, effect.second * strength);
 }
