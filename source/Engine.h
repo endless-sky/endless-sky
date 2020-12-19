@@ -44,6 +44,7 @@ class Ship;
 class ShipEvent;
 class Sprite;
 class Visual;
+class Weather;
 
 
 
@@ -98,6 +99,7 @@ private:
 	
 	void SpawnFleets();
 	void SpawnPersons();
+	void GenerateWeather();
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
@@ -105,6 +107,7 @@ private:
 	void FillCollisionSets();
 	
 	void DoCollisions(Projectile &projectile);
+	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
 	
@@ -144,6 +147,7 @@ private:
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
+	std::vector<Weather> activeWeather;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
