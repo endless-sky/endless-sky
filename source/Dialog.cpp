@@ -81,25 +81,23 @@ namespace {
 	};
 }
 
-Font::Layout Dialog::defaultDialogLayout{0, Font::Align::JUSTIFIED};
-
 
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, const Font::Layout &layout)
+Dialog::Dialog(const string &text, const Font::Truncate &truncate)
 {
-	Init(text, layout, false);
+	Init(text, truncate, false);
 }
 
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const Font::Layout &layout)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const Font::Truncate &truncate)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
-	Init(text, layout, true, true);
+	Init(text, truncate, true, true);
 }
 
 
@@ -279,14 +277,13 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, const Font::Layout &layout, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, const Font::Truncate &truncate, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 	
-	textLayout = layout;
-	textLayout.width = WIDTH - 20;
+	textLayout = Font::Layout{WIDTH - 20, Font::Align::JUSTIFIED, truncate};
 	dialogText = message;
 	
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and

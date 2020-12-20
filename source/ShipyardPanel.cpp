@@ -350,7 +350,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	const string separator(lineBreaking ? "\nfor " : " for ");
 	const Font::Truncate truncation = lineBreaking ? Font::Truncate::MIDDLE : Font::Truncate::NONE;
 	message += separator + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, {0, Font::Align::JUSTIFIED, truncation}));
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, truncation));
 }
 
 
