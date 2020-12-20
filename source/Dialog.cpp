@@ -85,19 +85,19 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, const Font::Layout &layout)
+Dialog::Dialog(const string &text, const Font::Truncate &truncate)
 {
-	Init(text, layout, false);
+	Init(text, truncate, false);
 }
 
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const Font::Layout &layout)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const Font::Truncate &truncate)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
-	Init(text, layout, true, true);
+	Init(text, truncate, true, true);
 }
 
 
@@ -276,7 +276,7 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, const Font::Layout &layout, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, const Font::Truncate &truncate, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
@@ -285,7 +285,7 @@ void Dialog::Init(const string &message, const Font::Layout &layout, bool canCan
 	text.SetAlignment(WrappedText::JUSTIFIED);
 	text.SetWrapWidth(WIDTH - 20);
 	text.SetFont(FontSet::Get(14));
-	text.SetTruncate(layout.truncate);
+	text.SetTruncate(truncate);
 	
 	text.Wrap(message);
 	

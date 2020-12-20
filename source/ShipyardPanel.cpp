@@ -347,7 +347,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 	
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, {0, Font::Truncate::MIDDLE}));
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Font::Truncate::MIDDLE));
 }
 
 
