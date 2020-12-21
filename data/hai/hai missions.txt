@@ -1886,7 +1886,7 @@ mission "Strider 1"
 				defer
 			
 			label "know both"
-			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairs hulls, and the Remnant, who have ships that repair themselves. Would you like to tell the elders about one of these groups?`
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairing hulls, and the Remnant, who have ships that repair themselves. Would you like to tell the elders about one of these groups?`
 			choice
 				`	(Yes.)`
 					goto start
@@ -1894,7 +1894,7 @@ mission "Strider 1"
 					defer
 			
 			label "know coalition"
-			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairs hulls. Would you like to tell the elders about the Coalition?`
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairing hulls. Would you like to tell the elders about the Coalition?`
 			choice
 				`	(Yes.)`
 					goto start
@@ -1957,56 +1957,48 @@ mission "Strider 1"
 
 mission "Strider: Remnant 1"
 	name "Contact the Remnant"
-	description "Take a message from the Hai to <destination> to set up a meeting between the Remnant and the Hai."
+	description "Take a message from the Hai to <stopovers> to set up a meeting between the Remnant and the Hai, then return to <destination>."
 	source "Hai-home"
-	stopover
-		government "Remnant"
+	stopover "Viminal"
 	to offer
 		has "strider: remnant"
 	on offer
 		conversation
-			`You enter the spaceport and find a Hai delegation ready to travel to the Remnant to negotiate for the hull repair technology. The leader of the delegation introduces herself as Ambassador Yashili. "I wasn't sure how far we would be traveling, so I packed assuming we will be going a great distance across the galaxy."`
+			`You enter the spaceport and find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be travelling a great distance across the galaxy. May we have a safe journey."`
+			`	The delegation begins making their way to your ship, but you stop them.`
 			choice
 				`	"Wait a minute! This group doesn't react well to strangers. How about I set up a meeting first?"`
-				`	"This is a bad idea. Sorry, but I'm backing out."`
-					decline
-			`	The Hai look at each other and chatter quietly among themselves, then Ambassador Yashili speaks up. "You know this group, and how to make the best impression on them." She pauses to whisper to another Hai, who runs off. The ambassador turns back to you. "I will provide you with a letter with a brief introduction to us, an explanation of why we would like to meet them, and an invitation to establish diplomatic relations."`
-			`	Moments later, the second Hai runs back into the spaceport carrying a sealed envelope and hands it to the Ambassador. She turns to you. "Here it is. Please take this to these reclusive humans for us."`
+				`	"Not so fast. The Remnant value their secrecy, and I haven't spoken to them about this situation. Let me set up a meeting first."`
+			`	The Hai look at each other and chatter quietly among themselves, then Ambassador Yashili speaks up. "You know this group, and how to make the best impression on them." She pauses to whisper to another Hai, who runs off. The Ambassador turns back to you. "I will provide you with a letter that will include a brief introduction of the Hai, an explanation of why we would like to meet them, and an invitation to establish diplomatic relations."`
+			`	Moments later, the Hai who ran off returns carrying a sealed envelope and hands it to the Ambassador. She turns to you. "Here it is. Please take this to these reclusive humans for us. We will be waiting here for your return."`
+			`	"Will do," you respond after taking the envelope. The delegation says its goodbyes, wishing you safe travels, before leaving.`
 				accept
 	on stopover
 		conversation
-			`Looking around the spaceport, you are not sure who to talk to about such a request. Eventually, you go to the starport information desk to ask them. After a few minutes, they tell you that someone will meet with you and invite you to wait in the cafeteria.`
-			`	After an hour of watching Remnant eating and gesturing to each other, an androgynous Remnant approaches your table. You try to decide what age they are, but while they do not seem young, neither do they seem particularly old.`
-			branch signlanguage
-				has "Remnant: Learn Sign Follow Up: offered"
-			`	"Greetings, Captain <first>." The stranger chants. "My name is Rayn, and my colleague said you had a request from another faction. How can I help?"`
-				goto stridercontinue
-			label signlanguage
-			`	"Greetings, Captain <first>." The stranger signs. "My name is Rayn, and my colleague said you had a request from another faction. How can I help?"`
-			label stridercontinue
+			`Looking around the spaceport, you are not sure who to talk to about such a diplomatic request. Eventually, you go to the starport information desk to ask them. You hand the letter to the person at the desk, and after reading it, they invite you to wait in the cafeteria while they look for someone who can fulfill the request from the Hai.`
+			`	After an hour of watching Remnant eating and gesturing to each other, an androgynous Remnant approaches your table. You try to guess what age they are, but while they do not seem young, neither do they seem particularly old.`
+			`	"Greetings, Captain <first>," The stranger signs. "My name is Rayn, and my colleague said you had a request from another faction. It is to my understanding that they desire the means to repair the hull of a ship in flight. Is this correct?"`
 			choice
-				`	"The Hai are hoping to learn from someone."`
-				`	"The Hai need help defending their space."`
+				`	"Yes. The Hai are hoping to be able to improve a new carrier they are developing to repair its drones."`
+				`	"Yes. The Hai want to be able to repair the hulls of their ships to gain an edge against their enemies."`
 			`	"So the Hai want to improve their military technology? I presume this is in response to their long-standing war against the Unfettered?"`
 			choice
 				`	"Yes, although they don't think of it as such."`
 				`	"It isn't a war; it's a defensive action."`
 			`	Rayn looks amused. "It does not matter what they call it. A war by any name is just as bloody. But that aside, how do they know about us to make such a request?"`
 			choice
-				`	"They asked if I knew anyone who had in-flight repair technology, and I said I knew a group of human researchers."`
 				`	"They were looking for someone who had repair technology, and I said I could find someone."`
-			`	"So they do not actually know about us. That is good." Rayn looks thoughtful and closes his eyes for a moment, then continues. "Pick up the Hai diplomats, but do not tell them where you are going, and take them to these co-ordinates on Deadman's Cove in the Almach system. It is a location in an uninhabited area where we will be able to talk. We will be waiting with something that might be able to help them - if they can meet our price."`
-	on complete
-		conversation
-			`Shortly after landing on <planet>, you spot Ambassador Yashili's aide rushing across the tarmac to meet you. "Please tell me they agreed. They did, right?" You barely have the chance to nod before the aide continues on. "The Ambassador will be ready in just a moment. She will meet you in the starport shortly. Thank you!" And with that, the officious Hai scurries off back the way it came.`
+				`	"They asked if I knew anyone who had in-flight repair technology, and I said I knew a group of human researchers."`
+			`	"So they do not actually know about us. That is good." Rayn looks thoughtful and closes his eyes for a moment, then continues. "Pick up the Hai diplomats, but do not tell them where you are going, and take them to these coordinates on Covert in the Gienah system. It is a location in an uninhabited area where we will be able to talk. We will be waiting with something that might be able to help them - if they can meet our price."`
 
 
 
 mission "Strider: Remnant 2"
-	name "Contact the Remnant"
+	landing
+	name "Meet with the Remnant"
 	description "Transport Ambassador Yashili and her delegation to <destination> to attempt to obtain hull repair technology from the Remnant."
 	source "Hai-home"
-	destination "Deadman's Cove"
+	destination "Covert"
 	infiltrating
 	passengers 3
 	blocked "The Hai are sending a delegation to <destination> and will require 3 bunks for the trip."
@@ -2014,39 +2006,28 @@ mission "Strider: Remnant 2"
 		has "Strider: Remnant 1: done"
 	on offer
 		conversation
-			`You enter the spaceport and find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be travelling a great distance across the galaxy. May we have a safe journey."`
-			`	"Is there anything that we should know about these Remnant before meeting them?" another member of the delegation asks.`
+			`You message Ambassador Yashili and tell her that you have arranged a meeting with the Remnant. "This is good news. We will be meeting with you in the spaceport shortly."`
+			`	Some time later the delegation arrives at your ship. "Before we leave, is there anything we need to know about this group before we meet them?" Yashili asks.`
 			choice
 				`	"The Remnant are a group of humans, so there isn't anything special you should need to know."`
-					goto normal
-				`	"The Remnant communicate with each other using sign language, but they are still capable of communicating with us through speech."`
-			`	"That is quite interesting," Yashili says with nods of agreement from the other two members of the delegation. "I find it odd that a group capable of speech would prefer to communicate with one another using sign language. This may be a more exciting journey than I expected."`
-			label normal
-			`	The delegation gathers their things and boards your ship, and you plot a course for <destination>. Hopefully the Remnant will be willing to share with an alien species they just met.`
+					goto end
+				`	"The Remnant agreed to meet you on <planet>, a dangerous pirate world, so don't stray too far from the ship."`
+			`	"Oh," Yashili exclaims with a surprised look. "Are these Remnant also dangerous people?"`
+			`	"No, they're friendly people," you reassure her. "They just don't want to meet in their own territory."`
+			label end
+			`	The delegation thanks you for this information and boards your ship. You plot a course for <destination>. Hopefully the Remnant will be willing to share with an alien species they just met.`
 				accept
 	on visit
 		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet. Take off and wait for them.`
-	on complete
-		conversation
-			`At the designated co-ordinates, there is a small encampment set up that looks vaguely reminiscent of desert traders from old movies. You note there are even a few camels tied near a water trough. When you touch down next to it, the delegation steps out with a confused look. "Captain, I thought you were taking us to where these people live. Is this the right place?" Before you can answer, some Remnant approach. "Welcome to our encampment, representatives," chant the Remnant. "Captain <first> brought us your missive, and we asked them to bring you to meet us here. Would you care to come inside?" They gesture toward the largest of the tents. While obviously surprised, Ambassador Yashili acquiesces, and the Hai step inside. Three of the Remnant accompany them and gesture for you to follow. The remaining Remnant continue patrolling around the camp.`
-			`	The Remnant offer food and water to everyone before taking a seat on cushions on the ground. Looking around, Ambassador Yashili begins. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a new ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you have such technology, with ship hulls that repair themselves."`
-			`	"This is true that our ships self repair," one of the Remnant responds. "But this is not technology that we are able to share. This property is intrinsic to the metals that we build our ships with, metals which are in low supply." Yashili looks concerned with this development; perhaps this journey was a worthless one.`
-			choice
-				`	"So is there no way that you can help them?"`
-				`	"Alright, let's return to Hai-home."`
-			`	"Wait. We may still have something that can help," a different Remnant chants. "For many decades, we have been fighting and plundering from Korath raiders from the Core. Their ships contain outfits capable of hull repair through the use of small robots. We have been unable to reproduce these robots with ease, but we may be able to provide for you our research and a number of samples that you may use to reproduce this technology."`
-			`	"We too have encountered these Korath," Yashili says in response. "Although, we had not taken their technology. This may be of great use to us."`
-			`	"We would like to ask something in trade, however: a copy of your astronomical records. The history of the galaxy itself is a mystery to us, and we would like to learn more about it."`
-			`	Ambassador Yashili looks thoughtful, then nods. "Historical astronomical data is scientifically valuable, as is learning how to repair our ships in flight. This seems a fair trade." She nods to one of her aides who begins tapping out commands on a small computer. "We should be able to have the data for you shortly. My assistant will need to use Captain <first>'s FTL communication system, but it shouldn't be long."`
-			`	As the assistant scurries out, Ambassador Yashili and the Remnant settle into diplomatic small talk. The conversational dance between a group of professional diplomats and a secretive group that are currently playing the role of nomadic desert traders is an odd one.`
 
 
 
 mission "Strider: Remnant 3"
+	landing
 	name "Technology Obtained"
 	description "The delegation has successfully obtained hull repair technology from the Remnant. Return to <destination> so that the Hai can begin developing this technology for their new ship."
 	landing
-	source "Deadman's Cove"
+	source "Covert"
 	destination "Hai-home"
 	passengers 3
 	cargo "repair technology" 12
@@ -2054,10 +2035,30 @@ mission "Strider: Remnant 3"
 	to offer
 		has "Strider: Remnant 2: done"
 	on offer
+		log `Helped the Hai get in contact with the Remnant in order to learn how to create in-flight hull repair technology. The Hai obtained a copy of the Remnant's research on Korath systems cores, along with a number of samples.`
 		conversation
-			`An hour later, the ambassador's assistant returns with a large data drive and hands it to Ambassador Yashili. The Remnant pull out a data chip of their own, and the two groups formally exchange the data. In response to an unseen signal, another Remnant pulls back one side of the tent, and a team carries in a segment from a systems core with several of the small robots. "There is more of these waiting outside for you, but here is a sample for you to inspect. Using the instructions we have provided, you should have no problem making use of this technology." They poke at the console, and the robots promptly spring to life and assemble a small pile of parts into a model ship.`
-			`	"Thank you for doing business with us," says Ambassador Yashili. "You have a friend in the Hai." She bows, and then leads the delegation out of the tent to back to your ship. The Remnant return the bow with fluid grace, and quickly shoulder the Korath equipment. They load everything onto the <ship>, and you set out to return to <destination>.`
-			`	As you take off, a final glance at your exterior cameras shows the Remnant have already almost finished packing up their encampment onto camels. A few of them carry equipment that looks very much like portable scanners. As one tent comes down, it reveals a anti-aircraft artillery canon installed on a sled. Despite the rustic appearance they portrayed, the Remnant certainly took their security seriously. There is still no ship visible, but you suspect that a Starling or Gull is undoubtedly hiding nearby.`
+			`At the designated coordinates, there is a small encampment set up that looks vaguely reminiscent of a desert trader outpost. Aside from a few camels tied near a water trough, the place looks abandoned. When you touch down next to it, the delegation steps out cautiously. "Is this the right place?" one of the Hai asks somewhat worriedly.`
+			`	Before you can answer, a number of Remnant emerge from the tents, and you notice that Rayn is among them. "Welcome to our encampment, representatives," Rayn chants. "Captain <first> brought us your missive, and we asked them to bring you here. Would you care to come inside?" He gestures toward the largest of the tents. While obviously surprised, Ambassador Yashili acquiesces, and the Hai step inside. Rayn gestures for you to follow. The remaining Remnant begin patrolling around the camp.`
+			`	Rayn offers food and water to the Hai and then takes a seat on a cushion on the ground. The Hai politely refuse the food before joining Rayn on the cushions. Ambassador Yashili begins. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you have such technology, with ship hulls that repair themselves."`
+			`	"This is true that our ships self repair," Rayn responds. "But this is not technology that we are able to share. This property is intrinsic to the metals that we build our ships with, metals which are in low supply." Yashili looks concerned with this development; perhaps this journey was a worthless one.`
+			choice
+				`	"So is there no way that you can help them?"`
+				`	"There must be something we could do."`
+			`	"Do not fear, for we have something else. For many decades, we have been fighting and plundering from Korath raiders from the Core. Their ships contain outfits capable of hull repair through the use of small robots. We have been unable to reproduce these robots with ease, but we may be able to provide for you our research and a number of samples that you may use."`
+			`	"We too have encountered these Korath," Yashili says in response. "Although, we had not taken their technology. This may be of great use to us."`
+			`	"We would like to ask something in trade, however: a copy of your astronomical records. The history of the galaxy itself is a mystery to us, and we would like to learn more about it."`
+			`	Ambassador Yashili looks thoughtful, then nods. "Historical astronomical data is scientifically valuable, as is learning how to repair our ships in flight. This seems a fair trade. We should be able to have the data for you shortly. We only need use of Captain <first>'s ship to access the hyperspace communiation relays." Yashili nods to another member of the delegation, who then scurries off to your ship.`
+			`	"I imagine there will be a large amount of data to transfer," Rayn says. "Let us pass the time."`
+			`	Ambassador Yashili and Rayn settle into diplomatic small talk. The conversational dance between a group of professional diplomats and a secretive group that are currently playing the role of nomadic desert traders is an odd one.`
+			`	"While we wait, I am curious how you met these Remnant, Captain," Yashili says.`
+			choice
+				`	"I spend much of my time exploring the galaxy. Sometimes you stumble upon interesting things."`
+				`	"Well, the same way I'd imagine most people found you - by just wandering aimlessly."`
+			`	Yashili nods. "This is an understandable situation."`
+			``	
+			`	An hour of conversation later, the Ambassador's assistant returns with a large data drive and hands it to her. The Remnant pull out a data chip of their own, and the two groups formally exchange the data. In response to an unseen signal, another Remnant pulls back one side of the tent, and a team carries in a segment from a systems core with several of the small robots. "There are more of these waiting outside, but here is a sample for you to inspect. Using the instructions we have provided, you should have no problem making use of this technology." They poke at the console, and the robots promptly spring to life and assemble a small pile of parts into a model ship.`
+			`	"Thank you for doing business with us," says Ambassador Yashili. "You have a friend in the Hai." She bows and the Remnant return the bow with fluid grace before quickly shouldering the Korath equipment. They load everything onto the <ship> as the delegation boards, and you set out to return to <destination>.`
+			`	As you take off, a final glance at your exterior cameras shows the Remnant have already almost finished packing up their encampment onto the camels. As one tent comes down, it reveals a anti-aircraft artillery cannon installed on a sled. Despite the rustic appearance they portrayed, the Remnant certainly took their security seriously. There is still no ship visible, but you suspect that a Starling or Gull is undoubtedly hiding nearby.`
 				accept
 
 
@@ -2073,7 +2074,7 @@ mission "Strider: Coalition 1"
 		has "strider: coalition"
 	on offer
 		conversation
-			`You enter the spaceport and find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be traveling a great distance across the galaxy. May we have a safe journey."`
+			`You enter the spaceport and find the Hai delegation meant to travel to the Coalition to negotiate for the hull repair technology. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be traveling a great distance across the galaxy. May we have a safe journey."`
 			`	"Is there anything that we should know about this Coalition before meeting them?" another member of the delegation asks.`
 			choice
 				`	"The Coalition are a group of three species that live in harmony, just like the humans and Hai here. They should enjoy meeting new aliens."`
@@ -2085,38 +2086,11 @@ mission "Strider: Coalition 1"
 				accept
 	on visit
 		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet. Take off and wait for them.`
-	on complete
-		conversation
-			`You notify the Heliarch that you're bringing alien ambassadors to meet with them, and sure enough a delegation is waiting for you when you land. They briefly salute you, but appear to be much more interested in the strange new beings you've brought to their center of government.`
-			`	The Hai delegation is momentarily confused by the unusual speech pattern the Coalition species have, but snap out of it shortly.`
-			`	The Heliarch then start explaining their story to the Hai, the same they told you when you first met them. While both delegations are engaged in conversation, a Heliarch agent approaches you, asking, "To this precious encounter, with what purpose have you brought these people, Captain?"`
-			choice
-				`	"They're in need of your help."`
-				`	"They come seeking technology."`
-			`	You start telling them about the Hai and their conflict with the Unfettered, but as you're explaining you hear a loud collective gasp coming from the Heliarchs that are conversing with the Hai, so you approach them once more to make sure everything is alright.`
-			`	A member of the Heliarch delegation speaks with you. "Captain <last>, kindly telling us about their territory and society, your friend Yashili has. Truthful, is it, that close to the Hai planets, a ringworld the Quarg have constructed?"`
-			`	The others seem to be in an excited conversation of their own, after turning off their translation devices. Yashili and the other Hai also turn to you, looking somewhat confused, waiting for you to respond for them.`
-			choice
-				`	"The Quarg are indeed there, but they stay out of Hai business, and the Hai stay out of theirs."`
-					goto nottheirbusiness
-				`	"Yes, the Quarg have a single system there with a complete ringworld, where many Hai and even some humans also live."`
-			`	The Heliarchs speak among themselves at a rapid pace, and before you know it several dozen other agents are around. One of them, an older Saryd with a golden circlet, says, "Tell us more about this ringworld, you must, Hai friends. Accompany us, would you?"`
-			`	Without waiting for the Hai delegation to answer, they practically drag them to a restricted section of the ringworld. About an hour later, the Hai are brought back, most with tired expressions.`
-			`	"Had I known we would be interrogated on the engineering aspects and the inner workings of a ringworld, I would have had an engineer come with us here," Yashili whispers to you.`
-			
-			label nottheirbusiness
-			`	The Heliarchs once again warn the Hai to be careful with the Quarg before finally letting the Hai explain the reason for their trip here.`
-			`	The delegation still looks a bit overwhelmed, as if still processing all the history the Heliarch just told them, but Yashili has kept her composure and begins speaking. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a new ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you possess such technology."`
-			`	"Developed such technology, indeed we have," an Arach agent responds. "Composed of several dozens of small repair bots, and their center of command, such outfits are."`
-			choice
-				`	"So are you willing to give or sell one of those outfits to the Hai?"`
-				`	"Would you share the way of mass producing those outfits with the Hai?"`
-			`	"Much involved in projecting our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
-			`	The Heliarch ask that the Hai prepare to describe their ships to the members of the great Arach House, who will then prepare a copy of the blueprints for the repair modules. You and the Hai delegation decide to meet up again in the spaceport in a few hours.`
 
 
 
 mission "Strider: Coalition 2"
+	landing
 	name "Technology Obtained"
 	description "The delegation has successfully obtained hull repair technology from the Coalition. Return to <destination> so that the Hai can begin developing this technology for their new ship."
 	source "Ring of Friendship"
@@ -2127,17 +2101,41 @@ mission "Strider: Coalition 2"
 	to offer
 		has "Strider: Coalition 1: done"
 	on offer
+		log `Helped the Hai get in contact with the Coalition in order to learn how to create in-flight hull repair technology. The Hai obtained a schematic of the Coalition's repair modules, along with a number of samples.`
 		conversation
-			`The Hai are waiting for you, and confirm the Heliarchs handed them a data chip containing schematics for the hull repair modules and their hull-walking robots. Some workers load a crate with two small hull repair modules onto your ship for the Hai. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`
+			`Before landing, you notify the Heliarch that you're bringing alien ambassadors to meet with them, and sure enough a Heliarch delegation is waiting for you when you land. They briefly salute you, but appear to be much more interested in the strange new beings you've brought to their center of government.`
+			`	The Hai delegation is momentarily confused by the unusual speech pattern the Coalition species have, but snap out of it shortly. The Heliarch then start explaining their story to the Hai, the same they told you when you first met them, including their warning about the Quarg. While both delegations are engaged in conversation, a Heliarch agent approaches you, asking, "To this precious encounter, with what purpose have you brought these people, Captain?"`
+			choice
+				`	"They're in need of your help."`
+				`	"They come seeking technology."`
+			`	You start talking to them about the Hai and their conflict with the Unfettered, but as you're explaining you hear a loud collective gasp coming from the Heliarchs that are conversing with the Hai. A member of the Heliarch delegation approaches you. "Captain <last>, kindly telling us about their territory and society, your friend Yashili has. Truthful, is it, that close to the Hai planets, a ringworld the Quarg have constructed?"`
+			`	The others seem to be in an excited conversation of their own, after changing their translation devices to no longer speak human. Yashili and the other Hai also turn to you, looking somewhat confused, waiting for you to respond for them.`
+			choice
+				`	"The Quarg are indeed there, but they stay out of Hai business, and the Hai stay out of theirs."`
+					goto business
+				`	"Yes, the Quarg have a single system there with a complete ringworld, where many Hai and even some humans also live."`
+			`	The Heliarchs speak among themselves at a rapid pace, and before you know it several dozen other agents are around. One of them, an older Saryd with a golden circlet, says, "Tell us more about this ringworld, you must, Hai friends. Accompany us, would you?"`
+			`	Without waiting for the Hai delegation to answer, they practically drag them to a restricted section of the ringworld without you. About an hour later, the Hai are brought back, most with tired expressions.`
+			`	"Had I known we would be interrogated on the engineering aspects and the inner workings of a ringworld, I would have had an engineer come with us," Yashili whispers to you.`
+			
+			label business
+			`	The Heliarchs once again warn the Hai to be careful with the Quarg before finally letting the Hai explain the reason for their trip here.`
+			`	The delegation still looks a bit overwhelmed, as if still processing all the history the Heliarch just told them, but Yashili has kept her composure and begins speaking. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you possess such technology."`
+			`	"Developed such technology, indeed we have," an Arach agent responds. "Composed of several dozens of small repair bots, and their center of command, such outfits are."`
+			choice
+				`	"So are you willing to give or sell one of those outfits to the Hai?"`
+				`	"Would you share the way of mass producing those outfits with the Hai?"`
+			`	"Much involved in projecting our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
+			`	A short time later, a group of Arachi representing House Chamgar arrive. They have the Hai describe their ships, using this information to optimize the repair module for Hai ships. They then prepare a copy of the blueprints, handing a data chip containing the schematics for the hull repair modules and their hull-walking robots to the Hai. Some workers then load a crate with two small modules onto your ship for the Hai to use as examples. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`
 				accept
 
 
 
 event "pond strider mass production"
+	shipyard "Hai Basics"
+		"Flea"
 	shipyard "Hai Advanced"
 		"Pond Strider"
-		"Flea"
-	shipyard "Hai Basics"
 		"Flea"
 	outfitter "Hai Basic"
 		"Railgun Slug"
@@ -2155,107 +2153,31 @@ event "pond strider mass production"
 		`"Baellie" Atomic Engines`
 	fleet "Large Hai"
 		add variant 1
-			"Pond Strider" 4
-			"Flea" 32
 			"Geocoris"
+			"Pond Strider (Tracker)"
+			"Pond Strider (Railgun)"
+			"Flea" 16
 		add variant 1
-			"Centipede (Pulse)" 3
+			"Shield Beetle (Tracker)"
+			"Pond Strider (Tracker)"
+			"Flea" 8
+			"Lightning Bug" 2
+		add variant 1
+			"Pond Strider"
+			"Flea (Pulse)" 8
+			"Lightning Bug" 2
+			"Water Bug" 2
+		add variant 2
+			"Pond Strider (Ion)" 2
+			"Flea" 16
+		add variant 2
+			"Pond Strider"
+			"Flea" 8
 			"Centipede" 2
-			"Pond Strider" 3
-			"Flea" 24
-		add variant 1
-			"Pond Strider (Railgun)" 3
-			"Flea (Pulse)" 24
-			"Aphid" 10
-		add variant 2
-			"Pond Strider (Pulse)" 3
-			"Flea" 24
-			"Lightning Bug (Pulse)" 2
-		add variant 2
-			"Pond Strider (Ion)" 3
-			"Flea" 24
-			"Lightning Bug" 2
-		add variant 1
-			"Pond Strider (Ion)" 3
-			"Flea" 24
-			"Lightning Bug (Pulse)"
-			"Aphid" 4
-		add variant 1
-			"Pond Strider (Railgun)" 3
-			"Flea" 24
-			"Lightning Bug"
-			"Aphid (Anti-Missile)" 4
-		add variant 2
-			"Pond Strider" 3
-			"Flea (Pulse)" 24
-			"Lightning Bug (Pulse)"
-			"Water Bug"
-			"Water Bug (Pulse)"
 		add variant 3
-			"Pond Strider" 3
-			"Flea (Pulse)" 12
-			"Flea" 12
-			"Water Bug"
-			"Water Bug (Pulse)"
-		add variant 2
-			"Pond Strider" 3
-			"Flea" 24
-			"Lightning Bug" 2
-			"Water Bug"
-		add variant 3
-			"Pond Strider" 3
-			"Flea" 24
-			"Lightning Bug (Pulse)" 2
-		add variant 2
-			"Pond Strider (Pulse)" 3
-			"Flea" 24
-			"Shield Beetle"
-		add variant 2
 			"Shield Beetle (Pulse)"
-			"Pond Strider (Railgun)" 3
-			"Flea" 24
-		add variant 1
-			"Pond Strider (Ion)" 3
-			"Flea" 24
-			"Shield Beetle"
-			"Lightning Bug (Pulse)" 2
-		add variant 1
-			"Shield Beetle (Pulse)"
-			"Pond Strider (Tracker)" 3
-			"Flea" 24
-			"Lightning Bug" 2
-		add variant 1
-			"Pond Strider (Tracker)" 3
-			"Flea" 24
-			"Centipede" 3
-		add variant 2
-			"Centipede"
-			"Shield Beetle (Pulse)" 2
-			"Pond Strider (Railgun)" 3
-			"Flea" 24
-		add variant 1
-			"Geocoris"
-			"Shield Beetle (Pulse)"
-			"Pond Strider (Tracker)" 3
-			"Flea" 24
-		add variant 1
-			"Geocoris"
-			"Pond Strider (Pulse)" 3
-			"Flea" 24
-			"Grasshopper"
-			"Grasshopper (Tracker)"
-		add variant 1
-			"Geocoris"
-			"Pond Strider (Pulse)" 3
-			"Flea" 24
-			"Grasshopper"
-			"Grasshopper (Tracker)"
-		add variant 1
-			"Geocoris (Tracker)"
-			"Aphid (Anti-Missile)" 2
-			"Aphid"
-			"Pond Strider" 3
-			"Flea" 24
+			"Pond Strider (Pulse)"
+			"Flea (Pulse)" 8
 
 mission "Strider 3"
 	landing
@@ -2265,9 +2187,43 @@ mission "Strider 3"
 			has "Strider: Coalition 2: done"
 			has "Strider: Remnant 3: done"
 	on offer
-		event "pond strider mass production" 30
+		event "pond strider mass production" 30 90
 		conversation
-			``
+			`Yashili contacts the elders as you land, informing them that you have obtained the hull repair technology. They agree to meet you in the spaceport along with Torsa. A group of spaceport workers begin unloading the samples from your cargo bay after you land.`
+			`	As you depart your ship, you spot the Hai elders and Torsa approaching. Ambassador Yashili and the Hai delegation step forward to meet them.`
+			branch coalition
+				has "Strider: Coalition 2: done"
+			
+			`	"I hope the Remnant treated you well," one of the elders says.`
+			`	"They were an interesting group. Very reclusive, and not willing to share much of their people, but they were more than willing to help after we provided them with a copy of our historical astronomical data."`
+				goto next
+			
+			label coalition
+			`	"I hope the Coalition treated you well," one of the elders says.`
+			`	"They were an interesting group. Very enthusiatic about meeting new people, although very touchy on the subject of the Quarg."`
+			
+			label next
+			`	Yashili then hands the copy of the data to Torsa. "You'll be needing this," she says.`
+			`	"And I'll certainly love it," Torsa responds. "The spaceport workers have already sent the cargo en route to my shipyard. I'll begin working on implementing it into the Pond Strider immediately."`
+			choice
+				`	"Pond Strider?"`
+				`	"I hope you have fun with that."`
+					goto fun
+			
+			`	"Yes. That is the name that we settled on for the ship, and its drones will be named the Flea."`
+			`	"I'm getting itchy just thinking about it," one of the elders jokes.`
+				goto end
+			
+			label fun
+			`	"It's hard not to have fun when you love doing your job."`
+			
+			label end
+			`	Torsa is about to run off, but one of the elders stops him. "Can you give us any estimate on how long it will take to make use of this data?"`
+			`	"Oh, yes," Torsa says. "It may take us a few months to get everything working. A single month at the least if we are lucky."`
+			`	"This is good to know. The sooner we have these ships function, the better."`
+			`	Torsa once again gets ready to run off, but this time stops himself and turns to you. "Thank you Captain. Without this information, it could have taken me years to finish this project." You nod in response, and Torsa finally runs off to his shipyard.`
+			`	"I would like to thank you as well," Yashili says. "It has been some time since I have had the chance to leave our space. It is always exciting to go to new places and meet new people." Yashili bows to you, and you return a bow of your own.`
+			`	"And we also need to express our gratitude," one of the elders says. "It is good to have you as a friend of the Hai. We shall keep you no longer, though. May you stay safe on your adventures."`
 				decline
 
 
@@ -2280,8 +2236,7 @@ mission "Strider notification"
 	to offer
 		has "event: pond strider mass production"
 	on offer
-		log `For assisting the Hai establish an alien embassy, they've made newly developed warships and outfits available.`
 		conversation
 			scene `thumbnail/hai pond strider`
-			`The Hai thank you for your assistance with interspecies diplomacy. They have begun production of some new military ships and outfits that they've granted you access to in their shipyards and outfitters.`
+			`Upon landing on <planet>, you receive a message from Torsa. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design, and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoiler the surprise for you, though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
 				decline
