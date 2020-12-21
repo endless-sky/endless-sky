@@ -54,6 +54,7 @@ hazard "Grav Strong"
 	"constant strength"
 	"range" 0 2500
 	weapon
+		"gravitational"
 		"hit force" -25
 		"damage dropoff" 100 2500
 		"dropoff modifier" 0
