@@ -3011,8 +3011,17 @@ void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, doubl
 
 // Apply a force to this ship, accelerating it. This might be from a weapon
 // impact, or from firing a weapon, for example.
-void Ship::ApplyForce(const Point &force)
+void Ship::ApplyForce(const Point &force, bool gravitational)
 {
+	if(gravitational)
+	{
+		// Treat all ships as if they have a mass of 400. This prevents
+		// gravitational hit force values from needing to be extremely
+		// small in order to have a reasonable effect.
+		acceleration += force / 400.;
+		return;
+	}
+	
 	double currentMass = Mass();
 	if(!currentMass)
 		return;
@@ -3682,7 +3691,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		Point d = position - damagePosition;
 		double distance = d.Length();
 		if(distance)
-			ApplyForce((hitForce / distance) * d);
+			ApplyForce((hitForce / distance) * d, weapon.IsGravitational());
 	}
 	
 	// Recalculate the disabled ship check.
