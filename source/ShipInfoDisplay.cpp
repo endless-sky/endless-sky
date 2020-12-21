@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Depreciation.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "Format.h"
 #include "GameData.h"
@@ -72,9 +73,9 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	const Color &valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(10, {WIDTH - 10, Font::Align::LEFT});
-	table.AddColumn(WIDTH - 90, {WIDTH - 80, Font::Align::RIGHT});
-	table.AddColumn(WIDTH - 10, {WIDTH - 20, Font::Align::RIGHT});
+	table.AddColumn(10, {WIDTH - 10, DisplayText::Align::LEFT});
+	table.AddColumn(WIDTH - 90, {WIDTH - 80, DisplayText::Align::RIGHT});
+	table.AddColumn(WIDTH - 10, {WIDTH - 20, DisplayText::Align::RIGHT});
 	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);
 	table.DrawGap(10.);

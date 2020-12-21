@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 #include "Audio.h"
+#include "DisplayText.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -630,7 +631,7 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
 	}
 	if(currentSystem)
-		info.SetString("location", currentSystem->Name(), {140, Font::Truncate::BACK});
+		info.SetString("location", {currentSystem->Name(), {140, DisplayText::Truncate::BACK}});
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
@@ -652,7 +653,7 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
-	const Font::Layout destLayout{135, Font::Truncate::BACK};
+	const DisplayText::Layout destLayout{135, DisplayText::Truncate::BACK};
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetStellar();
@@ -661,7 +662,7 @@ void Engine::Step(bool isActive)
 			"Cannot land on:";
 		info.SetString("navigation mode", navigationMode);
 		const string &name = object->Name();
-		info.SetString("destination", name, destLayout);
+		info.SetString("destination", {name, destLayout});
 		
 		targets.push_back({
 			object->Position() - center,
@@ -674,9 +675,9 @@ void Engine::Step(bool isActive)
 	{
 		info.SetString("navigation mode", "Hyperspace:");
 		if(player.HasVisited(flagship->GetTargetSystem()))
-			info.SetString("destination", flagship->GetTargetSystem()->Name(), destLayout);
+			info.SetString("destination", {flagship->GetTargetSystem()->Name(), destLayout});
 		else
-			info.SetString("destination", "unexplored system", destLayout);
+			info.SetString("destination", {"unexplored system", destLayout});
 	}
 	else
 	{
@@ -723,13 +724,13 @@ void Engine::Step(bool isActive)
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
-		const Font::Layout layout{150, Font::Truncate::MIDDLE};
-		info.SetString("target name", target->Name(), layout);
-		info.SetString("target type", target->ModelName(), layout);
+		const DisplayText::Layout targetLayout{150, DisplayText::Truncate::MIDDLE};
+		info.SetString("target name", {target->Name(), targetLayout});
+		info.SetString("target type", {target->ModelName(), targetLayout});
 		if(!target->GetGovernment())
-			info.SetString("target government", "No Government", layout);
+			info.SetString("target government", {"No Government", targetLayout});
 		else
-			info.SetString("target government", target->GetGovernment()->GetName(), layout);
+			info.SetString("target government", {target->GetGovernment()->GetName(), targetLayout});
 		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 		
@@ -980,7 +981,7 @@ void Engine::Draw() const
 	// Draw the faction markers.
 	if(targetSwizzle >= 0 && interface->HasPoint("faction markers"))
 	{
-		int width = font.Width(info.GetString("target government").first);
+		int width = font.Width(info.GetString("target government"));
 		Point center = interface->GetPoint("faction markers");
 		
 		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};

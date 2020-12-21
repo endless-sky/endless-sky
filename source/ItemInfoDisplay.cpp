@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ItemInfoDisplay.h"
 
 #include "Color.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "FontSet.h"
 #include "GameData.h"
@@ -172,10 +173,10 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 	const Color &valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
-	Font::Layout layout{WIDTH - 20, Font::Align::LEFT};
+	DisplayText::Layout layout{WIDTH - 20, DisplayText::Align::LEFT};
 	// Use 10-pixel margins on both sides.
 	table.AddColumn(10, layout);
-	layout.align = Font::Align::RIGHT;
+	layout.align = DisplayText::Align::RIGHT;
 	table.AddColumn(WIDTH - 10, layout);
 	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);

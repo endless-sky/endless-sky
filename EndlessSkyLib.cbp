@@ -112,6 +112,7 @@
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/Dictionary.cpp" />
 		<Unit filename="source/Dictionary.h" />
+		<Unit filename="source/DisplayText.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
 		<Unit filename="source/DrawList.cpp" />

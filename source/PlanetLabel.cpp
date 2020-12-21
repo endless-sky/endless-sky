@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlanetLabel.h"
 
 #include "Angle.h"
+#include "DisplayText.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Government.h"

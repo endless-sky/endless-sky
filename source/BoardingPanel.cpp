@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -145,8 +146,8 @@ void BoardingPanel::Draw()
 		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
-		font.Draw(item.Value(), pos, color, {260, Font::Align::RIGHT});
-		font.Draw(item.Size(), pos, color, {330, Font::Align::RIGHT});
+		font.Draw({item.Value(), {260, DisplayText::Align::RIGHT}}, pos, color);
+		font.Draw({item.Size(), {330, DisplayText::Align::RIGHT}}, pos, color);
 	}
 	
 	// Set which buttons are active.

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "Dialog.h"
+#include "DisplayText.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -40,6 +41,8 @@ using namespace std;
 
 namespace {
 	const double WIDTH = 250.;
+	const int COLUMN_WIDTH = static_cast<int>(WIDTH - 20);
+	const int TEXT_WIDTH = COLUMN_WIDTH - 5;
 }
 
 
@@ -293,14 +296,16 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {static_cast<int>(WIDTH - 20), Font::Align::LEFT});
-	table.AddColumn(WIDTH - 20, {static_cast<int>(WIDTH - 20), Font::Align::RIGHT, Font::Truncate::MIDDLE});
-	table.SetUnderline(0, WIDTH - 20);
+	table.AddColumn(0, {COLUMN_WIDTH, DisplayText::Align::LEFT});
+	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, DisplayText::Align::RIGHT, DisplayText::Truncate::MIDDLE});
+	table.SetUnderline(0, COLUMN_WIDTH);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	// Draw the ship information.
-	table.DrawOppositeTruncRight(WIDTH - 25, "ship:", dim, ship.Name(), bright, Font::Truncate::MIDDLE);
-	table.DrawOppositeTruncRight(WIDTH - 25, "model:", dim, ship.ModelName(), bright, Font::Truncate::MIDDLE);
+	table.DrawOppositeTruncRight(TEXT_WIDTH, "ship:", dim, ship.Name(), bright,
+		DisplayText::Truncate::MIDDLE);
+	table.DrawOppositeTruncRight(TEXT_WIDTH, "model:", dim, ship.ModelName(), bright,
+		DisplayText::Truncate::MIDDLE);
 	
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
@@ -320,9 +325,9 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {static_cast<int>(WIDTH - 20), Font::Align::LEFT});
-	table.AddColumn(WIDTH - 20, {static_cast<int>(WIDTH - 20), Font::Align::RIGHT});
-	table.SetUnderline(0, WIDTH - 20);
+	table.AddColumn(0, {COLUMN_WIDTH, DisplayText::Align::LEFT});
+	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, DisplayText::Align::RIGHT});
+	table.SetUnderline(0, COLUMN_WIDTH);
 	Point start = bounds.TopLeft() + Point(10., 8.);
 	table.DrawAt(start);
 	
@@ -338,7 +343,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		if(table.GetRowBounds().Bottom() + 40. > bounds.Bottom())
 		{
 			start += Point(WIDTH, 0.);
-			if(start.X() + WIDTH - 20 > bounds.Right())
+			if(start.X() + COLUMN_WIDTH > bounds.Right())
 				break;
 			table.DrawAt(start);
 		}
@@ -352,7 +357,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
 			{
 				start += Point(WIDTH, 0.);
-				if(start.X() + WIDTH - 20 > bounds.Right())
+				if(start.X() + COLUMN_WIDTH > bounds.Right())
 					break;
 				table.DrawAt(start);
 				table.Draw(category, bright);
@@ -361,7 +366,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 			
 			// Draw the outfit name and count.
 			string number = to_string(ship.OutfitCount(outfit));
-			table.DrawOppositeTruncLeft(WIDTH - 25, outfit->Name(), dim, number, bright, Font::Truncate::BACK);
+			table.DrawOppositeTruncLeft(TEXT_WIDTH, outfit->Name(), dim, number, bright,
+				DisplayText::Truncate::BACK);
 		}
 		// Add an extra gap in between categories.
 		table.DrawGap(10.);
@@ -439,7 +445,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
-	Font::Layout layout{static_cast<int>(LABEL_WIDTH), Font::Truncate::BACK};
+	DisplayText::Layout layout{static_cast<int>(LABEL_WIDTH), DisplayText::Truncate::BACK};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
@@ -452,8 +458,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		double &y = nextY[isRight][isTurret];
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
-		layout.align = isRight ? Font::Align::LEFT : Font::Align::RIGHT;
-		font.Draw(name, Point(x, y + TEXT_OFF), isHover ? bright : dim, layout);
+		layout.align = isRight ? DisplayText::Align::LEFT : DisplayText::Align::RIGHT;
+		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 		
@@ -505,9 +511,9 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Table table;
-	table.AddColumn(0, {static_cast<int>(WIDTH - 20), Font::Align::LEFT});
-	table.AddColumn(WIDTH - 20, {static_cast<int>(WIDTH - 20), Font::Align::RIGHT});
-	table.SetUnderline(-5, WIDTH - 15);
+	table.AddColumn(0, {COLUMN_WIDTH, DisplayText::Align::LEFT});
+	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, DisplayText::Align::RIGHT});
+	table.SetUnderline(-5, COLUMN_WIDTH + 5);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	double endY = bounds.Bottom() - 30. * (cargo.Passengers() != 0);

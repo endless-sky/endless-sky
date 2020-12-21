@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -85,7 +86,7 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, const Font::Truncate &truncate)
+Dialog::Dialog(const string &text, const DisplayText::Truncate &truncate)
 {
 	Init(text, truncate, false);
 }
@@ -93,7 +94,7 @@ Dialog::Dialog(const string &text, const Font::Truncate &truncate)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const Font::Truncate &truncate)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const DisplayText::Truncate &truncate)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
@@ -168,10 +169,10 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		const Font::Layout layout{WIDTH - 30, Font::Truncate::FRONT};
-		font.Draw(input, stringPos, bright, layout);
+		const DisplayText inputText(input, {WIDTH - 30, DisplayText::Truncate::FRONT});
+		font.Draw(inputText, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(input, layout) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(inputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -276,7 +277,7 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, const Font::Truncate &truncate, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, const DisplayText::Truncate &truncate, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;

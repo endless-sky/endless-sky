@@ -238,6 +238,7 @@
 		A96862F71AE6FD0A004FE1FE /* Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Date.h; path = source/Date.h; sourceTree = "<group>"; };
 		A96862F81AE6FD0A004FE1FE /* Dialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dialog.cpp; path = source/Dialog.cpp; sourceTree = "<group>"; };
 		A96862F91AE6FD0B004FE1FE /* Dialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dialog.h; path = source/Dialog.h; sourceTree = "<group>"; };
+		B590162021ED4A0F00799178 /* DisplayText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayText.h; path = source/DisplayText.h; sourceTree = "<group>"; };
 		A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DistanceMap.cpp; path = source/DistanceMap.cpp; sourceTree = "<group>"; };
 		A96862FB1AE6FD0B004FE1FE /* DistanceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistanceMap.h; path = source/DistanceMap.h; sourceTree = "<group>"; };
 		A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrawList.cpp; path = source/DrawList.cpp; sourceTree = "<group>"; };
@@ -524,6 +525,7 @@
 				A96862F91AE6FD0B004FE1FE /* Dialog.h */,
 				DF8D57DF1FC25842001525DA /* Dictionary.cpp */,
 				DF8D57E01FC25842001525DA /* Dictionary.h */,
+				B590162021ED4A0F00799178 /* DisplayText.h */,
 				A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */,
 				A96862FB1AE6FD0B004FE1FE /* DistanceMap.h */,
 				A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */,

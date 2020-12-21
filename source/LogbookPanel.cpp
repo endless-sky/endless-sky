@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LogbookPanel.h"
 
 #include "Color.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -131,11 +132,11 @@ void LogbookPanel::Draw()
 	auto pit = player.SpecialLogs().find(selectedName);
 	if(selectedDate && begin != end)
 	{
+		const DisplayText::Layout layout{static_cast<int>(TEXT_WIDTH - 2. * PAD), DisplayText::Align::RIGHT};
 		for(auto it = begin; it != end; ++it)
 		{
 			string date = it->first.ToString();
-			font.Draw(date, pos + Point(0., textOffset.Y()), dim,
-				{static_cast<int>(TEXT_WIDTH - 2. * PAD), Font::Align::RIGHT});
+			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 		
 			wrap.Wrap(it->second);

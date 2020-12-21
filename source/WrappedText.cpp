@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "WrappedText.h"
 
+#include "DisplayText.h"
 #include "Font.h"
 
 #include <cstring>
@@ -43,14 +44,14 @@ void WrappedText::SetAlignment(Align align)
 
 
 // Set the truncate mode.
-Font::Truncate WrappedText::Truncate() const
+DisplayText::Truncate WrappedText::Truncate() const
 {
 	return truncate;
 }
 
 
 
-void WrappedText::SetTruncate(Font::Truncate trunc)
+void WrappedText::SetTruncate(DisplayText::Truncate trunc)
 {
 	truncate = trunc;
 }
@@ -166,7 +167,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 	if(words.empty())
 		return;
 	
-	if(truncate == Font::Truncate::NONE)
+	if(truncate == DisplayText::Truncate::NONE)
 		for(const Word &w : words)
 			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 	else
@@ -179,7 +180,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 			if(h == w.y && (i != words.size() - 1 && w.y == words[i+1].y))
 				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 			else
-				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color, {wrapWidth, truncate});
+				font->Draw({text.c_str() + w.Index(), {wrapWidth, truncate}}, w.Pos() + topLeft, color);
 			h = w.y;
 		}
 	}

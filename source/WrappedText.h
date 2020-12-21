@@ -13,13 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WRAPPED_TEXT_H_
 #define WRAPPED_TEXT_H_
 
-#include "Font.h"
+#include "DisplayText.h"
 #include "Point.h"
 
 #include <string>
 #include <vector>
 
 class Color;
+class Font;
 
 
 
@@ -37,8 +38,8 @@ public:
 	
 	// Set the truncate mode.
 	// Apply the truncation to a word only if a line has a single word.
-	Font::Truncate Truncate() const;
-	void SetTruncate(Font::Truncate trunc);
+	DisplayText::Truncate Truncate() const;
+	void SetTruncate(DisplayText::Truncate trunc);
 	
 	// Set the wrap width. This does not include any margins.
 	int WrapWidth() const;
@@ -106,7 +107,7 @@ private:
 	int lineHeight = 0;
 	int paragraphBreak = 0;
 	Align alignment = JUSTIFIED;
-	Font::Truncate truncate = Font::Truncate::NONE;
+	DisplayText::Truncate truncate = DisplayText::Truncate::NONE;
 	
 	std::string text;
 	std::vector<Word> words;

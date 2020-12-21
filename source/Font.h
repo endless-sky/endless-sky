@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class Color;
+class DisplayText;
 class ImageBuffer;
 class Point;
 
@@ -31,35 +32,15 @@ class Point;
 // moment only plain ASCII characters are supported, not Unicode.
 class Font {
 public:
-	// Layout parameters.
-	enum class Align {LEFT, CENTER, RIGHT};
-	enum class Truncate {NONE, FRONT, MIDDLE, BACK};
-	struct Layout {
-		// Align and trancate width. No align or trancate if width is negative.
-		int width = -1;
-		// Set the alignment mode.
-		Align align = Align::LEFT;
-		// Set the truncate mode.
-		Truncate truncate = Truncate::NONE;
-		
-		Layout() noexcept = default;
-		Layout(int w, Align a) noexcept;
-		Layout(int w, Truncate t) noexcept;
-		Layout(int w, Align a, Truncate t) noexcept;
-	};
-	
-public:
 	Font() = default;
 	explicit Font(const std::string &imagePath);
 	
 	void Load(const std::string &imagePath);
 	
-	void Draw(const std::string &str, const Point &point, const Color &color,
-		const Layout &layout = defaultLayout) const;
-	void DrawAliased(const std::string &str, double x, double y, const Color &color,
-		const Layout &layout = defaultLayout) const;
+	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
+	void DrawAliased(const DisplayText &text, double x, double y, const Color &color) const;
 	
-	int Width(const std::string &str, const Layout &layout = defaultLayout, char after = ' ') const;
+	int Width(const DisplayText &text, char after = ' ') const;
 	
 	int Height() const;
 	
@@ -76,17 +57,13 @@ private:
 	
 	int WidthRawString(const char *str, char after = ' ') const;
 	
-	std::string TruncateText(const std::string &str, const Layout &layout, int &width) const;
+	std::string TruncateText(const DisplayText &text, int &width) const;
 	std::string TruncateBack(const std::string &str, int &width) const;
 	std::string TruncateFront(const std::string &str, int &width) const;
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 	
 	
 private:
-	static const Layout defaultLayout;
-	
-	
-	
 	Shader shader;
 	GLuint texture = 0;
 	GLuint vao = 0;
@@ -107,30 +84,6 @@ private:
 	int advance[GLYPHS * GLYPHS] = {};
 	int widthEllipses = 0;
 };
-
-
-
-inline
-Font::Layout::Layout(int w, Align a) noexcept
-        : width(w), align(a)
-{
-}
-
-
-
-inline
-Font::Layout::Layout(int w, Truncate t) noexcept
-        : width(w), truncate(t)
-{
-}
-
-
-
-inline
-Font::Layout::Layout(int w, Align a, Truncate t) noexcept
-        : width(w), align(a), truncate(t)
-{
-}
 
 
 

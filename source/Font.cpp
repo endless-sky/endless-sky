@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 
 #include "Color.h"
+#include "DisplayText.h"
 #include "ImageBuffer.h"
 #include "Point.h"
 #include "Screen.h"
@@ -71,8 +72,6 @@ namespace {
 	const int KERN = 2;
 }
 
-const Font::Layout Font::defaultLayout;
-
 
 
 Font::Font(const string &imagePath)
@@ -97,22 +96,23 @@ void Font::Load(const string &imagePath)
 
 
 
-void Font::Draw(const string &str, const Point &point, const Color &color, const Layout &layout) const
+void Font::Draw(const DisplayText &text, const Point &point, const Color &color) const
 {
-	DrawAliased(str, round(point.X()), round(point.Y()), color, layout);
+	DrawAliased(text, round(point.X()), round(point.Y()), color);
 }
 
 
 
-void Font::DrawAliased(const string &str, double x, double y, const Color &color, const Layout &layout) const
+void Font::DrawAliased(const DisplayText &text, double x, double y, const Color &color) const
 {
 	int width = -1;
-	string truncText = TruncateText(str, layout, width);
+	const string truncText = TruncateText(text, width);
+	const DisplayText::Layout &layout = text.GetLayout();
 	if(width >= 0)
 	{
-		if(layout.align == Align::CENTER)
+		if(layout.align == DisplayText::Align::CENTER)
 			x += (layout.width - width) / 2;
-		else if(layout.align == Align::RIGHT)
+		else if(layout.align == DisplayText::Align::RIGHT)
 			x += layout.width - width;
 	}
 	
@@ -185,10 +185,10 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 
 
-int Font::Width(const string &str, const Layout &layout, char after) const
+int Font::Width(const DisplayText &text, char after) const
 {
 	int width = -1;
-	string truncText = TruncateText(str, layout, width);
+	const string truncText = TruncateText(text, width);
 	return width < 0 ? WidthRawString(truncText.c_str(), after) : width;
 }
 
@@ -224,22 +224,25 @@ int Font::WidthRawString(const char *str, char after) const
 
 
 // width will be the width of the return value unless width is negative.
-string Font::TruncateText(const std::string &str, const Layout &layout, int &width) const
+string Font::TruncateText(const DisplayText &text, int &width) const
 {
 	width = -1;
-	if(layout.width < 0 || (layout.align == Align::LEFT && layout.truncate == Truncate::NONE))
+	const DisplayText::Layout &layout = text.GetLayout();
+	const string &str = text.GetText();
+	if(layout.width < 0 || (layout.align == DisplayText::Align::LEFT
+		&& layout.truncate == DisplayText::Truncate::NONE))
 		return str;
 	width = layout.width;
 	switch(layout.truncate)
 	{
-	case Truncate::NONE:
+	case DisplayText::Truncate::NONE:
 		width = WidthRawString(str.c_str());
 		return str;
-	case Truncate::FRONT:
+	case DisplayText::Truncate::FRONT:
 		return TruncateFront(str, width);
-	case Truncate::MIDDLE:
+	case DisplayText::Truncate::MIDDLE:
 		return TruncateMiddle(str, width);
-	case Truncate::BACK:
+	case DisplayText::Truncate::BACK:
 	default:
 		return TruncateBack(str, width);
 	}

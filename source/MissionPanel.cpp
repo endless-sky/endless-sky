@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "Dialog.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -575,7 +576,8 @@ void MissionPanel::DrawSelectedSystem() const
 	
 	const Font &font = FontSet::Get(14);
 	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, *GameData::Colors().Get("bright"), {350, Font::Align::CENTER, Font::Truncate::MIDDLE});
+	font.Draw({text, {350, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+		pos, *GameData::Colors().Get("bright"));
 }
 
 
@@ -681,9 +683,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 				highlight);
 		
 		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
-		font.Draw(it->Name(), pos,
-			(!canAccept ? dim : isSelected ? selected : unselected),
-			{SIDE_WIDTH - 11, Font::Truncate::BACK});
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, DisplayText::Truncate::BACK}},
+			pos, (!canAccept ? dim : isSelected ? selected : unselected));
 	}
 	
 	return pos;

@@ -55,16 +55,16 @@ float Information::GetSpriteFrame(const string &name) const
 
 
 
-void Information::SetString(const string &name, const string &value, const Font::Layout &layout)
+void Information::SetString(const string &name, const DisplayText &value)
 {
-	strings[name] = make_pair(value, layout);
+	strings[name] = value;
 }
 
 
 
-const pair<string, Font::Layout> &Information::GetString(const string &name) const
+const DisplayText &Information::GetString(const string &name) const
 {
-	static const pair<string, Font::Layout> empty;
+	static const DisplayText empty;
 	
 	auto it = strings.find(name);
 	return (it == strings.end()) ? empty : it->second;
