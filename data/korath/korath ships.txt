@@ -8,6 +8,73 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+
+ship "Korath Dredger"
+	sprite "ship/dredger"
+	thumbnail "thumbnail/dredger"
+	attributes
+		category "Heavy Freighter"
+		"cost" 29370000
+		"shields" 39000
+		"hull" 16000
+		"required crew" 191
+		"bunks" 683
+		"mass" 1403
+		"drag" 16.1
+		"heat dissipation" .55
+		"fuel capacity" 800
+		"cargo space" 480
+		"outfit space" 861
+		"weapon capacity" 294
+		"engine capacity" 175
+		
+		weapon
+			"blast radius" 300
+			"shield damage" 4600
+			"hull damage" 2300
+			"hit force" 5900
+	outfits
+		"Korath Banisher" 2
+		"Korath Grab-Strike" 3
+		"Korath Warder" 2
+		
+		"Systems Core (Medium)" 2
+		"Triple Plasma Core"
+		"Small Heat Shunt" 2
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 190
+		
+		"Steering (Planetary Class)"
+		"Steering (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Comet Class)"
+		"Hyperdrive"
+		"Jump Drive"
+	turret -37 -155 "Korath Banisher"
+	turret 0 -155 "Korath Warder"
+	turret 37 -155 "Korath Grab-Strike"
+	turret -96 0 "Korath Grab-Strike"
+	turret 96 0 "Korath Grab-Strike"
+	turret -80 130 "Korath Warder"
+	turret 80 130 "Korath Banisher"
+	engine -33 171 .4
+	engine -2 182 .6
+	engine 31 171 .4
+	fighter 51 59
+	fighter -51 59
+	fighter 0 -42
+	fighter 0 16
+	explode "tiny explosion" 120
+	explode "small explosion" 60
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 15
+	"final explode" "final explosion large"
+	description "After the Korath were exiled, they realized they would need to raid nearby species to survive. Their world-ships were too precious and their Ravagers were too expensive. The Dredger was their first new ship: abundant cargo and passenger space, bays for four fighters, and seven turrets. Its failing was its expense; Korath Raiders can be built four times as quickly."
+
+
+
 ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
