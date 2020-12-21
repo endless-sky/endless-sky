@@ -371,12 +371,14 @@ Files:
  images/outfit/tiny?remnant?engine*
  images/outfit/void?rifle*
  images/scene/penguinscene*
+ images/ship/dredger*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/penguin/penguin*
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
+ images/thumbnail/dredger*
  images/thumbnail/ibis*
  images/thumbnail/penguin*
  images/thumbnail/petrel*
@@ -933,12 +935,6 @@ Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by To
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
 License: CC-BY-SA-4.0
-
-Files:
- images/ship/dredger*
- images/thumbnail/dredger*
-Copyright: NomadicVolcano
-License: CC0 Public Domain
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
