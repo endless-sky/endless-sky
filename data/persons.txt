@@ -321,7 +321,7 @@ person "Captain Nate"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
 	
 	ship Vanguard "Pointedstick"
-		sprite "ship/pointedstick_vanguard"
+		sprite "ship/pointedstick vanguard"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -360,24 +360,39 @@ person "Captain Nate"
 			"Ionic Afterburner"
 			"Hyperdrive"
 		
-		engine 0 130
-		engine -31 128 .7
-		engine 31 128 .7
-		gun 0 -132 "Proton Gun"
-		gun 0 -132 "Proton Gun"
-		gun 0 -132 "Proton Gun"
-		gun -22 -122 "Proton Gun"
-		gun -22 -122 "Proton Gun"
-		gun 22 -122 "Proton Gun"
-		gun 22 -122 "Proton Gun"
-		gun -21 -45 "Proton Gun"
-		gun -21 -45 "Proton Gun"
-		gun 21 -45 "Proton Gun"
-		gun 21 -45 "Proton Gun"
-		gun -31 -45 "Heavy Rocket Launcher"
-		gun -31 -45 "Heavy Rocket Launcher"
-		gun 31 -45 "Heavy Rocket Launcher"
-		gun 31 -45 "Heavy Rocket Launcher"
+		engine -31.5 130.5 0.7
+		engine 31.5 130.5 0.7
+		engine 0 130.5 0.7
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun -40 -46 "Proton Gun"
+			parallel
+		gun -40 -46 "Proton Gun"
+			parallel
+		gun 40 -46 "Proton Gun"
+			parallel
+		gun 40 -46 "Proton Gun"
+			parallel
+		gun -34.5 -43 "Proton Gun"
+			parallel
+		gun -34.5 -43 "Proton Gun"
+			parallel
+		gun 34.5 -43 "Proton Gun"
+			parallel
+		gun 34.5 -43 "Proton Gun"
+			parallel
 		turret 0 42 "Anti-Missile Turret"
 		explode "tiny explosion" 18
 		explode "small explosion" 36
@@ -611,26 +626,26 @@ ship "Modified Osprey"
 		"Hyperdrive"
 		"Jump Drive"
 		
-	engine -46 67
-	engine 46 67
-	engine -17 105.5 .0
-	engine 17 105.5 .0
-	gun 0 -108 "Nuclear Missile"
-	gun -9 -99 "Korath Slicer"
-	gun 9 -99 "Korath Slicer"
-	gun -9 -99 "Korath Slicer"
-	gun 9 -99 "Korath Slicer"
-	gun -21 -61 "Korath Detainer"
-	gun 21 -61 "Korath Detainer"
+	engine -45.5 64 .8
+	engine 45.5 64 .8
+	engine -16.5 105 .6
+	engine 16.5 105 .6
+	gun 0 -114 "Nuclear Missile"
+	gun -6.5 -100 "Korath Slicer"
+	gun 6.5 -100 "Korath Slicer"
+	gun -14 -91 "Korath Slicer"
+	gun 14 -91 "Korath Slicer"
+	gun -19 -59 "Korath Detainer"
+	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
 	gun 26.5 -53 "Korath Detainer"
-	gun -60 17 "Finisher Pod"
-	gun 60 17 "Finisher Pod"
-	turret 0 -91 "Point Defense Turret"
-	turret -19.5 -16 "Korath Disruptor"
-	turret 19.5 -16 "Korath Disruptor"
-	turret -60 17 "Heliarch Repulsor"
-	turret 60 17 "Heliarch Repulsor"
+	gun -67 -1.5 "Finisher Pod"
+	gun 67 -1.5 "Finisher Pod"
+	turret 0 -91.5 "Point Defense Turret"
+	turret -13.5 -15.5 "Korath Disruptor"
+	turret 13.5 -15.5 "Korath Disruptor"
+	turret -49.5 20 "Heliarch Repulsor"
+	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
 	turret 0 89.5 "Point Defense Turret"
 	
@@ -674,7 +689,7 @@ person "Local God"
 			" and "
 		word
 			"retire as an outfit dealer."
-			"open a univeral outfitter."
+			"open a universal outfitter."
 			"start dealing exotic outfits."
 			"sell outfits from everywhere."
 			"stock outfits from all over the place."
@@ -727,6 +742,7 @@ person "Local God"
 		"never disabled"
 
 ship "Ursa Polaris"
+	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
 		category "Heavy Warship"
@@ -760,7 +776,7 @@ ship "Ursa Polaris"
 			"hit force" 6000
 	outfits
 		"Quarg Skylance"
-		"Pug Gridfire Turret" 3
+		"LG Gridfire Turret" 3
 		"Plasma Turret"
 		"Korath Disruptor" 5
 		"Quarg Anti-Missile" 5
@@ -781,13 +797,13 @@ ship "Ursa Polaris"
 	turret 27 -162 "Quarg Skylance"
 	turret 27 -162 "Korath Disruptor"
 	turret 94.5 -52.5 "Quarg Anti-Missile"
-	turret 94.5 -52.5 "Pug Gridfire Turret"
+	turret 94.5 -52.5 "LG Gridfire Turret"
 	turret 94.5 -52.5 "Korath Disruptor"
 	turret 80.5 53 "Quarg Anti-Missile"
-	turret 80.5 53 "Pug Gridfire Turret"
+	turret 80.5 53 "LG Gridfire Turret"
 	turret 80.5 53 "Korath Disruptor"
 	turret 21 25.5 "Quarg Anti-Missile"
-	turret 21 25.5 "Pug Gridfire Turret"
+	turret 21 25.5 "LG Gridfire Turret"
 	turret 21 25.5 "Korath Disruptor"
 	turret -69.5 -43 "Quarg Anti-Missile"
 	turret -69.5 -43 "Plasma Turret"
@@ -798,6 +814,27 @@ ship "Ursa Polaris"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 
+outfit "LG Gridfire Turret"
+	category "Turrets"
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/pug gridfire turret"
+		"fire effect" "gridfire fire"
+		"hit effect" "gridfire hit" 2
+		"hit effect" "gridfire cloud"
+		"phasing"
+		"velocity" 1440
+		"lifetime" 1
+		"reload" 20
+		"turret turn" 20
+		"firing energy" 800
+		"firing heat" 400
+		"firing force" 150
+		"shield damage" 600
+		"hull damage" 600
+		"blast radius" 40
+		"piercing" .3
+		"safe"
 
 
 person "Subsidurial"
@@ -1031,7 +1068,7 @@ ship "Marauder Bactrian"
 		category "Transport"
 		"cost" 17600000
 		"shields" 30000
-		"hull" 1200
+		"hull" 12000
 		"required crew" 70
 		"bunks" 93
 		"mass" 650
@@ -1077,3 +1114,131 @@ ship "Marauder Bactrian"
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large" 1
+
+
+
+person "Zitchas"
+	frequency 200
+	government "Author"
+	personality
+		mining harvests unconstrained surveillance opportunistic
+	system
+		attributes "ember waste"
+	phrase
+		word
+			"May the Embers burn bright for you."
+			"I am ash in the storm - watch how I soar."
+			"Through shadows of wind and fire - we shall prevail."
+			"The Embers burn bright tonight - A storm is coming."
+			"The cataclysm of eons draws near - Be calm and steadfast."
+			"Born of earth, weaned in war, forged in embers, ascend in blackest night."
+			"Why are so many scared of deep space? It is so beautiful..."
+			"As once the Embers burned hot, so shall they burn again."
+			"Have you ever watched the clouds drift in the skies of Nasqueron?"
+			"Don't mind me - I'm just testing out some stuff."
+			"Don't mind me - Just a test run to shake the dust out."
+			"Don't even try - I have the safeties disabled, so I'll go down fighting."
+			"Don't worry - they are just prototypes."
+			"Look good, don't they? You can thank Becca and Brick for that."
+			"Education cannot cure fear, intolerance, or incompetence. But it does give a bonus to resisting them."
+			"Why ever would a creator want to raise sheep? Much better to raise new creators."
+	phrase
+		word
+			"If you ever need something to do: "
+			"If you like what we are doing: "
+			"If you don't like what we are doing: "
+			"If you want these ships: "
+		word
+			"playtest pull requests."
+			"leave informative comments."
+			"leave approving reviews when you think it is ready."
+			"write new missions."
+			"fly on the latest nightly build."
+			"fly on the latest continuous build."
+			"remember to update!"
+			"give us details about what you do or don't like, and why."
+			"dream big, start small."
+			"new campaigns are great, but new mini-mission sets are awesome!"
+			"explore! There's a lot of interesting stuff hidden away out there!"
+			"make plug-ins!"
+			"review!"
+			"review, review, review!"
+			"have I mentioned that details about what you do or don't like are helpful?"
+			"have I mentioned that reviews are very helpful?"
+	phrase
+		word
+			"A piece of advice: "
+			"Advice to remember: "
+			"From one starfarer to another: "
+			"Words from a creator: "
+		word
+			"playtest pull requests."
+			"leave informative comments."
+			"leave approving reviews when you think it is ready."
+			"write new missions."
+			"fly on the latest nightly build."
+			"fly on the latest continuous build."
+			"remember to update!"
+			"always make a new branch if you are changing things."
+			"never make changes on 'master'."
+			"be sure to test commits."
+			"commit early, and commit often."
+			"the wiki is full of useful information."
+			"give us details about what you do or don't like, and why."
+			"never, ever, make changes on 'master'."
+			"remember to make a new branch before you start changing things."
+			"work on a new branch. Keep your master even with the upstream master."
+			"update your master on a regular basis, and try to keep your pull requests up to date too."
+			"dream big, start small."
+			"new campaigns are great, but new mini-mission sets are awesome!"
+			"the errors.txt file can be very useful."
+			"'git fetch upstream' and 'git merge upstream/master' are my friends. That's how I update."
+			"'git fetch --all --prune && git merge upstream/master' is my friend."
+			"when making branch names, don't use any of these characters: \ / $ * : ; < > ? '' | ."
+			"if you need to track down an error and errors.txt doesn't cut it, try verbose logging with -d."
+			"explore! There's a lot of interesting stuff hidden away out there!"
+			"while launched with -d, you can remap the fast-forward to have access to both accelerated and slowed flow of time!"
+			"while launched with -d, you can pause the game using the backtick (`) key!"
+			"vanilla content is what attracts new people. Plug-in content is what holds them."
+			"if you have an idea you want to try out, make a plug-in!"
+			"if you tried out a new idea in a plug-in, share it!"
+	ship "Heron" "Shadow Step"
+		"never disabled"
+	ship "Peregrine" "Shadow Dive"
+		"never disabled"
+	ship "Petrel" "Shadow Flight 01"
+	ship "Petrel" "Shadow Flight 02"
+	ship "Petrel" "Shadow Flight 03"
+	ship "Petrel" "Shadow Flight 04"
+	ship "Tern" "Shadow Flight 05"
+	ship "Tern" "Shadow Flight 06"
+	ship "Tern" "Shadow Flight 07"
+	ship "Tern" "Shadow Flight 08"
+	ship "Tern" "Shadow Flight 09"
+	ship "Tern" "Shadow Flight 0A"
+	ship "Tern" "Shadow Flight 0B"
+	ship "Tern" "Shadow Flight 0C"
+	ship "Tern" "Shadow Flight 0D"
+	ship "Tern" "Shadow Flight 0E"
+	ship "Tern" "Shadow Flight 0F"
+	ship "Tern" "Shadow Flight 10"
+	ship "Tern" "Shadow Flight 11"
+	ship "Tern" "Shadow Flight 12"
+	ship "Tern" "Shadow Flight 13"
+	ship "Tern" "Shadow Flight 14"
+	ship "Tern" "Shadow Flight 15"
+	ship "Tern" "Shadow Flight 16"
+	ship "Tern" "Shadow Flight 17"
+	ship "Tern" "Shadow Flight 18"
+	ship "Tern" "Shadow Flight 19"
+	ship "Tern" "Shadow Flight 1A"
+	ship "Tern" "Shadow Flight 1B"
+	ship "Tern" "Shadow Flight 1C"
+	ship "Tern" "Shadow Flight 1D"
+	ship "Tern" "Shadow Flight 1E"
+	ship "Tern" "Shadow Flight 1F"
+	ship "Tern" "Shadow Flight 20"
+	ship "Tern" "Shadow Flight 21"
+	ship "Tern" "Shadow Flight 22"
+	ship "Tern" "Shadow Flight 23"
+	ship "Tern" "Shadow Flight 24"

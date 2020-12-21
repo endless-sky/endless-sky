@@ -181,6 +181,7 @@ ship "Flea" "Flea (Pulse)"
 		`"Baellie" Atomic Engines`
 
 ship "Geocoris"
+	plural "Geocorises"
 	sprite "ship/hai geocoris"
 	thumbnail "thumbnail/hai geocoris"
 	attributes
