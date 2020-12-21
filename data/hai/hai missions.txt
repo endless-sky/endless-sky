@@ -1989,7 +1989,7 @@ mission "Strider: Remnant 1"
 			choice
 				`	"They were looking for someone who had repair technology, and I said I could find someone."`
 				`	"They asked if I knew anyone who had in-flight repair technology, and I said I knew a group of human researchers."`
-			`	"So they do not actually know about us. That is good." Rayn looks thoughtful and closes his eyes for a moment, then continues. "Pick up the Hai diplomats, but do not tell them where you are going. Take them to these coordinates on Covert in the Gienah system. It is a location in an uninhabited area where we will be able to talk. We will be waiting with something that might be able to help them - if they can meet our price."`
+			`	"So they do not actually know about us. That is good." Rayn looks thoughtful and closes their eyes for a moment, then continues. "Pick up the Hai diplomats, but do not tell them where you are going. Take them to these coordinates on Covert in the Gienah system. It is a location in an uninhabited area where we will be able to talk. We will be waiting with something that might be able to help them - if they can meet our price."`
 
 
 
@@ -2038,7 +2038,7 @@ mission "Strider: Remnant 3"
 		log `Helped the Hai get in contact with the Remnant in order to learn how to create in-flight hull repair technology. The Hai obtained a copy of the Remnant's research on Korath systems cores, along with a number of samples.`
 		conversation
 			`At the designated coordinates, there is a small encampment set up that looks vaguely reminiscent of a desert trader outpost. Aside from a few camels tied near a water trough, the place looks abandoned. When you touch down next to it, the delegation steps out cautiously. "Is this the right place?" one of the Hai asks somewhat worriedly.`
-			`	Before you can answer, a number of Remnant emerge from the tents, and you notice that Rayn is among them. "Welcome to our encampment, representatives," Rayn chants. "Captain <first> brought us your missive, and we asked them to bring you here. Would you care to come inside?" He gestures toward the largest of the tents. While obviously surprised, Ambassador Yashili acquiesces, and the Hai step inside. Rayn gestures for you to follow. The remaining Remnant begin patrolling around the camp.`
+			`	Before you can answer, a number of Remnant emerge from the tents, and you notice that Rayn is among them. "Welcome to our encampment, representatives," Rayn chants. "Captain <first> brought us your missive, and we asked them to bring you here. Would you care to come inside?" They gesture toward the largest of the tents. While obviously surprised, Ambassador Yashili acquiesces, and the Hai step inside. Rayn gestures for you to follow. The remaining Remnant begin patrolling around the camp.`
 			`	Rayn offers food and water to the Hai and then takes a seat on a cushion on the ground. The Hai politely refuse the food before joining Rayn on the cushions. Ambassador Yashili begins. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you have such technology, with ship hulls that repair themselves."`
 			`	"It is true that our ships self repair," Rayn responds. "But this is not technology that we are able to share. The property is intrinsic to the metals that we build our ships with - metals which are in low supply." Yashili looks concerned with this development; perhaps this journey was a worthless one.`
 			choice
@@ -2126,6 +2126,8 @@ mission "Strider: Coalition 2"
 				`	"So are you willing to give or sell one of those outfits to the Hai?"`
 				`	"Would you share the way of mass producing those outfits with the Hai?"`
 			`	"Much involved in projecting our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
+			`	"Do you desire anything in return?" Yashili asks the agent.`
+			`	"In return, we ask nothing. Helping you extend beyond the limits placed upon you by the Quarg, enough of a reward is," the Arach responds. Yashili looks somewhat puzzled, but does not press the issue any further.`
 			`	A short time later, a group of Arachi representing House Chamgar arrive. They have the Hai describe their ships, using this information to optimize the repair module for Hai ships. They then prepare a copy of the blueprints, handing a data chip containing the schematics for the hull repair modules and their hull-walking robots to the Hai. Some workers then load a crate with two small modules onto your ship for the Hai to use as examples. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`
 				accept
 
