@@ -35,7 +35,7 @@ public:
 	// Set the column positions. If no columns are set, the Table will draw a
 	// list (one column of text, left aligned).
 	void Clear();
-	void AddColumn(int x, const DisplayText::Layout &layout);
+	void AddColumn(int x, const DisplayText::Layout &layout = {});
 	
 	// Set the font size. Default is 14 pixels.
 	void SetFontSize(int size);
