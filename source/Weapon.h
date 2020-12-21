@@ -104,6 +104,9 @@ public:
 	// Blast radius weapons will scale damage and hit force based on distance,
 	// unless the "no damage scaling" keyphrase is used in the weapon definition.
 	bool IsDamageScaled() const;
+	// Gravitational weapons deal the same amount of hit force to a ship regardless
+	// of its mass.
+	bool IsGravitational() const;
 	
 	// These values include all submunitions:
 	double ShieldDamage() const;
@@ -163,6 +166,7 @@ private:
 	bool isSafe = false;
 	bool isPhasing = false;
 	bool isDamageScaled = true;
+	bool isGravitational = false;
 	// Guns and missiles are by default aimed a converged point at the
 	// maximum weapons range in front of the ship. When either the installed
 	// weapon or the gun-port (or both) have the isParallel attribute set
@@ -276,6 +280,7 @@ inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
 inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
 inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
+inline bool Weapon::IsGravitational() const { return isGravitational; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
