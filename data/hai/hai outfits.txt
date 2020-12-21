@@ -111,7 +111,7 @@ outfit "Railgun Slug"
 	thumbnail "outfit/railslug"
 	"mass" 0.001
 	"railgun slug capacity" -1
-	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning. The Hai use them in Railguns that propel the slug to relativistic speed, simultaneously using the stored charge to amplify recoil, propelling their Flea drones away from danger, and turning them into effective long-range support."
+	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
 
 outfit "Railgun Slug Rack"
 	category "Ammunition"
@@ -131,7 +131,7 @@ outfit "Railgun"
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
-	"railgun slug capacity" 3210
+	"railgun slug capacity" 3000
 	weapon
 		sprite "projectile/rail slug"
 			"frame rate" 30
@@ -146,28 +146,27 @@ outfit "Railgun"
 		"reload" 3
 		"firing energy" 1.5
 		"firing heat" 1.8
-		"hit force" 10
 		"firing force" 20
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai created this compact weapon with tactical recoil for their Flea drones. Their drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
+	description "The Hai designed this weapon to best compliment their Flea drones. Each railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
 	weapon
-		"acceleration" 2.2
-		"drag" .05
-		"lifetime" 49
 		sprite "projectile/rail slug"
 			"frame rate" 30
 		"hit effect" "bullet impact"
+		"lifetime" 49
+		"acceleration" 2.2
+		"drag" .05
+		"turn" .3
+		"homing" 1
+		"optical tracking" .4
 		"shield damage" .7
 		"hull damage" 1.4
 		"ion damage" .03
-		"homing" 1
-		"optical tracking" .4
-		"turn" .3
 		"hit force" 5
-		"piercing" .3
 
 effect "bullet impact"
 	sprite "effect/bullet impact"

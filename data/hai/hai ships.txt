@@ -62,6 +62,8 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
+
+
 ship "Centipede"
 	sprite "ship/hai centipede"
 	thumbnail "thumbnail/hai centipede"
@@ -134,6 +136,8 @@ ship "Centipede" "Centipede (Pulse)"
 		`"Biroo" Atomic Steering`
 		Hyperdrive
 
+
+
 ship "Flea"
 	sprite "ship/hai flea"
 	thumbnail "thumbnail/hai flea"
@@ -167,7 +171,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of their Railgun so that it can kite its targets, prolonging its combat efficacy while it supports its allies.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 
 ship "Flea" "Flea (Pulse)"
 	outfits
