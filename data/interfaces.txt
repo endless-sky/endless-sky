@@ -894,6 +894,12 @@ interface "map buttons" bottom right
 
 
 
+interface "map"
+	value "max zoom" 2
+	value "min zoom" -2
+
+
+
 interface "info panel"
 	sprite "ui/info panel"
 		center 0 -5
