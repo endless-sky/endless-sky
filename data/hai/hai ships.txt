@@ -167,7 +167,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of their Railgun so it can kite its targets, prolonging its combat efficacy while it supports friendly ships that are engaged with hostile ships.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of their Railgun so that it can kite its targets, prolonging its combat efficacy while it supports its allies.`
 
 ship "Flea" "Flea (Pulse)"
 	outfits
@@ -472,7 +472,7 @@ ship "Pond Strider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Hai upgraded their original Pond Strider after acquiring technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
+	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
 
 ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
