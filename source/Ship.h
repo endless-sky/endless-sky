@@ -325,7 +325,7 @@ public:
 	void TakeHazardDamage(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
-	void ApplyForce(const Point &force);
+	void ApplyForce(const Point &force, bool gravitational = false);
 	
 	// Check if this ship has bays to carry other ships.
 	bool HasBays() const;
