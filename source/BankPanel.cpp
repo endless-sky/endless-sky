@@ -36,20 +36,7 @@ namespace {
 	// Column headings.
 	const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 	// X coordinates of the columns of the table.
-	struct Columns {
-		int offset;
-		int width;
-		DisplayText::Align align;
-	};
-	// The last column is for the "pay extra" button.
-	const Columns COLUMNS[6] = {
-		{ -290, 110, DisplayText::Align::LEFT },
-		{ -180, 80, DisplayText::Align::LEFT },
-		{ -100, 70, DisplayText::Align::LEFT },
-		{ -30, 50, DisplayText::Align::LEFT },
-		{ 20, 70, DisplayText::Align::LEFT },
-		{ MAX_X - 20, 80, DisplayText::Align::RIGHT },
-	};
+	const int COLUMN[5] = {-290, -180, -100, -30, 20};
 	const int EXTRA_X = 100;
 	
 	// Position of the first line of the table.
@@ -85,8 +72,10 @@ void BankPanel::Draw()
 {
 	// Set up the table that will contain most of the information.
 	Table table;
-	for(auto x : COLUMNS)
-		table.AddColumn(x.offset, {x.width, x.align});
+	for(auto x : COLUMN)
+		table.AddColumn(x);
+	// The last column is for the "pay extra" button.
+	table.AddColumn(MAX_X - 20, {-1, DisplayText::Align::RIGHT});
 	table.SetHighlight(MIN_X + 10, MAX_X - 10);
 	table.DrawAt(Point(0., FIRST_Y));
 	

@@ -562,13 +562,15 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {217, DisplayText::Align::LEFT, DisplayText::Truncate::MIDDLE});
-	table.AddColumn(220, {127, DisplayText::Align::LEFT, DisplayText::Truncate::BACK});
-	table.AddColumn(350, {137, DisplayText::Align::LEFT, DisplayText::Truncate::BACK});
-	table.AddColumn(550, {57, DisplayText::Align::RIGHT, DisplayText::Truncate::BACK});
-	table.AddColumn(610, {57, DisplayText::Align::RIGHT, DisplayText::Truncate::BACK});
-	table.AddColumn(670, {57, DisplayText::Align::RIGHT, DisplayText::Truncate::BACK});
-	table.AddColumn(730, {57, DisplayText::Align::RIGHT, DisplayText::Truncate::BACK});
+	using Align = DisplayText::Align;
+	using Truncate = DisplayText::Truncate;
+	table.AddColumn(0, {217, Align::LEFT, Truncate::MIDDLE});
+	table.AddColumn(220, {127, Align::LEFT, Truncate::BACK});
+	table.AddColumn(350, {137, Align::LEFT, Truncate::BACK});
+	table.AddColumn(550, {57, Align::RIGHT, Truncate::BACK});
+	table.AddColumn(610, {57, Align::RIGHT, Truncate::BACK});
+	table.AddColumn(670, {57, Align::RIGHT, Truncate::BACK});
+	table.AddColumn(730, {57, Align::RIGHT, Truncate::BACK});
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
