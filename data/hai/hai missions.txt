@@ -1977,7 +1977,7 @@ mission "Strider: Remnant 1"
 		conversation
 			`Looking around the spaceport, you are not sure who to talk to about such a diplomatic request. Eventually, you go to the starport information desk to ask them. You hand the letter to the person at the desk, and after reading it, they invite you to wait in the cafeteria while they look for someone who can fulfill the request from the Hai.`
 			`	After an hour of watching Remnant eating and gesturing to each other, an androgynous Remnant approaches your table. You try to guess what age they are, but while they do not seem young, neither do they seem particularly old.`
-			`	"Greetings, Captain <first>," The stranger signs. "My name is Rayn, and my colleague said you had a request from another faction. It is to my understanding that they desire the means to repair the hull of a ship in flight. Is this correct?"`
+			`	"Greetings, Captain <first>," The stranger signs. "My name is Rayn, and my colleague said you had a request from another faction. It is my understanding that they desire the means to repair the hull of a ship in flight. Is this correct?"`
 			choice
 				`	"Yes. The Hai are hoping to be able to improve a new carrier they are developing to repair its drones."`
 				`	"Yes. The Hai want to be able to repair the hulls of their ships to gain an edge against their enemies."`
@@ -1989,7 +1989,7 @@ mission "Strider: Remnant 1"
 			choice
 				`	"They were looking for someone who had repair technology, and I said I could find someone."`
 				`	"They asked if I knew anyone who had in-flight repair technology, and I said I knew a group of human researchers."`
-			`	"So they do not actually know about us. That is good." Rayn looks thoughtful and closes his eyes for a moment, then continues. "Pick up the Hai diplomats, but do not tell them where you are going, and take them to these coordinates on Covert in the Gienah system. It is a location in an uninhabited area where we will be able to talk. We will be waiting with something that might be able to help them - if they can meet our price."`
+			`	"So they do not actually know about us. That is good." Rayn looks thoughtful and closes his eyes for a moment, then continues. "Pick up the Hai diplomats, but do not tell them where you are going. Take them to these coordinates on Covert in the Gienah system. It is a location in an uninhabited area where we will be able to talk. We will be waiting with something that might be able to help them - if they can meet our price."`
 
 
 
@@ -2015,7 +2015,7 @@ mission "Strider: Remnant 2"
 			`	"Oh," Yashili exclaims with a surprised look. "Are these Remnant also dangerous people?"`
 			`	"No, they're friendly people," you reassure her. "They just don't want to meet in their own territory."`
 			label end
-			`	The delegation thanks you for this information and boards your ship. You plot a course for <destination>. Hopefully the Remnant will be willing to share with an alien species they just met.`
+			`	The delegation thanks you for this information and boards your ship. You plot a course for <destination>. Hopefully, the Remnant will be willing to share with an alien species they just met.`
 				accept
 	on visit
 		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet. Take off and wait for them.`
@@ -2040,11 +2040,11 @@ mission "Strider: Remnant 3"
 			`At the designated coordinates, there is a small encampment set up that looks vaguely reminiscent of a desert trader outpost. Aside from a few camels tied near a water trough, the place looks abandoned. When you touch down next to it, the delegation steps out cautiously. "Is this the right place?" one of the Hai asks somewhat worriedly.`
 			`	Before you can answer, a number of Remnant emerge from the tents, and you notice that Rayn is among them. "Welcome to our encampment, representatives," Rayn chants. "Captain <first> brought us your missive, and we asked them to bring you here. Would you care to come inside?" He gestures toward the largest of the tents. While obviously surprised, Ambassador Yashili acquiesces, and the Hai step inside. Rayn gestures for you to follow. The remaining Remnant begin patrolling around the camp.`
 			`	Rayn offers food and water to the Hai and then takes a seat on a cushion on the ground. The Hai politely refuse the food before joining Rayn on the cushions. Ambassador Yashili begins. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you have such technology, with ship hulls that repair themselves."`
-			`	"This is true that our ships self repair," Rayn responds. "But this is not technology that we are able to share. This property is intrinsic to the metals that we build our ships with, metals which are in low supply." Yashili looks concerned with this development; perhaps this journey was a worthless one.`
+			`	"It is true that our ships self repair," Rayn responds. "But this is not technology that we are able to share. The property is intrinsic to the metals that we build our ships with - metals which are in low supply." Yashili looks concerned with this development; perhaps this journey was a worthless one.`
 			choice
 				`	"So is there no way that you can help them?"`
 				`	"There must be something we could do."`
-			`	"Do not fear, for we have something else. For many decades, we have been fighting and plundering from Korath raiders from the Core. Their ships contain outfits capable of hull repair through the use of small robots. We have been unable to reproduce these robots with ease, but we may be able to provide for you our research and a number of samples that you may use."`
+			`	"Do not fear, for we have something else. For many decades, we have been fighting and plundering Korath raiders from the Core. Their ships contain outfits capable of hull repair through the use of small robots. We have been unable to reproduce these robots with ease, but we may be able to provide for you our research and a number of samples that you may use."`
 			`	"We too have encountered these Korath," Yashili says in response. "Although, we had not taken their technology. This may be of great use to us."`
 			`	"We would like to ask something in trade, however: a copy of your astronomical records. The history of the galaxy itself is a mystery to us, and we would like to learn more about it."`
 			`	Ambassador Yashili looks thoughtful, then nods. "Historical astronomical data is scientifically valuable, as is learning how to repair our ships in flight. This seems a fair trade. We should be able to have the data for you shortly. We only need use of Captain <first>'s ship to access the hyperspace communiation relays." Yashili nods to another member of the delegation, who then scurries off to your ship.`
@@ -2057,7 +2057,7 @@ mission "Strider: Remnant 3"
 			`	Yashili nods. "This is an understandable situation."`
 			``	
 			`	An hour of conversation later, the Ambassador's assistant returns with a large data drive and hands it to her. The Remnant pull out a data chip of their own, and the two groups formally exchange the data. In response to an unseen signal, another Remnant pulls back one side of the tent, and a team carries in a segment from a systems core with several of the small robots. "There are more of these waiting outside, but here is a sample for you to inspect. Using the instructions we have provided, you should have no problem making use of this technology." They poke at the console, and the robots promptly spring to life and assemble a small pile of parts into a model ship.`
-			`	"Thank you for doing business with us," says Ambassador Yashili. "You have a friend in the Hai." She bows and the Remnant return the bow with fluid grace before quickly shouldering the Korath equipment. They load everything onto the <ship> as the delegation boards, and you set out to return to <destination>.`
+			`	"Thank you for doing business with us," says Ambassador Yashili. "You have a friend in the Hai." She bows and the Remnant return the bow with fluid grace before quickly shouldering the Korath equipment. They load everything onto the <ship> as the delegation boards, and you set out to return to <planet>.`
 			`	As you take off, a final glance at your exterior cameras shows the Remnant have already almost finished packing up their encampment onto the camels. As one tent comes down, it reveals a anti-aircraft artillery cannon installed on a sled. Despite the rustic appearance they portrayed, the Remnant certainly took their security seriously. There is still no ship visible, but you suspect that a Starling or Gull is undoubtedly hiding nearby.`
 				accept
 
@@ -2238,5 +2238,5 @@ mission "Strider notification"
 	on offer
 		conversation
 			scene `thumbnail/hai pond strider`
-			`Upon landing on <planet>, you receive a message from Torsa. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design, and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoiler the surprise for you, though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
+			`Upon landing on <planet>, you receive a message from Torsa. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoiler the surprise for you though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
 				decline
