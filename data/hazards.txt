@@ -14,7 +14,7 @@ hazard "EW Base Heat"
 	"range" 0 25000
 	"environmental effect" "heat hazard" 300
 	weapon
-		"relative heat damage" 0.0009
+		"relative heat damage" 0.0005
 
 
 
