@@ -105,7 +105,7 @@ tip "    engine capacity:"
 	`How many tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
 
 tip "energy protection:"
-	`Protection against weapons taht deal energy damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in energy damage, while a total value of 11 only results in a 10 percent reduction.`
+	`Protection against weapons that deal energy damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in energy damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
