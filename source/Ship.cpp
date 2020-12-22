@@ -3649,14 +3649,20 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	if(weapon.HasDamageDropoff())
 		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 	
-	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
-	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
-	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
-	double fuelDamage = weapon.FuelDamage() * damageScaling / (1. + attributes.Get("fuel protection"));
-	double heatDamage = weapon.HeatDamage() * damageScaling / (1. + attributes.Get("heat protection"));
+	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
+		* damageScaling / (1. + attributes.Get("shield protection"));
+	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
+		* damageScaling / (1. + attributes.Get("hull protection"));
+	double energyDamage = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
+		* damageScaling / (1. + attributes.Get("energy protection"));
+	double fuelDamage = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
+		* damageScaling / (1. + attributes.Get("fuel protection"));
+	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
+		* damageScaling / (1. + attributes.Get("heat protection"));
 	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
 	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
+	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -3678,8 +3684,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	// For the following damage types, the total effect depends on how much is
 	// "leaking" through the shields.
 	double leakage = (1. - .5 * shieldFraction);
-	// Code in Ship::Move() will handle making sure the fuel amount stays in the
-	// allowable range.
+	// Code in Ship::Move() will handle making sure the fuel and energy amounts
+	// stays in the allowable ranges.
+	energy -= energyDamage * leakage;
 	fuel -= fuelDamage * leakage;
 	heat += heatDamage * leakage;
 	ionization += ionDamage * leakage;
