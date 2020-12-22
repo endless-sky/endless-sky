@@ -2191,7 +2191,7 @@ mission "Strider 3"
 	on offer
 		event "pond strider mass production" 30 90
 		conversation
-			`Yashili contacts the elders as you land, informing them that you have obtained the hull repair technology. They agree to meet you in the spaceport along with Torsa. A group of spaceport workers begin unloading the samples from your cargo bay after you land.`
+			`Yashili contacts the elders as you land, informing them that you have obtained the hull repair technology. They agree to meet you in the spaceport along with Torsa. A group of spaceport workers begins unloading the samples from your cargo bay after you land.`
 			`	As you depart your ship, you spot the Hai elders and Torsa approaching. Ambassador Yashili and the Hai delegation step forward to meet them.`
 			branch coalition
 				has "Strider: Coalition 2: done"
