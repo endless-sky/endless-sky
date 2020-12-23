@@ -2108,8 +2108,6 @@ system Aescolanus
 	attributes "ember waste" "wormhole"
 	habitable 233.28
 	belt 1323
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	trade Clothing 262
 	trade Electronics 835
@@ -2121,6 +2119,8 @@ system Aescolanus
 	trade Medical 715
 	trade Metal 410
 	trade Plastic 289
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/m4
 		period 10
@@ -4354,8 +4354,6 @@ system Antevorta
 	attributes "ember waste"
 	habitable 320
 	belt 1994
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Ossipago
 	link Cardea
@@ -4378,6 +4376,8 @@ system Antevorta
 	trade Medical 697
 	trade Metal 338
 	trade Plastic 469
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/wr
 		period 10
@@ -4539,8 +4539,6 @@ system Arculus
 	attributes "ember waste"
 	habitable 625
 	belt 1536
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	haze _menu/haze-red
 	link Edusa
 	link Cinxia
@@ -4562,6 +4560,8 @@ system Arculus
 	fleet "Remnant Transport" 2200
 	fleet "Remnant Home Guard" 2000
 	fleet "Korath Ember Waste Raid" 40000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/g5-old
 		period 10
@@ -6052,8 +6052,6 @@ system Caeculus
 	attributes "ember waste"
 	habitable 320
 	belt 1797
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Stercutus
 	asteroids "small rock" 3 0.5704
@@ -6076,6 +6074,8 @@ system Caeculus
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/wr
 		period 10
@@ -6367,8 +6367,6 @@ system Cardea
 	attributes "ember waste" "wormhole"
 	habitable 851.84
 	belt 1725
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Nenia
 	link Antevorta
@@ -6390,6 +6388,8 @@ system Cardea
 	trade Medical 758
 	trade Metal 339
 	trade Plastic 385
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k5-old
 		distance 47.5
@@ -6942,8 +6942,6 @@ system Cinxia
 	attributes "ember waste"
 	habitable 425.92
 	belt 1713
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	haze _menu/haze-red
 	link Arculus
 	link Perfica
@@ -6964,6 +6962,8 @@ system Cinxia
 	fleet "Remnant Transport" 1800
 	fleet "Remnant Home Guard" 1600
 	fleet "Korath Ember Waste Raid" 30000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/k5-old
 		period 10
@@ -6998,8 +6998,6 @@ system Coluber
 	attributes "ember waste" "wormhole"
 	habitable 659.2
 	belt 1590
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Parca
 	link Levana
@@ -7021,6 +7019,8 @@ system Coluber
 	trade Metal 475
 	trade Plastic 362
 	fleet "Korath Ember Waste Raid" 10000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k5-old
 		distance 40.6966
@@ -7118,8 +7118,6 @@ system Convector
 	attributes "ember waste"
 	habitable 4131.68
 	belt 1961
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 7 1.805
@@ -7138,6 +7136,8 @@ system Convector
 	trade Medical 691
 	trade Metal 367
 	trade Plastic 485
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/giant
 		distance 13.0749
@@ -7619,8 +7619,6 @@ system Delia
 	pos -41 757
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 486.68
 	link Dixere
@@ -7646,6 +7644,8 @@ system Delia
 	trade Plastic 490
 	fleet "Ka'het" 3400
 	fleet "Ka'het Aggressive" 10300
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k0
 		period 10
@@ -8015,13 +8015,13 @@ system Diespiter
 	asteroids "small rock" 65 3
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Statina
 	minables iron 22 3
 	minables silicon 46 3
 	minables tungsten 17 3
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		distance 1600
 		period 398
@@ -8105,8 +8105,6 @@ system Dixere
 	pos 33 708
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 851.84
 	link Delia
@@ -8132,6 +8130,8 @@ system Dixere
 	trade Plastic 479
 	fleet "Ka'het" 2760
 	fleet "Ka'het Aggressive" 10400
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k0-old
 		distance 43
@@ -8679,8 +8679,6 @@ system Edusa
 	attributes "ember waste" "wormhole"
 	habitable 2372.76
 	belt 1167
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Arculus
 	asteroids "small rock" 2 0.740133
@@ -8702,6 +8700,8 @@ system Edusa
 	fleet "Small Remnant" 2400
 	fleet "Remnant Transport" 2400
 	fleet "Korath Ember Waste Raid" 40000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/giant
 		period 10
@@ -8734,13 +8734,13 @@ system Egeria
 	asteroids "small rock" 1 8
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
 	minables iron 20 4
 	minables lead 28 5
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		distance 1326
 		period 2174
@@ -9556,8 +9556,6 @@ system Esix
 	pos 142 532
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 8640
 	link Gerenus
@@ -9580,6 +9578,8 @@ system Esix
 	trade Plastic 358
 	fleet "Ka'het" 3600
 	fleet "Ka'het Aggressive" 10500
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/b5
 		period 10
@@ -10058,8 +10058,6 @@ system Farinus
 	attributes "ember waste"
 	habitable 745.92
 	belt 1149
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Cinxia
 	link Perfica
@@ -10079,6 +10077,8 @@ system Farinus
 	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
 	fleet "Korath Ember Waste Raid" 40000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k5-old
 		distance 36.894
@@ -10243,8 +10243,6 @@ system Fearis
 	pos -16 643
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 486.68
 	link Feraticus
@@ -10265,6 +10263,8 @@ system Fearis
 	trade Plastic 339
 	fleet "Ka'het" 2900
 	fleet "Ka'het Aggressive" 9100
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k0-old
 		period 10
@@ -10382,8 +10382,6 @@ system Feraticus
 	pos 58 630
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 320
 	link Dixere
@@ -10410,6 +10408,8 @@ system Feraticus
 	trade Plastic 405
 	fleet "Ka'het" 3150
 	fleet "Ka'het Aggressive" 8500
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 10
@@ -10446,8 +10446,6 @@ system Fereti
 	pos -39 600
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 486.68
 	link Lire
@@ -10470,6 +10468,8 @@ system Fereti
 	trade Plastic 426
 	fleet "Ka'het Core" 2900
 	fleet "Builders Drone" 2050
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/a0
 		period 10
@@ -11210,8 +11210,6 @@ system Gerenus
 	pos 197 514
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 9065.92
 	link Esix
@@ -11237,6 +11235,8 @@ system Gerenus
 	trade Plastic 349
 	fleet "Ka'het" 3400
 	fleet "Ka'het Aggressive" 11000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/giant
 		period 8.42267
@@ -11333,8 +11333,6 @@ system Giribea
 	pos -6 674
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 1705
 	link Delia
@@ -11363,6 +11361,8 @@ system Giribea
 	trade Plastic 488
 	fleet "Ka'het Core" 2850
 	fleet "Builders Drone" 2100
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0-old
 		distance 46.9208
@@ -12946,8 +12946,6 @@ system Insitor
 	attributes "ember waste" "wormhole"
 	habitable 553.28
 	belt 1170
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 1 2.54427
@@ -12961,6 +12959,8 @@ system Insitor
 	trade Medical 717
 	trade Metal 383
 	trade Plastic 385
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/m0
 		distance 43.8496
@@ -15082,8 +15082,6 @@ system Levana
 	attributes "ember waste"
 	habitable 2798.68
 	belt 1202
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Coluber
 	asteroids "medium rock" 3 10.005
@@ -15104,6 +15102,8 @@ system Levana
 	trade Metal 407
 	trade Plastic 222
 	fleet "Korath Ember Waste Raid" 10000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/giant
 		distance 17.197
@@ -15203,8 +15203,6 @@ system Lire
 	pos -59 676
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 1080
 	link Fearis
@@ -15226,6 +15224,8 @@ system Lire
 	trade Plastic 411
 	fleet "Ka'het" 2850
 	fleet "Ka'het Aggressive" 9300
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0-old
 		period 10
@@ -15458,8 +15458,6 @@ system Lucina
 	attributes "ember waste"
 	habitable 320
 	belt 1466
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Parca
 	link Coluber
@@ -15482,6 +15480,8 @@ system Lucina
 	trade Metal 524
 	trade Plastic 410
 	fleet "Korath Ember Waste Raid" 20000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/m0
 		period 10
@@ -17599,8 +17599,6 @@ system Nenia
 	attributes "ember waste" "void sprites" "archon"
 	habitable 2340
 	belt 1343
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	haze _menu/haze-red
 	link Ossipago
 	link Cardea
@@ -17626,6 +17624,8 @@ system Nenia
 	trade Metal 265
 	trade Plastic 465
 	fleet "Void Sprites" 500
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/f5-old
 		distance 31.5171
@@ -17816,8 +17816,6 @@ system Nona
 	pos 166 558
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 1080
 	link Esix
@@ -17838,6 +17836,8 @@ system Nona
 	trade Plastic 379
 	fleet "Ka'het" 3700
 	fleet "Ka'het Aggressive" 11400
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0-old
 		period 10
@@ -18138,8 +18138,6 @@ system Ossipago
 	attributes "ember waste" "wormhole"
 	habitable 1948.28
 	belt 1803
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Antevorta
 	link Nenia
@@ -18162,6 +18160,8 @@ system Ossipago
 	trade Medical 768
 	trade Metal 263
 	trade Plastic 505
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/f5-old
 		distance 11.9736
@@ -18237,8 +18237,6 @@ system Paeli
 	pos 129 497
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 425.92
 	link Esix
@@ -18263,6 +18261,8 @@ system Paeli
 	trade Plastic 462
 	fleet "Ka'het" 3500
 	fleet "Ka'het Aggressive" 9800
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite planet/browndwarf-t-rouge
 		period 10
@@ -18306,8 +18306,6 @@ system Pantica
 	attributes "ember waste"
 	habitable 486.68
 	belt 1203
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	haze _menu/haze-red
 	link Arculus
 	link Cinxia
@@ -18333,6 +18331,8 @@ system Pantica
 	fleet "Remnant Transport" 1400
 	fleet "Remnant Home Guard" 1300
 	fleet "Korath Ember Waste Raid" 40000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/k0-old
 		period 10
@@ -18363,8 +18363,6 @@ system Parca
 	attributes "ember waste"
 	habitable 760
 	belt 1315
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Coluber
 	link Lucina
@@ -18386,6 +18384,8 @@ system Parca
 	trade Metal 531
 	trade Plastic 445
 	fleet "Korath Ember Waste Raid" 10000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g5-old
 		distance 18.2961
@@ -18593,8 +18593,6 @@ system Peragenor
 	attributes "ember waste"
 	habitable 1080
 	belt 1920
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Stercutus
 	asteroids "medium rock" 1 2.646
@@ -18615,6 +18613,8 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Korath Ember Waste Raid" 40000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0-old
 		period 10
@@ -18700,8 +18700,6 @@ system Perfica
 	attributes "ember waste"
 	habitable 1080
 	belt 1160
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Cinxia
 	link Farinus
@@ -18724,6 +18722,8 @@ system Perfica
 	fleet "Small Remnant" 7500
 	fleet "Remnant Transport" 7500
 	fleet "Korath Ember Waste Raid" 30000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -19265,8 +19265,6 @@ system Polerius
 	pos 88 482
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 1505.92
 	link Paeli
@@ -19290,6 +19288,8 @@ system Polerius
 	trade Plastic 503
 	fleet "Ka'het" 2900
 	fleet "Ka'het Aggressive" 9400
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0
 		distance 33.9397
@@ -19455,13 +19455,13 @@ system Postverta
 	pos 15000 15000
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	asteroids "large metal" 9 3
 	asteroids "large rock" 4 3
 	asteroids "medium metal" 52 1
 	asteroids "medium rock" 4 2
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object "Ssil Vida"
 		distance 1408
 		period 554
@@ -19630,11 +19630,11 @@ system Prosa
 	asteroids "small rock" 4 1
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Vaticanus
 	minables copper 5 2
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		distance 311
 		period 34
@@ -20018,8 +20018,6 @@ system Queri
 	pos 69 518
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 135
 	link Esix
@@ -20036,6 +20034,8 @@ system Queri
 	trade Plastic 329
 	fleet "Ka'het" 4000
 	fleet "Ka'het Aggressive" 11000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g5-old
 		period 10
@@ -20421,8 +20421,6 @@ system Relifer
 	pos 19 603
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 625
 	link Feraticus
@@ -20446,6 +20444,8 @@ system Relifer
 	trade Plastic 355
 	fleet "Ka'het" 2750
 	fleet "Ka'het Aggressive" 8900
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0-old
 		period 10
@@ -20639,8 +20639,6 @@ system Ritilas
 	pos 11 523
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	habitable 135
 	link Queri
@@ -20663,6 +20661,8 @@ system Ritilas
 	trade Plastic 363
 	fleet "Ka'het" 2700
 	fleet "Ka'het Aggressive" 9600
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k0-old
 		period 10
@@ -21144,10 +21144,10 @@ system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
 	habitable 10000
+	haze _menu/haze-full
 	hazard "Black Hole Gravity" 1
 	hazard "Black Hole Event Horizon" 1
-	hazard "Black Hole Accretion Disk" 1
-	haze _menu/haze-full
+	hazard "Black Hole Accretion Disk" 10
 	object
 		sprite "star/black-hole-core"
 		period 1
@@ -21594,8 +21594,6 @@ system Segesta
 	attributes "ember waste" "wormhole"
 	habitable 425.92
 	belt 1120
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Stercutus
 	asteroids "small rock" 6 1.9116
@@ -21619,6 +21617,8 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 40000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k5-old
 		period 10
@@ -23249,14 +23249,14 @@ system Statina
 	asteroids "small metal" 39 3
 	government Uninhabited
 	attributes "ember waste" "wormhole" "inaccessible"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
 	minables iron 5 6
 	minables silicon 11 5
 	minables titanium 10 4
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		distance 111
 		period 30
@@ -23365,8 +23365,6 @@ system Stercutus
 	attributes "ember waste" "wormhole"
 	habitable 945
 	belt 1492
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Caeculus
 	link Peragenor
@@ -23386,6 +23384,8 @@ system Stercutus
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g5-old
 		distance 31.1534
@@ -24698,13 +24698,13 @@ system Vaticanus
 	asteroids "small rock" 3 6
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
 	minables lead 16 13
 	minables tungsten 10 13
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		distance 1670
 		period 1181
