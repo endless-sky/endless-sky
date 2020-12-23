@@ -2240,5 +2240,5 @@ mission "Strider notification"
 	on offer
 		conversation
 			scene `thumbnail/hai pond strider`
-			`Upon landing on <planet>, you receive a message from Osen. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoiler the surprise for you though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
+			`Upon landing on <planet>, you receive a message from Osen. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoil the surprise for you though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
 				decline
