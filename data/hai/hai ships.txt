@@ -32,26 +32,25 @@ ship "Aphid"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Pulse Turret"
-		"Pebble Core"
+		"Chameleon Anti-Missile"
+		"Sand Cell" 2
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
 		`"Basrem" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		"Hyperdrive"
 	engine -8 40
 	engine 8 40
-	turret 0 24 "Pulse Turret"
+	turret 0 24 "Chameleon Anti-Missile"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids are only lightly armed and mainly rely on larger Hai ships for protection."
+	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
 
-ship "Aphid" "Aphid (Anti-Missile)"
+ship "Aphid" "Aphid (Armed)"
 	outfits
-		"Chameleon Anti-Missile"
+		"Pulse Turret"
 		"Pebble Core"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
