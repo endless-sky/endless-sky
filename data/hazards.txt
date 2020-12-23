@@ -54,11 +54,9 @@ hazard "Black Hole Event Horizon"
 
 hazard "Black Hole Accretion Disk"
 	"constant strength"
-	"range" 450
+	"range" 600
 	weapon
 		"hit effect" "nano spark"
 		"damage dropoff" 0 150
 		"dropoff modifier" 0
 		"relative shield damage" .0003
-
-
