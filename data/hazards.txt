@@ -11,10 +11,10 @@
 hazard "Ember Waste Base Heat"
 	"duration" 1 200
 	"strength" 0.25 2
-	"range" 0 25000
-	"environmental effect" "heat hazard" 300
+	"range" 15000
+	"environmental effect" "heat hazard" 150
 	weapon
-		"relative heat damage" 0.0005
+		"relative heat damage" 0.00035
 
 
 
@@ -30,11 +30,11 @@ effect "heat hazard"
 
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
-	"strength" 0.5 3
-	"range" 0 25000
-	"environmental effect" "ion hazard" 300
+	"strength" 0.5 2
+	"range" 15000
+	"environmental effect" "ion hazard" 150
 	weapon
-		"ion damage" 1
+		"ion damage" 0.5
 		"shield damage" 5
 
 
@@ -52,7 +52,7 @@ effect "ion hazard"
 
 hazard "Black Hole Gravity"
 	"constant strength"
-	"range" 0 2500
+	"range" 2500
 	weapon
 		"gravitational"
 		"hit force" -25
@@ -63,13 +63,10 @@ hazard "Black Hole Gravity"
 
 hazard "Black Hole Event Horizon"
 	"constant strength"
-	"period" 10
-	"strength" 0.1 2
-	"range" 0 150
+	"range" 150
 	weapon
 		"hit effect" "nano spark"
-		"shield damage" 50
-		"hull damage" 50
 		"damage dropoff" 0 150
 		"dropoff modifier" 0
-		"piercing" 0.25
+		"relative hull damage" .00028
+		"piercing" 10
