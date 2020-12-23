@@ -1886,7 +1886,7 @@ mission "Strider 1"
 				defer
 			
 			label "know both"
-			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairing hulls, and the Remnant, who have ships that repair themselves. Would you like to tell the elders about one of these groups?`
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Osen's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairing hulls, and the Remnant, who have ships that repair themselves. Would you like to tell the elders about one of these groups?`
 			choice
 				`	(Yes.)`
 					goto start
@@ -1894,7 +1894,7 @@ mission "Strider 1"
 					defer
 			
 			label "know coalition"
-			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairing hulls. Would you like to tell the elders about the Coalition?`
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Osen's father asked if you knew of any aliens with hull repair technology, and you have met the Coalition, who have outfits capable of repairing hulls. Would you like to tell the elders about the Coalition?`
 			choice
 				`	(Yes.)`
 					goto start
@@ -1902,7 +1902,7 @@ mission "Strider 1"
 					defer
 			
 			label "know remnant"
-			`You've returned to <planet> to help the Hai to develop hull repair technology. Torsa's father asked if you knew of any aliens with hull repair technology, and you have met the Remnant, who have ships that repair themselves. Would you like to tell the elders about the Remnant?`
+			`You've returned to <planet> to help the Hai to develop hull repair technology. Osen's father asked if you knew of any aliens with hull repair technology, and you have met the Remnant, who have ships that repair themselves. Would you like to tell the elders about the Remnant?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
@@ -2191,8 +2191,8 @@ mission "Strider 3"
 	on offer
 		event "pond strider mass production" 30 90
 		conversation
-			`Yashili contacts the elders as you land, informing them that you have obtained the hull repair technology. They agree to meet you in the spaceport along with Torsa. A group of spaceport workers begins unloading the samples from your cargo bay after you land.`
-			`	As you depart your ship, you spot the Hai elders and Torsa approaching. Ambassador Yashili and the Hai delegation step forward to meet them.`
+			`Yashili contacts the elders as you land, informing them that you have obtained the hull repair technology. They agree to meet you in the spaceport along with Osen. A group of spaceport workers begins unloading the samples from your cargo bay after you land.`
+			`	As you depart your ship, you spot the Hai elders and Osen approaching. Ambassador Yashili and the Hai delegation step forward to meet them.`
 			branch coalition
 				has "Strider: Coalition 2: done"
 			
@@ -2205,8 +2205,8 @@ mission "Strider 3"
 			`	"They were an interesting group. Very enthusiatic about meeting new people, although very touchy on the subject of the Quarg."`
 			
 			label next
-			`	Yashili then hands the copy of the data to Torsa. "You'll be needing this," she says.`
-			`	"And I'll certainly love it," Torsa responds. "The spaceport workers have already sent the cargo en route to my shipyard. I'll begin working on implementing it into the Pond Strider immediately."`
+			`	Yashili then hands the copy of the data to Osen. "You'll be needing this," she says.`
+			`	"And I'll certainly love it," Osen responds. "The spaceport workers have already sent the cargo en route to my shipyard. I'll begin working on implementing it into the Pond Strider immediately."`
 			choice
 				`	"Pond Strider?"`
 				`	"I hope you have fun with that."`
@@ -2220,10 +2220,10 @@ mission "Strider 3"
 			`	"It's hard not to have fun when you love doing your job."`
 			
 			label end
-			`	Torsa is about to run off, but one of the elders stops him. "Can you give us any estimate on how long it will take to make use of this data?"`
-			`	"Oh, yes," Torsa says. "It may take us a few months to get everything working. A single month at the least if we are lucky."`
+			`	Osen is about to run off, but one of the elders stops him. "Can you give us any estimate on how long it will take to make use of this data?"`
+			`	"Oh, yes," Osen says. "It may take us a few months to get everything working. A single month at the least if we are lucky."`
 			`	"This is good to know. The sooner we have these ships function, the better."`
-			`	Torsa once again gets ready to run off, but this time stops himself and turns to you. "Thank you Captain. Without this information, it could have taken me years to finish this project." You nod in response, and Torsa finally runs off to his shipyard.`
+			`	Osen once again gets ready to run off, but this time stops himself and turns to you. "Thank you Captain. Without this information, it could have taken me years to finish this project." You nod in response, and Osen finally runs off to his shipyard.`
 			`	"I would like to thank you as well," Yashili says. "It has been some time since I have had the chance to leave our space. It is always exciting to go to new places and meet new people." Yashili bows to you, and you return a bow of your own.`
 			`	"And we also need to express our gratitude," one of the elders says. "It is good to have you as a friend of the Hai. We shall keep you no longer, though. May you stay safe on your adventures."`
 				decline
@@ -2240,5 +2240,5 @@ mission "Strider notification"
 	on offer
 		conversation
 			scene `thumbnail/hai pond strider`
-			`Upon landing on <planet>, you receive a message from Torsa. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoiler the surprise for you though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
+			`Upon landing on <planet>, you receive a message from Osen. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoiler the surprise for you though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
 				decline
