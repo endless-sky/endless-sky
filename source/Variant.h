@@ -29,7 +29,7 @@ public:
 	// Construct and Load() at the same time.
 	Variant(const DataNode &node);
 	
-	void Load(const DataNode &node, bool global = false);
+	void Load(const DataNode &node);
 	
 	const std::string &Name() const;
 	std::vector<const Ship *> Ships() const;

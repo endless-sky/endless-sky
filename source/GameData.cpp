@@ -582,7 +582,7 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Load(node, planets);
 	else if(node.Token(0) == "news" && node.Size() >= 2)
 		news.Get(node.Token(1))->Load(node);
-	else if(node.Token(0) == "variant" && node.Size() >= 2)
+	else if(node.Token(0) == "variant" && node.Size() >= 2 && !node.IsNumber(1))
 		variants.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
@@ -1020,8 +1020,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
-		else if(key == "variant")
-			variants.Get(node.Token(1))->Load(node, true);
+		else if(key == "variant" && node.Size() >= 2 && !node.IsNumber(1))
+			variants.Get(node.Token(1))->Load(node);
 		else if(key == "landing message" && node.Size() >= 2)
 		{
 			for(const DataNode &child : node)

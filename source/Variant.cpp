@@ -33,22 +33,13 @@ Variant::Variant(const DataNode &node)
 
 
 
-void Variant::Load(const DataNode &node, const bool global)
+void Variant::Load(const DataNode &node)
 {
-	// If this variant is global (i.e. a root node variant stored in GameData),
-	// it must be named.
-	if(global && node.Size() < 2)
-	{
-		node.PrintTrace("No name specified for variant:");
-		return;
-	}
+	// If this variant is being loaded with a second token that is not a number,
+	// then it must be being loaded from GameData, and therefore must have its
+	// name saved.
 	if(node.Size() >= 2 && !node.IsNumber(1))
 		name = node.Token(1);
-	else if(global && node.IsNumber(1))
-	{
-		node.PrintTrace("Variant names cannot be only numbers:");
-		return;
-	}
 	
 	// If Load() has already been called once on this variant, any subsequent
 	// calls will replace the contents instead of adding to them.
