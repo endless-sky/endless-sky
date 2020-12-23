@@ -16,7 +16,13 @@ hazard "Ember Waste Base Heat"
 	weapon
 		"relative heat damage" 0.00035
 
-
+effect "heat hazard"
+	sprite "effect/ew heat/ew heat"
+		"frame rate" 8
+		"random start frame"
+		"rewind"
+	"lifetime" 60
+	"velocity scale" 3
 
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
@@ -27,18 +33,25 @@ hazard "Ember Waste Base Storm"
 		"ion damage" 0.5
 		"shield damage" 5
 
+effect "ion hazard"
+	sprite "effect/spark"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
 
 
-hazard "Black Hole Gravity"
+
+hazard "Black Hole Accretion Disk"
 	"constant strength"
-	"range" 2500
+	"range" 600
 	weapon
-		"gravitational"
-		"hit force" -25
-		"damage dropoff" 100 2500
+		"hit effect" "nano spark"
+		"damage dropoff" 150 600
 		"dropoff modifier" 0
-
-
+		"relative shield damage" .00028
 
 hazard "Black Hole Event Horizon"
 	"constant strength"
@@ -50,13 +63,11 @@ hazard "Black Hole Event Horizon"
 		"relative hull damage" .00028
 		"piercing" 10
 
-
-
-hazard "Black Hole Accretion Disk"
+hazard "Black Hole Gravity"
 	"constant strength"
-	"range" 600
+	"range" 2500
 	weapon
-		"hit effect" "nano spark"
-		"damage dropoff" 0 150
+		"gravitational"
+		"hit force" -25
+		"damage dropoff" 150 2500
 		"dropoff modifier" 0
-		"relative shield damage" .0003
