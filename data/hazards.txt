@@ -11,8 +11,8 @@
 hazard "Ember Waste Base Heat"
 	"duration" 1 200
 	"strength" 0.25 2
-	"range" 15000
-	"environmental effect" "heat hazard" 150
+	"range" 20000
+	"environmental effect" "heat hazard" 200
 	weapon
 		"relative heat damage" 0.00035
 
@@ -30,9 +30,9 @@ effect "heat hazard"
 
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
-	"strength" 0.5 2
-	"range" 15000
-	"environmental effect" "ion hazard" 150
+	"strength" 0.5 3
+	"range" 20000
+	"environmental effect" "ion hazard" 200
 	weapon
 		"ion damage" 0.5
 		"shield damage" 5
