@@ -18,16 +18,6 @@ hazard "Ember Waste Base Heat"
 
 
 
-effect "heat hazard"
-	sprite "effect/ew heat/ew heat"
-		"frame rate" 8
-		"random start frame"
-		"rewind"
-	"lifetime" 60
-	"velocity scale" 3
-
-
-
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
 	"strength" 0.5 3
@@ -36,17 +26,6 @@ hazard "Ember Waste Base Storm"
 	weapon
 		"ion damage" 0.5
 		"shield damage" 5
-
-
-
-effect "ion hazard"
-	sprite "effect/spark"
-		"frame rate" 30
-		"random start frame"
-	"lifetime" 60
-	"random angle" 360
-	"random spin" 10
-	"random velocity" 1
 
 
 
