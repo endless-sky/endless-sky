@@ -41,7 +41,7 @@ ship "Aphid"
 		"Hyperdrive"
 	engine -8 40
 	engine 8 40
-	turret 0 24 "Pulse Turret"
+	turret 0 24 "Chameleon Anti-Missile"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
