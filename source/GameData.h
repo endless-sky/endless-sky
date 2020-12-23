@@ -32,6 +32,7 @@ class Fleet;
 class Galaxy;
 class GameEvent;
 class Government;
+class Hazard;
 class ImageSet;
 class Interface;
 class Minable;
@@ -103,6 +104,7 @@ public:
 	static const Set<Fleet> &Fleets();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
+	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
