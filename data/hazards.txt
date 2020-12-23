@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-hazard "EW Base Heat"
+hazard "Ember Waste Base Heat"
 	"duration" 1 200
 	"strength" 0.25 2
 	"range" 0 25000
@@ -28,7 +28,7 @@ effect "heat hazard"
 
 
 
-hazard "EW Base Storm"
+hazard "Ember Waste Base Storm"
 	"duration" 300 1500
 	"strength" 0.5 3
 	"range" 0 25000
@@ -50,7 +50,7 @@ effect "ion hazard"
 
 
 
-hazard "Grav Strong"
+hazard "Black Hole Gravity"
 	"constant strength"
 	"range" 0 2500
 	weapon
@@ -61,7 +61,7 @@ hazard "Grav Strong"
 
 
 
-hazard "Grav Deadly"
+hazard "Black Hole Event Horizon"
 	"constant strength"
 	"period" 10
 	"strength" 0.1 2
