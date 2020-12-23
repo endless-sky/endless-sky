@@ -21146,7 +21146,7 @@ system "Sagittarius A*"
 	habitable 10000
 	hazard "Black Hole Gravity" 1
 	hazard "Black Hole Event Horizon" 1
-	hazard "Black Hole Event Horizon" 10
+	hazard "Black Hole Accretion Disk" 1
 	haze _menu/haze-full
 	object
 		sprite "star/black-hole-core"
