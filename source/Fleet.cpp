@@ -562,10 +562,10 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 
 
 
-vector<shared_ptr<Ship>> Fleet::Instantiate(vector<const Ship *> &variantShips) const
+vector<shared_ptr<Ship>> Fleet::Instantiate(vector<const Ship *> &ships) const
 {
 	vector<shared_ptr<Ship>> placed;
-	for(const Ship *model : variantShips)
+	for(const Ship *model : ships)
 	{
 		if(model->ModelName().empty())
 		{

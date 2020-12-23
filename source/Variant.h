@@ -68,9 +68,9 @@ private:
 	int variantTotal = 0;
 	int stockTotal = 0;
 	std::vector<const Ship *> ships;
-	// The stockVariants vector contains the variants that are defined as root
-	// nodes and stored in GameData, while the variants vector contains those
-	// variants defined by this fleet definition.
+	// StockVariants contains references to the named root-node variants (as defined
+	// in GameData) that are referenced from this variant definition. The variants vector
+	// contains the local variants that were defined by this variant definition.
 	std::vector<std::pair<const Variant *, int>> stockVariants;
 	std::vector<std::pair<Variant, int>> variants;
 };

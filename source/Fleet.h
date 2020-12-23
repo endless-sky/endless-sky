@@ -66,7 +66,7 @@ public:
 	
 private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
-	std::vector<std::shared_ptr<Ship>> Instantiate(std::vector<const Ship *> &variantShips) const;
+	std::vector<std::shared_ptr<Ship>> Instantiate(std::vector<const Ship *> &ships) const;
 	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
 	void SetCargo(Ship *ship) const;
 	
@@ -76,9 +76,9 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	// The stockVariants vector contains the variants that are defined as root
-	// nodes and stored in GameData, while the variants vector contains those
-	// variants defined by this fleet definition.
+	// StockVariants contains references to the named root-node variants (as defined
+	// in GameData) that are referenced from this fleet definition. The variants vector
+	// contains the local variants that were defined by this fleet definition.
 	std::vector<std::pair<const Variant *, int>> stockVariants;
 	std::vector<std::pair<Variant, int>> variants;
 	// The sum of all available variant weights.
