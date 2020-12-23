@@ -219,24 +219,23 @@ private:
 	double blastRadius = 0.;
 	
 	static const int DAMAGE_TYPES = 14;
+	static const int HIT_FORCE = 0;
 	// Normal damage types:
-	static const int SHIELD_DAMAGE = 0;
-	static const int HULL_DAMAGE = 1;
-	static const int FUEL_DAMAGE = 2;
-	static const int HEAT_DAMAGE = 3;
-	static const int ENERGY_DAMAGE = 4;
+	static const int SHIELD_DAMAGE = 1;
+	static const int HULL_DAMAGE = 2;
+	static const int FUEL_DAMAGE = 3;
+	static const int HEAT_DAMAGE = 4;
+	static const int ENERGY_DAMAGE = 5;
 	// Status effects:
-	static const int ION_DAMAGE = 5;
-	static const int DISRUPTION_DAMAGE = 6;
-	static const int SLOWING_DAMAGE = 7;
+	static const int ION_DAMAGE = 6;
+	static const int DISRUPTION_DAMAGE = 7;
+	static const int SLOWING_DAMAGE = 8;
 	// Relative damage types:
-	static const int RELATIVE_SHIELD_DAMAGE = 8;
-	static const int RELATIVE_HULL_DAMAGE = 9;
-	static const int RELATIVE_FUEL_DAMAGE = 10;
-	static const int RELATIVE_HEAT_DAMAGE = 11;
-	static const int RELATIVE_ENERGY_DAMAGE = 12;
-	
-	static const int HIT_FORCE = 13;
+	static const int RELATIVE_SHIELD_DAMAGE = 9;
+	static const int RELATIVE_HULL_DAMAGE = 10;
+	static const int RELATIVE_FUEL_DAMAGE = 11;
+	static const int RELATIVE_HEAT_DAMAGE = 12;
+	static const int RELATIVE_ENERGY_DAMAGE = 13;
 	mutable double damage[DAMAGE_TYPES] = {};
 	
 	double piercing = 0.;
