@@ -917,7 +917,7 @@ mission "Expanding Business [6]"
 			`	"You could call it that," Turner says after sipping from his glass of wine.`
 			
 			label proposition
-			`	"Building an outfitter selling human goods here on <origin> has had to be the best idea I've ever had, Captain <last>, but recently I thought of an even better idea. You see, most of the humans you see flying around in Hai space are flying decades-old ships. Hai ships are prohibitively expensive for humans. The Hai sell the Aphid for nearly a million and a half credits! This means that demand for ships is extremely high among humans, Captain <last>. Do you see where I'm going with this? You look at something we humans sell like a Star Barge, which is hardly worse than an Aphid for only a quarter of the price, and you start to see the problem."`
+			`	"Building an outfitter selling human goods here on <origin> has had to be the best idea I've ever had, Captain <last>, but recently I thought of an even better idea. You see, most of the humans you see flying around in Hai space are flying decades-old ships. Hai ships are prohibitively expensive for humans. The Hai sell the Aphid for nearly one and a half million credits! This means that demand for ships is extremely high among humans, Captain <last>. Do you see where I'm going with this? You look at something we humans sell like a Star Barge, which is hardly worse than an Aphid for only a quarter of the price, and you start to see the problem."`
 			choice
 				`	"You need me to help you escort freighters again?"`
 				`	"Do you want to build a shipyard selling human ships?"`
