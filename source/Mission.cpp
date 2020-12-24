@@ -355,12 +355,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		for(const Planet *planet : visitedStopovers)
 			out.Write("stopover", planet->Name(), "visited");
 		
-		// Save all NPCs, except those that have despawned. This is so that despawned
-		// NPCs will not reappear should the player quit the game and return, and the
-		// NPCs no lonager pass the despawn conditions.
 		for(const NPC &npc : npcs)
-			if(!npc.PassedDespawn())
-				npc.Save(out);
+			npc.Save(out);
 		
 		// Save all the actions, because this might be an "available mission" that
 		// has not been received yet but must still be included in the saved game.
@@ -600,6 +596,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
+	it = actions.find(DEFER);
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+		return false;
+	
 	return true;
 }
 
@@ -815,7 +815,25 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// when aborting a mission activated the FAIL trigger.
 	if(trigger == ABORT && it == actions.end())
 		it = actions.find(FAIL);
-	// Don't update any conditions if this action exists and can't be completed.
+	
+	// Fail and abort conditions get updated regardless of whether the action
+	// can be done, as a fail or abort action not being able to be done does
+	// not prevent a mission from being failed or aborted.
+	if(trigger == FAIL)
+	{
+		player.AddCondition(name + ": active", -1);
+		player.AddCondition(name + ": failed", 1);
+	}
+	else if(trigger == ABORT)
+	{
+		player.AddCondition(name + ": active", -1);
+		player.AddCondition(name + ": aborted", 1);
+		// Set the failed mission condition here as well for
+		// backwards compatibility.
+		player.AddCondition(name + ": failed", 1);
+	}
+	
+	// Don't update any further conditions if this action exists and can't be completed.
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
@@ -831,19 +849,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		player.AddCondition(name + ": offered", 1);
 		player.AddCondition(name + ": declined", 1);
-	}
-	else if(trigger == FAIL)
-	{
-		player.AddCondition(name + ": active", -1);
-		player.AddCondition(name + ": failed", 1);
-	}
-	else if(trigger == ABORT)
-	{
-		--player.Conditions()[name + ": active"];
-		++player.Conditions()[name + ": aborted"];
-		// Set the failed mission condition here as well for
-		// backwards compatibility.
-		++player.Conditions()[name + ": failed"];
 	}
 	else if(trigger == COMPLETE)
 	{
@@ -947,12 +952,10 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			Do(WAYPOINT, player, ui);
 		}
 		
-		// Perform an "on enter" action for this system, if possible.
-		Enter(system, player, ui);
-		
-		// Update any potential NPCs for this mission, as an "on enter" action may have
-		// changed the player's conditions.
-		UpdateNPCs(player);
+		// Perform an "on enter" action for this system, if possible, and if
+		// any was performed, update this mission's NPC spawn states.
+		if(Enter(system, player, ui))
+			UpdateNPCs(player);
 	}
 	
 	for(NPC &npc : npcs)
@@ -1218,9 +1221,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 
 // Perform an "on enter" MissionAction associated with the current system.
-void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
+// Returns true if an action was performed.
+bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
+	const auto originalSize = didEnter.size();
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);
@@ -1236,6 +1241,8 @@ void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 				didEnter.insert(&action);
 				break;
 			}
+	
+	return didEnter.size() > originalSize;
 }
 
 
