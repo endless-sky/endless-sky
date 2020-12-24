@@ -86,7 +86,7 @@ help "outfitter 2"
 	`Outfits that are in your cargo hold can be (re)installed at any outfitter without cost.`
 
 help "outfitter 3"
-	`You can also uninstall outfits directly into planetary storage by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships, store outfits for future use or simply try on different outfits. Outfits that are in planetary storage can (re)installed at any outfitter without cost. Outfits in storage can also be transferred to cargo when you go to 'purchase to cargo' mode.`
+	`You can also uninstall outfits directly into planetary storage by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships, store outfits for future use, or simply try on different outfits. Outfits in storage can also be transferred to cargo when you go to 'purchase to cargo' mode. Outfits that are in planetary storage or cargo can be (re)installed at any outfitter without cost.`
 	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
 
 help "stranded"
