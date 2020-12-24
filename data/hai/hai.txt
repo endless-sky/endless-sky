@@ -29,16 +29,16 @@ fleet "Small Hai"
 		"Lightning Bug (Pulse)"
 	variant 3
 		"Lightning Bug" 2
-		"Aphid" 3
+		"Aphid (Armed)" 3
 	variant 1
 		"Lightning Bug"
-		"Aphid" 5
+		"Aphid (Armed)" 5
 	variant 2
 		"Lightning Bug (Pulse)" 2
-		"Aphid (Anti-Missile)" 3
+		"Aphid" 3
 	variant 2
 		"Lightning Bug (Pulse)"
-		"Aphid (Anti-Missile)" 5
+		"Aphid" 5
 	variant 1
 		"Lightning Bug" 3
 	variant 1
@@ -52,7 +52,7 @@ fleet "Small Hai"
 	variant 2
 		"Centipede"
 	variant 3
-		"Aphid" 3
+		"Aphid (Armed)" 3
 		"Centipede"
 	variant 1
 		"Centipede" 2
@@ -68,7 +68,7 @@ fleet "Small Hai"
 		"Lightning Bug" 2
 	variant 1
 		"Centipede"
-		"Aphid" 5
+		"Aphid (Armed)" 5
 	variant 1
 		"Centipede" 2
 		"Lightning Bug" 2
@@ -108,11 +108,11 @@ fleet "Large Hai"
 	variant 1
 		"Shield Beetle"
 		"Lightning Bug (Pulse)"
-		"Aphid" 4
+		"Aphid (Armed)" 4
 	variant 1
 		"Shield Beetle (Tracker)"
 		"Lightning Bug"
-		"Aphid (Anti-Missile)" 4
+		"Aphid" 4
 	variant 3
 		"Shield Beetle"
 		"Lightning Bug (Pulse)"
@@ -160,7 +160,7 @@ fleet "Large Hai"
 		"Lightning Bug" 3
 		"Water Bug"
 	variant 2
-		"Aphid" 2
+		"Aphid (Armed)" 2
 		"Lightning Bug"
 		"Centipede"
 	variant 2
@@ -170,7 +170,7 @@ fleet "Large Hai"
 	variant 1
 		"Centipede" 2
 		"Lightning Bug" 2
-		"Aphid" 3
+		"Aphid (Armed)" 3
 	variant 1
 		"Geocoris"
 		"Shield Beetle (Pulse)"
@@ -188,8 +188,8 @@ fleet "Large Hai"
 	variant 1
 		"Geocoris (Tracker)"
 		"Shield Beetle"
-		"Aphid (Anti-Missile)" 2
-		"Aphid" 
+		"Aphid" 2
+		"Aphid (Armed)" 
 	variant 1
 		"Centipede"
 		"Geocoris (Tracker)"
@@ -372,6 +372,7 @@ outfitter "Hai Intermediate"
 	"Pulse Rifle"
 	"Outfit Scanner"
 	"Cargo Scanner"
+	"Sand Cell"
 
 outfitter "Hai Advanced"
 	"Pulse Cannon"
@@ -416,6 +417,7 @@ outfitter "Hai Advanced"
 	"Pulse Rifle"
 	"Outfit Scanner"
 	"Cargo Scanner"
+	"Sand Cell"
 
 phrase "hai"
 	word

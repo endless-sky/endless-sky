@@ -453,7 +453,7 @@ outfit "Sand Cell"
 	"outfit space" -24
 	"energy generation" 1.65
 	"heat generation" 2.45
-	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human fuel cells."
+	description "The Sand Cell is the smallest Hai generator. It was designed for ships which don't need or are unable to carry a nuclear reactor, and it clearly resembles human fuel cells."
 
 
 outfit `"Baellie" Atomic Engines`

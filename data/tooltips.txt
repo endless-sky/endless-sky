@@ -104,6 +104,9 @@ tip "engine capacity needed:"
 tip "    engine capacity:"
 	`How many tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
 
+tip "energy protection:"
+	`Protection against weapons that deal energy damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in energy damage, while a total value of 11 only results in a 10 percent reduction.`
+
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
 
@@ -482,6 +485,9 @@ tip "fuel damage / second:"
 tip "heat damage / second:"
 	`When hitting a target this weapon increases the target's heat by this amount per second, or half this amount if the target's shields are up.`
 
+tip "energy damage / second:"
+	`When hitting a target this weapon reduces the target's energy by this amount per second, or half this amount if the target's shields are up.`
+
 tip "ion damage / second:"
 	`Reduces the target's energy. Ionization slowly wears off over time.`
 
@@ -490,6 +496,21 @@ tip "slowing damage / second:"
 
 tip "disruption damage / second:"
 	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "% shield damage / second:"
+	`Relative shield damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "% hull damage / second:"
+	`Relative hull damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "% fuel damage / second:"
+	`The amount of fuel lost as a percentage of a target's total fuel per second when hit by this weapon. If its shields are up, the loss will be cut in half.`
+
+tip "% heat damage / second:"
+	`When hitting a target this weapon increases the target's heat as a percentage of its maximum heat capacity by this amount per second, or half this amount if the target's shields are up.`
+
+tip "% energy damage / second:"
+	`When hitting a target this weapon reduces the target's energy as a percentage of its energy capacity by this amount per second, or half this amount if the target's shields are up.`
 
 tip "firing energy / second:"
 	`Energy consumed by this weapon per second when firing.`
@@ -539,6 +560,9 @@ tip "fuel damage / shot:"
 tip "heat damage / shot:"
 	`Each shot increases the target ship's heat by this amount, or half this amount if its shields are up.`
 
+tip "energy damage / shot:"
+	`Each shot reduces the target ship's energy by this amount, or half this amount if its shields are up.`
+
 tip "ion damage / shot:"
 	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy and slowly wears off over time.`
 
@@ -547,6 +571,21 @@ tip "slowing damage / shot:"
 
 tip "disruption damage / shot:"
 	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "% shield damage / shot:"
+	`Each shot fired by this weapon does this amount of shield damage as a percentage of the target ship's total shields.`
+
+tip "% hull damage / shot:"
+	`Each shot fired by this weapon does this amount of hull damage as a percentage of the target ship's total hull.`
+
+tip "% fuel damage / shot:"
+	`The amount of fuel lost by the target per shot as a percentage of the ship's total fuel when hit by this weapon. If its shields are up, the loss will be cut in half.`
+
+tip "% heat damage / shot:"
+	`Each shot increases the target ship's heat as a percentage of the ship's maximum heat capacity by this amount, or half this amount if its shields are up.`
+
+tip "% energy damage / shot:"
+	`Each shot reduces the target ship's energy as a percentage of the ship's energy capacity by this amount, or half this amount if its shields are up.`
 
 tip "firing energy / shot:"
 	`Each shot requires this much energy. A weapon will not fire if the ship's batteries do not have at least this amount of energy stored.`
