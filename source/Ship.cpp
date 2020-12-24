@@ -3727,7 +3727,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		isOverheated = true;
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
-	isDisabled = isOverheated || isDisabled;
+	isDisabled |= isOverheated;
 	
 	return type;
 }
