@@ -10,7 +10,7 @@
 
 hazard "Ember Waste Base Heat"
 	"duration" 1 200
-	"strength" 0.25 2
+	"strength" 0.25 1.75
 	"range" 20000
 	"environmental effect" "heat hazard" 200
 	weapon
