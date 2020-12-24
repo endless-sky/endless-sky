@@ -3720,5 +3720,14 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 	
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
+	if(heat > MaximumHeat())
+	{
+		isOverheated = true;
+		isDisabled = true;
+	}
+	else if(heat < .9 * MaximumHeat())
+		isOverheated = false;
+	
 	return type;
 }
