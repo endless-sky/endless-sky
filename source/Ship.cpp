@@ -3719,5 +3719,15 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 	
+	// Check if the ship is disabled by being overheated. Do this now so that
+	// overheated ships don't count as disabled for the purposes of missions.
+	// Do a full overheat check here in case the overheating was caused by
+	// taking damage.
+	if(heat > MaximumHeat())
+		isOverheated = true;
+	else if(heat < .9 * MaximumHeat())
+		isOverheated = false;
+	isDisabled = isOverheated || isDisabled;
+	
 	return type;
 }
