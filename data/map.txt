@@ -21147,7 +21147,7 @@ system "Sagittarius A*"
 	haze _menu/haze-full
 	hazard "Black Hole Gravity" 1
 	hazard "Black Hole Event Horizon" 1
-	hazard "Black Hole Accretion Disk" 10
+	hazard "Black Hole Accretion Disk" 1
 	object
 		sprite "star/black-hole-core"
 		period 1
