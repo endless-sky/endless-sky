@@ -66,7 +66,7 @@ help "map"
 	`This map shows all the star systems you know about and the hyperspace links between them. You can use the map to plot a hyperspace course by clicking on the system you want to travel to. To initiate a jump to that system, close the map and press <Initiate hyperspace jump>.`
 
 help "multiple ships"
-	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship, unless it is a fighter or an unpiloted drone. In the player info panel you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
+	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship. In the player info panel you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
 
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
@@ -81,7 +81,7 @@ help "outfitter"
 	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5 or 20 or 500 of an outfit at once, or multiple keys for larger amounts.`
 
 help "outfitter 2"
-	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by either checking the "show outfits in cargo" box at the bottom right, or control-clicking on your selected ship to deselect it.`
+	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by either checking the "show outfits in cargo" box at the bottom left, or control-clicking on your selected ship to deselect it.`
 	`When you are in 'purchase to cargo' mode, your ship information on the right hand side will be replaced by information on how much cargo space you currently have available.`
 
 help "outfitter 3"
