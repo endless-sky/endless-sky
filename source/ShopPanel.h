@@ -64,6 +64,7 @@ protected:
 	virtual void Sell(bool toStorage = false) = 0;
 	virtual void FailSell(bool toStorage = false) const;
 	virtual bool CanSellMultiple() const;
+	virtual bool IsAlreadyOwned() const;
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();

@@ -304,9 +304,8 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	bool isInCargo = player.Cargo().Get(selectedOutfit) && playerShip;
-	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
-	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
+	bool isAlreadyOwned = IsAlreadyOwned();
+	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -321,7 +320,7 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	cost += licenseCost;
 	// If you have this in your cargo hold or in planetary storage, installing it is free.
-	if(cost > player.Accounts().Credits() && !isInCargo && !isInStorage)
+	if(cost > player.Accounts().Credits() && !isAlreadyOwned)
 		return false;
 	
 	if(HasLicense(selectedOutfit->Name()))

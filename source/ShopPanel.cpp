@@ -353,8 +353,7 @@ void ShopPanel::DrawButtons()
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = ((playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
-		|| (player.Storage() && player.Storage()->Get(selectedOutfit))) ? "_Install" : "_Buy";
+	string BUY = IsAlreadyOwned() ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
@@ -531,6 +530,20 @@ void ShopPanel::FailSell(bool toStorage) const
 bool ShopPanel::CanSellMultiple() const
 {
 	return true;
+}
+
+
+
+// Helper function for UI buttons to determine if the selected item is
+// already owned. Affects if "Install" is shown for already owned items
+// or if "Buy" is shown for items not yet owned.
+//
+// If we are buying into cargo, then items in cargo don't count as already
+// owned, but they count as "already installed" in cargo.
+bool ShopPanel::IsAlreadyOwned() const
+{
+	return (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
+		|| (player.Storage() && player.Storage()->Get(selectedOutfit));
 }
 
 
@@ -1212,7 +1225,12 @@ char ShopPanel::CheckButton(int x, int y)
 	
 	x -= Screen::Right() - SIDEBAR_WIDTH;
 	if(x > 9 && x < 70)
-		return 'b';
+	{
+		if(!IsAlreadyOwned())
+			return 'b';
+		else
+			return 'i';
+	}
 	else if(x > 89 && x < 150)
 		return 's';
 	else if(x > 169 && x < 240)
