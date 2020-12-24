@@ -3764,7 +3764,6 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 				continue;
 			
 			gaveOrder = true;
-			
 			hasMismatch |= !orders.count(ship);
 
 			Orders &existing = orders[ship];
@@ -3804,7 +3803,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	else
 	{
 		// Clear all the orders for these ships.
-		if (!isValidTarget)
+		if(!isValidTarget)
 			Messages::Add(who + "unable to and no longer " + description);
 		else
 			Messages::Add(who + "no longer " + description);
