@@ -22,11 +22,10 @@ effect "heat hazard"
 		"random start frame"
 		"rewind"
 	"lifetime" 60
-	"velocity scale" 3
 
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
-	"strength" 0.5 3
+	"strength" 1 3
 	"range" 20000
 	"environmental effect" "ion hazard" 200
 	weapon
@@ -38,9 +37,8 @@ effect "ion hazard"
 		"frame rate" 30
 		"random start frame"
 	"lifetime" 60
-	"random angle" 360
 	"random spin" 10
-	"random velocity" 1
+	"random velocity" 2
 
 
 
