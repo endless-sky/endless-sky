@@ -353,7 +353,7 @@ void ShopPanel::DrawButtons()
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = IsAlreadyOwned() ? "_Install" : "_Buy";
+	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
@@ -586,14 +586,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || (key == 'i' && selectedOutfit && (player.Cargo().Get(selectedOutfit)
+	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
 			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
 	{
 		if(!CanBuy())
 			FailBuy();
 		else
 		{
-			Buy(key == 'i');
+			Buy(key == 'i' || key == 'c');
 			player.UpdateCargoCapacities();
 		}
 	}
