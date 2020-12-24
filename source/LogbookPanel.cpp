@@ -37,6 +37,10 @@ namespace {
 	const double PAD = 10.;
 	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
 	const double LINE_HEIGHT = 25.;
+
+	// The minimum distance in pixels between the selected month and the edge of the screen before the month gets centered
+	const double MINIMUM_SELECTION_DISTANCE = LINE_HEIGHT * 3;
+
 	const double GAP = 30.;
 	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
@@ -210,6 +214,24 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			selectedName = contents[i];
 			scroll = 0.;
 			Update(key == SDLK_UP);
+
+			// Find our currently selected item again
+			for(i = 0 ; i < contents.size(); ++i)
+				if(contents[i] == selectedName)
+					break;
+
+			if(i == contents.size())
+				return true;
+
+			// Check if it's too far down or up
+			int position = i * LINE_HEIGHT - categoryScroll;
+						
+			// If it's out of bounds, recenter it
+			if (position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
+				categoryScroll = position - (Screen::Height() / 2);
+
+			categoryScroll = max(categoryScroll, 0.);
+
 		}
 	}
 	
