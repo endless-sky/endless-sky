@@ -110,6 +110,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	playerSystem(player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
+	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
 	commodity(commodity)
 {
 	SetIsFullScreen(true);
@@ -128,6 +129,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	hoverText.SetFont(FontSet::Get(14));
 	hoverText.SetWrapWidth(150);
 	hoverText.SetAlignment(WrappedText::LEFT);
+	
+	// Find out how far the player is able to jump. The range of the system
+	// takes priority over the range of the player's flagship.
+	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
+	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
+	if(systemRange || playerRange)
+		playerJumpDistance = systemRange ? systemRange : playerRange;
 	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem, true);
@@ -162,7 +170,13 @@ void MapPanel::Draw()
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1f, 0.f);
 	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
-		(System::NEIGHBOR_DISTANCE + .5) * Zoom(), (System::NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+	// Draw the jump range circle around your current location if it is different than the
+	// visible range.
+	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
+		RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
+	
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11.f, 9.f, brightColor);
@@ -204,9 +218,10 @@ void MapPanel::DrawButtons(const string &condition)
 	// Draw the buttons to switch to other map modes.
 	Information info;
 	info.SetCondition(condition);
-	if(player.MapZoom() == 2)
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
 		info.SetCondition("max zoom");
-	if(player.MapZoom() == -2)
+	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info, this);
@@ -339,6 +354,7 @@ bool MapPanel::AllowFastForward() const
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
@@ -369,9 +385,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == '+' || key == '=')
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(key == '-')
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	else
 		return false;
 	
@@ -450,10 +466,11 @@ bool MapPanel::Scroll(double dx, double dy)
 	// The mouse should be pointing to the same map position before and after zooming.
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(dy < 0.)
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
@@ -873,11 +890,12 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 	
 	const System *previous = playerSystem;
+	double jumpRange = flagship->JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
-		bool isJump = !isHyper && previous->Neighbors().count(next);
+		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
@@ -888,13 +906,14 @@ void MapPanel::DrawTravelPlan()
 		if(!isHyper && !isJump && !isWormhole)
 			break;
 		
+		double jumpDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel() : it.first->HyperdriveFuel();
+					double cost = isJump ? it.first->JumpDriveFuel(jumpDistance) : it.first->HyperdriveFuel();
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;

@@ -47,16 +47,20 @@ ship "Korath Raider"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	
-	engine -20 130
-	engine 20 130
-	turret -8 -145 "Korath Grab-Strike"
-	turret 8 -145 "Korath Grab-Strike"
-	turret -34 -143 "Korath Grab-Strike"
-	turret 34 -143 "Korath Grab-Strike"
-	turret 0 35 "Korath Banisher"
-	turret 0 90 "Korath Warder"
-	fighter -75 100
-	fighter 75 100
+	engine -20 127
+	engine 20 127
+	"reverse engine" -9 -154
+		zoom 0.7
+	"reverse engine" 9 -154
+		zoom 0.7
+	turret -10 -143 "Korath Grab-Strike"
+	turret 10 -143 "Korath Grab-Strike"
+	turret -36 -141 "Korath Grab-Strike"
+	turret 36 -141 "Korath Grab-Strike"
+	turret 0 41 "Korath Banisher"
+	turret 0 94 "Korath Warder"
+	fighter -80 151 back
+	fighter 80 151 back
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50

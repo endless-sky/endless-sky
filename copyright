@@ -164,6 +164,8 @@ Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
 
 Files:
  images/outfit/jump?drive?(broken)*
+ images/outfit/plasma?repeater*
+ images/scene/plasma?scene*
 Copyright: Darcy Manoel <Darcman00@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -336,7 +338,7 @@ Files:
  images/hardpoint/quarg?skylance*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fernando S. Sáez (Azure Nyoki), and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
 Files:
  images/outfit/quarg*
@@ -390,6 +392,11 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/outfit/railslug?rack*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matthew Smestad (under the same license).
 
 Files:
  images/outfit/harvested?yottrite*
@@ -608,7 +615,9 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/barb*
  images/ship/boxwing*
+ images/thumbnail/barb*
  images/thumbnail/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
@@ -630,6 +639,13 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/ship/localworldship*
+ images/ship/arrow*
+ images/ship/bulk?freighter*
+ images/ship/freighter*
+ images/ship/protector*
+ images/ship/star?barge*
+ images/ship/wasp*
  images/thumbnail/argosy*
  images/thumbnail/clipper*
  images/thumbnail/dreadnought*
@@ -645,7 +661,12 @@ Files:
  images/thumbnail/leviathan*
  images/thumbnail/shuttle*
  images/thumbnail/star?queen*
- images/ship/localworldship*
+ images/thumbnail/arrow*
+ images/thumbnail/bulk?freighter*
+ images/thumbnail/freighter*
+ images/thumbnail/protector*
+ images/thumbnail/star?barge*
+ images/thumbnail/wasp*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -653,11 +674,26 @@ Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
+ images/ship/marrow*
  images/thumbnail/mfirebird*
  images/thumbnail/mleviathan*
+ images/thumbnail/marrow*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/pointedstick vanguard*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/vanguard*
+ images/thumbnail/vanguard*
+Copyright: Nate Graham <pointedstick@zoho.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
  images/ship/blackbird*
@@ -781,6 +817,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
+ images/ship/raider*
+ images/thumbnail/raider*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
+
+Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
  images/_menu/haze-yellow+* 
@@ -847,12 +890,12 @@ Files:
  images/ship/blackdiamond*
  images/thumbnail/emeraldsword*
  images/thumbnail/blackdiamond*
-Copyright: Fernando S. Sáez (crim@live.no)
+Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 
 Files:
  images/effect/pwave?impact*
-Copyright: Fernando S. Sáez (crim@live.no)
+Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 

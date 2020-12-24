@@ -237,7 +237,7 @@ namespace {
 			double closest = numeric_limits<double>::infinity();
 			const Point &p = ship.Position();
 			for(const StellarObject &object : system->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+				if(object.HasSprite() && object.GetPlanet() && !object.GetPlanet()->IsWormhole() && object.GetPlanet()->HasFuelFor(ship))
 				{
 					double distance = p.Distance(object.Position());
 					if(distance < closest)
@@ -267,7 +267,7 @@ namespace {
 			for(const StellarObject &object : from->Objects())
 			{
 				const Planet *planet = object.GetPlanet();
-				if(planet && planet->IsWormhole() && planet->IsAccessible(&ship)
+				if(object.HasSprite() && planet && planet->IsWormhole() && planet->IsAccessible(&ship)
 						&& planet->WormholeDestination(from) == to)
 				{
 					ship.SetTargetStellar(&object);
@@ -1232,7 +1232,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			target.reset();
 		else
 			for(const StellarObject &object : system->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->HasSpaceport()
 						&& object.GetPlanet()->CanLand(ship))
 				{
 					target.reset();
@@ -1425,7 +1425,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<int> systemWeights;
 		int totalWeight = 0;
 		const set<const System *> &links = ship.Attributes().Get("jump drive")
-			? origin->Neighbors() : origin->Links();
+			? origin->JumpNeighbors(ship.JumpRange()) : origin->Links();
 		if(jumps)
 		{
 			for(const System *link : links)
@@ -1445,7 +1445,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+			if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->HasSpaceport()
 					&& object.GetPlanet()->CanLand(ship))
 			{
 				planets.push_back(&object);
@@ -1455,7 +1455,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// landing on uninhabited planets.
 		if(!totalWeight)
 			for(const StellarObject &object : origin->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->CanLand(ship))
+				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
 				{
 					planets.push_back(&object);
 					totalWeight += planetWeight;
@@ -1509,7 +1509,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.Attributes().Get("fuel capacity")
+		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
@@ -1543,6 +1543,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			// refuel or use a wormhole to route toward the parent.
 			const Planet *targetPlanet = ship.GetTargetStellar()->GetPlanet();
 			if(!targetPlanet || !targetPlanet->CanLand(ship)
+					|| !ship.GetTargetStellar()->HasSprite()
 					|| (!targetPlanet->IsWormhole() && ship.Fuel() == 1.))
 				ship.SetTargetStellar(nullptr);
 		}
@@ -2320,14 +2321,14 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
 		if(atmosphereScan)
 			for(const StellarObject &object : system->Objects())
-				if(!object.IsStar() && !object.IsStation())
+				if(object.HasSprite() && !object.IsStar() && !object.IsStation())
 					targetPlanets.push_back(&object);
 		
 		// If this ship can jump away, consider traveling to a nearby system.
 		vector<const System *> targetSystems;
 		if(ship.JumpsRemaining(false))
 		{
-			const auto &links  = ship.Attributes().Get("jump drive") ? system->Neighbors() : system->Links();
+			const auto &links  = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpRange()) : system->Links();
 			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
 		}
 		
@@ -3095,7 +3096,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Determine if the player is jumping to their target system or landing on a wormhole.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
+			if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
 				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(system))
 			{
 				isWormhole = true;
@@ -3289,7 +3290,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 		{
-			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
+			if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
 				landables.emplace_back(&object);
 			else if(object.HasSprite())
 			{
@@ -3399,7 +3400,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.Attributes().Get("jump drive") ?
-				ship.GetSystem()->Neighbors() : ship.GetSystem()->Links());
+				ship.GetSystem()->JumpNeighbors(ship.JumpRange()) : ship.GetSystem()->Links());
 			for(const System *link : links)
 			{
 				Point direction = link->Position() - ship.GetSystem()->Position();

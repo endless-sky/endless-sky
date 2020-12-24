@@ -394,12 +394,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
-		GameData::UpdateNeighbors();
+		GameData::UpdateSystems();
 		seen.clear();
 		for(const System *system : visitedSystems)
 		{
 			seen.insert(system);
-			for(const System *neighbor : system->Neighbors())
+			for(const System *neighbor : system->VisibleNeighbors())
 				seen.insert(neighbor);
 		}
 	}
@@ -1022,7 +1022,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 		
-		attraction += .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8;
+		attraction += max(0., .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8);
 		for(const Hardpoint &hardpoint : ship->Weapons())
 			if(hardpoint.GetOutfit())
 			{
@@ -1170,8 +1170,11 @@ void PlayerInfo::Land(UI *ui)
 	// Bring auto conditions up-to-date for missions to check your current status.
 	UpdateAutoConditions();
 	
+	// Evaluate changes to NPC spawning criteria.
+	if(!freshlyLoaded)
+		UpdateMissionNPCs();
+	
 	// Update missions that are completed, or should be failed.
-	UpdateMissionNPCs();
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
@@ -1880,7 +1883,7 @@ void PlayerInfo::Visit(const System *system)
 	
 	visitedSystems.insert(system);
 	seen.insert(system);
-	for(const System *neighbor : system->Neighbors())
+	for(const System *neighbor : system->VisibleNeighbors())
 		seen.insert(neighbor);
 }
 

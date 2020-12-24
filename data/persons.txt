@@ -321,7 +321,7 @@ person "Captain Nate"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
 	
 	ship Vanguard "Pointedstick"
-		sprite "ship/pointedstick_vanguard"
+		sprite "ship/pointedstick vanguard"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -360,24 +360,39 @@ person "Captain Nate"
 			"Ionic Afterburner"
 			"Hyperdrive"
 		
-		engine 0 130
-		engine -31 128 .7
-		engine 31 128 .7
-		gun 0 -132 "Proton Gun"
-		gun 0 -132 "Proton Gun"
-		gun 0 -132 "Proton Gun"
-		gun -22 -122 "Proton Gun"
-		gun -22 -122 "Proton Gun"
-		gun 22 -122 "Proton Gun"
-		gun 22 -122 "Proton Gun"
-		gun -21 -45 "Proton Gun"
-		gun -21 -45 "Proton Gun"
-		gun 21 -45 "Proton Gun"
-		gun 21 -45 "Proton Gun"
-		gun -31 -45 "Heavy Rocket Launcher"
-		gun -31 -45 "Heavy Rocket Launcher"
-		gun 31 -45 "Heavy Rocket Launcher"
-		gun 31 -45 "Heavy Rocket Launcher"
+		engine -31.5 130.5 0.7
+		engine 31.5 130.5 0.7
+		engine 0 130.5 0.7
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun -40 -46 "Proton Gun"
+			parallel
+		gun -40 -46 "Proton Gun"
+			parallel
+		gun 40 -46 "Proton Gun"
+			parallel
+		gun 40 -46 "Proton Gun"
+			parallel
+		gun -34.5 -43 "Proton Gun"
+			parallel
+		gun -34.5 -43 "Proton Gun"
+			parallel
+		gun 34.5 -43 "Proton Gun"
+			parallel
+		gun 34.5 -43 "Proton Gun"
+			parallel
 		turret 0 42 "Anti-Missile Turret"
 		explode "tiny explosion" 18
 		explode "small explosion" 36
@@ -727,6 +742,7 @@ person "Local God"
 		"never disabled"
 
 ship "Ursa Polaris"
+	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
 		category "Heavy Warship"
@@ -1052,7 +1068,7 @@ ship "Marauder Bactrian"
 		category "Transport"
 		"cost" 17600000
 		"shields" 30000
-		"hull" 1200
+		"hull" 12000
 		"required crew" 70
 		"bunks" 93
 		"mass" 650
