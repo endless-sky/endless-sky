@@ -57,6 +57,12 @@ using namespace std;
 namespace {
 	// Log how many player ships and stored outfits are in a given system, tracking for
 	// ships if they are parked or in-flight.
+	//
+	// The structure of the map used here is:
+	//  - first        -> ships
+	//  - first.first  -> ships (in-flight)
+	//  - first.second -> ships (parked)
+	//  - second       -> outfits (in storage)
 	void TallyEscortsAndOutfits(const vector<shared_ptr<Ship>> &escorts,
 		const std::map<const Planet *, CargoHold> &outfits,
 		map<const System *, pair<pair<int, int>, int>> &locations)
