@@ -2666,7 +2666,8 @@ void PlayerInfo::Save(const string &path) const
 		out.BeginChild();
 		{
 			for(const auto &it : planetaryStorage)
-				if(!it.second.IsEmpty()){
+				if(!it.second.IsEmpty())
+				{
 					out.Write("planet", it.first->TrueName());
 					out.BeginChild();
 					{

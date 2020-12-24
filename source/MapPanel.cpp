@@ -947,7 +947,7 @@ void MapPanel::DrawEscorts()
 			
 			if(squad.second.second)
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
-				for(int i=0; i < 8; ++i)
+				for(int i = 0; i < 8; ++i)
 				{
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);

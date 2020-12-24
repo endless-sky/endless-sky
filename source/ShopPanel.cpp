@@ -854,7 +854,7 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 {
-	// If the player is attempting to install an outfit from cargo, storage or that they just
+	// If the player is attempting to install an outfit from cargo, storage, or that they just
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
 	if((player.Cargo().Get(outfit) && playerShip) || player.Stock(outfit) > 0 ||
