@@ -227,11 +227,10 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			int position = i * LINE_HEIGHT - categoryScroll;
 						
 			// If it's out of bounds, recenter it
-			if (position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
+			if(position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
 				categoryScroll = position - (Screen::Height() / 2);
 
 			categoryScroll = max(categoryScroll, 0.);
-
 		}
 	}
 	
