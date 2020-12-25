@@ -1960,6 +1960,7 @@ void Ship::DoGeneration()
 		outfitScan = max(0., outfitScan - 1.);
 	
 	// Update ship supply levels.
+	energy -= ionization;
 	if(isDisabled)
 		PauseAnimation();
 	else
@@ -2012,7 +2013,7 @@ void Ship::DoGeneration()
 	
 	// Don't allow any levels to drop below zero.
 	fuel = max(0., fuel);
-	energy = max(0., energy - ionization);
+	energy = max(0., energy);
 	heat = max(0., heat);
 }
 
@@ -3718,6 +3719,15 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	}
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
+	
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
+	if(heat > MaximumHeat())
+	{
+		isOverheated = true;
+		isDisabled = true;
+	}
+	else if(heat < .9 * MaximumHeat())
+		isOverheated = false;
 	
 	return type;
 }
