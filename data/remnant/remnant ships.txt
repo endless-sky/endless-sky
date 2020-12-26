@@ -29,7 +29,7 @@ ship "Albatross"
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 668
+		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
 		"shield generation" 5.2
@@ -52,7 +52,7 @@ ship "Albatross"
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
+		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 
 		"Smelter-Class Thruster"
@@ -94,7 +94,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
+		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Outfits Expansion"
@@ -155,7 +155,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Millennium Cell"
 		"Crystal Capacitor" 2
 		"Quantum Key Stone"
-		"Thermoelectric Cooler" 2
+		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 		"Outfits Expansion" 4
 		"Tuning Rifle" 65
@@ -187,7 +187,7 @@ ship "Albatross" "Albatross (Shield)"
 		"Aeon Cell"
 		"Millennium Cell"
 		"Quantum Key Stone"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 3
@@ -218,6 +218,7 @@ ship "Albatross" "Albatross (Ember Shield)"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 4
 		"Large Heat Shunt"
+		"Thermoelectric Cooler" 1
 		
 		"Tuning Rifle" 47
 
