@@ -521,6 +521,36 @@ tip "firing heat / second:"
 tip "firing fuel / second:"
 	`Fuel consumed by this weapon per second when firing.`
 
+tip "firing hull / second:"
+	`Amount of hull damaged by this weapon per second when firing.`
+
+tip "firing shields / second:"
+	`Amount of shield damaged by this weapon per second when firing.`
+
+tip "firing ion / second:"
+	`Reduces energy levels for some time after this weapon is fired.`
+
+tip "firing slowing / second:"
+	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
+
+tip "firing disruption / second:"
+	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "% firing energy / second:"
+	`Relative firing energy costs, converted to energy per second to allow easy comparisons between different weapons.`
+
+tip "% firing heat / second:"
+	`When firing this weapon then the ships's heat increases as a percentage of its maximum heat capacity by this amount per second.`
+
+tip "% firing fuel / second:"
+	`The amount of fuel used or lost as a percentage of the ship's total fuel per second when this weapon is fired.`
+
+tip "% firing hull / second:"
+	`Relative hull loss when this weapon is fired, converted to loss per second to allow easy comparisons between different weapons.`
+
+tip "% firing shields / second:"
+	`Relative shields loss when this weapon is fired, converted to loss per second to allow easy comparisons between different weapons.`
+
 tip "shots / second:"
 	`How many projectiles per second this weapon fires. Weapons that fire continuously do not require batteries if the ship's energy generation is higher than the weapon's energy consumption.`
 
@@ -595,6 +625,33 @@ tip "firing heat / shot:"
 
 tip "firing fuel / shot:"
 	`Fuel consumed per shot.`
+
+tip "firing shields / shot:"
+	`Each shot fired by this weapon causes this amount of shield to be lost.`
+
+tip "firing ion / shot:"
+	`Each shot increases the ship's ionization by this amount. Ionization reduces the ships's energy and slowly wears off over time.`
+
+tip "firing slowing / shot:"
+	`Reduces the ship's turn rate, acceleration, and top speed. Slowing wears off over time.`
+
+tip "firing disruption / shot:"
+	`Each shot disrupts the target's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "% firing energy / shot:"
+	`Each shot reduces the ship's energy as a percentage of the ship's total energy capacity by this amount.`
+
+tip "% firing heat / shot:"
+	`Each shot fired increases the ship's heat as a percentage of the ship's maximum heat capacity by this amount.`
+
+tip "% firing fuel / shot:"
+	`The amount of fuel used or lost per shot fired as a percentage of the ship's total fuel.`
+
+tip "% firing hull / shot:"
+	`Each shot fired by this weapon causes this amount of hull damage as a percentage of the ship's total hull.`
+
+tip "% firing shields / shot:"
+	`Each shot fired by this weapon causes this amount of shield loss as a percentage of the ship's total shields.`
 
 tip "inaccuracy:"
 	`Maximum inaccuracy of this weapon, in degrees.`
