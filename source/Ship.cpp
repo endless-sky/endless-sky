@@ -1464,7 +1464,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			Point target;
 			// Except when you arrive at an extra distance from the target,
 			// in that case always use the system-center as target.
-			double extraArrivalDistance = currentSystem->ExtraArrivalDistance();
+			double extraArrivalDistance = 0;
+			if(isUsingJumpDrive)
+				extraArrivalDistance = currentSystem->ExtraJumpArrivalDistance();
+			else
+				extraArrivalDistance = currentSystem->ExtraHyperArrivalDistance();
+			
 			if(extraArrivalDistance == 0)
 			{
 				if(targetPlanet)
@@ -1482,7 +1487,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			
 			if(isUsingJumpDrive)
 			{
-				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
+				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
 				return;
 			}
 			

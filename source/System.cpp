@@ -310,7 +310,35 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "object")
 			LoadObject(child, planets);
 		else if(key == "arrival")
-			extraArrivalDistance = child.Value(valueIndex);
+		{
+			bool loadHyperDistance = true;
+			bool loadJumpDistance = true;
+			// Check if we load arrival distances specifically for hyperdrives
+			// or jump drives only.
+			if(child.Size() >= 3)
+			{
+				loadHyperDistance = false;
+				loadJumpDistance = false;
+				for(int i = 2; i < child.Size(); i++)
+				{
+					if(child.Token(i) == "link")
+						loadHyperDistance = true;
+					else if(child.Token(i) == "jump")
+						loadJumpDistance = true;
+					else
+						child.PrintTrace("Warning: Unknown arrival type \"" + child.Token(i) + "\" for arrival distance:");
+				}
+			}
+			if(loadHyperDistance)
+				extraHyperArrivalDistance = child.Value(valueIndex);
+			// We only load additional jump distances if they are above 0.
+			// Jump drives use a circle around the target for targeting,
+			// so a value below 0 doesn't have a meaning in the same way
+			// as that a hyper-jump-distance negative values would be beyond
+			// the target.
+			if(loadJumpDistance && child.Value(valueIndex) >= 0)
+				extraJumpArrivalDistance= child.Value(valueIndex);
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -484,9 +512,17 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 // Additional travel distance to target for ships entering through hyperspace.
-double System::ExtraArrivalDistance() const
+double System::ExtraHyperArrivalDistance() const
 {
-	return extraArrivalDistance;
+	return extraHyperArrivalDistance;
+}
+
+
+
+// Additional travel distance to target for ships entering using a jumpdrive.
+double System::ExtraJumpArrivalDistance() const
+{
+	return extraJumpArrivalDistance;
 }
 
 
