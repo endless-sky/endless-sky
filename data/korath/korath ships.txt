@@ -39,7 +39,7 @@ ship "Korath Raider"
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
@@ -79,7 +79,7 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		"Outfits Expansion"
@@ -106,7 +106,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		"Outfits Expansion"
@@ -132,7 +132,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Korath Repeater Rifle" 196
 		"Outfits Expansion"
 		
