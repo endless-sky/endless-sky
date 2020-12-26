@@ -752,7 +752,8 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship() && it != flagship)
+			//make sure the ship is eligible to be the flashship, make sure it isnt the wingman!
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship() && it != wingman)
 			{
 				flagship = it;
 				break;
