@@ -12,16 +12,10 @@ hazard "Ember Waste Base Heat"
 	"duration" 1 200
 	"strength" 0.25 1.75
 	"range" 20000
-	"environmental effect" "heat hazard" 200
 	weapon
 		"relative heat damage" 0.00035
 
-effect "heat hazard"
-	sprite "effect/ew heat/ew heat"
-		"frame rate" 8
-		"random start frame"
-		"rewind"
-	"lifetime" 60
+
 
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
