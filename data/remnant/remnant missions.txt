@@ -808,7 +808,7 @@ mission "Remnant: Void Sprites 3"
 	on accept
 		event "remnant: puffin"
 	npc
-		government " Drak "
+		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
@@ -842,13 +842,6 @@ mission "Remnant: Void Sprites 3"
 event "remnant: puffin"
 	planet "Viminal"
 		add shipyard "Remnant Puffin"
-
-government " Drak "
-	"display name" "Drak"
-	swizzle 5
-	"player reputation" -1000
-	"attitude toward"
-		"Indigenous Lifeform" 1
 
 event "remnant: void sprite research"
 
@@ -1565,7 +1558,7 @@ mission "Remnant: Return the Samples"
 			`	"Just remember: you will need to use a Puffin to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
-		government " Drak "
+		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
