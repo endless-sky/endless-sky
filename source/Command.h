@@ -72,6 +72,17 @@ public:
 	// other commands like NEAREST, TARGET, HAIL and BOARD.
 	static const Command SHIFT;
 
+	//Wingman controls
+	static const Command WFORWARD;
+	static const Command WLEFT;
+	static const Command WRIGHT;
+	static const Command WBACK;
+	static const Command WAFTERBURNER;
+	static const Command WJUMP;
+	static const Command WPRIMARY;
+	static const Command WSELECT;
+	static const Command WSECONDARY;
+
 	
 public:
 	// In the given text, replace any instances of command names (in angle

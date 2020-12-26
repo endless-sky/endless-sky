@@ -114,6 +114,13 @@ public:
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
+
+	// Access the wingman (the second ship in the list). This returns null if
+	// the player does not have any ships that can be a wingman.
+	const Ship *Wingman() const;
+	Ship *Wingman();
+	const std::shared_ptr<Ship> &WingmanPtr();
+	   
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Inspect the flightworthiness of the player's active fleet as a whole to
@@ -130,7 +137,7 @@ public:
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
 	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
-	// Get the attraction factors of the player's fleet to raid fleets.
+	// Get the attraction Ffactors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
 	
 	// Get cargo information.
@@ -287,6 +294,7 @@ private:
 	Account accounts;
 	
 	std::shared_ptr<Ship> flagship;
+	std::shared_ptr<Ship> wingman;
 	std::vector<std::shared_ptr<Ship>> ships;
 	std::vector<std::weak_ptr<Ship>> selectedShips;
 	std::map<const Ship *, int> groups;

@@ -69,6 +69,16 @@ const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 26, "");
 const Command Command::STOP(1ul << 27, "");
 const Command Command::SHIFT(1uL << 28, "");
+const Command Command::WFORWARD(1uL << 29, "Wingman forward thrust");
+const Command Command::WLEFT(1uL << 30, "Wingman turn left");
+const Command Command::WRIGHT(1uL << 31, "Wingman turn right");
+const Command Command::WBACK(1uL << 32, "Wingman reverse");
+const Command Command::WPRIMARY(1uL << 33, "Wingman fire primary weapon");
+const Command Command::WSECONDARY(1uL << 34, "Wingman fire secondary weapon");
+const Command Command::WSELECT(1uL << 35, "Wingman select secondary weapon");
+const Command Command::WJUMP(1uL << 36, "Wingman initiate hyperspace jump");
+const Command Command::WAFTERBURNER(1uL << 37, "Wingman fire afterburner");
+			
 
 
 

@@ -334,7 +334,16 @@ void PreferencesPanel::DrawControls()
 		Command::FIGHT,
 		Command::GATHER,
 		Command::HOLD,
-		Command::AMMO
+		Command::AMMO,
+		Command::WFORWARD,
+		Command::WLEFT,
+		Command::WRIGHT,
+		Command::WBACK,
+		Command::WAFTERBURNER,
+		Command::WJUMP,
+		Command::WPRIMARY,
+		Command::WSELECT,
+		Command::WSECONDARY
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)

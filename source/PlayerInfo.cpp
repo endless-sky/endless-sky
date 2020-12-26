@@ -735,15 +735,13 @@ Ship *PlayerInfo::Flagship()
 	return FlagshipPtr().get();
 }
 
-
-
 // Determine which ship is the flagship and return the shared pointer to it.
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship() && it != flagship)
 			{
 				flagship = it;
 				break;
@@ -752,6 +750,38 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
+}
+
+// Get a pointer to the wingman ship that the player controls. This is always the second
+// ship in the list.
+const Ship *PlayerInfo::Wingman() const
+{
+	return const_cast<PlayerInfo *>(this)->WingmanPtr().get();
+}
+
+// Get a pointer to the ship that the player controls. This is always the first
+// ship in the list.
+Ship *PlayerInfo::Wingman()
+{
+	return WingmanPtr().get();
+}
+
+// Determine which ship is the wingman and return the shared pointer to it.
+const shared_ptr<Ship> &PlayerInfo::WingmanPtr()
+{
+	if(!wingman)
+	{
+		for(const shared_ptr<Ship> &it : ships)
+			//make sure the ship selected to be wingman is different from the flagship
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship() && it != flagship)
+			{
+				wingman = it;
+				break;
+			}
+	}
+	
+	static const shared_ptr<Ship> empty;
+	return (wingman && wingman->IsYours()) ? wingman : empty;
 }
 
 
