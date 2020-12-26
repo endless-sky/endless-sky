@@ -52,6 +52,7 @@ namespace {
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
+		{"energy protection", -0.99},
 		{"force protection", -0.99},
 		{"fuel protection", -0.99},
 		{"heat protection", -0.99},

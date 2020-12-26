@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
+#include "CargoHold.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "FogShader.h"
@@ -54,8 +55,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Log how many player ships are in a given system, tracking if they are parked or in-flight.
-	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, pair<int, int>> &locations)
+	// Log how many player ships and stored outfits are in a given system, tracking for
+	// ships if they are parked or in-flight.
+	//
+	// The structure of the map used here is:
+	//  - first        -> ships
+	//  - first.first  -> ships (in-flight)
+	//  - first.second -> ships (parked)
+	//  - second       -> outfits (in storage)
+	void TallyEscortsAndOutfits(const vector<shared_ptr<Ship>> &escorts,
+		const std::map<const Planet *, CargoHold> &outfits,
+		map<const System *, pair<pair<int, int>, int>> &locations)
 	{
 		locations.clear();
 		for(const auto &ship : escorts)
@@ -65,13 +75,22 @@ namespace {
 			if(ship->GetSystem())
 			{
 				if(!ship->IsParked())
-					++locations[ship->GetSystem()].first;
+					++locations[ship->GetSystem()].first.first;
 				else
-					++locations[ship->GetSystem()].second;
+					++locations[ship->GetSystem()].first.second;
 			}
 			// If this ship has no system but has a parent, it is carried (and thus not parked).
 			else if(ship->CanBeCarried() && ship->GetParent() && ship->GetParent()->GetSystem())
-				++locations[ship->GetParent()->GetSystem()].first;
+				++locations[ship->GetParent()->GetSystem()].first.first;
+		}
+		for(const auto &hold : outfits)
+		{
+			// Get the system in which the planet storage is located.
+			const System* system = hold.first->GetSystem();
+			for(const auto &outfit: hold.second.Outfits())
+				// Only count a system if it actually stores outfits.
+				if(outfit.second)
+					locations[system].second += outfit.second;
 		}
 	}
 	
@@ -110,7 +129,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// be changing systems even if the player does not.
 	// The player cannot toggle any preferences without closing the map panel.
 	if(Preferences::Has("Show escort systems on map"))
-		TallyEscorts(player.Ships(), escortSystems);
+		TallyEscortsAndOutfits(player.Ships(), player.PlanetaryStorage(), escortSystems);
 	
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
@@ -946,7 +965,21 @@ void MapPanel::DrawEscorts()
 		if(player.HasSeen(squad.first) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
-			RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first ? active : parked);
+			
+			// Active and parked ships are drawn/indicated by a ring in the center.
+			if(squad.second.first.first || squad.second.first.second)
+				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first.first ? active : parked);
+			
+			if(squad.second.second)
+				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
+				for(int i = 0; i < 8; ++i)
+				{
+					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
+					Angle angle = Angle(7.5f + 45.f * i);
+					Point from = pos + angle.Unit() * OUTER;
+					Point to = from + angle.Unit() * 4.f;
+					LineShader::Draw(from, to, 2.f, active);
+				}
 		}
 }
 
@@ -1140,23 +1173,29 @@ void MapPanel::DrawTooltips()
 	// Create the tooltip text.
 	if(tooltip.empty())
 	{
-		pair<int, int> t = escortSystems.at(hoverSystem);
+		pair<pair<int, int>, int> t = escortSystems.at(hoverSystem);
 		if(hoverSystem == playerSystem)
 		{
-			--t.first;
-			if(t.first || t.second)
+			--t.first.first;
+			if(t.first.first || t.first.second || t.second)
 				tooltip = "You are here, with:\n";
 			else
 				tooltip = "You are here.";
 		}
 		// If you have both active and parked escorts, call the active ones
 		// "active escorts." Otherwise, just call them "escorts."
-		if(t.first && t.second)
-			tooltip += to_string(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
-		else if(t.first)
-			tooltip += to_string(t.first) + (t.first == 1 ? " escort" : " escorts");
+		if(t.first.first && t.first.second)
+			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " active escort\n" : " active escorts\n");
+		else if(t.first.first)
+			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " escort" : " escorts");
+		if(t.first.second)
+			tooltip += to_string(t.first.second) + (t.first.second == 1 ? " parked escort" : " parked escorts");
 		if(t.second)
-			tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
+		{
+			if(t.first.first || t.first.second)
+				tooltip += "\n";
+			tooltip += to_string(t.second) + (t.second == 1 ? " stored outfit" : " stored outfits");
+		}
 		
 		hoverText.Wrap(tooltip);
 	}
