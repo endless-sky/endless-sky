@@ -515,6 +515,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 	
 	const Ship *flagship = player.Flagship();
+	const Ship *wingman = player.Wingman();
+
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	int minerCount = 0;
@@ -530,6 +532,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(it.get() == flagship)
 		{
 			MovePlayer(*it, player, activeCommands);
+			continue;
+		}
+		//If the ship is the wingman and in the same system as the flagship, run MoveWingman
+		//TODO: Implement relevant parts of MoveWingman, only run the following if wingman AI is toggled off
+		if (it.get() == wingman && it->GetSystem() == flagship->GetSystem())
+		{
+			MoveWingman(*it, player, activeCommands);
 			continue;
 		}
 		
@@ -3089,7 +3098,11 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 	return numeric_limits<double>::quiet_NaN();
 }
 
-
+void AI::MoveWingman(Ship &ship, const PlayerInfo &player, Command &activeCommands)
+{
+	// 1. Get wingman commands from the activeCommands
+	// 2. Copy over relevant parts of MovePlayer
+}
 
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {

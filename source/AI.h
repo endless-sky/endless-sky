@@ -134,6 +134,7 @@ private:
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 	
 	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
+	void MoveWingman(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 	
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
