@@ -33,19 +33,19 @@ public:
 	
 	InfoPanelState(PlayerInfo &player);
 	
-	int SelectedIndex();
+	int SelectedIndex() const;
 	void SetSelectedIndex(int);
 	
 	std::set<int> &AllSelected();
 	
 	const bool CanEdit() const;
 	
-	int Scroll();
+	int Scroll() const;
 	void SetScroll(int);
 	
 	std::vector<std::shared_ptr<Ship>> &Ships();
 	
-	ShipComparator *CurrentSort();
+	ShipComparator *CurrentSort() const;
 	void SetCurrentSort(ShipComparator *s);
 	
 	

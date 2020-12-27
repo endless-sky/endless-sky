@@ -29,7 +29,7 @@ InfoPanelState::InfoPanelState(PlayerInfo &player)
 }
 
 
-int InfoPanelState::SelectedIndex()
+int InfoPanelState::SelectedIndex() const
 {
 	return selectedIndex;
 }
@@ -55,7 +55,7 @@ const bool InfoPanelState::CanEdit() const
 
 
 
-int InfoPanelState::Scroll()
+int InfoPanelState::Scroll() const
 {
 	return scroll;
 }
@@ -74,7 +74,7 @@ vector<shared_ptr<Ship>> &InfoPanelState::Ships()
 
 
 
-InfoPanelState::ShipComparator *InfoPanelState::CurrentSort()
+InfoPanelState::ShipComparator *InfoPanelState::CurrentSort() const
 {
 	return currentSort;
 }
