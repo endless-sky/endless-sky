@@ -221,7 +221,7 @@ void Table::Draw(double value, const Color &color, const DisplayText::Layout &la
 void Table::DrawOppositeTruncRight(int width, const string &left, const Color &leftColor,
 	const string &right, const Color &rightColor, DisplayText::Truncate trunc)
 {
-	const DisplayText::Layout layoutLeft{-1, DisplayText::Align::LEFT, DisplayText::Truncate::NONE};
+	const DisplayText::Layout layoutLeft{-1};
 	const int leftWidth = font->Width({left, layoutLeft});
 	Draw({left, layoutLeft}, leftColor);
 	const DisplayText::Layout layoutRight{width - leftWidth, DisplayText::Align::RIGHT, trunc};
@@ -233,9 +233,9 @@ void Table::DrawOppositeTruncRight(int width, const string &left, const Color &l
 void Table::DrawOppositeTruncLeft(int width, const string &left, const Color &leftColor,
 	const string &right, const Color &rightColor, DisplayText::Truncate trunc)
 {
-	const DisplayText::Layout layoutRight{width, DisplayText::Align::RIGHT, DisplayText::Truncate::NONE};
+	const DisplayText::Layout layoutRight{width, DisplayText::Align::RIGHT};
 	const int rightWidth = font->Width({right, layoutRight});
-	const DisplayText::Layout layoutLeft{width - rightWidth, DisplayText::Align::LEFT, trunc};
+	const DisplayText::Layout layoutLeft{width - rightWidth, trunc};
 	Draw({left, layoutLeft}, leftColor);
 	Draw({right, layoutRight}, rightColor);
 }

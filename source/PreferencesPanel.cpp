@@ -289,7 +289,7 @@ void PreferencesPanel::DrawControls()
 	Color red(.3f, 0.f, 0.f, .3f);
 	
 	Table table;
-	table.AddColumn(-115, {230, DisplayText::Align::LEFT});
+	table.AddColumn(-115, {230});
 	table.AddColumn(115, {230, DisplayText::Align::RIGHT});
 	table.SetUnderline(-120, 120);
 	
@@ -388,7 +388,7 @@ void PreferencesPanel::DrawControls()
 	}
 	
 	Table shiftTable;
-	shiftTable.AddColumn(125, {150, DisplayText::Align::RIGHT, DisplayText::Truncate::NONE});
+	shiftTable.AddColumn(125, {150, DisplayText::Align::RIGHT});
 	shiftTable.SetUnderline(0, 130);
 	shiftTable.DrawAt(Point(-400, 52));
 	
@@ -411,8 +411,8 @@ void PreferencesPanel::DrawSettings()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(-115, {230, DisplayText::Align::LEFT, DisplayText::Truncate::NONE});
-	table.AddColumn(115, {230, DisplayText::Align::RIGHT, DisplayText::Truncate::NONE});
+	table.AddColumn(-115, {230});
+	table.AddColumn(115, {230, DisplayText::Align::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -567,7 +567,7 @@ void PreferencesPanel::DrawPlugins()
 	
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
-	table.AddColumn(-115, {MAX_TEXT_WIDTH, DisplayText::Align::LEFT, DisplayText::Truncate::MIDDLE});
+	table.AddColumn(-115, {MAX_TEXT_WIDTH, DisplayText::Truncate::MIDDLE});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -238;

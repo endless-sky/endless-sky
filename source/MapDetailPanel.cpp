@@ -411,7 +411,7 @@ void MapDetailPanel::DrawInfo()
 	const Font &font = FontSet::Get(14);
 	string systemName = player.KnowsName(selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
-	const DisplayText::Layout alignLeft{140, DisplayText::Align::LEFT, DisplayText::Truncate::BACK};
+	const DisplayText::Layout alignLeft{140, DisplayText::Truncate::BACK};
 	font.Draw({systemName, alignLeft}, uiPoint + Point(-90., -7.), medium);
 	
 	governmentY = uiPoint.Y() + 10.;

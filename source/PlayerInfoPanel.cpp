@@ -481,7 +481,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {230, DisplayText::Align::LEFT});
+	table.AddColumn(0, {230});
 	table.AddColumn(230, {230, DisplayText::Align::RIGHT});
 	table.SetUnderline(0, 230);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
@@ -564,9 +564,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Table table;
 	using Align = DisplayText::Align;
 	using Truncate = DisplayText::Truncate;
-	table.AddColumn(0, {217, Align::LEFT, Truncate::MIDDLE});
-	table.AddColumn(220, {127, Align::LEFT, Truncate::BACK});
-	table.AddColumn(350, {137, Align::LEFT, Truncate::BACK});
+	table.AddColumn(0, {217, Truncate::MIDDLE});
+	table.AddColumn(220, {127, Truncate::BACK});
+	table.AddColumn(350, {137, Truncate::BACK});
 	table.AddColumn(550, {57, Align::RIGHT, Truncate::BACK});
 	table.AddColumn(610, {57, Align::RIGHT, Truncate::BACK});
 	table.AddColumn(670, {57, Align::RIGHT, Truncate::BACK});

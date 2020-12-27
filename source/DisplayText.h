@@ -31,10 +31,8 @@ public:
 		// Set the truncate mode.
 		Truncate truncate = Truncate::NONE;
 		
-		Layout() noexcept = default;
-		Layout(int w, Align a) noexcept;
+		Layout(int w = -1, Align a = Align::LEFT, Truncate t = Truncate::NONE) noexcept;
 		Layout(int w, Truncate t) noexcept;
-		Layout(int w, Align a, Truncate t) noexcept;
 	};
 	
 public:
@@ -55,8 +53,8 @@ private:
 
 
 inline
-DisplayText::Layout::Layout(int w, Align a) noexcept
-        : width(w), align(a)
+DisplayText::Layout::Layout(int w, Align a, Truncate t) noexcept
+        : width(w), align(a), truncate(t)
 {
 }
 
@@ -65,14 +63,6 @@ DisplayText::Layout::Layout(int w, Align a) noexcept
 inline
 DisplayText::Layout::Layout(int w, Truncate t) noexcept
         : width(w), truncate(t)
-{
-}
-
-
-
-inline
-DisplayText::Layout::Layout(int w, Align a, Truncate t) noexcept
-        : width(w), align(a), truncate(t)
 {
 }
 

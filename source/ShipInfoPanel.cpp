@@ -296,7 +296,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {COLUMN_WIDTH, DisplayText::Align::LEFT});
+	table.AddColumn(0, {COLUMN_WIDTH});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, DisplayText::Align::RIGHT, DisplayText::Truncate::MIDDLE});
 	table.SetUnderline(0, COLUMN_WIDTH);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
@@ -325,7 +325,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {COLUMN_WIDTH, DisplayText::Align::LEFT});
+	table.AddColumn(0, {COLUMN_WIDTH});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, DisplayText::Align::RIGHT});
 	table.SetUnderline(0, COLUMN_WIDTH);
 	Point start = bounds.TopLeft() + Point(10., 8.);
@@ -511,7 +511,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Table table;
-	table.AddColumn(0, {COLUMN_WIDTH, DisplayText::Align::LEFT});
+	table.AddColumn(0, {COLUMN_WIDTH});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, DisplayText::Align::RIGHT});
 	table.SetUnderline(-5, COLUMN_WIDTH + 5);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));

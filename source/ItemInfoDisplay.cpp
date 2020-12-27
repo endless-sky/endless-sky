@@ -173,7 +173,7 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 	const Color &valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
-	DisplayText::Layout layout{WIDTH - 20, DisplayText::Align::LEFT};
+	DisplayText::Layout layout{WIDTH - 20};
 	// Use 10-pixel margins on both sides.
 	table.AddColumn(10, layout);
 	layout.align = DisplayText::Align::RIGHT;
