@@ -12,13 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PreferencesPanel.h"
 
+#include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
 #include "Dialog.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "Files.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -28,7 +29,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -288,8 +290,8 @@ void PreferencesPanel::DrawControls()
 	Color red(.3f, 0.f, 0.f, .3f);
 	
 	Table table;
-	table.AddColumn(-115, {230, DisplayText::Align::LEFT});
-	table.AddColumn(115, {230, DisplayText::Align::RIGHT});
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -387,7 +389,7 @@ void PreferencesPanel::DrawControls()
 	}
 	
 	Table shiftTable;
-	shiftTable.AddColumn(125, {150, DisplayText::Align::RIGHT, DisplayText::Truncate::NONE});
+	shiftTable.AddColumn(125, {150, Alignment::RIGHT, Truncate::NONE});
 	shiftTable.SetUnderline(0, 130);
 	shiftTable.DrawAt(Point(-400, 52));
 	
@@ -410,8 +412,8 @@ void PreferencesPanel::DrawSettings()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(-115, {230, DisplayText::Align::LEFT, DisplayText::Truncate::NONE});
-	table.AddColumn(115, {230, DisplayText::Align::RIGHT, DisplayText::Truncate::NONE});
+	table.AddColumn(-115, {230, Alignment::LEFT, Truncate::NONE});
+	table.AddColumn(115, {230, Alignment::RIGHT, Truncate::NONE});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -566,7 +568,7 @@ void PreferencesPanel::DrawPlugins()
 	
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
-	table.AddColumn(-115, {MAX_TEXT_WIDTH, DisplayText::Align::LEFT, DisplayText::Truncate::MIDDLE});
+	table.AddColumn(-115, {MAX_TEXT_WIDTH, Alignment::LEFT, Truncate::MIDDLE});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -238;
@@ -598,7 +600,7 @@ void PreferencesPanel::DrawPlugins()
 			
 			static const string EMPTY = "(No description given.)";
 			const string &text = plugin.second.empty() ? EMPTY : plugin.second;
-			font.Draw({text, {MAX_TEXT_WIDTH, DisplayText::Align::JUSTIFIED}}, top, medium);
+			font.Draw({text, {MAX_TEXT_WIDTH, Alignment::JUSTIFIED}}, top, medium);
 		}
 	}
 }

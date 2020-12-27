@@ -12,11 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfoPanel.h"
 
+#include "text/alignment.hpp"
 #include "Command.h"
-#include "DisplayText.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -28,7 +29,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -479,17 +481,18 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	
-	// Table attributes.
+	// Two columns of opposite alignment are used to simulate a single visual column.
 	Table table;
-	table.AddColumn(0, {230, DisplayText::Align::LEFT});
-	table.AddColumn(230, {230, DisplayText::Align::RIGHT});
-	table.SetUnderline(0, 230);
+	const int columnWidth = 230;
+	table.AddColumn(0, {columnWidth, Alignment::LEFT});
+	table.AddColumn(columnWidth, {columnWidth, Alignment::RIGHT});
+	table.SetUnderline(0, columnWidth);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
-	// Header row.
-	table.DrawOppositeTruncRight(225, "player:", dim, player.FirstName() + " " + player.LastName(), bright, DisplayText::Truncate::MIDDLE);
-	table.Draw("net worth:", dim);
-	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
+	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
+		bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair("net worth:", dim, Format::Credits(player.Accounts().NetWorth()) + " credits",
+		bright, Truncate::MIDDLE, true);
 	
 	// Determine the player's combat rating.
 	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
@@ -502,12 +505,12 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Advance();
 		table.DrawGap(5);
 		
-		table.Draw(combatRating, dim);
-		table.Draw("(" + to_string(combatLevel) + ")", dim);
+		table.DrawTruncatedPair(combatRating, dim,
+			"(" + to_string(combatLevel) + ")", dim, Truncate::MIDDLE, false);
 	}
 	
 	// Display the factors affecting piracy targeting the player.
-	pair<double, double> factors = player.RaidFleetFactors();
+	auto factors = player.RaidFleetFactors();
 	double attractionLevel = max(0., log2(max(factors.first, 0.)));
 	double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
 	const string &attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
@@ -525,11 +528,10 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		
 		// Format the attraction and deterrence levels with tens places, so it
 		// is clear which is higher even if they round to the same level.
-		table.Draw("cargo: " + attractionRating, dim);
-		table.Draw("(+" + Format::Decimal(attractionLevel, 1) + ")", dim);
-		table.DrawGap(5);
-		table.Draw("fleet: " + deterrenceRating, dim);
-		table.Draw("(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim);
+		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
+			"(+" + Format::Decimal(attractionLevel, 1) + ")", dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
+			"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim, Truncate::MIDDLE, false);
 	}
 	// Other special information:
 	auto salary = Match(player, "salary: ", "");
@@ -563,15 +565,13 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	using Align = DisplayText::Align;
-	using Truncate = DisplayText::Truncate;
-	table.AddColumn(0, {217, Align::LEFT, Truncate::MIDDLE});
-	table.AddColumn(220, {127, Align::LEFT, Truncate::BACK});
-	table.AddColumn(350, {137, Align::LEFT, Truncate::BACK});
-	table.AddColumn(550, {57, Align::RIGHT, Truncate::BACK});
-	table.AddColumn(610, {57, Align::RIGHT, Truncate::BACK});
-	table.AddColumn(670, {57, Align::RIGHT, Truncate::BACK});
-	table.AddColumn(730, {57, Align::RIGHT, Truncate::BACK});
+	table.AddColumn(0, {217, Alignment::LEFT, Truncate::MIDDLE});
+	table.AddColumn(220, {127, Alignment::LEFT, Truncate::BACK});
+	table.AddColumn(350, {137, Alignment::LEFT, Truncate::BACK});
+	table.AddColumn(550, {57, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(610, {57, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(670, {57, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(730, {57, Alignment::RIGHT, Truncate::BACK});
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	

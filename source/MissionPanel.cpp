@@ -14,12 +14,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionPanel.h"
 
+#include "text/alignment.hpp"
 #include "Command.h"
 #include "Dialog.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -36,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -568,7 +570,7 @@ void MissionPanel::DrawSelectedSystem() const
 	
 	const Font &font = FontSet::Get(14);
 	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw({text, {350, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
 		pos, *GameData::Colors().Get("bright"));
 }
 
@@ -675,7 +677,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 				highlight);
 		
 		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
-		font.Draw({it->Name(), {SIDE_WIDTH - 11, DisplayText::Truncate::BACK}},
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
 			pos, (!canAccept ? dim : isSelected ? selected : unselected));
 	}
 	
@@ -712,7 +714,7 @@ void MissionPanel::DrawMissionInfo()
 	else
 		return;
 	const Font &font = FontSet::Get(14);
-	font.Draw({description, {380, DisplayText::Align::JUSTIFIED}},
+	font.Draw({description, {380, Alignment::JUSTIFIED}},
 		Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
 }
 

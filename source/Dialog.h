@@ -1,5 +1,5 @@
 /* Dialog.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,8 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "Point.h"
+#include "text/truncate.hpp"
 
 #include <functional>
 #include <string>
@@ -36,28 +37,26 @@ class Dialog : public Panel {
 public:
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
-	explicit Dialog(const std::string &text,
-		const DisplayText::Truncate &truncate = DisplayText::Truncate::NONE);
+	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE);
 	// Mission accept / decline dialog.
-	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr,
-		const DisplayText::Truncate &truncate = DisplayText::Truncate::NONE);
+	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr, Truncate truncate = Truncate::NONE);
 	virtual ~Dialog() = default;
 	
 	// Three different kinds of dialogs can be constructed: requesting numerical
 	// input, requesting text input, or not requesting any input at all. In any
 	// case, the callback is called only if the user selects "ok", not "cancel."
 template <class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text, const DisplayText::Truncate &truncate = DisplayText::Truncate::NONE);
+	Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate truncate = Truncate::NONE);
 template <class T>
 	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue,
-		const DisplayText::Truncate &truncate = DisplayText::Truncate::NONE);
+		Truncate truncate = Truncate::NONE);
 	
 template <class T>
 	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
-		const DisplayText::Truncate &truncate = DisplayText::Truncate::NONE);
+		Truncate truncate = Truncate::NONE);
 	
 template <class T>
-	Dialog(T *t, void (T::*fun)(), const std::string &text, const DisplayText::Truncate &truncate = DisplayText::Truncate::NONE);
+	Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate = Truncate::NONE);
 	
 	// Draw this panel.
 	virtual void Draw() override;
@@ -75,8 +74,7 @@ protected:
 	
 private:
 	// Common code from all three constructors:
-	void Init(const std::string &message, const DisplayText::Truncate &truncate,
-		bool canCancel = true, bool isMission = false);
+	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback() const;
 	
 	
@@ -104,7 +102,7 @@ protected:
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, const DisplayText::Truncate &truncate)
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate truncate)
 	: intFun(std::bind(fun, t, std::placeholders::_1))
 {
 	Init(text, truncate);
@@ -113,7 +111,7 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, const Display
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue, const DisplayText::Truncate &truncate)
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue, Truncate truncate)
 	: intFun(std::bind(fun, t, std::placeholders::_1)), input(std::to_string(initialValue))
 {
 	Init(text, truncate);
@@ -123,7 +121,7 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialVa
 
 template <class T>
 Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
-	std::string initialValue, const DisplayText::Truncate &truncate)
+	std::string initialValue, Truncate truncate)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)), input(initialValue)
 {
 	Init(text, truncate);
@@ -132,7 +130,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, const DisplayText::Truncate &truncate)
+Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate)
 	: voidFun(std::bind(fun, t))
 {
 	Init(text, truncate);

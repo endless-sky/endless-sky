@@ -1,5 +1,5 @@
 /* Font.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,18 +10,18 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FONT_H_
-#define FONT_H_
+#ifndef ES_TEXT_FONT_H_
+#define ES_TEXT_FONT_H_
 
-#include "Cache.h"
+#include "../Cache.h"
 #include "DisplayText.h"
-#include "Point.h"
-#include "Shader.h"
+#include "layout.hpp"
+#include "../Point.h"
+#include "../Shader.h"
 
-#include "gl_header.h"
+#include "../gl_header.h"
 
 #include <cstddef>
-#include <cstdint>
 #include <string>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wold-style-cast"
@@ -72,10 +72,10 @@ public:
 	int Height() const;
 	
 	// Get the line height and paragraph break.
-	int LineHeight(const DisplayText::Layout &layout = {}) const;
-	int ParagraphBreak(const DisplayText::Layout &layout = {}) const;
+	int LineHeight(const Layout &layout = {}) const;
+	int ParagraphBreak(const Layout &layout = {}) const;
 	
-	static void ShowUnderlines(bool show);
+	static void ShowUnderlines(bool show) noexcept;
 	
 	// Escape markup characters if it causes some errors.
 	static std::string EscapeMarkupHasError(const std::string &str);
@@ -97,7 +97,7 @@ private:
 		bool showUnderline;
 		
 		CacheKey(const DisplayText &t, bool underline) noexcept;
-		bool operator==(const CacheKey &a) const noexcept;
+		bool operator==(const CacheKey &rhs) const noexcept;
 	};
 	
 	// Hash function of CacheKey.
@@ -193,9 +193,9 @@ Font::CacheKey::CacheKey(const DisplayText &t, bool underline) noexcept
 
 
 inline
-bool Font::CacheKey::operator==(const CacheKey &a) const noexcept
+bool Font::CacheKey::operator==(const CacheKey &rhs) const noexcept
 {
-	return text == a.text && showUnderline == a.showUnderline;
+	return text == rhs.text && showUnderline == rhs.showUnderline;
 }
 
 
@@ -204,7 +204,7 @@ inline
 Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type const &s) const noexcept
 {
 	const std::string &text = s.text.GetText();
-	const DisplayText::Layout &layout = s.text.GetLayout();
+	const Layout &layout = s.text.GetLayout();
 	const result_type h1 = std::hash<std::string>()(text);
 	const result_type h2 = std::hash<int>()(layout.width);
 	const unsigned int pack = s.showUnderline | (static_cast<unsigned int>(layout.align) << 1)

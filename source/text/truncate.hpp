@@ -1,5 +1,5 @@
-/* FontSet.h
-Copyright (c) 2014 by Michael Zahniser
+/* truncate.hpp
+Copyright (c) 2020 by Masato Oota
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,23 +10,15 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FONT_SET_H_
-#define FONT_SET_H_
+#ifndef ES_TEXT_TRUNCATE_H_
+#define ES_TEXT_TRUNCATE_H_
 
-#include "Font.h"
-
-#include <string>
-
-
-
-// Class for getting the Font object for a given point size.
-class FontSet {
-public:
-	static void Add(const std::string &fontsDir);
-	static const Font &Get(int size);
-	
-	// Set the drawing settins.
-	static void SetDrawingSettings(const Font::DrawingSettings &setting);
+// Ways in which text may be truncated in the UI.
+enum class Truncate : int {
+	NONE,
+	FRONT,
+	MIDDLE,
+	BACK,
 };
 
 

@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "FogShader.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"

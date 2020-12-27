@@ -23,10 +23,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // of the classes representing a particular shader.
 class Shader {
 public:
-	Shader() = default;
+	Shader() noexcept = default;
 	Shader(const char *vertex, const char *fragment);
 	
-	GLuint Object() const;
+	GLuint Object() const noexcept;
 	GLint Attrib(const char *name) const;
 	GLint Uniform(const char *name) const;
 	

@@ -12,12 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "OutlineShader.h"
@@ -31,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -119,8 +121,8 @@ void ShopPanel::Draw()
 		constexpr int WIDTH = 250;
 		constexpr int PAD = 10;
 		const Font &font = FontSet::Get(14);
-		const DisplayText::Layout layout{WIDTH - 2 * PAD, DisplayText::Align::JUSTIFIED};
-		const DisplayText tooltipText{GameData::Tooltip(warningType), layout};
+		const auto layout = Layout(WIDTH - 2 * PAD, Alignment::JUSTIFIED);
+		const auto tooltipText = DisplayText(GameData::Tooltip(warningType), layout);
 		
 		bool isError = (warningType.back() == '!');
 		const Color &textColor = *GameData::Colors().Get("medium");
@@ -184,7 +186,7 @@ void ShopPanel::DrawShipsSidebar()
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll);
-	font.Draw({YOURS, {SIDEBAR_WIDTH, DisplayText::Align::CENTER}}, yoursPoint, bright);
+	font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
 	
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
@@ -276,7 +278,7 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw("cargo space:", point, medium);
 		
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		font.Draw({space, {SIDE_WIDTH - 20, DisplayText::Align::RIGHT}}, point, bright);
+		font.Draw({space, {SIDE_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
 	maxSidebarScroll = max(0., point.Y() + sidebarScroll - Screen::Bottom() + BUTTON_HEIGHT);
@@ -339,7 +341,7 @@ void ShopPanel::DrawButtons()
 	font.Draw("You have:", point, dim);
 	
 	string credits = Format::Credits(player.Accounts().Credits()) + " credits";
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, DisplayText::Align::RIGHT}}, point, bright);
+	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 	point.X() += (SIDEBAR_WIDTH - 20) - font.Width(credits);
 	
 	const Font &bigFont = FontSet::Get(18);
@@ -499,7 +501,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Font &font = FontSet::Get(14);
 	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
-	font.Draw({name, {SIDEBAR_WIDTH, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
 	
 	const Sprite *thumbnail = ship.Thumbnail();

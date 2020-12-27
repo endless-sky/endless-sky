@@ -20,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
-#include "Font.h"
+#include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameWindow.h"

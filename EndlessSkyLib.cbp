@@ -114,7 +114,6 @@
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/Dictionary.cpp" />
 		<Unit filename="source/Dictionary.h" />
-		<Unit filename="source/DisplayText.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
 		<Unit filename="source/DrawList.cpp" />
@@ -137,12 +136,6 @@
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
 		<Unit filename="source/FogShader.h" />
-		<Unit filename="source/Font.cpp" />
-		<Unit filename="source/Font.h" />
-		<Unit filename="source/FontSet.cpp" />
-		<Unit filename="source/FontSet.h" />
-		<Unit filename="source/Format.cpp" />
-		<Unit filename="source/Format.h" />
 		<Unit filename="source/FrameTimer.cpp" />
 		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
@@ -301,16 +294,12 @@
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />
 		<Unit filename="source/System.h" />
-		<Unit filename="source/Table.cpp" />
-		<Unit filename="source/Table.h" />
 		<Unit filename="source/Trade.cpp" />
 		<Unit filename="source/Trade.h" />
 		<Unit filename="source/TradingPanel.cpp" />
 		<Unit filename="source/TradingPanel.h" />
 		<Unit filename="source/UI.cpp" />
 		<Unit filename="source/UI.h" />
-		<Unit filename="source/Utf8.cpp" />
-		<Unit filename="source/Utf8.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weather.cpp" />
@@ -320,6 +309,21 @@
 		<Unit filename="source/gl_header.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
+		<Unit filename="source/text/DisplayText.cpp" />
+		<Unit filename="source/text/DisplayText.h" />
+		<Unit filename="source/text/Font.cpp" />
+		<Unit filename="source/text/Font.h" />
+		<Unit filename="source/text/FontSet.cpp" />
+		<Unit filename="source/text/FontSet.h" />
+		<Unit filename="source/text/Format.cpp" />
+		<Unit filename="source/text/Format.h" />
+		<Unit filename="source/text/Table.cpp" />
+		<Unit filename="source/text/Table.h" />
+		<Unit filename="source/text/Utf8.cpp" />
+		<Unit filename="source/text/Utf8.h" />
+		<Unit filename="source/text/alignment.hpp" />
+		<Unit filename="source/text/layout.hpp" />
+		<Unit filename="source/text/truncate.hpp" />
 		<Extensions>
 			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />

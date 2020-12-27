@@ -12,12 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Command.h"
-#include "DisplayText.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "MapOutfitterPanel.h"
@@ -37,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -410,7 +412,7 @@ void MapDetailPanel::DrawInfo()
 	const Font &font = FontSet::Get(14);
 	string systemName = player.KnowsName(selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
-	const DisplayText::Layout alignLeft{140, DisplayText::Align::LEFT, DisplayText::Truncate::BACK};
+	const auto alignLeft = Layout(140, Alignment::LEFT, Truncate::BACK);
 	font.Draw({systemName, alignLeft}, uiPoint + Point(-90., -7.), medium);
 	
 	governmentY = uiPoint.Y() + 10.;
@@ -529,7 +531,7 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (hasVisited ? "n/a" : "?");
 		
-		const DisplayText::Layout alignRight{140, DisplayText::Align::RIGHT, DisplayText::Truncate::BACK};
+		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
 		font.Draw({price, alignRight}, uiPoint, color);
 		
 		if(isSelected)
@@ -548,7 +550,7 @@ void MapDetailPanel::DrawInfo()
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 		
-		font.Draw({selectedPlanet->Description(), {WIDTH - 20, DisplayText::Align::JUSTIFIED}},
+		font.Draw({selectedPlanet->Description(), {WIDTH - 20, Alignment::JUSTIFIED}},
 			Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 	}
 	
@@ -639,7 +641,7 @@ void MapDetailPanel::DrawOrbits()
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
-	font.Draw({name, {180, DisplayText::Align::CENTER, DisplayText::Truncate::BACK}},
+	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}},
 		namePos, *GameData::Colors().Get("medium"));
 }
 

@@ -73,6 +73,10 @@
 		<Unit filename="tests/src/test_point.cpp" />
 		<Unit filename="tests/src/test_random.cpp" />
 		<Unit filename="tests/src/test_set.cpp" />
+		<Unit filename="tests/src/text/test_alignment.cpp" />
+		<Unit filename="tests/src/text/test_displaytext.cpp" />
+		<Unit filename="tests/src/text/test_layout.cpp" />
+		<Unit filename="tests/src/text/test_truncate.cpp" />
 		<Extensions>
 			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />

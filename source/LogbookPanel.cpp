@@ -12,12 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "LogbookPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
+#include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -120,7 +122,7 @@ void LogbookPanel::Draw()
 	}
 	
 	// Parameters for drawing the main text:
-	DisplayText::Layout textLayout{static_cast<int>(ceil(TEXT_WIDTH - 2. * PAD)), DisplayText::Align::JUSTIFIED};
+	const auto textLayout = Layout(static_cast<int>(ceil(TEXT_WIDTH - 2. * PAD)), Alignment::JUSTIFIED);
 	
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
@@ -129,7 +131,7 @@ void LogbookPanel::Draw()
 	auto pit = player.SpecialLogs().find(selectedName);
 	if(selectedDate && begin != end)
 	{
-		const DisplayText::Layout layout{static_cast<int>(TEXT_WIDTH - 2. * PAD), DisplayText::Align::RIGHT};
+		const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
 		for(auto it = begin; it != end; ++it)
 		{
 			string date = it->first.ToString();

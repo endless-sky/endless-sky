@@ -12,12 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpaceportPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "DisplayText.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -88,7 +90,7 @@ void SpaceportPanel::Draw()
 		return;
 	
 	const Font &font = FontSet::Get(14);
-	font.Draw({text, {480, DisplayText::Align::JUSTIFIED}}, Point(-300., 80.),
+	font.Draw({text, {480, Alignment::JUSTIFIED}}, Point(-300., 80.),
 		*GameData::Colors().Get("bright"));
 	
 	if(hasNews)
@@ -98,7 +100,7 @@ void SpaceportPanel::Draw()
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
 		const int newsWidth = hasPortrait ? portraitWidth : normalWidth;
-		const DisplayText::Layout newsLayout{newsWidth, DisplayText::Align::JUSTIFIED};
+		const auto newsLayout = Layout(newsWidth, Alignment::JUSTIFIED);
 		font.Draw({newsMessage, newsLayout},
 			interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
 			*GameData::Colors().Get("medium"));

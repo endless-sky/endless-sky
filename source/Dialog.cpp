@@ -1,5 +1,5 @@
 /* Dialog.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -12,14 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Dialog.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
-#include "DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
@@ -31,7 +31,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cmath>
-#include <functional>
 
 using namespace std;
 
@@ -86,7 +85,7 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, const DisplayText::Truncate &truncate)
+Dialog::Dialog(const string &text, Truncate truncate)
 {
 	Init(text, truncate, false);
 }
@@ -94,7 +93,7 @@ Dialog::Dialog(const string &text, const DisplayText::Truncate &truncate)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, const DisplayText::Truncate &truncate)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
@@ -169,9 +168,9 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		const DisplayText::Layout layout{WIDTH - 30, DisplayText::Truncate::FRONT};
+		const auto layout = Layout(WIDTH - 30, Truncate::FRONT);
 		const string validatedInput = Font::EscapeMarkupHasError(input);
-		const DisplayText displayInputText{validatedInput, layout};
+		const auto displayInputText = DisplayText(validatedInput, layout);
 		font.Draw(displayInputText, stringPos, bright);
 		
 		Point barPos(stringPos.X() + font.Width(displayInputText) + 2., inputPos.Y());
@@ -279,13 +278,13 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, const DisplayText::Truncate &truncate, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 	
-	dialogText = {message, {WIDTH - 20, DisplayText::Align::JUSTIFIED, truncate}};
+	dialogText = {message, {WIDTH - 20, Alignment::JUSTIFIED, truncate}};
 	
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about

@@ -12,11 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HailPanel.h"
 
-#include "DisplayText.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
 #include "DrawList.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -30,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -161,7 +163,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	info.SetString("header", {header, {330, DisplayText::Truncate::BACK}});
+	info.SetString("header", {header, {330, Truncate::BACK}});
 	if(ship)
 	{
 		info.SetCondition("show assist");
@@ -218,8 +220,7 @@ void HailPanel::Draw()
 	
 	// Draw the current message.
 	const Font &font = FontSet::Get(14);
-	font.Draw({message, {330, DisplayText::Align::JUSTIFIED}}, Point(-50., -50.),
-		*GameData::Colors().Get("medium"));
+	font.Draw({message, {330, Alignment::JUSTIFIED}}, Point(-50., -50.), *GameData::Colors().Get("medium"));
 }
 
 

@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ITEM_INFO_DISPLAY_H_
 #define ITEM_INFO_DISPLAY_H_
 
-#include "DisplayText.h"
-#include "Font.h"
+#include "text/DisplayText.h"
+#include "text/layout.hpp"
 #include "Point.h"
 
 #include <string>
@@ -57,7 +57,7 @@ protected:
 	
 protected:
 	static const int WIDTH = 250;
-	static const DisplayText::Layout commonLayout;
+	static const Layout commonLayout;
 	
 	DisplayText description;
 	int descriptionHeight = 0;

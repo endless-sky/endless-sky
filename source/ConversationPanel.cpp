@@ -12,14 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConversationPanel.h"
 
+#include "text/alignment.hpp"
 #include "BoardingPanel.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "MapDetailPanel.h"
@@ -136,7 +138,7 @@ void ConversationPanel::Draw()
 	{
 		// This conversation node is prompting the player to enter their name.
 		Point fieldSize(150, 20);
-		const DisplayText::Layout layout{static_cast<int>(fieldSize.X() - 10), DisplayText::Truncate::FRONT};
+		const auto layout = Layout(fieldSize.X() - 10, Truncate::FRONT);
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
@@ -408,7 +410,7 @@ void ConversationPanel::ClickChoice(int index)
 
 // Paragraph constructor.
 ConversationPanel::Paragraph::Paragraph(const string &t, const Sprite *scene, bool isFirst)
-	: scene(scene), text(t, {WIDTH, DisplayText::Align::JUSTIFIED}), isFirst(isFirst)
+	: scene(scene), text(t, {WIDTH, Alignment::JUSTIFIED}), isFirst(isFirst)
 {
 	const Font &font = FontSet::Get(14);
 	textHeight = font.Height(text);

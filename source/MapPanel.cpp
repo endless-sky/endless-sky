@@ -12,20 +12,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
+#include "text/alignment.hpp"
 #include "Angle.h"
 #include "CargoHold.h"
 #include "Dialog.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
 #include "FogShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "MapOutfitterPanel.h"
@@ -1197,8 +1199,8 @@ void MapPanel::DrawTooltips()
 	{
 		// Add 10px margin to all sides of the text.
 		const Font &font = FontSet::Get(14);
-		const DisplayText::Layout layout{150, DisplayText::Align::LEFT};
-		const DisplayText tooltipText{tooltip, layout};
+		const auto layout = Layout(150, Alignment::LEFT);
+		const auto tooltipText = DisplayText(tooltip, layout);
 		Point size(font.Width(tooltipText), font.Height(tooltipText) - font.ParagraphBreak(layout));
 		size += Point(20., 20.);
 		Point topLeft = (hoverSystem->Position() + center) * Zoom();

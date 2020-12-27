@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlanetLabel.h"
 
 #include "Angle.h"
-#include "DisplayText.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "Government.h"
 #include "LineShader.h"
 #include "pi.h"

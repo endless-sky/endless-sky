@@ -12,13 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ItemInfoDisplay.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "FillShader.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Rectangle.h"
 #include "Screen.h"
-#include "Table.h"
+#include "text/Table.h"
 
 #include <algorithm>
 #include <cmath>
@@ -29,7 +30,7 @@ namespace {
 	const int HOVER_TIME = 60;
 }
 
-const DisplayText::Layout ItemInfoDisplay::commonLayout{WIDTH - 20, DisplayText::Align::JUSTIFIED};
+const Layout ItemInfoDisplay::commonLayout = Layout(WIDTH - 20, Alignment::JUSTIFIED);
 
 
 
@@ -167,11 +168,9 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 	const Color &valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
-	DisplayText::Layout layout{WIDTH - 20, DisplayText::Align::LEFT};
 	// Use 10-pixel margins on both sides.
-	table.AddColumn(10, layout);
-	layout.align = DisplayText::Align::RIGHT;
-	table.AddColumn(WIDTH - 10, layout);
+	table.AddColumn(10, {WIDTH - 20});
+	table.AddColumn(WIDTH - 10, {WIDTH - 20, Alignment::RIGHT});
 	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);
 	

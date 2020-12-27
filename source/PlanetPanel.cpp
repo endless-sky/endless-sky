@@ -14,13 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Information.h"
 
+#include "text/alignment.hpp"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "DisplayText.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
@@ -133,7 +134,7 @@ void PlanetPanel::Draw()
 	if(!selectedPanel)
 	{
 		const Font &font = FontSet::Get(14);
-		font.Draw({text, {480, DisplayText::Align::JUSTIFIED}}, Point(-300., 80.),
+		font.Draw({text, {480, Alignment::JUSTIFIED}}, Point(-300., 80.),
 			*GameData::Colors().Get("bright"));
 	}
 }

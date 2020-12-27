@@ -1,5 +1,5 @@
 /* Font.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -12,13 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Font.h"
 
-#include "Color.h"
-#include "Files.h"
-#include "DisplayText.h"
-#include "ImageBuffer.h"
-#include "Screen.h"
+#include "alignment.hpp"
+#include "../Color.h"
+#include "../Files.h"
+#include "../ImageBuffer.h"
+#include "../Screen.h"
+#include "truncate.hpp"
 
-#include "gl_header.h"
+#include "../gl_header.h"
 
 #include <algorithm>
 #include <cmath>
@@ -119,9 +120,9 @@ int Font::Height() const
 
 
 
-int Font::LineHeight(const DisplayText::Layout &layout) const
+int Font::LineHeight(const Layout &layout) const
 {
-	if(layout.lineHeight == DisplayText::DEFAULT_LINE_HEIGHT)
+	if(layout.lineHeight == Layout::DEFAULT_LINE_HEIGHT)
 		return TextFromViewCeilY(viewDefaultLineHeight);
 	else
 		return layout.lineHeight;
@@ -129,9 +130,9 @@ int Font::LineHeight(const DisplayText::Layout &layout) const
 
 
 
-int Font::ParagraphBreak(const DisplayText::Layout &layout) const
+int Font::ParagraphBreak(const Layout &layout) const
 {
-	if(layout.paragraphBreak == DisplayText::DEFAULT_PARAGRAPH_BREAK)
+	if(layout.paragraphBreak == Layout::DEFAULT_PARAGRAPH_BREAK)
 		return TextFromViewCeilY(viewDefaultParagraphBreak);
 	else
 		return layout.paragraphBreak;
@@ -139,7 +140,7 @@ int Font::ParagraphBreak(const DisplayText::Layout &layout) const
 
 
 
-void Font::ShowUnderlines(bool show)
+void Font::ShowUnderlines(bool show) noexcept
 {
 	showUnderlines = show;
 }
@@ -187,6 +188,7 @@ void Font::UpdateSurfaceSize() const
 	
 	UpdateFont();
 }
+
 
 
 void Font::UpdateFont() const
@@ -391,15 +393,15 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 		return *cached.first;
 	
 	// Convert to viewport coodinates except align and truncate.
-	const DisplayText::Layout &layout = text.GetLayout();
-	DisplayText::Layout viewLayout = layout;
+	const Layout &layout = text.GetLayout();
+	Layout viewLayout = layout;
 	if(layout.width > 0)
 		viewLayout.width = ViewFromTextX(layout.width);
-	if(layout.lineHeight == DisplayText::DEFAULT_LINE_HEIGHT)
+	if(layout.lineHeight == Layout::DEFAULT_LINE_HEIGHT)
 		viewLayout.lineHeight = viewDefaultLineHeight;
 	else
 		viewLayout.lineHeight = ViewFromTextFloorY(layout.lineHeight);
-	if(layout.paragraphBreak == DisplayText::DEFAULT_PARAGRAPH_BREAK)
+	if(layout.paragraphBreak == Layout::DEFAULT_PARAGRAPH_BREAK)
 		viewLayout.paragraphBreak = viewDefaultParagraphBreak;
 	else
 		viewLayout.paragraphBreak = ViewFromTextFloorY(layout.paragraphBreak);
@@ -410,20 +412,20 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	PangoEllipsizeMode ellipsize;
 	switch(viewLayout.truncate)
 	{
-	case DisplayText::Truncate::NONE:
-		ellipsize = PANGO_ELLIPSIZE_NONE;
-		break;
-	case DisplayText::Truncate::FRONT:
-		ellipsize = PANGO_ELLIPSIZE_START;
-		break;
-	case DisplayText::Truncate::MIDDLE:
-		ellipsize = PANGO_ELLIPSIZE_MIDDLE;
-		break;
-	case DisplayText::Truncate::BACK:
-		ellipsize = PANGO_ELLIPSIZE_END;
-		break;
-	default:
-		ellipsize = PANGO_ELLIPSIZE_NONE;
+		case Truncate::NONE:
+			ellipsize = PANGO_ELLIPSIZE_NONE;
+			break;
+		case Truncate::FRONT:
+			ellipsize = PANGO_ELLIPSIZE_START;
+			break;
+		case Truncate::MIDDLE:
+			ellipsize = PANGO_ELLIPSIZE_MIDDLE;
+			break;
+		case Truncate::BACK:
+			ellipsize = PANGO_ELLIPSIZE_END;
+			break;
+		default:
+			ellipsize = PANGO_ELLIPSIZE_NONE;
 	}
 	pango_layout_set_ellipsize(pangoLayout, ellipsize);
 	
@@ -432,25 +434,25 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	gboolean justify;
 	switch(viewLayout.align)
 	{
-	case DisplayText::Align::LEFT:
-		align = PANGO_ALIGN_LEFT;
-		justify = FALSE;
+		case Alignment::LEFT:
+			align = PANGO_ALIGN_LEFT;
+			justify = FALSE;
+			break;
+		case Alignment::CENTER:
+			align = PANGO_ALIGN_CENTER;
+			justify = FALSE;
+			break;
+		case Alignment::RIGHT:
+			align = PANGO_ALIGN_RIGHT;
+			justify = FALSE;
 		break;
-	case DisplayText::Align::CENTER:
-		align = PANGO_ALIGN_CENTER;
-		justify = FALSE;
-		break;
-	case DisplayText::Align::RIGHT:
-		align = PANGO_ALIGN_RIGHT;
-		justify = FALSE;
-		break;
-	case DisplayText::Align::JUSTIFIED:
-		align = PANGO_ALIGN_LEFT;
-		justify = TRUE;
-		break;
-	default:
-		align = PANGO_ALIGN_LEFT;
-		justify = FALSE;
+		case Alignment::JUSTIFIED:
+			align = PANGO_ALIGN_LEFT;
+			justify = TRUE;
+			break;
+		default:
+			align = PANGO_ALIGN_LEFT;
+			justify = FALSE;
 	}
 	pango_layout_set_justify(pangoLayout, justify);
 	pango_layout_set_alignment(pangoLayout, align);
