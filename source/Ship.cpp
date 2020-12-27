@@ -257,10 +257,10 @@ void Ship::Load(const DataNode &node)
 					}
 					else if(grand.Token(0) == "parallel")
 						angles.isParallel = true;
-					else if(grand.Token(0) == "angle of traverse" && grand.Size() >= 3)
+					else if(grand.Token(0) == "turn range" && grand.Size() >= 3)
 					{
 						angles.isOmnidirectional = false;
-						angles.angleOfTraverse = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
+						angles.turnRange = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
 						needToCheckAngles = true;
 					}
 					else
@@ -269,19 +269,19 @@ void Ship::Load(const DataNode &node)
 					if(needToCheckAngles && !angles.isOmnidirectional)
 					{
 						const Angle &base = angles.baseAngle;
-						const Angle &first = angles.angleOfTraverse.first;
-						const Angle &second = angles.angleOfTraverse.second;
-						if(!base.isInRange(first, second))
+						const Angle &first = angles.turnRange.first;
+						const Angle &second = angles.turnRange.second;
+						if(!base.IsInRange(first, second))
 						{
-							grand.PrintTrace("Warning: The angle must be in the angle of traverse:");
+							grand.PrintTrace("Warning: The angle must be in the turn range:");
 							defaultBaseAngle = true;
 						}
 					}
 				}
 				if(!angles.isOmnidirectional && defaultBaseAngle)
 				{
-					const Angle &first = angles.angleOfTraverse.first;
-					const Angle &second = angles.angleOfTraverse.second;
+					const Angle &first = angles.turnRange.first;
+					const Angle &second = angles.turnRange.second;
 					angles.baseAngle = first + (second - first).AbsDegrees() / 2.;
 				}
 			}
@@ -809,8 +809,8 @@ void Ship::Save(DataWriter &out) const
 					if(angles.isParallel)
 						out.Write("parallel");
 					if(!angles.isOmnidirectional)
-						out.Write("angle of traverse",
-							angles.angleOfTraverse.first.Degrees(), angles.angleOfTraverse.second.Degrees());
+						out.Write("turn range",
+							angles.turnRange.first.Degrees(), angles.turnRange.second.Degrees());
 				}
 				out.EndChild();
 			}

@@ -43,7 +43,7 @@ Hardpoint::Hardpoint(const Point &point, const AnglesParameter &angles, bool isT
 	: outfit(outfit), point(point * .5), baseAngle(angles.baseAngle), anglesParameter(angles),
 	isTurret(isTurret), isParallel(angles.isParallel)
 {
-	UpdateAngleOfTraverse();
+	UpdateTurnRange();
 }
 
 
@@ -81,10 +81,10 @@ const Angle &Hardpoint::GetBaseAngle() const
 
 
 
-// Get the angle of traverse. Return value is invalid if this is omnidirectional.
-std::pair<Angle, Angle> Hardpoint::GetAngleOfTraverse() const
+// Get the turn range. Return value is invalid if this is omnidirectional.
+std::pair<Angle, Angle> Hardpoint::GetTurnRange() const
 {
-	return angleOfTraverse;
+	return turnRange;
 }
 
 
@@ -216,10 +216,10 @@ void Hardpoint::Aim(double amount)
 	else
 	{
 		const Angle newAngle = angle + add;
-		if(add < 0. && angleOfTraverse.first.isInRange(newAngle, angle))
-			angle = angleOfTraverse.first;
-		else if (add > 0. && angleOfTraverse.second.isInRange(angle, newAngle))
-			angle = angleOfTraverse.second;
+		if(add < 0. && turnRange.first.IsInRange(newAngle, angle))
+			angle = turnRange.first;
+		else if (add > 0. && turnRange.second.IsInRange(angle, newAngle))
+			angle = turnRange.second;
 		else
 			angle += add;
 	}
@@ -276,14 +276,14 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	if(offset.Length() > range)
 		return false;
 	
-	// Check if the missile is within angle of traverse.
+	// Check if the missile is within the turn range.
 	Angle aim(offset);
 	if(!IsOmnidirectional())
 	{
-		auto range = GetAngleOfTraverse();
+		auto range = GetTurnRange();
 		range.first += facing;
 		range.second += facing;
-		if(!aim.isInRange(range.first, range.second))
+		if(!aim.IsInRange(range.first, range.second))
 			return false;
 	}
 	
@@ -322,8 +322,8 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 		
-		// Update angle of traverse.
-		UpdateAngleOfTraverse();
+		// Update turn range.
+		UpdateTurnRange();
 		
 		// For fixed weapons, apply "gun harmonization," pointing them slightly
 		// inward so the projectiles will converge. For turrets, start them out
@@ -359,8 +359,8 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 	
-	// Update angle of traverse.
-	UpdateAngleOfTraverse();
+	// Update turn range.
+	UpdateTurnRange();
 }
 
 
@@ -401,8 +401,8 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 
 
 
-// Update the angles of traverse.
-void Hardpoint::UpdateAngleOfTraverse()
+// Update the turn range.
+void Hardpoint::UpdateTurnRange()
 {
 	const AnglesParameter &angles = anglesParameter;
 	// Restore the initial value.
@@ -410,25 +410,25 @@ void Hardpoint::UpdateAngleOfTraverse()
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
-		angleOfTraverse = make_pair(opposite, opposite);
+		turnRange = make_pair(opposite, opposite);
 	}
 	else
-		angleOfTraverse = angles.angleOfTraverse;
+		turnRange = angles.turnRange;
 	
 	if(!outfit)
 		return;
 	
-	// The installed weapon restricts the angle of traverse.
-	const double hardpointsArc = (angleOfTraverse.second - angleOfTraverse.first).AbsDegrees();
-	const double weaponsArc = outfit->AngleOfTraverse();
+	// The installed weapon restricts the turn range.
+	const double hardpointsArc = (turnRange.second - turnRange.first).AbsDegrees();
+	const double weaponsArc = outfit->TurnRange();
 	if(weaponsArc < 360. && (isOmnidirectional || weaponsArc < hardpointsArc))
 	{
 		isOmnidirectional = false;
 		const double weaponsHalf = weaponsArc / 2.;
 		
 		// The base angle is placed at center as possible.
-		const Angle &firstAngle = angleOfTraverse.first;
-		const Angle &secondAngle = angleOfTraverse.second;
+		const Angle &firstAngle = turnRange.first;
+		const Angle &secondAngle = turnRange.second;
 		double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();
 		double hardpointsSecondArc = (secondAngle - baseAngle).AbsDegrees();
 		if(hardpointsFirstArc < weaponsHalf)
@@ -440,6 +440,6 @@ void Hardpoint::UpdateAngleOfTraverse()
 			hardpointsFirstArc = weaponsHalf;
 			hardpointsSecondArc = weaponsHalf;
 		}
-		angleOfTraverse = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
+		turnRange = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
 	}
 }

@@ -58,7 +58,7 @@ public:
 	
 	// Judge whether this is inside from "base" to "limit."
 	// The range from "base" to "limit" is expressed by "clock" orientation.
-	bool isInRange(const Angle& base, const Angle& limit) const;
+	bool IsInRange(const Angle& base, const Angle& limit) const;
 	
 	
 private:

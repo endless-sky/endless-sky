@@ -2726,9 +2726,9 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					offset = (targetAngle - hardpoint.GetAngle()).Degrees();
 				else
 				{
-					const auto arc = hardpoint.GetAngleOfTraverse();
+					const auto arc = hardpoint.GetTurnRange();
 					// The harmonised angle might be out of range.
-					if(!targetAngle.isInRange(arc.first, arc.second))
+					if(!targetAngle.IsInRange(arc.first, arc.second))
 						// Point to the parallel angle.
 						targetAngle = hardpoint.GetBaseAngle();
 					const double targetDegree = (targetAngle - arc.first).AbsDegrees();
@@ -2806,11 +2806,11 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					degrees = (angleToPoint - aim).Degrees();
 				else
 				{
-					auto range = hardpoint.GetAngleOfTraverse();
+					auto range = hardpoint.GetTurnRange();
 					const Angle facing = ship.Facing();
 					range.first += facing;
 					range.second += facing;
-					if(!angleToPoint.isInRange(range.first, range.second))
+					if(!angleToPoint.IsInRange(range.first, range.second))
 					{
 						// Decrease the priority of the target.
 						rendezvousTime += 2. * weapon->TotalLifetime();

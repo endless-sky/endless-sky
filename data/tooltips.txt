@@ -455,8 +455,8 @@ tip "shots / second:"
 tip "turret turn rate:"
 	`How fast this turret turns to track its targets, in degrees per second.`
 
-tip "angle of traverse:"
-	`How width this turret can traverse, in degrees.`
+tip "turn range:"
+	`How range this turret can traverse, in degrees.`
 
 tip "homing:"
 	`How well this projectile tracks its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
