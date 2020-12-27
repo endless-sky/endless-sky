@@ -3102,6 +3102,48 @@ void AI::MoveWingman(Ship &ship, const PlayerInfo &player, Command &activeComman
 {
 	// 1. Get wingman commands from the activeCommands
 	// 2. Copy over relevant parts of MovePlayer
+	Command command;
+
+	if(activeCommands)
+	{
+		if(activeCommands.Has(Command::WFORWARD))
+			command |= Command::FORWARD;
+		if(activeCommands.Has(Command::WRIGHT | Command::WLEFT))
+			command.SetTurn(activeCommands.Has(Command::WRIGHT) - activeCommands.Has(Command::WLEFT));
+		if(activeCommands.Has(Command::WBACK))
+		{
+			if(!activeCommands.Has(Command::WFORWARD) && ship.Attributes().Get("reverse thrust"))
+				command |= Command::BACK;
+			else if(!activeCommands.Has(Command::WRIGHT | Command::WLEFT))
+				command.SetTurn(TurnBackward(ship));
+		}
+		
+		if(activeCommands.Has(Command::WPRIMARY))
+		{
+			int index = 0;
+			for(const Hardpoint &hardpoint : ship.Weapons())
+			{
+				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
+					command.SetFire(index);
+				++index;
+			}
+		}
+		if(activeCommands.Has(Command::WSECONDARY))
+		{
+			int index = 0;
+			for(const Hardpoint &hardpoint : ship.Weapons())
+			{
+				if(hardpoint.IsReady() && hardpoint.GetOutfit() == player.SelectedWeapon())
+					command.SetFire(index);
+				++index;
+			}
+		}
+		if(activeCommands.Has(Command::WAFTERBURNER))
+			command |= Command::AFTERBURNER;
+	}
+
+	ship.SetCommands(command);
+
 }
 
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)

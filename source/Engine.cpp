@@ -1736,11 +1736,14 @@ void Engine::HandleKeyboardInputs()
 	
 	// Certain commands are always sent when the corresponding key is depressed.
 	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
-		Command::FORWARD | Command::LEFT | Command::RIGHT;
+		Command::FORWARD | Command::LEFT | Command::RIGHT; 
+		
+	static const Command wingmanManuevers = Command::WAFTERBURNER | Command::WBACK |
+		Command::WFORWARD | Command::WLEFT | Command::WRIGHT;
 	
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		manueveringCommands | Command::SHIFT);
+		manueveringCommands | Command::SHIFT | wingmanManuevers | Command::WPRIMARY | Command::WSECONDARY);
 	
 	// Issuing LAND again within the cooldown period signals a change of landing target.
 	constexpr int landCooldown = 60;
