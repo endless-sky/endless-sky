@@ -26,6 +26,8 @@ class Layout {
 public:
 	Layout() noexcept = default;
 	Layout(int width) noexcept;
+	Layout(Alignment alignment) noexcept;
+	Layout(Truncate truncateType) noexcept;
 	Layout(int width, Alignment alignment) noexcept;
 	Layout(int width, Truncate truncateType) noexcept;
 	Layout(int width, Alignment alignment, Truncate truncateType) noexcept;
@@ -51,6 +53,20 @@ public:
 
 inline Layout::Layout(int width) noexcept
 	: width(width)
+{
+}
+
+
+
+inline Layout::Layout(Alignment alignment) noexcept
+	: align(alignment)
+{
+}
+
+
+
+inline Layout::Layout(Truncate truncateType) noexcept
+	: truncate(truncateType)
 {
 }
 
