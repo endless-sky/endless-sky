@@ -78,8 +78,6 @@ const Command Command::WSECONDARY(1uL << 34, "Wingman fire secondary weapon");
 const Command Command::WSELECT(1uL << 35, "Wingman select secondary weapon");
 const Command Command::WJUMP(1uL << 36, "Wingman initiate hyperspace jump");
 const Command Command::WAFTERBURNER(1uL << 37, "Wingman fire afterburner");
-			
-
 
 
 // In the given text, replace any instances of command names (in angle brackets)
