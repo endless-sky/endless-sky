@@ -320,6 +320,7 @@ outfit "Crystal Capacitor"
 	"energy capacity" 3400
 	"energy consumption" .4
 	"heat generation" .4
+	"ion resistance" .1
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
 
@@ -333,6 +334,7 @@ outfit "Millennium Cell"
 	"outfit space" -29
 	"energy generation" 3.6
 	"heat generation" 6.0
+	"ion protection" 0.05
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 
 outfit "Epoch Cell"
@@ -345,6 +347,7 @@ outfit "Epoch Cell"
 	"outfit space" -98
 	"energy generation" 12.7
 	"heat generation" 19.8
+	"ion protection" 0.15
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 
 outfit "Aeon Cell"
@@ -357,6 +360,7 @@ outfit "Aeon Cell"
 	"outfit space" -160
 	"energy generation" 21.9
 	"heat generation" 31.5
+	"ion protection" 0.45
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
 outfit "Thermoelectric Cooler"
