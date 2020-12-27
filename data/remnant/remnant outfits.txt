@@ -226,6 +226,7 @@ outfit "EMP Torpedo Storage Bay"
 	"outfit space" -12
 	"energy capacity" 400
 	"emp torpedo capacity" 7
+	ammo "EMP Torpedo"
 	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
 	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
 
@@ -366,7 +367,7 @@ outfit "Thermoelectric Cooler"
 	thumbnail "outfit/thermoelectric cooler"
 	"mass" 4
 	"outfit space" -4
-	"active cooling" 7
+	"active cooling" 8
 	"cooling energy" .4
 	description "This cooler is actually just one of the power-generating elements of a Millennium Cell, but wired so it can run in reverse: consuming electricity in order to transfer heat from a ship's systems to its exterior."
 
@@ -380,6 +381,23 @@ outfit "Emergency Ramscoop"
 	"outfit space" -4
 	"ramscoop" 0.5
 	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+
+outfit "Research Laboratory"
+	category "Systems"
+	licenses
+		Remnant
+	cost 500000
+	thumbnail "outfit/research laboratory"
+	"mass" 11
+	"outfit space" -6
+	"asteroid scan power" 84
+	"cargo scan power" 20
+	"cargo scan speed" 1
+	"atmosphere scan" 100
+	"required crew" 1
+	"unplunderable" 1
+	description "From the very beginning, the Remnant have relied on their ability to study everything they encounter. This knowledge has enabled them to survive and even prosper in the harsh environment of the Ember Waste. To enable this pursuit of knowledge, the Remnant designed this compact laboratory that is built onto the side of a cargo bay, mess hall, or other larger room. When the room isn't otherwise occupied, this module expands out to convert it into a fully fledged laboratory."
+	description "	While planetbound scientists might consider it little more than a closet packed with scanners and equipment, to the Remnant it is a base of operations used to investigate alien and stellar phenomena on-site. For captains, having advanced equipment to support their sensor suites as well as a trained scientist to serve in their crew amount to a strong benefit."
 
 outfit "Quantum Key Stone"
 	category "Systems"

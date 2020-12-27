@@ -22,7 +22,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstddef>
 #include <cstdint>
 #include <string>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
 #include <pango/pangocairo.h>
+#pragma GCC diagnostic pop
 
 class Color;
 class ImageBuffer;

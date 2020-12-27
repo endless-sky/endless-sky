@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <set>
 #include <string>
 #include <utility>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -83,7 +84,8 @@ private:
 	Conversation conversation;
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::map<const Outfit *, int> gifts;
+	std::vector<std::pair<const Ship *, std::string>> giftShips;
+	std::map<const Outfit *, int> giftOutfits;
 	std::map<const Outfit *, int> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

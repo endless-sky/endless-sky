@@ -157,7 +157,7 @@ void Table::Draw(const string &text, const Color &color, const Font::Layout *spe
 	if(font)
 	{
 		Point pos = point;
-		const Font::Layout layout = special ? *special :
+		Font::Layout layout = special ? *special :
 			it != columns.end() ? it->layout : Font::Layout{};
 		const double alignAdjust = layout.align == Font::Align::CENTER ? -.5 :
 			layout.align == Font::Align::RIGHT ? -1. : 0.;
@@ -168,6 +168,8 @@ void Table::Draw(const string &text, const Color &color, const Font::Layout *spe
 			else
 			{
 				// This column has a virtually infinite width.
+				layout.align = Font::Align::LEFT;
+				layout.truncate = Font::Truncate::NONE;
 				const int width = font->Width(text, layout);
 				pos += Point(it->offset + alignAdjust * width, 0.);
 			}

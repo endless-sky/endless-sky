@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class CacheBase {
 public:
 	CacheBase();
+	virtual ~CacheBase() noexcept;
 	
 	// Set an interval to change the generations.
 	// An auto expired cache may recycle a value after changing 2 generations.

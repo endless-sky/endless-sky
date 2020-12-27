@@ -29,6 +29,7 @@ class Table;
 class ItemInfoDisplay {
 public:
 	ItemInfoDisplay();
+	virtual ~ItemInfoDisplay() = default;
 	
 	// Get the panel width.
 	static int PanelWidth();

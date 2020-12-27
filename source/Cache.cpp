@@ -36,6 +36,12 @@ CacheBase::CacheBase()
 
 
 
+CacheBase::~CacheBase() noexcept
+{
+}
+
+
+
 void CacheBase::SetUpdateInterval(size_t newInterval)
 {
 	updateInterval = newInterval;
