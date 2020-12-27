@@ -38,7 +38,7 @@ public:
 	
 	std::set<int> &AllSelected();
 	
-	const bool CanEdit() const;
+	bool CanEdit() const;
 	
 	int Scroll() const;
 	void SetScroll(int);

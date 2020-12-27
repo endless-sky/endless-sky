@@ -48,7 +48,7 @@ set<int> &InfoPanelState::AllSelected()
 
 
 
-const bool InfoPanelState::CanEdit() const
+bool InfoPanelState::CanEdit() const
 {
 	return canEdit;
 }
