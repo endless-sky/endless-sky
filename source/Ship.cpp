@@ -42,6 +42,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <limits>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -3333,8 +3334,10 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
-	if(hull < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+	// Ships should not disable themselves, so we check if we stay above minimumHull.
+	if(hull - MinimumHull() <= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
 		return false;
+
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
