@@ -55,16 +55,16 @@ float Information::GetSpriteFrame(const string &name) const
 
 
 
-void Information::SetString(const string &name, const DisplayText &value)
+void Information::SetString(const string &name, const string &value)
 {
 	strings[name] = value;
 }
 
 
 
-const DisplayText &Information::GetString(const string &name) const
+const string &Information::GetString(const string &name) const
 {
-	static const DisplayText empty;
+	static const string empty;
 	
 	auto it = strings.find(name);
 	return (it == strings.end()) ? empty : it->second;

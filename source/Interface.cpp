@@ -13,10 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 
 #include "DataNode.h"
+#include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
+#include "text/layout.hpp"
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Panel.h"
@@ -529,6 +531,19 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 		color[Element::INACTIVE] = GameData::Colors().Get(node.Token(1));
 	else if(node.Token(0) == "hover" && node.Size() >= 2)
 		color[Element::HOVER] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "truncate" && node.Size() >= 2)
+	{
+		if(node.Token(1) == "none")
+			truncate = Truncate::NONE;
+		else if(node.Token(1) == "front")
+			truncate = Truncate::FRONT;
+		else if(node.Token(1) == "middle")
+			truncate = Truncate::MIDDLE;
+		else if(node.Token(1) == "back")
+			truncate = Truncate::BACK;
+		else
+			return false;
+	}
 	else
 		return false;
 	
@@ -542,7 +557,10 @@ Point Interface::TextElement::NativeDimensions(const Information &info, int stat
 {
 	const Font &font = FontSet::Get(fontSize);
 	const auto text = GetString(info);
-	return Point(font.Width(text), font.Height());
+	const int width = truncate == Truncate::NONE ? -1
+		: static_cast<int>(Bounds().Width() - padding.X());
+	const auto layout = Layout(width, truncate);
+	return Point(font.Width({text, layout}), font.Height());
 }
 
 
@@ -555,7 +573,9 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 		return;
 	
 	const auto text = GetString(info);
-	FontSet::Get(fontSize).Draw(text, rect.TopLeft(), *color[state]);
+	const int width = truncate == Truncate::NONE ? -1 : static_cast<int>(rect.Width());
+	const auto layout = Layout(width, truncate);
+	FontSet::Get(fontSize).Draw({text, layout}, rect.TopLeft(), *color[state]);
 }
 
 
@@ -570,9 +590,9 @@ void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 
 
 
-DisplayText Interface::TextElement::GetString(const Information &info) const
+string Interface::TextElement::GetString(const Information &info) const
 {
-	return isDynamic ? info.GetString(str) : DisplayText(str);
+	return isDynamic ? info.GetString(str) : str;
 }
 
 

@@ -31,7 +31,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -163,7 +162,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	info.SetString("header", {header, {330, Truncate::BACK}});
+	info.SetString("header", header);
 	if(ship)
 	{
 		info.SetCondition("show assist");
