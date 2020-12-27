@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Dialog.h"
+#include "DisplayText.h"
 #include "DistanceMap.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -291,7 +292,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	
 	// Draw this string representing the selected item (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright, {INFOBAR_WIDTH - 20, Font::Align::CENTER, Font::Truncate::MIDDLE});
+	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+		selectedPoint, bright);
 	
 	return heightOffset;
 }
@@ -852,8 +854,8 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const string &name = outfit.Name();
 	const Font &font = FontSet::Get(14);
 	Point offset(-OUTFIT_SIZE / 2., -.5f * OUTFIT_SIZE + 10.f);
-	font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.),
-		{OUTFIT_SIZE, Font::Align::CENTER, Font::Truncate::MIDDLE});
+	font.Draw({name, {OUTFIT_SIZE, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
 }
 
 

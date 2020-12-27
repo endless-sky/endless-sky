@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define TABLE_H_
 
 #include "Color.h"
-#include "Font.h"
+#include "DisplayText.h"
 #include "Point.h"
 
 #include <string>
@@ -35,7 +35,7 @@ public:
 	// Set the column positions. If no columns are set, the Table will draw a
 	// list (one column of text, left aligned).
 	void Clear();
-	void AddColumn(int x, const Font::Layout &layout);
+	void AddColumn(int x, const DisplayText::Layout &layout);
 	
 	// Set the font size. Default is 14 pixels.
 	void SetFontSize(int size);
@@ -60,19 +60,27 @@ public:
 	void Advance(int fields = 1) const;
 	
 	// Draw a single text field, and move on to the next one.
-	void Draw(const std::string &text, const Font::Layout *special = nullptr) const;
+	void Draw(const char *text) const;
+	void Draw(const std::string &text) const;
+	// if a DisplayText or a Layout is given, this field drawn using that layout,
+	// but the previously set color will be used for future fields.
+	void Draw(const DisplayText &text) const;
 	// If a color is given, this field is drawn using that color, but the
 	// previously set color will be used for future fields.
-	void Draw(const std::string &text, const Color &color, const Font::Layout *special = nullptr) const;
-	void Draw(double value, const Font::Layout *special = nullptr) const;
-	void Draw(double value, const Color &color, const Font::Layout *special = nullptr) const;
+	void Draw(const char *text, const Color &color) const;
+	void Draw(const std::string &text, const Color &color) const;
+	void Draw(const DisplayText &text, const Color &color) const;
+	void Draw(double value) const;
+	void Draw(double value, const DisplayText::Layout &layout) const;
+	void Draw(double value, const Color &color) const;
+	void Draw(double value, const Color &color, const DisplayText::Layout &layout) const;
 	
 	// Draw a left-aligned column and a right-aligned,
 	// and truncate the left or right column adaptively.
 	void DrawOppositeTruncRight(int width, const std::string &left, const Color &leftColor,
-		const std::string &right, const Color &rightColor, Font::Truncate trunc);
+		const std::string &right, const Color &rightColor, DisplayText::Truncate trunc);
 	void DrawOppositeTruncLeft(int width, const std::string &left, const Color &leftColor,
-		const std::string &right, const Color &rightColor, Font::Truncate trunc);
+		const std::string &right, const Color &rightColor, DisplayText::Truncate trunc);
 	
 	// Draw an underline under the text for the current row.
 	void DrawUnderline() const;
@@ -104,11 +112,15 @@ private:
 	class Column {
 	public:
 		Column() = default;
-		Column(double offset, const Font::Layout &layout);
+		Column(double offset, const DisplayText::Layout &layout);
 		
 		double offset = 0.;
-		Font::Layout layout;
+		DisplayText::Layout layout;
 	};
+	
+	
+private:
+	void Draw(const std::string &text, const DisplayText::Layout *special, const Color &color) const;
 	
 	
 private:

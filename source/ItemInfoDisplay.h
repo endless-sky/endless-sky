@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ITEM_INFO_DISPLAY_H_
 #define ITEM_INFO_DISPLAY_H_
 
+#include "DisplayText.h"
 #include "Font.h"
 #include "Point.h"
 
@@ -28,7 +29,7 @@ class Table;
 // different depending on what kind of item it is (a ship or an outfit).
 class ItemInfoDisplay {
 public:
-	ItemInfoDisplay();
+	ItemInfoDisplay() = default;
 	virtual ~ItemInfoDisplay() = default;
 	
 	// Get the panel width.
@@ -56,10 +57,10 @@ protected:
 	
 protected:
 	static const int WIDTH = 250;
+	static const DisplayText::Layout commonLayout;
 	
-	std::string description;
+	DisplayText description;
 	int descriptionHeight = 0;
-	const Font::Layout descriptionLayout;
 	
 	std::vector<std::string> attributeLabels;
 	std::vector<std::string> attributeValues;
@@ -72,8 +73,7 @@ protected:
 	mutable std::string hover;
 	mutable int hoverCount = 0;
 	bool hasHover = false;
-	mutable std::string hoverText;
-	const Font::Layout hoverLayout;
+	mutable DisplayText hoverText;
 };
 
 

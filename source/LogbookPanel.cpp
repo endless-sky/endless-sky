@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LogbookPanel.h"
 
 #include "Color.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -119,7 +120,7 @@ void LogbookPanel::Draw()
 	}
 	
 	// Parameters for drawing the main text:
-	Font::Layout textLayout{static_cast<int>(ceil(TEXT_WIDTH - 2. * PAD)), Font::Align::JUSTIFIED};
+	DisplayText::Layout textLayout{static_cast<int>(ceil(TEXT_WIDTH - 2. * PAD)), DisplayText::Align::JUSTIFIED};
 	
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
@@ -128,15 +129,15 @@ void LogbookPanel::Draw()
 	auto pit = player.SpecialLogs().find(selectedName);
 	if(selectedDate && begin != end)
 	{
+		const DisplayText::Layout layout{static_cast<int>(TEXT_WIDTH - 2. * PAD), DisplayText::Align::RIGHT};
 		for(auto it = begin; it != end; ++it)
 		{
 			string date = it->first.ToString();
-			font.Draw(date, pos + Point(0., textOffset.Y()), dim,
-				{static_cast<int>(TEXT_WIDTH - 2. * PAD), Font::Align::RIGHT});
+			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 			
-			font.Draw(it->second, pos, medium, textLayout);
-			pos.Y() += font.Height(it->second, textLayout) + GAP;
+			font.Draw({it->second, textLayout}, pos, medium);
+			pos.Y() += font.Height({it->second, textLayout}) + GAP;
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
@@ -145,8 +146,8 @@ void LogbookPanel::Draw()
 		{
 			font.Draw(it.first, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
-			font.Draw(it.second, pos, medium, textLayout);
-			pos.Y() += font.Height(it.second, textLayout) + GAP;
+			font.Draw({it.second, textLayout}, pos, medium);
+			pos.Y() += font.Height({it.second, textLayout}) + GAP;
 		}
 	}
 	

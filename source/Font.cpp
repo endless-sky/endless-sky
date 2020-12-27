@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Files.h"
+#include "DisplayText.h"
 #include "ImageBuffer.h"
 #include "Screen.h"
 
@@ -29,7 +30,6 @@ using namespace std;
 namespace {
 	bool showUnderlines = false;
 	const int TOTAL_TAB_STOPS = 8;
-	const Font::Layout defaultParams;
 	
 	const vector<string> acceptableCharacterReferences{ "gt;", "lt;", "amp;" };
 	
@@ -39,8 +39,6 @@ namespace {
 		return ceil(static_cast<double>(pangoSize) / PANGO_SCALE);
 	}
 }
-
-const Font::Layout Font::defaultLayout;
 
 
 
@@ -80,38 +78,36 @@ void Font::SetDrawingSettings(const DrawingSettings &newSettings)
 
 
 
-void Font::Draw(const string &str, const Point &point, const Color &color,
-	const Layout &layout) const
+void Font::Draw(const DisplayText &text, const Point &point, const Color &color) const
 {
-	DrawCommon(str, point.X(), point.Y(), color, layout, true);
+	DrawCommon(text, point.X(), point.Y(), color, true);
 }
 
 
 
-void Font::DrawAliased(const string &str, double x, double y, const Color &color,
-	const Layout &layout) const
+void Font::DrawAliased(const DisplayText &text, double x, double y, const Color &color) const
 {
-	DrawCommon(str, x, y, color, layout, false);
+	DrawCommon(text, x, y, color, false);
 }
 
 
 
-int Font::Height(const string &str, const Layout &layout) const
+int Font::Width(const DisplayText &text) const
 {
-	if(str.empty())
+	return TextFromViewCeilX(ViewWidth(text));
+}
+
+
+
+int Font::Height(const DisplayText &text) const
+{
+	if(text.GetText().empty())
 		return 0;
 	
-	const RenderedText &text = Render(str, layout);
-	if(!text.texture)
+	const RenderedText &renderedText = Render(text);
+	if(!renderedText.texture)
 		return 0;
-	return TextFromViewCeilY(text.height);
-}
-
-
-
-int Font::Width(const string &str, const Layout &layout) const
-{
-	return TextFromViewCeilX(ViewWidth(str, layout));
+	return TextFromViewCeilY(renderedText.height);
 }
 
 
@@ -123,9 +119,9 @@ int Font::Height() const
 
 
 
-int Font::LineHeight(const Layout &layout) const
+int Font::LineHeight(const DisplayText::Layout &layout) const
 {
-	if(layout.lineHeight == DEFAULT_LINE_HEIGHT)
+	if(layout.lineHeight == DisplayText::DEFAULT_LINE_HEIGHT)
 		return TextFromViewCeilY(viewDefaultLineHeight);
 	else
 		return layout.lineHeight;
@@ -133,9 +129,9 @@ int Font::LineHeight(const Layout &layout) const
 
 
 
-int Font::ParagraphBreak(const Layout &layout) const
+int Font::ParagraphBreak(const DisplayText::Layout &layout) const
 {
-	if(layout.paragraphBreak == DEFAULT_PARAGRAPH_BREAK)
+	if(layout.paragraphBreak == DisplayText::DEFAULT_PARAGRAPH_BREAK)
 		return TextFromViewCeilY(viewDefaultParagraphBreak);
 	else
 		return layout.paragraphBreak;
@@ -327,10 +323,9 @@ string Font::RemoveAccelerator(const string &str)
 
 
 
-void Font::DrawCommon(const string &str, double x, double y, const Color &color,
-	const Layout &layout, bool alignToDot) const
+void Font::DrawCommon(const DisplayText &text, double x, double y, const Color &color, bool alignToDot) const
 {
-	if(str.empty())
+	if(text.GetText().empty())
 		return;
 	
 	const bool screenChanged = Screen::Width() != screenWidth || Screen::Height() != screenHeight;
@@ -346,15 +341,15 @@ void Font::DrawCommon(const string &str, double x, double y, const Color &color,
 		UpdateFont();
 	}
 	
-	const RenderedText &text = Render(str, layout);
-	if(!text.texture)
+	const RenderedText &renderedText = Render(text);
+	if(!renderedText.texture)
 		return;
 	
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 	
 	// Update the texture.
-	glBindTexture(GL_TEXTURE_2D, text.texture);
+	glBindTexture(GL_TEXTURE_2D, renderedText.texture);
 	
 	// Update the scale, only if the screen size has changed.
 	if(screenChanged)
@@ -368,11 +363,11 @@ void Font::DrawCommon(const string &str, double x, double y, const Color &color,
 	Point center = Point(ViewFromTextX(x), ViewFromTextY(y));
 	if(alignToDot)
 		center = Point(floor(center.X()), floor(center.Y()));
-	center += text.center;
+	center += renderedText.center;
 	glUniform2f(centerI, center.X(), center.Y());
 	
 	// Update the size.
-	glUniform2f(sizeI, text.width, text.height);
+	glUniform2f(sizeI, renderedText.width, renderedText.height);
 	
 	// Update the color.
 	glUniform4fv(colorI, 1, color.Get());
@@ -387,23 +382,24 @@ void Font::DrawCommon(const string &str, double x, double y, const Color &color,
 
 
 // Render the text.
-const Font::RenderedText &Font::Render(const string &str, const Layout &layout) const
+const Font::RenderedText &Font::Render(const DisplayText &text) const
 {
 	// Return if already cached.
-	const CacheKey key(str, layout, showUnderlines);
+	const CacheKey key(text, showUnderlines);
 	auto cached = cache.Use(key);
 	if(cached.second)
 		return *cached.first;
 	
 	// Convert to viewport coodinates except align and truncate.
-	Layout viewLayout = layout;
+	const DisplayText::Layout &layout = text.GetLayout();
+	DisplayText::Layout viewLayout = layout;
 	if(layout.width > 0)
 		viewLayout.width = ViewFromTextX(layout.width);
-	if(layout.lineHeight == DEFAULT_LINE_HEIGHT)
+	if(layout.lineHeight == DisplayText::DEFAULT_LINE_HEIGHT)
 		viewLayout.lineHeight = viewDefaultLineHeight;
 	else
 		viewLayout.lineHeight = ViewFromTextFloorY(layout.lineHeight);
-	if(layout.paragraphBreak == DEFAULT_PARAGRAPH_BREAK)
+	if(layout.paragraphBreak == DisplayText::DEFAULT_PARAGRAPH_BREAK)
 		viewLayout.paragraphBreak = viewDefaultParagraphBreak;
 	else
 		viewLayout.paragraphBreak = ViewFromTextFloorY(layout.paragraphBreak);
@@ -414,16 +410,16 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	PangoEllipsizeMode ellipsize;
 	switch(viewLayout.truncate)
 	{
-	case Truncate::NONE:
+	case DisplayText::Truncate::NONE:
 		ellipsize = PANGO_ELLIPSIZE_NONE;
 		break;
-	case Truncate::FRONT:
+	case DisplayText::Truncate::FRONT:
 		ellipsize = PANGO_ELLIPSIZE_START;
 		break;
-	case Truncate::MIDDLE:
+	case DisplayText::Truncate::MIDDLE:
 		ellipsize = PANGO_ELLIPSIZE_MIDDLE;
 		break;
-	case Truncate::BACK:
+	case DisplayText::Truncate::BACK:
 		ellipsize = PANGO_ELLIPSIZE_END;
 		break;
 	default:
@@ -436,19 +432,19 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	gboolean justify;
 	switch(viewLayout.align)
 	{
-	case Align::LEFT:
+	case DisplayText::Align::LEFT:
 		align = PANGO_ALIGN_LEFT;
 		justify = FALSE;
 		break;
-	case Align::CENTER:
+	case DisplayText::Align::CENTER:
 		align = PANGO_ALIGN_CENTER;
 		justify = FALSE;
 		break;
-	case Align::RIGHT:
+	case DisplayText::Align::RIGHT:
 		align = PANGO_ALIGN_RIGHT;
 		justify = FALSE;
 		break;
-	case Align::JUSTIFIED:
+	case DisplayText::Align::JUSTIFIED:
 		align = PANGO_ALIGN_LEFT;
 		justify = TRUE;
 		break;
@@ -460,7 +456,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	pango_layout_set_alignment(pangoLayout, align);
 	
 	// Replaces straight quotation marks with curly ones.
-	const string text = ReplaceCharacters(str);
+	const string replacedText = ReplaceCharacters(text.GetText());
 	
 	// Keyboard Accelerator
 	char *TextRemovedMarkup;
@@ -468,8 +464,8 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	PangoAttrList *al = nullptr;
 	GError *error = nullptr;
 	const char accel = showUnderlines ? '_' : '\0';
-	const string &nonAccelText = RemoveAccelerator(text);
-	const string &parseText = showUnderlines ? text : nonAccelText;
+	const string &nonAccelText = RemoveAccelerator(replacedText);
+	const string &parseText = showUnderlines ? replacedText : nonAccelText;
 	if(pango_parse_markup(parseText.c_str(), -1, accel, &al, &TextRemovedMarkup, 0, &error))
 		drawingText = TextRemovedMarkup;
 	else
@@ -499,7 +495,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	{
 		surfaceWidth *= (textWidth / surfaceWidth) + 1;
 		UpdateSurfaceSize();
-		return Render(str, layout);
+		return Render(text);
 	}
 	
 	// Render
@@ -550,7 +546,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout &layout) 
 	{
 		surfaceHeight *= (textHeight / surfaceHeight) + 1;
 		UpdateSurfaceSize();
-		return Render(str, layout);
+		return Render(text);
 	}
 	
 	// Copy to image buffer and clear the surface.
@@ -693,15 +689,15 @@ void Font::SetUpShader()
 
 
 
-int Font::ViewWidth(const string &str, const Layout &layout) const
+int Font::ViewWidth(const DisplayText &text) const
 {
-	if(str.empty())
+	if(text.GetText().empty())
 		return 0;
 	
-	const RenderedText &text = Render(str, layout);
-	if(!text.texture)
+	const RenderedText &renderedText = Render(text);
+	if(!renderedText.texture)
 		return 0;
-	return text.width;
+	return renderedText.width;
 }
 
 

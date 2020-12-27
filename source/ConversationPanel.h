@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CONVERSATION_PANEL_H_
 #define CONVERSATION_PANEL_H_
 
+#include "DisplayText.h"
 #include "Font.h"
 #include "Panel.h"
 
@@ -88,9 +89,8 @@ private:
 		
 	private:
 		const Sprite *scene = nullptr;
-		std::string text;
+		DisplayText text;
 		int textHeight;
-		Font::Layout textLayout;
 		int textParagraphBreak;
 		// Special case: if this is the very first paragraph and it begins with
 		// a "scene" image, there is no need for padding above the image.

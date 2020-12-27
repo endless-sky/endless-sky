@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Table.h"
 
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -48,7 +49,7 @@ void Table::Clear()
 
 
 
-void Table::AddColumn(int x, const Font::Layout &layout)
+void Table::AddColumn(int x, const DisplayText::Layout &layout)
 {
 	columns.emplace_back(x, layout);
 	
@@ -143,80 +144,102 @@ void Table::Advance(int fields) const
 
 
 // Draw a single text field, and move on to the next one.
-void Table::Draw(const string &text, const Font::Layout *special) const
+void Table::Draw(const char *text) const
 {
-	Draw(text, color, special);
+	Draw(text, nullptr, color);
+}
+
+
+
+void Table::Draw(const string &text) const
+{
+	Draw(text, nullptr, color);
+}
+
+
+
+// if a DisplayText or a Layout is given, this field drawn using that layout,
+// but the previously set color will be used for future fields.
+void Table::Draw(const DisplayText &text) const
+{
+	Draw(text.GetText(), &text.GetLayout(), color);
 }
 
 
 
 // If a color is given, this field is drawn using that color, but the
 // previously set color will be used for future fields.
-void Table::Draw(const string &text, const Color &color, const Font::Layout *special) const
+void Table::Draw(const char *text, const Color &color) const
 {
-	if(font)
-	{
-		Point pos = point;
-		Font::Layout layout = special ? *special :
-			it != columns.end() ? it->layout : Font::Layout{};
-		const double alignAdjust = layout.align == Font::Align::CENTER ? -.5 :
-			layout.align == Font::Align::RIGHT ? -1. : 0.;
-		if(it != columns.end())
-		{
-			if(layout.width >= 0)
-				pos += Point(it->offset + alignAdjust * layout.width, 0.);
-			else
-			{
-				// This column has a virtually infinite width.
-				layout.align = Font::Align::LEFT;
-				layout.truncate = Font::Truncate::NONE;
-				const int width = font->Width(text, layout);
-				pos += Point(it->offset + alignAdjust * width, 0.);
-			}
-		}
-		font->Draw(text, pos, color, layout);
-	}
-	
-	Advance();
+	Draw(text, nullptr, color);
 }
 
 
 
-void Table::Draw(double value, const Font::Layout *special) const
+void Table::Draw(const string &text, const Color &color) const
 {
-	Draw(value, color, special);
+	Draw(text, nullptr, color);
 }
 
 
 
-void Table::Draw(double value, const Color &color, const Font::Layout *special) const
+void Table::Draw(const DisplayText &text, const Color &color) const
 {
-	Draw(Format::Number(value), color, special);
+	Draw(text.GetText(), &text.GetLayout(), color);
+}
+
+
+
+void Table::Draw(double value) const
+{
+	Draw(Format::Number(value), nullptr, color);
+}
+
+
+
+void Table::Draw(double value, const DisplayText::Layout &layout) const
+{
+	Draw(Format::Number(value), &layout, color);
+}
+
+
+
+void Table::Draw(double value, const Color &color) const
+{
+	Draw(Format::Number(value), nullptr, color);
+}
+
+
+
+void Table::Draw(double value, const Color &color, const DisplayText::Layout &layout) const
+{
+	Draw(Format::Number(value), &layout, color);
 }
 
 
 
 void Table::DrawOppositeTruncRight(int width, const string &left, const Color &leftColor,
-	const string &right, const Color &rightColor, Font::Truncate trunc)
+	const string &right, const Color &rightColor, DisplayText::Truncate trunc)
 {
-	const Font::Layout layoutLeft{-1, Font::Align::LEFT, Font::Truncate::NONE};
-	const int leftWidth = font->Width(left, layoutLeft);
-	Draw(left, leftColor, &layoutLeft);
-	const Font::Layout layoutRight{width - leftWidth, Font::Align::RIGHT, trunc};
-	Draw(right, rightColor, &layoutRight);
+	const DisplayText::Layout layoutLeft{-1, DisplayText::Align::LEFT, DisplayText::Truncate::NONE};
+	const int leftWidth = font->Width({left, layoutLeft});
+	Draw({left, layoutLeft}, leftColor);
+	const DisplayText::Layout layoutRight{width - leftWidth, DisplayText::Align::RIGHT, trunc};
+	Draw({right, layoutRight}, rightColor);
 }
 
 
 
 void Table::DrawOppositeTruncLeft(int width, const string &left, const Color &leftColor,
-	const string &right, const Color &rightColor, Font::Truncate trunc)
+	const string &right, const Color &rightColor, DisplayText::Truncate trunc)
 {
-	Font::Layout layoutRight{width, Font::Align::LEFT, Font::Truncate::NONE};
-	const int rightWidth = font->Width(right, layoutRight);
-	const Font::Layout layoutLeft{width - rightWidth, Font::Align::LEFT, trunc};
-	Draw(left, leftColor, &layoutLeft);
-	layoutRight.align = Font::Align::RIGHT;
-	Draw(right, rightColor, &layoutRight);
+	// Set the left alignment to measure the width of the text itself.
+	DisplayText::Layout layoutRight{width, DisplayText::Align::LEFT, DisplayText::Truncate::NONE};
+	const int rightWidth = font->Width({right, layoutRight});
+	const DisplayText::Layout layoutLeft{width - rightWidth, DisplayText::Align::LEFT, trunc};
+	Draw({left, layoutLeft}, leftColor);
+	layoutRight.align = DisplayText::Align::RIGHT;
+	Draw({right, layoutRight}, rightColor);
 }
 
 
@@ -292,7 +315,34 @@ Rectangle Table::GetRowBounds() const
 
 
 
-Table::Column::Column(double offset, const Font::Layout &layout)
+Table::Column::Column(double offset, const DisplayText::Layout &layout)
 	: offset(offset), layout(layout)
 {
+}
+
+
+
+void Table::Draw(const string &text, const DisplayText::Layout *special, const Color &color) const
+{
+	if(font)
+	{
+		Point pos = point;
+		const auto &layout = special ? *special : it != columns.end() ? it->layout : DisplayText::Layout{};
+		const double alignAdjust = layout.align == DisplayText::Align::CENTER
+			? -.5 : layout.align == DisplayText::Align::RIGHT ? -1. : 0.;
+		if(it != columns.end())
+		{
+			if(layout.width >= 0)
+				pos += Point(it->offset + alignAdjust * layout.width, 0.);
+			else
+			{
+				// This column has a virtually infinite width.
+				const int width = font->Width(text);
+				pos += Point(it->offset + alignAdjust * width, 0.);
+			}
+		}
+		font->Draw({text, layout}, pos, color);
+	}
+	
+	Advance();
 }

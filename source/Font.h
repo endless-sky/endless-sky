@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FONT_H_
 
 #include "Cache.h"
+#include "DisplayText.h"
 #include "Point.h"
 #include "Shader.h"
 
@@ -48,30 +49,6 @@ public:
 		double paragraphBreakScale = 0.40;
 	};
 	
-	// Layout parameters.
-	enum class Align {LEFT, CENTER, RIGHT, JUSTIFIED};
-	enum class Truncate {NONE, FRONT, MIDDLE, BACK};
-	static const uint_fast8_t DEFAULT_LINE_HEIGHT = 255;
-	static const uint_fast8_t DEFAULT_PARAGRAPH_BREAK = 255;
-	struct Layout {
-		// Wrap and trancate width. No wrap or trancate if width is negative.
-		int width = -1;
-		// Set the alignment mode.
-		Align align = Align::LEFT;
-		// Set the truncate mode.
-		Truncate truncate = Truncate::NONE;
-		// Minimum Line height in pixels.
-		uint_fast8_t lineHeight = DEFAULT_LINE_HEIGHT;
-		// Extra spacing in pixel between paragraphs.
-		uint_fast8_t paragraphBreak = DEFAULT_PARAGRAPH_BREAK;
-		
-		Layout() noexcept = default;
-		Layout(int w, Align a) noexcept;
-		Layout(int w, Truncate t) noexcept;
-		Layout(int w, Align a, Truncate t) noexcept;
-		bool operator==(const Layout &a) const noexcept;
-	};
-	
 public:
 	Font();
 	~Font();
@@ -85,21 +62,18 @@ public:
 	// Set the font and laying out settings except the pixel size.
 	void SetDrawingSettings(const DrawingSettings &drawingSettings);
 	
-	void Draw(const std::string &str, const Point &point, const Color &color,
-		const Layout &layout = defaultLayout) const;
-	void DrawAliased(const std::string &str, double x, double y, const Color &color,
-		const Layout &params = defaultLayout) const;
+	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
+	void DrawAliased(const DisplayText &text, double x, double y, const Color &color) const;
 	
-	// Get the height and width of the rendered text.
-	int Width(const std::string &str, const Layout &layout = defaultLayout) const;
-	int Height(const std::string &str, const Layout &layout = defaultLayout) const;
+	int Width(const DisplayText &text) const;
+	int Height(const DisplayText &text) const;
 	
 	// Get the height of the fonts.
 	int Height() const;
 	
 	// Get the line height and paragraph break.
-	int LineHeight(const Layout &layout = defaultLayout) const;
-	int ParagraphBreak(const Layout &layout = defaultLayout) const;
+	int LineHeight(const DisplayText::Layout &layout = {}) const;
+	int ParagraphBreak(const DisplayText::Layout &layout = {}) const;
 	
 	static void ShowUnderlines(bool show);
 	
@@ -119,11 +93,10 @@ private:
 	
 	// A key mapping the text and layout parameters, underline status to RenderedText.
 	struct CacheKey {
-		std::string text;
-		Layout layout;
+		DisplayText text;
 		bool showUnderline;
 		
-		CacheKey(const std::string &s, const Layout &l, bool underline) noexcept;
+		CacheKey(const DisplayText &t, bool underline) noexcept;
 		bool operator==(const CacheKey &a) const noexcept;
 	};
 	
@@ -148,12 +121,11 @@ private:
 	static std::string ReplaceCharacters(const std::string &str);
 	static std::string RemoveAccelerator(const std::string &str);
 		
-	void DrawCommon(const std::string &str, double x, double y, const Color &color,
-		const Layout &layout, bool alignToDot) const;
-	const RenderedText &Render(const std::string &str, const Layout &layout) const;
+	void DrawCommon(const DisplayText &text, double x, double y, const Color &color, bool alignToDot) const;
+	const RenderedText &Render(const DisplayText &text) const;
 	void SetUpShader();
 	
-	int ViewWidth(const std::string &str, const Layout &layout = defaultLayout) const;
+	int ViewWidth(const DisplayText &text) const;
 	
 	// Convert Viewport to/from Text coordinates.
 	double ViewFromTextX(double x) const;
@@ -175,10 +147,6 @@ private:
 	
 	
 private:
-	static const Layout defaultLayout;
-	
-	
-	
 	Shader shader;
 	GLuint vao = 0;
 	GLuint vbo = 0;
@@ -217,41 +185,8 @@ private:
 
 
 inline
-Font::Layout::Layout(int w, Align a) noexcept
-	: width(w), align(a)
-{
-}
-
-
-
-inline
-Font::Layout::Layout(int w, Truncate t) noexcept
-	: width(w), truncate(t)
-{
-}
-
-
-
-inline
-Font::Layout::Layout(int w, Align a, Truncate t) noexcept
-	: width(w), align(a), truncate(t)
-{
-}
-
-
-
-inline
-bool Font::Layout::operator==(const Layout &a) const noexcept
-{
-	return width == a.width && align == a.align && truncate == a.truncate
-		&& lineHeight == a.lineHeight && paragraphBreak == a.paragraphBreak;
-}
-
-
-
-inline
-Font::CacheKey::CacheKey(const std::string &s, const Layout &l, bool underline) noexcept
-	: text(s), layout(l), showUnderline(underline)
+Font::CacheKey::CacheKey(const DisplayText &t, bool underline) noexcept
+	: text(t), showUnderline(underline)
 {
 }
 
@@ -260,7 +195,7 @@ Font::CacheKey::CacheKey(const std::string &s, const Layout &l, bool underline) 
 inline
 bool Font::CacheKey::operator==(const CacheKey &a) const noexcept
 {
-	return text == a.text && layout == a.layout && showUnderline == a.showUnderline;
+	return text == a.text && showUnderline == a.showUnderline;
 }
 
 
@@ -268,11 +203,13 @@ bool Font::CacheKey::operator==(const CacheKey &a) const noexcept
 inline
 Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type const &s) const noexcept
 {
-	const result_type h1 = std::hash<std::string>()(s.text);
-	const result_type h2 = std::hash<int>()(s.layout.width);
-	const unsigned int pack = s.showUnderline | (static_cast<unsigned int>(s.layout.align) << 1)
-		| (static_cast<unsigned int>(s.layout.truncate) << 3)
-		| (s.layout.lineHeight << 5) | (s.layout.paragraphBreak << 13);
+	const std::string &text = s.text.GetText();
+	const DisplayText::Layout &layout = s.text.GetLayout();
+	const result_type h1 = std::hash<std::string>()(text);
+	const result_type h2 = std::hash<int>()(layout.width);
+	const unsigned int pack = s.showUnderline | (static_cast<unsigned int>(layout.align) << 1)
+		| (static_cast<unsigned int>(layout.truncate) << 3)
+		| (layout.lineHeight << 5) | (layout.paragraphBreak << 13);
 	const result_type h3 = std::hash<unsigned int>()(pack);
 	return h1 ^ (h2 << 1) ^ (h3 << 2);
 }
@@ -285,5 +222,7 @@ void Font::AtRecycleForRenderedText::operator()(RenderedText &v) const
 	if(v.texture)
 		glDeleteTextures(1, &v.texture);
 }
+
+
 
 #endif

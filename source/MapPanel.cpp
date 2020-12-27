@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "CargoHold.h"
 #include "Dialog.h"
+#include "DisplayText.h"
 #include "FillShader.h"
 #include "FogShader.h"
 #include "Font.h"
@@ -1196,8 +1197,9 @@ void MapPanel::DrawTooltips()
 	{
 		// Add 10px margin to all sides of the text.
 		const Font &font = FontSet::Get(14);
-		const Font::Layout layout{150, Font::Align::LEFT};
-		Point size(font.Width(tooltip, layout), font.Height(tooltip, layout) - font.ParagraphBreak(layout));
+		const DisplayText::Layout layout{150, DisplayText::Align::LEFT};
+		const DisplayText tooltipText{tooltip, layout};
+		Point size(font.Width(tooltipText), font.Height(tooltipText) - font.ParagraphBreak(layout));
 		size += Point(20., 20.);
 		Point topLeft = (hoverSystem->Position() + center) * Zoom();
 		// Do not overflow the screen dimensions.
@@ -1207,7 +1209,7 @@ void MapPanel::DrawTooltips()
 			topLeft.Y() -= size.Y();
 		// Draw the background fill and the tooltip text.
 		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-		font.Draw(tooltip, topLeft + Point(10., 10.), *GameData::Colors().Get("medium"), layout);
+		font.Draw(tooltipText, topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }
 

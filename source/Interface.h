@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define INTERFACE_H_
 
 #include "Color.h"
-#include "Font.h"
+#include "DisplayText.h"
 #include "Point.h"
 #include "Rectangle.h"
 
@@ -161,7 +161,7 @@ private:
 		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
 		
 	private:
-		std::pair<std::string, Font::Layout> GetString(const Information &info) const;
+		DisplayText GetString(const Information &info) const;
 	
 	private:
 		// The string may either be a name of a dynamic string, or static text.
