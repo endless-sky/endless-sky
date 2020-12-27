@@ -1017,14 +1017,12 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
 {
 	// Check if the incoming vector contains the same elements
-	bool same;
+	bool same = false;
 	size_t aSize = newOrder.size();
 	size_t bSize = ships.size();
 	
 	if(aSize != bSize)
-	{
 		same = false;
-	}
 	else
 	{
 		// Compare vectors element by element
@@ -1040,9 +1038,7 @@ void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
 				}
 			}
 			if(!same)
-			{
 				break;
-			}
 		}
 	}
 	
