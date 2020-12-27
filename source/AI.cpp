@@ -1521,7 +1521,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(ship.GetTargetStellar())
 	{
-		MoveToPlanet(ship, command);
+		// If our allies are clearly stronger than our enemies in this system,
+		// then move at more civilized speeds when going to a planet.
+		// A cruiseSpeed of 0. is interpreted as "as fast as possible".
+		double cruiseSpeed = 0.;
+		auto ait = allyStrength.find(ship.GetGovernment());
+		auto eit = enemyStrength.find(ship.GetGovernment());
+		if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second > eit->second * 2)
+			cruiseSpeed = ship.CruiseVelocity();
+		
+		MoveToPlanet(ship, command, cruiseSpeed);
 		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
@@ -1571,7 +1580,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		// Perform the action that this ship previously decided on.
 		if(ship.GetTargetStellar())
 		{
-			MoveToPlanet(ship, command);
+			// Escorts always move at the fastest speed possible until
+			// they are near their parent.
+			double cruiseSpeed = 0.;
+			MoveToPlanet(ship, command, cruiseSpeed);
 			command |= Command::LAND;
 		}
 		else if(ship.GetTargetSystem() && ship.JumpsRemaining())
@@ -1620,7 +1632,9 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	{
 		ship.SetTargetSystem(nullptr);
 		ship.SetTargetStellar(parent.GetTargetStellar());
-		MoveToPlanet(ship, command);
+		// Escorts always move at the fastest speed possible in service of their parent.
+		double cruiseSpeed = 0.;
+		MoveToPlanet(ship, command, cruiseSpeed);
 		if(parent.IsLanding() || parent.CanLand())
 			command |= Command::LAND;
 	}
@@ -1644,7 +1658,9 @@ void AI::Refuel(Ship &ship, Command &command)
 
 	if(ship.GetTargetStellar())
 	{
-		MoveToPlanet(ship, command);
+		// Escorts always move at the fastest speed possible in service of their parent.
+		double cruiseSpeed = 0.;
+		MoveToPlanet(ship, command, cruiseSpeed);
 		command |= Command::LAND;
 	}
 }
@@ -1750,19 +1766,19 @@ double AI::TurnToward(const Ship &ship, const Point &vector)
 
 
 
-bool AI::MoveToPlanet(Ship &ship, Command &command)
+bool AI::MoveToPlanet(Ship &ship, Command &command, double cruiseSpeed)
 {
 	if(!ship.GetTargetStellar())
 		return false;
 	
 	const Point &target = ship.GetTargetStellar()->Position();
-	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1.);
+	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1., cruiseSpeed);
 }
 
 
 
 // Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
-bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow)
+bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow, double cruiseSpeed)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
@@ -1789,7 +1805,13 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	if(!isClose || !isFacing)
 		command.SetTurn(TurnToward(ship, dp));
 	if(isFacing)
-		command |= Command::FORWARD;
+	{
+		// We set full forward power when we don't have a cruise-speed, when we are below
+		// cruise-speed or when we need to do course corrections.
+		bool facesMovementDirection = fabs((Angle(velocity) - angle).Degrees()) < 30.;
+		if(!cruiseSpeed || !facesMovementDirection || ship.Velocity().Length() < cruiseSpeed)
+			command |= Command::FORWARD;
+	}
 	else if(shouldReverse)
 		command |= Command::BACK;
 	
@@ -2280,7 +2302,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	else if(ship.GetTargetStellar())
 	{
 		// Approach the planet and "land" on it (i.e. scan it).
-		MoveToPlanet(ship, command);
+		MoveToPlanet(ship, command, ship.CruiseVelocity());
 		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
@@ -3538,7 +3560,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			autoPilot.Clear(Command::LAND | Command::JUMP);
 		else
 		{
-			MoveToPlanet(ship, command);
+			// The naviation computer by default takes the optimal speed.
+			// Player can choose to go faster by taking manual control.
+			MoveToPlanet(ship, command, ship.CruiseVelocity());
 			command |= Command::LAND;
 		}
 	}

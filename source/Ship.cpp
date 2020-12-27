@@ -2981,6 +2981,19 @@ double Ship::MaxReverseVelocity() const
 
 
 
+// The optimal speed for this ship when not moving in a hurry.
+// If the ship has escorts, then this speed will allow for all escorts
+// to catch up with this ship.
+double Ship::CruiseVelocity() const
+{
+	if(escortsVelocity < 1.)
+		return MaxVelocity();
+	else
+		return 0.9 * escortsVelocity;
+}
+
+
+
 // This ship just got hit by the given projectile. Take damage according to
 // what sort of weapon the projectile it.
 int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
@@ -3498,6 +3511,13 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
+	// Cache the maximum speeds of escorts so that the parent can stay
+	// below this speed to keep all escorts together.
+	// We also include the parents max velocity in the comparisons.
+	if(escorts.size() < 1)
+		escortsVelocity = MaxVelocity();
+	escortsVelocity = fmin(escortsVelocity, ship.MaxVelocity());
+	
 	escorts.push_back(ship.shared_from_this());
 }
 
@@ -3510,8 +3530,22 @@ void Ship::RemoveEscort(const Ship &ship)
 		if(it->lock().get() == &ship)
 		{
 			escorts.erase(it);
-			return;
+			break;
 		}
+	
+	// If we remove the slowest esort from a fleet, then the fleet might
+	// be able to speed up.
+	if(ship.MaxVelocity() == escortsVelocity)
+	{
+		escortsVelocity = MaxVelocity();
+		it = escorts.begin();
+		for( ; it != escorts.end(); ++it)
+		{
+			Ship *escort = it->lock().get();
+			if(escort)
+				escortsVelocity = fmin(escortsVelocity, escort->MaxVelocity());
+		}
+	}
 }
 
 

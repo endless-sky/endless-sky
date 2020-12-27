@@ -312,6 +312,7 @@ public:
 	double Acceleration() const;
 	double MaxVelocity() const;
 	double MaxReverseVelocity() const;
+	double CruiseVelocity() const;
 	
 	// This ship just got hit by the given projectile. Take damage according to
 	// what sort of weapon the projectile it. The return value is a ShipEvent
@@ -570,6 +571,9 @@ private:
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
+	
+	// Cached data from escorts; like the minimum of all maximum speeds of all escorts.
+	double escortsVelocity = 0.;
 };
 
 
