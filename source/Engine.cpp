@@ -1718,12 +1718,7 @@ void Engine::SendHails()
 void Engine::HandleKeyboardInputs()
 {
 	Ship *flagship = player.Flagship();
-
 	Ship *wingman = player.Wingman();
-
-	if (!wingman){}
-
-
 
 	// Commands can't be issued if your flagship is dead.
 	if(!flagship || flagship->IsDestroyed())

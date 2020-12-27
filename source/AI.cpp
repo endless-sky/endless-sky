@@ -534,9 +534,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			MovePlayer(*it, player, activeCommands);
 			continue;
 		}
-		//If the ship is the wingman and in the same system as the flagship, run MoveWingman
-		//TODO: Implement relevant parts of MoveWingman, only run the following if wingman AI is toggled off
-		if (it.get() == wingman && it->GetSystem() == flagship->GetSystem())
+		//If the ship is the wingman and in the same system as the flagship and is not destroyed, run MoveWingman
+		//TODO: Only run the following if wingman AI is toggled off
+		if (it.get() == wingman && !it->IsDestroyed() && it->GetSystem() == flagship->GetSystem())
 		{
 			MoveWingman(*it, player, activeCommands);
 			continue;
@@ -3100,8 +3100,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 void AI::MoveWingman(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
-	// 1. Get wingman commands from the activeCommands
-	// 2. Copy over relevant parts of MovePlayer
+	//Move the wingman ship
 	Command command;
 
 	if(activeCommands)
