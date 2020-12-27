@@ -1,5 +1,5 @@
 /* WrappedText.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -28,15 +28,7 @@ WrappedText::WrappedText(const Font &font)
 
 
 
-// Set the alignment mode.
-WrappedText::Align WrappedText::Alignment() const
-{
-	return alignment;
-}
-
-
-
-void WrappedText::SetAlignment(Align align)
+void WrappedText::SetAlignment(Alignment align)
 {
 	alignment = align;
 }
@@ -44,14 +36,7 @@ void WrappedText::SetAlignment(Align align)
 
 
 // Set the truncate mode.
-DisplayText::Truncate WrappedText::Truncate() const
-{
-	return truncate;
-}
-
-
-
-void WrappedText::SetTruncate(DisplayText::Truncate trunc)
+void WrappedText::SetTruncate(Truncate trunc)
 {
 	truncate = trunc;
 }
@@ -167,12 +152,12 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 	if(words.empty())
 		return;
 	
-	if(truncate == DisplayText::Truncate::NONE)
+	if(truncate == Truncate::NONE)
 		for(const Word &w : words)
 			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 	else
 	{
-		// Apply the truncation to a word only if a line has a single word.
+		// Currently, we only apply truncation to a line if it contains a single word.
 		int h = words[0].y - 1;
 		for(size_t i = 0; i < words.size(); ++i)
 		{
@@ -323,14 +308,14 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 	// will add that space to the left, to the right, to both sides, or to the
 	// space in between the words. Exception: the last line of a "justified"
 	// paragraph is left aligned, not justified.
-	if(alignment == JUSTIFIED && !isEnd && wordCount > 1)
+	if(alignment == Alignment::JUSTIFIED && !isEnd && wordCount > 1)
 	{
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += extraSpace * i / (wordCount - 1);
 	}
-	else if(alignment == CENTER || alignment == RIGHT)
+	else if(alignment == Alignment::CENTER || alignment == Alignment::RIGHT)
 	{
-		int shift = (alignment == CENTER) ? extraSpace / 2 : extraSpace;
+		int shift = (alignment == Alignment::CENTER) ? extraSpace / 2 : extraSpace;
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += shift;
 	}

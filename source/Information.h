@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define INFORMATION_H_
 
 #include "Color.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "Point.h"
 
 #include <map>
@@ -35,6 +35,7 @@ public:
 	const Point &GetSpriteUnit(const std::string &name) const;
 	float GetSpriteFrame(const std::string &name) const;
 	
+	// TODO: move display text to Interface, to restore above comment re: layout independence.
 	void SetString(const std::string &name, const DisplayText &value);
 	const DisplayText &GetString(const std::string &name) const;
 	

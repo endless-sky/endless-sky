@@ -1,5 +1,5 @@
 /* Format.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FORMAT_H_
-#define FORMAT_H_
+#ifndef ES_TEXT_FORMAT_H_
+#define ES_TEXT_FORMAT_H_
 
 #include <map>
 #include <string>

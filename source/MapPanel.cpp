@@ -12,13 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
+#include "text/alignment.hpp"
 #include "Angle.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "FogShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
@@ -114,7 +115,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
 	hoverText.SetWrapWidth(150);
-	hoverText.SetAlignment(WrappedText::LEFT);
+	hoverText.SetAlignment(Alignment::LEFT);
 	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem, true);

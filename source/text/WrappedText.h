@@ -1,5 +1,5 @@
 /* WrappedText.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,11 +10,13 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef WRAPPED_TEXT_H_
-#define WRAPPED_TEXT_H_
+#ifndef ES_TEXT_WRAPPEDTEXT_H_
+#define ES_TEXT_WRAPPEDTEXT_H_
 
+#include "alignment.hpp"
 #include "DisplayText.h"
-#include "Point.h"
+#include "../Point.h"
+#include "truncate.hpp"
 
 #include <string>
 #include <vector>
@@ -32,14 +34,11 @@ public:
 	explicit WrappedText(const Font &font);
 	
 	// Set the alignment mode.
-	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
-	Align Alignment() const;
-	void SetAlignment(Align align);
+	void SetAlignment(Alignment align);
 	
 	// Set the truncate mode.
 	// Apply the truncation to a word only if a line has a single word.
-	DisplayText::Truncate Truncate() const;
-	void SetTruncate(DisplayText::Truncate trunc);
+	void SetTruncate(Truncate trunc);
 	
 	// Set the wrap width. This does not include any margins.
 	int WrapWidth() const;
@@ -106,8 +105,8 @@ private:
 	int tabWidth = 0;
 	int lineHeight = 0;
 	int paragraphBreak = 0;
-	Align alignment = JUSTIFIED;
-	DisplayText::Truncate truncate = DisplayText::Truncate::NONE;
+	Alignment alignment = Alignment::JUSTIFIED;
+	Truncate truncate = Truncate::NONE;
 	
 	std::string text;
 	std::vector<Word> words;

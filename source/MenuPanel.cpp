@@ -14,11 +14,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "ConversationPanel.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "Files.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
@@ -35,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -88,8 +89,8 @@ void MenuPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	
 	Information info;
-	const DisplayText::Layout truncMiddle{165, DisplayText::Truncate::MIDDLE};
-	const DisplayText::Layout truncBack{165, DisplayText::Truncate::BACK};
+	const auto truncMiddle = Layout(165, Truncate::MIDDLE);
+	const auto truncBack = Layout(165, Truncate::BACK);
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");

@@ -12,13 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipyardPanel.h"
 
+#include "text/alignment.hpp"
 #include "ClickZone.h"
 #include "Color.h"
 #include "Dialog.h"
-#include "DisplayText.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Phrase.h"
@@ -31,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 class System;
@@ -213,7 +215,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	
 	// Draw this string representing the selected ship (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 	
 	return heightOffset;
@@ -349,7 +351,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 	
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, DisplayText::Truncate::MIDDLE));
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
 }
 
 

@@ -1,5 +1,5 @@
 /* Font.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,12 +10,12 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FONT_H_
-#define FONT_H_
+#ifndef ES_TEXT_FONT_H_
+#define ES_TEXT_FONT_H_
 
-#include "Shader.h"
+#include "../Shader.h"
 
-#include "gl_header.h"
+#include "../gl_header.h"
 
 #include <string>
 
@@ -32,7 +32,7 @@ class Point;
 // moment only plain ASCII characters are supported, not Unicode.
 class Font {
 public:
-	Font() = default;
+	Font() noexcept = default;
 	explicit Font(const std::string &imagePath);
 	
 	void Load(const std::string &imagePath);
@@ -42,20 +42,20 @@ public:
 	
 	int Width(const DisplayText &text, char after = ' ') const;
 	
-	int Height() const;
+	int Height() const noexcept;
 	
-	int Space() const;
+	int Space() const noexcept;
 	
-	static void ShowUnderlines(bool show);
+	static void ShowUnderlines(bool show) noexcept;
 	
 	
 private:
-	static int Glyph(char c, bool isAfterSpace);
+	static int Glyph(char c, bool isAfterSpace) noexcept;
 	void LoadTexture(ImageBuffer &image);
 	void CalculateAdvances(ImageBuffer &image);
 	void SetUpShader(float glyphW, float glyphH);
 	
-	int WidthRawString(const char *str, char after = ' ') const;
+	int WidthRawString(const char *str, char after = ' ') const noexcept;
 	
 	std::string TruncateText(const DisplayText &text, int &width) const;
 	std::string TruncateBack(const std::string &str, int &width) const;

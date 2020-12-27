@@ -17,12 +17,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "Dialog.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -113,8 +114,8 @@ void LoadPanel::Draw()
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		const DisplayText::Layout layout{165, DisplayText::Truncate::MIDDLE};
-		const DisplayText::Layout backLayout{165, DisplayText::Truncate::BACK};
+		const auto layout = Layout(165, Truncate::MIDDLE);
+		const auto backLayout = Layout(165, Truncate::BACK);
 		info.SetString("pilot", {loadedInfo.Name(), layout});
 		if(loadedInfo.ShipSprite())
 		{
@@ -155,7 +156,7 @@ void LoadPanel::Draw()
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
-		font.Draw({it.first, {220, DisplayText::Truncate::BACK}}, point,
+		font.Draw({it.first, {220, Truncate::BACK}}, point,
 			Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., 20.);
 	}
@@ -186,8 +187,7 @@ void LoadPanel::Draw()
 				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
 			const string name = file.substr(pos, file.size() - 4 - pos);
-			font.Draw({name, {220, DisplayText::Truncate::BACK}}, point,
-				Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			font.Draw({name, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 			point += Point(0., 20.);
 		}
 	}

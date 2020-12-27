@@ -14,10 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "Dialog.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -357,7 +358,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 		DrawSprite(corner, sprite);
 		
 		const Color &textColor = *GameData::Colors().Get(isForSale ? "medium" : "dim");
-		DisplayText::Layout layout{static_cast<int>(WIDTH - ICON_HEIGHT - 1), DisplayText::Truncate::BACK};
+		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);
 		font.Draw({info, layout}, corner + infoOffset, textColor);

@@ -12,13 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "OutfitterPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Dialog.h"
-#include "DisplayText.h"
+#include "text/DisplayText.h"
 #include "DistanceMap.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
 #include "Outfit.h"
@@ -30,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -280,7 +282,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	
 	// Draw this string representing the selected item (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 	
 	return heightOffset;
@@ -789,7 +791,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const string &name = outfit.Name();
 	const Font &font = FontSet::Get(14);
 	Point offset(-OUTFIT_SIZE / 2., -.5f * OUTFIT_SIZE + 10.f);
-	font.Draw({name, {OUTFIT_SIZE, DisplayText::Align::CENTER, DisplayText::Truncate::MIDDLE}},
+	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
 }
 
