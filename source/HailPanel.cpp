@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HailPanel.h"
 
-#include "DisplayText.h"
 #include "DrawList.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -162,7 +161,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	info.SetString("header", {header, {330, DisplayText::Truncate::BACK}});
+	info.SetString("header", header);
 	if(ship)
 	{
 		info.SetCondition("show assist");

@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "ConversationPanel.h"
-#include "DisplayText.h"
 #include "Files.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -88,29 +87,27 @@ void MenuPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	
 	Information info;
-	const DisplayText::Layout truncMiddle{165, DisplayText::Truncate::MIDDLE};
-	const DisplayText::Layout truncBack{165, DisplayText::Truncate::BACK};
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
-		info.SetString("pilot", {player.FirstName() + " " + player.LastName(), truncMiddle});
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", {flagship.Name(), truncMiddle});
+			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
-			info.SetString("system", {player.GetSystem()->Name(), truncBack});
+			info.SetString("system", player.GetSystem()->Name());
 		if(player.GetPlanet())
-			info.SetString("planet", {player.GetPlanet()->Name(), truncBack});
+			info.SetString("planet", player.GetPlanet()->Name());
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 	}
 	else if(player.IsLoaded())
 	{
 		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", {player.FirstName() + " " + player.LastName(), truncMiddle});
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		info.SetString("ship", "You have died.");
 	}
 	else

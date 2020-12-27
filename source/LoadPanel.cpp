@@ -113,18 +113,16 @@ void LoadPanel::Draw()
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		const DisplayText::Layout layout{165, DisplayText::Truncate::MIDDLE};
-		const DisplayText::Layout backLayout{165, DisplayText::Truncate::BACK};
-		info.SetString("pilot", {loadedInfo.Name(), layout});
+		info.SetString("pilot", loadedInfo.Name());
 		if(loadedInfo.ShipSprite())
 		{
 			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
-			info.SetString("ship", {loadedInfo.ShipName(), layout});
+			info.SetString("ship", loadedInfo.ShipName());
 		}
 		if(!loadedInfo.GetSystem().empty())
-			info.SetString("system", {loadedInfo.GetSystem(), backLayout});
+			info.SetString("system", loadedInfo.GetSystem());
 		if(!loadedInfo.GetPlanet().empty())
-			info.SetString("planet", {loadedInfo.GetPlanet(), backLayout});
+			info.SetString("planet", loadedInfo.GetPlanet());
 		info.SetString("credits", loadedInfo.Credits());
 		info.SetString("date", loadedInfo.GetDate());
 	}
