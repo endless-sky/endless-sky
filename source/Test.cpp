@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <map>
+#include <numeric>
 #include <stdexcept>
 
 using namespace std;
@@ -54,6 +55,22 @@ namespace{
 		{Test::TestStep::Type::NAVIGATE, "navigate"},
 		{Test::TestStep::Type::WATCHDOG, "watchdog"},
 	};
+	
+	template<class K, class... Args>
+	string ExpectedOptions(const map<K, const string, Args...> &m)
+	{
+		if(m.empty())
+			return "no options supported";
+		
+		string beginning = "expected \"" + m.begin()->second;
+		auto lastValidIt = prev(m.end());
+		return accumulate(next(m.begin()), lastValidIt, beginning,
+			[](string a, const pair<K, const string> &b) -> string
+			{
+				return std::move(a) + "\", \"" + b.second;
+			})
+			+ "\", or \"" + lastValidIt->second + '"';
+	}
 }
 
 
@@ -77,11 +94,9 @@ void Test::LoadSequence(const DataNode &node)
 			steps.emplace_back(it->first);
 		else
 		{
-			child.PrintTrace("Unknown teststep type " + child.Token(0));
-			// Set test-status to broken and break the sequence loading
-			// loop since there is no point in loading more steps of a
-			// broken test.
 			status = Status::BROKEN;
+			child.PrintTrace("Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
+			// Don't bother loading more steps once broken.
 			break;
 		}
 	}
@@ -131,8 +146,8 @@ void Test::Load(const DataNode &node)
 			}
 			else
 			{
-				child.PrintTrace("Unknown test-status " + statusText);
 				status = Status::BROKEN;
+				child.PrintTrace("Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
 			}
 		}
 		else if(child.Token(0) == "sequence")
