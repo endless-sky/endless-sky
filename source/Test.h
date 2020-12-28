@@ -1,5 +1,5 @@
 /* Test.h
-Copyright (c) 2019 by Peter van der Meer
+Copyright (c) 2019-2020 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -33,8 +33,8 @@ class Test {
 public:
 	// Status indicators for the test that we selected (if any).
 	enum class Status {ACTIVE, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
-
-
+	
+	
 public:
 	// Class representing a single step in a test
 	class TestStep {
@@ -63,36 +63,35 @@ public:
 			// a watchdog in number of frames/steps.
 			WATCHDOG,
 		};
-
+		
 		// Result returned from a TestStep.
 		enum class Result {
-			// Teststep succesfull. Proceed with next teststep.
+			// Step was successful. Proceed with next step in the sequence.
 			DONE,
-			// Teststep failed. Fail test. Exit program with non-zero exitcode.
+			// Step failed. Fail test. Exit program with non-zero exitcode.
 			FAIL,
-			// Teststep incomplete (waiting for a condition). Retry teststep in next frame-step.
+			// Step is incomplete (waiting for a condition). Retry step on the next frame.
 			RETRY,
-			// Teststep ok, but triggered a jump (GOTO or BRANCH to a label).
-			GOTO
+			// Step was ok, but triggered a jump (GOTO or BRANCH to a label).
+			GOTO,
 		};
-	
-	
+		
+		
 	public:
 		TestStep(Type stepType);
-	
-	
+		
+		
 	public:
 		Type stepType = Type::INVALID;
 	};
 	
 	class Context {
 	friend class Test;
-	
 	public:
 		// Pointer to the test we are running.
 		const Test *testToRun = nullptr;
-	
-	
+		
+		
 	protected:
 		// Teststep to run.
 		unsigned int stepToRun = 0;
@@ -101,14 +100,14 @@ public:
 	
 public:
 	const std::string &Name() const;
-	std::string StatusText() const;
-
+	const std::string &StatusText() const;
+	
 	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
 	// the game. We just provide them as parameter here, because they are not
 	// available when the test got created (and they can change due to loading
 	// and saving of games).
 	void Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
-
+	
 	void Load(const DataNode &node);
 	
 	
@@ -117,8 +116,8 @@ private:
 	
 	// Fail the test using the given message as reason.
 	void Fail(const std::string &testFailMessage) const;
-
-
+	
+	
 private:
 	std::string name;
 	Status status = Status::ACTIVE;

@@ -1,5 +1,5 @@
 /* Test.cpp
-Copyright (c) 2019 by Peter van der Meer
+Copyright (c) 2019-2020 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -40,7 +40,7 @@ namespace{
 		{Test::Status::ACTIVE, "active"},
 		{Test::Status::BROKEN, "broken"},
 		{Test::Status::KNOWN_FAILURE, "known failure"},
-		{Test::Status::MISSING_FEATURE, "missing feature"}
+		{Test::Status::MISSING_FEATURE, "missing feature"},
 	};
 	
 	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {
@@ -52,9 +52,10 @@ namespace{
 		{Test::TestStep::Type::INVALID, "invalid"},
 		{Test::TestStep::Type::LABEL, "label"},
 		{Test::TestStep::Type::NAVIGATE, "navigate"},
-		{Test::TestStep::Type::WATCHDOG, "watchdog"}
+		{Test::TestStep::Type::WATCHDOG, "watchdog"},
 	};
 }
+
 
 
 Test::TestStep::TestStep(Type stepType) : stepType(stepType)
@@ -68,16 +69,12 @@ void Test::LoadSequence(const DataNode &node)
 	for(const DataNode &child: node)
 	{
 		const string &typeName = child.Token(0);
-		auto stepType = TestStep::Type::INVALID;
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
-			[&typeName](const std::pair<Test::TestStep::Type, string> &e) {
+			[&typeName](const std::pair<TestStep::Type, const string> &e) {
 				return e.second == typeName;
 			});
 		if(it != STEPTYPE_TO_TEXT.end())
-		{
-			stepType = it->first;
-			steps.emplace_back(stepType);
-		}
+			steps.emplace_back(it->first);
 		else
 		{
 			child.PrintTrace("Unknown teststep type " + child.Token(0));
@@ -96,7 +93,7 @@ void Test::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("No name specified for test");
+		node.PrintTrace("Skipping unnamed test:");
 		return;
 	}
 	// If a test object is "loaded" twice, that is most likely an error (e.g.
@@ -104,24 +101,24 @@ void Test::Load(const DataNode &node)
 	// or another plugin). Tests should be globally unique.
 	if(!name.empty())
 	{
-		node.PrintTrace("Duplicate definition of test");
+		node.PrintTrace("Skipping duplicate test definition:");
 		return;
 	}
 	// Validate if the testname contains valid characters.
 	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
 	{
-		node.PrintTrace("Invalid test name");
+		node.PrintTrace("Skipping test whose name contains unsupported character(s):");
 		return;
 	}
 	name = node.Token(1);
-
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "status" && child.Size() >= 2)
 		{
 			const string &statusText = child.Token(1);
 			auto it = find_if(STATUS_TO_TEXT.begin(), STATUS_TO_TEXT.end(),
-				[&statusText](const std::pair<Test::Status, string> &e) {
+				[&statusText](const std::pair<Status, const string> &e) {
 					return e.second == statusText;
 				});
 			if(it != STATUS_TO_TEXT.end())
@@ -131,8 +128,6 @@ void Test::Load(const DataNode &node)
 				// the status from broken.
 				if(status != Status::BROKEN)
 					status = it->first;
-				else
-					child.PrintTrace("Setting test-status on broken test.");					
 			}
 			else
 			{
@@ -155,19 +150,16 @@ const string &Test::Name() const
 
 
 
-// The panel-stacks determine both what the player sees and the state of the
-// game.
-// If the menuPanels stack is not empty, then we are in a menu for something
-// like preferences, creating a new pilot or loading or saving a game.
-// The menuPanels stack takes precedence over the gamePanels stack.
-// If the gamePanels stack contains more than one panel, then we are either
-// on a planet (if the PlanetPanel is in the stack) or we are busy with
-// something like a mission-dialog, hailing or boarding.
-// If the gamePanels stack contains only a single panel, then we are flying
-// around in our flagship.
+// The UI panel stacks determine both what the player sees and the state of the game.
+// When the menuPanels are not empty, we are in a menu for something, e.g. preferences,
+// creating a new pilot, or loading or saving a game. Any such menu panels always take
+// precedence over game panels.
+// When the gamePanels stack contains more than one item, we are either on a planet or
+// busy with something, e.g. reading a dialog, hailing a ship/planet, or boarding.
+// Otherwise, the flagship is in space and controllable.
 void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
-	// Wait with testing until the game is fully loaded.
+	// Tests always wait until the game is fully loaded.
 	if(!GameData::IsLoaded())
 		return;
 		
@@ -191,7 +183,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 
 
 
-string Test::StatusText() const
+const string &Test::StatusText() const
 {
 	auto it = STATUS_TO_TEXT.find(status);
 	if(it != STATUS_TO_TEXT.end())
@@ -212,4 +204,3 @@ void Test::Fail(const string &testFailMessage) const
 	// a later version (which can set a non-zero exitcode and exit properly).
 	throw runtime_error(testFailMessage);	
 }
-

@@ -1,5 +1,5 @@
 /* TestData.cpp
-Copyright (c) 2019 by Peter van der Meer
+Copyright (c) 2019-2020 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -34,12 +34,12 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("No name specified for test-data dataset");
+		node.PrintTrace("Skipping unnamed test data:");
 		return;
 	}
 	if(node.Token(0) != "test-data")
 	{
-		node.PrintTrace("Non-test found in test-data dataset parsing");
+		node.PrintTrace("Skipping unsupported root node:");
 		return;
 	}
 	dataSetName = node.Token(1);
@@ -52,7 +52,7 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 			if(child.Token(1) == "savegame")
 				dataSetType = Type::SAVEGAME;
 			else
-				node.PrintTrace("Unknown test data category:");
+				child.PrintTrace("Skipping unsupported category:");
 		}
 }
 
@@ -92,20 +92,16 @@ bool TestData::InjectSavegame() const
 			for(const DataNode &dataNode : rootNode)
 				if(dataNode.Token(0) == "contents")
 				{
-					// Savegame data gets written to the saves directory
-					// in a file with dataSetName as filename and with a .txt
-					// file extention.
-					// Other test-data might be injected in a different way,
-					// for example by direct loading into the relevant data
-					// structures.
+					// Savegame data is written to the saves directory. Other test data
+					// types might be injected differently, e.g. direct object loading.
 					DataWriter dataWriter(Files::Saves() + dataSetName + ".txt");
 					for(const DataNode &child : dataNode)
 						dataWriter.Write(child);
-
+					
 					// Data was found and written. We are done succesfully.
 					return true;
 				}
-
+			
 			// Content section was not found. (Should we just create an empty file here?)
 			return false;
 		}
