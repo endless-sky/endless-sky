@@ -85,6 +85,18 @@ tip "disruption resistance heat:"
 
 tip "drag:"
 	`Limits the maximum speed of a ship.`
+	
+tip "drive mass reference:"
+	`The mass of your ship when this drive will function as advertised.`
+
+tip "drive mass exponent:"
+	`When your ship mass is doubled, fuel consumption of this drive will increase twofold this many times.`
+
+tip "drive distance reference:"
+	`The distance to your target destination at which this drive will function as advertised.`
+
+tip "drive distance exponent:"
+	`When the distance to your target destination is doubled, fuel consumption of this drive will increase twofold this many times.`
 
 tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
