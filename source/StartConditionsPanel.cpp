@@ -62,7 +62,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 		entryListBox =     startConditionsMenu->GetBox("start entry list");
 		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
 	}
-
+	
 	size_t i = 0;
 	// Fill up the startConditionsClickZones vector
 	for(const StartConditions &it : GameData::Start())
@@ -76,19 +76,21 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 			it);
 		i++;
 	}
+	
+	bright = *GameData::Colors().Get("bright");
 }
 
 
 void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-
-
+	
+	
 	Information info;
-
+	
 	// String that will be shown in the description panel
 	string descriptionText; 
-
+	
 	if(hasChosenStart){
 		info.SetCondition("chosen start");
 		if(chosenStart.GetSprite())
@@ -106,26 +108,26 @@ void StartConditionsPanel::Draw()
 	{
 		descriptionText = "No start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly";
 	}
-
+	
 	GameData::Background().Draw(Point(), Point());
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
 	
 	const Font &font = FontSet::Get(14);
-
+	
 	WrappedText text = WrappedText(font);
-
+	
 	text.SetAlignment(WrappedText::LEFT);
 	text.SetWrapWidth(210);
 	text.Wrap(descriptionText);
-
+	
 	text.Draw(
 		Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll),
 		descriptionBox,
-		Color(1.,1.,1.)
+		bright
 	);
-
+	
 	Point point(
 		entryListBox.Left(),
 		entryListBox.Top() - listScroll 
@@ -211,10 +213,10 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	{
 		if(!hasChosenStart)
 			return true;
-
+		
 		player.New(chosenStart);
-
-
+		
+		
 		ConversationPanel *panel = new ConversationPanel(
 			player, *GameData::Conversations().Get("intro"));
 		GetUI()->Push(panel);
@@ -232,22 +234,20 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 	// Check it's inside of the entry list box
 	if(!entryListBox.Contains(Point(x, y)))
 		return false;
-
-	printf("%lf\n", listScroll);
-
+	
 	for(const auto &it : startConditionsClickZones)
 	{
 		if (!it.Contains(Point(x, y + listScroll)))
 			continue;
-
+		
 		// We found the element we clicked on
-
+		
 		if(!(chosenStart == it.Value()))
 			descriptionScroll = 0; // Reset scrolling
 		chosenStart = it.Value();
 		hasChosenStart = true;
 	}
-
+	
 	return true;
 }
 
@@ -270,7 +270,7 @@ void StartConditionsPanel::OnCallback(int)
 	// It's possible that the player got to this menu directly from the main menu, so we need to check for that
 	if(loadPanel)
 		GetUI()->Pop(loadPanel);
-
+	
 	GetUI()->Pop(GetUI()->Root().get());
 	GetUI()->Pop(this);
 }

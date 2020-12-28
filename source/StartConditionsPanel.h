@@ -13,11 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef START_CONDITIONS_PANEL_H_
 #define START_CONDITIONS_PANEL_H_
 
+#include "ClickZone.h"
+#include "Color.h"
 #include "LoadPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
-#include "ClickZone.h"
-
 
 class StartConditionsPanel : public Panel {
 public:
@@ -49,7 +49,7 @@ private:
 	
 	double listScroll = 0;
 	double descriptionScroll = 0;
-
+	
 	// This is a map that will let us figure out which start conditions item the user clicked on
 	std::vector<ClickZone<const StartConditions&>> startConditionsClickZones;
 	
@@ -57,6 +57,8 @@ private:
 	Rectangle entryBox;
 	Rectangle entryListBox;
 	Rectangle entryInternalBox;
+	
+	Color bright;
 };
 
 #endif
