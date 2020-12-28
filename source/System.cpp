@@ -331,13 +331,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			if(loadHyperDistance)
 				extraHyperArrivalDistance = child.Value(valueIndex);
-			// We only load additional jump distances if they are above 0.
+			// Negative jump distances work the same as positive jump
+			// distances.
 			// Jump drives use a circle around the target for targeting,
-			// so a value below 0 doesn't have a meaning in the same way
-			// as that a hyper-jump-distance negative values would be beyond
-			// the target.
-			if(loadJumpDistance && child.Value(valueIndex) >= 0)
-				extraJumpArrivalDistance = child.Value(valueIndex);
+			// so a value below 0 doesn't have the same meaning as for hyper
+			// drives where negative values would be beyond the target.
+			if(loadJumpDistance)
+				extraJumpArrivalDistance = fabs(child.Value(valueIndex));
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
