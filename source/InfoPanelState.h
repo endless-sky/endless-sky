@@ -24,9 +24,9 @@ class PlayerInfo;
 
 
 // This class is responsible for storing the state
-// between PlayerInfoPanel and ShipInfoPanel
-// so that things like scroll position, selection and
-// sort are saved when the user is switching between the panels
+// between PlayerInfoPanel and ShipInfoPanel so that 
+// things like scroll position, selection and sort are
+// saved when the user is switching between the panels.
 class InfoPanelState {
 public:
 	using ShipComparator = bool (const std::shared_ptr <Ship>&, const std::shared_ptr <Ship>&);
@@ -44,19 +44,21 @@ public:
 	void SetScroll(int);
 	
 	std::vector<std::shared_ptr<Ship>> &Ships();
+	// This is needed to keep ShipInfoPanel::CanDump() const.
+	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	
 	ShipComparator *CurrentSort() const;
 	void SetCurrentSort(ShipComparator *s);
 	
 	
 private:
-	// Most recent selected ship index
+	// Most recent selected ship index.
 	int selectedIndex = -1;
 	
-	// Indices of selected ships
+	// Indices of selected ships.
 	std::set<int> allSelected;
 	
-	// A copy of PlayerInfo.ships for viewing and manipulating
+	// A copy of PlayerInfo.ships for viewing and manipulating.
 	std::vector<std::shared_ptr<Ship>> ships;
 	
 	// When the player is landed, they are able to

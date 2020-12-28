@@ -656,7 +656,7 @@ void ShipInfoPanel::Rename(const string &name)
 
 
 
-bool ShipInfoPanel::CanDump()
+bool ShipInfoPanel::CanDump() const
 {
 	if(panelState.CanEdit() || shipIt == panelState.Ships().end())
 		return false;

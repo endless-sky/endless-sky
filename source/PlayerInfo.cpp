@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Files.h"
 
 #include <algorithm>
 #include <cmath>
@@ -45,7 +46,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <limits>
 #include <sstream>
 #include <stdexcept>
-#include <cassert>
 
 using namespace std;
 
@@ -1017,7 +1017,7 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
 {
 	// Check if the incoming vector contains the same elements
-	bool same = false;
+	bool same = true;
 	size_t aSize = newOrder.size();
 	size_t bSize = ships.size();
 	
@@ -1026,10 +1026,10 @@ void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
 	else
 	{
 		// Compare vectors element by element
-		for(size_t i = 0; i < aSize; i++)
+		for(size_t i = 0; i < aSize; ++i)
 		{
 			same = false;
-			for(size_t j = 0; i < bSize; j++)
+			for(size_t j = 0; i < bSize; ++j)
 			{
 				if(newOrder[i] == ships[j])
 				{
@@ -1042,9 +1042,10 @@ void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
 		}
 	}
 	
-	assert(same);
-	
-	ships = newOrder;
+	if(same)
+		ships = newOrder;
+	else
+		Files::LogError("Cannot reorder ships because the new order does not contain the same ships");
 }
 
 

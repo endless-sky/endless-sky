@@ -72,6 +72,11 @@ vector<shared_ptr<Ship>> &InfoPanelState::Ships()
 	return ships;
 }
 
+const vector<shared_ptr<Ship>> &InfoPanelState::Ships() const
+{
+	return ships;
+}
+
 
 
 InfoPanelState::ShipComparator *InfoPanelState::CurrentSort() const
