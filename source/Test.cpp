@@ -64,6 +64,10 @@ namespace{
 		
 		string beginning = "expected \"" + m.begin()->second;
 		auto lastValidIt = prev(m.end());
+		// Handle maps with just 1 element.
+		if(lastValidIt == m.begin())
+			return beginning + "\"";
+		
 		return accumulate(next(m.begin()), lastValidIt, beginning,
 			[](string a, const pair<K, const string> &b) -> string
 			{
