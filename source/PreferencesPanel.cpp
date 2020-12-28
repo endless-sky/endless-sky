@@ -452,11 +452,12 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		"Hide unexplored map regions",
 		REACTIVATE_HELP,
+		"Interrupt fast-forward",
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
-		"Warning siren",
-		"Interrupt fast-forward"
+		"System map sends move orders",
+		"Warning siren"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)

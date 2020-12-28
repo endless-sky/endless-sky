@@ -12,8 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+#include "Angle.h"
 #include "Color.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -26,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "RingShader.h"
 #include "Screen.h"
@@ -266,6 +269,35 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
+	return true;
+}
+
+
+
+bool MapDetailPanel::RClick(int x, int y)
+{
+	if(!selectedSystem || !Preferences::Has("System map sends move orders"))
+		return true;
+	// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
+	// positions aren't hard-coded.
+	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
+	{
+		// Only handle clicks on the actual orbits element, rather than the whole UI region.
+		// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
+		const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
+		auto uiClick = Point(x, y) - orbitCenter;
+		if(uiClick.Length() > 130)
+			return true;
+		
+		// Only issue movement orders if the player is in-flight.
+		if(player.GetPlanet())
+			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
+		else if(!player.HasVisited(selectedSystem))
+			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
+		else
+			player.SetEscortDestination(selectedSystem, uiClick / scale);
+	}
+	
 	return true;
 }
 
@@ -577,7 +609,7 @@ void MapDetailPanel::DrawOrbits()
 		maxDistance = max(maxDistance, object.Position().Length() + object.Radius());
 	
 	// 2400 -> 120.
-	double scale = .03;
+	scale = .03;
 	maxDistance *= scale;
 	
 	if(maxDistance > 115.)
@@ -629,6 +661,30 @@ void MapDetailPanel::DrawOrbits()
 		// Darken and saturate the color, and make it opaque.
 		Color color(max(0.f, rgb[0] * 1.2f - .2f), max(0.f, rgb[1] * 1.2f - .2f), max(0.f, rgb[2] * 1.2f - .2f), 1.f);
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0.f, color);
+	}
+	
+	// If the player has a pending order for escorts to move to a new system, draw it.
+	if(player.HasEscortDestination())
+	{
+		auto pendingOrder = player.GetEscortDestination();
+		if(pendingOrder.first == selectedSystem)
+		{
+			// Draw an X (to mark the spot, of course).
+			auto uiPoint = (pendingOrder.second * scale) + orbitCenter;
+			const Color *color = GameData::Colors().Get("map orbits fleet destination");
+			// TODO: Add a "batch pointershader" method that takes the shape description, a count, and a reference point+orientation
+			// Use that method below and in Engine for drawing target reticles.
+			auto a = Angle{45.};
+			auto inc = Angle{90.};
+			
+			PointerShader::Bind();
+			for(int i = 0; i < 4; ++i)
+			{
+				PointerShader::Add(uiPoint, a.Unit(), 6.f, 6.f, -3.f, *color);
+				a += inc;
+			}
+			PointerShader::Unbind();
+		}
 	}
 	
 	// Draw the selection ring on top of everything else.

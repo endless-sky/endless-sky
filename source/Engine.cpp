@@ -511,7 +511,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 		highlightSprite = nullptr;
-		
+	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
 	if(flagship && flagship->GetPlanet() && isActive)
@@ -951,12 +951,14 @@ void Engine::Draw() const
 		Angle a = target.angle;
 		Angle da(360. / target.count);
 		
+		PointerShader::Bind();
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Draw(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
+			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
 				Radar::GetColor(target.type));
 			a += da;
 		}
+		PointerShader::Unbind();
 	}
 	
 	// Draw the heads-up display.
@@ -1778,7 +1780,19 @@ void Engine::HandleMouseClicks()
 {
 	// Mouse clicks can't be issued if your flagship is dead.
 	Ship *flagship = player.Flagship();
-	if(!doClick || !flagship)
+	if(!flagship)
+		return;
+	
+	// Handle escort travel orders sent via the Map.
+	if(player.HasEscortDestination())
+	{
+		auto moveTarget = player.GetEscortDestination();
+		ai.IssueMoveTarget(player, moveTarget.second, moveTarget.first);
+		player.SetEscortDestination();
+	}
+	
+	// If there is no click event sent while the engine was active, bail out.
+	if(!doClick)
 		return;
 	
 	// Check for clicks on stellar objects. Only left clicks apply, and the
