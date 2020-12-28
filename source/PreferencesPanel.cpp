@@ -12,24 +12,27 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PreferencesPanel.h"
 
+#include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -292,8 +295,8 @@ void PreferencesPanel::DrawControls()
 	Color red(.3f, 0.f, 0.f, .3f);
 	
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
-	table.AddColumn(115, Table::RIGHT);
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -391,7 +394,7 @@ void PreferencesPanel::DrawControls()
 	}
 	
 	Table shiftTable;
-	shiftTable.AddColumn(125, Table::RIGHT);
+	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
 	shiftTable.DrawAt(Point(-400, 52));
 	
@@ -414,8 +417,8 @@ void PreferencesPanel::DrawSettings()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
-	table.AddColumn(115, Table::RIGHT);
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -575,8 +578,9 @@ void PreferencesPanel::DrawPlugins()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	
+	const int MAX_TEXT_WIDTH = 230;
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
+	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -238;
@@ -585,7 +589,6 @@ void PreferencesPanel::DrawPlugins()
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
 	
-	const int MAX_TEXT_WIDTH = 230;
 	const Font &font = FontSet::Get(14);
 	for(const auto &plugin : GameData::PluginAboutText())
 	{
@@ -594,7 +597,7 @@ void PreferencesPanel::DrawPlugins()
 		bool isSelected = (plugin.first == selectedPlugin);
 		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(font.TruncateMiddle(plugin.first, MAX_TEXT_WIDTH), isSelected ? bright : medium);
+		table.Draw(plugin.first, isSelected ? bright : medium);
 		
 		if(isSelected)
 		{

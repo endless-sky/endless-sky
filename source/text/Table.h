@@ -1,5 +1,5 @@
 /* Table.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,11 +10,13 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef TABLE_H_
-#define TABLE_H_
+#ifndef ES_TEXT_TABLE_H_
+#define ES_TEXT_TABLE_H_
 
-#include "Color.h"
-#include "Point.h"
+#include "../Color.h"
+#include "DisplayText.h"
+#include "layout.hpp"
+#include "../Point.h"
 
 #include <string>
 #include <vector>
@@ -29,27 +31,23 @@ class Rectangle;
 // between table rows, underlines, selection highlights, etc.
 class Table {
 public:
-	enum Align {LEFT = 0, CENTER = 1, RIGHT = 2};
-	
-	
-public:
 	Table();
 	
 	// Set the column positions. If no columns are set, the Table will draw a
 	// list (one column of text, left aligned).
 	void Clear();
-	void AddColumn(int x, Align align);
+	void AddColumn(int x, Layout layout = {});
 	
 	// Set the font size. Default is 14 pixels.
 	void SetFontSize(int size);
 	// Set the row height. Default is 20 pixels.
-	void SetRowHeight(int height);
+	void SetRowHeight(int height) noexcept;
 	// Set the width of the highlight area. If the underline has not been set,
 	// this will also set the width of the underline.
-	void SetHighlight(int startX, int endX);
+	void SetHighlight(int startX, int endX) noexcept;
 	// Set the X range of the underline. If the highlight has not been set, this
 	// will also set the width of the highlight.
-	void SetUnderline(int startX, int endX);
+	void SetUnderline(int startX, int endX) noexcept;
 	
 	// Begin drawing at the given position. Each time text is drawn, it fills a
 	// new column until all columns have been filled. Then, the Y position is
@@ -63,12 +61,22 @@ public:
 	void Advance(int fields = 1) const;
 	
 	// Draw a single text field, and move on to the next one.
+	void Draw(const char *text) const;
 	void Draw(const std::string &text) const;
 	// If a color is given, this field is drawn using that color, but the
 	// previously set color will be used for future fields.
+	void Draw(const char *text, const Color &color) const;
 	void Draw(const std::string &text, const Color &color) const;
 	void Draw(double value) const;
 	void Draw(double value, const Color &color) const;
+	// Use the width & alignment associated with the text (instead of the column's).
+	void DrawCustom(const DisplayText &text) const;
+	void DrawCustom(const DisplayText &text, const Color &color) const;
+	
+	// Draw two columns as a pair with opposite alignments. If needed, truncate the given
+	// column based on the width of the non-truncated column's value.
+	void DrawTruncatedPair(const std::string &left, const Color &leftColor, const std::string &right,
+		const Color &rightColor, Truncate strategy, bool truncateRightColumn) const;
 	
 	// Draw an underline under the text for the current row.
 	void DrawUnderline() const;
@@ -84,7 +92,7 @@ public:
 	
 	// Get the point that should be passed to DrawAt() to start the next row at
 	// the given location.
-	Point GetPoint();
+	Point GetPoint() const;
 	
 	// Get the center and size of the current row. This can be used to define
 	// what screen region constitutes a mouse click on this particular row.
@@ -99,20 +107,26 @@ private:
 	// So, "align" will either be 0, -.5, or -1.
 	class Column {
 	public:
-		Column();
-		Column(double offset, double align);
+		Column(double offset, Layout layout) noexcept;
 		
-		double offset;
-		double align;
+		double offset = 0.;
+		Layout layout;
 	};
 	
 	
 private:
+	void Draw(const std::string &text, const Layout *special, const Color &color) const;
+	
+	
+private:
+	// The current draw position.
 	mutable Point point;
+	// The column being drawn.
 	mutable std::vector<Column>::const_iterator it;
+	// The color to use on the next draw call.
 	mutable Color color;
 	
-	const Font *font;
+	const Font *font = nullptr;
 	Point rowSize;
 	Point center;
 	Point lineSize;

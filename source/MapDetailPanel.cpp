@@ -12,15 +12,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+#include "text/alignment.hpp"
 #include "Angle.h"
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "text/layout.hpp"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "pi.h"
@@ -39,8 +42,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
+#include "text/truncate.hpp"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -442,12 +446,13 @@ void MapDetailPanel::DrawInfo()
 	const Font &font = FontSet::Get(14);
 	string systemName = player.KnowsName(selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
-	font.Draw(systemName, uiPoint + Point(-90., -7.), medium);
+	const auto alignLeft = Layout(140, Truncate::BACK);
+	font.Draw({systemName, alignLeft}, uiPoint + Point(-90., -7.), medium);
 	
 	governmentY = uiPoint.Y() + 10.;
 	string gov = player.HasVisited(selectedSystem) ?
 		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
-	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
+	font.Draw({gov, alignLeft}, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
@@ -472,8 +477,8 @@ void MapDetailPanel::DrawInfo()
 				
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[planet] = uiPoint.Y() - 60;
-			
-				font.Draw(object.Name(),
+				
+				font.Draw({object.Name(), alignLeft},
 					uiPoint + Point(-70., -52.),
 					planet == selectedPlanet ? medium : dim);
 				
@@ -560,8 +565,8 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (hasVisited ? "n/a" : "?");
 		
-		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
-		font.Draw(price, pos, color);
+		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
+		font.Draw({price, alignRight}, uiPoint, color);
 		
 		if(isSelected)
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
@@ -580,7 +585,7 @@ void MapDetailPanel::DrawInfo()
 		SpriteShader::Draw(panelSprite, pos);
 		
 		WrappedText text(font);
-		text.SetAlignment(WrappedText::JUSTIFIED);
+		text.SetAlignment(Alignment::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
@@ -696,8 +701,9 @@ void MapDetailPanel::DrawOrbits()
 	
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
-	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
-	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
+	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
+	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}},
+		namePos, *GameData::Colors().Get("medium"));
 }
 
 

@@ -1,5 +1,5 @@
-/* FontSet.cpp
-Copyright (c) 2014 by Michael Zahniser
+/* FontSet.h
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,29 +10,23 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "FontSet.h"
+#ifndef ES_TEXT_FONT_SET_H_
+#define ES_TEXT_FONT_SET_H_
 
-#include "Font.h"
+#include <string>
 
-#include <map>
-
-using namespace std;
-
-namespace {
-	map<int, Font> fonts;
-}
+class Font;
 
 
 
-void FontSet::Add(const string &path, int size)
-{
-	if(!fonts.count(size))
-		fonts[size].Load(path);
-}
+// Class for getting the Font object for a given point size. Each font must be
+// based on a glyph image; right now only point sizes 14 and 18 exist.
+class FontSet {
+public:
+	static void Add(const std::string &path, int size);
+	static const Font &Get(int size);
+};
 
 
 
-const Font &FontSet::Get(int size)
-{
-	return fonts[size];
-}
+#endif
