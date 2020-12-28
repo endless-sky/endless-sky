@@ -305,6 +305,9 @@ public:
 	void AddCrew(int count);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
+	// Get and set the number of desired crew members when this is a flagship.
+	int DesiredCrew() const;
+	void SetDesiredCrew(int count);
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;
@@ -520,6 +523,7 @@ private:
 	Point acceleration;
 	
 	int crew = 0;
+	int desiredCrew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;
 	

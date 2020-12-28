@@ -354,7 +354,6 @@ private:
 	std::map<std::string, std::set<std::string>> collapsed;
 	
 	bool freshlyLoaded = true;
-	int desiredCrew = 0;
 };
 
 

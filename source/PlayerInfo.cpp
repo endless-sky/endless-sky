@@ -1190,7 +1190,7 @@ void PlayerInfo::Land(UI *ui)
 	// some bunks were freed up upon landing (i.e. completed missions).
 	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagship)
 	{
-		int added = desiredCrew - flagship->Crew();
+		int added = min(flagship->DesiredCrew() - flagship->Crew(), cargo.BunksFree());
 		if(added > 0)
 		{
 			flagship->AddCrew(added);
@@ -1283,8 +1283,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			else
 			{
 				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
 			}
