@@ -185,11 +185,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 
 const string &Test::StatusText() const
 {
-	auto it = STATUS_TO_TEXT.find(status);
-	if(it != STATUS_TO_TEXT.end())
-		return it->second;
-	else
-		return STATUS_TO_TEXT.at(Status::BROKEN);
+	return STATUS_TO_TEXT.at(status);
 }
 
 
