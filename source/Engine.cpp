@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "text/alignment.hpp"
 #include "Audio.h"
-#include "text/DisplayText.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -633,7 +632,7 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
 	}
 	if(currentSystem)
-		info.SetString("location", {currentSystem->Name(), {140, Truncate::BACK}});
+		info.SetString("location", currentSystem->Name());
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
@@ -655,7 +654,6 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
-	const auto destinationLayout = Layout(135, Truncate::BACK);
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetStellar();
@@ -664,7 +662,7 @@ void Engine::Step(bool isActive)
 			"Cannot land on:";
 		info.SetString("navigation mode", navigationMode);
 		const string &name = object->Name();
-		info.SetString("destination", {name, destinationLayout});
+		info.SetString("destination", name);
 		
 		targets.push_back({
 			object->Position() - center,
@@ -677,9 +675,9 @@ void Engine::Step(bool isActive)
 	{
 		info.SetString("navigation mode", "Hyperspace:");
 		if(player.HasVisited(flagship->GetTargetSystem()))
-			info.SetString("destination", {flagship->GetTargetSystem()->Name(), destinationLayout});
+			info.SetString("destination", flagship->GetTargetSystem()->Name());
 		else
-			info.SetString("destination", {"unexplored system", destinationLayout});
+			info.SetString("destination", "unexplored system");
 	}
 	else
 	{
@@ -726,13 +724,12 @@ void Engine::Step(bool isActive)
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
-		const auto targetLayout = Layout(150, Truncate::MIDDLE);
-		info.SetString("target name", {target->Name(), targetLayout});
-		info.SetString("target type", {target->ModelName(), targetLayout});
+		info.SetString("target name", target->Name());
+		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
-			info.SetString("target government", {"No Government", targetLayout});
+			info.SetString("target government", "No Government");
 		else
-			info.SetString("target government", {target->GetGovernment()->GetName(), targetLayout});
+			info.SetString("target government", target->GetGovernment()->GetName());
 		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 		

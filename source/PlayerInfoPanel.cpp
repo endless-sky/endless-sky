@@ -564,9 +564,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {217, Alignment::LEFT, Truncate::MIDDLE});
-	table.AddColumn(220, {127, Alignment::LEFT, Truncate::BACK});
-	table.AddColumn(350, {137, Alignment::LEFT, Truncate::BACK});
+	table.AddColumn(0, {217, Truncate::MIDDLE});
+	table.AddColumn(220, {127, Truncate::BACK});
+	table.AddColumn(350, {137, Truncate::BACK});
 	table.AddColumn(550, {57, Alignment::RIGHT, Truncate::BACK});
 	table.AddColumn(610, {57, Alignment::RIGHT, Truncate::BACK});
 	table.AddColumn(670, {57, Alignment::RIGHT, Truncate::BACK});
