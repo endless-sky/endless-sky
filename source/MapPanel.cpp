@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
+#include "CargoHold.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "FogShader.h"
@@ -54,8 +55,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Log how many player ships are in a given system, tracking if they are parked or in-flight.
-	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, pair<int, int>> &locations)
+	// Log how many player ships and stored outfits are in a given system, tracking for
+	// ships if they are parked or in-flight.
+	//
+	// The structure of the map used here is:
+	//  - first        -> ships
+	//  - first.first  -> ships (in-flight)
+	//  - first.second -> ships (parked)
+	//  - second       -> outfits (in storage)
+	void TallyEscortsAndOutfits(const vector<shared_ptr<Ship>> &escorts,
+		const std::map<const Planet *, CargoHold> &outfits,
+		map<const System *, pair<pair<int, int>, int>> &locations)
 	{
 		locations.clear();
 		for(const auto &ship : escorts)
@@ -65,13 +75,22 @@ namespace {
 			if(ship->GetSystem())
 			{
 				if(!ship->IsParked())
-					++locations[ship->GetSystem()].first;
+					++locations[ship->GetSystem()].first.first;
 				else
-					++locations[ship->GetSystem()].second;
+					++locations[ship->GetSystem()].first.second;
 			}
 			// If this ship has no system but has a parent, it is carried (and thus not parked).
 			else if(ship->CanBeCarried() && ship->GetParent() && ship->GetParent()->GetSystem())
-				++locations[ship->GetParent()->GetSystem()].first;
+				++locations[ship->GetParent()->GetSystem()].first.first;
+		}
+		for(const auto &hold : outfits)
+		{
+			// Get the system in which the planet storage is located.
+			const System* system = hold.first->GetSystem();
+			for(const auto &outfit: hold.second.Outfits())
+				// Only count a system if it actually stores outfits.
+				if(outfit.second)
+					locations[system].second += outfit.second;
 		}
 	}
 	
@@ -97,6 +116,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	playerSystem(player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
+	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
 	commodity(commodity)
 {
 	SetIsFullScreen(true);
@@ -109,12 +129,19 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// be changing systems even if the player does not.
 	// The player cannot toggle any preferences without closing the map panel.
 	if(Preferences::Has("Show escort systems on map"))
-		TallyEscorts(player.Ships(), escortSystems);
+		TallyEscortsAndOutfits(player.Ships(), player.PlanetaryStorage(), escortSystems);
 	
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
 	hoverText.SetWrapWidth(150);
 	hoverText.SetAlignment(WrappedText::LEFT);
+	
+	// Find out how far the player is able to jump. The range of the system
+	// takes priority over the range of the player's flagship.
+	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
+	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
+	if(systemRange || playerRange)
+		playerJumpDistance = systemRange ? systemRange : playerRange;
 	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem, true);
@@ -149,7 +176,13 @@ void MapPanel::Draw()
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1f, 0.f);
 	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
-		(System::NEIGHBOR_DISTANCE + .5) * Zoom(), (System::NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+	// Draw the jump range circle around your current location if it is different than the
+	// visible range.
+	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
+		RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
+	
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11.f, 9.f, brightColor);
@@ -191,9 +224,10 @@ void MapPanel::DrawButtons(const string &condition)
 	// Draw the buttons to switch to other map modes.
 	Information info;
 	info.SetCondition(condition);
-	if(player.MapZoom() == 2)
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
 		info.SetCondition("max zoom");
-	if(player.MapZoom() == -2)
+	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info, this);
@@ -326,6 +360,7 @@ bool MapPanel::AllowFastForward() const
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
@@ -356,9 +391,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == '+' || key == '=')
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(key == '-')
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	else
 		return false;
 	
@@ -437,10 +472,11 @@ bool MapPanel::Scroll(double dx, double dy)
 	// The mouse should be pointing to the same map position before and after zooming.
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(2, player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(dy < 0.)
-		player.SetMapZoom(max(-2, player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
@@ -545,8 +581,13 @@ void MapPanel::Select(const System *system)
 	bool isJumping = flagship->IsEnteringHyperspace();
 	const System *source = isJumping ? flagship->GetTargetSystem() : playerSystem;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
-	if(system == source && !shift)
+	auto mod = SDL_GetModState();
+	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
+	// possibly manipulating it both here and there. Or, we entirely separate Select from travel plan modifications.
+	bool shift = (mod & KMOD_SHIFT) && !plan.empty();
+	if(mod & KMOD_CTRL)
+		return;
+	else if(system == source && !shift)
 	{
 		plan.clear();
 		if(!isJumping)
@@ -694,11 +735,12 @@ void MapPanel::UpdateCache()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
+				bool colorSystem = true;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
@@ -728,19 +770,23 @@ void MapPanel::UpdateCache()
 				{
 					bool all = true;
 					bool some = false;
+					colorSystem = false;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
+						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole()
+							&& object.GetPlanet()->IsAccessible(player.Flagship()))
 						{
 							bool visited = player.HasVisited(object.GetPlanet());
 							all &= visited;
 							some |= visited;
+							colorSystem = true;
 						}
 					value = -1 + some + all;
 				}
 				else
 					value = SystemValue(&system);
 				
-				color = MapColor(value);
+				if(colorSystem)
+					color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{
@@ -850,11 +896,12 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 	
 	const System *previous = playerSystem;
+	double jumpRange = flagship->JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
-		bool isJump = !isHyper && previous->Neighbors().count(next);
+		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
@@ -865,13 +912,14 @@ void MapPanel::DrawTravelPlan()
 		if(!isHyper && !isJump && !isWormhole)
 			break;
 		
+		double jumpDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel() : it.first->HyperdriveFuel();
+					double cost = isJump ? it.first->JumpDriveFuel(jumpDistance) : it.first->HyperdriveFuel();
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;
@@ -917,7 +965,21 @@ void MapPanel::DrawEscorts()
 		if(player.HasSeen(squad.first) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
-			RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first ? active : parked);
+			
+			// Active and parked ships are drawn/indicated by a ring in the center.
+			if(squad.second.first.first || squad.second.first.second)
+				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first.first ? active : parked);
+			
+			if(squad.second.second)
+				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
+				for(int i = 0; i < 8; ++i)
+				{
+					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
+					Angle angle = Angle(7.5f + 45.f * i);
+					Point from = pos + angle.Unit() * OUTER;
+					Point to = from + angle.Unit() * 4.f;
+					LineShader::Draw(from, to, 2.f, active);
+				}
 		}
 }
 
@@ -1111,23 +1173,29 @@ void MapPanel::DrawTooltips()
 	// Create the tooltip text.
 	if(tooltip.empty())
 	{
-		pair<int, int> t = escortSystems.at(hoverSystem);
+		pair<pair<int, int>, int> t = escortSystems.at(hoverSystem);
 		if(hoverSystem == playerSystem)
 		{
-			--t.first;
-			if(t.first || t.second)
+			--t.first.first;
+			if(t.first.first || t.first.second || t.second)
 				tooltip = "You are here, with:\n";
 			else
 				tooltip = "You are here.";
 		}
 		// If you have both active and parked escorts, call the active ones
 		// "active escorts." Otherwise, just call them "escorts."
-		if(t.first && t.second)
-			tooltip += to_string(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
-		else if(t.first)
-			tooltip += to_string(t.first) + (t.first == 1 ? " escort" : " escorts");
+		if(t.first.first && t.first.second)
+			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " active escort\n" : " active escorts\n");
+		else if(t.first.first)
+			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " escort" : " escorts");
+		if(t.first.second)
+			tooltip += to_string(t.first.second) + (t.first.second == 1 ? " parked escort" : " parked escorts");
 		if(t.second)
-			tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
+		{
+			if(t.first.first || t.first.second)
+				tooltip += "\n";
+			tooltip += to_string(t.second) + (t.second == 1 ? " stored outfit" : " stored outfits");
+		}
 		
 		hoverText.Wrap(tooltip);
 	}

@@ -213,6 +213,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	}
 	
 	position += velocity;
+	distanceTraveled += velocity.Length();
 	
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
@@ -227,6 +228,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
+	distanceTraveled += velocity.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
@@ -318,4 +320,11 @@ void Projectile::CheckLock(const Ship &target)
 		double probability = weapon->RadarTracking() / (1. + target.Attributes().Get("radar jamming"));
 		hasLock |= Check(probability, base);
 	}
+}
+
+
+
+double Projectile::DistanceTraveled() const
+{
+	return distanceTraveled;
 }

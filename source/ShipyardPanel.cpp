@@ -12,18 +12,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipyardPanel.h"
 
+#include "ClickZone.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -138,14 +142,80 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center)
 {
-	shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
-	Point offset(shipInfo.PanelWidth(), 0.);
+	string selectedItem = "No Ship Selected";
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	
-	shipInfo.DrawDescription(center - offset * 1.5);
-	shipInfo.DrawAttributes(center - offset * .5);
-	shipInfo.DrawOutfits(center + offset * .5);
+	int heightOffset = 20;
 	
-	return shipInfo.MaximumHeight();
+	if(selectedShip)
+	{
+		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		selectedItem = selectedShip->ModelName();
+		
+		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
+		const Sprite *shipSprite = selectedShip->GetSprite();
+		float spriteScale = shipSprite
+			? min(1.f, (INFOBAR_WIDTH  - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
+			: 1.f;
+		
+		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+		
+		Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
+		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
+		
+		double descriptionOffset = 35.;
+		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
+		
+		// Maintenance note: This can be replaced with collapsed.contains() in C++20
+		if(!collapsed.count("description"))
+		{
+			descriptionOffset = shipInfo.DescriptionHeight();
+			shipInfo.DrawDescription(startPoint);
+		}
+		else
+		{
+			std::string label = "description";
+			font.Draw(label, startPoint + Point(35., 12.), dim);
+			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+		}
+		
+		// Calculate the new ClickZone for the description.
+		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		
+		// Find the old zone, and replace it with the new zone.
+		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
+		{
+			if(it->Value() == "description")
+			{
+				categoryZones.erase(it);
+				break;
+			}
+		}
+		categoryZones.emplace_back(collapseDescription);
+		
+		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
+		
+		SpriteShader::Draw(background, spriteCenter);
+		if(shipSprite)
+			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+		
+		shipInfo.DrawAttributes(attrPoint);
+		shipInfo.DrawOutfits(outfPoint);
+		
+		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
+	}
+	
+	// Draw this string representing the selected ship (if any), centered in the details side panel
+	Point selectedPoint(
+		center.X() - font.Width(selectedItem) / 2, center.Y());
+	font.Draw(selectedItem, selectedPoint, bright);
+	
+	return heightOffset;
 }
 
 
@@ -168,7 +238,7 @@ bool ShipyardPanel::CanBuy() const
 
 
 
-void ShipyardPanel::Buy(bool fromCargo)
+void ShipyardPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -229,14 +299,14 @@ void ShipyardPanel::FailBuy() const
 
 
 
-bool ShipyardPanel::CanSell(bool toCargo) const
+bool ShipyardPanel::CanSell(bool toStorage) const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell(bool toCargo)
+void ShipyardPanel::Sell(bool toStorage)
 {
 	static const int MAX_LIST = 20;
 	static const int MAX_NAME_WIDTH = 250 - 30;
