@@ -12,12 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipyardPanel.h"
 
+#include "text/alignment.hpp"
 #include "ClickZone.h"
 #include "Color.h"
 #include "Dialog.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Phrase.h"
@@ -30,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 class System;
@@ -211,9 +214,9 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	}
 	
 	// Draw this string representing the selected ship (if any), centered in the details side panel
-	Point selectedPoint(
-		center.X() - font.Width(selectedItem) / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright);
+	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+		selectedPoint, bright);
 	
 	return heightOffset;
 }
@@ -238,7 +241,7 @@ bool ShipyardPanel::CanBuy() const
 
 
 
-void ShipyardPanel::Buy(bool fromCargo)
+void ShipyardPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -299,22 +302,20 @@ void ShipyardPanel::FailBuy() const
 
 
 
-bool ShipyardPanel::CanSell(bool toCargo) const
+bool ShipyardPanel::CanSell(bool toStorage) const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell(bool toCargo)
+void ShipyardPanel::Sell(bool toStorage)
 {
 	static const int MAX_LIST = 20;
-	static const int MAX_NAME_WIDTH = 250 - 30;
 	
 	int count = playerShips.size();
 	int initialCount = count;
 	string message = "Sell the ";
-	const Font &font = FontSet::Get(14);
 	if(count == 1)
 		message += playerShip->Name();
 	else if(count <= MAX_LIST)
@@ -328,7 +329,7 @@ void ShipyardPanel::Sell(bool toCargo)
 		else
 		{
 			while(count-- > 1)
-				message += ",\n" + font.TruncateMiddle((*it++)->Name(), MAX_NAME_WIDTH);
+				message += ",\n" + (*it++)->Name();
 			message += ",\nand ";
 		}
 		message += (*it)->Name();
@@ -338,7 +339,7 @@ void ShipyardPanel::Sell(bool toCargo)
 		auto it = playerShips.begin();
 		message += (*it++)->Name() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
-			message += font.TruncateMiddle((*it++)->Name(), MAX_NAME_WIDTH) + ",\n";
+			message += (*it++)->Name() + ",\n";
 		
 		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}
@@ -350,7 +351,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 	
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
 }
 
 

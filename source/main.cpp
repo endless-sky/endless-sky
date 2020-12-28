@@ -20,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "Font.h"
+#include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameWindow.h"
@@ -202,7 +202,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	{
 		if(toggleTimeout)
 			--toggleTimeout;
-			
+		
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))

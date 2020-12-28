@@ -1,5 +1,5 @@
 /* Font.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -12,10 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Font.h"
 
-#include "Color.h"
-#include "ImageBuffer.h"
-#include "Point.h"
-#include "Screen.h"
+#include "alignment.hpp"
+#include "../Color.h"
+#include "DisplayText.h"
+#include "../ImageBuffer.h"
+#include "../Point.h"
+#include "../Screen.h"
+#include "truncate.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -90,6 +93,31 @@ void Font::Load(const string &imagePath)
 	LoadTexture(image);
 	CalculateAdvances(image);
 	SetUpShader(image.Width() / GLYPHS, image.Height());
+	widthEllipses = WidthRawString("...");
+}
+
+
+
+void Font::Draw(const DisplayText &text, const Point &point, const Color &color) const
+{
+	DrawAliased(text, round(point.X()), round(point.Y()), color);
+}
+
+
+
+void Font::DrawAliased(const DisplayText &text, double x, double y, const Color &color) const
+{
+	int width = -1;
+	const string truncText = TruncateText(text, width);
+	const auto &layout = text.GetLayout();
+	if(width >= 0)
+	{
+		if(layout.align == Alignment::CENTER)
+			x += (layout.width - width) / 2;
+		else if(layout.align == Alignment::RIGHT)
+			x += layout.width - width;
+	}
+	DrawAliased(truncText, x, y, color);
 }
 
 
@@ -174,170 +202,42 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 int Font::Width(const string &str, char after) const
 {
-	return Width(str.c_str(), after);
+	return WidthRawString(str.c_str(), after);
 }
 
 
 
-int Font::Width(const char *str, char after) const
+int Font::FormattedWidth(const DisplayText &text, char after) const
 {
-	int width = 0;
-	int previous = 0;
-	bool isAfterSpace = true;
-	
-	for( ; *str; ++str)
-	{
-		if(*str == '_')
-			continue;
-		
-		int glyph = Glyph(*str, isAfterSpace);
-		if(*str != '"' && *str != '\'')
-			isAfterSpace = !glyph;
-		if(!glyph)
-			width += space;
-		else
-		{
-			width += advance[previous * GLYPHS + glyph] + KERN;
-			previous = glyph;
-		}
-	}
-	width += advance[previous * GLYPHS + max(0, min(GLYPHS - 1, after - 32))];
-	
-	return width;
+	int width = -1;
+	const string truncText = TruncateText(text, width);
+	return width < 0 ? WidthRawString(truncText.c_str(), after) : width;
 }
 
 
 
-string Font::Truncate(const string &str, int width) const
-{
-	int prevChars = str.size();
-	int prevWidth = Width(str);
-	if(prevWidth <= width)
-		return str;
-	
-	width -= Width("...");
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-		
-		int nextWidth = Width(str.substr(0, nextChars), '.');
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
-			return str.substr(0, min(prevChars, nextChars)) + "...";
-		
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	return str;
-}
-
-
-
-string Font::TruncateFront(const string &str, int width) const
-{
-	int prevChars = str.size();
-	int prevWidth = Width(str);
-	if(prevWidth <= width)
-		return str;
-	
-	width -= Width("...");
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-		
-		int nextWidth = Width(str.substr(str.size() - nextChars));
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
-			return "..." + str.substr(str.size() - min(prevChars, nextChars));
-		
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	return str;
-}
-
-
-
-string Font::TruncateMiddle(const string &str, int width) const
-{
-	int prevChars = str.size();
-	int prevWidth = Width(str);
-	if(prevWidth <= width)
-		return str;
-	
-	width -= Width("...");
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct), limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-		
-		int leftChars = nextChars / 2;
-		int rightChars = nextChars - leftChars;
-		int nextWidth = Width(str.substr(0, leftChars) + str.substr(str.size() - rightChars));
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
-		{
-			leftChars = min(prevChars, nextChars) / 2;
-			rightChars = min(prevChars, nextChars) - leftChars;
-			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
-		}
-		
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	return str;
-}
-
-
-
-int Font::Height() const
+int Font::Height() const noexcept
 {
 	return height;
 }
 
 
 
-int Font::Space() const
+int Font::Space() const noexcept
 {
 	return space;
 }
 
 
 
-void Font::ShowUnderlines(bool show)
+void Font::ShowUnderlines(bool show) noexcept
 {
 	showUnderlines = show;
 }
 
 
 
-int Font::Glyph(char c, bool isAfterSpace)
+int Font::Glyph(char c, bool isAfterSpace) noexcept
 {
 	// Curly quotes.
 	if(c == '\'' && isAfterSpace)
@@ -474,4 +374,213 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	glyphI = shader.Uniform("glyph");
 	aspectI = shader.Uniform("aspect");
 	positionI = shader.Uniform("position");
+}
+
+
+
+int Font::WidthRawString(const char *str, char after) const noexcept
+{
+	int width = 0;
+	int previous = 0;
+	bool isAfterSpace = true;
+	
+	for( ; *str; ++str)
+	{
+		if(*str == '_')
+			continue;
+		
+		int glyph = Glyph(*str, isAfterSpace);
+		if(*str != '"' && *str != '\'')
+			isAfterSpace = !glyph;
+		if(!glyph)
+			width += space;
+		else
+		{
+			width += advance[previous * GLYPHS + glyph] + KERN;
+			previous = glyph;
+		}
+	}
+	width += advance[previous * GLYPHS + max(0, min(GLYPHS - 1, after - 32))];
+	
+	return width;
+}
+
+
+
+// Param width will be set to the width of the return value, unless the layout width is negative.
+string Font::TruncateText(const DisplayText &text, int &width) const
+{
+	width = -1;
+	const auto &layout = text.GetLayout();
+	const string &str = text.GetText();
+	if(layout.width < 0 || (layout.align == Alignment::LEFT && layout.truncate == Truncate::NONE))
+		return str;
+	width = layout.width;
+	switch(layout.truncate)
+	{
+		case Truncate::NONE:
+			width = WidthRawString(str.c_str());
+			return str;
+		case Truncate::FRONT:
+			return TruncateFront(str, width);
+		case Truncate::MIDDLE:
+			return TruncateMiddle(str, width);
+		case Truncate::BACK:
+		default:
+			return TruncateBack(str, width);
+	}
+}
+
+
+
+string Font::TruncateBack(const string &str, int &width) const
+{
+	int firstWidth = WidthRawString(str.c_str());
+	if(firstWidth <= width)
+	{
+		width = firstWidth;
+		return str;
+	}
+	
+	int prevChars = str.size();
+	int prevWidth = firstWidth;
+	
+	width -= widthEllipses;
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct) limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int nextWidth = WidthRawString(str.substr(0, nextChars).c_str(), '.');
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		{
+			if(prevWorks)
+			{
+				width = prevWidth + widthEllipses;
+				return str.substr(0, prevChars) + "...";
+			}
+			else
+			{
+				width = nextWidth + widthEllipses;
+				return str.substr(0, nextChars) + "...";
+			}
+		}
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	width = firstWidth;
+	return str;
+}
+
+
+
+string Font::TruncateFront(const string &str, int &width) const
+{
+	int firstWidth = WidthRawString(str.c_str());
+	if(firstWidth <= width)
+	{
+		width = firstWidth;
+		return str;
+	}
+	
+	int prevChars = str.size();
+	int prevWidth = firstWidth;
+	
+	width -= widthEllipses;
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct) limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int nextWidth = WidthRawString(str.substr(str.size() - nextChars).c_str());
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		{
+			if(prevWorks)
+			{
+				width = prevWidth + widthEllipses;
+				return "..." + str.substr(str.size() - prevChars);
+			}
+			else
+			{
+				width = nextWidth + widthEllipses;
+				return "..." + str.substr(str.size() - nextChars);
+			}
+		}
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	width = firstWidth;
+	return str;
+}
+
+
+
+string Font::TruncateMiddle(const string &str, int &width) const
+{
+	int firstWidth = WidthRawString(str.c_str());
+	if(firstWidth <= width)
+	{
+		width = firstWidth;
+		return str;
+	}
+	
+	int prevChars = str.size();
+	int prevWidth = firstWidth;
+	
+	width -= widthEllipses;
+	// As a safety against infinite loops (even though they won't be possible if
+	// this implementation is correct), limit the number of loops to the number
+	// of characters in the string.
+	for(size_t i = 0; i < str.length(); ++i)
+	{
+		// Loop until the previous width we tried was too long and this one is
+		// too short, or vice versa. Each time, the next string length we try is
+		// interpolated from the previous width.
+		int nextChars = (prevChars * width) / prevWidth;
+		bool isSame = (nextChars == prevChars);
+		bool prevWorks = (prevWidth <= width);
+		nextChars += (prevWorks ? isSame : -isSame);
+		
+		int leftChars = nextChars / 2;
+		int rightChars = nextChars - leftChars;
+		int nextWidth = WidthRawString((str.substr(0, leftChars) + str.substr(str.size() - rightChars)).c_str(), '.');
+		bool nextWorks = (nextWidth <= width);
+		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		{
+			if(prevWorks)
+			{
+				leftChars = prevChars / 2;
+				rightChars = prevChars - leftChars;
+				width = prevWidth + widthEllipses;
+			}
+			else
+				width = nextWidth + widthEllipses;
+			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
+		}
+		
+		prevChars = nextChars;
+		prevWidth = nextWidth;
+	}
+	width = firstWidth;
+	return str;
 }

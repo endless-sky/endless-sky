@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 #include "ImageBuffer.h"
-#include "Preferences.h"
 #include "Screen.h"
 
 #include "gl_header.h"
@@ -28,11 +27,12 @@ using namespace std;
 
 namespace {
 	SDL_Window *mainWindow = nullptr;
-	SDL_GLContext context;
+	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
 	bool hasSwizzle = false;
-		
+	bool supportsAdaptiveVSync = false;
+	
 	// Logs SDL errors and returns true if found
 	bool checkSDLerror()
 	{
@@ -45,6 +45,23 @@ namespace {
 		}
 		
 		return false;
+	}
+	
+	bool HasOpenGLExtension(const char *name) {
+#ifndef __APPLE__
+		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
+		return strstr(extensions, name);
+#else
+		bool value = false;
+		GLint extensionCount = 0;
+		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
+		for(GLint i = 0; i < extensionCount && !value; ++i)
+		{
+			auto extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
+			value = (extension && strstr(extension, name));
+		}
+		return value;
+#endif
 	}
 }
 
@@ -164,37 +181,25 @@ bool GameWindow::Init()
 	glDisable(GL_DEPTH_TEST);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	
-	// Enable standard VSync. (Attempting to set VSync to an unsupported value, such
-	// as -1 for "Adaptive VSync", can crash older drivers.)
-	// TODO: Export control of VSync setting to Preferences for user-controlled VSync.
-	if(SDL_GL_SetSwapInterval(1) == -1)
-		checkSDLerror();
+	// Check for support of various graphical features.
+	hasSwizzle = HasOpenGLExtension("_texture_swizzle");
+	supportsAdaptiveVSync = HasOpenGLExtension("_swap_control_tear");
+	
+	// Enable the user's preferred VSync state, otherwise update to an available
+	// value (e.g. if an external program is forcing a particular VSync state).
+	if(!SetVSync(Preferences::VSyncState()))
+		Preferences::ToggleVSync();
 	
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
-	
-	string swizzleName = "_texture_swizzle";
 	
 #ifndef __APPLE__
 	// On OS X, setting the window icon will cause that same icon to be used
 	// in the dock and the application switcher. That's not something we
 	// want, because the ".icns" icon that is used automatically is prettier.
 	SetIcon();
-	
-	const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-	hasSwizzle = strstr(extensions, swizzleName.c_str());
-#else
-	bool swizzled = false;
-	GLint extensionCount;
-	glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
-	for(GLint i = 0; i < extensionCount && !swizzled; ++i)
-	{
-		const char *extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-		swizzled = (extension && strstr(extension, swizzleName.c_str()));
-	}
-	hasSwizzle = swizzled;
 #endif
-
+	
 	return true;
 }
 
@@ -285,6 +290,45 @@ void GameWindow::AdjustViewport()
 	drawWidth = (drawWidth * roundWidth) / windowWidth;
 	drawHeight = (drawHeight * roundHeight) / windowHeight;
 	glViewport(0, 0, drawWidth, drawHeight);
+}
+
+
+
+// Attempts to set the requested SDL Window VSync to the given state. Returns false
+// if the operation could not be completed successfully.
+bool GameWindow::SetVSync(Preferences::VSync state)
+{
+	if(!context)
+		return false;
+	
+	const int originalState = SDL_GL_GetSwapInterval();
+	int interval = 1;
+	switch(state)
+	{
+		case Preferences::VSync::adaptive:
+			interval = -1;
+			break;
+		case Preferences::VSync::off:
+			interval = 0;
+			break;
+		case Preferences::VSync::on:
+			interval = 1;
+			break;
+		default:
+			return false;
+	}
+	// Do not attempt to enable adaptive VSync when unsupported,
+	// as this can crash older video drivers.
+	if(interval == -1 && !supportsAdaptiveVSync)
+		return false;
+	
+	if(SDL_GL_SetSwapInterval(interval) == -1)
+	{
+		checkSDLerror();
+		SDL_GL_SetSwapInterval(originalState);
+		return false;
+	}
+	return SDL_GL_GetSwapInterval() == interval;
 }
 
 

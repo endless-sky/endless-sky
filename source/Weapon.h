@@ -104,15 +104,27 @@ public:
 	// Blast radius weapons will scale damage and hit force based on distance,
 	// unless the "no damage scaling" keyphrase is used in the weapon definition.
 	bool IsDamageScaled() const;
+	// Gravitational weapons deal the same amount of hit force to a ship regardless
+	// of its mass.
+	bool IsGravitational() const;
 	
 	// These values include all submunitions:
+	// Normal damage types:
 	double ShieldDamage() const;
 	double HullDamage() const;
 	double FuelDamage() const;
 	double HeatDamage() const;
+	double EnergyDamage() const;
+	// Status effects:
 	double IonDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
+	// Relative damage types:
+	double RelativeShieldDamage() const;
+	double RelativeHullDamage() const;
+	double RelativeFuelDamage() const;
+	double RelativeHeatDamage() const;
+	double RelativeEnergyDamage() const;
 	// Check if this weapon does damage. If not, attacking a ship with this
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
@@ -163,6 +175,7 @@ private:
 	bool isSafe = false;
 	bool isPhasing = false;
 	bool isDamageScaled = true;
+	bool isGravitational = false;
 	// Guns and missiles are by default aimed a converged point at the
 	// maximum weapons range in front of the ship. When either the installed
 	// weapon or the gun-port (or both) have the isParallel attribute set
@@ -205,16 +218,25 @@ private:
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	
-	static const int DAMAGE_TYPES = 8;
-	static const int SHIELD_DAMAGE = 0;
-	static const int HULL_DAMAGE = 1;
-	static const int FUEL_DAMAGE = 2;
-	static const int HEAT_DAMAGE = 3;
-	static const int ION_DAMAGE = 4;
-	static const int DISRUPTION_DAMAGE = 5;
-	static const int SLOWING_DAMAGE = 6;
-	static const int HIT_FORCE = 7;
-	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0., 0.};
+	static const int DAMAGE_TYPES = 14;
+	static const int HIT_FORCE = 0;
+	// Normal damage types:
+	static const int SHIELD_DAMAGE = 1;
+	static const int HULL_DAMAGE = 2;
+	static const int FUEL_DAMAGE = 3;
+	static const int HEAT_DAMAGE = 4;
+	static const int ENERGY_DAMAGE = 5;
+	// Status effects:
+	static const int ION_DAMAGE = 6;
+	static const int DISRUPTION_DAMAGE = 7;
+	static const int SLOWING_DAMAGE = 8;
+	// Relative damage types:
+	static const int RELATIVE_SHIELD_DAMAGE = 9;
+	static const int RELATIVE_HULL_DAMAGE = 10;
+	static const int RELATIVE_FUEL_DAMAGE = 11;
+	static const int RELATIVE_HEAT_DAMAGE = 12;
+	static const int RELATIVE_ENERGY_DAMAGE = 13;
+	mutable double damage[DAMAGE_TYPES] = {};
 	
 	double piercing = 0.;
 	
@@ -276,14 +298,23 @@ inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
 inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
 inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
+inline bool Weapon::IsGravitational() const { return isGravitational; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
 inline double Weapon::FuelDamage() const { return TotalDamage(FUEL_DAMAGE); }
 inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
+inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY_DAMAGE); }
+
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
+
+inline double Weapon::RelativeShieldDamage() const { return TotalDamage(RELATIVE_SHIELD_DAMAGE); }
+inline double Weapon::RelativeHullDamage() const { return TotalDamage(RELATIVE_HULL_DAMAGE); }
+inline double Weapon::RelativeFuelDamage() const { return TotalDamage(RELATIVE_FUEL_DAMAGE); }
+inline double Weapon::RelativeHeatDamage() const { return TotalDamage(RELATIVE_HEAT_DAMAGE); }
+inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE_ENERGY_DAMAGE); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 

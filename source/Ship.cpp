@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 #include "Files.h"
 #include "Flotsam.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Hazard.h"
@@ -1462,16 +1462,22 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// hyperpace aimed at it. Otherwise, target the first planet that
 			// has a spaceport.
 			Point target;
-			if(targetPlanet)
-				target = targetPlanet->Position();
-			else
+			// Except when you arrive at an extra distance from the target,
+			// in that case always use the system-center as target.
+			double extraArrivalDistance = currentSystem->ExtraArrivalDistance();
+			if(extraArrivalDistance == 0)
 			{
-				for(const StellarObject &object : currentSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-					{
-						target = object.Position();
-						break;
-					}
+				if(targetPlanet)
+					target = targetPlanet->Position();
+				else
+				{
+					for(const StellarObject &object : currentSystem->Objects())
+						if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+						{
+							target = object.Position();
+							break;
+						}
+				}
 			}
 			
 			if(isUsingJumpDrive)
@@ -1483,6 +1489,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Have all ships exit hyperspace at the same distance so that
 			// your escorts always stay with you.
 			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
+			distance += extraArrivalDistance;
 			position = (target - distance * angle.Unit());
 			position += hyperspaceOffset;
 			// Make sure your velocity is in exactly the direction you are
@@ -1953,6 +1960,7 @@ void Ship::DoGeneration()
 		outfitScan = max(0., outfitScan - 1.);
 	
 	// Update ship supply levels.
+	energy -= ionization;
 	if(isDisabled)
 		PauseAnimation();
 	else
@@ -2005,7 +2013,7 @@ void Ship::DoGeneration()
 	
 	// Don't allow any levels to drop below zero.
 	fuel = max(0., fuel);
-	energy = max(0., energy - ionization);
+	energy = max(0., energy);
 	heat = max(0., heat);
 }
 
@@ -3011,8 +3019,17 @@ void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, doubl
 
 // Apply a force to this ship, accelerating it. This might be from a weapon
 // impact, or from firing a weapon, for example.
-void Ship::ApplyForce(const Point &force)
+void Ship::ApplyForce(const Point &force, bool gravitational)
 {
+	if(gravitational)
+	{
+		// Treat all ships as if they have a mass of 400. This prevents
+		// gravitational hit force values from needing to be extremely
+		// small in order to have a reasonable effect.
+		acceleration += force / 400.;
+		return;
+	}
+	
 	double currentMass = Mass();
 	if(!currentMass)
 		return;
@@ -3640,14 +3657,20 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	if(weapon.HasDamageDropoff())
 		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 	
-	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
-	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
-	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
-	double fuelDamage = weapon.FuelDamage() * damageScaling / (1. + attributes.Get("fuel protection"));
-	double heatDamage = weapon.HeatDamage() * damageScaling / (1. + attributes.Get("heat protection"));
+	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
+		* damageScaling / (1. + attributes.Get("shield protection"));
+	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
+		* damageScaling / (1. + attributes.Get("hull protection"));
+	double energyDamage = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
+		* damageScaling / (1. + attributes.Get("energy protection"));
+	double fuelDamage = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
+		* damageScaling / (1. + attributes.Get("fuel protection"));
+	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
+		* damageScaling / (1. + attributes.Get("heat protection"));
 	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
 	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
+	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -3669,8 +3692,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	// For the following damage types, the total effect depends on how much is
 	// "leaking" through the shields.
 	double leakage = (1. - .5 * shieldFraction);
-	// Code in Ship::Move() will handle making sure the fuel amount stays in the
-	// allowable range.
+	// Code in Ship::Move() will handle making sure the fuel and energy amounts
+	// stays in the allowable ranges.
+	energy -= energyDamage * leakage;
 	fuel -= fuelDamage * leakage;
 	heat += heatDamage * leakage;
 	ionization += ionDamage * leakage;
@@ -3682,7 +3706,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		Point d = position - damagePosition;
 		double distance = d.Length();
 		if(distance)
-			ApplyForce((hitForce / distance) * d);
+			ApplyForce((hitForce / distance) * d, weapon.IsGravitational());
 	}
 	
 	// Recalculate the disabled ship check.
@@ -3695,6 +3719,15 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	}
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
+	
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
+	if(heat > MaximumHeat())
+	{
+		isOverheated = true;
+		isDisabled = true;
+	}
+	else if(heat < .9 * MaximumHeat())
+		isOverheated = false;
 	
 	return type;
 }

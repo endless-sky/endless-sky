@@ -309,6 +309,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "object")
 			LoadObject(child, planets);
+		else if(key == "arrival")
+			extraArrivalDistance = child.Value(valueIndex);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -477,6 +479,14 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 	static const set<const System *> EMPTY;
 	const auto it = neighbors.find(jumpRange ? jumpRange : neighborDistance);
 	return it == neighbors.end() ? EMPTY : it->second;
+}
+
+
+
+// Additional travel distance to target for ships entering through hyperspace.
+double System::ExtraArrivalDistance() const
+{
+	return extraArrivalDistance;
 }
 
 

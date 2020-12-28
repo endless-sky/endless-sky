@@ -48,6 +48,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isDamageScaled = false;
 		else if(key == "parallel")
 			isParallel = true;
+		else if(key == "gravitational")
+			isGravitational = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -164,12 +166,24 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
 				damage[HEAT_DAMAGE] = value;
+			else if(key == "energy damage")
+				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
+			else if(key == "relative shield damage")
+				damage[RELATIVE_SHIELD_DAMAGE] = value;
+			else if(key == "relative hull damage")
+				damage[RELATIVE_HULL_DAMAGE] = value;
+			else if(key == "relative fuel damage")
+				damage[RELATIVE_FUEL_DAMAGE] = value;
+			else if(key == "relative heat damage")
+				damage[RELATIVE_HEAT_DAMAGE] = value;
+			else if(key == "relative energy damage")
+				damage[RELATIVE_ENERGY_DAMAGE] = value;
 			else if(key == "hit force")
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
