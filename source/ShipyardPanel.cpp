@@ -241,7 +241,7 @@ bool ShipyardPanel::CanBuy() const
 
 
 
-void ShipyardPanel::Buy(bool fromCargo)
+void ShipyardPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -302,14 +302,14 @@ void ShipyardPanel::FailBuy() const
 
 
 
-bool ShipyardPanel::CanSell(bool toCargo) const
+bool ShipyardPanel::CanSell(bool toStorage) const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell(bool toCargo)
+void ShipyardPanel::Sell(bool toStorage)
 {
 	static const int MAX_LIST = 20;
 	

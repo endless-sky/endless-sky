@@ -150,6 +150,8 @@
 		<Unit filename="source/HailPanel.h" />
 		<Unit filename="source/Hardpoint.cpp" />
 		<Unit filename="source/Hardpoint.h" />
+		<Unit filename="source/Hazard.cpp" />
+		<Unit filename="source/Hazard.h" />
 		<Unit filename="source/HiringPanel.cpp" />
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />
@@ -298,6 +300,8 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
+		<Unit filename="source/Weather.cpp" />
+		<Unit filename="source/Weather.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
 		<Unit filename="source/gl_header.h" />

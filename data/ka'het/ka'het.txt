@@ -627,7 +627,7 @@ fleet "Ka'het"
 		"Telis'het (EMP, Disable-able)"
 
 fleet "Ka'het Aggressive"
-	government " Ka'het "
+	government "Ka'het (Infighting)"
 	names "ka'het"
 	cargo 1
 	personality
