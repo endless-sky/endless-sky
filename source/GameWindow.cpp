@@ -385,29 +385,32 @@ bool GameWindow::HasSwizzle()
 
 
 
-void GameWindow::ExitWithError(const string& message)
+void GameWindow::ExitWithError(const string& message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
 	Files::LogError(message);		
 	checkSDLerror();
 	
 	// Show the error message in a message box.
-	SDL_MessageBoxData box;
-	box.flags = SDL_MESSAGEBOX_ERROR;
-	box.window = nullptr;
-	box.title = "Endless Sky: Error";
-	box.message = message.c_str();
-	box.colorScheme = nullptr;
-	
-	SDL_MessageBoxButtonData button;
-	button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
-	button.buttonid = 0;
-	button.text = "OK";
-	box.numbuttons = 1;
-	box.buttons = &button;
-	
-	int result = 0;
-	SDL_ShowMessageBox(&box, &result);
+	if(doPopUp)
+	{
+		SDL_MessageBoxData box;
+		box.flags = SDL_MESSAGEBOX_ERROR;
+		box.window = nullptr;
+		box.title = "Endless Sky: Error";
+		box.message = message.c_str();
+		box.colorScheme = nullptr;
+		
+		SDL_MessageBoxButtonData button;
+		button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
+		button.buttonid = 0;
+		button.text = "OK";
+		box.numbuttons = 1;
+		box.buttons = &button;
+		
+		int result = 0;
+		SDL_ShowMessageBox(&box, &result);
+	}
 	
 	GameWindow::Quit();	
 }
