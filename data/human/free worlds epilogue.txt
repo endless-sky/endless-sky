@@ -196,3 +196,105 @@ mission "FW Epilogue: Danforth"
 			label end
 			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`
 				decline
+
+
+
+mission "FW Epilogue: Edward"
+	minor
+	landing
+	name `Weapon Testing`
+	description `A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not board or destroy it!) and then land to give Barmy Edward feedback on its performance.`
+	source "Rust"
+	to offer
+		has "free worlds plot completed"
+	on offer
+		conversation "edward epilogue"
+	npc save disable
+		government "Test Dummy"
+		personality disables heroic staying
+		ship "Leviathan (Plasma Repeater)" "Hunk"
+	on decline
+		event "plasma repeater advanced" 95
+		event "plasma repeater basics" 155
+	on complete
+		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the plasma cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
+		event "plasma repeater advanced" 45
+		event "plasma repeater basics" 105
+		conversation "edward epilogue"
+
+
+
+conversation "edward epilogue"
+	branch completed
+		has "FW Epilogue: Edward: done"
+	`As you complete your landing procedure, you recall having come here to assist in some testing for new weapons, back in the thick of the war. Do you want to check in on Barmy Edwards, the lead engineer?`
+	choice
+		`	(Yes.)`
+		`	(No.)`
+			defer
+	scene "scene/loc0"
+	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified plasma cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?`
+	choice
+		`	"I'm not sure about this. What would you have me do?"`
+		`	"Being a target for experimental weapons? Just tell me what you need!"`
+	`	"Not much out of the ordinary from our tests in the past," he replies. "You'll find a ship of ours in orbit that goes by <npc>. It's been fitted with a few of these new weapons. Your job will be to fight and disable it, tell us what you think of its combat capabilities, and transfer your ship's logs so we can analyze the fight."`
+	choice
+		`	"Alright, I suppose for old times' sake I can help out."`
+		`	"Sorry, I just wanted to check in and see how you were doing."`
+			goto catchup
+	`	He turns to you and smirks. "We've recommissioned the ship from retirement, so it's not top of the line, but try to keep it in one piece for future use. Understand?"`
+	choice
+		`	"Of course! I'll take care of it."`
+	`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
+		accept
+	label catchup
+	`	"I see. Well, I'm sure we can find someone else up to the task. Regardless, Captain <last>, I assure you this new weapon vastly improves on the outdated plasma cannon. This'll put Kraz Cybernetics in the big leagues!"`
+	`	"How about we get out of here, <first>? My work is done for today, and I know a homely little bar that's only a short walk."`
+	choice
+		`	"Of course. It's not like there's a war to worry about anymore."`
+	`	"Ha! Well, of course, the war kept all of us plenty busy." He leads you out of the facility while telling an anecdote that must be humor for an engineer.`
+		goto combined
+	
+	label completed
+	scene "scene/plasma scene"
+	`You head to the hangar to meet up with Barmy Edward, and find him tinkering with the modified plasma cannon you saw when you first entered. "It runs much hotter, you see," he explains. "But the results are impressive."`
+	choice
+		`	"Was that a plasma cannon? Or something else?"`
+			goto what
+		`	"It's not winning any damage records, that's for sure."`
+			goto damage
+	label what
+	`	"Heh, it's been a while since we've seen a good upgrade to the cannon," he says. "That was the plasma repeater. Of course, it wasn't easy to make a better iteration of something that countless fools have failed to improve on."`
+	`	"When will it be available for sale?" you ask.`
+		goto available
+	label damage
+	`	"Well, you are one of the revered captains that drove off the Pug," he says. "The idea is that by shrinking the bolts of superheated plasma, we can offload many more bursts onto a target. The effects on said target result in faster buildup of heat and, of course, damage. Big ships will usually ward off these effects much longer than a smaller ship would, but that's always been a notable issue with the original design. Besides, the repeater is a hell of a lot more impressive."`
+	`	"That's a unique direction," you reply. "Are they available for sale yet?"`
+	label available
+	`	"Thanks to you, it should be in stock in a few months," he answers. "I'm sure you're past the point where our weapons are useful, but then again, not everybody has a jump drive." He grins. "How about we celebrate with some drinks? I know a quaint little bar not far from here."`
+	choice
+		`	"I have time; let's celebrate!"`
+		`	"I'll pass on that, but it was good checking in on you."`
+			decline
+	
+	label combined
+	`	You follow Barmy into the bar. Even with the smear of grease still on his face, he fits in with the crowd. You both stand at the bar and order your drinks. Barmy's order catches you off guard, and he notices your expression. "What? A man who works with his hands can't enjoy a drink with some age?" You chuckle, and you both tell stories of your early lives. He tells how he had some exciting adventures in his youth among the stars, but found his passion tinkering and finding ways to improve on outdated equipment.`
+	`	He's shocked to discover your origins on New Boston. "You're really from that backwater planet? I'm surprised you were able to escape the racket they have going on there. I was lucky to get out myself!"`
+	choice
+		`	"Wait, you're from New Boston too?"`
+		`	"It wasn't perfect there, but at least it wasn't quite so noisy down on the ground."`
+			goto end
+		`	"Nothing like it is now. I've got the whole universe ahead of me!"`
+			goto end
+	`	"You wouldn't think to have met someone from your very own birth planet, eh?" He chuckles. "Small galaxy, I suppose."`
+	label end
+	`	You both have a great time hearing of each other's early lives, but you eventually wrap up your visit after a long night of bouncing stories back and forth. You say your goodbyes and head back to your ship.`
+		decline
+
+event "plasma repeater advanced"
+	outfitter "Kraz Advanced"
+		"Plasma Repeater"
+
+event "plasma repeater basics"
+	outfitter "Kraz Basics"
+		"Plasma Repeater"

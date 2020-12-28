@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
@@ -106,6 +107,27 @@ int System::FleetProbability::Period() const
 
 
 
+System::HazardProbability::HazardProbability(const Hazard *hazard, int period)
+	: hazard(hazard), period(period > 0 ? period : 200)
+{
+}
+
+
+
+const Hazard *System::HazardProbability::Get() const
+{
+	return hazard;
+}
+
+
+
+int System::HazardProbability::Period() const
+{
+	return period;
+}
+
+
+
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -115,7 +137,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object", "hazard"};
 	
 	for(const DataNode &child : node)
 	{
@@ -162,6 +184,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				trade.clear();
 			else if(key == "fleet")
 				fleets.clear();
+			else if(key == "hazard")
+				hazards.clear();
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -246,6 +270,21 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
+		else if(key == "hazard")
+		{
+			const Hazard *hazard = GameData::Hazards().Get(value);
+			if(remove)
+			{
+				for(auto it = hazards.begin(); it != hazards.end(); ++it)
+					if(it->Get() == hazard)
+					{
+						hazards.erase(it);
+						break;
+					}
+			}
+			else
+				hazards.emplace_back(hazard, child.Value(valueIndex + 1));
+		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
@@ -270,6 +309,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "object")
 			LoadObject(child, planets);
+		else if(key == "arrival")
+			extraArrivalDistance = child.Value(valueIndex);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -438,6 +479,14 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 	static const set<const System *> EMPTY;
 	const auto it = neighbors.find(jumpRange ? jumpRange : neighborDistance);
 	return it == neighbors.end() ? EMPTY : it->second;
+}
+
+
+
+// Additional travel distance to target for ships entering through hyperspace.
+double System::ExtraArrivalDistance() const
+{
+	return extraArrivalDistance;
 }
 
 
@@ -670,6 +719,14 @@ double System::Exports(const string &commodity) const
 const vector<System::FleetProbability> &System::Fleets() const
 {
 	return fleets;
+}
+
+
+
+// Get the probabilities of various hazards in this system.
+const vector<System::HazardProbability> &System::Hazards() const
+{
+	return hazards;
 }
 
 

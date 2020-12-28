@@ -32,6 +32,7 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
+		{"cooling energy", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
@@ -51,6 +52,7 @@ namespace {
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
+		{"energy protection", -0.99},
 		{"force protection", -0.99},
 		{"fuel protection", -0.99},
 		{"heat protection", -0.99},
