@@ -471,6 +471,9 @@ outfit "Anvil-Class Engine"
 	"turn" 336.0
 	"turning energy" 1.05
 	"turning heat" 1.1
+	"reverse thrust" 8.1
+	"reverse thrusting energy" 1.23
+	"reverse thrusting heat" 1.17
 	"slowing protection" 1
 	"slowing resistance" 0.5
 	"flare sprite" "effect/remnant flare/small"
@@ -490,8 +493,11 @@ outfit "Crucible-Class Thruster"
 	"thrust" 18.0
 	"thrusting energy" 2.65
 	"thrusting heat" 2.5
+	"reverse thrust" 10.8
+	"reverse thrusting energy" 1.59
+	"reverse thrusting heat" 1.5
 	"slowing protection" 1
-	"slowing resistance" 0.5
+	"slowing resistance" 0.05
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
@@ -509,8 +515,11 @@ outfit "Forge-Class Thruster"
 	"thrust" 37.0
 	"thrusting energy" 5.15
 	"thrusting heat" 5.0
+	"reverse thrust" 27.62
+	"reverse thrusting energy" 3.09
+	"reverse thrusting heat" 3.0
 	"slowing protection" 2
-	"slowing resistance" 1
+	"slowing resistance" .1
 	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"flare sound" "plasma small"
@@ -528,8 +537,11 @@ outfit "Smelter-Class Thruster"
 	"thrust" 76.8
 	"thrusting energy" 10.10
 	"thrusting heat" 10.2
+	"reverse thrust" 46.08
+	"reverse thrusting energy" 6.06
+	"reverse thrusting heat" 1.5
 	"slowing protection" 3
-	"slowing resistance" 1.5
+	"slowing resistance" 0.2
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"flare sound" "plasma medium"
@@ -548,7 +560,7 @@ outfit "Crucible-Class Steering"
 	"turning energy" 1.32
 	"turning heat" 1.4
 	"slowing protection" 0.5
-	"slowing resistance" 0.25
+	"slowing resistance" 0.025
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
@@ -567,7 +579,7 @@ outfit "Forge-Class Steering"
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing protection" 1
-	"slowing resistance" 0.5
+	"slowing resistance" 0.05
 	"steering flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"steering flare sound" "plasma small"
@@ -586,7 +598,7 @@ outfit "Smelter-Class Steering"
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing protection" 1.5
-	"slowing resistance" 0.75
+	"slowing resistance" 0.1
 	"steering flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"steering flare sound" "plasma medium"
