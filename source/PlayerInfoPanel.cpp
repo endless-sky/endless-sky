@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "text/alignment.hpp"
 #include "Command.h"
-#include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -568,10 +567,10 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	table.AddColumn(0, {217, Truncate::MIDDLE});
 	table.AddColumn(220, {127, Truncate::BACK});
 	table.AddColumn(350, {137, Truncate::BACK});
-	table.AddColumn(550, {57, Align::RIGHT, Truncate::BACK});
-	table.AddColumn(610, {57, Align::RIGHT, Truncate::BACK});
-	table.AddColumn(670, {57, Align::RIGHT, Truncate::BACK});
-	table.AddColumn(730, {57, Align::RIGHT, Truncate::BACK});
+	table.AddColumn(550, {57, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(610, {57, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(670, {57, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(730, {57, Alignment::RIGHT, Truncate::BACK});
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	

@@ -88,9 +88,9 @@ void ItemInfoDisplay::DrawTooltips() const
 		return;
 	
 	const Font &font = FontSet::Get(14);
-	int hoverHeight = font.Height(hoverText);
+	int hoverHeight = font.FormattedHeight(hoverText);
 	int hoverParagraphBreak = font.ParagraphBreak(commonLayout);
-	int hoverWidth = font.Width(hoverText);
+	int hoverWidth = font.FormattedWidth(hoverText);
 	Point textSize(hoverWidth, hoverHeight - hoverParagraphBreak);
 	Point boxSize = textSize + Point(20., 20.);
 	
@@ -153,7 +153,7 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 	
 	// Pad by 10 pixels on the top and bottom.
 	const Font &font = FontSet::Get(14);
-	descriptionHeight = font.Height(description) + 20;
+	descriptionHeight = font.FormattedHeight(description) + 20;
 }
 
 

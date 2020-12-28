@@ -251,7 +251,7 @@ void Font::UpdateFont() const
 	cache.Clear();
 	
 	// Tab Stop
-	space = ViewWidth(" ");
+	space = ViewWidth(DisplayText(" ", {}));
 	const int tabSize = 4 * space * PANGO_SCALE;
 	PangoTabArray *tb = pango_tab_array_new(TOTAL_TAB_STOPS, FALSE);
 	for(int i = 0; i < TOTAL_TAB_STOPS; ++i)

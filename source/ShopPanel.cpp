@@ -128,7 +128,7 @@ void ShopPanel::Draw()
 		const Color &textColor = *GameData::Colors().Get("medium");
 		const Color &backColor = *GameData::Colors().Get(isError ? "error back" : "warning back");
 		
-		Point size(WIDTH, font.Height(tooltipText) + 2 * PAD);
+		Point size(WIDTH, font.FormattedHeight(tooltipText) + 2 * PAD);
 		Point anchor = Point(warningPoint.X(), min<double>(warningPoint.Y() + size.Y(), Screen::Bottom()));
 		FillShader::Fill(anchor - .5 * size, size, backColor);
 		font.Draw(tooltipText, anchor - size + Point(PAD, PAD), textColor);

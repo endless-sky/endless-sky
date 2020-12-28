@@ -937,7 +937,7 @@ void Engine::Draw() const
 	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom());
 	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
 	{
-		messagePoint.Y() -= font.Height({it->message, messageLayout});
+		messagePoint.Y() -= font.FormattedHeight({it->message, messageLayout});
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;

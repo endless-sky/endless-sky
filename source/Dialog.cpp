@@ -173,7 +173,7 @@ void Dialog::Draw()
 		const auto displayInputText = DisplayText(validatedInput, layout);
 		font.Draw(displayInputText, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(displayInputText) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.FormattedWidth(displayInputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -291,7 +291,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	// 5 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
 	const Font &font = FontSet::Get(14);
-	height = 10 + (font.Height(dialogText) - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
+	height = 10 + (font.FormattedHeight(dialogText) - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;

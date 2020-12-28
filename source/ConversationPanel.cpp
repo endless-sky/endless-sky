@@ -152,7 +152,7 @@ void ConversationPanel::Draw()
 			// Fill in whichever entry box is active right now.
 			FillShader::Fill(center, fieldSize, selectionColor);
 			// Draw the text cursor.
-			center.X() += font.Width({choice ? lastName : firstName, layout}) - 67;
+			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
 		}
 		
@@ -413,7 +413,7 @@ ConversationPanel::Paragraph::Paragraph(const string &t, const Sprite *scene, bo
 	: scene(scene), text(t, {WIDTH, Alignment::JUSTIFIED}), isFirst(isFirst)
 {
 	const Font &font = FontSet::Get(14);
-	textHeight = font.Height(text);
+	textHeight = font.FormattedHeight(text);
 	textParagraphBreak = font.ParagraphBreak(text.GetLayout());
 }
 

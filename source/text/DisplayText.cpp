@@ -14,15 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-DisplayText::DisplayText(const char *text)
-	: text(text)
-{
-}
-
-
-
-DisplayText::DisplayText(const std::string &text)
-	: text(text)
+DisplayText::DisplayText(const char *text, Layout layout)
+	: layout(layout), text(text)
 {
 }
 

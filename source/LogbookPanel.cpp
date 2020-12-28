@@ -139,7 +139,7 @@ void LogbookPanel::Draw()
 			pos.Y() += LINE_HEIGHT;
 			
 			font.Draw({it->second, textLayout}, pos, medium);
-			pos.Y() += font.Height({it->second, textLayout}) + GAP;
+			pos.Y() += font.FormattedHeight({it->second, textLayout}) + GAP;
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
@@ -149,7 +149,7 @@ void LogbookPanel::Draw()
 			font.Draw(it.first, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
 			font.Draw({it.second, textLayout}, pos, medium);
-			pos.Y() += font.Height({it.second, textLayout}) + GAP;
+			pos.Y() += font.FormattedHeight({it.second, textLayout}) + GAP;
 		}
 	}
 	
