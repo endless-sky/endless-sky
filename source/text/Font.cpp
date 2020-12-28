@@ -200,7 +200,14 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 
 
-int Font::Width(const DisplayText &text, char after) const
+int Font::Width(const string &text, char after) const
+{
+	return WidthRawString(text.c_str(), after);
+}
+
+
+
+int Font::FormattedWidth(const DisplayText &text, char after) const
 {
 	int width = -1;
 	const string truncText = TruncateText(text, width);

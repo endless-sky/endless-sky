@@ -44,7 +44,10 @@ public:
 	void Draw(const std::string &str, const Point &point, const Color &color) const;
 	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 	
-	int Width(const DisplayText &text, char after = ' ') const;
+	// Determine the string's width, without considering formatting.
+	int Width(const std::string &text, char after = ' ') const;
+	// Get the width of the text while accounting for the desired layout and truncation strategy.
+	int FormattedWidth(const DisplayText &text, char after = ' ') const;
 	
 	int Height() const noexcept;
 	
