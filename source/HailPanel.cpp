@@ -30,7 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "text/truncate.hpp"
 #include "UI.h"
 #include "text/WrappedText.h"
 

@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
+#include "text/layout.hpp"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -281,7 +282,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 	
 	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 	
@@ -790,7 +791,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	// Draw the outfit name.
 	const string &name = outfit.Name();
 	const Font &font = FontSet::Get(14);
-	Point offset(-OUTFIT_SIZE / 2., -.5f * OUTFIT_SIZE + 10.f);
+	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
 }

@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Engine.h"
 
-#include "text/alignment.hpp"
 #include "Audio.h"
 #include "Effect.h"
 #include "Files.h"
@@ -53,7 +52,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "text/truncate.hpp"
 #include "Visual.h"
 #include "text/WrappedText.h"
 

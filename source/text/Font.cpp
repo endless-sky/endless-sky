@@ -200,9 +200,9 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 
 
-int Font::Width(const string &text, char after) const
+int Font::Width(const string &str, char after) const
 {
-	return WidthRawString(text.c_str(), after);
+	return WidthRawString(str.c_str(), after);
 }
 
 
@@ -563,7 +563,7 @@ string Font::TruncateMiddle(const string &str, int &width) const
 		
 		int leftChars = nextChars / 2;
 		int rightChars = nextChars - leftChars;
-		int nextWidth = WidthRawString((str.substr(0, leftChars) + str.substr(str.size() - rightChars)).c_str());
+		int nextWidth = WidthRawString((str.substr(0, leftChars) + str.substr(str.size() - rightChars)).c_str(), '.');
 		bool nextWorks = (nextWidth <= width);
 		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
 		{

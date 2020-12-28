@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "text/layout.hpp"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "text/Table.h"
