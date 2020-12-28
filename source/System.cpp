@@ -337,7 +337,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			// as that a hyper-jump-distance negative values would be beyond
 			// the target.
 			if(loadJumpDistance && child.Value(valueIndex) >= 0)
-				extraJumpArrivalDistance= child.Value(valueIndex);
+				extraJumpArrivalDistance = child.Value(valueIndex);
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
