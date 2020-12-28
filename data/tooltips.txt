@@ -626,6 +626,9 @@ tip "firing heat / shot:"
 tip "firing fuel / shot:"
 	`Fuel consumed per shot.`
 
+tip "firing hull / shot:"
+	`Each shot fired by this weapon causes this amount of hull to be lost.`
+
 tip "firing shields / shot:"
 	`Each shot fired by this weapon causes this amount of shield to be lost.`
 
