@@ -117,7 +117,20 @@ void Font::DrawAliased(const DisplayText &text, double x, double y, const Color 
 		else if(layout.align == Alignment::RIGHT)
 			x += layout.width - width;
 	}
-	
+	DrawAliased(truncText, x, y, color);
+}
+
+
+
+void Font::Draw(const string &str, const Point &point, const Color &color) const
+{
+	DrawAliased(str, round(point.X()), round(point.Y()), color);
+}
+
+
+
+void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
+{
 	glUseProgram(shader.Object());
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);
@@ -141,7 +154,7 @@ void Font::DrawAliased(const DisplayText &text, double x, double y, const Color 
 	bool underlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 	
-	for(char c : truncText)
+	for(char c : str)
 	{
 		if(c == '_')
 		{
