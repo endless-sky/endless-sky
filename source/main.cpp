@@ -188,7 +188,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	{
 		if(toggleTimeout)
 			--toggleTimeout;
-			
+		
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
