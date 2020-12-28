@@ -197,8 +197,6 @@ const string &Test::StatusText() const
 // Fail the test using the given message as reason.
 void Test::Fail(const string &testFailMessage) const
 {
-	Files::LogError(testFailMessage);
-
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
