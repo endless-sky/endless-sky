@@ -319,7 +319,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			{
 				loadHyperDistance = false;
 				loadJumpDistance = false;
-				for(int i = 2; i < child.Size(); i++)
+				for(int i = 2; i < child.Size(); ++i)
 				{
 					if(child.Token(i) == "link")
 						loadHyperDistance = true;

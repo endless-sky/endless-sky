@@ -221,7 +221,6 @@ private:
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a jumpdrive jump.
 	double extraJumpArrivalDistance = 0.;
-
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
