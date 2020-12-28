@@ -107,14 +107,28 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 
 
-int Font::Width(const DisplayText &text) const
+int Font::Width(const string &text) const
+{
+	return TextFromViewCeilX(ViewWidth({text, {}}));
+}
+
+
+
+int Font::Height() const
+{
+	return TextFromViewCeilY(viewFontHeight);
+}
+
+
+
+int Font::FormattedWidth(const DisplayText &text) const
 {
 	return TextFromViewCeilX(ViewWidth(text));
 }
 
 
 
-int Font::Height(const DisplayText &text) const
+int Font::FormattedHeight(const DisplayText &text) const
 {
 	if(text.GetText().empty())
 		return 0;
@@ -123,13 +137,6 @@ int Font::Height(const DisplayText &text) const
 	if(!renderedText.texture)
 		return 0;
 	return TextFromViewCeilY(renderedText.height);
-}
-
-
-
-int Font::Height() const
-{
-	return TextFromViewCeilY(viewFontHeight);
 }
 
 

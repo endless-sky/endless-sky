@@ -69,11 +69,12 @@ public:
 	void Draw(const std::string &str, const Point &point, const Color &color) const;
 	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 	
-	int Width(const DisplayText &text) const;
-	int Height(const DisplayText &text) const;
-	
-	// Get the height of the fonts.
+	// Determine the string's width and height, without considering formatting.
+	int Width(const std::string &text) const;
 	int Height() const;
+	// Get the width and height of the text while accounting for the desired layout and truncation strategy.
+	int FormattedWidth(const DisplayText &text) const;
+	int FormattedHeight(const DisplayText &text) const;
 	
 	// Get the line height and paragraph break.
 	int LineHeight(const Layout &layout = {}) const;
