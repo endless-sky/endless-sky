@@ -62,8 +62,12 @@ public:
 	// Set the font and laying out settings except the pixel size.
 	void SetDrawingSettings(const DrawingSettings &drawingSettings);
 	
+	// Draw a text string, subject to the given layout and truncation strategy.
 	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
 	void DrawAliased(const DisplayText &text, double x, double y, const Color &color) const;
+	// Draw the given text string, e.g. post-formatting (or without regard to formatting).
+	void Draw(const std::string &str, const Point &point, const Color &color) const;
+	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 	
 	int Width(const DisplayText &text) const;
 	int Height(const DisplayText &text) const;

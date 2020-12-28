@@ -93,6 +93,20 @@ void Font::DrawAliased(const DisplayText &text, double x, double y, const Color 
 
 
 
+void Font::Draw(const string &str, const Point &point, const Color &color) const
+{
+	DrawCommon({str, {}}, point.X(), point.Y(), color, true);
+}
+
+
+
+void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
+{
+	DrawCommon({str, {}}, x, y, color, false);
+}
+
+
+
 int Font::Width(const DisplayText &text) const
 {
 	return TextFromViewCeilX(ViewWidth(text));
