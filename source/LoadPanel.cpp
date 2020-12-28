@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
@@ -154,8 +155,7 @@ void LoadPanel::Draw()
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
-		font.Draw({it.first, {220, Truncate::BACK}}, point,
-			Color((isHighlighted ? .7 : .5) * alpha, 0.));
+		font.Draw({it.first, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	

@@ -335,35 +335,34 @@ void ShopPanel::DrawButtons()
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("panel background");
 	
-	Point point(
+	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - 65);
-	font.Draw("You have:", point, dim);
+	font.Draw("You have:", creditsPoint, dim);
 	
-	string credits = Format::Credits(player.Accounts().Credits()) + " credits";
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
-	point.X() += (SIDEBAR_WIDTH - 20) - font.Width(credits);
+	const auto credits = Format::Credits(player.Accounts().Credits()) + " credits";
+	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 	
 	const Font &bigFont = FontSet::Get(18);
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
 	
-	Point buyCenter = Screen::BottomRight() - Point(210, 25);
+	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
 	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
 	
-	Point sellCenter = Screen::BottomRight() - Point(130, 25);
+	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
 	static const string SELL = "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? hoverButton == 's' ? hover : active : inactive);
 	
-	Point leaveCenter = Screen::BottomRight() - Point(45, 25);
+	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
 	FillShader::Fill(leaveCenter, Point(70, 30), back);
 	static const string LEAVE = "_Leave";
 	bigFont.Draw(LEAVE,

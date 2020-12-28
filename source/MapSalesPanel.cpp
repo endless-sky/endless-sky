@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
+#include "text/layout.hpp"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"

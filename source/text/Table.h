@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "../Color.h"
 #include "DisplayText.h"
+#include "layout.hpp"
 #include "../Point.h"
 
 #include <string>

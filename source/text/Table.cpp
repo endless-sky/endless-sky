@@ -215,11 +215,10 @@ void Table::DrawTruncatedPair(const string &left, const Color &leftColor, const 
 	
 	auto lhs = Layout(truncateRightColumn ? colWidth : remainder, Alignment::LEFT, strategy);
 	auto rhs = Layout(truncateRightColumn ? remainder : colWidth, Alignment::RIGHT, strategy);
-	if (truncateRightColumn) {
+	if(truncateRightColumn)
 		lhs.truncate = Truncate::NONE;
-	} else {
+	else
 		rhs.truncate = Truncate::NONE;
-	}
 	Draw(left, &lhs, leftColor);
 	Draw(right, &rhs, rightColor);
 }

@@ -107,9 +107,9 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 
 
-int Font::Width(const string &text) const
+int Font::Width(const string &str) const
 {
-	return TextFromViewCeilX(ViewWidth({text, {}}));
+	return TextFromViewCeilX(ViewWidth({str, {}}));
 }
 
 

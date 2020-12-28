@@ -77,7 +77,7 @@ void BankPanel::Draw()
 	for(auto x : COLUMN)
 		table.AddColumn(x);
 	// The last column is for the "pay extra" button.
-	table.AddColumn(MAX_X - 20, {-1, Alignment::RIGHT});
+	table.AddColumn(MAX_X - 20, {Alignment::RIGHT});
 	table.SetHighlight(MIN_X + 10, MAX_X - 10);
 	table.DrawAt(Point(0., FIRST_Y));
 	

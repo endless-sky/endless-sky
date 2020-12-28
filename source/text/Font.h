@@ -70,7 +70,7 @@ public:
 	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 	
 	// Determine the string's width and height, without considering formatting.
-	int Width(const std::string &text) const;
+	int Width(const std::string &str) const;
 	int Height() const;
 	// Get the width and height of the text while accounting for the desired layout and truncation strategy.
 	int FormattedWidth(const DisplayText &text) const;
