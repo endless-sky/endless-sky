@@ -22,9 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DisplayText {
 public:
 	DisplayText() = default;
-	// The default layout is infinite width and left align.
-	DisplayText(const char *text);
-	DisplayText(const std::string &text);
+	DisplayText(const char *text, Layout layout);
 	DisplayText(const std::string &text, Layout layout);
 	
 	const std::string &GetText() const noexcept;

@@ -209,7 +209,7 @@ void Table::DrawTruncatedPair(const string &left, const Color &leftColor, const 
 {
 	// Compute the width of the non-truncated string, and the margin we have for the possibly-large text.
 	const auto colWidth = it->layout.width;
-	const auto textWidth = font->Width({truncateRightColumn ? left : right, {colWidth}});
+	const auto textWidth = font->FormattedWidth({truncateRightColumn ? left : right, {colWidth}});
 	constexpr auto PAD = 5;
 	const auto remainder = max(colWidth - PAD - textWidth, 0);
 	

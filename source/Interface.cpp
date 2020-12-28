@@ -558,7 +558,7 @@ Point Interface::TextElement::NativeDimensions(const Information &info, int stat
 	const Font &font = FontSet::Get(fontSize);
 	const auto text = GetString(info);
 	const auto layout = Layout(static_cast<int>(Bounds().Width() - padding.X()), truncate);
-	return Point(font.Width({text, layout}), font.Height());
+	return Point(font.FormattedWidth({text, layout}), font.Height());
 }
 
 

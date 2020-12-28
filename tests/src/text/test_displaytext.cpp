@@ -45,8 +45,9 @@ TEST_CASE( "DisplayText class", "[text][DisplayText]" ) {
 			std::is_trivially_move_constructible<std::string>::value );
 		CHECK( std::is_nothrow_move_constructible<T>::value );
 		SECTION( "Constructor Arguments" ) {
-			CHECK( std::is_constructible<T, const char *>::value );
-			CHECK( std::is_constructible<T, std::string>::value );
+			CHECK_FALSE( std::is_constructible<T, const char *>::value );
+			CHECK( std::is_constructible<T, const char *, Layout>::value );
+			CHECK_FALSE( std::is_constructible<T, std::string>::value );
 			CHECK( std::is_constructible<T, std::string, Layout>::value );
 		}
 	}

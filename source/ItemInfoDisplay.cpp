@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "text/alignment.hpp"
 #include "Color.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/FontSet.h"
 #include "GameData.h"

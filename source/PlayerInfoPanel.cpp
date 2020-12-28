@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "text/alignment.hpp"
 #include "Command.h"
-#include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"

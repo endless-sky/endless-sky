@@ -171,7 +171,7 @@ void Dialog::Draw()
 		const auto inputText = DisplayText(input, {WIDTH - 30, Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(inputText) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
