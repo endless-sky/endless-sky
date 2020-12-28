@@ -457,6 +457,7 @@ void PreferencesPanel::DrawSettings()
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
 		"Rehire extra crew when lost",
+		"Auto fire crew to make space",
 		SCROLL_SPEED,
 		"Show escort systems on map",
 		"System map sends move orders",

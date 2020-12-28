@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "LineShader.h"
+#include "Messages.h"
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -745,6 +746,14 @@ void MissionPanel::Accept()
 	int crewToFire = 0;
 	if(toAccept.Passengers())
 		crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
+	// Automatically fire crew, if appropriate.
+	if(crewToFire > 0 && Preferences::Has("Auto fire crew to make space"))
+	{
+		player.Flagship()->AddCrew(-crewToFire);
+		player.UpdateCargoCapacities();
+		Messages::Add("You fired " + to_string(crewToFire) + " crew members to free up bunks for passengers.");
+		crewToFire = 0;
+	}
 	if(cargoToSell > 0 || crewToFire > 0)
 	{
 		ostringstream out;
