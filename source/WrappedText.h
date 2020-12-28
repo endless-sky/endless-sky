@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define WRAPPED_TEXT_H_
 
 #include "Point.h"
+#include "Rectangle.h"
 
 #include <string>
 #include <vector>
@@ -65,6 +66,7 @@ public:
 	
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
+	void Draw(const Point &topLeft, const Rectangle &bounds, const Color &color) const;
 	
 	
 private:

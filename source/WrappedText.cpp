@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include "Font.h"
+#include "Screen.h"
 
 #include <cstring>
 
@@ -159,6 +160,22 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	for(const Word &w : words)
 		font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+}
+
+
+
+// Draw the text, but make sure no pixels are drawn outside the bounds
+void WrappedText::Draw(const Point &topLeft, const Rectangle &bounds, const Color &color) const
+{
+	glScissor(
+		bounds.Left() - Screen::Left(),
+		bounds.Top() - Screen::Top(),
+		bounds.Width(),
+		bounds.Height()
+	);
+	glEnable(GL_SCISSOR_TEST);
+	WrappedText::Draw(topLeft, color);
+	glDisable(GL_SCISSOR_TEST);
 }
 
 

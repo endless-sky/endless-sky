@@ -63,6 +63,19 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
 	}
 
+	size_t i = 0;
+	// Fill up the startConditionsClickZones vector
+	for(const StartConditions &it : GameData::Start())
+	{
+		// emplace_back will implicitly instantiate a ClickZone
+		startConditionsClickZones.emplace_back(
+			Rectangle::FromCorner(
+				Point(entryListBox.Left(), entryListBox.Top() + i * entryBox.Height()),
+				entryBox.Dimensions()
+			),
+			it);
+		i++;
+	}
 }
 
 
@@ -108,17 +121,16 @@ void StartConditionsPanel::Draw()
 	text.Wrap(descriptionText);
 
 	text.Draw(
-		Point(
-			descriptionBox.Left(), 
-			descriptionBox.Top() + descriptionScroll
-		),
-		Color(1.,1.,1.));	
+		Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll),
+		descriptionBox,
+		Color(1.,1.,1.)
+	);
 
 	Point point(
 		entryListBox.Left(),
-		entryListBox.Top() + listScroll 
+		entryListBox.Top() - listScroll 
 	);
-
+	
 	for(const auto &it : GameData::Start())
 	{
 		Rectangle zone(
@@ -127,12 +139,21 @@ void StartConditionsPanel::Draw()
 				(entryInternalBox.Height()) / 2), 
 			entryBox.Dimensions()
 		);
+		if (point.Y() > entryListBox.Bottom() || point.Y() < entryListBox.Top())
+		{
+			// Don't bother drawing if the item is above or under the list
+			point += Point(0., entryBox.Height());
+			continue;
+		}
+		
+		
 		bool isHighlighted = (it == chosenStart);
 		
 		// double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		double alpha = 1;
 		
-		if(it == chosenStart){
+		if(it == chosenStart)
+		{
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 		}
 		
@@ -152,8 +173,8 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 		// Scroll the list
 		// This looks inefficient but it probably gets optimized by the compiler
 		listScroll -= dy;
-		listScroll = max(-entryBox.Height() * (GameData::Start().size()-1), listScroll); // Avoid people going too low
-		listScroll = min(0.,listScroll); // Snap the list to avoid people scrolling too far up
+		listScroll = min(entryBox.Height() * (GameData::Start().size()-1), listScroll); // Avoid people going too low
+		listScroll = max(0.,listScroll); // Snap the list to avoid people scrolling too far up
 	}
 	else
 	{
@@ -208,25 +229,25 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 bool StartConditionsPanel::Click(int x, int y, int clicks)
 {
-	// The first row of each panel is y = -160 to -140.
-	if(y < -160 || y >= (-160 + 14 * 20))
+	// Check it's inside of the entry list box
+	if(!entryListBox.Contains(Point(x, y)))
 		return false;
-	
 
-	if(x >= -470 && x < -250)
+	printf("%lf\n", listScroll);
+
+	for(const auto &it : startConditionsClickZones)
 	{
-		int selected = (y + 0 - -160) / 20;
-		int i = 0;
-		for(const auto &it : GameData::Start())
-			if(i++ == selected)
-			{
-				if(!(chosenStart == it))
-					descriptionScroll = 0; // Reset scrolling
-				chosenStart = it;
-				hasChosenStart = true;
-			}
+		if (!it.Contains(Point(x, y + listScroll)))
+			continue;
+
+		// We found the element we clicked on
+
+		if(!(chosenStart == it.Value()))
+			descriptionScroll = 0; // Reset scrolling
+		chosenStart = it.Value();
+		hasChosenStart = true;
 	}
-	
+
 	return true;
 }
 

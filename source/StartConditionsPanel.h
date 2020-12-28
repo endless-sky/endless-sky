@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LoadPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
+#include "ClickZone.h"
 
 
 class StartConditionsPanel : public Panel {
@@ -48,6 +49,9 @@ private:
 	
 	double listScroll = 0;
 	double descriptionScroll = 0;
+
+	// This is a map that will let us figure out which start conditions item the user clicked on
+	std::vector<ClickZone<const StartConditions&>> startConditionsClickZones;
 	
 	Rectangle descriptionBox;
 	Rectangle entryBox;
