@@ -82,7 +82,7 @@ void SpriteShader::Init(bool useShaderSwizzle)
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n";
-	if (useShaderSwizzle) fragmentCodeStream <<
+	if(useShaderSwizzle) fragmentCodeStream <<
 		"uniform int swizzler;\n";
 	fragmentCodeStream <<
 		"uniform float alpha;\n"
@@ -124,7 +124,8 @@ void SpriteShader::Init(bool useShaderSwizzle)
 		"  }\n";
 	
 	// Only included when hardware swizzle not supported, GL <3.3 and GLES
-	if (useShaderSwizzle) {
+	if(useShaderSwizzle)
+	{
 		fragmentCodeStream <<
 		"  switch (swizzler) {\n"
 		"    case 0:\n"
@@ -172,7 +173,7 @@ void SpriteShader::Init(bool useShaderSwizzle)
 	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
 	alphaI = shader.Uniform("alpha");
-	if (useShaderSwizzle)
+	if(useShaderSwizzle)
 		swizzlerI = shader.Uniform("swizzler");
 	
 	glUseProgram(shader.Object());
@@ -258,7 +259,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	// Bounds check for the swizzle value:
 	int swizzle = (static_cast<size_t>(item.swizzle) >= SWIZZLE.size() ? 0 : item.swizzle);
 	// Set the color swizzle.
-	if (SpriteShader::useShaderSwizzle)
+	if(SpriteShader::useShaderSwizzle)
 		glUniform1i(swizzlerI, swizzle);
 	else
 		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle].data());
@@ -274,7 +275,7 @@ void SpriteShader::Unbind()
 	glUseProgram(0);
 	
 	// Reset the swizzle.
-	if (SpriteShader::useShaderSwizzle)
+	if(SpriteShader::useShaderSwizzle)
 		glUniform1i(swizzlerI, 0);
 	else
 		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
