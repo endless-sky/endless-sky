@@ -15,8 +15,6 @@ hazard "Ember Waste Base Heat"
 	weapon
 		"relative heat damage" 0.00035
 
-
-
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
 	"strength" 1 3
