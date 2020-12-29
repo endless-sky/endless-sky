@@ -3560,8 +3560,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			autoPilot.Clear(Command::LAND | Command::JUMP);
 		else
 		{
-			// The naviation computer by default takes the optimal speed.
-			// Player can choose to go faster by taking manual control.
+			// Autopilot will promote traveling as a fleet, and the player can self-pilot if they wish to go faster.
 			MoveToPlanet(ship, command, ship.CruiseVelocity());
 			command |= Command::LAND;
 		}

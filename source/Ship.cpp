@@ -3513,7 +3513,7 @@ void Ship::AddEscort(Ship &ship)
 {
 	// Cache the maximum speeds of escorts so that the parent can stay
 	// below this speed when the parent wants to keep all escorts together.
-	if(escorts.size() < 1)
+	if(escorts.empty())
 		escortsVelocity = ship.MaxVelocity();
 	else
 		escortsVelocity = fmin(escortsVelocity, ship.MaxVelocity());
@@ -3541,7 +3541,7 @@ void Ship::RemoveEscort(const Ship &ship)
 		it = escorts.begin();
 		for( ; it != escorts.end(); ++it)
 		{
-			Ship *escort = it->lock().get();
+			auto escort = it->lock();
 			if(escort)
 				escortsVelocity = fmin(escortsVelocity, escort->MaxVelocity());
 		}
