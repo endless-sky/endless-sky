@@ -2424,9 +2424,9 @@ mission "Remnant: Crystal Research 1"
 			`	"I am glad that some are willling to act for what is right, necessary or even just curiosity; and not just what they are paid for. It gives me hope for ancestral humanity." His look brightens a bit. "So, are you interested in another job to help us?"`
 			label greedchoice
 			choice
-				`	"Yes"`
+				`	"Yes."`
 					goto crystaldecision
-				`	"No"`
+				`	"No."`
 					decline
 			label greedconfirmation
 			`	Aeolus nods sadly. "We appreciate the confirmation, and hope to learn more about those who remained in ancestral lands. It is depressing, however, to think that humanity is so self-centered to put financial wealth as such a high priority. Nonetheless, we do have another job for you. Are you interested?"`

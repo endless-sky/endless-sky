@@ -315,7 +315,17 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"% energy damage", "%"},
 		{"firing energy", ""},
 		{"firing heat", ""},
-		{"firing fuel", ""}
+		{"firing fuel", ""},
+		{"firing hull", ""},
+		{"firing shields", ""},
+		{"firing ion", ""},
+		{"firing slowing", ""},
+		{"firing disruption", ""},
+		{"% firing energy", "%"},
+		{"% firing heat", "%"},
+		{"% firing fuel", "%"},
+		{"% firing hull", "%"},
+		{"% firing shields", "%"}
 	};
 	
 	vector<double> values = {
@@ -334,7 +344,17 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.RelativeEnergyDamage() * 100.,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
-		outfit.FiringFuel()
+		outfit.FiringFuel(),
+		outfit.FiringHull(),
+		outfit.FiringShields(),
+		outfit.FiringIon() * 100.,
+		outfit.FiringSlowing() * 100.,
+		outfit.FiringDisruption() * 100.,
+		outfit.RelativeFiringEnergy() * 100.,
+		outfit.RelativeFiringHeat() * 100.,
+		outfit.RelativeFiringFuel() * 100.,
+		outfit.RelativeFiringHull() * 100.,
+		outfit.RelativeFiringShields() * 100.
 	};
 	
 	// Add any per-second values to the table.

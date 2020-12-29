@@ -152,6 +152,26 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingFuel = value;
 			else if(key == "firing heat")
 				firingHeat = value;
+			else if(key == "firing hull")
+				firingHull = value;
+			else if(key == "firing shields")
+				firingShields = value;
+			else if(key == "firing ion")
+				firingIon = value;
+			else if(key == "firing slowing")
+				firingSlowing = value;
+			else if(key == "firing disruption")
+				firingDisruption = value;
+			else if(key == "relative firing energy")
+				relativeFiringEnergy = value;
+			else if(key == "relative firing heat")
+				relativeFiringHeat = value;
+			else if(key == "relative firing fuel")
+				relativeFiringFuel = value;
+			else if(key == "relative firing hull")
+				relativeFiringHull = value;
+			else if(key == "relative firing shields")
+				relativeFiringShields = value;
 			else if(key == "split range")
 				splitRange = max(0., value);
 			else if(key == "trigger radius")
