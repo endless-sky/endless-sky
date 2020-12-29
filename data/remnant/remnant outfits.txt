@@ -38,7 +38,7 @@ outfit "Inhibitor Cannon"
 		"shield damage" 26
 		"hull damage" 19.5
 		"hit force" 39
-		"slowing damage" 1
+		"slowing damage" 0.9
 	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
 
 effect "inhibitor impact"
@@ -83,7 +83,7 @@ outfit "Inhibitor Turret"
 		"shield damage" 26
 		"hull damage" 19.5
 		"hit force" 39
-		"slowing damage" 1
+		"slowing damage" 0.9
 	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
 	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
 
