@@ -13,11 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "InfoPanelState.h"
 
 #include "PlayerInfo.h"
-#include "Ship.h"
-
-#include <memory>
-#include <set>
-#include <vector>
 
 using namespace std;
 
@@ -29,10 +24,13 @@ InfoPanelState::InfoPanelState(PlayerInfo &player)
 }
 
 
+
 int InfoPanelState::SelectedIndex() const
 {
 	return selectedIndex;
 }
+
+
 
 void InfoPanelState::SetSelectedIndex(int newSelectedIndex)
 {
@@ -60,6 +58,8 @@ int InfoPanelState::Scroll() const
 	return scroll;
 }
 
+
+
 void InfoPanelState::SetScroll(int newScroll)
 {
 	scroll = newScroll;
@@ -72,6 +72,8 @@ vector<shared_ptr<Ship>> &InfoPanelState::Ships()
 	return ships;
 }
 
+
+
 const vector<shared_ptr<Ship>> &InfoPanelState::Ships() const
 {
 	return ships;
@@ -83,6 +85,8 @@ InfoPanelState::ShipComparator *InfoPanelState::CurrentSort() const
 {
 	return currentSort;
 }
+
+
 
 void InfoPanelState::SetCurrentSort(ShipComparator *newSort)
 {

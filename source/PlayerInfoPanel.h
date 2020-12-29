@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 #include "InfoPanelState.h"
+#include "Point.h"
 #include "Table.h"
 
 #include <map>
@@ -26,7 +27,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Color;
 class PlayerInfo;
-class Point;
 class Rectangle;
 class Ship;
 
@@ -67,13 +67,13 @@ private:
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	
-	void SortShips (InfoPanelState::ShipComparator &shipComparator);
+	void SortShips(InfoPanelState::ShipComparator &shipComparator);
 	
 	class SortableColumn {
 	public:
 		SortableColumn(std::string name, double offset, Table::Align align, InfoPanelState::ShipComparator *shipSort);
 		
-		std::string name = "";
+		std::string name;
 		double offset = 0.;
 		Table::Align align = Table::Align::LEFT;
 		InfoPanelState::ShipComparator *shipSort = nullptr;

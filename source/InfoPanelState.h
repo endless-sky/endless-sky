@@ -13,13 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef INFO_PANEL_STATE_H_
 #define INFO_PANEL_STATE_H_
 
-#include "Ship.h"
-
 #include <memory>
 #include <set>
 #include <vector>
 
 class PlayerInfo;
+class Ship;
 
 
 
@@ -44,7 +43,6 @@ public:
 	void SetScroll(int);
 	
 	std::vector<std::shared_ptr<Ship>> &Ships();
-	// This is needed to keep ShipInfoPanel::CanDump() const.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	
 	ShipComparator *CurrentSort() const;

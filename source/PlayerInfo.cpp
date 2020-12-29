@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Messages.h"
-#include "Mission.h"
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
@@ -37,7 +36,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
-#include "Files.h"
 
 #include <algorithm>
 #include <cmath>
@@ -1014,38 +1012,13 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 
 
 
-void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> newOrder)
+void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> &newOrder)
 {
 	// Check if the incoming vector contains the same elements
-	bool same = true;
-	size_t aSize = newOrder.size();
-	size_t bSize = ships.size();
-	
-	if(aSize != bSize)
-		same = false;
-	else
-	{
-		// Compare vectors element by element
-		for(size_t i = 0; i < aSize; ++i)
-		{
-			same = false;
-			for(size_t j = 0; i < bSize; ++j)
-			{
-				if(newOrder[i] == ships[j])
-				{
-					same = true;
-					break;
-				}
-			}
-			if(!same)
-				break;
-		}
-	}
-	
-	if(same)
+	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 		ships = newOrder;
 	else
-		Files::LogError("Cannot reorder ships because the new order does not contain the same ships");
+		throw runtime_error("Cannot reorder ships because the new order does not contain the same ships");
 }
 
 
