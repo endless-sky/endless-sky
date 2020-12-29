@@ -1387,27 +1387,6 @@ mission "Pirate Troubles [2]"
 
 
 
-government "Scar's Legion"
-	swizzle 6
-	color .78 0 0
-	"player reputation" 10
-	"attitude toward"
-		"Merchant" -0.01
-		"Republic" -0.01
-		"Hai" -0.01
-	bribe 0
-	fine 0
-	"hostile hail" "hostile pirate"
-
-government " Scar's Legion "
-	"display name" "Scar's Legion"
-	swizzle 6
-	color .78 0 0
-	"player reputation" -1000
-	bribe 0
-	fine 0
-	"hostile hail" "hostile pirate"
-
 event "battle against scar's legion"
 	system "Danoa"
 		fleet "Human Miners" 1600
@@ -1488,7 +1467,7 @@ mission "Pirate Troubles [3]"
 		event "battle against scar's legion"
 	
 	npc kill
-		government " Scar's Legion "
+		government "Scar's Legion (Killable)"
 		personality nemesis
 		ship "Leviathan (Hai Weapons)" "Keloid"
 		dialog "You've defeated the leader of Scar's Legion. The various spectators to the fight aren't attacking you, but it may only be a matter of time before they decide to turn their guns on you for killing their leader. Better head to <destination> before that happens."
@@ -1567,7 +1546,7 @@ mission "Pirate Troubles [4]"
 		"reputation: Hai" += 40
 	
 	npc save accompany
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality escort
 		fleet
 			names "hai"
@@ -1795,7 +1774,7 @@ mission "Nanachi 4"
 		ship "Marauder Bounder (Hai)" "Rodent Hunter"
 	npc accompany save
 		personality escort timid
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
 		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`

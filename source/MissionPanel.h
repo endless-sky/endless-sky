@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <list>
 

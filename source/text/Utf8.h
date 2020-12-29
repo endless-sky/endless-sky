@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef UTF8_H_
-#define UTF8_H_
+#ifndef ES_TEXT_UTF8_H_
+#define ES_TEXT_UTF8_H_
 
 #include <cstddef>
 #include <string>

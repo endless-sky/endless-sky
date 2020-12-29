@@ -25,7 +25,7 @@ mission "Disabled Ka'het"
 	boarding
 	invisible
 	source
-		government "Ka'het" " Ka'het "
+		government "Ka'het" "Ka'het (Infighting)"
 	destination "Earth"
 	on offer
 		log "Successfully boarded a Ka'het. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton."

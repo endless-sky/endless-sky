@@ -14,11 +14,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Information.h"
 
+#include "text/alignment.hpp"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
@@ -52,7 +53,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring.reset(new HiringPanel(player));
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
 	

@@ -1,5 +1,5 @@
-/* FontSet.h
-Copyright (c) 2014 by Michael Zahniser
+/* DisplayText.cpp
+Copyright (c) 2020 by OOTA, Masato
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,23 +10,32 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FONT_SET_H_
-#define FONT_SET_H_
-
-#include <string>
-
-class Font;
+#include "DisplayText.h"
 
 
 
-// Class for getting the Font object for a given point size. Each font must be
-// based on a glyph image; right now only point sizes 14 and 18 exist.
-class FontSet {
-public:
-	static void Add(const std::string &path, int size);
-	static const Font &Get(int size);
-};
+DisplayText::DisplayText(const char *text, Layout layout)
+	: layout(layout), text(text)
+{
+}
 
 
 
-#endif
+DisplayText::DisplayText(const std::string &text, Layout layout)
+	: layout(layout), text(text)
+{
+}
+
+
+
+const std::string &DisplayText::GetText() const noexcept
+{
+	return text;
+}
+
+
+
+const Layout &DisplayText::GetLayout() const noexcept
+{
+	return layout;
+}
