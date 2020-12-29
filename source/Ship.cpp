@@ -2982,14 +2982,14 @@ double Ship::MaxReverseVelocity() const
 
 
 // The optimal speed for this ship when not moving in a hurry.
-// If the ship has escorts, then this speed will allow for all escorts
+// If the ship has escorts, then the speed returned will allow for all escorts
 // to catch up with this ship.
 double Ship::CruiseVelocity() const
 {
 	if(escortsVelocity < 1.)
 		return MaxVelocity();
 	else
-		return 0.9 * escortsVelocity;
+		return min(MaxVelocity(), 0.9 * escortsVelocity);
 }
 
 
@@ -3512,11 +3512,11 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 void Ship::AddEscort(Ship &ship)
 {
 	// Cache the maximum speeds of escorts so that the parent can stay
-	// below this speed to keep all escorts together.
-	// We also include the parents max velocity in the comparisons.
+	// below this speed when the parent wants to keep all escorts together.
 	if(escorts.size() < 1)
-		escortsVelocity = MaxVelocity();
-	escortsVelocity = fmin(escortsVelocity, ship.MaxVelocity());
+		escortsVelocity = ship.MaxVelocity();
+	else
+		escortsVelocity = fmin(escortsVelocity, ship.MaxVelocity());
 	
 	escorts.push_back(ship.shared_from_this());
 }
