@@ -218,7 +218,7 @@ ship "Albatross" "Albatross (Ember Shield)"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 4
 		"Large Heat Shunt"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		
 		"Tuning Rifle" 47
 
@@ -278,7 +278,7 @@ ship "Gull"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -313,7 +313,7 @@ ship "Gull" "Gull (Sniper)"
 		"Quantum Key Stone"
 		"Salvage Scanner" 2
 		"Outfits Expansion"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 4
 
 		"Forge-Class Thruster"
@@ -349,7 +349,7 @@ ship "Gull" "Gull (Cargo)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Salvage Scanner"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -364,7 +364,7 @@ ship "Gull" "Gull (Bunks)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Salvage Scanner"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -708,7 +708,7 @@ ship "Penguin"
 		"Millennium Cell"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 1
 		
 		"Crucible-Class Thruster"
@@ -986,7 +986,7 @@ ship "Starling"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -1020,7 +1020,7 @@ ship "Starling" "Starling (Heavy)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 10
 
 		"Forge-Class Thruster"
@@ -1039,7 +1039,7 @@ ship "Starling" "Starling (Sniper)"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
 		"Outfits Expansion"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 9
 
 		"Forge-Class Thruster"
@@ -1062,7 +1062,7 @@ ship "Starling" "Starling (Hunter)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Emergency Ramscoop"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 11
 
 		"Forge-Class Thruster"
@@ -1084,7 +1084,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 8
 
 		"Forge-Class Thruster"
