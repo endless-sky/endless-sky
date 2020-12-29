@@ -320,8 +320,9 @@ outfit "Crystal Capacitor"
 	"energy capacity" 3400
 	"energy consumption" .4
 	"heat generation" .4
+	"ion resistance" 0.01
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
-	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
+	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
 
 outfit "Millennium Cell"
 	category "Power"
@@ -333,7 +334,9 @@ outfit "Millennium Cell"
 	"outfit space" -29
 	"energy generation" 3.6
 	"heat generation" 6.0
+	"ion resistance" 0.025
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
+	description "	Although not very impressive in terms of how much energy they produce, Remnant generators have been designed to better handle the energy draining effects of ionization."
 
 outfit "Epoch Cell"
 	category "Power"
@@ -345,7 +348,9 @@ outfit "Epoch Cell"
 	"outfit space" -98
 	"energy generation" 12.7
 	"heat generation" 19.8
+	"ion resistance" 0.085
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
+	description "	The Remnant took the ion dissipation effects of the crystals found on Viminal and replicated them for their generators in order to help survive the hostile environment of the Ember Waste."
 
 outfit "Aeon Cell"
 	category "Power"
@@ -357,7 +362,9 @@ outfit "Aeon Cell"
 	"outfit space" -160
 	"energy generation" 21.9
 	"heat generation" 31.5
+	"ion resistance" 0.14
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
+	description "	The ion resistance on all Remnant generators not only allows them to bounce back from ion storms more quickly, but also gives their ships a window of time when an ion storm starts where they are not affected, giving them a chance to escape before becoming debilitated by the storm."
 
 outfit "Thermoelectric Cooler"
 	category "Systems"

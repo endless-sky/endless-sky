@@ -117,7 +117,11 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
-sky = env.Program(pathjoin(binDirectory, "endless-sky"), Glob(pathjoin(buildDirectory, "main.cpp")) + sourceLib)
+exeObjs = [Glob(pathjoin(buildDirectory, f)) for f in ("main.cpp",)]
+if is_windows_host:
+	windows_icon = env.RES(pathjoin(buildDirectory, "WinApp.rc"))
+	exeObjs.append(windows_icon)
+sky = env.Program(pathjoin(binDirectory, "endless-sky"), exeObjs + sourceLib)
 env.Default(sky)
 
 

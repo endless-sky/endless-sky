@@ -404,6 +404,7 @@ person "Captain Nate"
 
 person "Tranquility"
 	government "Merchant"
+	frequency 100
 	personality
 		timid
 	phrase

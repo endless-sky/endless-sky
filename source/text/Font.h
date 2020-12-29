@@ -125,7 +125,7 @@ private:
 	
 	static std::string ReplaceCharacters(const std::string &str);
 	static std::string RemoveAccelerator(const std::string &str);
-		
+	
 	void DrawCommon(const DisplayText &text, double x, double y, const Color &color, bool alignToDot) const;
 	const RenderedText &Render(const DisplayText &text) const;
 	void SetUpShader();

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"

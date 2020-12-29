@@ -103,8 +103,8 @@ public:
 	
 private:
 	// Starting position for drawing a column is:
-	// point + Point(offset + alignAdjust * font.Width(text), 0.)
-	// So, "alignAdjust" will either be 0, -.5, or -1.
+	// point + Point(offset + align * font.Width(text), 0.)
+	// So, "align" will either be 0, -.5, or -1.
 	class Column {
 	public:
 		Column(double offset, Layout layout) noexcept;

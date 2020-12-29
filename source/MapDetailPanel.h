@@ -39,9 +39,11 @@ public:
 	
 	
 protected:
-	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
 	virtual bool Click(int x, int y, int clicks) override;
+	// Handle right-clicks within the "orbits" display.
+	virtual bool RClick(int x, int y) override;
 	
 	
 private:
@@ -57,7 +59,12 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 	
+	// Default display scaling for orbits within the currently displayed system.
+	double scale = .03;
+	
+	// Y-indices of the selected system's "info displays" that feature its planets' names and basic information.
 	std::map<const Planet *, int> planetY;
+	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
 };
 
