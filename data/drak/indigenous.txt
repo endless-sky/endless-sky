@@ -200,6 +200,41 @@ ship "Ember Waste Node"
 	description "Although the Node's cloaking power is believed to be connected to its other energy manipulation abilities, the exact method is unknown."
 
 
+ship "Embershade"
+	noun "creature"
+	sprite "ship/embershade"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"hull" 9600
+		"required crew" 1
+		"bunks" 1
+		"mass" 220
+		"drag" 4.2
+		"heat dissipation" .8
+		"cargo space" 40
+		"thrust" 20
+		"turn" 900
+		"hull repair rate" 3
+		"energy capacity" 1000
+		"fuel capacity" 2
+		"inscrutable" 1
+		"cloak" .02
+		"cloaking energy" 5
+		"energy generation" 6
+		"shield generation" 1.8
+		"shield heat" -1
+		"hyperdrive" 1
+		"jump fuel" 1
+		"ramscoop" 1
+	outfits
+		Mouthparts? 2
+	gun -4 -111
+	gun 6 -111
+	leak "blood" 40 40
+	explode "blood" 40
+	"final explode" "void sprite adult death"
+	description "Long regarded as mere ghost stories, the ray-like Embershades have finally been proven to exist thanks to recent generations of ion storm resistant sensor suites. Shy by nature, these creatures generate a natural cloaking field and prefer to move unseen."
 
 outfit Mouthparts?
 	category "Guns"
@@ -263,6 +298,26 @@ fleet "Void Sprites"
 		"Void Sprite" 2
 		"Void Sprite (Infant)" 4
 
+
+fleet "Embershades"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid shy elusive mute
+	variant 2
+		"Embershade" 7
+	variant 2
+		"Embershade" 6
+	variant 3
+		"Embershade" 4
+	variant 2
+		"Embershade" 3
+	variant 2
+		"Embershade" 2
+	variant 1
+		"Embershade" 1
+	variant 1
+		"Embershade" 8
 
 
 fleet "Ember Waste Node"
