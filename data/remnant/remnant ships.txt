@@ -29,7 +29,7 @@ ship "Albatross"
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 668
+		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
 		"shield generation" 5.2
@@ -52,7 +52,7 @@ ship "Albatross"
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
+		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 
 		"Smelter-Class Thruster"
@@ -94,7 +94,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
+		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Outfits Expansion"
@@ -155,7 +155,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Millennium Cell"
 		"Crystal Capacitor" 2
 		"Quantum Key Stone"
-		"Thermoelectric Cooler" 2
+		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 		"Outfits Expansion" 4
 		"Tuning Rifle" 65
@@ -187,7 +187,7 @@ ship "Albatross" "Albatross (Shield)"
 		"Aeon Cell"
 		"Millennium Cell"
 		"Quantum Key Stone"
-		"Thermoelectric Cooler" 1
+		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 3
@@ -218,6 +218,7 @@ ship "Albatross" "Albatross (Ember Shield)"
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 4
 		"Large Heat Shunt"
+		"Thermoelectric Cooler"
 		
 		"Tuning Rifle" 47
 
@@ -250,7 +251,7 @@ ship "Gull"
 		"fuel capacity" 600
 		"ramscoop" 1
 		"cargo space" 175
-		"outfit space" 310
+		"outfit space" 311
 		"weapon capacity" 83
 		"engine capacity" 101
 		"shield generation" 1.6
@@ -277,6 +278,7 @@ ship "Gull"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -311,6 +313,7 @@ ship "Gull" "Gull (Sniper)"
 		"Quantum Key Stone"
 		"Salvage Scanner" 2
 		"Outfits Expansion"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 4
 
 		"Forge-Class Thruster"
@@ -346,6 +349,7 @@ ship "Gull" "Gull (Cargo)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Salvage Scanner"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -360,6 +364,7 @@ ship "Gull" "Gull (Bunks)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Salvage Scanner"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -703,6 +708,7 @@ ship "Penguin"
 		"Millennium Cell"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 1
 		
 		"Crucible-Class Thruster"
@@ -912,6 +918,9 @@ ship "Puffin"
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
+		"cooling" 1
+		"active cooling" 8
+		"cooling energy" .4
 		"outfit scan power" 24
 		"outfit scan speed" 1
 		"tactical scan power" 52
@@ -950,7 +959,7 @@ ship "Starling"
 		"fuel capacity" 900
 		"ramscoop" 1
 		"cargo space" 36
-		"outfit space" 312
+		"outfit space" 316
 		"weapon capacity" 83
 		"engine capacity" 94
 		"shield generation" 1.8
@@ -977,6 +986,7 @@ ship "Starling"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
+		"Thermoelectric Cooler"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -1010,6 +1020,7 @@ ship "Starling" "Starling (Heavy)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 10
 
 		"Forge-Class Thruster"
@@ -1028,6 +1039,7 @@ ship "Starling" "Starling (Sniper)"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
 		"Outfits Expansion"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 9
 
 		"Forge-Class Thruster"
@@ -1050,6 +1062,7 @@ ship "Starling" "Starling (Hunter)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Emergency Ramscoop"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 11
 
 		"Forge-Class Thruster"
@@ -1071,6 +1084,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 8
 
 		"Forge-Class Thruster"
