@@ -50,7 +50,7 @@ Version 0.9.13:
     * The gather escort command will now work if all escorts are out of the player's system. (@petervdmeer)
   * Game content:
     * New content: 
-	  * New missions:
+      * New missions:
         * New missions offered by the Quarg. (@Arachi-Lover)
         * Created two short spaceport missions to human space. (@Nameson2)
         * Created a difficult combat mission only available to early pilots. (@Anarchist2)
@@ -59,7 +59,7 @@ Version 0.9.13:
         * Created new bounty hunting jobs to track down disguised ships. (@Anarchist2)
         * Added a new string of missions to the start of the Wanderer campaign that leads to a sideplot to help the Hai build a new ship. (@Amazinite, @Arachi-Lover, @beccabunny, @LocalGod79, @Zitchas)
         * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
-	  * New outfits and ships:
+      * New outfits and ships:
         * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
         * Ka'het ships now have power generation and storage outfits. (@beccabunny)
         * The Navy now has a unique logistics vessel, the Auxiliary. (@Brick63)
@@ -67,7 +67,7 @@ Version 0.9.13:
         * Created an ammo storage outfit for EMP torpedoes. (@Anarchist2)
         * Ka'het ships now have engine outfits. (@beccabunny, @Karirawri, @TheronEpic)
         * Created six new Heliarch ships. (@Arachi-Lover)
-	  * Other new content:
+      * Other new content:
         * The Penguin now uses the new engine flare mechanics. (@Zitchas)
         * Added new civilian hails. (@Anarchist2, @Naminson, @petervdmeer)
         * New logs for various characters, factions, and plot points. (@MasterOfGrey, @pega3)
@@ -78,10 +78,10 @@ Version 0.9.13:
         * Added three new person ships. (@beccabunny, @Brick63, @MCOfficer, @Zitchas)
         * Quarg outfits now have placeholder descriptions. (@Amazinite)
         * Planets in the Graveyard region now gain expanded descriptions after you learn more about the region. (@beccabunny)
-		* Added system attributes to various system for use in missions. (@Galaucus)
-		* Expanded the list of potential Heliarch ship names. (@Arachi-Lover)
-		* Scouts will now actually spawn in merchant fleets. (@ScruffyKitty)
-		* Added new hails for the test dummy government. (@petervdmeer)
+        * Added system attributes to various system for use in missions. (@Galaucus)
+        * Expanded the list of potential Heliarch ship names. (@Arachi-Lover)
+        * Scouts will now actually spawn in merchant fleets. (@ScruffyKitty)
+        * Added new hails for the test dummy government. (@petervdmeer)
     * Mission changes:
       * "FW Hope Recon 1C" now refers to the proper number of crew on a Gunboat. (@Beccabunny)
       * Rewrote some of the conversation for "Wanderers: Defend Vara Ke'sok Hint". (@Anarchist2)
