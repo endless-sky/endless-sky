@@ -18,17 +18,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ClickZone.h"
 #include "InfoPanelState.h"
 #include "Point.h"
-#include "Table.h"
+#include "text/Table.h"
 
 #include <map>
 #include <memory>
 #include <set>
 #include <vector>
 
-class Color;
 class PlayerInfo;
 class Rectangle;
-class Ship;
 
 
 
@@ -71,27 +69,28 @@ private:
 	
 	class SortableColumn {
 	public:
-		SortableColumn(std::string name, double offset, Table::Align align, InfoPanelState::ShipComparator *shipSort);
+		SortableColumn(std::string name, double offset, Layout layout, InfoPanelState::ShipComparator *shipSort);
 		
 		std::string name;
 		double offset = 0.;
-		Table::Align align = Table::Align::LEFT;
+		Layout layout;
 		InfoPanelState::ShipComparator *shipSort = nullptr;
 	};
 	
 private:
 	PlayerInfo &player;
 	
-	static std::vector<SortableColumn> columns;
+	static const std::vector<SortableColumn> columns;
 	
 	InfoPanelState panelState;
 	
 	// Keep track of which column header is under the mouse.
 	InfoPanelState::ShipComparator *hoverMenuPtr = nullptr;
 	
-	// Click areas that sort ships when clicked.
+	// Column headers that sort ships when clicked.
 	std::vector<ClickZone<InfoPanelState::ShipComparator*>> menuZones;
 	
+	// Ships in the table.
 	std::vector<ClickZone<int>> shipZones;
 	
 	// Keep track of which ship the mouse is hovering over.
