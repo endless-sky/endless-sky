@@ -11,7 +11,7 @@ Version 0.9.13:
       * The Subsidurial person ship can now appear in uninhabited systems. (@Zitchas)
       * "Deep Mystery Cube [3]" no longer offers on stations. (@Anarchist2)
       * Corrected the hull mass of the Faes'mar. (@Amazinite)
-      * Tinker's tribute will be properly restored after the main plot. (@Zitchas)
+      * Tinker's tribute is now properly restored after the main plot. (@Zitchas)
       * "FW Pug 3" now requires that the previous mission be completed before offering. (@Amazinite)
       * "There Might Be Riots part 3A" no longer offers on pirate worlds. (@Amazinite)
       * The event "fw reconciliation break" now properly triggers when the related mission is completed instead of offered. (@Amazinite)
@@ -116,8 +116,9 @@ Version 0.9.13:
       * Created graphics for hot Jupiter planet sprites. (@beccabunny)
       * Gave the ramscoop a new high-detail sprite. (@beccabunny)
       * Reworked the graphics of some Remnant ship thumbnails to better match the ship sprite. (@beccabunny)
-      * Reworked the graphics of Tarazed ships. (@Anarchist2)
-      * Reworked the graphics of Ka'het and Syndicated Shipyards ships. (@beccabunny)
+      * Overhauled the graphics of Tarazed ships. (@Anarchist2)
+      * Reworked the graphics of Ka'het ships. (@beccabunny)
+      * Overhauled the graphics of Syndicated Shipyards ships.
       * Reworked the graphics of the Korath Raider. (@ravenshining, @Red-57)
     * Other:
       * Renamed the Gascraft to the Puffin so that all Remnant ships are named after birds. (@Zitchas)
