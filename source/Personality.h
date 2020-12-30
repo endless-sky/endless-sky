@@ -38,6 +38,7 @@ public:
 	bool IsTimid() const;
 	bool IsHeroic() const;
 	bool IsNemesis() const;
+	bool IsShy() const;
 	
 	// How they fight:
 	bool IsFrugal() const;
@@ -63,6 +64,8 @@ public:
 	bool IsMining() const;
 	bool Harvests() const;
 	bool IsSwarming() const;
+	bool IsElusive() const;
+	bool IsRoving() const;
 	
 	// Special flags:
 	bool IsEscort() const;
