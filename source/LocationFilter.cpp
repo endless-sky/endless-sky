@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 
+#include <algorithm>
 #include <mutex>
 
 using namespace std;
@@ -106,39 +107,32 @@ namespace {
 		return true;
 	}
 	
-	// Validity check for this filter's sets.
-	template <class Type>
-	bool CheckValidity(const set<const Type *> &c)
+	// Validity check for this filter's sets. Only one element must be valid.
+	template <class T>
+	bool CheckValidity(const set<const T *> &c)
 	{
-		if(c.empty())
-			return true;
-		
-		for(const Type *t : c)
-			if(t->IsValid())
-				return true;
-		
-		return false;
+		return c.empty() || any_of(c.begin(), c.end(),
+			[](const T *item) noexcept -> bool
+			{
+				return item->IsValid();
+			});
 	}
-	template <class Container>
-	bool CheckValidity(const Container &list)
+	bool CheckValidity(const list<LocationFilter> &l)
 	{
-		if(list.empty())
-			return true;
-		
-		for(const auto &filter : list)
-			if(filter.IsValid())
-				return true;
-		
-		return false;
+		return l.empty() || any_of(l.begin(), l.end(),
+			[](const LocationFilter &f) noexcept -> bool
+			{
+				return f.IsValid();
+			});
 	}
-	bool CheckValidity(const list<set<const Outfit *>> &list)
+	bool CheckValidity(const list<set<const Outfit *>> &l)
 	{
-		if(list.empty())
+		if(l.empty())
 			return true;
 		
-		for(const auto &outfits : list)
-			for(const Outfit *o : outfits)
-				if(o->IsDefined())
+		for(const auto &outfits : l)
+			for(auto &&outfit : outfits)
+				if(outfit->IsDefined())
 					return true;
 		
 		return false;
