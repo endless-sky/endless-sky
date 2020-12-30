@@ -248,16 +248,6 @@ void GameData::CheckReferences()
 {
 	// Parse all GameEvents for object definitions & references.
 	auto deferred = map<string, set<string>>{};
-	const auto eventDefinitionNodes = set<string>{
-		"fleet",
-		"galaxy",
-		"government",
-		"outfitter",
-		"news",
-		"planet",
-		"shipyard",
-		"system"
-	};
 	for(auto &&it : events)
 	{
 		// Stock GameEvents are serialized in MissionActions by name.
@@ -270,7 +260,7 @@ void GameData::CheckReferences()
 				if(node.Size() >= 2)
 				{
 					const string &key = node.Token(0);
-					if(eventDefinitionNodes.count(key))
+					if(GameEvent::DEFINITION_NODES.count(key))
 						deferred[key].emplace(node.Token(1));
 				}
 		}

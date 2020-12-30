@@ -19,10 +19,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "System.h"
 
-#include <set>
-#include <string>
-
 using namespace std;
+
+
+
+const set<string> GameEvent::DEFINITION_NODES = {
+	"fleet",
+	"galaxy",
+	"government",
+	"outfitter",
+	"news",
+	"planet",
+	"shipyard",
+	"system",
+};
 
 
 
@@ -45,18 +55,16 @@ void GameEvent::Load(const DataNode &node)
 	}
 	isDefined = true;
 	
-	static const set<string> allowedChanges = {
-		"fleet",
-		"galaxy",
-		"government",
-		"link",
-		"outfitter",
-		"news",
-		"planet",
-		"shipyard",
-		"system",
-		"unlink"
-	};
+	static const auto allowedChanges = []() -> set<string>
+		{
+			auto allowed = DEFINITION_NODES;
+			// Include other modifications that cannot create new universe objects.
+			allowed.insert({
+				"link",
+				"unlink",
+			});
+			return allowed;
+		}();
 	
 	for(const DataNode &child : node)
 	{

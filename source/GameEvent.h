@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 
 #include <list>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -36,6 +37,11 @@ class System;
 // you to use the mission framework to specify a message that can be shown to
 // the player the next time they land  on a planet after that event happens.
 class GameEvent {
+public:
+	// A list of the keywords that can create or define new objects.
+	static const std::set<std::string> DEFINITION_NODES;
+	
+	
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
