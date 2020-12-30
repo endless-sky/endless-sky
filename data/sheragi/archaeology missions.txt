@@ -1306,7 +1306,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	After many long hours walking around, the lights of the ship finally flicker to life, along with sirens bringing attention to every other damaged subsystem, startling everyone. One of the specialized crew members comes to you, explaining that they finally managed to turn on the power plant and fix enough of the ship to move it around, but that they need to land it in order to bring in the heavier equipment and fix the rest of it.`
 
 	on visit
-		dialog `Upon landing on this strange world, you realize not everything is accounted for! Better make sure the Emerald Sword has been boarded, and no crew or cargo is on escorts out of jump drive range.`
+		dialog `Upon landing on this strange world, you realize not everything is accounted for! Better make sure the Emerald Sword has been boarded, and no crew or cargo is on escorts out of the system.`
 
 
 
