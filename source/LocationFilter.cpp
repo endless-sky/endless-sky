@@ -279,7 +279,7 @@ bool LocationFilter::IsValid() const
 	if(IsEmpty())
 		return true;
 	
-	if(!CheckValidity(planets) || !CheckValidity(systems) || CheckValidity(outfits))
+	if(!CheckValidity(planets) || !CheckValidity(systems) || !CheckValidity(outfits))
 		return false;
 	if(!CheckValidity(notFilters) || !CheckValidity(neighborFilters))
 		return false;
