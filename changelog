@@ -2,7 +2,7 @@ Version 0.9.13:
   * Big changes:
     * Added over 30 new spaceport missions to Coalition space. (@Arachi-Lover)
     * Added over 25 new missions to Remnant space, as well as a new region of the Ember Waste. (@Zitchas)
-    * Added 15 new archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@AzureNyoki)
+    * Added 15 new archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@Karirawri)
     * The Ember Waste has become a more hostile place with the introduction of system hazards. Be prepared the next time you visit. (@Zitchas)
     * Outfits can now be stored on planets by pressing U or R on installed or in cargo outfits in the outfitter. (@petervdmeer)
   * Bug fixes:
@@ -83,7 +83,7 @@ Version 0.9.13:
       * Scouts will now actually spawn in merchant fleets. (@ScruffyKitty)
       * Added new hails for the test dummy government. (@petervdmeer)
       * Created a black hole scene image used in a new Remnant mission. (@wrzlprnft)
-      * Ka'het ships now have engine outfits. (@AzureNyoki, @beccabunny, @TheronEpic)
+      * Ka'het ships now have engine outfits. (@Karirawri, @beccabunny, @TheronEpic)
       * Created six new Heliarch ships. (@Arachi-Lover)
       * Added a new string of missions to the start of the Wanderer campaign that leads to a sideplot to help the Hai build a new ship. (@Amazinite, @Arachi-Lover, @beccabunny, @LocalGod79, @Zitchas)
       * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
