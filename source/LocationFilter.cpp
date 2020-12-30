@@ -546,24 +546,10 @@ void LocationFilter::LoadChild(const DataNode &child)
 	else if(key == "category" && child.Size() >= 2 + isNot)
 	{
 		// Ship categories cannot be combined in an "and" condition.
-		static const set<string> allowed(Ship::CATEGORIES.begin(), Ship::CATEGORIES.end());
-		for(int i = 1 + isNot; i < child.Size(); ++i)
-		{
-			const string &value = child.Token(i);
-			if(allowed.count(value))
-				shipCategory.insert(value);
-			else
-				child.PrintTrace("Invalid ship category: \"" + value + "\":");
-		}
+		auto firstIt = next(child.Tokens().begin(), 1 + isNot);
+		shipCategory.insert(firstIt, child.Tokens().end());
 		for(const DataNode &grand : child)
-			for(int i = 0; i < grand.Size(); ++i)
-			{
-				const string &value = grand.Token(i);
-				if(allowed.count(value))
-					shipCategory.insert(value);
-				else
-					child.PrintTrace("Invalid ship category: \"" + value + "\":");
-			}
+			shipCategory.insert(grand.Tokens().begin(), grand.Tokens().end());
 	}
 	else if(key == "outfits" && child.Size() >= 2 + isNot)
 	{
