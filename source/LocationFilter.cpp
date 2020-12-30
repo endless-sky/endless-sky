@@ -273,16 +273,37 @@ bool LocationFilter::IsValid() const
 	if(IsEmpty())
 		return true;
 	
-	if(!CheckValidity(planets) || !CheckValidity(systems) || !CheckValidity(outfits))
+	if(!CheckValidity(planets))
 		return false;
-	if(!CheckValidity(notFilters) || !CheckValidity(neighborFilters))
+	
+	// Attributes are always considered valid.
+	
+	if(!CheckValidity(systems))
 		return false;
+	
+	// Governments are always considered valid.
 	
 	// The "center" of a "near <system>" filter must be valid.
 	if(center && !center->IsValid())
 		return false;
 	
-	// Governments are always considered valid.
+	if(!CheckValidity(outfits))
+		return false;
+	
+	if(!shipCategory.empty())
+	{
+		// At least one desired category must be valid.
+		auto categories = set<string>(Ship::CATEGORIES.begin(), Ship::CATEGORIES.end());
+		if(!SetsIntersect(shipCategory, categories))
+			return false;
+	}
+	
+	if(!CheckValidity(notFilters))
+		return false;
+	
+	if(!CheckValidity(neighborFilters))
+		return false;
+	
 	return true;
 }
 
