@@ -52,12 +52,12 @@ Version 0.9.13:
     * New content: 
       * New missions:
         * New missions offered by the Quarg. (@Arachi-Lover)
-        * Created two short spaceport missions to human space. (@Nameson2)
+        * Created two short spaceport missions in human space. (@Nameson2)
         * Created a difficult combat mission only available to early pilots. (@Anarchist2)
         * The player will now be warned when their combat rating is high enough that Marauder Hunted fleets will start showing up. (@Amazinite)
         * Created jobs and missions available on Kor Efreti worlds. (@W1zrad)
         * Created new bounty hunting jobs to track down disguised ships. (@Anarchist2)
-        * Added a new string of missions to the start of the Wanderer campaign that leads to a sideplot to help the Hai build a new ship. (@Amazinite, @Arachi-Lover, @beccabunny, @LocalGod79, @Zitchas)
+        * Added a new string of missions during the start of the Wanderer campaign that leads to a sideplot to help the Hai build a new ship. (@Amazinite, @Arachi-Lover, @beccabunny, @LocalGod79, @Zitchas)
         * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
       * New outfits and ships:
         * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
@@ -147,11 +147,11 @@ Version 0.9.13:
       * "Relative" damage types that deal damage as some percentage of the target's stats. (@Amazinite)
     * New mechanics:
       * Ships can have engine flares for reverse and steering engines. (@Amazinite)
-      * Engine flares can now be angled. (@Amazinite)
+      * Engine flares on ships can now be angled. (@Amazinite)
       * Effects can now have a random lifetime. (@Amazinite)
       * Fighter and drone bays can now be given arbitrary facing angles. (@petervdmeer)
       * Mission NPCs can now be spawned or despawned based on the player's conditions. (@Amazinite, @tehhowch)
-      * Guns can now be given arbitrary facing angles. (@petervdmeer)
+      * Gun ports on ships can now be angled. (@petervdmeer)
       * Spaceport news can now be triggered based on the player's conditions. (@Amazinite)
       * Missions are now capable of gifting ships to the player. (@Fzzr, @Gods-Righthand, @NomadicVolcano)
       * Aborting and failing a mission are now separate mission actions. (@Amazinite)
