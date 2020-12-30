@@ -19,6 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "System.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -146,18 +148,37 @@ const Date &GameEvent::GetDate() const
 // by name), and that the systems & planets it references are similarly defined.
 bool GameEvent::IsValid() const
 {
-	// Systems without a position in the map are not valid.
-	for(const auto &systems : {systemsToVisit, systemsToUnvisit})
-		for(const auto &system : systems)
-			if(!system || !system->IsValid())
-				return false;
-	for(const auto &planets : {planetsToVisit, planetsToUnvisit})
-		for(const auto &planet : planets)
-			if(!planet || !planet->IsValid())
-				return false;
+	// When Apply is called, we mutate the universe definition before we update
+	// the player's knowledge of the universe. Thus, to determine if a system or
+	// planet is invalid, we must first peek at what `changes` will do.
+	auto deferredSystems = set<string> {};
+	auto deferredPlanets = set<string> {};
+	for(auto &&node : Changes())
+		if(node.Size() >= 2 && node.HasChildren())
+		{
+			const string &key = node.Token(0);
+			const string &name = node.Token(1);
+			if(key == "system" && any_of(node.begin(), node.end(),
+					[](const DataNode &child) noexcept -> bool
+					{
+						// Observing a "pos" node means the system will be valid.
+						return child.Size() >= 3 && child.Token(0) == "pos";
+					}))
+				deferredSystems.emplace(name);
+			// Since this (or any other) event may be used to assign a planet to a system, we
+			// cannot do a more robust check beyond observing a root-level name definition.
+			else if(key == "planet")
+				deferredPlanets.emplace(name);
+		}
 	
-	// TODO: the DataNodes in `changes` generate definitions for elements
-	// they operate on, but these changes may not be well-defined.
+	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
+		for(auto &&system : systems)
+			if(!system->IsValid() && !deferredSystems.count(system->Name()))
+				return false;
+	for(auto &&planets : {planetsToVisit, planetsToUnvisit})
+		for(auto &&planet : planets)
+			if(!planet->IsValid() && !deferredPlanets.count(planet->TrueName()))
+				return false;
 	
 	return isDefined;
 }
