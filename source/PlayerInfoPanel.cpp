@@ -665,7 +665,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color bright = *GameData::Colors().Get("bright");
 	Color elsewhere = *GameData::Colors().Get("dim");
 	Color dead = *GameData::Colors().Get("dead");
-	Color special = *GameData::Colors().Get("special");
+	Color flagship = *GameData::Colors().Get("flagship");
 	Color disabled = *GameData::Colors().Get("disabled");
 	
 	// Table attributes.
@@ -734,7 +734,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		else if(isElsewhere)
 			table.SetColor(elsewhere);
 		else if(isFlagship)
-			table.SetColor(special);
+			table.SetColor(flagship);
 		else
 			table.SetColor(dim);
 		
