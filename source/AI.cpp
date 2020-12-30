@@ -874,6 +874,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// is to convert completed MOVE_TO orders into HOLD_POSITION orders.
 			UpdateOrders(*it);
 		}
+
+		// Roving takes precedence over leaving the system, but the ship will default to attacking an enemy if there is one.
+		if(isPresent && personality.IsRoving() && !isStranded && !target)
+			Rove(*it, command);
+
 		// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
 		// escort behavior when in a different system from you. Otherwise,
 		// the behavior depends on what the parent is doing, whether there
@@ -2591,6 +2596,22 @@ void AI::DoScatter(Ship &ship, Command &command)
 		command.SetTurn(offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 		return;
 	}
+}
+
+
+
+// Rove; i. e. wander aimlessly around the system
+void AI::Rove(Ship &ship, Command &command) 
+{
+	// If this is a carried ship (like a fighter), or if the ship is disabled or destroyed, don't rove.
+	if(ship.CanBeCarried() || ship.IsDisabled() || ship.IsDestroyed())
+		return;
+
+	// Create a random point and move to it.
+	int areaSize = 10000;
+	Point destination(Random::Real()*areaSize-areaSize/2, Random::Real()*areaSize-areaSize/2);
+	Point velocity(0, 0);
+	MoveTo(ship, command, destination, velocity, ship.MaxVelocity(), ship.MaxVelocity());
 }
 
 
