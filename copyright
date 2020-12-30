@@ -374,7 +374,6 @@ Files:
  images/outfit/void?rifle*
  images/outfit/fragmentation?grenades*
  images/outfit/nerve?gas*
- images/outfit/plasma?repeater*
  images/outfit/catalytic?ramscoop*
  images/outfit/plasma?repeater*
  images/outfit/afterburner*
@@ -881,7 +880,6 @@ Files:
  images/projectile/ravager?beam*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
-
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -1033,6 +1031,11 @@ Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by To
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
 License: CC-BY-SA-4.0
+
+Files: images/outfit/plasma?repeater*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Darcy Manoel.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
