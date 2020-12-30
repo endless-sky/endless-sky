@@ -316,7 +316,7 @@ namespace {
 		
 		jpeg_finish_decompress(&cinfo);
 		jpeg_destroy_decompress(&cinfo);
-
+		
 		// Expand RGB to RGBA
 		for (unsigned int y = 0; y < cinfo.image_height; y++)
 		{
@@ -329,7 +329,7 @@ namespace {
 				pptr[idx * 4 + 3] = static_cast<unsigned char>(0xFF);
 			}
 		}
-
+		
 		return true;
 	}
 	
