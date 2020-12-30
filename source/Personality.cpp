@@ -49,6 +49,9 @@ namespace {
 	const int TARGET = (1 << 25);
 	const int MARKED = (1 << 26);
 	const int LAUNCHING = (1 << 27);
+	const int SHY = (1 << 28);
+	const int ELUSIVE = (1 << 29);
+	const int ROVING = (1 << 30);
 	
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -78,7 +81,10 @@ namespace {
 		{"opportunistic", OPPORTUNISTIC},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"launching", LAUNCHING},
+		{"shy", SHY},
+		{"elusive", ELUSIVE},
+		{"roving", ROVING}
 	};
 	
 	const double DEFAULT_CONFUSION = 10.;
@@ -170,6 +176,13 @@ bool Personality::IsHeroic() const
 bool Personality::IsNemesis() const
 {
 	return flags & NEMESIS;
+}
+
+
+
+bool Personality::IsShy() const
+{
+	return flags & SHY;
 }
 
 
@@ -303,6 +316,20 @@ bool Personality::Harvests() const
 bool Personality::IsSwarming() const
 {
 	return flags & SWARMING;
+}
+
+
+
+bool Personality::IsElusive() const
+{
+	return flags & ELUSIVE;
+}
+
+
+
+bool Personality::IsRoving() const
+{
+	return flags & ROVING;
 }
 
 
