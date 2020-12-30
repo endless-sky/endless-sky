@@ -372,6 +372,64 @@ Files:
  images/outfit/salvage?scanner*
  images/outfit/tiny?remnant?engine*
  images/outfit/void?rifle*
+ images/outfit/fragmentation?grenades*
+ images/outfit/nerve?gas*
+ images/outfit/plasma?repeater*
+ images/outfit/catalytic?ramscoop*
+ images/outfit/plasma?repeater*
+ images/outfit/afterburner*
+ images/outfit/anti-missile*
+ images/outfit/blaster?turret*
+ images/outfit/blaster*
+ images/outfit/breeder*
+ images/outfit/bunk?room*
+ images/outfit/dwarf?core*
+ images/outfit/electron?beam*
+ images/outfit/electron?turret*
+ images/outfit/fission*
+ images/outfit/flamethrower*
+ images/outfit/fuel?pod*
+ images/outfit/gat*
+ images/outfit/grab-strike*
+ images/outfit/heavy?anti-missile*
+ images/outfit/heavy?laser?turret*
+ images/outfit/heavy?laser*
+ images/outfit/huge?fuel?cell*
+ images/outfit/large?fuel?cell*
+ images/outfit/medium?fuel?cell*
+ images/outfit/small?fuel?cell*
+ images/outfit/tiny?fuel?cell*
+ images/outfit/huge?shield*
+ images/outfit/large?shield*
+ images/outfit/medium?shield*
+ images/outfit/small?shield*
+ images/outfit/tiny?shield*
+ images/outfit/hyperdrive*
+ images/outfit/scram?drive*
+ images/outfit/large?radar?jammer*
+ images/outfit/small?radar?jammer*
+ images/outfit/meteor?launcher*
+ images/outfit/meteor*
+ images/outfit/meteor?storage*
+ images/outfit/mod?blaster?turret*
+ images/outfit/mod?blaster*
+ images/outfit/particle?cannon*
+ images/outfit/plasma?cannon*
+ images/outfit/plasma?turret*
+ images/outfit/proton?gun*
+ images/outfit/quad?blaster?turret*
+ images/outfit/rocket*
+ images/outfit/rocket?launcher*
+ images/outfit/rocket?storage*
+ images/outfit/sidewinder*
+ images/outfit/sidewinder?launcher*
+ images/outfit/sidewinder?storage*
+ images/outfit/small?bunk?room*
+ images/outfit/small?nucleovoltaic*
+ images/outfit/small?radiothermal*
+ images/outfit/small?thermionic*
+ images/outfit/stack?core*
+ images/outfit/surveillance?pod*
  images/scene/penguinscene*
  images/ship/ibis*
  images/ship/mbactriane*
@@ -690,6 +748,7 @@ Comment: Derived from works by Nate Graham (under the same license) and detailed
 
 Files:
  images/ship/vanguard*
+ images/outfit/proton?turret*
  images/thumbnail/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
@@ -774,6 +833,39 @@ Files:
  images/outfit/ka'het?mhd?generator*
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/mouthparts*
+ images/outfit/fuel?pod*
+ images/outfit/fusion*
+ images/outfit/core*
+ images/outfit/ionic?afterburner*
+ images/outfit/tiny?ion*
+ images/outfit/small?ion*
+ images/outfit/medium?ion*
+ images/outfit/large?ion*
+ images/outfit/huge?ion*
+ images/outfit/tiny?atomic*
+ images/outfit/small?atomic*
+ images/outfit/medium?atomic*
+ images/outfit/large?atomic*
+ images/outfit/huge?atomic*
+ images/outfit/javelin*
+ images/outfit/javelin?storage*
+ images/outfit/javelin?pod*
+ images/outfit/torpedo*
+ images/outfit/torpedo?launcher*
+ images/outfit/torpedo?storage*
+ images/outfit/typhoon*
+ images/outfit/typhoon?launcher*
+ images/outfit/typhoon?storage*
+ images/outfit/cooling?ducts*
+ images/outfit/liquid?helium*
+ images/outfit/liquid?nitrogen*
+ images/outfit/water?cooling*
+ images/outfit/large?regenerator*
+ images/outfit/small?regenerator*
+ images/outfit/cargo?scanner*
+ images/outfit/outfit?scanner*
+ images/outfit/blue?screwdriver*
+ images/outfit/red?screwdriver*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -789,6 +881,7 @@ Files:
  images/projectile/ravager?beam*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
+
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
