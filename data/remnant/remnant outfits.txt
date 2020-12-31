@@ -40,7 +40,7 @@ outfit "Inhibitor Cannon"
 		"hit force" 39
 		"slowing damage" .5
 	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
-	description `	While the Remnant were intrigued by the metaphysics that enabled the slow effect, they decided that they needed to focus on developping a longer ranged weapon to compliment the close-quarters Thrasher. As such, while the inhibitor has but a mere shadow of its inspiration's warping effects, it is a very effective weapon.`
+	description `	While the Remnant were intrigued by the metaphysics that enabled the slowing effect, they decided that they needed to focus on developing a longer ranged weapon to compliment the close-quarters Thrasher. As such, while the inhibitor has but a mere shadow of its inspiration's warping effects, it is a very effective weapon.`
 
 effect "inhibitor impact"
 	sprite "effect/inhibitor impact"
