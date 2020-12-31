@@ -5,9 +5,7 @@ on:
     branches:
       - master
   pull_request:
-    types:
-      - synchronize
-      - opened
+    types: [opened, synchronize]
 
 jobs:
 
@@ -205,37 +203,3 @@ jobs:
             --name ${{ env.OUTPUT_MACOS }} \
             --file ${{ env.OUTPUT_MACOS }}/${{ env.OUTPUT_MACOS }}
 
-  cd_emscripten:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    env:
-      OUTPUT: endless-sky-web-continuous.tar.gz
-    steps:
-      - uses: actions/checkout@v2
-        fetch-depth: '100'
-      - name: Apply Patch
-        run: |
-          git fetch https://github.com/thomasballinger/endless-sky.git es-wasm-reformatted
-          git merge FETCH_HEAD
-      - uses: mymindstorm/setup-emsdk@v7
-      - name: Install dependencies
-        run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends scons
-      - name: Verify
-        run: emcc -v
-        #- name: Adjust version strings
-        #run: ./utils/cd_update_versions.sh
-        #shell: bash
-      - name: Build Application
-        run: make output/index.html
-      - name: Run Unit Tests
-        run: scons -Qj $(nproc) test
-      - name: Package Application
-        run: tar -czf ${{ env.OUTPUT }} output/
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
