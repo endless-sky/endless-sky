@@ -206,6 +206,7 @@ jobs:
             --file ${{ env.OUTPUT_MACOS }}/${{ env.OUTPUT_MACOS }}
 
   cd_emscripten:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
       OUTPUT: endless-sky-web-continuous.tar.gz
