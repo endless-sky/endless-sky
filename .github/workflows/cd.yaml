@@ -204,3 +204,46 @@ jobs:
             --replace \
             --name ${{ env.OUTPUT_MACOS }} \
             --file ${{ env.OUTPUT_MACOS }}/${{ env.OUTPUT_MACOS }}
+
+  cd_emscripten:
+    runs-on: ubuntu-latest
+    env:
+      OUTPUT: endless-sky-web-continuous.tar.gz
+      EM_VERSION: 1.39.18
+      EM_CACHE_FOLDER: 'emsdk-cache'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - name: Apply Patch
+        run: |
+          git config --global user.email "example@example.com"
+          git config --global user.name "beep boop"
+          git fetch https://github.com/thomasballinger/endless-sky.git es-wasm-reformatted
+          git merge FETCH_HEAD
+      - name: Setup emscripten cache
+        id: cache-system-libraries
+        uses: actions/cache@v2
+        with:
+          path: ${{env.EM_CACHE_FOLDER}}
+          key: ${{env.EM_VERSION}}-${{ runner.os }}
+      - uses: mymindstorm/setup-emsdk@v7
+        with:
+          version: ${{env.EM_VERSION}}
+          actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
+      - name: Install dependencies
+        run: |
+          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends scons
+      - name: Verify
+        run: emcc -v
+      - name: Build Application
+        run: make output/index.html
+      - name: Package Application
+        run: tar -czf ${{ env.OUTPUT }} output/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
