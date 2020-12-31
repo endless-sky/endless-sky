@@ -211,7 +211,7 @@ jobs:
       OUTPUT: endless-sky-web-continuous.tar.gz
     steps:
       - uses: actions/checkout@v2
-        fetch-depth: 100
+        fetch-depth: '100'
       - name: Apply Patch
         run: |
           git fetch https://github.com/thomasballinger/endless-sky.git es-wasm-reformatted
