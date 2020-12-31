@@ -29,7 +29,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <list>
 #include <map>
 #include <memory>
+#ifndef ES_NO_THREADS
 #include <thread>
+#endif // ES_NO_THREADS
 #include <utility>
 #include <vector>
 
@@ -163,13 +165,15 @@ private:
 	
 	AI ai;
 	
+#ifndef ES_NO_THREADS
 	std::thread calcThread;
 	std::condition_variable condition;
 	std::mutex swapMutex;
+	bool terminate = false;
+#endif // ES_NO_THREADS
 	
 	bool calcTickTock = false;
 	bool drawTickTock = false;
-	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];

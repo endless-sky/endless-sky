@@ -35,6 +35,7 @@ opts = Variables()
 opts.AddVariables(
 	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
 	EnumVariable("music", "Whether to use music", "on", allowed_values=("on", "off")),
+	EnumVariable("threads", "Whether to use threads", "on", allowed_values=("on", "off")),
 	PathVariable("BUILDDIR", "Directory to store compiled object files in", "build", PathVariable.PathIsDirCreate),
 	PathVariable("BIN_DIR", "Directory to store binaries in", ".", PathVariable.PathIsDirCreate),
 	PathVariable("DESTDIR", "Destination root directory, e.g. if building a package", "", PathVariable.PathAccept),
@@ -81,12 +82,18 @@ game_libs = [
 	"GL",
 	"GLEW",
 	"openal",
-	"pthread",
 ]
 env.Append(LIBS = game_libs)
 
 if env["music"] == "off":
 	flags += ["-DES_NO_MUSIC"]
+
+if env["threads"] == "off":
+	flags += ["-DES_NO_THREADS"]
+else:
+	env.Append(LIBS = [
+		"pthread"
+	]);
 
 # Required build flags. If you want to use SSE optimization, you can turn on
 # -msse3 or (if just building for your own computer) -march=native.
