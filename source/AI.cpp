@@ -2609,7 +2609,7 @@ void AI::Rove(Ship &ship, Command &command)
 
 	// Create a random point and move to it.
 	int areaSize = 10000;
-	Point destination(Random::Real()*areaSize-areaSize/2, Random::Real()*areaSize-areaSize/2);
+	Point destination = Angle::Random().Unit() * (areaSize * sqrt(Random::Real()));
 	Point velocity(0, 0);
 	MoveTo(ship, command, destination, velocity, ship.MaxVelocity(), ship.MaxVelocity());
 }
