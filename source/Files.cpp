@@ -97,8 +97,12 @@ void Files::Init(const char * const *argv)
 			config = *it;
 			
 	}
-	
-	if(resources.empty())
+#ifdef __EMSCRIPTEN__
+	config = "/";
+	resources = "/";
+#endif
+
+	if (resources.empty())
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
