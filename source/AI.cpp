@@ -1580,10 +1580,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		// Perform the action that this ship previously decided on.
 		if(ship.GetTargetStellar())
 		{
-			// Escorts always move at the fastest speed possible until
-			// they are near their parent.
-			double cruiseSpeed = 0.;
-			MoveToPlanet(ship, command, cruiseSpeed);
+			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
 		else if(ship.GetTargetSystem() && ship.JumpsRemaining())
@@ -1632,9 +1629,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	{
 		ship.SetTargetSystem(nullptr);
 		ship.SetTargetStellar(parent.GetTargetStellar());
-		// Escorts always move at the fastest speed possible in service of their parent.
-		double cruiseSpeed = 0.;
-		MoveToPlanet(ship, command, cruiseSpeed);
+		MoveToPlanet(ship, command);
 		if(parent.IsLanding() || parent.CanLand())
 			command |= Command::LAND;
 	}
@@ -1658,9 +1653,7 @@ void AI::Refuel(Ship &ship, Command &command)
 
 	if(ship.GetTargetStellar())
 	{
-		// Escorts always move at the fastest speed possible in service of their parent.
-		double cruiseSpeed = 0.;
-		MoveToPlanet(ship, command, cruiseSpeed);
+		MoveToPlanet(ship, command);
 		command |= Command::LAND;
 	}
 }
