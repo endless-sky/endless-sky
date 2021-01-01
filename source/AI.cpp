@@ -1767,7 +1767,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
 
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
-	if(!isClose || !isFacing)
+	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
 	if(isFacing)
 		command |= Command::FORWARD;
