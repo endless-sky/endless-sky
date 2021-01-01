@@ -2653,7 +2653,7 @@ void PlayerInfo::Save(const string &path) const
 {
 	DataWriter out(path);	
 	
-
+	
 	// Basic player information and persistent UI settings:
 	
 	// Pilot information:

@@ -298,7 +298,7 @@ private:
 	bool shouldLaunch = false;
 	bool hasFullClearance = true;
 	bool isDead = false;
-
+	
 	int loadTime = 0;
 	int playTime = 0;
 

@@ -44,7 +44,7 @@ public:
 	
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
-
+	
 	
 private:
 	std::string path;

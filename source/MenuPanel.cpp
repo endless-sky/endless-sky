@@ -53,6 +53,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), scroll(0)
 {
 	SetIsFullScreen(true);
+
 	// Update playtime once the player pauses
 	if(player.GetPlanet() && GameData::IsLoaded())
 		player.UpdatePlayTime();

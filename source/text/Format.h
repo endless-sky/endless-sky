@@ -49,7 +49,6 @@ public:
 	
 	// Split a single string into substrings with the given separator.
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
-
 };
 
 
