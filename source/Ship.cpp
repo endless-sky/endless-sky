@@ -2982,14 +2982,11 @@ double Ship::MaxReverseVelocity() const
 
 
 // The optimal speed for this ship when not moving in a hurry.
-// If the ship has escorts, then the speed returned will allow for all escorts
-// to catch up with this ship.
+// If the ship has escorts, then the speed returned will allow for all
+// non-carried escorts to catch up with this ship.
 double Ship::CruiseVelocity() const
 {
-	if(escortsVelocity < 0.)
-		return MaxVelocity();
-	else
-		return min(MaxVelocity(), 0.9 * escortsVelocity);
+	return escortsVelocity >= 0. ? min(MaxVelocity(), escortsVelocity) : MaxVelocity();
 }
 
 
@@ -3511,13 +3508,7 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	// Cache the maximum speeds of escorts so that the parent can stay
-	// below this speed when the parent wants to keep all escorts together.
-	if(escorts.empty() || escortsVelocity < 0.)
-		escortsVelocity = ship.MaxVelocity();
-	else
-		escortsVelocity = min(escortsVelocity, ship.MaxVelocity());
-	
+	RegisterEscort(ship);
 	escorts.push_back(ship.shared_from_this());
 }
 
@@ -3525,32 +3516,47 @@ void Ship::AddEscort(Ship &ship)
 
 void Ship::RemoveEscort(const Ship &ship)
 {
-	auto it = escorts.begin();
-	for( ; it != escorts.end(); ++it)
-		if(it->lock().get() == &ship)
-		{
-			escorts.erase(it);
-			break;
-		}
-	
-	// If we remove the slowest escort from a fleet, then the fleet might
-	// be able to speed up.
-	if(ship.MaxVelocity() == escortsVelocity)
-	{
-		escortsVelocity = -1.;
+	// Reset this value, we will re-scan the list of escorts to set the
+	// escorts velocity based on remaining active escorts.
+	escortsVelocity = -1.;
 
-		it = escorts.begin();
-		for( ; it != escorts.end(); ++it)
-		{
-			auto escort = it->lock();
-			if(escort)
-			{
-				if(escortsVelocity < 0.)
-					escortsVelocity = escort->MaxVelocity();
-				else
-					escortsVelocity = min(escortsVelocity, escort->MaxVelocity());
+	auto it = escorts.begin();
+	while(it != escorts.end())
+	{
+		auto escort = it->lock().get();
+		if(escort){
+			if(escort == &ship){
+				escorts.erase(it);
+				continue;
 			}
+			else
+				// Re-scan existing escorts to cache data like the
+				// escorts velocity.
+				RegisterEscort(ship);
 		}
+		++it;
+	}
+}
+
+
+
+// Store relevant cached data for the given escort.
+void Ship::RegisterEscort(const Ship &ship)
+{
+	// Cache the maximum speed that the parent should stay below to keep
+	// all escorts together.
+	// We don't cache the speeds of escorts that have 0 velocity to avoid
+	// having the parent get stuck when one of the escorts doesn't have
+	// regular thrust.
+	// We also don't cache the speeds of carried ships, since they are often
+	// docked and the carrier waits for them during docking already.
+	double eV = ship.MaxVelocity() * 0.9;
+	if(!ship.CanBeCarried() && eV > 0.)
+	{
+		if(escortsVelocity <= 0.)
+			escortsVelocity = eV;
+		else
+			escortsVelocity = min(escortsVelocity, eV);
 	}
 }
 

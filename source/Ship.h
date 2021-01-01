@@ -414,6 +414,8 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
+	// Cache relevant data for the given escort.
+	void RegisterEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
