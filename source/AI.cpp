@@ -770,6 +770,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetCommands(command);
 			continue;
 		}
+
+		// Elusive ships cloak.
+		// NOTE: Elusive personality does NOT make ships move of their own accord. It must be combined with another personality (such as roving)
+		// or else it will just drift in space.
+		if(personality.IsElusive() && !isStranded && isPresent)
+			DoElusive(*it, command);
 		
 		// Handle carried ships:
 		if(it->CanBeCarried())
@@ -2600,6 +2606,21 @@ void AI::DoScatter(Ship &ship, Command &command)
 		command.SetTurn(offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 		return;
 	}
+}
+
+
+
+// Elusive personality: cloaks whenever possible (even if it uses fuel)
+void AI::DoElusive(Ship &ship, Command &command)
+{
+	// Cloak if you can.
+	if(ship.Attributes().Get("cloak"))
+		command |= Command::CLOAK;
+	
+	// Cloak if your parent is cloaked.
+	const shared_ptr<const Ship> &parent = ship.GetParent();
+	if(parent && parent->Commands().Has(Command::CLOAK))
+		command |= Command::CLOAK;
 }
 
 

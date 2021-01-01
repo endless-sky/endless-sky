@@ -115,6 +115,8 @@ private:
 	void DoScatter(Ship &ship, Command &command);
 	// Aimlessly move around the system
 	void Rove(Ship &ship, Command &command);
+	// Be elusive and cloak whenever possible.
+	void DoElusive(Ship &ship, Command &command);
 	
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
