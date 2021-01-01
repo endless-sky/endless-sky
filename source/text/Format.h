@@ -26,6 +26,8 @@ public:
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string Credits(int64_t value);
+	// Convert a time in seconds to years/days/hours/minutes/seconds
+	static std::string PlayTime(int value);
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);
@@ -47,6 +49,7 @@ public:
 	
 	// Split a single string into substrings with the given separator.
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
+
 };
 
 

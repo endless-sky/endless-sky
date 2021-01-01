@@ -342,6 +342,8 @@ void PlanetPanel::TakeOffIfReady()
 
 void PlanetPanel::TakeOff()
 {
+	player.UpdatePlayTime();
+	player.UpdateLoadTime();
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{

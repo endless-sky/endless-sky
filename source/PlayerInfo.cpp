@@ -95,13 +95,14 @@ void PlayerInfo::New()
 	
 	SetSystem(start.GetSystem());
 	SetPlanet(start.GetPlanet());
+    UpdateLoadTime();
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
 	CreateMissions();
-	
+
 	// Add to the list of events that should happen on certain days.
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())
@@ -115,6 +116,8 @@ void PlayerInfo::Load(const string &path)
 {
 	// Make sure any previously loaded data is cleared.
 	Clear();
+
+	UpdateLoadTime();
 	
 	filePath = path;
 	DataFile file(path);
@@ -138,6 +141,8 @@ void PlayerInfo::Load(const string &path)
 			hasFullClearance = true;
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
+		else if(child.Token(0) == "playtime" && child.Size() >= 2)
+			playTime = child.Value(1);
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
 			const System *next = GameData::Systems().Find(child.Token(1));
@@ -1438,6 +1443,29 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
+// Set the last time the player was active, to update playtime with.
+void PlayerInfo::UpdateLoadTime()
+{
+	loadTime = time(nullptr);
+}
+
+
+
+void PlayerInfo::UpdatePlayTime()
+{
+	int currentTime = time(nullptr);
+	if(currentTime > loadTime)
+		playTime += (time(nullptr) - loadTime);
+}
+
+
+
+int PlayerInfo::GetPlayTime() {
+	return playTime;
+}
+
+
+
 // Get the player's logbook.
 const multimap<Date, string> &PlayerInfo::Logbook() const
 {
@@ -2623,9 +2651,9 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const string &path) const
 {
-	DataWriter out(path);
+	DataWriter out(path);	
 	
-	
+
 	// Basic player information and persistent UI settings:
 	
 	// Pilot information:
@@ -2637,6 +2665,7 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("planet", planet->Name());
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
+	out.Write("playtime", playTime);
 	// This flag is set if the player must leave the planet immediately upon
 	// loading the game (i.e. because a mission forced them to take off).
 	if(shouldLaunch)

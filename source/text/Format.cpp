@@ -89,6 +89,32 @@ string Format::Credits(int64_t value)
 
 
 
+// Convert a time in seconds to years/days/hours/minutes/seconds
+std::string Format::PlayTime(int time)
+{
+	string result;
+	static const vector<char> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
+	static const vector<int> PERIOD = {60, 60, 24, 365};
+
+	// Break time into larger and larger units until the largest one, or the value is empty
+	size_t i = 0;
+	do {
+		int period = (i < SUFFIX.size() - 1 ? time % PERIOD[i] : time);
+		result = (i == 0 ? result + SUFFIX[i] : result + ' ' + SUFFIX[i]);
+		do {
+			result += static_cast<char>('0' + period % 10);
+			period /= 10;
+		} while(period);
+		time /= PERIOD[i];
+		i++;
+	} while (time && i < SUFFIX.size());
+
+	reverse(result.begin(), result.end());
+	return result;
+}
+
+
+
 // Convert the given number to a string, with at most one decimal place.
 // This is primarily for displaying ship and outfit attributes.
 string Format::Number(double value)

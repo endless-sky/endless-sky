@@ -314,7 +314,11 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
+	{
+		// TODO - Detect if player is "paused" or not, and skip the UpdatePlayTime if so
+		player.UpdatePlayTime();
 		player.Save();
+	}
 }
 
 

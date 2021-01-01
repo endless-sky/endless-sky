@@ -40,10 +40,11 @@ public:
 	
 	const std::string &GetSystem() const;
 	const std::string &GetPlanet() const;
+	const std::string &GetPlayTime() const;
 	
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
-	
+
 	
 private:
 	std::string path;
@@ -54,6 +55,7 @@ private:
 	
 	std::string system;
 	std::string planet;
+	std::string playTime;
 	
 	const Sprite *shipSprite = nullptr;
 	std::string shipName;

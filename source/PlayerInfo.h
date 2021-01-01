@@ -149,6 +149,12 @@ public:
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
+
+	// Get or set pilot's playtime.
+	int GetPlayTime();
+	void UpdatePlayTime();
+	// Set the last time the player was active, to update playtime with.
+	void UpdateLoadTime();
 	
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
@@ -292,7 +298,10 @@ private:
 	bool shouldLaunch = false;
 	bool hasFullClearance = true;
 	bool isDead = false;
-	
+
+	int loadTime = 0;
+	int playTime = 0;
+
 	Account accounts;
 	
 	std::shared_ptr<Ship> flagship;
