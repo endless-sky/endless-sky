@@ -1801,7 +1801,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	{
 		// We set full forward power when we don't have a cruise-speed, when we are below
 		// cruise-speed or when we need to do course corrections.
-		bool facesMovementDirection = fabs((Angle(velocity) - angle).Degrees()) < 30.;
+		bool facesMovementDirection = (velocity.Unit().Dot(angle.Unit()) > .86);
 		if(!cruiseSpeed || !facesMovementDirection || velocity.Length() < cruiseSpeed)
 			command |= Command::FORWARD;
 	}
