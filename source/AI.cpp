@@ -873,7 +873,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 		
 		// Construct movement / navigation commands as appropriate for the ship.
-		if(mustRecall || isStranded)
+		// Elusive ships won't ask for fuel as they are trying to not be noticed.
+		if(mustRecall || (isStranded && !personality.IsElusive()))
 		{
 			// Stopping to let fighters board or to be refueled takes priority
 			// even over following orders from the player.
