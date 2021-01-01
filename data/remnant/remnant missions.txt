@@ -3776,3 +3776,85 @@ mission "Remnant: Expanded Horizons Astral job"
 		payment 500000
 		"reputation: Remnant" ++
 		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
+
+
+
+outfit "_Ion Storm Timer: Generator"
+	# This generator will fail when an ion storm comes and the ship runs out of energy
+	"hull repair rate" 60000
+	"hull energy" 1
+
+
+
+ship "_Ion Timer Ship"
+	# The Timer Weapon causes this ship to continually lose hull points
+	# The _Ion Storm Timer: Generator outfit counteracts this until there is an ion storm
+	sprite "ship/shuttle" # uncomment this for debugging
+	attributes
+		"heat dissipation" 1
+		"hull" 0.3
+		"mass" 100
+		"drag" 5
+		"automaton" 1
+		"energy generation" 1
+		"thrust" 10
+		"turn" 600
+	outfits
+		"Timer Weapon"
+		"_Ion Storm Timer: Generator"
+	gun 0 0
+
+
+
+mission "Remnant: Expanded Horizons Storms 1"
+	name "Ember Waste Storm Scanning"
+	description "Dawn has asked you to go scan one of the Ember Waste's storms."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		# random < 30
+	on offer
+		require "Research Laboratory"
+		conversation
+			`As you cross the starport you are suddenly ambushed by Dawn appearing out of a side hallway. "Captain <first>! I have been hoping to catch you. I need some help." She hurries up, waving a datapad full of charts. "I have some additional leads for my research project, and I need a pilot who can take me out to Aescolanus." She looks at you hopefully.`
+			choice
+				`	"Sure, I am always willing to help."`
+				`	"Not today, sorry."`
+					decline
+			`	"Excellent! You already have a research laboratory onboard, and it has all the equipment I need. Now, before we head out, you should know that the goal of this mission is to do some analysis on the leading edge of a storm that will be breaking on the system shortly. We will not have to stay for the whole storm, but we will have to be there for at least the first part."`
+			choice
+				`	"Are there any special adjustments needed?"`
+				`	"The <ship> is ready to go."`
+					goto readyforstorms
+			`	"Well, I expect you are already setup to handle the normal Ember Waste heat, correct?" She continues without waiting for you to reply. "The Ember Waste storms primarily are a risk to electrical systems - typically by draining your power. So you can compensate by ensuring that you have some excess available to use. I know some captains carry extra generators to ensure they always have extra power, but others instead carry extra crystal capacitors so they can outlast the storm. Which strategy fits the <ship> is up to you."`
+			label readyforstorms
+			`	"I will settle into a bunk to do some pre-calculations. Please let me know when we arrive on Aescolanus."`
+				accept
+	npc kill
+		government "Test Dummy"
+		system "Aescolanus"
+		ship "_Ion Timer Ship" "Timer"
+		personality unconstrained heroic nemesis
+		dialog `As the storm starts to swell around you the instrumention chimes to indicate that it has collected all the data it needs. Dawn quickly begins the shutdown routine to protect the equipment against potential damage.`
+
+
+
+mission "Remnant: Expanded Horizons Storms job"
+	name "Ion Storm Scanning"
+	description "Scan an ion storm"
+	job
+	repeat
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Expanded Horizons Storms 1: done"
+		random < 40
+	on offer
+		dialog "Go to Aescolanus and wait for an ion storm"    
+	npc kill
+		government "Test Dummy"
+		system "Aescolanus"
+		ship "_Ion Timer Ship" "Timer"
+		personality unconstrained heroic nemesis
+		dialog `As the storm crescendos around you the instrumention chimes to indicate that it has collected all the data it needs. Your researcher quickly begins the shutdown routine to protect the equipment against potential damage.`
