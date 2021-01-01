@@ -762,6 +762,14 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			else
 				it->SetTargetAsteroid(nullptr);
 		}
+
+		// Handle roving ships
+		if(personality.IsRoving() && it && !it->CanBeCarried() && !parent && !isStranded && !target && isPresent)
+		{
+			Rove(*it, command);
+			it->SetCommands(command);
+			continue;
+		}
 		
 		// Handle carried ships:
 		if(it->CanBeCarried())
@@ -874,10 +882,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// is to convert completed MOVE_TO orders into HOLD_POSITION orders.
 			UpdateOrders(*it);
 		}
-
-		// Roving takes precedence over leaving the system, but the ship will default to attacking an enemy if there is one.
-		if(isPresent && personality.IsRoving() && !isStranded && !target)
-			Rove(*it, command);
 
 		// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
 		// escort behavior when in a different system from you. Otherwise,
@@ -2600,16 +2604,14 @@ void AI::DoScatter(Ship &ship, Command &command)
 
 
 
-// Rove; i. e. wander aimlessly around the system
-void AI::Rove(Ship &ship, Command &command) 
+// Roving personality: wanders aimlessly about the system, not leaving.
+void AI::Rove(Ship &ship, Command &command)
 {
-	// If this is a carried ship (like a fighter), or if the ship is disabled or destroyed, don't rove.
-	if(ship.CanBeCarried() || ship.IsDisabled() || ship.IsDestroyed())
-		return;
-
-	// Create a random point and move to it.
-	int areaSize = 10000;
-	Point destination = Angle::Random().Unit() * (areaSize * sqrt(Random::Real()));
+	// Pick a random point within a circle
+	int radius = 10000;
+	Point destination = Angle(Random::Real() * 360).Unit() * (radius * sqrt(Random::Real()));
+	
+	// Move to that point
 	MoveTo(ship, command, destination, Point(), ship.MaxVelocity(), ship.MaxVelocity());
 }
 

@@ -84,7 +84,7 @@ namespace {
 		{"launching", LAUNCHING},
 		{"shy", SHY},
 		{"elusive", ELUSIVE},
-		{"roving", ROVING}
+		{"roving", ROVING},
 	};
 	
 	const double DEFAULT_CONFUSION = 10.;
