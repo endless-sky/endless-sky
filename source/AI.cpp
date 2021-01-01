@@ -1523,8 +1523,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		// If our allies are clearly stronger than our enemies in this system,
 		// then move at more civilized speeds when going to a planet.
-		// A cruiseSpeed of 0. is interpreted as "as fast as possible".
-		double cruiseSpeed = 0.;
+		// A cruiseSpeed of below 0 is interpreted as "as fast as possible".
+		double cruiseSpeed = -1.;
 		auto ait = allyStrength.find(ship.GetGovernment());
 		auto eit = enemyStrength.find(ship.GetGovernment());
 		if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second > eit->second * 2)
@@ -1802,7 +1802,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 		// We set full forward power when we don't have a cruise-speed, when we are below
 		// cruise-speed or when we need to do course corrections.
 		bool facesMovementDirection = (velocity.Unit().Dot(angle.Unit()) > .86);
-		if(!cruiseSpeed || !facesMovementDirection || velocity.Length() < cruiseSpeed)
+		if(cruiseSpeed < 0. || !facesMovementDirection || velocity.Length() < cruiseSpeed)
 			command |= Command::FORWARD;
 	}
 	else if(shouldReverse)
