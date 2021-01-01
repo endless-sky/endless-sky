@@ -763,6 +763,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetTargetAsteroid(nullptr);
 		}
 
+		// Elusive ships cloak.
+		// NOTE: Elusive personality does NOT make ships move of their own accord. It must be combined with another personality (such as roving)
+		// or else it will just drift in space.
+		if(personality.IsElusive() && !isStranded && isPresent)
+			DoElusive(*it, command);
+
 		// Handle roving ships
 		if(personality.IsRoving() && it && !it->CanBeCarried() && !parent && !isStranded && !target && isPresent)
 		{
@@ -770,12 +776,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetCommands(command);
 			continue;
 		}
-
-		// Elusive ships cloak.
-		// NOTE: Elusive personality does NOT make ships move of their own accord. It must be combined with another personality (such as roving)
-		// or else it will just drift in space.
-		if(personality.IsElusive() && !isStranded && isPresent)
-			DoElusive(*it, command);
 		
 		// Handle carried ships:
 		if(it->CanBeCarried())
