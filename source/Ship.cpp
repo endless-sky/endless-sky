@@ -3533,7 +3533,7 @@ void Ship::RemoveEscort(const Ship &ship)
 			break;
 		}
 	
-	// If we remove the slowest esort from a fleet, then the fleet might
+	// If we remove the slowest escort from a fleet, then the fleet might
 	// be able to speed up.
 	if(ship.MaxVelocity() == escortsVelocity)
 	{
