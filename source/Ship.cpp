@@ -3516,7 +3516,7 @@ void Ship::AddEscort(Ship &ship)
 	if(escorts.empty())
 		escortsVelocity = ship.MaxVelocity();
 	else
-		escortsVelocity = fmin(escortsVelocity, ship.MaxVelocity());
+		escortsVelocity = min(escortsVelocity, ship.MaxVelocity());
 	
 	escorts.push_back(ship.shared_from_this());
 }
@@ -3537,13 +3537,19 @@ void Ship::RemoveEscort(const Ship &ship)
 	// be able to speed up.
 	if(ship.MaxVelocity() == escortsVelocity)
 	{
-		escortsVelocity = MaxVelocity();
+		escortsVelocity = 0.;
+
 		it = escorts.begin();
 		for( ; it != escorts.end(); ++it)
 		{
 			auto escort = it->lock();
 			if(escort)
-				escortsVelocity = fmin(escortsVelocity, escort->MaxVelocity());
+			{
+				if(!escortsVelocity)
+					escortsVelocity = escort->MaxVelocity();
+				else
+					escortsVelocity = min(escortsVelocity, escort->MaxVelocity());
+			}
 		}
 	}
 }
