@@ -2986,7 +2986,7 @@ double Ship::MaxReverseVelocity() const
 // to catch up with this ship.
 double Ship::CruiseVelocity() const
 {
-	if(escortsVelocity < 1.)
+	if(escortsVelocity < 0.)
 		return MaxVelocity();
 	else
 		return min(MaxVelocity(), 0.9 * escortsVelocity);
@@ -3513,7 +3513,7 @@ void Ship::AddEscort(Ship &ship)
 {
 	// Cache the maximum speeds of escorts so that the parent can stay
 	// below this speed when the parent wants to keep all escorts together.
-	if(escorts.empty())
+	if(escorts.empty() || escortsVelocity < 0.)
 		escortsVelocity = ship.MaxVelocity();
 	else
 		escortsVelocity = min(escortsVelocity, ship.MaxVelocity());
@@ -3537,7 +3537,7 @@ void Ship::RemoveEscort(const Ship &ship)
 	// be able to speed up.
 	if(ship.MaxVelocity() == escortsVelocity)
 	{
-		escortsVelocity = 0.;
+		escortsVelocity = -1.;
 
 		it = escorts.begin();
 		for( ; it != escorts.end(); ++it)
@@ -3545,7 +3545,7 @@ void Ship::RemoveEscort(const Ship &ship)
 			auto escort = it->lock();
 			if(escort)
 			{
-				if(!escortsVelocity)
+				if(escortsVelocity < 0.)
 					escortsVelocity = escort->MaxVelocity();
 				else
 					escortsVelocity = min(escortsVelocity, escort->MaxVelocity());

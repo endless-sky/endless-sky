@@ -573,7 +573,7 @@ private:
 	std::weak_ptr<Ship> parent;
 	
 	// Cached data from escorts; like the minimum of all maximum speeds of all escorts.
-	double escortsVelocity = 0.;
+	double escortsVelocity = -1.;
 };
 
 
