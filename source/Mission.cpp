@@ -1068,13 +1068,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(result.waypoints.erase(source))
 		result.visitedWaypoints.insert(source);
 	
-	// Copy the stopover planet list, and populate the list based on the filters
-	// that were given.
+	// Copy the template's stopovers, and add planets that match the template's filters.
 	result.stopovers = stopovers;
 	// Make sure they all exist in a valid system.
 	for(auto it = result.stopovers.begin(); it != result.stopovers.end(); )
 	{
-		if((*it)->GetSystem())
+		if((*it)->IsValid())
 			++it;
 		else
 			it = result.stopovers.erase(it);
@@ -1101,7 +1100,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	// If no destination is specified, it is the same as the source planet. Also
 	// use the source planet if the given destination is not a valid planet.
-	if(!result.destination || !result.destination->GetSystem())
+	if(!result.destination || !result.destination->IsValid())
 	{
 		if(player.GetPlanet())
 			result.destination = player.GetPlanet();
