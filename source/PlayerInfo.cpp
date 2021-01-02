@@ -95,7 +95,7 @@ void PlayerInfo::New()
 	
 	SetSystem(start.GetSystem());
 	SetPlanet(start.GetPlanet());
-    UpdateLoadTime();
+	UpdateLoadTime();
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
@@ -1446,16 +1446,16 @@ bool PlayerInfo::TakeOff(UI *ui)
 // Set the last time the player was active, to update playtime with.
 void PlayerInfo::UpdateLoadTime()
 {
-	loadTime = time(nullptr);
+	loadTime = std::time(nullptr);
 }
 
 
 
 void PlayerInfo::UpdatePlayTime()
 {
-	int currentTime = time(nullptr);
+	int currentTime = std::time(nullptr);
 	if(currentTime > loadTime)
-		playTime += (time(nullptr) - loadTime);
+		playTime += (std::time(nullptr) - loadTime);
 }
 
 

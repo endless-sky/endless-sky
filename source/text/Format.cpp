@@ -90,24 +90,26 @@ string Format::Credits(int64_t value)
 
 
 // Convert a time in seconds to years/days/hours/minutes/seconds
-std::string Format::PlayTime(int time)
+std::string Format::PlayTime(int timeVal)
 {
 	string result;
-	static const vector<char> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
-	static const vector<int> PERIOD = {60, 60, 24, 365};
+	static const char SUFFIX[5] = {'s', 'm', 'h', 'd', 'y'};
+	static int PERIOD[4] = {60, 60, 24, 365};
+	//static const vector<char> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
+	//static const vector<int> PERIOD = {60, 60, 24, 365};
 
 	// Break time into larger and larger units until the largest one, or the value is empty
 	size_t i = 0;
 	do {
-		int period = (i < SUFFIX.size() - 1 ? time % PERIOD[i] : time);
+		int period = (i < sizeof(SUFFIX) - 1 ? timeVal % PERIOD[i] : timeVal);
 		result = (i == 0 ? result + SUFFIX[i] : result + ' ' + SUFFIX[i]);
 		do {
 			result += static_cast<char>('0' + period % 10);
 			period /= 10;
 		} while(period);
-		time /= PERIOD[i];
+		timeVal /= PERIOD[i];
 		i++;
-	} while (time && i < SUFFIX.size());
+	} while (timeVal && i < sizeof(SUFFIX));
 
 	reverse(result.begin(), result.end());
 	return result;
