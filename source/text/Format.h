@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ES_TEXT_FORMAT_H_
 #define ES_TEXT_FORMAT_H_
 
+#include <array>
 #include <map>
 #include <string>
 #include <vector>
