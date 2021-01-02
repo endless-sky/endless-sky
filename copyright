@@ -429,6 +429,12 @@ Files:
  images/outfit/small?thermionic*
  images/outfit/stack?core*
  images/outfit/surveillance?pod*
+ images/outfit/banisher*
+ images/outfit/command?center*
+ images/outfit/fire-lance*
+ images/outfit/piercer*
+ images/outfit/piercer?launcher*
+ images/outfit/jorath?piercer?storage*
  images/scene/penguinscene*
  images/ship/ibis*
  images/ship/mbactriane*
@@ -747,7 +753,6 @@ Comment: Derived from works by Nate Graham (under the same license) and detailed
 
 Files:
  images/ship/vanguard*
- images/outfit/proton?turret*
  images/thumbnail/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
@@ -863,8 +868,9 @@ Files:
  images/outfit/small?regenerator*
  images/outfit/cargo?scanner*
  images/outfit/outfit?scanner*
- images/outfit/blue?screwdriver*
- images/outfit/red?screwdriver*
+ images/outfit/outfit?expansion*
+ images/outfit/cargo?expansion*
+ images/outfit/control?transceiver*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1036,6 +1042,18 @@ Files: images/outfit/plasma?repeater*
 Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Darcy Manoel.
+
+Files:
+ images/outfit/proton?turret*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Nate Graham.
+
+Files:
+ images/outfit/brig*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
