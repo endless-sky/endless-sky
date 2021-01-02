@@ -3550,9 +3550,9 @@ void Ship::RegisterEscort(const Ship &ship)
 	// regular thrust.
 	// We also don't cache the speeds of carried ships, since they are often
 	// docked and the carrier waits for them during docking already.
-	double eV = ship.MaxVelocity() * 0.9;
-	if(!ship.CanBeCarried() && eV > 0.)
+	if(!ship.CanBeCarried() && ship.MaxVelocity() > 0.)
 	{
+		double eV = ship.MaxVelocity() * 0.9;
 		if(escortsVelocity <= 0.)
 			escortsVelocity = eV;
 		else
