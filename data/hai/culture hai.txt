@@ -9,3 +9,164 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 # "Missions" which add culture events to the spaceport.
+
+############################################
+#          No Translator Required          #
+############################################
+
+mission "ZZCU Theater Chat"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	destination
+		distance 1 3
+		government "Hai"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`Walking through the spaceport you come across the uncommon pairing of a Hai and a human, their conversation standing out by virtue of speaking the common tongue of humanity.`
+			`	"Oh, oh, Gemanari this looks interesting!" The human woman looks to be in her late sixties and, when you turn to look, seems to be clucking over a holographic advertisement for a theater show. "This looks adorable doesn't it? Oh and it says they're using ripple ray refractive holographic flight effects!"`
+			`	The advertisement does indeed look very impressive and you pause to observe for a moment.`
+			`	The Hai, presumably Gemanari, also appears to be a more mature lady who squints at it and wrinkles her nose. "Ugh, that's the Germontian interpretation though."`
+			`	This receives a puzzled look to which Gemanari thinks for a second before clarifying, "You would say the Darwinist interpretation."`
+			`	The lady grimaces and makes like she's vomiting, "I can't believe you still have those schools of thought in a society this old."`
+			`	"Oh we don't really, at least not in scientific circles, but a compelling story will outlive such things. I can't stand it personally but it is a classic." When the lady looks unimpressed Gemanari titters and takes her gently by the arm to steer her away again. "Don't worry Alinta, I think the Misheep Wah'uden company is running my preferred interpretation on <destination> at the moment. We can see if they have any cheap tickets. Of course my aunt would insist that the hundred and eighty-third version is the only real one but she always..."`
+			`	You lose the conversation as they trail away from you, leaving you to wonder just what was so special about the hundred and eighty-third version of a play about a prehistoric flying Hai found frozen in the ice.`
+				fail
+
+mission "ZZCU Musical Entertainment Expo"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`While stopped in the Spaceport waiting for refueling you are surprised by how hard it is to find somewhere to sit and have a meal & a drink. It seems that Hai are crammed into every bar or similar venue with a public display screen, arrayed in sashes and mantles and all manner of other paraphernalia which, near as you can tell looks like... team sport merchandise?`
+			`	You're not really an expert on exactly what such things look like in Hai society and so when you finally find somewhere to sit, at a bar for lack of any other options, you ask the tired looking bartender what exactly is going on.`
+			`	"Oh this? They're all here for the Musical Entertainment Expo streams. Unfortunately, none of them start drinking until at least one of their teams has announced something of worth," he says with an exasperated eye-roll.`
+			choice
+				`	"Sure, can I just get some food here?"`
+					goto wrapup
+				`	"Whats the Musical Entertainment Expo?"`
+				`	"Why don't they start drinking yet?"`
+			`	"Well you see the big music labels do a lot of talent scouting all year round, they all have a department that is solely dedicated to finding and assembling new music groups to be the next big thing. It's traditionally to celebrate only after you've committed to the journey with a new band. Every three years the industry holds ME2, that's what you're seeing up there, to debut their next round of bands, and to tease any mid-season releases they might have in the works."`
+			choice
+				`	"Your music comes off a production line?"`
+					goto production
+				`	"Do you not have musicians trying to make it on their own?"` 
+			`	"Oh for sure, but mostly just to get picked up by one of these companies."`
+			label production
+			`	The bartender chuckles. "We've been doing pop music for longer than your people have had fire, it's about the experience of being a fan of a group as it rises to fame and stardom. A dedicated Hai can go back and find a song for almost any possible life experience in almost any possible genre. It's the journey, and the personalities, that are what it's all about."`
+			choice
+				`	"How strange."`
+				`	"How interesting."`
+			`	"Anyway, I gather you were you after some food?"`
+			label wrapup
+			`	The bartender tips his head in your direction and takes your order. "No problem, it'll be right up."`
+			`	It's a noisy meal.`
+				fail
+
+#This uses the flag from receiving the Hai translator.
+mission "ZZCU The Meme Wars 1"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`Stepping into the spaceport you are beset by a riot of color. Every blank surface that's not usually paid advertising space seems to be festooned with dangling holographic projectors, ribbons, banners, and even actual paper fliers and posters, apparently taped to whatever surface will bear them. At first you wonder if there's some sort of festival going on, but as you watch a young Hai wearing a hood slaps up another holo projector which immediately projects the image of an anthro root vegetable with a sword hacking at some kind of impressionist concept of a Hai elder made up of iridescent triangles. The young Hai then proceeds to tear down a banner and slap some goo on a massive poster which begins dissolving before a pair of security guards, wearing some very obviously non-standard additions to their uniforms, chase him back out of the spaceport.`
+			branch translator
+				has "language: Wanderer"
+			`	As you watch the triangle elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
+			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and root vegetable make several reappearances on their placards, some of them holographically animated.`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
+			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
+				fail
+			label translator
+			`	As you watch the triangle elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
+			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and root vegetable make several reappearances on their placards, some of them holographically animated.`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
+			choice
+				`	"Sure, will do."`
+					goto done
+				`	Your elders have a tripartite system?`
+			`	The security guard chuckles and says, "Oh you can understand? They don't really, but it's a very old joke from an old campaign that there are only 3 tenets the elders care about, and they're all the ones that affect us the least."`
+			`	When you ask what has triggered this now he says, "Oh, the latest education priorities came out with a 4 tenet focus, on the same day that an elder accidentally quoted the old campaign. It has been very entertaining."`
+			choice
+				`	"How strange."`
+				`	"Sounds fun."`
+			label done
+			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
+				fail
+
+mission "ZZCU Wrestling Star"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`A famous Hai wrestler is doing a signing. (TBD)`
+				fail
+
+mission "ZZCU Fencing Star"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`A famous Hai fencer is doing a signing. (TBD)`
+				fail
+				
+mission "ZZCU ??? Star"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`A famous Hai sportsperson of an obscure alien sport is doing a signing. (TBD)`
+				fail
+
+mission "ZZCU Mum Groups"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`Tenet 1 - separation of fantasy and reality, tenet 2 - honesty in dealings, tenet 3 - gambling on skill not on chance. Human ship captains playing poker are frowned upon because they contradict the tenets of maturity.`
+				fail
+
+############################################
+#            Translator Required           #
+############################################
+
+#This uses the flag from receiving the Hai translator.
+mission "ZZCU boop"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+		has "language: Wanderer"
+	on offer
+		conversation
+			`placeholder`
+				fail

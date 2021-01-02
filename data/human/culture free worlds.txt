@@ -10,7 +10,7 @@
 
 # "Missions" which add culture events to the spaceport.
 
-mission "South: The Great Pig War"
+mission "ZZCU South: The Great Pig War"
 	landing
 	to offer
 		and
@@ -21,47 +21,47 @@ mission "South: The Great Pig War"
 			attributes "spaceport" "farming" "south"
 	on offer
 		conversation
-		`Farm world spaceports tend to be lonely affairs outside of harvesting season, but this one is bustling with festive energy. Rows of colorful tents and throngs of the planet's natives fill the area, as well as a proliferation of craftwork pig-sculptures; some are built from hay, some papier-mache and paint - one even appears to have been carved from butter. Most spaces that aren't taken by a silo, barn, or hangar of some sort have had a refreshment stand, game, or exhibition set up - the remaining few patches of ground are occupied by the feet of the planet's inhabitants. Live music fills the air, cheap beer flows like water, and fried food sizzles enticingly as it vacates vats of oil.`
+		`Farm world spaceports tend to be lonely affairs outside of harvesting season, but this one is bustling with festive energy. Rows of colorful tents and throngs of the planet's natives fill the area, as well as a proliferation of craft-work pig-sculptures; some are built from hay, some papier-mache and paint - one even appears to have been carved from butter. Most spaces that aren't taken by a silo, barn, or hangar of some sort have had a refreshment stand, game, or exhibition set up - the remaining few patches of ground are occupied by the feet of the planet's inhabitants. Live music fills the air, cheap beer flows like water, and fried food sizzles enticingly as it vacates vats of oil.`
 		choice
 			`	Carry on with your business. You can always come back next year.`
 				defer
 			`	Stop and take in the sights - and maybe a soft pretzel or three.`
-		'Conversation with the locals eventually turns to the matter of what they're celebrating in the first place. As it turns out, the bronzed pig holds the clue. Today is the anniversary of the Great Pig War, a conflict which apparently raged between the Southern Defense Pact and the Syndicate unbeknowst to the larger galaxy. Toasts are raised in honor of nine heroic captains - and to the memory of a single martyrd swine.`
-		`"Back in the fourties," a reveler drunkenly explains to you, "Half the farms'n'ranches'honesfolks about this planet were either about ready to leave or takin' out a second mortgage on their property. Bankers from richer worlds were always comin' about to reposess something or another." A passer-by spits on the ground in disgust at the mention - or perhaps he'd just succeeded in extricating some shredded pork from his teeth. "So some good honest boys decided they'd had enough of payin' tariffs and honoring exclusive shipping rights n' rot like that. They came 'round, bought up a whole herd of swine, and took off to feed some hungry folks in the Syndicate. Trouble is, back in those days the Syndicate had a stranglehold on shipping grain n' livestock. Either you signed up with this one shipping company and let them eat all your profits, or you let your harvest rot. Getting to market without being a member was... Somewhat frowned upon."`
+		'Conversation with the locals eventually turns to the matter of what they're celebrating in the first place. As it turns out, the bronzed pig holds the clue. Today is the anniversary of the Great Pig War, a conflict which apparently raged between the Southern Defense Pact and the Syndicate unbeknownst to the larger galaxy. Toasts are raised in honor of nine heroic captains - and to the memory of a single martyred swine.`
+		`"Back in the forties," a reveler drunkenly explains to you, "Half the farms'n'ranches'honesfolks about this planet were either about ready to leave or takin' out a second mortgage on their property. Bankers from richer worlds were always comin' about to repossess something or another." A passer-by spits on the ground in disgust at the mention - or perhaps he'd just succeeded in extricating some shredded pork from his teeth. "So some good honest boys decided they'd had enough of payin' tariffs and honoring exclusive shipping rights n' rot like that. They came 'round, bought up a whole herd of swine, and took off to feed some hungry folks in the Syndicate. Trouble is, back in those days the Syndicate had a stranglehold on shipping grain n' livestock. Either you signed up with this one shipping company and let them eat all your profits, or you let your harvest rot. Getting to market without being a member was... Somewhat frowned upon."`
 		`By this point several others have gathered around the speaker. It would appear that recounting the tale of the Great Pig War to strangers is part of the tradition. "... Mnh. S'anyways. Some boys flew over to Maker with a hundred-"`
 		`The speaker is interrupted by a shout of "It was a thousand!"`
 		`"Quiet down! Ain't no way you could fit a thousand swine onto a hauler. Alright, so they've got two hundred pigs in their hold when they try to land on Maker. Syndicate Security shows up-" Boos echo throughout the crowd "- and tell these good, upright, honest smugglers that they're to match velocity n' prepare to be boarded. Now, they aren't about to bow down, so they make a break for the edges of the system but start taking hits. Quicksilvers are buzzin', Protectors lumberin' after them, and their shields go down. A particle cannon punches straight through the hull, and our good, kind, noble, brave boys n' girls stop their ship and start patchin' the whole, ready to surrender."`
-		`The listeners go quiet. Tense anticipation fills the air. If not for the jolly music and overwhelming clamor of the crowd surrounding your little huddle, all would be hushed. "And that's when nine green-striped angels punched outta' hyperspace and began streaking towards our little drama. See, some of the local militia decided that justice was more important than jurisdiction, and they decided t'give the smugglers an unasked-for escort. These fine folk arrived late to the party, after the shooting had already started, but just in time to make it stop. Syndicate security's surrounded, and..." People huddled around the speaker are grinning eagerly. They've heard this story a hundred times - and evidently this is their favorite part. "The bastards stand down! Our smugglers didn't make any profit on accounta' having to turn back, and one pig got rendered into bacon by laserfire, but folks got emboldened enough to start disregardin' contracts and began organizing their own shipping. Refused to use those crooks that were extortin' us as being the only way to get goods off planet. And that's why every year, on the anniversary of the Great Pig War, we celebrate."`
+		`The listeners go quiet. Tense anticipation fills the air. If not for the jolly music and overwhelming clamor of the crowd surrounding your little huddle, all would be hushed. "And that's when nine green-striped angels punched outta' hyperspace and began streaking towards our little drama. See, some of the local militia decided that justice was more important than jurisdiction, and they decided t'give the smugglers an unasked-for escort. These fine folk arrived late to the party, after the shooting had already started, but just in time to make it stop. Syndicate security's surrounded, and..." People huddled around the speaker are grinning eagerly. They've heard this story a hundred times - and evidently this is their favorite part. "The bastards stand down! Our smugglers didn't make any profit on accounta' having to turn back, and one pig got rendered into bacon by laser fire, but folks got emboldened enough to start disregardin' contracts and began organizing their own shipping. Refused to use those crooks that were extortin' us as being the only way to get goods off planet. And that's why every year, on the anniversary of the Great Pig War, we celebrate."`
 		fail
 
-mission "South Culture: Reposessed"
+mission "ZZCU South Culture: Repossessed"
 	landing
 	to offer
 		and
-			random < 2 + 50 * "Culture: Reposessed"
+			random < 2 + 50 * "Culture: Repossessed"
 			"event: war begins"
 	source
 		government "Free Worlds"
 		attributes "spaceport" "farming" "south"
 	on offer
 		dialog
-		`You arrive at the spaceport just in time to witness a shuttle being towed off its landing pad by a tractor, a familiar blazon displayed upon the spacecraft's doors. Though it's made somewhat harder to recognize by the fact that somebody has spray-painted "REPOSESED" over the logo, it appears that this shuttle belongs to - or used to belong to - the very same galactic bank that cut you the loan for your first ship. If the crowd of jeering locals is anything to go by, it looks like popular opinion here doesn't favor the galaxy's financial instutitons. A group of militia members observe the blatant ship-theft, evidently unwilling to intercede. In fact, some of them are cheering on the hijackers.`
+		`You arrive at the spaceport just in time to witness a shuttle being towed off its landing pad by a tractor, a familiar blazon displayed upon the spacecraft's doors. Though it's made somewhat harder to recognize by the fact that somebody has spray-painted "REPOSESED" over the logo, it appears that this shuttle belongs to - or used to belong to - the very same galactic bank that cut you the loan for your first ship. If the crowd of jeering locals is anything to go by, it looks like popular opinion here doesn't favor the galaxy's financial institution. A group of militia members observe the blatant ship-theft, evidently unwilling to intercede. In fact, some of them are cheering on the hijackers.`
 		fail
 	on fail
-		"Culture: Reposessed" ++
+		"Culture: Repossessed" ++
 		
-mission "Rim Culture: Reposessed"
+mission "ZZCU Rim Culture: Repossessed"
 	landing
 	to offer
 		and
-			random < 2 + 50 * "Culture: Reposessed"
+			random < 2 + 50 * "Culture: Repossessed"
 			"event: war begins"
 	source
 		government "Free Worlds"
 		attributes "spaceport" "urban" "rim"
 	on offer
 		dialog
-		`As you exit your ship, you run overhear a spaceport technician attempting to have an animated conversation with another. "Piracy? And the milita does nothing? That goes against everything we stand for." Stern disapproval colors the speaker's voice. "These clowns're assaulting bankers and taking their shuttles, last I heard. I get that they're frustated out there on the farms and owe money, but that doesn't excuse theft." The technician's partner, currently shoulder-deep in an engine, responds distractedly. "Cool. You gonna' pass me that buffer or not? This Port and Polish ain't about to finish itself." The pair continue to converse as you carry on your way, but it's out of earshot before long.`
+		`As you exit your ship, you run overhear a spaceport technician attempting to have an animated conversation with another. "Piracy? And the militia does nothing? That goes against everything we stand for." Stern disapproval colors the speaker's voice. "These clowns're assaulting bankers and taking their shuttles, last I heard. I get that they're frustrated out there on the farms and owe money, but that doesn't excuse theft." The technician's partner, currently shoulder-deep in an engine, responds distractedly. "Cool. You gonna' pass me that buffer or not? This Port and Polish ain't about to finish itself." The pair continue to converse as you carry on your way, but it's out of earshot before long.`
 		fail
 	on fail
-		"Culture: Reposessed" ++
+		"Culture: Repossessed" ++

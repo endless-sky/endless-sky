@@ -10,7 +10,7 @@
 
 # "Missions" which add culture events to the spaceport.
 
-#mission "cultural holiday template"
+#mission "ZZCU cultural holiday template"
 #	minor
 #	source
 #		government "placeholder"
@@ -26,7 +26,7 @@
 #			`placeholder`
 #				fail
 			
-#mission "cultural random template"
+#mission "ZZCU cultural random template"
 #	minor
 #	source
 #		government "placeholder"
@@ -44,7 +44,7 @@
 #           Republic or Syndicate           #
 #############################################
 
-mission "Sad Gamblers"
+mission "ZZCU Sad Gamblers"
 	minor
 	source
 		or
@@ -65,7 +65,7 @@ mission "Sad Gamblers"
 #               Republic Only               #
 #############################################
 
-mission "Gift Store Interaction"
+mission "ZZCU Gift Store Interaction"
 	minor
 	source
 		government "republic"
@@ -75,8 +75,8 @@ mission "Gift Store Interaction"
 		random == 1
 	on offer
 		conversation
-			`As you wander the spaceport with a snack, waiting for your ship to be refuelled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "<source>" printed underneath an attractive, stylised representation of the spaceport you are presently standing in and pick it up to see how it feels. The handle is solid, and not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
-			`	Two young adults wander into the aisle just a couple of meters away. They're clearly from abroad judging by their conversation occurring in some local dialect which is niether local nor one you understand. They're cooing over an item they've found but when one flips it over to look at the price tag there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a headshake.`
+			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "<source>" printed underneath an attractive, stylized representation of the spaceport you are presently standing in and pick it up to see how it feels. The handle is solid, and not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
+			`	Two young adults wander into the aisle just a couple of meters away. They're clearly from abroad judging by their conversation occurring in some local dialect which is neither local nor one you understand. They're cooing over an item they've found but when one flips it over to look at the price tag there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a head-shake.`
 			`	Curious you turn over your own mug and see that it is indeed at least five times what you would expect to pay for a mug, even a good one. Still, t is certainly a novelty...`
 			choice
 				`	(Buy the mug.)`
@@ -89,7 +89,7 @@ mission "Gift Store Interaction"
 				fail
 
 
-mission "Trash Fire Crops"
+mission "ZZCU Trash Fire Crops"
 	minor
 	source
 		government "republic"
@@ -104,14 +104,14 @@ mission "Trash Fire Crops"
 				`	(Ignore it.)`
 					goto ignore
 				`	(Ask around.)`
-			`	You ask one of the locals who doesn't look too busy. They sadly inform you that there's been a bumper banana crop, but unfortunately other, wealthier, worlds had a bumper crop at the same time, and there's nowhere to either sell or store a significant excess. Distressed farmers are burning the excess fruit to make fertiliser for the next season, the wind has carried the smell all over town.`
+			`	You ask one of the locals who doesn't look too busy. They sadly inform you that there's been a bumper banana crop, but unfortunately other, wealthier, worlds had a bumper crop at the same time, and there's nowhere to either sell or store a significant excess. Distressed farmers are burning the excess fruit to make fertilizer for the next season, the wind has carried the smell all over town.`
 				fail
 			label ignore
 			`	You leave the mysterious smell to the locals and continue on your business.`
 				fail
 
 
-mission "Paradise Cleaner Incident"
+mission "ZZCU Paradise Cleaner Incident"
 	minor
 	source
 		government "republic"
