@@ -403,44 +403,50 @@ bool Mission::IsVisible() const
 // fully defined. If everything is fully defined, this is a valid mission.
 bool Mission::IsValid() const
 {
-	// Planets must be defined and in a system. A source system does not necessarily exist.
+	// Planets must be defined and in a system. However, a source system does not necessarily exist.
 	if(source && !source->IsValid())
 		return false;
 	// Every mission is required to have a destination.
 	if(!destination || !destination->IsValid())
 		return false;
-	for(const set<const Planet *> &usedPlanets : {stopovers, visitedStopovers})
-		for(const Planet *planet : usedPlanets)
-			if(!planet || !planet->IsValid())
-				return false;
+	// All stopovers must be valid.
+	for(auto &&planet : Stopovers())
+		if(!planet->IsValid())
+			return false;
+	for(auto &&planet : VisitedStopovers())
+		if(!planet->IsValid())
+			return false;
 	
 	// Systems must have a non-default position.
-	for(const set<const System *> &usedSystems : {waypoints, visitedWaypoints})
-		for(const System *system : usedSystems)
-			if(!system || !system->IsValid())
-				return false;
+	for(auto &&system : Waypoints())
+		if(!system->IsValid())
+			return false;
+	for(auto &&system : VisitedWaypoints())
+		if(!system->IsValid())
+			return false;
 	
 	// Actions triggered when entering a system should reference valid systems.
-	for(const pair<const System *, MissionAction> &it : onEnter)
-		if(!it.first || !it.first->IsValid() || !it.second.IsValid())
+	for(auto &&it : onEnter)
+		if(!it.first->IsValid() || !it.second.IsValid())
 			return false;
-	for(const pair<Trigger, MissionAction> &it : actions)
+	for(auto &&it : actions)
 		if(!it.second.IsValid())
 			return false;
 	// Generic "on enter" may use a LocationFilter that exclusively references invalid content.
-	for(const MissionAction &action : genericOnEnter)
+	for(auto &&action : genericOnEnter)
 		if(!action.IsValid())
 			return false;
 	if(!clearanceFilter.IsValid())
 		return false;
 	
-	for(const NPC &npc : npcs)
-		for(const shared_ptr<Ship> &ship : npc.Ships())
+	for(auto &&npc : NPCs())
+		for(auto &&ship : npc.Ships())
 			if(!ship->IsValid())
 				return false;
 	
 	return true;
 }
+
 
 
 // Check if this mission has high priority. If any high-priority missions

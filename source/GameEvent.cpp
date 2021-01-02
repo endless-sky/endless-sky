@@ -130,21 +130,17 @@ void GameEvent::Save(DataWriter &out) const
 			out.Write("date", date.Day(), date.Month(), date.Year());
 		conditionsToApply.Save(out);
 		
-		for(const System *system : systemsToUnvisit)
-			if(system)
-				out.Write("unvisit", system->Name());
-		for(const Planet *planet : planetsToUnvisit)
-			if(planet)
-				out.Write("unvisit planet", planet->TrueName());
+		for(auto &&system : systemsToUnvisit)
+			out.Write("unvisit", system->Name());
+		for(auto &&planet : planetsToUnvisit)
+			out.Write("unvisit planet", planet->TrueName());
 		
-		for(const System *system : systemsToVisit)
-			if(system)
-				out.Write("visit", system->Name());
-		for(const Planet *planet : planetsToVisit)
-			if(planet)
-				out.Write("visit planet", planet->TrueName());
+		for(auto &&system : systemsToVisit)
+			out.Write("visit", system->Name());
+		for(auto &&planet : planetsToVisit)
+			out.Write("visit planet", planet->TrueName());
 		
-		for(const DataNode &change : changes)
+		for(auto &&change : changes)
 			out.Write(change);
 	}
 	out.EndChild();

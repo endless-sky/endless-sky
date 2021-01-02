@@ -719,7 +719,7 @@ void Ship::FinishLoading(bool isNewInstance)
 // Check if this ship (model) and its outfits have been defined.
 bool Ship::IsValid() const
 {
-	for(const auto &outfit : outfits)
+	for(auto &&outfit : outfits)
 		if(!outfit.first->IsDefined())
 			return false;
 	
@@ -926,7 +926,7 @@ void Ship::Save(DataWriter &out) const
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->TrueName());
-		if(targetSystem && targetSystem->IsValid())
+		if(targetSystem)
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
 			out.Write("parked");

@@ -130,7 +130,7 @@ namespace {
 		if(l.empty())
 			return true;
 		
-		for(const auto &outfits : l)
+		for(auto &&outfits : l)
 			for(auto &&outfit : outfits)
 				if(outfit->IsDefined())
 					return true;

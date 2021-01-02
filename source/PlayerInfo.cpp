@@ -2888,11 +2888,6 @@ void PlayerInfo::Save(const string &path) const
 			WriteSorted(harvested,
 				[](const HarvestLog *lhs, const HarvestLog *rhs) -> bool
 				{
-					if(!lhs->first || !rhs->first)
-						return lhs->first;
-					if(!lhs->second || !rhs->second)
-						return lhs->second;
-					
 					// Sort by system name and then by outfit name.
 					if(lhs->first != rhs->first)
 						return lhs->first->Name() < rhs->first->Name();

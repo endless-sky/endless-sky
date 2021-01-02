@@ -136,7 +136,7 @@ namespace {
 	}
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	template <class Type>
-	void NameAndWarn(const string &noun, Type &it)
+	void NameAndWarn(const string &noun, pair<const string, Type> &it)
 	{
 		it.second.SetName(it.first);
 		Warn(noun, it.first);
