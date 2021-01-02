@@ -338,11 +338,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back(Format::Number(turretTurn));
 		attributesHeight += 20;
 	}
-	double turnRange = outfit.TurnRange();
-	if(turnRange < 360.)
+	double sweptAngle = outfit.SweptAngle();
+	if(sweptAngle < 360.)
 	{
-		attributeLabels.emplace_back("turn range:");
-		attributeValues.emplace_back(Format::Number(turnRange));
+		attributeLabels.emplace_back("swept angle:");
+		attributeValues.emplace_back(Format::Number(sweptAngle));
 		attributesHeight += 20;
 	}
 	int homing = outfit.Homing();

@@ -257,10 +257,10 @@ void Ship::Load(const DataNode &node)
 					}
 					else if(grand.Token(0) == "parallel")
 						angles.isParallel = true;
-					else if(grand.Token(0) == "turn range" && grand.Size() >= 3)
+					else if(grand.Token(0) == "swept angle" && grand.Size() >= 3)
 					{
 						angles.isOmnidirectional = false;
-						angles.turnRange = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
+						angles.sweptAngle = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
 						needToCheckAngles = true;
 					}
 					else
@@ -269,19 +269,19 @@ void Ship::Load(const DataNode &node)
 					if(needToCheckAngles && !angles.isOmnidirectional)
 					{
 						const Angle &base = angles.baseAngle;
-						const Angle &first = angles.turnRange.first;
-						const Angle &second = angles.turnRange.second;
+						const Angle &first = angles.sweptAngle.first;
+						const Angle &second = angles.sweptAngle.second;
 						if(!base.IsInRange(first, second))
 						{
-							grand.PrintTrace("Warning: The angle must be in the turn range:");
+							grand.PrintTrace("Warning: The angle must be in the swept angle:");
 							defaultBaseAngle = true;
 						}
 					}
 				}
 				if(!angles.isOmnidirectional && defaultBaseAngle)
 				{
-					const Angle &first = angles.turnRange.first;
-					const Angle &second = angles.turnRange.second;
+					const Angle &first = angles.sweptAngle.first;
+					const Angle &second = angles.sweptAngle.second;
 					angles.baseAngle = first + (second - first).AbsDegrees() / 2.;
 				}
 			}
@@ -809,8 +809,8 @@ void Ship::Save(DataWriter &out) const
 					if(angles.isParallel)
 						out.Write("parallel");
 					if(!angles.isOmnidirectional)
-						out.Write("turn range",
-							angles.turnRange.first.Degrees(), angles.turnRange.second.Degrees());
+						out.Write("swept angle",
+							angles.sweptAngle.first.Degrees(), angles.sweptAngle.second.Degrees());
 				}
 				out.EndChild();
 			}

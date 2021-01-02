@@ -41,7 +41,7 @@ public:
 		bool isOmnidirectional;
 		// Range over which the turret can turn, from leftmost position to rightmost position.
 		// (directional turret only)
-		std::pair<Angle, Angle> turnRange;
+		std::pair<Angle, Angle> sweptAngle;
 	};
 	
 public:
@@ -59,9 +59,9 @@ public:
 	// Get the base angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
 	// The turret shuold point this angle when idling.
 	const Angle &GetBaseAngle() const;
-	// Get the turn range if this is a directional turret,
+	// Get the swept angle if this is a directional turret,
 	// otherwise a pair of 180 degree + baseAngle.
-	std::pair<Angle, Angle> GetTurnRange() const;
+	std::pair<Angle, Angle> GetSweptAngle() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
@@ -107,8 +107,8 @@ private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 	
-	// Update the turn range.
-	void UpdateTurnRange();
+	// Update the swept angle.
+	void UpdateSweptAngle();
 	
 	
 private:
@@ -120,7 +120,7 @@ private:
 	Angle baseAngle;
 	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
 	// otherwise a pair of 180 degree + baseAngle.
-	std::pair<Angle, Angle> turnRange;
+	std::pair<Angle, Angle> sweptAngle;
 	// The value of the angles parameter in the constructor.
 	AnglesParameter anglesParameter;
 	// This hardpoint is for a turret or a gun.

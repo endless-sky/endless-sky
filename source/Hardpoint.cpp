@@ -43,7 +43,7 @@ Hardpoint::Hardpoint(const Point &point, const AnglesParameter &angles, bool isT
 	: outfit(outfit), point(point * .5), baseAngle(angles.baseAngle), anglesParameter(angles),
 	isTurret(isTurret), isParallel(angles.isParallel)
 {
-	UpdateTurnRange();
+	UpdateSweptAngle();
 }
 
 
@@ -81,10 +81,10 @@ const Angle &Hardpoint::GetBaseAngle() const
 
 
 
-// Get the turn range. Return value is invalid if this is omnidirectional.
-std::pair<Angle, Angle> Hardpoint::GetTurnRange() const
+// Get the swept angle. Return value is invalid if this is omnidirectional.
+std::pair<Angle, Angle> Hardpoint::GetSweptAngle() const
 {
-	return turnRange;
+	return sweptAngle;
 }
 
 
@@ -216,10 +216,10 @@ void Hardpoint::Aim(double amount)
 	else
 	{
 		const Angle newAngle = angle + add;
-		if(add < 0. && turnRange.first.IsInRange(newAngle, angle))
-			angle = turnRange.first;
-		else if (add > 0. && turnRange.second.IsInRange(angle, newAngle))
-			angle = turnRange.second;
+		if(add < 0. && sweptAngle.first.IsInRange(newAngle, angle))
+			angle = sweptAngle.first;
+		else if (add > 0. && sweptAngle.second.IsInRange(angle, newAngle))
+			angle = sweptAngle.second;
 		else
 			angle += add;
 	}
@@ -276,11 +276,11 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	if(offset.Length() > range)
 		return false;
 	
-	// Check if the missile is within the turn range.
+	// Check if the missile is within the swept angle.
 	Angle aim(offset);
 	if(!IsOmnidirectional())
 	{
-		auto range = GetTurnRange();
+		auto range = GetSweptAngle();
 		range.first += facing;
 		range.second += facing;
 		if(!aim.IsInRange(range.first, range.second))
@@ -322,8 +322,8 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 		
-		// Update turn range.
-		UpdateTurnRange();
+		// Update swept angle.
+		UpdateSweptAngle();
 		
 		// For fixed weapons, apply "gun harmonization," pointing them slightly
 		// inward so the projectiles will converge. For turrets, start them out
@@ -359,8 +359,8 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 	
-	// Update turn range.
-	UpdateTurnRange();
+	// Update swept angle.
+	UpdateSweptAngle();
 }
 
 
@@ -401,8 +401,8 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 
 
 
-// Update the turn range.
-void Hardpoint::UpdateTurnRange()
+// Update the swept angle.
+void Hardpoint::UpdateSweptAngle()
 {
 	const AnglesParameter &angles = anglesParameter;
 	// Restore the initial value.
@@ -410,25 +410,25 @@ void Hardpoint::UpdateTurnRange()
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
-		turnRange = make_pair(opposite, opposite);
+		sweptAngle = make_pair(opposite, opposite);
 	}
 	else
-		turnRange = angles.turnRange;
+		sweptAngle = angles.sweptAngle;
 	
 	if(!outfit)
 		return;
 	
-	// The installed weapon restricts the turn range.
-	const double hardpointsArc = (turnRange.second - turnRange.first).AbsDegrees();
-	const double weaponsArc = outfit->TurnRange();
+	// The installed weapon restricts the swept angle.
+	const double hardpointsArc = (sweptAngle.second - sweptAngle.first).AbsDegrees();
+	const double weaponsArc = outfit->SweptAngle();
 	if(weaponsArc < 360. && (isOmnidirectional || weaponsArc < hardpointsArc))
 	{
 		isOmnidirectional = false;
 		const double weaponsHalf = weaponsArc / 2.;
 		
 		// The base angle is placed at center as possible.
-		const Angle &firstAngle = turnRange.first;
-		const Angle &secondAngle = turnRange.second;
+		const Angle &firstAngle = sweptAngle.first;
+		const Angle &secondAngle = sweptAngle.second;
 		double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();
 		double hardpointsSecondArc = (secondAngle - baseAngle).AbsDegrees();
 		if(hardpointsFirstArc < weaponsHalf)
@@ -440,6 +440,6 @@ void Hardpoint::UpdateTurnRange()
 			hardpointsFirstArc = weaponsHalf;
 			hardpointsSecondArc = weaponsHalf;
 		}
-		turnRange = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
+		sweptAngle = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
 	}
 }
