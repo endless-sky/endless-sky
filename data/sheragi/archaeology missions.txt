@@ -433,7 +433,7 @@ mission "Rim Archaeology 3B"
 				accept
 	
 	npc evade
-		government " Independent "
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Falcon (Engines)" "Oxyrhynchus"
 	
@@ -1305,6 +1305,9 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	Following the archaeologists and listening to their conversations, you find out more about the history of this ship. Other than the mutiny that caused them to flee from Sheragi space in almost unanimous decision, it appears that there was a second, more violent mutiny, with unknown causes. There are battle scars in the walls and corridors, and too few bodies to properly man the ship. The missing Sheragi are nowhere to be seen, with some speculating that they got spaced. Even after this, the remaining Sheragi did all they could to survive, converting a large amount of crew quarters into hydroponic farms, fed sunlight through the windows, with an elaborate system of what used to be bathroom mirrors to spread the light around. It's obviously apparent that this wasn't enough for them to survive. Nowadays, nothing grows here other than colonies of extremophile fungi and bacteria, now dying after being reintroduced to an atmosphere. In the hangars, you see enormous attack drones, still waiting readily in their respective bays, despite the lack of any significant threat in this system. They too have valuable technology, and Rakei advises you to not touch them for now.`
 			`	After many long hours walking around, the lights of the ship finally flicker to life, along with sirens bringing attention to every other damaged subsystem, startling everyone. One of the specialized crew members comes to you, explaining that they finally managed to turn on the power plant and fix enough of the ship to move it around, but that they need to land it in order to bring in the heavier equipment and fix the rest of it.`
 
+	on visit
+		dialog `Upon landing on this strange world, you realize not everything is accounted for! Better make sure the Emerald Sword has been boarded, and no crew or cargo is on escorts out of the system.`
+
 
 
 mission "Sheragi Archaeology: Epilogue"
@@ -1330,6 +1333,8 @@ mission "Sheragi Archaeology: Epilogue"
 			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room, holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery, with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they might have survived to this day. The archaeologists take pictures, samples, and minor artifacts, but leave the place mostly undisturbed in respect for a lost civilization, discussing the possible history of this place.`			
 			`	For most of the next day, the workers unload some outfitting and repairing equipment, while the spare crew take turns thinking of names for each fighter, and scientists slowly work out the functions of the ship, briefing you and your crew on how to operate it. With the jump drive installed, all that is left is to return the ship to human space for further work.`
 				accept
+	on visit
+		dialog `You have reached <planet>, but not all of the archaeology equipment made it back! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		log `Obtained an ancient Sheragi warship whose name translates to the Emerald Sword. It was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, it is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size.`
 		conversation

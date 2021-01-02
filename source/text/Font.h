@@ -1,5 +1,5 @@
 /* Font.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,16 +10,17 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FONT_H_
-#define FONT_H_
+#ifndef ES_TEXT_FONT_H_
+#define ES_TEXT_FONT_H_
 
-#include "Shader.h"
+#include "../Shader.h"
 
-#include "gl_header.h"
+#include "../gl_header.h"
 
 #include <string>
 
 class Color;
+class DisplayText;
 class ImageBuffer;
 class Point;
 
@@ -31,32 +32,42 @@ class Point;
 // moment only plain ASCII characters are supported, not Unicode.
 class Font {
 public:
-	Font() = default;
+	Font() noexcept = default;
 	explicit Font(const std::string &imagePath);
 	
 	void Load(const std::string &imagePath);
 	
+	// Draw a text string, subject to the given layout and truncation strategy.
+	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
+	void DrawAliased(const DisplayText &text, double x, double y, const Color &color) const;
+	// Draw the given text string, e.g. post-formatting (or without regard to formatting).
 	void Draw(const std::string &str, const Point &point, const Color &color) const;
 	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 	
+	// Determine the string's width, without considering formatting.
 	int Width(const std::string &str, char after = ' ') const;
-	int Width(const char *str, char after = ' ') const;
-	std::string Truncate(const std::string &str, int width) const;
-	std::string TruncateFront(const std::string &str, int width) const;
-	std::string TruncateMiddle(const std::string &str, int width) const;
+	// Get the width of the text while accounting for the desired layout and truncation strategy.
+	int FormattedWidth(const DisplayText &text, char after = ' ') const;
 	
-	int Height() const;
+	int Height() const noexcept;
 	
-	int Space() const;
+	int Space() const noexcept;
 	
-	static void ShowUnderlines(bool show);
+	static void ShowUnderlines(bool show) noexcept;
 	
 	
 private:
-	static int Glyph(char c, bool isAfterSpace);
+	static int Glyph(char c, bool isAfterSpace) noexcept;
 	void LoadTexture(ImageBuffer &image);
 	void CalculateAdvances(ImageBuffer &image);
 	void SetUpShader(float glyphW, float glyphH);
+	
+	int WidthRawString(const char *str, char after = ' ') const noexcept;
+	
+	std::string TruncateText(const DisplayText &text, int &width) const;
+	std::string TruncateBack(const std::string &str, int &width) const;
+	std::string TruncateFront(const std::string &str, int &width) const;
+	std::string TruncateMiddle(const std::string &str, int &width) const;
 	
 	
 private:
@@ -78,6 +89,7 @@ private:
 	
 	static const int GLYPHS = 98;
 	int advance[GLYPHS * GLYPHS] = {};
+	int widthEllipses = 0;
 };
 
 

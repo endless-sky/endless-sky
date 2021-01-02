@@ -12,10 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HailPanel.h"
 
+#include "text/alignment.hpp"
 #include "DrawList.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -30,7 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -45,9 +46,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	SetInterruptible(false);
 	
 	const Government *gov = ship->GetGovernment();
-	const Font &font = FontSet::Get(14);
 	if(!ship->Name().empty())
-		header = font.Truncate(gov->GetName() + " " + ship->Noun() + " \"" + ship->Name(), 328) + "\":";
+		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
 	else
 		header = ship->ModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
@@ -219,7 +219,7 @@ void HailPanel::Draw()
 	
 	// Draw the current message.
 	WrappedText wrap;
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(330);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.Wrap(message);

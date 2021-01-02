@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Date.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "SpriteSet.h"
 
 using namespace std;
