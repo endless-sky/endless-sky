@@ -1778,20 +1778,17 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
-	if(shouldReverse && dp.Length() < radius)
-	{
-		// We can directly use the reverse thrusters to stop at the target.
-		command |= Command::BACK;
-		return false;
-	}
 
-	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .8);
-	if(!isClose || !isFacing)
+	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
+	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
+	{
+		command.SetTurn(TurnToward(ship, velocity));
 		command |= Command::BACK;
+	}
 	
 	return false;
 }
