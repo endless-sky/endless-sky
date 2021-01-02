@@ -311,33 +311,27 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			LoadObject(child, planets);
 		else if(key == "arrival")
 		{
-			bool loadHyperDistance = true;
-			bool loadJumpDistance = true;
-			// Check if we load arrival distances specifically for hyperdrives
-			// or jump drives only.
-			if(child.Size() >= 3)
+			if(child.Size() >= 2)
 			{
-				loadHyperDistance = false;
-				loadJumpDistance = false;
-				for(int i = 2; i < child.Size(); ++i)
-				{
-					if(child.Token(i) == "link")
-						loadHyperDistance = true;
-					else if(child.Token(i) == "jump")
-						loadJumpDistance = true;
-					else
-						child.PrintTrace("Warning: Unknown arrival type \"" + child.Token(i) + "\" for arrival distance:");
-				}
+				extraHyperArrivalDistance = child.Value(1);
+				extraJumpArrivalDistance = fabs(child.Value(1));
 			}
-			if(loadHyperDistance)
-				extraHyperArrivalDistance = child.Value(valueIndex);
-			// Negative jump distances work the same as positive jump
-			// distances.
-			// Jump drives use a circle around the target for targeting,
-			// so a value below 0 doesn't have the same meaning as for hyper
-			// drives where negative values would be beyond the target.
-			if(loadJumpDistance)
-				extraJumpArrivalDistance = fabs(child.Value(valueIndex));
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() < 2)
+					child.PrintTrace("Warning: Keywords below arrival always need a value behind the keyword:");
+				else if(grand.Token(0) == "link")
+					extraHyperArrivalDistance = grand.Value(1);
+				else if(grand.Token(0) == "jump")
+					// Negative jump distances work the same as positive jump
+					// distances.
+					// Jump drives use a circle around the target for targeting,
+					// so a value below 0 doesn't have the same meaning as for hyper
+					// drives where negative values would be beyond the target.
+					extraJumpArrivalDistance = fabs(grand.Value(1));
+				else
+					child.PrintTrace("Warning: Unknown keyword below arrival:");
+			}
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
