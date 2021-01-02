@@ -844,7 +844,9 @@ bool PlayerInfoPanel::Scroll(int distance)
 {
 	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
 	int newScroll = max(0, min<int>(maxScroll, panelState.Scroll() + distance));
-	
+	// Update the ship mouse is hovering over.
+	if(hoverIndex >= 0)
+		hoverIndex += newScroll - panelState.Scroll();
 	if(panelState.Scroll() == newScroll)
 		return false;
 	

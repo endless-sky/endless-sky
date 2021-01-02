@@ -97,7 +97,6 @@ private:
 	
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
-	int tableHoverIndex = -1; // TODO: track which line in current table view is hovered over with this
 	Point hoverPoint;
 	
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
