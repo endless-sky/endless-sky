@@ -33,14 +33,14 @@ public:
 	InfoPanelState(PlayerInfo &player);
 	
 	int SelectedIndex() const;
-	void SetSelectedIndex(int);
+	void SetSelectedIndex(int newSelectedIndex);
 	
 	std::set<int> &AllSelected();
 	
 	bool CanEdit() const;
 	
 	int Scroll() const;
-	void SetScroll(int);
+	void SetScroll(int newScroll);
 	
 	std::vector<std::shared_ptr<Ship>> &Ships();
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
@@ -66,6 +66,7 @@ private:
 	// Index of the ship at the top of the fleet listing.
 	int scroll = 0;
 	
+	// Keep track of whether the ships are sorted.
 	ShipComparator *currentSort = nullptr;
 };
 
