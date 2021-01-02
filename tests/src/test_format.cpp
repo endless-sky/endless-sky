@@ -51,7 +51,7 @@ SCENARIO("A unit of time in seconds is converted to a YY:DD:HH:MM:SS format,") {
 
 	GIVEN( "A time over a year" ) {
 		THEN( "A time using all units is returned" ) {
-			CHECK( Format::PlayTime(569) == "3y 50d 8h 12m 22s");1
+			CHECK( Format::PlayTime(98957582) == "3y 50d 8h 13m 2s");
 		}
 	}
 }

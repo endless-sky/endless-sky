@@ -93,15 +93,13 @@ string Format::Credits(int64_t value)
 std::string Format::PlayTime(int timeVal)
 {
 	string result;
-	static const char SUFFIX[5] = {'s', 'm', 'h', 'd', 'y'};
-	static int PERIOD[4] = {60, 60, 24, 365};
-	//static const vector<char> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
-	//static const vector<int> PERIOD = {60, 60, 24, 365};
+	static const vector<char> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
+	static const vector<int> PERIOD = {60, 60, 24, 365};
 
 	// Break time into larger and larger units until the largest one, or the value is empty
 	size_t i = 0;
 	do {
-		int period = (i < sizeof(SUFFIX) - 1 ? timeVal % PERIOD[i] : timeVal);
+		int period = (i < SUFFIX.size() - 1 ? timeVal % PERIOD[i] : timeVal);
 		result = (i == 0 ? result + SUFFIX[i] : result + ' ' + SUFFIX[i]);
 		do {
 			result += static_cast<char>('0' + period % 10);
@@ -109,7 +107,7 @@ std::string Format::PlayTime(int timeVal)
 		} while(period);
 		timeVal /= PERIOD[i];
 		i++;
-	} while (timeVal && i < sizeof(SUFFIX));
+	} while (timeVal && i < SUFFIX.size());
 
 	reverse(result.begin(), result.end());
 	return result;
