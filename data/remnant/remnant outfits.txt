@@ -487,6 +487,9 @@ outfit "Anvil-Class Engine"
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"steering flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
 	description "This tiny set of engines was designed specifically for craft so small that it combines both thrusters and steering into one unit."
 
 outfit "Crucible-Class Thruster"
