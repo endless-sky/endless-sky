@@ -3524,8 +3524,10 @@ void Ship::RemoveEscort(const Ship &ship)
 	while(it != escorts.end())
 	{
 		auto escort = it->lock().get();
-		if(escort){
-			if(escort == &ship){
+		if(escort)
+		{
+			if(escort == &ship)
+			{
 				it = escorts.erase(it);
 				continue;
 			}
