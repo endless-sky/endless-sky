@@ -341,17 +341,36 @@ void MissionAction::Save(DataWriter &out) const
 // are not fully defined (e.g. the plugin defining it has been removed).
 bool MissionAction::IsValid() const
 {
-	for(const auto &outfit : giftOutfits)
-		if(!outfit.first->IsDefined())
-			return false;
-	for(const auto &outfit : requiredOutfits)
-		if(!outfit.first->IsDefined())
-			return false;
-	for(const auto &event : events)
-		if(!event.first->IsValid())
-			return false;
+	// Any filter used to control where this action triggers must be valid.
 	if(!systemFilter.IsValid())
 		return false;
+	
+	// Stock phrases that generate text must be defined.
+	if(stockDialogPhrase && stockDialogPhrase->Name().empty())
+		return false;
+	
+	// Stock conversations must be defined.
+	if(stockConversation && stockConversation->IsEmpty())
+		return false;
+	
+	// Events which get activated by this action must be valid.
+	for(auto &&event : events)
+		if(!event.first->IsValid())
+			return false;
+
+	// Gifted or required content must be defined & valid.
+	for(auto &&it : giftShips)
+		if(!it.first->IsValid())
+			return false;
+	for(auto &&outfit : giftOutfits)
+		if(!outfit.first->IsDefined())
+			return false;
+	for(auto &&outfit : requiredOutfits)
+		if(!outfit.first->IsDefined())
+			return false;
+	
+	// It is OK for this action to try to fail a mission that does not exist.
+	// (E.g. a plugin may be designed for interoperability with other plugins.)
 	
 	return true;
 }
