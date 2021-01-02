@@ -64,7 +64,7 @@ public:
 	static bool BeginLoad(const char * const *argv);
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
-	static void LoadShaders();
+	static void LoadShaders(bool useShaderSwizzle);
 	// TODO: make Progress() a simple accessor.
 	static double Progress();
 	// Whether initial game loading is complete (sprites and audio are loaded).

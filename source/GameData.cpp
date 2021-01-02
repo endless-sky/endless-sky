@@ -302,7 +302,7 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders()
+void GameData::LoadShaders(bool useShaderSwizzle)
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
@@ -317,7 +317,7 @@ void GameData::LoadShaders()
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init();
+	SpriteShader::Init(useShaderSwizzle);
 	BatchShader::Init();
 	
 	background.Init(16384, 4096);
