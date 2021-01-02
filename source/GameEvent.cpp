@@ -23,18 +23,49 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	const set<string> DEFINITION_NODES = {
+		"fleet",
+		"galaxy",
+		"government",
+		"outfitter",
+		"news",
+		"planet",
+		"shipyard",
+		"system",
+	};
+}
 
 
-const set<string> GameEvent::DEFINITION_NODES = {
-	"fleet",
-	"galaxy",
-	"government",
-	"outfitter",
-	"news",
-	"planet",
-	"shipyard",
-	"system",
-};
+
+// Determine the universe object definitions that are defined by the given list of changes.
+map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &changes)
+{
+	auto definitions = map<string, set<string>> {};
+	
+	for(auto &&node : changes)
+		if(node.Size() >= 2 && node.HasChildren() && DEFINITION_NODES.count(node.Token(0)))
+		{
+			const string &key = node.Token(0);
+			const string &name = node.Token(1);
+			if(key == "system")
+			{
+				// A system is only actually defined by this change node if its position is set.
+				if(any_of(node.begin(), node.end(), [](const DataNode &child) noexcept -> bool
+						{
+							return child.Size() >= 3 && child.Token(0) == "pos";
+						}))
+					definitions[key].emplace(name);
+			}
+			// Since this (or any other) event may be used to assign a planet to a system, we cannot
+			// do a robust "planet definition" check. Similarly, all other GameEvent-createable objects
+			// become valid once they appear as a root-level node that has at least one child node.
+			else
+				definitions[key].emplace(name);
+		}
+	
+	return definitions;
+}
 
 
 
@@ -151,33 +182,15 @@ bool GameEvent::IsValid() const
 	// When Apply is called, we mutate the universe definition before we update
 	// the player's knowledge of the universe. Thus, to determine if a system or
 	// planet is invalid, we must first peek at what `changes` will do.
-	auto deferredSystems = set<string> {};
-	auto deferredPlanets = set<string> {};
-	for(auto &&node : Changes())
-		if(node.Size() >= 2 && node.HasChildren())
-		{
-			const string &key = node.Token(0);
-			const string &name = node.Token(1);
-			if(key == "system" && any_of(node.begin(), node.end(),
-					[](const DataNode &child) noexcept -> bool
-					{
-						// Observing a "pos" node means the system will be valid.
-						return child.Size() >= 3 && child.Token(0) == "pos";
-					}))
-				deferredSystems.emplace(name);
-			// Since this (or any other) event may be used to assign a planet to a system, we
-			// cannot do a more robust check beyond observing a root-level name definition.
-			else if(key == "planet")
-				deferredPlanets.emplace(name);
-		}
+	auto deferred = DeferredDefinitions(changes);
 	
 	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
 		for(auto &&system : systems)
-			if(!system->IsValid() && !deferredSystems.count(system->Name()))
+			if(!system->IsValid() && !deferred["system"].count(system->Name()))
 				return false;
 	for(auto &&planets : {planetsToVisit, planetsToUnvisit})
 		for(auto &&planet : planets)
-			if(!planet->IsValid() && !deferredPlanets.count(planet->TrueName()))
+			if(!planet->IsValid() && !deferred["planet"].count(planet->TrueName()))
 				return false;
 	
 	return isDefined;

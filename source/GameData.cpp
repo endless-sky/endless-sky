@@ -246,7 +246,7 @@ bool GameData::BeginLoad(const char * const *argv)
 // planets) are written to the player's save and need a name to prevent data loss.
 void GameData::CheckReferences()
 {
-	// Parse all GameEvents for object definitions & references.
+	// Parse all GameEvents for object definitions.
 	auto deferred = map<string, set<string>>{};
 	for(auto &&it : events)
 	{
@@ -256,13 +256,9 @@ void GameData::CheckReferences()
 		else
 		{
 			// Any already-named event (i.e. loaded) may alter the universe.
-			for(const DataNode &node : it.second.Changes())
-				if(node.Size() >= 2)
-				{
-					const string &key = node.Token(0);
-					if(GameEvent::DEFINITION_NODES.count(key))
-						deferred[key].emplace(node.Token(1));
-				}
+			auto definitions = GameEvent::DeferredDefinitions(it.second.Changes());
+			for(auto &&type : definitions)
+				deferred[type.first].insert(type.second.begin(), type.second.end());
 		}
 	}
 	

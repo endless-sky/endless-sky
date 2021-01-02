@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 
 #include <list>
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -38,8 +39,8 @@ class System;
 // the player the next time they land  on a planet after that event happens.
 class GameEvent {
 public:
-	// A list of the keywords that can create or define new objects.
-	static const std::set<std::string> DEFINITION_NODES;
+	// Determine the universe object definitions that are defined by the given list of changes.
+	static std::map<std::string, std::set<std::string>> DeferredDefinitions(const std::list<DataNode> &changes);
 	
 	
 public:
