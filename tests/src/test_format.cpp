@@ -1,7 +1,7 @@
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../source/Format.h"
+#include "../../source/text/Format.h"
 
 // ... and any system includes needed for the test file.
 #include <string>
