@@ -179,6 +179,13 @@ void MenuPanel::OnCallback(int)
 
 
 
+bool MenuPanel::AllowTimeUpdating() const
+{
+	return false;
+}
+
+
+
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!GameData::IsLoaded())

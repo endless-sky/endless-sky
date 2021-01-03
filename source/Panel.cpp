@@ -119,6 +119,14 @@ bool Panel::AllowFastForward() const
 
 
 
+// Panels will allow updating of PlayTime by default
+bool Panel::AllowTimeUpdating() const
+{
+	return true;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
