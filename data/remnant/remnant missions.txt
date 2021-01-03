@@ -1304,7 +1304,7 @@ mission "Remnant: Deep Surveillance"
 			
 			label branches
 			apply
-				"suspicion" = ("retrieved information" / 2 * "deep: knew of stones before scientists") + "deep: knew of stones before scientists" + 2 * "Deep: Remnant: Engines: declined" + 2 * "Deep: Remnant: Engines: failed" + "Deep: Remnant Surveillance: declined" + "Deep: Remnant Surveillance: failed"
+				"suspicion" = ( "retrieved information" / 2 * "deep: knew of stones before scientists" ) + "deep: knew of stones before scientists" + 2 * "Deep: Remnant: Engines: declined" + 2 * "Deep: Remnant: Engines: failed" + "Deep: Remnant Surveillance: declined" + "Deep: Remnant Surveillance: failed"
 			branch terminus
 				not "Deep: Remnant Research: done"
 			
@@ -1331,7 +1331,7 @@ mission "Remnant: Deep Surveillance"
 			`	"Just don't leak it.`
 			branch jump
 				"retrieved information" == 1
-			`	"And cool that you're so interested in science and shit."
+			`	"And cool that you're so interested in science and shit."`
 			label jump
 			apply
 				set "remnant: got deep wormhole and sprite research"
@@ -1366,8 +1366,8 @@ mission "Remnant: Deep Surveillance"
 				"suspicion" == 4
 			
 			label one
-			aaply
-				set "remnant: "
+			apply
+				set "remnant: got deep research"
 			`	Ivan does some stuff on a computer, idk. Then he hands you a USB.`
 			`	"Here ya go."`
 			`	"Thanks. I am now going to hand this off to the Remnant."`
@@ -1375,14 +1375,16 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label two
-			aaply
-				set "remnant: "
+			apply
+				set "remnant: got deep research"
 			`	Ivan does some stuff on a computer, idk. Then he hands you a USB.`
 			`	"Not handing this off to anyone, are you?"`
 			`	"I would never do such a thing."`
 				decline
 			
 			label three
+			apply
+				set "remnant: got old deep research"
 			`	"So, you said you know about these Remnant before, right?"`
 			`	"Yeah, why's that?"`
 			`	"Tell me how your relationship with them is."`
@@ -1392,6 +1394,8 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label four
+			apply
+				set "remnant: got no deep research"
 			`	Ivan fiddles with a computer, then stops.`
 			`	"You know what, naw. It's classified."`
 			`	"Even though I helped you get it?"`
