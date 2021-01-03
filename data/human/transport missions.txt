@@ -460,7 +460,7 @@ mission "WR Star 1"
 		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
 	
 	on visit
-		dialog `You land on <planet>, but realize that the scientists and their equipment were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
+		dialog phrase "generic missing waypoint or cargo and passengers"
 	on complete
 		payment 250000
 		dialog `The team of scientists thanks you for bringing them to <waypoints> and back, and pays you <payment>. They seem eager to get back to their lab and start analyzing their measurements.`
@@ -649,18 +649,6 @@ mission "There Might Be Riots part 3A"
 
 
 
-government "Team Red"
-	swizzle 0
-	"player reputation" -1000
-	"attitude toward"
-		"Team Blue" -.1
-
-government "Team Blue"
-	swizzle 5
-	"player reputation" -1000
-	"attitude toward"
-		"Team Red" -.1
-
 mission "There Might Be Riots part 3B"
 	landing
 	name "Transport band to <planet>"
@@ -829,10 +817,6 @@ mission "Drug Running 3"
 		dialog `You hand off the illegal "substances" to your contact on <planet>, who pays you <payment>.`
 
 
-
-government "Bad Trip"
-	swizzle 0
-	"player reputation" -1000
 
 effect "puff"
 	sprite "effect/puff"
@@ -1565,6 +1549,7 @@ mission "Terraforming 2"
 
 
 ship "Asteroid"
+	noun "asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
@@ -1626,7 +1611,7 @@ mission "Terraforming 3"
 			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
 	
-	npc assist
+	npc save assist
 		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
 		ship "Asteroid" "Target Asteroid"
@@ -2515,7 +2500,7 @@ mission "Paradise Fortune 4"
 		payment 1000000
 		conversation
 			`You spot a fleet of docked Navy ships as you come in for a landing. A small squad of troops gather around your ship after you land. You are greeted by a Navy officer upon exiting your ship and explain to him where Diana is, showing him the note she wrote.`
-			`	"That is unfortunate," she responds with a troubled look on her face. "We'll contact the Howl family about this." Before letting you go, the officer hands you <payment>. "This is the reward that Mr. Howl put out for the return of his credits. Thank you for doing the right thing, Captain."`
+			`	"That is unfortunate," he responds with a troubled look on his face. "We'll contact the Howl family about this." Before letting you go, the officer hands you <payment>. "This is the reward that Mr. Howl put out for the return of his credits. Thank you for doing the right thing, Captain."`
 		log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you dutifully turned in the credits to the authorities to keep the peace. You received a substantial reward for your integrity.`
 
 
@@ -2657,6 +2642,7 @@ mission "Core Blockade"
 	source
 		near "Almach" 2 4
 	destination "Deadman's Cove"
+	clearance
 	cargo "food" 287
 	to offer
 		random < 20
@@ -3012,6 +2998,8 @@ mission "Hauler VI cargo prototype 3"
 			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
 
+
+
 mission "Antibiotics To South"
 	name "Antibiotics shipment to <planet>"
 	description `Deliver <cargo> to <destination>. Payment is <payment>. Expect attacks from a pirate ship known as the "Australis."`
@@ -3040,7 +3028,7 @@ mission "Antibiotics To South"
 				`	"Sure, but do you know anything about these pirates?"`
 				`	"No thanks, that sounds too risky for me."`
 					decline
-			`	He seems to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the '<npc>'. It's faster than a Bounder and persistent beyond any reasonable measure. Which is, of course, why I'm talking to you. There is no way you're going to avoid a fight with it. However, I think your ship is a match for it. So, is this acceptable?"`
+			`	He seems to have anticipated this question, and quickly responds by saying "Oh, it's mostly just opportunistic raiders, much like the ones you've probably already seen a lot of down there. Pretty sure a ship like this one will make those guys hesitant enough. The problem is a modified medium warship called the <npc>. It's faster than a Bounder and persistent beyond any reasonable measure. Which is, of course, why I'm talking to you. There is no way you're going to avoid a fight with it. However, I think your ship is a match for it. So, is this acceptable?"`
 			choice
 				`	"Of course."`
 				`	"No thanks, that sounds like too much of a risk."`
@@ -3063,9 +3051,10 @@ mission "Antibiotics To South"
 		dialog phrase "generic cargo delivery payment"
 
 
+
 mission "Pirate Duel"
 	name "Fight at Umbral"
-	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the "Esca." After fighting, go to <destination> to follow up.`
+	description `Head as quickly as you can to the Umbral system, where you will duel with a small militia vessel named the Esca. After fighting, go to <destination> to follow up.`
 	minor
 	deadline 5 1
 	source
@@ -3127,21 +3116,21 @@ mission "Pirate Duel"
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
 	on enter "Umbral"
-		"reputation:  Independent " = -1000
+		"reputation: Independent (Killable)" = -1000
 		conversation
 			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
 			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
 			`	The Vanguard powers up its weapons.`
 	
 	npc kill
-		government " Independent "
+		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
 			confusion 20
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
 		dialog `The Anglerfish and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
 	
 	on complete
-		"reputation:  Independent " = 10
+		"reputation: Independent (Killable)" = 10
 		payment 250000
 		conversation
 				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
@@ -3168,3 +3157,55 @@ ship "Vanguard" "Vanguard (Plasma Slow)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
+
+
+
+mission "Earth Retirement"
+	name "Retired Family to Earth"
+	description "Transport two seniors to <destination>, where they plan to retire. They can only promise you <payment>."
+	minor
+	source
+		attributes paradise
+	destination "Earth"
+	to offer
+		random < 15
+	passengers 2
+	
+	on offer
+		conversation
+			`As you wander through the spaceport, you are see an elderly man and woman sitting on a bench. They both seem to be talking about something that is causing them some amount of stress.`
+			choice
+				`	"Who are you two?"`
+				`	(Ignore them.)`
+					decline
+			`	"My name is Donna, and his name is Charles," she says. "We were yard workers here on <origin> for nearly fifty years, but we're both starting to get too old for our jobs. So, we've made the hard decision to retire. We've already chosen a location on the best place we could afford, which... well, happened to be on Earth, so Charles and I are looking for someone to transport us."`
+			`	As Donna talks, Charles begins to frown. "I suppose you could put it like that."`
+			`	"Is that wrong?" Donna replies, who appears to be bracing for the response.`
+			`	The man's look of resignation starts to turn to one of anger. "Of course it's wrong. We've spent our whole lives working for these spoiled brats, and what do we get in return? We get dumped on Earth like we're dead weight!"`
+			`	"I know you're upset about this," interrupts Donna, "but just getting angry isn't going to do anything!" Charles remains silent for a long time, and then mutters a reluctant apology.`
+			`	Donna talks to you again. "I'm sorry about that. As you can tell, we're under a lot of stress right now. Can you help us? We'll pay you <payment> if you do."`
+			choice
+				`	"I can handle two passengers."`
+				`	"I'm sorry, but I'm not headed to Earth right now."`
+					decline
+			`	You show Charles and Donna to their bunks, and they both thank you in advance.`
+				accept
+	
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 6000
+		conversation
+			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves Charles stops by you, and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
+			choice
+				`	"Thank you. I hope you have the best of luck on Earth."`
+					goto payment
+				`	"You can keep those. You sound like you need them more than I do."`
+					goto reject
+			
+			label payment
+			`	They slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			label reject
+			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
+			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`

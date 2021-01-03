@@ -14,9 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BoardingPanel.h"
 #include "Dialog.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -222,6 +222,14 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return false;
 	
 	return true;
+}
+
+
+
+// Send a command through the main-panel to the engine
+void MainPanel::GiveCommand(const Command &command)
+{
+	engine.GiveCommand(command);
 }
 
 
@@ -511,7 +519,7 @@ void MainPanel::StepEvents(bool &isActive)
 				ShowScanDialog(event);
 				isActive = false;
 			}
-			else if(event.TargetGovernment()->IsPlayer())
+			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
 				string message = actor->Fine(player, event.Type(), &*event.Target());
 				if(!message.empty())

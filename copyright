@@ -5,6 +5,7 @@ Source: https://github.com/endless-sky/endless-sky
 
 Files: *
 Copyright: Michael Zahniser <mzahniser@gmail.com>
+           endless-sky contributors (see credits.txt and changelog)
 License: GPL-3+
 
 Files: images/*
@@ -21,7 +22,6 @@ Files:
  images/outfit/heavy?anti-missile?hai*
  images/ship/marrow*
  images/ship/mbounder*
- images/ship/mfalcon*
  images/ship/mfury*
  images/ship/mmanta*
  images/ship/mquicksilver*
@@ -34,8 +34,9 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/outfit/gat*
  images/outfit/bullet*
+ images/scene/sagittarius?a*
  images/ship/hai?solifuge*
-Copyright: Maximilian Korber
+Copyright: Maximilian Korber (github.com/wrzlprnft)
 License: CC-BY-SA-4.0
 
 Files:
@@ -57,7 +58,6 @@ Files:
  images/outfit/*steering?hai*
  images/outfit/*thruster?hai*
  images/outfit/tiny?ion?engines*
- images/ship/finch*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -164,11 +164,17 @@ Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
 
 Files:
  images/outfit/jump?drive?(broken)*
+ images/outfit/plasma?repeater*
+ images/scene/plasma?scene*
 Copyright: Darcy Manoel <Darcman00@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/land/enceladus_1*
+ images/land/enceladus_2*
+ images/land/enceladus_3*
+ images/land/enceladus_4*
  images/ui/galaxy*
  images/ui/pleiades*
  images/planet/callisto*
@@ -306,6 +312,7 @@ Files:
  images/ship/riptide*
  images/ship/auxiliary*
  images/ship/dropship*
+ images/ship/heron*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
@@ -331,7 +338,7 @@ Files:
  images/hardpoint/quarg?skylance*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fernando S. Sáez (Azure Nyoki), and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
 Files:
  images/outfit/quarg*
@@ -355,18 +362,23 @@ Files:
  images/hardpoint/ravager?turret*
  images/outfit/inhibitor?turret*
  images/outfit/ion?hail?turret*
+ images/hardpoint/shooting?star?flare/ss-rays*
  images/outfit/overcharged?shield?module*
  images/outfit/overclocked?repair?module*
+ images/outfit/ramscoop*
  images/outfit/remnant?afterburner*
  images/outfit/remnant?capital?license*
+ images/outfit/research?laboratory*
  images/outfit/salvage?scanner*
  images/outfit/tiny?remnant?engine*
  images/outfit/void?rifle*
  images/scene/penguinscene*
  images/ship/ibis*
+ images/ship/mbactriane*
  images/ship/penguin/penguin*
  images/ship/petrel*
  images/ship/tern*
+ images/ship/shooting?star/shooting?star*
  images/thumbnail/ibis*
  images/thumbnail/penguin*
  images/thumbnail/petrel*
@@ -380,6 +392,11 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/outfit/railslug?rack*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matthew Smestad (under the same license).
 
 Files:
  images/outfit/harvested?yottrite*
@@ -444,6 +461,7 @@ Files:
  images/land/lava1*
  images/land/lava2*
  images/land/lava6*
+ images/land/loc3*
  images/land/mountain0*
  images/land/mountain1*
  images/land/mountain3*
@@ -559,11 +577,6 @@ Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
-Files: images/ship/mosprey*
-Copyright: tehhowch (https://github.com/tehhowch)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
-
 Files: images/effect/explosion/pug/*
 Copyright: Vilhelm (https://github.com/Vilhelm16)
 License: CC-BY-SA-4.0
@@ -602,7 +615,9 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/barb*
  images/ship/boxwing*
+ images/thumbnail/barb*
  images/thumbnail/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
@@ -624,6 +639,13 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/ship/localworldship*
+ images/ship/arrow*
+ images/ship/bulk?freighter*
+ images/ship/freighter*
+ images/ship/protector*
+ images/ship/star?barge*
+ images/ship/wasp*
  images/thumbnail/argosy*
  images/thumbnail/clipper*
  images/thumbnail/dreadnought*
@@ -639,7 +661,12 @@ Files:
  images/thumbnail/leviathan*
  images/thumbnail/shuttle*
  images/thumbnail/star?queen*
- images/ship/localworldship*
+ images/thumbnail/arrow*
+ images/thumbnail/bulk?freighter*
+ images/thumbnail/freighter*
+ images/thumbnail/protector*
+ images/thumbnail/star?barge*
+ images/thumbnail/wasp*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -647,11 +674,60 @@ Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
+ images/ship/marrow*
  images/thumbnail/mfirebird*
  images/thumbnail/mleviathan*
+ images/thumbnail/marrow*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/pointedstick vanguard*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/vanguard*
+ images/thumbnail/vanguard*
+Copyright: Nate Graham <pointedstick@zoho.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/blackbird*
+ images/ship/falcon*
+ images/ship/hawk*
+ images/ship/osprey*
+ images/ship/sparrow*
+ images/thumbnail/blackbird*
+ images/thumbnail/falcon*
+ images/thumbnail/hawk*
+ images/thumbnail/osprey*
+ images/thumbnail/sparrow*
+Copyright: Michael Zahniser <mzahniser@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Anarchist2.
+
+Files:
+ images/ship/mfalcon*
+ images/thumbnail/mfalcon*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files:
+ images/ship/finch*
+ images/thumbnail/finch*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files: images/ship/mosprey*
+Copyright: tehhowch (https://github.com/tehhowch)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 
 Files:
  images/outfit/pug?staff*
@@ -679,11 +755,13 @@ Files:
  images/ship/telis'het*
  images/ship/faes'mar*
  images/ship/selii'mar*
+ images/ship/ember?waste?node/ember?waste?node*
  images/thumbnail/maeri'het*
  images/thumbnail/telis'het*
  images/thumbnail/faes'mar*
  images/thumbnail/selii'mar*
  images/thumbnail/subsidurial*
+ images/thumbnail/ember?waste?node*
  images/effect/ravager?impact*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
@@ -699,14 +777,18 @@ Files:
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
+ images/planet/sheragi_postverta*
  images/planet/station0*
  images/planet/station1b*
  images/planet/station2b*
  images/planet/station3b*
  images/planet/station3bd*
+ images/planet/station4b*
+ images/planet/station4bd*
  images/projectile/annihilator*
  images/projectile/ravager?beam*
  images/scene/ringworld?debris*
+ images/scene/remnant?station*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -735,6 +817,16 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
+ images/ship/raider*
+ images/thumbnail/raider*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
+
+Files:
+ images/_menu/haze-blackbody+*
+ images/_menu/haze-full+*
+ images/_menu/haze-yellow+* 
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rouge*
@@ -750,6 +842,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by NASA (public domain)
 
 Files:
+ images/ship/heliarch?breacher*
+ images/ship/heliarch?hunter*
+ images/ship/heliarch?judicator*
+ images/ship/heliarch?pursuer*
+ images/ship/heliarch?rover*
+ images/ship/heliarch?stalker*
+ images/thumbnail/heliarch?breacher*
+ images/thumbnail/heliarch?hunter*
+ images/thumbnail/heliarch?judicator*
+ images/thumbnail/heliarch?pursuer*
+ images/thumbnail/heliarch?rover*
+ images/thumbnail/heliarch?stalker*
  images/outfit/finisher?storage*
 Copyright: Arachi-Lover
 License: CC-BY-SA-4.0
@@ -757,25 +861,41 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/effect/dragonflame*
- images/effect/fdrive*
+ images/effect/fusionflare*
  images/effect/pwave?shot*
  images/effect/sheragiam*
  images/effect/pwavehp*
+ images/effect/ka'het?flare/*
+ images/effect/fissionflare*
+ images/icon/dragonflame*
+ images/icon/shard*
  images/outfit/dragonflame*
  images/outfit/pwave?turret*
  images/outfit/embattery*
  images/outfit/sheragicooling*
  images/outfit/fusiondrive*
+ images/outfit/fissiondrive*
+ images/outfit/hion*
+ images/outfit/shard*
+ images/outfit/sheragi?ews*
+ images/outfit/small?embattery*
+ images/outfit/small?sheragi?cooling*
  images/projectile/pwavecannon*
+ images/projectile/hion*
+ images/projectile/hionfrag*
+ images/projectile/shardactive*
+ images/projectile/shardinactive*
  images/scene/emeraldswordderelict*
  images/ship/emeraldsword*
+ images/ship/blackdiamond*
  images/thumbnail/emeraldsword*
-Copyright: Fernando S. Sáez (crim@live.no)
+ images/thumbnail/blackdiamond*
+Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 
 Files:
  images/effect/pwave?impact*
-Copyright: Fernando S. Sáez (crim@live.no)
+Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
@@ -788,6 +908,38 @@ Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
+
+Files: sounds/hion*
+Copyright: michael_kur95
+License: CC-BY-3.0
+Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
+
+Files: images/outfit/emp?rack*
+Copyright: Anarchist2
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/planet/*-hot*
+Copyright: Tommaso Becca
+License: CC-BY-SA-4.0
+Comment: Derived from works by ESA/Hubble & NASA (under the same license)
+
+Files:
+ images/land/clouds*
+Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/ka'het?maeri?engine*
+ images/outfit/ka'het?telis?engine*
+ images/outfit/ka'het?sustainer?engine*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
+
+Files: images/outfit/ka'het?compact?engine*
+Copyright: Griffin Schutte (theronepic@gmail.com)
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

@@ -25,7 +25,7 @@ mission "Disabled Ka'het"
 	boarding
 	invisible
 	source
-		government "Ka'het" " Ka'het "
+		government "Ka'het" "Ka'het (Infighting)"
 	destination "Earth"
 	on offer
 		log "Successfully boarded a Ka'het. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton."
@@ -34,31 +34,60 @@ mission "Disabled Ka'het"
 			`	You have no troubles docking with what seems to be its "exoskeleton", trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
 				decline
 
+conversation "ka'het: remnant"
+	`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
+	choice
+		`	(Yes.)`
+		`	(Not now.)`
+			defer
+	branch taely
+		has "remnant met taely"
+	`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Either the information is too confidential to be given to a stranger like you, or you didn't ask the right people.`
+		decline
+	label taely
+	`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Perhaps you might have more luck asking Taely on Viminal.`
+		decline
+
 mission "First Contact: Ka'het: Remnant 1A"
 	landing
 	invisible
 	source
 		government "Remnant"
+		not planet "Viminal"
 	to offer
-		has "Graveyard Label: offered"
+		or
+			has "Graveyard Label: offered"
+			has "ringworld debris"
+			has "Ringworld Debris: Quarg: offered"
+		has "remnant blood test pure"
+		not "First Contact: Ka'het: Remnant 1B: offered"
+	on offer
+		conversation "ka'het: remnant"
+
+mission "First Contact: Ka'het: Remnant 2A"
+	landing
+	invisible
+	source "Viminal"
+	to offer
+		or
+			has "Graveyard Label: offered"
+			has "ringworld debris"
+			has "Ringworld Debris: Quarg: offered"
 		has "remnant blood test pure"
 		not "remnant met taely"
+		not "First Contact: Ka'het: Remnant 1B: offered"
 	on offer
-		conversation
-			`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
-			choice
-				`	(Yes.)`
-				`	(Not now.)`
-					defer
-			`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Either the information is too confidential to be given to a stranger like you, or you didn't ask the right people.`
-				decline
+		conversation "ka'het: remnant"
 
 mission "First Contact: Ka'het: Remnant 1B"
 	landing
 	invisible
 	source "Viminal"
 	to offer
-		has "Graveyard Label: offered"
+		or
+			has "Graveyard Label: offered"
+			has "ringworld debris"
+			has "Ringworld Debris: Quarg: offered"
 		has "remnant met taely"
 	on offer
 		conversation
@@ -86,11 +115,46 @@ mission "First Contact: Ka'het: Remnant 1B"
 			choice
 				`	"Wait, why did you call them 'shells' and not ships?"`
 			label shells
-			`	"You see, <first>," she says, "the Ka'het aren't normal spaceships. The debris we found were artificial exoskeletons, built around huge living beings; it's unlikely a species that big could have developed that sort of technology, so we presume someone must have created it for them. This could have happened in the Graveyard, since it's the only place where we know them to live in, but we have such limited data about that section of space that we can't say for sure." As she finishes talking, one of the people Taely was talking to earlier comes closer and shows her something on a touchpad. "I have to go now, Captain," she tells you. "Good luck."`
+			`	"You see, <first>," she says, "the Ka'het aren't normal spaceships. The debris we found were artificial exoskeletons, built around huge living beings; it's unlikely a species that big could have developed that sort of technology, so we presume someone must have created it for them. We call them the Builders. After we lost the first scout ships in the Graveyard, the prefects decided that we should continue to scout the region but take necessary precautions. Thanks to those protocols, some of which are still applied today, we were able to extensively explore most of the Graveyard and decipher a good amount of the written language we found. There is still much we have yet to discover." You discuss the Graveyard with Taely for a while longer until one of the people she was talking to earlier comes closer and shows her something on a data pad. "I have to go now, Captain," she tells you. "Good luck."`
 				decline
 	on decline
 		log `Asked Taely about the Graveyard and the Ka'het and learned of the Remnant's previous contacts between them.`
 		log "Factions" "Ka'het" `The Ka'het are a species which live in the Graveyard, an area south of the Ember Waste. They are large lifeforms which can travel in space using artificial exoskeletons and will attack anyone on sight, even other Ka'het.`
+
+mission "graveyard insights compatibility"
+	landing
+	invisible
+	to offer
+		has "First Contact: Ka'het: Remnant 1B: offered"
+	on offer
+		event "graveyard insights"
+		fail
+
+event "graveyard insights"
+	planet Alix
+		add description `	 Here the Ka'het attacks were limited to the inhabited settlements; had they also destroyed the mining bases and the unmanned vessels, station Parii'het would have run out of supplies thousands of years ago.`
+	planet Celeatis
+		add description `	This planet appears to have been home to one of the largest Builder research centers, which focused on studying the anomaly in the system. Had they found out how to stabilize it and use it as a wormhole, perhaps their species would have survived and spread to the rest of the Ember Waste.`
+	planet Ceilia'sei
+		add description `	The main purpose of Ceilia'sei was to act like some sort of anti-missile platform. But when the Ka'het invasion broke out for the second time, it had no way to defend deadly Ravager Beams, and the station's defense systems were subsequently lost forever.`
+	planet Eavine
+		add description `	This moon was also home for the second Ka'het wave, which, same as the first, refused to obey their creators. It had been terraformed to make it a more appealing place to live, but after their civilization collapsed the moon began to return to its natural state. When it reverted to its original sub-zero temperatures, the facilities stopped working, and the Ka'het production in this site came to an end.`
+	planet "Letis'sei"
+		add description `	As it was designed to be crewed as minimally as possible, only a tiny fraction of Letis'sei station was inhabitable. The rest of the station was instead dedicated to advanced computing and targeting systems, most of which are still intact today.`
+	planet Osaeli
+		add description `	For most of the thousands of years that passed between the time their discovery of spaceflight and their extinction, Osaeli was the de facto capital of the Builders, a key part of their economy and society. The first Het station was constructed orbiting this planet's star with the purpose of protecting them from any external threat.`
+	planet Palarei
+		add description `	Thanks to their earlier exploration vessels, this was where the Builders encountered the first lifeforms that evolved outside of their home planet. While the climate was drastically different for the Builders, the fruits the local flora produced were popular enough that Palarei became a major farming planet.`
+	planet Parii'het
+		add description `	Parii'het was almost finished when the invasion broke out, and already capable of creating Ka'het. Thanks to the mining on Alix and the occasional asteroid mining operated by the Mar unmanned vessels, most of the facilities are still fully operational to this day.`
+	planet Retilie
+		add description `	As it was mainly used for fishing, the settlements on this planet were never as advanced as the ones on nearby worlds, so when the Ka'het arrived, there was basically nothing to stop them: after a few attacks, the planet was uninhabited again.`
+	planet Seli'het
+		add description `	This was the only Het station the Builders ever completed, orbiting Giribea. As the young Ka'heta reach their "Age of Assembly," strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'heta grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
+	planet Siteria
+		add description `	This was the Builder homeworld, both the place where their journey began and where it ended. After a dozen millennia of underpopulation, the Ka'het arrival forced them to retreat. As one of the few remaining planets capable of sustaining farming, this was their last stronghold, falling centuries after the invasion begun.`
+	planet Veliante
+		add description `	Soon after the beginning the invasion, an attack on some sort of advanced nuclear facility started a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable.`
 
 mission "Ringworld Debris"
 	invisible
@@ -103,6 +167,9 @@ mission "Ringworld Debris"
 			scene "scene/ringworld debris"
 			`	In one particular corner you see that there is a small, barely recognizable tube, badly damaged but with a few intact wires creeping out. After tinkering a bit with the wires you manage to connect the debris to your ship's secondary power systems. It barely uses any energy at all, but you can feel the air around it starting to get slightly colder.`
 			`	You unplug it and store the debris in a separate part of your ship. Maybe some alien species could tell you about it, if you were to bring it to them.`
+		fail
+	to complete
+		never
 
 mission "Ringworld Debris: Remnant"
 	invisible
@@ -162,7 +229,7 @@ mission "Ringworld Debris: Coalition"
 					defer
 			`	After asking around, you're directed to a large Heliarch building, where several of them are standing guard, weapons in hand, while others are performing maintenance on a chunk of hull plating. Judging by its size, it may be a warehouse for their weapons and outfits. "Of assistance how may we be, kind visitor?" One of the agents asks.`
 			`	You show them the debris, and explain where you've found it. They are shocked when they see it, but don't attempt to perform any tests on it. "A piece of Quarg technology, this is!" they say, asking again for you to explain where exactly you found it, as they make sure to write it all down this time.`
-			`	They then say that they have experienced with technology they managed to steal from the Quarg during their war, and that the debris is the remnant of a somewhat common component of Quarg equipment. They also note that what you've found has deteriorated much compared to what they have acquired for themselves, and that it most likely can't even reach a fraction of its optimal cooling output.`
+			`	They then say that they have experience with technology they managed to steal from the Quarg during their war, and that the debris is the remnant of a somewhat common component of Quarg equipment. They also note that what you've found has deteriorated much compared to what they have acquired for themselves, and that it most likely can't even reach a fraction of its optimal cooling output.`
 			`	You thank them for their time and the explanation, and head back to your ship.`
 				decline
 

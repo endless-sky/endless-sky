@@ -12,14 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpaceportPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Random.h"
 #include "UI.h"
 
 using namespace std;
@@ -32,7 +34,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(player.GetPlanet()->SpaceportDescription());
 	
@@ -48,7 +50,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 
 void SpaceportPanel::UpdateNews()
 {
-	const News *news = GameData::PickNews(player.GetPlanet());
+	const News *news = PickNews();
 	if(!news)
 		return;
 	hasNews = true;
@@ -61,7 +63,7 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetSprite("portrait", portrait);
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
-	newsMessage.Wrap('"' + news->Message() + '"');
+	newsMessage.Wrap(news->Message());
 }
 
 
@@ -100,4 +102,20 @@ void SpaceportPanel::Draw()
 		newsMessage.Draw(interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
 			*GameData::Colors().Get("medium"));
 	}
+}
+
+
+
+// Pick a random news object that applies to the player's planets and conditions.
+// If there is no applicable news, this returns null.
+const News *SpaceportPanel::PickNews() const
+{
+	vector<const News *> matches;
+	const Planet *planet = player.GetPlanet();
+	const map<string, int64_t> &conditions = player.Conditions();
+	for(const auto &it : GameData::SpaceportNews())
+		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
+			matches.push_back(&it.second);
+	
+	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }

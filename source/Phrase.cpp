@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 
 #include "DataNode.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Random.h"
 
@@ -39,6 +39,13 @@ void Phrase::Load(const DataNode &node)
 		sentences.pop_back();
 		node.PrintTrace("Skipping unparseable node:");
 	}
+}
+
+
+
+bool Phrase::IsEmpty() const
+{
+	return sentences.empty();
 }
 
 

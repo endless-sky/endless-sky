@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapShipyardPanel.h"
 
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -118,9 +118,10 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !system->IsInhabited(player.Flagship()))
+	if(!system || !player.HasVisited(system) || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
+	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
@@ -218,5 +219,5 @@ void MapShipyardPanel::Init()
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) {return a->ModelName() < b->ModelName();});
+			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });
 }

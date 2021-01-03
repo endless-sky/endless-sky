@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -123,7 +123,7 @@ void MapOutfitterPanel::Compare(int index)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	if(!system)
+	if(!system || !player.HasVisited(system))
 		return numeric_limits<double>::quiet_NaN();
 	
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
@@ -134,6 +134,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
+	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
@@ -247,5 +248,5 @@ void MapOutfitterPanel::Init()
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Outfit *a, const Outfit *b) {return a->Name() < b->Name();});
+			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });
 }
