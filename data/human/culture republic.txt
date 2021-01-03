@@ -41,17 +41,14 @@
 
 
 #############################################
-#           Republic or Syndicate           #
+#      Republic with Syndicate Pairing      #
 #############################################
 
-mission "ZZCU Sad Gamblers"
+mission "ZZCU Sad Gamblers -R"
 	minor
 	source
-		or
-			and
-				government "Republic"
-				attributes "near earth"
-			government "Syndicate"
+		government "Republic"
+		attributes "near earth"
 		not attributes "station"
 	to offer
 		random == 1
