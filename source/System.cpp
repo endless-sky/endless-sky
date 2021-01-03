@@ -319,7 +319,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Size() < 2)
-					child.PrintTrace("Warning: Keywords below arrival always need a value behind the keyword:");
+					grand.PrintTrace("Skipping distance specification without jump type identifier:");
 				else if(grand.Token(0) == "link")
 					extraHyperArrivalDistance = grand.Value(1);
 				else if(grand.Token(0) == "jump")
