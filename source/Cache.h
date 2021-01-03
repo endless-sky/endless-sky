@@ -1,5 +1,5 @@
 /* Cache.h
-Copyright (c) 2018 by Michael Zahniser
+Copyright (c) 2018 by OOTA, Masato
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -23,8 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // This is the common timer class for the Cache class.
 class CacheBase {
 public:
-	CacheBase();
-	virtual ~CacheBase() noexcept;
+	CacheBase() = default;
+	virtual ~CacheBase() noexcept = default;
 	
 	// Set an interval to change the generations.
 	// An auto expired cache may recycle a value after changing 2 generations.
@@ -105,10 +105,10 @@ private:
 	// Cached data and information for control.
 	struct Element {
 		T data;
-		size_t useCount;
+		size_t useCount = 0;
 		Key key;
 		
-		Element();
+		Element() = default;
 		Element(const Element &a) = default;
 		Element(const T &d, size_t c, const Key &k);
 		Element &operator=(const Element &a) = default;
@@ -288,14 +288,6 @@ void Cache<Key, T, autoExpired, Hash, AtRecycle>::Clear()
 	directory.clear();
 	expired = container.end();
 	readyToRecycle = container.end();
-}
-
-
-
-template<class Key, class T, bool autoExpired, class Hash, class AtRecycle>
-Cache<Key, T, autoExpired, Hash, AtRecycle>::Element::Element()
-	: data(), useCount(0), key()
-{
 }
 
 

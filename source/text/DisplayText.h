@@ -29,6 +29,8 @@ public:
 	const std::string &GetText() const noexcept;
 	const Layout &GetLayout() const noexcept;
 	
+	void SetText(const std::string &text) noexcept;
+	void SetLayout(const Layout &layout) noexcept;
 	
 private:
 	Layout layout;

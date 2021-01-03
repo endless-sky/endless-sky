@@ -46,3 +46,17 @@ const Layout &DisplayText::GetLayout() const noexcept
 {
 	return layout;
 }
+
+
+
+void DisplayText::SetText(const std::string &text) noexcept
+{
+	this->text = text;
+}
+
+
+
+void DisplayText::SetLayout(const Layout &layout) noexcept
+{
+	this->layout = layout;
+}

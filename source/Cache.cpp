@@ -1,5 +1,5 @@
 /* Cache.cpp
-Copyright (c) 2018 by Michael Zahniser
+Copyright (c) 2018 by OOTA, Masato
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -25,19 +25,6 @@ namespace {
 		static set<CacheBase*> *CacheObjectSet(new set<CacheBase*>);
 		return *CacheObjectSet;
 	}
-}
-
-
-
-CacheBase::CacheBase()
-	: stepCount(0), updateInterval(3600)
-{
-}
-
-
-
-CacheBase::~CacheBase() noexcept
-{
 }
 
 

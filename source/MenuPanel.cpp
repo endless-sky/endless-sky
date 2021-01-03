@@ -34,7 +34,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "System.h"
-#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "gl_header.h"

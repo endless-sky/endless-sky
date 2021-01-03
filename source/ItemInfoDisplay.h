@@ -59,7 +59,7 @@ protected:
 	static const int WIDTH = 250;
 	static const Layout commonLayout;
 	
-	DisplayText description;
+	DisplayText description = DisplayText("", commonLayout);
 	int descriptionHeight = 0;
 	
 	std::vector<std::string> attributeLabels;
@@ -73,7 +73,7 @@ protected:
 	mutable std::string hover;
 	mutable int hoverCount = 0;
 	bool hasHover = false;
-	mutable DisplayText hoverText;
+	mutable DisplayText hoverText = DisplayText("", commonLayout);
 };
 
 

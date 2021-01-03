@@ -126,7 +126,7 @@ void ItemInfoDisplay::ClearHover()
 void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
 {
 	if(licenses.empty())
-		description = {text, commonLayout};
+		description.SetText(text);
 	else
 	{
 		static const string NOUN[2] = {"outfit", "ship"};
@@ -149,7 +149,7 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 			fullText += (isVoweled ? "an " : "a ") + licenses[i] + " License";
 		}
 		fullText += ".\n";
-		description = {fullText, commonLayout};
+		description.SetText(fullText);
 	}
 	
 	// Pad by 10 pixels on the top and bottom.
@@ -206,7 +206,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		if(hoverCount >= HOVER_TIME)
 		{
 			hoverCount = HOVER_TIME;
-			hoverText = {GameData::Tooltip(label), commonLayout};
+			hoverText.SetText(GameData::Tooltip(label));
 		}
 	}
 }

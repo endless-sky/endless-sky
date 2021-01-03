@@ -101,7 +101,7 @@ private:
 		DisplayText text;
 		bool showUnderline;
 		
-		CacheKey(const DisplayText &t, bool underline) noexcept;
+		CacheKey(const DisplayText &t, bool underline);
 		bool operator==(const CacheKey &rhs) const noexcept;
 	};
 	
@@ -189,24 +189,21 @@ private:
 
 
 
-inline
-Font::CacheKey::CacheKey(const DisplayText &t, bool underline) noexcept
+inline Font::CacheKey::CacheKey(const DisplayText &t, bool underline)
 	: text(t), showUnderline(underline)
 {
 }
 
 
 
-inline
-bool Font::CacheKey::operator==(const CacheKey &rhs) const noexcept
+inline bool Font::CacheKey::operator==(const CacheKey &rhs) const noexcept
 {
 	return text == rhs.text && showUnderline == rhs.showUnderline;
 }
 
 
 
-inline
-Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type const &s) const noexcept
+inline Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type const &s) const noexcept
 {
 	const std::string &text = s.text.GetText();
 	const Layout &layout = s.text.GetLayout();
@@ -221,8 +218,7 @@ Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type co
 
 
 
-inline
-void Font::AtRecycleForRenderedText::operator()(RenderedText &v) const
+inline void Font::AtRecycleForRenderedText::operator()(RenderedText &v) const
 {
 	if(v.texture)
 		glDeleteTextures(1, &v.texture);

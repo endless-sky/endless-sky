@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "truncate.hpp"
 
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <vector>
 
@@ -29,7 +30,7 @@ namespace {
 	bool showUnderlines = false;
 	const int TOTAL_TAB_STOPS = 8;
 	
-	const vector<string> acceptableCharacterReferences{ "gt;", "lt;", "amp;" };
+	const array<string, 3> acceptableCharacterReferences{ "gt;", "lt;", "amp;" };
 	
 	// Convert from PANGO to pixel scale.
 	int PixelFromPangoCeil(int pangoSize)
@@ -234,14 +235,14 @@ void Font::UpdateFont() const
 	const int ascent = pango_font_metrics_get_ascent(metrics);
 	const int descent = pango_font_metrics_get_descent(metrics);
 	viewFontHeight = PixelFromPangoCeil(ascent + descent);
-	if (drawingSettings.lineHeightScale >= 0)
+	if (drawingSettings.lineHeightScale >= 0.)
 		viewDefaultLineHeight = viewFontHeight * drawingSettings.lineHeightScale;
 	else
-		viewDefaultLineHeight = 0;
-	if (drawingSettings.paragraphBreakScale >= 0)
+		viewDefaultLineHeight = 0.;
+	if (drawingSettings.paragraphBreakScale >= 0.)
 		viewDefaultParagraphBreak = viewFontHeight * drawingSettings.paragraphBreakScale;
 	else
-		viewDefaultParagraphBreak = 0;
+		viewDefaultParagraphBreak = 0.;
 	
 	// Clean up.
 	pango_font_metrics_unref(metrics);
@@ -449,29 +450,22 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	pango_layout_set_ellipsize(pangoLayout, ellipsize);
 	
 	// Align and justification
-	PangoAlignment align;
-	gboolean justify;
+	PangoAlignment align = PANGO_ALIGN_LEFT;
+	gboolean justify = FALSE;
 	switch(viewLayout.align)
 	{
 		case Alignment::LEFT:
-			align = PANGO_ALIGN_LEFT;
-			justify = FALSE;
+			// Do nothing
 			break;
 		case Alignment::CENTER:
 			align = PANGO_ALIGN_CENTER;
-			justify = FALSE;
 			break;
 		case Alignment::RIGHT:
 			align = PANGO_ALIGN_RIGHT;
-			justify = FALSE;
 			break;
 		case Alignment::JUSTIFIED:
-			align = PANGO_ALIGN_LEFT;
 			justify = TRUE;
 			break;
-		default:
-			align = PANGO_ALIGN_LEFT;
-			justify = FALSE;
 	}
 	pango_layout_set_justify(pangoLayout, justify);
 	pango_layout_set_alignment(pangoLayout, align);
