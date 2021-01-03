@@ -201,13 +201,6 @@ void LoadPanel::Draw()
 
 
 
-bool LoadPanel::AllowTimeUpdating() const
-{
-	return false;
-}
-
-
-
 bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == 'n')

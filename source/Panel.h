@@ -63,7 +63,6 @@ public:
 	
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowFastForward() const;
-	virtual bool AllowTimeUpdating() const;
 	
 	
 protected:

@@ -37,7 +37,6 @@ public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 	
 	virtual void Draw() override;
-	virtual bool AllowTimeUpdating() const override;
 	
 	
 protected:

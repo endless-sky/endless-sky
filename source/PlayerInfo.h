@@ -150,9 +150,8 @@ public:
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
 
-	// Get or set pilot's playtime.
+	// Get or add to pilot's playtime.
 	double GetPlayTime();
-	void UpdatePlayTime();
 	void AddPlayTime(double timeVal);
 	
 	// Get the player's logbook.

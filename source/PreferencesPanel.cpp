@@ -98,13 +98,6 @@ void PreferencesPanel::Draw()
 
 
 
-bool PreferencesPanel::AllowTimeUpdating() const
-{
-	return false;
-}
-
-
-
 bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(static_cast<unsigned>(editing) < zones.size())

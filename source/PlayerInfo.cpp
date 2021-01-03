@@ -101,7 +101,7 @@ void PlayerInfo::New()
 	
 	// Generate missions that will be available on the first day.
 	CreateMissions();
-
+	
 	// Add to the list of events that should happen on certain days.
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())

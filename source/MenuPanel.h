@@ -36,8 +36,6 @@ public:
 	// New player "conversation" callback.
 	void OnCallback(int value);
 	
-	// The menu panel prevents time updating, as it is already updated on loading it
-	virtual bool AllowTimeUpdating() const override;
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

@@ -185,7 +185,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
-
+	
 	// Data to track progress of testing if/when a test is running.
 	Test::Context testContext;
 	if(!testToRunName.empty())
@@ -197,6 +197,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		if(toggleTimeout)
 			--toggleTimeout;
 		chrono::steady_clock::time_point start = chrono::steady_clock::now();
+
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
