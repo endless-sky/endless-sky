@@ -34,7 +34,7 @@ mission "ZZCU Theater Chat"
 			`	The lady grimaces and makes like she's vomiting, "I can't believe you still have those schools of thought in a society this old."`
 			`	"Oh we don't really, at least not in scientific circles, but a compelling story will outlive such things. I can't stand it personally but it is a classic." When the lady looks unimpressed Gemanari titters and takes her gently by the arm to steer her away again. "Don't worry Alinta, I think the Misheep Wah'uden company is running my preferred interpretation on <destination> at the moment. We can see if they have any cheap tickets. Of course my aunt would insist that the hundred and eighty-third version is the only real one but she always..."`
 			`	You lose the conversation as they trail away from you, leaving you to wonder just what was so special about the hundred and eighty-third version of a play about a prehistoric flying Hai found frozen in the ice.`
-				fail
+				decline
 
 mission "ZZCU Musical Entertainment Expo"
 	minor
@@ -68,7 +68,7 @@ mission "ZZCU Musical Entertainment Expo"
 			label wrapup
 			`	The bartender tips his head in your direction and takes your order. "No problem, it'll be right up."`
 			`	It's a noisy meal.`
-				fail
+				decline
 
 #This uses the flag from receiving the Hai translator.
 mission "ZZCU The Meme Wars 1"
@@ -87,7 +87,7 @@ mission "ZZCU The Meme Wars 1"
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and root vegetable make several reappearances on their placards, some of them holographically animated.`
 			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
 			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
-				fail
+				decline
 			label translator
 			`	As you watch the triangle elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and root vegetable make several reappearances on their placards, some of them holographically animated.`
@@ -103,7 +103,7 @@ mission "ZZCU The Meme Wars 1"
 				`	"Sounds fun."`
 			label done
 			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
-				fail
+				decline
 
 mission "ZZCU Wrestling Star"
 	minor
@@ -115,7 +115,7 @@ mission "ZZCU Wrestling Star"
 	on offer
 		conversation
 			`A famous Hai wrestler is doing a signing. (TBD)`
-				fail
+				decline
 
 mission "ZZCU Fencing Star"
 	minor
@@ -127,7 +127,7 @@ mission "ZZCU Fencing Star"
 	on offer
 		conversation
 			`A famous Hai fencer is doing a signing. (TBD)`
-				fail
+				decline
 				
 mission "ZZCU ??? Star"
 	minor
@@ -139,7 +139,7 @@ mission "ZZCU ??? Star"
 	on offer
 		conversation
 			`A famous Hai sportsperson of an obscure alien sport is doing a signing. (TBD)`
-				fail
+				decline
 
 mission "ZZCU Gambling Judgment"
 	minor
@@ -174,7 +174,7 @@ mission "ZZCU Gambling Judgment"
 			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears of, what'll I get for you?"`
 			label end
 			`	He takes your order diligently and with a smile.`
-				fail
+				decline
 
 ############################################
 #            Translator Required           #
@@ -192,7 +192,7 @@ mission "ZZCU Mum Groups"
 	on offer
 		conversation
 			`A mall stall at the spaceport is trying to sell learning merchandise that's been condemned by the local conglomerate of mum groups. There's an argument and some flipped tables. (TBD)`
-				fail
+				decline
 
 mission "ZZCU boop"
 	minor
@@ -205,4 +205,4 @@ mission "ZZCU boop"
 	on offer
 		conversation
 			`placeholder`
-				fail
+				decline

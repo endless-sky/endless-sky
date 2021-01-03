@@ -24,7 +24,7 @@
 #	on offer
 #		conversation
 #			`placeholder`
-#				fail
+#				decline
 			
 #mission "ZZCU cultural random template"
 #	minor
@@ -37,7 +37,7 @@
 #	on offer
 #		conversation
 #			`placeholder`
-#				fail
+#				decline
 
 
 #############################################
@@ -59,7 +59,7 @@ mission "ZZCU Sad Gamblers"
 		conversation
 			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success and your attention is drawn as one of them wins a moderate sum in an 12th division win (a day or two worth of standard pay).`
 			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
-				fail
+				decline
 
 #############################################
 #               Republic Only               #
@@ -83,10 +83,10 @@ mission "ZZCU Gift Store Interaction"
 					goto buy
 				`	(Put it back.)`
 			`	You roll your eyes and put it back. Some experiences really are universal.`
-				fail
+				decline
 			label buy
 			`	You purchase the mug on an impulse. At least you can ditch your other one with a chip in it.`
-				fail
+				decline
 
 
 mission "ZZCU Trash Fire Crops"
@@ -105,10 +105,10 @@ mission "ZZCU Trash Fire Crops"
 					goto ignore
 				`	(Ask around.)`
 			`	You ask one of the locals who doesn't look too busy. They sadly inform you that there's been a bumper banana crop, but unfortunately other, wealthier, worlds had a bumper crop at the same time, and there's nowhere to either sell or store a significant excess. Distressed farmers are burning the excess fruit to make fertilizer for the next season, the wind has carried the smell all over town.`
-				fail
+				decline
 			label ignore
 			`	You leave the mysterious smell to the locals and continue on your business.`
-				fail
+				decline
 
 
 mission "ZZCU Paradise Cleaner Incident"
@@ -124,6 +124,6 @@ mission "ZZCU Paradise Cleaner Incident"
 			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You catch yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. Perhaps it is because of your background, but you notice them even when they are avoiding notice, and so you are able to notice something seconds before it happens.`
 			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one right before he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen a mother go so deathly pale as the cleaner who scurried to fix things before the man had even drawn breath.`
 			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her children out of harms way.`
-				fail
+				decline
  
  
