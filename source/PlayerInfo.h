@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameEvent.h"
 #include "Mission.h"
 
+#include <chrono>
 #include <list>
 #include <map>
 #include <memory>
@@ -152,7 +153,7 @@ public:
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime();
-	void AddPlayTime(double timeVal);
+	void AddPlayTime(std::chrono::steady_clock::duration timeVal);
 	
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;

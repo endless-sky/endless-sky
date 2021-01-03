@@ -70,19 +70,16 @@ SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTi
 // #endregion unit tests
 
 // #region benchmarks
-#ifndef CATCH_CONFIG_ENABLE_BENCHMARKING
-TEST_CASE( "Benchmark Format::PlayTime", "[!benchmark][random]" ) {
+#ifdef CATCH_CONFIG_ENABLE_BENCHMARKING
+TEST_CASE( "Benchmark Format::PlayTime", "[!benchmark][format]" ) {
 	BENCHMARK( "Format::PlayTime() with a value under an hour" ) {
-		int randTime = Random::Int(3600)
-		return Format::PlayTime(randTime);
+		return Format::PlayTime(1943);
 	}
 	BENCHMARK( "Format::PlayTime() with a high, but realistic playtime (40-400h)" ) {
-		int randTime = Random::Int(1296000) + 144000;
-		return Format::PlayTime(randTime);
+		return Format::PlayTime(1224864);
 	}
 	BENCHMARK( "Format::PlayTime() with an uncapped value" ) {
-		int randTime = Random::Int(numeric_limits<int>::max())
-		return Format::PlayTime(randTime);
+		return Format::PlayTime(numeric_limits<int>::max());
 	}
 }
 #endif

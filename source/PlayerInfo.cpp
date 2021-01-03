@@ -115,7 +115,7 @@ void PlayerInfo::Load(const string &path)
 {
 	// Make sure any previously loaded data is cleared.
 	Clear();
-
+	
 	filePath = path;
 	DataFile file(path);
 	
@@ -1440,9 +1440,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
-void PlayerInfo::AddPlayTime(double timeVal)
+void PlayerInfo::AddPlayTime(chrono::steady_clock::duration timeVal)
 {
-	playTime += timeVal;
+	playTime += timeVal.count() * .000000001;
 }
 
 

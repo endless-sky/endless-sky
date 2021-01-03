@@ -53,7 +53,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), scroll(0)
 {
 	SetIsFullScreen(true);
-
+	
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 }
 
