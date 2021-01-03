@@ -201,8 +201,9 @@ void Font::UpdateSurfaceSize() const
 	cairo_surface_destroy(sf);
 	
 	if(pangoLayout)
-		g_object_unref(pangoLayout);
-	pangoLayout = pango_cairo_create_layout(cr);
+		pango_cairo_update_layout(cr, pangoLayout);
+	else
+		pangoLayout = pango_cairo_create_layout(cr);
 	context = pango_layout_get_context(pangoLayout);
 	
 	pango_layout_set_wrap(pangoLayout, PANGO_WRAP_WORD);
@@ -482,26 +483,29 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	const string replacedText = ReplaceCharacters(text.GetText());
 	
 	// Keyboard Accelerator
-	char *TextRemovedMarkup;
-	const char *drawingText;
+	char *textRemovedMarkup = nullptr;
+	const char *drawingText = nullptr;
 	PangoAttrList *al = nullptr;
 	GError *error = nullptr;
 	const char accel = showUnderlines ? '_' : '\0';
 	const string &nonAccelText = RemoveAccelerator(replacedText);
 	const string &parseText = showUnderlines ? replacedText : nonAccelText;
-	if(pango_parse_markup(parseText.c_str(), -1, accel, &al, &TextRemovedMarkup, 0, &error))
-		drawingText = TextRemovedMarkup;
+	if(pango_parse_markup(parseText.c_str(), -1, accel, &al, &textRemovedMarkup, 0, &error))
+		drawingText = textRemovedMarkup;
 	else
 	{
 		if(error->message)
 			Files::LogError(error->message);
 		drawingText = nonAccelText.c_str();
+		g_error_free(error);
 	}
 	
 	// Set the text and attributes to layout.
 	pango_layout_set_text(pangoLayout, drawingText, -1);
 	pango_layout_set_attributes(pangoLayout, al);
 	pango_attr_list_unref(al);
+	if(textRemovedMarkup)
+		g_free(textRemovedMarkup);
 	
 	// Check the image buffer size.
 	int textWidth;
