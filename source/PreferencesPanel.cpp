@@ -175,7 +175,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			else if(zone.Value() == VSYNC_SETTING)
 			{
 				if(!Preferences::ToggleVSync())
-					GetUI()->Push(new Dialog("Unable to change VSync state"));
+					GetUI()->Push(new Dialog(
+						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
