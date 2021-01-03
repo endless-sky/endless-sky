@@ -27,6 +27,7 @@ color "conversation background" .125 .125 .125 1.
 color "map side panel background" .125 .125 .125 1.
 color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
+color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
@@ -874,16 +875,28 @@ interface "map buttons" bottom right
 	button d "_Done"
 		from -80 -40 to -10 -10
 	
-	sprite "ui/zoom"
+	active
+	sprite "ui/dialog cancel"
 		from 0 -40 to -90 -90
+	button f "_Find"
+		from -80 -80 to -10 -50
+
+	sprite "ui/zoom"
+		from 0 -80 to -90 -130
 	active if "!max zoom"
 	button + "_+"
-		from -10 -50 to -40 -80
+		from -10 -90 to -40 -120
 		size 18
 	active if "!min zoom"
 	button - "_-"
-		from -50 -50 to -80 -80
+		from -50 -90 to -80 -120
 		size 18
+
+
+
+interface "map"
+	value "max zoom" 2
+	value "min zoom" -2
 
 
 

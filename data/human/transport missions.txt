@@ -649,18 +649,6 @@ mission "There Might Be Riots part 3A"
 
 
 
-government "Team Red"
-	swizzle 0
-	"player reputation" -1000
-	"attitude toward"
-		"Team Blue" -.1
-
-government "Team Blue"
-	swizzle 5
-	"player reputation" -1000
-	"attitude toward"
-		"Team Red" -.1
-
 mission "There Might Be Riots part 3B"
 	landing
 	name "Transport band to <planet>"
@@ -829,10 +817,6 @@ mission "Drug Running 3"
 		dialog `You hand off the illegal "substances" to your contact on <planet>, who pays you <payment>.`
 
 
-
-government "Bad Trip"
-	swizzle 0
-	"player reputation" -1000
 
 effect "puff"
 	sprite "effect/puff"
@@ -1565,6 +1549,7 @@ mission "Terraforming 2"
 
 
 ship "Asteroid"
+	noun "asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
@@ -1626,7 +1611,7 @@ mission "Terraforming 3"
 			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
 	
-	npc assist
+	npc save assist
 		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
 		ship "Asteroid" "Target Asteroid"
@@ -2657,6 +2642,7 @@ mission "Core Blockade"
 	source
 		near "Almach" 2 4
 	destination "Deadman's Cove"
+	clearance
 	cargo "food" 287
 	to offer
 		random < 20
@@ -3130,21 +3116,21 @@ mission "Pirate Duel"
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
 	on enter "Umbral"
-		"reputation:  Independent " = -1000
+		"reputation: Independent (Killable)" = -1000
 		conversation
 			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
 			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
 			`	The Vanguard powers up its weapons.`
 	
 	npc kill
-		government " Independent "
+		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
 			confusion 20
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
 		dialog `The Anglerfish and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
 	
 	on complete
-		"reputation:  Independent " = 10
+		"reputation: Independent (Killable)" = 10
 		payment 250000
 		conversation
 				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
@@ -3208,6 +3194,8 @@ mission "Earth Retirement"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		payment
+		payment 6000
 		conversation
 			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves Charles stops by you, and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
 			choice

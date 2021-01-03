@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdint>
 #include <string>
 
+class DataNode;
+
 
 
 // Class mapping key presses to specific commands / actions. The player can
@@ -95,6 +97,9 @@ public:
 	const std::string &Description() const;
 	const std::string &KeyName() const;
 	bool HasConflict() const;
+	
+	// Load this command from an input file (for testing or scripted missions).
+	void Load(const DataNode &node);
 	
 	// Reset this to an empty command.
 	void Clear();
