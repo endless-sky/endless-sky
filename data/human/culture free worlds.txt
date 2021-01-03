@@ -39,7 +39,7 @@ mission "ZZCU South Culture: Repossessed"
 	to offer
 		and
 			random < 2 + 50 * "Culture: Repossessed"
-			"event: war begins"
+			has "event: war begins"
 	source
 		government "Free Worlds"
 		attributes "spaceport" "farming" "south"
@@ -55,7 +55,7 @@ mission "ZZCU Rim Culture: Repossessed"
 	to offer
 		and
 			random < 2 + 50 * "Culture: Repossessed"
-			"event: war begins"
+			has "event: war begins"
 	source
 		government "Free Worlds"
 		attributes "spaceport" "urban" "rim"

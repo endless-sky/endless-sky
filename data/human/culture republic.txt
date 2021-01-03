@@ -49,9 +49,9 @@ mission "ZZCU Sad Gamblers"
 	source
 		or
 			and
-				government "republic"
+				government "Republic"
 				attributes "near earth"
-			government "syndicate"
+			government "Syndicate"
 		not attributes "station"
 	to offer
 		random == 1
@@ -68,7 +68,7 @@ mission "ZZCU Sad Gamblers"
 mission "ZZCU Gift Store Interaction"
 	minor
 	source
-		government "republic"
+		government "Republic"
 		attributes "deep"
 		not attributes "station"
 	to offer
@@ -92,7 +92,7 @@ mission "ZZCU Gift Store Interaction"
 mission "ZZCU Trash Fire Crops"
 	minor
 	source
-		government "republic"
+		government "Republic"
 		attributes "dirt belt"
 		not attributes "station"
 	to offer
@@ -114,7 +114,7 @@ mission "ZZCU Trash Fire Crops"
 mission "ZZCU Paradise Cleaner Incident"
 	minor
 	source
-		government "republic"
+		government "Republic"
 		attributes "paradise"
 		not attributes "station"
 	to offer
@@ -125,5 +125,4 @@ mission "ZZCU Paradise Cleaner Incident"
 			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one right before he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen a mother go so deathly pale as the cleaner who scurried to fix things before the man had even drawn breath.`
 			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her children out of harms way.`
 				decline
- 
- 
+
