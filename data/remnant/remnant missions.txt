@@ -1304,7 +1304,7 @@ mission "Remnant: Deep Surveillance"
 			
 			label branches
 			apply
-				"suspicion" = ("retrieved information" / 2 * "deep: knew of stones before scientists") + "deep: knew of stones before scientists" + 2 * "Deep: Remnant Technology: declined" + "Deep: Remnant Surveillance: declined"
+				"suspicion" = ("retrieved information" / 2 * "deep: knew of stones before scientists") + "deep: knew of stones before scientists" + 2 * "Deep: Remnant: Engines: declined" + 2 * "Deep: Remnant: Engines: failed" + "Deep: Remnant Surveillance: declined" + "Deep: Remnant Surveillance: failed"
 			branch terminus
 				not "Deep: Remnant Research: done"
 			
