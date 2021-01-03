@@ -32,6 +32,8 @@ public:
 	// Draw this panel.
 	virtual void Draw() override;
 	
+	virtual bool AllowTimeUpdating() const override;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

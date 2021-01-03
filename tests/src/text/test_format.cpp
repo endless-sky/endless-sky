@@ -1,7 +1,7 @@
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../source/text/Format.h"
+#include "../../../source/text/Format.h"
 
 // ... and any system includes needed for the test file.
 #include <string>
@@ -18,10 +18,16 @@ namespace { // test namespace
 
 
 // #region unit tests
-SCENARIO("A unit of time in seconds is converted to a YY:DD:HH:MM:SS format,") {
+SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTime]") {
 	GIVEN( "A time of 0" ) {
 		THEN( "0s is returned" ) {
 			CHECK( Format::PlayTime(0) == "0s");
+		}
+	}
+
+	GIVEN( "A time of a half second" ) {
+		THEN( "0s is returned" ) {
+			CHECK( Format::PlayTime(.5) == "0s");
 		}
 	}
 
@@ -54,9 +60,31 @@ SCENARIO("A unit of time in seconds is converted to a YY:DD:HH:MM:SS format,") {
 			CHECK( Format::PlayTime(98957582) == "3y 50d 8h 13m 2s");
 		}
 	}
+	GIVEN( "A negative time" ) {
+		THEN( "0s is returned " ) {
+			CHECK( Format::PlayTime(-300) == "0s");
+		}
+	}
 }
+
 // #endregion unit tests
 
-
+// #region benchmarks
+#ifndef CATCH_CONFIG_ENABLE_BENCHMARKING
+TEST_CASE( "Benchmark Format::PlayTime", "[!benchmark][random]" ) {
+	BENCHMARK( "Format::PlayTime() with a value under an hour" ) {
+		int randTime = Random::Int(3600)
+		return Format::PlayTime(randTime);
+	}
+	BENCHMARK( "Format::PlayTime() with a high, but realistic playtime (40-400h)" ) {
+		int randTime = Random::Int(1296000) + 144000;
+		return Format::PlayTime(randTime);
+	}
+	BENCHMARK( "Format::PlayTime() with an uncapped value" ) {
+		int randTime = Random::Int(numeric_limits<int>::max())
+		return Format::PlayTime(randTime);
+	}
+}
+#endif
 
 } // test namespace

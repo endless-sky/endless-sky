@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "UI.h"
 
+#include <chrono>
 #include <iostream>
 #include <map>
 
@@ -184,7 +185,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
-	
+
 	// Data to track progress of testing if/when a test is running.
 	Test::Context testContext;
 	if(!testToRunName.empty())
@@ -195,7 +196,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	{
 		if(toggleTimeout)
 			--toggleTimeout;
-		
+		chrono::steady_clock::time_point start = chrono::steady_clock::now();
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
@@ -310,16 +311,17 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		GameWindow::Step();
 
 		timer.Wait();
+		
+		// Calculate final frame duration to add to playtime
+		chrono::steady_clock::time_point end = chrono::steady_clock::now();
+		double duration = chrono::duration_cast<chrono::nanoseconds>(end - start).count() * .000000001;
+		if(menuPanels.IsEmpty())
+			player.AddPlayTime(duration);
 	}
 	
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
-	{
-		// Only update time if the active panel allows it
-		if((gamePanels.Top()->AllowTimeUpdating()))
-			player.UpdatePlayTime();
 		player.Save();
-	}
 }
 
 

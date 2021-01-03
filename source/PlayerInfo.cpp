@@ -95,7 +95,6 @@ void PlayerInfo::New()
 	
 	SetSystem(start.GetSystem());
 	SetPlanet(start.GetPlanet());
-	UpdateLoadTime();
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
@@ -117,8 +116,6 @@ void PlayerInfo::Load(const string &path)
 	// Make sure any previously loaded data is cleared.
 	Clear();
 
-	UpdateLoadTime();
-	
 	filePath = path;
 	DataFile file(path);
 	
@@ -1443,24 +1440,14 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
-// Set the last time the player was active, to update playtime with.
-void PlayerInfo::UpdateLoadTime()
+void PlayerInfo::AddPlayTime(double timeVal)
 {
-	loadTime = std::time(nullptr);
+	playTime += timeVal;
 }
 
 
 
-void PlayerInfo::UpdatePlayTime()
-{
-	int currentTime = std::time(nullptr);
-	if(currentTime > loadTime)
-		playTime += (std::time(nullptr) - loadTime);
-}
-
-
-
-int PlayerInfo::GetPlayTime() {
+double PlayerInfo::GetPlayTime() {
 	return playTime;
 }
 
@@ -2651,7 +2638,7 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const string &path) const
 {
-	DataWriter out(path);	
+	DataWriter out(path);
 	
 	
 	// Basic player information and persistent UI settings:

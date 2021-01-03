@@ -206,6 +206,7 @@ interface "menu player info"
 		align left
 
 
+
 interface "load menu"
 	sprite "_menu/side panel"
 		center -360 0

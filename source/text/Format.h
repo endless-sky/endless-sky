@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ES_TEXT_FORMAT_H_
 #define ES_TEXT_FORMAT_H_
 
-#include <array>
 #include <map>
 #include <string>
 #include <vector>
@@ -28,7 +27,7 @@ public:
 	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string Credits(int64_t value);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
-	static std::string PlayTime(int value);
+	static std::string PlayTime(double timeVal);
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);

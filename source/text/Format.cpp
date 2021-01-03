@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 
 #include <algorithm>
+#include <array>
 #include <cctype>
 #include <cmath>
 #include <sstream>
@@ -90,25 +91,27 @@ string Format::Credits(int64_t value)
 
 
 // Convert a time in seconds to years/days/hours/minutes/seconds
-std::string Format::PlayTime(int timeVal)
+std::string Format::PlayTime(double timeVal)
 {
 	string result;
+	int timeValFormat;
 	static const array<char, 5> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
 	static const array<int, 4> PERIOD = {60, 60, 24, 365};
 
+	timeValFormat = max(0., timeVal);
 	// Break time into larger and larger units until the largest one, or the value is empty
 	size_t i = 0;
 	do {
-		int period = (i < SUFFIX.size() - 1 ? timeVal % PERIOD[i] : timeVal);
+		int period = (i < SUFFIX.size() - 1 ? timeValFormat % PERIOD[i] : timeValFormat);
 		result = (i == 0 ? result + SUFFIX[i] : result + ' ' + SUFFIX[i]);
 		do {
 			result += static_cast<char>('0' + period % 10);
 			period /= 10;
 		} while(period);
 		if(i < PERIOD.size())
-			timeVal /= PERIOD[i];
+			timeValFormat /= PERIOD[i];
 		i++;
-	} while (timeVal && i < SUFFIX.size());
+	} while (timeValFormat && i < SUFFIX.size());
 
 	reverse(result.begin(), result.end());
 	return result;

@@ -54,9 +54,6 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 {
 	SetIsFullScreen(true);
 
-	// Update playtime once the player pauses
-	if(player.GetPlanet() && GameData::IsLoaded())
-		player.UpdatePlayTime();
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 }
 
@@ -103,10 +100,7 @@ void MenuPanel::Draw()
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->Name());
 		if(player.GetPlanet())
-		{
 			info.SetString("planet", player.GetPlanet()->Name());
-			player.UpdateLoadTime();	
-		}
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
