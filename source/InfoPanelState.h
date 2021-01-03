@@ -35,7 +35,13 @@ public:
 	int SelectedIndex() const;
 	void SetSelectedIndex(int newSelectedIndex);
 	
-	std::set<int> &AllSelected();
+	const std::set<int> &AllSelected() const;
+	void SetSelected(const std::set<int> &selected);
+	void Select(int index);
+	void SelectOnly(int index);
+	void SelectMany(int start, int end);
+	bool Deselect(int index);
+	void DeselectAll();
 	
 	bool CanEdit() const;
 	

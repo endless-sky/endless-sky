@@ -27,7 +27,7 @@ InfoPanelState::InfoPanelState(PlayerInfo &player)
 
 int InfoPanelState::SelectedIndex() const
 {
-	return selectedIndex;
+	return allSelected.empty() ? -1 : selectedIndex;
 }
 
 
@@ -35,11 +35,71 @@ int InfoPanelState::SelectedIndex() const
 void InfoPanelState::SetSelectedIndex(int newSelectedIndex)
 {
 	selectedIndex = newSelectedIndex;
+	allSelected.insert(newSelectedIndex);
 }
 
 
 
-set<int> &InfoPanelState::AllSelected()
+void InfoPanelState::SetSelected(const std::set<int> &selected)
+{
+	allSelected = selected;
+	if(!selected.empty())
+		selectedIndex = *selected.begin();
+}
+
+
+
+void InfoPanelState::Select(int index)
+{
+	allSelected.insert(index);
+	if(selectedIndex == -1)
+		selectedIndex = index;
+}
+
+
+
+void InfoPanelState::SelectOnly(int index)
+{
+	allSelected.clear();
+	SetSelectedIndex(index);
+}
+
+
+
+void InfoPanelState::SelectMany(int start, int end)
+{
+	for(int i = start; i < end; ++i)
+		allSelected.insert(i);
+	
+	if(selectedIndex == -1)
+		selectedIndex = *allSelected.begin();
+}
+
+
+
+bool InfoPanelState::Deselect(int index)
+{
+	bool erased = allSelected.erase(index);
+	// Select the closest ship to this.
+	if(index == selectedIndex && !allSelected.empty())
+	{
+		const auto &ind = allSelected.upper_bound(index);
+		selectedIndex = ind == allSelected.end() ? *allSelected.rbegin() : *ind;
+	}
+	return erased;
+}
+
+
+
+void InfoPanelState::DeselectAll()
+{
+	allSelected.clear();
+	selectedIndex = -1;
+}
+
+
+
+const std::set<int> &InfoPanelState::AllSelected() const
 {
 	return allSelected;
 }
