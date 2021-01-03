@@ -217,9 +217,13 @@ private:
 	
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
+	// Negative values are allowed, causing ships to jump beyond their target.
 	double extraHyperArrivalDistance = 0.;
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a jumpdrive jump.
+	// Jump drives use a circle around the target for targeting, so a value below
+	// 0 doesn't have the same meaning as for hyperdrives. Negative values will
+	// be interpreted as positive values.
 	double extraJumpArrivalDistance = 0.;
 	
 	// Commodity prices.

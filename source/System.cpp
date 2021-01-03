@@ -318,19 +318,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			for(const DataNode &grand : child)
 			{
-				if(grand.Size() < 2)
-					grand.PrintTrace("Skipping distance specification without jump type identifier:");
-				else if(grand.Token(0) == "link")
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
 					extraHyperArrivalDistance = grand.Value(1);
-				else if(grand.Token(0) == "jump")
-					// Negative jump distances work the same as positive jump
-					// distances.
-					// Jump drives use a circle around the target for targeting,
-					// so a value below 0 doesn't have the same meaning as for hyper
-					// drives where negative values would be beyond the target.
+				else if(type == "jump" && grand.Size() >= 2)
 					extraJumpArrivalDistance = fabs(grand.Value(1));
 				else
-					child.PrintTrace("Warning: Unknown keyword below arrival:");
+					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
 			}
 		}
 		else
