@@ -19,11 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../Screen.h"
 #include "truncate.hpp"
 
-#include "../gl_header.h"
-
 #include <algorithm>
 #include <cmath>
-#include <string>
 #include <vector>
 
 using namespace std;
@@ -357,7 +354,7 @@ void Font::DrawCommon(const DisplayText &text, double x, double y, const Color &
 	{
 		screenWidth = Screen::Width();
 		screenHeight = Screen::Height();
-		GLint xyhw[4];
+		GLint xyhw[4] = {};
 		glGetIntegerv(GL_VIEWPORT, xyhw);
 		viewWidth = xyhw[2];
 		viewHeight = xyhw[3];
@@ -467,7 +464,7 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 		case Alignment::RIGHT:
 			align = PANGO_ALIGN_RIGHT;
 			justify = FALSE;
-		break;
+			break;
 		case Alignment::JUSTIFIED:
 			align = PANGO_ALIGN_LEFT;
 			justify = TRUE;
@@ -488,7 +485,7 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	PangoAttrList *al = nullptr;
 	GError *error = nullptr;
 	const char accel = showUnderlines ? '_' : '\0';
-	const string &nonAccelText = RemoveAccelerator(replacedText);
+	const string nonAccelText = RemoveAccelerator(replacedText);
 	const string &parseText = showUnderlines ? replacedText : nonAccelText;
 	if(pango_parse_markup(parseText.c_str(), -1, accel, &al, &textRemovedMarkup, 0, &error))
 		drawingText = textRemovedMarkup;
@@ -608,14 +605,13 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	renderedText.texture = texture;
 	renderedText.width = textWidth;
 	renderedText.height = textHeight;
-	renderedText.center.X() = .5 * textWidth;
-	renderedText.center.Y() = .5 * textHeight;
+	renderedText.center = Point(.5 * textWidth, .5 * textHeight);
 	
 	// Upload the image as a texture.
 	if(!renderedText.texture)
 		glGenTextures(1, &renderedText.texture);
 	glBindTexture(GL_TEXTURE_2D, renderedText.texture);
-	const auto &cachedText = cache.New(key, move(renderedText));
+	const auto &cachedText = cache.New(key, std::move(renderedText));
 	
 	// Use linear interpolation and no wrapping.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -639,6 +635,7 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 void Font::SetUpShader()
 {
 	static const char *vertexCode =
+		"// vertex font shader\n"
 		// Parameter: Convert pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
 		// Parameter: Position of the top left corner of the texture in pixels.
@@ -658,6 +655,7 @@ void Font::SetUpShader()
 		"}\n";
 	
 	static const char *fragmentCode =
+		"// fragment font shader\n"
 		// Parameter: Texture with the text.
 		"uniform sampler2D tex;\n"
 		// Parameter: Color to apply to the text.

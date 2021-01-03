@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 
 #include "../Files.h"
-#include "Font.h"
 
 #include <cstdlib>
 #include <map>

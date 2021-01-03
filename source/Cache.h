@@ -47,8 +47,8 @@ private:
 	// Notify to progress a generation.
 	virtual void NextGeneration() = 0;
 	
-	size_t stepCount;
-	size_t updateInterval;
+	size_t stepCount = 0;
+	size_t updateInterval = 3600;
 };
 
 
@@ -57,8 +57,7 @@ private:
 template<class T>
 class DoNothingAtRecycle {
 public:
-	void operator()(T& data) const
-	{}
+	void operator()(T& data) const {};
 };
 
 
