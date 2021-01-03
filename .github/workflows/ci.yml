@@ -416,7 +416,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 libpangocairo-1.0-0 valgrind
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
@@ -428,4 +428,4 @@ jobs:
       # Thus, settle for testing our command-line-only parse, which ensures we will catch bugs in the various Class::Load methods and default constructors.
       # In a perfect world we would run a debug build, but since this will run on PRs, we can limit our search of "what caused the bug" to only the code
       # added by that PR, which means debugging symbols aren't as necessary. (We can ignore the still-reachable cin, cout, cerr inherited file descriptors.)
-      run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --track-fds=yes --error-exitcode=1 ./endless-sky -p
+      run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --track-fds=yes --error-exitcode=1 --suppressions=/usr/share/glib-2.0/valgrind/glib.supp --suppressions=./tests/valgrind/parse_only.supp ./endless-sky -p
