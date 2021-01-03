@@ -999,7 +999,7 @@ mission "Remnant: Deep Surveillance"
 					decline
 			
 			label terminus1
-			`	While wandering the spaceport, you think back to the scientsits researching in wormhole in Terminus. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
+			`	While wandering the spaceport, you think back to the scientsits researching the wormhole in Terminus. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
 			choice
 				`	(Find a prefect to tell.)`
 				`	(Don't tell the Remnant.)`
@@ -1057,7 +1057,8 @@ mission "Remnant: Deep Surveillance"
 					decline
 			
 			`	You approach a spaceport information desk and ask to see Prefect Torza, who you spoke to the last time you informed the Remnant about the Deep researching the wormhole. Luckily, Torza is on-world at the moment, and you are told to meet him in the cafeteria. When you arrive, you find that Torza has just finished a meal and was leaving.`
-			`	"Ah, Captain. I was told you were looking for me. Is there an update to the research on the Threshold that the Deep are doing?"`
+			`	"Ah, Captain. I was told you were looking for me. We should find a private place to talk."`
+			`	You follow Torza to a similar armory as before. "Is there an update to the research on the Threshold that the Deep are doing?" he asks after sitting down.`
 			choice
 				`	"I've helped the scientists learn how to pass through the wormhole."`
 				`	"The scientists have discovered how to pass through the wormhole."`
@@ -1127,22 +1128,32 @@ mission "Remnant: Deep Surveillance"
 				`	"They have only discovered the void sprites."`
 					goto sprites
 			
+			apply
+				set "remnant: told that deep knows nothing"
 			`	Torza seems to calm down greatly after hearing this. "This is most fortunate. We will need to work to ensure that this remains the case."`
 				goto end
 			
 			label sprites
+			apply
+				set "remnant: told that deep knows sprites"
 			`	Torza seems to calm down greatly after hearing this. "Then may they not anger the Archon with their curiosity as we have."`
 				goto end
 			
 			label location
+			apply
+				set "remnant: told that deep knows location"
 			`	Torza pauses for a long while. "I assume it only makes sense that they would know of us after discovering the Ember Waste."`
 				goto end
 			
 			label scans
+			apply
+				set "remnant: told that deep has scans"
 			`	Torza pauses for a long while. "These scientists knowing of our whereabouts is much more of a concern than them having scans of our ships."`
 				goto end
 			
 			label tech
+			apply
+				set "remnant: told that deep has tech"
 			`	"And you were the one who brought it to them," Torza responds.`
 			branch reciprocal 
 				has "Remnant: Tech Retrieval: done"
@@ -1183,7 +1194,7 @@ mission "Remnant: Deep Surveillance"
 			
 			apply
 				set "remnant: told about cubes"
-			`	Torza punches a wall, then relaxes. "Thank you for telling us this. We will search for and remove these devices immediately."`
+			`	Torza punches a wall in anger, then relaxes. "Thank you for telling us this. We will search for and remove these devices immediately."`
 				goto end
 			
 			label secret
@@ -1267,42 +1278,163 @@ mission "Remnant: Deep Surveillance"
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreed to bring us this information, but we can not allow another situation like this to occur."`
 				accept
 	
-	# Just Terminus = get info no problem.
-	
-	# Just Deep: Remnant + never told of remnant = get classified info no problem
-	# Terminus + Deep + never told of remnant = get classified info, comments on your scientific interest
-	
-	# Just Deep + told of remnant + knew after + didn't bring tech = get old info, slight suspicion
-	# Just Deep + told of remnant + knew after + brought tech + no surveillance = get classified info, no suspicion
-	# Just Deep + told of remnant + knew after + brought tech + did surveillance = get classified info, no suspicion
-	
-	# Just Deep + told of remnant + knew before + didn't bring tech = get old info, suspicion
-	# Just Deep + told of remnant + knew before + brought tech + no surveillance = get old info, slight suspicion
-	# Just Deep + told of remnant + knew before + brought tech + did surveillance = get classified info, no suspicion
-	
-	# Terminus + Deep + told of remnant + knew after + didn't bring tech = get old info, moderate suspicion
-	# Terminus + Deep + told of remnant + knew after + brought tech + no surveillance = get old info, suspicion
-	# Terminus + Deep + told of remnant + knew after + brought tech + did surveillance = get classified info, no suspicion
-	
-	# Terminus + Deep + told of remnant + knew before + didn't bring tech = super suspicious, get nothing
-	# Terminus + Deep + told of remnant + knew before + brought tech + no surveillance = get old info, moderate suspicion
-	# Terminus + Deep + told of remnant + knew before + brought tech + did surveillance = get classified info, no suspicion
-	
-	# Multiple visits + knowing about the Remnant before + not doing surveillance + not bringing tech all raise suspicion.
-	# Doing surveillance = no suspicion
-	# Bringing tech = slightly less suspicion
-	# Suspicion level changes comments from Ivan as well as whether he gives you classified information or not
+	# Suspicion == 0: Get everything
+		# surveillance
+	# Suspicion == 1: Get exactly what's asked for no trouble
+		# first time, knew after, brought tech
+	# Suspicion == 2: Get what's asked for, slight suspicion
+		# first time, knew after, no tech || first time, knew before, brought tech
+	# Suspicion == 3: Get old info, suspicious
+		# first time, knew before, no tech || second time, knew before, brought tech
+	# Suspicion == 4: Confronted, get nothing
+		# second time, knew before, no tech
 	on stopover
 		"retrieved information" ++
 		conversation
 			branch "retrieved before"
 				"retrieved information" == 2
 			
-			`	...`
-			
+			`	First time? Find Ivan.`
+			`	Ivan greets you. "What are you here for?"`
+				goto branches
+				
 			label "retrieved before"
-			`	...`
-	
+			`	Second time? Find Ivan.`
+			`	Ivan greets you. "What are you here for?"`
+			
+			label branches
+			apply
+				"suspicion" = ("retrieved information" / 2 * "deep: knew of stones before scientists") + "deep: knew of stones before scientists" + 2 * "Deep: Remnant Technology: declined" + "Deep: Remnant Surveillance: declined"
+			branch terminus
+				not "Deep: Remnant Research: done"
+			
+			branch sprites
+				or
+					has "remnant: told that deep knows nothing"
+					has "remnant: told that deep knows sprites"
+			
+			branch scans
+				or
+					has "remnant: told that deep knows location"
+					has "remnant: told that deep has scans"
+			
+			branch technology
+				has "remnant: told that deep has technology"
+			
+			branch surveillance
+				has "remnant: told about surveillance"
+			
+			label sprites
+			`	"Have anything on the sprites and wormholes?"`
+			`	"Yeah, want to see it?"`
+			`	"Sure. Wow, lots of stuff here. Can I keep a copy?"`
+			`	"Just don't leak it.`
+			branch jump
+				"retrieved information" == 1
+			`	"And cool that you're so interested in science and shit."
+			label jump
+			apply
+				set "remnant: got deep wormhole and sprite research"
+			`	"Cool. Thanks."`
+				decline
+			
+			label scans
+			`	"Have anything on those ship scans?"`
+			branch cubes
+				has "Deep: Remnant Surveillance: done"
+			`	"Sure thing. Let me go get them."`
+				goto suspicion
+			
+			label technology
+			`	"Have anything on the Remnant tech?"`
+			branch cubes
+				has "Deep: Remnant Surveillance: done"
+			`	"Sure thing. Let me go get them."`
+				goto suspicion
+			
+			label suspicion
+			branch one
+				"suspicion" == 1
+			
+			branch two
+				"suspicion" == 2
+			
+			branch three
+				"suspicion" == 3
+			
+			branch four
+				"suspicion" == 4
+			
+			label one
+			aaply
+				set "remnant: "
+			`	Ivan does some stuff on a computer, idk. Then he hands you a USB.`
+			`	"Here ya go."`
+			`	"Thanks. I am now going to hand this off to the Remnant."`
+			`	"Wait, what?"`
+				decline
+			
+			label two
+			aaply
+				set "remnant: "
+			`	Ivan does some stuff on a computer, idk. Then he hands you a USB.`
+			`	"Not handing this off to anyone, are you?"`
+			`	"I would never do such a thing."`
+				decline
+			
+			label three
+			`	"So, you said you know about these Remnant before, right?"`
+			`	"Yeah, why's that?"`
+			`	"Tell me how your relationship with them is."`
+			`	":flushed:"`
+			`	"Alright, here's the stuffs. Have fun."`
+			`	You leave and find out it's old shit.`
+				decline
+			
+			label four
+			`	Ivan fiddles with a computer, then stops.`
+			`	"You know what, naw. It's classified."`
+			`	"Even though I helped you get it?"`
+			`	"Yeah. Problem?"`
+			choice
+				`	Yeah.`
+				`	No.`
+					goto leave
+			
+			`	"Tough shit. You asked for the research last time too, and later told me you knew about the Remnant before. You're up to something. Get out my office."`
+				decline
+			
+			label leave
+			`	"Lol okay cya."`
+				decline
+			
+			label cubes
+			`	"Screw that, you should see what I've gotten from those cubes."`
+				goto ramble
+			
+			label surveillance
+			`	"Find anything interesting from those cubes?"`
+			label ramble
+			`	"Loads of stuff. It's fascinating. The individual scans from the cubes are less than what an outfit scan provides, but given enough time you get a clearer picture.`
+			`	"Excuse me while I rattle off my findings to you.`
+			`	"Huh, looks like they're not connecting anymore. No worries, I got what I needed."`
+			`	"Could I get a copy?"`
+			`	"Anything for you. Here is literally everything I have."`
+			apply
+				set "remnant: got all deep research"
+			`	"Thanks."`
+				decline
+			
+			label terminus
+			`	"What's up with the anomaly?"`
+			`	"Nothing much, really."`
+			`	"Can I get a copy of your research?"`
+			`	"Sure, here you go."`
+			apply
+				set "remnant: got deep anomaly research"
+			`	"Thanks."`
+				decline
+			
 	on complete
 		payment 1000000
 		conversation
