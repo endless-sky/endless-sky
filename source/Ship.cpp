@@ -3524,19 +3524,14 @@ void Ship::RemoveEscort(const Ship &ship)
 	while(it != escorts.end())
 	{
 		auto escort = it->lock().get();
-		if(escort)
+		if(escort == &ship)
+			it = escorts.erase(it);
+		else
 		{
-			if(escort == &ship)
-			{
-				it = escorts.erase(it);
-				continue;
-			}
-			else
-				// Re-scan existing escorts to cache data like the
-				// escorts velocity.
+			if(escort)
 				RegisterEscort(ship);
+			++it;
 		}
-		++it;
 	}
 }
 
@@ -3552,13 +3547,16 @@ void Ship::RegisterEscort(const Ship &ship)
 	// regular thrust.
 	// We also don't cache the speeds of carried ships, since they are often
 	// docked and the carrier waits for them during docking already.
-	if(!ship.CanBeCarried() && ship.MaxVelocity() > 0.)
+	if(!ship.CanBeCarried())
 	{
 		double eV = ship.MaxVelocity() * 0.9;
-		if(escortsVelocity <= 0.)
-			escortsVelocity = eV;
-		else
-			escortsVelocity = min(escortsVelocity, eV);
+		if(eV > 0.)
+		{
+			if(escortsVelocity <= 0.)
+				escortsVelocity = eV;
+			else
+				escortsVelocity = min(escortsVelocity, eV);
+		}
 	}
 }
 
