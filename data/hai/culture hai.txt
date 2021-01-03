@@ -141,7 +141,7 @@ mission "ZZCU ??? Star"
 			`A famous Hai sportsperson of an obscure alien sport is doing a signing. (TBD)`
 				fail
 
-mission "ZZCU Mum Groups"
+mission "ZZCU Gambling Judgment"
 	minor
 	source
 		government "Hai"
@@ -150,7 +150,30 @@ mission "ZZCU Mum Groups"
 		random == 1
 	on offer
 		conversation
-			`Tenet 1 - separation of fantasy and reality, tenet 2 - honesty in dealings, tenet 3 - gambling on skill not on chance. Human ship captains playing poker are frowned upon because they contradict the tenets of maturity.`
+			`Upon entering a diner at the spaceport you have not been seated long before you notice there is a group of other human ship captains sequestered in a corner playing, near as you can tell, a game of poker. You note that the group seems to be getting a variety of dark looks from various Hai also dining at the establishment.`
+			`	After a short while the barkeep, a middling and slightly overweight Hai, comes over to take your order.`
+			choice
+				`	"Just some food thanks." (Place an order.)`
+					goto end
+				`	"Hey, I notice there are some dark looks around here. Are human captains not welcome?"`
+			`	The barkeep glances over at the table and shakes his head, "Oh no, you're perfectly welcome. That group is just breaking the maturity tenets, some Hai get uncomfortable with adults blatantly acting like children in public."`
+			choice
+				`	"OK..." (Place an order.)`
+					goto end
+				`	"The maturity tenets?"`
+			`	"Oh right, I suppose you wouldn't know, there are a number of tenets that Hai are taught growing up, lessons to be internalized to be a responsible and functioning member of society. The second is 'To be honest in dealings.' and the third is 'To gamble only on skill, not chance.' so their game breaks two of them."`
+			choice
+				`	"Some would say Poker is more about skill than chance."`
+				`	"Surely if it's just a game though, there's no harm in it?"`
+			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality.' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise, this is taboo for an adult.`
+			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
+			choice
+				`	"Wait, do the Hai not lie or bluff?"`
+			`	The barkeep chortles with a strange trill and says, "Oh no the Hai do lie and bluff, we're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their lives without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
+			`	He looks at you intently before continuing, "You won't hear the tenets brought up very much, but if you look closely you'll see that the first three especially are ingrained in our society very deeply."`
+			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears of, what'll I get for you?"`
+			label end
+			`	He takes your order diligently and with a smile.`
 				fail
 
 ############################################
@@ -158,6 +181,19 @@ mission "ZZCU Mum Groups"
 ############################################
 
 #This uses the flag from receiving the Hai translator.
+mission "ZZCU Mum Groups"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random == 1
+		has "language: Wanderer"
+	on offer
+		conversation
+			`A mall stall at the spaceport is trying to sell learning merchandise that's been condemned by the local conglomerate of mum groups. There's an argument and some flipped tables. (TBD)`
+				fail
+
 mission "ZZCU boop"
 	minor
 	source
