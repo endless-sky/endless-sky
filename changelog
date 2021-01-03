@@ -8,7 +8,7 @@ Version 0.9.13:
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @arkhne, @beccabunny, @Darcman99, @Galaucus, @infinitewarp, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @thebigh2014, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
-      * The Subsidurial person ship can now appear in uninhabited systems. (@Zitchas)
+      * The Subsidurial person ship can now appear in uninhabited systems as intended. (@Zitchas)
       * "Deep Mystery Cube [3]" no longer offers on stations. (@Anarchist2)
       * Corrected the hull mass of the Faes'mar. (@Amazinite)
       * Tinker's tribute is now properly restored after the main plot. (@Zitchas)
@@ -50,6 +50,8 @@ Version 0.9.13:
       * Player conditions are now properly updated when failing or aborting a mission when the fail action can not be done. (@Amazinite)
       * Ships will now check if they are overheated after taking damage, preventing overheated ships from healing for a frame after taking damage. (@Amazinite)
       * The gather escort command will now work if all escorts are out of the player's system. (@petervdmeer)
+      * Ships with reverse thrusters no longer struggle to land. (@Terin, @Vitalchip)
+      * The planet panel will no longer become blank when departure requires confirmation. (@tatami4)
   * Game content:
     * New content: 
       * New missions:
@@ -116,9 +118,9 @@ Version 0.9.13:
       * Created graphics for hot Jupiter planet sprites. (@beccabunny)
       * Gave the ramscoop a new high-detail sprite. (@beccabunny)
       * Reworked the graphics of some Remnant ship thumbnails to better match the ship sprite. (@beccabunny)
-      * Overhauled the graphics of Tarazed ships. (@Anarchist2)
+      * Reworked the graphics of Tarazed ships. (@Anarchist2)
       * Reworked the graphics of Ka'het ships. (@beccabunny)
-      * Overhauled the graphics of Syndicated Shipyards ships.
+      * Overhauled the graphics of Syndicated Shipyards ships. (@beccabunny)
       * Reworked the graphics of the Korath Raider. (@ravenshining, @Red-57)
     * Other:
       * Renamed the Gascraft to the Puffin so that all Remnant ships are named after birds. (@Zitchas)
@@ -139,7 +141,7 @@ Version 0.9.13:
       * Multiplier attributes for various shield and hull related attributes. (@Amazinite)
       * "Protection" attributes that reduce the effect of incoming damage types. (@Amazinite)
       * A resistance attribute for piercing that subtracts from the piercing of incoming projectiles. 
-      * The sound and visual effects of hyperdrives and jump drives can now be customized. (@Amazinite)(@Amazinite)
+      * The sound and visual effects of hyperdrives and jump drives can now be customized. (@Amazinite)
       * A "parallel" keyword for gun hardpoints and weapons that changes aiming behavior. (@petervdmeer)
       * Attributes that can alter the point at which a ship becomes disabled. (@Amazinite)
       * Attributes that allow a projectile to lose (or gain) damage over range. (@Amazinite)
@@ -148,18 +150,20 @@ Version 0.9.13:
       * Attributes that allow for shield and hull repair to be delayed after taking damage. (@Amazinite)
       * A "gravitational" weapon tag that causes all hit force to deal the same push regardless of the mass of the impacted ship. (@Amazinite)
       * "Relative" damage types that deal damage as some percentage of the target's stats. (@Amazinite)
-    * New mechanics:
+    * New ship mechanics:
       * Ships can have engine flares for reverse and steering engines. (@Amazinite)
-      * Engine flares on ships can now be angled. (@Amazinite)
-      * Effects can now have a random lifetime. (@Amazinite)
-      * Fighter and drone bays can now be given arbitrary facing angles. (@petervdmeer)
+      * Engine flares on ships can now be given arbitrary facing angles. (@Amazinite)
+      * Fighter and drone bays on ships can now be given arbitrary facing angles. (@petervdmeer)
+      * Gun ports on ships can now be given arbitrary facing angles. (@petervdmeer)
+    * New mission mechanics:
       * Mission NPCs can now be spawned or despawned based on the player's conditions. (@Amazinite, @tehhowch)
-      * Gun ports on ships can now be angled. (@petervdmeer)
-      * Spaceport news can now be triggered based on the player's conditions. (@Amazinite)
       * Missions are now capable of gifting ships to the player. (@Fzzr, @Gods-Righthand, @NomadicVolcano)
       * Aborting and failing a mission are now separate mission actions. (@Amazinite)
       * Two new NPC mission objectives to capture or provoke an NPC. (@Amazinite)
       * Created a mission action that can be triggered after all waypoints are visited. (@Amazinite)
+    * Other new mechanics:
+      * Effects can now have a random lifetime. (@Amazinite)
+      * Spaceport news can now be triggered based on the player's conditions. (@Amazinite)
       * Systems are now able to generate hazards, "space weather" that can affect any ships in the system. (@Amazinite)
       * Escorts can now be commanded to move to other systems by using the galaxy map. This must be opted into via the "System map sends move orders" preference. (@tehhowch)
     * Changed mechanics:
