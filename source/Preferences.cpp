@@ -181,7 +181,7 @@ bool Preferences::ZoomViewOut()
 
 
 
-void Preferences::ToggleVSync()
+bool Preferences::ToggleVSync()
 {
 	int targetIndex = vsyncIndex + 1;
 	if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
@@ -197,10 +197,11 @@ void Preferences::ToggleVSync()
 			// Restore original saved setting.
 			Files::LogError("Unable to change VSync state");
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
-			return;
+			return false;
 		}
 	}
 	vsyncIndex = targetIndex;
+	return true;
 }
 
 
