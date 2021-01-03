@@ -74,13 +74,13 @@ SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTi
 TEST_CASE( "Benchmark Format::PlayTime", "[!benchmark][format]" ) {
 	BENCHMARK( "Format::PlayTime() with a value under an hour" ) {
 		return Format::PlayTime(1943);
-	}
+	};
 	BENCHMARK( "Format::PlayTime() with a high, but realistic playtime (40-400h)" ) {
 		return Format::PlayTime(1224864);
-	}
+	};
 	BENCHMARK( "Format::PlayTime() with an uncapped value" ) {
-		return Format::PlayTime(numeric_limits<int>::max());
-	}
+		return Format::PlayTime(std::numeric_limits<int>::max());
+	};
 }
 #endif
 
