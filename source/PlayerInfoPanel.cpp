@@ -321,7 +321,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			// Clamp the destination index to the end of the ships list.
 			size_t moved = panelState.AllSelected().size();
 			toIndex = min(panelState.Ships().size() - moved, toIndex);
-			player.ReorderShips(panelState.Ships());
+			player.SaveShipOrder(panelState.Ships());
 			// The order has now changed, so the ships are no longer sorted.
 			panelState.SetCurrentSort(nullptr);
 			
@@ -413,7 +413,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	// If "Save order" button is pressed (it is only shown if the ships are sorted).
 	else if(panelState.CanEdit() && key == 'v')
-		player.ReorderShips(panelState.Ships());
+		player.SaveShipOrder(panelState.Ships());
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
@@ -550,7 +550,7 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 	// If player reorders ships by hand then save the current order before
 	// reordering them (this is needed because the ships might not have been saved
 	// before the player reordered them (for example, if they were sorted)).
-	player.ReorderShips(panelState.Ships());
+	player.SaveShipOrder(panelState.Ships());
 	// The ships are no longer sorted.
 	panelState.SetCurrentSort(nullptr);
 	

@@ -1012,7 +1012,7 @@ int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
 
 
 
-void PlayerInfo::ReorderShips(const vector<shared_ptr<Ship>> &newOrder)
+void PlayerInfo::SaveShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 {
 	// Check if the incoming vector contains the same elements
 	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
