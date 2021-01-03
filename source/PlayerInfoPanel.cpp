@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
+#include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -152,6 +153,8 @@ const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[7] = {
 	SortableColumn("fuel", 670, 613, {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
 	SortableColumn("crew", 730, 673, {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
 };
+
+
 
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 	: PlayerInfoPanel(player, InfoPanelState(player))
@@ -544,8 +547,9 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 	if(!panelState.CanEdit() || hoverIndex < 0 || hoverIndex == panelState.SelectedIndex())
 		return true;
 	
-	// If player reorders ships by hand then save the order (this is needed
-	// because the ships might have been sorted before the player reordered them).
+	// If player reorders ships by hand then save the current order before
+	// reordering them (this is needed because the ships might not have been saved
+	// before the player reordered them (for example, if they were sorted)).
 	player.ReorderShips(panelState.Ships());
 	// The ships are no longer sorted.
 	panelState.SetCurrentSort(nullptr);
@@ -561,7 +565,7 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 	int firstIndex = panelState.SelectedIndex();
 	int lastIndex = firstIndex + panelState.AllSelected().size();
 	panelState.AllSelected().clear();
-	for(int i = panelState.SelectedIndex(); i < lastIndex; ++i)
+	for(int i = firstIndex; i < lastIndex; ++i)
 		panelState.AllSelected().insert(i);
 	
 	return true;
@@ -583,8 +587,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		return;
 	
 	// Colors to draw with.
-	Color dim = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Two columns of opposite alignment are used to simulate a single visual column.
 	Table table;
@@ -660,6 +664,15 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	if(bounds.Width() < 750.)
 		return;
 	
+	// Colors to draw with.
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &elsewhere = *GameData::Colors().Get("dim");
+	const Color &dead = *GameData::Colors().Get("dead");
+	const Color &flagship = *GameData::Colors().Get("flagship");
+	const Color &disabled = *GameData::Colors().Get("disabled");
+	
 	// Table attributes.
 	Table table;
 	for(const auto &col: columns)
@@ -673,9 +686,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	const Point tablePoint = table.GetPoint();
 	for(const auto &column : columns)
 	{
-		// Highlight the column if it is under the mouse
+		// Highlight the column header if it is under the mouse
 		// or ships are sorted according to that column.
-		const Color columnHeaderColor = (hoverMenuPtr == column.shipSort
+		const Color &columnHeaderColor = !isDragging && (hoverMenuPtr == column.shipSort
 			|| panelState.CurrentSort() == column.shipSort)
 				? bright : dim;
 		
@@ -773,8 +786,8 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator &shipComparator)
 	// Save selected ships to preserve selection after sort.
 	set<shared_ptr<Ship>> selectedShips;
 	shared_ptr<Ship> lastSelected = panelState.SelectedIndex() == -1
-	? nullptr
-	: panelState.Ships()[panelState.SelectedIndex()];
+		? nullptr
+		: panelState.Ships()[panelState.SelectedIndex()];
 	
 	for(int i : panelState.AllSelected())
 		selectedShips.insert(panelState.Ships()[i]);
@@ -784,7 +797,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator &shipComparator)
 	for(auto &ship : panelState.Ships())
 		if(ship.get() == player.Flagship())
 		{
-			iter_swap(&ship, panelState.Ships().begin());
+			swap(ship, *panelState.Ships().begin());
 			break;
 		}
 	

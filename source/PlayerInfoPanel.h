@@ -16,10 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "GameData.h"
 #include "InfoPanelState.h"
 #include "Point.h"
-#include "text/Table.h"
+#include "text/layout.hpp"
 
 #include <map>
 #include <memory>
@@ -101,15 +100,6 @@ private:
 	
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
-	
-	// Colors of various table elements.
-	const Color &back = *GameData::Colors().Get("faint");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &elsewhere = *GameData::Colors().Get("dim");
-	const Color &dead = *GameData::Colors().Get("dead");
-	const Color &flagship = *GameData::Colors().Get("flagship");
-	const Color &disabled = *GameData::Colors().Get("disabled");
 };
 
 
