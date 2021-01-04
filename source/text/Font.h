@@ -75,6 +75,7 @@ public:
 	// Get the width and height of the text while accounting for the desired layout and truncation strategy.
 	int FormattedWidth(const DisplayText &text) const;
 	int FormattedHeight(const DisplayText &text) const;
+	Point FormattedBounds(const DisplayText &text) const;
 	
 	// Get the line height and paragraph break.
 	int LineHeight(const Layout &layout = {}) const;

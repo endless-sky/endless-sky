@@ -139,6 +139,19 @@ int Font::FormattedHeight(const DisplayText &text) const
 
 
 
+Point Font::FormattedBounds(const DisplayText &text) const
+{
+	if(text.GetText().empty())
+		return Point();
+	
+	const RenderedText &renderedText = Render(text);
+	if(!renderedText.texture)
+		return Point();
+	return Point(TextFromViewCeilX(renderedText.width), TextFromViewCeilY(renderedText.height));
+}
+
+
+
 int Font::LineHeight(const Layout &layout) const
 {
 	if(layout.lineHeight == Layout::DEFAULT_LINE_HEIGHT)

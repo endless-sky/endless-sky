@@ -89,11 +89,8 @@ void ItemInfoDisplay::DrawTooltips() const
 		return;
 	
 	const Font &font = FontSet::Get(14);
-	int hoverHeight = font.FormattedHeight(hoverText);
 	int hoverParagraphBreak = font.ParagraphBreak(commonLayout);
-	int hoverWidth = font.FormattedWidth(hoverText);
-	Point textSize(hoverWidth, hoverHeight - hoverParagraphBreak);
-	Point boxSize = textSize + Point(20., 20.);
+	Point boxSize = font.FormattedBounds(hoverText) + Point(20., 20. - hoverParagraphBreak);
 	
 	Point topLeft = hoverPoint;
 	if(topLeft.X() + boxSize.X() > Screen::Right())

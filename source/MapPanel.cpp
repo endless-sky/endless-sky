@@ -1201,9 +1201,7 @@ void MapPanel::DrawTooltips()
 		const Font &font = FontSet::Get(14);
 		const auto layout = Layout(150, Alignment::LEFT);
 		const auto tooltipText = DisplayText(tooltip, layout);
-		Point size(font.FormattedWidth(tooltipText),
-			font.FormattedHeight(tooltipText) - font.ParagraphBreak(layout));
-		size += Point(20., 20.);
+		Point size = font.FormattedBounds(tooltipText) + Point(20., 20. - font.ParagraphBreak(layout));
 		Point topLeft = (hoverSystem->Position() + center) * Zoom();
 		// Do not overflow the screen dimensions.
 		if(topLeft.X() + size.X() > Screen::Right())
