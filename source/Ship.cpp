@@ -3565,12 +3565,15 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				double driveDistanceExp = 0;
 				double driveDistanceRef = 100;
 				if(it.first->Get("drive mass exponent")||it.first->Get("drive distance exponent"))
+				{
 					 driveMassExp = it.first->Get("drive mass exponent");
 					 driveDistanceExp = it.first->Get("drive distance exponent");
+				}
 				if(it.first->Get("drive mass reference")||it.first->Get("drive distance reference"))
+				{
 					 driveMassRef = it.first->Get("drive mass reference");
 					 driveDistanceRef = it.first->Get("drive distance reference");
-				
+				}
 				fuel = fuel * (pow((mass/driveMassRef),driveMassExp)) * (pow((jumpDistance/driveDistanceRef),driveDistanceExp));
 				if(!fuel)
 					fuel = defaultFuel;
