@@ -294,6 +294,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				panelState.SetSelectedIndex(0);
 				Scroll(-panelState.Ships().size());
 			}
+			return true;
 		}
 		// Holding both Ctrl & Shift keys and using the arrows moves the
 		// selected ship group up or down one row.
@@ -337,31 +338,23 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				panelState.SelectMany(selectedIndex, selectedIndex + moved);
 				panelState.SetSelectedIndex(selectedIndex);
 			}
-			// Update the scroll if necessary to keep the selected ship on screen.
-			int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE) 
-				- (panelState.SelectedIndex() < panelState.Scroll());
-			if(panelState.SelectedIndex() >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
-				hoverIndex = -1;
-			return true;
 		}
 		else
 		{
 			// Move the selection up or down one space.
 			int selectedIndex = panelState.SelectedIndex() + (key == SDLK_DOWN) - (key == SDLK_UP);
-			if(control)
+			if(selectedIndex < 0)
+				return true;
+			// If ctrl is down and the ship is currently selected, deselect it and
+			// select the ship the player intended to select.
+			if(control && panelState.AllSelected().count(panelState.SelectedIndex()))
 			{
-				if(panelState.AllSelected().count(panelState.SelectedIndex()))
-					panelState.Deselect(panelState.SelectedIndex());
-				else
-				{
-					// If ctrl is down, select current ship.
-					if(static_cast<unsigned>(selectedIndex) < panelState.Ships().size())
-						panelState.SetSelectedIndex(selectedIndex);
-				}
+				panelState.Deselect(panelState.SelectedIndex());
+				panelState.SetSelectedIndex(selectedIndex);
 			}
-			else if(shift)
+			else if(control || shift)
 			{
-				// If shift is down, select current ship.
+				// If ctrl or shift is down, select current ship.
 				if(static_cast<unsigned>(selectedIndex) < panelState.Ships().size())
 					panelState.SetSelectedIndex(selectedIndex);
 			}
@@ -369,15 +362,16 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			{
 				// Down arrow when the last ship is selected deselects all.
 				panelState.DeselectAll();
-				if(static_cast<unsigned>(selectedIndex) < panelState.Ships().size() && selectedIndex >= 0)
+				if(static_cast<unsigned>(selectedIndex) < panelState.Ships().size())
 					panelState.SetSelectedIndex(selectedIndex);
 			}
-			// Update the scroll if necessary to keep the selected ship on screen.
-			int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE)
-				- (panelState.SelectedIndex() < panelState.Scroll());
-			if(panelState.SelectedIndex() >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
-				hoverIndex = -1;
 		}
+		// Update the scroll if necessary to keep the selected ship on screen.
+		int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE)
+		- (panelState.SelectedIndex() < panelState.Scroll());
+		// If we scrolled by any amount then don't highlight the ship under the mouse.
+		if(panelState.SelectedIndex() >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
+			hoverIndex = -1;
 	}
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
@@ -555,10 +549,11 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 	panelState.SetCurrentSort(nullptr);
 	
 	// Try to move all the selected ships to this location.
-	panelState.SetSelectedIndex(player.ReorderShips(panelState.AllSelected(), hoverIndex));
-	panelState.Ships() = player.Ships();
-	if(panelState.SelectedIndex() < 0)
+	int selectedIndex = player.ReorderShips(panelState.AllSelected(), hoverIndex);
+	if(selectedIndex < 0)
 		return true;
+	panelState.SetSelectedIndex(selectedIndex);
+	panelState.Ships() = player.Ships();
 	
 	// Change the selected indices so they still refer to the block of ships
 	// that just got moved.
