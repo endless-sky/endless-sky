@@ -537,6 +537,9 @@ void PlayerInfo::IncrementDate()
 	conditions["year"] = date.Year();
 	
 	// Check if any special events should happen today.
+	// Note that while events can add other events, they always get added to
+	// the end of the linked list, and thus are applied recursively with no
+	// extra handling. Just don't create any circular dependencies please.
 	auto it = gameEvents.begin();
 	while(it != gameEvents.end())
 	{

@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <list>
 #include <string>
 #include <vector>
+#include <map>
 
 class DataWriter;
 class Planet;
@@ -62,6 +63,7 @@ private:
 	std::vector<const Planet *> planetsToVisit;
 	std::vector<const System *> systemsToUnvisit;
 	std::vector<const Planet *> planetsToUnvisit;
+	std::map<const GameEvent *, std::pair<int, int>> subEvents;
 };
 
 

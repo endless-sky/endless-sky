@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Random.h"
 #include "System.h"
 
 #include <set>
@@ -70,6 +71,14 @@ void GameEvent::Load(const DataNode &node)
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(key == "visit planet" && child.Size() >= 2)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
+		else if(key == "event" && child.Size() >= 2)
+		{
+			int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
+			int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
+			if(maxDays < minDays)
+				swap(minDays, maxDays);
+			subEvents[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
+		}
 		else if(allowedChanges.count(key))
 			changes.push_back(child);
 		else
@@ -101,6 +110,14 @@ void GameEvent::Save(DataWriter &out) const
 		for(const Planet *planet : planetsToVisit)
 			if(planet && !planet->Name().empty())
 				out.Write("visit planet", planet->Name());
+		
+		for(const auto &it : subEvents)
+		{
+			if(it.second.first == it.second.second)
+				out.Write("event", it.first->Name(), it.second.first);
+			else
+				out.Write("event", it.first->Name(), it.second.first, it.second.second);
+		}
 		
 		for(const DataNode &change : changes)
 			out.Write(change);
@@ -157,6 +174,19 @@ void GameEvent::Apply(PlayerInfo &player)
 		player.Visit(system);
 	for(const Planet *planet : planetsToVisit)
 		player.Visit(planet);
+	
+	// Add any subevents to the list of events.
+	// As events are processed in the order they are added,
+	// and as the processing queue is a linked list,
+	// events may be added recursively without issue.
+	// Just don't make any circular event chains please.
+	for(const auto &it : subEvents)
+	{
+		// Event times can be randomized.
+		// The first event time should always be the smaller.
+		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
+		player.AddEvent(*it.first, player.GetDate() + day);
+	}
 }
 
 
