@@ -36,9 +36,11 @@ void FontSet::Add(const string &fontsDir)
 	const FcChar8* cfgFileFc8 = reinterpret_cast<const FcChar8*>(cfgFile.c_str());
 	FcConfig *fcConfig = FcConfigGetCurrent();
 	if(!FcConfigAppFontAddDir(fcConfig, fontsDirFc8))
-		Files::LogError("Warning: Fail to load fonts in \"" + fontsDir + "\".");
-	if(!FcConfigParseAndLoad(fcConfig, cfgFileFc8, FcFalse))
-		Files::LogError("Warning: Parse error in \"" + cfgFile + "\".");
+		// This is not a fatal error.
+		Files::LogError("Warning: Fail to load some fonts from \"" + fontsDir + "\".");
+	// This function outputs some errors and warnings to stderr when detecting some errors in parsing,
+	// but the function doesn't return any error codes and the players may ignore them.
+	FcConfigParseAndLoad(fcConfig, cfgFileFc8, FcFalse);
 }
 
 
