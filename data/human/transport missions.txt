@@ -2092,7 +2092,7 @@ mission "Terminus exploration"
 		payment 90000
 		log `Recovered data from a derelict science drone for a team of scientists, who were studying a strange red anomaly in the Terminus system. They suggest that it may be a partially collapsed wormhole.`
 		conversation
-			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>. "And by the way, my name is Ivan. I have an office on Valhalla that you can visit if ever you're wanting to help, or just curious."`
+			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>. "And by the way, my name is Ivan. I have an office near the spaceport on Valhalla that you can visit if ever you're wanting to help, or just curious."`
 			choice
 				`	"Can you tell me more about this anomaly you are studying?"`
 				`	"I'm glad I was able to help."`

@@ -1156,13 +1156,13 @@ mission "Deep: Project Hawking: Carbuncle"
 			label project
 			`	"The exact details of Project Hawking are classified. I'm not able to tell you much aside from the fact that we're doing energy and weapons research. Scientists from the Deep who are highly specialized in a certain field will be asked to work on government projects every so often.`
 			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a battery packs that I have yet to see a single ship using.`
-			`	"Anyhow, because of my past work, the Deep approached me to work on this project. The pay was better than what I was getting before so I accepted it. It was a pleasant surprise to meet my partners as well. Hannah graduated in the same class as me, double majoring in quantum mechanics and ancient history, of all things."`
+			`	"Anyhow, because of my past work, the Deep approached me to work on this project. The pay was better than what I was getting before so I accepted it. It was a pleasant surprise to meet my partners as well. Hannah graduated in the same undergrad class as me, double majoring in quantum mechanics and ancient history, of all things."`
 			choice
 				`	"What is it that you need from Carbuncle Station that is so secret?"`
 				`	"What about Pierre and Laura?"`
 					goto partners
 			
-			`	"Like I said already, the project is classified. It's not something I would understand, though. It's in Laura's field of expertise. You see, she majored in-"`
+			`	"Like I said already, the project is classified. It's not something I would understand, though. It's in Laura's field of expertise. You see, she has a PHD in-"`
 				goto end
 			
 			label partners
@@ -1451,7 +1451,7 @@ conversation "deep: remnant"
 		has "Deep: Remnant A: done"
 	
 	label "on first mission"
-	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
+	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. "Quite the distance from my office, but we work with what we have," he comments. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
 	branch "knew before" "didn't know before"
 		has "deep: knew of stones before scientists"
 	
@@ -1698,10 +1698,11 @@ mission "Deep: Remnant: Engines"
 	source "Valhalla"
 	to offer
 		has "Deep: Remnant Technology: done"
+		has "deep: did reveal remnant"
 	
 	on offer
 		conversation
-			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months," Ivan explains. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before.`
+			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months. It's also much closer to my office, which will make life much easier," Ivan adds. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before.`
 			
 			branch friendly
 				has "event: ember waste label"
@@ -1724,7 +1725,7 @@ mission "Deep: Remnant: Engines"
 			`	"You told us that these humans were friendly. Do they allow you to purchase their technology?"`
 			branch license
 				has "license: Remnant"
-			`	"No," you respond. "They have not given me a license to buy any of their outfits or ships."`
+			`	"No," you respond. "They haven't given me a license to buy any of their outfits or ships."`
 			`	The scientists ponder this for a moment. Eventually, Rayna speaks up. "Maybe if you assist them in some way they may welcome you into their society. I can imagine that they are a little wary after all those years on their own. Try doing jobs for them or see if anyone in their spaceports needs something from you."`
 			`	"You could also plunder their technology if they won't sell it to you," Ivan chimes in.`
 			choice
