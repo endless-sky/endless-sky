@@ -41,7 +41,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <ctime>
-#include <iostream>
 #include <sstream>
 
 using namespace std;
