@@ -33,6 +33,10 @@ mission "remembrance day"
 
 event "war begins"
 	date 4 7 3014
+	event "initial deployment 1" 20
+	event "initial deployment 2" 41
+	event "initial deployment 3" 56
+	event "initial deployment 4" 75
 	system "Gamma Corvi"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 600
@@ -155,7 +159,6 @@ mission "event: war begins"
 				decline
 
 event "initial deployment 1"
-	date 24 7 3014
 	system "Spica"
 		fleet "Small Southern Merchants" 1200
 		fleet "Large Southern Merchants" 1700
@@ -261,7 +264,6 @@ event "initial deployment 1"
 		description `The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
 
 event "initial deployment 2"
-	date 14 8 3014
 	planet "Martini"
 		"required reputation" 10
 	system "Izar"
@@ -430,7 +432,10 @@ event "initial deployment 2"
 		fleet "Navy Surveillance" 1600
 
 event "initial deployment 3"
-	date 29 8 3014
+	event "southern carriers 1" 90
+	event "southern carriers 2" 180
+	event "southern carriers 3" 270
+	event "southern carriers 4" 360
 	system "Zubenelgenubi"
 		fleet "Small Southern Merchants" 500
 		fleet "Large Southern Merchants" 900
@@ -507,18 +512,6 @@ event "initial deployment 3"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
-
-mission "Southern Carriers Trigger"
-	landing
-	invisible
-	to offer
-		has "event: initial deployment 3"
-	on offer
-		event "southern carriers 1" 90
-		event "southern carriers 2" 180
-		event "southern carriers 3" 270
-		event "southern carriers 4" 360
-		fail
 
 event "southern carriers 1"
 	shipyard "Syndicate Basics"
@@ -666,7 +659,6 @@ event "southern carriers 4"
 			"Lance (Gatling)" 4
 
 event "initial deployment 4"
-	date 17 9 3014
 	planet "Geminus"
 		"required reputation" 10
 	system "Sargas"
