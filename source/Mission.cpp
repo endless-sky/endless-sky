@@ -351,9 +351,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("waypoint", system->Name(), "visited");
 		
 		for(const Planet *planet : stopovers)
-			out.Write("stopover", planet->Name());
+			out.Write("stopover", planet->TrueName());
 		for(const Planet *planet : visitedStopovers)
-			out.Write("stopover", planet->Name(), "visited");
+			out.Write("stopover", planet->TrueName(), "visited");
 		
 		for(const NPC &npc : npcs)
 			npc.Save(out);

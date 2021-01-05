@@ -2634,7 +2634,7 @@ void PlayerInfo::Save(const string &path) const
 	if(system)
 		out.Write("system", system->Name());
 	if(planet)
-		out.Write("planet", planet->Name());
+		out.Write("planet", planet->TrueName());
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	// This flag is set if the player must leave the planet immediately upon
