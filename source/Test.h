@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConditionSet.h"
 
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -83,6 +84,18 @@ public:
 		
 	public:
 		Type stepType = Type::INVALID;
+		std::string nameOrLabel;
+		// For applying condition changes, branching based on conditions or
+		// checking asserts (similar to Conversations).
+		ConditionSet conditions;
+		// Labels to jump to in case of branches. We could optimize during
+		// load to lookup the step numbers (and provide integer stepnumbers
+		// here), but we can also use the textual information during error/
+		// debug printing, so keeping the strings for now.
+		std::string jumpOnTrueTarget;
+		std::string jumpOnFalseTarget;
+		
+		unsigned int watchdog = 0;
 	};
 	
 	class Context {
@@ -95,6 +108,9 @@ public:
 	protected:
 		// Teststep to run.
 		unsigned int stepToRun = 0;
+		unsigned int watchdog = 0;
+		bool unprocessedInput = false;
+		std::set<unsigned int> branchesSinceGameStep;
 	};
 	
 	
@@ -115,12 +131,14 @@ private:
 	void LoadSequence(const DataNode &node);
 	
 	// Fail the test using the given message as reason.
-	void Fail(const std::string &testFailMessage) const;
+	void Fail(const Context &context, PlayerInfo &player, const std::string &testFailReason) const;
 	
 	
 private:
 	std::string name;
 	Status status = Status::ACTIVE;
+	// Jump-table that specifies which labels map to which teststeps.
+	std::map<std::string, unsigned int> jumpTable;
 	std::vector<TestStep> steps;
 };
 
