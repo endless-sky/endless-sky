@@ -1097,7 +1097,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			result.cargoSize = cargoSize;
 	}
 	// Pick a random passenger count, if requested.
-	if(passengers | passengerLimit)
+	if(passengers || passengerLimit)
 	{
 		if(passengerProb)
 			result.passengers = Random::Polya(passengerLimit, passengerProb) + passengers;

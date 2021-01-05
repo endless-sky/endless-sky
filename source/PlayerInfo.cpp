@@ -1178,13 +1178,13 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
-	// Create whatever missions this planet has to offer.
+	// If the player is actually landing (rather than simply loading the game),
+	// new missions are created and new fines may be levied.
 	if(!freshlyLoaded)
+	{
 		CreateMissions();
-	
-	// Check if the player is doing anything illegal.
-	if(!freshlyLoaded)
 		Fine(ui);
+	}
 	
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
@@ -2638,7 +2638,7 @@ void PlayerInfo::Save(const string &path) const
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	// This flag is set if the player must leave the planet immediately upon
-	// loading the game (i.e. because a mission forced them to take off).
+	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
 		out.Write("launching");
 	for(const System *system : travelPlan)
