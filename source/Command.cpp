@@ -156,11 +156,11 @@ void Command::SaveSettings(const string &path)
 {
 	DataWriter out(path);
 	
-	for(const auto &it : commandForKeycode)
+	for(const auto &it : keycodeForCommand)
 	{
-		auto dit = description.find(it.second);
+		auto dit = description.find(it.first);
 		if(dit != description.end())
-			out.Write(dit->second, it.first);
+			out.Write(dit->second, it.second);
 	}
 }
 
