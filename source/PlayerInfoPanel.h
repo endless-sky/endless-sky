@@ -64,6 +64,8 @@ private:
 	bool Hover(const Point &point);
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
+	// Try to scroll to the given position. Return true if position changed.
+	bool ScrollAbsolute(int scroll);
 	
 	void SortShips(InfoPanelState::ShipComparator &shipComparator);
 	
@@ -85,14 +87,8 @@ private:
 	
 	InfoPanelState panelState;
 	
-	// Keep track of which column header is under the mouse.
-	InfoPanelState::ShipComparator *hoverMenuPtr = nullptr;
-	
 	// Column headers that sort ships when clicked.
 	std::vector<ClickZone<InfoPanelState::ShipComparator*>> menuZones;
-	
-	// Ships in the table.
-	std::vector<ClickZone<int>> shipZones;
 	
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;

@@ -239,7 +239,6 @@ void PlayerInfoPanel::Draw()
 	infoPanelUi->Draw(interfaceInfo, this);
 	
 	// Draw the player and fleet info sections.
-	shipZones.clear();
 	menuZones.clear();
 	
 	DrawPlayer(infoPanelUi->GetBox("player"));
@@ -275,8 +274,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		int direction = (key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP);
-		if(Scroll((LINES_PER_PAGE - 2) * direction))
-			hoverIndex = -1;
+		Scroll((LINES_PER_PAGE - 2) * direction);
 	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
@@ -287,12 +285,12 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			if(key == SDLK_UP)
 			{
 				panelState.SetSelectedIndex(panelState.Ships().size() - 1);
-				Scroll(panelState.Ships().size());
+				ScrollAbsolute(panelState.Ships().size());
 			}
 			else
 			{
 				panelState.SetSelectedIndex(0);
-				Scroll(-panelState.Ships().size());
+				ScrollAbsolute(0);
 			}
 			return true;
 		}
@@ -323,55 +321,53 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			size_t moved = panelState.AllSelected().size();
 			toIndex = min(panelState.Ships().size() - moved, toIndex);
 			player.SaveShipOrder(panelState.Ships());
-			// The order has now changed, so the ships are no longer sorted.
-			panelState.SetCurrentSort(nullptr);
 			
 			int selectedIndex = player.ReorderShips(panelState.AllSelected(), toIndex);
-			panelState.Ships() = player.Ships();
 			// If the move accessed invalid indices, no moves are done
 			// but the selectedIndex is set to -1.
 			if(selectedIndex >= 0)
 			{
 				// Update the selected indices so they still refer
 				// to the block of ships that just got moved.
+				panelState.Ships() = player.Ships();
+				// The order has now changed, so the ships are no longer sorted.
+				panelState.SetCurrentSort(nullptr);
 				panelState.DeselectAll();
 				panelState.SelectMany(selectedIndex, selectedIndex + moved);
-				panelState.SetSelectedIndex(selectedIndex);
 			}
 		}
 		else
 		{
 			// Move the selection up or down one space.
 			int selectedIndex = panelState.SelectedIndex() + (key == SDLK_DOWN) - (key == SDLK_UP);
+			bool isValidIndex = static_cast<unsigned>(selectedIndex) < panelState.Ships().size();
 			if(selectedIndex < 0)
 				return true;
-			// If ctrl is down and the ship is currently selected, deselect it and
-			// select the ship the player intended to select.
-			if(control && panelState.AllSelected().count(panelState.SelectedIndex()))
+			
+			if(shift && panelState.AllSelected().count(panelState.SelectedIndex()))
 			{
-				panelState.Deselect(panelState.SelectedIndex());
-				panelState.SetSelectedIndex(selectedIndex);
+				if(panelState.AllSelected().count(selectedIndex))
+					panelState.Deselect(panelState.SelectedIndex());
+				if(isValidIndex)
+					panelState.SetSelectedIndex(selectedIndex);
 			}
 			else if(control || shift)
 			{
 				// If ctrl or shift is down, select current ship.
-				if(static_cast<unsigned>(selectedIndex) < panelState.Ships().size())
+				if(isValidIndex)
 					panelState.SetSelectedIndex(selectedIndex);
 			}
+			else if(isValidIndex)
+				panelState.SelectOnly(selectedIndex);
 			else
 			{
 				// Down arrow when the last ship is selected deselects all.
 				panelState.DeselectAll();
-				if(static_cast<unsigned>(selectedIndex) < panelState.Ships().size())
-					panelState.SetSelectedIndex(selectedIndex);
 			}
 		}
-		// Update the scroll if necessary to keep the selected ship on screen.
-		int scrollDirection = (panelState.SelectedIndex() >= panelState.Scroll() + LINES_PER_PAGE)
-		- (panelState.SelectedIndex() < panelState.Scroll());
-		// If we scrolled by any amount then don't highlight the ship under the mouse.
-		if(panelState.SelectedIndex() >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
-			hoverIndex = -1;
+		// Update the scroll
+		if(panelState.SelectedIndex() >= 0)
+			ScrollAbsolute(panelState.SelectedIndex() - 10);
 	}
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
@@ -465,7 +461,6 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 		if(zone.Contains(mouse))
 		{
 			SortShips(*zone.Value());
-			panelState.SetCurrentSort(zone.Value());
 			return true;
 		}
 	
@@ -515,13 +510,6 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 
 
 
-bool PlayerInfoPanel::Hover(int x, int y)
-{
-	return Hover(Point(x, y));
-}
-
-
-
 bool PlayerInfoPanel::Drag(double dx, double dy)
 {
 	isDragging = true;
@@ -550,26 +538,15 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 	
 	// Try to move all the selected ships to this location.
 	int selectedIndex = player.ReorderShips(panelState.AllSelected(), hoverIndex);
-	if(selectedIndex < 0)
-		return true;
-	panelState.SetSelectedIndex(selectedIndex);
 	panelState.Ships() = player.Ships();
 	
 	// Change the selected indices so they still refer to the block of ships
 	// that just got moved.
-	int firstIndex = panelState.SelectedIndex();
-	int lastIndex = firstIndex + panelState.AllSelected().size();
+	int lastIndex = selectedIndex + panelState.AllSelected().size();
 	panelState.DeselectAll();
-	panelState.SelectMany(firstIndex, lastIndex);
+	panelState.SelectMany(selectedIndex, lastIndex);
 	
 	return true;
-}
-
-
-
-bool PlayerInfoPanel::Scroll(double /* dx */, double dy)
-{
-	return Scroll(dy * -.1 * Preferences::ScrollSpeed());
 }
 
 
@@ -681,25 +658,27 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	const Point tablePoint = table.GetPoint();
 	for(const auto &column : columns)
 	{
+		Rectangle zone = Rectangle(
+			tablePoint + Point((column.offset + column.endX) / 2, table.GetRowSize().Y() / 2),
+			Point(column.layout.width, table.GetRowSize().Y())
+		);
+		
 		// Highlight the column header if it is under the mouse
 		// or ships are sorted according to that column.
-		const Color &columnHeaderColor = !isDragging && (hoverMenuPtr == column.shipSort
+		const Color &columnHeaderColor = ((!isDragging && zone.Contains(hoverPoint))
 			|| panelState.CurrentSort() == column.shipSort)
 				? bright : dim;
 		
 		table.Draw(column.name, columnHeaderColor);
 		
-		menuZones.emplace_back(
-			tablePoint + Point((column.offset + column.endX) / 2, table.GetRowSize().Y() / 2),
-			Point(column.layout.width, table.GetRowSize().Y()),
-			column.shipSort
-		);
+		menuZones.emplace_back(zone, column.shipSort);
 	}
 	
 	table.DrawGap(5);
 	
 	// Loop through all the player's ships.
 	int index = panelState.Scroll();
+	hoverIndex = -1;
 	for(auto sit = panelState.Ships().begin() + panelState.Scroll(); sit < panelState.Ships().end(); ++sit)
 	{
 		// Bail out if we've used out the whole drawing area.
@@ -712,12 +691,17 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		else if(panelState.AllSelected().count(index))
 			table.DrawHighlight(back);
 		
+		// Find out if the mouse is hovering over the ship
+		Rectangle shipZone = Rectangle(table.GetCenterPoint(), table.GetRowSize());
+		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint); //(index == hoverIndex);
+		if(isHovered)
+			hoverIndex = index;
+		
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
 		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
 		bool isDead = ship.IsDestroyed();
 		bool isDisabled = ship.IsDisabled();
-		bool isHovered = (index == hoverIndex);
 		bool isFlagship = &ship == player.Flagship();
 		
 		table.SetColor(
@@ -728,9 +712,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			: isElsewhere ? elsewhere
 			: dim
 		);
-		
-		// Store this row's position, to handle hovering.
-		shipZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
 		
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
@@ -815,11 +796,22 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator &shipComparator)
 		for(size_t i = 0; i < panelState.Ships().size(); ++i)
 			if(panelState.Ships()[i] == ship)
 			{
-				panelState.Select(i);
 				if(lastSelected == ship)
 					panelState.SetSelectedIndex(i);
+				else
+					panelState.Select(i);
 				break;
 			}
+			
+	// Ships are now sorted.
+	panelState.SetCurrentSort(shipComparator);
+}
+
+
+
+bool PlayerInfoPanel::Hover(int x, int y)
+{
+	return Hover(Point(x, y));
 }
 
 
@@ -828,22 +820,27 @@ bool PlayerInfoPanel::Hover(const Point &point)
 {
 	hoverPoint = point;
 	hoverIndex = -1;
-	hoverMenuPtr = nullptr;
 	
-	for(const auto &zone : menuZones)
-		if(zone.Contains(hoverPoint))
-		{
-			hoverMenuPtr = zone.Value();
-			return true;
-		}
+	return true;
+}
+
+
+
+bool PlayerInfoPanel::Scroll(double /* dx */, double dy)
+{
+	return Scroll(dy * -.1 * Preferences::ScrollSpeed());
+}
+
+
+
+bool PlayerInfoPanel::ScrollAbsolute(int scroll)
+{
+	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
+	int newScroll = max(0, min<int>(maxScroll, scroll));
+	if(panelState.Scroll() == newScroll)
+		return false;
 	
-	for(const auto &zone : shipZones)
-		if(zone.Contains(hoverPoint))
-		{
-			hoverIndex = zone.Value();
-			return true;
-		}
-	
+	panelState.SetScroll(newScroll);
 	return true;
 }
 
@@ -854,13 +851,10 @@ bool PlayerInfoPanel::Scroll(int distance)
 {
 	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
 	int newScroll = max(0, min<int>(maxScroll, panelState.Scroll() + distance));
-
+	
 	if(panelState.Scroll() == newScroll)
 		return false;
 	
-	// Update the ship the mouse is hovering over.
-	if(hoverIndex >= 0)
-		hoverIndex += newScroll - panelState.Scroll();
 	panelState.SetScroll(newScroll);
 	return true;
 }
