@@ -115,10 +115,10 @@ ship "Telis'het"
 	thumbnail "thumbnail/telis'het"
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		"cost" 32600000
-		"shields" 47000
-		"hull" 26300
+		"shields" 36000
+		"hull" 21300
 		"required crew" 1
 		"bunks" 1
 		"mass" 820
@@ -245,6 +245,128 @@ ship "Telis'het" "Telis'het (Guns, Disable-able)"
 		"Telis Engine Nacelles"
 		"Ka'het Sustainer Nacelles"
 		"Hyperdrive"
+
+ship "Vareti'het"
+	plural "Vareti'heta"
+	sprite ship/vareti'het
+	thumbnail "thumbnail/vareti'het"
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		cost 53800000
+		"shields" 42300
+		"hull" 25800
+		"required crew" 1
+		bunks 1
+		mass 1520
+		drag 11.9
+		"heat dissipation" 0.3
+		"fuel capacity" 700
+		"ramscoop" 0.97
+		"cargo space" 108
+		"outfit space" 914
+		"engine capacity" 150
+		"weapon capacity" 372
+		"energy capacity" 41000
+		"energy generation" 61.2
+		"heat generation" 46
+		"hull repair" 0.55
+		"shield heat" 11.3
+	outfits
+		Hyperdrive
+		"Ka'het Ravager Beam" 2
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Nullifier"
+		"Ka'het Ravager Turret" 4
+		"Ka'het Reserve Accumulator" 11
+		"Ka'het Annihilator" 4
+		"Vareti Engine Block"
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+
+	engine -50 128
+	engine 50 128
+	engine -23.5 132 0.8
+	engine 23.5 132 0.8
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4 "Ka'het Ravager Turret"
+	turret 14 -4 "Ka'het Ravager Turret"
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5 "Ka'het Ravager Turret"
+	gun 0 -141 "Ka'het Nullifier"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -52.5 -122 "Ka'het Ravager Beam"
+	gun 52.5 -122 "Ka'het Ravager Beam"
+	explode "small explosion" 40
+	explode "medium explosion" 36
+	explode "large explosion" 28
+	explode "huge explosion" 7
+	"final explode" "final explosion large"
+	description "The Vareti was the strongest Het the Builders were able to complete, starting its mass production only a year before the beginning of the invasion. It relies on shield matrixes even more than its little brothers, using larger and more effective restorers that were developed alongside this project."
+
+ship "Vareti'het" "Vareti'het (Disable-able)"
+
+ship "Vareti'het" "Vareti'het (EMP)"
+	"never disabled"
+	outfits
+		Hyperdrive
+		"Ka'het Nullifier"
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 4
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Ravager Turret"
+		"Ka'het Reserve Accumulator" 8
+		"Vareti Engine Block"
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+
+ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
+	outfits
+		Hyperdrive
+		"Ka'het Nullifier"
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 4
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Ravager Turret"
+		"Ka'het Reserve Accumulator" 8
+		"Vareti Engine Block"
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+
+ship "Vareti'het" "Vareti'het (Strong)"
+	"never disabled"
+	outfits
+		Hyperdrive
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Grand Restorer" 3
+		"Ka'het MHD Generator" 7
+		"Ka'het Nullifier"
+		"Ka'het Ravager Turret" 2
+		"Ka'het Annihilator" 6
+		"Vareti Engine Block"
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+
+ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
+	outfits
+		Hyperdrive
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Grand Restorer" 3
+		"Ka'het MHD Generator" 7
+		"Ka'het Nullifier"
+		"Ka'het Ravager Turret" 2
+		"Ka'het Annihilator" 6
+		"Vareti Engine Block"
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
 
 ship "Selii'mar"
 	sprite "ship/selii'mar"
