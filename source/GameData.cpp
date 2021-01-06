@@ -129,10 +129,22 @@ namespace {
 	
 	const Government *playerGovernment = nullptr;
 	
+	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	void Warn(const string &noun, const string &name)
 	{
 		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but never defined.");
+	}
+	// Class objects with a deferred definition should still get named when content is loaded.
+	template <class Type>
+	bool NameIfDeferred(const set<string> &deferred, pair<const string, Type> &it)
+	{
+		if(deferred.count(it.first))
+			it.second.SetName(it.first);
+		else
+			return false;
+		
+		return true;
 	}
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	template <class Type>
@@ -276,7 +288,7 @@ void GameData::CheckReferences()
 			Warn("fleet", it.first);
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
-		if(it.second.GetTrueName().empty() && !deferred["government"].count(it.first))
+		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
 			NameAndWarn("government", it);
 	// Minables are not serialized.
 	for(const auto &it : minables)
@@ -304,7 +316,7 @@ void GameData::CheckReferences()
 			Warn("phrase", it.first);
 	// Planet names are used by a number of classes.
 	for(auto &&it : planets)
-		if(it.second.TrueName().empty() && !deferred["planet"].count(it.first))
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
 			NameAndWarn("planet", it);
 	// Ship model names are used by missions and depreciation.
 	for(auto &&it : ships)
@@ -319,7 +331,7 @@ void GameData::CheckReferences()
 			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
-		if(it.second.Name().empty() && !deferred["system"].count(it.first))
+		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
 }
 
