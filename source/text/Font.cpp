@@ -568,7 +568,7 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 			break;
 		}
 		int add = max(diffY, static_cast<int>(viewLayout.lineHeight));
-		if(layoutText[index-1] == '\n')
+		if(index > 0 && layoutText[index - 1] == '\n')
 			add += viewLayout.paragraphBreak;
 		baselineY += add;
 		sumExtraY += add - diffY;
