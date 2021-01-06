@@ -108,7 +108,7 @@ namespace {
 	
 	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		// Ships (drones) with no system are sorted to the end
+		// Ships (drones) with no system are sorted to the end.
 		if(lhs->GetSystem() == nullptr)
 			return false;
 		else if(rhs->GetSystem() == nullptr)
@@ -134,7 +134,7 @@ namespace {
 	
 	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		// Parked ships are sorted to the end
+		// Parked ships are sorted to the end.
 		if(lhs->IsParked())
 			return false;
 		else if(rhs->IsParked())
@@ -225,9 +225,7 @@ void PlayerInfoPanel::Draw()
 		
 		// If ship order has changed, show "Save order" button.
 		if(panelState.Ships() != player.Ships())
-		{
 			interfaceInfo.SetCondition("show save order");
-		}
 	}
 	
 	interfaceInfo.SetCondition("three buttons");
@@ -344,28 +342,23 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			if(selectedIndex < 0)
 				return true;
 			
-			if(shift && panelState.AllSelected().count(panelState.SelectedIndex()))
+			else if(shift)
 			{
 				if(panelState.AllSelected().count(selectedIndex))
 					panelState.Deselect(panelState.SelectedIndex());
 				if(isValidIndex)
 					panelState.SetSelectedIndex(selectedIndex);
 			}
-			else if(control || shift)
+			else if(control)
 			{
-				// If ctrl or shift is down, select current ship.
+				// If ctrl is down, select current ship.
 				if(isValidIndex)
 					panelState.SetSelectedIndex(selectedIndex);
 			}
 			else if(isValidIndex)
 				panelState.SelectOnly(selectedIndex);
-			else
-			{
-				// Down arrow when the last ship is selected deselects all.
-				panelState.DeselectAll();
-			}
 		}
-		// Update the scroll
+		// Update the scroll.
 		if(panelState.SelectedIndex() >= 0)
 			ScrollAbsolute(panelState.SelectedIndex() - 10);
 	}
@@ -529,9 +522,9 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 	if(!panelState.CanEdit() || hoverIndex < 0 || hoverIndex == panelState.SelectedIndex())
 		return true;
 	
-	// If player reorders ships by hand then save the current order before
-	// reordering them (this is needed because the ships might not have been saved
-	// before the player reordered them (for example, if they were sorted)).
+	// If the ships are sorted, the sort order is not automatically saved.
+	// This makes the order the player sees and actual saved ship order different.
+	// To correct this, the ships must be saved when the player wants to reorder them.
 	player.SaveShipOrder(panelState.Ships());
 	// The ships are no longer sorted.
 	panelState.SetCurrentSort(nullptr);
@@ -693,7 +686,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		
 		// Find out if the mouse is hovering over the ship
 		Rectangle shipZone = Rectangle(table.GetCenterPoint(), table.GetRowSize());
-		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint); //(index == hoverIndex);
+		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint);
 		if(isHovered)
 			hoverIndex = index;
 		
@@ -849,14 +842,7 @@ bool PlayerInfoPanel::ScrollAbsolute(int scroll)
 // Adjust the scroll by the given amount. Return true if it changed.
 bool PlayerInfoPanel::Scroll(int distance)
 {
-	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
-	int newScroll = max(0, min<int>(maxScroll, panelState.Scroll() + distance));
-	
-	if(panelState.Scroll() == newScroll)
-		return false;
-	
-	panelState.SetScroll(newScroll);
-	return true;
+	return ScrollAbsolute(panelState.Scroll() + distance);
 }
 
 
