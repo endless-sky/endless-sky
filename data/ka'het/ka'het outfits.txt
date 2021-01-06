@@ -14,7 +14,7 @@ outfit "Ka'het Nullifier"
 	category "Guns"
 	cost 3062000
 	thumbnail "outfit/ka'het nullifier"
-	"mass" 76
+	"mass" 68
 	"outfit space" -97
 	"weapon capacity" -97
 	"gun ports" -1
