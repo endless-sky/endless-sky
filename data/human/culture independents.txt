@@ -12,8 +12,7 @@
 
 mission "ZZCU Tarazed Ship Christening"
 	minor
-	source
-		planet "Tarazed"
+	source "Tarazed"
 	to offer
 		random == 1
 		has "main plot complete"
