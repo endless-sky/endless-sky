@@ -3536,12 +3536,40 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		double jumpRange = baseAttributes.Get("jump range");
 		if(!jumpRange)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
+		
+		fuel = baseAttributes.Get("jump fuel");
+		
+		double mass = Mass();
+		double driveMassExp = 0;
+		double driveMassRef = 400;
+		double driveDistanceExp = 0;
+		double driveDistanceRef = 100;
+		
+		if(baseAttributes.Get("drive mass exponent")||baseAttributes.Get("drive distance exponent"))
+		{
+			 driveMassExp = baseAttributes.Get("drive mass exponent");
+			 driveDistanceExp = baseAttributes.Get("drive distance exponent");
+		}
+		if(baseAttributes.Get("drive mass reference")||baseAttributes.Get("drive distance reference"))
+		{
+			 driveMassRef = baseAttributes.Get("drive mass reference");
+			 driveDistanceRef = baseAttributes.Get("drive distance reference");
+		}
+		fuel = fuel * (pow((mass/driveMassRef),driveMassExp)) * (pow((jumpDistance/driveDistanceRef),driveDistanceExp));
+		
+		// if a "startup" fuel is provided, add that to the above formula.
+		// It's a constant fuel consumption regardless of mass or distance of jump.
+		if(baseAttributes.Get("jump startup fuel") > 0)
+		{
+			fuel = fuel + baseAttributes.Get("jump startup fuel")
+		}
+		
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
 		// always pass.
 		if(jumpRange >= jumpDistance)
 		{
-			best = baseAttributes.Get("jump fuel");
+			best = fuel;
 			if(!best)
 				best = defaultFuel;
 		}
