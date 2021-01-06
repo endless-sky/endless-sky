@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../gl_header.h"
 
 #include <cstddef>
+#include <memory>
 #include <string>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wold-style-cast"
@@ -51,7 +52,7 @@ public:
 	
 public:
 	Font();
-	~Font();
+	~Font() = default;
 	Font(const Font &a) = delete;
 	Font &operator=(const Font &a) = delete;
 	
@@ -119,6 +120,16 @@ private:
 		void operator()(RenderedText &v) const;
 	};
 	
+	// Custom Deleters for unique_ptr.
+	struct DeleterCairoT
+	{
+		void operator()(cairo_t *ptr) const;
+	};
+	struct DeleterPangoLayout
+	{
+		void operator()(PangoLayout *ptr) const;
+	};
+	
 	
 private:
 	void UpdateSurfaceSize() const;
@@ -178,9 +189,9 @@ private:
 	mutable int space = 0;
 	
 	// For rendering.
-	mutable cairo_t *cr = nullptr;
+	mutable std::unique_ptr<cairo_t, DeleterCairoT> cr;
 	mutable PangoContext *context = nullptr;
-	mutable PangoLayout *pangoLayout = nullptr;
+	mutable std::unique_ptr<PangoLayout, DeleterPangoLayout> pangoLayout;
 	mutable int surfaceWidth = 256;
 	mutable int surfaceHeight = 64;
 	
