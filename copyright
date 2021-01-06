@@ -755,6 +755,7 @@ Files:
  images/ship/telis'het*
  images/ship/faes'mar*
  images/ship/selii'mar*
+ images/ship/vareti'het*
  images/ship/ember?waste?node/ember?waste?node*
  images/thumbnail/maeri'het*
  images/thumbnail/telis'het*
@@ -762,6 +763,7 @@ Files:
  images/thumbnail/selii'mar*
  images/thumbnail/subsidurial*
  images/thumbnail/ember?waste?node*
+ images/thumbnail/vareti'het*
  images/effect/ravager?impact*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
@@ -770,9 +772,11 @@ Files:
  images/outfit/ka'het?ravager?turret*
  images/outfit/ka'het?ravager?beam*
  images/outfit/ka'het?shield?restorer*
+ images/outfit/ka'het?grand?restorer*
  images/outfit/ka'het?support?cooling*
  images/outfit/ka'het?mhd?generator*
  images/outfit/ka'het?reserve?accumulator*
+ images/outfit/ka'het?nullifier*
  images/outfit/mouthparts*
  images/planet/dyson1*
  images/planet/dyson2*
@@ -885,6 +889,7 @@ Files:
  images/projectile/hionfrag*
  images/projectile/shardactive*
  images/projectile/shardinactive*
+ images/projectile/ionball*
  images/scene/emeraldswordderelict*
  images/ship/emeraldsword*
  images/ship/blackdiamond*
@@ -895,6 +900,8 @@ License: CC-BY-SA-4.0
 
 Files:
  images/effect/pwave?impact*
+ images/effect/ionball?ring*
+ images/effect/ion?explosion*
 Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -933,6 +940,7 @@ Files:
  images/outfit/ka'het?maeri?engine*
  images/outfit/ka'het?telis?engine*
  images/outfit/ka'het?sustainer?engine*
+ images/outfit/ka'het?vareti?engine*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
@@ -940,6 +948,11 @@ Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by To
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
 License: CC-BY-SA-4.0
+
+Files: sounds/ionball*
+Copyright: pluralz
+License: public-domain
+Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
