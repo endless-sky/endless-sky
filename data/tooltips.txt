@@ -235,6 +235,9 @@ tip "jump fuel:"
 
 tip "jump range:"
 	`How far you can jump between systems using this drive.`
+	
+tip "jump startup fuel:"
+	`Initial drive fuel consumption, unaffected by either the mass of your ship, or the distance to your destination."
 
 tip "maintenance costs:"
 	`How many credits per day you need to spend to maintain this outfit. Even if a ship is parked or an outfit is in cargo, you still need to pay for its maintenance.`
