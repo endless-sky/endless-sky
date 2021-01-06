@@ -3575,6 +3575,14 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 					 driveDistanceRef = it.first->Get("drive distance reference");
 				}
 				fuel = fuel * (pow((mass/driveMassRef),driveMassExp)) * (pow((jumpDistance/driveDistanceRef),driveDistanceExp));
+				
+				// if a "startup" fuel is provided, add that to the above formula.
+				// It's a constant fuel consumption regardless of mass or distance of jump.
+				if(it.first->Get("jump startup fuel") > 0)
+				{
+					fuel = fuel + it.first->Get("jump startup fuel")
+				}
+				// finally, use that here to test if it's better than any previous fuel usages.
 				if(!fuel)
 					fuel = defaultFuel;
 				if(!best || fuel < best)
