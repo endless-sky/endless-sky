@@ -9,3 +9,15 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 # "Missions" which add culture events to the spaceport.
+
+mission "ZZCU Tarazed Ship Christening"
+	minor
+	source
+		planet "Tarazed"
+	to offer
+		random == 1
+		has "main plot complete"
+	on offer
+		conversation
+			`You hear crackling and see colored sparks fly into the air around a ship at the port. A man on a tall ladder swings a bottle of bubbly on a rope to shatter against the ship. A woman wearing pilot-suitable clothing is wished well by her family as she christens her ship and prepares for first departure. (TBD)`
+				decline

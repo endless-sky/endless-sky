@@ -31,3 +31,27 @@ mission "ZZCU Sad Gamblers -S"
 #              Syndicate Only               #
 #############################################
 
+mission "ZZCU Abandoned for Disabilities"
+	minor
+	source
+		government "Syndicate"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`You take a shortcut down an alley and are shocked to find several people with wheelchairs or crutches lving in a shanty town along a hidden service road. It seems Syndicate worlds don't have much in the way of welfare systems. (TBD)`
+				decline
+
+mission "ZZCU Unadvertised Luggage Tariffs"
+	minor
+	source
+		government "Syndicate"
+		not attributes "station"
+	to offer
+		random == 1
+	on offer
+		conversation
+			`A couple at a ticket counter kick up a fuss. Turns out there's a tarrif on the luggage, payable by the captain, they need to pay it at this end and it's in excess of the cost of their ticket. (TBD)`
+				decline
+
