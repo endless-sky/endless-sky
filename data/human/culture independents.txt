@@ -12,7 +12,7 @@
 
 mission "ZZCU Tarazed Ship Christening"
 	minor
-	source "Tarazed"
+	source "Wayfarer"
 	to offer
 		random == 1
 		has "main plot complete"
