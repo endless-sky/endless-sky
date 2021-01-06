@@ -80,8 +80,8 @@ void PlayerInfo::New()
 	for(const Ship &ship : start.Ships())
 	{
 		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(start.GetSystem());
-		ships.back()->SetPlanet(start.GetPlanet());
+		ships.back()->SetSystem(&start.GetSystem());
+		ships.back()->SetPlanet(&start.GetPlanet());
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
@@ -95,7 +95,7 @@ void PlayerInfo::New()
 	depreciation.Init(ships, date.DaysSinceEpoch());
 	
 	SetSystem(start.GetSystem());
-	SetPlanet(start.GetPlanet());
+	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
@@ -179,6 +179,8 @@ void PlayerInfo::Load(const string &path)
 			ships.push_back(shared_ptr<Ship>(new Ship()));
 			ships.back()->Load(child);
 			ships.back()->SetIsSpecial();
+			// TODO: defer this call to FinishLoading until after GameData::CheckReferences has been called.
+			// (Undefined outfits referenced only by this save are still unnamed the first time we read it.)
 			ships.back()->FinishLoading(false);
 			ships.back()->SetIsYours();
 		}
@@ -245,9 +247,9 @@ void PlayerInfo::Load(const string &path)
 		
 		// Records of things you have discovered:
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
-			Visit(GameData::Systems().Get(child.Token(1)));
+			Visit(*GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
-			Visit(GameData::Planets().Get(child.Token(1)));
+			Visit(*GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "harvested")
 		{
 			for(const DataNode &grand : child)
@@ -608,9 +610,9 @@ void PlayerInfo::IncrementDate()
 
 
 // Set the player's current start system, and mark that system as visited.
-void PlayerInfo::SetSystem(const System *system)
+void PlayerInfo::SetSystem(const System &system)
 {
-	this->system = system;
+	this->system = &system;
 	Visit(system);
 }
 
@@ -1125,7 +1127,7 @@ void PlayerInfo::Land(UI *ui)
 	Audio::PlayMusic(planet->MusicName());
 	
 	// Mark this planet as visited.
-	Visit(planet);
+	Visit(*planet);
 	if(planet == travelDestination)
 		travelDestination = nullptr;
 	
@@ -1834,14 +1836,14 @@ void PlayerInfo::CheckReputationConditions()
 
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
-bool PlayerInfo::HasSeen(const System *system) const
+bool PlayerInfo::HasSeen(const System &system) const
 {
 	for(const Mission &mission : availableJobs)
 	{
-		if(mission.Waypoints().count(system))
+		if(mission.Waypoints().count(&system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->IsInSystem(system))
+			if(planet->IsInSystem(&system))
 				return true;
 	}
 	
@@ -1849,101 +1851,86 @@ bool PlayerInfo::HasSeen(const System *system) const
 	{
 		if(!mission.IsVisible())
 			continue;
-		if(mission.Waypoints().count(system))
+		if(mission.Waypoints().count(&system))
 			return true;
 		for(const Planet *planet : mission.Stopovers())
-			if(planet->IsInSystem(system))
+			if(planet->IsInSystem(&system))
 				return true;
 	}
 	
-	return (seen.count(system) || KnowsName(system));
+	return (seen.count(&system) || KnowsName(system));
 }
 
 
 
 // Check if the player has visited the given system.
-bool PlayerInfo::HasVisited(const System *system) const
+bool PlayerInfo::HasVisited(const System &system) const
 {
-	if(!system)
-		return false;
-	return visitedSystems.count(system);
+	return visitedSystems.count(&system);
 }
 
 
 
 // Check if the player has visited the given system.
-bool PlayerInfo::HasVisited(const Planet *planet) const
+bool PlayerInfo::HasVisited(const Planet &planet) const
 {
-	if(!planet)
-		return false;
-	return visitedPlanets.count(planet);
+	return visitedPlanets.count(&planet);
 }
 
 
 
 // Check if the player knows the name of a system, either from visiting there or
 // because a job or active mission includes the name of that system.
-bool PlayerInfo::KnowsName(const System *system) const
+bool PlayerInfo::KnowsName(const System &system) const
 {
 	if(HasVisited(system))
 		return true;
 	
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->IsInSystem(system))
+		if(mission.Destination()->IsInSystem(&system))
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->IsInSystem(system))
+		if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
 			return true;
 	
 	return false;
 }
 
 
-
 // Mark the given system as visited, and mark all its neighbors as seen.
-void PlayerInfo::Visit(const System *system)
+void PlayerInfo::Visit(const System &system)
 {
-	if(!system)
-		return;
-	
-	visitedSystems.insert(system);
-	seen.insert(system);
-	for(const System *neighbor : system->VisibleNeighbors())
+	visitedSystems.insert(&system);
+	seen.insert(&system);
+	for(const System *neighbor : system.VisibleNeighbors())
 		seen.insert(neighbor);
 }
 
 
 
 // Mark the given planet as visited.
-void PlayerInfo::Visit(const Planet *planet)
+void PlayerInfo::Visit(const Planet &planet)
 {
-	if(planet)
-		visitedPlanets.insert(planet);
+	visitedPlanets.insert(&planet);
 }
 
 
 
 // Mark a system as unvisited, even if visited previously.
-void PlayerInfo::Unvisit(const System *system)
+void PlayerInfo::Unvisit(const System &system)
 {
-	if(!system)
-		return;
-	
-	visitedSystems.erase(system);
-	for(const StellarObject &object : system->Objects())
+	visitedSystems.erase(&system);
+	for(const StellarObject &object : system.Objects())
 		if(object.GetPlanet())
-			Unvisit(object.GetPlanet());
+			Unvisit(*object.GetPlanet());
 }
 
 
 
-void PlayerInfo::Unvisit(const Planet *planet)
+void PlayerInfo::Unvisit(const Planet &planet)
 {
-	if(!planet)
-		return;
-	
-	visitedPlanets.erase(planet);
+	visitedPlanets.erase(&planet);
 }
 
 
@@ -1977,7 +1964,7 @@ void PlayerInfo::PopTravel()
 {
 	if(!travelPlan.empty())
 	{
-		Visit(travelPlan.back());
+		Visit(*travelPlan.back());
 		travelPlan.pop_back();
 	}
 }
@@ -2346,8 +2333,8 @@ void PlayerInfo::ApplyChanges()
 		system = planet->GetSystem();
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
-		system = GameData::Start().GetSystem();
-		planet = GameData::Start().GetPlanet();
+		system = &GameData::Start().GetSystem();
+		planet = &GameData::Start().GetPlanet();
 	}
 	
 	// For any ship that did not store what system it is in or what planet it is

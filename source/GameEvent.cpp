@@ -217,16 +217,16 @@ void GameEvent::Apply(PlayerInfo &player)
 	player.CheckReputationConditions();
 	
 	for(const System *system : systemsToUnvisit)
-		player.Unvisit(system);
+		player.Unvisit(*system);
 	for(const Planet *planet : planetsToUnvisit)
-		player.Unvisit(planet);
+		player.Unvisit(*planet);
 	
 	// Perform visits after unvisits, as "unvisit <system>"
 	// will unvisit any planets in that system.
 	for(const System *system : systemsToVisit)
-		player.Visit(system);
+		player.Visit(*system);
 	for(const Planet *planet : planetsToVisit)
-		player.Visit(planet);
+		player.Visit(*planet);
 }
 
 

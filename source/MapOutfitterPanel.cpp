@@ -123,7 +123,7 @@ void MapOutfitterPanel::Compare(int index)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(system))
+	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
 	
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
@@ -204,7 +204,7 @@ void MapOutfitterPanel::DrawItems()
 			}
 			
 			bool isForSale = true;
-			if(selectedSystem && player.HasVisited(selectedSystem))
+			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
@@ -231,8 +231,8 @@ void MapOutfitterPanel::Init()
 {
 	catalog.clear();
 	set<const Outfit *> seen;
-	for(const auto &it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(it.second.GetSystem()))
+	for(auto &&it : GameData::Planets())
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
