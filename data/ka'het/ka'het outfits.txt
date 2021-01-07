@@ -306,7 +306,7 @@ outfit "Ka'het Grand Restorer"
 	"shield generation" 7.08
 	"energy consumption" 10.62
 	"depleted shield delay" 350
-	description "This shield generator is the apex of Ka'het shielding technology, a field that developed rapidly and out of necessity rather than perfected over long periods. Nevertheless, the Grand Restorer grants good protection for the largest Het ships, replacing the basic restorers used elsewhere."
+	description "This shield generator is the apex of Ka'het shielding technology, a field that developed rapidly and out of necessity rather than gradually and perfected over long periods. Nevertheless, the Grand Restorer grants good protection for the largest Het ships, replacing the basic restorers used elsewhere."
 	description "	Unlike most generators, this restorer needs a few seconds to start working again once the ship's shields have been depleted."
 
 # Power:
