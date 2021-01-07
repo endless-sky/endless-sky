@@ -23,7 +23,7 @@ mission "ZZCU Sad Gamblers -S"
 		random == 1
 	on offer
 		conversation
-			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success and your attention is drawn as one of them wins a moderate sum in an 12th division win (a day or two worth of standard pay).`
+			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success and your attention is drawn as one of them wins a moderate sum in a 12th division win; a day or two worth of standard pay.`
 			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
 				decline
 

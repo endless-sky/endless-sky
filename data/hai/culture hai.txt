@@ -26,11 +26,11 @@ mission "ZZCU Theater Chat"
 		random == 1
 	on offer
 		conversation
-			`Walking through the spaceport you come across the uncommon pairing of a Hai and a human, their conversation standing out by virtue of speaking the common tongue of humanity.`
-			`	"Oh, oh, Gemanari this looks interesting!" The human woman looks to be in her late sixties and, when you turn to look, seems to be clucking over a holographic advertisement for a theater show. "This looks adorable doesn't it? Oh and it says they're using ripple ray refractive holographic flight effects!"`
+			`As you are walking through the spaceport, you come across the uncommon pairing of a Hai and a human, their conversation standing out by virtue of speaking the common tongue of humanity.`
+			`	"Oh, oh, Gemanari, this looks interesting!" The human woman looks to be in her late sixties and, when you turn to look, seems to be clucking over a holographic advertisement for a theater show. "This looks adorable, doesn't it? Oh, and it says they're using ripple ray refractive holographic flight effects!"`
 			`	The advertisement does indeed look very impressive and you pause to observe for a moment.`
 			`	The Hai, presumably Gemanari, also appears to be a more mature lady who squints at it and wrinkles her nose. "Ugh, that's the Germontian interpretation though."`
-			`	This receives a puzzled look to which Gemanari thinks for a second before clarifying, "You would say the Darwinist interpretation."`
+			`	This receives a puzzled look to which Gemanari thinks for a second before clarifying, "You would say the Social Darwinist interpretation."`
 			`	The lady grimaces and makes like she's vomiting, "I can't believe you still have those schools of thought in a society this old."`
 			`	"Oh we don't really, at least not in scientific circles, but a compelling story will outlive such things. I can't stand it personally but it is a classic." When the lady looks unimpressed Gemanari titters and takes her gently by the arm to steer her away again. "Don't worry Alinta, I think the Misheep Wah'uden company is running my preferred interpretation on <destination> at the moment. We can see if they have any cheap tickets. Of course my aunt would insist that the hundred and eighty-third version is the only real one but she always..."`
 			`	You lose the conversation as they trail away from you, leaving you to wonder just what was so special about the hundred and eighty-third version of a play about a prehistoric flying Hai found frozen in the ice.`
@@ -45,7 +45,7 @@ mission "ZZCU Musical Entertainment Expo"
 		random == 1
 	on offer
 		conversation
-			`While stopped in the Spaceport waiting for refueling you are surprised by how hard it is to find somewhere to sit and have a meal & a drink. It seems that Hai are crammed into every bar or similar venue with a public display screen, arrayed in sashes and mantles and all manner of other paraphernalia which, near as you can tell looks like... team sport merchandise?`
+			`While stopped in the spaceport waiting for refueling you are surprised by how hard it is to find somewhere to sit and have a meal & a drink. It seems Hai have crammed themselves into every bar or similar venue with a public display screen, arrayed in sashes and mantles and all manner of other paraphernalia which, near as you can tell, looks like... team sport merchandise?`
 			`	You're not really an expert on exactly what such things look like in Hai society and so when you finally find somewhere to sit, at a bar for lack of any other options, you ask the tired looking bartender what exactly is going on.`
 			`	"Oh this? They're all here for the Musical Entertainment Expo streams. Unfortunately, none of them start drinking until at least one of their teams has announced something of worth," he says with an exasperated eye-roll.`
 			choice
@@ -53,7 +53,7 @@ mission "ZZCU Musical Entertainment Expo"
 					goto wrapup
 				`	"Whats the Musical Entertainment Expo?"`
 				`	"Why don't they start drinking yet?"`
-			`	"Well you see the big music labels do a lot of talent scouting all year round, they all have a department that is solely dedicated to finding and assembling new music groups to be the next big thing. It's traditionally to celebrate only after you've committed to the journey with a new band. Every three years the industry holds ME2, that's what you're seeing up there, to debut their next round of bands, and to tease any mid-season releases they might have in the works."`
+			`	"Well you see, the big music labels do a lot of talent scouting all year round, they all have a department that is solely dedicated to finding and assembling new music groups to be the next big thing. It's tradition to celebrate only after you've committed to the journey with a new band. Every three years the industry holds ME2, which is what you're seeing up there, to debut their next round of bands and to tease any mid-season releases they might have in the works."`
 			choice
 				`	"Your music comes off a production line?"`
 					goto production
@@ -80,17 +80,17 @@ mission "ZZCU The Meme Wars 1"
 		random == 1
 	on offer
 		conversation
-			`Stepping into the spaceport you are beset by a riot of color. Every blank surface that's not usually paid advertising space seems to be festooned with dangling holographic projectors, ribbons, banners, and even actual paper fliers and posters, apparently taped to whatever surface will bear them. At first you wonder if there's some sort of festival going on, but as you watch a young Hai wearing a hood slaps up another holo projector which immediately projects the image of an anthro root vegetable with a sword hacking at some kind of impressionist concept of a Hai elder made up of iridescent triangles. The young Hai then proceeds to tear down a banner and slap some goo on a massive poster which begins dissolving before a pair of security guards, wearing some very obviously non-standard additions to their uniforms, chase him back out of the spaceport.`
+			`Stepping into the spaceport you are beset by a riot of color. Every blank surface that's not usually paid advertising space seems to be festooned with dangling holographic projectors, banners and ribbons. There's even actual paper fliers and posters, apparently taped to whatever surface will bear them. At first you wonder if there's some sort of festival going on, but as you watch a young Hai wearing a hood slaps up another holo projector, a cartoonish root vegetable with a sword, which begins hacking at the adjacent holograph, some kind of impressionist concept of a Hai elder made up of iridescent triangles. The young Hai then proceeds to tear down a banner and slap some goo on a massive poster which begins dissolving before a pair of security guards, wearing some very obviously non-standard additions to their uniforms, chase him back out of the spaceport.`
 			branch translator
 				has "language: Wanderer"
-			`	As you watch the triangle elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
-			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and root vegetable make several reappearances on their placards, some of them holographically animated.`
+			`	As you watch the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
+			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
 			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
 			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
 				decline
 			label translator
-			`	As you watch the triangle elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
-			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and root vegetable make several reappearances on their placards, some of them holographically animated.`
+			`	As you watch the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
+			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
 			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
 			choice
 				`	"Sure, will do."`
@@ -150,18 +150,18 @@ mission "ZZCU Gambling Judgment"
 		random == 1
 	on offer
 		conversation
-			`Upon entering a diner at the spaceport you have not been seated long before you notice there is a group of other human ship captains sequestered in a corner playing, near as you can tell, a game of poker. You note that the group seems to be getting a variety of dark looks from various Hai also dining at the establishment.`
+			`You stop at a diner for a meal grounds-side at the spaceport, but you have not been seated long before you notice there is a group of other human ship captains sequestered in a corner playing, near as you can tell, a game of poker. You note that the group seems to be getting a variety of dark looks from various Hai also dining at the establishment.`
 			`	After a short while the barkeep, a middling and slightly overweight Hai, comes over to take your order.`
 			choice
-				`	"Just some food thanks." (Place an order.)`
+				`	(Place an order.)`
 					goto end
-				`	"Hey, I notice there are some dark looks around here. Are human captains not welcome?"`
-			`	The barkeep glances over at the table and shakes his head, "Oh no, you're perfectly welcome. That group is just breaking the maturity tenets, some Hai get uncomfortable with adults blatantly acting like children in public."`
+				`	"Hey, I noticed there are some dark looks around here. Are human captains not welcome?"`
+			`	The barkeep looks confused for a second before looking over at the table and shaking his head in understanding, "Oh no, you're perfectly welcome. That group is just breaking the maturity tenets, some Hai get uncomfortable with adults blatantly acting like children in public."`
 			choice
-				`	"OK..." (Place an order.)`
+				`	(Place an order.)`
 					goto end
 				`	"The maturity tenets?"`
-			`	"Oh right, I suppose you wouldn't know, there are a number of tenets that Hai are taught growing up, lessons to be internalized to be a responsible and functioning member of society. The second is 'To be honest in dealings.' and the third is 'To gamble only on skill, not chance.' so their game breaks two of them."`
+			`	"Oh right, I suppose you wouldn't know. There are a number of tenets that Hai are taught growing up, lessons to be internalized to be a responsible and functioning member of society. The second is 'To be honest in dealings.', and the third is 'To gamble only on skill, not chance.', so their game breaks two of them."`
 			choice
 				`	"Some would say Poker is more about skill than chance."`
 				`	"Surely if it's just a game though, there's no harm in it?"`
@@ -171,7 +171,7 @@ mission "ZZCU Gambling Judgment"
 				`	"Wait, do the Hai not lie or bluff?"`
 			`	The barkeep chortles with a strange trill and says, "Oh no the Hai do lie and bluff, we're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their lives without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
 			`	He looks at you intently before continuing, "You won't hear the tenets brought up very much, but if you look closely you'll see that the first three especially are ingrained in our society very deeply."`
-			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears of, what'll I get for you?"`
+			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears off, what'll I get for you?"`
 			label end
 			`	He takes your order diligently and with a smile.`
 				decline

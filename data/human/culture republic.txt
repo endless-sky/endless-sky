@@ -74,7 +74,7 @@ mission "ZZCU Gift Store Interaction"
 		conversation
 			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "<source>" printed underneath an attractive, stylized representation of the spaceport you are presently standing in and pick it up to see how it feels. The handle is solid, and not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
 			`	Two young adults wander into the aisle just a couple of meters away. They're clearly from abroad judging by their conversation occurring in some local dialect which is neither local nor one you understand. They're cooing over an item they've found but when one flips it over to look at the price tag there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a head-shake.`
-			`	Curious you turn over your own mug and see that it is indeed at least five times what you would expect to pay for a mug, even a good one. Still, t is certainly a novelty...`
+			`	Curious, you turn over your own mug and see that it is indeed at least five times what you would expect to pay for a mug, even a good one. Still, it is certainly a novelty...`
 			choice
 				`	(Buy the mug.)`
 					goto buy
@@ -118,7 +118,7 @@ mission "ZZCU Paradise Cleaner Incident"
 		random == 1
 	on offer
 		conversation
-			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You catch yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. Perhaps it is because of your background, but you notice them even when they are avoiding notice, and so you are able to notice something seconds before it happens.`
+			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You catch yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. Perhaps it is because of your background, but you see them even when they are trying to avoid notice, and so you are able to notice something imminent seconds before it happens.`
 			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one right before he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen a mother go so deathly pale as the cleaner who scurried to fix things before the man had even drawn breath.`
 			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her children out of harms way.`
 				decline
