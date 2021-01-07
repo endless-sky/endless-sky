@@ -25,7 +25,7 @@ mission "ZZCU Tarazed Ship Christening"
 					goto investigate
 				`	(Shout well wishes as you pass by)`
 					goto passby
-				`	(Ignore them, you have more important things to do.)
+				`	(Ignore them, you have more important things to do.)`
 			`	You hurry past the rowdy group, annoyed by the disturbance.`
 				decline
 			label passby
@@ -46,23 +46,23 @@ mission "ZZCU Tarazed Ship Christening"
 			choice
 				`	(Try to salvage the awkward situation.)`
 					goto salvage
-				`	(Get out while you can.)
+				`	(Get out while you can.)`
 					goto getout
 			label salvage
 			`	"I'm just messing with you, my psychiatrist doesn't think it's very funny when I do it to him either."`
-			`	"Oh," the woman says quietly, "that's...nice, I guess."
-					goto getout
+			`	"Oh," the woman says quietly, "that's...nice, I guess."`
+				goto getout
 			label getout
 			`	"Well, good luck!" You say with a wave as you hurry away.  You barely hear the quiet 'thank you' over the burning in your ears.`
 				decline
 			label plans
-			`	"Right now," she says with a sigh, "the only plan I have is to get rid of the massive debt that I'm in because of it."
-					goto advice
+			`	"Right now," she says with a sigh, "the only plan I have is to get rid of the massive debt that I'm in because of it."`
+				goto advice
 			label advice
 			`	"The mortgage isn't so bad as long as you're willing to work hard," you say with a smile, "and there is no shortage of people in need of a ship and a good pilot.`
-			`	"I knew you could make a decent living with one, but is it really that easy?"  She asks.`
-			`	"The work isn't easy, but finding a job is the least of your worries.  I'm sure that you'll have this ship paid off in no time."
+			`	"I knew you could make a decent living with one, but is it really that easy?" she asks.`
+			`	"The work isn't easy, but finding a job is the least of your worries.  I'm sure that you'll have this ship paid off in no time."`
 			`	You stay around and talk with the aspiring pilot for a few minutes, giving her tips and advice before stating that you have work to do.  As you turn to leave, an older man places his hand on your arm, stopping you.`
 			`	"Before you go," the man says, "we weren't very sure about this whole 'pilot' thing at first, but it's good to hear that my little girl has made the right decision.  Thank you for that."`
-			`	"It's the least I could do." You say before walking away.`
+			`	"It's the least I could do," you say before walking away.`
 				decline
