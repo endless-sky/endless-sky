@@ -43,7 +43,7 @@ outfit "Ka'het Nullifier"
 		"ion damage" 150
 		"inaccuracy" 0.2
 		"blast radius" 20
-	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does basically no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."
+	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does almost no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."
 
 effect "ionball spark"
 	sprite "effect/ion impact"
