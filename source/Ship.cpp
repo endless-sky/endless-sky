@@ -3537,7 +3537,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		if(!jumpRange)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 		
-		fuel = baseAttributes.Get("jump fuel");
+		double fuel = baseAttributes.Get("jump fuel");
 		
 		double mass = Mass();
 		double driveMassExp = 0;
