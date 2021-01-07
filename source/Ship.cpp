@@ -3561,7 +3561,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// It's a constant fuel consumption regardless of mass or distance of jump.
 		if(baseAttributes.Get("jump startup fuel") > 0)
 		{
-			fuel = fuel + baseAttributes.Get("jump startup fuel")
+			fuel = fuel + baseAttributes.Get("jump startup fuel");
 		}
 		
 		// If no distance was given then we're either using a hyperdrive
@@ -3608,7 +3608,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				// It's a constant fuel consumption regardless of mass or distance of jump.
 				if(it.first->Get("jump startup fuel") > 0)
 				{
-					fuel = fuel + it.first->Get("jump startup fuel")
+					fuel = fuel + it.first->Get("jump startup fuel");
 				}
 				// finally, use that here to test if it's better than any previous fuel usages.
 				if(!fuel)
