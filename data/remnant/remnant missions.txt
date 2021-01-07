@@ -2841,7 +2841,7 @@ mission "Remnant: Cognizance 2"
 					goto acceptance
 				`	"I thought prefects were specialists."`
 			`	"Well, they are and are not. Most prefects are assigned particular tasks that they are expected to devote themselves to. Often, this task relates to their area of expertise, but it is not always the case. Generally speaking, a prefect is considered to be the ultimate authority on tasks that they have been assigned to, but they are expected to take into account the suggestions from other prefects and the specialists in the fields relevant to the task.`
-			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia, coordinates the military defense of the Remnant, and Prefect Taely, who integrates our latest innovations into usable ships."`
+			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia, who coordinates the military defense of the Remnant, and Prefect Taely, who integrates our latest innovations into usable ships."`
 			choice
 				`	"Thanks! That was more detail than I was expecting."`
 				`	"Okay, that satisfied my curiosity for now."`
