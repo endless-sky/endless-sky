@@ -142,25 +142,19 @@ private:
 	const RenderedText &Render(const DisplayText &text) const;
 	void SetUpShader();
 	
-	int ViewWidth(const DisplayText &text) const;
+	int WidthInViewport(const DisplayText &text) const;
+	
+	// Convert Text coordinates to viewport's, and replace DEFAULT_LINE_HEIGHT and
+	// DEFAULT_PARAGRAPH_BREAK with the actual value in the viewport coordinates.
+	Layout ToViewport(const Layout &textLayout) const;
 	
 	// Convert Viewport to/from Text coordinates.
-	double ViewFromTextX(double x) const;
-	double ViewFromTextY(double y) const;
-	int ViewFromTextX(int x) const;
-	int ViewFromTextY(int y) const;
-	int ViewFromTextCeilX(int x) const;
-	int ViewFromTextCeilY(int y) const;
-	int ViewFromTextFloorX(int x) const;
-	int ViewFromTextFloorY(int y) const;
-	double TextFromViewX(double x) const;
-	double TextFromViewY(double y) const;
-	int TextFromViewX(int x) const;
-	int TextFromViewY(int y) const;
-	int TextFromViewCeilX(int x) const;
-	int TextFromViewCeilY(int y) const;
-	int TextFromViewFloorX(int x) const;
-	int TextFromViewFloorY(int y) const;
+	double ToViewportX(double textX) const;
+	double ToViewportY(double textY) const;
+	int ToViewportNearestX(int textX) const;
+	int ToViewportFloorY(int textY) const;
+	int ToTextCeilX(int viewportX) const;
+	int ToTextCeilY(int viewportY) const;
 	
 	
 private:
@@ -177,11 +171,11 @@ private:
 	// Screen settings.
 	mutable int screenWidth = 1;
 	mutable int screenHeight = 1;
-	mutable int viewWidth = 1;
-	mutable int viewHeight = 1;
-	mutable int viewFontHeight = 0;
-	mutable unsigned int viewDefaultLineHeight = 0;
-	mutable unsigned int viewDefaultParagraphBreak = 0;
+	mutable int viewportWidth = 1;
+	mutable int viewportHeight = 1;
+	mutable int viewportFontHeight = 0;
+	mutable unsigned int viewportDefaultLineHeight = 0;
+	mutable unsigned int viewportDefaultParagraphBreak = 0;
 	
 	// Variables related to the font.
 	int pixelSize = 0;

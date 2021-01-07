@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <utility>
 #include <vector>
 
 using namespace std;
@@ -32,11 +33,58 @@ namespace {
 	
 	const array<string, 3> acceptableCharacterReferences{ "gt;", "lt;", "amp;" };
 	
-	// Convert from PANGO to pixel scale.
+	// Convert PANGO size to pixel's.
 	int PixelFromPangoCeil(int pangoSize)
 	{
 		return ceil(static_cast<double>(pangoSize) / PANGO_SCALE);
 	}
+	
+	// Type conversions.
+	PangoEllipsizeMode ToPangoEllipsizeMode(Truncate truncate)
+	{
+		PangoEllipsizeMode ellipsize;
+		switch(truncate)
+		{
+			case Truncate::NONE:
+				ellipsize = PANGO_ELLIPSIZE_NONE;
+				break;
+			case Truncate::FRONT:
+				ellipsize = PANGO_ELLIPSIZE_START;
+				break;
+			case Truncate::MIDDLE:
+				ellipsize = PANGO_ELLIPSIZE_MIDDLE;
+				break;
+			case Truncate::BACK:
+				ellipsize = PANGO_ELLIPSIZE_END;
+				break;
+			default:
+				ellipsize = PANGO_ELLIPSIZE_NONE;
+		}
+		return ellipsize;
+	}
+	
+	pair<PangoAlignment, gboolean> ToPangoAlignmentAndJustify(Alignment align)
+	{
+		PangoAlignment pangoAlign = PANGO_ALIGN_LEFT;
+		gboolean justify = FALSE;
+		switch(align)
+		{
+			case Alignment::LEFT:
+				// Do nothing
+				break;
+			case Alignment::CENTER:
+				pangoAlign = PANGO_ALIGN_CENTER;
+				break;
+			case Alignment::RIGHT:
+				pangoAlign = PANGO_ALIGN_RIGHT;
+				break;
+			case Alignment::JUSTIFIED:
+				justify = TRUE;
+				break;
+		}
+		return make_pair(pangoAlign, justify);
+	}
+	
 	
 	// A wrapper function that makes the compiler estimate the type T and D
 	// in order to reduce complexity of expression.
@@ -105,21 +153,21 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 int Font::Width(const string &str) const
 {
-	return TextFromViewCeilX(ViewWidth({str, {}}));
+	return ToTextCeilX(WidthInViewport({str, {}}));
 }
 
 
 
 int Font::Height() const
 {
-	return TextFromViewCeilY(viewFontHeight);
+	return ToTextCeilY(viewportFontHeight);
 }
 
 
 
 int Font::FormattedWidth(const DisplayText &text) const
 {
-	return TextFromViewCeilX(ViewWidth(text));
+	return ToTextCeilX(WidthInViewport(text));
 }
 
 
@@ -132,7 +180,7 @@ int Font::FormattedHeight(const DisplayText &text) const
 	const RenderedText &renderedText = Render(text);
 	if(!renderedText.texture)
 		return 0;
-	return TextFromViewCeilY(renderedText.height);
+	return ToTextCeilY(renderedText.height);
 }
 
 
@@ -145,7 +193,7 @@ Point Font::FormattedBounds(const DisplayText &text) const
 	const RenderedText &renderedText = Render(text);
 	if(!renderedText.texture)
 		return Point();
-	return Point(TextFromViewCeilX(renderedText.width), TextFromViewCeilY(renderedText.height));
+	return Point(ToTextCeilX(renderedText.width), ToTextCeilY(renderedText.height));
 }
 
 
@@ -153,7 +201,7 @@ Point Font::FormattedBounds(const DisplayText &text) const
 int Font::LineHeight(const Layout &layout) const
 {
 	if(layout.lineHeight == Layout::DEFAULT_LINE_HEIGHT)
-		return TextFromViewCeilY(viewDefaultLineHeight);
+		return ToTextCeilY(viewportDefaultLineHeight);
 	else
 		return layout.lineHeight;
 }
@@ -163,7 +211,7 @@ int Font::LineHeight(const Layout &layout) const
 int Font::ParagraphBreak(const Layout &layout) const
 {
 	if(layout.paragraphBreak == Layout::DEFAULT_PARAGRAPH_BREAK)
-		return TextFromViewCeilY(viewDefaultParagraphBreak);
+		return ToTextCeilY(viewportDefaultParagraphBreak);
 	else
 		return layout.paragraphBreak;
 }
@@ -246,7 +294,7 @@ void Font::UpdateFont() const
 		pango_font_description_free);
 	
 	// Set the pixel size.
-	const int fontSize = ViewFromTextFloorY(pixelSize) * PANGO_SCALE;
+	const int fontSize = ToViewportFloorY(pixelSize) * PANGO_SCALE;
 	pango_font_description_set_absolute_size(fontDesc.get(), fontSize);
 	
 	// Update the context.
@@ -261,22 +309,22 @@ void Font::UpdateFont() const
 		pango_font_metrics_unref);
 	const int ascent = pango_font_metrics_get_ascent(metrics.get());
 	const int descent = pango_font_metrics_get_descent(metrics.get());
-	viewFontHeight = PixelFromPangoCeil(ascent + descent);
+	viewportFontHeight = PixelFromPangoCeil(ascent + descent);
 	metrics.reset();
 	fontDesc.reset();
 	
 	if (drawingSettings.lineHeightScale >= 0.)
-		viewDefaultLineHeight = viewFontHeight * drawingSettings.lineHeightScale;
+		viewportDefaultLineHeight = viewportFontHeight * drawingSettings.lineHeightScale;
 	else
-		viewDefaultLineHeight = 0.;
+		viewportDefaultLineHeight = 0.;
 	if (drawingSettings.paragraphBreakScale >= 0.)
-		viewDefaultParagraphBreak = viewFontHeight * drawingSettings.paragraphBreakScale;
+		viewportDefaultParagraphBreak = viewportFontHeight * drawingSettings.paragraphBreakScale;
 	else
-		viewDefaultParagraphBreak = 0.;
+		viewportDefaultParagraphBreak = 0.;
 	
 	// Tab Stop
 	auto tb = MakeUniq(pango_tab_array_new(TOTAL_TAB_STOPS, FALSE), pango_tab_array_free);
-	space = ViewWidth(DisplayText(" ", {}));
+	space = WidthInViewport(DisplayText(" ", {}));
 	const int tabSize = 4 * space * PANGO_SCALE;
 	for(int i = 0; i < TOTAL_TAB_STOPS; ++i)
 		pango_tab_array_set_tab(tb.get(), i, PANGO_TAB_LEFT, i * tabSize);
@@ -381,8 +429,8 @@ void Font::DrawCommon(const DisplayText &text, double x, double y, const Color &
 		screenHeight = Screen::Height();
 		GLint xyhw[4] = {};
 		glGetIntegerv(GL_VIEWPORT, xyhw);
-		viewWidth = xyhw[2];
-		viewHeight = xyhw[3];
+		viewportWidth = xyhw[2];
+		viewportHeight = xyhw[3];
 		
 		UpdateFont();
 	}
@@ -400,13 +448,13 @@ void Font::DrawCommon(const DisplayText &text, double x, double y, const Color &
 	// Update the scale, only if the screen size has changed.
 	if(screenChanged)
 	{
-		GLfloat scale[2] = {2.f / viewWidth, -2.f / viewHeight};
+		GLfloat scale[2] = {2.f / viewportWidth, -2.f / viewportHeight};
 		glUniform2fv(scaleI, 1, scale);
 		
 	}
 	
 	// Update the center.
-	Point center = Point(ViewFromTextX(x), ViewFromTextY(y));
+	Point center = Point(ToViewportX(x), ToViewportY(y));
 	if(alignToDot)
 		center = Point(floor(center.X()), floor(center.Y()));
 	center += renderedText.center;
@@ -436,63 +484,18 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	if(cached.second)
 		return *cached.first;
 	
-	// Convert to viewport coodinates except align and truncate.
-	const Layout &layout = text.GetLayout();
-	Layout viewLayout = layout;
-	if(layout.width > 0)
-		viewLayout.width = ViewFromTextX(layout.width);
-	if(layout.lineHeight == Layout::DEFAULT_LINE_HEIGHT)
-		viewLayout.lineHeight = viewDefaultLineHeight;
-	else
-		viewLayout.lineHeight = ViewFromTextFloorY(layout.lineHeight);
-	if(layout.paragraphBreak == Layout::DEFAULT_PARAGRAPH_BREAK)
-		viewLayout.paragraphBreak = viewDefaultParagraphBreak;
-	else
-		viewLayout.paragraphBreak = ViewFromTextFloorY(layout.paragraphBreak);
+	// Use viewport coodinates in this function.
+	const Layout layout = ToViewport(text.GetLayout());
 	
 	// Truncate
-	const int layoutWidth = viewLayout.width < 0 ? -1 : viewLayout.width * PANGO_SCALE;
+	const int layoutWidth = layout.width < 0 ? -1 : layout.width * PANGO_SCALE;
 	pango_layout_set_width(pangoLayout.get(), layoutWidth);
-	PangoEllipsizeMode ellipsize;
-	switch(viewLayout.truncate)
-	{
-		case Truncate::NONE:
-			ellipsize = PANGO_ELLIPSIZE_NONE;
-			break;
-		case Truncate::FRONT:
-			ellipsize = PANGO_ELLIPSIZE_START;
-			break;
-		case Truncate::MIDDLE:
-			ellipsize = PANGO_ELLIPSIZE_MIDDLE;
-			break;
-		case Truncate::BACK:
-			ellipsize = PANGO_ELLIPSIZE_END;
-			break;
-		default:
-			ellipsize = PANGO_ELLIPSIZE_NONE;
-	}
-	pango_layout_set_ellipsize(pangoLayout.get(), ellipsize);
+	pango_layout_set_ellipsize(pangoLayout.get(), ToPangoEllipsizeMode(layout.truncate));
 	
 	// Align and justification
-	PangoAlignment align = PANGO_ALIGN_LEFT;
-	gboolean justify = FALSE;
-	switch(viewLayout.align)
-	{
-		case Alignment::LEFT:
-			// Do nothing
-			break;
-		case Alignment::CENTER:
-			align = PANGO_ALIGN_CENTER;
-			break;
-		case Alignment::RIGHT:
-			align = PANGO_ALIGN_RIGHT;
-			break;
-		case Alignment::JUSTIFIED:
-			justify = TRUE;
-			break;
-	}
-	pango_layout_set_justify(pangoLayout.get(), justify);
-	pango_layout_set_alignment(pangoLayout.get(), align);
+	const auto alignAndJustify = ToPangoAlignmentAndJustify(layout.align);
+	pango_layout_set_alignment(pangoLayout.get(), alignAndJustify.first);
+	pango_layout_set_justify(pangoLayout.get(), alignAndJustify.second);
 	
 	// Replaces straight quotation marks with curly ones.
 	const string replacedText = ReplaceCharacters(text.GetText());
@@ -567,9 +570,9 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 			sumExtraY -= diffY;
 			break;
 		}
-		int add = max(diffY, static_cast<int>(viewLayout.lineHeight));
+		int add = max(diffY, static_cast<int>(layout.lineHeight));
 		if(index > 0 && layoutText[index - 1] == '\n')
-			add += viewLayout.paragraphBreak;
+			add += layout.paragraphBreak;
 		baselineY += add;
 		sumExtraY += add - diffY;
 		pango_layout_iter_get_line_extents(iter.get(), nullptr, &logicalRect);
@@ -579,9 +582,9 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 		pango_cairo_show_layout_line(cr.get(), line);
 		y0 = y1;
 	}
-	textHeight += sumExtraY + viewLayout.paragraphBreak;
-	if (viewLayout.lineHeight > viewFontHeight)
-		textHeight += viewLayout.lineHeight - viewFontHeight;
+	textHeight += sumExtraY + layout.paragraphBreak;
+	if (layout.lineHeight > viewportFontHeight)
+		textHeight += layout.lineHeight - viewportFontHeight;
 	iter.reset();
 	
 	// Check this surface has enough height.
@@ -727,13 +730,13 @@ void Font::SetUpShader()
 	// We must update the screen size next time we draw.
 	screenWidth = 1;
 	screenHeight = 1;
-	viewWidth = 1;
-	viewHeight = 1;
+	viewportWidth = 1;
+	viewportHeight = 1;
 }
 
 
 
-int Font::ViewWidth(const DisplayText &text) const
+int Font::WidthInViewport(const DisplayText &text) const
 {
 	if(text.GetText().empty())
 		return 0;
@@ -746,112 +749,62 @@ int Font::ViewWidth(const DisplayText &text) const
 
 
 
-double Font::ViewFromTextX(double x) const
+// Convert Text coordinates to viewport's, and replace DEFAULT_LINE_HEIGHT and
+// DEFAULT_PARAGRAPH_BREAK with the actual value in the viewport coordinates.
+Layout Font::ToViewport(const Layout &textLayout) const
 {
-	return x * viewWidth / screenWidth;
+	Layout viewportLayout = textLayout;
+	if(textLayout.width > 0)
+		viewportLayout.width = ToViewportNearestX(textLayout.width);
+	if(textLayout.lineHeight == Layout::DEFAULT_LINE_HEIGHT)
+		viewportLayout.lineHeight = viewportDefaultLineHeight;
+	else
+		viewportLayout.lineHeight = ToViewportFloorY(textLayout.lineHeight);
+	if(textLayout.paragraphBreak == Layout::DEFAULT_PARAGRAPH_BREAK)
+		viewportLayout.paragraphBreak = viewportDefaultParagraphBreak;
+	else
+		viewportLayout.paragraphBreak = ToViewportFloorY(textLayout.paragraphBreak);
+	return viewportLayout;
 }
 
 
 
-double Font::ViewFromTextY(double y) const
+double Font::ToViewportX(double textX) const
 {
-	return y * viewHeight / screenHeight;
+	return textX * viewportWidth / screenWidth;
 }
 
 
 
-int Font::ViewFromTextX(int x) const
+double Font::ToViewportY(double textY) const
 {
-	return floor(static_cast<double>(x * viewWidth + screenWidth / 2.0) / screenWidth);
+	return textY * viewportHeight / screenHeight;
 }
 
 
 
-int Font::ViewFromTextY(int y) const
+int Font::ToViewportNearestX(int textX) const
 {
-	return floor(static_cast<double>(y * viewHeight + screenHeight / 2.0) / screenHeight);
+	return floor(static_cast<double>(textX * viewportWidth + screenWidth / 2.0) / screenWidth);
 }
 
 
 
-int Font::ViewFromTextCeilX(int x) const
+int Font::ToViewportFloorY(int textY) const
 {
-	return ceil(static_cast<double>(x * viewWidth) / screenWidth);
+	return floor(static_cast<double>(textY * viewportHeight) / screenHeight);
 }
 
 
 
-int Font::ViewFromTextCeilY(int y) const
+int Font::ToTextCeilX(int viewportX) const
 {
-	return ceil(static_cast<double>(y * viewHeight) / screenHeight);
+	return ceil(static_cast<double>(viewportX * screenWidth) / viewportWidth);
 }
 
 
 
-int Font::ViewFromTextFloorX(int x) const
+int Font::ToTextCeilY(int viewportY) const
 {
-	return floor(static_cast<double>(x * viewWidth) / screenWidth);
-}
-
-
-
-int Font::ViewFromTextFloorY(int y) const
-{
-	return floor(static_cast<double>(y * viewHeight) / screenHeight);
-}
-
-
-
-double Font::TextFromViewX(double x) const
-{
-	return x * screenWidth / viewWidth;
-}
-
-
-
-double Font::TextFromViewY(double y) const
-{
-	return y * screenHeight / viewHeight;
-}
-
-
-
-int Font::TextFromViewX(int x) const
-{
-	return floor(static_cast<double>(x * screenWidth + viewWidth / 2.0) / viewWidth);
-}
-
-
-
-int Font::TextFromViewY(int y) const
-{
-	return floor(static_cast<double>(y * screenHeight + viewHeight / 2.0) / viewHeight);
-}
-
-
-
-int Font::TextFromViewCeilX(int x) const
-{
-	return ceil(static_cast<double>(x * screenWidth) / viewWidth);
-}
-
-
-
-int Font::TextFromViewCeilY(int y) const
-{
-	return ceil(static_cast<double>(y * screenHeight) / viewHeight);
-}
-
-
-
-int Font::TextFromViewFloorX(int x) const
-{
-	return floor(static_cast<double>(x * screenWidth) / viewWidth);
-}
-
-
-
-int Font::TextFromViewFloorY(int y) const
-{
-	return floor(static_cast<double>(y * screenHeight) / viewHeight);
+	return ceil(static_cast<double>(viewportY * screenHeight) / viewportHeight);
 }
