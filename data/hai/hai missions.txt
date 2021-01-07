@@ -1828,13 +1828,82 @@ mission "Nanachi Meeting"
 
 
 
+# The Strider Intro missions are intended to allow players on old saves to
+# complete the Pond Strider missions since they can no longer trigger
+# Wanderers Solifuge Recon 3 and 4.
+
+
+
+mission "Strider Intro 1"
+	landing
+	name "Speak to the Hai"
+	description "The Hai have asked you to visit them regarding the new Unfettered ship threatening their existence. Visit the spaceport on <planet> to help the Hai when you are able."
+	destination "Hai-home"
+	to offer
+		has "Wanderers Solifuge Recon 2: done"
+		not "Wanderers Solifuge Recon 3: offered"
+		has "event: eastern evacuation"
+	on offer
+		dialog ` Upon landing on <planet>, you receive a message from the Hai council of elders.`
+			` "Greetings, Captain <last>! We hope this message finds you well. If you recall, our brethren in the north unveiled two brand new ships during their conflict with the Wanderers. We would appreciate if you could visit us whenever you are able to share your intel with us."`
+
+
+
+mission "Strider Intro 2"
+	landing
+	source "Hai-home"
+	to offer
+		has "Strider Intro 1: done"
+	on offer
+		conversation
+			` Upon landing on <planet>, you are quickly escorted to the inner chambers of the Hai council of elders. `
+			` "Greetings, <first> <last>," one of the elders says to you. "As you are well aware, our Unfettered brothers and sisters have developed a new carrier ship along with a new fighter design to accompany them. We would like to know what you think of the new vessels."`
+			choice
+				` "The carrier is strong, but not strong enough, and can be easily taken down."`
+				`	"It was easy for me to deal with it, but I can't say it will be the same for your ships to combat."`
+				`	"They put up a difficult fight, as the carrier is very powerful."`
+			` The elders mumble among themselves about this information. You get the feeling that your thoughts, valuable as they might be, are not the sole reason why you were brought here.`
+			` A different elder speaks up. "Captain <last>, the Unfettered have so far only used these vessels in their conflicts with the Wanderers, which has taken the bulk of their attention from us. As such, we have only had to deal with the same fleets we have fought for centuries. Now, however, they have begun deploying them in their raid fleets against us. This gives them a significant advantage over us."`
+			` The first elder picks back up. "When we deployed a large fleet over Cloudfire, they matched us ship for ship. Now they have unveiled this new ship. Perhaps the correct response is to respond in kind with a similar ship of our own."`
+			` "My son is an engineer," another elder says. "He helped create our Centipede and Geocoris ships, both as a result of the humans living among us. Perhaps he would be of assistance in creating a ship to respond to the Unfettered." The elder presses a button and leans over to a microphone. "Please bring Osen into the council chamber."`
+			`	A short while later, the elder's son enters the chamber and introduces himself to the council. They tell him about the Unfettered having created a carrier and the need for a new ship to be created as a response, and Osen's eyes go wide.`
+			`	Osen begins speaking very quickly in the Hai langauage, so fast that your translation device seems to barely be able to keep up.`
+			`	"I have [exactly, precisely] the ship! My team has been [developing, producing] a ship for many [years, cycles] that carries a [fleet, squadron] of drones. We have [working, functional] [prototypes, models], but they are not yet [finished, complete]. We are still [developing, producing] technology to repair the [hull, armor] of a ship in flight, which would make this ship and its drones much more [effective, powerful]."`
+			`	The device continues speaking to you for nearly a minute after Osen stops talking (which is a little awkward as everyone stares at you). "Sorry, I wasn't aware that you had a translation device," Osen says, no longer speaking in Hai.`
+			choice
+				`	"It's alright."`
+					goto next
+				`	"You talk really fast."`
+			`	Osen shrugs and smiles at you. "I speak fast when I'm excited."`
+			label next
+			`	"When is the earliest that you could provide these ships to us?" Osen's father asks.`
+			`	"It would only be a few weeks for us to have a number of prototype ships ready, but I highly suggest that we wait until we have created hull repair technology. If these Unfettered Solifuges do not have such technology, then having it will give our ship an advantage by being able to redeploy damaged drones, but we believe that we are still many years away from developing technology strong enough to be of any real use."`
+			`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
+			`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
+			`	Osen's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
+			choice
+				` "I'm sorry, but I'm currently occupied with other matters. Perhaps I could assist you at another time."`
+					goto busy
+				`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
+
+			` "Thank you, Captain <last>. Your help is greatly appreciated. When you are able to help us, please return here and we will gladly accept it." The elders all thank you and bid you safe travels.`
+
+			label busy
+			` "This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you and bid you safe travels.`
+	on complete
+		fail
+
+
+
 mission "Strider 0"
 	landing
 	name "Hull Repair Technology"
 	description "The Hai are working on a drone carrier to counter the Unfettered Solifuge, but the creator of the ship is still developing hull repair to make it more effective in combat. Visit the spaceport on <planet> to help the Hai with this technology when you are able."
 	destination "Hai-home"
 	to offer
-		has "Wanderers Solifuge Recon 3: done"
+		or
+			has "Wanderers Solifuge Recon 3: done"
+			has "Strider Intro 2: done"
 	to fail
 		has "Strider 1: offered"
 	to complete
