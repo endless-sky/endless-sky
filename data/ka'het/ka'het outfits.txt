@@ -414,7 +414,7 @@ outfit "Vareti Engine Block"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma large"
-	description "The largest single engine the Builders ever built, made for the most massive ships they were in control of. Due to its sheer size it isn't as modular as its smaller equivalents, but it is also more efficient and powerful as a result."
+	description "This is the largest single engine the Builders ever built, made for the most massive ships they were in control of. Due to its sheer size, it isn't as modular as its smaller equivalents, but it is more efficient and powerful as a result."
 
 outfit "Ka'het Compact Engine"
 	category "Engines"
