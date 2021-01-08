@@ -1837,7 +1837,7 @@ mission "Nanachi Meeting"
 mission "Strider Intro 1"
 	landing
 	name "Speak to the Hai"
-	description "The Hai have asked you to visit them regarding the new Unfettered ship. Visit the spaceport on <planet> to help the Hai when you are able."
+	description "The Hai have asked you to visit them regarding the new Unfettered ship. Visit <planet> to help the Hai when you are able."
 	destination "Hai-home"
 	to offer
 		has "Wanderers Solifuge Recon 2: done"
