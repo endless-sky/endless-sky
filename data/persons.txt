@@ -978,10 +978,10 @@ ship "Shooting Star"
 		"shooting star" 2
 		"core crystal" -2
 		weapon
-			"blast radius" 1800000000
+			"blast radius" 180000
 			"hull damage" 79999
 			"piercing" 1
-			"hit force" 6200000
+			"hit force" -8200
 	outfits
 		"Crystal Projector"
 		"Crystalline Formation"
