@@ -1852,10 +1852,7 @@ mission "Strider Intro 1"
 
 mission "Strider Intro 2"
 	landing
-	name "Hull Repair Technology"
-	description "The Hai are working on a drone carrier to counter the Unfettered Solifuge, but the creator of the ship is still developing hull repair to make it more effective in combat. Visit the spaceport on <planet> to help the Hai with this technology when you are able."
 	source "Hai-home"
-	destination "Hai-home"
 	to offer
 		has "Strider Intro 1: done"
 	on offer
@@ -1896,6 +1893,20 @@ mission "Strider Intro 2"
 			label busy
 			` "This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you and bid you safe travels.`
 				accept
+
+
+
+mission "Strider Intro 3"
+	landing
+	name "Hull Repair Technology"
+	description "The Hai are working on a drone carrier to counter the Unfettered Solifuge, but the creator of the ship is still developing hull repair to make it more effective in combat. Visit the spaceport on <planet> to help the Hai with this technology when you are able."
+	destination "Hai-home"
+	to offer
+		has "Strider Intro 3: done"
+	to fail
+		has "Strider 1: offered"
+	to complete
+		never
 
 
 
