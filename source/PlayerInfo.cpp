@@ -1016,7 +1016,10 @@ void PlayerInfo::SaveShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 {
 	// Check if the incoming vector contains the same elements
 	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
+	{
 		ships = newOrder;
+		flagship.reset();
+	}
 	else
 		throw runtime_error("Cannot reorder ships because the new order does not contain the same ships");
 }
