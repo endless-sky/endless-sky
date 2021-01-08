@@ -1440,14 +1440,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
-void PlayerInfo::AddPlayTime(chrono::steady_clock::duration timeVal)
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 {
 	playTime += timeVal.count() * .000000001;
 }
 
 
 
-double PlayerInfo::GetPlayTime() {
+double PlayerInfo::GetPlayTime()
+{
 	return playTime;
 }
 

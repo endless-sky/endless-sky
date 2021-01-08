@@ -153,7 +153,7 @@ public:
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime();
-	void AddPlayTime(std::chrono::steady_clock::duration timeVal);
+	void AddPlayTime(std::chrono::nanoseconds timeVal);
 	
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;

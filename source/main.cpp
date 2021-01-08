@@ -314,10 +314,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		timer.Wait();
 		
 		// Calculate final frame duration to add to playtime
-		chrono::steady_clock::time_point end = chrono::steady_clock::now();
-		chrono::steady_clock::duration frameDuration = chrono::duration_cast<chrono::nanoseconds>(end - start);
 		if(menuPanels.IsEmpty())
-			player.AddPlayTime(frameDuration);
+			player.AddPlayTime(chrono::steady_clock::now() - start);
 	}
 	
 	// If player quit while landed on a planet, save the game if there are changes.
