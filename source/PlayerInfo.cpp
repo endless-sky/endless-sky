@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "text/Font.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -125,8 +126,10 @@ void PlayerInfo::Load(const string &path)
 		// Basic player information and persistent UI settings:
 		if(child.Token(0) == "pilot" && child.Size() >= 3)
 		{
-			firstName = child.Token(1);
-			lastName = child.Token(2);
+			// Your name has to convert to the escaped text for internal use
+			// because it's saved as raw text to keep compatibility.
+			firstName = Font::EscapeSpecialCharacters(child.Token(1));
+			lastName = Font::EscapeSpecialCharacters(child.Token(2));
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -475,7 +478,7 @@ bool PlayerInfo::IsDead() const
 
 
 
-// Get the player's first name.
+// Get the player's first name for display.
 const string &PlayerInfo::FirstName() const
 {
 	return firstName;
@@ -483,7 +486,7 @@ const string &PlayerInfo::FirstName() const
 
 
 
-// Get the player's last name.
+// Get the player's last name for display.
 const string &PlayerInfo::LastName() const
 {
 	return lastName;
@@ -491,11 +494,11 @@ const string &PlayerInfo::LastName() const
 
 
 
-// Set the player's name. This will also set the saved game file name.
+// Set the player's name in the form of raw text. This will also set the saved game file name.
 void PlayerInfo::SetName(const string &first, const string &last)
 {
-	firstName = first;
-	lastName = last;
+	firstName = Font::EscapeSpecialCharacters(first);
+	lastName = Font::EscapeSpecialCharacters(last);
 	
 	string fileName = first + " " + last;
 	
@@ -2629,7 +2632,8 @@ void PlayerInfo::Save(const string &path) const
 	// Basic player information and persistent UI settings:
 	
 	// Pilot information:
-	out.Write("pilot", firstName, lastName);
+	// Your name is saved as raw text to keep compatibility.
+	out.Write("pilot", Font::RevertSpecialCharacters(firstName), Font::RevertSpecialCharacters(lastName));
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(system)
 		out.Write("system", system->Name());

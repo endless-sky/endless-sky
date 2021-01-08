@@ -170,8 +170,7 @@ void Dialog::Draw()
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
 		const auto layout = Layout(WIDTH - 30, Truncate::FRONT);
-		const string validatedInput = Font::EscapeMarkupHasError(input);
-		const auto displayInputText = DisplayText(validatedInput, layout);
+		const auto displayInputText = DisplayText(Font::EscapeSpecialCharacters(input), layout);
 		font.Draw(displayInputText, stringPos, bright);
 		
 		Point barPos(stringPos.X() + font.FormattedWidth(displayInputText) + 2., inputPos.Y());
@@ -325,7 +324,7 @@ void Dialog::DoCallback() const
 	}
 	
 	if(stringFun)
-		stringFun(Font::EscapeMarkupHasError(input));
+		stringFun(input);
 	
 	if(voidFun)
 		voidFun();

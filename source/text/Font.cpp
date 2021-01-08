@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <cstring>
 #include <utility>
 #include <vector>
 
@@ -31,7 +32,8 @@ namespace {
 	bool showUnderlines = false;
 	const int TOTAL_TAB_STOPS = 8;
 	
-	const array<string, 3> acceptableCharacterReferences{ "gt;", "lt;", "amp;" };
+	const array<pair<char, string>, 3> charToEscape = { make_pair('<', "lt;"),
+		make_pair('>', "gt;"), make_pair('&', "amp;") };
 	
 	// Convert PANGO size to pixel's.
 	int PixelFromPangoCeil(int pangoSize)
@@ -225,25 +227,46 @@ void Font::ShowUnderlines(bool show) noexcept
 
 
 
-string Font::EscapeMarkupHasError(const string &str)
+string Font::EscapeSpecialCharacters(const string &plainText)
 {
-	const string text = ReplaceCharacters(str);
-	if(pango_parse_markup(text.c_str(), -1, '_', nullptr, nullptr, nullptr, nullptr))
-		return str;
-	else
-	{
-		string result;
-		for(const auto &c : text)
+	string escapedText;
+	escapedText.reserve(plainText.length());
+	for(char c : plainText)
 		{
-			if(c == '<')
-				result += "&lt;";
-			else if(c == '>')
-				result += "&gt;";
-			else
-				result += c;
+			escapedText += c;
+			for(const auto &escape : charToEscape)
+				if(c == escape.first)
+				{
+					escapedText.back() = '&';
+					escapedText += escape.second;
+					break;
+				}
 		}
-		return result;
+	return escapedText;
+}
+
+
+
+string Font::RevertSpecialCharacters(const string &escapedText)
+{
+	const size_t length = escapedText.length();
+	string plainText;
+	plainText.reserve(length);
+	for(size_t i = 0; i < length; ++i)
+	{
+		const char c = escapedText[i];
+		plainText += c;
+		if(c == '&')
+			for(const auto &escape : charToEscape)
+				if(escapedText.compare(i + 1, escape.second.length(), escape.second) == 0)
+				{
+					plainText.pop_back();
+					plainText += escape.first;
+					i += escape.second.length();
+					break;
+				}
 	}
+	return plainText;
 }
 
 
@@ -333,9 +356,7 @@ void Font::UpdateFont() const
 
 
 
-// Replaces straight quotation marks with curly ones,
-// and escapes "&" except for minimum necessaries because a pilot name may
-// contain "&" and that representation should be the same as the old version.
+// Replace straight quotation marks with curly ones, except in markup tags.
 string Font::ReplaceCharacters(const string &str)
 {
 	string buf;
@@ -361,22 +382,6 @@ string Font::ReplaceCharacters(const string &str)
 				buf.append(isAfterWhitespace ? "\xE2\x80\x98" : "\xE2\x80\x99");
 			else if(str[pos] == '"')
 				buf.append(isAfterWhitespace ? "\xE2\x80\x9C" : "\xE2\x80\x9D");
-			else if(str[pos] == '&')
-			{
-				buf.append(1, '&');
-				bool hit = false;
-				for(const auto &s : acceptableCharacterReferences)
-				{
-					const size_t slen = s.length();
-					if(len - pos > slen && !str.compare(pos + 1, slen, s))
-					{
-						hit = true;
-						break;
-					}
-				}
-				if(!hit)
-					buf.append("amp;");
-			}
 			else
 				buf.append(1, str[pos]);
 			isAfterWhitespace = (str[pos] == ' ');

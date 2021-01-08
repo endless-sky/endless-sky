@@ -139,6 +139,8 @@ void ConversationPanel::Draw()
 		// This conversation node is prompting the player to enter their name.
 		Point fieldSize(150, 20);
 		const auto layout = Layout(fieldSize.X() - 10, Truncate::FRONT);
+		const auto escapedFirstName = DisplayText(Font::EscapeSpecialCharacters(firstName), layout);
+		const auto escapedLastName = DisplayText(Font::EscapeSpecialCharacters(lastName), layout);
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
@@ -152,15 +154,16 @@ void ConversationPanel::Draw()
 			// Fill in whichever entry box is active right now.
 			FillShader::Fill(center, fieldSize, selectionColor);
 			// Draw the text cursor.
-			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
+			const auto &name = choice ? escapedLastName : escapedFirstName;
+			center.X() += font.FormattedWidth(name) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
 		}
 		
 		font.Draw("First name:", point + Point(40, 0), dim);
-		font.Draw({firstName, layout}, point + Point(120, 0), choice ? grey : bright);
+		font.Draw(escapedFirstName, point + Point(120, 0), choice ? grey : bright);
 		
 		font.Draw("Last name:", point + Point(270, 0), dim);
-		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : grey);
+		font.Draw(escapedLastName, point + Point(350, 0), choice ? bright : grey);
 		
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
@@ -246,13 +249,13 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			choice = !choice;
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
 		{
-			// Display the name the player entered.
-			string name = "\t\tName: " + firstName + " " + lastName + ".\n";
-			text.emplace_back(name);
-			
 			player.SetName(firstName, lastName);
 			subs["<first>"] = player.FirstName();
 			subs["<last>"] = player.LastName();
+			
+			// Display the name the player entered.
+			string name = "\t\tName: " + player.FirstName() + " " + player.LastName() + ".\n";
+			text.emplace_back(name);
 			
 			Goto(node + 1);
 		}

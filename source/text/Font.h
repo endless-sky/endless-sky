@@ -84,8 +84,10 @@ public:
 	
 	static void ShowUnderlines(bool show) noexcept;
 	
-	// Escape markup characters if it causes some errors.
-	static std::string EscapeMarkupHasError(const std::string &str);
+	// Escape/Revert special characters of Pango.
+	// Any texts from a player should be drawn after escaping all special characters, '&', '<', and '>'.
+	static std::string EscapeSpecialCharacters(const std::string &plainText);
+	static std::string RevertSpecialCharacters(const std::string &escapedText);
 	
 private:
 	// Text rendered as a sprite.

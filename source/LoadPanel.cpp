@@ -155,7 +155,8 @@ void LoadPanel::Draw()
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
-		font.Draw({it.first, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+		font.Draw({Font::EscapeSpecialCharacters(it.first), {220, Truncate::BACK}},
+			point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	
@@ -184,7 +185,7 @@ void LoadPanel::Draw()
 			if(file == selectedFile)
 				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
-			const string name = file.substr(pos, file.size() - 4 - pos);
+			const string name = Font::EscapeSpecialCharacters(file.substr(pos, file.size() - 4 - pos));
 			font.Draw({name, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 			point += Point(0., 20.);
 		}
@@ -214,8 +215,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'D' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
-			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
-				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)"));
+			"Are you sure you want to delete the selected pilot, \""
+			+ Font::EscapeSpecialCharacters(selectedPilot)
+			+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)"));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
@@ -235,7 +237,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(!(fileName == selectedPilot + ".txt"))
 			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
 				"Are you sure you want to delete the selected saved game file, \""
-					+ selectedFile + "\"?"));
+				+ Font::EscapeSpecialCharacters(selectedFile) + "\"?"));
 	}
 	else if((key == 'l' || key == 'e') && !selectedPilot.empty())
 	{
@@ -474,7 +476,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
+		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + Font::EscapeSpecialCharacters(suffix)
 			+ "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
 	}
 	else
@@ -495,7 +497,8 @@ void LoadPanel::WriteSnapshot(const string &sourceFile, const string &snapshotNa
 		loadedInfo.Load(Files::Saves() + selectedFile);
 	}
 	else
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName + "\"."));
+		GetUI()->Push(new Dialog("Error: unable to create the file \""
+			+ Font::EscapeSpecialCharacters(snapshotName) + "\"."));
 }
 
 

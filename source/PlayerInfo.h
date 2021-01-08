@@ -78,9 +78,11 @@ public:
 	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);
 	bool IsDead() const;
 	
-	// Get or set the player's name.
+	// Get the player's name for display.
 	const std::string &FirstName() const;
 	const std::string &LastName() const;
+	// Set the player's name in the form of raw text. It means the name doesn't
+	// allow to contain any pango markups and character references.
 	void SetName(const std::string &first, const std::string &last);
 	
 	// Get or change the current date.

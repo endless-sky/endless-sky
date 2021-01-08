@@ -140,7 +140,8 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
+		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?",
+			Font::RevertSpecialCharacters((*shipIt)->Name())));
 	else if(canEdit && (key == 'P' || (key == 'p' && shift)))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())

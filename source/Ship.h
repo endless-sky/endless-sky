@@ -128,7 +128,7 @@ public:
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	
-	// Get the name of this particular ship.
+	// Get the name of this particular ship for display.
 	const std::string &Name() const;
 	
 	// Get the name of this model of ship.
@@ -153,6 +153,8 @@ public:
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
+	// Set the name of this particular ship in the form of raw text. It means
+	// the name doesn't allow to contain any pango markups and character references.
 	void SetName(const std::string &name);
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
