@@ -1919,7 +1919,9 @@ mission "Strider 1"
 	description "The Hai are working on a drone carrier to counter the Unfettered Solifuge, but the creator of the ship is still developing hull repair to make it more effective in combat. Visit the spaceport on <planet> to help the Hai with this technology when you are able."
 	source "Hai-home"
 	to offer
-		has "Strider 0: active"
+		or
+			has "Strider 0: active"
+			has "Strider Intro 2: active"
 	on offer
 		conversation
 			branch "know both"
