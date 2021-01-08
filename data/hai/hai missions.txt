@@ -1921,7 +1921,7 @@ mission "Strider 1"
 	to offer
 		or
 			has "Strider 0: active"
-			has "Strider Intro 2: active"
+			has "Strider Intro 2: done"
 	on offer
 		conversation
 			branch "know both"
