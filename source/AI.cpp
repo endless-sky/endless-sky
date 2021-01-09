@@ -1620,9 +1620,13 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	{
 		ship.SetTargetSystem(nullptr);
 		ship.SetTargetStellar(parent.GetTargetStellar());
-		MoveToPlanet(ship, command);
 		if(parent.IsLanding() || parent.CanLand())
+		{
+			MoveToPlanet(ship, command);
 			command |= Command::LAND;
+		}
+		else
+			KeepStation(ship, command, parent);
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
 		Stop(ship, command, .2);
