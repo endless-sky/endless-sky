@@ -180,8 +180,10 @@ private:
 	mutable std::unique_ptr<cairo_t, DeleterCairoT> cr;
 	mutable PangoContext *context = nullptr;
 	mutable std::unique_ptr<PangoLayout, DeleterPangoLayout> pangoLayout;
-	mutable int surfaceWidth = 256;
-	mutable int surfaceHeight = 64;
+	mutable int surfaceWidth = 0;
+	mutable int surfaceHeight = 0;
+	mutable int surfaceWidthLimit = 10000;
+	mutable int surfaceHeightLimit = 10000;
 	
 	// Cache of rendered text.
 	mutable Cache<CacheKey, RenderedText, true, CacheKeyHash, AtRecycleForRenderedText> cache;

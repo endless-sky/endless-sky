@@ -164,7 +164,7 @@ namespace {
 Font::Font()
 {
 	SetUpShader();
-	if(!UpdateSurfaceSize(surfaceWidth, surfaceHeight, ""))
+	if(!UpdateSurfaceSize(256, 64, ""))
 		throw runtime_error("Initializing error in a constructor of the class Font.");
 	
 	cache.SetUpdateInterval(3600);
@@ -307,6 +307,24 @@ void Font::DeleterPangoLayout::operator()(PangoLayout *ptr) const
 // Return true if the surface is updated.
 bool Font::UpdateSurfaceSize(int width, int height, const string &renderingText) const
 {
+	// Too huge texture will truncate in order to avoid lack of memory.
+	if((surfaceWidth < surfaceWidthLimit && width >= surfaceWidthLimit)
+		|| (surfaceHeight < surfaceHeightLimit && height >= surfaceHeightLimit))
+	{
+		string message = "Warning: Reach the maximum limit of the texture size in class Font";
+		if(renderingText.empty())
+			message += '.';
+		else
+			message += " while drawing the text \"" + renderingText + "\".";
+		Files::LogError(message);
+	}
+	
+	width = min(width, surfaceWidthLimit);
+	height = min(height, surfaceHeightLimit);
+	
+	if(surfaceWidth == width && surfaceHeight == height)
+		return false;
+	
 	auto sf = MakeUniq(cairo_image_surface_create(CAIRO_FORMAT_ARGB32, width, height),
 		cairo_surface_destroy);
 	const cairo_status_t cairoStatus = cairo_surface_status(sf.get());
@@ -409,6 +427,12 @@ void Font::DrawCommon(const DisplayText &text, double x, double y, const Color &
 		glGetIntegerv(GL_VIEWPORT, xyhw);
 		viewportWidth = xyhw[2];
 		viewportHeight = xyhw[3];
+		
+		// Use the view port size as a rough estimation of the RAM size of the VIDEO system.
+		// The surface size is larger than the initial size because the surface is never shrunk.
+		// UpdateFont() will clear all caches.
+		surfaceWidthLimit = viewportWidth * 2;
+		surfaceHeightLimit = viewportHeight * 2;
 		
 		UpdateFont();
 	}
