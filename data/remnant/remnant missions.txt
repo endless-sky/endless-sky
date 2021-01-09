@@ -1644,7 +1644,7 @@ mission "Remnant: Deep Surveillance"
 			`	"Well I think so," the security guard quips back, pulling a taser from his holster. The other security guards equip various equipment of their own, some of it looking lethal. "I'm going to give you one more chance to leave."`
 			choice
 				`	"Okay, okay. I'll leave."`
-					goto escort
+					goto escorted
 				`	"Well you're going to need to make me leave."`
 			
 			`	Before you can even finish your sentence, you can already feel your muscle tensing up from the taser. You collapse, hitting your head on Ivan's desk as you go down. Before you lose conciousness from the impact, you hear Ivan yell, "Come on! Now I'm going to need to get a new desk."`
