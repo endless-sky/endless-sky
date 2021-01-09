@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <cstring>
+#include <stdexcept>
 #include <utility>
 #include <vector>
 
@@ -163,7 +164,8 @@ namespace {
 Font::Font()
 {
 	SetUpShader();
-	UpdateSurfaceSize();
+	if(!UpdateSurfaceSize(surfaceWidth, surfaceHeight, ""))
+		throw runtime_error("Initializing error in a constructor of the class Font.");
 	
 	cache.SetUpdateInterval(3600);
 }
@@ -302,11 +304,29 @@ void Font::DeleterPangoLayout::operator()(PangoLayout *ptr) const
 
 
 
-void Font::UpdateSurfaceSize() const
+// Return true if the surface is updated.
+bool Font::UpdateSurfaceSize(int width, int height, const string &renderingText) const
 {
-	auto sf = MakeUniq(cairo_image_surface_create(CAIRO_FORMAT_ARGB32, surfaceWidth, surfaceHeight),
+	auto sf = MakeUniq(cairo_image_surface_create(CAIRO_FORMAT_ARGB32, width, height),
 		cairo_surface_destroy);
-	cr = decltype(cr)(cairo_create(sf.get()));
+	const cairo_status_t cairoStatus = cairo_surface_status(sf.get());
+	if(cairoStatus == CAIRO_STATUS_SUCCESS)
+	{
+		cr = decltype(cr)(cairo_create(sf.get()));
+		surfaceWidth = width;
+		surfaceHeight = height;
+	}
+	else
+	{
+		string message = "Error: ";
+		message += cairo_status_to_string(cairoStatus);
+		if(renderingText.empty())
+			message += " is detected in the allocation of the buffer to draw a text.";
+		else
+			message += " is detected in the expansion of the buffer to draw the text \"" + renderingText + "\".";
+		Files::LogError(message);
+		return false;
+	}
 	sf.reset();
 	
 	if(pangoLayout)
@@ -318,6 +338,8 @@ void Font::UpdateSurfaceSize() const
 	pango_layout_set_wrap(pangoLayout.get(), PANGO_WRAP_WORD);
 	
 	UpdateFont();
+	
+	return true;
 }
 
 
@@ -495,11 +517,9 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	textWidth = max(textWidth, ink_rect.x + ink_rect.width);
 	// Check this surface has enough width.
 	if(surfaceWidth < textWidth)
-	{
-		surfaceWidth *= (textWidth / surfaceWidth) + 1;
-		UpdateSurfaceSize();
-		return Render(text);
-	}
+		if(UpdateSurfaceSize(surfaceWidth * ((textWidth / surfaceWidth) + 1),
+			surfaceHeight * ((textHeight / surfaceHeight) + 1), text.GetText()))
+			return Render(text);
 	
 	// Render
 	cairo_set_source_rgb(cr.get(), 1.0, 1.0, 1.0);
@@ -545,11 +565,12 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	
 	// Check this surface has enough height.
 	if(surfaceHeight < textHeight)
-	{
-		surfaceHeight *= (textHeight / surfaceHeight) + 1;
-		UpdateSurfaceSize();
-		return Render(text);
-	}
+		if(UpdateSurfaceSize(surfaceWidth, surfaceHeight * ((textHeight / surfaceHeight) + 1), text.GetText()))
+			return Render(text);
+	
+	// In case of the surface size is smaller than the text size because the text is too large to draw.
+	textWidth = min(textWidth, surfaceWidth);
+	textHeight = min(textHeight, surfaceHeight);
 	
 	// Copy to image buffer and clear the surface.
 	cairo_surface_t *sf = cairo_get_target(cr.get());

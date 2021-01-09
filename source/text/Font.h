@@ -129,7 +129,7 @@ private:
 	
 	
 private:
-	void UpdateSurfaceSize() const;
+	bool UpdateSurfaceSize(int width, int height, const std::string &redneringText) const;
 	void UpdateFont() const;
 	
 	void DrawCommon(const DisplayText &text, double x, double y, const Color &color, bool alignToDot) const;
