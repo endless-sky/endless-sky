@@ -42,7 +42,7 @@ public:
 		// The different types of teststeps.
 		enum class Type {
 			// Step that assigns a value to a condition. Does not cause the game to step.
-			ASSIGN,
+			APPLY,
 			// Step that verifies if a certain condition is true. Does not cause the game to step.
 			ASSERT,
 			// Branch with a label to jump to when the condition in child is true.

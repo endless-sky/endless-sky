@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "UI.h"
 
+#include <chrono>
 #include <iostream>
 #include <map>
 
@@ -125,7 +126,7 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 		
-		GameData::LoadShaders();
+		GameData::LoadShaders(!GameWindow::HasSwizzle());
 		
 		// Show something other than a blank window.
 		GameWindow::Step();
@@ -172,13 +173,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
 	
-	if(!GameWindow::HasSwizzle())
-		menuPanels.Push(new Dialog(
-			"Note: your computer does not support the \"texture swizzling\" OpenGL feature, "
-			"which Endless Sky uses to draw ships in different colors depending on which "
-			"government they belong to. So, all human ships will be the same color, which "
-			"may be confusing. Consider upgrading your graphics driver (or your OS)."));
-	
 	bool showCursor = true;
 	int cursorTime = 0;
 	int frameRate = 60;
@@ -202,6 +196,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	{
 		if(toggleTimeout)
 			--toggleTimeout;
+		chrono::steady_clock::time_point start = chrono::steady_clock::now();
 		
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
@@ -317,6 +312,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		GameWindow::Step();
 
 		timer.Wait();
+		
+		// If the player ended this frame in-game, count the elapsed time as played time.
+		if(menuPanels.IsEmpty())
+			player.AddPlayTime(chrono::steady_clock::now() - start);
 	}
 	
 	// If player quit while landed on a planet, save the game if there are changes.
