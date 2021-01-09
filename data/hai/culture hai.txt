@@ -117,7 +117,7 @@ mission "ZZCU Wrestling Star"
 			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
 			choice
 				`	(Ignore them and pass by.)`
-				goto skip
+					goto skip
 				`	(Take a look.)`
 			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
 			`	The banners depict a rather buff looking Hai, rendered in great detail, with a holographically enhanced animation that makes it appear to be continuously going through the motion of lifting and dropping a generically blurred opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a wrestling star, of all things.`
@@ -138,7 +138,7 @@ mission "ZZCU Fencing Star"
 			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
 			choice
 				`	(Ignore them and pass by.)`
-				goto skip
+					goto skip
 				`	(Take a look.)`
 			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
 			`	The banners depict a svelte Hai in the strikingly familiar costume of a fencer, with a holographically enhanced animation that makes it appear to be continuously performing an elegant parry and riposte against an out-of-frame opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a fencing star, of all things.`
@@ -159,7 +159,7 @@ mission "ZZCU Mystery Sport Star"
 			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
 			choice
 				`	(Ignore them and pass by.)`
-				goto skip
+					goto skip
 				`	(Take a look.)`
 			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
 			`	The banners depict a pair of Hai, one with a net and one with what looks like a bladed frisbee. It's not at all clear what precisely it is that they do and when the individuals in question emerge from a booth behind the setup and greet their fans it becomes clear that, if you could even make yourself heard over the trilling, no one is particularly keen to explain it to you. The pair remove their helmets and flash dazzling Hai smiles at their fans before sitting down with some kind of pen for the assembled Hai to line up.`
