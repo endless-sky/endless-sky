@@ -2591,6 +2591,494 @@ phrase "syndicate small"
 	phrase
 		"digit"
 
+phrase "commodities master"
+	word
+		Feed
+		Apple
+		Avocado
+		Apricot
+		Banana
+		Barley
+		Bean
+		Bread
+		Cereal
+		Butter
+		Anchovy
+		Artichoke
+		Chestnut
+		Fruit
+		Olive
+		Cattle
+		Cheese
+		Chocolate
+		"Cloned Meat"
+		Coffee
+		"Cooking Oil"
+		"Corn Oil"
+		Corn
+		Dairy
+		Egg
+		Fertilizer
+		Fish
+		"Frozen Pizza"
+		Garlic
+		Grain
+		Guava
+		Honey
+		Hops
+		Jerky
+		Lard
+		Mango
+		Molasses
+		Oat
+		"Olive Oil"
+		Onion
+		"Peanut Oil"
+		Pepper
+		Pickle
+		Pineapple
+		Potato
+		Prune
+		Pumpkin
+		"Purified Water"
+		Quinoa
+		Raisin
+		"Ready-to-eat Meal"
+		Rice
+		Salt
+		Seaweed
+		Sheep
+		Shiitake
+		Mushroom
+		"Snack Cake"
+		Soy
+		Spice
+		"Split Pea"
+		Sugar
+		Tea
+		Tortilla
+		Vanilla
+		Vinegar
+		Wheat
+		Yam
+		Aramid
+		"Body Armor"
+		Cloth
+		Tweed
+		Burlap
+		Canvas
+		Carpeting
+		Clothing
+		Coat
+		Cotton
+		Denim
+		Fabric
+		Hat
+		Helmet
+		Linen
+		Shoe
+		Rayon
+		Sailcloth
+		Sock
+		Swimsuit
+		Textile
+		Wool
+		Footwear
+		"Aluminized Steel"
+		Aluminum
+		Beryllium
+		Copper
+		Brass
+		Cadmium
+		Iron
+		Chromium
+		Copper Wire
+		Copper
+		Cupronickel
+		Gallium
+		"Gallium Arsenide"
+		"Galvanized Steel"
+		Indium
+		Manganese
+		"Metallic Foam"
+		Magnesium
+		Molybdenum
+		Monel
+		Nickel
+		Niobium
+		Ore
+		Osmium
+		Pig Iron
+		Platinum
+		Scandium
+		Silicon
+		Silver
+		"Stainless Steel"
+		Tin
+		Titanium
+		Vanadium
+		Zinc
+		Acetone
+		Asphalt
+		Bakelite
+		"Carbon Nanotube"
+		"Carbon Fiber"
+		"Crude Oil"
+		Dacron
+		"Diesel Oil"
+		Lacquer
+		Formaldehyde
+		Mylar
+		Nylon
+		"Organic Polymer"
+		Paint
+		Petrochemical
+		Petroleum
+		Plastics
+		Polyethylene
+		Polystyrene
+		Resin
+		Rubber
+		PVC
+		Xylene
+		Whiskey
+		Antibacterials
+		Antibiotics
+		Antivirals
+		"Artificial Organ"
+		Coffin
+		Pharmaceutical
+		Bleach
+		Clay
+		Diamond
+		Fiberglass
+		Gravel
+		Lubricant
+		Lumber
+		Paint
+		Pesticide
+		Pickle
+		Quicklime
+		Sand
+		Semiconductor
+		"Stem Bolt"
+		Timber
+		Varnish
+		Battery
+		Capacitor
+		PCB
+		Diode
+		"Haptic Material"
+		Microchip
+		Semiconductor
+		Silicone
+		Barium
+		Bismuth
+		Uranium
+		Gold
+		Lead
+		Mercury
+		Neodymium
+		Neptunium
+		Plutonium
+		Polonium
+		Unobtanium
+		Thorium
+		Tungsten
+		Brandy
+		Champagne
+		Cigar
+		Cognac
+		Cosmetic
+		Jewelry
+		Leather
+		Liqueur
+		Lobster
+		Marble
+		Water
+		Orchid
+		Perfume
+		Porcelain
+		Saffron
+		Silk
+		Tobacco
+		Vodka
+		Wine
+		Manure
+		Garbage
+		
+
+phrase "commodities counted by rolls"
+	word
+		Aramid
+		Cloth
+		Tweed
+		Burlap
+		Canvas
+		Carpeting
+		Denim
+		Fabric
+		Linen
+		Rayon
+		Sailcloth
+		Textiles
+		"Copper Wire"
+		"Carbon Nanotubes"
+		"Carbon Fiber"
+		Dacron
+		Mylar
+		Nylon
+		Fiberglass
+
+phrase "commodities counted by tonnage"
+	word
+		Feed
+		Apples
+		Avocados
+		Apricots
+		Barley
+		Beans
+		Bread
+		Cereal
+		Butter
+		Anchovies
+		Chestnuts
+		Fruit
+		Olives
+		Cheese
+		Chocolate
+		"Cloned Meat"
+		"Coffee Beans"
+		Corn
+		Eggs
+		Fertilizer
+		Fish
+		"Frozen Pizza"
+		Garlic
+		Grain
+		Guava
+		Hops
+		Jerky
+		Lard
+		Mangoes
+		Oats
+		Onions
+		Peppers
+		Pineapples
+		Potatoes
+		Prunes
+		Pumpkins
+		Quinoa
+		Raisins
+		Rice
+		Seaweed
+		Shiitake
+		Mushrooms
+		Soy
+		"Split Peas"
+		Sugar
+		Tea
+		Vanilla
+		Wheat
+		Yams
+		Cotton
+		Shoes
+		Wool
+		"Aluminized Steel"
+		Aluminum
+		Beryllium
+		Copper
+		Brass
+		Cadmium
+		Iron
+		Chromium
+		Copper
+		Cupronickel
+		Gallium
+		"Gallium Arsenide"
+		"Galvanized Steel"
+		Indium
+		Manganese
+		Magnesium
+		Molybdenum
+		Monel
+		Nickel
+		Niobium
+		Ore
+		Osmium
+		"Pig Iron"
+		Platinum
+		Scandium
+		Silicon
+		Silver
+		"Stainless Steel"
+		Tin
+		Titanium
+		Vanadium
+		Zinc
+		"Artificial Organs"
+		Pharmaceuticals
+		Clay
+		Diamonds
+		Gravel
+		Sand
+		"Haptic Materials"
+		Microchips
+		Semiconductors
+		Barium
+		Bismuth
+		Uranium
+		Gold
+		Lead
+		Neodymium
+		Neptunium
+		Plutonium
+		Polonium
+		Unobtanium
+		Thorium
+		Tungsten
+		Leather
+		Lobster
+		Marble
+		Orchids
+		Manure
+		Garbage
+
+phrase "commodities counted by drums"
+	word
+		"Cooking Oil"
+		"Corn Oil"
+		Molasses
+		Honey
+		"Olive Oil"
+		"Peanut Oil"
+		"Purified Water"
+		Salt
+		Spice
+		Vinegar
+		Gallium
+		"Metallic Foam"
+		Acetone
+		Asphalt
+		Bakelite
+		"Crude Oil"
+		"Diesel Oil"
+		Lacquer
+		Formaldehyde
+		Paint
+		Petrochemicals
+		Petroleum
+		Resin
+		Xylene
+		Antibacterials
+		Antibiotics
+		Antivirals
+		Bleach
+		Lubricant
+		Paint
+		Quicklime
+		Varnish
+		Silicone
+		Mercury
+		Perfume
+		Vodka
+	
+phrase "commodities counted by casks"
+	word
+		Dairy
+		Pickles
+		Spice
+		Whiskey
+		Brandy
+		Cognac
+		Liquer
+		Wine
+	
+phrase "commodities counted by pallets"
+	word
+		"Ready-to-eat Meals"
+		"Snack Cakes"
+		"Microwave Burritos"
+		"Frozen Pizzas"
+		Tea
+		Tortillas
+		"Body Armor"
+		Clothing
+		Coats
+		Hats
+		Helmets
+		Socks
+		Swimsuits
+		Textiles
+		Footwear
+		"Organic Polymer"
+		Plastics
+		Polyethylene
+		Polystyrene
+		Rubber
+		PVC
+		Coffins
+		Semiconductors
+		"Stem Bolts"
+		Timber
+		Batteries
+		Capacitors
+		PCBs
+		Diodes
+		Champagne
+		Cigars
+		Cosmetics
+		Jewelry
+		Vodka
+		Wine
+
+phrase "commodities counted by heads"
+	word
+		Cattle
+		Sheep
+		Swine
+		Goat
+		"Cloned Bovine-Derived Entity"
+
+
+phrase "syndicate logistics"
+	word
+		"S.L. "
+	word
+		"Invisible Hand"
+		"Perfectly Inelastic"
+		"Perfectly Elastic"
+		"Wealth of Nations"
+		"Absolute Advantage"
+		"Windfall"
+		"Capital"
+		"Venture"
+		"Utility"
+		"Tax Writeoff"
+		"Total Return"
+		"Trust"
+		"Supply"
+		"Sunk Cost"
+		"Rationality"
+		"Risk-free"
+		"Purchasing Power"
+		"Free Enterprise"
+		"Normal Goods"
+		"Market Forces"
+		"Slim Margin"
+		"Liquidity"
+		"Interest"
+		"Hot Money"
+		"First Mover"
+		"Expected Return"
+		"Equilibrium"
+		"Balance of Trade"
+		"Parsimony"
+		"Profit"
+		"20 Yards of Linen"
+		"1 Coat"
+		
+	
 phrase "republic fighter"
 	word
 		"Red "
