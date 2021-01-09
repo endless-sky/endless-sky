@@ -59,6 +59,7 @@
 			<Add library="libopenal.dll.a" />
 			<Add library="libglew32.dll.a" />
 			<Add library="libopengl32.a" />
+			<Add library="libglib-2.0.dll.a" />
 			<Add library="libgobject-2.0.dll.a" />
 			<Add library="libcairo.dll.a" />
 			<Add library="libfontconfig.dll.a" />
