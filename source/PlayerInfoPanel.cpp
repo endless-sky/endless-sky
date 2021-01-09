@@ -43,6 +43,9 @@ namespace {
 	// Number of lines per page of the fleet listing.
 	const int LINES_PER_PAGE = 26;
 	
+	// How much lines to leave before the selected ship when scrolling to it.
+	const int SCROLL_OFFSET = 10;
+	
 	// Find any condition strings that begin with the given prefix, and convert
 	// them to strings ending in the given suffix (if any). Return those strings
 	// plus the values of the conditions.
@@ -261,7 +264,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	{
 		GetUI()->Pop(this);
 	}
-	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER)
+	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER || (control && key == SDLK_TAB))
 	{
 		if(!panelState.Ships().empty())
 		{
@@ -360,7 +363,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		}
 		// Update the scroll.
 		if(panelState.SelectedIndex() >= 0)
-			ScrollAbsolute(panelState.SelectedIndex() - 10);
+			ScrollAbsolute(panelState.SelectedIndex() - SCROLL_OFFSET);
 	}
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
@@ -394,7 +397,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
 				player.ParkShip(it.get(), !allParked);
 	}
-	// If "Save order" button is pressed (it is only shown if the ships are sorted).
+	// If "Save order" button is pressed.
 	else if(panelState.CanEdit() && key == 'v')
 		player.SaveShipOrder(panelState.Ships());
 	else if(command.Has(Command::MAP) || key == 'm')
@@ -425,16 +428,21 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			// ships with the group with the given index.
 			if(!shift)
 				panelState.SetSelected(added);
-			else
+			else if(!added.empty())
 			{
 				// If every single ship in this group is already selected, shift
 				// plus the group number means to deselect all those ships.
+				bool allWereSelected = true;
 				for(int i : added)
-					if(!panelState.AllSelected().count(i))
-						return true;
+					allWereSelected &= panelState.Deselect(i);
 				
-				for(int i : added)
-					panelState.Deselect(i);
+				if(!allWereSelected)
+				{
+					for(int i : added)
+						panelState.Select(i);
+					panelState.SetSelectedIndex(*added.begin());
+					ScrollAbsolute(panelState.SelectedIndex() - SCROLL_OFFSET);
+				}
 			}
 		}
 	}
