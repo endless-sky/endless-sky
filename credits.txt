@@ -35,7 +35,7 @@ Major Programming
   petervdmeer
   tehhowch
 
-Storyline & Faction Authors
+Storyline &amp; Faction Authors
   Amazinite
   Arachi-Lover
   beccabunny
@@ -45,7 +45,7 @@ Storyline & Faction Authors
   TheUnfetteredOne
   Zitchas
 
-Editors & Proofreaders
+Editors &amp; Proofreaders
   Arrow2thekn33
   Bladewood
   Fzzr
@@ -269,6 +269,6 @@ contributed to Endless Sky:
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the ESLauncher, nightly, & 
+the ESLauncher, nightly, &amp;
 continuous builds that make so
 much of this work possible.
