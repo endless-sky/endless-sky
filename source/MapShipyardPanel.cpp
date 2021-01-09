@@ -160,7 +160,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 void MapShipyardPanel::DrawItems()
-{ 
+{
 	if (GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
