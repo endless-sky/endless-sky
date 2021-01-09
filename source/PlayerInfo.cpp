@@ -1447,7 +1447,7 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 
 
 
-double PlayerInfo::GetPlayTime()
+double PlayerInfo::GetPlayTime() const noexcept
 {
 	return playTime;
 }

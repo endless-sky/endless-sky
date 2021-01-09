@@ -152,7 +152,7 @@ public:
 	bool TakeOff(UI *ui);
 
 	// Get or add to pilot's playtime.
-	double GetPlayTime();
+	double GetPlayTime() const noexcept;
 	void AddPlayTime(std::chrono::nanoseconds timeVal);
 	
 	// Get the player's logbook.
@@ -298,6 +298,7 @@ private:
 	bool hasFullClearance = true;
 	bool isDead = false;
 	
+	// The amount of in-game time played, in seconds.
 	double playTime = 0.0;
 
 	Account accounts;

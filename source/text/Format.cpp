@@ -94,7 +94,7 @@ string Format::Credits(int64_t value)
 std::string Format::PlayTime(double timeVal)
 {
 	string result;
-	int timeValFormat;
+	int timeValFormat = 0;
 	static const array<char, 5> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
 	static const array<int, 4> PERIOD = {60, 60, 24, 365};
 

@@ -313,7 +313,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 		timer.Wait();
 		
-		// Calculate final frame duration to add to playtime
+		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
 			player.AddPlayTime(chrono::steady_clock::now() - start);
 	}
