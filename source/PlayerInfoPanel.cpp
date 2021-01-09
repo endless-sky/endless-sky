@@ -284,16 +284,9 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			// If no ship was selected, moving up or down selects the first or
 			// last ship, and the scroll jumps to the first or last page.
 			if(key == SDLK_UP)
-			{
 				panelState.SetSelectedIndex(panelState.Ships().size() - 1);
-				ScrollAbsolute(panelState.Ships().size());
-			}
 			else
-			{
 				panelState.SetSelectedIndex(0);
-				ScrollAbsolute(0);
-			}
-			return true;
 		}
 		// Holding both Ctrl & Shift keys and using the arrows moves the
 		// selected ship group up or down one row.
