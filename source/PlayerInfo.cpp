@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "text/Font.h"
+#include "text/FontUtilities.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -128,8 +128,8 @@ void PlayerInfo::Load(const string &path)
 		{
 			// Your name has to convert to the escaped text for internal use
 			// because it's saved as raw text to keep compatibility.
-			firstName = Font::EscapeSpecialCharacters(child.Token(1));
-			lastName = Font::EscapeSpecialCharacters(child.Token(2));
+			firstName = FontUtilities::Escape(child.Token(1));
+			lastName = FontUtilities::Escape(child.Token(2));
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -497,8 +497,8 @@ const string &PlayerInfo::LastName() const
 // Set the player's name in the form of raw text. This will also set the saved game file name.
 void PlayerInfo::SetName(const string &first, const string &last)
 {
-	firstName = Font::EscapeSpecialCharacters(first);
-	lastName = Font::EscapeSpecialCharacters(last);
+	firstName = FontUtilities::Escape(first);
+	lastName = FontUtilities::Escape(last);
 	
 	string fileName = first + " " + last;
 	
@@ -2633,7 +2633,7 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Pilot information:
 	// Your name is saved as raw text to keep compatibility.
-	out.Write("pilot", Font::RevertSpecialCharacters(firstName), Font::RevertSpecialCharacters(lastName));
+	out.Write("pilot", FontUtilities::Unescape(firstName), FontUtilities::Unescape(lastName));
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(system)
 		out.Write("system", system->Name());

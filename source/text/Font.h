@@ -84,11 +84,6 @@ public:
 	
 	static void ShowUnderlines(bool show) noexcept;
 	
-	// Escape/Revert special characters of Pango.
-	// Any texts from a player should be drawn after escaping all special characters, '&', '<', and '>'.
-	static std::string EscapeSpecialCharacters(const std::string &plainText);
-	static std::string RevertSpecialCharacters(const std::string &escapedText);
-	
 private:
 	// Text rendered as a sprite.
 	struct RenderedText {
@@ -136,9 +131,6 @@ private:
 private:
 	void UpdateSurfaceSize() const;
 	void UpdateFont() const;
-	
-	static std::string ReplaceCharacters(const std::string &str);
-	static std::string RemoveAccelerator(const std::string &str);
 	
 	void DrawCommon(const DisplayText &text, double x, double y, const Color &color, bool alignToDot) const;
 	const RenderedText &Render(const DisplayText &text) const;

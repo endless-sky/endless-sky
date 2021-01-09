@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/FontUtilities.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -139,8 +140,8 @@ void ConversationPanel::Draw()
 		// This conversation node is prompting the player to enter their name.
 		Point fieldSize(150, 20);
 		const auto layout = Layout(fieldSize.X() - 10, Truncate::FRONT);
-		const auto escapedFirstName = DisplayText(Font::EscapeSpecialCharacters(firstName), layout);
-		const auto escapedLastName = DisplayText(Font::EscapeSpecialCharacters(lastName), layout);
+		const auto escapedFirstName = DisplayText(FontUtilities::Escape(firstName), layout);
+		const auto escapedLastName = DisplayText(FontUtilities::Escape(lastName), layout);
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);

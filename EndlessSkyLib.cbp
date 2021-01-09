@@ -319,6 +319,8 @@
 		<Unit filename="source/text/Font.h" />
 		<Unit filename="source/text/FontSet.cpp" />
 		<Unit filename="source/text/FontSet.h" />
+		<Unit filename="source/text/FontUtilities.cpp" />
+		<Unit filename="source/text/FontUtilities.h" />
 		<Unit filename="source/text/Format.cpp" />
 		<Unit filename="source/text/Format.h" />
 		<Unit filename="source/text/Table.cpp" />

@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/FontUtilities.h"
 #include "GameData.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
@@ -170,7 +171,7 @@ void Dialog::Draw()
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
 		const auto layout = Layout(WIDTH - 30, Truncate::FRONT);
-		const auto displayInputText = DisplayText(Font::EscapeSpecialCharacters(input), layout);
+		const auto displayInputText = DisplayText(FontUtilities::Escape(input), layout);
 		font.Draw(displayInputText, stringPos, bright);
 		
 		Point barPos(stringPos.X() + font.FormattedWidth(displayInputText) + 2., inputPos.Y());

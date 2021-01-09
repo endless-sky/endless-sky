@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "truncate.hpp"
 
 #include <algorithm>
-#include <array>
 #include <cmath>
 #include <cstring>
 #include <utility>
@@ -31,9 +30,6 @@ using namespace std;
 namespace {
 	bool showUnderlines = false;
 	const int TOTAL_TAB_STOPS = 8;
-	
-	const array<pair<char, string>, 3> charToEscape = { make_pair('<', "lt;"),
-		make_pair('>', "gt;"), make_pair('&', "amp;") };
 	
 	// Convert PANGO size to pixel's.
 	int PixelFromPangoCeil(int pangoSize)
@@ -85,6 +81,71 @@ namespace {
 				break;
 		}
 		return make_pair(pangoAlign, justify);
+	}
+	
+	
+	// Replace straight quotation marks with curly ones, except in markup tags.
+	string ReplaceCharacters(const string &str)
+	{
+		string buf;
+		buf.reserve(str.length());
+		bool isAfterWhitespace = true;
+		bool isTag = false;
+		const size_t len = str.length();
+		for(size_t pos = 0; pos < len; ++pos)
+		{
+			if(isTag)
+			{
+				if(str[pos] == '>')
+					isTag = false;
+				buf.append(1, str[pos]);
+			}
+			else
+			{
+				// U+2018 LEFT_SINGLE_QUOTATION_MARK
+				// U+2019 RIGHT_SINGLE_QUOTATION_MARK
+				// U+201C LEFT_DOUBLE_QUOTATION_MARK
+				// U+201D RIGHT_DOUBLE_QUOTATION_MARK
+				if(str[pos] == '\'')
+					buf.append(isAfterWhitespace ? "\xE2\x80\x98" : "\xE2\x80\x99");
+				else if(str[pos] == '"')
+					buf.append(isAfterWhitespace ? "\xE2\x80\x9C" : "\xE2\x80\x9D");
+				else
+					buf.append(1, str[pos]);
+				isAfterWhitespace = (str[pos] == ' ');
+				isTag = (str[pos] == '<');
+			}
+		}
+		return buf;
+	}
+	
+	
+	// Remove the accelerator character '_', except in markup tags.
+	string RemoveAccelerator(const string &str)
+	{
+		string dest;
+		bool isTag = false;
+		bool isAccel = false;
+		for(char c : str)
+		{
+			const bool isAfterAccel = isAccel;
+			isAccel = false;
+			if(isTag)
+			{
+				dest += c;
+				isTag = (c != '>');
+			}
+			else if(c == '<')
+			{
+				dest += c;
+				isTag = true;
+			}
+			else if(c != '_' || isAfterAccel)
+				dest += c;
+			else
+				isAccel = true;
+		}
+		return dest;
 	}
 	
 	
@@ -227,50 +288,6 @@ void Font::ShowUnderlines(bool show) noexcept
 
 
 
-string Font::EscapeSpecialCharacters(const string &plainText)
-{
-	string escapedText;
-	escapedText.reserve(plainText.length());
-	for(char c : plainText)
-		{
-			escapedText += c;
-			for(const auto &escape : charToEscape)
-				if(c == escape.first)
-				{
-					escapedText.back() = '&';
-					escapedText += escape.second;
-					break;
-				}
-		}
-	return escapedText;
-}
-
-
-
-string Font::RevertSpecialCharacters(const string &escapedText)
-{
-	const size_t length = escapedText.length();
-	string plainText;
-	plainText.reserve(length);
-	for(size_t i = 0; i < length; ++i)
-	{
-		const char c = escapedText[i];
-		plainText += c;
-		if(c == '&')
-			for(const auto &escape : charToEscape)
-				if(escapedText.compare(i + 1, escape.second.length(), escape.second) == 0)
-				{
-					plainText.pop_back();
-					plainText += escape.first;
-					i += escape.second.length();
-					break;
-				}
-	}
-	return plainText;
-}
-
-
-
 void Font::DeleterCairoT::operator()(cairo_t *ptr) const
 {
 	cairo_destroy(ptr);
@@ -352,72 +369,6 @@ void Font::UpdateFont() const
 	for(int i = 0; i < TOTAL_TAB_STOPS; ++i)
 		pango_tab_array_set_tab(tb.get(), i, PANGO_TAB_LEFT, i * tabSize);
 	pango_layout_set_tabs(pangoLayout.get(), tb.get());
-}
-
-
-
-// Replace straight quotation marks with curly ones, except in markup tags.
-string Font::ReplaceCharacters(const string &str)
-{
-	string buf;
-	buf.reserve(str.length());
-	bool isAfterWhitespace = true;
-	bool isTag = false;
-	const size_t len = str.length();
-	for(size_t pos = 0; pos < len; ++pos)
-	{
-		if(isTag)
-		{
-			if(str[pos] == '>')
-				isTag = false;
-			buf.append(1, str[pos]);
-		}
-		else
-		{
-			// U+2018 LEFT_SINGLE_QUOTATION_MARK
-			// U+2019 RIGHT_SINGLE_QUOTATION_MARK
-			// U+201C LEFT_DOUBLE_QUOTATION_MARK
-			// U+201D RIGHT_DOUBLE_QUOTATION_MARK
-			if(str[pos] == '\'')
-				buf.append(isAfterWhitespace ? "\xE2\x80\x98" : "\xE2\x80\x99");
-			else if(str[pos] == '"')
-				buf.append(isAfterWhitespace ? "\xE2\x80\x9C" : "\xE2\x80\x9D");
-			else
-				buf.append(1, str[pos]);
-			isAfterWhitespace = (str[pos] == ' ');
-			isTag = (str[pos] == '<');
-		}
-	}
-	return buf;
-}
-
-
-
-string Font::RemoveAccelerator(const string &str)
-{
-	string dest;
-	bool isTag = false;
-	bool isAccel = false;
-	for(char c : str)
-	{
-		const bool isAfterAccel = isAccel;
-		isAccel = false;
-		if(isTag)
-		{
-			dest += c;
-			isTag = (c != '>');
-		}
-		else if(c == '<')
-		{
-			dest += c;
-			isTag = true;
-		}
-		else if(c != '_' || isAfterAccel)
-			dest += c;
-		else
-			isAccel = true;
-	}
-	return dest;
 }
 
 

@@ -59,6 +59,7 @@
 		A96863BE1AE6FD0E004FE1FE /* Fleet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630A1AE6FD0B004FE1FE /* Fleet.cpp */; };
 		A96863BF1AE6FD0E004FE1FE /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630C1AE6FD0B004FE1FE /* Font.cpp */; };
 		A96863C01AE6FD0E004FE1FE /* FontSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630E1AE6FD0B004FE1FE /* FontSet.cpp */; };
+		B590161421ED4A0F00799178 /* FontUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590151421ED4A0F00799178 /* FontSet.cpp */; };
 		A96863C11AE6FD0E004FE1FE /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863101AE6FD0B004FE1FE /* Format.cpp */; };
 		A96863C21AE6FD0E004FE1FE /* FrameTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863121AE6FD0B004FE1FE /* FrameTimer.cpp */; };
 		A96863C31AE6FD0E004FE1FE /* Galaxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863141AE6FD0B004FE1FE /* Galaxy.cpp */; };
@@ -297,6 +298,8 @@
 		A968630D1AE6FD0B004FE1FE /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = source/text/Font.h; sourceTree = "<group>"; };
 		A968630E1AE6FD0B004FE1FE /* FontSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontSet.cpp; path = source/text/FontSet.cpp; sourceTree = "<group>"; };
 		A968630F1AE6FD0B004FE1FE /* FontSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontSet.h; path = source/text/FontSet.h; sourceTree = "<group>"; };
+		B590151421ED4A0F00799178 /* FontUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontUtilities.cpp; path = source/text/FontUtilities.cpp; sourceTree = "<group>"; };
+		B590151521ED4A0F00799178 /* FontUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontUtilities.h; path = source/text/FontUtilities.h; sourceTree = "<group>"; };
 		A96863101AE6FD0B004FE1FE /* Format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Format.cpp; path = source/text/Format.cpp; sourceTree = "<group>"; };
 		A96863111AE6FD0B004FE1FE /* Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Format.h; path = source/text/Format.h; sourceTree = "<group>"; };
 		A96863121AE6FD0B004FE1FE /* FrameTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FrameTimer.cpp; path = source/FrameTimer.cpp; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 				62A405B91D47DA4D0054F6A0 /* FogShader.h */,
 				A968630C1AE6FD0B004FE1FE /* Font.cpp */,
 				A968630D1AE6FD0B004FE1FE /* Font.h */,
+				B590151421ED4A0F00799178 /* FontUtilities.cpp */,
+				B590151521ED4A0F00799178 /* FontUtilities.h */,
 				A968630E1AE6FD0B004FE1FE /* FontSet.cpp */,
 				A968630F1AE6FD0B004FE1FE /* FontSet.h */,
 				A96863101AE6FD0B004FE1FE /* Format.cpp */,
@@ -1002,6 +1007,7 @@
 				A96863CF1AE6FD0E004FE1FE /* LocationFilter.cpp in Sources */,
 				A96863C11AE6FD0E004FE1FE /* Format.cpp in Sources */,
 				A96863BF1AE6FD0E004FE1FE /* Font.cpp in Sources */,
+				B590161421ED4A0F00799178 /* FontUtilities.cpp in Sources */,
 				A96863ED1AE6FD0E004FE1FE /* Random.cpp in Sources */,
 				A96864021AE6FD0E004FE1FE /* Trade.cpp in Sources */,
 				6245F8251D301C7400A7A094 /* Body.cpp in Sources */,

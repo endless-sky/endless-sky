@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Date.h"
-#include "text/Font.h"
+#include "text/FontUtilities.h"
 #include "text/Format.h"
 #include "SpriteSet.h"
 
@@ -42,7 +42,7 @@ void SavedGame::Load(const string &path)
 		if(node.Token(0) == "pilot" && node.Size() >= 3)
 			// Your name has to convert to the escaped text for internal use
 			// because it's saved as raw text to keep compatibility.
-			name = Font::EscapeSpecialCharacters(node.Token(1) + " " + node.Token(2));
+			name = FontUtilities::Escape(node.Token(1) + " " + node.Token(2));
 		else if(node.Token(0) == "date" && node.Size() >= 4)
 			date = Date(node.Value(1), node.Value(2), node.Value(3)).ToString();
 		else if(node.Token(0) == "system" && node.Size() >= 2)
@@ -65,7 +65,7 @@ void SavedGame::Load(const string &path)
 				if(child.Token(0) == "name" && child.Size() >= 2)
 					// A ship of the name has to convert to the escaped text for internal use
 					// because it's saved as raw text to keep compatibility.
-					shipName = Font::EscapeSpecialCharacters(child.Token(1));
+					shipName = FontUtilities::Escape(child.Token(1));
 				else if(child.Token(0) == "sprite" && child.Size() >= 2)
 					shipSprite = SpriteSet::Get(child.Token(1));
 			}

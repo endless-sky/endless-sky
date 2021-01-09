@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 #include "Files.h"
 #include "Flotsam.h"
-#include "text/Font.h"
+#include "text/FontUtilities.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -206,7 +206,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "name" && child.Size() >= 2)
 			// The name of this particular ship has to convert to the escaped text for internal use
 			// because it's saved as raw text to keep compatibility.
-			name = Font::EscapeSpecialCharacters(child.Token(1));
+			name = FontUtilities::Escape(child.Token(1));
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
@@ -581,7 +581,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			
 			string warning = modelName;
 			if(!name.empty())
-				warning += " \"" + Font::RevertSpecialCharacters(name) + "\"";
+				warning += " \"" + FontUtilities::Unescape(name) + "\"";
 			warning += ": outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.";
 			Files::LogError(warning);
 		}
@@ -592,7 +592,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			// warning so the definition can be fixed.
 			string warning = modelName;
 			if(!name.empty())
-				warning += " \"" + Font::RevertSpecialCharacters(name) + "\"";
+				warning += " \"" + FontUtilities::Unescape(name) + "\"";
 			warning += ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.";
 			Files::LogError(warning);
 		}
@@ -620,7 +620,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(it.first->Name().empty())
 		{
 			Files::LogError("Unrecognized outfit in " + modelName + " \""
-				+ Font::RevertSpecialCharacters(name) + "\"");
+				+ FontUtilities::Unescape(name) + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -648,7 +648,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		{
 			string warning = modelName;
 			if(!name.empty())
-				warning += " \"" + Font::RevertSpecialCharacters(name) + "\"";
+				warning += " \"" + FontUtilities::Unescape(name) + "\"";
 			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
@@ -689,7 +689,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + Font::RevertSpecialCharacters(name) + "\" " : "")
+		string message = (!name.empty() ? "Ship \"" + FontUtilities::Unescape(name) + "\" " : "")
 			+ "(" + modelName + "):\n";
 		ostringstream outfitNames("outfits:\n");
 		for(const auto &it : outfits)
@@ -715,7 +715,7 @@ void Ship::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		// The name of this particular ship is saved as raw text to keep compatibility.
-		out.Write("name", Font::RevertSpecialCharacters(name));
+		out.Write("name", FontUtilities::Unescape(name));
 		if(pluralModelName != modelName + 's')
 			out.Write("plural", pluralModelName);
 		if(!noun.empty())
@@ -1103,7 +1103,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 // Set the name of this particular ship in the form of raw text.
 void Ship::SetName(const string &name)
 {
-	this->name = Font::EscapeSpecialCharacters(name);
+	this->name = FontUtilities::Escape(name);
 }
 
 
