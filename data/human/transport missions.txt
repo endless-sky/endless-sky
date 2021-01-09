@@ -2318,7 +2318,7 @@ mission "Paradise Fortune 2"
 			`	"No, wait! Let me explain!" Diana protests.`
 			
 			label story
-			`	"All my life I've been fascinated with the world outside my little bubble of the Paradise Planets. My father met my mother on Heartland in the Cor Caroli system while he was on a business trip, so my mother would often take me on trips to the Dirt Belt. The last time I went was before the war though; my mother didn't want me anywhere near the 'Free Loafers', as she called them. Back then life in the Dirt Belt didn't seem anywhere near comparable to life in the Paradise Worlds, and I can only imagine how much worse it might be after being so close to a war, so I decided that I needed to do something to help.`
+			`	"All my life I've been fascinated with the world outside my little bubble of the Paradise Planets. My father met my mother on Heartland in the Cor Caroli system while he was on a business trip, so my mother would often take me on trips to the Dirt Belt. The last time I went was before the war though; my mother didn't want me anywhere near the 'Free Loafers,' as she called them. Back then life in the Dirt Belt didn't seem anywhere near comparable to life in the Paradise Worlds, and I can only imagine how much worse it might be after being so close to a war, so I decided that I needed to do something to help.`
 			`	"Now, can you take me to <destination>? I wish to hand this over to the government there to help them. It may not seem like much in the grand scheme of how many credits go into running a planet, but it should be a huge boost to their economy."`
 			choice
 				`	"Alright, I'll help you."`

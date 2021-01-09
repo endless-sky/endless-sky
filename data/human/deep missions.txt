@@ -2064,6 +2064,7 @@ mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 
 mission "Deep: Scientist Rescue 1"
 	landing
+	autosave
 	name "Secure the Scientists"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
 	source "Valhalla"
