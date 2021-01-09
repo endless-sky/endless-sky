@@ -83,13 +83,13 @@ mission "ZZCU The Meme Wars 1"
 			`Stepping into the spaceport you are beset by a riot of color. Every blank surface that's not usually paid advertising space seems to be festooned with dangling holographic projectors, banners and ribbons. There's even actual paper fliers and posters, apparently taped to whatever surface will bear them. At first you wonder if there's some sort of festival going on, but as you watch a young Hai wearing a hood slaps up another holo projector, a cartoonish root vegetable with a sword, which begins hacking at the adjacent holograph, some kind of impressionist concept of a Hai elder made up of iridescent triangles. The young Hai then proceeds to tear down a banner and slap some goo on a massive poster which begins dissolving before a pair of security guards, wearing some very obviously non-standard additions to their uniforms, chase him back out of the spaceport.`
 			branch translator
 				has "language: Wanderer"
-			`	As you watch the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
+			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
 			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
 			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
 				decline
 			label translator
-			`	As you watch the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
+			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
 			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
 			choice
@@ -114,7 +114,16 @@ mission "ZZCU Wrestling Star"
 		random == 1
 	on offer
 		conversation
-			`A famous Hai wrestler is doing a signing. (TBD)`
+			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
+			choice
+				`	(Ignore them and pass by.)`
+				goto skip
+				`	(Take a look.)`
+			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The banners depict a rather buff looking Hai, rendered in great detail, with a holographically enhanced animation that makes it appear to be continuously going through the motion of lifting and dropping a generically blurred opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a wrestling star, of all things.`
+			`	After only a moment the individual in question emerges from a booth behind the setup and greets their fans, who prove very enthusiastic, before sitting down with some kind of pen for the assembled Hai to line up. It would seem that certain human things have become popularized among the Hai.`
+			label skip
+			`	You can hear the Hai crowd trilling for some distance as you go about your business.`
 				decline
 
 mission "ZZCU Fencing Star"
@@ -126,10 +135,19 @@ mission "ZZCU Fencing Star"
 		random == 1
 	on offer
 		conversation
-			`A famous Hai fencer is doing a signing. (TBD)`
+			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
+			choice
+				`	(Ignore them and pass by.)`
+				goto skip
+				`	(Take a look.)`
+			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The banners depict a svelte Hai in the strikingly familiar costume of a fencer, with a holographically enhanced animation that makes it appear to be continuously performing an elegant parry and riposte against an out-of-frame opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a fencing star, of all things.`
+			`	After only a moment the individual in question emerges from a booth behind the setup and greets their fans, who prove very enthusiastic, before sitting down with some kind of pen for the assembled Hai to line up. It would seem that certain human things have become popularized among the Hai.`
+			label skip
+			`	You can hear the Hai crowd trilling for some distance as you go about your business.`
 				decline
 				
-mission "ZZCU ??? Star"
+mission "ZZCU Mystery Sport Star"
 	minor
 	source
 		government "Hai"
@@ -138,7 +156,16 @@ mission "ZZCU ??? Star"
 		random == 1
 	on offer
 		conversation
-			`A famous Hai sportsperson of an obscure alien sport is doing a signing. (TBD)`
+			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
+			choice
+				`	(Ignore them and pass by.)`
+				goto skip
+				`	(Take a look.)`
+			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The banners depict a pair of Hai, one with a net and one with what looks like a bladed frisbee. It's not at all clear what precisely it is that they do and when the individuals in question emerge from a booth behind the setup and greet their fans it becomes clear that, if you could even make yourself heard over the trilling, no one is particularly keen to explain it to you. The pair remove their helmets and flash dazzling Hai smiles at their fans before sitting down with some kind of pen for the assembled Hai to line up.`
+			`	It would seem that celebrity signings are popular among the Hai.`
+			label skip
+			`	You can hear the Hai crowd trilling for some distance as you go about your business.`
 				decline
 
 mission "ZZCU Gambling Judgment"
