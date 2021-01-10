@@ -118,6 +118,13 @@ void PlayerInfo::Load(const string &path)
 	Clear();
 	
 	filePath = path;
+	// Strip anything after the "~" from snapshots, so that the file we save
+	// will be the auto-save, not the snapshot.
+	size_t pos = filePath.find('~');
+	size_t namePos = filePath.length() - Files::Name(filePath).length();
+	if(pos != string::npos && pos > namePos)
+		filePath = filePath.substr(0, pos) + ".txt";
+	
 	DataFile file(path);
 	
 	hasFullClearance = false;
@@ -288,15 +295,7 @@ void PlayerInfo::Load(const string &path)
 	// cargo and passengers.
 	UpdateCargoCapacities();
 	
-	// Strip anything after the "~" from snapshots, so that the file we save
-	// will be the auto-save, not the snapshot.
-	size_t pos = filePath.find('~');
-	size_t namePos = filePath.length() - Files::Name(filePath).length();
-	if(pos != string::npos && pos > namePos)
-		filePath = filePath.substr(0, pos) + ".txt";
-	
-	// If a system was not specified in the player data, but the flagship is in
-	// a particular system, set the system to that.
+	// If a system was not specified in the player data, use the flagship's system.
 	if(!planet && !ships.empty())
 		for(shared_ptr<Ship> &ship : ships)
 			if(ship->GetPlanet() && !ship->IsDisabled() && !ship->IsParked() && !ship->CanBeCarried())
