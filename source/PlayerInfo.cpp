@@ -291,9 +291,8 @@ void PlayerInfo::Load(const string &path)
 			}
 		}
 	}
-	// Based on the ships that were loaded, calculate the player's capacity for
-	// cargo and passengers.
-	UpdateCargoCapacities();
+	// Modify the game data with any changes that were loaded from this file.
+	ApplyChanges();
 	
 	// If a system was not specified in the player data, use the flagship's system.
 	if(!planet && !ships.empty())
@@ -310,13 +309,14 @@ void PlayerInfo::Load(const string &path)
 				break;
 			}
 	
+	// Based on the ships that were loaded, calculate the player's capacity for
+	// cargo and passengers.
+	UpdateCargoCapacities();
+	
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
 		depreciation.Init(ships, date.DaysSinceEpoch());
-	
-	// Modify the game data with any changes that were loaded from this file.
-	ApplyChanges();
 }
 
 
