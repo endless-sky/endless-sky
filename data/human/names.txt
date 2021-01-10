@@ -2830,7 +2830,7 @@ phrase "commodities counted by rolls"
 		Nylon
 		Fiberglass
 
-phrase "commodities counted by tonnage"
+phrase "commodities counted by tons"
 	word
 		Feed
 		Apples
