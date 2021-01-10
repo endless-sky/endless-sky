@@ -13,7 +13,8 @@ help "bank"
 	`Paying off a mortgage early means you pay less interest to the bank, but it is sometimes wiser to instead use your money to buy a bigger ship which can earn you more income.`
 
 help "bank advanced"
-	`When entering a credit value at the bank, you can put in an exact number, or uses suffixes (K, M, B, T) as shorthand. Entering a value such as "100k" would count as 100,000 credits, for example. Entering a number higher than available will count as the maximum.`
+	`When entering a credit value at the bank, you can put in an exact number, or uses suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
+	`Entering a number that is higher than what you or the bank have available depending if you are paying or applying for a loan will default to the maximum available value. For example, enterting "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
 
 help "basics 1"
 	`Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
@@ -69,8 +70,8 @@ help "map"
 	`This map shows all the star systems you know about and the hyperspace links between them. You can use the map to plot a hyperspace course by clicking on the system you want to travel to. To initiate a jump to that system, close the map and press <Initiate hyperspace jump>.`
 
 help "map advanced"
-	`As you explore more of the galaxy, the star map will quickly become a very powerful tool. Clicking on a distant system will automatically plot the quickest route to it. If you have missions spread across several systems, you can shift-click each to plot a route between them, or control-click a system to inspect missions there without setting a route.`
-	`There are also many other useful modes the map can be set to. Click on one of the buttons in the lower right corner to learn more.`
+	`As you explore more of the galaxy, the star map will quickly become a very powerful tool. Clicking on a distant system will automatically plot the quickest route to it. You can shift-click on systems to plot a route between them, or control-click to select it there setting a route.`
+	`There are many other useful modes the map can be set to. Click on one of the buttons in the lower right corner to learn more.`
 
 help "map advanced ports"
 	`The Ports panel provides detailed information about every planet, station, or other stellar objects you've come across. Most information can be clicked on (like the word "Outfitter", or on the price of a trade good), which will color every system on the star map appropriately.`

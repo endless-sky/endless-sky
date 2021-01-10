@@ -104,7 +104,7 @@ void MapDetailPanel::Step()
 	MapPanel::Step();
 	if(!player.GetPlanet())
 		DoHelp("map");
-	if (GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
 		DoHelp("map advanced ports");
 	
 }
