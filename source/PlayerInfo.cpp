@@ -298,18 +298,35 @@ void PlayerInfo::Load(const string &path)
 	
 	// If a system was not specified in the player data, use the flagship's system.
 	if(!planet && !ships.empty())
-		for(shared_ptr<Ship> &ship : ships)
-			if(ship->GetPlanet() && !ship->IsDisabled() && !ship->IsParked() && !ship->CanBeCarried())
-			{
-				planet = ship->GetPlanet();
-				if(!planet->IsValid())
-				{
-					planet = nullptr;
-					continue;
-				}
-				system = ship->GetSystem();
-				break;
-			}
+	{
+		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
+			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
+		if(it != ships.end())
+		{
+			planet = (*it)->GetPlanet();
+			system = (*it)->GetSystem();
+		}
+	}
+	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
+	// with an undefined system or planet. In that case, move them to the starting system to avoid crashing.
+	if(planet && !system)
+		system = planet->GetSystem();
+	if(!planet || !planet->IsValid() || !system || !system->IsValid())
+	{
+		system = &GameData::Start().GetSystem();
+		planet = &GameData::Start().GetPlanet();
+	}
+	for(auto &&ship : ships)
+	{
+		// Every ship ought to have specified a valid location, but if not,
+		// move it to the player's location to avoid invalid states.
+		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
+			ship->SetSystem(system);
+		// In-system ships that aren't on a valid planet should get moved to the player's planet
+		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
+		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
+			ship->SetPlanet(planet);
+	}
 	
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -2327,29 +2344,6 @@ void PlayerInfo::ApplyChanges()
 	AddChanges(dataChanges);
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
-	
-	// As a result of game data changes (e.g. unloading a mod) it's possible for
-	// the player to end up in an undefined system or planet. In that case, move
-	// them to the starting system to avoid crashing.
-	if(planet && !system)
-		system = planet->GetSystem();
-	if(!planet || !planet->IsValid() || !system || !system->IsValid())
-	{
-		system = &GameData::Start().GetSystem();
-		planet = &GameData::Start().GetPlanet();
-	}
-	
-	// For any ship that did not store what system it is in or what planet it is
-	// on, place it with the player. (In practice, every ship ought to have
-	// specified its location, but this is to avoid null locations.)
-	for(shared_ptr<Ship> &ship : ships)
-	{
-		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
-			ship->SetSystem(system);
-		if(ship->GetSystem() == system && (!ship->GetPlanet() || !ship->GetPlanet()->IsValid()))
-			ship->SetPlanet(planet);
-	}
-	
 	
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
