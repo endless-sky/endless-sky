@@ -4,32 +4,28 @@
    match-leak-kinds: possible
    fun:calloc
    fun:g_malloc0
-   obj:/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6600.4
-   obj:/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6600.4
-   obj:/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6600.4
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libgobject-*.so*
+   ...
    fun:call_init.part.0
    fun:call_init
    fun:_dl_init
-   obj:/lib/x86_64-linux-gnu/ld-2.31.so
-   obj:*
-   obj:*
-   obj:*
+   obj:/lib/x86_64-linux-gnu/ld-*.so
+   ...
 }
 {
    FontConfig-instead_of_FcFini
    Memcheck:Leak
    match-leak-kinds: definite
    fun:malloc
-   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
-   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
-   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
-   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
-   obj:/lib/x86_64-linux-gnu/libexpat.so.1.6.12
-   obj:/lib/x86_64-linux-gnu/libexpat.so.1.6.12
-   obj:/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.*
+   ...
+   obj:/lib/x86_64-linux-gnu/libexpat.so.*
+   ...
    fun:XML_ParseBuffer
-   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
-   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
-   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.*
+   ...
 }
 
