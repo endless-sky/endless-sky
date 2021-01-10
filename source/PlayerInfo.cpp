@@ -176,13 +176,10 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "ship")
 		{
 			// Ships owned by the player have various special characteristics:
-			ships.push_back(shared_ptr<Ship>(new Ship()));
-			ships.back()->Load(child);
+			ships.push_back(make_shared<Ship>(child));
 			ships.back()->SetIsSpecial();
-			// TODO: defer this call to FinishLoading until after GameData::CheckReferences has been called.
-			// (Undefined outfits referenced only by this save are still unnamed the first time we read it.)
-			ships.back()->FinishLoading(false);
 			ships.back()->SetIsYours();
+			// Defer finalizing this ship until we have processed all changes to game state.
 		}
 		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
 			groups[ships.back().get()] = child.Value(1);
@@ -873,7 +870,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
-		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
+		ships.push_back(make_shared<Ship>(*model));
 		ships.back()->SetName(name);
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
@@ -2388,8 +2385,15 @@ void PlayerInfo::ApplyChanges()
 			GameData::GetPolitics().DominatePlanet(planet);
 	}
 	
-	// Issue warnings for any data which has been mentioned but not actually defined.
+	// Issue warnings for any data which has been mentioned but not actually defined, and
+	// ensure that all "undefined" data is appropriately named.
 	GameData::CheckReferences();
+	
+	// Now that all outfits have names, we can finish loading the player's ships.
+	for(auto &&ship : ships)
+	{
+		ship->FinishLoading(false);
+	}
 }
 
 
