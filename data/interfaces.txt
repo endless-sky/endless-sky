@@ -152,51 +152,57 @@ interface "main menu"
 
 interface "menu player info"
 	outline "ship sprite"
-		center 360 -90
-		dimensions 120 120
+		center 360 -105
+		dimensions 100 100
 	label "pilot:"
-		from 250 -15
+		from 250 -35
 		align left
 	string "pilot"
-		from 310 -15
+		from 315 -35
 		align left
 		width 165
 		truncate middle
 	label "ship:"
-		from 250 5
+		from 250 -15
 		align left
 	string "ship"
-		from 310 5
+		from 315 -15
 		align left
 		width 165
 		truncate back
 	label "planet:"
-		from 250 35
+		from 250 15
 		align left
 	string "planet"
-		from 310 35
+		from 315 15
 		align left
 		width 165
 		truncate back
 	label "system:"
-		from 250 55
+		from 250 35
 		align left
 	string "system"
-		from 310 55
+		from 315 35
 		align left
 		width 165
 		truncate back
 	label "credits:"
-		from 250 85
+		from 250 65
 		align left
 	string "credits"
-		from 310 85
+		from 315 65
 		align left
 	label "date:"
-		from 250 105
+		from 250 85
 		align left
 	string "date"
-		from 310 105
+		from 315 85
+		align left
+	label "playtime:"
+		from 250 105
+		align left
+	string "playtime"
+		from 315 105
 		align left
 
 
