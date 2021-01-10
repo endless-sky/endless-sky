@@ -92,15 +92,15 @@ void GameEvent::Save(DataWriter &out) const
 			if(system && !system->Name().empty())
 				out.Write("unvisit", system->Name());
 		for(const Planet *planet : planetsToUnvisit)
-			if(planet && !planet->Name().empty())
-				out.Write("unvisit planet", planet->Name());
+			if(planet && !planet->TrueName().empty())
+				out.Write("unvisit planet", planet->TrueName());
 		
 		for(const System *system : systemsToVisit)
 			if(system && !system->Name().empty())
 				out.Write("visit", system->Name());
 		for(const Planet *planet : planetsToVisit)
-			if(planet && !planet->Name().empty())
-				out.Write("visit planet", planet->Name());
+			if(planet && !planet->TrueName().empty())
+				out.Write("visit planet", planet->TrueName());
 		
 		for(const DataNode &change : changes)
 			out.Write(change);

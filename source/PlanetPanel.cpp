@@ -149,11 +149,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
-		requestedLaunch = true;
-	else if(key == 'l')
 	{
-		selectedPanel = nullptr;
+		requestedLaunch = true;
+		return true;
 	}
+	else if(key == 'l')
+		selectedPanel = nullptr;
 	else if(key == 't' && hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
 	{
 		selectedPanel = trading.get();
@@ -297,14 +298,14 @@ void PlanetPanel::TakeOffIfReady()
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
 			out << "If you take off now you will fail a mission due to not having enough ";
-
+			
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
 				out << (both ? " and not having enough " : ".");
 			}
-
+			
 			if(missionCargoToSell > 0)
 			{
 				out << "cargo space to hold " << missionCargoToSell;
@@ -324,7 +325,7 @@ void PlanetPanel::TakeOffIfReady()
 		else
 		{
 			out << "If you take off now you will have to sell ";
-
+			
 			if(cargoToSell == 1)
 				out << "a ton of cargo";
 			else if(cargoToSell > 0)

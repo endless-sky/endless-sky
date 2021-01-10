@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameEvent.h"
 #include "Mission.h"
 
+#include <chrono>
 #include <list>
 #include <map>
 #include <memory>
@@ -151,6 +152,10 @@ public:
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
+
+	// Get or add to pilot's playtime.
+	double GetPlayTime() const noexcept;
+	void AddPlayTime(std::chrono::nanoseconds timeVal);
 	
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
@@ -295,6 +300,9 @@ private:
 	bool hasFullClearance = true;
 	bool isDead = false;
 	
+	// The amount of in-game time played, in seconds.
+	double playTime = 0.0;
+
 	Account accounts;
 	
 	std::shared_ptr<Ship> flagship;

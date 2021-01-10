@@ -306,7 +306,7 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders()
+void GameData::LoadShaders(bool useShaderSwizzle)
 {
 	// Load the key settings.
 	Command::LoadSettings(Files::Resources() + "keys.txt");
@@ -318,7 +318,7 @@ void GameData::LoadShaders()
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init();
+	SpriteShader::Init(useShaderSwizzle);
 	BatchShader::Init();
 	
 	background.Init(16384, 4096);

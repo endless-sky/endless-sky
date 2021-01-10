@@ -1122,7 +1122,7 @@ person "Zitchas"
 	frequency 200
 	government "Author"
 	personality
-		mining harvests unconstrained surveillance opportunistic
+		mining harvests unconstrained opportunistic
 	system
 		attributes "ember waste"
 	phrase
