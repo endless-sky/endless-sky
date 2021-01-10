@@ -3098,14 +3098,14 @@ phrase "syndicate logistics"
 		"commodities counted by drums"
 		
 phrase "syndicate logistics"
-  phrase
-    "one to twelve"
-  phrase
-    "digit"
-  phrase
-	" rolls of ${commodities counted by rolls}"
-    " casks of ${commodities counted by casks}"
-    " heads of ${commodities counted by heads}"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	phrase
+		" rolls of ${commodities counted by rolls}"
+		" casks of ${commodities counted by casks}"
+		" heads of ${commodities counted by heads}"
 		
 phrase "syndicate logistics"
 	phrase
