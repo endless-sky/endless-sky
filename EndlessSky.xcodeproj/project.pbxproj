@@ -59,7 +59,7 @@
 		A96863BE1AE6FD0E004FE1FE /* Fleet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630A1AE6FD0B004FE1FE /* Fleet.cpp */; };
 		A96863BF1AE6FD0E004FE1FE /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630C1AE6FD0B004FE1FE /* Font.cpp */; };
 		A96863C01AE6FD0E004FE1FE /* FontSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968630E1AE6FD0B004FE1FE /* FontSet.cpp */; };
-		B590161421ED4A0F00799178 /* FontUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590151421ED4A0F00799178 /* FontSet.cpp */; };
+		B590161421ED4A0F00799178 /* FontUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590151421ED4A0F00799178 /* FontUtilities.cpp */; };
 		A96863C11AE6FD0E004FE1FE /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863101AE6FD0B004FE1FE /* Format.cpp */; };
 		A96863C21AE6FD0E004FE1FE /* FrameTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863121AE6FD0B004FE1FE /* FrameTimer.cpp */; };
 		A96863C31AE6FD0E004FE1FE /* Galaxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863141AE6FD0B004FE1FE /* Galaxy.cpp */; };
