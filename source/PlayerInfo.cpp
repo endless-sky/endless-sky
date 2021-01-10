@@ -2350,9 +2350,6 @@ void PlayerInfo::ApplyChanges()
 			ship->SetPlanet(planet);
 	}
 	
-	// Government changes may have changed the player's ship swizzles.
-	for(shared_ptr<Ship> &ship : ships)
-		ship->SetGovernment(GameData::PlayerGovernment());
 	
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
@@ -2389,6 +2386,8 @@ void PlayerInfo::ApplyChanges()
 	// Now that all outfits have names, we can finish loading the player's ships.
 	for(auto &&ship : ships)
 	{
+		// Government changes may have changed the player's ship swizzles.
+		ship->SetGovernment(GameData::PlayerGovernment());
 		ship->FinishLoading(false);
 	}
 }
