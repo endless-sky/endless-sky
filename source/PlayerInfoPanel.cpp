@@ -43,9 +43,6 @@ namespace {
 	// Number of lines per page of the fleet listing.
 	const int LINES_PER_PAGE = 26;
 	
-	// How much lines to leave before the selected ship when scrolling to it.
-	const int SCROLL_OFFSET = 10;
-	
 	// Find any condition strings that begin with the given prefix, and convert
 	// them to strings ending in the given suffix (if any). Return those strings
 	// plus the values of the conditions.
@@ -255,7 +252,7 @@ bool PlayerInfoPanel::AllowFastForward() const
 
 
 
-bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
+bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
@@ -281,12 +278,14 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	{
 		if(panelState.AllSelected().empty())
 		{
-			// If no ship was selected, moving up or down selects the first or
-			// last ship, and the scroll jumps to the first or last page.
-			if(key == SDLK_UP)
-				panelState.SetSelectedIndex(panelState.Ships().size() - 1);
-			else
-				panelState.SetSelectedIndex(0);
+			// If no ship was selected, moving up or down selects the first or last ship.
+			if(isNewPress)
+			{
+				if(key == SDLK_UP)
+					panelState.SetSelectedIndex(panelState.Ships().size() - 1);
+				else
+					panelState.SetSelectedIndex(0);
+			}
 		}
 		// Holding both Ctrl & Shift keys and using the arrows moves the
 		// selected ship group up or down one row.
@@ -336,8 +335,10 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			int selectedIndex = panelState.SelectedIndex() + (key == SDLK_DOWN) - (key == SDLK_UP);
 			bool isValidIndex = static_cast<unsigned>(selectedIndex) < panelState.Ships().size();
 			if(selectedIndex < 0)
-				return true;
-			
+			{
+				if(isNewPress)
+					panelState.DeselectAll();
+			}
 			else if(shift)
 			{
 				if(panelState.AllSelected().count(selectedIndex))
@@ -353,10 +354,26 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			}
 			else if(isValidIndex)
 				panelState.SelectOnly(selectedIndex);
+			else if(isNewPress)
+				panelState.DeselectAll();
 		}
-		// Update the scroll.
-		if(panelState.SelectedIndex() >= 0)
-			ScrollAbsolute(panelState.SelectedIndex() - SCROLL_OFFSET);
+		
+		int selected = panelState.SelectedIndex();
+		if(selected >= 0)
+		{
+			if(selected < panelState.Scroll() + LINES_PER_PAGE && selected >= panelState.Scroll())
+			{
+				// If the selected ship is on screen, do not scroll.
+			}
+			else if(selected == panelState.Scroll() + LINES_PER_PAGE)
+				Scroll(1);
+			else if(selected == panelState.Scroll() - 1)
+				Scroll(-1);
+			else if(key == SDLK_UP)
+				ScrollAbsolute(selected - LINES_PER_PAGE + 1);
+			else
+				ScrollAbsolute(selected);
+		}
 	}
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
@@ -434,9 +451,9 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 					for(int i : added)
 						panelState.Select(i);
 					panelState.SetSelectedIndex(*added.begin());
-					ScrollAbsolute(panelState.SelectedIndex() - SCROLL_OFFSET);
 				}
 			}
+			ScrollAbsolute(panelState.SelectedIndex());
 		}
 	}
 	else
@@ -471,12 +488,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 			panelState.Deselect(hoverIndex);
 		else
 		{
-			if(panelState.AllSelected().count(hoverIndex))
-			{
-				// If the click is on an already selected line, start dragging
-				// but do not change the selection.
-			}
-			else if(control)
+			if(control)
 				panelState.SetSelectedIndex(hoverIndex);
 			else if(shift)
 			{
@@ -485,6 +497,11 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 				int end = max(panelState.SelectedIndex(), hoverIndex);
 				panelState.SelectMany(start, end + 1);
 				panelState.SetSelectedIndex(hoverIndex);
+			}
+			else if(panelState.AllSelected().count(hoverIndex))
+			{
+				// If the click is on an already selected line, start dragging
+				// but do not change the selection.
 			}
 			else
 				panelState.SelectOnly(hoverIndex);
