@@ -1853,8 +1853,12 @@ system Acamar
 	trade Medical 576
 	trade Metal 249
 	trade Plastic 483
-	fleet "Large Core Merchants" 3000
-	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 750
+	fleet "Small Core Merchants" 500
+	fleet "Large Syndicate Logistics" 750
+	fleet "Small Syndicate Logistics" 500
+	fleet "Large Syndicate Logistics" 1500
+	fleet "Small Syndicate Logistics" 1000
 	fleet "Small Republic" 3600
 	fleet "Small Syndicate" 3200
 	object
@@ -1911,10 +1915,12 @@ system Achernar
 	trade Medical 775
 	trade Metal 289
 	trade Plastic 337
-	fleet "Large Core Merchants" 400
+	fleet "Large Core Merchants" 200
 	fleet "Large Syndicate" 600
 	fleet "Small Syndicate" 500
-	fleet "Small Core Merchants" 300
+	fleet "Small Core Merchants" 150
+	fleet "Large Syndicate Logistics" 200
+	fleet "Small Syndicate Logistics" 150
 	fleet "Human Miners" 3000
 	fleet "Republic Logistics" 6000
 	object
@@ -2231,8 +2237,10 @@ system "Al Dhanab"
 	trade Medical 718
 	trade Metal 262
 	trade Plastic 317
-	fleet "Small Core Merchants" 400
-	fleet "Large Core Merchants" 400
+	fleet "Small Core Merchants" 200
+	fleet "Large Core Merchants" 200
+	fleet "Large Syndicate Logistics" 200
+	fleet "Small Syndicate Logistics" 200
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 800
 	fleet "Republic Logistics" 5300
@@ -2542,8 +2550,10 @@ system Alderamin
 	trade Medical 475
 	trade Metal 237
 	trade Plastic 373
-	fleet "Small Core Merchants" 2000
-	fleet "Large Core Merchants" 3200
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 1600
+	fleet "Large Syndicate Logistics" 1000
+	fleet "Small Syndicate Logistics" 1600
 	fleet "Small Syndicate" 800
 	fleet "Large Syndicate" 800
 	fleet "Small Core Pirates" 1000
@@ -2788,8 +2798,10 @@ system Algol
 	trade Medical 560
 	trade Metal 322
 	trade Plastic 309
-	fleet "Small Core Merchants" 1600
-	fleet "Large Core Merchants" 4000
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 2000
+	fleet "Large Syndicate Logistics" 800
+	fleet "Small Syndicate Logistics" 2000
 	fleet "Small Core Pirates" 1800
 	fleet "Large Core Pirates" 5000
 	fleet "Small Syndicate" 2400
@@ -3283,9 +3295,10 @@ system Alnair
 	trade Medical 494
 	trade Metal 241
 	trade Plastic 467
-	fleet "Small Core Merchants" 2000
+	fleet "Small Core Merchants" 1000
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 4000
+	fleet "Small Syndicate Logistics" 1000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 6000
 	fleet "Human Miners" 2000
@@ -3751,8 +3764,10 @@ system "Alpha Hydri"
 	trade Medical 531
 	trade Metal 324
 	trade Plastic 390
-	fleet "Small Core Merchants" 900
-	fleet "Large Core Merchants" 3000
+	fleet "Small Core Merchants" 450
+	fleet "Large Core Merchants" 1500
+	fleet "Large Syndicate Logistics" 1500
+	fleet "Small Syndicate Logistics" 450
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 6000
 	fleet "Small Syndicate" 4000
@@ -3929,8 +3944,10 @@ system Alpheratz
 	trade Medical 713
 	trade Metal 340
 	trade Plastic 293
-	fleet "Small Core Merchants" 600
-	fleet "Large Core Merchants" 600
+	fleet "Small Core Merchants" 300
+	fleet "Large Core Merchants" 300
+	fleet "Large Syndicate Logistics" 300
+	fleet "Small Syndicate Logistics" 300
 	fleet "Small Syndicate" 800
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1200
@@ -3990,8 +4007,10 @@ system Altair
 	trade Medical 534
 	trade Metal 335
 	trade Plastic 274
-	fleet "Small Core Merchants" 400
-	fleet "Large Core Merchants" 600
+	fleet "Small Core Merchants" 200
+	fleet "Large Core Merchants" 300
+	fleet "Large Syndicate Logistics" 200
+	fleet "Small Syndicate Logistics" 300
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 3000
@@ -4193,8 +4212,10 @@ system Ankaa
 	trade Medical 596
 	trade Metal 278
 	trade Plastic 353
-	fleet "Small Core Merchants" 600
-	fleet "Large Core Merchants" 700
+	fleet "Small Core Merchants" 300
+	fleet "Large Core Merchants" 350
+	fleet "Large Syndicate Logistics" 350
+	fleet "Small Syndicate Logistics" 300
 	fleet "Small Syndicate" 900
 	fleet "Large Core Pirates" 4000
 	object
@@ -5126,8 +5147,10 @@ system Bellatrix
 	trade Medical 846
 	trade Metal 422
 	trade Plastic 274
-	fleet "Small Core Merchants" 800
-	fleet "Large Core Merchants" 1500
+	fleet "Small Core Merchants" 400
+	fleet "Large Core Merchants" 750
+	fleet "Large Syndicate Logistics" 750
+	fleet "Small Syndicate Logistics" 400
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 3000
@@ -6262,8 +6285,10 @@ system Caph
 	trade Medical 532
 	trade Metal 323
 	trade Plastic 299
-	fleet "Small Core Merchants" 500
-	fleet "Large Core Merchants" 600
+	fleet "Small Core Merchants" 250
+	fleet "Large Core Merchants" 300
+	fleet "Large Syndicate Logistics" 300
+	fleet "Small Syndicate Logistics" 250
 	fleet "Small Syndicate" 1600
 	fleet "Human Miners" 2000
 	object
@@ -7724,8 +7749,10 @@ system "Delta Capricorni"
 	trade Medical 492
 	trade Metal 269
 	trade Plastic 292
-	fleet "Small Core Merchants" 700
-	fleet "Large Core Merchants" 800
+	fleet "Small Core Merchants" 350
+	fleet "Large Core Merchants" 400
+	fleet "Large Syndicate Logistics" 400
+	fleet "Small Syndicate Logistics" 350
 	fleet "Small Syndicate" 2000
 	fleet "Small Core Pirates" 4000
 	fleet "Human Miners" 3000
@@ -8072,8 +8099,10 @@ system Diphda
 	trade Medical 600
 	trade Metal 277
 	trade Plastic 392
-	fleet "Small Core Merchants" 2000
-	fleet "Large Core Merchants" 600
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 300
+	fleet "Large Syndicate Logistics" 300
+	fleet "Small Syndicate Logistics" 1000
 	fleet "Small Syndicate" 3000
 	object
 		sprite star/k0
@@ -10785,8 +10814,10 @@ system Fomalhaut
 	trade Medical 531
 	trade Metal 285
 	trade Plastic 267
-	fleet "Small Core Merchants" 1000
-	fleet "Large Core Merchants" 1200
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 600
+	fleet "Large Syndicate Logistics" 600
+	fleet "Small Syndicate Logistics" 500
 	fleet "Small Syndicate" 5000
 	fleet "Large Syndicate" 10000
 	fleet "Republic Logistics" 3300
@@ -11946,8 +11977,10 @@ system Hamal
 	trade Medical 633
 	trade Metal 332
 	trade Plastic 404
-	fleet "Small Core Merchants" 1000
-	fleet "Large Core Merchants" 1000
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 500
+	fleet "Large Syndicate Logistics" 500
+	fleet "Small Syndicate Logistics" 500
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 8000
 	fleet "Small Syndicate" 4000
@@ -14849,7 +14882,8 @@ system Kugel
 	trade Medical 512
 	trade Metal 335
 	trade Plastic 421
-	fleet "Small Core Merchants" 4000
+	fleet "Small Core Merchants" 2000
+	fleet "Small Syndicate Logistics" 2000
 	fleet "Small Republic" 6000
 	fleet "Small Syndicate" 8000
 	fleet "Large Core Pirates" 4000
@@ -15678,8 +15712,10 @@ system Markab
 	trade Medical 515
 	trade Metal 251
 	trade Plastic 281
-	fleet "Small Core Merchants" 500
-	fleet "Large Core Merchants" 600
+	fleet "Small Core Merchants" 250
+	fleet "Large Core Merchants" 300
+	fleet "Large Syndicate Logistics" 250
+	fleet "Small Syndicate Logistics" 300
 	fleet "Small Syndicate" 600
 	fleet "Large Syndicate" 800
 	fleet "Human Miners" 3000
@@ -15817,8 +15853,10 @@ system Matar
 	trade Medical 641
 	trade Metal 209
 	trade Plastic 407
-	fleet "Small Core Merchants" 2000
-	fleet "Large Core Merchants" 2500
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 1750
+	fleet "Large Syndicate Logistics" 1750
+	fleet "Small Syndicate Logistics" 1000
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Small Syndicate" 3000
@@ -16408,8 +16446,10 @@ system Menkar
 	trade Medical 769
 	trade Metal 396
 	trade Plastic 285
-	fleet "Small Core Merchants" 800
-	fleet "Large Core Merchants" 1000
+	fleet "Small Core Merchants" 400
+	fleet "Large Core Merchants" 500
+	fleet "Large Syndicate Logistics" 500
+	fleet "Small Syndicate Logistics" 400
 	fleet "Small Syndicate" 1500
 	fleet "Large Syndicate" 2000
 	fleet "Large Core Pirates" 4000
@@ -17012,8 +17052,10 @@ system Mirach
 	trade Medical 686
 	trade Metal 267
 	trade Plastic 299
-	fleet "Small Core Merchants" 1000
-	fleet "Large Core Merchants" 1200
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 600
+	fleet "Large Syndicate Logistics" 600
+	fleet "Small Syndicate Logistics" 500
 	fleet "Small Core Pirates" 4000
 	fleet "Small Syndicate" 3000
 	fleet "Large Syndicate" 5000
@@ -17080,8 +17122,10 @@ system Mirfak
 	trade Medical 811
 	trade Metal 451
 	trade Plastic 267
-	fleet "Small Core Merchants" 500
-	fleet "Large Core Merchants" 700
+	fleet "Small Core Merchants" 250
+	fleet "Large Core Merchants" 350
+	fleet "Large Syndicate Logistics" 350
+	fleet "Small Syndicate Logistics" 250
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 1800
 	object
@@ -17251,8 +17295,10 @@ system Moktar
 	trade Medical 714
 	trade Metal 382
 	trade Plastic 345
-	fleet "Small Core Merchants" 1000
-	fleet "Large Core Merchants" 2000
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 1000
+	fleet "Large Syndicate Logistics" 1000
+	fleet "Small Syndicate Logistics" 500
 	fleet "Small Syndicate" 3000
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
@@ -19231,8 +19277,10 @@ system Polaris
 	trade Medical 822
 	trade Metal 255
 	trade Plastic 418
-	fleet "Small Core Merchants" 600
-	fleet "Large Core Merchants" 700
+	fleet "Small Core Merchants" 300
+	fleet "Large Core Merchants" 350
+	fleet "Large Syndicate Logistics" 350
+	fleet "Small Syndicate Logistics" 300
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1500
@@ -20740,8 +20788,10 @@ system Ruchbah
 	trade Medical 597
 	trade Metal 334
 	trade Plastic 353
-	fleet "Small Core Merchants" 500
-	fleet "Large Core Merchants" 600
+	fleet "Small Core Merchants" 250
+	fleet "Large Core Merchants" 300
+	fleet "Large Syndicate Logistics" 300
+	fleet "Small Syndicate Logistics" 250
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 2000
@@ -21484,8 +21534,10 @@ system Scheat
 	trade Medical 573
 	trade Metal 259
 	trade Plastic 312
-	fleet "Small Core Merchants" 500
-	fleet "Large Core Merchants" 600
+	fleet "Small Core Merchants" 250
+	fleet "Large Core Merchants" 300
+	fleet "Large Syndicate Logistics" 300
+	fleet "Small Syndicate Logistics" 250
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Republic Logistics" 4700
@@ -21546,8 +21598,10 @@ system Schedar
 	trade Medical 743
 	trade Metal 325
 	trade Plastic 279
-	fleet "Small Core Merchants" 900
-	fleet "Large Core Merchants" 1000
+	fleet "Small Core Merchants" 450
+	fleet "Large Core Merchants" 500
+	fleet "Large Syndicate Logistics" 500
+	fleet "Small Syndicate Logistics" 450
 	fleet "Small Syndicate" 3000
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
@@ -22027,8 +22081,10 @@ system Sheratan
 	trade Medical 596
 	trade Metal 306
 	trade Plastic 355
-	fleet "Small Core Merchants" 1500
-	fleet "Large Core Merchants" 1800
+	fleet "Small Core Merchants" 750
+	fleet "Large Core Merchants" 900
+	fleet "Large Syndicate Logistics" 900
+	fleet "Small Syndicate Logistics" 750
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
 	fleet "Korath Raid" 30000
@@ -22716,8 +22772,10 @@ system Sol
 	fleet "Small Republic" 600
 	fleet "Large Republic" 900
 	fleet "Republic Logistics" 2000
-	fleet "Small Core Merchants" 1000
-	fleet "Large Core Merchants" 2000
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 1000
+	fleet "Large Syndicate Logistics" 1000
+	fleet "Small Syndicate Logistics" 500
 	object
 		sprite star/g0
 		period 25.38
@@ -25602,8 +25660,10 @@ system Zaurak
 	trade Medical 671
 	trade Metal 292
 	trade Plastic 376
-	fleet "Small Core Merchants" 800
-	fleet "Large Core Merchants" 1000
+	fleet "Small Core Merchants" 400
+	fleet "Large Core Merchants" 500
+	fleet "Large Syndicate Logistics" 500
+	fleet "Small Syndicate Logistics" 400
 	fleet "Small Syndicate" 1600
 	fleet "Large Syndicate" 2500
 	fleet "Small Core Pirates" 2000

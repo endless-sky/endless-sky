@@ -1659,6 +1659,155 @@ fleet "Large Syndicate"
 		"Vanguard (Missile)"
 		"Quicksilver (Proton)" 2
 
+fleet "Small Syndicate Logistics"
+	government "Syndicate"
+	names "syndicate logistics"
+	cargo 3
+	personality
+		confusion 25
+		timid appeasing
+	variant 40
+		"Star Barge (Armed)"
+	variant 30
+		"Freighter"
+	variant 20
+		"Freighter (Fancy)"
+	variant 20
+		"Freighter (Proton)"
+	variant 60
+		"Freighter"
+		"Wasp"
+	variant 20
+		"Freighter"
+		"Star Barge (Armed)" 2
+	variant 20
+		"Freighter"
+		"Shuttle" 2
+		"Quicksilver"
+	variant 50
+		"Bounder"
+	variant 30
+		"Bounder (Luxury)"
+		"Wasp"
+	variant 10
+		"Freighter"
+		"Wasp" 2
+	variant 1
+		"Flivver (Luxury)"
+	variant 1
+		"Flivver (Racing)"
+
+fleet "Large Syndicate Logistics"
+	government "Syndicate"
+	names "syndicate logistics"
+	cargo 4
+	personality
+		confusion 20
+		timid appeasing
+	variant 30
+		"Freighter" 2
+		"Quicksilver" 2
+	variant 10
+		"Freighter (Fancy)" 2
+	variant 10
+		"Freighter (Proton)" 2
+		"Quicksilver" 2
+	variant 50
+		"Bulk Freighter"
+		"Wasp (Proton)" 2
+	variant 50
+		"Bulk Freighter"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 20
+		"Bulk Freighter (Blaster)"
+		"Wasp" 2
+	variant 10
+		"Bulk Freighter (Heavy)"
+		"Wasp (Proton)" 2
+	variant 10
+		"Bulk Freighter (Proton)"
+		"Wasp (Proton)" 2
+	variant 10
+		"Bulk Freighter (Proton)"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 20
+		"Bulk Freighter"
+	variant 10
+		"Bulk Freighter (Blaster)"
+	variant 5
+		"Bulk Freighter (Heavy)"
+	variant 5
+		"Bulk Freighter (Proton)"
+	variant 20
+		"Star Barge (Armed)" 3
+	variant 10
+		"Bulk Freighter" 2
+		"Quicksilver" 1
+		"Splinter" 1
+	variant 4
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Heavy)"
+		"Quicksilver" 1
+		"Splinter (Laser)" 1
+	variant 4
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Proton)"
+		"Quicksilver" 1
+		"Splinter (Proton)" 1
+	variant 10
+		"Freighter" 4
+		"Quicksilver" 2
+		"Splinter" 1
+	variant 3
+		"Freighter" 4
+		"Quicksilver" 2
+		"Splinter (Laser)" 1
+	variant 3
+		"Freighter" 4
+		"Quicksilver" 2
+		"Splinter (Proton)" 1
+	variant 10
+		"Freighter" 4
+		"Protector" 1
+	variant 2
+		"Freighter" 4
+		"Protector (Laser)" 1
+	variant 2
+		"Freighter" 4
+		"Protector (Proton)" 1
+	variant 10
+		"Bulk Freighter" 2
+		"Protector" 1
+	variant 10
+		"Bulk Freighter" 2
+		"Wasp" 3
+		"Wasp (Meteor)" 2
+	variant 10
+		"Bulk Freighter" 2
+		"Vanguard" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Protector (Laser)" 1
+	variant 1
+		"Bulk Freighter (Proton)" 2
+		"Protector (Proton)" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Vanguard (Particle)" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Vanguard (Missile)" 1
+	variant 20
+		"Bounder"
+		"Quicksilver" 2
+	variant 5
+		"Arrow"
+		"Wasp (Proton)" 2
+	variant 2
+		"Arrow"
+
 fleet "Small Southern Pirates"
 	government "Pirate"
 	names "pirate"

@@ -3076,8 +3076,56 @@ phrase "syndicate logistics"
 		"Parsimony"
 		"Profit"
 		"20 Yards of Linen"
-		"1 Coat"
+
+phrase "syndicate logistics"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	word
+		" rolls of "
+	phrase
+		"commodities counted by rolls"
 		
+phrase "syndicate logistics"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	word
+		" tons of "
+	phrase
+		"commodities counted by tons"
+		
+phrase "syndicate logistics"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	word
+		" drums of "
+	phrase
+		"commodities counted by drums"
+		
+phrase "syndicate logistics"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	word
+		" casks of "
+	phrase
+		"commodities counted by casks"
+		
+phrase "syndicate logistics"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	word
+		" pallets of "
+	phrase
+		"commodities counted by pallets"
 	
 phrase "republic fighter"
 	word
