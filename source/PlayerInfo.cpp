@@ -125,9 +125,11 @@ void PlayerInfo::Load(const string &path)
 	if(pos != string::npos && pos > namePos)
 		filePath = filePath.substr(0, pos) + ".txt";
 	
-	DataFile file(path);
+	// The player may have bribed their current planet in the last session. Ensure
+	// we provide the same access to services in this session, too.
+	bool hasFullClearance = false;
 	
-	hasFullClearance = false;
+	DataFile file(path);
 	for(const DataNode &child : file)
 	{
 		// Basic player information and persistent UI settings:
@@ -308,6 +310,10 @@ void PlayerInfo::Load(const string &path)
 				system = ship->GetSystem();
 				break;
 			}
+	
+	// Restore access to services, if it was granted previously.
+	if(planet && hasFullClearance)
+		planet->Bribe();
 	
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -2360,15 +2366,7 @@ void PlayerInfo::ApplyChanges()
 				planet->Bribe(mission.HasFullClearance());
 		}
 	
-	// It is sometimes possible for the player to be landed on a planet where
-	// they do not have access to any services. So, this flag is used to specify
-	// that in this case, the player has access to the planet's services.
-	if(planet && hasFullClearance)
-		planet->Bribe();
-	hasFullClearance = false;
-	
-	// Check if any special persons have been destroyed. Those that belong to
-	// inactive plugins will be kept "destroyed."
+	// Check if any special persons have been destroyed.
 	GameData::DestroyPersons(destroyedPersons);
 	destroyedPersons.clear();
 	

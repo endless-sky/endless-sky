@@ -295,7 +295,6 @@ private:
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
-	bool hasFullClearance = true;
 	bool isDead = false;
 	
 	// The amount of in-game time played, in seconds.
