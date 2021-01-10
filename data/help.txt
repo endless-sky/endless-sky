@@ -70,24 +70,24 @@ help "map"
 	`This map shows all the star systems you know about and the hyperspace links between them. You can use the map to plot a hyperspace course by clicking on the system you want to travel to. To initiate a jump to that system, close the map and press <Initiate hyperspace jump>.`
 
 help "map advanced"
-	`As you explore more of the galaxy, the star map will quickly become a very powerful tool. Clicking on a distant system will automatically plot the quickest route to it. You can shift-click on systems to plot a route between them, or control-click to select it there setting a route.`
+	`As you explore more of the galaxy, the star map will quickly become a very powerful tool. Clicking on a distant system will automatically plot the quickest route to it. You can Shift+click on systems to plot a route between them, or Control+click to select a system without setting a route to it.`
 	`There are many other useful modes the map can be set to. Click on one of the buttons in the lower right corner to learn more.`
 
 help "map advanced ports"
-	`The Ports panel provides detailed information about every planet, station, or other stellar objects you've come across. Most information can be clicked on (like the word "Outfitter", or on the price of a trade good), which will color every system on the star map appropriately.`
-	`For instance, you can click on "(has been visited)" to see which planets you've visited or not, or click on a trade good price to show how prices change throughout the galaxy. If you have a route planned already, this can be combined with a control-click to inspect trade good prices at stops along the way. A key will be shown on the right to let you know what colors mean in any given mode.`
+	`The ports panel shows you where systems with spaceports are, as well as a plethora of other information. Clicking on the name of the system, the government of the system, the lines under the name of each planet, or any trade commodity will color the map differently, the key to which can be seen on the right side of the screen.`
+	`Clicking the name of a planet, or clicking on a planet in the orbit map on the right side of the screen, will show that planet's description if you have visited it already. Clicking a planet on the orbit map will also tell your auto-pilot to land on that planet after you have arrived at that system at the end of your jump path.`
 
 help "map advanced shops"
-	`Both the Shipyard and Outfitter panels give the same information: A catalog of any items you've seen in your career, providing detailed statistics at any time. Items will be in categories on the left side of the screen, which can be collapsed individually, or all at once with shift-click on a category name. You can also use the "Find" button in the bottom right to search by name.`
-	`When selecting an item, the details will appear in the top-right. Ports which sell it will be colored yellow, while ports with the correct shop but not the item will be colored teal. You can compare what you've selected with a second item with shift-click, which will put both details side-by-side.`
+	`The shipyard and outfitter map panels respectively display the ships and outfits sold on any planets that you have seen. Ships and outfits are displayed in categories which can be collapsed by clicking on the category name. Using Shift+click on a category name will collapse or uncollapse all the categories at once.`
+	`Each ship or outfit can be clicked on, displaying that item's stats while also highlighting any planets where it is sold. Using Shift+click on a ship or outfit after you already have one selected will display that item's stats side by side the the previously selected item.`
 
 help "multiple ships"
 	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship. In the player info panel you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
 
 help "multiple ship controls"
-	`When in flight with multiple ships, you have a variety of detailed commands you can give them. A full list can be seen in the Preferences pane, with <Fleet: Hold position> to have your fleet hold position, or <Fleet: Fight my target> to have your fleet focus your target as examples. These orders will apply to all ships by default, or to your selected ones, if any.`
-	`You can select specific escorts by directly clicking on them, or clicking and dragging your mouse to select a group with a box. These groups can be saved with a control group, by setting one with Control+number key, then recalled with that number key. These can also be set in the Player Info panel, accessed with <View player info>.`
-	`Escorts can also be commanded with the mouse. Right Click on empty space will order escorts to fly to and hold a position, while a click on a hostile ship will focus fire, and a click on a friendly target will cause them to follow.`
+	`Once you're in space with multiple ships that you own, you can give orders to those escorts. Orders will be given to all selected escorts, or if no escorts are selected then all your escorts will receive the order. Escorts can be selected by either clicking on them in space, clicking the ship icon at the bottom left of the screen, or by clicking and dragging to select a group of escorts in space. The list of escort order keys can be found in the preferences panel.`
+	`Escorts can also be ordered with the mouse. Right clicking on an empty point in space will order escorts to fly to and hold position at that point, while right clicking on a hostile ship will order your escorts to focus fire on it, and right clicking on a friendly target will cause them to follow it.`
+	`Escorts can be saved into control groups by pressing Control+number key. All selected escorts will then be bound to that number key, selecting the group when pressed.`
 
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
@@ -102,7 +102,7 @@ help "outfitter"
 	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
 
 help "outfitter 2"
-	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by either checking the "show outfits in cargo" box at the bottom left, or control-clicking on your selected ship to deselect it.`
+	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by either checking the "show outfits in cargo" box at the bottom left, or Control+clicking on your selected ship to deselect it.`
 	`When you are in 'purchase to cargo' mode, your ship information on the right hand side will be replaced by information on how much cargo space you currently have available.`
 	`Outfits that are in your cargo hold can be (re)installed at any outfitter without cost.`
 
