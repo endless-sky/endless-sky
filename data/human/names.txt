@@ -3102,10 +3102,30 @@ phrase "syndicate logistics"
 		"one to twelve"
 	phrase
 		"digit"
+	word
+		" rolls of "
 	phrase
-		" rolls of ${commodities counted by rolls}"
-		" casks of ${commodities counted by casks}"
-		" heads of ${commodities counted by heads}"
+		"commodities counted by rolls"
+
+phrase "syndicate logistics"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	word
+		" casks of "
+	phrase
+		"commodities counted by casks"
+		
+phrase "syndicate logistics"
+	phrase
+		"one to twelve"
+	phrase
+		"digit"
+	word
+		" heads of "
+	phrase
+		"commodities counted by heads"
 		
 phrase "syndicate logistics"
 	phrase
