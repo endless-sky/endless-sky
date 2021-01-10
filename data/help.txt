@@ -78,7 +78,7 @@ help "map advanced ports"
 
 help "map advanced shops"
 	`Both the Shipyard and Outfitter panels give the same information: A catalog of any items you've seen in your career, providing detailed statistics at any time. Items will be in categories on the left side of the screen, which can be collapsed individually, or all at once with shift-click on a category name. You can also use the "Find" button in the bottom right to search by name.`
-	`When selecting an item, the details will appear in the top-right. Ports which sell it will be colored yellow, while ports with the correct shop but not the item will teal. You can compare what you've selected with a second item with shift-click, which will put both details side-by-side.`
+	`When selecting an item, the details will appear in the top-right. Ports which sell it will be colored yellow, while ports with the correct shop but not the item will be colored teal. You can compare what you've selected with a second item with shift-click, which will put both details side-by-side.`
 
 help "multiple ships"
 	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship. In the player info panel you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
@@ -98,7 +98,7 @@ help "outfitter"
 	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
 	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
 	`Use your scroll wheel, or click and drag, to scroll the view.`
-	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5 or 20 or 500 of an outfit at once, or multiple keys for larger amounts.`
+	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
 
 help "outfitter 2"
 	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by either checking the "show outfits in cargo" box at the bottom left, or control-clicking on your selected ship to deselect it.`
