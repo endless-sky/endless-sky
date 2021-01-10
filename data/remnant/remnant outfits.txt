@@ -477,7 +477,7 @@ outfit "Anvil-Class Engine"
 	"thrust" 13.5
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 352.8
+	"turn" 369.6
 	"turning energy" 1.05
 	"turning heat" 1.1
 	"reverse thrust" 8.1
@@ -576,10 +576,10 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 470.4
+	"turn" 492.8
 	"turning energy" 1.32
 	"turning heat" 1.4
-	"slowing resistance" 0.01
+	"slowing resistance" 0.005
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
@@ -594,10 +594,10 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 999.6
+	"turn" 1047.2
 	"turning energy" 2.64
 	"turning heat" 3.0
-	"slowing resistance" 0.02
+	"slowing resistance" 0.01
 	"steering flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"steering flare sound" "plasma small"
@@ -612,10 +612,10 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 2079
+	"turn" 2178
 	"turning energy" 5.21
 	"turning heat" 6.2
-	"slowing resistance" 0.04
+	"slowing resistance" 0.02
 	"steering flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"steering flare sound" "plasma medium"
