@@ -490,6 +490,9 @@ outfit "Anvil-Class Engine"
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This tiny set of engines was designed specifically for craft so small that it combines both thrusters and steering into one unit."
 
 outfit "Crucible-Class Thruster"
@@ -511,6 +514,9 @@ outfit "Crucible-Class Thruster"
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "These small but powerful engines are driven by ionized gas propelled at a sizable fraction of the speed of light."
 
 outfit "Forge-Class Thruster"
@@ -532,6 +538,9 @@ outfit "Forge-Class Thruster"
 	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"flare sound" "plasma small"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma small"
 	description "The Remnant have taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
 
 outfit "Smelter-Class Thruster"
@@ -553,6 +562,9 @@ outfit "Smelter-Class Thruster"
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"flare sound" "plasma medium"
+	"reverse flare sprite" "effect/remnant flare/medium"
+		"frame rate" 5
+	"reverse flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
 
 outfit "Crucible-Class Steering"
