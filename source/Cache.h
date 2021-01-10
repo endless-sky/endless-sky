@@ -24,7 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class CacheBase {
 public:
 	CacheBase() = default;
-	virtual ~CacheBase() noexcept = default;
+	virtual ~CacheBase() = default;
 	
 	// Set an interval to change the generations.
 	// An auto expired cache may recycle a value after changing 2 generations.
@@ -36,6 +36,8 @@ public:
 	static void Step();
 	
 protected:
+	CacheBase &operator=(CacheBase &a) noexcept = default;
+	
 	// Register an instance of CacheBase when constructing it.
 	static void RegisterCacheObject(CacheBase *cacheObject);
 	// Unregister an instance of CacheBase when destructing it.
@@ -73,7 +75,7 @@ template<class Key, class T, bool autoExpired = false, class Hash = std::hash<Ke
 class Cache : public CacheBase {
 public:
 	Cache();
-	virtual ~Cache() noexcept;
+	virtual ~Cache();
 	// Don't copy this instance.
 	Cache(const Cache &a) = delete;
 	Cache &operator=(const Cache &a) = delete;
@@ -146,7 +148,7 @@ Cache<Key, T, autoExpired, Hash, AtRecycle>::Cache()
 
 
 template<class Key, class T, bool autoExpired, class Hash, class AtRecycle>
-Cache<Key, T, autoExpired, Hash, AtRecycle>::~Cache() noexcept
+Cache<Key, T, autoExpired, Hash, AtRecycle>::~Cache()
 {
 	Clear();
 	UnregisterCacheObject(this);
@@ -170,6 +172,7 @@ Cache<Key, T, autoExpired, Hash, AtRecycle>
 	if(this == &a)
 		return *this;
 	Clear();
+	CacheBase::operator=(a);
 	const bool noExpired = a.expired == a.container.end();
 	const bool noReadyToRecycle = a.readyToRecycle == a.container.end();
 	container = std::move(a.container);
