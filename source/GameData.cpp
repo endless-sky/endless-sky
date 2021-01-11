@@ -1032,11 +1032,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
 		else if(key == "start")
-		{
-			StartConditions thisConditions = StartConditions();
-			thisConditions.Load(node);
-			startConditions.emplace_back(thisConditions);
-		}
+			startConditions.emplace_back(node);
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)

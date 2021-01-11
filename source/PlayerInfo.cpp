@@ -195,10 +195,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "start")
-		{
-			this->chosenStart = StartConditions();
 			chosenStart.Load(child);
-		}
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "basis")
@@ -292,11 +289,12 @@ void PlayerInfo::Load(const string &path)
 		}
 	}
 
-	// For old saves, default to the first start condition, which is always our default start.
-	if(!hasChosenStart && !GameData::Start().empty())
+	// For old saves, default to the first start condition, which is always
+	// our default start.
+	// It is not necessary to check whether GameData::Start().empty(),
+	// because that's already covered in main.cpp
+	if(!hasChosenStart)
 		chosenStart = GameData::Start().front(); 
-	else if (!hasChosenStart)
-		GameWindow::ExitWithError("An old save was loaded, but no start conditions were defined! Make sure you have installed the game correctly.");
 
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -621,6 +619,7 @@ const StartConditions &PlayerInfo::ChosenStart() const
 {
 	return chosenStart;
 }
+
 
 
 // Set the player's current start system, and mark that system as visited.

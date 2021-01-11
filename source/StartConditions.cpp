@@ -24,6 +24,13 @@ using namespace std;
 
 
 
+StartConditions::StartConditions(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void StartConditions::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)

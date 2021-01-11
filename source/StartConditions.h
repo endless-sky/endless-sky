@@ -29,22 +29,27 @@ class System;
 
 class StartConditions {
 public:
+	StartConditions() = default;
+	
+	// Implicit constructor
+	StartConditions(const DataNode &node);
+	
 	void Load(const DataNode &node);
 	// Finish loading the ship definitions.
 	void FinishLoading();
 	// Serialize the basic information of this start
 	void Save(DataWriter &out) const;
-
+	
 	Date GetDate() const;
 	const Planet *GetPlanet() const;
 	const System *GetSystem() const;
-
+	
 	// The sprite that will be outlined on StartConditionsPanel.cpp
 	const Sprite *GetSprite() const;
-
+	
 	const std::string GetName() const;
 	const std::string GetDescription() const;
-
+	
 	const Account &GetAccounts() const;
 	const ConditionSet &GetConditions() const;
 	const std::list<Ship> &Ships() const;
