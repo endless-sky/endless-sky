@@ -23,7 +23,6 @@ outfit "Ka'het Nullifier"
 			"frame rate" 15
 			"rewind"
 		sound "ionball"
-		"turn" 73
 		"fire effect" "finisher sparks" 20
 		"hit effect" "ionball ring" 15
 		"hit effect" "ionball impact"
@@ -38,6 +37,7 @@ outfit "Ka'het Nullifier"
 		"firing energy" 710
 		"firing force" 90
 		"firing heat" 160
+		"turn" 73
 		"shield damage" 120
 		"hull damage" 40
 		"ion damage" 150
@@ -234,19 +234,19 @@ outfit "Ka'het EMP Deployer"
 			"no repeat"
 		sound "torpedo"
 		ammo "EMP Torpedo"
+		stream
 		icon "icon/emp"
 		"fire effect" "emp torpedo fire" 5
 		"hit effect" "nuke explosion"
 		"hit effect" "emp ring" 30
 		"hit effect" "emp spark" 20
 		"die effect" "tiny explosion"
-		stream
+		"inaccuracy" 4
+		"velocity" 7
+		"lifetime" 300
 		"reload" 180
 		"firing energy" 540
 		"firing heat" 11
-		"inaccuracy" 4
-		"lifetime" 300
-		"velocity" 7
 		"acceleration" .7
 		"drag" .1
 		"turn" 2

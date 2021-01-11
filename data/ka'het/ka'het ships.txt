@@ -27,8 +27,8 @@ ship "Maeri'het"
 		"ramscoop" 0.58
 		"cargo space" 43
 		"outfit space" 383
-		"engine capacity" 86
 		"weapon capacity" 184
+		"engine capacity" 86
 		"energy capacity" 10000
 		"energy generation" 28.3
 		"heat generation" 32
@@ -128,8 +128,8 @@ ship "Telis'het"
 		"ramscoop" 0.82
 		"cargo space" 71
 		"outfit space" 673
-		"engine capacity" 138
 		"weapon capacity" 254
+		"engine capacity" 138
 		"energy capacity" 28000
 		"energy generation" 37.4
 		"heat generation" 40
@@ -265,8 +265,8 @@ ship "Vareti'het"
 		"ramscoop" 0.97
 		"cargo space" 108
 		"outfit space" 914
-		"engine capacity" 150
 		"weapon capacity" 372
+		"engine capacity" 150
 		"energy capacity" 41000
 		"energy generation" 61.2
 		"heat generation" 46
@@ -455,8 +455,8 @@ ship "Selii'mar"
 		"heat dissipation" 1.1
 		"cargo space" 14
 		"outfit space" 77
-		"engine capacity" 21
 		"weapon capacity" 18
+		"engine capacity" 21
 		weapon
 			"blast radius" 48
 			"shield damage" 320
