@@ -11,11 +11,7 @@
 		4C2DEF56201B8FAE0062315E /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; };
 		4C2DEF57201B90310062315E /* libSDL2-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
-<<<<<<< HEAD
-		54FF4AA4A9DDEBA0B73B5D8C /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA14740899716D635882CF5 /* StartConditionsPanel.cpp */; };
-=======
 		5AB644C9B37C15C989A9DBE9 /* DisplayText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E1E458DB603BF979429117C /* DisplayText.cpp */; };
->>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
@@ -152,10 +148,7 @@
 		A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
-<<<<<<< HEAD
-=======
 		AFF742E3BAA4AD9A5D001460 /* alignment.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 13B643F6BEC24349F9BC9F42 /* alignment.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
->>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 		B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55C239B2303CE8A005C1A14 /* GameWindow.cpp */; };
 		B590161321ED4A0F00799178 /* Utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590161121ED4A0E00799178 /* Utf8.cpp */; };
 		B5DDA6942001B7F600DBA76A /* News.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DDA6922001B7F600DBA76A /* News.cpp */; };
@@ -195,11 +188,7 @@
 		4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "/usr/local/lib/libSDL2-2.0.0.dylib"; sourceTree = "<absolute>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
 		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		5CA14740899716D635882CF5 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
-=======
 		5CE3475B85CE8C48D98664B7 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = source/Test.h; sourceTree = "<group>"; };
->>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 		6245F8231D301C7400A7A094 /* Body.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Body.cpp; path = source/Body.cpp; sourceTree = "<group>"; };
 		6245F8241D301C7400A7A094 /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Body.h; path = source/Body.h; sourceTree = "<group>"; };
 		6245F8261D301C9000A7A094 /* Hardpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hardpoint.cpp; path = source/Hardpoint.cpp; sourceTree = "<group>"; };
@@ -463,20 +452,12 @@
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B55C239B2303CE8A005C1A14 /* GameWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameWindow.cpp; path = source/GameWindow.cpp; sourceTree = "<group>"; };
 		B55C239C2303CE8A005C1A14 /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameWindow.h; path = source/GameWindow.h; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		B590161121ED4A0E00799178 /* Utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8.cpp; path = source/Utf8.cpp; sourceTree = "<group>"; };
-		B590161221ED4A0F00799178 /* Utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utf8.h; path = source/Utf8.h; sourceTree = "<group>"; };
-		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
-		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
-		BEEF47DB8404473133800550 /* StartConditionsPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartConditionsPanel.h; path = source/StartConditionsPanel.h; sourceTree = "<group>"; };
-=======
 		B590161121ED4A0E00799178 /* Utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8.cpp; path = source/text/Utf8.cpp; sourceTree = "<group>"; };
 		B590161221ED4A0F00799178 /* Utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utf8.h; path = source/text/Utf8.h; sourceTree = "<group>"; };
 		B590162021ED4A0F00799178 /* DisplayText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayText.h; path = source/text/DisplayText.h; sourceTree = "<group>"; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
 		C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hazard.cpp; path = source/Hazard.cpp; sourceTree = "<group>"; };
->>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
 		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
 		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
@@ -769,10 +750,6 @@
 				A968639D1AE6FD0D004FE1FE /* Weapon.h */,
 				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
 				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
-<<<<<<< HEAD
-				5CA14740899716D635882CF5 /* StartConditionsPanel.cpp */,
-				BEEF47DB8404473133800550 /* StartConditionsPanel.h */,
-=======
 				2E8047A8987DD8EC99FF8E2E /* Test.cpp */,
 				02D34A71AE3BC4C93FC6865B /* TestData.cpp */,
 				9DA14712A9C68E00FBFD9C72 /* TestData.h */,
@@ -785,7 +762,6 @@
 				2E644A108BCD762A2A1A899C /* Hazard.h */,
 				8E8A4C648B242742B22A34FA /* Weather.cpp */,
 				F8C14CFB89472482F77C051D /* Weather.h */,
->>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1066,15 +1042,11 @@
 				A96863CE1AE6FD0E004FE1FE /* LoadPanel.cpp in Sources */,
 				A96863A41AE6FD0E004FE1FE /* Armament.cpp in Sources */,
 				A96863F01AE6FD0E004FE1FE /* Screen.cpp in Sources */,
-<<<<<<< HEAD
-				54FF4AA4A9DDEBA0B73B5D8C /* StartConditionsPanel.cpp in Sources */,
-=======
 				9E1F4BF78F9E1FC4C96F76B5 /* Test.cpp in Sources */,
 				C7354A3E9C53D6C5E3CC352F /* TestData.cpp in Sources */,
 				5AB644C9B37C15C989A9DBE9 /* DisplayText.cpp in Sources */,
 				C4264774A89C0001B6FFC60E /* Hazard.cpp in Sources */,
 				94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */,
->>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
