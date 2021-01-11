@@ -257,9 +257,9 @@ ship "Vareti'het"
 		"shields" 42300
 		"hull" 25800
 		"required crew" 1
-		bunks 1
-		mass 1520
-		drag 11.9
+		"bunks" 1
+		"mass" 1520
+		"drag" 11.9
 		"heat dissipation" 0.3
 		"fuel capacity" 700
 		"ramscoop" 0.97
@@ -273,29 +273,25 @@ ship "Vareti'het"
 		"hull repair" 0.55
 		"shield heat" 11.3
 	outfits
-		Hyperdrive
+		"Ka'het Nullifier"
+		"Ka'het Annihilator" 4
 		"Ka'het Ravager Beam" 2
 		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 4
+		
 		"Ka'het Grand Restorer" 2
 		"Ka'het MHD Generator" 6
-		"Ka'het Nullifier"
-		"Ka'het Ravager Turret" 4
 		"Ka'het Reserve Accumulator" 11
-		"Ka'het Annihilator" 4
-		"Vareti Engine Block"
 		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
 
 	engine -50 128
 	engine 50 128
 	engine -23.5 132 0.8
 	engine 23.5 132 0.8
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4 "Ka'het Ravager Turret"
-	turret 14 -4 "Ka'het Ravager Turret"
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5 "Ka'het Ravager Turret"
 	gun 0 -141 "Ka'het Nullifier"
 	gun -72.5 -61.5 "Ka'het Annihilator"
 	gun 72.5 -61.5 "Ka'het Annihilator"
@@ -303,6 +299,12 @@ ship "Vareti'het"
 	gun 72.5 -61.5 "Ka'het Annihilator"
 	gun -52.5 -122 "Ka'het Ravager Beam"
 	gun 52.5 -122 "Ka'het Ravager Beam"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4 "Ka'het Ravager Turret"
+	turret 14 -4 "Ka'het Ravager Turret"
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5 "Ka'het Ravager Turret"
 	explode "small explosion" 40
 	explode "medium explosion" 36
 	explode "large explosion" 28
@@ -315,26 +317,22 @@ ship "Vareti'het" "Vareti'het (Disable-able)"
 ship "Vareti'het" "Vareti'het (EMP)"
 	"never disabled"
 	outfits
-		Hyperdrive
 		"Ka'het Nullifier"
 		"Ka'het Ravager Beam" 4
 		"Ka'het Annihilator Turret" 4
-		"Ka'het Grand Restorer" 2
-		"Ka'het MHD Generator" 6
 		"Ka'het Ravager Turret"
-		"Ka'het Reserve Accumulator" 8
-		"Vareti Engine Block"
-		"Ka'het Primary Cooling"
-		"Ka'het Support Cooling"
 		"Ka'het EMP Deployer" 2
 		"EMP Torpedo" 32
+		
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Reserve Accumulator" 8
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
 
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4 "Ka'het Annihilator Turret"
-	turret 14 -4 "Ka'het Annihilator Turret"
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5
 	gun 0 -141 "Ka'het Nullifier"
 	gun -72.5 -61.5 "Ka'het EMP Deployer"
 	gun 72.5 -61.5 "Ka'het EMP Deployer"
@@ -342,29 +340,31 @@ ship "Vareti'het" "Vareti'het (EMP)"
 	gun 72.5 -61.5 "Ka'het Ravager Beam"
 	gun -52.5 -122 "Ka'het Ravager Beam"
 	gun 52.5 -122 "Ka'het Ravager Beam"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4 "Ka'het Annihilator Turret"
+	turret 14 -4 "Ka'het Annihilator Turret"
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5
 
 ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
 	outfits
-		Hyperdrive
 		"Ka'het Nullifier"
 		"Ka'het Ravager Beam" 4
 		"Ka'het Annihilator Turret" 4
-		"Ka'het Grand Restorer" 2
-		"Ka'het MHD Generator" 6
 		"Ka'het Ravager Turret"
-		"Ka'het Reserve Accumulator" 8
-		"Vareti Engine Block"
-		"Ka'het Primary Cooling"
-		"Ka'het Support Cooling"
 		"Ka'het EMP Deployer" 2
 		"EMP Torpedo" 32
+		
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Reserve Accumulator" 8
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
 
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4 "Ka'het Annihilator Turret"
-	turret 14 -4 "Ka'het Annihilator Turret"
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5
 	gun 0 -141 "Ka'het Nullifier"
 	gun -72.5 -61.5 "Ka'het EMP Deployer"
 	gun 72.5 -61.5 "Ka'het EMP Deployer"
@@ -372,27 +372,29 @@ ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
 	gun 72.5 -61.5 "Ka'het Ravager Beam"
 	gun -52.5 -122 "Ka'het Ravager Beam"
 	gun 52.5 -122 "Ka'het Ravager Beam"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4 "Ka'het Annihilator Turret"
+	turret 14 -4 "Ka'het Annihilator Turret"
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5
 
 ship "Vareti'het" "Vareti'het (Strong)"
 	"never disabled"
 	outfits
-		Hyperdrive
+		"Ka'het Nullifier"
+		"Ka'het Annihilator" 6
 		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 2
+		
 		"Ka'het Grand Restorer" 3
 		"Ka'het MHD Generator" 7
-		"Ka'het Nullifier"
-		"Ka'het Ravager Turret" 2
-		"Ka'het Annihilator" 6
-		"Vareti Engine Block"
 		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
 
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4
-	turret 14 -4
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5 "Ka'het Ravager Turret"
 	gun 0 -141 "Ka'het Nullifier"
 	gun -72.5 -61.5 "Ka'het Annihilator"
 	gun 72.5 -61.5 "Ka'het Annihilator"
@@ -400,26 +402,28 @@ ship "Vareti'het" "Vareti'het (Strong)"
 	gun 72.5 -61.5 "Ka'het Annihilator"
 	gun -52.5 -122 "Ka'het Annihilator"
 	gun 52.5 -122 "Ka'het Annihilator"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4
+	turret 14 -4
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5 "Ka'het Ravager Turret"
 
 ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
 	outfits
-		Hyperdrive
+		"Ka'het Nullifier"
+		"Ka'het Annihilator" 6
 		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 2
+		
 		"Ka'het Grand Restorer" 3
 		"Ka'het MHD Generator" 7
-		"Ka'het Nullifier"
-		"Ka'het Ravager Turret" 2
-		"Ka'het Annihilator" 6
-		"Vareti Engine Block"
 		"Ka'het Primary Cooling"
 		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
 
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4
-	turret 14 -4
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5 "Ka'het Ravager Turret"
 	gun 0 -141 "Ka'het Nullifier"
 	gun -72.5 -61.5 "Ka'het Annihilator"
 	gun 72.5 -61.5 "Ka'het Annihilator"
@@ -427,6 +431,12 @@ ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
 	gun 72.5 -61.5 "Ka'het Annihilator"
 	gun -52.5 -122 "Ka'het Annihilator"
 	gun 52.5 -122 "Ka'het Annihilator"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4
+	turret 14 -4
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5 "Ka'het Ravager Turret"
 
 ship "Selii'mar"
 	sprite "ship/selii'mar"
