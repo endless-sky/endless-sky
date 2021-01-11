@@ -326,6 +326,17 @@ void PlayerInfo::Load(const string &path)
 		travelPlan.clear();
 		travelDestination = nullptr;
 	}
+	// Validate the missions that were loaded. Active-but-invalid missions are removed from
+	// the standard mission list, effectively pausing them until necessary data is restored. 
+	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
+	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
+	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
+	if(mit != missions.end())
+		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
+	// Invalid available jobs or missions are erased (since there is no guarantee
+	// the player will be on the correct planet when a plugin is re-added).
+	availableJobs.remove_if(isInvalidMission);
+	availableMissions.remove_if(isInvalidMission);
 	
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -1216,6 +1227,23 @@ void PlayerInfo::Land(UI *ui)
 		CreateMissions();
 		// Check if the player is doing anything illegal.
 		Fine(ui);
+	}
+	// Upon loading the game, prompt the player about any paused missions, but if there are many
+	// do not name them all (since this would overflow the screen).
+	else if(ui && !inactiveMissions.empty())
+	{
+		string message = "These active missions or jobs were deactivated due to a missing definition - perhaps you recently removed a plugin?\n";
+		auto mit = inactiveMissions.rbegin();
+		int named = 0;
+		while(mit != inactiveMissions.rend() && (++named < 10))
+		{
+			message += "\t\"" + mit->Name() + "\"\n";
+			++mit;
+		}
+		if(mit != inactiveMissions.rend())
+			message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
+		message += "They will be reactivated when the necessary plugin is reinstalled.";
+		ui->Push(new Dialog(message));
 	}
 	
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
@@ -2526,8 +2554,6 @@ void PlayerInfo::CreateMissions()
 
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
-// Whether loading or landing, any missions that utilize components that are not
-// fully defined (e.g. a system from a now-removed plugin) are made inactive.
 void PlayerInfo::StepMissions(UI *ui)
 {
 	// Check for NPCs that have been destroyed without their destruction
@@ -2538,38 +2564,7 @@ void PlayerInfo::StepMissions(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
-	// Move all invalid missions to the end of the mission list, so they may be easily removed.
-	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
-	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
-	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
-	if(mit != missions.end())
-	{
-		if(ui)
-		{
-			// Prompt the player about any paused missions, but if there are many
-			// do not name them all (since this would overflow the screen).
-			string message = "These active missions or jobs were deactivated due to a missing definition - perhaps you recently removed a plugin?\n";
-			auto it = mit;
-			int named = 0;
-			while(it != missions.end() && (++named < 10))
-			{
-				message += "\t\"" + (*it).Name() + "\"\n";
-				++it;
-			}
-			if(it != missions.end())
-				message += " and " + to_string(distance(it, missions.end())) + " more.\n";
-			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui->Push(new Dialog(message));
-		}
-		// Store any invalid missions on the inactive list.
-		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
-	}
-	// Invalid available jobs or missions are erased (since there is no guarantee
-	// the player will be on the correct planet when a plugin is re-added).
-	availableJobs.remove_if(isInvalidMission);
-	availableMissions.remove_if(isInvalidMission);
-	
-	// Check the remaining, valid missions for status changes from landing.
+	// Check missions for status changes from landing.
 	string visitText;
 	int missionVisits = 0;
 	auto substitutions = map<string, string>{
@@ -2579,7 +2574,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	if(Flagship())
 		substitutions["<ship>"] = Flagship()->Name();
 	
-	mit = missions.begin();
+	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
 		Mission &mission = *mit;
