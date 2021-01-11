@@ -272,6 +272,11 @@ ship "Vareti'het"
 		"heat generation" 46
 		"hull repair" 0.55
 		"shield heat" 11.3
+		weapon
+			"blast radius" 400
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2100
 	outfits
 		Hyperdrive
 		"Ka'het Ravager Beam" 2
