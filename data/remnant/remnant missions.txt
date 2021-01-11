@@ -1370,16 +1370,6 @@ mission "Remnant: Deep Surveillance"
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreed to bring us this information, but we can not allow another situation like this to occur."`
 				accept
 	
-	# Suspicion == 0: Get everything
-		# surveillance
-	# Suspicion == 1: Get exactly what's asked for no trouble
-		# first time, knew after, brought tech
-	# Suspicion == 2: Get what's asked for, slight suspicion
-		# first time, knew after, no tech || first time, knew before, brought tech
-	# Suspicion == 3: Get old info, suspicious
-		# first time, knew before, no tech || second time, knew before, brought tech
-	# Suspicion == 4: Confronted, get nothing
-		# second time, knew before, no tech
 	on stopover
 		"retrieved information" ++
 		conversation
@@ -1694,13 +1684,59 @@ mission "Remnant: Deep Surveillance"
 	on complete
 		payment 1000000
 		conversation
-			branch "retrieved before"
+			`	You head to the information desk. Torza shows up.`
+			
+			branch terminus
+				"retrieved information" == 1
+				has "remnant: got deep anomaly research"
+			
+			branch sprites
+				has "remnant: got deep wormhole and sprite research"
+			
+			branch everything
+				has "remnant: got all deep research"
+			
+			branch research
+				has "remnant: got deep research"
+			
+			branch old
+				"retrieved information" == 1
+				has "remnant: got old research"
+			
+			branch repeat
 				"retrieved information" == 2
+				has "remnant: got old research"
 			
-			`	...`
+			branch nothing
+				has "remnant: got no deep research"
 			
-			label "retrieved before"
-			`	...`
+			label terminus
+			`	Torza looks at the information. "Cool stuff. Inform us if they make any further progress."`
+				decline
+			
+			label sprites
+			`	Torza looks at the information. "Cool stuff. We'll keep an eye on the wormhole in case they venture further into the Ember Waste."`
+				decline
+			
+			label everything
+			`	Torza looks at the information. "We now know everything that they know. This is good."`
+				decline
+			
+			label research
+			`	Torza looks at the information. "They know some of our capabilities."`
+				decline
+			
+			label old
+			`	Torza looks at the information. "There is nothing here but research on the wormhole. You sure you got the right stuff?"`
+				decline
+			
+			label repeat
+			`	Torza looks at the information. "This is what you gave us last time. Is this some sort of joke?"`
+				decline
+			
+			label nothing
+			`	Torza is disappointed in your failure. "If he knows that we're onto him, then this is a dangerous situation."`
+				decline
 
 
 
