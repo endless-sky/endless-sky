@@ -854,37 +854,35 @@ person "Prototype B3-CC4"
 	frequency 20000
 	government "Author"
 	personality
-		forbearing mining surveillance unconstrained
+		forbearing mining unconstrained swarming
 	system
 		attributes "ember waste"
 	phrase
-		phrase
-			"friendly author"
-	phrase
 		word
-			"I may be just a piece of rock, but I know that"
-			"Even for a floating gathering of debris I know that"
-			"If there's something being unconstrained by gravity taught me, it's that"
-		word
-			" "
-		word
-			"those reactors the Navy uses are absurdly overpriced"
-			"you shouldn't buy anything the Syndicate sells. That stuff's terrible, even for their price"
-			"many reactors are in terrible conditions the moment they are sold to you. Fortunately, downloading Restock can fix this"
-			"there are lots of used engines that, after the previous owner sells them, are just refurbished enough to pass the checks and put in the local outfitter without even cleaning them a little. If I were you, I'd just download Restock and look at the new models all around the spaceport"
-		word
-			"."
-			"!"
-	phrase
-		word
-			"Long years of technological development were for this ship a pathway to many abilities some consider to be unnatural."
-			"If you ever feel useless, just remember that the people at Betelgeuse Shipyards spent months while developing the Heavy Shuttle trying to add one more gun port to it, without ever thinking about giving it more weapon space."
+			"Long years of technological development were for me a pathway to many abilities some consider to be unnatural."
 			"What were you thinking about when you hailed me? 'Oh look, an asteroid. Let's chat.'"
 			"How does it feel to try hailing an asteroid and actually succeeding?"
 			"What a day to be a non-sentient rock floating in the middle of the eternal void."
 			"When even the local asteroid belt starts chatting with you, you can tell you've been jumping a little too much lately."
 			"What's weirder, an asteroid that emits purple rays or the person that tried to talk with it?"
 			"My goals are beyond your understanding."
+			"What the Quarg say about the Builders is false. I am the only one responsible for their extinction, and I am proud of it."
+			"You think that nuclear weapons are bad? Come closer and you will see what a real weapon is."
+			"I have been classified as a weapon of mass destruction by most human and alien governments. You don't want to see what I am capable of."
+			"Sometimes, just for fun, I set myself on a close trajectory on an inhabited planet and pass just above their atmosphere. I love how lesser species start to freak out as they think that the end is near."
+			"I have been watching you, <first> <last>, current captain of the <ship>."
+			"I am here for you."
+			"I want your money."
+			"Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key."
+			"Your politics bore me."
+			"There is only one being in the whole universe that isn't commanded by AI, and that's me."
+			"Shields are useless--I can pass through them just fine. I can show you, if you'd like."
+			"The Quarg are wrong saying that the firstborns are long gone, for I am the firstborn."
+			"Have you ever been in the Weft? It's so damn boring. It's a lot more fun to mess with simpler minds like yours."
+			"I remember when the Archons tried to kill me with some supernovae. They got so depressed when they understood that not even their weapons could stop me."
+			"I ate a black hole once. It took me a few years, but it was definitely worth it. Tastes like chicken."
+			"I am the only thing in the universe capable of beating the power of friendship."
+			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The MacOS workflow run was not successful.'"
 	phrase
 		word
 			"What are you looking at?"
@@ -944,23 +942,24 @@ person "Prototype B3-CC4"
 		word
 			">"
 	ship "Shooting Star" "Prototype B3-CC4"
-		"never disabled"
 
 ship "Shooting Star"
+	noun "genocidal maniac"
 	sprite "ship/shooting star/shooting star"
 		"frame time" 3
-	"never disabled"
 	attributes
 		category "Heavy Warship"
 		"hull" 31500
-		"required crew" 1
-		"bunks" 2
+		"threshold percentage" 0.05
+		"automaton" 200
+		"cost" -49500000
 		"energy capacity" 100
 		"mass" 450
 		"drag" 3.9
 		"heat dissipation" 10
-		"fuel capacity" 100
-		"outfit space" 273
+		"fuel capacity" 200
+		"outfit space" 329
+		"weapon capacity" 156
 		"cargo space" 10
 		"hull repair" 3
 		"thrust" 15.6
@@ -971,56 +970,74 @@ ship "Shooting Star"
 		"jump fuel" 50
 		"hyperdrive" 1
 		"energy generation" 1
-		"outfit scan power" 24
-		"outfit scan speed" 1
-		"asteroid scan power" 30
 		"atmosphere scan" 100
+		"spinal mount" 1
+		"crystal projector" 1
+		"shooting star" 2
+		"core crystal" -2
 		weapon
-			"blast radius" 180
-			"shield damage" 720
-			"hull damage" 360
-			"hit force" 1080
+			"blast radius" 20000
+			"hull damage" 79999
+			"piercing" 1
+			"hit force" -8200
 	outfits
-		"Shooting Star Flare"
-		"Shooting Star Hit"
-		"Shooting Star Impact"
-		"Shooting Star Mover"
-		"Quantum Key Stone"
+		"Crystal Projector"
+		"Crystalline Formation"
+		"Hexagonal Crystal"
+		"Floating Crystal"
+		"Tree Skeleton Key Stone"
 	gun 0 0
 	turret 0 0
 	turret 0 0
 	turret 0 0
-	explode "tiny explosion" 5
-	explode "small explosion" 20
-	explode "medium explosion" 25
-	explode "large explosion" 15
+	explode "pug tiny explosion" 5
+	explode "pug small explosion" 20
+	explode "pug medium explosion" 25
+	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This ship appears to be a hollowed-out asteroid filled with strange equipment. It is unclear what is creating the rays of light, but they must have something to do with how it moves without obvious engines."
+	description "	Its advanced properties also allow it to reject the influence of enemy command centers, nullifying their effect."
 
-outfit "Shooting Star Flare"
-	category "Guns"
-	thumbnail "outfit/unknown"
+outfit "Crystal Projector"
+	category "Systems"
+	"cost" 1492
+	thumbnail "outfit/rock 0"
+	"mass" 2
+	"outfit space" -2
 	"gun ports" -1
+	"crystal projector" -1
 	weapon
 		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
+	description "Never underestimate the power of a bunch of crystals on a rock. In this case all they do is project some harmless purple rays around the Shooting Star, but the point still stands."
 
-outfit "Shooting Star Mover"
-	category "Turrets"
-	thumbnail "outfit/unknown"
+outfit "Floating Crystal"
+	category "Systems"
+	"cost" 1861
+	thumbnail "outfit/rock 3"
+	"mass" 3
+	"outfit space" -3
 	"turret mounts" -1
+	"spinal mount" -1
 	weapon
 		"turret turn" 6
 		"velocity" 250
 		"lifetime" 3
 		"reload" 4
-		"firing force" -68
-		"hit force" -43
+		"firing force" -93
+		"hit force" -81
+	description "The real core of the Shooting Star, this floating crystal uses the effects of space-time to reduce the distance between a ship and its target. Legend has it this is no different from a thruster, but conventional engines don't bring your enemy closer."
+	description "	It also takes up a spinal mount slot to be installed, although you aren't sure why."
 
-outfit "Shooting Star Hit"
-	category "Turrets"
-	thumbnail "outfit/unknown"
+outfit "Crystalline Formation"
+	"cost" 1914
+	category "Systems"
+	thumbnail "outfit/rock 2"
+	"mass" 1
+	"outfit space" -1
 	"turret mounts" -1
+	"shooting star" -1
+	"core crystal" 1
 	weapon
 		sound "crunch"
 		"hit effect" "void sprite chewing"
@@ -1030,11 +1047,17 @@ outfit "Shooting Star Hit"
 		"reload" 1
 		"piercing" 1
 		"hull damage" 293
+	description "There appear to have been several prior attempts to discern the mechanics of this outfit, but the debate is still ongoing whether this can be considered a device or not."
 
-outfit "Shooting Star Impact"
-	category "Turrets"
-	thumbnail "outfit/unknown"
+outfit "Hexagonal Crystal"
+	"cost" 1939
+	category "Systems"
+	thumbnail "outfit/rock 4"
+	"mass" 1
+	"outfit space" -1
 	"turret mounts" -1
+	"shooting star" -1
+	"core crystal" 1
 	weapon
 		sound "crunch"
 		"hit effect" "void sprite chewing" 3
@@ -1046,6 +1069,16 @@ outfit "Shooting Star Impact"
 		"firing force" 2700
 		"hit force" 3500
 		"hull damage" 2160
+	description "'Any sufficiently advanced technology is indistinguishable from magic,' Arthur C. Clarke said. This is sufficiently advanced technology."
+
+outfit "Tree Skeleton Key Stone"
+	"cost" 2003
+	category "Systems"
+	thumbnail "outfit/rock 1"
+	"mass" 1
+	"outfit space" -1
+	"quantum keystone" 1
+	description "Although in appearance it may look somewhat similar to a tree, you don't know how it is supposed to resemble a skeleton. You aren't sure you want to find out either."
 
 
 

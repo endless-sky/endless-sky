@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "UI.h"
 
+#include <chrono>
 #include <iostream>
 #include <map>
 
@@ -195,6 +196,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	{
 		if(toggleTimeout)
 			--toggleTimeout;
+		chrono::steady_clock::time_point start = chrono::steady_clock::now();
 		
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
@@ -310,6 +312,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		GameWindow::Step();
 
 		timer.Wait();
+		
+		// If the player ended this frame in-game, count the elapsed time as played time.
+		if(menuPanels.IsEmpty())
+			player.AddPlayTime(chrono::steady_clock::now() - start);
 	}
 	
 	// If player quit while landed on a planet, save the game if there are changes.

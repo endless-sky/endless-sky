@@ -310,7 +310,23 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "object")
 			LoadObject(child, planets);
 		else if(key == "arrival")
-			extraArrivalDistance = child.Value(valueIndex);
+		{
+			if(child.Size() >= 2)
+			{
+				extraHyperArrivalDistance = child.Value(1);
+				extraJumpArrivalDistance = fabs(child.Value(1));
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
+					extraHyperArrivalDistance = grand.Value(1);
+				else if(type == "jump" && grand.Size() >= 2)
+					extraJumpArrivalDistance = fabs(grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -484,9 +500,17 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 // Additional travel distance to target for ships entering through hyperspace.
-double System::ExtraArrivalDistance() const
+double System::ExtraHyperArrivalDistance() const
 {
-	return extraArrivalDistance;
+	return extraHyperArrivalDistance;
+}
+
+
+
+// Additional travel distance to target for ships entering using a jumpdrive.
+double System::ExtraJumpArrivalDistance() const
+{
+	return extraJumpArrivalDistance;
 }
 
 

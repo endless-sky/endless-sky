@@ -20,8 +20,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <limits>
@@ -159,6 +161,8 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 void MapShipyardPanel::DrawItems()
 {
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	for(const string &category : categories)
