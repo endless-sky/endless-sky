@@ -59,12 +59,8 @@ private:
 	
 	std::string system;
 	std::string planet;
-<<<<<<< HEAD
-
 	StartConditions chosenStart;
-=======
 	std::string playTime;
->>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 	
 	const Sprite *shipSprite = nullptr;
 	std::string shipName;

@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ES_TEXT_WRAPPEDTEXT_H_
 #define ES_TEXT_WRAPPEDTEXT_H_
 
-#include "Point.h"
 #include "alignment.hpp"
 #include "DisplayText.h"
 #include "../Point.h"

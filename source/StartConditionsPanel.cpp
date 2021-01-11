@@ -19,9 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
 #include "GameData.h"
 #include "GameWindow.h"
 #include "Information.h"
@@ -36,8 +33,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "System.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
+#include "text/layout.hpp"
+#include "text/truncate.hpp"
+#include "text/WrappedText.h"
 #include "UI.h"
-#include "WrappedText.h"
 
 #include <SDL2/SDL.h>
 
@@ -118,7 +122,7 @@ void StartConditionsPanel::Draw()
 	
 	WrappedText text = WrappedText(font);
 	
-	text.SetAlignment(WrappedText::LEFT);
+	text.SetAlignment(Alignment::LEFT);
 	text.SetWrapWidth(210);
 	text.Wrap(descriptionText);
 	
@@ -159,7 +163,7 @@ void StartConditionsPanel::Draw()
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 		}
 		
-		string name = font.Truncate(it.GetName(), entryInternalBox.Width());
+		DisplayText name = DisplayText(it.GetName(), Truncate::BACK);
 		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., entryBox.Height());
 	}

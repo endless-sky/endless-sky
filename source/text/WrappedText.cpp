@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DisplayText.h"
 #include "Font.h"
-#include "Screen.h"
+#include "../Screen.h"
 
 #include <cstring>
 
@@ -147,15 +147,6 @@ int WrappedText::Height() const
 
 
 
-// Draw the text.
-void WrappedText::Draw(const Point &topLeft, const Color &color) const
-{
-	for(const Word &w : words)
-		font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
-}
-
-
-
 // Draw the text, but make sure no pixels are drawn outside the bounds
 void WrappedText::Draw(const Point &topLeft, const Rectangle &bounds, const Color &color) const
 {
@@ -172,8 +163,8 @@ void WrappedText::Draw(const Point &topLeft, const Rectangle &bounds, const Colo
 
 
 
-WrappedText::Word::Word()
-	: index(0), x(0), y(0)
+// Draw the text.
+void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	if(words.empty())
 		return;
@@ -203,6 +194,7 @@ size_t WrappedText::Word::Index() const
 {
 	return index;
 }
+
 
 
 
