@@ -854,7 +854,7 @@ person "Prototype B3-CC4"
 	frequency 20000
 	government "Author"
 	personality
-		forbearing mining surveillance unconstrained swarming
+		forbearing mining unconstrained swarming
 	system
 		attributes "ember waste"
 	phrase
@@ -876,11 +876,11 @@ person "Prototype B3-CC4"
 			"Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key."
 			"Your politics bore me."
 			"There is only one being in the whole universe that isn't commanded by AI, and that's me."
-			"Shields are useless, I can pass through them just fine. I can show you if you want."
+			"Shields are useless--I can pass through them just fine. I can show you, if you'd like."
 			"The Quarg are wrong saying that the firstborns are long gone, for I am the firstborn."
 			"Have you ever been in the Weft? It's so damn boring. It's a lot more fun to mess with simpler minds like yours."
-			"I remember when the Archons tried to kill me blowing up some supernovae. They got so depressed when they understood that not even their weapons could stop me."
-			"I ate a black hole once. It took me a few years, but it was definetly worth it. Tastes like chicken."
+			"I remember when the Archons tried to kill me with some supernovae. They got so depressed when they understood that not even their weapons could stop me."
+			"I ate a black hole once. It took me a few years, but it was definitely worth it. Tastes like chicken."
 			"I am the only thing in the universe capable of beating the power of friendship."
 			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The MacOS workflow run was not successful.'"
 	phrase
@@ -970,8 +970,6 @@ ship "Shooting Star"
 		"jump fuel" 50
 		"hyperdrive" 1
 		"energy generation" 1
-		"tactical scan power" 20
-		"asteroid scan power" 30
 		"atmosphere scan" 100
 		"spinal mount" 1
 		"crystal projector" 1
@@ -1011,7 +1009,7 @@ outfit "Crystal Projector"
 	weapon
 		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
-	description "Never underestimate the power of a bunch of crystals on a rock. In this case all they do is projecting some purple harmless rays around the Shooting Star, but the point still stands."
+	description "Never underestimate the power of a bunch of crystals on a rock. In this case all they do is project some harmless purple rays around the Shooting Star, but the point still stands."
 
 outfit "Floating Crystal"
 	category "Systems"
@@ -1028,7 +1026,7 @@ outfit "Floating Crystal"
 		"reload" 4
 		"firing force" -93
 		"hit force" -81
-	description "The real core of the Shooting Star, this floating crystal has the power of using the effects of space-time to reduce the distance between a ship and its target. Legend has it this is no different from a thruster, but conventional engines don't bring your enemy closer."
+	description "The real core of the Shooting Star, this floating crystal uses the effects of space-time to reduce the distance between a ship and its target. Legend has it this is no different from a thruster, but conventional engines don't bring your enemy closer."
 	description "	It also takes up a spinal mount slot to be installed, although you aren't sure why."
 
 outfit "Crystalline Formation"
@@ -1049,7 +1047,7 @@ outfit "Crystalline Formation"
 		"reload" 1
 		"piercing" 1
 		"hull damage" 293
-	description "There appears to have been various attempts in the past to discover the workings of this outfit, but the debate is still ongoing wether this can be considered a device or not."
+	description "There appear to have been several prior attempts to discern the mechanics of this outfit, but the debate is still ongoing whether this can be considered a device or not."
 
 outfit "Hexagonal Crystal"
 	"cost" 1939
