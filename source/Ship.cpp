@@ -639,7 +639,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!undefinedOutfits.empty())
 	{
 		// Print the ship name once, then all undefined outfits.
-		string message = "ship " + modelName + " \"" + name + "\":";
+		string message = (isYours ? "Player ship " : "Stock ship ") + modelName + " \"" + name + "\":";
 		string PREFIX = undefinedOutfits.size() > 1 ? "\n\tUndefined outfit " : " undefined outfit ";
 		for(const string &outfit : undefinedOutfits)
 			message += PREFIX + outfit;
