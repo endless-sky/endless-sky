@@ -2556,7 +2556,7 @@ void PlayerInfo::StepMissions(UI *ui)
 				message += "\t\"" + (*it).Name() + "\"\n";
 				++it;
 			}
-			if(named >= 10 && it != missions.end())
+			if(it != missions.end())
 				message += " and " + to_string(distance(it, missions.end())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
 			ui->Push(new Dialog(message));
