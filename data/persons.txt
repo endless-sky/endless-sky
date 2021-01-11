@@ -944,7 +944,6 @@ person "Prototype B3-CC4"
 	ship "Shooting Star" "Prototype B3-CC4"
 
 ship "Shooting Star"
-	plural "Shootings Star"
 	noun "genocidal maniac"
 	sprite "ship/shooting star/shooting star"
 		"frame time" 3
