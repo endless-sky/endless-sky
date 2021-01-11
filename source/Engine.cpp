@@ -18,12 +18,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hazard.h"
 #include "Interface.h"
 #include "MapPanel.h"
 #include "Mask.h"
@@ -52,7 +53,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
-#include "WrappedText.h"
+#include "Weather.h"
+#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -227,7 +229,7 @@ Engine::Engine(PlayerInfo &player)
 	// Add all neighboring systems to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
 	const set<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
-		player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+		player.GetSystem()->JumpNeighbors(flagship->JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
 		radar[calcTickTock].AddPointer(
 			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
@@ -346,9 +348,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 {
 	for(const NPC &npc : npcs)
 	{
-		// If this NPC has failed its spawn conditions or passed its despawn
-		// conditions, don't place it.
-		if(!npc.PassedSpawn() || npc.PassedDespawn())
+		if(!npc.ShouldSpawn())
 			continue;
 		
 		map<string, map<Ship *, int>> carriers;
@@ -510,7 +510,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 		highlightSprite = nullptr;
-		
+	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
 	if(flagship && flagship->GetPlanet() && isActive)
@@ -606,7 +606,7 @@ void Engine::Step(bool isActive)
 	{
 		for(const StellarObject &object : currentSystem->Objects())
 		{
-			if(!object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
+			if(!object.HasSprite() || !object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
 				continue;
 			
 			Point pos = object.Position() - center;
@@ -718,11 +718,10 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		const Font &font = FontSet::Get(14);
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
-		info.SetString("target name", font.TruncateMiddle(target->Name(), 150));
+		info.SetString("target name", target->Name());
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
@@ -950,12 +949,14 @@ void Engine::Draw() const
 		Angle a = target.angle;
 		Angle da(360. / target.count);
 		
+		PointerShader::Bind();
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Draw(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
+			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
 				Radar::GetColor(target.type));
 			a += da;
 		}
+		PointerShader::Unbind();
 	}
 	
 	// Draw the heads-up display.
@@ -1180,12 +1181,26 @@ void Engine::EnterSystem()
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
 	
-	// Place five seconds worth of fleets. Check for undefined fleets by not
-	// trying to create anything with no government set.
+	// Clear any active weather events
+	activeWeather.clear();
+	// Place five seconds worth of fleets and weather events. Check for
+	// undefined fleets by not trying to create anything with no
+	// government set.
 	for(int i = 0; i < 5; ++i)
+	{
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, newShips);
+		for(const System::HazardProbability &hazard : system->Hazards())
+			if(Random::Int(hazard.Period()) < 60)
+			{
+				const Hazard *weather = hazard.Get();
+				int hazardLifetime = weather->RandomDuration();
+				// Elapse this weather event by a random amount of time.
+				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
+				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength());
+			}
+	}
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
@@ -1328,6 +1343,11 @@ void Engine::CalculateStep()
 		projectile.Move(newVisuals, newProjectiles);
 	Prune(projectiles);
 	
+	// Step the weather.
+	for(Weather &weather : activeWeather)
+		weather.Step(newVisuals);
+	Prune(activeWeather);
+	
 	// Move the visuals.
 	for(Visual &visual : visuals)
 		visual.Move();
@@ -1336,6 +1356,7 @@ void Engine::CalculateStep()
 	// Perform various minor actions.
 	SpawnFleets();
 	SpawnPersons();
+	GenerateWeather();
 	SendHails();
 	HandleMouseClicks();
 	
@@ -1362,6 +1383,10 @@ void Engine::CalculateStep()
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
+	
+	// Damage ships from any active weather events.
+	for(Weather &weather : activeWeather)
+		DoWeather(weather);
 	
 	// Check for flotsam collection (collisions with ships).
 	for(const shared_ptr<Flotsam> &it : flotsam)
@@ -1647,6 +1672,23 @@ void Engine::SpawnPersons()
 
 
 
+// Generate weather from the current system's hazards.
+void Engine::GenerateWeather()
+{
+	// If this system has any hazards, see if any have activated this frame.
+	for(const System::HazardProbability &hazard : player.GetSystem()->Hazards())
+		if(!Random::Int(hazard.Period()))
+		{
+			const Hazard *weather = hazard.Get();
+			// If a hazard has activated, generate a duration and strength of the
+			// resulting weather and place it in the list of active weather.
+			int duration = weather->RandomDuration();
+			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength());
+		}
+}
+
+
+
 // At random intervals, have one of the ships in the game send you a hail.
 void Engine::SendHails()
 {
@@ -1736,7 +1778,19 @@ void Engine::HandleMouseClicks()
 {
 	// Mouse clicks can't be issued if your flagship is dead.
 	Ship *flagship = player.Flagship();
-	if(!doClick || !flagship)
+	if(!flagship)
+		return;
+	
+	// Handle escort travel orders sent via the Map.
+	if(player.HasEscortDestination())
+	{
+		auto moveTarget = player.GetEscortDestination();
+		ai.IssueMoveTarget(player, moveTarget.second, moveTarget.first);
+		player.SetEscortDestination();
+	}
+	
+	// If there is no click event sent while the engine was active, bail out.
+	if(!doClick)
 		return;
 	
 	// Check for clicks on stellar objects. Only left clicks apply, and the
@@ -1950,6 +2004,27 @@ void Engine::DoCollisions(Projectile &projectile)
 
 
 
+// Determine whether any active weather events have impacted the ships within
+// the system. As with DoCollisions, this function adds visuals directly to
+// the main visuals list.
+void Engine::DoWeather(Weather &weather)
+{
+	weather.CalculateStrength();
+	if(weather.HasWeapon() && !Random::Int(weather.Period()))
+	{
+		const Hazard *hazard = weather.GetHazard();
+		double multiplier = weather.DamageMultiplier();
+		
+		// Get all ship bodies that are touching a ring defined by the hazard's min
+		// and max ranges at the hazard's origin. Any ship touching this ring takes
+		// hazard damage.
+		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
+			reinterpret_cast<Ship *>(body)->TakeHazardDamage(visuals, hazard, multiplier);
+	}
+}
+
+
+
 // Check if any ship collected the given flotsam.
 void Engine::DoCollection(Flotsam &flotsam)
 {
@@ -2049,7 +2124,7 @@ void Engine::FillRadar()
 	{
 		const System *targetSystem = flagship->GetTargetSystem();
 		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
-			playerSystem->Neighbors() : playerSystem->Links();
+			playerSystem->JumpNeighbors(flagship->JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
 			radar[calcTickTock].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,

@@ -1,5 +1,5 @@
 /* WrappedText.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,11 +10,15 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef WRAPPED_TEXT_H_
-#define WRAPPED_TEXT_H_
+#ifndef ES_TEXT_WRAPPEDTEXT_H_
+#define ES_TEXT_WRAPPEDTEXT_H_
 
 #include "Point.h"
-#include "Rectangle.h"
+#include "alignment.hpp"
+#include "DisplayText.h"
+#include "../Point.h"
+#include "../Rectangle.h"
+#include "truncate.hpp"
 
 #include <string>
 #include <vector>
@@ -28,13 +32,15 @@ class Font;
 // parameters of the formatting, including text alignment.
 class WrappedText {
 public:
-	WrappedText();
+	WrappedText() = default;
 	explicit WrappedText(const Font &font);
 	
 	// Set the alignment mode.
-	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
-	Align Alignment() const;
-	void SetAlignment(Align align);
+	void SetAlignment(Alignment align);
+	
+	// Set the truncate mode.
+	// Apply the truncation to a word only if a line has a single word.
+	void SetTruncate(Truncate trunc);
 	
 	// Set the wrap width. This does not include any margins.
 	int WrapWidth() const;
@@ -66,13 +72,15 @@ public:
 	
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
+	
+	// Additionally, this function also limits the area where it has to be drawn
 	void Draw(const Point &topLeft, const Rectangle &bounds, const Color &color) const;
 	
 	
 private:
 	void SetText(const char *it, size_t length);
 	void Wrap();
-	void AdjustLine(unsigned &lineBegin, int &lineWidth, bool isEnd);
+	void AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd);
 	int Space(char c) const;
 	
 	
@@ -80,33 +88,34 @@ private:
 	// The returned text is a series of words and (x, y) positions:
 	class Word {
 	public:
-		Word();
+		Word() = default;
 		
 		size_t Index() const;
 		Point Pos() const;
 		
 	private:
-		size_t index;
-		int x;
-		int y;
+		size_t index = 0;
+		int x = 0;
+		int y = 0;
 		
 		friend class WrappedText;
 	};
 	
 	
 private:
-	const Font *font;
+	const Font *font = nullptr;
 	
-	int space;
-	int wrapWidth;
-	int tabWidth;
-	int lineHeight;
-	int paragraphBreak;
-	Align alignment;
+	int space = 0;
+	int wrapWidth = 1000;
+	int tabWidth = 0;
+	int lineHeight = 0;
+	int paragraphBreak = 0;
+	Alignment alignment = Alignment::JUSTIFIED;
+	Truncate truncate = Truncate::NONE;
 	
 	std::string text;
 	std::vector<Word> words;
-	int height;
+	int height = 0;
 };
 
 

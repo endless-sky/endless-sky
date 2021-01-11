@@ -42,7 +42,9 @@ public:
 	
 	const std::string &GetSystem() const;
 	const std::string &GetPlanet() const;
+	
 	const StartConditions &GetChosenStart() const;
+	const std::string &GetPlayTime() const;
 	
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
@@ -57,8 +59,12 @@ private:
 	
 	std::string system;
 	std::string planet;
+<<<<<<< HEAD
 
 	StartConditions chosenStart;
+=======
+	std::string playTime;
+>>>>>>> 1b0290ff51f118f703b9f75a5982d1dedc6ddfff
 	
 	const Sprite *shipSprite = nullptr;
 	std::string shipName;

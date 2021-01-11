@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Planet.h"

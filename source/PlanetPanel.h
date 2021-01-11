@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <functional>
 #include <memory>

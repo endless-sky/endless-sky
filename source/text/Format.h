@@ -1,5 +1,5 @@
 /* Format.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FORMAT_H_
-#define FORMAT_H_
+#ifndef ES_TEXT_FORMAT_H_
+#define ES_TEXT_FORMAT_H_
 
 #include <map>
 #include <string>
@@ -26,6 +26,8 @@ public:
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string Credits(int64_t value);
+	// Convert a time in seconds to years/days/hours/minutes/seconds
+	static std::string PlayTime(double timeVal);
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);

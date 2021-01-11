@@ -1052,15 +1052,6 @@ mission "Wanderers: Mind 5"
 
 
 
-government " Kor Mereti "
-	"display name" "Kor Mereti"
-	swizzle 5
-	language "Korath"
-	"attitude toward"
-		"Wanderer" -.01
-		"Kor Mereti" -.01
-	"player reputation" -1000
-
 event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
@@ -1072,7 +1063,7 @@ event "wanderers: kor mereti friendly"
 		"attitude toward"
 			"Kor Mereti" 0
 	"reputation: Kor Mereti" >?= 1
-	"reputation:  Kor Mereti " = -1000
+	"reputation: Kor Mereti (Hostile)" = -1000
 	planet "Rekat Moraski"
 		"required reputation" 1000
 
@@ -1111,7 +1102,7 @@ mission "Wanderers: Mind 6"
 	on enter
 		dialog `This star system is in utter chaos. A vast number of Mereti drones are here. Some are attacking each other. Others are attacking the Wanderers. And still others, sadly, seem intent on attacking you. You'll have to hold them off as long as you can, while trying to stay on the good side of the drones that now seem to be defending you.`
 	npc disable
-		government " Kor Mereti "
+		government "Kor Mereti (Hostile)"
 		personality staying heroic
 		fleet
 			names "kor mereti"

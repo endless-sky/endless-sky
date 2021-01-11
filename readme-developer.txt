@@ -73,8 +73,9 @@ You will probably need to adjust the paths to your compiler binaries, and you sh
 
 You will also need libmingw32.a and libopengl32.a. Those should be included in the MinGW g++ install. If they are not in C:\Program Files\mingw64\x86_64-w64-mingw32\lib\ you will have to adjust the include directory and library (linker) directory search paths in the Code::Blocks project files.
 
-The Code::Blocks workspace consists of three projects: one for the majority of source code, one for the game binary, and one for the unit tests.
-To get started, open the EndlessSky.workspace file, which will load the three linked projects. As with most IDE-based projects, you must explicitly add new files to the respective project for them to be compiled.
+The Code::Blocks workspace consists of three projects: one for the majority of source code, one for the game binary, and one for the unit tests. As with most IDE-based projects, you must explicitly add new files to the respective project for them to be compiled.
+To get started, open the "EndlessSky.workspace" file, which will load the three linked projects. Double-clicking a project in the left-hand menu will activate that project, binding the toolbar & keyboard shortcuts for "Build," "Run,", "Build & Run," etc. to that project, no matter which file is being edited.
+For example, when making lots of changes to the game, you will generally have the "endless-sky-lib" project active, so that you can ensure changes compile without needing to fully link things together into the actual game binary. After making changes, you would then activate the "EndlessSky" project and use the "Build & Run" option with the "Release" target, which will fully link the compiled code into the small, performant executable. You can continue making tweaks to files that belong to the "endless-sky-lib" project without reactivating it, so that "Build & Run" will still launch the game with your latest tweaks. Should you experience some show-stopper bug in your modified game, you would then change to the "Debug" build target to help determine the source(s) of the issue.
 
 
 
@@ -99,16 +100,19 @@ Library paths
 To create a Mac OS X binary that will work on systems other than your own, you may also need to use install_name_tool to modify the libraries so that their location is relative to the @rpath.
 
   $ sudo install_name_tool -id "@rpath/libpng16.16.dylib" /usr/local/lib/libpng16.16.dylib
-  $ sudo install_name_tool -id "@rpath/libmad.0.2.1.dylib" /usr/local/lib/libmad.0.2.1.dylib
+  $ sudo install_name_tool -id "@rpath/libmad.0.dylib" /usr/local/lib/libmad.0.dylib
   $ sudo install_name_tool -id "@rpath/libturbojpeg.0.dylib" /usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib
   $ sudo install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
 
 *** Note: there is extremely limited development support for macOS, and no intent to support macOS's new ARM architecture. ***
 
 
+
 Link-Time Optimization (LTO):
 
-For both the Linux and Windows "release" targets, "link-time optimization" is used. This generally will work without issue with newer versions of g++ / MinGW, but may require an explicit usage of the `gcc-ar` and `gcc-ranlib` binaries.
-For the Code::Blocks project, the default archive program can be configured in the application's compiler settings menu. The Scons builds can be controlled by an environment variable:
+For both the Linux and Windows "release" targets, "link-time optimization" is used. This generally will work without issue with newer versions of g++ / MinGW, but may require an explicit usage of the `gcc-ar` and `gcc-ranlib` binaries in your development environment.
+For the Code::Blocks project, the archive program can be configured in Code::Block's global compiler settings menu, accessed via "Settings -> Compiler..." in the application menu bar. On the "Toolchain executables" tab, change "linker for static libs" from "ar.exe" to "gcc-ar.exe"
+
+The Scons builds can be controlled by setting the appropriate environment variable(s), either directly in the environment or just for the lifetime of the command:
 
   $ AR=gcc-ar RANLIB=gcc-ranlib scons 

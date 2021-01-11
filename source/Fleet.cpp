@@ -271,11 +271,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// drives and hyperdrives.
 		bool hasJump = false;
 		bool hasHyper = false;
+		double jumpDistance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const Ship *ship : variant.ships)
 		{
 			if(ship->Attributes().Get("jump drive"))
 			{
 				hasJump = true;
+				jumpDistance = ship->JumpRange();
 				break;
 			}
 			if(ship->Attributes().Get("hyperdrive"))
@@ -286,7 +288,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(hasJump || hasHyper)
 		{
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-			for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
+			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
@@ -569,8 +571,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 		
 		shared_ptr<Ship> ship(new Ship(*model));
 		
-		bool isFighter = ship->CanBeCarried();
-		const Phrase *phrase = ((isFighter && fighterNames) ? fighterNames : names);
+		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
@@ -612,7 +613,7 @@ void Fleet::SetCargo(Ship *ship) const
 	// Choose random outfits or commodities to transport.
 	for(int i = 0; i < cargo; ++i)
 	{
-		if(!free)
+		if(free <= 0)
 			break;
 		// Remove any outfits that do not fit into remaining cargo.
 		if(canChooseOutfits && !outfits.empty())
