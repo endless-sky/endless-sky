@@ -151,19 +151,9 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "playtime" && child.Size() >= 2)
 			playTime = child.Value(1);
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
-		{
-			// Do not create travel plans involving invalid plugin systems.
-			const System *next = GameData::Systems().Find(child.Token(1));
-			if(next && next->IsValid())
-				travelPlan.push_back(next);
-		}
+			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "travel destination" && child.Size() >= 2)
-		{
-			// Do not persist invalid landing destinations.
-			const Planet *planet = GameData::Planets().Find(child.Token(1));
-			if(planet && planet->IsValid())
-				travelDestination = planet;
-		}
+			travelDestination = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
 			mapColoring = child.Value(1);
 		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
@@ -326,6 +316,15 @@ void PlayerInfo::Load(const string &path)
 		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
 			ship->SetPlanet(planet);
+	}
+	// Validate the travel plan.
+	if(travelDestination && !travelDestination->IsValid())
+		travelDestination = nullptr;
+	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
+			[](const System *stop) noexcept -> bool { return !stop->IsValid(); }))
+	{
+		travelPlan.clear();
+		travelDestination = nullptr;
 	}
 	
 	// Restore access to services, if it was granted previously.
