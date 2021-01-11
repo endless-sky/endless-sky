@@ -1828,13 +1828,37 @@ mission "Nanachi Meeting"
 
 
 
+mission "Strider Alt Start"
+	landing
+	name "New Unfettered ships"
+	description "Ambassador Sayari has informed the council of elders of the development of the Solifuge. The council is interested in meeting with you on <destination> to hear more."
+	source
+		government "Hai"
+		not planet "Hai-home"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Wanderers Evacuation 1: offered"
+		not "Wanderers Solifuge Recon 3: offered"
+		or
+			has "Wanderers Solifuge Recon 2: done"
+			has "Wanderers Pond Strider Recon 2: done"
+	on offer
+		dialog `After you finish landing, you're approached by a Hai in a formal uniform. "Greetings, Captain <last>. Ambassador Sayari has sent word to the council of elderes that our Unfettered brethren have created a new ship of great strength. The council has requested your presence on <planet>; Sayari said you have been in combat with these ships, and the elders are interested in your expertise."`
+	on complete
+		conversation "solifuge conversation"
+
+
+
 mission "Strider 0"
 	landing
 	name "Hull Repair Technology"
 	description "The Hai are working on a drone carrier to counter the Unfettered Solifuge, but the creator of the ship is still developing hull repair to make it more effective in combat. Visit the spaceport on <planet> to help the Hai with this technology when you are able."
 	destination "Hai-home"
 	to offer
-		has "Wanderers Solifuge Recon 3: done"
+		or
+			has "Wanderers Solifuge Recon 3: done"
+			has "Strider Alt Start: done"
 	to fail
 		has "Strider 1: offered"
 	to complete

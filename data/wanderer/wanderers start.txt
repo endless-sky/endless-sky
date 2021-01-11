@@ -2022,42 +2022,64 @@ mission "Wanderers Solifuge Recon 4"
 	to offer
 		has "Wanderers Solifuge Recon 3: done"
 	on offer
-		conversation
-			`You give the message from Sayari to the spaceport authorities so that they can deliver it to the council of elders. After the message has been delivered, the council requests that you meet with them.`
-			`	"Greetings again, <first> <last>," one of the elders says to you. "It is our understanding that our Unfettered brothers and sisters have created a carrier ship. How difficult was it for you to combat it?"`
-			choice
-				`	"The carrier is strong, but not strong enough, and can be easily taken down."`
-				`	"It was easy for me, but I can't say it will be the same for your ships to combat."`
-				`	"It was a difficult fight, as the carrier is very powerful."`
-			`	The elders mumble among themselves about this information, periodically glancing down at what must be the message from Sayari detailing the Solifuge.`
-			`	"We gather a large fleet above Cloudfire," one of the elders says, "and shortly afterward the Unfettered unveil this new ship. Perhaps it is only right that we respond in kind with a ship of our own."`
-			`	"My son is an engineer," another elder says. "He helped create our Centipede and Geocoris ships, both as a result of the humans living among us. Perhaps he would be of assistance in creating a ship to respond to the Unfettered." The elder presses a button and leans over to a microphone. "Please bring Osen into the council chamber."`
-			`	A short while later, the elder's son enters the chamber and introduces himself to the council. They tell him about the Unfettered having created a carrier and the need for a new ship to be created as a response, and Osen's eyes go wide.`
-			`	Osen begins speaking very quickly in the Hai langauage, so fast that your translation device seems to barely be able to keep up.`
-			`	"I have [exactly, precisely] the ship! My team has been [developing, producing] a ship for many [years, cycles] that carries a [fleet, squadron] of drones. We have [working, functional] [prototypes, models], but they are not yet [finished, complete]. We are still [developing, producing] technology to repair the [hull, armor] of a ship in flight, which would make this ship and its drones much more [effective, powerful]."`
-			`	The device continues speaking to you for nearly a minute after Osen stops talking (which is a little awkward as everyone stares at you). "Sorry, I wasn't aware that you had a translation device," Osen says, no longer speaking in Hai.`
-			choice
-				`	"It's alright."`
-					goto next
-				`	"You talk really fast."`
-			`	Osen shrugs and smiles at you. "I speak fast when I'm excited."`
-			label next
-			`	"When is the earliest that you could provide these ships to us?" Osen's father asks.`
-			`	"It would only be a few weeks for us to have a number of prototype ships ready, but I highly suggest that we wait until we have created hull repair technology. If these Unfettered Solifuges do not have such technology, then having it will give our ship an advantage by being able to redeploy damaged drones, but we believe that we are still many years away from developing technology strong enough to be of any real use."`
-			`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
-			`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
-			`	Osen's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
-			choice
-				`	"I'm sorry, but I can't help right now. I need to return to the Wanderers."`
-					goto busy
-				`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
-			
-			`	"Sayari's message mentions that you are still needed by the Wanderers," Osen's father responds. "Perhaps you should return to where you are needed the most, but when you are able to help us, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
-				accept
-			
-			label busy
-			`	"This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
-				accept
+		conversation "solifuge conversation"
+
+conversation "solifuge conversation"
+	branch altStart
+		has "Strider Alt Start: done"
+	`You give the message from Sayari to the spaceport authorities so that they can deliver it to the council of elders. After the message has been delivered, the council requests that you meet with them.`
+		goto start
+	label altStart
+	`	When you arrive on <planet>, you are quickly escorted from the spaceport to the council chambers.`
+	label start
+	`	"Greetings again, <first> <last>," one of the elders says to you. "It is our understanding that our Unfettered brothers and sisters have created a carrier ship. How difficult was it for you to combat it?"`
+	choice
+		`	"The carrier is strong, but not strong enough, and can be easily taken down."`
+		`	"It was easy for me, but I can't say it will be the same for your ships to combat."`
+		`	"It was a difficult fight, as the carrier is very powerful."`
+	`	The elders mumble among themselves about this information, periodically glancing down at what must be the message from Sayari detailing the Solifuge.`
+	`	"We gather a large fleet above Cloudfire," one of the elders says, "and shortly afterward the Unfettered unveil this new ship. Perhaps it is only right that we respond in kind with a ship of our own."`
+	`	"My son is an engineer," another elder says. "He helped create our Centipede and Geocoris ships, both as a result of the humans living among us. Perhaps he would be of assistance in creating a ship to respond to the Unfettered." The elder presses a button and leans over to a microphone. "Please bring Osen into the council chamber."`
+	`	A short while later, the elder's son enters the chamber and introduces himself to the council. They tell him about the Unfettered having created a carrier and the need for a new ship to be created as a response, and Osen's eyes go wide.`
+	`	Osen begins speaking very quickly in the Hai langauage, so fast that your translation device seems to barely be able to keep up.`
+	`	"I have [exactly, precisely] the ship! My team has been [developing, producing] a ship for many [years, cycles] that carries a [fleet, squadron] of drones. We have [working, functional] [prototypes, models], but they are not yet [finished, complete]. We are still [developing, producing] technology to repair the [hull, armor] of a ship in flight, which would make this ship and its drones much more [effective, powerful]."`
+	`	The device continues speaking to you for nearly a minute after Osen stops talking (which is a little awkward as everyone stares at you). "Sorry, I wasn't aware that you had a translation device," Osen says, no longer speaking in Hai.`
+	choice
+		`	"It's alright."`
+			goto next
+		`	"You talk really fast."`
+	`	Osen shrugs and smiles at you. "I speak fast when I'm excited."`
+	label next
+	`	"When is the earliest that you could provide these ships to us?" Osen's father asks.`
+	`	"It would only be a few weeks for us to have a number of prototype ships ready, but I highly suggest that we wait until we have created hull repair technology. If these Unfettered Solifuges do not have such technology, then having it will give our ship an advantage by being able to redeploy damaged drones, but we believe that we are still many years away from developing technology strong enough to be of any real use."`
+	`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
+	`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
+	`	Osen's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
+	branch altEnd
+		has "Strider Alt Start: done"
+	choice
+		`	"I'm sorry, but I can't help right now. I need to return to the Wanderers."`
+			goto busy
+		`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
+	
+	`	"Sayari's message mentions that you are still needed by the Wanderers," Osen's father responds. "Perhaps you should return to where you are needed the most, but when you are able to help us, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
+		accept
+	
+	label busy
+	`	"This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
+		accept
+	
+	label altEnd
+	choice
+		`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
+			goto glad
+		`	"I'm sorry, but I'm busy right now."`
+	`	"This is understandable," Osen's father responds. "But we can be patient. Should you find time to help in the future, simply return to <origin> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
+		accept
+	
+	label glad
+	`	"Wonderful," Osen's father responds. "Once you have finished looking, simply return to <origin> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
+		accept
 
 
 
