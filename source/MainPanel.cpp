@@ -107,6 +107,8 @@ void MainPanel::Step()
 		shared_ptr<Ship> target = flagship->GetTargetShip();
 		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
 			isActive = !DoHelp("friendly disabled");
+		if(isActive && player.Ships().size() > 1)
+			isActive = !DoHelp("multiple ship controls");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= GameData::Start().GetDate() + 4)
 		{
