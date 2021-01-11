@@ -45,7 +45,7 @@ namespace{
 	};
 	
 	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {
-		{Test::TestStep::Type::ASSIGN, "assign"},
+		{Test::TestStep::Type::APPLY, "apply"},
 		{Test::TestStep::Type::ASSERT, "assert"},
 		{Test::TestStep::Type::BRANCH, "branch"},
 		{Test::TestStep::Type::INJECT, "inject"},

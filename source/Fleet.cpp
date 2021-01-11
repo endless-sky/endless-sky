@@ -571,8 +571,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 		
 		shared_ptr<Ship> ship(new Ship(*model));
 		
-		bool isFighter = ship->CanBeCarried();
-		const Phrase *phrase = ((isFighter && fighterNames) ? fighterNames : names);
+		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
@@ -614,7 +613,7 @@ void Fleet::SetCargo(Ship *ship) const
 	// Choose random outfits or commodities to transport.
 	for(int i = 0; i < cargo; ++i)
 	{
-		if(!free)
+		if(free <= 0)
 			break;
 		// Remove any outfits that do not fit into remaining cargo.
 		if(canChooseOutfits && !outfits.empty())
