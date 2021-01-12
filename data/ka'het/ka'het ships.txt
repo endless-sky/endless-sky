@@ -318,6 +318,7 @@ ship "Vareti'het"
 	description "The Vareti was the strongest Het the Builders were able to complete, starting its mass production only a year before the beginning of the invasion. It relies on shield matrixes even more than its little brothers, using larger and more effective restorers that were developed alongside this project."
 
 ship "Vareti'het" "Vareti'het (Disable-able)"
+	"uncapturable"
 
 ship "Vareti'het" "Vareti'het (EMP)"
 	"never disabled"
@@ -415,6 +416,7 @@ ship "Vareti'het" "Vareti'het (Strong)"
 	turret 13.5 16.5 "Ka'het Ravager Turret"
 
 ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
+	"uncapturable"
 	outfits
 		"Ka'het Nullifier"
 		"Ka'het Annihilator" 6
