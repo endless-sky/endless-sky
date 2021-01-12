@@ -42,7 +42,7 @@ void Hazard::Load(const DataNode &node)
 			minDuration = max(0, static_cast<int>(child.Value(1)));
 			maxDuration = max(minDuration, (child.Size() >= 3 ? static_cast<int>(child.Value(2)) : 0));
 		}
-		else if (key == "strength")
+		else if(key == "strength")
 		{
 			minStrength = max(0., child.Value(1));
 			maxStrength = max(minStrength, (child.Size() >= 3) ? child.Value(2) : 0.);
