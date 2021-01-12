@@ -633,9 +633,14 @@ void Engine::Step(bool isActive)
 		info.SetString("location", currentSystem->Name());
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
-	{
-		info.SetBar("fuel", flagship->Fuel(),
-			flagship->Attributes().Get("fuel capacity") * .01);
+	{ //if there is a lot of fuel, display a solid homogenous bar instead of many notches in the bar
+		if ( flagship->Attributes().Get("fuel capacity") <= 1200)
+		{
+			info.SetBar("fuel", flagship->Fuel(),
+				flagship->Attributes().Get("fuel capacity") * .01);
+		} else {
+			info.SetBar("fuel", flagship->Fuel());
+		}
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));
