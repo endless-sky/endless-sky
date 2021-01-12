@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# Helper function to print debugging data for failures on graphical environment.
+function print_graphics_data () {
+	echo "# ***********************************************"
+	echo "# OpenGL versions & available extensions:"
+	echo "# ***********************************************"
+	echo "$(glxinfo | grep -E "OpenGL|GL_" | sed "s/^/# /")"
+	echo "# ***********************************************"
+	echo "# Relevant graphics environment variables:"
+	echo "# ***********************************************"
+	echo "$(env | grep -E "DISPLAY|XDG" | sed "s/^/# /")"
+	echo "# ***********************************************"
+	echo "# Known X services running:"
+	echo "# ***********************************************"
+	echo "$(ps -A | grep -E "xvfb|xserver|Xorg" | sed "s/^/# /")"
+	echo "# ***********************************************"
+}
+
+
 # Retrieve parameters that give the executable and datafile-paths.
 if [ -z "$1" ] || [ -z "$2" ]; then
   echo "You must supply a path to the binary as an argument,"
@@ -19,6 +37,7 @@ echo "# ***********************************************"
 echo "# ***         ES Autotest-runner              ***"
 echo "# ***********************************************"
 echo "# Using Test Anything Protocol for reporting test-results"
+print_graphics_data
 
 if [ ! -f "${ES_EXEC_PATH}" ]
 then
@@ -97,6 +116,7 @@ do
 			echo "# errors.txt:"
 			cat "${ES_CONFIG_PATH}/errors.txt" | sed "s/^/# /"
 		fi
+		print_graphics_data
 		TEST_RESULT="not ok"
 		NUM_FAILED=$((NUM_FAILED + 1))
 	else
