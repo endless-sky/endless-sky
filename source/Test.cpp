@@ -166,7 +166,7 @@ void Test::LoadSequence(const DataNode &node)
 				status = Status::BROKEN;
 				return;
 			case TestStep::Type::WATCHDOG:
-				step.watchdog = child.Size() >= 2 ? child.Token(1) : 0;
+				step.watchdog = child.Size() >= 2 ? child.Value(1) : 0;
 				break;
 			default:
 				child.PrintTrace("Error: unknown step type in test");
@@ -368,26 +368,18 @@ const string &Test::StatusText() const
 
 
 // Fail the test using the given message as reason.
-void Test::Fail(const Context &context, PlayerInfo &player, const string &testFailReason) const
+void Test::Fail(const Context &context, const PlayerInfo &player, const string &testFailReason) const
 {
-	string testFailMessage = "";
-	// Describe the step where the test failed
-	if(context.stepToRun >= 0 && context.stepToRun < steps.size())
-	{
-		const TestStep &stepToRun = steps[context.stepToRun];
-		const string &stepTypeName = STEPTYPE_TO_TEXT.at(stepToRun.stepType);
-		testFailMessage += "Test step " + to_string(context.stepToRun) + " (" + stepTypeName + ") failed";
-	}
-	else
-		testFailMessage += "Test failed";
-	// Add a reason if we got one.
+	string message = "Test failed";
+	if(context.stepToRun < steps.size())
+		message += " at step " + to_string(1 + context.stepToRun) + " (" +
+			STEPTYPE_TO_TEXT.at(steps[context.stepToRun].stepType) + ")";
+	
 	if(!testFailReason.empty())
-		testFailMessage += ": " + testFailReason;
-	else
-		testFailMessage += ".";
+		message += ": " + testFailReason;
 	
 	// Add generic logging of the failed test.
-	Files::LogError(testFailMessage);
+	Files::LogError(message);
 	// Log variables at the moment of failure.
 	const map<string, int64_t> &conditions = player.Conditions();
 	if(!conditions.empty())
@@ -399,5 +391,5 @@ void Test::Fail(const Context &context, PlayerInfo &player, const string &testFa
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
-	throw runtime_error(testFailMessage);
+	throw runtime_error(message);
 }
