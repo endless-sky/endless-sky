@@ -2,10 +2,14 @@
 
 # Helper function to print debugging data for failures on graphical environment.
 function print_graphics_data () {
+#	echo "# ***********************************************"
+#	echo "# OpenGL versions & available extensions:"
+#	echo "# ***********************************************"
+#	echo "$(glxinfo | grep -E "OpenGL|GL_" | sed "s/^/# /")"
 	echo "# ***********************************************"
-	echo "# OpenGL versions & available extensions:"
+	echo "# OpenGL version:"
 	echo "# ***********************************************"
-	echo "$(glxinfo | grep -E "OpenGL|GL_" | sed "s/^/# /")"
+	echo "$(glxinfo | grep -E "OpenGL" | sed "s/^/# /")"
 	echo "# ***********************************************"
 	echo "# Relevant graphics environment variables:"
 	echo "# ***********************************************"
@@ -13,7 +17,7 @@ function print_graphics_data () {
 	echo "# ***********************************************"
 	echo "# Known X services running:"
 	echo "# ***********************************************"
-	echo "$(ps -A | grep -E "xvfb|xserver|Xorg" | sed "s/^/# /")"
+	echo "$(ps -A | grep -E "Xvfb|xserver|Xorg" | sed "s/^/# /")"
 	echo "# ***********************************************"
 }
 
