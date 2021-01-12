@@ -158,7 +158,7 @@ void Test::LoadSequence(const DataNode &node)
 						return;
 					}
 					else
-						jumpTable[step.nameOrLabel] = steps.size()-1;
+						jumpTable[step.nameOrLabel] = steps.size() - 1;
 				}
 				break;
 			case TestStep::Type::NAVIGATE:
@@ -166,10 +166,7 @@ void Test::LoadSequence(const DataNode &node)
 				status = Status::BROKEN;
 				return;
 			case TestStep::Type::WATCHDOG:
-				if(child.Size() < 2)
-					step.watchdog = 0;
-				else
-					step.watchdog = child.Value(1);
+				step.watchdog = child.Size() >= 2 ? child.Token(1) : 0;
 				break;
 			default:
 				child.PrintTrace("Error: unknown step type in test");
@@ -331,7 +328,8 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				++(context.stepToRun);
 				break;
 			case TestStep::Type::INPUT:
-				if(context.unprocessedInput){
+				if(context.unprocessedInput)
+				{
 					continueGameLoop = true;
 					break;
 				}

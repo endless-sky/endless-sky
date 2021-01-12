@@ -131,7 +131,7 @@ private:
 	void LoadSequence(const DataNode &node);
 	
 	// Fail the test using the given message as reason.
-	void Fail(const Context &context, PlayerInfo &player, const std::string &testFailReason) const;
+	void Fail(const Context &context, const PlayerInfo &player, const std::string &testFailReason) const;
 	
 	
 private:
