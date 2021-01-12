@@ -138,6 +138,8 @@ void PlayerInfo::Load(const string &path)
 			hasFullClearance = true;
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
+		else if(child.Token(0) == "playtime" && child.Size() >= 2)
+			playTime = child.Value(1);
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
 			const System *next = GameData::Systems().Find(child.Token(1));
@@ -1029,7 +1031,9 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 				const Outfit *weapon = hardpoint.GetOutfit();
 				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
 					continue;
-				double damage = weapon->ShieldDamage() + weapon->HullDamage();
+				double damage = weapon->ShieldDamage() + weapon->HullDamage()
+					+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
+					+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull"));
 				deterrence += .12 * damage / weapon->Reload();
 			}
 	}
@@ -1434,6 +1438,20 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 	
 	return true;
+}
+
+
+
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+{
+	playTime += timeVal.count() * .000000001;
+}
+
+
+
+double PlayerInfo::GetPlayTime() const noexcept
+{
+	return playTime;
 }
 
 
@@ -2637,6 +2655,7 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("planet", planet->TrueName());
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
+	out.Write("playtime", playTime);
 	// This flag is set if the player must leave the planet immediately upon
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
