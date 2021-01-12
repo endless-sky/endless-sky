@@ -24,8 +24,8 @@ ship "Korath Dredger"
 		"heat dissipation" .65
 		"fuel capacity" 900
 		"cargo space" 605
-		"outfit space" 871
-		"weapon capacity" 294
+		"outfit space" 827
+		"weapon capacity" 297
 		"engine capacity" 181
 		
 		weapon
@@ -38,18 +38,19 @@ ship "Korath Dredger"
 		"Korath Grab-Strike" 3
 		"Korath Warder" 2
 		
-		"Systems Core (Medium)" 2
+		"Systems Core (Large)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 3
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
 		"Steering (Planetary Class)"
-		"Steering (Lunar Class)"
+		"Steering (Asteroid Class)"
 		"Thruster (Planetary Class)"
-		"Thruster (Comet Class)"
+		"Thruster (Asteroid Class)"
 		"Hyperdrive"
 		"Jump Drive"
+		
 	turret -37 -155 "Korath Banisher"
 	turret 0 -155 "Korath Warder"
 	turret 37 -155 "Korath Grab-Strike"
@@ -70,7 +71,38 @@ ship "Korath Dredger"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "After the Korath were exiled, they realized they would need to raid nearby species to survive. Their world-ships were too precious and their Ravagers were too expensive. The Dredger was their first new ship: abundant cargo and passenger space, bays for four fighters, and seven turrets. Its failing was its expense; Korath Raiders can be built four times as quickly."
+	description "After the Korath were exiled, efficient resource collection became a priority, particularly through raiding. Their world-ships were too precious to risk on dangerous forays, and Raiders lacked the capacity. The Dredger was their first new ship: abundant cargo and passenger space, bays for four fighters, and seven turrets. With such a complement, these bulky ships are formidable supports for frontline Raiders."
+
+
+
+ship "Korath Dredger" "Korath Dredger (Crippled)"
+	sprite "ship/dredger"
+	outfits
+		"Korath Banisher" 2
+		"Korath Grab-Strike" 1
+		"Korath Warder" 1
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 190
+		
+		"Steering (Planetary Class)"
+		"Steering (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Comet Class)"
+		"Hyperdrive"
+		"Jump Drive (Broken)"
+		
+	turret -37 -155 "Korath Banisher"
+	turret 0 -155 "Korath Warder"
+	turret 37 -155
+	turret -96 0
+	turret 96 0 "Korath Grab-Strike"
+	turret -80 130
+	turret 80 130 "Korath Banisher"
+	description "After the Korath were exiled, efficient resource collection became a priority, particularly through raiding. Their world-ships were too precious to risk on dangerous forays, and Raiders lacked the capacity. The Dredger was their first new ship: abundant cargo and passenger space, bays for four fighters, and seven turrets. With such a complement, these bulky ships are formidable supports for frontline Raiders."
+	description "This Dredger has taken significant damage, and is missing several key systems, such as its system core and some of its weaponry."
 
 
 

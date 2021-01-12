@@ -333,7 +333,7 @@ mission "Remnant: Defense 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath World-Ship B (Crippled)"
+				"Korath Dredger (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -1604,7 +1604,8 @@ mission "Remnant: Salvage 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath World-Ship B (Ember)"
+				"Korath Dredger"
+				"Korath Chaser" 4
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -2929,9 +2930,9 @@ mission "Remnant: Cognizance 4"
 			cargo 2
 			commodities "void sprite parts"
 			variant
-				"Korath World-Ship B (Ember)"
+				"Korath Dredger"
 				"Korath Raider (Ember)" 4
-				"Korath Chaser" 8
+				"Korath Chaser" 12
 	on enter "Aescolanus"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
 	on abort
@@ -2982,9 +2983,9 @@ mission "Remnant: Cognizance 5"
 			cargo 2
 			commodities "void sprite parts"
 			variant
-				"Korath World-Ship B (Ember)"
+				"Korath Dredger"
 				"Korath Raider (Ember)" 4
-				"Korath Chaser" 8
+				"Korath Chaser" 12
 		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
 		government "Remnant"
@@ -3422,9 +3423,9 @@ mission "Remnant: Cognizance 18"
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship B (Ember)"
+				"Korath Dredger"
 				"Korath Raider (Ember)" 3
-				"Korath Chaser" 6
+				"Korath Chaser" 10
 	on enter "Nenia"
 		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the Pelicans immediately set to work collecting void sprites. As the last one closes its hold, the confirmation codes flash across your tactical screen. "Good to go."`
 	on enter "Pantica"
