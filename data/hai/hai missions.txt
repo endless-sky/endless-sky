@@ -1844,7 +1844,7 @@ mission "Strider Alt Start"
 			has "Wanderers Solifuge Recon 2: done"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
-		dialog `After you finish landing, you're approached by a Hai in a formal uniform. "Greetings, Captain <last>. Ambassador Sayari has sent word to the council of elderes that our Unfettered brethren have created a new ship of great strength. The council has requested your presence on <planet>; Sayari said you have been in combat with these ships, and the elders are interested in your expertise."`
+		dialog `After you finish landing, you're approached by a Hai in a formal uniform. "Greetings, Captain <last>. Ambassador Sayari has sent word to the council of elders that our Unfettered brethren have created a new ship of great strength. The council has requested your presence on <planet>; Sayari said you have been in combat with these ships, and the elders are interested in your expertise."`
 	on complete
 		conversation "solifuge conversation"
 
