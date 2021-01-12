@@ -268,6 +268,8 @@ private:
 	
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
+	// After loading & applying changes, make sure the player & ship locations are sensible.
+	void ValidateLoad();
 	
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions(bool isBoarding = false);

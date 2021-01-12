@@ -285,80 +285,8 @@ void PlayerInfo::Load(const string &path)
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
-	
-	// If a system was not specified in the player data, use the flagship's system.
-	if(!planet && !ships.empty())
-	{
-		string warning = "Warning: no planet specified for player";
-		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
-			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
-		if(it != ships.end())
-		{
-			planet = (*it)->GetPlanet();
-			system = (*it)->GetSystem();
-			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\"," + planet->TrueName();
-		}
-		else
-			warning += " (no ships could supply a valid player location).";
-		
-		Files::LogError(warning);
-	}
-	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
-	// with an undefined system or planet. In that case, move them to the starting system to avoid crashing.
-	if(planet && !system)
-	{
-		system = planet->GetSystem();
-		Files::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
-	}
-	if(!planet || !planet->IsValid() || !system || !system->IsValid())
-	{
-		system = &GameData::Start().GetSystem();
-		planet = &GameData::Start().GetPlanet();
-		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
-	}
-	for(auto &&ship : ships)
-	{
-		// Every ship ought to have specified a valid location, but if not,
-		// move it to the player's location to avoid invalid states.
-		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
-		{
-			ship->SetSystem(system);
-			Files::LogError("Warning: player ship \"" + ship->Name() + "\" did not specify a valid system. Defaulting to the player's system.");
-		}
-		// In-system ships that aren't on a valid planet should get moved to the player's planet
-		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
-		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
-		{
-			ship->SetPlanet(planet);
-			Files::LogError("Warning: in-system ship \"" + ship->Name() + "\" specified an invalid planet. Defaulting to the player's planet.");
-		}
-		// Owned ships that are not in the player's system always start in flight.
-	}
-	// Validate the travel plan.
-	if(travelDestination && !travelDestination->IsValid())
-	{
-		travelDestination = nullptr;
-		Files::LogError("Warning: removed invalid travel plan destination");
-	}
-	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
-			[](const System *stop) noexcept -> bool { return !stop->IsValid(); }))
-	{
-		travelPlan.clear();
-		travelDestination = nullptr;
-		Files::LogError("Warning: reset the travel plan due to use of invalid systems");
-	}
-	// Validate the missions that were loaded. Active-but-invalid missions are removed from
-	// the standard mission list, effectively pausing them until necessary data is restored. 
-	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
-	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
-	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
-	if(mit != missions.end())
-		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
-	// Invalid available jobs or missions are erased (since there is no guarantee
-	// the player will be on the correct planet when a plugin is re-added).
-	availableJobs.remove_if(isInvalidMission);
-	availableMissions.remove_if(isInvalidMission);
-	
+	// Ensure the player is in a valid state after loading & applying changes.
+	ValidateLoad();
 	
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -2436,6 +2364,93 @@ void PlayerInfo::ApplyChanges()
 
 
 
+// Make change's to the player's planet, system, & ship locations as needed, to ensure the player and
+// their ships are in valid locations, even if the player did something drastic, such as remove a mod.
+void PlayerInfo::ValidateLoad()
+{
+	// If a system was not specified in the player data, use the flagship's system.
+	if(!planet && !ships.empty())
+	{
+		string warning = "Warning: no planet specified for player";
+		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
+			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
+		if(it != ships.end())
+		{
+			planet = (*it)->GetPlanet();
+			system = (*it)->GetSystem();
+			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\"," + planet->TrueName();
+		}
+		else
+			warning += " (no ships could supply a valid player location).";
+		
+		Files::LogError(warning);
+	}
+	
+	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
+	// with an undefined system or planet. In that case, move them to the starting system to avoid crashing.
+	if(planet && !system)
+	{
+		system = planet->GetSystem();
+		Files::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
+	}
+	if(!planet || !planet->IsValid() || !system || !system->IsValid())
+	{
+		system = &GameData::Start().GetSystem();
+		planet = &GameData::Start().GetPlanet();
+		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
+	}
+	
+	// Every ship ought to have specified a valid location, but if not,
+	// move it to the player's location to avoid invalid states.
+	for(auto &&ship : ships)
+	{
+		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
+		{
+			ship->SetSystem(system);
+			Files::LogError("Warning: player ship \"" + ship->Name()
+				+ "\" did not specify a valid system. Defaulting to the player's system.");
+		}
+		// In-system ships that aren't on a valid planet should get moved to the player's planet
+		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
+		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
+		{
+			ship->SetPlanet(planet);
+			Files::LogError("Warning: in-system player ship \"" + ship->Name()
+				+ "\" specified an invalid planet. Defaulting to the player's planet.");
+		}
+		// Owned ships that are not in the player's system always start in flight.
+	}
+	
+	// Validate the travel plan.
+	if(travelDestination && !travelDestination->IsValid())
+	{
+		Files::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + "\"");
+		travelDestination = nullptr;
+	}
+	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
+			[](const System *waypoint) noexcept -> bool { return !waypoint->IsValid(); }))
+	{
+		travelPlan.clear();
+		travelDestination = nullptr;
+		Files::LogError("Warning: reset the travel plan due to use of invalid system(s)");
+	}
+	
+	// Validate the missions that were loaded. Active-but-invalid missions are removed from
+	// the standard mission list, effectively pausing them until necessary data is restored. 
+	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
+	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
+	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
+	if(mit != missions.end())
+		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
+	
+	// Invalid available jobs or missions are erased (since there is no guarantee
+	// the player will be on the correct planet when a plugin is re-added).
+	availableJobs.remove_if(isInvalidMission);
+	availableMissions.remove_if(isInvalidMission);
+}
+
+
+
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 {
@@ -2842,7 +2857,7 @@ void PlayerInfo::Save(const string &path) const
 		{
 			for(const DataNode &node : dataChanges)
 				out.Write(node);
-		}	
+		}
 		out.EndChild();
 	}
 	GameData::WriteEconomy(out);
