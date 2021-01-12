@@ -378,9 +378,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
-	// Print a warning if this system has a position that is the galactic origin.
+	// Print a warning if this system wasn't explicitly given a position.
 	if(!hasPosition)
-		node.PrintTrace("Warning: system will be ignored due to implicit default position:");
+		node.PrintTrace("Warning: system will be ignored due to missing position:");
 }
 
 

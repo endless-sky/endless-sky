@@ -289,42 +289,63 @@ void PlayerInfo::Load(const string &path)
 	// If a system was not specified in the player data, use the flagship's system.
 	if(!planet && !ships.empty())
 	{
+		string warning = "Warning: no planet specified for player";
 		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
 			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
 		if(it != ships.end())
 		{
 			planet = (*it)->GetPlanet();
 			system = (*it)->GetSystem();
+			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\"," + planet->TrueName();
 		}
+		else
+			warning += " (no ships could supply a valid player location).";
+		
+		Files::LogError(warning);
 	}
 	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
 	// with an undefined system or planet. In that case, move them to the starting system to avoid crashing.
 	if(planet && !system)
+	{
 		system = planet->GetSystem();
+		Files::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
+	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
 		system = &GameData::Start().GetSystem();
 		planet = &GameData::Start().GetPlanet();
+		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
 	}
 	for(auto &&ship : ships)
 	{
 		// Every ship ought to have specified a valid location, but if not,
 		// move it to the player's location to avoid invalid states.
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
+		{
 			ship->SetSystem(system);
+			Files::LogError("Warning: player ship \"" + ship->Name() + "\" did not specify a valid system. Defaulting to the player's system.");
+		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
 		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
+		{
 			ship->SetPlanet(planet);
+			Files::LogError("Warning: in-system ship \"" + ship->Name() + "\" specified an invalid planet. Defaulting to the player's planet.");
+		}
+		// Owned ships that are not in the player's system always start in flight.
 	}
 	// Validate the travel plan.
 	if(travelDestination && !travelDestination->IsValid())
+	{
 		travelDestination = nullptr;
+		Files::LogError("Warning: removed invalid travel plan destination");
+	}
 	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
 			[](const System *stop) noexcept -> bool { return !stop->IsValid(); }))
 	{
 		travelPlan.clear();
 		travelDestination = nullptr;
+		Files::LogError("Warning: reset the travel plan due to use of invalid systems");
 	}
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored. 
@@ -337,6 +358,7 @@ void PlayerInfo::Load(const string &path)
 	// the player will be on the correct planet when a plugin is re-added).
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
+	
 	
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -1215,7 +1237,7 @@ void PlayerInfo::Land(UI *ui)
 	if(!freshlyLoaded)
 		UpdateMissionNPCs();
 	
-	// Update missions that are completed, should be failed, or should be made inactive.
+	// Update missions that are completed, or should be failed.
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
@@ -1884,27 +1906,26 @@ void PlayerInfo::CheckReputationConditions()
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
 {
-	for(const Mission &mission : availableJobs)
-	{
-		if(mission.Waypoints().count(&system))
-			return true;
-		for(const Planet *planet : mission.Stopovers())
-			if(planet->IsInSystem(&system))
-				return true;
-	}
+	if(seen.count(&system))
+		return true;
 	
-	for(const Mission &mission : missions)
+	auto usesSystem = [&system](const Mission &m) noexcept -> bool
 	{
-		if(!mission.IsVisible())
-			continue;
-		if(mission.Waypoints().count(&system))
+		if(!m.IsVisible())
+			return false;
+		if(m.Waypoints().count(&system))
 			return true;
-		for(const Planet *planet : mission.Stopovers())
-			if(planet->IsInSystem(&system))
+		for(auto &&p : m.Stopovers())
+			if(p->IsInSystem(&system))
 				return true;
-	}
+		return false;
+	};
+	if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
+		return true;
+	if(any_of(missions.begin(), missions.end(), usesSystem))
+		return true;
 	
-	return (seen.count(&system) || KnowsName(system));
+	return KnowsName(system);
 }
 
 

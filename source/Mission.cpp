@@ -417,7 +417,7 @@ bool Mission::IsValid() const
 		if(!planet->IsValid())
 			return false;
 	
-	// Systems must have a non-default position.
+	// Systems must have a defined position.
 	for(auto &&system : Waypoints())
 		if(!system->IsValid())
 			return false;
