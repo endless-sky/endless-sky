@@ -19,14 +19,14 @@ ship "Korath Dredger"
 		"hull" 16000
 		"required crew" 191
 		"bunks" 683
-		"mass" 1403
-		"drag" 16.1
-		"heat dissipation" .55
-		"fuel capacity" 800
-		"cargo space" 480
-		"outfit space" 861
+		"mass" 1503
+		"drag" 18.3
+		"heat dissipation" .65
+		"fuel capacity" 900
+		"cargo space" 605
+		"outfit space" 871
 		"weapon capacity" 294
-		"engine capacity" 175
+		"engine capacity" 181
 		
 		weapon
 			"blast radius" 300
@@ -40,8 +40,7 @@ ship "Korath Dredger"
 		
 		"Systems Core (Medium)" 2
 		"Triple Plasma Core"
-		"Small Heat Shunt" 2
-		"Large Heat Shunt" 2
+		"Large Heat Shunt" 3
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
@@ -79,7 +78,7 @@ ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
