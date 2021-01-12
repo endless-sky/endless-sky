@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
@@ -39,7 +40,7 @@ namespace {
 	const double LIMIT = 20000.;
 }
 
-const double System::NEIGHBOR_DISTANCE = 100.;
+const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
 
 
 
@@ -106,6 +107,27 @@ int System::FleetProbability::Period() const
 
 
 
+System::HazardProbability::HazardProbability(const Hazard *hazard, int period)
+	: hazard(hazard), period(period > 0 ? period : 200)
+{
+}
+
+
+
+const Hazard *System::HazardProbability::Get() const
+{
+	return hazard;
+}
+
+
+
+int System::HazardProbability::Period() const
+{
+	return period;
+}
+
+
+
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -115,7 +137,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object", "hazard"};
 	
 	for(const DataNode &child : node)
 	{
@@ -162,6 +184,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				trade.clear();
 			else if(key == "fleet")
 				fleets.clear();
+			else if(key == "hazard")
+				hazards.clear();
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -246,6 +270,21 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
+		else if(key == "hazard")
+		{
+			const Hazard *hazard = GameData::Hazards().Get(value);
+			if(remove)
+			{
+				for(auto it = hazards.begin(); it != hazards.end(); ++it)
+					if(it->Get() == hazard)
+					{
+						hazards.erase(it);
+						break;
+					}
+			}
+			else
+				hazards.emplace_back(hazard, child.Value(valueIndex + 1));
+		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
@@ -262,12 +301,32 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			habitable = child.Value(valueIndex);
 		else if(key == "belt")
 			asteroidBelt = child.Value(valueIndex);
+		else if(key == "jump range")
+			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
 			haze = SpriteSet::Get(value);
 		else if(key == "trade" && child.Size() >= 3)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "object")
 			LoadObject(child, planets);
+		else if(key == "arrival")
+		{
+			if(child.Size() >= 2)
+			{
+				extraHyperArrivalDistance = child.Value(1);
+				extraJumpArrivalDistance = fabs(child.Value(1));
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
+					extraHyperArrivalDistance = grand.Value(1);
+				else if(type == "jump" && grand.Size() >= 2)
+					extraJumpArrivalDistance = fabs(grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -319,23 +378,28 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 
 
-// Once the star map is fully loaded, figure out which stars are "neighbors"
-// of this one, i.e. close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems)
+// Update any information about the system that may have changed due to events,
+// or because the game was started, e.g. neighbors, solar wind and power, or
+// if the system is inhabited.
+void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances)
 {
 	neighbors.clear();
-	
-	// Every star system that is linked to this one is automatically a neighbor,
-	// even if it is farther away than the maximum distance.
-	for(const System *system : links)
-		if(!(system->Position().Distance(position) <= NEIGHBOR_DISTANCE))
-			neighbors.insert(system);
-	
-	// Any other star system that is within the neighbor distance is also a
-	// neighbor. This will include any nearby linked systems.
-	for(const auto &it : systems)
-		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
-			neighbors.insert(&it.second);
+	// Neighbors are cached for each system for the purpose of quicker
+	// pathfinding. If this system has a static jump range then that
+	// is the only range that we need to create jump neighbors for, but
+	// otherwise we must create a set of neighbors for every potential
+	// jump range that can be encountered.
+	if(jumpRange)
+	{
+		UpdateNeighbors(systems, jumpRange);
+		// Systems with a static jump range must also create a set for
+		// the DEFAULT_NEIGHBOR_DISTANCE to be returned for those systems
+		// which are visible from it.
+		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE);
+	}
+	else
+		for(const double distance : neighborDistances)
+			UpdateNeighbors(systems, distance);
 	
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
@@ -361,9 +425,6 @@ void System::Link(System *other)
 {
 	links.insert(other);
 	other->links.insert(this);
-	
-	neighbors.insert(other);
-	other->neighbors.insert(this);
 }
 
 
@@ -372,14 +433,6 @@ void System::Unlink(System *other)
 {
 	links.erase(other);
 	other->links.erase(this);
-	
-	// If the only reason these systems are neighbors is because of a hyperspace
-	// link, they are no longer neighbors.
-	if(position.Distance(other->position) > NEIGHBOR_DISTANCE)
-	{
-		neighbors.erase(other);
-		other->neighbors.erase(this);
-	}
 }
 
 
@@ -433,12 +486,42 @@ const set<const System *> &System::Links() const
 
 
 
-// Get a list of systems you can "see" from here, whether or not there is a
-// direct hyperspace link to them. This is also the set of systems that you
-// can travel to from here via the jump drive.
-const set<const System *> &System::Neighbors() const
+// Get a list of systems that can be jumped to from here with the given
+// jump distance, whether or not there is a direct hyperspace link to them.
+// If this system has its own jump range, then it will always return the
+// systems within that jump range instead of the jump range given.
+const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 {
-	return neighbors;
+	static const set<const System *> EMPTY;
+	const auto it = neighbors.find(jumpRange ? jumpRange : neighborDistance);
+	return it == neighbors.end() ? EMPTY : it->second;
+}
+
+
+
+// Additional travel distance to target for ships entering through hyperspace.
+double System::ExtraHyperArrivalDistance() const
+{
+	return extraHyperArrivalDistance;
+}
+
+
+
+// Additional travel distance to target for ships entering using a jumpdrive.
+double System::ExtraJumpArrivalDistance() const
+{
+	return extraJumpArrivalDistance;
+}
+
+
+
+// Get a list of systems you can "see" from here, whether or not there is a
+// direct hyperspace link to them.
+const set<const System *> &System::VisibleNeighbors() const
+{
+	static const set<const System *> EMPTY;
+	const auto it = neighbors.find(DEFAULT_NEIGHBOR_DISTANCE);
+	return it == neighbors.end() ? EMPTY : it->second;
 }
 
 
@@ -503,6 +586,14 @@ double System::HabitableZone() const
 double System::AsteroidBelt() const
 {
 	return asteroidBelt;
+}
+
+
+
+// Get how far ships can jump from this system.
+double System::JumpRange() const
+{
+	return jumpRange;
 }
 
 
@@ -656,6 +747,14 @@ const vector<System::FleetProbability> &System::Fleets() const
 
 
 
+// Get the probabilities of various hazards in this system.
+const vector<System::HazardProbability> &System::Hazards() const
+{
+	return hazards;
+}
+
+
+
 // Check how dangerous this system is (credits worth of enemy ships jumping
 // in per frame).
 double System::Danger() const
@@ -706,6 +805,33 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			LoadObject(child, planets, index);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+// Once the star map is fully loaded or an event has changed systems
+// or links, figure out which stars are "neighbors" of this one, i.e.
+// close enough to see or to reach via jump drive.
+void System::UpdateNeighbors(const Set<System> &systems, double distance)
+{
+	set<const System *> &neighborSet = neighbors[distance];
+	
+	// Every star system that is linked to this one is automatically a neighbor,
+	// even if it is farther away than the maximum distance.
+	for(const System *system : links)
+		neighborSet.insert(system);
+	
+	// Any other star system that is within the neighbor distance is also a
+	// neighbor.
+	for(const auto &it : systems)
+	{
+		// Skip systems that have no name.
+		if(it.first.empty() || it.second.Name().empty())
+			continue;
+
+		if(&it.second != this && it.second.Position().Distance(position) <= distance)
+			neighborSet.insert(&it.second);
 	}
 }
 

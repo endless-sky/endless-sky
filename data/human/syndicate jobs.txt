@@ -1,0 +1,527 @@
+# Copyright (c) 2014 by Michael Zahniser and Nate Graham
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+mission "Transport executive to <planet>"
+	job
+	repeat
+	deadline
+	description "A busy executive needs immediate transportation to attend an urgent meeting on <destination> by <date>. Payment is <payment>."
+	passengers 1
+	to offer
+		random < 20
+	on offer
+		require "Luxury Accommodations"
+	source
+		government "Syndicate"
+	destination
+		distance 3 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		attributes "paradise" "rich" "core" "near earth"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 5000 250
+		dialog "The executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
+
+
+mission "Corporate retreat from <origin>"
+	job
+	repeat
+	deadline
+	description "A team of <bunks> engineers needs transport to a corporate retreat on the exotic planet of <stopovers>, after which they require return transport back to <origin> by <date>. Payment is <payment>."
+	passengers 7 18
+	to offer
+		random < 20
+	on offer
+		require "Luxury Accommodations"
+	source
+		government "Syndicate"
+	stopover
+		attributes "quarg" "volcanic" "frontier" "north" "south"
+		not attributes "station"
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+	on stopover
+		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
+	on complete
+		payment 3000 160
+		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
+
+
+mission "Corporate espionage"
+	description "The <npc> is about to enter this system. Locate it and make detailed scans of its cargo, which are of considerable interest to a team of Syndicate researchers on <destination>; proceed there for <payment> after retrieving the data."
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		government Republic Syndicate Neutral
+	destination
+		government Syndicate
+		attributes research
+		distance 3 12
+	npc "scan cargo"
+		government Merchant
+		personality fleeing uninterested entering target
+		fleet
+			names "civilian"
+			variant
+				"Scout"
+			variant
+				"Bounder"
+		dialog "You manage to make the requested scans of the <npc>'s cargo. Time to head to <planet>."
+	on complete
+		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will save us months!" you hear someone say in the background as you close the audio link.`
+		payment 50000
+
+
+mission "Document delivery to <planet>"
+	job
+	repeat
+	description "Deliver <tons> of ordinary documents to <destination>. Payment is <payment>."
+	cargo "Confidential documents" 6 12
+	to offer
+		random < 10
+	source
+		government Syndicate
+	destination
+		distance 3 20
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes factory mining "dirt belt"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000 170
+		dialog "Almost as soon as you open the cargo hatch, several silent and surprisingly well-dressed men feed the crates of documents onto a conveyor belt right next to your landing site that you hadn't noticed, where to your surprise they soon disappear into the flames of an industrial incinerator. You collect your payment of <payment>."
+
+
+mission "Waste recycling on <planet>"
+	job
+	repeat
+	description "Syndicated Systems is looking for intrepid captains willing to make a difference as part of our new Green Initiative! Deliver <tons> of recyclable <commodity> to our special facility on <destination>. Payment is <payment>."
+	cargo "Garbage" 6 40
+	to offer
+		random < 20
+	source
+		government Syndicate
+	destination
+		distance 3 10
+		government Syndicate
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You land on <planet> and drop off the exceptionally smelly shipment of <commodity> at a nondescript building, as instructed. Just as you take off, your rear camera catches sight of a burly Syndicate employee running out of the building shaking his fist. You notice that your payment of <payment> came from your contact on <origin>, not from anywhere on <planet>."
+
+
+mission "Rush fuel Delivery"
+	name "Rush fuel delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "A civilian reactor on <destination> is running low on fuel and needs an emergency shipment of <cargo> by <date>. Payment is <payment>."
+	cargo "Heavy Metals" 10 2 .1
+	to offer
+		random < 20
+		"cargo space" > 15
+	source
+		government Syndicate
+	destination
+		distance 3 10
+		government Syndicate
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 20000
+		dialog "You drop off your cargo of <commodity> at the loading bay of a towering nuclear complex and collect your payment of <payment>."
+
+
+mission "Rush equipment Delivery"
+	name "Rush equipment delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Syndicate techs on <destination> need a rush shipment of <tons> of specialized <commodity> by <date>. Payment is <payment>."
+	cargo "Equipment" 5 20
+	to offer
+		random < 20
+	source
+		government Syndicate
+	destination
+		distance 3 10
+		government Syndicate
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 9000
+		dialog "You drop off your cargo of <commodity> at the loading bay of a towering nuclear complex and collect your payment of <payment>."
+
+
+mission "Syndicate target practice [0]"
+	name "Syndicate target practice"
+	job
+	repeat
+	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+	source
+		government Syndicate
+	destination
+		distance 1 3
+		government Syndicate
+	to offer
+		random < 20
+		"combat rating" > 5
+		"combat rating" < 50
+		"destroyed Syndicate target ship" < 3
+	npc save disable "scan cargo"
+		government "Test Dummy"
+		personality disables staying heroic target
+			confusion 120
+		system destination
+		ship "Berserker Test Dummy" "Syndicate Test Vessel"
+		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
+	on visit
+		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -40000
+	on complete
+		payment 20000
+		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+
+
+mission "Syndicate target practice [1]"
+	name "Syndicate target practice"
+	job
+	repeat
+	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+	source
+		government Syndicate
+	destination
+		distance 1 3
+		government Syndicate
+	to offer
+		random < 20
+		"combat rating" > 50
+		"combat rating" < 200
+		"destroyed Syndicate target ship" < 3
+	npc save disable "scan cargo"
+		government "Test Dummy"
+		personality disables staying heroic target
+			confusion 120
+		system destination
+		ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
+		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
+	on visit
+		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -80000
+	on complete
+		payment 40000
+		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+
+
+mission "Syndicate target practice [2]"
+	name "Syndicate target practice"
+	job
+	repeat
+	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+	source
+		government Syndicate
+	destination
+		distance 1 3
+		government Syndicate
+	to offer
+		random < 20
+		"combat rating" > 150
+		"combat rating" < 1000
+		"destroyed Syndicate target ship" < 3
+	npc save disable "scan cargo"
+		government "Test Dummy"
+		personality disables staying heroic target
+			confusion 120
+		system destination
+		ship "Splinter Test Dummy" "Syndicate Test Vessel"
+		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
+	on visit
+		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -120000
+	on complete
+		payment 60000
+		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+
+
+mission "Syndicate target practice [3]"
+	name "Syndicate target practice"
+	job
+	repeat
+	description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+	source
+		government Syndicate
+	destination
+		distance 1 3
+		government Syndicate
+	to offer
+		random < 20
+		"combat rating" > 1000
+		"destroyed Syndicate target ship" < 3
+	npc save disable "scan cargo"
+		government "Test Dummy"
+		personality disables staying heroic target
+			confusion 120
+		system destination
+		ship "Vanguard Test Dummy" "Syndicate Test Vessel"
+		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
+	on visit
+		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
+	on fail
+		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+		"destroyed Syndicate target ship" ++
+		"reputation: Syndicate" --
+		payment -200000
+	on complete
+		payment 100000
+		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+
+ship "Berserker" "Berserker Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Quicksilver" "Quicksilver Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Splinter" "Splinter Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Vanguard" "Vanguard Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+
+mission "Syndicate Prisoner Transport [0]"
+	name "Transport executive to house arrest"
+	job
+	repeat
+	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest." Payment is <payment>.`
+	cargo "Luxury Goods" 1 10
+	passengers 5 12
+	source
+		government "Syndicate"
+		attributes "urban"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "rich"
+		attributes "frontier"
+	to offer
+		random < 5
+	on offer
+		require "Luxury Accommodations"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 10000 200
+		dialog "The executive strolls off your ship with a sunny smile on his face. One of the lawyers hands you your payment of <payment> with muttered threats about libel lawsuits if you say anything about what you may or may not have overheard on your ship."
+
+
+mission "Syndicate Prisoner Transport [1]"
+	name "Transport convicted saboteur"
+	job
+	repeat
+	description `Transport a convicted industrial saboteur to <planet> for their sentence. Payment is <payment>.`
+	passengers 1
+	source
+		government "Syndicate"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 15
+	on offer
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 200
+		dialog "A group of guards carry the prisoner off your ship more roughly than is strictly necessary. You receive your payment of <payment>."
+
+
+mission "Syndicate Prisoner Transport [2]"
+	name "Transport convicted corporate spies"
+	job
+	repeat
+	description `Transport a group of convicted corporate spies to <planet> for their sentences. Payment is <payment>.`
+	passengers 3 5
+	source
+		government "Syndicate"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 15
+	on offer
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 175
+		dialog "A group of guards lead the prisoners off your ship, chained together at the ankles. You receive your payment of <payment>."
+
+
+mission "Syndicate Prisoner Transport [3]"
+	name "Transport detained protesters"
+	job
+	repeat
+	description `Transport a group of detained protesters to <planet> where they will await trial for inciting a riot. Payment is <payment>.`
+	passengers 10 40 .9
+	source
+		government "Syndicate"
+		attributes "urban"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 15
+	on offer
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 150
+		dialog "The prisoners are still wearing their civilian clothes, and you can see bruises from when they were arrested as the guards lead them inside. You receive your payment of <payment>."
+
+
+mission "Syndicate Prisoner Transport [4]"
+	name "Transport detained labor organizers"
+	job
+	repeat
+	description `Transport a group of detained labor organizers to <planet> for "processing" as suspected terrorists. Payment is <payment>.`
+	passengers 3 15
+	source
+		government "Syndicate"
+		attributes "factory" "farming" "mining"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 10
+	on offer
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 200
+		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors." You receive your payment of <payment>.`
+
+
+mission "Return Syndicate Prisoners [0]"
+	name "Return executive back from house arrest"
+	job
+	repeat
+	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. Payment is <payment>.`
+	cargo "Luxury Goods" 1 10
+	passengers 5 12
+	source
+		government "Syndicate"
+		attributes "rich"
+		attributes "frontier"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "urban"
+	to offer
+		random < 5
+	on offer
+		require "Luxury Accommodations"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 20000 200
+		dialog "The executive strides toward the express customs entrance with a smug grin. A paperwork-laden lawyer gives you your payment of <payment>."
+
+
+mission "Return Syndicate Prisoners [1]"
+	name "Return detained protesters home"
+	job
+	repeat
+	description `Transport a group of protesters home to <planet> from their detention on <origin>. Payment is <payment>.`
+	passengers 10 40 .9
+	source
+		government "Syndicate"
+		attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "urban"
+		not attributes "military"
+	to offer
+		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 5000 100
+		dialog "The protesters look around the spaceport nervously before disembarking. You receive your payment of <payment>."
+
+
+mission "Return Syndicate Prisoners [2]"
+	name "Return detained labor organizers home"
+	job
+	repeat
+	description `Transport a group of labor organizers home to <planet> from their imprisonment on <origin>. Payment is <payment>.`
+	passengers 3 15 .9
+	source
+		government "Syndicate"
+		attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "factory" "farming" "mining"
+		not attributes "military"
+	to offer
+		random < 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 5000 100
+		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. You receive your payment of <payment>."

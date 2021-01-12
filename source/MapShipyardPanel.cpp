@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapShipyardPanel.h"
 
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -20,8 +20,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <limits>
@@ -118,9 +120,10 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !system->IsInhabited(player.Flagship()))
+	if(!system || !player.HasVisited(system) || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
+	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
@@ -158,6 +161,8 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 void MapShipyardPanel::DrawItems()
 {
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	for(const string &category : categories)
@@ -218,5 +223,5 @@ void MapShipyardPanel::Init()
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) {return a->ModelName() < b->ModelName();});
+			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });
 }

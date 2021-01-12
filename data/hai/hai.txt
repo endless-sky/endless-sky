@@ -1,0 +1,797 @@
+# Copyright (c) 2014-2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+fleet "Small Hai"
+	government "Hai"
+	names "hai"
+	cargo 3
+	personality
+		disables opportunistic
+	variant 3
+		"Water Bug"
+		"Lightning Bug (Pulse)" 2
+	variant 3
+		"Water Bug (Pulse)"
+		"Lightning Bug" 2
+	variant 1
+		"Water Bug"
+		"Water Bug (Pulse)"
+		"Lightning Bug"
+	variant 1
+		"Water Bug" 2
+		"Lightning Bug (Pulse)"
+	variant 3
+		"Lightning Bug" 2
+		"Aphid (Armed)" 3
+	variant 1
+		"Lightning Bug"
+		"Aphid (Armed)" 5
+	variant 2
+		"Lightning Bug (Pulse)" 2
+		"Aphid" 3
+	variant 2
+		"Lightning Bug (Pulse)"
+		"Aphid" 5
+	variant 1
+		"Lightning Bug" 3
+	variant 1
+		"Lightning Bug (Pulse)" 3
+	variant 1
+		"Lightning Bug (Pulse)"
+		"Lightning Bug" 2
+	variant 1
+		"Lightning Bug"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Centipede"
+	variant 3
+		"Aphid (Armed)" 3
+		"Centipede"
+	variant 1
+		"Centipede" 2
+		"Centipede (Pulse)" 3
+	variant 1
+		"Centipede" 2
+		"Lightning Bug" 2
+	variant 2
+		"Centipede" 2
+		"Water Bug"
+	variant 1
+		"Centipede"
+		"Lightning Bug" 2
+	variant 1
+		"Centipede"
+		"Aphid (Armed)" 5
+	variant 1
+		"Centipede" 2
+		"Lightning Bug" 2
+	variant 1
+		"Centipede" 2
+		"Lightning Bug" 
+	variant 1
+		"Grasshopper" 3
+	variant 1
+		"Grasshopper"
+		"Centipede" 2
+	variant 1
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+		"Centipede" 
+	variant 1
+		"Lightning Bug" 2
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Lightning Bug"
+		"Centipede (Pulse)" 
+		"Grasshopper" 2
+
+fleet "Large Hai"
+	government "Hai"
+	names "hai"
+	cargo 3
+	personality
+		disables opportunistic
+	variant 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+		"Aphid (Armed)" 4
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+		"Aphid" 4
+	variant 3
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+		"Water Bug"
+		"Water Bug (Pulse)"
+	variant 3
+		"Shield Beetle"
+		"Water Bug"
+		"Water Bug (Pulse)"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+		"Water Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Water Bug" 3
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant 1
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 1
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Centipede" 3
+	variant 2
+		"Water Bug" 3
+		"Centipede" 2
+	variant 1
+		"Centipede" 3
+		"Centipede (Pulse)" 2
+	variant 3
+		"Centipede" 2
+		"Lightning Bug" 3
+		"Water Bug"
+	variant 2
+		"Aphid (Armed)" 2
+		"Lightning Bug"
+		"Centipede"
+	variant 2
+		"Centipede"
+		"Shield Beetle (Pulse)" 2
+		"Shield Beetle (Tracker)"
+	variant 1
+		"Centipede" 2
+		"Lightning Bug" 2
+		"Aphid (Armed)" 3
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)"
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)" 
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Geocoris (Tracker)"
+		"Shield Beetle"
+		"Aphid" 2
+		"Aphid (Armed)" 
+	variant 1
+		"Centipede"
+		"Geocoris (Tracker)"
+		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
+
+fleet "Hai Surveillance"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		surveillance unconstrained
+	variant 10
+		"Shield Beetle (Police)"
+	variant 5
+		"Lightning Bug (Surveillance)"
+	variant 5
+		"Lightning Bug (Surveillance)" 2
+	variant 5
+		"Lightning Bug (Surveillance)" 3
+	variant 3
+		"Grasshopper (Surveillance)" 3
+	variant 3
+		"Grasshopper (Surveillance)" 4
+	variant 3
+		"Grasshopper (Surveillance)" 5
+
+
+fleet "Small Unfettered"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		disables
+		plunders
+	variant 3
+		"Lightning Bug (Pulse)" 2
+	variant 3
+		"Lightning Bug" 2
+	variant
+		"Lightning Bug"
+	variant
+		"Lightning Bug (Pulse)"
+
+fleet "Large Unfettered"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		disables
+		plunders
+	variant 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant 1
+		"Shield Beetle (Tracker)" 2
+	variant 1
+		"Shield Beetle" 2
+	variant 1
+		"Lightning Bug" 5
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+
+fleet "Unfettered Raid"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		disables
+		plunders
+	variant
+		"Shield Beetle (Jump)" 3
+	variant
+		"Shield Beetle (Jump)" 2
+		"Shield Beetle (Jump, Tracker)" 1
+	variant
+		"Shield Beetle (Jump)" 1
+		"Shield Beetle (Jump, Tracker)" 2
+
+shipyard "Hai Basics"
+	"Aphid"
+	"Lightning Bug"
+	"Centipede"
+	"Grasshopper"
+
+shipyard "Hai Intermediate"
+	"Aphid"
+	"Lightning Bug"
+	"Water Bug"
+	"Centipede"
+	"Grasshopper"
+
+shipyard "Hai Advanced"
+	"Aphid"
+	"Lightning Bug"
+	"Water Bug"
+	"Shield Beetle"
+	"Centipede"
+	"Geocoris"
+	"Grasshopper"
+
+outfitter "Hai Basics"
+	"Pulse Cannon"
+	"Hai Tracker"
+	"Bullfrog Anti-Missile"
+	"Geode Reactor"
+	"Hai Williwaw Cooling"
+	"Hyperdrive"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Supercapacitor"
+	"Cargo Expansion"
+	"Small Bunk Room"
+	"Fuel Pod"
+	"Hai Corundum Regenerator"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	"Local Map"
+	"Quantum Keystone"
+	"Pulse Rifle"
+
+outfitter "Hai Intermediate"
+	"Pulse Cannon"
+	"Pulse Turret"
+	"Hai Tracker"
+	"Hai Tracker Pod"
+	"Tracker Storage Pod"
+	"Bullfrog Anti-Missile"
+	"Chameleon Anti-Missile"
+	"Pebble Core"
+	"Geode Reactor"
+	"Hai Williwaw Cooling"
+	"Hyperdrive"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Hai Gorge Batteries"
+	"Supercapacitor"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
+	"Hai Corundum Regenerator"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic Steering`
+	"Local Map"
+	"Quantum Keystone"
+	"Pulse Rifle"
+	"Outfit Scanner"
+	"Cargo Scanner"
+	"Sand Cell"
+
+outfitter "Hai Advanced"
+	"Pulse Cannon"
+	"Ion Cannon"
+	"Pulse Turret"
+	"Hai Tracker"
+	"Hai Tracker Pod"
+	"Tracker Storage Pod"
+	"Bullfrog Anti-Missile"
+	"Chameleon Anti-Missile"
+	"Pebble Core"
+	"Geode Reactor"
+	"Boulder Reactor"
+	"Hai Williwaw Cooling"
+	"Hyperdrive"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Hai Gorge Batteries"
+	"Hai Ravine Batteries"
+	"Hai Valley Batteries"
+	"Supercapacitor"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
+	"Hai Corundum Regenerator"
+	"Hai Diamond Regenerator"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic Steering`
+	`"Bondir" Atomic Thruster`
+	`"Bondir" Atomic Steering`
+	`"Bufaer" Atomic Thruster`
+	`"Bufaer" Atomic Steering`
+	"Luxury Accommodations"
+	"Local Map"
+	"Quantum Keystone"
+	"Pulse Rifle"
+	"Outfit Scanner"
+	"Cargo Scanner"
+	"Sand Cell"
+
+phrase "hai"
+	word
+		"Du"
+		"Mon"
+		"Luf"
+		"Vai"
+		"Woh"
+		"Far"
+	word
+		" "
+		" "
+		" e "
+		" e "
+		" Cor "
+		" Yo "
+		" Sook "
+		" Woa "
+		" Ood "
+	word
+		"Loh"
+		"Eh"
+		"Ow"
+		"Hey"
+		"Lur"
+		"Sen"
+		"Bin"
+
+phrase "friendly hai"
+	word
+		"Any "
+		"Every "
+		"A "
+	word
+		"seeker of "
+		"being of "
+		"bringer of "
+		"sentient being of "
+		"being who offers "
+		"being who seeks "
+		"being who values "
+		"being who brings "
+		"species that offers "
+		"species that seeks "
+		"species that values "
+		"species that brings "
+		"creature of "
+		"species of "
+		"individual of "
+		"person of "
+		"sentient creature of "
+	word
+		"peace "
+		"an open heart "
+		"peacefulness "
+		"nonviolence "
+		"understanding "
+		"reconciliation "
+		"harmony "
+		"concord "
+		"serenity "
+	word
+		"and "
+	word
+		"love "
+		"a tender heart "
+		"compassion "
+		"friendship "
+		"amity "
+		"good intentions "
+		"friendly intentions "
+		"empathy "
+		"care "
+		"kindness "
+	word
+		"is welcome "
+	word
+		"in Hai space."
+		"in our territory."
+		"on our worlds."
+		"to visit us."
+		"to coexist with us."
+		"in our space."
+		
+phrase "friendly hai"
+	word
+		"To be welcome "
+	word
+		"in Hai space"
+		"in our territory"
+		"on our worlds"
+		"among us"
+		"in our space"
+	word
+		", you need to "
+		", you must "
+		", you have to "
+		", one needs to "
+		", one must "
+		", one has to "
+	word
+		"promote "
+		"bring "
+		"believe in "
+		"offer "
+		"seek "
+		"value "
+	word
+		"love "
+		"tenderness "
+		"compassion "
+		"friendship "
+		"amity "
+		"good intentions "
+		"friendly intentions "
+		"empathy "
+		
+	word 
+		"and "
+	word 
+		"peace."
+		"an open heart."
+		"peacefulness."
+		"nonviolence."
+		"understanding."
+		"reconciliation."
+		"harmony."
+		"concord."
+		"cooperation."
+
+phrase "friendly disabled hai"
+	word
+		"Fellow peacekeeper"
+		"Human visitor"
+		"Friend"
+	word
+		", "
+	word
+		"please provide assistance to us"
+		"our ship has been disabled and needs repair"
+		"please spare a moment to rescue us"
+	word
+		"."
+		"!"
+
+phrase "hostile hai"
+	word
+		"You "
+	word 
+		" came to "
+		" entered "
+	word
+		" Hai "
+		" our "
+	word	
+		"space"
+		"territory"
+		"worlds"
+	word
+		" with "
+	word
+		"impure"
+		"unclean"
+		"tainted"
+		"foul"
+		"shameful"
+		"violent"
+		"greedy"
+		"immoral"
+		"belligerent"
+		"brutal"
+		"cruel"
+		"heartless"
+	word 
+		" "
+	word
+		"thoughts"
+		"beliefs"
+		"principles"
+		"intentions"
+		"resolves"
+	word
+		"; we "
+		". We "
+	word
+		"must "
+		"have to "
+		"have no choice but to "
+	word
+		"drive you out"
+		"eject you"
+		"exclude you"
+		"remove you"
+	word 
+		" from "
+	word
+		"Hai "
+		"our "
+	word	
+		"space."
+		"territory."
+		"worlds."
+
+phrase "hostile disabled hai"
+	word
+		"You "
+	word
+		"impure"
+		"unclean"
+		"tainted"
+		"foul"
+		"shameful"
+		"violent"
+		"greedy"
+		"immoral"
+		"belligerent"
+		"brutal"
+		"cruel"
+		"heartless"
+	word
+		" "
+	word
+		"human"
+		"creature"
+		"thing"
+		"being"
+	word
+		". "
+		"! "
+	word
+		" We provided you sanctuary and you betrayed us."
+		" We were nothing but peaceful to you but you did not reciprocate."
+		" We live only in peace yet you come bringing war."
+		" Have you no soul?"
+		
+
+phrase "friendly unfettered"
+	word
+		"We "
+	word
+		"welcome"
+		"accept"
+		"tolerate"
+	word
+		" "
+	word
+		"true"
+		"strong"
+		"ambitious"
+	word
+		" "
+	word
+		"races"
+		"people"
+		"individuals"
+	word
+		" that are "
+		" "
+	word
+		"ready to"
+		"willing to"
+		"ready to"
+		"willing to"
+		"prepared to"
+	word
+		" "
+	word
+		"help"
+		"assist"
+		"work with"
+		"support"
+		"follow"
+		"obey"
+	word
+		" the "
+	word
+		"true"
+		"strong"
+		"original"
+		"strong"
+		"unaltered"
+	word
+		" Hai."
+
+phrase "friendly disabled unfettered"
+	word
+		"Strong"
+		"True"
+		"Ambitious"
+		"Worthy"
+	word
+		" "
+	word
+		"warrior"
+		"human"
+		"ally"
+	word
+		"! "
+		". "
+	word
+		"These weaklings"
+		"Our enemies"
+		"They"
+	word
+		" have "
+	word
+		"disabled us"
+		"gotten the better of us"
+		"defeated us"
+	word
+		"! "
+		". "
+	word
+		"Assist us in our fight"
+		"Repair us so that we may continue in glorious battle"
+		"Fix our ship so that we may fight"
+		"Destroy our enemies before they destroy us"
+	word
+		"!"
+		"."
+		
+phrase "hostile unfettered"
+	word
+		"Peace"
+		"Peacefulness"
+		"Nonviolence"
+		"Understanding"
+		"Reconciliation"
+		"Harmony"
+		"Concord"
+		"Cooperation"
+		"Love"
+		"Tenderness"
+		"Compassion"
+		"Friendship"
+		"Amity"
+		"Empathy"
+		"Care"
+		"Kindness"
+	word
+		" is for the "
+	word
+		"fragile"
+		"frail"
+		"pathetic"
+		"weak"
+	word
+		"; we are the "
+		"! We are the "
+	word
+		"true"
+		"strong"
+		"original"
+		"strong"
+		"unaltered"
+	word
+		" Hai!"
+
+phrase "hostile disabled unfettered"
+	word
+		"You coward"
+		"You weakling"
+		"You monkey"
+		"You pathetic nut"
+	word
+		"! "
+		". "
+	word
+		"Finish what you have started"
+		"My brothers and sisters will avenge me"
+		"My brothers and sisters will make short work of you after this"
+		"I challenge you to a duel! Board me"
+		"I dare you to board me"
+		"Let's finish this face to face"
+	word
+		"!"
+		"."

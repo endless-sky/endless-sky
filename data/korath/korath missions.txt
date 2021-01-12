@@ -1,0 +1,256 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "First Contact: Korati Efreti"
+	landing
+	source "Korati Efreti"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
+	on offer
+		conversation
+			`A few of the Korath who inhabit this station greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
+				decline
+
+mission "First Contact: Laki Nemparu"
+	landing
+	source "Laki Nemparu"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
+	on offer
+		conversation
+			`A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
+				decline
+
+mission "First Contact: Karek Fornati"
+	landing
+	source "Karek Fornati"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
+	on offer
+		conversation
+			`A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
+				decline
+
+mission "First Contact: Setar Fort"
+	landing
+	source "Setar Fort"
+	to offer
+		not "Wanderers: Rek To Kor Efret: offered"
+	on offer
+		conversation
+			`A few of the Korath in this spaceport greet you when you land, holding up both hands with their palms toward you. One of them says something that sounds like, "Humani efreti, naskoor amasavarkta." It's clear that none of them speak your language, but they seem friendly and willing to trade with you.`
+				decline
+
+mission "Discovered Korath Space"
+	landing
+	invisible
+	source
+		attributes "efret"
+	on offer
+		event "label korath space"
+		log "Factions" "Korath" `The Korath are reptilian, bipedal aliens whose territory is almost entirely in ruins: cities destroyed and entire planets scarred by what appears to have been a vicious civil war. Several factions of Korath survive. The "Kor Efreti" live in the shelter of a Quarg ringworld and are on peaceful terms with the Quarg. Other Korath, living as exiles near the galactic core, have been raiding human worlds to steal food and supplies. And deeper in Korath space, two massive armies of automated war drones, known as the Kor Mereti and the Kor Sestor, are locked in an unending struggle. They attack any visitors to their region of space, including the Quarg.`
+		fail
+
+event "label korath space"
+	galaxy "label korath"
+		sprite "label/korath"
+		
+mission "Setar Fort Heating"
+	name "Supplies to <planet>"
+	description "Take <cargo> from the Wanderers to the Kor Efreti on <destination>. Payment is <payment> credits."
+	minor
+	cargo "heating supplies" 30
+	source
+		government "Wanderer"
+		near "Kaliptari" 100
+	destination "Setar Fort"
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 60
+	on offer
+		conversation
+			`As you're exploring the spaceport, a Wanderer you've not met waves you down. It says, "You are Captain <last>, correct?"`
+			choice
+				`	"Yes, that's me."`
+				`	"The one and only."`
+			`	"I am [relieved, happy] to see you, Captain. We have heard of your assistance in our migration here, and I [believe, assume] you have spent some time on Korath worlds. Would you be interested in taking <tons> of [supplies, aid] to <planet>? I can offer you <payment> credits."`
+			choice
+				`	"I can do that. Load it up, and I'll be ready to leave."`
+					goto agree
+				`	"Only <payment> credits? That's an unusually low payment for the amount of cargo I'll be carrying."`
+					goto payment
+				`	"What exactly would I be transporting?"`
+				`	"Sorry, but I'm too busy at the moment to take on another job."`
+					goto decline
+			
+			`	"As I am sure you are aware, <planet> is cold - uncomfortably so for most species. Based on our [research, information], the planet is experiencing an accelerated [descent, transition] into an ice age. The Kor Efreti have no effective means of stopping this, and their [pride, honor] means they will not accept our terraforming assistance unless they have no other options. They will, however, pay us for equipment to offset this [descent, transition]. Your [supplies, aid] would include warmer clothing, greenhouse building material, [insulation, shelter], and other technology for the Korath to use. The payment, while [unfortunately, sadly] low, is all the Korath were able to offer.`
+			`	"I was originally going to make the journey myself, but my ship has encountered [errors, complications] due to a faulty component. I need someone to go in my place."`
+			choice
+				`	"I'd be happy to, especially since it's for a good cause. You're welcome to load it up onto my ship."`
+					goto agree
+				`	"Sorry, but I'm too busy at the moment to take on another job."`
+					goto decline
+			
+			label payment
+			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... Yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagarie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
+			choice
+				`	"I understand, and the money isn't a huge problem. I was just curious. Load it up onto my ship, and I'll be ready to go."`
+					goto agree
+				`	"Oh. Well, I'll make an exception too. Load it up, and I'll head out."`
+					goto agree
+				`	"Sorry, but I can't make that trip for only <payment>. You'll have to find someone else."`
+			
+			label decline
+			`	The Wanderer deflates a little when it hears your response. "Oh. I understand. Thank you for your time, Captain <last>," it says, then it wanders off to look for another pilot.`
+				decline
+			
+			label agree
+			`	The Wanderer is happy to hear your response. "Wonderful! I will ensure the supplies are loaded onto your ship [immediately, quickly]. Thank you, Captain." It hurries off to a group of Wanderers nearby and starts barking orders. The group breaks up, and within minutes they're at your ship loading the supplies.`
+				accept
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000
+		conversation
+			`When you arrive on <planet>, a group of Korath is waiting to unload the cargo. You try and imitate their gesture of greeting, holding your hands up with your palms toward the group. The look surprised but hiss approvingly.`
+			`	Soon, all the supplies are off of your ship. The Korath give you a gesture of appreciation, then they begin unpacking it right in the middle of the spaceport. Already, a crowd has begun to gather around the equipment. It looks like it will be put to good use here. When you return to your ship, you see the Wanderer who offered you the job has transferred you your payment of <payment>.`
+			
+mission "Korath Family to Ringworld"
+	name "Korath to <planet>"
+	description "A Korath family of <bunks> has paid you <payment> to take them to the Quarg ringworld of <destination>."
+	minor
+	passengers 3
+	source "Laki Nemparu"
+	destination "Kuwaru Efreti"
+	to offer
+		random < 60
+	on offer
+		conversation
+			`The smog is so thick on Laki Nemparu that even the brightest hours of the day feel like evening to you. Everything here is so dirty that most of the Korath look a few shades darker than those of other planets. Within minutes, a small layer of soot clings to your skin as well.`
+			`	As you observe your surroundings, a Kor Efret approaches you followed by two others, one likely a child based on its size and the other hunched over a cane it uses for support - probably elderly. The one in front speaks in the Korath language and quickly realizes you don't understand it at all. The Kor Efret pauses to take a deep breath, then erupts into a coughing fit as they inhale far too much smog. It's almost a full minute before they recover.`
+			`	The Korath points up to the sky and says, "<planet>, <planet>," while gesturing to the two Korath with them. They press 500 credits into your hands and continue to mutter in the Korath language. <planet> is the name of the Quarg ringworld in Korath space. They must want transportation to it. 500 credits is shockingly low for any transport job, but based on their appearance they can't afford to pay you any more. Do you want to take them to <planet>?`
+			choice
+				`	(Yes.)`
+				`	(Yes, and give their credits back to them.)`
+					goto free
+				`	(No.)`
+					goto heartless
+			`	You pocket the credits and gesture for them to follow to your ship. When the Korath realizes you've agreed, they sigh in relief and rapidly gesture in gratitude. You show them to their bunks... and the shower.`
+				accept
+			
+			label free
+			`	The Korath's shoulders slump when you hand back the credits, but their disappointment turns to surprise when you gesture to your ship. When they realize you're trying to refuse the money, they puff their chest out and push the credits into your hands again. They won't take no for an answer, so you pocket the credits and take them to your ship. You show them to their bunks... and the shower.`
+				accept
+			
+			label heartless
+			`	You give the credits back to the Korath, and their shoulders slump. You watch the trio wander off until they're no longer visible through the thick smog. You can't help but feel a little bad.`
+				decline
+	on accept
+		payment 500
+	on complete
+		conversation
+			`You enjoy the new company on your ship. The child has taught you a game where you take turns throwing a ball against the wall. You spend an hour or two playing with them in the cargo hold.`
+			`	When you arrive, you decide to accompany the family into the spaceport. Waiting near the docking bay are two more Korath, one an adult and the other elderly, and the three you've transported rush to meet them. After the happy reunion has died down, the Korath who had originally asked you for transportation turns to a nearby Quarg and says something. The Quarg responds and then turns to you.`
+			`	"This fellow pridefulest has claimed he regarded my indebted translation with reverence and asks my usage of it be preferred. I am inclined to acquiesce his request happyifully." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to more or less gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our camaraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
+			choice
+				`	"Tell him it's no problem at all."`
+				`	"Tell him he has a wonderful family, and I was glad to help."`
+			`	The Quarg nods and turns to translate. The Korath responds while holding his palms toward you and moving them in a wide circular motion. "This is indicating of thankfulness of wholesomest measure. He thanks you for your fortunate words and wishes you kind travels," the Quarg says. You acknowledge the response, thank the Quarg for its (rough) translation services, and return to your ship.`
+		
+mission "Korath Livestock"
+	name "Livestock to <planet>"
+	description "Transport <bunks> Korath farmers and their <cargo> to <destination>. They've paid you part of your agreed 10,000 credits already."
+	minor
+	passengers 7
+	cargo "livestock and supplies" 40
+	source "Setar Fort"
+	destination "Karek Fornati"
+	to offer
+		random < 65
+	on offer
+		conversation
+			`A Kor Efret wearing several layers made of a wool-like fabric approaches you. It raises both its palms toward you, then it gestures for you to follow into an alley. You don't think it poses any threat, but it can't hurt to be cautious.`
+			choice
+				`	(Follow into the alleyway.)`
+				`	(Play it safe and leave.)`
+					decline
+			`	The Korath weaves through the buildings, heading deeper into an abandoned section of the city. The Korath turns a corner, and as a cold wind rushes over you, an alarmingly loud bleating noise emanates from around the corner.`
+			choice
+				`	(Turn the corner.)`
+				`	(Turn around and try to run back to the spaceport.)`
+			`	You hear the shuffling of feet behind you and turn around. Three towering Korath wearing similar heavy clothing have stepped out of a nearby doorway and are making their way toward you. The bleating noise returns, and you turn again, only to see the original Kor Efret has returned from around the corner. Whatever chance you had of getting out of this is gone now.`
+			`	The one in front turns back to where it came from, and the Korath behind you hisses and gestures forward. It looks like you should follow. You brace yourself and turn the corner to see... animals?`
+			`	The rusting buildings have given way to a massive abandoned plaza, and the entire space is taken up by a mix of large livestock and supplies. They remind you of sheep, but they're around five times larger, have six legs, and come in a variety of brown-black colors. Each has a full coat of fur and an additional blanket made of their own wool-like fabric on them. It's the same material these Korath are wearing. Even with their extra blanket, the "sheep" are huddled in small groups and look uncomfortably cold. They occasionally bleat loudly whenever a cold wind rushes through the plaza. Fortunately for you, these Kor Efreti look to be farmers, not muggers. This must have been the only place near the spaceport where they could keep their entire herd together.`
+			`	The one who led you here, who also seems to be the leader, gestures for you to come over to it. It has opened a paper map - a rare sight in the era of interstellar travel. When you take a look, you realize it's not of the local area, but space; it seems to show the surroundings systems. The Korath points to one, pauses and gestures broadly at the mix of livestock and supplies, then draws its finger to another system and says something that sounds roughly like <planet>. "<planet>?" you confirm, and the Korath hisses in approval. It looks like they want transportation there. You wager the livestock and supplies will take up roughly <tons>, and there are <bunks> Korath farmers in the group.`
+			`	It pulls a stack of 200 credits from its pocket and sets it on the ground before drawing a circle around it with a piece of chalk. It then draws four more, makes a large circle around the five total smaller ones, then draws nine additional large circles. Your best guess is it's offering 10,000 credits for their transport.`
+			choice
+				`	(Agree to take them.)`
+				`	(Decline the job.)`
+					decline
+			`	You indicate your agreement by pointing to <planet> on the map and gesturing to yourself. Once it understands you've agreed, the Korath holds its palms toward you and moves them in a circular motion. You lead one to your ship while the rest stay behind to prepare the animals. When you arrive, it immediately goes to work spreading tarps over the floor and scattering a type of straw over them. After some time, you notice one of the "sheep" emerge from an alleyway led by a farmer that had stayed behind. Behind it is another animal, then another. The line of livestock, interspersed with the farmers keeping things moving, slowly makes it way into your hangar over the next hour.`
+			`	As they enter your climate-controlled ship, the farmers take the hefty, wool-like blankets off the "sheep" and remove most of their own layers. One takes the entire pile of fabric to a nearby vendor and exchanges it for credits while the others go back and grab the supplies still in the plaza. By nightfall, everything and everyone is finally loaded onto your ship. The Korath who had sold the clothes to the merchant gives you the entire stack of 4,100 credits. Hopefully you'll get the rest after you get to <planet>.`
+				accept
+	on accept
+		payment 4100
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 5900
+		conversation
+			`The animals are surprisingly comfortable on the ship, but the Korath struggle. Based on how often they're in and out of the bathroom during the one-jump trip, none of them have been in hyperspace before. When they get over their space sickness, they busy themselves shaving the wool-like fur off the animals and gathering it.`
+			`	As you land and open the cargo doors to reveal the hot world of <planet>, the animals shift excitedly. They seem much more energetic than any time before now, so much so that the Korath have some trouble keeping them all together as they exit the ship. The slow desertification of this planet is surely a cause for concern, but it seems to provide a much healthier environment for these animals than Setar Fort's chilling temperatures do. Once everything is off your ship, a Korath takes the wool to another vendor and again sells it, then it returns and hands you 5,900 credits. With the 4,100 credits it gave you before leaving, you've recieved all 10,000 promised credits. It holds its hands up with its palms toward you then leaves to join the other farmers.`
+
+phrase "kor efret small package offer"
+	word
+		`A Korath`
+		`A Kor Efret`
+		`A local`
+	word
+		` `
+	word
+		`communicates using gestures that it wants you to`
+		`uses gestures to ask you to`
+	word
+		` `
+	word
+		`bring a small crate`
+		`bring a package`
+		`take a shipment weighing less than one ton`
+		`carry a box`
+	word
+		` `
+	word
+		`to <destination> for <payment>.`
+	word
+		` `
+	word
+		`It shouldn't take up any significant room on your ship.`
+		`It's small enough to fit below your seat.`
+		`The item is small enough for you to hold in your hands.`
+		`It's small enough that it won't take up any cargo space.`	
+
+mission "Small Scale Delivery"
+	name "Package to <planet>"
+	repeat
+	description "Take a small delivery to <destination> for <payment> for a Kor Efret."
+	minor
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 10
+	source
+		government "Kor Efret"
+	destination
+		government "Kor Efret"
+		distance 1 8
+	on offer
+		dialog phrase "kor efret small package offer"
+	on complete
+		payment 1000
+		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`

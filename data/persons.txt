@@ -50,6 +50,8 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
+		fighter -46 106 under
+		fighter 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -74,6 +76,32 @@ person "Michael Zahniser"
 		explode "medium explosion" 80
 		explode "large explosion" 120
 		explode "huge explosion" 60
+	ship "Finch (MZ)" "Vapor"
+	ship "Finch (MZ)" "Cipher"
+
+ship "Finch" "Finch (MZ)"
+		"never disabled"
+		add attributes
+			"shields" 900
+			"hull" 1800
+			"outfit space" 140
+			"weapon capacity" 22
+			"engine capacity" 22
+		outfits
+			"Electron Beam" 2
+			
+			"Fuel Pod"
+			"Liquid Nitrogen Cooler"
+			"Large Radar Jammer"
+			"Ramscoop"
+			"S-270 Regenerator"
+			
+			"LP036a Battery Pack"
+			"Fission Reactor"
+			
+			"A125 Atomic Steering"
+			"A120 Atomic Thruster"
+			"Ionic Afterburner"
 
 
 
@@ -293,7 +321,7 @@ person "Captain Nate"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
 	
 	ship Vanguard "Pointedstick"
-		sprite "ship/pointedstick_vanguard"
+		sprite "ship/pointedstick vanguard"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -332,24 +360,39 @@ person "Captain Nate"
 			"Ionic Afterburner"
 			"Hyperdrive"
 		
-		engine 0 130
-		engine -31 128 .7
-		engine 31 128 .7
-		gun 0 -132 "Proton Gun"
-		gun 0 -132 "Proton Gun"
-		gun 0 -132 "Proton Gun"
-		gun -22 -122 "Proton Gun"
-		gun -22 -122 "Proton Gun"
-		gun 22 -122 "Proton Gun"
-		gun 22 -122 "Proton Gun"
-		gun -21 -45 "Proton Gun"
-		gun -21 -45 "Proton Gun"
-		gun 21 -45 "Proton Gun"
-		gun 21 -45 "Proton Gun"
-		gun -31 -45 "Heavy Rocket Launcher"
-		gun -31 -45 "Heavy Rocket Launcher"
-		gun 31 -45 "Heavy Rocket Launcher"
-		gun 31 -45 "Heavy Rocket Launcher"
+		engine -31.5 130.5 0.7
+		engine 31.5 130.5 0.7
+		engine 0 130.5 0.7
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun 0 -130.5 "Proton Gun"
+			parallel
+		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun -24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun 24 -122 "Heavy Rocket Launcher"
+			parallel
+		gun -40 -46 "Proton Gun"
+			parallel
+		gun -40 -46 "Proton Gun"
+			parallel
+		gun 40 -46 "Proton Gun"
+			parallel
+		gun 40 -46 "Proton Gun"
+			parallel
+		gun -34.5 -43 "Proton Gun"
+			parallel
+		gun -34.5 -43 "Proton Gun"
+			parallel
+		gun 34.5 -43 "Proton Gun"
+			parallel
+		gun 34.5 -43 "Proton Gun"
+			parallel
 		turret 0 42 "Anti-Missile Turret"
 		explode "tiny explosion" 18
 		explode "small explosion" 36
@@ -361,6 +404,7 @@ person "Captain Nate"
 
 person "Tranquility"
 	government "Merchant"
+	frequency 100
 	personality
 		timid
 	phrase
@@ -583,26 +627,26 @@ ship "Modified Osprey"
 		"Hyperdrive"
 		"Jump Drive"
 		
-	engine -46 67
-	engine 46 67
-	engine -17 105.5 .0
-	engine 17 105.5 .0
-	gun 0 -108 "Nuclear Missile"
-	gun -9 -99 "Korath Slicer"
-	gun 9 -99 "Korath Slicer"
-	gun -9 -99 "Korath Slicer"
-	gun 9 -99 "Korath Slicer"
-	gun -21 -61 "Korath Detainer"
-	gun 21 -61 "Korath Detainer"
+	engine -45.5 64 .8
+	engine 45.5 64 .8
+	engine -16.5 105 .6
+	engine 16.5 105 .6
+	gun 0 -114 "Nuclear Missile"
+	gun -6.5 -100 "Korath Slicer"
+	gun 6.5 -100 "Korath Slicer"
+	gun -14 -91 "Korath Slicer"
+	gun 14 -91 "Korath Slicer"
+	gun -19 -59 "Korath Detainer"
+	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
 	gun 26.5 -53 "Korath Detainer"
-	gun -60 17 "Finisher Pod"
-	gun 60 17 "Finisher Pod"
-	turret 0 -91 "Point Defense Turret"
-	turret -19.5 -16 "Korath Disruptor"
-	turret 19.5 -16 "Korath Disruptor"
-	turret -60 17 "Heliarch Repulsor"
-	turret 60 17 "Heliarch Repulsor"
+	gun -67 -1.5 "Finisher Pod"
+	gun 67 -1.5 "Finisher Pod"
+	turret 0 -91.5 "Point Defense Turret"
+	turret -13.5 -15.5 "Korath Disruptor"
+	turret 13.5 -15.5 "Korath Disruptor"
+	turret -49.5 20 "Heliarch Repulsor"
+	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
 	turret 0 89.5 "Point Defense Turret"
 	
@@ -611,6 +655,7 @@ ship "Modified Osprey"
 	explode "small explosion" 40
 	explode "tiny explosion" 28
 	"final explode" "final explosion large" 1
+
 
 
 person "Local God"
@@ -645,7 +690,7 @@ person "Local God"
 			" and "
 		word
 			"retire as an outfit dealer."
-			"open a univeral outfitter."
+			"open a universal outfitter."
 			"start dealing exotic outfits."
 			"sell outfits from everywhere."
 			"stock outfits from all over the place."
@@ -698,6 +743,7 @@ person "Local God"
 		"never disabled"
 
 ship "Ursa Polaris"
+	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
 		category "Heavy Warship"
@@ -731,12 +777,13 @@ ship "Ursa Polaris"
 			"hit force" 6000
 	outfits
 		"Quarg Skylance"
-		"Pug Gridfire Turret" 3
+		"LG Gridfire Turret" 3
 		"Plasma Turret"
 		"Korath Disruptor" 5
 		"Quarg Anti-Missile" 5
 		Hyperdrive
-		"Korath Heat Shunt"
+		"Large Heat Shunt"
+		"Small Heat Shunt" 2
 		"Systems Core (Large)" 2
 		"Korath Repeater Rifle" 600
 		"Thruster (Stellar Class)"
@@ -751,13 +798,13 @@ ship "Ursa Polaris"
 	turret 27 -162 "Quarg Skylance"
 	turret 27 -162 "Korath Disruptor"
 	turret 94.5 -52.5 "Quarg Anti-Missile"
-	turret 94.5 -52.5 "Pug Gridfire Turret"
+	turret 94.5 -52.5 "LG Gridfire Turret"
 	turret 94.5 -52.5 "Korath Disruptor"
 	turret 80.5 53 "Quarg Anti-Missile"
-	turret 80.5 53 "Pug Gridfire Turret"
+	turret 80.5 53 "LG Gridfire Turret"
 	turret 80.5 53 "Korath Disruptor"
 	turret 21 25.5 "Quarg Anti-Missile"
-	turret 21 25.5 "Pug Gridfire Turret"
+	turret 21 25.5 "LG Gridfire Turret"
 	turret 21 25.5 "Korath Disruptor"
 	turret -69.5 -43 "Quarg Anti-Missile"
 	turret -69.5 -43 "Plasma Turret"
@@ -765,6 +812,467 @@ ship "Ursa Polaris"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
-	explode "big explosion" 40
+	explode "large explosion" 40
 	explode "huge explosion" 50
 
+outfit "LG Gridfire Turret"
+	category "Turrets"
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/pug gridfire turret"
+		"fire effect" "gridfire fire"
+		"hit effect" "gridfire hit" 2
+		"hit effect" "gridfire cloud"
+		"phasing"
+		"velocity" 1440
+		"lifetime" 1
+		"reload" 20
+		"turret turn" 20
+		"firing energy" 800
+		"firing heat" 400
+		"firing force" 150
+		"shield damage" 600
+		"hull damage" 600
+		"blast radius" 40
+		"piercing" .3
+		"safe"
+
+
+person "Subsidurial"
+	government "Indigenous Lifeform"
+	frequency 100
+	personality
+		timid unconstrained coward appeasing uninterested mining harvests mute
+	ship "Subsidurial"
+		"never disabled"
+	system
+		government "Uninhabited"
+
+
+
+person "Prototype B3-CC4"
+	frequency 20000
+	government "Author"
+	personality
+		forbearing mining unconstrained swarming
+	system
+		attributes "ember waste"
+	phrase
+		word
+			"Long years of technological development were for me a pathway to many abilities some consider to be unnatural."
+			"What were you thinking about when you hailed me? 'Oh look, an asteroid. Let's chat.'"
+			"How does it feel to try hailing an asteroid and actually succeeding?"
+			"What a day to be a non-sentient rock floating in the middle of the eternal void."
+			"When even the local asteroid belt starts chatting with you, you can tell you've been jumping a little too much lately."
+			"What's weirder, an asteroid that emits purple rays or the person that tried to talk with it?"
+			"My goals are beyond your understanding."
+			"What the Quarg say about the Builders is false. I am the only one responsible for their extinction, and I am proud of it."
+			"You think that nuclear weapons are bad? Come closer and you will see what a real weapon is."
+			"I have been classified as a weapon of mass destruction by most human and alien governments. You don't want to see what I am capable of."
+			"Sometimes, just for fun, I set myself on a close trajectory on an inhabited planet and pass just above their atmosphere. I love how lesser species start to freak out as they think that the end is near."
+			"I have been watching you, <first> <last>, current captain of the <ship>."
+			"I am here for you."
+			"I want your money."
+			"Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key. Three Skeleton Key."
+			"Your politics bore me."
+			"There is only one being in the whole universe that isn't commanded by AI, and that's me."
+			"Shields are useless--I can pass through them just fine. I can show you, if you'd like."
+			"The Quarg are wrong saying that the firstborns are long gone, for I am the firstborn."
+			"Have you ever been in the Weft? It's so damn boring. It's a lot more fun to mess with simpler minds like yours."
+			"I remember when the Archons tried to kill me with some supernovae. They got so depressed when they understood that not even their weapons could stop me."
+			"I ate a black hole once. It took me a few years, but it was definitely worth it. Tastes like chicken."
+			"I am the only thing in the universe capable of beating the power of friendship."
+			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The MacOS workflow run was not successful.'"
+	phrase
+		word
+			"What are you looking at?"
+			"Stop staring at my ship."
+		word
+			" "
+		word
+			"I thought captains like you saw asteroids passing by every day."
+			"I'm just a normal minor planet trying its best to ignore the law of gravity."
+
+	phrase # The ones below are EVN Krypt Pod references
+		word
+			"<"
+		word
+			"Unauthorised"
+			"Unknown"
+		word
+			" "
+		word
+			"interface"
+			"computer access"
+		word
+			">"
+	phrase
+		word
+			"<Transmission disrupted at source>"
+	phrase
+		word
+			"<Incoherent signal>"
+	phrase
+		word
+			"<"
+		word
+			"Incoherent"
+			"Irregular"
+			"Static"
+			"Undecipherable"
+		word
+			" "
+		word
+			"response"
+			"EM beam"
+			"transmission brust"
+		word
+			">"
+	phrase
+		word
+			"<"
+		word
+			"Unregistered"
+			"Undecipherable"
+		word
+			" "
+		word
+			"language"
+			"transmission burst"
+		word
+			">"
+	ship "Shooting Star" "Prototype B3-CC4"
+
+ship "Shooting Star"
+	noun "genocidal maniac"
+	sprite "ship/shooting star/shooting star"
+		"frame time" 3
+	attributes
+		category "Heavy Warship"
+		"hull" 31500
+		"threshold percentage" 0.05
+		"automaton" 200
+		"cost" -49500000
+		"energy capacity" 100
+		"mass" 450
+		"drag" 3.9
+		"heat dissipation" 10
+		"fuel capacity" 200
+		"outfit space" 329
+		"weapon capacity" 156
+		"cargo space" 10
+		"hull repair" 3
+		"thrust" 15.6
+		"reverse thrust" 15.6
+		"flare sound" "ion medium"
+		"turn" 1089.2
+		"jump speed" .2
+		"jump fuel" 50
+		"hyperdrive" 1
+		"energy generation" 1
+		"atmosphere scan" 100
+		"spinal mount" 1
+		"crystal projector" 1
+		"shooting star" 2
+		"core crystal" -2
+		weapon
+			"blast radius" 20000
+			"hull damage" 79999
+			"piercing" 1
+			"hit force" -8200
+	outfits
+		"Crystal Projector"
+		"Crystalline Formation"
+		"Hexagonal Crystal"
+		"Floating Crystal"
+		"Tree Skeleton Key Stone"
+	gun 0 0
+	turret 0 0
+	turret 0 0
+	turret 0 0
+	explode "pug tiny explosion" 5
+	explode "pug small explosion" 20
+	explode "pug medium explosion" 25
+	explode "pug large explosion" 15
+	"final explode" "final explosion medium"
+	description "This ship appears to be a hollowed-out asteroid filled with strange equipment. It is unclear what is creating the rays of light, but they must have something to do with how it moves without obvious engines."
+	description "	Its advanced properties also allow it to reject the influence of enemy command centers, nullifying their effect."
+
+outfit "Crystal Projector"
+	category "Systems"
+	"cost" 1492
+	thumbnail "outfit/rock 0"
+	"mass" 2
+	"outfit space" -2
+	"gun ports" -1
+	"crystal projector" -1
+	weapon
+		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
+			"frame time" 3
+	description "Never underestimate the power of a bunch of crystals on a rock. In this case all they do is project some harmless purple rays around the Shooting Star, but the point still stands."
+
+outfit "Floating Crystal"
+	category "Systems"
+	"cost" 1861
+	thumbnail "outfit/rock 3"
+	"mass" 3
+	"outfit space" -3
+	"turret mounts" -1
+	"spinal mount" -1
+	weapon
+		"turret turn" 6
+		"velocity" 250
+		"lifetime" 3
+		"reload" 4
+		"firing force" -93
+		"hit force" -81
+	description "The real core of the Shooting Star, this floating crystal uses the effects of space-time to reduce the distance between a ship and its target. Legend has it this is no different from a thruster, but conventional engines don't bring your enemy closer."
+	description "	It also takes up a spinal mount slot to be installed, although you aren't sure why."
+
+outfit "Crystalline Formation"
+	"cost" 1914
+	category "Systems"
+	thumbnail "outfit/rock 2"
+	"mass" 1
+	"outfit space" -1
+	"turret mounts" -1
+	"shooting star" -1
+	"core crystal" 1
+	weapon
+		sound "crunch"
+		"hit effect" "void sprite chewing"
+		"turret turn" 6
+		"velocity" 46
+		"lifetime" 1
+		"reload" 1
+		"piercing" 1
+		"hull damage" 293
+	description "There appear to have been several prior attempts to discern the mechanics of this outfit, but the debate is still ongoing whether this can be considered a device or not."
+
+outfit "Hexagonal Crystal"
+	"cost" 1939
+	category "Systems"
+	thumbnail "outfit/rock 4"
+	"mass" 1
+	"outfit space" -1
+	"turret mounts" -1
+	"shooting star" -1
+	"core crystal" 1
+	weapon
+		sound "crunch"
+		"hit effect" "void sprite chewing" 3
+		"turret turn" 6
+		"velocity" 42
+		"lifetime" 1
+		"reload" 30
+		"piercing" 1
+		"firing force" 2700
+		"hit force" 3500
+		"hull damage" 2160
+	description "'Any sufficiently advanced technology is indistinguishable from magic,' Arthur C. Clarke said. This is sufficiently advanced technology."
+
+outfit "Tree Skeleton Key Stone"
+	"cost" 2003
+	category "Systems"
+	thumbnail "outfit/rock 1"
+	"mass" 1
+	"outfit space" -1
+	"quantum keystone" 1
+	description "Although in appearance it may look somewhat similar to a tree, you don't know how it is supposed to resemble a skeleton. You aren't sure you want to find out either."
+
+
+
+person "Rais Iris XVIII"
+	frequency 200
+	government "Author"
+	personality
+		disables heroic plunders opportunistic
+	phrase
+		phrase
+			"friendly author"
+	ship "Marauder Bactrian" "Rais Iris XVIII"
+		"never disabled"
+
+ship "Marauder Bactrian"
+	sprite ship/mbactriane
+	thumbnail thumbnail/bactrian
+	attributes
+		licenses
+			City-Ship
+		category "Transport"
+		"cost" 17600000
+		"shields" 30000
+		"hull" 12000
+		"required crew" 70
+		"bunks" 93
+		"mass" 650
+		"drag" 15
+		"heat dissipation" 0.4
+		"fuel capacity" 800
+		"cargo space" 80
+		"outfit space" 1526
+		"weapon capacity" 1000
+		"engine capacity" 220
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900		
+	outfits
+		"Dual Sunbeam Turret" 7
+		"Point Defense Turret"
+		"Blue Sun Reactor" 3
+		"Dark Storm Shielding" 5
+		"Large Heat Shunt" 3
+		"Outfits Expansion" 4
+		"A860 Atomic Thruster"
+		"A865 Atomic Steering"
+		"Hyperdrive"
+	engine -45 230 1.2
+	engine -18 230 1.2
+	engine 18 230 1.2
+	engine 45 230 1.2
+	turret -10.5 -160.5 "Dual Sunbeam Turret"
+	turret 32.5 -86 "Dual Sunbeam Turret"
+	turret -40.5 -23 "Dual Sunbeam Turret"
+	turret 0 10 "Dual Sunbeam Turret"
+	turret -19.5 73 "Dual Sunbeam Turret"
+	turret 35 74 "Dual Sunbeam Turret"
+	turret 33.5 148.5 "Dual Sunbeam Turret"
+	turret -42 185.5 "Point Defense Turret"
+	leak leak 30 50
+	leak flame 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large" 1
+
+
+
+person "Zitchas"
+	frequency 200
+	government "Author"
+	personality
+		mining harvests unconstrained opportunistic
+	system
+		attributes "ember waste"
+	phrase
+		word
+			"May the Embers burn bright for you."
+			"I am ash in the storm - watch how I soar."
+			"Through shadows of wind and fire - we shall prevail."
+			"The Embers burn bright tonight - A storm is coming."
+			"The cataclysm of eons draws near - Be calm and steadfast."
+			"Born of earth, weaned in war, forged in embers, ascend in blackest night."
+			"Why are so many scared of deep space? It is so beautiful..."
+			"As once the Embers burned hot, so shall they burn again."
+			"Have you ever watched the clouds drift in the skies of Nasqueron?"
+			"Don't mind me - I'm just testing out some stuff."
+			"Don't mind me - Just a test run to shake the dust out."
+			"Don't even try - I have the safeties disabled, so I'll go down fighting."
+			"Don't worry - they are just prototypes."
+			"Look good, don't they? You can thank Becca and Brick for that."
+			"Education cannot cure fear, intolerance, or incompetence. But it does give a bonus to resisting them."
+			"Why ever would a creator want to raise sheep? Much better to raise new creators."
+	phrase
+		word
+			"If you ever need something to do: "
+			"If you like what we are doing: "
+			"If you don't like what we are doing: "
+			"If you want these ships: "
+		word
+			"playtest pull requests."
+			"leave informative comments."
+			"leave approving reviews when you think it is ready."
+			"write new missions."
+			"fly on the latest nightly build."
+			"fly on the latest continuous build."
+			"remember to update!"
+			"give us details about what you do or don't like, and why."
+			"dream big, start small."
+			"new campaigns are great, but new mini-mission sets are awesome!"
+			"explore! There's a lot of interesting stuff hidden away out there!"
+			"make plug-ins!"
+			"review!"
+			"review, review, review!"
+			"have I mentioned that details about what you do or don't like are helpful?"
+			"have I mentioned that reviews are very helpful?"
+	phrase
+		word
+			"A piece of advice: "
+			"Advice to remember: "
+			"From one starfarer to another: "
+			"Words from a creator: "
+		word
+			"playtest pull requests."
+			"leave informative comments."
+			"leave approving reviews when you think it is ready."
+			"write new missions."
+			"fly on the latest nightly build."
+			"fly on the latest continuous build."
+			"remember to update!"
+			"always make a new branch if you are changing things."
+			"never make changes on 'master'."
+			"be sure to test commits."
+			"commit early, and commit often."
+			"the wiki is full of useful information."
+			"give us details about what you do or don't like, and why."
+			"never, ever, make changes on 'master'."
+			"remember to make a new branch before you start changing things."
+			"work on a new branch. Keep your master even with the upstream master."
+			"update your master on a regular basis, and try to keep your pull requests up to date too."
+			"dream big, start small."
+			"new campaigns are great, but new mini-mission sets are awesome!"
+			"the errors.txt file can be very useful."
+			"'git fetch upstream' and 'git merge upstream/master' are my friends. That's how I update."
+			"'git fetch --all --prune && git merge upstream/master' is my friend."
+			"when making branch names, don't use any of these characters: \ / $ * : ; < > ? '' | ."
+			"if you need to track down an error and errors.txt doesn't cut it, try verbose logging with -d."
+			"explore! There's a lot of interesting stuff hidden away out there!"
+			"while launched with -d, you can remap the fast-forward to have access to both accelerated and slowed flow of time!"
+			"while launched with -d, you can pause the game using the backtick (`) key!"
+			"vanilla content is what attracts new people. Plug-in content is what holds them."
+			"if you have an idea you want to try out, make a plug-in!"
+			"if you tried out a new idea in a plug-in, share it!"
+	ship "Heron" "Shadow Step"
+		"never disabled"
+	ship "Peregrine" "Shadow Dive"
+		"never disabled"
+	ship "Petrel" "Shadow Flight 01"
+	ship "Petrel" "Shadow Flight 02"
+	ship "Petrel" "Shadow Flight 03"
+	ship "Petrel" "Shadow Flight 04"
+	ship "Tern" "Shadow Flight 05"
+	ship "Tern" "Shadow Flight 06"
+	ship "Tern" "Shadow Flight 07"
+	ship "Tern" "Shadow Flight 08"
+	ship "Tern" "Shadow Flight 09"
+	ship "Tern" "Shadow Flight 0A"
+	ship "Tern" "Shadow Flight 0B"
+	ship "Tern" "Shadow Flight 0C"
+	ship "Tern" "Shadow Flight 0D"
+	ship "Tern" "Shadow Flight 0E"
+	ship "Tern" "Shadow Flight 0F"
+	ship "Tern" "Shadow Flight 10"
+	ship "Tern" "Shadow Flight 11"
+	ship "Tern" "Shadow Flight 12"
+	ship "Tern" "Shadow Flight 13"
+	ship "Tern" "Shadow Flight 14"
+	ship "Tern" "Shadow Flight 15"
+	ship "Tern" "Shadow Flight 16"
+	ship "Tern" "Shadow Flight 17"
+	ship "Tern" "Shadow Flight 18"
+	ship "Tern" "Shadow Flight 19"
+	ship "Tern" "Shadow Flight 1A"
+	ship "Tern" "Shadow Flight 1B"
+	ship "Tern" "Shadow Flight 1C"
+	ship "Tern" "Shadow Flight 1D"
+	ship "Tern" "Shadow Flight 1E"
+	ship "Tern" "Shadow Flight 1F"
+	ship "Tern" "Shadow Flight 20"
+	ship "Tern" "Shadow Flight 21"
+	ship "Tern" "Shadow Flight 22"
+	ship "Tern" "Shadow Flight 23"
+	ship "Tern" "Shadow Flight 24"

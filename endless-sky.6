@@ -1,10 +1,10 @@
-.TH endless\-sky 6 "28 Sep 2019" "ver. 0.9.10" "Endless Sky"
+.TH endless\-sky 6 "01 May 2020" "ver. 0.9.13-alpha" "Endless Sky"
 
 .SH NAME
 endless\-sky \- a space exploration and combat game.
 
 .SH SYNOPSIS
-\fBendless\-sky\fR [\-h] [\-\-help] [\-v] [\-\-version] [\-s] [\-\-ships] [\-w] [\-\-weapons] [\-t] [\-\-talk] [\-r] [\-\-resources] [\-c] [\-\-config] [\-p] [\-\-parse\-save]
+\fBendless\-sky\fR [\-h] [\-\-help] [\-v] [\-\-version] [\-s] [\-\-ships] [\-w] [\-\-weapons] [\-t] [\-\-talk] [\-r] [\-\-resources] [\-c] [\-\-config] [\-p] [\-\-parse\-save] [\-\-test]
 
 .SH DESCRIPTION
 \fBEndless Sky\fR is a space exploration and combat game combining action and role playing elements.
@@ -43,6 +43,12 @@ sets the directory where preferences and saved games will be stored.
 
 .IP \fB\-p,\ \-\-parse\-save
 prints any content or whitespace\-formatting errors found while loading data files and the most recent saved game. This option prevents the game from launching.
+
+.IP \fB\-\-test\ <name>
+execute the test case with the given name
+
+.IP \fB\-\-tests
+prints (to STDOUT) a table of available tests, usable for automatic test runs. This option prevents the game from launching.
 
 .SH AUTHOR
 Michael Zahniser (mzahniser@gmail.com)

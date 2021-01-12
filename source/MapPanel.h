@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <map>
 #include <string>
@@ -63,6 +63,9 @@ public:
 	void DrawButtons(const std::string &condition);
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 	
+	// Map panels allow fast-forward to stay active.
+	virtual bool AllowFastForward() const override;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -106,6 +109,8 @@ protected:
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
 	
+	double playerJumpDistance;
+	
 	Point center;
 	Point recenterVector;
 	int recentering = 0;
@@ -116,8 +121,8 @@ protected:
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
-	// Systems in which your escorts are located.
-	std::map<const System *, std::pair<int, int>> escortSystems;
+	// Systems in which your (active and parked) escorts and stored outfits are located.
+	std::map<const System *, std::pair<std::pair<int, int>, int>> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
 	void CenterOnSystem(const System *system, bool immediate = false);

@@ -1,0 +1,265 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Drak Distancer"
+	category "Turrets"
+	cost 1000000
+	thumbnail "outfit/unknown"
+	"mass" 64
+	"outfit space" -64
+	"weapon capacity" -64
+	"turret mounts" -1
+	weapon
+		"fire effect" "distancer flare"
+		"turret turn" 4.
+		"velocity" 2000
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 15
+		"firing heat" 10
+		"firing force" 60
+	description "This is a thruster that can produce force in any direction, allowing a Drak ship to keep a safe distance away from its target."
+
+effect "distancer flare"
+	sprite "effect/distancer"
+		"frame rate" 1.618
+	"lifetime" 0
+	"velocity scale" 1
+
+outfit "Drak Draining Field"
+	category "Turrets"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 84
+	"outfit space" -84
+	"weapon capacity" -84
+	"turret mounts" -1
+	weapon
+		"turret turn" 180
+		"velocity" 1
+		"lifetime" 1
+		"range override" 1100
+		"velocity override" 1100
+		"blast radius" 1100
+		"trigger radius" 1100
+		"reload" 1
+		"firing energy" 20
+		"firing heat" 5
+		"firing force" 30
+		"hit force" 100
+		"shield damage" 50
+		"ion damage" .5
+		"disruption damage" 1
+		"safe"
+	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+
+outfit "Drak Anti-Missile Field"
+	category "Turrets"
+	cost 1000000
+	thumbnail "outfit/unknown"
+	"mass" 66
+	"outfit space" -66
+	"weapon capacity" -66
+	"turret mounts" -1
+	weapon
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 10
+		"firing heat" 1
+		"anti-missile" 100
+	description "This device produces a field that destroys any missiles that come within it."
+
+outfit "Drak Turret"
+	category "Turrets"
+	cost 1000000
+	thumbnail "outfit/unknown"
+	"mass" 48
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	weapon
+		sprite "projectile/drak bolt"
+			"frame rate" 13.318
+			"random start frame"
+		"hit effect" "drak bolt impact"
+		"inaccuracy" 1
+		"turret turn" 4.
+		"velocity" 30
+		"lifetime" 36
+		"reload" 16
+		"firing energy" 160
+		"firing heat" 160
+		"shield damage" 256
+		"hull damage" 256
+		"hit force" 120
+	description "This is a turret based cannon with significant range and accuracy."
+
+effect "drak bolt impact"
+	sprite "effect/drak bolt impact"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion small"
+	"lifetime" 20
+	"random angle" 20
+	"random spin" 10
+	"velocity scale" -.05
+
+outfit "Drak Antimatter Cannon"
+	category "Guns"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 96
+	"outfit space" -96
+	"weapon capacity" -96
+	"gun ports" -1
+	"inscrutable" 1
+	weapon
+		"inaccuracy" 0
+		"velocity" 20
+		"lifetime" 1
+		"submunition" "Drak Antimatter Fragment" 3
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"reload" 187
+		"firing energy" 5610
+		"firing heat" 1870
+		"blast radius" 100
+		"hit force" 1000
+	description "This is the Drak's ultimate weapon."
+
+outfit "Drak Antimatter Fragment"
+	weapon
+		sprite "projectile/drak bolt"
+			"frame rate" 9.835
+			"random start frame"
+		"live effect" "antimatter spark" 249
+		"live effect" "antimatter dust" 249
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"inaccuracy" 1
+		"lifetime" 499
+		"hit force" 1000
+		"disruption damage" 300
+		"heat damage" 500
+		"shield damage" 5610
+		"hull damage" 5610
+		"blast radius" 100
+
+effect "antimatter spark"
+	sprite "effect/antimatter spark"
+		"frame rate" 3
+	"lifetime" 40
+	"random angle" 1
+	"random spin" .1
+	"random velocity" 8
+	"velocity scale" .6
+
+effect "antimatter dust"
+	sprite "effect/smoke"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 30
+	"random spin" 50
+	"random velocity" 12
+	"velocity scale" .1
+
+
+
+ship "Archon"
+	noun "entity"
+	sprite "ship/archon"
+		"frame rate" 0.87
+	thumbnail "thumbnail/archon"
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		"cost" 1000000000
+		"shields" 4000000
+		"hull" 1000000
+		"required crew" 1
+		"bunks" 1
+		"mass" 1000
+		"drag" 27
+		"heat dissipation" 40
+		"fuel capacity" 800
+		"cargo space" 0
+		"outfit space" 800
+		"weapon capacity" 600
+		"engine capacity" 200
+		"energy capacity" 10000
+		"energy generation" 500
+		"heat generation" 17
+		"shield generation" 100
+		"shield energy" 100
+		"hull repair rate" 100
+		"hull energy" 100
+		"ion protection" 3
+		"ion resistance" 1
+		"ramscoop" 100
+		weapon
+			"blast radius" 200
+			"shield damage" 20000
+			"hull damage" 10000
+			"hit force" 30000
+	outfits
+		"Drak Antimatter Cannon"
+		"Drak Anti-Missile Field" 2
+		"Drak Draining Field"
+		"Drak Distancer" 2
+		"Drak Turret" 3
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Hyperdrive"
+		"Jump Drive"
+	
+	engine -17 92
+	engine 17 92
+	gun 0 -74 "Drak Antimatter Cannon"
+	turret 0 -10 "Drak Anti-Missile Field"
+	turret 0 -10 "Drak Anti-Missile Field"
+	turret 0 -10 "Drak Draining Field"
+	turret -40 -13 "Drak Turret"
+	turret 40 -13 "Drak Turret"
+	turret 0 81 "Drak Turret"
+	turret -55 16 "Drak Distancer"
+	turret 55 16 "Drak Distancer"
+	explode "nuke explosion" 3
+	"final explode" "final explosion large"
+	description `The Archon's presence is chilling. The "ship" has an almost organic appearance, but your ship's scanners give you no discernible information on its construction. What exactly it is you do not know, but you can feel that it is powerful.`
+
+ship "Archon" "Archon B"
+	"never disabled"
+	sprite "ship/archon b"
+		"frame rate" 0.87
+
+ship "Archon" "Archon C"
+	"never disabled"
+	sprite "ship/archon c"
+		"frame rate" 0.87
+
+ship "Archon" "Archon (Cloaked)"
+	sprite "ship/archon c"
+		"frame rate" 0.87
+	"never disabled"
+	add attributes
+		"cloak" .04
+	turret "Drak Anti-Missile Field"
+	turret "Drak Anti-Missile Field"
+	turret "Drak Draining Field"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Distancer"
+	turret "Drak Distancer"

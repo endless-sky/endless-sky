@@ -107,6 +107,7 @@ public:
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
+	bool IsFailed() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered
@@ -126,12 +127,14 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 	
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Update which NPCs are active based on their spawn and despawn conditions.
+	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
 	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares
@@ -143,7 +146,7 @@ public:
 	// variables, etc.
 	const std::string &Identifier() const;
 	// Get a specific mission action from this mission.
-	// If the mission action is not found for the given trigger, returns an empty 
+	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
 	const MissionAction &GetAction(Trigger trigger) const; 
 	
@@ -153,7 +156,7 @@ public:
 	
 	
 private:
-	void Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);

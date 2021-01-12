@@ -12,14 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpaceportPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Random.h"
 #include "UI.h"
 
 using namespace std;
@@ -32,14 +34,15 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(player.GetPlanet()->SpaceportDescription());
 	
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
 	const Interface *interface = GameData::Interfaces().Get("news");
-	newsMessage.SetWrapWidth(interface->GetBox("message").Width());
+	portraitWidth = interface->GetBox("message portrait").Width();
+	normalWidth = interface->GetBox("message").Width();
 	newsMessage.SetFont(FontSet::Get(14));
 }
 
@@ -47,29 +50,20 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 
 void SpaceportPanel::UpdateNews()
 {
-	const News *news = GameData::PickNews(player.GetPlanet());
+	const News *news = PickNews();
 	if(!news)
 		return;
-	
 	hasNews = true;
-	// Randomly pick which portrait is to be shown.
+	
+	// Randomly pick which portrait, if any, is to be shown. Depending on if
+	// this news has a portrait, different interface information gets filled in. 
 	auto portrait = news->Portrait();
-	
-	// Ensure we only display one name for a given portrait.
-	const auto it = displayedProfessions.find(portrait);
-	auto name = string{};
-	if(it == displayedProfessions.end())
-	{
-		name = news->Name();
-		displayedProfessions.emplace(portrait, name);
-	}
-	else
-		name = it->second;
-	
 	// Cache the randomly picked results until the next update is requested.
-	newsInfo.SetString("name", name + ':');
+	hasPortrait = portrait;
 	newsInfo.SetSprite("portrait", portrait);
-	newsMessage.Wrap('"' + news->Message() + '"');
+	newsInfo.SetString("name", news->Name() + ':');
+	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
+	newsMessage.Wrap(news->Message());
 }
 
 
@@ -103,6 +97,25 @@ void SpaceportPanel::Draw()
 	{
 		const Interface *interface = GameData::Interfaces().Get("news");
 		interface->Draw(newsInfo);
-		newsMessage.Draw(interface->GetBox("message").TopLeft(), *GameData::Colors().Get("medium"));
+		// Depending on if the news has a portrait, the interface box that
+		// gets filled in changes.
+		newsMessage.Draw(interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
+			*GameData::Colors().Get("medium"));
 	}
+}
+
+
+
+// Pick a random news object that applies to the player's planets and conditions.
+// If there is no applicable news, this returns null.
+const News *SpaceportPanel::PickNews() const
+{
+	vector<const News *> matches;
+	const Planet *planet = player.GetPlanet();
+	const map<string, int64_t> &conditions = player.Conditions();
+	for(const auto &it : GameData::SpaceportNews())
+		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
+			matches.push_back(&it.second);
+	
+	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }

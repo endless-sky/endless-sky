@@ -37,6 +37,7 @@ public:
 	static const std::string &Images();
 	static const std::string &Sounds();
 	static const std::string &Saves();
+	static const std::string &Tests();
 	
 	// Get a list of all regular files in the given directory.
 	static std::vector<std::string> List(std::string directory);

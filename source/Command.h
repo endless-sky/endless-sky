@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdint>
 #include <string>
 
+class DataNode;
+
 
 
 // Class mapping key presses to specific commands / actions. The player can
@@ -66,6 +68,10 @@ public:
 	// This command from the AI tells a ship that if possible, it should apply
 	// less than its full thrust in order to come to a complete stop.
 	static const Command STOP;
+	// Modifier command, usually triggered by shift-key. Changes behaviour of
+	// other commands like NEAREST, TARGET, HAIL and BOARD.
+	static const Command SHIFT;
+
 	
 public:
 	// In the given text, replace any instances of command names (in angle
@@ -91,6 +97,9 @@ public:
 	const std::string &Description() const;
 	const std::string &KeyName() const;
 	bool HasConflict() const;
+	
+	// Load this command from an input file (for testing or scripted missions).
+	void Load(const DataNode &node);
 	
 	// Reset this to an empty command.
 	void Clear();

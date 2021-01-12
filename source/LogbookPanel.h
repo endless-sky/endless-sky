@@ -42,6 +42,7 @@ protected:
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Hover(int x, int y) override;
 	
 	
 private:
@@ -60,9 +61,13 @@ private:
 	// Other months available for display:
 	std::vector<std::string> contents;
 	std::vector<Date> dates;
+
+	Point hoverPoint;
 	
 	// Current scroll:
+	double categoryScroll = 0.; 
 	double scroll = 0.;
+	mutable double maxCategoryScroll = 0.;
 	mutable double maxScroll = 0.;
 };
 

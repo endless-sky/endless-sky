@@ -26,13 +26,6 @@ using namespace std;
 
 
 
-// Make the destructor just in case any derived class needs it.
-Panel::~Panel()
-{
-}
-
-
-
 // Move the state of this panel forward one game step.
 void Panel::Step()
 {
@@ -112,6 +105,15 @@ bool Panel::ZoneClick(const Point &point)
 			zone.Click();
 			return true;
 		}
+	return false;
+}
+
+
+
+// Panels will by default not allow fast-forward. The ones that do allow
+// it will override this (virtual) function and return true.
+bool Panel::AllowFastForward() const
+{
 	return false;
 }
 

@@ -1,0 +1,408 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+conversation "assisting merchant"
+	`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment>.`
+		decline
+
+mission "Assisting Merchant (Small)"
+	assisting
+	repeat
+	minor
+	to offer
+		random < 20
+	source
+		government "Merchant"
+		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
+		not attributes "automaton"
+	on offer
+		payment 10000
+		conversation "assisting merchant"
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination "Earth"
+
+mission "Assisting Merchant (Medium)"
+	assisting
+	repeat
+	minor
+	to offer
+		random < 15
+	source
+		government "Merchant"
+		category "Medium Warship" "Heavy Freighter"
+		not attributes "automaton"
+	on offer
+		payment 20000
+		conversation "assisting merchant"
+	destination "Earth"
+
+mission "Assisting Merchant (Large)"
+	assisting
+	repeat
+	minor
+	to offer
+		random < 10
+	source
+		government "Merchant"
+		category "Heavy Warship"
+		not attributes "automaton"
+	on offer
+		payment 30000
+		conversation "assisting merchant"
+	destination "Earth"
+
+
+mission "Asteroid Course"
+	assisting
+	minor
+	name "Passengers to <planet>"
+	description "Transport the remaining crew of a destroyed ship, <bunks> people that were working on the <origin>, to <destination>."
+	to offer
+		random < 6
+	source
+		government "Merchant" "Syndicate"
+		category "Light Freighter" "Interceptor"
+		not attributes "automaton"
+	passengers 3 7
+	destination 
+		distance 1 3
+		not government "Pirate"
+		attributes shipyard
+	on offer
+		conversation
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is about to be slammed by a huge asteroid! While in a normal flight this wouldn't cause much trouble, a ship that has already suffered heavy damage and cannot dodge could be completely destroyed.`
+			branch unarmed
+				not "armament deterrence"
+			choice
+				`	(Shoot the asteroid.)`
+					goto fire
+				`	(Maneuver my ship to shield the <origin>.)`
+					goto move
+				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+					goto escape
+			label unarmed
+			choice
+				`	(Maneuver my ship to shield the <origin>.)`
+					goto move
+				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+			label escape
+			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid collides with the <origin>, tearing it to shreds and killing all of its crew members while leaving little more than a scratch on the asteroid's surface.`
+				depart
+			label fire
+			branch success
+				random < 50
+			`	You fire at the asteroid in an attempt to destroy it, but it looks like you've only made things worse. The asteroid has now broken up into dozens of smaller chunks still flying directly for the <origin>. Before you can even react to fix your mistake, most of the chunks have already hit the <origin>, which is now quickly depressurizing. There's nothing more you can do except move a safe distance away from the exploding ship...`
+				depart
+			label success
+			`	The shots you fire quickly break the asteroid into pieces, which seem to have changed course enough to completely miss the <origin>. After repairing it, you hail its captain, who thanks you with a payment of 30,000 credits.`
+				decline
+			label repair
+			branch crew
+				random < 40
+			`	You dock with the <origin>, hoping to get out of this alive, but as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach your cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
+				depart
+			label crew
+			`	You dock with the <origin>, hoping to get out of this alive, but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
+			choice
+				`	"Okay, it's not far."`
+					launch
+				`	"How much can you pay me?"`
+			`	"I have a few hundred thousand credits," one of them says, presumably the captain. "I need to save enough to buy a new starship, but you will still receive a decent pay."`
+				launch
+			label move
+			`	The asteroid, after hitting your shield, breaks into a million fragments which fly away from the <origin>. After repairing it, you hail its captain, who thanks you with a payment of 30,000 credits.`
+				decline
+	on decline
+		payment 30000
+	on complete
+		payment
+		payment 35000
+		dialog "The captain you talked with before thanks you again for saving him and his crew, and hands you <payment>."
+
+
+
+mission "Dangerous Journey"
+	assisting
+	minor
+	name "Delivery to <planet>"
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	to offer
+		random < 10
+	source
+		government "Merchant"
+		category "Light Freighter" "Heavy Freighter"
+		not attributes "automaton"
+	destination
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "frontier"
+		distance 2 3
+	cargo random 5 2 .1
+	on offer
+		conversation
+			`When you repair the <origin>, the captain hails you. "This is the fourth time I've nearly died in the past week doing this job! Here, take this <cargo> to <destination> and finish this job for me. They said the payment is <payment>."`
+			choice
+				`	(Take the cargo.)`
+					accept
+				`	(Don't take the cargo.)`
+			`	The captain begins loudly swearing, so you cut the feed. Hopefully they make it to their destination in one piece.`
+				decline
+	on complete
+		payment 7500
+		dialog `You drop off your cargo of <commodity>, explain how the original merchant who took the job quit and handed off the cargo to you, and collect your payment of <payment>.`
+
+
+
+conversation "assisting law enforcement"
+	`The captain of the <origin> thanks you for repairing them, but informs you that the pirates that disabled them are only a smaller part of a fleet attacking <destination>.`
+	`	The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+	choice
+		`	(Don't join the fight.)`
+			decline
+		`	(Join the defense fleet.)`
+			accept
+
+mission "Assisting Free Worlds"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Free Worlds"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		government "Free Worlds"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates"
+	npc
+		government "Free Worlds"
+		personality heroic staying
+		system destination
+		fleet "Large Free Worlds"
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Assisting Republic"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Republic"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		government "Republic"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates"
+	npc
+		government "Republic"
+		personality heroic staying
+		system destination
+		fleet "Small Republic" 2
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Assisting Deep Security"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Deep Security"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		attributes "deep"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates"
+	npc
+		government "Deep Security"
+		personality heroic staying
+		system destination
+		fleet "Large Deep Security"
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Assisting Syndicate"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Syndicate"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		government "Syndicate"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Core Pirates" 2
+		fleet "Small Core Pirates"
+	npc
+		government "Syndicate"
+		personality heroic staying
+		system destination
+		fleet "Large Syndicate"
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+
+
+conversation "boarding pirate"
+	`You make short-range scans of the <origin>'s outfits and cargo. Among the cargo, you find a crate full of credit chips worth <payment>. You drag the crate onto your ship before considering your next move.`
+		decline
+
+mission "Boarding Pirate (Small)"
+	boarding
+	repeat
+	minor
+	to offer
+		random < 7
+	source
+		government "Pirate"
+		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
+	on offer
+		payment 50000
+		conversation "boarding pirate"
+	destination "Earth"
+
+mission "Boarding Pirate (Medium)"
+	boarding
+	repeat
+	minor
+	to offer
+		random < 5
+	source
+		government "Pirate"
+		category "Medium Warship" "Heavy Freighter"
+	on offer
+		payment 100000
+		conversation "boarding pirate"
+	destination "Earth"
+
+mission "Boarding Pirate (Large)"
+	boarding
+	repeat
+	minor
+	to offer
+		random < 3
+	source
+		government "Pirate"
+		category "Heavy Warship"
+	on offer
+		payment 150000
+		conversation "boarding pirate"
+	destination "Earth"
+
+
+
+mission "Pirate Ambush"
+	invisible
+	boarding
+	repeat
+	minor
+	deadline 1
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Pirate"
+		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
+		not attributes "automaton"
+	on offer
+		conversation
+			`You board the <origin>, but find no crew aboard. When you reach the cockpit of the ship, you look out into space to see an escape pod floating away. The <origin> is emitting a distress signal to nearby pirates, and a self destruct sequence has been activated! You run back to your ship and get ready to fight.`
+				launch
+	destination "Earth"
+	npc kill
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 2
+
+
+
+mission "Pirate Mutiny"
+	boarding
+	minor
+	description "Bring <bunks> ex-pirate crew members to <destination>."
+	to offer
+		random < 10
+	source
+		government "Pirate"
+		category "Medium Warship" "Heavy Warship"
+		not attributes "automaton"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		distance 2 4
+	passengers 10 20
+	on offer
+		conversation
+			`When you board the <origin>, you find most of the crew already dead. One of the surviving crew members, who looks like a teenaged boy no older than 16, approaches you with his hands in the air. He explains that after the ship was disabled, a section of the crew decided to overthrow the tyrannical captain. He continues, saying how most pirate crew members are forced into servitude on pirate ships. The surviving <bunks> crew members beg you to bring them to <destination> so that they can escape from pirate slavery.`
+			`	The fight seems to have damaged the ship beyond repair. It may not last much longer in the vacuum of space if you leave the pirates here.`
+			choice
+				`	(Help the pirate crew.)`
+					launch
+				`	(Leave the pirate crew.)`
+					flee
+	on complete
+		payment 25000
+		dialog `The pirate crew members thank you for bringing them to <planet>. One of them hands you a small payment of <payment>. You wish them all the best of luck with their new lives and part ways.`

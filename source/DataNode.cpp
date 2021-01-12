@@ -71,6 +71,7 @@ const vector<string> &DataNode::Tokens() const
 
 
 // Get the token with the given index. No bounds checking is done.
+// DataFile loading guarantees index 0 always exists.
 const string &DataNode::Token(int index) const
 {
 	return tokens[index];
@@ -233,14 +234,15 @@ int DataNode::PrintTrace(const string &message) const
 	
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
-	int indent = 0;
+	size_t indent = 0;
 	if(parent)
 		indent = parent->PrintTrace() + 2;
 	if(tokens.empty())
 		return indent;
 	
 	// Convert this node back to tokenized text, with quotes used as necessary.
-	string line(indent, ' ');
+	string line = !parent ? "" : "L" + to_string(lineNumber) + ": ";
+	line.append(string(indent, ' '));
 	for(const string &token : tokens)
 	{
 		if(&token != &tokens.front())
