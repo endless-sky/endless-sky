@@ -85,8 +85,8 @@ help "multiple ships"
 	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
 
 help "ship info"
-	`The Ship Info tab lets you view detailed information about ships in your fleet at any time. This gives any information you could see at a shipyard or outfitter on planet, along with showing how cargo and passengers are distributed among each ship.`
-	`Ships can be renamed in this panel by clicking on the ship name. You can also rearrange where guns or turrets are placed on your ship while landed, by dragging the name of a weapon to another location. For example, you could place an anti-missile turret in a more central turret mount, or swap a long-range missile launcher near the front with a short-range beam weapon.`
+	`The ship info tab lets you view detailed information about ships in your fleet at any time. This includes any information you could see at a shipyard or outfitter, as well as the cargo and passengers distributed among each ship.`
+	`Ships can be renamed in this panel by clicking on the ship's name. While landed on a planet, you are able to change how guns and turrets are arranged by dragging the name of a weapon to another gun or turret location. While in flight, you are able to jettison individual pieces of cargo by clicking on the name of the cargo.`
 
 help "multiple ship controls"
 	`Once you're in space with multiple ships that you own, you can give orders to those escorts. Orders will be given to all selected escorts, or if no escorts are selected then all your escorts will receive the order. Escorts can be selected by either clicking on them in space, clicking the ship icon at the bottom left of the screen, or by clicking and dragging to select a group of escorts in space. The list of escort order keys can be found in the preferences panel.`
