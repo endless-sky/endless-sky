@@ -2378,7 +2378,7 @@ void PlayerInfo::ValidateLoad()
 		{
 			planet = (*it)->GetPlanet();
 			system = (*it)->GetSystem();
-			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\"," + planet->TrueName();
+			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\", " + planet->TrueName() + ".";
 		}
 		else
 			warning += " (no ships could supply a valid player location).";
@@ -2424,7 +2424,7 @@ void PlayerInfo::ValidateLoad()
 	// Validate the travel plan.
 	if(travelDestination && !travelDestination->IsValid())
 	{
-		Files::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + "\"");
+		Files::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
 		travelDestination = nullptr;
 	}
 	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
@@ -2432,7 +2432,7 @@ void PlayerInfo::ValidateLoad()
 	{
 		travelPlan.clear();
 		travelDestination = nullptr;
-		Files::LogError("Warning: reset the travel plan due to use of invalid system(s)");
+		Files::LogError("Warning: reset the travel plan due to use of invalid system(s).");
 	}
 	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
