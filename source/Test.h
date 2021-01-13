@@ -64,18 +64,7 @@ public:
 			// a watchdog in number of frames/steps.
 			WATCHDOG,
 		};
-		
-		// Result returned from a TestStep.
-		enum class Result {
-			// Step was successful. Proceed with next step in the sequence.
-			DONE,
-			// Step failed. Fail test. Exit program with non-zero exitcode.
-			FAIL,
-			// Step is incomplete (waiting for a condition). Retry step on the next frame.
-			RETRY,
-			// Step was ok, but triggered a jump (GOTO or BRANCH to a label).
-			GOTO,
-		};
+
 		
 		
 	public:
@@ -83,7 +72,7 @@ public:
 		
 		
 	public:
-		Type stepType = Type::INVALID;
+		Type stepType = Type::ASSERT;
 		std::string nameOrLabel;
 		// For applying condition changes, branching based on conditions or
 		// checking asserts (similar to Conversations).

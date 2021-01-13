@@ -50,7 +50,6 @@ namespace{
 		{Test::TestStep::Type::BRANCH, "branch"},
 		{Test::TestStep::Type::INJECT, "inject"},
 		{Test::TestStep::Type::INPUT, "input"},
-		{Test::TestStep::Type::INVALID, "invalid"},
 		{Test::TestStep::Type::LABEL, "label"},
 		{Test::TestStep::Type::NAVIGATE, "navigate"},
 		{Test::TestStep::Type::WATCHDOG, "watchdog"},
@@ -140,9 +139,6 @@ void Test::LoadSequence(const DataNode &node)
 					step.nameOrLabel = child.Token(1);
 			case TestStep::Type::INPUT:
 				child.PrintTrace("Error: Not yet implemented step type input");
-				status = Status::BROKEN;
-				return;
-			case TestStep::Type::INVALID:
 				status = Status::BROKEN;
 				return;
 			case TestStep::Type::LABEL:
@@ -337,9 +333,6 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				Fail(context, player, "Input not implemented");
 				// Make sure that we run a gameloop before the next input.
 				context.unprocessedInput = true;
-				break;
-			case TestStep::Type::INVALID:
-				Fail(context, player, "Invalid step encountered");
 				break;
 			case TestStep::Type::LABEL:
 				++(context.stepToRun);
