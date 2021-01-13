@@ -3869,9 +3869,27 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation one can pick out individual ripples and trace their pathes backwards... Except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millenia."`
 			choice
 				`	"What do the storms have to do with the heat?"`
+				`	"What units do you use for temperature?"`
+					goto tempunits
 				`	"I think that is all the technical detail I can take."`
 					goto stormend
 			`	She looks mischevious "I can not tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
 			`	She takes on a serious tone. "This data suggests enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transfered into the clouds." Her display vanishes and she slings her backpack over her shoulder.`
+				goto stormend
+			label tempunits
+			`	She looks at you curiously. "Corrected degrees Kelvin, of course. Why?"`
+			choice
+				`	"What are 'Corrected degrees Kelvin'?"`
+				`	"Just clarifying. I prefer to use degrees Centigrade."`
+					goto centigrade
+				`	"Just clarifying. I prefer to use degrees fahrenheit."`
+					goto fahrenheit
+			`	"Corrected degrees Kelvin are basically the standard Kelvin scale developped millenia ago, but with a slight correction factor to account for the adjustments determined by the conjunction of 2730. It is a rather miniscule change to the scale that is mostly only applicable to experiments or industrial applications that require micro-degree temperature precision, but can be significant at the larger scales." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
+				goto stormend
+			label centigrade
+			`	"People still use that? We learned about it in our studies, mostly in case we came across references to it in reference books. I have seen it a few times, but it is rarely used among us." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
+				goto stormend
+			label fahrenheit
+			`	She looks at you quizically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
 			label stormend
 			`	"Thanks for the ride, Captain. I have to get working on this data, but if you are interested in helping some more, I hope to have more research expeditions planned soon."`
