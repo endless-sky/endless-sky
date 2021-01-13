@@ -27,26 +27,26 @@ test "Test-Framework - Conditions Arithmetic and Loops"
 	sequence
 		watchdog 100
 		apply
-			myFirstTestVariable = 100
-			mySecondTestVariable = 200
+			"test: myFirstTestVariable" = 100
+			"test: mySecondTestVariable" = 200
 		assert
-			myFirstTestVariable == 100
-			mySecondTestVariable == 200
+			"test: myFirstTestVariable" == 100
+			"test: mySecondTestVariable" == 200
 		apply
-			myFirstTestVariable += 100
-			mySecondTestVariable += 200
+			"test: myFirstTestVariable" += 100
+			"test: mySecondTestVariable" += 200
 		assert
-			200 == myFirstTestVariable
+			200 == "test: myFirstTestVariable"
 		assert
-			400 == mySecondTestVariable
+			400 == "test: mySecondTestVariable"
 		label looping
 		apply
-			loopControl += 1
-			myFirstTestVariable -= 5
-			mySecondTestVariable *= 2
+			"test: loopControl" += 1
+			"test: myFirstTestVariable" -= 5
+			"test: mySecondTestVariable" *= 2
 		branch looping
-			loopControl < 10
+			"test: loopControl" < 10
 		assert
-			10 == loopControl
-			myFirstTestVariable == 200 - 50
-			400 * 1024 == mySecondTestVariable
+			10 == "test: loopControl"
+			"test: myFirstTestVariable" == 200 - 50
+			400 * 1024 == "test: mySecondTestVariable"

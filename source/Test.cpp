@@ -380,11 +380,17 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 	
 	// Add generic logging of the failed test.
 	Files::LogError(message);
-	// Log variables at the moment of failure.
-	const map<string, int64_t> &conditions = player.Conditions();
+	
+	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
+	// Future versions of the test-framework could also print all conditions that are used in the test.
+	string conditions = "";
+	const string TEST_PREFIX = "test: ";
+	auto it = player.Conditions().lower_bound(TEST_PREFIX);
+	for( ; it != player.Conditions().end() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
+		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
+	
 	if(!conditions.empty())
-		for(const auto &it : conditions)
-			Files::LogError("Condition: \"" + it.first + "\" = " + to_string(it.second));
+		Files::LogError(conditions);
 	else
 		Files::LogError("No conditions were set at the moment of failure.");
 	
