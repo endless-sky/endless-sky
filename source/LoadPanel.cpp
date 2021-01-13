@@ -230,7 +230,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			// Request that the player chooses a start scenario
 			// StartConditionsPanel also handles the case where there's no scenarios
-			GetUI()->Push(new StartConditionsPanel(player, gamePanels, this););
+			GetUI()->Push(new StartConditionsPanel(player, gamePanels, this));
 		}
 	}
 	else if(key == 'D' && !selectedPilot.empty())
