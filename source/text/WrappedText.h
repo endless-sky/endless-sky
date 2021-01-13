@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "alignment.hpp"
 #include "DisplayText.h"
 #include "../Point.h"
-#include "../Rectangle.h"
 #include "truncate.hpp"
 
 #include <string>
@@ -71,9 +70,6 @@ public:
 	
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
-	
-	// Additionally, this function also limits the area where it has to be drawn
-	void Draw(const Point &topLeft, const Rectangle &bounds, const Color &color) const;
 	
 	
 private:

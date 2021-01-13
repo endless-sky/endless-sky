@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DisplayText.h"
 #include "Font.h"
-#include "../Screen.h"
 
 #include <cstring>
 
@@ -147,22 +146,6 @@ int WrappedText::Height() const
 
 
 
-// Draw the text, but make sure no pixels are drawn outside the bounds
-void WrappedText::Draw(const Point &topLeft, const Rectangle &bounds, const Color &color) const
-{
-	glScissor(
-		bounds.Left() - Screen::Left(),
-		bounds.Top() - Screen::Top(),
-		bounds.Width(),
-		bounds.Height()
-	);
-	glEnable(GL_SCISSOR_TEST);
-	WrappedText::Draw(topLeft, color);
-	glDisable(GL_SCISSOR_TEST);
-}
-
-
-
 // Draw the text.
 void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
@@ -194,7 +177,6 @@ size_t WrappedText::Word::Index() const
 {
 	return index;
 }
-
 
 
 
