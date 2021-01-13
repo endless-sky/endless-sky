@@ -191,7 +191,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.ChosenStart().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
 }
