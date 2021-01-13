@@ -84,6 +84,10 @@ help "map advanced shops"
 help "multiple ships"
 	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
 
+help "ship info"
+	`The Ship Info tab lets you view detailed information about ships in your fleet at any time. This gives any information you could see at a shipyard or outfitter on planet, along with showing how cargo and passengers are distributed among each ship.`
+	`Ships can be renamed in this panel by clicking on the ship name. You can also rearrange where guns or turrets are placed on your ship, by dragging the name of a weapon to another location.`
+
 help "multiple ship controls"
 	`Once you're in space with multiple ships that you own, you can give orders to those escorts. Orders will be given to all selected escorts, or if no escorts are selected then all your escorts will receive the order. Escorts can be selected by either clicking on them in space, clicking the ship icon at the bottom left of the screen, or by clicking and dragging to select a group of escorts in space. The list of escort order keys can be found in the preferences panel.`
 	`Escorts can also be ordered with the mouse. Right clicking on an empty point in space will order escorts to fly to and hold position at that point, while right clicking on a hostile ship will order your escorts to focus fire on it, and right clicking on a friendly target will cause them to follow it.`
