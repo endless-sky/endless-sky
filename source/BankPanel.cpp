@@ -273,12 +273,17 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_DOWN && selectedRow < mortgageRows)
 		++selectedRow;
 	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
+	{
 		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
-	else if(key == SDLK_RETURN && qualify)
+		DoHelp("bank advanced");
+	}
+	else if(key == SDLK_RETURN && qualify) {
 		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
+		DoHelp("bank advanced");
+	}
 	else if(key == 'a')
 	{
 		// Pay all mortgages, skipping any you cannot afford to pay entirely.
