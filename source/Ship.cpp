@@ -613,12 +613,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
-	set<string> undefinedOutfits;
+	vector<string> undefinedOutfits;
 	for(const auto &it : outfits)
 	{
 		if(!it.first->IsDefined())
 		{
-			undefinedOutfits.emplace("\"" + it.first->Name() + "\"");
+			undefinedOutfits.emplace_back("\"" + it.first->Name() + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -638,11 +638,24 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	if(!undefinedOutfits.empty())
 	{
-		// Print the ship name once, then all undefined outfits.
-		string message = (isYours ? "Player ship " : "Stock ship ") + modelName + " \"" + name + "\":";
-		string PREFIX = undefinedOutfits.size() > 1 ? "\n\tUndefined outfit " : " undefined outfit ";
-		for(const string &outfit : undefinedOutfits)
-			message += PREFIX + outfit;
+		bool plural = undefinedOutfits.size() > 1;
+		// Print the ship name once, then all undefined outfits. If we're reporting for a stock ship, then it
+		// doesn't have a name, and missing outfits aren't named yet either. A variant name might exist, though.
+		string message;
+		if(isYours)
+		{
+			message = "Player ship " + modelName + " \"" + name + "\":";
+			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
+			for(auto &&outfit : undefinedOutfits)
+				message += PREFIX + outfit;
+		}
+		else
+		{
+			message = variantName.empty() ? "Stock ship \"" + modelName + "\": "
+				: modelName + " variant \"" + variantName + "\": ";
+			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
+		}
+		
 		Files::LogError(message);
 	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
@@ -655,7 +668,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(outfit && outfit->IsDefined()
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			string warning = modelName;
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
