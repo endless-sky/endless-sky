@@ -829,7 +829,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-
+		
 		if(&it.second != this && it.second.Position().Distance(position) <= distance)
 			neighborSet.insert(&it.second);
 	}

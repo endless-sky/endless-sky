@@ -241,6 +241,7 @@ const Government *Fleet::GetGovernment() const
 }
 
 
+
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
@@ -299,7 +300,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 					linkVector.insert(linkVector.end(), 8, neighbor);
 			}
 		}
-	
+		
 		// Find all the inhabited planets this fleet could take off from.
 		vector<const Planet *> planetVector;
 		if(!personality.IsSurveillance())
@@ -307,7 +308,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
-	
+		
 		// If there is nowhere for this fleet to come from, don't create it.
 		size_t options = linkVector.size() + planetVector.size();
 		if(!options)
@@ -324,7 +325,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		
 		// Choose a random planet or star system to come from.
 		size_t choice = Random::Int(options);
-	
+		
 		// If a planet is chosen, also pick a system to travel to after taking off.
 		if(choice >= linkVector.size())
 		{

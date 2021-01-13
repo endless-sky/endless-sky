@@ -280,7 +280,7 @@ public:
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// If followParent is false, this ship will not follow the parent.
-	int JumpsRemaining(bool followParent = true) const;
+	bool JumpsRemaining(bool followParent = true) const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
 	// Get the distance that this ship can jump.
@@ -387,6 +387,7 @@ public:
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
 	const StellarObject *GetTargetStellar() const;
+	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
@@ -396,6 +397,7 @@ public:
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
 	void SetTargetStellar(const StellarObject *object);
+	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);

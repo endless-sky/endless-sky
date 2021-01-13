@@ -42,6 +42,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <limits>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -1459,7 +1460,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			direction = -1;
 			
 			// If you have a target planet in the destination system, exit
-			// hyperpace aimed at it. Otherwise, target the first planet that
+			// hyperspace aimed at it. Otherwise, target the first planet that
 			// has a spaceport.
 			Point target;
 			// Except when you arrive at an extra distance from the target,
@@ -2745,21 +2746,31 @@ double Ship::DisabledHull() const
 
 
 
-int Ship::JumpsRemaining(bool followParent) const
+bool Ship::JumpsRemaining(bool followParent) const
 {
-	// Make sure this ship has some sort of hyperdrive, and if so return how
-	// many jumps it can make.
+	// Make sure this ship has some sort of hyperdrive, and if so return
+	// whether it needs to make a jump and cannot do it.
+	
+	// If the ship is planning to land on a planet (or wormhole), it does not need to jump.
+	if(targetPlanet)
+		return true;
+	
 	double jumpFuel = 0.;
 	if(!targetSystem && followParent)
 	{
 		// If this ship has no destination, the parent's substitutes for it,
 		// but only if the location is reachable.
-		auto p = GetParent();
+		const auto &p = GetParent();
 		if(p)
-			jumpFuel = JumpFuel(p->GetTargetSystem());
+		{
+			const auto &parentTargetSystem = p->GetTargetSystem();
+			jumpFuel = JumpFuel(parentTargetSystem ? parentTargetSystem : p->GetSystem());
+		}
 	}
 	if(!jumpFuel)
 		jumpFuel = JumpFuel(targetSystem);
+	if(jumpFuel == -1.)
+		return true;
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
@@ -2783,8 +2794,10 @@ double Ship::JumpFuel(const System *destination) const
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
 		return JumpDriveFuel(linked ? 0. : currentSystem->Position().Distance(destination->Position()));
 	
-	// If the given system is not a possible destination, return 0.
-	return 0.;
+	// If the given system is not a possible destination (it should never happen), return -1.
+	Files::LogError("Ship '" + this->name + "' of model '" + this->modelName + "' in system '" 
+		+ this->currentSystem->Name() + "' cannot reach its destination system '" + destination->Name() + "'");
+	return -1.;
 }
 
 
