@@ -54,8 +54,6 @@ public:
 			INJECT,
 			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
 			INPUT,
-			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
-			INVALID,
 			// Label to jump to (similar as is done in conversations). Does not cause the game to step.
 			LABEL,
 			// Instructs the game to set navigation / travel plan to a target system
