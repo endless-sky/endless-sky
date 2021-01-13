@@ -13,11 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef START_CONDITIONS_PANEL_H_
 #define START_CONDITIONS_PANEL_H_
 
+#include "Panel.h"
+
 #include "ClickZone.h"
 #include "Color.h"
 #include "LoadPanel.h"
-#include "Panel.h"
 #include "PlayerInfo.h"
+#include "text/WrappedText.h"
 
 class StartConditionsPanel : public Panel {
 public:
@@ -38,6 +40,8 @@ protected:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
+	
+	WrappedText descriptionWrappedText;
 	
 	// Workaround around the absence of std::optional<>
 	StartConditions chosenStart;

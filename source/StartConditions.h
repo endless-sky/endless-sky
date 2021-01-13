@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "ConditionSet.h"
+#include "Conversation.h"
 #include "Date.h"
 #include "Ship.h"
 
@@ -44,11 +45,14 @@ public:
 	const Planet *GetPlanet() const;
 	const System *GetSystem() const;
 	
+	// Choose the appropiate conversation to display
+	const Conversation &GetConversation() const;
+	
 	// The sprite that will be outlined on StartConditionsPanel.cpp
 	const Sprite *GetSprite() const;
 	
-	const std::string GetName() const;
-	const std::string GetDescription() const;
+	const std::string &GetName() const;
+	const std::string &GetDescription() const;
 	
 	const Account &GetAccounts() const;
 	const ConditionSet &GetConditions() const;
@@ -66,6 +70,14 @@ private:
 	std::string name = "Unnamed start";
 	std::string description;
 	const Sprite *sprite = nullptr;
+	
+	// Conversation to show when the start conditions are selected
+	
+	// This is set when the start conditions provide an "inline conversation"
+	Conversation conversation;
+	// stockConversation is set when the conversation is provided as 
+	// a string which references another conversation in GameData
+	const Conversation *stockConversation = nullptr;
 };
 
 

@@ -206,7 +206,7 @@ interface "menu player info"
 		align left
 
 interface "menu start info"
-	active if "chosen start"
+	visible if "chosen start"
 	image "start sprite"
 		center 360 -90
 		dimensions 240 240

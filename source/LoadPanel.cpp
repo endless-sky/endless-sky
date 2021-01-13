@@ -212,18 +212,25 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			
 			player.New(GameData::Start()[0]);
-
-			ConversationPanel *panel = new ConversationPanel(
-				player, *GameData::Conversations().Get("intro"));
-			GetUI()->Push(panel);
-			panel->SetCallback(this, &LoadPanel::OnCallback);
+			
+			if(GameData::Start().front().GetConversation().IsEmpty())
+			{
+				// If no conversation was defined, then skip the conversation panel
+				OnCallback(0);
+			} 
+			else
+			{	
+				ConversationPanel *panel = new ConversationPanel(
+					player, GameData::Start().front().GetConversation());
+				GetUI()->Push(panel);
+				panel->SetCallback(this, &LoadPanel::OnCallback);
+			}	
 		} 
 		else 
 		{
 			// Request that the player chooses a start scenario
 			// StartConditionsPanel also handles the case where there's no scenarios
-			StartConditionsPanel *panel = new StartConditionsPanel(player, gamePanels, this);
-			GetUI()->Push(panel);
+			GetUI()->Push(new StartConditionsPanel(player, gamePanels, this););
 		}
 	}
 	else if(key == 'D' && !selectedPilot.empty())

@@ -51,6 +51,10 @@ void StartConditions::Load(const DataNode &node)
 			accounts.Load(child);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 			ships.emplace_back(child);
+		else if(child.Token(0) == "conversation" && child.HasChildren())
+			conversation.Load(child);
+		else if(child.Token(0) == "conversation" && child.Size() >= 1)
+			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else
 			conditions.Add(child);
 	}
@@ -64,11 +68,19 @@ void StartConditions::Load(const DataNode &node)
 
 void StartConditions::Save(DataWriter &out) const
 {
+	// Only the parts of the start conditions that might have to be used later
+	// (such as the date for the tutorial dialogs) are saved
+	// Things like the starting ship or the intro conversation, which are
+	// meant to be used only once, aren't saved
 	out.Write("start");
 	out.BeginChild();
 	{
 		out.Write("name", name);
-					
+		out.Write("system", system->Name());
+		out.Write("planet", planet->TrueName());
+		out.Write("date", date.Year(), date.Month(), date.Day());
+		accounts.Save(out);
+		
 		istringstream iss(description);
 		for(string line; getline(iss, line); )
 		{
@@ -78,10 +90,6 @@ void StartConditions::Save(DataWriter &out) const
 			}
 			
 		}
-		out.Write("system", system->Name());
-		out.Write("planet", planet->TrueName());
-		out.Write("date", date.Year(), date.Month(), date.Day());
-		accounts.Save(out);
 	}
 	out.EndChild();
 }
@@ -118,6 +126,14 @@ const System *StartConditions::GetSystem() const
 
 
 
+
+const Conversation &StartConditions::GetConversation() const 
+{
+	return stockConversation ? *stockConversation : conversation;
+}
+
+
+
 const Account &StartConditions::GetAccounts() const
 {
 	return accounts;
@@ -138,14 +154,15 @@ const list<Ship> &StartConditions::Ships() const
 }
 
 
-const std::string StartConditions::GetName() const
+
+const std::string &StartConditions::GetName() const
 {
 	return name;
 }
 
 
 
-const std::string StartConditions::GetDescription() const
+const std::string &StartConditions::GetDescription() const
 {
 	return description;
 }

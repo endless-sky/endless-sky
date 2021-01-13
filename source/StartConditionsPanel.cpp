@@ -40,7 +40,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "text/layout.hpp"
 #include "text/truncate.hpp"
-#include "text/WrappedText.h"
 #include "UI.h"
 
 #include <SDL2/SDL.h>
@@ -59,7 +58,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 	}
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	
-	if (startConditionsMenu)	
+	if(startConditionsMenu)	
 	{
 		descriptionBox =   startConditionsMenu->GetBox("start description");
 		entryBox =         startConditionsMenu->GetBox("start entry");
@@ -80,6 +79,15 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 			it);
 		i++;
 	}
+	const Font &font = FontSet::Get(14);
+	
+	descriptionWrappedText = WrappedText(font);
+	
+	descriptionWrappedText.SetAlignment(Alignment::LEFT);
+	descriptionWrappedText.SetWrapWidth(descriptionBox.Width());
+	
+	if (hasChosenStart)
+		descriptionWrappedText.Wrap(chosenStart.GetDescription());
 	
 	bright = *GameData::Colors().Get("bright");
 }
@@ -90,12 +98,15 @@ void StartConditionsPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	
+	const Font &font = FontSet::Get(14);
+	
 	Information info;
 	
 	// String that will be shown in the description panel
 	string descriptionText; 
 	
-	if(hasChosenStart){
+	if(hasChosenStart) 
+	{
 		info.SetCondition("chosen start");
 		if(chosenStart.GetSprite())
 			info.SetSprite("start sprite", chosenStart.GetSprite());
@@ -108,7 +119,7 @@ void StartConditionsPanel::Draw()
 
 		descriptionText = chosenStart.GetDescription();
 	}
-	else if (!GameData::Start().size())
+	else if(!GameData::Start().size())
 	{
 		descriptionText = "No start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly";
 	}
@@ -118,24 +129,15 @@ void StartConditionsPanel::Draw()
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
 	
-	const Font &font = FontSet::Get(14);
 	
-	WrappedText text = WrappedText(font);
 	
-	text.SetAlignment(Alignment::LEFT);
-	text.SetWrapWidth(210);
-	text.Wrap(descriptionText);
-	
-	text.Draw(
+	// TODO: Prevent text from overflowing	
+	descriptionWrappedText.Draw(
 		Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll),
-		descriptionBox,
 		bright
 	);
 	
-	Point point(
-		entryListBox.Left(),
-		entryListBox.Top() - listScroll 
-	);
+	Point point(entryListBox.Left(), entryListBox.Top() - listScroll);
 	
 	for(const auto &it : GameData::Start())
 	{
@@ -145,7 +147,7 @@ void StartConditionsPanel::Draw()
 				(entryInternalBox.Height()) / 2), 
 			entryBox.Dimensions()
 		);
-		if (point.Y() > entryListBox.Bottom() || point.Y() < entryListBox.Top())
+		if(point.Y() > entryListBox.Bottom() || point.Y() < entryListBox.Top())
 		{
 			// Don't bother drawing if the item is above or under the list
 			point += Point(0., entryBox.Height());
@@ -180,7 +182,7 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 		// This looks inefficient but it probably gets optimized by the compiler
 		listScroll -= dy;
 		listScroll = min(entryBox.Height() * (GameData::Start().size()-1), listScroll); // Avoid people going too low
-		listScroll = max(0.,listScroll); // Snap the list to avoid people scrolling too far up
+		listScroll = max(0., listScroll); // Snap the list to avoid people scrolling too far up
 	}
 	else
 	{
@@ -203,7 +205,7 @@ bool StartConditionsPanel::Scroll(double dx, double dy)
 
 bool StartConditionsPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x,y);
+	hoverPoint = Point(x, y);
 	return true;
 }
 
@@ -220,11 +222,18 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		
 		player.New(chosenStart);
 		
-		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &StartConditionsPanel::OnCallback);
+		if(chosenStart.GetConversation().IsEmpty())
+		{
+			// If no conversation was defined, then skip the conversation panel
+			OnCallback(0);
+		}
+		else
+		{
+			ConversationPanel *panel = new ConversationPanel(
+				player, chosenStart.GetConversation());
+			GetUI()->Push(panel);
+			panel->SetCallback(this, &StartConditionsPanel::OnCallback);
+		}
 	}
 	else 
 		return true;
@@ -241,7 +250,7 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 	
 	for(const auto &it : startConditionsClickZones)
 	{
-		if (!it.Contains(Point(x, y + listScroll)))
+		if(!it.Contains(Point(x, y + listScroll)))
 			continue;
 		
 		// We found the element we clicked on
@@ -251,6 +260,9 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 		chosenStart = it.Value();
 		hasChosenStart = true;
 	}
+	
+	if (hasChosenStart)
+		descriptionWrappedText.Wrap(chosenStart.GetDescription());
 	
 	return true;
 }
