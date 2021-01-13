@@ -527,6 +527,7 @@ void GameData::WriteEconomy(DataWriter &out)
 					{ return lhs->first->Name() < rhs->first->Name(); },
 				[&out](const Purchase &pit)
 				{
+					// Write purchases for all systems, even ones from removed plugins.
 					for(const auto &cit : pit.second)
 						out.Write(pit.first->Name(), cit.first, cit.second);
 				});
@@ -538,9 +539,12 @@ void GameData::WriteEconomy(DataWriter &out)
 			out.WriteToken(cit.name);
 		out.Write();
 		
-		// Write the per-system data for all systems, even those from inactive plugins.
+		// Write the per-system data for all systems that are either known-valid, or non-empty.
 		for(const auto &sit : GameData::Systems())
 		{
+			if(!sit.second.IsValid() && !sit.second.HasTrade())
+				continue;
+			
 			out.WriteToken(sit.second.Name());
 			for(const auto &cit : GameData::Commodities())
 				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
