@@ -88,7 +88,7 @@ namespace {
 		}
 	}
 	
-	// Summation that avoids a loss of trailing digits as possible.
+	// Summation that avoids loss of trailing digits as much as possible.
 	double Sum(const map<double, int> &partialTerms)
 	{
 		vector<double> partialSums;
@@ -100,7 +100,7 @@ namespace {
 	}
 	
 	// Add value * count to an attribute.
-	// This function doesn't modify attribute if valud * count is zero.
+	// This function doesn't modify attribute if value * count is zero.
 	void AddToAttribute(double &attribute, map<double, int> &partialTerms, double value, int count)
 	{
 		if(value == 0. || !count)
