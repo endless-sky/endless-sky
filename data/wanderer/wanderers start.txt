@@ -456,7 +456,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 			label hint
 			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air.`
 			`	Looking around, you suddenly see a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
-			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. [Understand, empathise]?"`
+			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. [Understand, empathize]?"`
 			choice
 				`	"I will help drive the Unfettered away."`
 					goto yes
