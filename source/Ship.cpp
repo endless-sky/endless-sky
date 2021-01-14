@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 #include "Files.h"
 #include "Flotsam.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Hazard.h"
@@ -899,7 +899,7 @@ void Ship::Save(DataWriter &out) const
 				out.Write("system", parent->currentSystem->Name());
 		}
 		if(landingPlanet)
-			out.Write("planet", landingPlanet->Name());
+			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem && !targetSystem->Name().empty())
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
@@ -1464,7 +1464,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			Point target;
 			// Except when you arrive at an extra distance from the target,
 			// in that case always use the system-center as target.
-			double extraArrivalDistance = currentSystem->ExtraArrivalDistance();
+			double extraArrivalDistance = isUsingJumpDrive ? currentSystem->ExtraJumpArrivalDistance() : currentSystem->ExtraHyperArrivalDistance();
+			
 			if(extraArrivalDistance == 0)
 			{
 				if(targetPlanet)
@@ -1482,7 +1483,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			
 			if(isUsingJumpDrive)
 			{
-				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
+				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
 				return;
 			}
 			
@@ -1827,8 +1828,6 @@ void Ship::DoGeneration()
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			bay.ship->DoGeneration();
-	
-	// TODO: Heat transfer between carried ships and the mothership?
 	
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
@@ -3328,13 +3327,18 @@ bool Ship::CanFire(const Weapon *weapon) const
 			return false;
 	}
 	
-	if(energy < weapon->FiringEnergy())
+	if(energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
 		return false;
-	if(fuel < weapon->FiringFuel())
+	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
 		return false;
+	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
+	// Ships should not disable themselves, so we check if we stay above minimumHull.
+	if(hull - MinimumHull() <= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+		return false;
+
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat()))
+	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
 		return false;
 	
 	return true;
@@ -3342,8 +3346,9 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 
 
-// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
-// and add whatever heat it generates. Assume that CanFire() is true.
+// Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
+// or fuel it uses and add whatever heat it generates. Assume that CanFire()
+// is true.
 void Ship::ExpendAmmo(const Weapon *weapon)
 {
 	if(!weapon)
@@ -3351,9 +3356,19 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 	if(weapon->Ammo())
 		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
 	
-	energy -= weapon->FiringEnergy();
-	fuel -= weapon->FiringFuel();
-	heat += weapon->FiringHeat();
+	energy -= weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity");
+	fuel -= weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity");
+	heat += weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat();
+	// Weapons fire from within shields, so hull damage goes directly into the hull, while shield damage
+	// only affects shields.
+	hull -= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull");
+	shields -= weapon->FiringShields() + weapon->RelativeFiringShields() * attributes.Get("shields");
+	
+	// Those values are usually reduced by active shields, but weapons fire from within the shields, so
+	// it seems more appropriate to apply those damages with a factor 1 directly.
+	ionization += weapon->FiringIon();
+	disruption += weapon->FiringDisruption();
+	slowness += weapon->FiringSlowing();
 }
 
 

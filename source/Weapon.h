@@ -86,10 +86,23 @@ public:
 	double InfraredTracking() const;
 	double RadarTracking() const;
 	
+	// Normal damage sustained on firing ship when weapon fired.
 	double FiringEnergy() const;
 	double FiringForce() const;
 	double FiringFuel() const;
 	double FiringHeat() const;
+	double FiringHull() const;
+	double FiringShields() const;
+	double FiringIon() const;
+	double FiringSlowing() const;
+	double FiringDisruption() const;
+	
+	// Relative damage sustained on firing ship when weapon fired.
+	double RelativeFiringEnergy() const;
+	double RelativeFiringHeat() const;
+	double RelativeFiringFuel() const;
+	double RelativeFiringHull() const;
+	double RelativeFiringShields() const;
 	
 	double SplitRange() const;
 	double TriggerRadius() const;
@@ -213,6 +226,17 @@ private:
 	double firingForce = 0.;
 	double firingFuel = 0.;
 	double firingHeat = 0.;
+	double firingHull = 0.;
+	double firingShields = 0.;
+	double firingIon = 0.;
+	double firingSlowing = 0.;
+	double firingDisruption = 0.;
+	
+	double relativeFiringEnergy = 0.;
+	double relativeFiringHeat = 0.;
+	double relativeFiringFuel = 0.;
+	double relativeFiringHull = 0.;
+	double relativeFiringShields = 0.;
 	
 	double splitRange = 0.;
 	double triggerRadius = 0.;
@@ -287,6 +311,17 @@ inline double Weapon::FiringEnergy() const { return firingEnergy; }
 inline double Weapon::FiringForce() const { return firingForce; }
 inline double Weapon::FiringFuel() const { return firingFuel; }
 inline double Weapon::FiringHeat() const { return firingHeat; }
+inline double Weapon::FiringHull() const { return firingHull; }
+inline double Weapon::FiringShields() const { return firingShields; }
+inline double Weapon::FiringIon() const{ return firingIon; }
+inline double Weapon::FiringSlowing() const{ return firingSlowing; }
+inline double Weapon::FiringDisruption() const{ return firingDisruption; }
+
+inline double Weapon::RelativeFiringEnergy() const{ return relativeFiringEnergy; }
+inline double Weapon::RelativeFiringHeat() const{ return relativeFiringHeat; }
+inline double Weapon::RelativeFiringFuel() const{ return relativeFiringFuel; }
+inline double Weapon::RelativeFiringHull() const{ return relativeFiringHull; }
+inline double Weapon::RelativeFiringShields() const{ return relativeFiringShields; }
 
 inline double Weapon::Piercing() const { return piercing; }
 

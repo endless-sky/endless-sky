@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Messages.h"
@@ -351,9 +351,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("waypoint", system->Name(), "visited");
 		
 		for(const Planet *planet : stopovers)
-			out.Write("stopover", planet->Name());
+			out.Write("stopover", planet->TrueName());
 		for(const Planet *planet : visitedStopovers)
-			out.Write("stopover", planet->Name(), "visited");
+			out.Write("stopover", planet->TrueName(), "visited");
 		
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -1097,7 +1097,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			result.cargoSize = cargoSize;
 	}
 	// Pick a random passenger count, if requested.
-	if(passengers | passengerLimit)
+	if(passengers || passengerLimit)
 	{
 		if(passengerProb)
 			result.passengers = Random::Polya(passengerLimit, passengerProb) + passengers;

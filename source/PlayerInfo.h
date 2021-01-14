@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameEvent.h"
 #include "Mission.h"
 
+#include <chrono>
 #include <list>
 #include <map>
 #include <memory>
@@ -149,6 +150,10 @@ public:
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
+
+	// Get or add to pilot's playtime.
+	double GetPlayTime() const noexcept;
+	void AddPlayTime(std::chrono::nanoseconds timeVal);
 	
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
@@ -240,6 +245,11 @@ public:
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 	
+	// Get or set the travel destination for selected escorts via the map.
+	const std::pair<const System *, Point> &GetEscortDestination() const;
+	void SetEscortDestination(const System *system = nullptr, Point pos = Point());
+	bool HasEscortDestination() const;
+	
 	// Get or set what coloring is currently selected in the map.
 	int MapColoring() const;
 	void SetMapColoring(int index);
@@ -288,6 +298,9 @@ private:
 	bool hasFullClearance = true;
 	bool isDead = false;
 	
+	// The amount of in-game time played, in seconds.
+	double playTime = 0.0;
+
 	Account accounts;
 	
 	std::shared_ptr<Ship> flagship;
@@ -339,9 +352,12 @@ private:
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
 	
+	// The system and position therein to which the "orbits" system UI issued a move order.
+	std::pair<const System *, Point> interstellarEscortDestination;
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
 	int mapZoom = 0;
+	
 	// Currently collapsed categories for various panels.
 	std::map<std::string, std::set<std::string>> collapsed;
 	

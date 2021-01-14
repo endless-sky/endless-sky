@@ -19,7 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
-#include "Font.h"
+#include "Files.h"
+#include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameWindow.h"
@@ -30,8 +31,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "Test.h"
 #include "UI.h"
 
+#include <chrono>
 #include <iostream>
 #include <map>
 
@@ -65,7 +68,7 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
-	string testToRun = "";
+	string testToRunName = "";
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -87,13 +90,19 @@ int main(int argc, char *argv[])
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
 		else if(arg == "--test" && *++it)
-			testToRun = *it;
+			testToRunName = *it;
 	}
 	
 	try {
 		// Begin loading the game data. Exit early if we are not using the UI.
 		if(!GameData::BeginLoad(argv))
 			return 0;
+		
+		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
+		{
+			Files::LogError("Test \"" + testToRunName + "\" not found.");
+			return 1;
+		}
 		
 		// Load player data, including reference-checking.
 		PlayerInfo player;
@@ -117,7 +126,7 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 		
-		GameData::LoadShaders();
+		GameData::LoadShaders(!GameWindow::HasSwizzle());
 		
 		// Show something other than a blank window.
 		GameWindow::Step();
@@ -125,12 +134,13 @@ int main(int argc, char *argv[])
 		Audio::Init(GameData::Sources());
 		
 		// This is the main loop where all the action begins.
-		GameLoop(player, conversation, testToRun, debugMode);
+		GameLoop(player, conversation, testToRunName, debugMode);
 	}
 	catch(const runtime_error &error)
 	{
 		Audio::Quit();
-		GameWindow::ExitWithError(error.what());
+		bool doPopUp = testToRunName.empty();
+		GameWindow::ExitWithError(error.what(), doPopUp);
 		return 1;
 	}
 	
@@ -146,7 +156,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode)
+void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -163,13 +173,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
 	
-	if(!GameWindow::HasSwizzle())
-		menuPanels.Push(new Dialog(
-			"Note: your computer does not support the \"texture swizzling\" OpenGL feature, "
-			"which Endless Sky uses to draw ships in different colors depending on which "
-			"government they belong to. So, all human ships will be the same color, which "
-			"may be confusing. Consider upgrading your graphics driver (or your OS)."));
-	
 	bool showCursor = true;
 	int cursorTime = 0;
 	int frameRate = 60;
@@ -183,12 +186,18 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
 	
+	// Data to track progress of testing if/when a test is running.
+	Test::Context testContext;
+	if(!testToRunName.empty())
+		testContext.testToRun = GameData::Tests().Get(testToRunName);
+	
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
 		if(toggleTimeout)
 			--toggleTimeout;
-			
+		chrono::steady_clock::time_point start = chrono::steady_clock::now();
+		
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
@@ -262,15 +271,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
-		// Currently running the hardcoded "empty" testcase:
-		//   Wait for the game to be fully loaded and then quit.
-		//
-		// This testcase can catch issues related to startup/data-loading,
-		// and it helps to show if the CI testframework is working.
-		// This hardcoded testcase is expected to be replaced by the
-		// larger testframework that is planned for ES.
-		if(!testToRun.empty() && GameData::IsLoaded())
-			menuPanels.Quit();
+		// All manual events and processing done. Handle any test inputs and events if we have any.
+		if(testContext.testToRun)
+			testContext.testToRun->Step(testContext, menuPanels, gamePanels, player);
 		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
@@ -309,6 +312,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		GameWindow::Step();
 
 		timer.Wait();
+		
+		// If the player ended this frame in-game, count the elapsed time as played time.
+		if(menuPanels.IsEmpty())
+			player.AddPlayTime(chrono::steady_clock::now() - start);
 	}
 	
 	// If player quit while landed on a planet, save the game if there are changes.
@@ -331,7 +338,8 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
-	cerr << "    --test <name>: run the empty testcase (any name is fine for now)" << endl;
+	cerr << "    --tests: print table of available tests, then exit." << endl;
+	cerr << "    --test <name>: run given test from resources directory" << endl;
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;

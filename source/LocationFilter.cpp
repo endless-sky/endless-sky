@@ -161,7 +161,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Planet *planet : planets)
-					out.Write(planet->Name());
+					out.Write(planet->TrueName());
 			}
 			out.EndChild();
 		}

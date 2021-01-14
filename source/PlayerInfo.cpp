@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Hardpoint.h"
@@ -138,6 +138,8 @@ void PlayerInfo::Load(const string &path)
 			hasFullClearance = true;
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
+		else if(child.Token(0) == "playtime" && child.Size() >= 2)
+			playTime = child.Value(1);
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
 			const System *next = GameData::Systems().Find(child.Token(1));
@@ -1029,7 +1031,9 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 				const Outfit *weapon = hardpoint.GetOutfit();
 				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
 					continue;
-				double damage = weapon->ShieldDamage() + weapon->HullDamage();
+				double damage = weapon->ShieldDamage() + weapon->HullDamage()
+					+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
+					+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull"));
 				deterrence += .12 * damage / weapon->Reload();
 			}
 	}
@@ -1178,13 +1182,13 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
-	// Create whatever missions this planet has to offer.
+	// If the player is actually landing (rather than simply loading the game),
+	// new missions are created and new fines may be levied.
 	if(!freshlyLoaded)
+	{
 		CreateMissions();
-	
-	// Check if the player is doing anything illegal.
-	if(!freshlyLoaded)
 		Fine(ui);
+	}
 	
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
@@ -1434,6 +1438,20 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 	
 	return true;
+}
+
+
+
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+{
+	playTime += timeVal.count() * .000000001;
+}
+
+
+
+double PlayerInfo::GetPlayTime() const noexcept
+{
+	return playTime;
 }
 
 
@@ -2239,6 +2257,30 @@ const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 
 
 
+const pair<const System *, Point> &PlayerInfo::GetEscortDestination() const
+{
+	return interstellarEscortDestination;
+}
+
+
+
+// Determine if a system and nonzero position were specified.
+bool PlayerInfo::HasEscortDestination() const
+{
+	return interstellarEscortDestination.first && interstellarEscortDestination.second;
+}
+
+
+
+// Set (or clear) the stored escort travel destination.
+void PlayerInfo::SetEscortDestination(const System *system, Point pos)
+{
+	interstellarEscortDestination.first = system;
+	interstellarEscortDestination.second = pos;
+}
+
+
+
 // Get what coloring is currently selected in the map.
 int PlayerInfo::MapColoring() const
 {
@@ -2610,11 +2652,12 @@ void PlayerInfo::Save(const string &path) const
 	if(system)
 		out.Write("system", system->Name());
 	if(planet)
-		out.Write("planet", planet->Name());
+		out.Write("planet", planet->TrueName());
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
+	out.Write("playtime", playTime);
 	// This flag is set if the player must leave the planet immediately upon
-	// loading the game (i.e. because a mission forced them to take off).
+	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
 		out.Write("launching");
 	for(const System *system : travelPlan)

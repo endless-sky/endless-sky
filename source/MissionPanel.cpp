@@ -14,14 +14,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionPanel.h"
 
+#include "text/alignment.hpp"
 #include "Command.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -34,7 +37,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "StartConditions.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -119,7 +124,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 	
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -166,7 +171,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -186,6 +191,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced");
 	DoHelp("jobs");
 }
 
@@ -574,8 +581,9 @@ void MissionPanel::DrawSelectedSystem() const
 		text += " (" + to_string(jumps) + " jumps away)";
 	
 	const Font &font = FontSet::Get(14);
-	Point pos(-.5 * font.Width(text), Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, *GameData::Colors().Get("bright"));
+	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
+		pos, *GameData::Colors().Get("bright"));
 }
 
 
@@ -681,8 +689,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 				highlight);
 		
 		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
-		font.Draw(it->Name(), pos,
-			(!canAccept ? dim : isSelected ? selected : unselected));
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
+			pos, (!canAccept ? dim : isSelected ? selected : unselected));
 	}
 	
 	return pos;

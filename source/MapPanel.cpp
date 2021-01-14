@@ -12,14 +12,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
+#include "text/alignment.hpp"
 #include "Angle.h"
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "FogShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
@@ -134,7 +135,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
 	hoverText.SetWrapWidth(150);
-	hoverText.SetAlignment(WrappedText::LEFT);
+	hoverText.SetAlignment(Alignment::LEFT);
 	
 	// Find out how far the player is able to jump. The range of the system
 	// takes priority over the range of the player's flagship.
@@ -390,9 +391,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:"));
 		return true;
 	}
-	else if(key == '+' || key == '=')
+	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
-	else if(key == '-')
+	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	else
 		return false;
