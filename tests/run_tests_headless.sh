@@ -50,11 +50,6 @@ if (( MAX_RETRY < 0 )); then
 	exit 126
 fi
 
-if [[ ! -z ${PRINT_GLXINFO} ]]; then
-	echo "OpenGL versions & available extensions:"
-	echo $(glxinfo | grep -E "OpenGL|GL_")
-fi
-
 # Enable for debugging (and add some secret password file to make it more secure):
 #
 # x11vnc -display :99 &

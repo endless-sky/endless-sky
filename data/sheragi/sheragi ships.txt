@@ -117,15 +117,14 @@ ship "Emerald Sword"
 	fighter 0 220.5 back
 	fighter 0 220.5 back
 	fighter 0 220.5 back
-	explode "medium explosion" 47
-	explode "huge explosion" 42
 	explode "tiny explosion" 60
 	explode "small explosion" 26
+	explode "medium explosion" 47
 	explode "large explosion" 39
+	explode "huge explosion" 42
 	explode "nuke explosion" 2
 	"final explode" "nuke explosion" 2
-	"final explode" "nuke residue fast" 25
-	"final explode" "nuke residue fast" 25
+	"final explode" "nuke residue fast" 50
 	description "An ancient Sheragi warship that was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size."
 	description "For its original Sheragi masters, this warship was home to around 100 individuals. For others, however, that number more than doubles, bringing it on par with the largest city ships."
 
