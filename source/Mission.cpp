@@ -399,8 +399,8 @@ bool Mission::IsVisible() const
 
 
 
-// Check if this mission uses any systems, planets, or ships that are not
-// fully defined. If everything is fully defined, this is a valid mission.
+// Check if this instantiated mission uses any systems, planets, or ships that are
+// not fully defined. If everything is fully defined, this is a valid mission.
 bool Mission::IsValid() const
 {
 	// Planets must be defined and in a system. However, a source system does not necessarily exist.
@@ -440,9 +440,8 @@ bool Mission::IsValid() const
 		return false;
 	
 	for(auto &&npc : NPCs())
-		for(auto &&ship : npc.Ships())
-			if(!ship->IsValid())
-				return false;
+		if(!npc.IsValid())
+			return false;
 	
 	return true;
 }
