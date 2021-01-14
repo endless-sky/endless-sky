@@ -1666,7 +1666,7 @@ mission "Remnant: Deep Surveillance"
 			`	Ivan laughs as he reclines his chair. "Oh, it's absolutely fascinating what I've been able to find.`
 			label ramble
 			`	"With a cube in each of the Remnant systems, I was able to track all their fleet movements, and I've discovered some interesting things. For one, ships either make trips between the three systems, or they leave the cluster entirely for significant amounts of time, often at least a month at a time. There weren't very many ships or fleets that took short trips out of the cluster, say only one or two weeks in length. Seems like they're sending people on rather lengthy missions.`
-			`	"Aside from fleet movements, the cubes are able to make low quality scans of any ships in the system. While those individual scans are less than what an outfit scan provides, given enough scans you're able to get a clearer picture. Now there were specific ship models that would suddenly disappear from the sensors without a trace. I knew they couldn't have been jumping out of the system because jumping creates a very distinct signature on the sensors. On top of ships disappearing on the sensors, there were also jump signatures with no disceranble source. My only conclusion then is that some of these ships are capable of cloaking themselves.`
+			`	"Aside from fleet movements, the number of ships was of note. The cubes track the number of unique ships seen, and they rarely tracked the same ship more than a handful of times. The Remnant seem to have an incredible number of ships, more than perhaps Deep Security and the Navy combined. Certainly impressive for a group consisting of only three star systems. The cubes are also able to make low quality scans of any ships in the system. While those individual scans are less than what an outfit scan provides, given enough scans you're able to get a clearer picture. These ship scan results were... interesting, though. There seemed to be very few ships like the ones you scanned. Perhaps those were their most advanced ships, but the rest of what I was able to see didn't seem more powerful than your average merchant ship."`
 			`	"I actually lost connection to the cubes a few weeks ago now, but I've gathered enough information already."`
 			`	"Do you think I could get a copy of your research?" you ask.`
 			label "surveillance copy"
@@ -1684,7 +1684,7 @@ mission "Remnant: Deep Surveillance"
 	on complete
 		payment 1000000
 		conversation
-			`	You head to the information desk. Torza shows up.`
+			`	When you return to <origin>, you approach the information desk that Torza told you to go to. You tell the person at the desk that you're here to meet Torza. They have you wait on a bench nearby, and Torza arrives some time later. "Hello, Captain. I take it you have a copy of the findings."`
 			
 			branch terminus
 				"retrieved information" == 1
@@ -1711,31 +1711,38 @@ mission "Remnant: Deep Surveillance"
 				has "remnant: got no deep research"
 			
 			label terminus
-			`	Torza looks at the information. "Cool stuff. Inform us if they make any further progress."`
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "Interesting research they have done," he says. "So they understand that it is a wormhole, but still have no means of passing through to the other side." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information. For the time being we have little to fear, but I ask that you inform us if they make any further progress. May the Embers burn bright for you."`
 				decline
 			
 			label sprites
-			`	Torza looks at the information. "Cool stuff. We'll keep an eye on the wormhole in case they venture further into the Ember Waste."`
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "They seem to have taking a liking to the void sprites," he says. "This is good that they are distracted. It is human nature to be curious, and they will be kept curious by the void sprites for a while. This buys us time." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
 				decline
 			
 			label everything
-			`	Torza looks at the information. "We now know everything that they know. This is good."`
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "Impressive that you've brought us so much," he says. "This appears to be absolutely everything they know about us. While not ideal, at the very least we now know what they know and can use that to our advantage." Torza removes the data chip from the terminal and pockets it. He then pulls out what you recognize as the sensor cubes you placed on the Remnant worlds and puts them on the table. "We disabled these some time ago, but not before feeding them some junk data. And judging by this information, it worked. We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
 				decline
 			
 			label research
-			`	Torza looks at the information. "They know some of our capabilities."`
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "So, they know of some, but not all, of our technological capabilities," he says. "We can use this fog of war to our advantage, should we need to." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
 				decline
 			
 			label old
-			`	Torza looks at the information. "There is nothing here but research on the wormhole. You sure you got the right stuff?"`
-				decline
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly with a puzzled look on his face. "There is nothing here like what you mentioned that the Deep knows. Are you sure you received the correct information?"`
+				goto tricked
 			
 			label repeat
-			`	Torza looks at the information. "This is what you gave us last time. Is this some sort of joke?"`
-				decline
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly with a puzzled look on his face. "This is the same information as what you brought us last time. Are you sure you received the correct information?"`
+			
+			label tricked
+			`	Torza turns the terminal to face you. You read through it and see that all the data is on the wormhole in Terminus, but it says that they are still looking for a way to pass through it. "This isn't what I asked for," you say. "He must have purposefully given me the wrong information."`
+			`	"Then he understands why you asked for it," he responds as he turns the terminal back and pockets the data chip.`
+				goto disappointing
 			
 			label nothing
-			`	Torza is disappointed in your failure. "If he knows that we're onto him, then this is a dangerous situation."`
+			`	"No," you respond. "The lead scientist guessed correctly that I was asking for his research to give to you."`
+			
+			label disappointing
+			`	Torza scratches his chin. "This is... disappointing. You've helped to place us in a scenario where a potential adversary knows much about us, but we know little about them." Torza stares at you, but doesn't appear to be angry. "Perhaps espionage is in order. But given your connections to the Deep, we will pursue such actions on our own. Should something arise in the future where we need you, we'll contact you. Until then, do not compromise our position any further. We won't take it so lightly a second time."`
 				decline
 
 
