@@ -1138,6 +1138,8 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"We want to meet the human archaeologist who uncovered the ruins in the Rim. Can you take us there? We will start examining the cube along the way. I think by the time we get there, we'll have something to work with."`
 				accept
 	
+	on offer
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "cube decoded" 40 50
 		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people and often coordinates the work in the Hai archeologist team, despite her introversion and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
