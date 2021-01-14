@@ -1517,7 +1517,7 @@ mission "Remnant: Deep Surveillance"
 			branch cubes
 				has "Deep: Remnant Surveillance: done"
 			`	"Ah. Well, there's quite a bit to talk about." Ivan reclines his chair.`
-			`	Ivan pulls out a schematic showing the engines you brought. "The engines you brought us are very interesting. We already mentioned to you how they're rather powerful for their size, more so than even atomic engines of a similar, while not producing very much heat at all. Their major downside though seems to be the immense amount of energy they draw. The energy drain is not surpising given that they seem to be improved ion engines, but the fact that ion engines could ever become more powerful for their size than atomic engines is somethign spectacular. The thrusters also seem to have the ability to provide reverse thrust, making any ship with them rather maneuverable."`
+			`	Ivan pulls out a schematic showing the engines you brought. "The engines you brought us are very interesting. We already mentioned to you how they're rather powerful for their size, more so than even atomic engines of a similar size, while not producing very much heat at all. Their major downside though seems to be the immense amount of energy they draw. The energy drain is not surpising given that they seem to be improved ion engines, but the fact that ion engines could ever become more powerful for their size than atomic engines is somethign spectacular. The thrusters also seem to have the ability to provide reverse thrust, making any ship with them rather maneuverable."`
 			
 			branch skip
 				not "Deep: Remnant: Generators: done"
