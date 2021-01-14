@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
+#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -1246,6 +1247,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
+	if(any_of(npcs.begin(), npcs.end(), [](const NPC &n) noexcept -> bool
+		{ return !n.IsValid(true); }))
+	{
+		// Should this be a `runtime_error`?
+		Files::LogError("Instantiation Error: NPC template in mission \"" + Identifier() + "\" uses invalid data");
+		return result;
+	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
 	
