@@ -284,7 +284,7 @@ void GameData::CheckReferences()
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(const auto &it : fleets)
-		if(!it.second.GetGovernment() && !deferred["fleet"].count(it.first))
+		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
 			Warn("fleet", it.first);
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)

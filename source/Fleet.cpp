@@ -234,6 +234,29 @@ void Fleet::Load(const DataNode &node)
 
 
 
+bool Fleet::IsValid(bool requireGovernment) const
+{
+	// Generally, a government is required for a fleet to be valid.
+	if(requireGovernment && !government)
+		return false;
+	
+	if(names && names->IsEmpty())
+		return false;
+	
+	if(fighterNames && fighterNames->IsEmpty())
+		return false;
+	
+	// A fleet's variants should reference at least one valid ship.
+	for(auto &&v : variants)
+		if(none_of(v.ships.begin(), v.ships.end(),
+				[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
+			return false;
+	
+	return true;
+}
+
+
+
 // Get the government of this fleet.
 const Government *Fleet::GetGovernment() const
 {
@@ -569,7 +592,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			continue;
 		}
 		
-		shared_ptr<Ship> ship(new Ship(*model));
+		auto ship = make_shared<Ship>(*model);
 		
 		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
 		if(phrase)
