@@ -2,6 +2,9 @@
 
 # Helper function to print debugging data for failures on graphical environment.
 function print_graphics_data () {
+	if [[ -z ${PRINT_GLXINFO} ]]; then
+		return;
+	fi
 #	echo "# ***********************************************"
 #	echo "# OpenGL versions & available extensions:"
 #	echo "# ***********************************************"
