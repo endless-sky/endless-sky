@@ -510,7 +510,7 @@ outfit "Crucible-Class Thruster"
 	"reverse thrust" 10.8
 	"reverse thrusting energy" 1.59
 	"reverse thrusting heat" 1.5
-	"slowing resistance" 0.01
+	"slowing resistance" 0.012
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
@@ -534,7 +534,7 @@ outfit "Forge-Class Thruster"
 	"reverse thrust" 27.62
 	"reverse thrusting energy" 3.09
 	"reverse thrusting heat" 3.0
-	"slowing resistance" 0.02
+	"slowing resistance" 0.024
 	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"flare sound" "plasma small"
@@ -558,7 +558,7 @@ outfit "Smelter-Class Thruster"
 	"reverse thrust" 46.08
 	"reverse thrusting energy" 6.06
 	"reverse thrusting heat" 1.5
-	"slowing resistance" 0.04
+	"slowing resistance" 0.048
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"flare sound" "plasma medium"
@@ -579,7 +579,7 @@ outfit "Crucible-Class Steering"
 	"turn" 492.8
 	"turning energy" 1.32
 	"turning heat" 1.4
-	"slowing resistance" 0.005
+	"slowing resistance" 0.008
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
@@ -597,7 +597,7 @@ outfit "Forge-Class Steering"
 	"turn" 1047.2
 	"turning energy" 2.64
 	"turning heat" 3.0
-	"slowing resistance" 0.01
+	"slowing resistance" 0.016
 	"steering flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"steering flare sound" "plasma small"
@@ -615,7 +615,7 @@ outfit "Smelter-Class Steering"
 	"turn" 2178
 	"turning energy" 5.21
 	"turning heat" 6.2
-	"slowing resistance" 0.02
+	"slowing resistance" 0.032
 	"steering flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"steering flare sound" "plasma medium"
