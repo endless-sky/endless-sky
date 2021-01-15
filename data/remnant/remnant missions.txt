@@ -1281,7 +1281,7 @@ mission "Remnant: Deep Surveillance"
 			`	"How are they doing this?" Torza asks.`
 			choice
 				`	"Surveillance devices have been placed in each of your spaceports."`
-				`	"I don't know, I only know that they are."`
+				`	"I don't know. I only know that they are."`
 					goto secret
 			
 			apply
@@ -1423,7 +1423,7 @@ mission "Remnant: Deep Surveillance"
 			`	"Ivan Haataja? He moved out weeks ago. Said something about 'moving up in this world' while dragging a pallet of filing cabinets out of the building. I can look up where he is now if you need me to."`
 			`	"I'd appreciate that," you say.`
 			`	The receptionist spends a few minutes tapping away at a keyboard. "Looks like he had his office moved to... the Deep Polytechnic Institute of Valhalla?" he says with a surprised look. "Damn, must have gotten someone's attention in the government to be moved there. Do you need directions?"`
-			`	You get directions from the receptionist and thank him for his time. Turns out this Institute is in the heart of the university district of the spaceport city. Many planets in the Deep, Paradise Worlds, and even many near Earth have a similar university district, but the one on Valhalla is the largest of its kind in the entire Republic.`
+			`	You get directions from the receptionist and thank him for his time. Turns out this Institute is in the heart of the university district of the spaceport city. Several planets in the Deep, Paradise Worlds, and even many near Earth have a similar university district, but the one on Valhalla is the largest of its kind in the entire Republic.`
 			`	As you enter the district, you note that the architecture here is much more appealing than the brutalistic architecture of Ivan's old office building. The buildings consist of more curves than right angles with a textured metallic surface that scatters the sunlight to give the area a warm glow, as opposed to directing it right into your eyes if you happen to be standing in the wrong spot. Even among all the metallic buildings, there is still a good amount of greenery: well-trimmed bushes and trees line the streets, and many of the buildings are topped with gardens.`
 			`	You ascend the stairs of the Institute, the massive building looming over you as you approach. Its more ancient design makes the building stand out from the rest of the district, the entrance being guarded by massive marble pillars that manage to not clash with the metallic sheen of the rest of the buildings. The interior is similarly impressive, with a massive lobby area centered by an impressive water fountain.`
 			`	You approach one of the receptionist desks and ask to see Ivan Haataja. "It looks like he's available right now," she says. "We'll let him know you're coming and have someone here to escort you to Doctor Haataja's office shortly."`
@@ -1435,7 +1435,7 @@ mission "Remnant: Deep Surveillance"
 				goto reason
 			
 			label second
-			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? After gaining the attention of the Deep government with the discovers we were making, they immediately had my office moved from the dingy complex it use to be at to here. Much of that work I have you the thank for.`
+			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work.`
 			
 			label reason
 			`	"So. What brings you here, Captain?" he asks.`
@@ -1456,7 +1456,7 @@ mission "Remnant: Deep Surveillance"
 					goto joke
 				`	"Sorry, I don't have any ideas."`
 			
-			`	"That's unfortunate," Ivan says. "I've been thinking of something in relation to the void of space. I'll come up with something eventually."`
+			`	"That's unfortunate," Ivan says. "I've been thinking of a name that references the void of space. I'll come up with something eventually."`
 				goto ask
 			
 			label joke
@@ -1675,7 +1675,7 @@ mission "Remnant: Deep Surveillance"
 				set "remnant: got all deep research"
 				
 			label reencrypt
-			`	Only a few minutes later there is a knock at the door. Ivan retrieves the data chip from the person who brought it, then plugs it into a computer on his desk. "Let me reencrypt these then leave the new key in the chip for you. Not exactly the most secure thing to do to leave the key right next to the lock, but I take it you'll be smart enough to remedy that whenever you use this. Aaaand... done." He pulls the chip from his computer and hands it to you.`
+			`	Only a few minutes later there is a knock at the door. Ivan retrieves the data chip from the person who brought it, then plugs it into a computer on his desk. "Let me reencrypt these then leave the new key in the chip for you. Leaving the key right next to the lock isn't exactly the most secure thing to do, but I take it you'll be smart enough to remedy that whenever you use this. Aaaand... done." He pulls the chip from his computer and hands it to you.`
 			`	"Anything else?" he asks.`
 			`	"No. That's all I was here for," you respond. "Good luck on the rest of your work."`
 			`	"Thank you," Ivan says. "Come back any time you want. You're free to roam the Institute whenever you desire. Most of the building is closed to the public, but I can always mark you as my guest whenever you're interested in looking around."`
