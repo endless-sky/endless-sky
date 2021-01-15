@@ -443,6 +443,7 @@ outfit "Bellows-Class Afterburner"
 	"mass" 13
 	"outfit space" -11
 	"engine capacity" -11
+	"slowing resistance" 0.01
 	"afterburner thrust" 153.0
 	"afterburner fuel" 2.0
 	"afterburner energy" 6.0
@@ -476,12 +477,22 @@ outfit "Anvil-Class Engine"
 	"thrust" 13.5
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 336.0
+	"turn" 369.6
 	"turning energy" 1.05
 	"turning heat" 1.1
+	"reverse thrust" 8.1
+	"reverse thrusting energy" 1.23
+	"reverse thrusting heat" 1.17
+	"slowing resistance" 0.02
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"steering flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This tiny set of engines was designed specifically for craft so small that it combines both thrusters and steering into one unit."
 
 outfit "Crucible-Class Thruster"
@@ -496,9 +507,16 @@ outfit "Crucible-Class Thruster"
 	"thrust" 18.0
 	"thrusting energy" 2.65
 	"thrusting heat" 2.5
+	"reverse thrust" 10.8
+	"reverse thrusting energy" 1.59
+	"reverse thrusting heat" 1.5
+	"slowing resistance" 0.012
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "These small but powerful engines are driven by ionized gas propelled at a sizable fraction of the speed of light."
 
 outfit "Forge-Class Thruster"
@@ -513,9 +531,16 @@ outfit "Forge-Class Thruster"
 	"thrust" 37.0
 	"thrusting energy" 5.15
 	"thrusting heat" 5.0
+	"reverse thrust" 27.62
+	"reverse thrusting energy" 3.09
+	"reverse thrusting heat" 3.0
+	"slowing resistance" 0.024
 	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"flare sound" "plasma small"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma small"
 	description "The Remnant have taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
 
 outfit "Smelter-Class Thruster"
@@ -530,9 +555,16 @@ outfit "Smelter-Class Thruster"
 	"thrust" 76.8
 	"thrusting energy" 10.10
 	"thrusting heat" 10.2
+	"reverse thrust" 46.08
+	"reverse thrusting energy" 6.06
+	"reverse thrusting heat" 1.5
+	"slowing resistance" 0.048
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"flare sound" "plasma medium"
+	"reverse flare sprite" "effect/remnant flare/medium"
+		"frame rate" 5
+	"reverse flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
 
 outfit "Crucible-Class Steering"
@@ -544,9 +576,10 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 448.0
+	"turn" 492.8
 	"turning energy" 1.32
 	"turning heat" 1.4
+	"slowing resistance" 0.008
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
@@ -561,9 +594,10 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 952.0
+	"turn" 1047.2
 	"turning energy" 2.64
 	"turning heat" 3.0
+	"slowing resistance" 0.016
 	"steering flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"steering flare sound" "plasma small"
@@ -578,13 +612,18 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 1980.0
+	"turn" 2178
 	"turning energy" 5.21
 	"turning heat" 6.2
+	"slowing resistance" 0.032
 	"steering flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"steering flare sound" "plasma medium"
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
+
+
+
+# Hand to Hand
 
 outfit "Tuning Rifle"
 	category "Hand to Hand"
@@ -596,6 +635,10 @@ outfit "Tuning Rifle"
 	"capture defense" 1.8
 	"unplunderable" 1
 	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
+
+
+
+# Special
 
 outfit "Void Rifle"
 	category "Special"
