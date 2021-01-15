@@ -65,9 +65,12 @@ void SavedGame::Load(const string &path)
 					shipName = child.Token(1);
 				else if(child.Token(0) == "sprite" && child.Size() >= 2)
 					shipSprite = SpriteSet::Get(child.Token(1));
+				// If the selected ship is parked or in another system, it cannot be the active
+				// flagship, so clear the sprite and continue the loop until it is found
 				else if(child.Token(0) == "system" && child.Size() >= 2)
 				{
-					if(child.Token(1) != system) {
+					if(child.Token(1) != system)
+					{
 						shipSprite = nullptr;
 						break;
 					}
