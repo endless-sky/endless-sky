@@ -1431,11 +1431,11 @@ mission "Remnant: Deep Surveillance"
 			`	Ivan opens to door with a big smile on his face. "Captain <last>! So great to see you here. Please, have a seat." Ivan ushers you inside his office, an impressively large room with a window wall overseeing a beautiful courtyard. You sit down in a cushioned chair on the opposite side of a desk. You lean back into the chair and get comfortable. "I know the chairs are cozy," Ivan says. "Don't fall asleep on me though."`
 			branch second
 				"retrieved information" == 2
-			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. This is miles above what I used to have. After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work .`
+			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work .`
 				goto reason
 			
 			label second
-			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work.`
+			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from that dingy complex to here. I have you to thank for much of that work.`
 			
 			label reason
 			`	"So. What brings you here, Captain?" he asks.`
