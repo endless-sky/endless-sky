@@ -68,13 +68,13 @@ void SavedGame::Load(const string &path)
 				else if(child.Token(0) == "system" && child.Size() >= 2)
 				{
 					if(child.Token(1) != system) {
-						shipSprite = NULL;
+						shipSprite = nullptr;
 						break;
 					}
 				}
 				else if(child.Token(0) == "parked")
 				{
-					shipSprite = NULL;
+					shipSprite = nullptr;
 					break;
 				}
 			}
