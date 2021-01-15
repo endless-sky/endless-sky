@@ -26074,7 +26074,7 @@ planet Ahr
 	outfitter "Coalition Advanced"
 
 planet Aksaray
-	attributes "moon" uninhabited
+	attributes "requires: stabilizers" "moon" uninhabited
 	landscape land/mountain26
 	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
 	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are very common across the galaxy and have an extremely low value.`
@@ -27689,7 +27689,7 @@ planet "Kraken Station"
 		fleet "Small Syndicate" 7
 
 planet Kumkapi
-	attributes moon uninhabited
+	attributes "requires: stabilizers" moon uninhabited
 	landscape land/mars0
 	description `While this moon's minerals aren't particularly rare or exotic, its closeness to Viminal has made it the subject of many mining projects over the centuries - efforts to find traces of the valuable Keystones which permit travel through this region of space. None of them were successful, and most Remnant scientists believe that Kumkapi formed somewhere else and was captured by Vimnal's gravitational pull at some time during its formation.`
 	description `	When the absence of Keystones became clear, most scientific and mining interests faded away, and today the surface is scattered with abandoned outposts whose somber tunnels are thousand-kilometer labyrinths.`
@@ -28410,7 +28410,7 @@ planet Pilot
 		fleet "Small Republic" 21
 
 planet Pincian
-	attributes moon uninhabited
+	attributes "requires: stabilizers" moon uninhabited
 	landscape land/mars3
 	description `Pincian is a small rocky moon, tiny enough to avoid most asteroids attracted by the nearby gas giant of Palatine. Nevertheless, a huge crater, old enough to have collected some dust and regolith, dominates its surface. Whatever crashed here, it must be tens of thousands of years since the impact.`
 	description `	There are some small-scale mining operations all around Pincian, but everything around the crater has been left untouched except for a Remnant research station nestled into one of its edges.`
@@ -28791,7 +28791,7 @@ planet "Septar Lorku"
 	security 0
 
 planet Seraglio
-	attributes "ice giant" uninhabited
+	attributes "requires: stabilizers" "ice giant" uninhabited
 	landscape land/snow13
 	description `Seraglio's vast ice fields hint at a variety of mysteries, most notably the chasms that suggest the planet was somehow subjected to massive compressive forces at some point in its recent geological history.`
 	description `At present, Seraglio is the focus of considerable attention from researchers searching for clues as to the planet's history.`
@@ -28809,7 +28809,7 @@ planet Serpens
 		fleet "Large Republic" 3
 
 planet Servian
-	attributes "requires: gaslining" "gas giant" uninhabited
+	attributes "requires: gaslining" "requires: stabilizers" "gas giant" uninhabited
 	landscape land/nasa28
 	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the planet, where automated scoop probes don't have any trouble gathering gasses and various exotic elements. Underneath the peaceful exterior, the norm is extreme turbulence and violent storms with lightning thousands of times more powerful than anything observed on nearby planets.`
 	description `	While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early puffins. Every ship was destroyed before reaching the depths of the planet, but it nonetheless proved a valuable testing ground for their early ship hulls and helped to refine the technology.`
