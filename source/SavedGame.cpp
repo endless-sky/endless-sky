@@ -65,6 +65,18 @@ void SavedGame::Load(const string &path)
 					shipName = child.Token(1);
 				else if(child.Token(0) == "sprite" && child.Size() >= 2)
 					shipSprite = SpriteSet::Get(child.Token(1));
+				else if(child.Token(0) == "system" && child.Size() >= 2)
+				{
+					if(child.Token(1) != system) {
+						shipSprite = NULL;
+						break;
+					}
+				}
+				else if(child.Token(0) == "parked")
+				{
+					shipSprite = NULL;
+					break;
+				}
 			}
 		}
 	}
