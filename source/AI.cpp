@@ -142,7 +142,7 @@ namespace {
 			toRecall.reserve(maxCount);
 		}
 		
-		// First, check if the player selected any carreid ships.
+		// First, check if the player selected any carried ships.
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
@@ -353,7 +353,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	
 	if(!flagship || flagship->IsDestroyed())
 		return;
-
+	
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.");
 	
@@ -398,7 +398,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-
+	
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
@@ -1433,7 +1433,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		int jumps = ship.JumpsRemaining(false);
 		// Each destination system has an average priority of 10.
 		// If you only have one jump left, landing should be high priority.
-		int planetWeight = jumps ? 41 : 1;
+		int planetWeight = jumps ? (1 + 40 / jumps) : 1;
 		
 		vector<int> systemWeights;
 		int totalWeight = 0;
@@ -1596,6 +1596,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
+		// Clear planet target to not land on a wormhole if the previous command was to land on it.
+		ship.SetTargetStellar(nullptr);
 		if(!dest)
 			// This ship has no route to the parent's destination system, so protect it until it jumps away.
 			KeepStation(ship, command, parent);
@@ -1645,7 +1647,7 @@ void AI::Refuel(Ship &ship, Command &command)
 		ship.SetTargetStellar(parentTarget);
 	else if(!CanRefuel(ship, ship.GetTargetStellar()))
 		ship.SetTargetStellar(GetRefuelLocation(ship));
-
+	
 	if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
@@ -1782,7 +1784,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
-
+	
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
@@ -3528,7 +3530,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	// Clear autopilot actions if actions can't be performed.
 	if(autoPilot.Has(Command::LAND) && !ship.GetTargetStellar())
 		autoPilot.Clear(Command::LAND);
-	if(autoPilot.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
+	if(autoPilot.Has(Command::JUMP) && !ship.GetTargetSystem() && !isWormhole)
 		autoPilot.Clear(Command::JUMP);
 	if(autoPilot.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
 		autoPilot.Clear(Command::BOARD);
@@ -3557,7 +3559,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
-		else if(!ship.JumpFuel(ship.GetTargetSystem()))
+		else if(!ship.JumpFuel(ship.GetTargetSystem())) // TODO: this should probably be changed to JumpsRemaining
 		{
 			Messages::Add("You cannot jump to the selected system.");
 			autoPilot.Clear();
@@ -3568,6 +3570,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
+		}
+		else if(ship.IsLanding())
+		{
+			Messages::Add("You cannot jump while landing.");
+			autoPilot.Clear(Command::JUMP);
 		}
 		else
 		{

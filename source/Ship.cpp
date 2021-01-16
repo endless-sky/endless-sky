@@ -42,7 +42,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <limits>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -1569,6 +1568,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
 					SetTargetStellar(nullptr);
+					SetTargetSystem(nullptr);
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
@@ -2415,7 +2415,7 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
-// Check if this ship is currently able to enter hyperspace to it target.
+// Check if this ship is currently able to enter hyperspace to its target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
@@ -2745,32 +2745,22 @@ double Ship::DisabledHull() const
 }
 
 
-
-bool Ship::JumpsRemaining(bool followParent) const
+// TODO: fix misuses of this method, as it is now being used to indicate the need for refueling.
+int Ship::JumpsRemaining(bool followParent) const
 {
-	// Make sure this ship has some sort of hyperdrive, and if so return
-	// whether it needs to make a jump and cannot do it.
-	
-	// If the ship is planning to land on a planet (or wormhole), it does not need to jump.
-	if(targetPlanet)
-		return true;
-	
+	// Make sure this ship has some sort of hyperdrive, and if so return how
+	// many jumps it can make.
 	double jumpFuel = 0.;
 	if(!targetSystem && followParent)
 	{
 		// If this ship has no destination, the parent's substitutes for it,
 		// but only if the location is reachable.
-		const auto &p = GetParent();
+		auto p = GetParent();
 		if(p)
-		{
-			const auto &parentTargetSystem = p->GetTargetSystem();
-			jumpFuel = JumpFuel(parentTargetSystem ? parentTargetSystem : p->GetSystem());
-		}
+			jumpFuel = JumpFuel(p->GetTargetSystem());
 	}
 	if(!jumpFuel)
 		jumpFuel = JumpFuel(targetSystem);
-	if(jumpFuel == -1.)
-		return true;
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
@@ -2794,10 +2784,8 @@ double Ship::JumpFuel(const System *destination) const
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
 		return JumpDriveFuel(linked ? 0. : currentSystem->Position().Distance(destination->Position()));
 	
-	// If the given system is not a possible destination (it should never happen), return -1.
-	Files::LogError("Ship '" + this->name + "' of model '" + this->modelName + "' in system '" 
-		+ this->currentSystem->Name() + "' cannot reach its destination system '" + destination->Name() + "'");
-	return -1.;
+	// If the given system is not reachable via hyperspace in one hop, return 0.
+	return 0.;
 }
 
 
@@ -3232,7 +3220,7 @@ void Ship::Jettison(const Outfit *outfit, int count)
 {
 	if(count < 0)
 		return;
-
+	
 	cargo.Remove(outfit, count);
 	
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise

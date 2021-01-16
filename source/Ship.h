@@ -279,8 +279,9 @@ public:
 	double DisabledHull() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
+	// This does not show accurate number of jumps remaining beyond 1.
 	// If followParent is false, this ship will not follow the parent.
-	bool JumpsRemaining(bool followParent = true) const;
+	int JumpsRemaining(bool followParent = true) const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
 	// Get the distance that this ship can jump.

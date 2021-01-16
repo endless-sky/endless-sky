@@ -71,7 +71,7 @@ public:
 	// Modifier command, usually triggered by shift-key. Changes behaviour of
 	// other commands like NEAREST, TARGET, HAIL and BOARD.
 	static const Command SHIFT;
-
+	
 	
 public:
 	// In the given text, replace any instances of command names (in angle
