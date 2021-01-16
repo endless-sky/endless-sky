@@ -72,6 +72,28 @@ TESTS_OK=$(echo -n "${TESTS}" | grep -e "^active" | cut -f2)
 TESTS_NOK=$(echo "${TESTS}" | grep -e "^known failure" -e "^missing feature" | cut -f2)
 NUM_TOTAL=$(( 0 + $(echo "${TESTS_OK}" | wc -l) ))
 
+# Duplicate tests to run 20 times
+TESTS_OK="${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}
+${TESTS_OK}"
+
 #TODO: Allow running known-failures by default as well (to check if they accidentally got solved)
 if [ ${NUM_TOTAL} -eq 0 ]
 then

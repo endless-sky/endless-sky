@@ -17,6 +17,10 @@ cd "${HERE}"
 EXECUTABLE="../endless-sky"
 RESOURCES="../"
 
+# Loop the central part of the script 5 times (restart Xvfb 4 times)
+for i in {1..5}
+do
+# BEGIN OF LOOP
 
 Xvfb :99 -screen 0 1280x1024x24 &
 XSERVER_PID=$!
@@ -64,5 +68,8 @@ kill -s SIGTERM ${XSERVER_PID}
 
 # Enable for debugging:
 # kill -s SIGTERM ${X11VNC_PID}
+
+# END OF LOOP
+done
 
 exit ${RETURN_VALUE}
