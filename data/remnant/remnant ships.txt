@@ -694,20 +694,20 @@ ship "Penguin"
 		"tactical scan power" 50
 		"atmosphere scan" 100
 		"thrust" 5.2
-		"thrusting energy" 0.81
-		"thrusting heat" 0.65
+		# "thrusting energy" 0.81
+		# "thrusting heat" 0.65
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
 		"reverse thrust" 5.2
-		"reverse thrusting energy" 0.81
-		"reverse thrusting heat" 0.65
+		# "reverse thrusting energy" 0.81
+		# "reverse thrusting heat" 0.65
 		"reverse flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"reverse flare sound" "plasma tiny"
 		"turn" 160.0
-		"turning energy" 0.42
-		"turning heat" 0.44
+		# "turning energy" 0.42
+		# "turning heat" 0.44
 		"steering flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"steering flare sound" "plasma tiny"
