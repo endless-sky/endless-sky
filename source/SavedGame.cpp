@@ -36,6 +36,8 @@ void SavedGame::Load(const string &path)
 	if(file.begin() != file.end())
 		this->path = path;
 	
+	int flagshipIterator = 1;
+	int flagshipTarget = 1;
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "pilot" && node.Size() >= 3)
@@ -57,29 +59,21 @@ void SavedGame::Load(const string &path)
 					break;
 				}
 		}
+		else if(node.Token(0) == "flagship" && node.Size() >= 2)
+			flagshipTarget = node.Value(1);
 		else if(node.Token(0) == "ship" && !shipSprite)
 		{
+			if(flagshipIterator != flagshipTarget)
+			{
+				flagshipIterator++;
+				continue;
+			}
 			for(const DataNode &child : node)
 			{
 				if(child.Token(0) == "name" && child.Size() >= 2)
 					shipName = child.Token(1);
 				else if(child.Token(0) == "sprite" && child.Size() >= 2)
 					shipSprite = SpriteSet::Get(child.Token(1));
-				// If the selected ship is parked or in another system, it cannot be the active
-				// flagship, so clear the sprite and continue the loop until it is found
-				else if(child.Token(0) == "system" && child.Size() >= 2)
-				{
-					if(child.Token(1) != system)
-					{
-						shipSprite = nullptr;
-						break;
-					}
-				}
-				else if(child.Token(0) == "parked")
-				{
-					shipSprite = nullptr;
-					break;
-				}
 			}
 		}
 	}

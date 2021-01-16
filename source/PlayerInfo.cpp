@@ -2664,7 +2664,17 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("travel", system->Name());
 	if(travelDestination)
 		out.Write("travel destination", travelDestination->TrueName());
-	
+	// Detect which ship number is the current flagship, for showing on LoadPanel
+	int flagshipIterator = 1;
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		if(ship == flagship)
+		{
+			out.Write("flagship", flagshipIterator);
+			break;
+		}
+		flagshipIterator++;
+	}
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
 	out.Write("map zoom", mapZoom);
