@@ -903,7 +903,7 @@ mission "Mammon Payment"
 			has "Sheragi Archaeology: Emerald Sword Epilogue: done"
 			has "event: mammon impatient"
 		has "paid mammon"
-		credits >= 12000000
+		"credits" >= 12000000
 
 	on offer
 		payment -10000000
@@ -1293,7 +1293,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 
 	on enter "Zubenelhakrabi"
 		conversation
-			`The trip to Zubenelhakrabi is completely normal and calm. The trip's uneventfulness only managing to keep everyone on edge. When you arrive, a simple scan reveals the system's star is unremarkable, nearing the end of its main sequence phase. Among the planets orbiting it, one is in the habitable zone and shows apparent signs of life, covered in dark green spots under the clouds.`
+			`The trip to Zubenelhakrabi is completely normal and calm. When you arrive, a simple scan reveals the system's star is unremarkable, nearing the end of its main sequence phase. Among the planets orbiting it, one is in the habitable zone and shows apparent signs of life, covered in dark green spots under the clouds.`
 			scene "scene/emeraldswordderelict"
 			`	You also find the Emerald Sword, but strangely, it is not on the planet, but drifting through space. An enormous ship of angular design, its most striking feature is an incredibly large cannon going through the center of the ship. It is so large the ship might as well have been built around it; you can only wonder about its power. Thankfully, you won't have to find out the hard way; the ship is inert, derelict, ruined from lack of maintenance, and abandoned to the mercy of micrometeorite showers and decay. It seems like it could fall apart if looked at the wrong way... luckily, you have just the right crew for the job.`
 			`	But before you can initiate the approach to the ship, a strange feeling washes over you. First, a feeling of being watched by something far greater. Then, a void in your chest, a deep apprehension you can't shake. A thought forms in your mind, but it's not your own:`
