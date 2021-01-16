@@ -705,9 +705,9 @@ ship "Penguin"
 		"reverse flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"reverse flare sound" "plasma tiny"
-		"turn" 80.0
-		"turning energy" 0.21
-		"turning heat" 0.22
+		"turn" 160.0
+		"turning energy" 0.42
+		"turning heat" 0.44
 		"steering flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"steering flare sound" "plasma tiny"
