@@ -329,12 +329,15 @@ bool NPC::IsValid(bool asTemplate) const
 	
 	// NPC fleets, unlike stock fleets, do not need a valid government
 	// since they will unconditionally inherit this NPC's government.
-	for(auto &&fleet : fleets)
-		if(!fleet.IsValid(false))
-			return false;
-	for(auto &&fleet : stockFleets)
-		if(!fleet->IsValid(false))
-			return false;
+	if(asTemplate)
+	{
+		for(auto &&fleet : fleets)
+			if(!fleet.IsValid(false))
+				return false;
+		for(auto &&fleet : stockFleets)
+			if(!fleet->IsValid(false))
+				return false;
+	}
 	
 	return true;
 }

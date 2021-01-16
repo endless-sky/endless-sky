@@ -72,6 +72,35 @@ namespace {
 		if(node.HasChildren())
 			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
 	}
+	
+	string TriggerToText(Mission::Trigger trigger)
+	{
+		switch(trigger)
+		{
+			case Mission::Trigger::ABORT:
+				return "on abort";
+			case Mission::Trigger::ACCEPT:
+				return "on accept";
+			case Mission::Trigger::COMPLETE:
+				return "on complete";
+			case Mission::Trigger::DECLINE:
+				return "on decline";
+			case Mission::Trigger::DEFER:
+				return "on defer";
+			case Mission::Trigger::FAIL:
+				return "on fail";
+			case Mission::Trigger::OFFER:
+				return "on offer";
+			case Mission::Trigger::STOPOVER:
+				return "on stopover";
+			case Mission::Trigger::VISIT:
+				return "on visit";
+			case Mission::Trigger::WAYPOINT:
+				return "on waypoint";
+			default:
+				return "unknown trigger";
+		}
+	}
 }
 
 
@@ -440,6 +469,7 @@ bool Mission::IsValid() const
 	if(!clearanceFilter.IsValid())
 		return false;
 	
+	// The instantiated NPCs should also be valid.
 	for(auto &&npc : NPCs())
 		if(!npc.IsValid())
 			return false;
@@ -1250,7 +1280,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(any_of(npcs.begin(), npcs.end(), [](const NPC &n) noexcept -> bool
 		{ return !n.IsValid(true); }))
 	{
-		// Should this be a `runtime_error`?
+		// Should these be `runtime_error`s?
 		Files::LogError("Instantiation Error: NPC template in mission \"" + Identifier() + "\" uses invalid data");
 		return result;
 	}
@@ -1259,10 +1289,33 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
+	auto ait = find_if(actions.begin(), actions.end(), [](const pair<const Trigger, MissionAction> &it) noexcept -> bool
+		{ return !it.second.IsValid(); });
+	if(ait != actions.end())
+	{
+		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \"" + Identifier() + "\" uses invalid data");
+		return result;
+	}
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+	
+	auto oit = find_if(onEnter.begin(), onEnter.end(), [](const pair<const System *const, MissionAction> &it) noexcept -> bool
+		{ return !it.first->IsValid() || !it.second.IsValid(); });
+	if(oit != onEnter.end())
+	{
+		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \"" + Identifier() + "\" uses invalid data");
+		return result;
+	}
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+	
+	auto eit = find_if(genericOnEnter.begin(), genericOnEnter.end(), [](const MissionAction &a) noexcept -> bool
+		{ return !a.IsValid(); });
+	if(eit != genericOnEnter.end())
+	{
+		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \"" + Identifier() + "\" uses invalid data");
+		return result;
+	}
 	for(const MissionAction &action : genericOnEnter)
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
 	

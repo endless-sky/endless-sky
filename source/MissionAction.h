@@ -50,7 +50,7 @@ public:
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
-	// An invalid MissionAction uses events or outfits that are not fully defined.
+	// An invalid MissionAction references content that is not fully defined.
 	bool IsValid() const;
 	
 	int Payment() const;

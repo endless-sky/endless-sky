@@ -337,8 +337,8 @@ void MissionAction::Save(DataWriter &out) const
 
 
 
-// Check this MissionAction's gifted outfits and activated events to see if any
-// are not fully defined (e.g. the plugin defining it has been removed).
+// Check this template or instantiated MissionAction to see if any used content
+// is not fully defined (e.g. plugin removal, typos in names, etc.).
 bool MissionAction::IsValid() const
 {
 	// Any filter used to control where this action triggers must be valid.
@@ -537,6 +537,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 
+// Convert this validated template into a populated action.
 MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
 {
 	MissionAction result;
@@ -545,11 +546,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
 	
+	// All contained events are valid, else we would not be calling Instantiate. For these
+	// valid events, pick a date within the specified range on which the event will occur.
 	for(const auto &it : events)
 	{
-		// Allow randomization of event times. The second value in the pair is
-		// always greater than or equal to the first, so Random::Int() will
-		// never be called with a value less than 1.
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}

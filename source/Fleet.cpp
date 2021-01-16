@@ -586,6 +586,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *model : variant.ships)
 	{
+		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
 			Files::LogError("Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
