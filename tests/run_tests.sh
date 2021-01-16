@@ -1,5 +1,7 @@
 #!/bin/bash
 
+HERE=$(cd `dirname $0` && pwd)
+
 # Helper function to print debugging data for failures on graphical environment.
 function print_graphics_data () {
 	if [[ -z ${PRINT_GLXINFO} ]]; then
@@ -26,8 +28,8 @@ function print_graphics_data () {
 
 
 
-function detect_known_issues () {
-	cat "$1" | grep "SDL message: \"No available video device\""
+function detect_retryable_issues () {
+	grep -Fx -f "${HERE}/retryable_issues.txt" "$1"
 }
 
 
@@ -138,7 +140,7 @@ do
 			TEST_RESULT="not ok"
 			if [ -f "${ES_CONFIG_PATH}/errors.txt" ]
 			then
-				KNOWN_ISSUES=$(detect_known_issues "${ES_CONFIG_PATH}/errors.txt")
+				KNOWN_ISSUES=$(detect_retryable_issues "${ES_CONFIG_PATH}/errors.txt")
 				if [ $(echo "${KNOWN_ISSUES}" | wc -w) -gt 0 ]
 				then
 					echo "# Failed on known issue:"
