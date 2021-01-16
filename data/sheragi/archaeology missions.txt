@@ -889,7 +889,7 @@ mission "Sheragi Archaeology: The Box 4"
 
 
 
-mission "Mammon Payment"               
+mission "Mammon Payment"
 	landing
 	invisible
 
@@ -901,7 +901,7 @@ mission "Mammon Payment"
 
 	on offer
 		payment -10000000
-		conversation     
+		conversation
 			`You receive a message informing you of a very large transaction: 10 million credits. With it, a message containing only the image of a reptilian eye logo. It seems Mammon's crew have withdrawn the money you agreed to pay for the information about the Sheragi black box.`
 				decline
 
@@ -934,7 +934,7 @@ mission "Sheragi Archaeology: The Box 5"
 		conversation
 			`You attempt to evade the mercenary ships and make a quick assault on their encampment, but the ships follow you through the atmosphere, and ground personnel start shooting at you. Bombing it on a pass means you risk destroying the cube. You have no choice but to go back to space and eliminate the mercenary fleet.`
 				launch
-	
+
 
 
 mission "Sheragi Archaeology: The Box 6a"
@@ -1057,7 +1057,7 @@ mission "Sheragi Archaeology: The Box 7b"
 	on offer
 		conversation
 			`Arriving on Mirrorlake, you ask around for a while, and eventually, someone directs you to the Museum of Galactic History: a huge, and very important place, but surprisingly not a very popular tourist spot. Most Hai aren't very fond of looking at the past, and most humans have no idea this place exists. The museum staff is surprised to see a human face, and as you wander you feel like you're drawing more attention from the locals than the exhibits themselves.`
-			`	The place has a very unusual architecture vaguely resembling Earth's Ancient Greece, but clearly not based on any human design. Touches of metal, concrete, glass, and plastic add a modern aspect to its design. Exhibit rooms branch off a long corridor that makes up the majority of the building.  The rooms are arranged such that history proceeds backwards as you walk through the museum, with recent events at the front and the earliest at the back. One room you enter is dominated by a mural depicting the Hai's history of contact with humanity. It begins with the Alphas: most of the space is taken up by pictures of warships and artwork detailing battles between the Hai and Alphas. Around halfway through the mural, the green-skinned humans are replaced by ordinary ones. Here, there are surprisingly rich insights on human biology and culture.`
+			`	The place has a very unusual architecture vaguely resembling Earth's Ancient Greece, but clearly not based on any human design. Touches of metal, concrete, glass, and plastic add a modern aspect to its design. Exhibit rooms branch off a long corridor that makes up the majority of the building. The rooms are arranged such that history proceeds backwards as you walk through the museum, with recent events at the front and the earliest at the back. One room you enter is dominated by a mural depicting the Hai's history of contact with humanity. It begins with the Alphas: most of the space is taken up by pictures of warships and artwork detailing battles between the Hai and Alphas. Around halfway through the mural, the green-skinned humans are replaced by ordinary ones. Here, there are surprisingly rich insights on human biology and culture.`
 			`	As you continue to wander further down the aisle, you find rooms dedicated to the Korath raids, their civil war, and the first contact with them, along with a very poetic recounting of the origins of the Unfettered. Going deeper, you find even more sections: A long one detailing Hai culture on several different worlds and how they shifted with time, another on the fall of the trans-wormhole government and the decision to pull back into a small territory, one on the completion of the Quarg ringworld, one for Hai trade and military culture during their imperial phase, and a very grim-looking room on the Hai Civil Wars. Finally, after a very long walk, you arrive at a room nearly at the end of the aisle, recounting the history of the Sheragi.`
 			choice
 				`	(Continue into the Sheragi room.)`
@@ -1138,6 +1138,8 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"We want to meet the human archaeologist who uncovered the ruins in the Rim. Can you take us there? We will start examining the cube along the way. I think by the time we get there, we'll have something to work with."`
 				accept
 	
+	on offer
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "cube decoded" 40 50
 		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people and often coordinates the work in the Hai archeologist team, despite her introversion and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
@@ -1250,8 +1252,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 		conversation
 			`You have a jump drive in your possession. Would you like to give it to Albert's crew?`
 			choice
-				`    (Yes.)`
-				`    (No.)`
+				`	(Yes.)`
+				`	(No.)`
 					defer
 			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment, along with the jump drive you brought. He has assembled a crew of around 150 people, including a specialized team of shipyard workers, a large amount of veteran crew members, himself, and the three Hai archaeologists, who are comfortable to let go of their disguise once they're back in your ship.`
 			`	"<first>, meet the people who will help us uncover the fate of the Emerald Sword. I've just briefed them on the situation and what we plan to do. Along with the jump drive, we're going to take some specialized tools with us, which should allow us to repair and outfit the ship in any world we can land on. This might look like a lot of people, but if we want to recover a derelict ship, I suspect we'll need just this many. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
@@ -1330,7 +1332,7 @@ mission "Sheragi Archaeology: Epilogue"
 		conversation
 			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. As luck would have it, the shipboard scanner reveal anomalous structures over a mesa, and as you come in for a landing, it becomes apparent that these are the ruins of a large settlement. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term.`
 			`	While the crew starts to work on the Emerald Sword, you and the archaeologists head into the settlement, documenting what you see. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
-			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room, holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery, with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they might have survived to this day. The archaeologists take pictures, samples, and minor artifacts, but leave the place mostly undisturbed in respect for a lost civilization, discussing the possible history of this place.`			
+			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room, holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery, with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they might have survived to this day. The archaeologists take pictures, samples, and minor artifacts, but leave the place mostly undisturbed in respect for a lost civilization, discussing the possible history of this place.`
 			`	For most of the next day, the workers unload some outfitting and repairing equipment, while the spare crew take turns thinking of names for each fighter, and scientists slowly work out the functions of the ship, briefing you and your crew on how to operate it. With the jump drive installed, all that is left is to return the ship to human space for further work.`
 				accept
 	on visit

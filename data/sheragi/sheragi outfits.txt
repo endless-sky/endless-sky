@@ -63,8 +63,8 @@ outfit "Large Hybrid Cooling"
 	thumbnail "outfit/sheragicooling"
 	"mass" 40
 	"outfit space" -40
+	"cooling" 24
 	"active cooling" 128
-	"cooling" 24	
 	"cooling energy" 16.2
 	"fuel capacity" 200
 	description `This Sheragi cooling system is primitive at best, but it works both actively and passively, allowing it to dissipate much more heat than a simple radiator would. It does, however, drain a lot of power when subjected to the heat of battle. It also includes cryogenic tanks to hold some additional fuel, which is used as a temporary heat reservoir.`
@@ -100,8 +100,8 @@ outfit "Small Hybrid Cooling"
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
 	"outfit space" -8
-	"active cooling" 17
 	"cooling" 9
+	"active cooling" 17
 	"cooling energy" 3.1
 	description `This small cooling solution was designed with fighters in mind, and as such, it does not store fuel. However, it provides more passive cooling than its big brother.`
 
@@ -152,15 +152,15 @@ outfit "Dragonflame Cannon"
 		"lifetime" 1
 		"reload" 180
 		"firing energy" 16000
+		"firing fuel" 200
 		"firing heat" 40000
 		"firing force" 1000
+		"hit force" 2000
 		"shield damage" 25000
-		"firing fuel" 200
 		"hull damage" 15000
+		"heat damage" 50000
 		"piercing" 0.4
 		"blast radius" 50
-		"heat damage" 50000
-		"hit force" 2000
 	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to trigger an extremely powerful thermonuclear reaction, directing most of the energy from the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
 
 outfit "Sheragi Anti-Missile"
@@ -200,6 +200,7 @@ outfit "Particle Waveform Turret"
 		"hardpoint offset" 11
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
+		"turret turn" 1.8
 		"velocity" 50
 		"lifetime" 18
 		"reload" 60
@@ -209,7 +210,6 @@ outfit "Particle Waveform Turret"
 		"hull damage" 270
 		"heat damage" 224
 		"ion damage" 4.2
-		"turret turn" 1.8
 	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and disrupts electrical systems. By the nature of these weapons, one can deduce that their tactics likely involved using the Dragonflame Cannon at long range to break the enemy shields and finishing them off at relatively close range with the Particle Waveform Turrets."
 
 outfit "Shard Fabricator"
@@ -233,20 +233,20 @@ outfit "Shard Fabricator"
 		"submunition" "Shard inactive"
 		"inaccuracy" 80
 		"velocity" 15
+		"lifetime" 40
+		"random lifetime" 20
+		"reload" 60
+		"burst reload" 2
+		"burst count" 6
+		"firing energy" 40
+		"firing fuel" 2
+		"firing heat" 60
 		"acceleration" 1.5
 		"drag" .1
 		"turn" 8
-		"lifetime" 40
-		"random lifetime" 20
 		"homing" 4
 		"radar tracking" .8
-		"reload" 60
 		"missile strength" 1
-		"burst count" 6
-		"burst reload" 2
-		"firing energy" 40
-		"firing heat" 60
-		"firing fuel" 2
 	description `To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce simple kinetic missiles from stock materials and a small amount of stored fuel; their guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility. However, the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload.`
 
 outfit "Shard inactive"
@@ -256,12 +256,11 @@ outfit "Shard inactive"
 			"random start frame"
 		"hit effect" "Shard impact"
 		"die effect" "missile death"
-		"inaccuracy" 0
 		"lifetime" 60
 		"random lifetime" 40
+		"hit force" 20
 		"shield damage" 55
 		"hull damage" 80
-		"hit force" 20
 
 outfit "Heavy Ion Cyclotron"
 	category "Guns"
@@ -277,7 +276,6 @@ outfit "Heavy Ion Cyclotron"
 		sound "hion"
 		"hit effect" "proton impact" 3
 		"submunition" "Heavy Ion Fragment" 3
-		"inaccuracy" 0
 		"velocity" 28
 		"lifetime" 1
 		"reload" 1
@@ -295,9 +293,9 @@ outfit "Heavy Ion Fragment"
 		"inaccuracy" 1
 		"random velocity" 8
 		"lifetime" 25
+		"random lifetime" 8
 		"acceleration" 0.001
 		"drag" .02
-		"random lifetime" 8
 		"hit force" 3
 		"shield damage" 1.19
 		"hull damage" 0.98
