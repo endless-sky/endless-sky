@@ -37,7 +37,7 @@ void SavedGame::Load(const string &path)
 		this->path = path;
 	
 	int flagshipIterator = 1;
-	int flagshipTarget = 1;
+	int flagshipTarget = -1;
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "pilot" && node.Size() >= 3)
