@@ -98,6 +98,25 @@ function run_single_testrun () {
 
 
 
+# Runs a test, including all retries.
+function run_test () {
+	RUN_NR=0
+	TEST_RESULT=3
+	while [ ${TEST_RESULT} -eq 3 ] && [ ${RUN_NR} -lt 5 ]
+	do
+		RUN_NR=$((RUN_NR + 1))
+		if [ ${RUN_NR} -gt 1 ]
+		then
+			echo "# Retrying test due to recoverable environment failure"
+		fi
+		run_single_testrun "${TEST}"
+		TEST_RESULT=$?
+	done
+	return ${TEST_RESULT}
+}
+
+
+
 # Retrieve parameters that give the executable and datafile-paths.
 if [ -z "$1" ] || [ -z "$2" ]; then
   echo "You must supply a path to the binary as an argument,"
@@ -166,20 +185,13 @@ NUM_FAILED=0
 NUM_OK=0
 for TEST in ${TESTS_OK}
 do
-	RUN_NR=0
-	TEST_RESULT=3
-	while [ ${TEST_RESULT} -eq 3 ] && [ ${RUN_NR} -lt 5 ]
-	do
-		RUN_NR=$((RUN_NR + 1))
-		run_single_testrun "${TEST}"
-		TEST_RESULT=$?
-		if [ ${TEST_RESULT} -eq 2 ]
-		then
-			echo "Bail out! Encountered serious issue that prevents further testing."
-			exit 1
-		fi
-	done
+	run_test "${TEST}"
 
+	if [ ${TEST_RESULT} -eq 2 ]
+	then
+		echo "Bail out! Encountered serious issue that prevents further testing."
+		exit 1
+	fi
 	if [ ${TEST_RESULT} != 0 ]
 	then
 		NUM_FAILED=$((NUM_FAILED + 1))
