@@ -1115,7 +1115,7 @@ mission "Sheragi Archaeology: The Box 7b"
 		"reputation: Hai" += 10
 		conversation
 			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
-			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table. You describe the disocver of the Sheragi ruins to them and they begin inquiring more about it, curious about the state of preservation of the ruins and what artifacts were found. They seem very excited.`
+			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table. You describe the discovery of the Sheragi ruins to them and they begin inquiring more about it, curious about the state of preservation of the ruins and what artifacts were found. They seem very excited.`
 			`	"This is a unique opportunity! Even when our species were in... active contact, millennia ago, we Hai never had the opportunity to study Sheragi cities up close. Brief skirmishes and diplomatic meetings were as close as our ancestors got.`
 			`	"You'll understand, however, that we can't simply sell you the documents you're requesting. Instead, we have a proposition for you: cooperation between our species, so both Hai and human can mutually benefit in ways more significant than the financial one."`
 			`	Given this opportunity, you tell them about the Sheragi black box found in the dig site, and the possibility of decrypting it and uncovering its secrets.`
