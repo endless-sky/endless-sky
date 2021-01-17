@@ -3321,7 +3321,7 @@ mission "Remnant: Crystal Research 5"
 			label capitalists
 			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these keystones could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
 			label work
-			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular Key Stone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for one made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
+			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular Key Stone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the Hai keystone with one of our Key Stones. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
 				`	"Wait, you are a pilot?"`
 				`	"Okay."`
@@ -3368,7 +3368,7 @@ mission "Remnant: Crystal Research 6"
 	on complete
 		payment 150000
 		conversation
-			`While in transit, you took the opportunity to examine the preliminary results of the scans: there are a few differences between the two crystals, but both appear to have functioned similarly. Upon landing on Viminal, Aeolus comes over to collect a copy of the data for the researchers.`
+			`While in transit, you took the opportunity to examine the preliminary results of the scans: there are a few differences between the two stones, but both appear to have functioned similarly. Upon landing on Viminal, Aeolus comes over to collect a copy of the data for the researchers.`
 			`	"Thanks for your help, Captain <first>. This information may be valuable in understanding how the wormholes work." He pauses, then continues thoughtfully. "Perhaps more importantly, it may help us understand how the wormholes of the Ember Waste are different from the wormholes elsewhere that require no such aid."`
 			`	He looks down at the data crystal. "I have one more task to ask of you. Meet me in the cafeteria in an hour to discuss it. May the Embers burn bright for you, Captain." He gives a wave that seems vaguely like a salute and heads off.`
 			`	As he disappears from sight you hear a faint chime from your commlink, which displays a message indicating that two payments of <payment> have been allocated to your account. You recall that you didn't get a message after the last mission, so whichever Remnant person or agency is sending you these payments must have combined them. You do find it odd, however, that they always seem to know exactly when you finish a delivery.`
@@ -3425,7 +3425,7 @@ mission "Remnant: Crystal Research 7"
 			label creepy
 			`	"Creepy? I do not understand how something so useful and beneficial could be 'creepy,' but I suppose some might equate our symbionts with leeches. To each their own, I suppose." He shrugs, then continues. "But enough. We still have work to do."`
 			label deliverdata
-			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to some researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these crystals and the wormholes. Will you do it?"`
+			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to some researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these stones and the wormholes. Will you do it?"`
 			choice
 				`	"Okay."`
 					accept
