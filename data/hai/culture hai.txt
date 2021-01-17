@@ -23,7 +23,7 @@ mission "ZZCU Theater Chat"
 		distance 1 3
 		government "Hai"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`As you are walking through the spaceport, you come across the uncommon pairing of a Hai and a human, their conversation standing out by virtue of speaking the common tongue of humanity.`
@@ -64,7 +64,7 @@ mission "ZZCU Musical Entertainment Expo"
 			choice
 				`	"How strange."`
 				`	"How interesting."`
-			`	"Anyway, I gather you were you after some food?"`
+			`	"Anyway, I gather you were after some food?"`
 			label wrapup
 			`	The bartender tips his head in your direction and takes your order. "No problem, it'll be right up."`
 			`	It's a noisy meal.`
@@ -85,7 +85,7 @@ mission "ZZCU The Meme Wars 1"
 				has "language: Wanderer"
 			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
-			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
 			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
 				decline
 			label translator
@@ -95,9 +95,9 @@ mission "ZZCU The Meme Wars 1"
 			choice
 				`	"Sure, will do."`
 					goto done
-				`	Your elders have a tripartite system?`
-			`	The security guard chuckles and says, "Oh you can understand? They don't really, but it's a very old joke from an old campaign that there are only 3 tenets the elders care about, and they're all the ones that affect us the least."`
-			`	When you ask what has triggered this now he says, "Oh, the latest education priorities came out with a 4 tenet focus, on the same day that an elder accidentally quoted the old campaign. It has been very entertaining."`
+				`	"Your elders have a tripartite system?"`
+			`	The security guard chuckles and says, "Oh you can understand? They don't really, but it's a very old joke from an old campaign that there are only three tenets the elders care about, and they're all the ones that affect us the least."`
+			`	When you ask what has triggered this now he says, "Oh, the latest education priorities came out with a four tenet focus, on the same day that an elder accidentally quoted the old campaign. It has been very entertaining."`
 			choice
 				`	"How strange."`
 				`	"Sounds fun."`
@@ -188,11 +188,11 @@ mission "ZZCU Gambling Judgment"
 				`	(Place an order.)`
 					goto end
 				`	"The maturity tenets?"`
-			`	"Oh right, I suppose you wouldn't know. There are a number of tenets that Hai are taught growing up, lessons to be internalized to be a responsible and functioning member of society. The second is 'To be honest in dealings.', and the third is 'To gamble only on skill, not chance.', so their game breaks two of them."`
+			`	"Oh right, I suppose you wouldn't know. There are a number of tenets that Hai are taught growing up, lessons to be internalized to be a responsible and functioning member of society. The second is 'To be honest in dealings,' and the third is 'To gamble only on skill, not chance,' so their game breaks two of them."`
 			choice
 				`	"Some would say Poker is more about skill than chance."`
 				`	"Surely if it's just a game though, there's no harm in it?"`
-			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality.' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise, this is taboo for an adult.`
+			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality,' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise. This is taboo for an adult.`
 			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
 			choice
 				`	"Wait, do the Hai not lie or bluff?"`
