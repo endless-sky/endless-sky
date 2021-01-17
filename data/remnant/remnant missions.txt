@@ -3027,7 +3027,7 @@ mission "Remnant: Face to Maw 2B"
 
 
 
-mission "Remnant: Crystal Research 1"
+mission "Remnant: Keystone Research 1"
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, starting in <destination>.`
 	minor
@@ -3126,7 +3126,7 @@ mission "Remnant: Crystal Research 1"
 
 
 
-mission "Remnant: Crystal Research 2"
+mission "Remnant: Keystone Research 2"
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, next from <destination>`
 	landing
@@ -3134,13 +3134,13 @@ mission "Remnant: Crystal Research 2"
 	destination "Allhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 1: done"
+		has "Remnant: Keystone Research 1: done"
 	on complete
 		payment 250000
 
 
 
-mission "Remnant: Crystal Research 3"
+mission "Remnant: Keystone Research 3"
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from several Hai worlds, ending on Newhome.`
 	landing
@@ -3155,7 +3155,7 @@ mission "Remnant: Crystal Research 3"
 	stopover "Heartvalley"
 	cargo "Keystones" 4
 	to offer
-		has "Remnant: Crystal Research 2: done"
+		has "Remnant: Keystone Research 2: done"
 	on offer
 		conversation
 			`True to Aeolus' word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message has arrived. It has no indication of provenance, but appears to be a notification that a payment of 250,000 credits marked 'on-assignment allowance' has been made to your account.`
@@ -3171,7 +3171,7 @@ mission "Remnant: Crystal Research 3"
 
 
 
-mission "Remnant: Crystal Research 3A"
+mission "Remnant: Keystone Research 3A"
 	invisible
 	landing
 	source
@@ -3179,7 +3179,7 @@ mission "Remnant: Crystal Research 3A"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Keystone Research 3: active"
 	on offer
 		conversation
 			`Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
@@ -3187,7 +3187,7 @@ mission "Remnant: Crystal Research 3A"
 
 
 
-mission "Remnant: Crystal Research 3B"
+mission "Remnant: Keystone Research 3B"
 	invisible
 	landing
 	source
@@ -3195,11 +3195,11 @@ mission "Remnant: Crystal Research 3B"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3A: active"
+		has "Remnant: Keystone Research 3A: active"
 
 
 
-mission "Remnant: Crystal Research 3C"
+mission "Remnant: Keystone Research 3C"
 	invisible
 	landing
 	source
@@ -3207,11 +3207,11 @@ mission "Remnant: Crystal Research 3C"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3B: active"
+		has "Remnant: Keystone Research 3B: active"
 
 
 
-mission "Remnant: Crystal Research 3D"
+mission "Remnant: Keystone Research 3D"
 	invisible
 	landing
 	source
@@ -3219,11 +3219,11 @@ mission "Remnant: Crystal Research 3D"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3C: active"
+		has "Remnant: Keystone Research 3C: active"
 
 
 
-mission "Remnant: Crystal Research 3E"
+mission "Remnant: Keystone Research 3E"
 	invisible
 	landing
 	source
@@ -3231,11 +3231,11 @@ mission "Remnant: Crystal Research 3E"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3D: active"
+		has "Remnant: Keystone Research 3D: active"
 
 
 
-mission "Remnant: Crystal Research 3F"
+mission "Remnant: Keystone Research 3F"
 	invisible
 	landing
 	source
@@ -3243,11 +3243,11 @@ mission "Remnant: Crystal Research 3F"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3E: active"
+		has "Remnant: Keystone Research 3E: active"
 
 
 
-mission "Remnant: Crystal Research 3G"
+mission "Remnant: Keystone Research 3G"
 	invisible
 	landing
 	source
@@ -3255,11 +3255,11 @@ mission "Remnant: Crystal Research 3G"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3F: active"
+		has "Remnant: Keystone Research 3F: active"
 
 
 
-mission "Remnant: Crystal Research 4"
+mission "Remnant: Keystone Research 4"
 	name "Retrieve more keystones"
 	description `Return the quantum keystones to Viminal.`
 	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
@@ -3268,7 +3268,7 @@ mission "Remnant: Crystal Research 4"
 	destination "Viminal"
 	cargo "Keystones" 19
 	to offer
-		has "Remnant: Crystal Research 3: done"
+		has "Remnant: Keystone Research 3: done"
 	on accept
 		dialog
 			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 keystones. While there are no new instructions, the subtext is clear: Time to head back.`
@@ -3299,7 +3299,7 @@ ship "Starling" "Starling (Keystone)"
 
 
 
-mission "Remnant: Crystal Research 5"
+mission "Remnant: Keystone Research 5"
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the keystone post-wormhole.`
 	landing
@@ -3307,7 +3307,7 @@ mission "Remnant: Crystal Research 5"
 	source "Viminal"
 	destination "Viminal"
 	to offer
-		has "Remnant: Crystal Research 4: done"
+		has "Remnant: Keystone Research 4: done"
 	on offer
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
@@ -3342,7 +3342,7 @@ mission "Remnant: Crystal Research 5"
 
 
 
-mission "Remnant: Crystal Research 6"
+mission "Remnant: Keystone Research 6"
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the Key Stone post-wormhole.`
 	landing
@@ -3357,7 +3357,7 @@ mission "Remnant: Crystal Research 6"
 		dialog
 			`The scanner chimes softly once again, informing you that it has completed scanning the Winds of Light and has successfully archived the data from this second scanning.`
 	to offer
-		has "Remnant: Crystal Research 5: done"
+		has "Remnant: Keystone Research 5: done"
 	on offer
 		conversation
 			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
@@ -3375,7 +3375,7 @@ mission "Remnant: Crystal Research 6"
 
 
 
-mission "Remnant: Crystal Research 7"
+mission "Remnant: Keystone Research 7"
 	name "Deliver Data to <planet>"
 	description `A copy of the scanner data needs to be delivered to the researchers on <destination>.`
 	source "Viminal"
@@ -3383,7 +3383,7 @@ mission "Remnant: Crystal Research 7"
 		government "Remnant"
 		not planet "Viminal"
 	to offer
-		has "Remnant: Crystal Research 6: done"
+		has "Remnant: Keystone Research 6: done"
 	on offer
 		conversation
 			`You walk into the cafeteria and spot Aeolus halfway through an impressively large meal. He waves you over, and by the time you are seated a tray with a significantly smaller meal is waiting for you. While you have become accustomed to a few of the dishes, most of them are still very unappetizing.`
