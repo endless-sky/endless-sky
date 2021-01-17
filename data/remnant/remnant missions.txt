@@ -183,7 +183,7 @@ mission "Remnant: Lost in Ember Waste"
 		has "event: lost in ember waste"
 	on offer
 		outfit "Quantum Key Stone" 1
-		log `Became stuck in the Ember Waste, but was given a quantum key stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
+		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
 			`You wander the <origin> spaceport feeling very lost in this strange region of space. Having flown around for a few weeks with no idea of how to get out, you wonder if you'll be stuck here forever.`
 			`	You sit down on a bench and think about how you're going to get out of this situation. While you think, an old woman approaches you and signs something.`
@@ -196,14 +196,14 @@ mission "Remnant: Lost in Ember Waste"
 				`	"I do, I just can't get through them."`
 					goto know
 			
-			`	"There are red wormholes scattered around this region of space. You can only access them if you have a key stone on your ship, though. Don't ask me how it works, but that's how it is."`
+			`	"There are red wormholes scattered around this region of space. You can only access them if you have a Key Stone on your ship, though. Don't ask me how it works, but that's how it is."`
 				goto keystone
 			
 			label know
-			`	"Get scammed out of your key stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
+			`	"Get scammed out of your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
 			
 			label keystone
-			`	The woman reaches into a bag that she has with her and hands you a quantum key stone. "Just put this on your ship and you can be on your way out of here."`
+			`	The woman reaches into a bag that she has with her and hands you a Quantum Key Stone. "Just put this on your ship and you can be on your way out of here."`
 			choice
 				`	"You're just giving this to me?"`
 					goto thanks
@@ -211,7 +211,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	She chuckles again. "No catch."`
 			
 			label thanks
-			`	The woman sits down on the bench next to you. "I was once lost in Republic space for many years after losing my key stone. I know what it can be like to be away from your people for that long, so I'd rather not see you share the same fate."`
+			`	The woman sits down on the bench next to you. "I was once lost in Republic space for many years after losing my Key Stone. I know what it can be like to be away from your people for that long, so I'd rather not see you share the same fate."`
 			choice
 				`	"Thanks for the help. I'll go fit this on my ship."`
 				`	"How'd you get to Republic space?"`
@@ -222,7 +222,7 @@ mission "Remnant: Lost in Ember Waste"
 			
 			label republic
 			`	"I was an adventurous spirit in my youth," she says. "One day I found my way out of the Ember Waste and back to what I learned was the rest of humanity. For years my people had hidden here believing the Alphas had killed everyone else, but I discovered that we had little to fear.`
-			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my key stone had been stolen at some point during my journey. I had no way to return."`
+			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my Key Stone had been stolen at some point during my journey. I had no way to return."`
 			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered the Hai."`
 			branch hai
 				has "First Contact: Hai: offered"
@@ -237,7 +237,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	"Well of course. How else would I have been able to return home?`
 			
 			label next
-			`	"To my surprise, the Hai had a large number of quantum key stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai key stones here. Anyway, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
+			`	"To my surprise, the Hai had a large number of Quantum Key Stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai keystones here. Anyway, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
 			choice
 				`	"How long ago was that?"`
 				`	"What about your daughters?"`
@@ -488,7 +488,7 @@ conversation "remnant key stones"
 		`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
 			decline
 	
-	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 	`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
 	choice
 		`	"I can purchase outfits into my cargo bay?"`
@@ -509,7 +509,7 @@ conversation "remnant key stones"
 
 
 conversation "remnant key stones done"
-	`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
+	`You visit the local outfitter and tell the manager that you have brought a shipment of "quantum keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
 	`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
 
 
@@ -553,7 +553,7 @@ mission "Remnant: Found Keystones"
 mission "Remnant: Key Stones (Pre-Hai) 2"
 	landing
 	name "Key Stones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
 		has "Remnant: Key Stones (Pre-Hai) 1: done"
@@ -561,7 +561,7 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 		conversation "remnant key stones"
 		
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -572,7 +572,7 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	
 mission "Remnant: Key Stones (Hai)"
 	name "Keystones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
@@ -586,7 +586,7 @@ mission "Remnant: Key Stones (Hai)"
 		conversation "remnant key stones"
 			
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -596,7 +596,7 @@ mission "Remnant: Key Stones (Hai)"
 
 mission "Remnant: Key Stones"
 	name "Keystones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
 		has "remnant blood test pure"
@@ -625,7 +625,7 @@ mission "Remnant: Key Stones"
 				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
 					decline
 			
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 			`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
 			choice
 				`	"I can purchase outfits into my cargo bay?"`
@@ -644,7 +644,7 @@ mission "Remnant: Key Stones"
 				accept
 	
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -3028,8 +3028,8 @@ mission "Remnant: Face to Maw 2B"
 
 
 mission "Remnant: Crystal Research 1"
-	name "Retrieve more crystals"
-	description `Retrieve crystals from the Hai for the Remnant to study, starting in <destination>.`
+	name "Retrieve more keystones"
+	description `Retrieve quantum keystones from the Hai for the Remnant to study, starting in <destination>.`
 	minor
 	source "Viminal"
 	destination "Greenwater"
@@ -3048,7 +3048,7 @@ mission "Remnant: Crystal Research 1"
 				`	"That last job payed rather well. Do you have any more like it?"`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved," he gestures appreciatively. "I am told that we have you to thank for some of that.`
-			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some intriguing results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
+			`	"Those 'quantum keystones' you brought back have been quite interesting. The process of dismantling them for analysis yielded some intriguing results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
 			choice
 				`	(Nod affirmatively.)`
 					goto notforsale
@@ -3065,10 +3065,10 @@ mission "Remnant: Crystal Research 1"
 					goto notforsale
 				`	"No, I suspected they would be studied instead."`
 			label notreally
-			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the quantum key stone does without being identical to it is clearly much more valuable as a subject of research than as a miscellaneous commodity. Add the security implications of slapping an alien device on a ship without thoroughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfitting inventory."`
+			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the Quantum Key Stone does without being identical to it is clearly much more valuable as a subject of research than as a miscellaneous commodity. Add the security implications of slapping an alien device on a ship without thoroughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfitting inventory."`
 				goto clarification
 			label notforsale
-			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: something that does what the quantum key stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
+			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
 			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, I ensure that Remnant captains have the resources they need. What you see listed as the 'price,' Remnant captains see listed instead as a 'logistics adjustment' that indicates the amount of resources needed to supply that component. Every ship has a resource budget allocated to it, determining how much it can utilize for repairs, restocking, and improvements."`
 			label clarification
 			choice
@@ -3086,7 +3086,7 @@ mission "Remnant: Crystal Research 1"
 					decline
 			label crystaldecision
 			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
-			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
+			`	"That being said, if you happen to pick up any additional keystones, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
 				`	"Sounds good."`
@@ -3127,8 +3127,8 @@ mission "Remnant: Crystal Research 1"
 
 
 mission "Remnant: Crystal Research 2"
-	name "Retrieve more crystals"
-	description `Retrieve crystals from the Hai for the Remnant to study, next from <destination>`
+	name "Retrieve more keystones"
+	description `Retrieve quantum keystones from the Hai for the Remnant to study, next from <destination>`
 	landing
 	source "Greenwater"
 	destination "Allhome"
@@ -3141,8 +3141,8 @@ mission "Remnant: Crystal Research 2"
 
 
 mission "Remnant: Crystal Research 3"
-	name "Retrieve more crystals"
-	description `Retrieve crystals from several Hai worlds, ending on Newhome.`
+	name "Retrieve more keystones"
+	description `Retrieve quantum keystones from several Hai worlds, ending on Newhome.`
 	landing
 	source "Allhome"
 	destination "Newhome"
@@ -3163,7 +3163,7 @@ mission "Remnant: Crystal Research 3"
 				accept
 	on stopover
 		dialog
-			`You quickly locate and load the shipment of crystals. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
+			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 	on complete
 		payment 250000
 		dialog
@@ -3260,8 +3260,8 @@ mission "Remnant: Crystal Research 3G"
 
 
 mission "Remnant: Crystal Research 4"
-	name "Retrieve more crystals"
-	description `Return the crystals to Viminal.`
+	name "Retrieve more keystones"
+	description `Return the quantum keystones to Viminal.`
 	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
 	landing
 	source "Newhome"
@@ -3319,9 +3319,9 @@ mission "Remnant: Crystal Research 5"
 			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me." Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
 				goto work
 			label capitalists
-			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these crystals could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
+			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these keystones could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
 			label work
-			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular keystone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for one made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
+			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular Key Stone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for one made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
 				`	"Wait, you are a pilot?"`
 				`	"Okay."`
@@ -3344,7 +3344,7 @@ mission "Remnant: Crystal Research 5"
 
 mission "Remnant: Crystal Research 6"
 	name "Scan the <npc>"
-	description `Go scan the <npc> in <waypoints> to record the key stone post-wormhole.`
+	description `Go scan the <npc> in <waypoints> to record the Key Stone post-wormhole.`
 	landing
 	waypoint "Peragenor"
 	source "Viminal"
@@ -3360,7 +3360,7 @@ mission "Remnant: Crystal Research 6"
 		has "Remnant: Crystal Research 5: done"
 	on offer
 		conversation
-			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a key stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement key stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
+			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
 			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
 				launch
 	on visit
