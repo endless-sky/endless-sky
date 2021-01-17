@@ -2205,7 +2205,7 @@ event "remnant: wait for plume"
 
 
 
-conversation "ately cultural data"
+conversation "taely cultural data"
 	branch return
 		has "Remnant: Salvage 1B: done"
 	`As you step out into the icy chill of Viminal, you get a message from Taely, the engineering prefect, asking if you could meet her in the cafeteria.`
