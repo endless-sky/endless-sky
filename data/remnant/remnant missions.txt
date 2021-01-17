@@ -2205,6 +2205,43 @@ event "remnant: wait for plume"
 
 
 
+conversation "taely cultural data"
+	branch return
+		has "Remnant: Salvage 1B: done"
+	`As you step out into the icy chill of Viminal, you get a message from Taely, the engineering prefect, asking if you could meet her in the cafeteria.`
+	choice
+		`	(Accept her invitation.)`
+		`	(Not right now.)`
+			defer
+	`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
+	`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
+	`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
+	choice
+		`	"Yes. What can I do to help?"`
+		`	"Sorry, not interested."`
+			decline
+	branch data
+		has "human cultural data"
+	`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
+		accept
+	label data
+	`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, Captain <last>. I suppose that makes things rather straight forward."`
+	`	"I actually already have a copy of the library's data in my ship," you respond.`
+	`	"Oh, that's even better," Taely trills. "Go ahead and get it."`
+	`	You return to your ship to get the data chip, but when you glance out the cockpit you notice that the spaceport is more animated than usual. Remnant look to be running to their ships as fast as they can when you notice that Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+		goto launch
+	
+	label return
+	`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
+	`	Before you have even taken the time to shut down the engines Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+	
+	label launch
+	`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
+	`	After some tense minutes of waiting, the planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
+		launch
+
+
+
 mission "Remnant: Salvage 1"
 	name "Remnant History Updates"
 	description `The Remnant are interested in learning about what has happened in human space since they left. Find a copy of human history on <destination>.`
@@ -2212,6 +2249,7 @@ mission "Remnant: Salvage 1"
 	source "Viminal"
 	destination "Alexandria"
 	to offer
+		not "human cultural data"
 		has "Remnant: Learn Sign Follow Up: offered"
 		random < 50
 		or
@@ -2220,31 +2258,13 @@ mission "Remnant: Salvage 1"
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		conversation
-			`As you step out into the icy chill of Viminal, you get a message from Taely, the engineering prefect, asking if you could meet her in the cafeteria.`
-			choice
-				`	(Not right now.)`
-					defer
-				`	(Accept her invitation.)`
-			`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
-			`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
-			`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
-			choice
-				`	"Yes. What can I do to help?"`
-				`	"Sorry, not interested."`
-					decline
-			branch library
-				has "Human Cultural Archives: done"
-			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
-				accept
-			label library
-			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, Captain <last>. I suppose that makes things rather straight forward."`
-				accept
+		conversation "taely cultural data"
 	on visit
 		dialog
 			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
 			`	Go earn some money, then return here.`
 	on complete
+		set "human cultural data"
 		payment -40
 
 
@@ -2270,14 +2290,19 @@ mission "Remnant: Salvage 2"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	source "Viminal"
 	to offer
-		has "Remnant: Salvage 1B: done"
+		or
+			has "Remnant: Salvage 1B: done"
+			and
+				has "human cultural data"
+				has "Remnant: Learn Sign Follow Up: offered"
+				random < 50
+				or
+					has "Remnant: Catalytic Ramscoop: done"
+					has "Remnant: Plasma Cannon: done"
+					has "Remnant: Heavy Laser: done"
+					has "Remnant: Tech Retrieval: done"
 	on offer
-		conversation
-			`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
-			`	Before you have even taken the time to shut down the engines Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
-			`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
-			`	After some tense minutes of waiting, the planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
-				launch
+		conversation "taely cultural data"
 	npc
 		government "Remnant"
 		personality staying uninterested disables plunders
