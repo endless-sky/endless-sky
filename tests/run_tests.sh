@@ -28,9 +28,74 @@ function print_graphics_data () {
 
 
 
+# Helper function that checks for retryable issues in the error-log given
+# as parameter (and returns them at stdout).
 function detect_retryable_issues () {
 	grep -Fx -f "${HERE}/retryable_issues.txt" "$1"
 }
+
+
+
+# Helper function that executes a single test-run.
+# Parameters:
+# $1 Test(name)
+# Return values:
+# 0 = success
+# 1 = failure
+# 2 = fatal failure (should terminate all testing)
+# 3 = recoverable failure (could retry)
+function run_single_testrun () {
+	TEST="$1"
+	
+	# Setup environment for the test
+	ES_CONFIG_PATH=$(mktemp --directory)
+	if [ ! $? ]
+	then
+		echo "not ok Couldn't create temporary directory"
+		return 2
+	fi
+	
+	ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
+	mkdir -p "${ES_CONFIG_PATH}"
+	mkdir -p "${ES_SAVES_PATH}"
+	cp ${ES_CONFIG_TEMPLATE_PATH}/* ${ES_CONFIG_PATH}
+	if [ ! $? ]
+	then
+		echo "not ok Couldn't copy default config data"
+		return 2
+	fi
+	
+	TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
+	RETURN=0
+	# Use pipefail and use sed to remove ALSA messages that appear due to missing soundcards in the CI environment
+	set -o pipefail
+	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST_NAME}" --config "${ES_CONFIG_PATH}" 2>&1 |\
+		sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" | sed "s/^/# /"
+	if [ $? -ne 0 ]
+	then
+		echo ""
+		echo "# Test ${TEST} not ok"
+		echo "# temporary directory: ${ES_CONFIG_PATH}"
+		RETURN=1
+		if [ -f "${ES_CONFIG_PATH}/errors.txt" ]
+		then
+			KNOWN_ISSUES=$(detect_retryable_issues "${ES_CONFIG_PATH}/errors.txt")
+			if [ $(echo "${KNOWN_ISSUES}" | wc -w) -gt 0 ]
+			then
+				echo "# Failed on known issue:"
+				echo "${KNOWN_ISSUES}" | sed "s/^/# /"
+				RETURN=3
+			else
+				echo "# errors.txt:"
+				cat "${ES_CONFIG_PATH}/errors.txt" | sed "s/^/# /"
+			fi
+		fi
+		print_graphics_data
+	fi
+	
+	return ${RETURN}
+}
+
 
 
 # Retrieve parameters that give the executable and datafile-paths.
@@ -101,67 +166,27 @@ NUM_FAILED=0
 NUM_OK=0
 for TEST in ${TESTS_OK}
 do
-	DO_RUN=1
 	RUN_NR=0
-	TEST_RESULT="ok"
-	while [ ${DO_RUN} -eq 1 ] && [ ${RUN_NR} -lt 5 ]
+	TEST_RESULT=3
+	while [ ${TEST_RESULT} -eq 3 ] && [ ${RUN_NR} -lt 5 ]
 	do
-		DO_RUN=0
 		RUN_NR=$((RUN_NR + 1))
-		TEST_RESULT="ok"
-
-		# Setup environment for the test
-		ES_CONFIG_PATH=$(mktemp --directory)
-		if [ ! $? ]
+		run_single_testrun "${TEST}"
+		TEST_RESULT=$?
+		if [ ${TEST_RESULT} -eq 2 ]
 		then
-			echo "not ok Couldn't create temporary directory"
-			echo "Bail out! Serious storage issue if we cannot create a temporary directory."
+			echo "Bail out! Encountered serious issue that prevents further testing."
 			exit 1
-		fi
-
-		ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
-		mkdir -p "${ES_CONFIG_PATH}"
-		mkdir -p "${ES_SAVES_PATH}"
-		cp ${ES_CONFIG_TEMPLATE_PATH}/* ${ES_CONFIG_PATH}
-
-		TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
-
-		# Use pipefail and use sed to remove ALSA messages that appear due to missing soundcards in the CI environment
-		set -o pipefail
-		"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST_NAME}" --config "${ES_CONFIG_PATH}" 2>&1 |\
-			sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" | sed "s/^/# /"
-		TEST_RETVAL=$?
-
-		if [ ${TEST_RETVAL} -ne 0 ]
-		then
-			echo ""
-			echo "# Test ${TEST} not ok (run ${RUN_NR})"
-			echo "# temporary directory: ${ES_CONFIG_PATH}"
-			TEST_RESULT="not ok"
-			if [ -f "${ES_CONFIG_PATH}/errors.txt" ]
-			then
-				KNOWN_ISSUES=$(detect_retryable_issues "${ES_CONFIG_PATH}/errors.txt")
-				if [ $(echo "${KNOWN_ISSUES}" | wc -w) -gt 0 ]
-				then
-					echo "# Failed on known issue:"
-					echo "${KNOWN_ISSUES}" | sed "s/^/# /"
-					echo "# (will retry if possible)"
-					echo ""
-					DO_RUN=1
-				else
-					echo "# errors.txt:"
-					cat "${ES_CONFIG_PATH}/errors.txt" | sed "s/^/# /"
-				fi
-			fi
-			print_graphics_data
 		fi
 	done
 
-	if [ ${TEST_RESULT} != "ok" ]
+	if [ ${TEST_RESULT} != 0 ]
 	then
 		NUM_FAILED=$((NUM_FAILED + 1))
+		TEST_RESULT="not ok"
 	else
 		NUM_OK=$((NUM_OK + 1))
+		TEST_RESULT="ok"
 	fi
 	echo "${TEST_RESULT} ${RUNNING_TEST} ${TEST}"
 	RUNNING_TEST=$(( ${RUNNING_TEST} + 1 ))
