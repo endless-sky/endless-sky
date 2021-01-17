@@ -59,8 +59,7 @@ mission "ZZCU Rim Culture: Repossessed"
 		government "Free Worlds"
 		attributes "urban" "rim"
 	on offer
+		"Culture: Repossessed" ++
 		conversation
 			`As you exit your ship, you can overhear a spaceport technician attempting to have an animated conversation with another. "Piracy? And the militia does nothing? That goes against everything we stand for." Stern disapproval colors the speaker's voice. "These clowns 'er assaulting bankers and taking their shuttles, last I heard. I get that they're frustrated out there on the farms and owe money, but that doesn't excuse theft." The technician's partner, currently shoulder-deep in an engine, responds distractedly. "Cool. You gonna pass me that buffer or not? This port and polish ain't about to finish itself." The pair continue to converse as you carry on your way, but it's out of earshot before long.`
 				decline
-	on decline
-		"Culture: Repossessed" ++

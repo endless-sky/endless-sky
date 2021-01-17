@@ -118,7 +118,7 @@ mission "ZZCU Paradise Cleaner Incident"
 		random == 1
 	on offer
 		conversation
-			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You catch yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. Perhaps it is because of your background, but you see them even when they are trying to avoid notice, and so you are able to notice something imminent seconds before it happens.`
+			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You find yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. They always appear to be doing their utmost to avoid notice.`
 			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one right before he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen a mother go so deathly pale as the cleaner who scurried to fix things before the man had even drawn breath.`
 			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her children out of harms way.`
 				decline
