@@ -45,17 +45,17 @@ function detect_retryable_issues () {
 # 2 = fatal failure (should terminate all testing)
 # 3 = recoverable failure (could retry)
 function run_single_testrun () {
-	TEST="$1"
+	local TEST="$1"
 	
 	# Setup environment for the test
-	ES_CONFIG_PATH=$(mktemp --directory)
+	local ES_CONFIG_PATH=$(mktemp --directory)
 	if [ ! $? ]
 	then
 		echo "not ok Couldn't create temporary directory"
 		return 2
 	fi
 	
-	ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
+	local ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
 	mkdir -p "${ES_CONFIG_PATH}"
 	mkdir -p "${ES_SAVES_PATH}"
 	cp ${ES_CONFIG_TEMPLATE_PATH}/* ${ES_CONFIG_PATH}
@@ -65,8 +65,8 @@ function run_single_testrun () {
 		return 2
 	fi
 	
-	TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
-	RETURN=0
+	local TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
+	local RETURN=0
 	# Use pipefail and use sed to remove ALSA messages that appear due to missing soundcards in the CI environment
 	set -o pipefail
 	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST_NAME}" --config "${ES_CONFIG_PATH}" 2>&1 |\
@@ -79,7 +79,7 @@ function run_single_testrun () {
 		RETURN=1
 		if [ -f "${ES_CONFIG_PATH}/errors.txt" ]
 		then
-			KNOWN_ISSUES=$(detect_retryable_issues "${ES_CONFIG_PATH}/errors.txt")
+			local KNOWN_ISSUES=$(detect_retryable_issues "${ES_CONFIG_PATH}/errors.txt")
 			if [ $(echo "${KNOWN_ISSUES}" | wc -w) -gt 0 ]
 			then
 				echo "# Failed on known issue:"
@@ -100,8 +100,8 @@ function run_single_testrun () {
 
 # Runs a test, including all retries.
 function run_test () {
-	RUN_NR=0
-	TEST_RESULT=3
+	local RUN_NR=0
+	local TEST_RESULT=3
 	while [ ${TEST_RESULT} -eq 3 ] && [ ${RUN_NR} -lt 5 ]
 	do
 		RUN_NR=$((RUN_NR + 1))
@@ -186,7 +186,7 @@ NUM_OK=0
 for TEST in ${TESTS_OK}
 do
 	run_test "${TEST}"
-
+	TEST_RESULT=$?
 	if [ ${TEST_RESULT} -eq 2 ]
 	then
 		echo "Bail out! Encountered serious issue that prevents further testing."
