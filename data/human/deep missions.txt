@@ -1272,7 +1272,7 @@ mission "Deep: Project Hawking: Vinci"
 
 mission "Deep: Remnant 0"
 	minor
-	name `Fetching Keystones`
+	name `Fetching keystones`
 	description `Buy 10 quantum keystones from Hai space and return them to <destination>, where Ivan and his team will research them and their link to the spatial anomaly in Terminus.`
 	source
 		attributes "deep"
@@ -1333,7 +1333,7 @@ mission "Deep: Remnant 0"
 			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever-present red glow, similar to the color of the wormhole. You also mention the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
 				
 			label end
-			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the quantum keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about this region that you describe. Oh, before I forget: we can pay you for half of the cost of the Keystones."`
+			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the quantum keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about this region that you describe. Oh, before I forget: we can pay you for half of the cost of the keystones."`
 			choice
 				`	"I would be glad to help."`
 					accept
@@ -1456,7 +1456,7 @@ conversation "deep: remnant"
 		has "deep: knew of stones before scientists"
 	
 	label "knew before"
-	`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
+	`	"As you mentioned before, a single keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
 	branch remnant1
 		has "deep: did reveal remnant"
 	`	"Last time, you mentioned that there were alien creatures able to survive the vacumm of space, correct?"`
@@ -1471,7 +1471,7 @@ conversation "deep: remnant"
 		goto end
 	
 	label "didn't know before"
-	`	"We've analyzed the Keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
+	`	"We've analyzed the keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
 	`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
 	branch "know now" "still don't know"
 		has "First Contact: Remnant: offered"

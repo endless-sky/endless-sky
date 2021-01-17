@@ -561,7 +561,7 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 		conversation "remnant key stones"
 		
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -586,7 +586,7 @@ mission "Remnant: Key Stones (Hai)"
 		conversation "remnant key stones"
 			
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -644,7 +644,7 @@ mission "Remnant: Key Stones"
 				accept
 	
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
