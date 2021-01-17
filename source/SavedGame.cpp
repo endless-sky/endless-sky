@@ -36,8 +36,8 @@ void SavedGame::Load(const string &path)
 	if(file.begin() != file.end())
 		this->path = path;
 	
-	int flagshipIterator = 1;
-	int flagshipTarget = 1;
+	int flagshipIterator = 0;
+	int flagshipTarget = 0;
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "pilot" && node.Size() >= 3)
@@ -50,7 +50,7 @@ void SavedGame::Load(const string &path)
 			planet = node.Token(1);
 		else if(node.Token(0) == "playtime" && node.Size() >= 2)
 			playTime = Format::PlayTime(node.Value(1));
-		else if(node.Token(0) == "flagship" && node.Size() >= 2)
+		else if(node.Token(0) == "flagship index" && node.Size() >= 2)
 			flagshipTarget = node.Value(1);
 		else if(node.Token(0) == "account")
 		{
@@ -65,7 +65,7 @@ void SavedGame::Load(const string &path)
 		{
 			if(flagshipIterator != flagshipTarget)
 			{
-				flagshipIterator++;
+				++flagshipIterator;
 				continue;
 			}
 			for(const DataNode &child : node)
