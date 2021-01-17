@@ -196,7 +196,7 @@ Version 0.9.13:
     * The fast-forward interrupt can be turned off in preferences. (@Amazinite)
     * Added a preference to change the graphics of the player's ship outlines in the shipyard/outfitter. (@Amazinite)
     * Simply clicking on a player ship in the player info planel or shop panel doesn't create an overlay for the ship's name or sprite/outline. (@tehhowch)
-    * Holding control when clicking a system on the map now doesn't set a travel plan. (@mmccarthy10, @Terin)
+    * Holding control when clicking a system on the map now doesn't set a travel plan. (@Terin)
     * Renaming a ship or save file will now prefill the UI with the existing name instead of starting blank. (@jostephd)
     * Added a confirmation when overwriting a save snapshot. (@tehhowch)
     * Information for a selected outfit or ship in the shop panel now appears in a separate details column instead of being drawn under the selected item. (@ThrosturX)
