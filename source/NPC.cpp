@@ -297,27 +297,38 @@ bool NPC::IsValid(bool asTemplate) const
 {
 	// An NPC with no government will take the player's government
 	
-	// A template NPC may use a location filter to set its starting system.
-	// If given, it must be able to resolve to a valid system.
-	if(asTemplate && !location.IsValid())
-		return false;
-	
-	// A template NPC definition is allowed to have a null system reference,
-	// because it will be set during instantiation.
-	if(!asTemplate && !system)
-		return false;
-	else if(system && !system->IsValid())
-		return false;
-	
-	// A planet is optional, but if given must be valid.
-	if(asTemplate && planet && !planet->IsValid())
-		return false;
-	
-	// If a stock phrase or conversation is given, it must not be empty.
-	if(asTemplate && stockDialogPhrase && stockDialogPhrase->IsEmpty())
-		return false;
-	if(asTemplate && stockConversation && stockConversation->IsEmpty())
-		return false;
+	// NPC templates have certain fields to validate that instantiated NPCs do not:
+	if(asTemplate)
+	{
+		// A location filter may be used to set the starting system.
+		// If given, it must be able to resolve to a valid system.
+		if(!location.IsValid())
+			return false;
+		
+		// A null system reference is allowed, since it will be set during
+		// instantiation if not given explicitly.
+		if(system && !system->IsValid())
+			return false;
+		
+		// A planet is optional, but if given must be valid.
+		if(planet && !planet->IsValid())
+			return false;
+		
+		// If a stock phrase or conversation is given, it must not be empty.
+		if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
+			return false;
+		if(stockConversation && stockConversation->IsEmpty())
+			return false;
+		
+		// NPC fleets, unlike stock fleets, do not need a valid government
+		// since they will unconditionally inherit this NPC's government.
+		for(auto &&fleet : fleets)
+			if(!fleet.IsValid(false))
+				return false;
+		for(auto &&fleet : stockFleets)
+			if(!fleet->IsValid(false))
+				return false;
+	}
 	
 	// Ships must always be valid.
 	for(auto &&ship : ships)
@@ -326,18 +337,6 @@ bool NPC::IsValid(bool asTemplate) const
 	for(auto &&ship : stockShips)
 		if(!ship->IsValid())
 			return false;
-	
-	// NPC fleets, unlike stock fleets, do not need a valid government
-	// since they will unconditionally inherit this NPC's government.
-	if(asTemplate)
-	{
-		for(auto &&fleet : fleets)
-			if(!fleet.IsValid(false))
-				return false;
-		for(auto &&fleet : stockFleets)
-			if(!fleet->IsValid(false))
-				return false;
-	}
 	
 	return true;
 }

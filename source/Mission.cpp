@@ -1293,7 +1293,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{ return !it.second.IsValid(); });
 	if(ait != actions.end())
 	{
-		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \"" + Identifier() + "\" uses invalid data");
+		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \"" + Identifier() + "\" uses invalid data.");
 		return result;
 	}
 	for(const auto &it : actions)
@@ -1303,7 +1303,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{ return !it.first->IsValid() || !it.second.IsValid(); });
 	if(oit != onEnter.end())
 	{
-		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \"" + Identifier() + "\" uses invalid data");
+		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \"" + Identifier() + "\" uses invalid data.");
 		return result;
 	}
 	for(const auto &it : onEnter)
@@ -1313,7 +1313,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{ return !a.IsValid(); });
 	if(eit != genericOnEnter.end())
 	{
-		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \"" + Identifier() + "\" uses invalid data");
+		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \"" + Identifier() + "\" uses invalid data.");
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
