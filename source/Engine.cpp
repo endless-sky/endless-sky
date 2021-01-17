@@ -672,7 +672,7 @@ void Engine::Step(bool isActive)
 	else if(flagship && flagship->GetTargetSystem())
 	{
 		info.SetString("navigation mode", "Hyperspace:");
-		if(player.HasVisited(flagship->GetTargetSystem()))
+		if(player.HasVisited(*flagship->GetTargetSystem()))
 			info.SetString("destination", flagship->GetTargetSystem()->Name());
 		else
 			info.SetString("destination", "unexplored system");
@@ -1320,11 +1320,11 @@ void Engine::CalculateStep()
 			for(const auto &it : playerSystem->Objects())
 				if(it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
 						it.GetPlanet()->WormholeDestination(playerSystem) == flagship->GetSystem())
-					player.Visit(it.GetPlanet());
+					player.Visit(*it.GetPlanet());
 		
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
-		player.SetSystem(playerSystem);
+		player.SetSystem(*playerSystem);
 		EnterSystem();
 	}
 	Prune(ships);
