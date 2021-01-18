@@ -1326,6 +1326,144 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 		system "Zubenelhakrabi"
 		ship "Emerald Sword" "Emerald Sword"
 		conversation
+			`You dock with the Emerald Sword and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside, as the life support has long since ceased to work.`
+			`	After patching as many micrometeorite holes as you can find, you use your ship's own life support to restore the Emerald Sword's atmosphere, and connect your ship's power to it to get the ship's systems minimally functional. Once it's in breathable condition, the crew boards the ship and begins getting to work. With the freshly pressurized atmosphere, you can't help but think that it smells like a tomb.`
+			`	Foster divides the crew up into various groups to explore the massive vessel and report back with their findings. "We may be here for a while. There's no telling how long it will take us to get this thing operational again. It has been many thousands of years afterall," he says. Foster immediately begins inspecting one of the many Sheragi remains on board, while Eyama, Rakei, and Desyo each explore the ship with their own groups.`
+			`	Within half an hour, the entire ship is swarming with crew members hard at work studying the ship (and the remains of its prior inhabitants) and attempting to get it operational.`
+			choice
+				`	(Look for Foster to see what he's doing.)`
+				`	(Look for Eyama to see what she's doing.)`
+					goto eyama
+				`	(Look for Rakei to see what she's doing.)`
+					goto rakei
+				`	(Look for Desyo to see what she's doing.)`
+					goto desyo
+				`	(Return to your ship and wait until the Emerald Sword is operational.)`
+					goto end
+			
+			`	You find Foster in what appears to have been a farming facility of some sort that has been expanded beyond its original size. There are rows of dried out soil, its nutrients long gone, with sunlamps suspended above. While most of the crew with Foster is busy studying the farm itself, his attention seems to be on a mummified Sheragi corpse slumped over against one of the walls. You notice that the corpse has a prosthetic wing attatched to it, which has survived far better than its host.`
+			`	"What have you found so far?" you ask Foster.`
+			`	Foster doesn't respond at first, so you begin to ask your question again, but he then turns quickly to look at you, then back at the corpse. "Sorry, I was busy daydreaming. What we found. What we found..." Foster's voice trails off as he looks around the room. "Do you hear that banging sound?"
+			choice
+				`	"What banging sound?"`
+				`	"I don't hear anything."`
+			`	"Strange. I've asked the others here but they don't hear anything either... Anyway, we've found many amazing things. This farm is just the tip of the iceberg. Given that the Emerald Sword had to be able to survive the long flight through interstellar space at sublight speeds, it's no surprise that the ship was self-sustaining. I'm sure there's much we could learn technologically from this ship. But we've also found many... disturbing things..." his voice trials off again.`
+			`	"These bodies tell stories, <last>. Terrible stories. The entrance into this area of the ship was welded shut. Almost all the corpses outside of this area were skeletons, while those inside, like this one, were mummified. My best guess is that at some point after arriving here, they realized that even with a facility like this they'd run out of food in due time." Foster kneels down to get closer to the corpse. "I'm having very vivid visions of it all, almost as if I'm there in the moment, but it's all happening so fast... They turned on each other in desperation. A small group decided to shut the rest off from the food supply, leaving them to starve. Then those in here lived off of what they had left until the life support systems gave out.`
+			`	"In all my years, I've never felt as impacted by my work as I do now. I'm feeling very uncharacteristically... emotional at the sight of all this." Foster turns away from you and wipes a tear from his eyes.`
+			choice
+				`	"You have every right to be emotional. We've made an amazing but tragic discovery."`
+				`	"The Archon spoke to me when we arrived in the system. Maybe it's having an effect on you too."`
+					goto archon
+				`	"Do you think it's because what we're doing might be wrong? We're basically raiding a tomb right now."`
+					goto wrong
+			
+			`	"Yes. Yes we have," Foster says, sounding more upbeat than before. "Amazing, but tragic. But, amazing," he repeats, as if trying to reassure himself.`
+				goto fosterend
+			
+			label archon
+			`	Foster chuckles nervously at the mention of the Archon. "Perhaps," he says, then pauses. "No. I think the gravity of this situation speaks for itself."`
+				goto fosterend
+			
+			label wrong
+			`	"I had that same thought on the jump here," Foster says. "But we're in too deep to turn back now."`
+			
+			label fosterend
+			`	Foster stands back up and steps away from the corpse. "I should get back to exploring the rest of the ship. No use in staring at corpses all day."`
+			`	You leave the area and see that the large door that was blocking the way into the area is laying against a wall. Foster mentioned that the door had been welded shut, so the crew must have removed it somehow to investigate the area. You notice a large dent in the middle of the door. You aren't sure if that's because of the crew getting into the facility, or from the ship's previous inhabitants attempting to break in.`
+				goto end
+			
+			label eyama
+			`	You find Eyama investigating the living quarters of the ship, which consists of long halls lined on either side by bunk rooms. Many of the doors are already opened, suggesting that Eyama has already been through many of them. She comes out of one of the bunk rooms after looking through it and notices you. "Captain <last>! What brings you here?" she asks.`
+			`	"I'm wondering if you've found anything interesting yet," you respond.`
+			`	"Oh, no. Nothing much," she says, sounding somewhat disappointed. "All I've found so far have been largely empty rooms. I would have thought that they would have kept personal items in their bunks, but it looks like they haven't. Or perhaps they were moved for some reason."`
+			`	Eyama moves to the next door in the hallway. Instead of another bunk room though, the door opens to a larger room. Judging by the proximity to the bunk rooms, you'd assume this to have been a lounge area or cafeteria of sorts, but its contents suggest otherwise. The walls are covered with Sheragi writing and paintings, and the floor is scattered with various strange looking objects.`
+			`	"Is this..." Eyama says, trailing off as she approaches one of the writings on the wall.`
+			choice
+				`	"What is it?"`
+			
+			`	Eyama runs her hand against the writing and begins speaking. The sounds match the guttural tongue with which she first greeted you. She pauses after each sound, as if reading single words or characters. "This is the Sheragi alphabet," she says with awe in her voice. Her attention then shifts to writing elsewhere. She reads it, then translates for you. "It says, 'Rekla have mercy on us.'" Next to the writing is a Sheragi handprint on the wall, one of many scattered throughout the large room. Eyama presses her hand to it, nearly covering it. "This is a young hand."`
+			choice
+				`	"Why is all this here?"`
+					goto young
+				`	"Who is Rekla?"`
+			
+			`	"From what we know, Rekla was a divine warrior among the Sheragi. Sheragi legends stated that she united the warring Sheragi tribes and lead them all to the stars.`
+			label young
+			`	"This ship has to have traveled between the stars for many of your years in order to reach this system without a hyperdrive. The engines are powerful, so it perhaps took them 120 years to arrive here. Many of the Sheragi would have survived the trip, but would be very old when they arrived. This would have made it difficult for them to colonize the planet."`
+			choice
+				`	"So they would have needed to reproduce on the way here?"`
+				`	"Does that mean this was a daycare of sorts?"`
+					goto daycare
+			
+			`	"Yes. At least one, maybe two generations of Sheragi could have been born in that time."`
+				goto walls
+				
+			label daycare
+			`	Eyama walks over to one of the objects on the ground and picks it up. "These are toys. So yes. This does seem to have been converted into a daycare."`
+			
+			label walls
+			`	Eyama stands up and looks toward the walls. "And these wall writings were used to teach them. These handprints are theirs. There are hundreds of them. And some of these words are their final prayers." Eyama seems to go into a trance as she walks around the room glancing at the many writings on the wall.`
+			`	As Eyama wanders the room, you begin looking at the objects on the ground. One of them catches your eye; a book of massive proportions, slightly over twice the length and width of your average human book, although you imagine it would be perfectly-sized for a young Sheragi. You try to open the book but find that the covers are locked together, and the lock won't budge.`
+			`	"Eyama, check this out," you say, snapping her out of her trance.`
+			`	"Oh, a book?" she asks. She picks up the book and tries to open it herself. Without hesitating she reaches over to the lock and just pulls it right off before swinging open the massive cover.`
+			choice
+				`	"How did you unlock that?"`
+				`	"What does it say?"`
+					goto read
+			`	"It was locked?" Eyama asks with a puzzled look on her face before immediately turning her attention back to the book.`
+			
+			label read
+			`	She skims the pages. "This is a diary. It seems to be written by an adolescent Sheragi who was born on the ship. They talk about how they've never seen a planet or star up close before, but the adults on board tell them stories of a promised land that they are traveling to. It seems that they were close when this was written, perhaps only a few weeks away from the system."`
+			`	She flips through the pages, getting further into the diary. "When they arrived at the system, they stayed in orbit around the planet. The author doesn't know everything that was going on, but there appeared to have been arguments over whether to land."`
+			`	She then flips more pages. "Some of the Sheragi left to go to the planet, while others stayed behind. It doesn't sound like the split was amiable."`
+			`	She continues to flip through the pages as they eventually turn blank. She then goes back and stops on the last written page. "Part of the remaining crew locked themselves in the hydroponic farm wing of the ship, leaving the rest of the crew with limited amounts of food. 'I'm scared and I don't know what to do.'" Eyama stops reading and closes the book, looking teary eyed. "That was the last line."`
+			`	Eyama wipes a tear from her face. "A sad story, but there are plenty of sad stories in this place. No use in lingering on this one." Eyama puts the book under her arm and walks out into the hallway, going back to checking the living quarters.`
+				goto end
+			
+			label rakei
+			`	`
+				goto end
+			
+			label desyo
+			`	You find Desyo in the cockpit of the ship, overseeing a crew attempting to take control of the ship's computer systems. Makeshift scaffolding has been put in place just so that the crew can reach the controls. "Hello there, Captain," Desyo greets you as you walk in through the massive doorway. "Is there anything I can help you with?"`
+			`	"I'm just curious as to what you've found," you respond.`
+			`	"Not much yet. We've only just finished putting up these structures so that we can properly access the ship's controls. Now we're looking over them to find a main access point of sorts. From there, we can take control of the ship."`
+			`	"Desyo, you might want to see this," one of the crew members shouts. You follow Desyo over to the crew member, who has found a compartment under one of the consoles. Inside, among a mess of Sheragi components, lays a black box that looks exactly like the one that brought you here, and in a pristine condition compared to it as well.`
+			`	Desyo excitedly removes the black box from the compartment, detaching it from the ship's electronics and attaching it to a computer of her own. "There's no telling what information we'll be able to find with this! Having this ship's black box will tell us everything about it, from its journey in Zubeneschamali all the way to when the ship lost power!"`
+			choice
+				`	"Do you think we could find another ship to explore?"`
+				`	"Is it really a good idea to just plug that in like that?"`
+					goto badidea
+			
+			`	"I don't believe that this box would have any information that would lead us to another ship. But, there's only one way to find out," Desyo says as she begins decrypting the black box.`
+				goto explodes
+			
+			label badidea
+			`	"If you're thinking that this could infect my computer with a virus as a countermeasure, I've already dealt with that. We had to develop a firewall to combat a virus that was in the other black box," Desyo says as she begins decrypting the black box.`
+			
+			label explodes
+			`	As Desyo begins extracting information from the box, you begin hearing a strange noise akin to a tea kettle. The noise begins to increase in volume and you pinpoint that it is coming from the box itself, which is now emitting strange white particles and a wave of heat. Others have seemed to notice this as well and have already moved behind cover. "Odd. Never seen that happen before," Desyo says. Before you can move, somebody pulls you and Desyo away from the box. The box suddenly gives off a loud popping noise and parts fly everywhere in an explosion.`
+			choice
+				`	"Is anyone hurt?"`
+				`	"Did that happen with the last one?"`
+					goto last
+			
+			`	Your questions is met with a chorus of "No, I'm fine," "All good over here," and various other affirmations of safety from the crew.`
+				goto desyoend
+			
+			label last
+			`	Desyo looks at you like you're some kind of alien. "No, nothing like the sort. Don't you think I would have expected that if it had?"`
+			
+			label desyoend
+			`	 Everyone comes out from behind their cover to look at the aftermath. Luckily, no one seems to have been hurt. Desyo walks over to the large scorch mark on the floor left behind by the explosion. "I have no idea what could have caused such an explosion to occur," she exclaims.`
+			`	"How's your computer doing?" you ask.`
+			`	Desyo finds the computer on the other side of the room with a severely cracked screen, but somehow still functional. "Sturdy piece of hardware, isn't it?" she jokes. She begins tapping away at the keys as she squints at the screen. "I can still make out some of what I was able to pull from the cube. It looks like... that cube had some information on a weapon. Some sort of... chemical weapon? It seems to include... mention of coordinates. But that's all I was able to get. Whatever coordinates they were are lost to time."`
+			`	The crew are still standing around in shock as Desyo fiddles with her damaged computer. She looks up to see everyone staring at her. "Well, let's get back to work. We're not going to make any progress just standing around."`
+			
+			label end
+			`	You return to your ship, and after a few hours Foster contacts you saying that the ship is in operational condition. It'll need to be landed on the planet in this system so that the jump drive can be installed, though.`
+		
+			# Old conversation; kept for easy reference until the rest is done.
 			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it as the life support has long since ceased to work, and it takes a long time to restore it through your ship's own life support and patch tiny micrometeorite holes. Once the condition is habitable, it still smells like a tomb. The crew starts going in, separated in teams by the archaeologists, to perform various tasks. Albert and Eyama go in first, taking notes and carefully collecting artifacts.`
 			`	You find many Sheragi skeletons and mummified remains, most of them stacked neatly in a room, suggesting that the crew died one by one. A few of them have prosthetics that survived better than their host. Your crew gets to work cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life.`
 			`	Following the archaeologists and listening to their conversations, you find out more about the history of this ship. Other than the mutiny that caused them to flee from Sheragi space in almost unanimous decision, it appears that there was a second, more violent mutiny, with unknown causes. There are battle scars in the walls and corridors, and too few bodies to properly man the ship. The missing Sheragi are nowhere to be seen, with some speculating that they got spaced. Even after this, the remaining Sheragi did all they could to survive, converting a large amount of crew quarters into hydroponic farms, fed sunlight through the windows, with an elaborate system of what used to be bathroom mirrors to spread the light around. It's obviously apparent that this wasn't enough for them to survive. Nowadays, nothing grows here other than colonies of extremophile fungi and bacteria, now dying after being reintroduced to an atmosphere. In the hangars, you see enormous attack drones, still waiting readily in their respective bays, despite the lack of any significant threat in this system. They too have valuable technology, and Rakei advises you to not touch them for now.`
