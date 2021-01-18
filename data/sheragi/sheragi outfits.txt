@@ -259,8 +259,8 @@ outfit "Shard inactive"
 		"lifetime" 60
 		"random lifetime" 40
 		"hit force" 20
-		"shield damage" 55
-		"hull damage" 80
+		"shield damage" 110
+		"hull damage" 160
 
 outfit "Heavy Ion Cyclotron"
 	category "Guns"
@@ -297,8 +297,8 @@ outfit "Heavy Ion Fragment"
 		"acceleration" 0.001
 		"drag" .02
 		"hit force" 3
-		"shield damage" 1.19
-		"hull damage" 0.98
+		"shield damage" 1.79
+		"hull damage" 1.47
 	
 # Effects
 
