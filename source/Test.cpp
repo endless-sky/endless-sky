@@ -275,11 +275,10 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	}
 	
 	// All processing was done just before this step started.
-	context.unprocessedInput = false;
 	context.branchesSinceGameStep.clear();
 	
 	bool continueGameLoop = false;
-	while(context.stepToRun < steps.size() && !continueGameLoop)
+	do
 	{
 		// Fail if we encounter a watchdog timeout
 		if(context.watchdog == 1)
@@ -324,15 +323,11 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				++(context.stepToRun);
 				break;
 			case TestStep::Type::INPUT:
-				if(context.unprocessedInput)
-				{
-					continueGameLoop = true;
-					break;
-				}
 				// Give the relevant inputs here.
 				Fail(context, player, "Input not implemented");
-				// Make sure that we run a gameloop before the next input.
-				context.unprocessedInput = true;
+				// Make sure that we run a gameloop to process the input.
+				continueGameLoop = true;
+				++(context.stepToRun);
 				break;
 			case TestStep::Type::LABEL:
 				++(context.stepToRun);
@@ -349,6 +344,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				break;
 		}
 	}
+	while(context.stepToRun < steps.size() && !continueGameLoop);
 }
 
 

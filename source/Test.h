@@ -96,7 +96,6 @@ public:
 		// Teststep to run.
 		unsigned int stepToRun = 0;
 		unsigned int watchdog = 0;
-		bool unprocessedInput = false;
 		std::set<unsigned int> branchesSinceGameStep;
 	};
 	
