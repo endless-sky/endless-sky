@@ -1542,7 +1542,7 @@ mission "Sheragi Archaeology: Epilogue"
 			`	"After thousands of years? I'm not holdimg my breath," he responds.`
 			label landing
 			`	You land your ship next to the Emerald Sword and the crew gets to work transporting heavy equipment from your ship to the Emerald Sowrd to finish getting it functional and install the jump drive.`
-			`	Foster and Eyama get into their environmental suits. "Want to join us on investigating the ruins, <first>?" Foster asks. "Rakei and Desyo will be staying here to finish work on the ship."`
+			`	Foster and Eyama get into their environmental suits. "Want to join us in investigating the ruins, <first>?" Foster asks. "Rakei and Desyo will be staying here to finish work on the ship."`
 			choice
 				`	"Sure, I'll come along."`
 				`	"No, I'd rather wait here."`
