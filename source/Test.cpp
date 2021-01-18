@@ -120,7 +120,7 @@ void Test::LoadSequence(const DataNode &node)
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: branch without jump location");
+					child.PrintTrace("Error: Invalid use of \"branch\" without target label:");
 					return;
 				}
 				step.jumpOnTrueTarget = child.Token(1);
@@ -132,7 +132,7 @@ void Test::LoadSequence(const DataNode &node)
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: inject without data identifier");
+					child.PrintTrace("Error: Invalid use of \"inject\" without data identifier:");
 					return;
 				}
 				else
