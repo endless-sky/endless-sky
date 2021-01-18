@@ -59,7 +59,7 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(StartConditions chosenStart);
+	void New(const StartConditions &chosenStart);
 	// Load an existing player.
 	void Load(const std::string &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.

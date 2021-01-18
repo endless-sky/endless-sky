@@ -24,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
-#include "StartConditions.h"
 
 #include <condition_variable>
 #include <list>

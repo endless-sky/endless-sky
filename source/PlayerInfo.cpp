@@ -70,7 +70,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(StartConditions start)
+void PlayerInfo::New(const StartConditions &start)
 {
 	// Clear any previously loaded data.
 	Clear();
