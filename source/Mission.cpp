@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
+#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -70,6 +71,35 @@ namespace {
 			node.PrintTrace("Warning: use a location filter to choose from multiple " + kind + "s:");
 		if(node.HasChildren())
 			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
+	}
+	
+	string TriggerToText(Mission::Trigger trigger)
+	{
+		switch(trigger)
+		{
+			case Mission::Trigger::ABORT:
+				return "on abort";
+			case Mission::Trigger::ACCEPT:
+				return "on accept";
+			case Mission::Trigger::COMPLETE:
+				return "on complete";
+			case Mission::Trigger::DECLINE:
+				return "on decline";
+			case Mission::Trigger::DEFER:
+				return "on defer";
+			case Mission::Trigger::FAIL:
+				return "on fail";
+			case Mission::Trigger::OFFER:
+				return "on offer";
+			case Mission::Trigger::STOPOVER:
+				return "on stopover";
+			case Mission::Trigger::VISIT:
+				return "on visit";
+			case Mission::Trigger::WAYPOINT:
+				return "on waypoint";
+			default:
+				return "unknown trigger";
+		}
 	}
 }
 
@@ -395,6 +425,56 @@ const string &Mission::Description() const
 bool Mission::IsVisible() const
 {
 	return isVisible;
+}
+
+
+
+// Check if this instantiated mission uses any systems, planets, or ships that are
+// not fully defined. If everything is fully defined, this is a valid mission.
+bool Mission::IsValid() const
+{
+	// Planets must be defined and in a system. However, a source system does not necessarily exist.
+	if(source && !source->IsValid())
+		return false;
+	// Every mission is required to have a destination.
+	if(!destination || !destination->IsValid())
+		return false;
+	// All stopovers must be valid.
+	for(auto &&planet : Stopovers())
+		if(!planet->IsValid())
+			return false;
+	for(auto &&planet : VisitedStopovers())
+		if(!planet->IsValid())
+			return false;
+	
+	// Systems must have a defined position.
+	for(auto &&system : Waypoints())
+		if(!system->IsValid())
+			return false;
+	for(auto &&system : VisitedWaypoints())
+		if(!system->IsValid())
+			return false;
+	
+	// Actions triggered when entering a system should reference valid systems.
+	for(auto &&it : onEnter)
+		if(!it.first->IsValid() || !it.second.IsValid())
+			return false;
+	for(auto &&it : actions)
+		if(!it.second.IsValid())
+			return false;
+	// Generic "on enter" may use a LocationFilter that exclusively references invalid content.
+	for(auto &&action : genericOnEnter)
+		if(!action.IsValid())
+			return false;
+	if(!clearanceFilter.IsValid())
+		return false;
+	
+	// The instantiated NPCs should also be valid.
+	for(auto &&npc : NPCs())
+		if(!npc.IsValid())
+			return false;
+	
+	return true;
 }
 
 
@@ -1018,13 +1098,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(result.waypoints.erase(source))
 		result.visitedWaypoints.insert(source);
 	
-	// Copy the stopover planet list, and populate the list based on the filters
-	// that were given.
+	// Copy the template's stopovers, and add planets that match the template's filters.
 	result.stopovers = stopovers;
 	// Make sure they all exist in a valid system.
 	for(auto it = result.stopovers.begin(); it != result.stopovers.end(); )
 	{
-		if((*it)->GetSystem())
+		if((*it)->IsValid())
 			++it;
 		else
 			it = result.stopovers.erase(it);
@@ -1051,7 +1130,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	// If no destination is specified, it is the same as the source planet. Also
 	// use the source planet if the given destination is not a valid planet.
-	if(!result.destination || !result.destination->GetSystem())
+	if(!result.destination || !result.destination->IsValid())
 	{
 		if(player.GetPlanet())
 			result.destination = player.GetPlanet();
@@ -1198,15 +1277,45 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
+	if(any_of(npcs.begin(), npcs.end(), [](const NPC &n) noexcept -> bool
+		{ return !n.IsValid(true); }))
+	{
+		// Should these be `runtime_error`s?
+		Files::LogError("Instantiation Error: NPC template in mission \"" + Identifier() + "\" uses invalid data");
+		return result;
+	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
+	auto ait = find_if(actions.begin(), actions.end(), [](const pair<const Trigger, MissionAction> &it) noexcept -> bool
+		{ return !it.second.IsValid(); });
+	if(ait != actions.end())
+	{
+		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \"" + Identifier() + "\" uses invalid data.");
+		return result;
+	}
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+	
+	auto oit = find_if(onEnter.begin(), onEnter.end(), [](const pair<const System *const, MissionAction> &it) noexcept -> bool
+		{ return !it.first->IsValid() || !it.second.IsValid(); });
+	if(oit != onEnter.end())
+	{
+		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \"" + Identifier() + "\" uses invalid data.");
+		return result;
+	}
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+	
+	auto eit = find_if(genericOnEnter.begin(), genericOnEnter.end(), [](const MissionAction &a) noexcept -> bool
+		{ return !a.IsValid(); });
+	if(eit != genericOnEnter.end())
+	{
+		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \"" + Identifier() + "\" uses invalid data.");
+		return result;
+	}
 	for(const MissionAction &action : genericOnEnter)
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
 	
