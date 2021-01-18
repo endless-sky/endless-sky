@@ -215,17 +215,23 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + 160)
 	{
+		// The player clicked in the left-hand interface. This could be the system
+		// name, the system government, a planet box, the commodity listing, or nothing.
 		if(y >= tradeY && y < tradeY + 200)
 		{
+			// The player clicked on a tradable commodity. Color the map by its price.
 			SetCommodity((y - tradeY) / 20);
 			return true;
 		}
+		// Clicking the system name activates the view of the player's reputation with various governments.
 		else if(y < governmentY)
 			SetCommodity(SHOW_REPUTATION);
+		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
 		else
 		{
+			// The player clicked within the region associated with this system's planets.
 			for(const auto &it : planetY)
 				if(y >= it.second && y < it.second + 110)
 				{
@@ -238,6 +244,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
 						SetCommodity(SHOW[row]);
 						
+						// Double-click the Shipyard or Outfitter line to open that map view.
 						if(clicks > 1 && SHOW[row] == SHOW_SHIPYARD)
 						{
 							GetUI()->Pop(this);
@@ -255,6 +262,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
 	{
+		// The player has clicked within the "orbits" scene.
+		// Select the nearest planet to the click point.
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
 		double distance = numeric_limits<double>::infinity();
@@ -273,7 +282,9 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		return true;
 	}
 	
+	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
+	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
 	return true;
