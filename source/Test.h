@@ -67,6 +67,7 @@ public:
 		
 	public:
 		TestStep(Type stepType);
+		void LoadInput(DataNode node);
 		
 		
 	public:
@@ -83,6 +84,24 @@ public:
 		std::string jumpOnFalseTarget;
 		
 		unsigned int watchdog = 0;
+		
+		// Input variables.
+		Command command;
+		std::set<std::string> inputKeys;
+		bool modShift = false;
+		bool modAlt = false;
+		bool modControl = false;
+
+		bool XAxis = false;
+		int XAbs = 0;
+		double XRel = 0.;
+		bool YAxis = false;
+		int YAbs = 0;
+		double YRel = 0.;
+		
+		bool clickLeft = false;
+		bool clickMiddle = false;
+		bool clickRight = false;
 	};
 	
 	class Context {

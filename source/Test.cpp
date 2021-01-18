@@ -74,6 +74,34 @@ namespace{
 			})
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
+	
+	// Send an SDL_event to on of the UIs.
+	bool EventToUI(UI &menuOrGamePanels, const SDL_Event &event)
+	{
+		return menuOrGamePanels.Handle(event);
+	}
+	
+	// Send an keyboard input to one of the UIs.
+	bool KeyInputToUI(UI &menuOrGamePanels, const char* keyName, bool shift=false, bool ctrl=false, bool alt=false)
+	{
+		// Construct the event to send (from keyboard code and modifiers)
+		SDL_Event event;
+		event.type = SDL_KEYDOWN;
+		event.key.state = SDL_PRESSED;
+		event.key.repeat = 0;
+		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		event.key.keysym.mod = KMOD_NONE;
+		if(shift)
+			event.key.keysym.mod |= KMOD_SHIFT;
+		if(ctrl)
+			event.key.keysym.mod |= KMOD_CTRL;
+		if(alt)
+			event.key.keysym.mod |= KMOD_ALT;
+		
+		// Sending directly as event to the UI. We might want to switch to
+		// SDL_PushEvent in the future to use the regular SDL event-handling loops.
+		return EventToUI(menuOrGamePanels, event);
+	}
 }
 
 
@@ -81,6 +109,80 @@ namespace{
 Test::TestStep::TestStep(Type stepType) : stepType(stepType)
 {
 };
+
+
+
+void Test::TestStep::LoadInput(DataNode node)
+{
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "key")
+		{
+			for(int i=1; i < child.Size(); ++i)
+				inputKeys.insert(child.Token(i));
+			
+			for(const DataNode &grand: child){
+				if(grand.Token(0) == "shift")
+					modShift = true;
+				else if(grand.Token(0) == "alt")
+					modAlt = true;
+				else if(grand.Token(0) == "control")
+					modControl = true;
+				else
+					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"key\" section:");
+			}
+		}
+		else if(child.Token(0) == "pointer")
+		{
+			for(const DataNode &grand: child){
+				if(grand.Token(0) == "X")
+				{
+					XAxis = true;
+					if(grand.Size() < 2)
+						grand.PrintTrace("Warning: Pointer X axis input without coordinate:");
+					else if(grand.Size() >=3 && grand.Token(2) == "relative")
+						XRel = grand.Value(1);
+					else{
+						if(grand.Size() > 2)
+							grand.PrintTrace("Warning: Ignored keywords after Pointer X axis coordinate:");
+						XAbs = grand.Value(1);
+					}
+				}
+				else if(grand.Token(0) == "Y")
+				{
+					YAxis = true;
+					if(grand.Size() < 2)
+						grand.PrintTrace("Warning: Pointer Y axis input without coordinate:");
+					else if(grand.Size() >=3 && grand.Token(2) == "relative")
+						YRel = grand.Value(1);
+					else{
+						if(grand.Size() > 2)
+							grand.PrintTrace("Warning: Ignored keywords after Pointer X axis coordinate:");
+						YAbs = grand.Value(1);
+					}
+				}
+				else if(grand.Token(0) == "click")
+					for(int i=1; i < grand.Size(); ++i)
+					{
+						if(grand.Token(i) == "left")
+							clickLeft = true;
+						else if(grand.Token(i) == "right")
+							clickRight = true;
+						else if(grand.Token(i) == "middle")
+							clickMiddle = true;
+						else
+							grand.PrintTrace("Warning: Unknown click/button:");
+					}
+				else
+					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"pointer\" section:");
+			}
+		}
+		else if(child.Token(0) == "command")
+			command.Load(child);
+		else
+			child.PrintTrace("Warning: Unknown keyword in \"input\" section:");
+	}
+}
 
 
 
@@ -138,9 +240,8 @@ void Test::LoadSequence(const DataNode &node)
 				else
 					step.nameOrLabel = child.Token(1);
 			case TestStep::Type::INPUT:
-				child.PrintTrace("Error: Not yet implemented step type input");
-				status = Status::BROKEN;
-				return;
+				step.LoadInput(child);
+				break;
 			case TestStep::Type::LABEL:
 				if(child.Size() < 2)
 					child.PrintTrace("Ignoring empty label");
@@ -325,8 +426,39 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				++(context.stepToRun);
 				break;
 			case TestStep::Type::INPUT:
-				// Give the relevant inputs here.
-				Fail(context, player, "Input not implemented");
+				if(stepToRun.command)
+				{
+					// We need to send the command through the top gamepanel, and it needs to be active.
+					if(gamePanels.IsEmpty())
+						Fail(context, player, "panel with engine not present, and can only send commands to the engine");
+					
+					if(gamePanels.Root() != gamePanels.Top())
+						Fail(context, player, "engine not active due to panel on top, and can only send commands to the engine");
+					
+					// Both get as well as the cast can result in a nullpointer. In both cases we
+					MainPanel* mainPanel = dynamic_cast<MainPanel*> (gamePanels.Root().get());
+					if(!mainPanel)
+						Fail(context, player, "root gamepanel of wrong type when sending command");
+
+					mainPanel->GiveCommand(stepToRun.command);
+				}
+				if(!stepToRun.inputKeys.empty())
+				{
+					// TODO: handle keys also in-flight (as single inputset)
+					// TODO: combine keys with mouse-inputs
+					for(const string key : stepToRun.inputKeys)
+					{
+						const char* inputChar = key.c_str();
+						if(!menuPanels.IsEmpty())
+						{
+							if(!KeyInputToUI(menuPanels, inputChar))
+								Fail(context, player, "key input on menuPanel failed");
+						}
+						else if(!KeyInputToUI(gamePanels, inputChar))
+							Fail(context, player, "key input on gamePanel failed");
+					}
+				}
+				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
 				continueGameLoop = true;
 				++(context.stepToRun);

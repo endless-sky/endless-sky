@@ -50,3 +50,67 @@ test "Test-Framework - Conditions Arithmetic and Loops"
 			10 == "test: loopControl"
 			"test: myFirstTestVariable" == 200 - 50
 			400 * 1024 == "test: mySecondTestVariable"
+
+
+test "Test-Framework - UI Keyboard controls"
+	status active
+	description "Tests if the in-game panels can be controlled by keypresses"
+	sequence
+		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		inject "Three Earthly Barges"
+		input
+			key l
+		input
+			key l
+		# Enter and leave jobs
+		input
+			key j
+		input
+			key d
+		# Enter trading
+		input
+			key t
+		# Enter bank
+		input
+			key b
+		# Enter spaceport
+		input
+			key p
+		# Enter and leave shipyard
+		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
+		#input
+		#	key s
+		#input
+		#	key l
+		# Enter and leave outfitter
+		input
+			key o
+		input
+			key l
+		# Enter hire-crew section
+		input
+			key h
+		# Depart
+		input
+			key d
+
+
+test "Test-Framework - Load and depart"
+	status active
+	description "Test with only a departure. Mostly tests the testframework itself."
+	sequence
+		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		inject "Three Earthly Barges"
+		input
+			key l
+		input
+			key l
+		# Check startup conditions.
+		assert
+			"ships: Light Freighter" = 3
+		# Launch.
+		input
+			key d
+		# Re-check startup conditions.
+		assert
+			"ships: Light Freighter" = 3
