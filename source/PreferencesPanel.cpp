@@ -12,24 +12,27 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PreferencesPanel.h"
 
+#include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -45,12 +48,15 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string VSYNC_SETTING = "VSync";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
+	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string SHIP_OUTLINES = "Ship outlines in shops";
 }
 
 
@@ -92,7 +98,7 @@ void PreferencesPanel::Draw()
 
 
 
-bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
@@ -138,14 +144,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
+			// For some settings, clicking the option does more than just toggle a
+			// boolean state keyed by the option's name.
 			if(zone.Value() == ZOOM_FACTOR)
 			{
-				int newZoom = Screen::Zoom() + ZOOM_FACTOR_INCREMENT;
-				if(newZoom > ZOOM_FACTOR_MAX)
-					newZoom = ZOOM_FACTOR_MIN;
+				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 				Screen::SetZoom(newZoom);
-				// Make sure there is enough vertical space for the full UI.
-				if(Screen::Height() < 700)
+				if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
 				{
 					// Notify the user why setting the zoom any higher isn't permitted.
 					// Only show this if it's not possible to zoom the view at all, as
@@ -160,14 +165,20 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
-			if(zone.Value() == VIEW_ZOOM_FACTOR)
+			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
 				// case, cycle around to the lowest zoom factor.
 				if(!Preferences::ZoomViewIn())
 					while(Preferences::ZoomViewOut()) {}
 			}
-			if(zone.Value() == EXPEND_AMMO)
+			else if(zone.Value() == VSYNC_SETTING)
+			{
+				if(!Preferences::ToggleVSync())
+					GetUI()->Push(new Dialog(
+						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
+			}
+			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
@@ -178,12 +189,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == SCROLL_SPEED)
 			{
-				// Toogle between three different speeds.
+				// Toggle between three different speeds.
 				int speed = Preferences::ScrollSpeed() + 20;
 				if(speed > 60)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
 			break;
@@ -191,7 +203,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(point))
+		{
 			selectedPlugin = zone.Value();
+			break;
+		}
 	
 	return true;
 }
@@ -230,19 +245,15 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	
 	if(hoverPreference == ZOOM_FACTOR)
 	{
-		int zoom = Screen::Zoom();
+		int zoom = Screen::UserZoom();
 		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
 			zoom -= ZOOM_FACTOR_INCREMENT;
 		if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
 			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
-		// Make sure there is enough vertical space for the full UI.
-		while(Screen::Height() < 700 && zoom > ZOOM_FACTOR_MIN)
-		{
-			zoom -= ZOOM_FACTOR_INCREMENT;
-			Screen::SetZoom(zoom);
-		}
+		if(Screen::Zoom() != zoom)
+			Screen::SetZoom(Screen::Zoom());
 		
 		// Convert to raw window coordinates, at the new zoom level.
 		Point point = hoverPoint * (Screen::Zoom() / 100.);
@@ -285,11 +296,11 @@ void PreferencesPanel::DrawControls()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
-	Color red(.3, 0., 0., .3);
+	Color red(.3f, 0.f, 0.f, .3f);
 	
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
-	table.AddColumn(115, Table::RIGHT);
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -299,7 +310,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
-		"Menus",
+		"Interface",
 		"Fleet"
 	};
 	const string *category = CATEGORIES;
@@ -328,6 +339,7 @@ void PreferencesPanel::DrawControls()
 		Command::MAP,
 		Command::INFO,
 		Command::FULLSCREEN,
+		Command::FASTFORWARD,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -361,7 +373,7 @@ void PreferencesPanel::DrawControls()
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing)
 			{
-				table.SetHighlight(66, 120);
+				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim: red);
 			}
 			
@@ -369,7 +381,7 @@ void PreferencesPanel::DrawControls()
 			bool isHovering = (index == hover && !isEditing);
 			if(!isHovering && index == selected)
 			{
-				table.SetHighlight(-120, 64);
+				table.SetHighlight(-120, 54);
 				table.DrawHighlight(back);
 			}
 			
@@ -386,7 +398,7 @@ void PreferencesPanel::DrawControls()
 	}
 	
 	Table shiftTable;
-	shiftTable.AddColumn(125, Table::RIGHT);
+	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
 	shiftTable.DrawAt(Point(-400, 52));
 	
@@ -409,8 +421,8 @@ void PreferencesPanel::DrawSettings()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
-	table.AddColumn(115, Table::RIGHT);
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -420,6 +432,7 @@ void PreferencesPanel::DrawSettings()
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		VSYNC_SETTING,
 		"Show status overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
@@ -430,22 +443,27 @@ void PreferencesPanel::DrawSettings()
 		"Automatic aiming",
 		"Automatic firing",
 		EXPEND_AMMO,
+		FIGHTER_REPAIR,
 		TURRET_TRACKING,
-		"",
+		"\n",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
+		"Draw starfield",
 		"Show hyperspace flash",
-		"\n",
+		SHIP_OUTLINES,
+		"",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
 		REACTIVATE_HELP,
+		"Interrupt fast-forward",
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
+		"System map sends move orders",
 		"Warning siren"
 	};
 	bool isCategory = true;
@@ -474,18 +492,24 @@ void PreferencesPanel::DrawSettings()
 		// Record where this setting is displayed, so the user can click on it.
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 		
-		// Get the "on / off" text for this setting.
+		// Get the "on / off" text for this setting. Setting "isOn"
+		// draws the setting "bright" (i.e. the setting is active).
 		bool isOn = Preferences::Has(setting);
 		string text;
 		if(setting == ZOOM_FACTOR)
 		{
-			isOn = true;
-			text = to_string(Screen::Zoom());
+			isOn = Screen::UserZoom() == Screen::Zoom();
+			text = to_string(Screen::UserZoom());
 		}
 		else if(setting == VIEW_ZOOM_FACTOR)
 		{
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
+		else if(setting == VSYNC_SETTING)
+		{
+			text = Preferences::VSyncSetting();
+			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
@@ -493,6 +517,16 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
+		}
+		else if(setting == FIGHTER_REPAIR)
+		{
+			isOn = true;
+			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+		}
+		else if(setting == SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -548,8 +582,9 @@ void PreferencesPanel::DrawPlugins()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	
+	const int MAX_TEXT_WIDTH = 230;
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
+	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -238;
@@ -558,16 +593,15 @@ void PreferencesPanel::DrawPlugins()
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
 	
-	const int MAX_TEXT_WIDTH = 230;
 	const Font &font = FontSet::Get(14);
-	for(const pair<string, string> &plugin : GameData::PluginAboutText())
+	for(const auto &plugin : GameData::PluginAboutText())
 	{
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 		
 		bool isSelected = (plugin.first == selectedPlugin);
 		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(font.TruncateMiddle(plugin.first, MAX_TEXT_WIDTH), isSelected ? bright : medium);
+		table.Draw(plugin.first, isSelected ? bright : medium);
 		
 		if(isSelected)
 		{

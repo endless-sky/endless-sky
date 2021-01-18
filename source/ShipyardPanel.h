@@ -44,10 +44,10 @@ protected:
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) override;
 	virtual bool CanBuy() const override;
-	virtual void Buy(bool fromCargo = false) override;
+	virtual void Buy(bool alreadyOwned = false) override;
 	virtual void FailBuy() const override;
-	virtual bool CanSell(bool toCargo = false) const override;
-	virtual void Sell(bool toCargo = false) override;
+	virtual bool CanSell(bool toStorage = false) const override;
+	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
 	
 	

@@ -1,5 +1,5 @@
 /* Dialog.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,9 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "DataNode.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
@@ -29,7 +31,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cmath>
-#include <functional>
 
 using namespace std;
 
@@ -84,19 +85,19 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text)
+Dialog::Dialog(const string &text, Truncate truncate)
 {
-	Init(text, false);
+	Init(text, truncate, false);
 }
 
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
-	Init(text, true, true);
+	Init(text, truncate, true, true);
 }
 
 
@@ -112,7 +113,7 @@ void Dialog::Draw()
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
 	
 	// Get the position of the top of this dialog, and of the text and input.
-	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5);
+	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
 	Point textPos(WIDTH * -.5 + 10., pos.Y() + 20.);
 	Point inputPos = Point(0., -70.) - pos;
 	
@@ -167,17 +168,37 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		string truncated = font.TruncateFront(input, WIDTH - 30);
-		font.Draw(truncated, stringPos, bright);
+		const auto inputText = DisplayText(input, {WIDTH - 30, Truncate::FRONT});
+		font.Draw(inputText, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
 
 
 
-bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+// Format and add the text from the given node to the given string.
+void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &text)
+{
+	for(int i = startingIndex; i < node.Size(); ++i)
+	{
+		if(!text.empty())
+			text += "\n\t";
+		text += node.Token(i);
+	}
+	for(const DataNode &child : node)
+		for(int i = 0; i < child.Size(); ++i)
+		{
+			if(!text.empty())
+				text += "\n\t";
+			text += child.Token(i);
+		}
+}
+
+
+
+bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
@@ -255,15 +276,16 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 	
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(WIDTH - 20);
 	text.SetFont(FontSet::Get(14));
+	text.SetTruncate(truncate);
 	
 	text.Wrap(message);
 	

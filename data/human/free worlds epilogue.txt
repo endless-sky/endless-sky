@@ -1,0 +1,300 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "FW Epilogue: Ijs and Katya"
+	landing
+	source "Winter"
+	to offer
+		has "free worlds plot completed"
+	
+	on offer
+		conversation
+			`You are on <origin>, home to the Free Worlds Conservatory where Ijs is on faculty as a professor. Would you like to visit him and see how he is doing?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			`	While looking Ijs up in the campus directory, you notice something else: Katya is listed in the directory too, as "Visiting Professor of Civics and Economics." You give Ijs a call and ask if he and Katya would like to meet up with you for dinner, and they readily agree.`
+			`	When you join them at the restaurant, Katya says, "It's really great to see you again, <first>."`
+			`	"Not to mention," says Ijs, "it's great to have an excuse to eat somewhere other than the student center for once. How has life been treating you, <first>?"`
+			choice
+				`	"I miss the excitement of the work we did together, but other than that life is great."`
+					goto excitement
+				`	"It's kind of hard to adjust to civilian life."`
+					goto adjust
+				`	"I want to explore the rest of the galaxy, but apparently that part of the game hasn't been implemented yet."`
+					goto game
+			
+			label excitement
+			`	"I understand that feeling," says Katya. "But, just remind yourself, this is what we fought for. For peace. For a world where no one has to fear for their lives."`
+				goto end
+			
+			label adjust
+			`	"Tell me about it," laughs Katya. "I can hardly believe I'm now a professor. Or at least, acting as one. But after so much fighting, and so much time alone and imprisoned, for me it feels good to finally be able to relax, to let go of the idea that the galaxy will fall apart without me."`
+				goto end
+			
+			label game
+			`	"Whoops," says Ijs, "now you've done it, there goes the fourth wall."`
+			`	Katya laughs. "If you're so eager to explore the rest of the galaxy, <first>, maybe you should volunteer to help out with creating the stories to populate it. This is an open source game after all, and it would be a sad thing for it to remain the product of only one person's imagination."`
+				goto end
+			
+			label end
+			`	Your dinner arrives, and you spend a pleasant evening eating together and reminiscing about old times. Back in the days of the civil war, neither Katya and Ijs were people who smiled or laughed easily, but now they have an entirely different air about them, peaceful and contented. It's heartening to see that they, at least, have found a happy ending together after all the chaos you lived through.`
+			`	Suddenly you realize that around you, the restaurant workers are sweeping the floors and putting chairs up on tables: it's closing time, and you are the last ones there. "Well <first>," says Ijs, "it was good of you to stop by, and I wish you the best in your journeys among the stars. Give our regards to the others if you see them." You wish them well, and return to your ship.`
+				decline
+
+
+
+mission "FW Epilogue: Alondo"
+	landing
+	source "Bourne"
+	to offer
+		has "free worlds plot completed"
+		or
+			not "Paradise Fortune 3: done"
+			has "Paradise Fortune 4: offered"
+	
+	on offer
+		conversation
+			`As you're coming in for a landing on Bourne, you receive a message from Alondo. "<first>!" he says. "I just heard that you were in system. Want to meet up for a drink and talk about old times?"`
+			choice
+				`	"Sure, I'd be glad to."`
+				`	"Sorry, I'm busy right now."`
+					defer
+			`	You meet up with Alondo at a local pub. He tells you that his life has continued to be quite full since the war ended and the Council was dissolved: he's been placed in charge of the Free Worlds diplomatic corps, whose main job appears to be to make sure all the individual worlds within the coalition feel like their concerns are being listened to. "It means lots of travel," he says, "and lots of fine meals with important people. And they're always interested to hear my stories from the war times."`
+			`	You tell Alondo a bit about what you've been doing since the war ended. "Of course," he says, "you're traveling the galaxy. I knew from the start you weren't the kind who would quickly put down roots on a single planet."`
+			`	Alondo goes on to describe some of the inner workings of the Free Worlds Senate, and the mutual defense arrangement that forms the backbone of the coalition. "For a while there," he says, "it felt like there was so much bureaucracy that we couldn't get anything done, but now it's finally starting to function in the way all of us imagined. Quite an honor to have had a hand in the birth of a new government."`
+			choice
+				`	"Spoken like a true bureaucrat."`
+					goto bureaucrat
+				`	"I really do hope the Free Worlds can live up to our original vision of justice and equality."`
+					goto vision
+			
+			label bureaucrat
+			`	"Fair enough," he says, "but I really do believe we've created a government here that is less prone to the inequalities that they're still struggling with in the Republic."`
+				goto end
+			
+			label vision
+			`	"Me too," he says. "We've got a good start, but then again, so did the Republic, back in the day."`
+				goto end
+			
+			label end
+			`	He is quiet for a moment, and then says, "I guess that's why I'm still here in the thick of things, instead of just settling down somewhere and leaving public life behind. I don't believe society or government just naturally becomes good or stays good without effort. So I'm here to speak up when we start to stray from our original vision."`
+			`	You sit and talk with each other for quite a while longer, reminiscing about old times. Then, you wish him well in his work, and he tells you to stop by and say hello any time you're in the area. You head back to your ship.`
+				decline
+
+
+
+mission "FW Epilogue: Freya"
+	landing
+	source "Pugglemug"
+	to offer
+		has "free worlds plot completed"
+	
+	on offer
+		conversation
+			`When you land on <origin>, you head into the city to explore a bit and to find out if the Navy and the others who have come here after them have had any luck in unlocking the secrets of this place. Already, it appears that some of the empty apartments have become actual living quarters for people, and there are even a handful of shops opening up on the main street.`
+			`	In one of those shops, you run into Freya. "<first>!" she says. "It's good to see you again. I hear that Parliament named you an official war hero or something. Much better than being a wanted fugitive, huh?"`
+			choice
+				`	"Yes, it's quite an honor."`
+					goto honor
+				`	"Yes, it's hard to know what to do with myself now that no one wants to kill me."`
+					goto kill
+			
+			label honor
+			`	"Right. Just remember, none of it would have happened without me, okay? Not that I have any desire to be a hero; that sort of public attention would be pretty much my worst nightmare."`
+				goto next
+			
+			label kill
+			`	"Well, I'm sure you can find something interesting to do," she says. "Go fight some pirates. Or become a business mogul and get filthy rich. Whatever floats your boat."`
+				goto next
+			
+			label next
+			`	"What have you found out about the Pug?" you ask.`
+			`	"Not much," she says. "The wormhole doesn't seem to lead to their real home; it's just another red herring. The real breakthrough, of course, would be if we could find some hints in the stuff they left behind about how to build more jump drives of our own. But so far, we can't even figure out how to create new hyperspace links where there wasn't one originally. I'm starting to think that those graviton transmitters we used were just one more game - a toy, not the real thing. Not what created the links in the first place, I mean, unless they were created by someone with the patience to wait a million years for them to work."`
+			choice
+				`	"Have you found any other interesting technology?"`
+					goto technology
+				`	"Any more hints about who the Pug were and what they wanted?"`
+					goto pug
+			
+			label technology
+			`	"Some," she says. "Everything they left behind is like, well... an educational toy. Like some absent parent left behind a super-advanced chemistry set for their kids to play with. That's how all the artifacts we find here feel - not like the real thing that the Pug would have used, but like a simplified model that they gave us to help us figure it out. Everything they left behind, I'm convinced they left intentionally, because it could teach us something they wanted us to know, while keeping all their true secrets secret. The rest of you moved on, and I'm still here playing their game."`
+				goto end
+			
+			label pug
+			`	"Not much," she says. "This world - it feels like when you're visiting a friend's house, and they spent the whole day cleaning up for you. It's not like a person's home is when you drop by unannounced. Nothing's out of place. Everything that's lying out somewhere, is something they wanted you to see. There's some weird technology they left behind, but all of it is like toys, puzzles... I don't know, like an educational game they designed for us to play. The rest of you moved on, and I'm still here playing their game."`
+				goto end
+			
+			label end
+			choice
+				`	"You sound frustrated."`
+				`	"You know, the war is over, you can relax if you want to."`
+			`	"I know, I know," she says. "I complain, but really there's nowhere else I would rather be. Even if everything we're discovering here is nothing more than what they intended for us to discover, it's still the most interesting work I could possibly be doing right now. So, don't feel sorry for me. Really."`
+			`	You talk for a while longer, and she tells you she'll be sure to be in touch if they ever get to the root of the Pug's motivation. "Until then," she says, "good luck in your travels. I hope the galaxy never runs out of ways to surprise you."`
+				decline
+
+
+
+mission "FW Epilogue: Danforth"
+	landing
+	source "Farpoint"
+	to offer
+		has "free worlds plot completed"
+		not "Wanderers: Alpha Surveillance E: offered"
+	
+	on offer
+		conversation
+			`Would you like to stop by and see how Admiral Danforth is doing?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			
+			branch checkmate1
+				has "free worlds checkmate"
+			`	Danforth is quite excited to see you. "Captain <last>!" he says. "So good to see you back up here in my neck of the woods again. It's funny, you'd think that with the war over they'd just dissolve the Oathkeepers, since the whole Republic is at peace with the Free Worlds and there's no longer any oath left for us to keep. But, the Oathkeepers became so well known for our role against the Pug and the Syndicate that now everyone wants to join our division."`
+				goto choice
+			
+			label checkmate1
+			`	Danforth is quite excited to see you. "Captain <last>!" he says. "So good to see you back up here in my neck of the woods again. It's funny, you'd think that with the war over they'd just dissolve the Oathkeepers, since the whole Republic is at peace with the Free Worlds and there's no longer any oath left for us to keep. But, the Oathkeepers became so well known for our role against the Pug that now everyone wants to join our division."`
+			
+			label choice
+			choice
+				`	"Glad to see you're still in the thick of things, sir!"`
+					goto thick
+				`	"What sort of work is the Navy doing now that we're at peace?"`
+					goto work
+			
+			label thick
+			`	"Oh, you bet I am," he says. "I'll never retire from the Navy, you know. I plan to still be serving on the day I die."`
+				goto next
+			
+			label work
+			`	"Just the sort of work we all signed up for in the first place," he says. "Defending the defenseless, keeping the peace, helping silly novice pilots who run out of fuel."`
+				goto next
+			
+			label next
+			`	"Are the pirates giving you any trouble?" you ask.`
+			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds driving them out of the south. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
+			
+			branch checkmate2
+				has "free worlds checkmate"
+			`	Then he leans forward and says, more quietly, "Of course, you and I both know the pirates aren't the main threat. Raven is off infiltrating Syndicate worlds even as we speak, and several of my other best intelligence officers, too. The Syndicate wants us to believe that they've weeded out all the rotten apples from their ranks, but we're keeping an eye on them, all the same."`
+				goto end
+			
+			label checkmate2
+			`	Then he leans forward and says, more quietly, "Just a heads up that the Navy has their eye on the Free Worlds still. Just because a peace treaty was made doesn't mean you can keep your nukes forever."`
+			
+			label end
+			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`
+				decline
+
+
+
+mission "FW Epilogue: Edward"
+	minor
+	landing
+	name `Weapon Testing`
+	description `A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not board or destroy it!) and then land to give Barmy Edward feedback on its performance.`
+	source "Rust"
+	to offer
+		has "free worlds plot completed"
+	on offer
+		conversation "edward epilogue"
+	npc save disable
+		government "Test Dummy"
+		personality disables heroic staying
+		ship "Leviathan (Plasma Repeater)" "Hunk"
+	on decline
+		event "plasma repeater advanced" 95
+		event "plasma repeater basics" 155
+	on complete
+		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the plasma cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
+		event "plasma repeater advanced" 45
+		event "plasma repeater basics" 105
+		conversation "edward epilogue"
+
+
+
+conversation "edward epilogue"
+	branch completed
+		has "FW Epilogue: Edward: done"
+	`As you complete your landing procedure, you recall having come here to assist in some testing for new weapons, back in the thick of the war. Do you want to check in on Barmy Edwards, the lead engineer?`
+	choice
+		`	(Yes.)`
+		`	(No.)`
+			defer
+	scene "scene/loc0"
+	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified plasma cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?`
+	choice
+		`	"I'm not sure about this. What would you have me do?"`
+		`	"Being a target for experimental weapons? Just tell me what you need!"`
+	`	"Not much out of the ordinary from our tests in the past," he replies. "You'll find a ship of ours in orbit that goes by <npc>. It's been fitted with a few of these new weapons. Your job will be to fight and disable it, tell us what you think of its combat capabilities, and transfer your ship's logs so we can analyze the fight."`
+	choice
+		`	"Alright, I suppose for old times' sake I can help out."`
+		`	"Sorry, I just wanted to check in and see how you were doing."`
+			goto catchup
+	`	He turns to you and smirks. "We've recommissioned the ship from retirement, so it's not top of the line, but try to keep it in one piece for future use. Understand?"`
+	choice
+		`	"Of course! I'll take care of it."`
+	`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
+		accept
+	label catchup
+	`	"I see. Well, I'm sure we can find someone else up to the task. Regardless, Captain <last>, I assure you this new weapon vastly improves on the outdated plasma cannon. This'll put Kraz Cybernetics in the big leagues!"`
+	`	"How about we get out of here, <first>? My work is done for today, and I know a homely little bar that's only a short walk."`
+	choice
+		`	"Of course. It's not like there's a war to worry about anymore."`
+	`	"Ha! Well, of course, the war kept all of us plenty busy." He leads you out of the facility while telling an anecdote that must be humor for an engineer.`
+		goto combined
+	
+	label completed
+	scene "scene/plasma scene"
+	`You head to the hangar to meet up with Barmy Edward, and find him tinkering with the modified plasma cannon you saw when you first entered. "It runs much hotter, you see," he explains. "But the results are impressive."`
+	choice
+		`	"Was that a plasma cannon? Or something else?"`
+			goto what
+		`	"It's not winning any damage records, that's for sure."`
+			goto damage
+	label what
+	`	"Heh, it's been a while since we've seen a good upgrade to the cannon," he says. "That was the plasma repeater. Of course, it wasn't easy to make a better iteration of something that countless fools have failed to improve on."`
+	`	"When will it be available for sale?" you ask.`
+		goto available
+	label damage
+	`	"Well, you are one of the revered captains that drove off the Pug," he says. "The idea is that by shrinking the bolts of superheated plasma, we can offload many more bursts onto a target. The effects on said target result in faster buildup of heat and, of course, damage. Big ships will usually ward off these effects much longer than a smaller ship would, but that's always been a notable issue with the original design. Besides, the repeater is a hell of a lot more impressive."`
+	`	"That's a unique direction," you reply. "Are they available for sale yet?"`
+	label available
+	`	"Thanks to you, it should be in stock in a few months," he answers. "I'm sure you're past the point where our weapons are useful, but then again, not everybody has a jump drive." He grins. "How about we celebrate with some drinks? I know a quaint little bar not far from here."`
+	choice
+		`	"I have time; let's celebrate!"`
+		`	"I'll pass on that, but it was good checking in on you."`
+			decline
+	
+	label combined
+	`	You follow Barmy into the bar. Even with the smear of grease still on his face, he fits in with the crowd. You both stand at the bar and order your drinks. Barmy's order catches you off guard, and he notices your expression. "What? A man who works with his hands can't enjoy a drink with some age?" You chuckle, and you both tell stories of your early lives. He tells how he had some exciting adventures in his youth among the stars, but found his passion tinkering and finding ways to improve on outdated equipment.`
+	`	He's shocked to discover your origins on New Boston. "You're really from that backwater planet? I'm surprised you were able to escape the racket they have going on there. I was lucky to get out myself!"`
+	choice
+		`	"Wait, you're from New Boston too?"`
+		`	"It wasn't perfect there, but at least it wasn't quite so noisy down on the ground."`
+			goto end
+		`	"Nothing like it is now. I've got the whole universe ahead of me!"`
+			goto end
+	`	"You wouldn't think to have met someone from your very own birth planet, eh?" He chuckles. "Small galaxy, I suppose."`
+	label end
+	`	You both have a great time hearing of each other's early lives, but you eventually wrap up your visit after a long night of bouncing stories back and forth. You say your goodbyes and head back to your ship.`
+		decline
+
+event "plasma repeater advanced"
+	outfitter "Kraz Advanced"
+		"Plasma Repeater"
+
+event "plasma repeater basics"
+	outfitter "Kraz Basics"
+		"Plasma Repeater"

@@ -12,9 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Shader.h"
 
+#include "Files.h"
+
 #include <cctype>
 #include <cstring>
-#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -43,12 +44,21 @@ Shader::Shader(const char *vertex, const char *fragment)
 	GLint status;
 	glGetProgramiv(program, GL_LINK_STATUS, &status);
 	if(status == GL_FALSE)
+	{
+		GLint maxLength = 0;
+		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
+		vector<GLchar> infoLog(maxLength);
+		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
+		string error(infoLog.data());
+		Files::LogError(error);
+		
 		throw runtime_error("Linking OpenGL shader program failed.");
+	}
 }
 
 
 
-GLuint Shader::Object() const
+GLuint Shader::Object() const noexcept
 {
 	return program;
 }
@@ -111,15 +121,16 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
-		cerr << version;
-		cerr.write(str, length);
+		string error = version;
+		error += string(str, length);
 		
 		static const int SIZE = 4096;
 		GLchar message[SIZE];
 		GLsizei length;
 		
 		glGetShaderInfoLog(object, SIZE, &length, message);
-		cerr.write(message, length);
+		error += string(message, length);
+		Files::LogError(error);
 		throw runtime_error("Shader compilation failed.");
 	}
 	

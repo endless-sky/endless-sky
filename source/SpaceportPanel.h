@@ -16,10 +16,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Information.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
+class News;
 class PlayerInfo;
-
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
@@ -36,11 +36,18 @@ public:
 	
 	
 private:
+	const News *PickNews() const;
+	
+	
+private:
 	PlayerInfo &player;
 	WrappedText text;
 	
 	// Current news item (if any):
 	bool hasNews = false;
+	bool hasPortrait = false;
+	int portraitWidth;
+	int normalWidth;
 	Information newsInfo;
 	WrappedText newsMessage;
 };

@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <list>
 
@@ -40,7 +40,7 @@ public:
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
@@ -56,6 +56,7 @@ private:
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
 	Point DrawPanel(Point pos, const std::string &label, int entries) const;
+	// Draw the display names of the given missions, using the reference point.
 	Point DrawList(const std::list<Mission> &list, Point pos) const;
 	void DrawMissionInfo();
 	

@@ -1,4 +1,4 @@
-/* BatchDrawList.h
+/* BatchDrawList.cpp
 Copyright (c) 2017 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -52,44 +52,28 @@ void BatchDrawList::SetCenter(const Point &center)
 
 
 
-// Add an object based on the Body class.
-bool BatchDrawList::Add(const Body &body, double clip)
+// Add an unswizzled object based on the Body class.
+bool BatchDrawList::Add(const Body &body, float clip)
 {
+	// TODO: Rather than compensate using 1/2 the Visual | Projectile velocity, we should
+	// extend the Sprite class to know its reference point. For most sprites, this will be
+	// the horizontal and vertical middle of the sprite, but for "laser" projectiles, this
+	// would be the middle of a sprite end. Adding such support will then help resolve issues
+	// with drawing things such as very large effects that simulate projectiles. This offset
+	// exists because we use the current position of a projectile, but have varied expectations
+	// of what that position means. For a "laser" projectile, it is created at the ship hardpoint but
+	// we want it to be drawn with its center halfway to the target. For longer-lived projectiles, we
+	// expect the position to be the actual location of the projectile at that point in time.
 	Point position = (body.Position() + .5 * body.Velocity() - center) * zoom;
-	if(Cull(body, position))
-		return false;
-	
-	// Get the data vector for this particular sprite.
-	vector<float> &v = data[body.GetSprite()];
-	// The sprite frame is the same for every vertex.
-	float frame = body.GetFrame(step);
-	
-	// Get unit vectors in the direction of the object's width and height.
-	Point unit = body.Unit() * zoom;
-	Point uw = Point(unit.Y(), -unit.X()) * body.Width();
-	Point uh = unit * body.Height();
-	
-	// Get the "bottom" corner, the one that won't be clipped.
-	Point topLeft = position - (uw + uh);
-	// Scale the vectors and apply clipping to the "height" of the sprite.
-	uw *= 2.;
-	uh *= 2. * clip;
-	
-	// Calculate the other three corners.
-	Point topRight = topLeft + uw;
-	Point bottomLeft = topLeft + uh;
-	Point bottomRight = bottomLeft + uw;
-	
-	// Push two copies of the first and last vertices to mark the break between
-	// the sprites.
-	Push(v, topLeft, 0.f, 1.f, frame);
-	Push(v, topLeft, 0.f, 1.f, frame);
-	Push(v, topRight, 1.f, 1.f, frame);
-	Push(v, bottomLeft, 0.f, 1.f - clip, frame);
-	Push(v, bottomRight, 1.f, 1.f - clip, frame);
-	Push(v, bottomRight, 1.f, 1.f - clip, frame);
-	
-	return true;
+	return Add(body, position, clip);
+}
+
+
+
+// TODO: Once we have sprite reference positions, this method will not be needed.
+bool BatchDrawList::AddVisual(const Body &visual)
+{
+	return Add(visual, (visual.Position() - center) * zoom, 1.f);
 }
 
 
@@ -99,7 +83,7 @@ void BatchDrawList::Draw() const
 {
 	BatchShader::Bind();
 	
-	for(const pair<const Sprite *, vector<float>> &it : data)
+	for(const pair<const Sprite * const, vector<float>> &it : data)
 		BatchShader::Add(it.first, isHighDPI, it.second);
 	
 	BatchShader::Unbind();
@@ -126,4 +110,44 @@ bool BatchDrawList::Cull(const Body &body, const Point &position) const
 		return true;
 	
 	return false;
+}
+
+
+
+bool BatchDrawList::Add(const Body &body, Point position, float clip)
+{
+	if(Cull(body, position))
+		return false;
+	
+	// Get the data vector for this particular sprite.
+	vector<float> &v = data[body.GetSprite()];
+	// The sprite frame is the same for every vertex.
+	float frame = body.GetFrame(step);
+	
+	// Get unit vectors in the direction of the object's width and height.
+	Point unit = body.Unit() * zoom;
+	Point uw = Point(unit.Y(), -unit.X()) * body.Width();
+	Point uh = unit * body.Height();
+	
+	// Get the "bottom" corner, the one that won't be clipped.
+	Point topLeft = position - (uw + uh);
+	// Scale the vectors and apply clipping to the "height" of the sprite.
+	uw *= 2.;
+	uh *= 2.f * clip;
+	
+	// Calculate the other three corners.
+	Point topRight = topLeft + uw;
+	Point bottomLeft = topLeft + uh;
+	Point bottomRight = bottomLeft + uw;
+	
+	// Push two copies of the first and last vertices to mark the break between
+	// the sprites.
+	Push(v, topLeft, 0.f, 1.f, frame);
+	Push(v, topLeft, 0.f, 1.f, frame);
+	Push(v, topRight, 1.f, 1.f, frame);
+	Push(v, bottomLeft, 0.f, 1.f - clip, frame);
+	Push(v, bottomRight, 1.f, 1.f - clip, frame);
+	Push(v, bottomRight, 1.f, 1.f - clip, frame);
+	
+	return true;
 }

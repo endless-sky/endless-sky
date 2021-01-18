@@ -46,6 +46,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isPhasing = true;
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
+		else if(key == "parallel")
+			isParallel = true;
+		else if(key == "gravitational")
+			isGravitational = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -55,7 +59,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
-			ammo = GameData::Outfits().Get(child.Token(1));
+		{
+			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
+			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), max(0, usage));
+		}
 		else if(key == "icon")
 			icon = SpriteSet::Get(child.Token(1));
 		else if(key == "fire effect")
@@ -111,7 +118,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "drag")
 				drag = value;
 			else if(key == "hardpoint offset")
-				hardpointOffset = value;
+			{
+				// A single value specifies the y-offset, while two values
+				// specifies an x & y offset, e.g. for an asymmetric hardpoint.
+				// The point is specified in traditional XY orientation, but must
+				// be inverted along the y-dimension for internal use.
+				if(child.Size() == 2)
+					hardpointOffset = Point(0., -value);
+				else if(child.Size() == 3)
+					hardpointOffset = Point(value, -child.Value(2));
+				else
+					child.PrintTrace("Unsupported \"" + key + "\" specification:");
+			}
 			else if(key == "turn")
 				turn = value;
 			else if(key == "inaccuracy")
@@ -134,12 +152,32 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingFuel = value;
 			else if(key == "firing heat")
 				firingHeat = value;
+			else if(key == "firing hull")
+				firingHull = value;
+			else if(key == "firing shields")
+				firingShields = value;
+			else if(key == "firing ion")
+				firingIon = value;
+			else if(key == "firing slowing")
+				firingSlowing = value;
+			else if(key == "firing disruption")
+				firingDisruption = value;
+			else if(key == "relative firing energy")
+				relativeFiringEnergy = value;
+			else if(key == "relative firing heat")
+				relativeFiringHeat = value;
+			else if(key == "relative firing fuel")
+				relativeFiringFuel = value;
+			else if(key == "relative firing hull")
+				relativeFiringHull = value;
+			else if(key == "relative firing shields")
+				relativeFiringShields = value;
 			else if(key == "split range")
-				splitRange = value;
+				splitRange = max(0., value);
 			else if(key == "trigger radius")
-				triggerRadius = value;
+				triggerRadius = max(0., value);
 			else if(key == "blast radius")
-				blastRadius = value;
+				blastRadius = max(0., value);
 			else if(key == "shield damage")
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
@@ -148,23 +186,49 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
 				damage[HEAT_DAMAGE] = value;
+			else if(key == "energy damage")
+				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
+			else if(key == "relative shield damage")
+				damage[RELATIVE_SHIELD_DAMAGE] = value;
+			else if(key == "relative hull damage")
+				damage[RELATIVE_HULL_DAMAGE] = value;
+			else if(key == "relative fuel damage")
+				damage[RELATIVE_FUEL_DAMAGE] = value;
+			else if(key == "relative heat damage")
+				damage[RELATIVE_HEAT_DAMAGE] = value;
+			else if(key == "relative energy damage")
+				damage[RELATIVE_ENERGY_DAMAGE] = value;
 			else if(key == "hit force")
-				hitForce = value;
+				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
-				piercing = max(0., min(1., value));
+				piercing = max(0., value);
+			else if(key == "range override")
+				rangeOverride = max(0., value);
+			else if(key == "velocity override")
+				velocityOverride = max(0., value);
+			else if(key == "damage dropoff")
+			{
+				hasDamageDropoff = true;
+				double maxDropoff = (child.Size() >= 3) ? child.Value(2) : 0.;
+				damageDropoffRange = make_pair(max(0., value), maxDropoff);
+			}
+			else if(key == "dropoff modifier")
+				damageDropoffModifier = max(0., value);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
-	// Sanity check:
+	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
+	if(damageDropoffRange.first > damageDropoffRange.second)
+		damageDropoffRange.second = Range();
 	
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
@@ -174,7 +238,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	
 	// Support legacy missiles with no tracking type defined:
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
+	{
 		tracking = 1.;
+		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+	}
 	
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
@@ -225,7 +292,21 @@ const Sound *Weapon::WeaponSound() const
 
 const Outfit *Weapon::Ammo() const
 {
-	return ammo;
+	return ammo.first;
+}
+
+
+
+int Weapon::AmmoUsage() const
+{
+	return ammo.second;
+}
+
+
+
+bool Weapon::IsParallel() const
+{
+	return isParallel;
 }
 
 
@@ -275,6 +356,8 @@ const map<const Outfit *, int> &Weapon::Submunitions() const
 
 double Weapon::TotalLifetime() const
 {
+	if(rangeOverride)
+		return rangeOverride / WeightedVelocity();
 	if(totalLifetime < 0.)
 	{
 		totalLifetime = 0.;
@@ -289,7 +372,25 @@ double Weapon::TotalLifetime() const
 
 double Weapon::Range() const
 {
-	return Velocity() * TotalLifetime();
+	return (rangeOverride > 0) ? rangeOverride : WeightedVelocity() * TotalLifetime();
+}
+
+
+
+// Calculate the fraction of full damage that this weapon deals given the
+// distance that the projectile traveled if it has a damage dropoff range.
+double Weapon::DamageDropoff(double distance) const
+{
+	double minDropoff = damageDropoffRange.first;
+	double maxDropoff = damageDropoffRange.second;
+	
+	if(distance <= minDropoff)
+		return 1.;
+	if(distance >= maxDropoff)
+		return damageDropoffModifier;
+	// Damage modification is linear between the min and max dropoff points.
+	double slope = (1 - damageDropoffModifier) / (minDropoff - maxDropoff);
+	return slope * (distance - minDropoff) + 1;
 }
 
 
@@ -307,14 +408,13 @@ double Weapon::TotalDamage(int index) const
 {
 	if(!calculatedDamage)
 	{
+		calculatedDamage = true;
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
 			for(const auto &it : submunitions)
 				damage[i] += it.first->TotalDamage(i) * it.second;
 			doesDamage |= (damage[i] > 0.);
 		}
-		
-		calculatedDamage = true;
 	}
 	return damage[index];
 }

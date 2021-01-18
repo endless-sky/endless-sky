@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EscortDisplay.h"
 
 #include "Color.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "LineShader.h"
@@ -112,7 +112,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			color = hereColor;
 		
 		// Figure out what scale should be applied to the ship sprite.
-		double scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
+		float scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
 		OutlineShader::Draw(escort.sprite, pos, size, color);
 		zones.push_back(pos);
@@ -150,12 +150,12 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 				const Color &color = (isSplit ? halfColor : fullColor)[i];
 				
 				Point to = from + Point(width * min(1., escort.high[i]), 0.);
-				LineShader::Draw(from, to, 1.5, color);
+				LineShader::Draw(from, to, 1.5f, color);
 				
 				if(isSplit)
 				{
 					Point to = from + Point(width * max(0., escort.low[i]), 0.);
-					LineShader::Draw(from, to, 1.5, color);
+					LineShader::Draw(from, to, 1.5f, color);
 				}
 			}
 			from.Y() += 4.;

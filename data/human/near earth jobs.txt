@@ -1,0 +1,159 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Historical field trip to <planet>"
+	job
+	repeat
+	description `These <bunks> school students need to reach <destination> by <date> for a historical field trip. The school will pay you <payment>.`
+	passengers 20 100
+	deadline
+	to offer
+		random < 10
+	source
+		attributes "deep" "paradise"
+	destination
+		distance 4 12
+		attributes "near earth"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog `The students excitedly rush off your ship, taking pictures of everything they see. The school deposits <payment> into your account.`
+
+
+mission "To Earth Day celebration [0]"
+	name `Earth Day celebration`
+	job
+	repeat
+	description `Bring <fare> to <destination> by <date> for the Earth Day celebration on April 22nd. Payment is <payment>.`
+	passengers 4 4 .5
+	deadline
+	to offer
+		or
+			and
+				random < 60
+				month == 2
+				day >= 6
+			and
+				random < 80
+				month == 3
+			and
+				random < 20
+				month == 4
+				day < 22
+	to fail
+		month == 4
+		day == 22
+	source
+		near "Sol" 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "Earth"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 1000 180
+		dialog "You wish your <passengers> the best of luck on <planet>. After collecting your payment of <payment>, your <passengers> put on their Earth Day hats and leave with their belongings."
+
+
+mission "To Earth Day celebration [1]"
+	name `Earth Day celebration`
+	job
+	repeat
+	description `Deliver <cargo> to <destination> by <date> in preparation for the Earth Day celebration on April 22nd. Payment is <payment>.`
+	cargo random 5 2 .1
+	deadline
+	to offer
+		or
+			and
+				random < 60
+				month == 2
+				day >= 6
+			and
+				random < 80
+				month == 3
+			and
+				random < 20
+				month == 4
+				day < 22
+	to fail
+		month == 4
+		day == 22
+	source
+		near "Sol" 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "Earth"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 180
+		dialog `Spaceport workers already festively dressed for Earth Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
+
+
+mission "From Earth Day celebration [0]"
+	name `Return from Earth Day`
+	job
+	repeat
+	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
+	passengers 4 4 .5
+	to offer
+		or
+			and
+				random < 70
+				month == 4
+				day > 22
+			and
+				random < 50
+				month == 5
+			and
+				random < 30
+				month == 6
+				day <= 22
+	source "Earth"
+	destination
+		distance 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 1000
+		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
+
+
+mission "From Earth Day celebration [1]"
+	name `Return from Earth Day`
+	job
+	repeat
+	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
+	passengers 4 4 .3
+	to offer
+		or
+			and
+				random < 50
+				month == 4
+				day > 22
+			and
+				random < 30
+				month == 5
+			and
+				random < 10
+				month == 6
+				day <= 22
+	source "Earth"
+	destination
+		distance 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 1000
+		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`

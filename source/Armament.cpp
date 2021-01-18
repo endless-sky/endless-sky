@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 
 #include "Command.h"
+#include "Files.h"
 #include "Outfit.h"
 #include "Ship.h"
 
@@ -25,9 +26,9 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, false, outfit);
+	hardpoints.emplace_back(point, angle, false, isParallel, outfit);
 }
 
 
@@ -35,7 +36,7 @@ void Armament::AddGunPort(const Point &point, const Outfit *outfit)
 // Add a turret hardpoint (omnidirectional weapon).
 void Armament::AddTurret(const Point &point, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, true, outfit);
+	hardpoints.emplace_back(point, Angle(0.), true, false, outfit);
 }
 
 
@@ -52,6 +53,12 @@ void Armament::Add(const Outfit *outfit, int count)
 	int existing = 0;
 	int added = 0;
 	bool isTurret = outfit->Get("turret mounts");
+	// Do not equip weapons that do not define how they are mounted.
+	if(!isTurret && !outfit->Get("gun ports"))
+	{
+		Files::LogError("Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		return;
+	}
 	
 	// To start out with, check how many instances of this weapon are already
 	// installed. If "adding" a negative number of outfits, remove the installed

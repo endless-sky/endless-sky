@@ -14,9 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BoardingPanel.h"
 #include "Dialog.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
+#include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
@@ -98,7 +99,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("navigation");
 		if(isActive && flagship->IsDestroyed())
 			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled())
+		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
 			isActive = !DoHelp("disabled");
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
@@ -106,6 +107,8 @@ void MainPanel::Step()
 		shared_ptr<Ship> target = flagship->GetTargetShip();
 		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
 			isActive = !DoHelp("friendly disabled");
+		if(isActive && player.Ships().size() > 1)
+			isActive = !DoHelp("multiple ship controls");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= GameData::Start().GetDate() + 4)
 		{
@@ -152,10 +155,10 @@ void MainPanel::Draw()
 		if(canDrag)
 		{
 			const Color &dragColor = *GameData::Colors().Get("drag select");
-			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, dragColor);
-			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, dragColor);
-			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, dragColor);
-			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, dragColor);
+			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8f, dragColor);
+			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8f, dragColor);
+			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8f, dragColor);
+			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8f, dragColor);
 		}
 		else
 			isDragging = false;
@@ -194,8 +197,15 @@ void MainPanel::OnCallback()
 
 
 
+bool MainPanel::AllowFastForward() const
+{
+	return true;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
-bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
 		show = command;
@@ -204,9 +214,9 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		Preferences::ToggleAmmoUsage();
 		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
 	}
-	else if(key == '-' && !command)
+	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
-	else if(key == '=' && !command)
+	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
@@ -214,6 +224,14 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		return false;
 	
 	return true;
+}
+
+
+
+// Send a command through the main-panel to the engine
+void MainPanel::GiveCommand(const Command &command)
+{
+	engine.GiveCommand(command);
 }
 
 
@@ -322,7 +340,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					int tons = ceil(it.second * it.first->Mass());
 					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
-				else	
+				else
 					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
 			}
 		if(first)
@@ -468,20 +486,29 @@ void MainPanel::StepEvents(bool &isActive)
 		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && actor->IsPlayer()
 				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
 		{
-			Mission *mission = player.BoardingMission(event.Target());
-			const CargoHold &cargo = flagship->Cargo();
-			if(mission && mission->CargoSize() <= cargo.Free() && mission->Passengers() <= cargo.BunksFree())
-				mission->Do(Mission::OFFER, player, GetUI());
+			auto boardedShip = event.Target();
+			Mission *mission = player.BoardingMission(boardedShip);
+			if(mission && mission->HasSpace(*flagship))
+				mission->Do(Mission::OFFER, player, GetUI(), boardedShip);
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
 						? Mission::BOARDING : Mission::ASSISTING, GetUI());
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
 			isActive = (GetUI()->Top().get() == this);
 			
-			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed())
+			// Confirm that this event's target is not destroyed and still an
+			// enemy before showing the BoardingPanel (as a mission NPC's
+			// completion conversation may have allowed it to be destroyed or
+			// captured).
+			// TODO: This BoardingPanel should not be displayed if a mission NPC
+			// completion conversation creates a BoardingPanel for it, or if the
+			// NPC completion conversation ends via `accept,` even if the ship is
+			// still hostile.
+			if(isActive && (event.Type() == ShipEvent::BOARD) && !boardedShip->IsDestroyed()
+					&& boardedShip->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
-				GetUI()->Push(new BoardingPanel(player, event.Target()));
+				GetUI()->Push(new BoardingPanel(player, boardedShip));
 				isActive = false;
 			}
 		}
@@ -494,7 +521,7 @@ void MainPanel::StepEvents(bool &isActive)
 				ShowScanDialog(event);
 				isActive = false;
 			}
-			else if(event.TargetGovernment()->IsPlayer())
+			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
 				string message = actor->Fine(player, event.Type(), &*event.Target());
 				if(!message.empty())

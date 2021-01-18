@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 
+#include <algorithm>
 #include <cmath>
 #include <numeric>
 
@@ -89,57 +90,61 @@ void StarField::SetHaze(const Sprite *sprite)
 
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
+	// Draw the starfield unless it is disabled in the preferences.
+	if(Preferences::Has("Draw starfield"))
+	{
+		glUseProgram(shader.Object());
+		glBindVertexArray(vao);
 	
-	float length = vel.Length();
-	Point unit = length ? vel.Unit() : Point(1., 0.);
-	// Don't zoom the stars at the same rate as the field; otherwise, at the
-	// farthest out zoom they are too small to draw well.
-	unit /= pow(zoom, .75);
+		float length = vel.Length();
+		Point unit = length ? vel.Unit() : Point(1., 0.);
+		// Don't zoom the stars at the same rate as the field; otherwise, at the
+		// farthest out zoom they are too small to draw well.
+		unit /= pow(zoom, .75);
 	
-	float baseZoom = static_cast<float>(2. * zoom);
-	GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
-	glUniform2fv(scaleI, 1, scale);
+		float baseZoom = static_cast<float>(2. * zoom);
+		GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
+		glUniform2fv(scaleI, 1, scale);
 	
-	GLfloat rotate[4] = {
-		static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
-		static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
-	glUniformMatrix2fv(rotateI, 1, false, rotate);
+		GLfloat rotate[4] = {
+			static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
+			static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
+		glUniformMatrix2fv(rotateI, 1, false, rotate);
 	
-	glUniform1f(elongationI, length * zoom);
-	glUniform1f(brightnessI, min(1., pow(zoom, .5)));
+		glUniform1f(elongationI, length * zoom);
+		glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 	
-	// Stars this far beyond the border may still overlap the screen.
-	double borderX = fabs(vel.X()) + 1.;
-	double borderY = fabs(vel.Y()) + 1.;
-	// Find the absolute bounds of the star field we must draw.
-	int minX = pos.X() + (Screen::Left() - borderX) / zoom;
-	int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
-	int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
-	int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
-	// Round down to the start of the nearest tile.
-	minX &= ~(TILE_SIZE - 1l);
-	minY &= ~(TILE_SIZE - 1l);
+		// Stars this far beyond the border may still overlap the screen.
+		double borderX = fabs(vel.X()) + 1.;
+		double borderY = fabs(vel.Y()) + 1.;
+		// Find the absolute bounds of the star field we must draw.
+		int minX = pos.X() + (Screen::Left() - borderX) / zoom;
+		int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
+		int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
+		int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
+		// Round down to the start of the nearest tile.
+		minX &= ~(TILE_SIZE - 1l);
+		minY &= ~(TILE_SIZE - 1l);
 	
-	for(int gy = minY; gy < maxY; gy += TILE_SIZE)
-		for(int gx = minX; gx < maxX; gx += TILE_SIZE)
-		{
-			Point off = Point(gx, gy) - pos;
-			GLfloat translate[2] = {
-				static_cast<float>(off.X()),
-				static_cast<float>(off.Y())
-			};
-			glUniform2fv(translateI, 1, translate);
-			
-			int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
-			int first = 6 * tileIndex[index];
-			int count = 6 * tileIndex[index + 1] - first;
-			glDrawArrays(GL_TRIANGLES, first, count);
-		}
+		for(int gy = minY; gy < maxY; gy += TILE_SIZE)
+			for(int gx = minX; gx < maxX; gx += TILE_SIZE)
+			{
+				Point off = Point(gx, gy) - pos;
+				GLfloat translate[2] = {
+					static_cast<float>(off.X()),
+					static_cast<float>(off.Y())
+				};
+				glUniform2fv(translateI, 1, translate);
+				
+				int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
+				int first = 6 * tileIndex[index];
+				int count = 6 * tileIndex[index + 1] - first;
+				glDrawArrays(GL_TRIANGLES, first, count);
+			}
 	
-	glBindVertexArray(0);
-	glUseProgram(0);
+		glBindVertexArray(0);
+		glUseProgram(0);
+	}
 	
 	// Draw the background haze unless it is disabled in the preferences.
 	if(!Preferences::Has("Draw background haze"))
@@ -176,6 +181,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 void StarField::SetUpGraphics()
 {
 	static const char *vertexCode =
+		"// vertex starfield shader\n"
 		"uniform mat2 rotate;\n"
 		"uniform vec2 translate;\n"
 		"uniform vec2 scale;\n"
@@ -196,6 +202,7 @@ void StarField::SetUpGraphics()
 		"}\n";
 
 	static const char *fragmentCode =
+		"// fragment starfield shader\n"
 		"in float fragmentAlpha;\n"
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
@@ -267,7 +274,7 @@ void StarField::MakeStars(int stars, int width)
 	{
 		for(int j = 0; j < 10; ++j)
 		{
-			int index = Random::Int(off.size()) & ~1;
+			int index = Random::Int(static_cast<uint32_t>(off.size())) & ~1;
 			x += off[index];
 			y += off[index + 1];
 			x &= widthMod;
@@ -323,18 +330,19 @@ void StarField::MakeStars(int stars, int width)
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 	
-	// connect the xy to the "vert" attribute of the vertex shader
+	// Connect the xy to the "vert" attribute of the vertex shader.
+	constexpr auto stride = 4 * sizeof(GLfloat);
 	glEnableVertexAttribArray(offsetI);
 	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), nullptr);
+		stride, nullptr);
 	
 	glEnableVertexAttribArray(sizeI);
 	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 	
 	glEnableVertexAttribArray(cornerI);
 	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
 	
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

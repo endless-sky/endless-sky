@@ -239,6 +239,8 @@ namespace {
 			png_set_gray_to_rgb(png);
 		if(colorType & PNG_COLOR_MASK_COLOR)
 			png_set_bgr(png);
+		// Let libpng handle any interlaced image decoding.
+		png_set_interlace_handling(png);
 		png_read_update_info(png, info);
 		
 		// Read the file.
@@ -265,7 +267,10 @@ namespace {
 		jpeg_decompress_struct cinfo;
 		struct jpeg_error_mgr jerr;
 		cinfo.err = jpeg_std_error(&jerr);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
 		jpeg_create_decompress(&cinfo);
+#pragma GCC diagnostic pop
 		
 		jpeg_stdio_src(&cinfo, file);
 		jpeg_read_header(&cinfo, true);

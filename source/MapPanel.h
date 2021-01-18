@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <map>
 #include <string>
@@ -49,24 +49,28 @@ public:
 	static const int SHOW_REPUTATION = -6;
 	static const int SHOW_DANGER = -7;
 	
-	static const double OUTER;
-	static const double INNER;
-	static const double LINK_WIDTH;
-	static const double LINK_OFFSET;
+	static const float OUTER;
+	static const float INNER;
+	static const float LINK_WIDTH;
+	static const float LINK_OFFSET;
 	
 	
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
+	virtual void Step() override;
 	virtual void Draw() override;
 	
 	void DrawButtons(const std::string &condition);
-	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
+	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
+	
+	// Map panels allow fast-forward to stay active.
+	virtual bool AllowFastForward() const override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -100,13 +104,20 @@ protected:
 	
 	DistanceMap distance;
 	
-	const System *playerSystem;
+	// The system in which the player is located.
+	const System &playerSystem;
+	// The (non-null) system which is currently selected.
 	const System *selectedSystem;
+	// The selected planet, if any.
 	const Planet *selectedPlanet = nullptr;
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
 	
+	double playerJumpDistance;
+	
 	Point center;
+	Point recenterVector;
+	int recentering = 0;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
@@ -114,11 +125,11 @@ protected:
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
-	// Systems in which your escorts are located.
-	std::map<const System *, std::pair<int, int>> escortSystems;
+	// Systems in which your (active and parked) escorts and stored outfits are located.
+	std::map<const System *, std::pair<std::pair<int, int>, int>> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
-	void CenterOnSystem(const System *system);
+	void CenterOnSystem(const System *system, bool immediate = false);
 	
 	// Cache the map layout, so it doesn't have to be re-calculated every frame.
 	// The cache must be updated when the coloring mode changes.
