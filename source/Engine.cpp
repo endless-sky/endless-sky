@@ -2051,7 +2051,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	
 	// One of your ships picked up this flotsam. Describe who it was.
 	string name = (!collector->GetParent() ? "You" :
-			"Your ship \"" + collector->Name() + "\"") + " picked up ";
+			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;

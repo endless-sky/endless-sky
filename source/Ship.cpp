@@ -3699,8 +3699,6 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 // A helper method for taking damage from either a projectile or a hazard.
 int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast)
 {
-	int type = 0;
-	
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Scale blast damage based on the distance from the blast
@@ -3774,6 +3772,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Report what happened to this ship from this weapon.
+	int type = 0;
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;

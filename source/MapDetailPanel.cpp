@@ -223,7 +223,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			SetCommodity((y - tradeY) / 20);
 			return true;
 		}
-		// Clicking the system name toggles between viewing system danger levels and reputation.
+		// Clicking the system name toggles between the systems' danger levels and the player's reputation with their government.
 		else if(y < governmentY)
 			SetCommodity(commodity == SHOW_DANGER ? SHOW_REPUTATION : SHOW_DANGER);
 		// Clicking the government name activates the view of system / planet ownership.
