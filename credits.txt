@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.11
+version 0.9.12
 
 This game is open source.
 To report bugs, give feedback,
@@ -11,7 +11,7 @@ artwork, or programming, visit:
 
 Creator and Lead Programmer
   Michael Zahniser
-  
+
 Developers
   Amazinite
   Pointedstick
@@ -20,12 +20,12 @@ Developers
 Major Programming
   AdamKauffman
   Amazinite
-  comnom
   CyberShadow
   db47h
   Elyssaen
   EndrosG
   flaviojs
+  Frederick Goy IV
   guillochon
   Hadron1776
   kozbot
@@ -73,7 +73,7 @@ Artwork
   Frederick Goy IV (CC-BY-SA 4.0)
   Zachary Siple (CC-BY-SA 4.0)
   Darcy Manoel (CC-BY-SA 4.0)
-  Lia Gerty (CC-BY-SA 4.0) 
+  Lia Gerty (CC-BY-SA 4.0)
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
@@ -240,6 +240,7 @@ contributed to Endless Sky:
   tboby
   tehhowch
   temtemy
+  thebigh2014
   TheMarksman-ES
   thenerdfreak
   TheUnfetteredOne
@@ -268,6 +269,6 @@ contributed to Endless Sky:
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the nightly & continuous builds 
-that make so much of this work 
-possible.
+the ESLauncher, nightly, & 
+continuous builds that make so
+much of this work possible.

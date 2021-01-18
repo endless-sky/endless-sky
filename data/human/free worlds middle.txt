@@ -865,7 +865,7 @@ mission "FW Northern 2B"
 	on offer
 		conversation
 			`As you approach the planet, Freya sits down at your ship's sensor console and begins fiddling with some settings that you didn't even know existed. She seems entirely focused, and clearly knows what she is doing. You recall being told that she is an engineer, not a politician or a military commander, which makes the fact that she has been able to step up as such a strong leader in the Council very impressive.`
-			`	"Yup, eight different stations," she says finally, "including this one that I nearly overlooked, buried twenty feet under the ice, that is acting as a relay for them." She points out each station on your map, and you fly by each one and destroy it. "Now," she says, "that was what had me most worried, but for the sake of completeness we should sweep the other new worlds, too. Let's go to <planet> next."`
+			`	"Yup, eight different stations," she says finally, "including this one that I nearly overlooked, buried ten meters under the ice, that is acting as a relay for them." She points out each station on your map, and you fly by each one and destroy it. "Now," she says, "that was what had me most worried, but for the sake of completeness we should sweep the other new worlds, too. Let's go to <planet> next."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -2026,7 +2026,7 @@ mission "FW Defend New Tibet"
 		has "FW Rand 1B: done"
 	
 	on offer
-		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Gemini. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
+		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Geminus. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
 		conversation
 			`The fleet in orbit around Wayfarer is pitifully small, surely not enough to take on more than a couple of Navy capital ships. JJ orders one of their communication officers to try to establish a secure link to Bourne or to any Free Worlds post on the other side of the Navy blockade. After about ten minutes, the officer returns and says, "Sir, we're receiving communications from New Tibet. You need to talk to them."`
 			`	"Our fleet is there?" asks JJ.`
@@ -2119,6 +2119,7 @@ mission "FW Defend New Tibet"
 		event "fw armistice"
 		event "fw tarazed republic"
 		event "end battle of alioth"
+		log "People" "Sawyer" `A defector of the Syndicate who decided to risk his life to stop the war between the Republic and the Free Worlds.`
 		conversation
 			`It doesn't take long to find the monastery that contacted you earlier, but nothing is left of it but burnt-out shells of buildings. You land and look around for survivors. You find several corpses dressed in maroon robes, some of them badly burnt, but no sign of the defector or the monk you spoke with earlier.`
 			choice

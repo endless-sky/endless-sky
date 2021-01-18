@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 
+#include <algorithm>
 #include <mutex>
 
 using namespace std;
@@ -105,6 +106,37 @@ namespace {
 		}
 		return true;
 	}
+	
+	// Validity check for this filter's sets. Only one element must be valid.
+	template <class T>
+	bool CheckValidity(const set<const T *> &c)
+	{
+		return c.empty() || any_of(c.begin(), c.end(),
+			[](const T *item) noexcept -> bool
+			{
+				return item->IsValid();
+			});
+	}
+	bool CheckValidity(const list<LocationFilter> &l)
+	{
+		return l.empty() || any_of(l.begin(), l.end(),
+			[](const LocationFilter &f) noexcept -> bool
+			{
+				return f.IsValid();
+			});
+	}
+	bool CheckValidity(const list<set<const Outfit *>> &l)
+	{
+		if(l.empty())
+			return true;
+		
+		for(auto &&outfits : l)
+			for(auto &&outfit : outfits)
+				if(outfit->IsDefined())
+					return true;
+		
+		return false;
+	}
 }
 
 
@@ -161,7 +193,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Planet *planet : planets)
-					out.Write(planet->Name());
+					out.Write(planet->TrueName());
 			}
 			out.EndChild();
 		}
@@ -201,8 +233,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Outfit *outfit : it)
-					if(!outfit->Name().empty())
-						out.Write(outfit->Name());
+					out.Write(outfit->Name());
 			}
 			out.EndChild();
 		}
@@ -234,10 +265,54 @@ bool LocationFilter::IsEmpty() const
 
 
 
+// Check if all of this filter's named content is invalid (e.g. its known members only
+// match to content that is currently unavailable). If at least one valid parameter
+// from every restriction is valid, then this filter is valid.
+bool LocationFilter::IsValid() const
+{
+	if(IsEmpty())
+		return true;
+	
+	if(!CheckValidity(planets))
+		return false;
+	
+	// Attributes are always considered valid.
+	
+	if(!CheckValidity(systems))
+		return false;
+	
+	// Governments are always considered valid.
+	
+	// The "center" of a "near <system>" filter must be valid.
+	if(center && !center->IsValid())
+		return false;
+	
+	if(!CheckValidity(outfits))
+		return false;
+	
+	if(!shipCategory.empty())
+	{
+		// At least one desired category must be valid.
+		auto categories = set<string>(Ship::CATEGORIES.begin(), Ship::CATEGORIES.end());
+		if(!SetsIntersect(shipCategory, categories))
+			return false;
+	}
+	
+	if(!CheckValidity(notFilters))
+		return false;
+	
+	if(!CheckValidity(neighborFilters))
+		return false;
+	
+	return true;
+}
+
+
+
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
-	if(!planet || !planet->GetSystem())
+	if(!planet || !planet->IsValid())
 		return false;
 	
 	// If a ship class was given, do not match planets.
@@ -370,7 +445,7 @@ const System *LocationFilter::PickSystem(const System *origin) const
 	for(const auto &it : GameData::Systems())
 	{
 		// Skip entries with incomplete data.
-		if(it.second.Name().empty())
+		if(!it.second.IsValid())
 			continue;
 		if(Matches(&it.second, origin))
 			options.push_back(&it.second);
@@ -381,7 +456,7 @@ const System *LocationFilter::PickSystem(const System *origin) const
 
 
 // Pick a random planet that matches this filter, based on the given origin.
-const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance) const
+const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance, bool requireSpaceport) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
@@ -389,11 +464,12 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 	{
 		const Planet &planet = it.second;
 		// Skip entries with incomplete data.
-		if(planet.Name().empty() || !planet.GetSystem())
+		if(!planet.IsValid())
 			continue;
-		// Skip planets that do not offer jobs or missions.
-		if(planet.IsWormhole() || !planet.HasSpaceport() || (!hasClearance && !planet.CanLand()))
-			continue;
+		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
+		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
+			if(planets.empty() || !planets.count(&planet))
+				continue;
 		if(Matches(&planet, origin))
 			options.push_back(&planet);
 	}
@@ -470,24 +546,10 @@ void LocationFilter::LoadChild(const DataNode &child)
 	else if(key == "category" && child.Size() >= 2 + isNot)
 	{
 		// Ship categories cannot be combined in an "and" condition.
-		static const set<string> allowed(Ship::CATEGORIES.begin(), Ship::CATEGORIES.end());
-		for(int i = 1 + isNot; i < child.Size(); ++i)
-		{
-			const string &value = child.Token(i);
-			if(allowed.count(value))
-				shipCategory.insert(value);
-			else
-				child.PrintTrace("Invalid ship category: \"" + value + "\":");
-		}
+		auto firstIt = next(child.Tokens().begin(), 1 + isNot);
+		shipCategory.insert(firstIt, child.Tokens().end());
 		for(const DataNode &grand : child)
-			for(int i = 0; i < grand.Size(); ++i)
-			{
-				const string &value = grand.Token(i);
-				if(allowed.count(value))
-					shipCategory.insert(value);
-				else
-					child.PrintTrace("Invalid ship category: \"" + value + "\":");
-			}
+			shipCategory.insert(grand.Tokens().begin(), grand.Tokens().end());
 	}
 	else if(key == "outfits" && child.Size() >= 2 + isNot)
 	{
@@ -509,7 +571,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
 {
-	if(!system)
+	if(!system || !system->IsValid())
 		return false;
 	if(!systems.empty() && !systems.count(system))
 		return false;

@@ -180,7 +180,7 @@ outfit "Scram Drive"
 	"scram drive" .2
 	"jump fuel" 150
 	"hyperdrive" 1
-	description "A Scram Drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
+	description "A scram drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
 
 outfit "Jump Drive"
 	category "Systems"
@@ -194,6 +194,7 @@ outfit "Jump Drive"
 	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
 
 outfit "Jump Drive (Broken)"
+	plural "Jump Drives (Broken)"
 	category "Systems"
 	cost 25000
 	thumbnail "outfit/jump drive (broken)"
@@ -263,7 +264,7 @@ outfit "Cloaking Device"
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
-	unplunderable 1
+	"unplunderable" 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 
 
@@ -276,7 +277,7 @@ outfit "Outfits Expansion"
 	"cargo space" -20
 	"cooling inefficiency" 1
 	"heat dissipation" -.01
-	unplunderable 1
+	"unplunderable" 1
 	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
 	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
 
@@ -287,7 +288,7 @@ outfit "Cargo Expansion"
 	"mass" 5
 	"cargo space" 15
 	"outfit space" -20
-	unplunderable 1
+	"unplunderable" 1
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
 
 outfit "Bunk Room"
@@ -297,7 +298,7 @@ outfit "Bunk Room"
 	"mass" 5
 	"bunks" 4
 	"outfit space" -20
-	unplunderable 1
+	"unplunderable" 1
 	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
 
 outfit "Small Bunk Room"
@@ -307,7 +308,7 @@ outfit "Small Bunk Room"
 	"mass" 3
 	"bunks" 2
 	"outfit space" -12
-	unplunderable 1
+	"unplunderable" 1
 	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
 outfit "Brig"
@@ -345,7 +346,7 @@ outfit "Interference Plating"
 	"mass" 4
 	"outfit space" -4
 	"scan interference" .5
-	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
+	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. It even helps against scans at spaceports, so you can more reliably land to refuel without getting caught."
 
 
 
@@ -402,12 +403,17 @@ outfit "Pilot's License"
 	category "Special"
 	cost 50000
 	thumbnail "outfit/license"
-	description "Without a pilot's license, you cannot purchase a ship on a Republic planet. And if you buy an unlicensed ship on another planet and then bring it into Republic space, you can be fined until you cough up the money for a license. Needless to say, this policy is not terribly popular with freelance merchant captains."
+	description "For much of the Republic's nearly three century long history, being able to pilot your own starship was limited only by your ability to purchase one. But at the turn of the millennium in an attempt to increase tax revenue, the Republic Parliament passed a law requiring that all ship captains purchase a pilot's license, and for no small fee at that. Needless to say, this policy is not terribly popular with freelance merchant captains."
 
 outfit "Navy License"
 	category "Special"
 	thumbnail "outfit/navy license"
 	description "It is unusual, but not unheard of, for private citizens to be given the right to purchase Navy ships for their own private use. Recently, certain rich worlds have also begun petitioning Parliament for special permission to purchase Navy warships for their private security forces."
+
+outfit "Navy Auxiliary License"
+	category "Special"
+	thumbnail "outfit/auxiliary license"
+	description "It is a particularly rare occurrence for a Navy Auxiliary, of any kind, to be owned for private use."
 
 outfit "Navy Cruiser License"
 	category "Special"
@@ -422,7 +428,7 @@ outfit "Navy Carrier License"
 outfit "Militia License"
 	category "Special"
 	thumbnail "outfit/militia license"
-	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only ships."
+	description "This is the standard issue license for all pilots that have enlisted in a local militia, but with the formation of the Free Worlds it has also become a license given to all those that fight for the Free Worlds cause, allowing pilots to fly the colors of the Free Worlds and purchase unique ships that the fledgling government has developed."
 
 outfit "City-Ship License"
 	category "Special"

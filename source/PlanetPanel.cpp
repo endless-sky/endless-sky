@@ -14,11 +14,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Information.h"
 
+#include "text/alignment.hpp"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
@@ -52,7 +53,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring.reset(new HiringPanel(player));
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
 	
@@ -68,7 +69,7 @@ void PlanetPanel::Step()
 {
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
-	if(flagship && flagship->CanBeFlagship() && (player.MustLaunch() || requestedLaunch))
+	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
 	{
 		TakeOffIfReady();
 		return;
@@ -145,11 +146,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
-		requestedLaunch = true;
-	else if(key == 'l')
 	{
-		selectedPanel = nullptr;
+		requestedLaunch = true;
+		return true;
 	}
+	else if(key == 'l')
+		selectedPanel = nullptr;
 	else if(key == 't' && hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
 	{
 		selectedPanel = trading.get();
@@ -234,7 +236,7 @@ void PlanetPanel::TakeOffIfReady()
 	}
 	
 	// Check whether the player can be warned before takeoff.
-	if(player.MustLaunch())
+	if(player.ShouldLaunch())
 	{
 		TakeOff();
 		return;
@@ -294,7 +296,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
-			out << "If you take off now, you will fail a mission due to not having enough ";
+			out << "If you take off now you will fail a mission due to not having enough ";
 			
 			if(overbooked > 0)
 			{
@@ -334,7 +336,7 @@ void PlanetPanel::TakeOffIfReady()
 		// Warn about a cleared travel plan or destination.
 		else
 		{
-			out << "If you take off now, your ";
+			out << "If you take off now your ";
 			if(invalidPlan)
 				out << "current travel plan will be cleared as parts of it are";
 			else

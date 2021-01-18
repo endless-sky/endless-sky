@@ -12,13 +12,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+#include "text/alignment.hpp"
+#include "Angle.h"
 #include "Color.h"
 #include "Command.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "Dialog.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "text/layout.hpp"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "pi.h"
@@ -26,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "RingShader.h"
 #include "Screen.h"
@@ -33,11 +39,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
+#include "text/truncate.hpp"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -96,6 +104,8 @@ void MapDetailPanel::Step()
 	MapPanel::Step();
 	if(!player.GetPlanet())
 		DoHelp("map");
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced ports");
 }
 
 
@@ -139,7 +149,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
-		const set<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
+		const set<const System *> &links = hasJumpDrive ? source->JumpNeighbors(player.Flagship()->JumpRange()) : source->Links();
 		
 		// For each link we can travel from this system, check whether the link
 		// is closer to the current angle (while still being larger) than any
@@ -152,9 +162,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 			// player has not visited either end of them.
 			if(it == original)
 				continue;
-			if(!player.HasSeen(it))
+			if(!player.HasSeen(*it))
 				continue;
-			if(!(hasJumpDrive || player.HasVisited(it) || player.HasVisited(source)))
+			if(!(hasJumpDrive || player.HasVisited(*it) || player.HasVisited(*source)))
 				continue;
 			
 			// Generate a sortable angle with vector length as a tiebreaker.
@@ -266,6 +276,35 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
+	return true;
+}
+
+
+
+bool MapDetailPanel::RClick(int x, int y)
+{
+	if(!Preferences::Has("System map sends move orders"))
+		return true;
+	// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
+	// positions aren't hard-coded.
+	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
+	{
+		// Only handle clicks on the actual orbits element, rather than the whole UI region.
+		// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
+		const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
+		auto uiClick = Point(x, y) - orbitCenter;
+		if(uiClick.Length() > 130)
+			return true;
+		
+		// Only issue movement orders if the player is in-flight.
+		if(player.GetPlanet())
+			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
+		else if(!player.HasVisited(*selectedSystem))
+			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
+		else
+			player.SetEscortDestination(selectedSystem, uiClick / scale);
+	}
+	
 	return true;
 }
 
@@ -408,14 +447,15 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(systemSprite, uiPoint);
 	
 	const Font &font = FontSet::Get(14);
-	string systemName = player.KnowsName(selectedSystem) ?
+	string systemName = player.KnowsName(*selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
-	font.Draw(systemName, uiPoint + Point(-90., -7.), medium);
+	const auto alignLeft = Layout(140, Truncate::BACK);
+	font.Draw({systemName, alignLeft}, uiPoint + Point(-90., -7.), medium);
 	
 	governmentY = uiPoint.Y() + 10.;
-	string gov = player.HasVisited(selectedSystem) ?
+	string gov = player.HasVisited(*selectedSystem) ?
 		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
-	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
+	font.Draw({gov, alignLeft}, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
@@ -424,7 +464,7 @@ void MapDetailPanel::DrawInfo()
 	
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
-	if(player.HasVisited(selectedSystem))
+	if(player.HasVisited(*selectedSystem))
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
@@ -440,8 +480,8 @@ void MapDetailPanel::DrawInfo()
 				
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[planet] = uiPoint.Y() - 60;
-			
-				font.Draw(object.Name(),
+				
+				font.Draw({object.Name(), alignLeft},
 					uiPoint + Point(-70., -52.),
 					planet == selectedPlanet ? medium : dim);
 				
@@ -471,7 +511,7 @@ void MapDetailPanel::DrawInfo()
 					PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
 						10.f, 10.f, 0.f, medium);
 				
-				bool hasVisited = player.HasVisited(planet);
+				bool hasVisited = player.HasVisited(*planet);
 				font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
 					uiPoint + Point(-70., 28.),
 					dim);
@@ -503,7 +543,7 @@ void MapDetailPanel::DrawInfo()
 		
 		string price;
 		
-		bool hasVisited = player.HasVisited(selectedSystem);
+		bool hasVisited = player.HasVisited(*selectedSystem);
 		if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
 		{
 			int value = selectedSystem->Trade(commodity.name);
@@ -528,8 +568,8 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (hasVisited ? "n/a" : "?");
 		
-		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
-		font.Draw(price, pos, color);
+		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
+		font.Draw({price, alignRight}, uiPoint, color);
 		
 		if(isSelected)
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
@@ -538,7 +578,7 @@ void MapDetailPanel::DrawInfo()
 	}
 	
 	if(selectedPlanet && !selectedPlanet->Description().empty()
-			&& player.HasVisited(selectedPlanet) && !selectedPlanet->IsWormhole())
+			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
@@ -548,7 +588,7 @@ void MapDetailPanel::DrawInfo()
 		SpriteShader::Draw(panelSprite, pos);
 		
 		WrappedText text(font);
-		text.SetAlignment(WrappedText::JUSTIFIED);
+		text.SetAlignment(Alignment::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
@@ -566,7 +606,7 @@ void MapDetailPanel::DrawOrbits()
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
 	
-	if(!selectedSystem || !player.HasVisited(selectedSystem))
+	if(!player.HasVisited(*selectedSystem))
 		return;
 	
 	const Font &font = FontSet::Get(14);
@@ -577,7 +617,7 @@ void MapDetailPanel::DrawOrbits()
 		maxDistance = max(maxDistance, object.Position().Length() + object.Radius());
 	
 	// 2400 -> 120.
-	double scale = .03;
+	scale = .03;
 	maxDistance *= scale;
 	
 	if(maxDistance > 115.)
@@ -631,6 +671,30 @@ void MapDetailPanel::DrawOrbits()
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0.f, color);
 	}
 	
+	// If the player has a pending order for escorts to move to a new system, draw it.
+	if(player.HasEscortDestination())
+	{
+		auto pendingOrder = player.GetEscortDestination();
+		if(pendingOrder.first == selectedSystem)
+		{
+			// Draw an X (to mark the spot, of course).
+			auto uiPoint = (pendingOrder.second * scale) + orbitCenter;
+			const Color *color = GameData::Colors().Get("map orbits fleet destination");
+			// TODO: Add a "batch pointershader" method that takes the shape description, a count, and a reference point+orientation
+			// Use that method below and in Engine for drawing target reticles.
+			auto a = Angle{45.};
+			auto inc = Angle{90.};
+			
+			PointerShader::Bind();
+			for(int i = 0; i < 4; ++i)
+			{
+				PointerShader::Add(uiPoint, a.Unit(), 6.f, 6.f, -3.f, *color);
+				a += inc;
+			}
+			PointerShader::Unbind();
+		}
+	}
+	
 	// Draw the selection ring on top of everything else.
 	for(const StellarObject &object : selectedSystem->Objects())
 		if(selectedPlanet && object.GetPlanet() == selectedPlanet)
@@ -640,8 +704,9 @@ void MapDetailPanel::DrawOrbits()
 	
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
-	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
-	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
+	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
+	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}},
+		namePos, *GameData::Colors().Get("medium"));
 }
 
 

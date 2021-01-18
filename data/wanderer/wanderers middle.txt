@@ -1052,15 +1052,6 @@ mission "Wanderers: Mind 5"
 
 
 
-government " Kor Mereti "
-	"display name" "Kor Mereti"
-	swizzle 5
-	language "Korath"
-	"attitude toward"
-		"Wanderer" -.01
-		"Kor Mereti" -.01
-	"player reputation" -1000
-
 event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
@@ -1072,7 +1063,7 @@ event "wanderers: kor mereti friendly"
 		"attitude toward"
 			"Kor Mereti" 0
 	"reputation: Kor Mereti" >?= 1
-	"reputation:  Kor Mereti " = -1000
+	"reputation: Kor Mereti (Hostile)" = -1000
 	planet "Rekat Moraski"
 		"required reputation" 1000
 
@@ -1111,7 +1102,7 @@ mission "Wanderers: Mind 6"
 	on enter
 		dialog `This star system is in utter chaos. A vast number of Mereti drones are here. Some are attacking each other. Others are attacking the Wanderers. And still others, sadly, seem intent on attacking you. You'll have to hold them off as long as you can, while trying to stay on the good side of the drones that now seem to be defending you.`
 	npc disable
-		government " Kor Mereti "
+		government "Kor Mereti (Hostile)"
 		personality staying heroic
 		fleet
 			names "kor mereti"
@@ -1594,7 +1585,7 @@ mission "Wanderers: Sestor Attack"
 		conversation
 			`A few hours after you present the scanning data to the scientists, you are called into a meeting with the Wanderer leaders. "We may have found the [facility, center]," says, Tele'ek, "but we are not [certain, confident]. There is indeed an underground [bunker, fortress] on one of the planets, but it must have been [damaged, overrun] in the course of their war." He calls up a holographic display of the facility, showing that one section of it has been breached, and a tunnel leads from there to the surface.`
 			choice
-				`	"You're probably right that they wouldn't have kept using the facility once it was been breached."`
+				`	"You're probably right that they wouldn't have kept using the facility once it had been breached."`
 				`	"Is there any sign that they tried to rebuild it after the damage? Or that it's still in use?"`
 
 			`	Iriket walks up closer to the display to look on it. She adjusts some controls, and an overlay shows up in another color. "The Kor Efret said their [civil war, cultural collapse] ended a century ago, yes?" she asks. You nod. She walks around the display, examining it carefully, then says, "These [cracks, fractures] in the [bedrock?] have not yet been [infiltrated, saturated] with ground water. This damage is not a century old. It is from at most one [month?] ago."`
@@ -1862,7 +1853,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					decline
 			
 			label approach
-			`	You get a better view of the Behemoth - the "Heart of Gold", as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
+			`	You get a better view of the Behemoth - the Heart of Gold, as indicated on the ship's stern - as you walk up to it. The rear of the ship is badly hammered, and black scorch marks streak forward across the hull. You can't help but notice that at several projectile entry points along the hull, the metal is bent smoothly inwards, almost as if the penetrator seared or melted its way through the ship's armor. The captain of the Behemoth looks up from his inspection. Seeing you, he says, "We were lucky to get out of that one alive!"`
 			choice
 				`	"How did your ship end up in such a state?"`
 				`	"Was this beauty the victim of a pirate attack?"`
@@ -1875,7 +1866,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"You should be glad you're still in one piece."`
 					goto glad1
 					
-			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline."`
+			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1883,7 +1874,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 					
 			label where
-			`	"Well," the pilot says, "we were doing a large cargo run to Farpoint in the Alnitak system, when two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. I had to jump the ship in atmosphere to stop us from getting shredded by their strange melting weaponry. I immediately reported the attack to a desk clerk at the Navy base in the neighboring system Saiph, but their servers show no logs of any unidentified ships beyond Farpoint, so I guess they turned around after scouting out the Alnitak system."`
+			`	"Well," the pilot says, "we were on a deadline to do a large cargo run to Farpoint, when two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. I had to jump the ship in atmosphere to stop us from getting shredded by their strange melting weaponry. I immediately reported the attack to a desk clerk at the Navy base in the neighboring system Saiph, but their servers show no logs of any unidentified ships beyond Farpoint, so I guess they turned around after scouting out the Alnitak system. Just my luck to be in the system the moment those things entered, too, because I missed the delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1891,7 +1882,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 			
 			label glad1
-			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
+			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You really are lucky as hell to be here today."`
 					goto glad
@@ -2918,7 +2909,7 @@ mission "Wanderers: Sestor: Scan Drones"
 				`	"Do you think they are weakened enough that we can destroy them?"`
 				`	"Do you think there is any way we could regain control of them?"`
 					goto control
-			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?`
+			`	"Probably," he says, "but we would prefer a more [elegant, peaceful] solution if possible. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] that might help us to learn to control them or shut them down?"`
 				goto end
 			label control
 			`	"That is our [hope, desire]," he says. "Or, barring that, at least we may [disable, shut down] the factories. Would you be willing to [visit, observe] their star systems again, and collect [data, measurements] on the drones?"`
@@ -3392,6 +3383,8 @@ mission "Wanderers: Sestor: Final"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
+		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
+		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
@@ -3407,6 +3400,15 @@ mission "Wanderers: Sestor: Patch"
 		has "event: wanderers: sestor eliminated"
 	on offer
 		event "wanderers: sestor planets unrestricted"
+		fail
+
+mission "Wanderers: Sestor: Patch 2"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	on offer
+		event "wanderers taking jobs from kor efreti" 5
 		fail
 
 event "wanderers: sestor planets unrestricted"
@@ -3428,3 +3430,23 @@ event "wanderers: sestor planets unrestricted"
 	planet "Sopi Lefarkata"
 		"required reputation" 0
 		spaceport clear
+
+event "wanderers taking jobs from kor efreti"
+	system "Sumprast"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Sevrelect"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kashikt"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Dokdobaru"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Furmeliki"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Meftarkata"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Skeruto"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kaliptari"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Solifar"
+		add fleet "Wanderer Kor Efret Traders" 1500		

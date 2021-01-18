@@ -12,11 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipInfoPanel.h"
 
+#include "text/alignment.hpp"
 #include "Command.h"
 #include "Dialog.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -31,7 +33,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -39,7 +42,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const double WIDTH = 250.;
+	constexpr double WIDTH = 250.;
+	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
 }
 
 
@@ -60,6 +64,13 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
 	}
 	
 	UpdateInfo();
+}
+
+
+
+void ShipInfoPanel::Step ()
+{
+	DoHelp("ship info");
 }
 
 
@@ -98,9 +109,7 @@ void ShipInfoPanel::Draw()
 	interface->Draw(interfaceInfo, this);
 	
 	// Draw all the different information sections.
-	zones.clear();
-	commodityZones.clear();
-	plunderZones.clear();
+	ClearZones();
 	Rectangle cargoBounds = interface->GetBox("cargo");
 	DrawShipStats(interface->GetBox("stats"));
 	DrawOutfits(interface->GetBox("outfits"), cargoBounds);
@@ -138,7 +147,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?"));
+		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
 	else if(canEdit && (key == 'P' || (key == 'p' && shift)))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
@@ -257,6 +266,7 @@ void ShipInfoPanel::UpdateInfo()
 {
 	draggingIndex = -1;
 	hoverIndex = -1;
+	ClearZones();
 	if(shipIt == player.Ships().end())
 		return;
 	
@@ -272,6 +282,15 @@ void ShipInfoPanel::UpdateInfo()
 
 
 
+void ShipInfoPanel::ClearZones()
+{
+	zones.clear();
+	commodityZones.clear();
+	plunderZones.clear();
+}
+
+
+
 void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
@@ -282,21 +301,16 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Ship &ship = **shipIt;
-	const Font &font = FontSet::Get(14);
 	
-	// Table attributes.
+	// Two columns of opposite alignment are used to simulate a single visual column.
 	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(WIDTH - 20, Table::RIGHT);
-	table.SetUnderline(0, WIDTH - 20);
+	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
+	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE});
+	table.SetUnderline(0, COLUMN_WIDTH);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
-	// Draw the ship information.
-	table.Draw("ship:", dim);
-	table.Draw(font.TruncateMiddle(ship.Name(), WIDTH - 50), bright);
-	
-	table.Draw("model:", dim);
-	table.Draw(ship.ModelName(), bright);
+	table.DrawTruncatedPair("ship:", dim, ship.Name(), bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair("model:", dim, ship.ModelName(), bright, Truncate::MIDDLE, true);
 	
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
@@ -314,11 +328,11 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	Color bright = *GameData::Colors().Get("bright");
 	const Ship &ship = **shipIt;
 	
-	// Table attributes.
+	// Two columns of opposite alignment are used to simulate a single visual column.
 	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(WIDTH - 20, Table::RIGHT);
-	table.SetUnderline(0, WIDTH - 20);
+	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
+	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT});
+	table.SetUnderline(0, COLUMN_WIDTH);
 	Point start = bounds.TopLeft() + Point(10., 8.);
 	table.DrawAt(start);
 	
@@ -334,7 +348,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		if(table.GetRowBounds().Bottom() + 40. > bounds.Bottom())
 		{
 			start += Point(WIDTH, 0.);
-			if(start.X() + WIDTH - 20 > bounds.Right())
+			if(start.X() + COLUMN_WIDTH > bounds.Right())
 				break;
 			table.DrawAt(start);
 		}
@@ -348,7 +362,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
 			{
 				start += Point(WIDTH, 0.);
-				if(start.X() + WIDTH - 20 > bounds.Right())
+				if(start.X() + COLUMN_WIDTH > bounds.Right())
 					break;
 				table.DrawAt(start);
 				table.Draw(category, bright);
@@ -356,9 +370,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 			}
 			
 			// Draw the outfit name and count.
-			table.Draw(outfit->Name(), dim);
-			string number = to_string(ship.OutfitCount(outfit));
-			table.Draw(number, bright);
+			table.DrawTruncatedPair(outfit->Name(), dim,
+				to_string(ship.OutfitCount(outfit)), bright, Truncate::BACK, false);
 		}
 		// Add an extra gap in between categories.
 		table.DrawGap(10.);
@@ -436,19 +449,21 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
+	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
 		if(hardpoint.GetOutfit())
-			name = font.Truncate(hardpoint.GetOutfit()->Name(), 150);
+			name = hardpoint.GetOutfit()->Name();
 		
 		bool isRight = (hardpoint.GetPoint().X() >= 0.);
 		bool isTurret = hardpoint.IsTurret();
 		
 		double &y = nextY[isRight][isTurret];
-		double x = centerX + (isRight ? LABEL_DX : (-LABEL_DX - font.Width(name)));
+		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
-		font.Draw(name, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
+		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 		
@@ -500,9 +515,9 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(WIDTH - 20, Table::RIGHT);
-	table.SetUnderline(-5, WIDTH - 15);
+	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
+	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT});
+	table.SetUnderline(-5, COLUMN_WIDTH + 5);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	double endY = bounds.Bottom() - 30. * (cargo.Passengers() != 0);

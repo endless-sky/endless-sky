@@ -12,24 +12,27 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PreferencesPanel.h"
 
+#include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -45,6 +48,7 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string VSYNC_SETTING = "VSync";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
@@ -52,6 +56,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string SHIP_OUTLINES = "Ship outlines in shops";
 }
 
 
@@ -139,6 +144,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
+			// For some settings, clicking the option does more than just toggle a
+			// boolean state keyed by the option's name.
 			if(zone.Value() == ZOOM_FACTOR)
 			{
 				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
@@ -165,9 +172,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				if(!Preferences::ZoomViewIn())
 					while(Preferences::ZoomViewOut()) {}
 			}
-			
-			// Update saved preferences.
-			if(zone.Value() == EXPEND_AMMO)
+			else if(zone.Value() == VSYNC_SETTING)
+			{
+				if(!Preferences::ToggleVSync())
+					GetUI()->Push(new Dialog(
+						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
+			}
+			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
@@ -178,12 +189,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == SCROLL_SPEED)
 			{
-				// Toogle between three different speeds.
+				// Toggle between three different speeds.
 				int speed = Preferences::ScrollSpeed() + 20;
 				if(speed > 60)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
 			break;
@@ -287,8 +299,8 @@ void PreferencesPanel::DrawControls()
 	Color red(.3f, 0.f, 0.f, .3f);
 	
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
-	table.AddColumn(115, Table::RIGHT);
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -386,7 +398,7 @@ void PreferencesPanel::DrawControls()
 	}
 	
 	Table shiftTable;
-	shiftTable.AddColumn(125, Table::RIGHT);
+	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
 	shiftTable.DrawAt(Point(-400, 52));
 	
@@ -409,8 +421,8 @@ void PreferencesPanel::DrawSettings()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
-	table.AddColumn(115, Table::RIGHT);
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -420,6 +432,7 @@ void PreferencesPanel::DrawSettings()
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		VSYNC_SETTING,
 		"Show status overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
@@ -440,14 +453,17 @@ void PreferencesPanel::DrawSettings()
 		"Draw background haze",
 		"Draw starfield",
 		"Show hyperspace flash",
+		SHIP_OUTLINES,
 		"",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
 		REACTIVATE_HELP,
+		"Interrupt fast-forward",
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
+		"System map sends move orders",
 		"Warning siren"
 	};
 	bool isCategory = true;
@@ -490,6 +506,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
 		}
+		else if(setting == VSYNC_SETTING)
+		{
+			text = Preferences::VSyncSetting();
+			isOn = text != "off";
+		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
 		else if(setting == TURRET_TRACKING)
@@ -501,6 +522,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+		}
+		else if(setting == SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -556,8 +582,9 @@ void PreferencesPanel::DrawPlugins()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	
+	const int MAX_TEXT_WIDTH = 230;
 	Table table;
-	table.AddColumn(-115, Table::LEFT);
+	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -238;
@@ -566,7 +593,6 @@ void PreferencesPanel::DrawPlugins()
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
 	
-	const int MAX_TEXT_WIDTH = 230;
 	const Font &font = FontSet::Get(14);
 	for(const auto &plugin : GameData::PluginAboutText())
 	{
@@ -575,7 +601,7 @@ void PreferencesPanel::DrawPlugins()
 		bool isSelected = (plugin.first == selectedPlugin);
 		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(font.TruncateMiddle(plugin.first, MAX_TEXT_WIDTH), isSelected ? bright : medium);
+		table.Draw(plugin.first, isSelected ? bright : medium);
 		
 		if(isSelected)
 		{

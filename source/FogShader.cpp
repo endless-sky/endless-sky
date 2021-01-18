@@ -62,6 +62,7 @@ namespace {
 void FogShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex fog shader\n"
 		"uniform vec2 corner;\n"
 		"uniform vec2 dimensions;\n"
 		
@@ -74,6 +75,7 @@ void FogShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+		"// fragment fog shader\n"
 		"uniform sampler2D tex;\n"
 		
 		"in vec2 fragTexCoord;\n"
@@ -165,7 +167,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		for(const auto &it : GameData::Systems())
 		{
 			const System &system = it.second;
-			if(system.Name().empty() || !player.HasVisited(&system))
+			if(!system.IsValid() || !player.HasVisited(system))
 				continue;
 			Point pos = zoom * (system.Position() + center);
 		
