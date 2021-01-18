@@ -1343,7 +1343,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			
 			`	You find Foster in what appears to have been a farming facility of some sort that has been expanded beyond its original size. There are rows of dried out soil, its nutrients long gone, with sunlamps suspended above. While most of the crew with Foster is busy studying the farm itself, his attention seems to be on a mummified Sheragi corpse slumped over against one of the walls. You notice that the corpse has a prosthetic wing attatched to it, which has survived far better than its host.`
 			`	"What have you found so far?" you ask Foster.`
-			`	Foster doesn't respond at first, so you begin to ask your question again, but he then turns quickly to look at you, then back at the corpse. "Sorry, I was busy daydreaming. What we found. What we found..." Foster's voice trails off as he looks around the room. "Do you hear that banging sound?"
+			`	Foster doesn't respond at first, so you begin to ask your question again, but he then turns quickly to look at you, then back at the corpse. "Sorry, I was busy daydreaming. What we found. What we found..." Foster's voice trails off as he looks around the room. "Do you hear that banging sound?"`
 			choice
 				`	"What banging sound?"`
 				`	"I don't hear anything."`
