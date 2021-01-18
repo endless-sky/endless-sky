@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -102,6 +103,8 @@ void MapDetailPanel::Step()
 	MapPanel::Step();
 	if(!player.GetPlanet())
 		DoHelp("map");
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced ports");
 }
 
 
@@ -158,9 +161,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 			// player has not visited either end of them.
 			if(it == original)
 				continue;
-			if(!player.HasSeen(it))
+			if(!player.HasSeen(*it))
 				continue;
-			if(!(hasJumpDrive || player.HasVisited(it) || player.HasVisited(source)))
+			if(!(hasJumpDrive || player.HasVisited(*it) || player.HasVisited(*source)))
 				continue;
 			
 			// Generate a sortable angle with vector length as a tiebreaker.
@@ -279,7 +282,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 
 bool MapDetailPanel::RClick(int x, int y)
 {
-	if(!selectedSystem || !Preferences::Has("System map sends move orders"))
+	if(!Preferences::Has("System map sends move orders"))
 		return true;
 	// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
 	// positions aren't hard-coded.
@@ -295,7 +298,7 @@ bool MapDetailPanel::RClick(int x, int y)
 		// Only issue movement orders if the player is in-flight.
 		if(player.GetPlanet())
 			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
-		else if(!player.HasVisited(selectedSystem))
+		else if(!player.HasVisited(*selectedSystem))
 			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
 		else
 			player.SetEscortDestination(selectedSystem, uiClick / scale);
@@ -443,13 +446,13 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(systemSprite, uiPoint);
 	
 	const Font &font = FontSet::Get(14);
-	string systemName = player.KnowsName(selectedSystem) ?
+	string systemName = player.KnowsName(*selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
 	const auto alignLeft = Layout(140, Truncate::BACK);
 	font.Draw({systemName, alignLeft}, uiPoint + Point(-90., -7.), medium);
 	
 	governmentY = uiPoint.Y() + 10.;
-	string gov = player.HasVisited(selectedSystem) ?
+	string gov = player.HasVisited(*selectedSystem) ?
 		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
 	font.Draw({gov, alignLeft}, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
@@ -460,7 +463,7 @@ void MapDetailPanel::DrawInfo()
 	
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
-	if(player.HasVisited(selectedSystem))
+	if(player.HasVisited(*selectedSystem))
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
@@ -507,7 +510,7 @@ void MapDetailPanel::DrawInfo()
 					PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
 						10.f, 10.f, 0.f, medium);
 				
-				bool hasVisited = player.HasVisited(planet);
+				bool hasVisited = player.HasVisited(*planet);
 				font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
 					uiPoint + Point(-70., 28.),
 					dim);
@@ -539,7 +542,7 @@ void MapDetailPanel::DrawInfo()
 		
 		string price;
 		
-		bool hasVisited = player.HasVisited(selectedSystem);
+		bool hasVisited = player.HasVisited(*selectedSystem);
 		if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
 		{
 			int value = selectedSystem->Trade(commodity.name);
@@ -574,7 +577,7 @@ void MapDetailPanel::DrawInfo()
 	}
 	
 	if(selectedPlanet && !selectedPlanet->Description().empty()
-			&& player.HasVisited(selectedPlanet) && !selectedPlanet->IsWormhole())
+			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
@@ -599,7 +602,7 @@ void MapDetailPanel::DrawOrbits()
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
 	
-	if(!selectedSystem || !player.HasVisited(selectedSystem))
+	if(!player.HasVisited(*selectedSystem))
 		return;
 	
 	const Font &font = FontSet::Get(14);

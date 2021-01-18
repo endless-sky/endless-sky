@@ -20,8 +20,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <limits>
@@ -118,7 +120,7 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(system) || !system->IsInhabited(player.Flagship()))
+	if(!system || !player.HasVisited(*system) || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
 	// Visiting a system is sufficient to know what ports are available on its planets.
@@ -159,6 +161,8 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 void MapShipyardPanel::DrawItems()
 {
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	for(const string &category : categories)
@@ -179,7 +183,7 @@ void MapShipyardPanel::DrawItems()
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
 			
 			bool isForSale = true;
-			if(selectedSystem && player.HasVisited(selectedSystem))
+			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
@@ -209,7 +213,7 @@ void MapShipyardPanel::Init()
 	catalog.clear();
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
 				if(!seen.count(ship))
 				{

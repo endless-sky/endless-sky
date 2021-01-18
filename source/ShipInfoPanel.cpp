@@ -69,6 +69,13 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
 
 
 
+void ShipInfoPanel::Step ()
+{
+	DoHelp("ship info");
+}
+
+
+
 void ShipInfoPanel::Draw()
 {
 	// Dim everything behind this panel.

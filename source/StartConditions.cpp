@@ -59,16 +59,20 @@ Date StartConditions::GetDate() const
 
 
 
-const Planet *StartConditions::GetPlanet() const
+const Planet &StartConditions::GetPlanet() const
 {
-	return planet ? planet : GameData::Planets().Get("New Boston");
+	return planet ? *planet : *GameData::Planets().Get("New Boston");
 }
 
 
 
-const System *StartConditions::GetSystem() const
+const System &StartConditions::GetSystem() const
 {
-	return system ? system : GetPlanet() ? GetPlanet()->GetSystem() : GameData::Systems().Get("Rutilicus");
+	if(system)
+		return *system;
+	const System *planetSystem = GetPlanet().GetSystem();
+	
+	return planetSystem ? *planetSystem : *GameData::Systems().Get("Rutilicus");
 }
 
 
