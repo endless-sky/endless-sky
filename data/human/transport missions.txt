@@ -2690,7 +2690,7 @@ mission "Pirate Blockade"
 	
 	on offer
 		conversation
-			`It is dusk at the <origin> spaceport, and the setting sun casts long shadows across the spaceport deck. You take notice of a slim cloaked figure walking only a few feet behind you who seems to be keeping pace.`
+			`It is dusk at the <origin> spaceport, and the setting sun casts long shadows across the spaceport deck. You take notice of a slim cloaked figure walking only a few meters behind you who seems to be keeping pace.`
 			choice
 				`	(Confront them.)`
 					goto confront
@@ -3133,14 +3133,14 @@ mission "Pirate Duel"
 		"reputation: Independent (Killable)" = 10
 		payment 250000
 		conversation
-				`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
-				choice
-					`	(Take the bounty money.)`
-						goto end
-					`	(Read more about the bounty.)`
-				`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also had a curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship.`
-				label end
-				`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you <payment> for your effort.`
+			`When you land on Wayfarer, you look up bounties and wanted pirate documents, searching for any mention of the Anglerfish and the Esca. Eventually, you find a bounty for the destruction of the Anglerfish.`
+			choice
+				`	(Take the bounty money.)`
+					goto end
+				`	(Read more about the bounty.)`
+			`	You decide to read more of the bounty documents. It appears that the pirate that you killed was Enrico Snake, a pirate that mainly dealt in cargo smuggling. However, he also had a curious tick of hunting aspiring privateers by luring them to Umbral, where he easily took them out with his superior ship.`
+			label end
+			`	You head to the local authorities, and show them your combat logs of your fight against the Anglerfish. They pay you <payment> for your effort.`
 
 ship "Vanguard" "Vanguard (Plasma Slow)"
 	outfits
