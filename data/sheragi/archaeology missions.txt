@@ -1341,6 +1341,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	(Return to your ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
+			apply
+				set "spoke with foster"
 			`	You find Foster in what appears to have been a farming facility of some sort that has been expanded beyond its original size. There are rows of dried out soil, its nutrients long gone, with sunlamps suspended above. While most of the crew with Foster is busy studying the farm itself, his attention seems to be on a mummified Sheragi corpse slumped over against one of the walls. You notice that the corpse has a prosthetic wing attatched to it, which has survived far better than its host.`
 			`	"What have you found so far?" you ask Foster.`
 			`	Foster doesn't respond at first, so you begin to ask your question again, but he then turns quickly to look at you, then back at the corpse. "Sorry, I was busy daydreaming. What we found. What we found..." Foster's voice trails off as he looks around the room. "Do you hear that banging sound?"`
@@ -1373,6 +1375,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label eyama
+			apply
+				set "spoke with eyama"
 			`	You find Eyama investigating the living quarters of the ship, which consists of long halls lined on either side by bunk rooms. Many of the doors are already opened, suggesting that Eyama has already been through many of them. She comes out of one of the bunk rooms after looking through it and notices you. "Captain <last>! What brings you here?" she asks.`
 			`	"I'm wondering if you've found anything interesting yet," you respond.`
 			`	"Oh, no. Nothing much," she says, sounding somewhat disappointed. "All I've found so far have been largely empty rooms. I would have thought that they would have kept personal items in their bunks, but it looks like they haven't. Or perhaps they were moved for some reason."`
@@ -1421,6 +1425,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label rakei
+			apply
+				set "spoke with rakei"
 			`	As you are looking for Rakei, you hear a low hum begin emanating through the ship, followed by the dim glow of the emergency lights being replaced by the bright main lights. You eventually find Rakei with her crew walking through the halls of the underbelly of the ship. "Greetings, Captain," she says. "Is there something you need?"`
 			`	"Have you found anything interesting down here?" you ask.`
 			`	"Nothing out of the ordinary," she responds. "We just finished getting the power back online. We had to swap out some parts that look like they broke of old age. Seems like the power generation was active until the end.`
@@ -1455,6 +1461,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label desyo
+			apply
+				set "spoke with desyo"
 			`	You find Desyo in the cockpit of the ship, overseeing a crew attempting to take control of the ship's computer systems. Makeshift scaffolding has been put in place just so that the crew can reach the controls. "Hello there, Captain," Desyo greets you as you walk in through the massive doorway. "Is there anything I can help you with?"`
 			`	"I'm just curious as to what you've found," you respond.`
 			`	"Not much yet. We've only just finished putting up these structures so that we can properly access the ship's controls. Now we're looking over them to find a main access point of sorts. From there, we can take control of the ship."`
@@ -1516,10 +1524,36 @@ mission "Sheragi Archaeology: Epilogue"
 		give ship "Black Diamond" "Ivory Talon"
 		give ship "Black Diamond" "Skeleton Key"
 		conversation
-			`As you enter the atmosphere of the alien world, you begin running some scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. As luck would have it, the shipboard scanner reveal anomalous structures over a mesa, and as you come in for a landing, it becomes apparent that these are the ruins of a large settlement. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term.`
-			`	While the crew starts to work on the Emerald Sword, you and the archaeologists head into the settlement, documenting what you see. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
-			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room, holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery, with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they might have survived to this day. The archaeologists take pictures, samples, and minor artifacts, but leave the place mostly undisturbed in respect for a lost civilization, discussing the possible history of this place.`
-			`	For most of the next day, the workers unload some outfitting and repairing equipment, while the spare crew take turns thinking of names for each fighter, and scientists slowly work out the functions of the ship, briefing you and your crew on how to operate it. With the jump drive installed, all that is left is to return the ship to human space for further work.`
+			`As you enter the atmosphere of the alien world, you begin running scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term, if you didn't bring them.`
+			`	It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. Your scanners eventually spot a flat mesa high above the ground. It turns out the Sheragi found this exact same spot; as you come in for a landing it becomes apparent that there are the ruins of a large settlement on the mesa.`
+			`	Among the ruins you spot what looks like a small ship covered in foliage. "That must be the missing fighter," Rakei says.`
+			branch skip
+				has "spoke with rakei"
+			`	Seeing your confusion, she explains: "We found five fighters on the Emerald Sword, but there is room for six. We figured that the final one might be on the planet."`
+			label skip
+			`	"Well this is quite the turn of events," Foster says as he looks at the ruins.`
+			choice
+				`	"You didn't expect to find anything here?"`
+				`	"Do you think we'll find anyone left alive?"`
+					goto alive
+			`	"Not after seeing what happened on the ship," he responds.`
+				goto landing
+			label alive
+			`	"After thousands of years? I'm not holdimg my breath," he responds.`
+			label landing
+			`	You land your ship next to the Emerald Sword and the crew gets to work transporting heavy equipment from your ship to the Emerald Sowrd to finish getting it functional and install the jump drive.`
+			`	Foster and Eyama get into their environmental suits. "Want to join us on investigating the ruins, <first>?" Foster asks. "Rakei and Desyo will be staying here to finish work on the ship."`
+			choice
+				`	"Sure, I'll come along."`
+				`	"No, I'd rather wait here."`
+					goto end
+			`	You head into the settlement with Foster and Eyama. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
+			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they might have survived to this day.`
+			`	Foster documents and takes pictures of everything that he sees. Although you'd expect him to be excited to see al this like he was when investigating the Sheragi ruins on Zug, his mood is extremely somber.`
+			`	While in one of the rooms, Eyama spots a young Sheragi skeleton laying on the ground that looks like they were reaching out for something when they died. Eyama kneels down next to the skeleton and reaches out to touch its hand. "Don't," Foster says from across the room, stopping Eyama from moving. "We need to leave this place undisturbed. We've done enough already by taking the ship." Eyama gets up without speaking, but gives a look of understanding to Foster.`
+			`	After spending enough time among the ruins, you return to the ships with Foster and Eyama.`
+			label end
+			`	The final repairs on the Emerald Sword take up nearly an entire day with the crew working in shifts to get the job done. Once the ship is patched up and all the systems are functional, the jump drive is installed. While the Emerald Sword was being worked on, a Rakei was able to get a group to retrieve the final fighter and return it to the ship. All that is left to do now is get the ship in orbit and return to <planet>.`
 				accept
 	on visit
 		dialog `You have reached <planet>, but not all of the archaeology equipment made it back! Better depart and wait for your escorts to arrive in this star system.`
