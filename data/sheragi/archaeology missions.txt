@@ -1409,10 +1409,10 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			choice
 				`	"How did you unlock that?"`
 				`	"What does it say?"`
-					goto read
+					goto diary
 			`	"It was locked?" Eyama asks with a puzzled look on her face before immediately turning her attention back to the book.`
 			
-			label read
+			label diary
 			`	She skims the pages. "This is a diary. It seems to be written by an adolescent Sheragi who was born on the ship. They talk about how they've never seen a planet or star up close before, but the adults on board tell them stories of a promised land that they are traveling to. It seems that they were close when this was written, perhaps only a few weeks away from the system."`
 			`	She flips through the pages, getting further into the diary. "When they arrived at the system, they stayed in orbit around the planet. The author doesn't know everything that was going on, but there appeared to have been arguments over whether to land."`
 			`	She then flips more pages. "Some of the Sheragi left to go to the planet, while others stayed behind. It doesn't sound like the split was amiable."`
@@ -1421,7 +1421,37 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label rakei
-			`	`
+			`	As you are looking for Rakei, you hear a low hum begin emanating through the ship, followed by the dim glow of the emergency lights being replaced by the bright main lights. You eventually find Rakei with her crew walking through the halls of the underbelly of the ship. "Greetings, Captain," she says. "Is there something you need?"`
+			`	"Have you found anything interesting down here?" you ask.`
+			`	"Nothing out of the ordinary," she responds. "We just finished getting the power back online. We had to swap out some parts that look like they broke of old age. Seems like the power generation was active until the end.`
+			`	"It turns out that the power generation and engines are all one unit, so I guess that's how they were able to make such powerful engines. We're heading to the life support systems now to make sure they're online so that you can safely disconnect your ship."`
+			`	You follow her to the life support systems of the ship, a massive unit designed to scrub carbon dioxide out of the ship's atmosphere, keep the oxygen levels balanced, and warn about any potential leaks in the ship. Rakei finds the main control panel and begins tapping away at it. "Need to make sure this doesn't kill us when we turn it on." After a short while of working on the panel she simply flips a switch, turning it on.`
+			`	"Huh," she says. "That was a bit too easy."`
+			`	"What do you mean?" you ask.`
+			`	"Well we needed to fix the power generation because of how it broke from use, but the life support systems are working just fine."`
+			choice
+				`	"Do you think the power generation failed before the life support systems did?"`
+				`	"Maybe someone turned the life support systems off."`
+					goto purposeful
+			`	"That could be the case, but life support systems are usually the first thing that needs repaired or replace on any ship as it ages, so maybe someone turned it off before the power generation failed."`
+				goto follow
+			label purposeful
+			`	"That could be the case. Life support systems are usually the first thing that needs repaired or replace on any ship as it ages, so someone turning it off is one way the life support systems could work when the power didn't."`
+			label follow
+			`	Rakei looks like her eyes are suddenly drawn to something across the room. You follow her gaze and spot an open doorway, different than the one you entered from. The doorway leads to a sealed airlock. Rakei accesses a panel next to the airlock to see that the other side is pressurized and opens it.`
+			`	On the other side of an airlock you find a large room with what looks like a runway going down the middle, leading to a shielded opening to the void of space. On either side of the room are three hangar bays. You spot that each of the hangars has a ship within it except for one.`
+			`	"Fighters," Rakei says as she approaches one of them and begins examining it. "These looks like interesting pieces of technology. I wonder how the Sheragi were able to even fit into one." She runs her hand along the hull of the fighter and sees some Sheragi writing on the side. "'Onyx Chariot.' That's its name."`
+			choice
+				`	"You can read that?"`
+					goto read
+				`	"I thought Eyama was the linguist."`
+			`	"She is. I guess she's rubbed off on me."`
+				goto fighter
+			label read
+			`	"It looks like it."`
+			label fighter
+			`	Rakei hops onto the top of the fighter, looking for a way in. She finds a hatch and opens it, looking shocked at what she sees. "Wait. I think these fighters are autonamous. I'm not seeing any signs of a life supports system, or even a way that a Sheragi could pilot this. There's barely even enough room for a younger Sheragi to fit into here. If the Sheragi couldn't have piloted these then why is there one missing?"`
+			`	Rakei closes the hatch and hops down from the fighter. "We still need to get other systems working before the ship is fully functional, so we can take a look at these fighters later. And maybe we'll find the missing fighter on the planet."`
 				goto end
 			
 			label desyo
@@ -1463,12 +1493,6 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			label end
 			`	You return to your ship, and after a few hours Foster contacts you saying that the ship is in operational condition. It'll need to be landed on the planet in this system so that the jump drive can be installed, though.`
 		
-			# Old conversation; kept for easy reference until the rest is done.
-			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it as the life support has long since ceased to work, and it takes a long time to restore it through your ship's own life support and patch tiny micrometeorite holes. Once the condition is habitable, it still smells like a tomb. The crew starts going in, separated in teams by the archaeologists, to perform various tasks. Albert and Eyama go in first, taking notes and carefully collecting artifacts.`
-			`	You find many Sheragi skeletons and mummified remains, most of them stacked neatly in a room, suggesting that the crew died one by one. A few of them have prosthetics that survived better than their host. Your crew gets to work cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life.`
-			`	Following the archaeologists and listening to their conversations, you find out more about the history of this ship. Other than the mutiny that caused them to flee from Sheragi space in almost unanimous decision, it appears that there was a second, more violent mutiny, with unknown causes. There are battle scars in the walls and corridors, and too few bodies to properly man the ship. The missing Sheragi are nowhere to be seen, with some speculating that they got spaced. Even after this, the remaining Sheragi did all they could to survive, converting a large amount of crew quarters into hydroponic farms, fed sunlight through the windows, with an elaborate system of what used to be bathroom mirrors to spread the light around. It's obviously apparent that this wasn't enough for them to survive. Nowadays, nothing grows here other than colonies of extremophile fungi and bacteria, now dying after being reintroduced to an atmosphere. In the hangars, you see enormous attack drones, still waiting readily in their respective bays, despite the lack of any significant threat in this system. They too have valuable technology, and Rakei advises you to not touch them for now.`
-			`	After many long hours walking around, the lights of the ship finally flicker to life, along with sirens bringing attention to every other damaged subsystem, startling everyone. One of the specialized crew members comes to you, explaining that they finally managed to turn on the power plant and fix enough of the ship to move it around, but that they need to land it in order to bring in the heavier equipment and fix the rest of it.`
-
 	on visit
 		dialog `Upon landing on this strange world, you realize not everything is accounted for! Better make sure the Emerald Sword has been boarded, and no crew or cargo is on escorts out of the system.`
 
