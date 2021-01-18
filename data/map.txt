@@ -29383,7 +29383,7 @@ planet "Var' Kar'i'i"
 	attributes wanderer urban farming
 	landscape land/valley13-harro
 	description `This is a populous Wanderer world, with small farming villages scattered across all the land, and even a few larger population centers that might almost qualify as a city. But from the air, it is not evident at first that the planet is so heavily settled, because the village tree-houses are mostly hidden beneath the forest canopies. The farms, too, are almost indistinguishable from natural land, due to a permaculture system where many varieties of plants are growing side by side.`
-	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly eight feet tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
+	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly three meters tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
 	spaceport `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
 	shipyard "Wanderer Basics"
 	outfitter "Wanderer Basics"

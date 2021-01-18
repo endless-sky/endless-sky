@@ -17,7 +17,7 @@ mission "First Contact: Wanderer (Before Hai)"
 	on offer
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
-			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
+			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
 			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
 			choice
 				`	"Hello. I come in peace."`
@@ -45,7 +45,7 @@ mission "First Contact: Wanderer"
 			branch revisit
 				has "First Contact: Wanderer (Before Hai): offered"
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
-			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
+			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
 			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
 			choice
 				`	"Hello. I come in peace."`
