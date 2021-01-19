@@ -25962,6 +25962,92 @@ system Zubenelgenubi
 		distance 1993.37
 		period 1158.05
 
+system Zubenelhakrabi
+	pos -9743.265 9377.932
+	government Uninhabited
+	habitable 486.68
+	belt 1669
+	asteroids "medium rock" 7 1.5946
+	asteroids "large rock" 1 1.5946
+	asteroids "medium metal" 12 2.8798
+	asteroids "large metal" 2 3.1654
+	minables uranium 6 4.40134
+	minables platinum 3 4.48669
+	minables tungsten 3 3.76004
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava4
+		distance 147
+		period 32.3158
+		offset 98.3841
+	object "Valley of the Damned"
+		sprite planet/earth
+		distance 502.704
+		period 204.365
+		offset 314.841
+	object
+		sprite planet/gas8
+		distance 1345.85
+		period 895.229
+		offset 153.957
+		object
+			sprite planet/luna
+			distance 288.272
+			period 26.0544
+			offset 72.9809
+		object
+			sprite planet/ice8
+			distance 373.272
+			period 38.3898
+			offset 185.14
+	object
+		sprite planet/rock17
+		distance 2322.59
+		period 2029.54
+		offset 267.221
+		object
+			sprite planet/oberon
+			distance 83
+			period 41.6711
+			offset 44.2239
+	object
+		sprite planet/gas6
+		distance 3672.78
+		period 4035.81
+		offset 46.4282
+		object
+			sprite planet/lava0
+			distance 281.814
+			period 12.0839
+			offset 337.102
+		object
+			sprite planet/dust5
+			distance 464.272
+			period 25.5519
+			offset 284.511
+		object
+			sprite planet/ice7
+			distance 568.272
+			period 34.6019
+			offset 45.9014
+		object
+			sprite planet/callisto
+			distance 672.272
+			period 44.5228
+			offset 128.448
+
 system Zubeneschamali
 	pos -759 338
 	government Republic
@@ -29378,6 +29464,12 @@ planet Valhalla
 	tribute 3600
 		threshold 7000
 		fleet "Large Deep Security" 35
+
+planet "Valley of the Damned"
+	attributes uninhabited
+	landscape land/fog4
+	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has a high concentration of water vapor in its atmosphere and hosts primitive life, with mosses covering nearly all moist surfaces and exotic crustacean-like animals roaming the land, their carapaces made of what would be considered synthetic plastic elsewhere.`
+	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Most traces of attempted colonization by the Sheragi have eroded away by now, leaving only broken buildings and decaying bones.`
 
 planet "Var' Kar'i'i"
 	attributes wanderer urban farming
