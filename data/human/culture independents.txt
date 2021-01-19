@@ -15,7 +15,7 @@ mission "ZZCU Tarazed Ship Christening"
 	minor
 	source "Wayfarer"
 	to offer
-		random == 1
+		random < 1
 		has "main plot complete"
 	on offer
 		conversation

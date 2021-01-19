@@ -33,7 +33,7 @@
 #		attributes "placeholder"
 #		not attributes "station"
 #	to offer
-#		random == 1
+#		random < 1
 #	on offer
 #		conversation
 #			`placeholder`
@@ -51,7 +51,7 @@ mission "ZZCU Sad Gamblers -R"
 		attributes "near earth"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success and your attention is drawn as one of them wins a moderate sum in a 12th division win; a day or two worth of standard pay.`
@@ -69,7 +69,7 @@ mission "ZZCU Gift Store Interaction"
 		attributes "deep"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "<source>" printed underneath an attractive, stylized representation of the spaceport you are presently standing in and pick it up to see how it feels. The handle is solid, and not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
@@ -93,7 +93,7 @@ mission "ZZCU Trash Fire Crops"
 		attributes "dirt belt"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`As you move about the spaceport you can't avoid the terrible smell. It's like a trash fire, but you can't see any sort of smoke.`
@@ -115,7 +115,7 @@ mission "ZZCU Paradise Cleaner Incident"
 		attributes "paradise"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You find yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. They always appear to be doing their utmost to avoid notice.`

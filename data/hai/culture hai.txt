@@ -42,7 +42,7 @@ mission "ZZCU Musical Entertainment Expo"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`While stopped in the spaceport waiting for refueling you are surprised by how hard it is to find somewhere to sit and have a meal & a drink. It seems Hai have crammed themselves into every bar or similar venue with a public display screen, arrayed in sashes and mantles and all manner of other paraphernalia which, near as you can tell, looks like... team sport merchandise?`
@@ -77,7 +77,7 @@ mission "ZZCU The Meme Wars 1"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`Stepping into the spaceport you are beset by a riot of color. Every blank surface that's not usually paid advertising space seems to be festooned with dangling holographic projectors, banners and ribbons. There's even actual paper fliers and posters, apparently taped to whatever surface will bear them. At first you wonder if there's some sort of festival going on, but as you watch a young Hai wearing a hood slaps up another holo projector, a cartoonish root vegetable with a sword, which begins hacking at the adjacent holograph, some kind of impressionist concept of a Hai elder made up of iridescent triangles. The young Hai then proceeds to tear down a banner and slap some goo on a massive poster which begins dissolving before a pair of security guards, wearing some very obviously non-standard additions to their uniforms, chase him back out of the spaceport.`
@@ -91,7 +91,7 @@ mission "ZZCU The Meme Wars 1"
 			label translator
 			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
-			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost sir but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
 			choice
 				`	"Sure, will do."`
 					goto done
@@ -111,7 +111,7 @@ mission "ZZCU Wrestling Star"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
@@ -132,7 +132,7 @@ mission "ZZCU Fencing Star"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
@@ -153,7 +153,7 @@ mission "ZZCU Mystery Sport Star"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
@@ -174,7 +174,7 @@ mission "ZZCU Gambling Judgment"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`You stop at a diner for a meal grounds-side at the spaceport, but you have not been seated long before you notice there is a group of other human ship captains sequestered in a corner playing, near as you can tell, a game of poker. You note that the group seems to be getting a variety of dark looks from various Hai also dining at the establishment.`
@@ -214,7 +214,7 @@ mission "ZZCU Mum Groups"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 		has "language: Wanderer"
 	on offer
 		conversation
@@ -227,7 +227,7 @@ mission "ZZCU boop"
 		government "Hai"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 		has "language: Wanderer"
 	on offer
 		conversation

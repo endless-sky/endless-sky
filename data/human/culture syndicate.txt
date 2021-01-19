@@ -20,7 +20,7 @@ mission "ZZCU Sad Gamblers -S"
 		government "Syndicate"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success and your attention is drawn as one of them wins a moderate sum in a 12th division win; a day or two worth of standard pay.`
@@ -37,7 +37,7 @@ mission "ZZCU Abandoned for Disabilities"
 		government "Syndicate"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`You take a shortcut down an alley and are shocked to find several people with wheelchairs or crutches lving in a shanty town along a hidden service road. It seems Syndicate worlds don't have much in the way of welfare systems. (TBD)`
@@ -49,7 +49,7 @@ mission "ZZCU Unadvertised Luggage Tariffs"
 		government "Syndicate"
 		not attributes "station"
 	to offer
-		random == 1
+		random < 1
 	on offer
 		conversation
 			`A couple at a ticket counter kick up a fuss. Turns out there's a tarrif on the luggage, payable by the captain, they need to pay it at this end and it's in excess of the cost of their ticket. (TBD)`
