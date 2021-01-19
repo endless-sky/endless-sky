@@ -218,7 +218,7 @@ void Hardpoint::Aim(double amount)
 		const Angle newAngle = angle + add;
 		if(add < 0. && sweptAngle.first.IsInRange(newAngle, angle))
 			angle = sweptAngle.first;
-		else if (add > 0. && sweptAngle.second.IsInRange(angle, newAngle))
+		else if(add > 0. && sweptAngle.second.IsInRange(angle, newAngle))
 			angle = sweptAngle.second;
 		else
 			angle += add;
@@ -270,7 +270,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	double range = outfit->Velocity();
 	
 	// Check if the missile is within range of this hardpoint.
-	const Angle facing = ship.Facing();
+	const Angle &facing = ship.Facing();
 	Point start = ship.Position() + facing.Rotate(point);
 	Point offset = projectile.Position() - start;
 	if(offset.Length() > range)

@@ -273,7 +273,7 @@ void Ship::Load(const DataNode &node)
 						const Angle &second = angles.sweptAngle.second;
 						if(!base.IsInRange(first, second))
 						{
-							grand.PrintTrace("Warning: The angle must be in the swept angle:");
+							grand.PrintTrace("Warning: Custom base angle is ignored as it is outside the given swept range:");
 							defaultBaseAngle = true;
 						}
 					}

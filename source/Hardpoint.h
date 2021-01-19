@@ -107,7 +107,7 @@ private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 	
-	// Update the swept angle.
+	// The swept angle depends on both the base hardpoint and the installed outfit.
 	void UpdateSweptAngle();
 	
 	
