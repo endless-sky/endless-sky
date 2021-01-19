@@ -5,6 +5,7 @@ Version 0.9.13:
     * Added 15 new archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@Karirawri)
     * The Ember Waste has become a more hostile place with the introduction of system hazards. Be prepared the next time you visit. (@Zitchas)
     * Outfits can now be stored on planets by pressing U or R on installed or in cargo outfits in the outfitter. (@petervdmeer)
+    * Completely redid and improved the graphics for most human outfit images. (@beccabunny)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @arkhne, @beccabunny, @Darcman99, @FixItYondu, @Galaucus, @infinitewarp, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @thebigh2014, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
@@ -102,7 +103,8 @@ Version 0.9.13:
       * The Kestrel mission now shows the ship's thumbnail during the conversation instead of its sprite. (@Anarchist2)
       * Updated various missions to make use of the new abort behavior. (@petervdmeer)
       * The Marauder Hunted mission has been changed to now scale with the player's fleet strength. (@Amazinite)
-      * During the "Deep: Remnant" mission strong, it is now optional whether you reveal the existence of the Remnant to the Deep. (@Amazinite, @Zitchas)
+      * During the "Deep: Remnant" mission string, it is now optional whether you reveal the existence of the Remnant to the Deep. (@Amazinite, @Zitchas)
+      * The player now saves the cultural data from Alexandria, allowing missions to be skipped that need it instead of having the player fly to Alexandria again. (@Amazinite)
     * Balance:
       * Buffed the Heliarch reactors and Coalition engines. (@Arachi-Lover)
       * Buffed the Drak Draining Field and Antimatter Cannon. (@Zitchas)
@@ -122,12 +124,12 @@ Version 0.9.13:
       * Created a new jump drive sound and visual effect to be used at a later date. (@Kryes-Omega)
       * The background haze now changes in intensity according to where you are in the galaxy. (@ravenshining)
       * Created graphics for hot Jupiter planet sprites. (@beccabunny)
-      * Gave the ramscoop a new high-detail sprite. (@beccabunny)
       * Reworked the graphics of some Remnant ship thumbnails to better match the ship sprite. (@beccabunny)
       * Reworked the graphics of Tarazed ships. (@Anarchist2)
       * Reworked the graphics of Ka'het ships. (@beccabunny)
-      * Overhauled the graphics of Syndicated Shipyards ships. (@beccabunny)
+      * Reworked the graphics of Syndicated Shipyards ships. (@beccabunny)
       * Reworked the graphics of the Korath Raider. (@ravenshining, @Red-57)
+      * Reworked the graphics of some Korath outfit images. (@beccabunny)
     * Other:
       * Renamed the Gascraft to the Puffin so that all Remnant ships are named after birds. (@Zitchas)
       * Removed the Quarg ringworld from the Graveyard. (@Arachi-Lover)
@@ -141,6 +143,8 @@ Version 0.9.13:
       * Local God's gridfires will no longer accidentally kill him. (@ravenshining)
       * Coalition space now sells fuel pods and bunk rooms. (@Terin)
       * Prevented various governments from being able to fine or be bribed by the player. (@petervdmeer)
+      * Standardized capitalization of certain terms. (@Amazinite)
+      * Replaced some remaining imperial measurements with metric ones. (@prophile)
   * Game mechanics:
     * New weapon and outfit attributes:
       * Weapon attributes to override the range and velocity values used by the AI to determine where the aim and when to fire. (@Amazinite)
@@ -213,7 +217,7 @@ Version 0.9.13:
     * The game will now report more errors in conversations, including incorrect indentation. (@NomadicVolcano)
     * The --ships flag now outputs the number of guns and turrets on a ship. (@fcfort)
     * The systems that were defined in the Pug file have been moved to the map file. (@Zitchas)
-    * Support test case execution, locally and in CICD. (@petervdmeer)
+    * Support test case execution, locally and in CI/CD. (@petervdmeer)
     * Copy constructor and assignment operators for File now close own file, preventing a memory leak. (@tehhowch)
     * A single bind + unbind is used when drawing mission system rings instead of one for each ring. (@tehhowch)
     * Commands can now be created from datafile text. (@petervdmeer)
@@ -228,9 +232,11 @@ Version 0.9.13:
     * Added a missing virtual destructor for ItemInfoDisplay. (@tehhowch)
     * Prevented a race condition scenario when loading audio. (@Rakete1111)
     * Created a unit testing framework. (@tehhowch)
-    * A bunch of CD/CI updates. (@tehhowch)
     * Added an initial framework for automated testing. (@petervdmeer, @tehhowch)
     * The game will now fallback onto using shaders for swizzling if the player's hardware does not have the swizzle extension. (@janisozaur, @thomasballinger)
+    * References to undefined data are now preserved in the save file, preventing crashes or lost data caused by removing plugins. (@tehhowch)
+    * The game will now warn about having a low monitor frame rate, which causes the game to run at a reduced frame rate. (@tehhowch)
+    * A bunch of CI/CD updates. (@MCOfficer, @petervdmeer, @tehhowch)
 
 Version 0.9.12:
   * Bug fixes:
