@@ -89,7 +89,6 @@ Version 0.9.13:
         * Added system attributes to various system for use in missions. (@Galaucus)
         * Expanded the list of potential Heliarch ship names. (@Arachi-Lover)
         * Scouts will now actually spawn in merchant fleets. (@ScruffyKitty)
-        * Added new hails for the test dummy government. (@petervdmeer)
         * Added various new help messages describing hidden features. (@Terin)
     * Mission changes:
       * "FW Hope Recon 1C" now refers to the proper number of crew on a Gunboat. (@Beccabunny)
@@ -213,7 +212,7 @@ Version 0.9.13:
     * A warning dialog will appear when attempting to change the vsync setting fails. (@tatami4)
     * The main view, map, hiring, and trading panels are now capable of using the numpad + and - keys for zooming in/out, hiring/firing crew, or buying/selling goods. (@tatami4)
   * Under the hood:
-    * Carried ships are now identifies by their category instead of a boolean. (@petervdmeer)
+    * Carried ships are now identified by their category instead of a boolean. (@petervdmeer)
     * The game will now report more errors in conversations, including incorrect indentation. (@NomadicVolcano)
     * The --ships flag now outputs the number of guns and turrets on a ship. (@fcfort)
     * The systems that were defined in the Pug file have been moved to the map file. (@Zitchas)
@@ -232,7 +231,7 @@ Version 0.9.13:
     * Added a missing virtual destructor for ItemInfoDisplay. (@tehhowch)
     * Prevented a race condition scenario when loading audio. (@Rakete1111)
     * Created a unit testing framework. (@tehhowch)
-    * Added an initial framework for automated testing. (@petervdmeer, @tehhowch)
+    * Added an initial framework for integration testing. (@petervdmeer, @tehhowch)
     * The game will now fallback onto using shaders for swizzling if the player's hardware does not have the swizzle extension. (@janisozaur, @thomasballinger)
     * References to undefined data are now preserved in the save file, preventing crashes or lost data caused by removing plugins. (@tehhowch)
     * The game will now warn about having a low monitor frame rate, which causes the game to run at a reduced frame rate. (@tehhowch)
