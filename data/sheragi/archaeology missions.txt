@@ -1456,7 +1456,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			label read
 			`	"It looks like it."`
 			label fighter
-			`	Rakei hops onto the top of the fighter, looking for a way in. She finds a hatch and opens it, looking shocked at what she sees. "Wait. I think these fighters are autonamous. I'm not seeing any signs of a life supports system, or even a way that a Sheragi could pilot this. There's barely even enough room for a younger Sheragi to fit into here. If the Sheragi couldn't have piloted these then why is there one missing?"`
+			`	Rakei hops onto the top of the fighter, looking for a way in. She finds a hatch and opens it, looking shocked at what she sees. "Wait. I think these fighters are autonomous. I'm not seeing any signs of a life supports system, or even a way that a Sheragi could pilot this. There's barely even enough room for a younger Sheragi to fit into here. If the Sheragi couldn't have piloted these then why is there one missing?"`
 			`	Rakei closes the hatch and hops down from the fighter. "We still need to get other systems working before the ship is fully functional, so we can take a look at these fighters later. And maybe we'll find the missing fighter on the planet."`
 				goto end
 			
@@ -1525,7 +1525,7 @@ mission "Sheragi Archaeology: Epilogue"
 		give ship "Black Diamond" "Skeleton Key"
 		conversation
 			`As you enter the atmosphere of the alien world, you begin running scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term, if you didn't bring them.`
-			`	It takes some time to find a suitable landing spot - high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. Your scanners eventually spot a flat mesa high above the ground. It turns out the Sheragi found this exact same spot; as you come in for a landing it becomes apparent that there are the ruins of a large settlement on the mesa.`
+			`	You spend some time searching for a suitable landing spot - one that is high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. Your scanners eventually spot a flat mesa high above the ground. It turns out the Sheragi found this exact same spot; as you come in for a landing it becomes apparent that there are the ruins of a large settlement on the mesa.`
 			`	Among the ruins you spot what looks like a small ship covered in foliage. "That must be the missing fighter," Rakei says.`
 			branch skip
 				has "spoke with rakei"
@@ -1539,17 +1539,17 @@ mission "Sheragi Archaeology: Epilogue"
 			`	"Not after seeing what happened on the ship," he responds.`
 				goto landing
 			label alive
-			`	"After thousands of years? I'm not holdimg my breath," he responds.`
+			`	"After thousands of years? I'm not holding my breath," he responds.`
 			label landing
-			`	You land your ship next to the Emerald Sword and the crew gets to work transporting heavy equipment from your ship to the Emerald Sowrd to finish getting it functional and install the jump drive.`
+			`	You land your ship next to the Emerald Sword and the crew gets to work transporting heavy equipment from your ship to the Emerald Sword to finish getting it functional and install the jump drive.`
 			`	Foster and Eyama get into their environmental suits. "Want to join us in investigating the ruins, <first>?" Foster asks. "Rakei and Desyo will be staying here to finish work on the ship."`
 			choice
 				`	"Sure, I'll come along."`
 				`	"No, I'd rather wait here."`
 					goto end
-			`	You head into the settlement with Foster and Eyama. The buildings were all connected to each other to avoid the exterior atmosphere, although nowadays, not much remains. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. They were melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are curtains and rags hanging from the ceiling to the ground. Closer inspection reveal those rags to have traces of chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
+			`	You head into the settlement with Foster and Eyama. Not much remains of the ruins, but there is still more than what one would expect to find after such a long time. The buildings were all connected to each other to avoid the exterior atmosphere. They were made of glass, scrap, and a kind of yellowish white plastic, the same plastic that the carapaces of animals here are made of. It's very fortunate that the young life in this planet seems to still be unable to decompose those materials, leaving the ruins only at the mercy of weather and geological processes. They appear to have been melted into shape and built into walls over time, giving the buildings a rounded, anachronistic look, like mud huts made of modern materials. All around the inside there are remains of curtains and rags hanging from the ceiling to the ground. Closer inspection reveals the rags to have traces of exotic chemicals, likely made to react with the chlorine in the air to keep the atmosphere inside breathable.`
 			`	The smaller rooms you come across appear to be just family homes, with a simplistic, single room interior, while the larger ones had other purposes, like what appears to have been a classroom, an animal carapace storage room holding the exoskeletons of many different species, a communal kitchen with remains of a solar oven, and most strikingly, a hatchery with relatively small beds, nests, and makeshift toys strewn about. Most of the rooms are littered with skeletons and remains, from the largest hunter-gatherers to the smallest young ones, a grim scene suggesting that some unknown catastrophe ended their lives all at once. Even then, the Sheragi on the surface apparently survived for much longer than the ones in the Emerald Sword, perhaps for many generations. Had the ship landed, they might have survived to this day.`
-			`	Foster documents and takes pictures of everything that he sees. Although you'd expect him to be excited to see al this like he was when investigating the Sheragi ruins on Zug, his mood is extremely somber.`
+			`	Foster documents and takes pictures of everything that he sees. Although you'd expect him to be excited to see all this like he was when investigating the Sheragi ruins on Zug, his mood is extremely somber.`
 			`	While in one of the rooms, Eyama spots a young Sheragi skeleton laying on the ground that looks like they were reaching out for something when they died. Eyama kneels down next to the skeleton and reaches out to touch its hand. "Don't," Foster says from across the room, stopping Eyama from moving. "We need to leave this place undisturbed. We've done enough already by taking the ship." Eyama gets up without speaking, but gives a look of understanding to Foster.`
 			`	After spending enough time among the ruins, you return to the ships with Foster and Eyama.`
 			label end
