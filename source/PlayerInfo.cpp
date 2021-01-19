@@ -776,9 +776,9 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 	
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
+		if(ship->GetSystem() && !ship->IsDisabled() && !ship->IsParked())
 		{
-			auto checks = ship->FlightCheck();
+			auto checks = ship->FlightCheck(flagship == ship);
 			if(!checks.empty())
 				flightChecks.emplace(ship, checks);
 			

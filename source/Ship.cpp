@@ -1029,7 +1029,7 @@ int64_t Ship::ChassisCost() const
 
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
-vector<string> Ship::FlightCheck() const
+vector<string> Ship::FlightCheck(bool isFlagship) const
 {
 	auto checks = vector<string>{};
 	
@@ -1052,15 +1052,15 @@ vector<string> Ship::FlightCheck() const
 	
 	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
-		checks.emplace_back("overheating!");
+		checks.emplace_back(isFlagship ? "overheating flagship!" : "overheating escort!");
 	else if(energy <= 0.)
-		checks.emplace_back("no energy!");
+		checks.emplace_back(isFlagship ? "no energy flagship!" : "no energy escort!");
 	else if((energy - burning <= 0.) && (fuel <= 0.))
-		checks.emplace_back("no fuel!");
+		checks.emplace_back(isFlagship ? "no fuel flagship!" : "no fuel escort!");
 	else if(!thrust && !reverseThrust && !afterburner)
-		checks.emplace_back("no thruster!");
+		checks.emplace_back(isFlagship ? "no thruster flagship!" : "no thruster escort!");
 	else if(!turn)
-		checks.emplace_back("no steering!");
+		checks.emplace_back(isFlagship ? "no steering flagship!" : "no steering escort!");
 	
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())

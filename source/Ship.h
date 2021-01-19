@@ -115,7 +115,7 @@ public:
 	double Zoom() const;
 	const Government *GetGovernment() const;
 	*/
-
+	
 	Ship() = default;
 	// Construct and Load() at the same time.
 	Ship(const DataNode &node);
@@ -148,10 +148,10 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
-
+	
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
-	std::vector<std::string> FlightCheck() const;
+	std::vector<std::string> FlightCheck(bool isFlagship = false) const;
 	
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
