@@ -150,7 +150,7 @@ Version 0.9.13:
       * Weapon attributes to override the range and velocity values used by the AI to determine where the aim and when to fire. (@Amazinite)
       * Multiplier attributes for various shield and hull related attributes. (@Amazinite)
       * "Protection" attributes that reduce the effect of incoming damage types. (@Amazinite)
-      * A resistance attribute for piercing that subtracts from the piercing of incoming projectiles. 
+      * A resistance attribute for piercing that subtracts from the piercing of incoming projectiles. (@Amazinite)
       * The sound and visual effects of hyperdrives and jump drives can now be customized. (@Amazinite)
       * A "parallel" keyword for gun hardpoints and weapons that changes aiming behavior. (@petervdmeer)
       * Attributes that can alter the point at which a ship becomes disabled. (@Amazinite)
