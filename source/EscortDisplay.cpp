@@ -96,7 +96,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
-
+		
 		Color color;
 		if(escort.isHostile)
 			color = hostileColor;

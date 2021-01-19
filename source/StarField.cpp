@@ -95,25 +95,25 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	{
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
-	
+		
 		float length = vel.Length();
 		Point unit = length ? vel.Unit() : Point(1., 0.);
 		// Don't zoom the stars at the same rate as the field; otherwise, at the
 		// farthest out zoom they are too small to draw well.
 		unit /= pow(zoom, .75);
-	
+		
 		float baseZoom = static_cast<float>(2. * zoom);
 		GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
 		glUniform2fv(scaleI, 1, scale);
-	
+		
 		GLfloat rotate[4] = {
 			static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
 			static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
 		glUniformMatrix2fv(rotateI, 1, false, rotate);
-	
+		
 		glUniform1f(elongationI, length * zoom);
 		glUniform1f(brightnessI, min(1., pow(zoom, .5)));
-	
+		
 		// Stars this far beyond the border may still overlap the screen.
 		double borderX = fabs(vel.X()) + 1.;
 		double borderY = fabs(vel.Y()) + 1.;
@@ -125,7 +125,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		// Round down to the start of the nearest tile.
 		minX &= ~(TILE_SIZE - 1l);
 		minY &= ~(TILE_SIZE - 1l);
-	
+		
 		for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 			{
@@ -141,7 +141,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 				int count = 6 * tileIndex[index + 1] - first;
 				glDrawArrays(GL_TRIANGLES, first, count);
 			}
-	
+		
 		glBindVertexArray(0);
 		glUseProgram(0);
 	}
@@ -200,7 +200,7 @@ void StarField::SetUpGraphics()
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
 		"}\n";
-
+	
 	static const char *fragmentCode =
 		"// fragment starfield shader\n"
 		"in float fragmentAlpha;\n"
@@ -327,7 +327,7 @@ void StarField::MakeStars(int stars, int width)
 	}
 	// Adjust the tile indices so that tileIndex[i] is the start of tile i.
 	tileIndex.insert(tileIndex.begin(), 0);
-
+	
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 	
 	// Connect the xy to the "vert" attribute of the vertex shader.

@@ -2109,7 +2109,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		victim->hull = max(victim->hull, victim->MinimumHull());
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
-		if(!victim->JumpsRemaining() && CanRefuel(*victim))
+		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
@@ -2745,7 +2745,25 @@ double Ship::DisabledHull() const
 }
 
 
-// TODO: fix misuses of this method, as it is now being used to indicate the need for refueling.
+
+bool Ship::NeedsFuel(bool followParent) const
+{
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		const auto &p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
+	return (fuel < jumpFuel) && !(Fuel() == 1.);
+}
+
+
+
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -2755,7 +2773,7 @@ int Ship::JumpsRemaining(bool followParent) const
 	{
 		// If this ship has no destination, the parent's substitutes for it,
 		// but only if the location is reachable.
-		auto p = GetParent();
+		const auto &p = GetParent();
 		if(p)
 			jumpFuel = JumpFuel(p->GetTargetSystem());
 	}
