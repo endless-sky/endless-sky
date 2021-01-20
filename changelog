@@ -216,7 +216,6 @@ Version 0.9.13:
     * The game will now report more errors in conversations, including incorrect indentation. (@NomadicVolcano)
     * The --ships flag now outputs the number of guns and turrets on a ship. (@fcfort)
     * The systems that were defined in the Pug file have been moved to the map file. (@Zitchas)
-    * Support test case execution, locally and in CI/CD. (@petervdmeer)
     * Copy constructor and assignment operators for File now close own file, preventing a memory leak. (@tehhowch)
     * A single bind + unbind is used when drawing mission system rings instead of one for each ring. (@tehhowch)
     * Commands can now be created from datafile text. (@petervdmeer)
@@ -235,7 +234,10 @@ Version 0.9.13:
     * The game will now fallback onto using shaders for swizzling if the player's hardware does not have the swizzle extension. (@janisozaur, @thomasballinger)
     * References to undefined data are now preserved in the save file, preventing crashes or lost data caused by removing plugins. (@tehhowch)
     * The game will now warn about having a low monitor frame rate, which causes the game to run at a reduced frame rate. (@tehhowch)
-    * A bunch of CI/CD updates. (@MCOfficer, @petervdmeer, @tehhowch)
+  * CI/CD and development environment
+    * Make (test-)executables available (for Linux, MacOS and Windows) for every in-progress PR. (@MCOfficer)
+    * Update CI/CD environment to the latest GitHub actions and Linux runtime environments. (@MCOfficer)
+    * A number of smaller CI/CD updates. (@MCOfficer, @petervdmeer, @tehhowch)
 
 Version 0.9.12:
   * Bug fixes:
