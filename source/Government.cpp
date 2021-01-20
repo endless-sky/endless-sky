@@ -148,7 +148,14 @@ const string &Government::GetName() const
 
 
 
-// Get the name used for this government in the data files.
+// Set / Get the name used for this government in the data files.
+void Government::SetName(const string &trueName)
+{
+	this->name = trueName;
+}
+
+
+
 const string &Government::GetTrueName() const
 {
 	return name;

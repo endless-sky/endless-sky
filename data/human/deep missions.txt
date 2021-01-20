@@ -1272,8 +1272,8 @@ mission "Deep: Project Hawking: Vinci"
 
 mission "Deep: Remnant 0"
 	minor
-	name `Fetching Keystones`
-	description `Buy 10 Quantum Keystones from Hai space and return them to <destination>, where Ivan and his team will research them and their link to the spatial anomaly in Terminus.`
+	name `Fetching keystones`
+	description `Buy 10 quantum keystones from Hai space and return them to <destination>, where Ivan and his team will research them and their link to the spatial anomaly in Terminus.`
 	source
 		attributes "deep"
 		not system "Epsilon Leonis"
@@ -1290,7 +1290,7 @@ mission "Deep: Remnant 0"
 		conversation
 			`While wandering through the spaceport, you are approached by a man you instantly recognize as Ivan, the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He mentions that he heard how helpful you have been to others within the Deep.`
 			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it.`
-			`	Ivan looks around then leans in to whisper to you. "I must ask you, do you know of the Hai?" You nod. "Splendid!" He jumps up, nearly knocking his own glasses off his face. "Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
+			`	Ivan looks around then leans in to whisper to you. "I must ask you, do you know of the Hai?" You nod. "Splendid!" He jumps up, nearly knocking his own glasses off his face. "Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'quantum keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
 			branch remnant
 				has "First Contact: Remnant: offered"
 			choice
@@ -1303,7 +1303,7 @@ mission "Deep: Remnant 0"
 			
 			label remnant
 			choice
-				`	"I already know what is on the other side of the wormhole. In fact, installing a single Quantum Keystone is enough to enter into the spatial anomaly."`
+				`	"I already know what is on the other side of the wormhole. In fact, installing a single quantum keystone is enough to enter into the spatial anomaly."`
 				`	"Sorry, but Hai space is too far for me right now."`
 					decline
 			apply
@@ -1333,19 +1333,19 @@ mission "Deep: Remnant 0"
 			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever-present red glow, similar to the color of the wormhole. You also mention the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
 				
 			label end
-			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the Quantum Keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about this region that you describe. Oh, before I forget: we can pay you for half of the cost of the Keystones."`
+			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the quantum keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about this region that you describe. Oh, before I forget: we can pay you for half of the cost of the keystones."`
 			choice
 				`	"I would be glad to help."`
 					accept
 				`	"Sorry, I don't want to help with this."`
 					decline
 	on visit
-		dialog `You do not have the 10 Quantum Keystones that Ivan asked you to purchase in Hai space. You should return here after obtaining them.`
+		dialog `You do not have the 10 quantum keystones that Ivan asked you to purchase in Hai space. You should return here after obtaining them.`
 	on complete
 		outfit "Quantum Keystone" -10
 		event "deep: keystone research" 14
 		payment 60000
-		log `Ran into the scientists who are investigating the anomaly in Terminus. Gave them ten Quantum Keystones from Hai space to examine.`
+		log `Ran into the scientists who are investigating the anomaly in Terminus. Gave them ten quantum keystones from Hai space to examine.`
 		conversation
 			branch TMBR
 				has "Deep: TMBR 0: offered"
@@ -1365,7 +1365,7 @@ event "deep: keystone research"
 mission "Deep: Remnant: Keystone Research"
 	landing
 	name `Travel to <planet>`
-	description `Meet up with Ivan on <destination> to learn about his research on the Quantum Keystones you brought him.`
+	description `Meet up with Ivan on <destination> to learn about his research on the quantum keystones you brought him.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not system "Epsilon Leonis"
@@ -1378,7 +1378,7 @@ mission "Deep: Remnant: Keystone Research"
 	
 	on offer
 		dialog
-			`You receive a message from Ivan, the scientist working on the spatial anomaly in Terminus. "Captain, we have finished studying the Quantum Keystones, and they do in fact allow access through the wormhole. Please meet with me on <destination> if you wish to continue helping us with our research."`
+			`You receive a message from Ivan, the scientist working on the spatial anomaly in Terminus. "Captain, we have finished studying the quantum keystones, and they do in fact allow access through the wormhole. Please meet with me on <destination> if you wish to continue helping us with our research."`
 
 
 
@@ -1451,12 +1451,12 @@ conversation "deep: remnant"
 		has "Deep: Remnant A: done"
 	
 	label "on first mission"
-	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. "Quite the distance from my office, but we work with what we have," he comments. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
+	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. "Quite the distance from my office, but we work with what we have," he comments. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the quantum keystones.`
 	branch "knew before" "didn't know before"
 		has "deep: knew of stones before scientists"
 	
 	label "knew before"
-	`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
+	`	"As you mentioned before, a single keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
 	branch remnant1
 		has "deep: did reveal remnant"
 	`	"Last time, you mentioned that there were alien creatures able to survive the vacumm of space, correct?"`
@@ -1471,7 +1471,7 @@ conversation "deep: remnant"
 		goto end
 	
 	label "didn't know before"
-	`	"We've analyzed the Keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
+	`	"We've analyzed the keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
 	`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
 	branch "know now" "still don't know"
 		has "First Contact: Remnant: offered"
@@ -1530,7 +1530,7 @@ conversation "deep: remnant"
 		`	"I'm always willing to go on an adventure."`
 		`	"This sounds too risky. You're going to need to find someone else to go exploring."`
 			decline	
-	`	"Splendid! We will give you a single Quantum Keystone in order to travel through the wormhole. Return here once you have finished exploring."`
+	`	"Splendid! We will give you a single quantum keystone in order to travel through the wormhole. Return here once you have finished exploring."`
 		accept
 
 
