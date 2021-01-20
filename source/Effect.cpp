@@ -26,6 +26,13 @@ const string &Effect::Name() const
 
 
 
+void Effect::SetName(const string &name)
+{
+	this->name = name;
+}
+
+
+
 void Effect::Load(const DataNode &node)
 {
 	if(node.Size() > 1)

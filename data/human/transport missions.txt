@@ -2690,7 +2690,7 @@ mission "Pirate Blockade"
 	
 	on offer
 		conversation
-			`It is dusk at the <origin> spaceport, and the setting sun casts long shadows across the spaceport deck. You take notice of a slim cloaked figure walking only a few feet behind you who seems to be keeping pace.`
+			`It is dusk at the <origin> spaceport, and the setting sun casts long shadows across the spaceport deck. You take notice of a slim cloaked figure walking only a few meters behind you who seems to be keeping pace.`
 			choice
 				`	(Confront them.)`
 					goto confront
