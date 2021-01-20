@@ -266,7 +266,7 @@ void Ship::Load(const DataNode &node)
 					else
 						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
 					
-					if(needToCheckAngles && !attributes.isOmnidirectional)
+					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
 						const Angle &base = attributes.baseAngle;
 						if(!base.IsInRange(attributes.sweptAngle))
