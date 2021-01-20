@@ -61,7 +61,7 @@ public:
 	const Angle &GetBaseAngle() const;
 	// Get the swept angle if this is a directional turret,
 	// otherwise a pair of 180 degree + baseAngle.
-	std::pair<Angle, Angle> GetSweptAngle() const;
+	const std::pair<Angle, Angle> &GetSweptAngle() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.

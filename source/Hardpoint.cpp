@@ -82,7 +82,7 @@ const Angle &Hardpoint::GetBaseAngle() const
 
 
 // Get the swept angle. Return value is invalid if this is omnidirectional.
-std::pair<Angle, Angle> Hardpoint::GetSweptAngle() const
+const std::pair<Angle, Angle> &Hardpoint::GetSweptAngle() const
 {
 	return sweptAngle;
 }
