@@ -806,7 +806,7 @@ Politics &GameData::GetPolitics()
 
 
 
-const vector<StartConditions> &GameData::Start()
+const vector<StartConditions> &GameData::StartOptions()
 {
 	return startConditions;
 }

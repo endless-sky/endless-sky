@@ -191,13 +191,13 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
-		if(GameData::Start().size() == 1) 
+		if(GameData::StartOptions().size() == 1) 
 		{
-			
-			player.New(GameData::Start()[0]);
+			const StartConditions *startConditions = &GameData::StartOptions().front();
+			player.New(*startConditions);
 
 			ConversationPanel *panel = new ConversationPanel(
-				player, *GameData::Conversations().Get("intro"));
+				player, startConditions->GetConversation());
 			GetUI()->Push(panel);
 			panel->SetCallback(this, &MenuPanel::OnCallback);
 		} 

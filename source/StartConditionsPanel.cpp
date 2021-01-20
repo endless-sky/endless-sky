@@ -1,5 +1,5 @@
 /* StartConditionsPanel.cpp
-Copyright (c) 2020 by Michael Zahniser
+Copyright (c) 2020 by FranchuFranchu <fff999abc999@gmail.com>
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -42,18 +42,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/truncate.hpp"
 #include "UI.h"
 
-#include <SDL2/SDL.h>
-
-#include "gl_header.h"
+#include <algorithm>
 
 using namespace std;
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, LoadPanel *loadPanel)
-	: player(player), gamePanels(gamePanels), loadPanel(loadPanel)
+namespace {
+	const int PAGE_INTERVAL = 10;
+}
+
+StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, Panel *parent)
+	: player(player), gamePanels(gamePanels), parent(parent)
 {
-	if(!GameData::Start().empty())
+	if(!GameData::StartOptions().empty())
 	{
-		chosenStart = GameData::Start().back();
+		// By default, select the last defined start conditions
+		// (which are usually the ones defined by a plugin)
+		chosenStart = &GameData::StartOptions().back();
 		hasChosenStart = true;
 	}
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
@@ -68,7 +72,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 	
 	size_t i = 0;
 	// Fill up the startConditionsClickZones vector
-	for(const StartConditions &it : GameData::Start())
+	for(const StartConditions &it : GameData::StartOptions())
 	{
 		// emplace_back will implicitly instantiate a ClickZone
 		startConditionsClickZones.emplace_back(
@@ -87,7 +91,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 	descriptionWrappedText.SetWrapWidth(descriptionBox.Width());
 	
 	if (hasChosenStart)
-		descriptionWrappedText.Wrap(chosenStart.GetDescription());
+		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 	
 	bright = *GameData::Colors().Get("bright");
 }
@@ -96,7 +100,6 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, L
 void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	
 	
 	const Font &font = FontSet::Get(14);
 	
@@ -108,18 +111,18 @@ void StartConditionsPanel::Draw()
 	if(hasChosenStart) 
 	{
 		info.SetCondition("chosen start");
-		if(chosenStart.GetSprite())
-			info.SetSprite("start sprite", chosenStart.GetSprite());
-		info.SetString("name", chosenStart.GetName());
-		info.SetString("description", chosenStart.GetDescription());
-		info.SetString("planet", chosenStart.GetPlanet()->Name());
-		info.SetString("system", chosenStart.GetSystem()->Name());
-		info.SetString("date", chosenStart.GetDate().ToString());
-		info.SetString("credits", Format::Credits(chosenStart.GetAccounts().Credits()));
+		if(chosenStart->GetSprite())
+			info.SetSprite("start sprite", chosenStart->GetSprite());
+		info.SetString("name", chosenStart->GetName());
+		info.SetString("description", chosenStart->GetDescription());
+		info.SetString("planet", chosenStart->GetPlanet()->Name());
+		info.SetString("system", chosenStart->GetSystem()->Name());
+		info.SetString("date", chosenStart->GetDate().ToString());
+		info.SetString("credits", Format::Credits(chosenStart->GetAccounts().Credits()));
 
-		descriptionText = chosenStart.GetDescription();
+		descriptionText = chosenStart->GetDescription();
 	}
-	else if(!GameData::Start().size())
+	else if(!GameData::StartOptions().size())
 	{
 		descriptionText = "No start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly";
 	}
@@ -139,7 +142,7 @@ void StartConditionsPanel::Draw()
 	
 	Point point(entryListBox.Left(), entryListBox.Top() - listScroll);
 	
-	for(const auto &it : GameData::Start())
+	for(const auto &it : GameData::StartOptions())
 	{
 		Rectangle zone(
 			point  + Point(
@@ -155,12 +158,12 @@ void StartConditionsPanel::Draw()
 		}
 		
 		
-		bool isHighlighted = (it == chosenStart);
+		bool isHighlighted = (&it == chosenStart);
 		
 		// double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		double alpha = 1;
 		
-		if(it == chosenStart)
+		if(&it == chosenStart)
 		{
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 		}
@@ -175,18 +178,14 @@ void StartConditionsPanel::Draw()
 
 bool StartConditionsPanel::Drag(double dx, double dy)
 {
-	int x = hoverPoint.X();
-	if(x >= entryListBox.Left() && x < entryListBox.Right())
+	if(entryListBox.Contains(hoverPoint))
 	{
-		// Scroll the list
-		// This looks inefficient but it probably gets optimized by the compiler
 		listScroll -= dy;
-		listScroll = min(entryBox.Height() * (GameData::Start().size()-1), listScroll); // Avoid people going too low
-		listScroll = max(0., listScroll); // Snap the list to avoid people scrolling too far up
+		listScroll = min(entryBox.Height() * (GameData::StartOptions().size()-1), listScroll); 
+		listScroll = max(0., listScroll);
 	}
-	else
-	{
-		// Scroll the description
+	else if(descriptionBox.Contains(hoverPoint))
+	{		
 		descriptionScroll += dy;
 		descriptionScroll = min(0., descriptionScroll); // Snap the list to avoid people scrolling too far up
 	}
@@ -213,16 +212,66 @@ bool StartConditionsPanel::Hover(int x, int y)
 
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	
+	// To select the previous start conditions, we'll search for the selected start
+	// conditions, and move the iterator backwards when we find them
+	
+	// Similar actions can be performed to select the next one
+	
+	auto chosenStartPosition = find(GameData::StartOptions().begin(), GameData::StartOptions().end(), *chosenStart);
+	
+	
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
+	else if(key == SDLK_UP) 
+	{
+		if (chosenStart == &*GameData::StartOptions().begin())
+			return false;
+		
+		chosenStart = &*chosenStartPosition-1;
+	}
+	else if (key == SDLK_DOWN)
+	{
+		if (chosenStart == &*GameData::StartOptions().end() - 1)
+			return false;
+		
+		chosenStart = &*chosenStartPosition+1;	
+	}
+	// When using the pageup and pagedown keys, it's slighly more complex
+	// We'll select the StartConditions 10 (PAGE_INTERVAL) positions before or after the selected one
+	// We have to make sure that the iterator we move doesn't go off bounds
+	
+	// In the future, we should consider dynamically calculating PAGE_INTERVAL based on the dimensions of the entryListBox,
+	// but it's unlikely that the player will install enough plugins with start conditions at once 
+	// so that such a feature were required
+	else if(key == SDLK_PAGEUP) 
+	{
+		if ((chosenStartPosition - GameData::StartOptions().begin()) < PAGE_INTERVAL)
+		{
+			chosenStart = &GameData::StartOptions().front();
+			return false;
+		}
+		
+		chosenStart = &*chosenStartPosition-PAGE_INTERVAL;
+	}
+	else if(key == SDLK_PAGEDOWN) 
+	{
+		if ((GameData::StartOptions().end() - 1 - chosenStartPosition) < PAGE_INTERVAL)
+		{
+			chosenStart = &GameData::StartOptions().back();
+			return false;
+		}
+		
+		chosenStart = &*chosenStartPosition+PAGE_INTERVAL;
+	}
 	else if(key == 's' || key == 'n' || key == '\n')
 	{
 		if(!hasChosenStart)
 			return true;
 		
-		player.New(chosenStart);
+		player.New(*chosenStart);
 		
-		if(chosenStart.GetConversation().IsEmpty())
+		if(chosenStart->GetConversation().IsEmpty())
 		{
 			// If no conversation was defined, then skip the conversation panel
 			OnCallback(0);
@@ -230,7 +279,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		else
 		{
 			ConversationPanel *panel = new ConversationPanel(
-				player, chosenStart.GetConversation());
+				player, chosenStart->GetConversation());
 			GetUI()->Push(panel);
 			panel->SetCallback(this, &StartConditionsPanel::OnCallback);
 		}
@@ -250,19 +299,18 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 	
 	for(const auto &it : startConditionsClickZones)
 	{
-		if(!it.Contains(Point(x, y + listScroll)))
-			continue;
-		
-		// We found the element we clicked on
-		
-		if(!(chosenStart == it.Value()))
-			descriptionScroll = 0; // Reset scrolling
-		chosenStart = it.Value();
-		hasChosenStart = true;
+		if(it.Contains(Point(x, y + listScroll)))
+		{
+			if(chosenStart != &it.Value())
+				descriptionScroll = 0;
+			chosenStart = &it.Value();
+			hasChosenStart = true;
+			break;
+		}
 	}
 	
 	if (hasChosenStart)
-		descriptionWrappedText.Wrap(chosenStart.GetDescription());
+		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 	
 	return true;
 }
@@ -284,8 +332,8 @@ void StartConditionsPanel::OnCallback(int)
 		gamePanels.StepAll();
 	}
 	// It's possible that the player got to this menu directly from the main menu, so we need to check for that
-	if(loadPanel)
-		GetUI()->Pop(loadPanel);
+	if(parent)
+		GetUI()->Pop(parent);
 	
 	GetUI()->Pop(GetUI()->Root().get());
 	GetUI()->Pop(this);

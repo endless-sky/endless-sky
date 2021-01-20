@@ -1,5 +1,5 @@
 /* StartConditionsPanel.h
-Copyright (c) 2020 by Michael Zahniser
+Copyright (c) 2020 by FranchuFranchu <fff999abc999@gmail.com>
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -17,13 +17,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 #include "Color.h"
-#include "LoadPanel.h"
-#include "PlayerInfo.h"
 #include "text/WrappedText.h"
+
+class PlayerInfo;
+class StartConditions;
+class UI;
 
 class StartConditionsPanel : public Panel {
 public:
-	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, LoadPanel *LoadPanel);
+	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, Panel *parent);
 	void OnCallback(int);
 	virtual void Draw() override;
 	
@@ -44,11 +46,11 @@ private:
 	WrappedText descriptionWrappedText;
 	
 	// Workaround around the absence of std::optional<>
-	StartConditions chosenStart;
+	const StartConditions *chosenStart;
 	bool hasChosenStart = false;
 	
 	// Stored here so that we can remove it if the player chooses a scenario
-	LoadPanel *loadPanel = nullptr; 
+	Panel *parent = nullptr; 
 	Point hoverPoint;
 	
 	double listScroll = 0;

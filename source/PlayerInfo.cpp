@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "GameWindow.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Messages.h"
@@ -294,10 +293,10 @@ void PlayerInfo::Load(const string &path)
 
 	// For old saves, default to the first start condition, which is always
 	// our default start.
-	// It is not necessary to check whether GameData::Start().empty(),
+	// It is not necessary to check whether GameData::StartOptions().empty(),
 	// because that's already covered in main.cpp
 	if(!hasChosenStart)
-		chosenStart = GameData::Start().front(); 
+		chosenStart = GameData::StartOptions().front(); 
 
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.

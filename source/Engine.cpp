@@ -2330,6 +2330,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 }
 
 
+
 // Constructor for the ship status display rings.
 Engine::Status::Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle)
 	: position(position), outer(outer), inner(inner), disabled(disabled), radius(radius), type(type), angle(angle)
