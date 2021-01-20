@@ -33,8 +33,10 @@ public:
 	void FinishLoading();
 	
 	Date GetDate() const;
-	const Planet *GetPlanet() const;
-	const System *GetSystem() const;
+	// Get this start's planet, or New Boston if not set.
+	const Planet &GetPlanet() const;
+	// Get this start's system, or Rutilicus if not set.
+	const System &GetSystem() const;
 	const Account &GetAccounts() const;
 	const ConditionSet &GetConditions() const;
 	const std::list<Ship> &Ships() const;

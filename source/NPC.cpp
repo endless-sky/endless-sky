@@ -293,6 +293,56 @@ void NPC::Save(DataWriter &out) const
 
 
 
+bool NPC::IsValid(bool asTemplate) const
+{
+	// An NPC with no government will take the player's government
+	
+	// NPC templates have certain fields to validate that instantiated NPCs do not:
+	if(asTemplate)
+	{
+		// A location filter may be used to set the starting system.
+		// If given, it must be able to resolve to a valid system.
+		if(!location.IsValid())
+			return false;
+		
+		// A null system reference is allowed, since it will be set during
+		// instantiation if not given explicitly.
+		if(system && !system->IsValid())
+			return false;
+		
+		// A planet is optional, but if given must be valid.
+		if(planet && !planet->IsValid())
+			return false;
+		
+		// If a stock phrase or conversation is given, it must not be empty.
+		if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
+			return false;
+		if(stockConversation && stockConversation->IsEmpty())
+			return false;
+		
+		// NPC fleets, unlike stock fleets, do not need a valid government
+		// since they will unconditionally inherit this NPC's government.
+		for(auto &&fleet : fleets)
+			if(!fleet.IsValid(false))
+				return false;
+		for(auto &&fleet : stockFleets)
+			if(!fleet->IsValid(false))
+				return false;
+	}
+	
+	// Ships must always be valid.
+	for(auto &&ship : ships)
+		if(!ship->IsValid())
+			return false;
+	for(auto &&ship : stockShips)
+		if(!ship->IsValid())
+			return false;
+	
+	return true;
+}
+
+
+
 // Update spawning and despawning for this NPC.
 void NPC::UpdateSpawning(const PlayerInfo &player)
 {
