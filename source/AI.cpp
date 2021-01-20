@@ -2720,17 +2720,13 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				Angle targetAngle = hardpoint.GetBaseAngle() + hardpoint.HarmonizedAngle();
+				Angle targetAngle = hardpoint.GetIdleAngle();
 				double offset = 0.;
 				if(hardpoint.IsOmnidirectional())
 					offset = (targetAngle - hardpoint.GetAngle()).Degrees();
 				else
 				{
 					const auto arcRange = hardpoint.GetSweptAngle();
-					// The harmonised angle might be out of range.
-					if(!targetAngle.IsInRange(arcRange))
-						// Point to the parallel angle.
-						targetAngle = hardpoint.GetBaseAngle();
 					const double targetDegree = (targetAngle - arcRange.first).AbsDegrees();
 					const double currentDegree = (hardpoint.GetAngle() - arcRange.first).AbsDegrees();
 					offset = targetDegree - currentDegree;

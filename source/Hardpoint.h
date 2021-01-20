@@ -33,9 +33,9 @@ public:
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	struct BaseAttributes {
 		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
-		// The turret shuold point this angle when idling.
+		// The turret should point this angle when idling.
 		Angle baseAngle;
-		// Indicates if this hardpoint disallows converging (guns only).
+		// Indicates if this hardpoint disallows converging (guns and the idle position of turrets).
 		bool isParallel;
 		// An omnidirectional turret can rotate infinitely.
 		bool isOmnidirectional;
@@ -56,9 +56,9 @@ public:
 	const Point &GetPoint() const;
 	// Get the angle that this weapon is aimed at, relative to the ship.
 	const Angle &GetAngle() const;
-	// Get the base angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
-	// The turret shuold point this angle when idling.
-	const Angle &GetBaseAngle() const;
+	// Get the angle of a turret when idling, relative to the ship.
+	// For guns, this function is equal to GetAngle().
+	const Angle &GetIdleAngle() const;
 	// Get the swept angle if this is a directional turret,
 	// otherwise a pair of 180 degree + baseAngle.
 	const std::pair<Angle, Angle> &GetSweptAngle() const;

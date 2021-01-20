@@ -73,8 +73,9 @@ const Angle &Hardpoint::GetAngle() const
 
 
 
-// Get the default facing direction for a gun
-const Angle &Hardpoint::GetBaseAngle() const
+// Get the angle of a turret when idling, relative to the ship.
+// For guns, this function is equal to GetAngle().
+const Angle &Hardpoint::GetIdleAngle() const
 {
 	return baseAngle;
 }
@@ -325,20 +326,20 @@ void Hardpoint::Install(const Outfit *outfit)
 		// Update swept angle because of change an outfit.
 		UpdateSweptAngle();
 		
-		// For fixed weapons, apply "gun harmonization," pointing them slightly
-		// inward so the projectiles will converge. For turrets, start them out
-		// pointing outward from the center of the ship.
-		if(!isTurret)
+		// For fixed weapons and idling turrets, apply "gun harmonization,"
+		// pointing them slightly inward so the projectiles will converge.
+		// Weapons that fire in parallel beams don't get a harmonized angle.
+		// And some hardpoints/gunslots are configured not to get harmonized.
+		// So only harmonize when both the port and the outfit supports it.
+		if(!isParallel && !outfit->IsParallel())
 		{
-			angle = baseAngle;
-			// Weapons that fire in parallel beams don't get a harmonized angle.
-			// And some hardpoints/gunslots are configured not to get harmonized.
-			// So only harmonize when both the port and the outfit supports it.
-			if(!isParallel && !outfit->IsParallel())
-				angle += HarmonizedAngle();
+			const Angle harmonized = baseAngle + HarmonizedAngle();
+			// The harmonized angle might be out of swept angle of a turret.
+			// If so, this turret is forced "parallel."
+			if(!isTurret || isOmnidirectional || harmonized.IsInRange(GetSweptAngle()))
+				baseAngle = harmonized;
 		}
-		else
-			angle = baseAngle;
+		angle = baseAngle;
 	}
 }
 
@@ -407,6 +408,7 @@ void Hardpoint::UpdateSweptAngle()
 	const BaseAttributes &attributes = baseAttributes;
 	// Restore the initial value.
 	isOmnidirectional = attributes.isOmnidirectional;
+	baseAngle = attributes.baseAngle;
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
