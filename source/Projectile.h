@@ -73,6 +73,9 @@ public:
 	// non-const shared pointer to the target.
 	std::shared_ptr<Ship> TargetPtr() const;
 	
+	// Get the distance that this projectile has traveled.
+	double DistanceTraveled() const;
+	
 	
 private:
 	void CheckLock(const Ship &target);
@@ -87,6 +90,7 @@ private:
 	
 	double clip = 1.;
 	int lifetime = 0;
+	double distanceTraveled = 0;
 	bool hasLock = true;
 };
 

@@ -68,6 +68,8 @@ fleet "Small Southern Merchants"
 	variant 7
 		"Hauler"
 		"Berserker"
+	variant 1
+		"Scout" 
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -215,6 +217,10 @@ fleet "Small Core Merchants"
 		"Flivver (Luxury)"
 	variant 1
 		"Flivver (Racing)"
+	variant 2
+		"Scout"
+	variant 1
+		"Scout (Speedy)"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -392,6 +398,8 @@ fleet "Paradise Merchants"
 	variant 3
 		"Blackbird"
 		"Berserker" 2
+	variant 5
+		"Scout (Speedy)"
 
 
 fleet "Small Northern Merchants"
@@ -458,6 +466,10 @@ fleet "Small Northern Merchants"
 	variant 2
 		"Hauler II"
 		"Hauler"
+	variant 10
+		"Scout" 
+	variant 5
+		"Scout (Speedy)"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -638,6 +650,10 @@ fleet "Large Northern Merchants"
 		"Hauler III"
 		"Hauler II"
 		"Headhunter" 3
+	variant 1
+		"Scout" 3
+	variant 1
+		"Scout (Speedy)" 3
 
 fleet "Small Human Merchants (Hai)"
 	government "Merchant"
@@ -697,6 +713,8 @@ fleet "Small Human Merchants (Hai)"
 	variant 1
 		"Star Barge"
 		"Aphid"
+	variant 10
+		"Scout (Speedy)" 1
 
 fleet "Large Human Merchants (Hai)"
 	government "Merchant"
@@ -854,6 +872,8 @@ fleet "Large Human Merchants (Hai)"
 		"Water Bug" 2
 	variant 1
 		"Shield Beetle"
+	variant 1
+		"Scout (Speedy)" 3
 
 fleet "Human Miners"
 	government "Merchant"
@@ -1230,6 +1250,58 @@ fleet "Large Republic"
 		"Rainmaker" 2
 		"Gunboat"
 
+fleet "Republic Logistics"
+	government "Republic"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 3
+	personality
+		heroic opportunistic
+	variant 19
+		"Auxiliary"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
+	variant 19
+		"Auxiliary (Cargo)"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
+	variant 19
+		"Auxiliary (Transport)"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
+	variant 1
+		"Auxiliary (Cargo)" 3
+		"Dropship" 3
+		"Lance" 9
+		"Cruiser" 2
+		"Combat Drone" 8
+	variant 1
+		"Auxiliary (Transport)"
+		"Auxiliary (Cargo)"
+		"Auxiliary"
+		"Dropship" 6
+		"Lance" 6
+		"Cruiser" 2
+		"Combat Drone" 8
+	variant 1
+		"Auxiliary (Transport)" 3
+		"Dropship" 9
+		"Lance" 3
+		"Cruiser" 2
+		"Combat Drone" 8
+
 fleet "Navy Surveillance"
 	government "Republic"
 	names "republic capital"
@@ -1275,6 +1347,8 @@ fleet "Small Deep Merchants"
 		"Flivver"
 	variant 2
 		"Flivver (Racing)"
+	variant 1
+		"Scout"
 
 fleet "Large Deep Merchants"
 	government "Merchant"
@@ -2054,6 +2128,10 @@ fleet "Small Northern Pirates"
 		"Corvette (Missile)"
 	variant 1
 		"Corvette (Speedy)"
+	variant 1
+		"Scout"
+	variant 4
+		"Scout (Speedy)"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -2290,6 +2368,8 @@ fleet "pirate raid"
 		"Berserker (Afterburner)" 3
 	variant 2
 		"Berserker (Afterburner)" 2
+	variant 3
+		"Scout (Speedy)" 3
 
 fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"

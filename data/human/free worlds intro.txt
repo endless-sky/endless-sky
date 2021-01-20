@@ -923,7 +923,7 @@ mission "FW Katya 4"
 				`	"You've almost convinced me to join the Navy."`
 			
 			`	"Our fight isn't with the Navy," says Katya. "Most of them are good people. I'm sure they don't want war any more than we do. They're like police officers who are suddenly being asked to fight against the very people they swore to protect and serve."`
-			`	"I was a child on Vinci while this was happening," says Eyes. "A paradise world. I would listen to the news and could never understand why all the adults around me were so very, very angry that the Navy had gone off to rescue two million people from freezing to death. But they told me that we lived in one little island of safety in a dangerous galaxy, and that without the Navy protecting us the pirates or even maybe aliens would sweep in and destroy our homes and take our money. That it was us against the whole galaxy."`
+			`	"I was a child on Vinci while this was happening," says Eyes. "A Paradise World. I would listen to the news and could never understand why all the adults around me were so very, very angry that the Navy had gone off to rescue two million people from freezing to death. But they told me that we lived in one little island of safety in a dangerous galaxy, and that without the Navy protecting us the pirates or even maybe aliens would sweep in and destroy our homes and take our money. That it was us against the whole galaxy."`
 			`	"I'd hate to be rich," says Katya. "So much to fear."`
 			`	You finish your meal (Katya pays the tab), and agree to take off for <planet> first thing in the morning.`
 				accept
@@ -974,7 +974,7 @@ mission "FW Katya 5"
 					goto shoot
 			
 			label friends
-			`	"When I grew up and left the paradise sector, as a young idealist," says Eyes, "I decided I wanted to take a vow of poverty, so I came to live with the Brothers. But it turns out they also wanted me to take a vow of obedience. And chastity. Not so much my cup of tea." He winks at Katya.`
+			`	"When I grew up and left the Paradise sector, as a young idealist," says Eyes, "I decided I wanted to take a vow of poverty, so I came to live with the Brothers. But it turns out they also wanted me to take a vow of obedience. And chastity. Not so much my cup of tea." He winks at Katya.`
 			`	"Are the monks really as boring as Katya says?" you ask.`
 				goto shoot
 						
@@ -1329,6 +1329,9 @@ mission "FW Escort 1"
 	on accept
 		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently."
 	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	
 	on fail
 		set "fw intro escort failed"
 	
@@ -1397,6 +1400,9 @@ mission "FW Escort 1B"
 		conversation
 			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds Council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
 	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	
 	on fail
 		set "fw intro escort failed"
 	
@@ -1459,6 +1465,9 @@ mission "FW Escort 2"
 			
 			`	"Great!" says Tomek. "Good luck to all of you, and I hope to see you all safely back here in a couple of weeks."`
 				accept
+	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
 	
 	on fail
 		set "fw intro escort failed"
@@ -1526,6 +1535,9 @@ mission "FW Escort 2B"
 		conversation
 			`Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
 	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	
 	on fail
 		set "fw intro escort failed"
 	
@@ -1568,6 +1580,9 @@ mission "FW Escort 3"
 			`Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
 		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
+	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
 	
 	on fail
 		set "fw intro escort failed"
@@ -1917,7 +1932,8 @@ mission "Defend Sabik"
 			
 			label paint
 			`	You take the paintbrush, climb on top of your ship, and begin painting it in the green and gold of the Free Worlds. Suddenly you hear a cheer from one of the other ships parked nearby; someone has seen what you are doing and is shouting, "For freedom! Another ship for freedom!" Soon several other people see you, and before long it seems like everyone in the port has picked up the cheer.`
-			`	Tomek stands by, silently, until you finish, and then says, "Let's hit the bar. I need a drink."`
+			`	Tomek stands by, silently, until you finish, and then approaches you with an outstretched arm holding onto a license. "Here. You're going to need this.`
+			`	"I'm sure your assistance will be invaluable to our cause," he says as you accept the militia license. After a brief silence, he continues. "Now let's hit the bar. I need a drink."`
 			`	An hour later you are in the bar celebrating your new employment when emergency sirens start blaring. Someone runs into the bar and says, "The Navy has entered the system. What do we do?"`
 			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly! But if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do." You hurry to join all the other ships taking off to defend the system.`
 				launch

@@ -12,14 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipInfoDisplay.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Depreciation.h"
 #include "FillShader.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
+#include "text/layout.hpp"
 #include "Outfit.h"
 #include "Ship.h"
-#include "Table.h"
+#include "text/Table.h"
 
 #include <algorithm>
 #include <map>
@@ -72,9 +74,9 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	const Color &valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(10, Table::LEFT);
-	table.AddColumn(WIDTH - 90, Table::RIGHT);
-	table.AddColumn(WIDTH - 10, Table::RIGHT);
+	table.AddColumn(10, {WIDTH - 10, Alignment::LEFT});
+	table.AddColumn(WIDTH - 90, {WIDTH - 80, Alignment::RIGHT});
+	table.AddColumn(WIDTH - 10, {WIDTH - 20, Alignment::RIGHT});
 	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);
 	table.DrawGap(10.);
@@ -246,28 +248,18 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributesHeight += 20;
 	}
 	
-	if(ship.HasBays())
+	// Print the number of bays for each bay-type we have
+	for(auto bayType : Ship::BAY_TYPES)
 	{
-		unsigned drone = 0;
-		unsigned fighter = 0;
-		for(const auto &bay : ship.Bays())
+		int totalBays = ship.BaysTotal(bayType);
+		if(totalBays)
 		{
-			if(bay.isFighter)
-				++fighter;
-			else
-				++drone;
-		}
-		
-		if(drone)
-		{
-			attributeLabels.emplace_back("drone bays:");
-			attributeValues.emplace_back(to_string(drone));
-			attributesHeight += 20;
-		}
-		if(fighter)
-		{
-			attributeLabels.emplace_back("fighter bays:");
-			attributeValues.emplace_back(to_string(fighter));
+			// make sure the label is printed in lower case
+			string bayLabel = bayType;
+			transform(bayLabel.begin(), bayLabel.end(), bayLabel.begin(), ::tolower);
+			
+			attributeLabels.emplace_back(bayLabel + " bays:");
+			attributeValues.emplace_back(to_string(totalBays));
 			attributesHeight += 20;
 		}
 	}

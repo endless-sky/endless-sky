@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Format.h"
+#include "text/Format.h"
 
 #include <SDL2/SDL.h>
 
@@ -217,6 +217,48 @@ bool Command::HasConflict() const
 	
 	auto cit = keycodeCount.find(it->second);
 	return (cit != keycodeCount.end() && cit->second > 1);
+}
+
+
+
+// Load this command from an input file (for testing or scripted missions).
+void Command::Load(const DataNode &node)
+{
+	for(int i = 1; i < node.Size(); ++i)
+	{
+		static const map<string, Command> lookup = {
+			{"menu", Command::MENU},
+			{"forward", Command::FORWARD},
+			{"left", Command::LEFT},
+			{"right", Command::RIGHT},
+			{"back", Command::BACK},
+			{"primary", Command::PRIMARY},
+			{"secondary", Command::SECONDARY},
+			{"select", Command::SELECT},
+			{"land", Command::LAND},
+			{"board", Command::BOARD},
+			{"hail", Command::HAIL},
+			{"scan", Command::SCAN},
+			{"jump", Command::JUMP},
+			{"target", Command::TARGET},
+			{"nearest", Command::NEAREST},
+			{"deploy", Command::DEPLOY},
+			{"afterburner", Command::AFTERBURNER},
+			{"cloak", Command::CLOAK},
+			{"map", Command::MAP},
+			{"info", Command::INFO},
+			{"fight", Command::FIGHT},
+			{"gather", Command::GATHER},
+			{"hold", Command::HOLD},
+			{"ammo", Command::AMMO}
+		};
+		
+		auto it = lookup.find(node.Token(i));
+		if(it != lookup.end())
+			Set(it->second);
+		else
+			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
+	}
 }
 
 

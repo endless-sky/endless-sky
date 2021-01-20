@@ -46,6 +46,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isPhasing = true;
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
+		else if(key == "parallel")
+			isParallel = true;
+		else if(key == "gravitational")
+			isGravitational = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -148,6 +152,26 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingFuel = value;
 			else if(key == "firing heat")
 				firingHeat = value;
+			else if(key == "firing hull")
+				firingHull = value;
+			else if(key == "firing shields")
+				firingShields = value;
+			else if(key == "firing ion")
+				firingIon = value;
+			else if(key == "firing slowing")
+				firingSlowing = value;
+			else if(key == "firing disruption")
+				firingDisruption = value;
+			else if(key == "relative firing energy")
+				relativeFiringEnergy = value;
+			else if(key == "relative firing heat")
+				relativeFiringHeat = value;
+			else if(key == "relative firing fuel")
+				relativeFiringFuel = value;
+			else if(key == "relative firing hull")
+				relativeFiringHull = value;
+			else if(key == "relative firing shields")
+				relativeFiringShields = value;
 			else if(key == "split range")
 				splitRange = max(0., value);
 			else if(key == "trigger radius")
@@ -162,12 +186,24 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
 				damage[HEAT_DAMAGE] = value;
+			else if(key == "energy damage")
+				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
+			else if(key == "relative shield damage")
+				damage[RELATIVE_SHIELD_DAMAGE] = value;
+			else if(key == "relative hull damage")
+				damage[RELATIVE_HULL_DAMAGE] = value;
+			else if(key == "relative fuel damage")
+				damage[RELATIVE_FUEL_DAMAGE] = value;
+			else if(key == "relative heat damage")
+				damage[RELATIVE_HEAT_DAMAGE] = value;
+			else if(key == "relative energy damage")
+				damage[RELATIVE_ENERGY_DAMAGE] = value;
 			else if(key == "hit force")
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
@@ -176,13 +212,23 @@ void Weapon::LoadWeapon(const DataNode &node)
 				rangeOverride = max(0., value);
 			else if(key == "velocity override")
 				velocityOverride = max(0., value);
+			else if(key == "damage dropoff")
+			{
+				hasDamageDropoff = true;
+				double maxDropoff = (child.Size() >= 3) ? child.Value(2) : 0.;
+				damageDropoffRange = make_pair(max(0., value), maxDropoff);
+			}
+			else if(key == "dropoff modifier")
+				damageDropoffModifier = max(0., value);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
-	// Sanity check:
+	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
+	if(damageDropoffRange.first > damageDropoffRange.second)
+		damageDropoffRange.second = Range();
 	
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
@@ -258,6 +304,13 @@ int Weapon::AmmoUsage() const
 
 
 
+bool Weapon::IsParallel() const
+{
+	return isParallel;
+}
+
+
+
 const Sprite *Weapon::Icon() const
 {
 	return icon;
@@ -324,6 +377,24 @@ double Weapon::Range() const
 
 
 
+// Calculate the fraction of full damage that this weapon deals given the
+// distance that the projectile traveled if it has a damage dropoff range.
+double Weapon::DamageDropoff(double distance) const
+{
+	double minDropoff = damageDropoffRange.first;
+	double maxDropoff = damageDropoffRange.second;
+	
+	if(distance <= minDropoff)
+		return 1.;
+	if(distance >= maxDropoff)
+		return damageDropoffModifier;
+	// Damage modification is linear between the min and max dropoff points.
+	double slope = (1 - damageDropoffModifier) / (minDropoff - maxDropoff);
+	return slope * (distance - minDropoff) + 1;
+}
+
+
+
 // Legacy support: allow turret outfits with no turn rate to specify a
 // default turnrate.
 void Weapon::SetTurretTurn(double rate)
@@ -337,14 +408,13 @@ double Weapon::TotalDamage(int index) const
 {
 	if(!calculatedDamage)
 	{
+		calculatedDamage = true;
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
 			for(const auto &it : submunitions)
 				damage[i] += it.first->TotalDamage(i) * it.second;
 			doesDamage |= (damage[i] > 0.);
 		}
-		
-		calculatedDamage = true;
 	}
 	return damage[index];
 }

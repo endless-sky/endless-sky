@@ -523,7 +523,7 @@ event "wolf pack mizar end"
 mission "FW Wolf Pack 4"
 	landing
 	name "Attack Food Convoy"
-	description "Destroy a Republic Bactrian freighter in the <waypoints> system that is carrying food, then report back to <planet> for payment."
+	description "Destroy a Republic Auxiliary freighter in the <waypoints> system that is carrying food, then report back to <planet> for payment."
 	source
 		government "Free Worlds"
 	destination "Solace"
@@ -537,7 +537,7 @@ mission "FW Wolf Pack 4"
 	
 	on offer
 		dialog
-			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?`
+			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: an Auxiliary freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?"`
 	
 	on accept
 		event "wolf pack mizar start"
@@ -548,8 +548,8 @@ mission "FW Wolf Pack 4"
 		government "Republic"
 		system "Mizar"
 		personality timid staying target
-		ship "Bactrian" "Golden Fleece"
-		dialog "You have eliminated the Bactrian that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
+		ship "Auxiliary (Cargo)" "RNS Golden Fleece"
+		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	
 	npc
 		government "Republic"
@@ -583,6 +583,8 @@ mission "FW Stack Core 1"
 	destination "Rand"
 	to offer
 		has "FW Reconciliation Break: offered"
+	to fail
+		has "event: pug invasion"
 	
 	on offer
 		conversation
@@ -598,6 +600,8 @@ mission "FWC Stack Core 1"
 	destination "Rand"
 	to offer
 		has "FW Liberate Delta Sagittarii: done"
+	to fail
+		has "event: fwc pug invasion"
 	
 	on complete
 		set "FW Stack Core 1: done"
@@ -644,7 +648,6 @@ mission "FW Stack Core 1B"
 		event "stack core for sale" 25
 		payment 200000
 		dialog `You have escorted the convoy safely to its destination. The workers begin unloading some very heavy crates, and one of the freighter captains hands you <payment> and thanks you for your protection.`
-		log "The Free Worlds will soon have a new reactor core of their own design available for sale. It probably will not be as advanced as Navy technology, however."
 
 
 
@@ -658,6 +661,7 @@ mission "FW Stack Core 1C"
 		has "event: stack core for sale"
 	
 	on offer
+		log "The Free Worlds now has a new reactor core of their own design available for sale, specifically for increasing the Dreadnought's energy performance."
 		conversation
 			`You receive a message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
 				decline

@@ -9,7 +9,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "food in Hai space"
 	location
 		government "Hai"
@@ -19,12 +18,9 @@ news "food in Hai space"
 			"Food connoisseur"
 			"Tourist"
 			"Tour guide"
-	portrait
-		portrait/human26
-		portrait/human31
-		portrait/human57
-		portrait/human68
 	message
+		word
+			`"`
 		word
 			"This may sound odd, but the acorn cookies they sell here are the best cookies I've ever eaten."
 			"A Hai-human fusion restaurant near here sells peanut pizza. It sounds gross, but the taste is heavenly."
@@ -32,34 +28,19 @@ news "food in Hai space"
 			"I just can't get enough acorn stew. These Hai cooks are amazing."
 			"Peanut this, walnut that, hazelnut icecream. What I wouldn't give for some good steak right now..."
 			"Back home, my favorite snack was pickled walnuts. Here, the pickled acorns are amazing!"
+		word
+			`"`
 
 
-# Visual suggestion: glasses, clean-cut attire, possibly scientific accoutrements
 news "trading in Hai space"
 	location
 		government "Hai"
 	name
 		word
 			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human108
-		portrait/human112
-		portrait/human125
 	message
+		word
+			`"`
 		word
 			"Hai Tech is incredible compared to ours. Every time I add a ship to my fleet, I always make a trip up here to stock up on Hai tech."
 			"Have you tried out one of those Hai anti-missile systems? They'll waste any missile in human space."
@@ -69,9 +50,10 @@ news "trading in Hai space"
 			"I met some young Hai pilots. It sounds like they start out as poor as we do."
 			"I sold my entire stock of food from human space at this port. I guess even Hai get tired of nuts."
 			"Some Hai were protesting the work week. They want to work only 32 hours a week instead of 40. I used to work 70 hours a week for the Syndicate!"
+		word
+			`"`
 
 
-# Visual suggestion: glasses, clean-cut attire, possibly scientific accoutrements
 news "science in Hai space"
 	location
 		government "Hai"
@@ -79,14 +61,9 @@ news "science in Hai space"
 		word
 			"Scientist"
 			"Engineer"
-	portrait
-		portrait/human13
-		portrait/human37
-		portrait/human43
-		portrait/human64
-		portrait/human71
-		portrait/human83
 	message
+		word
+			`"`
 		word
 			"A while back, my Hai research partner was nearing a breakthrough, and then she vanished. I wonder where she went?"
 			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
@@ -96,62 +73,36 @@ news "science in Hai space"
 			"Hai have the most amazing holographic technology. One of them put on a backpack holoprojector. When he turned it on, he looked like an elephant. The legs and tail even tracked his movements! I wonder if they can mimic humans too?"
 			"The Hai have an amazing grasp of quantum chromodynamics. It's why their shield generators are so effective."
 			"The alloys Hai use in their ships are way beyond our technology. They're twice as strong with half the weight. No wonder their ships are so fast."
+		word
+			`"`
 
-# Visual suggestion: young, normal-looking, more female than male
-# or people with animals
 news "cute story in Hai space"
 	location
 		government "Hai"
 	name
 		word
 			"Tourist"
-	portrait
-		portrait/human00
-		portrait/human01
-		portrait/human11
-		portrait/human18
-		portrait/human35
-		portrait/human55
-		portrait/human66
-		portrait/human69
-		portrait/human107
-		portrait/human114
-		portrait/human123
-		portrait/human128
 	message
+		word
+			`"`
 		word
 			"My little daughter loved her stuffed bear back in human space, but now she wants to hug every Hai she sees instead."
 			"These Hai are so fluffy! I want to hug one every time I see them!"
 			"I saw the Hai-human fusion band Nuclear Martini playing on Luna. Nobody realized the hairy drummer was really a Hai in disguise."
 			"I saw a Hai wearing the cutest bonnet the other day. When I get back to human space, I'm definitely getting a pet squirrel."
 			"Do you see that Hai woman carrying her baby? Doesn't it look like a long-tailed teddy-bear? The Hai are so cute."
+		word
+			`"`
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "concerned merchant in Hai space"
 	location
 		government "Hai"
 	name
 		word
 			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human108
-		portrait/human112
-		portrait/human125
 	message
+		word
+			`"`
 		word
 			"Don't go too far north up here. The Hai have their own pirates, and they're much more powerful than anything we're used to in human space."
 			"I took a shortcut through Wah Ki with six ships. Just two seconds later, BAM! half my fleet is dust."
@@ -160,70 +111,37 @@ news "concerned merchant in Hai space"
 			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
 			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on this stuff."
 			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
+		word
+			`"`
 
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
 news "human citizen in Hai space"
 	location
 		government "Hai"
 	name
 		word
 			"Human citizen"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human108
-		portrait/human112
-		portrait/human125
 	message
+		word
+			`"`
 		word
 			"Don't go too far north up here. The Hai have their own pirates, and they're much more powerful than anything we're used to in human space."
 			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
 			"Where I lived in human space, pirates kidnapped dozens of people a month. Here there are no pirates, and people rarely disappear."
 			"One of my scientist friends told me the Hai can make wearable holographic projectors. I wonder if they're using those to hide in human space?"
 			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
+		word
+			`"`
 
 
-# Visual suggestions: scruffy and disgruntled; religious and relaxed; sharply-dressed and clean-shaven
 news "reformed pirate in Hai space"
 	location
 		government "Hai"
 	name
 		word
 			"Reformed pirate"
-	portrait
-		portrait/human01
-		portrait/human09
-		portrait/human23
-		portrait/human24
-		portrait/human32
-		portrait/human34
-		portrait/human41
-		portrait/human45
-		portrait/human51
-		portrait/human54
-		portrait/human57
-		portrait/human67
-		portrait/human77
-		portrait/human80
-		portrait/human92
-		portrait/human95
-		portrait/human115
-		portrait/human121
-		portrait/human124
-		portrait/human126
 	message
+		word
+			`"`
 		word
 			"I used to rob people for a living, and I'd be in jail now if I stayed in human space. Here, they've given me a job, and I've been sober for six weeks. This has really turned my life around."
 			"I lived on Freedom before I came here, and I could get space weed, death sticks, stardust, and toad juice any time of day or night. Here, the best I can find is spicy acorns."
@@ -245,3 +163,5 @@ news "reformed pirate in Hai space"
 			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
 			"These Hai are so fluffy! I want to hug one every time I see them!"
 			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
+		word
+			`"`

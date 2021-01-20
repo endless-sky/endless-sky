@@ -35,7 +35,7 @@ namespace {
 			sortedOutfits.emplace_back(it.first);
 		
 		sort(sortedOutfits.begin(), sortedOutfits.end(),
-			[] (const Outfit *lhs, const Outfit *rhs)
+			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();
 			}
@@ -113,9 +113,10 @@ void CargoHold::Save(DataWriter &out) const
 	if(!first)
 		out.EndChild();
 	
+	// Save all outfits, even ones which have only been referred to.
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
-		if(it.second && !it.first->Name().empty())
+		if(it.second)
 		{
 			// It is possible this cargo hold contained no commodities, meaning
 			// we must print the opening tag now.
