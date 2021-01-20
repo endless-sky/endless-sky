@@ -17,7 +17,7 @@ mission "First Contact: Wanderer (Before Hai)"
 	on offer
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
-			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
+			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
 			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
 			choice
 				`	"Hello. I come in peace."`
@@ -45,7 +45,7 @@ mission "First Contact: Wanderer"
 			branch revisit
 				has "First Contact: Wanderer (Before Hai): offered"
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
-			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are three or four inches long.`
+			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
 			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
 			choice
 				`	"Hello. I come in peace."`
@@ -194,6 +194,55 @@ mission "Wanderers: Translation Machine"
 
 
 
+conversation "eruk cultural data"
+	branch return
+		has "Human Cultural Archives: done"
+	`You land on <origin> and seek out the technologist that Sayari told you to contact: a Hai named Eruk. His eyes light up when you describe what you need from him, and why. "Contact with a new species! How very exciting," he says. "I am glad for Sayari that such an opportunity has been presented to her. But our speaking machines are very valuable. Before I give one to you, will you do a small favor for me?"`
+	choice
+		`	"Of course. What do you need?"`
+			goto need
+		`	"Can't I just pay you for one?"`
+			goto money
+	
+	label need
+	`	He says, "The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
+		goto end
+	
+	label money
+	`	"Money?" he says, with a dismissive gesture. "What use is money? No, from you I desire something far more valuable. The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
+		goto end
+	
+	label end
+	branch data
+		has "human cultural data"
+	choice
+		`	"No problem, I'll bring you a copy of the database as soon as I can."`
+			accept
+		`	"How will I convince them to give me a copy of their data?"`
+	`	Your question seems to utterly confuse him. "Information," he says. "It is what you call a non-rival good, is it not? When I give information, I do not lose it. Sharing it costs me nothing. The librarians, surely they will understand this. Have no fear."`
+		accept
+	
+	label data
+	choice
+		`	"I actually already have a copy of that data."`
+	`	"You do? Please go get it!" he exclaims.`
+	`	You go to your ship to retrieve the data and give it to him upon returning. His eyes light up with excitement as he makes a copy of the card and returns the original to you.`
+		goto give
+	
+	label return
+	`You return to Eruk's workshop and give him the data card. His eyes light up with excitement as he makes a copy of the card and returns the original to you.`
+	
+	label give
+	`	"I have spent my whole life studying human culture," he says. "This is a treasure to me. And now, here is your speaking machine." He hands you a small, spherical device, with speakers and microphones mounted on it, as well as what look like camera lenses. "The device is programmed with the human and Hai languages," he says. "It is not always possible to translate perfectly between our two languages, but it will try to give you a sense of the range of meanings in what is being said."`
+	choice
+		`	"Thank you. I'm eager to try it out!"`
+			accept
+		`	"Is there anything else I need to know?"`
+	`	He humors you by demonstrating how the machine works, holding a conversation with you where he speaks in the Hai language, and the machine automatically translates for you and then translates your responses back into his language. It apparently uses its cameras to track who you are speaking to or listening to. It's an impressive piece of technology, and easy enough to use. You thank him for his help, and return to your ship.`
+		accept
+
+
+
 mission "Human Cultural Archives"
 	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
 	landing
@@ -201,35 +250,15 @@ mission "Human Cultural Archives"
 	destination "Alexandria"
 	to offer
 		has "Wanderers: Translation Machine: done"
+		not "human cultural data"
 	on offer
-		conversation
-			`You land on <origin> and seek out the technologist that Sayari told you to contact: a Hai named Eruk. His eyes light up when you describe what you need from him, and why. "Contact with a new species! How very exciting," he says. "I am glad for Sayari that such an opportunity has been presented to her. But our speaking machines are very valuable. Before I give one to you, will you do a small favor for me?"`
-			choice
-				`	"Of course. What do you need?"`
-					goto need
-				`	"Can't I just pay you for one?"`
-					goto money
-			
-			label need
-			`	He says, "The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
-				goto end
-			
-			label money
-			`	"Money?" he says, with a dismissive gesture. "What use is money? No, from you I desire something far more valuable. The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
-				goto end
-			
-			label end
-			choice
-				`	"No problem, I'll bring you a copy of the database as soon as I can."`
-					accept
-				`	"How will I convince them to give me a copy of their data?"`
-			`	Your question seems to utterly confuse him. "Information," he says. "It is what you call a non-rival good, is it not? When I give information, I do not lose it. Sharing it costs me nothing. The librarians, surely they will understand this. Have no fear."`
-				accept
+		conversation "eruk cultural data"
 	on visit
 		dialog
 			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
 			`	Go earn some money, then return here.`
 	on complete
+		set "human cultural data"
 		payment -40
 
 
@@ -254,21 +283,12 @@ mission "Visit Wanderers Again"
 	source "Greenwater"
 	destination "Vara K'chrai"
 	to offer
-		has "Human Cultural Archives: done"
+		has "human cultural data"
 	on offer
-		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
-		conversation
-			`You return to Eruk's workshop and give him the data card. His eyes light up with excitement. "I have spent my whole life studying human culture," he says. "This is a treasure to me. And now, here is your speaking machine." He hands you a small, spherical device, with speakers and microphones mounted on it, as well as what look like camera lenses. "The device is programmed with the human and Hai languages," he says. "It is not always possible to translate perfectly between our two languages, but it will try to give you a sense of the range of meanings in what is being said."`
-			choice
-				`	"Thank you. I'm eager to try it out!"`
-					accept
-				`	"Is there anything else I need to know?"`
-			`	He humors you by demonstrating how the machine works, holding a conversation with you where he speaks in the Hai language, and the machine automatically translates for you and then translates your responses back into his language. It apparently uses its cameras to track who you are speaking to or listening to. It's an impressive piece of technology, and easy enough to use. You thank him for his help, and return to your ship.`
-				accept
-	
-	on accept
 		set "language: Wanderer"
 		event "wanderer technology available"
+		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
+		conversation "eruk cultural data"
 
 event "wanderer technology available" # Name unchanged for compatibility
 	government "Wanderer"
@@ -456,7 +476,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 			label hint
 			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air.`
 			`	Looking around, you suddenly see a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
-			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. [Understand, empathise]?"`
+			`	The Wanderer that tasked you to carry the construction materials speaks up. "Unfettered [raider, pirate] fleet comes. We will put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. [Understand, empathize]?"`
 			choice
 				`	"I will help drive the Unfettered away."`
 					goto yes
@@ -871,7 +891,7 @@ mission "Wanderers: Alpha Surveillance A"
 		event "wanderers: alpha surveillance done" 30
 		conversation
 			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. When they realize that you are the one who made contact with the Wanderers, they quickly give you an appointment.`
-			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
+			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says. "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
 			choice
 				`	"Thank you." (Explain about the Alphas.)`
 			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
