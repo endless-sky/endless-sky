@@ -694,17 +694,17 @@ ship "Penguin"
 		"tactical scan power" 50
 		"atmosphere scan" 100
 		"thrust" 4.2
+		"turn" 80.0
+		"reverse thrust" 4.2
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
-		"reverse thrust" 4.2
-		"reverse flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"reverse flare sound" "plasma tiny"
-		"turn" 80.0
 		"steering flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"steering flare sound" "plasma tiny"
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
 		weapon
 			"blast radius" 20
 			"shield damage" 260
