@@ -264,7 +264,8 @@ void Ship::Load(const DataNode &node)
 						needToCheckAngles = true;
 					}
 					else
-						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
+						grand.PrintTrace("Warning: Child nodes of \"" + key
+							+ "\" tokens can only be \"angle\", \"parallel\", or \"swept angle\":");
 					
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
