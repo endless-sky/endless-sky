@@ -283,7 +283,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 		auto range = GetSweptAngle();
 		range.first += facing;
 		range.second += facing;
-		if(!aim.IsInRange(range.first, range.second))
+		if(!aim.IsInRange(range))
 			return false;
 	}
 	

@@ -192,6 +192,13 @@ bool Angle::IsInRange(const Angle& base, const Angle& limit) const
 
 
 
+bool Angle::IsInRange(const pair<Angle, Angle>& range) const
+{
+	return IsInRange(range.first, range.second);
+}
+
+
+
 // Constructor using Angle's internal representation.
 Angle::Angle(int32_t angle)
 	: angle(angle)

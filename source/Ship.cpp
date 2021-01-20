@@ -269,9 +269,7 @@ void Ship::Load(const DataNode &node)
 					if(needToCheckAngles && !angles.isOmnidirectional)
 					{
 						const Angle &base = angles.baseAngle;
-						const Angle &first = angles.sweptAngle.first;
-						const Angle &second = angles.sweptAngle.second;
-						if(!base.IsInRange(first, second))
+						if(!base.IsInRange(angles.sweptAngle))
 						{
 							grand.PrintTrace("Warning: Custom base angle is ignored as it is outside the given swept range:");
 							defaultBaseAngle = true;
