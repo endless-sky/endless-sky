@@ -322,7 +322,7 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 		
-		// Update swept angle.
+		// Update swept angle because of change an outfit.
 		UpdateSweptAngle();
 		
 		// For fixed weapons, apply "gun harmonization," pointing them slightly
@@ -359,7 +359,7 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 	
-	// Update swept angle.
+	// Update swept angle because of change an outfit.
 	UpdateSweptAngle();
 }
 
@@ -401,7 +401,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 
 
 
-// Update the swept angle.
+// The swept angle depends on both the base hardpoint and the installed outfit.
 void Hardpoint::UpdateSweptAngle()
 {
 	const AnglesParameter &angles = anglesParameter;
