@@ -239,10 +239,10 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
-			Hardpoint::AnglesParameter angles;
-			angles.baseAngle = Angle(0.);
-			angles.isParallel = false;
-			angles.isOmnidirectional = true;
+			Hardpoint::BaseAttributes attributes;
+			attributes.baseAngle = Angle(0.);
+			attributes.isParallel = false;
+			attributes.isOmnidirectional = true;
 			if(child.HasChildren())
 			{
 				bool defaultBaseAngle = true;
@@ -251,44 +251,44 @@ void Ship::Load(const DataNode &node)
 					bool needToCheckAngles = false;
 					if(grand.Token(0) == "angle" && grand.Size() >= 2)
 					{
-						angles.baseAngle = grand.Value(1);
+						attributes.baseAngle = grand.Value(1);
 						needToCheckAngles = true;
 						defaultBaseAngle = false;
 					}
 					else if(grand.Token(0) == "parallel")
-						angles.isParallel = true;
+						attributes.isParallel = true;
 					else if(grand.Token(0) == "swept angle" && grand.Size() >= 3)
 					{
-						angles.isOmnidirectional = false;
-						angles.sweptAngle = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
+						attributes.isOmnidirectional = false;
+						attributes.sweptAngle = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
 						needToCheckAngles = true;
 					}
 					else
 						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
 					
-					if(needToCheckAngles && !angles.isOmnidirectional)
+					if(needToCheckAngles && !attributes.isOmnidirectional)
 					{
-						const Angle &base = angles.baseAngle;
-						if(!base.IsInRange(angles.sweptAngle))
+						const Angle &base = attributes.baseAngle;
+						if(!base.IsInRange(attributes.sweptAngle))
 						{
 							grand.PrintTrace("Warning: Custom base angle is ignored as it is outside the given swept range:");
 							defaultBaseAngle = true;
 						}
 					}
 				}
-				if(!angles.isOmnidirectional && defaultBaseAngle)
+				if(!attributes.isOmnidirectional && defaultBaseAngle)
 				{
-					const Angle &first = angles.sweptAngle.first;
-					const Angle &second = angles.sweptAngle.second;
-					angles.baseAngle = first + (second - first).AbsDegrees() / 2.;
+					const Angle &first = attributes.sweptAngle.first;
+					const Angle &second = attributes.sweptAngle.second;
+					attributes.baseAngle = first + (second - first).AbsDegrees() / 2.;
 				}
 			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, angles, outfit);
+				armament.AddGunPort(hardpoint, attributes, outfit);
 			else
-				armament.AddTurret(hardpoint, angles, outfit);
+				armament.AddTurret(hardpoint, attributes, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
 			if(armament.Get().size() == 33)
 				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
@@ -531,7 +531,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetAnglesParameter(), outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextGun != end)
 					{
 						if(outfit)
@@ -544,7 +544,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., bit->GetAnglesParameter(), outfit);
+					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextTurret != end)
 					{
 						if(outfit)
@@ -796,19 +796,19 @@ void Ship::Save(DataWriter &out) const
 					hardpoint.GetOutfit()->Name());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
-			const auto &angles = hardpoint.GetAnglesParameter();
-			const double baseDegree = angles.baseAngle.Degrees();
-			if(angles.isParallel || baseDegree || !angles.isOmnidirectional)
+			const auto &attributes = hardpoint.GetBaseAttributes();
+			const double baseDegree = attributes.baseAngle.Degrees();
+			if(attributes.isParallel || baseDegree || !attributes.isOmnidirectional)
 			{
 				out.BeginChild();
 				{
 					if(baseDegree)
 						out.Write("angle", baseDegree);
-					if(angles.isParallel)
+					if(attributes.isParallel)
 						out.Write("parallel");
-					if(!angles.isOmnidirectional)
+					if(!attributes.isOmnidirectional)
 						out.Write("swept angle",
-							angles.sweptAngle.first.Degrees(), angles.sweptAngle.second.Degrees());
+							attributes.sweptAngle.first.Degrees(), attributes.sweptAngle.second.Degrees());
 				}
 				out.EndChild();
 			}

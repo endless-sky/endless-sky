@@ -30,8 +30,8 @@ class Visual;
 // which may or may not have a weapon installed.
 class Hardpoint {
 public:
-	// The parameters related to the angles of a hardpoint.
-	struct AnglesParameter {
+	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
+	struct BaseAttributes {
 		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
 		// The turret shuold point this angle when idling.
 		Angle baseAngle;
@@ -46,7 +46,7 @@ public:
 	
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const AnglesParameter &angles, bool isTurret, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const BaseAttributes &attributes, bool isTurret, const Outfit *outfit = nullptr);
 	
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -99,8 +99,8 @@ public:
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 	
-	// Get the angles that can be used as a parameter of the constructor when cloning this.
-	const AnglesParameter &GetAnglesParameter() const;
+	// Get the attributes that can be used as a parameter of the constructor when cloning this.
+	const BaseAttributes &GetBaseAttributes() const;
 	
 	
 private:
@@ -121,8 +121,8 @@ private:
 	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
 	// otherwise a pair of 180 degree + baseAngle.
 	std::pair<Angle, Angle> sweptAngle;
-	// The value of the angles parameter in the constructor.
-	AnglesParameter anglesParameter;
+	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
+	BaseAttributes baseAttributes;
 	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
 	// Indicates if this hardpoint disallows converging (guns only).

@@ -39,9 +39,9 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const AnglesParameter &angles, bool isTurret, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), baseAngle(angles.baseAngle), anglesParameter(angles),
-	isTurret(isTurret), isParallel(angles.isParallel)
+Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes, bool isTurret, const Outfit *outfit)
+	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
+	isTurret(isTurret), isParallel(baseAttributes.isParallel)
 {
 	UpdateSweptAngle();
 }
@@ -365,10 +365,10 @@ void Hardpoint::Uninstall()
 
 
 
-// Get the angles that can be used as a parameter of the constructor when cloning this.
-const Hardpoint::AnglesParameter &Hardpoint::GetAnglesParameter() const
+// Get the attributes that can be used as a parameter of the constructor when cloning this.
+const Hardpoint::BaseAttributes &Hardpoint::GetBaseAttributes() const
 {
-	return anglesParameter;
+	return baseAttributes;
 }
 
 
@@ -404,16 +404,16 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 // The swept angle depends on both the base hardpoint and the installed outfit.
 void Hardpoint::UpdateSweptAngle()
 {
-	const AnglesParameter &angles = anglesParameter;
+	const BaseAttributes &attributes = baseAttributes;
 	// Restore the initial value.
-	isOmnidirectional = angles.isOmnidirectional;
+	isOmnidirectional = attributes.isOmnidirectional;
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
 		sweptAngle = make_pair(opposite, opposite);
 	}
 	else
-		sweptAngle = angles.sweptAngle;
+		sweptAngle = attributes.sweptAngle;
 	
 	if(!outfit)
 		return;
