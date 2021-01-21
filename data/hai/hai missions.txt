@@ -183,7 +183,7 @@ mission "First Contact: Unfettered"
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 			`	"How were you altered?" you ask.`
-			`	It says, "We Hai took worlds that Drak said belonged to Sheragi, although Sheragi had not yet even discovered them. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
+			`	It says, "We Hai fought Sheragi and took worlds that Drak said belonged to them, worlds that Sheragi had not yet even discovered. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
@@ -1828,13 +1828,37 @@ mission "Nanachi Meeting"
 
 
 
+mission "Strider Alt Start"
+	landing
+	name "New Unfettered ships"
+	description "Ambassador Sayari has informed the council of elders of the development of the Solifuge. The council is interested in meeting with you on <destination> to hear more."
+	source
+		government "Hai"
+		not planet "Hai-home"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Wanderers Evacuation 1: offered"
+		not "Wanderers Solifuge Recon 3: offered"
+		or
+			has "Wanderers Solifuge Recon 2: done"
+			has "Wanderers Pond Strider Recon 2: done"
+	on offer
+		dialog `After you finish landing, you're approached by a Hai in a formal uniform. "Greetings, Captain <last>. Ambassador Sayari has sent word to the council of elders that our Unfettered brethren have created a new ship of great strength. The council has requested your presence on <planet>; Sayari said you have been in combat with these ships, and the elders are interested in your expertise."`
+	on complete
+		conversation "solifuge conversation"
+
+
+
 mission "Strider 0"
 	landing
 	name "Hull Repair Technology"
 	description "The Hai are working on a drone carrier to counter the Unfettered Solifuge, but the creator of the ship is still developing hull repair to make it more effective in combat. Visit the spaceport on <planet> to help the Hai with this technology when you are able."
 	destination "Hai-home"
 	to offer
-		has "Wanderers Solifuge Recon 3: done"
+		or
+			has "Wanderers Solifuge Recon 3: done"
+			has "Strider Alt Start: done"
 	to fail
 		has "Strider 1: offered"
 	to complete

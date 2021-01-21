@@ -693,9 +693,15 @@ ship "Penguin"
 		"outfit scan speed" 1
 		"tactical scan power" 50
 		"atmosphere scan" 100
-		"reverse thrust" 16
-		"reverse thrusting energy" 2.5
-		"reverse thrusting heat" 2.0
+		"thrust" 4.2
+		"turn" 80.0
+		"reverse thrust" 4.2
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		"steering flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"steering flare sound" "plasma tiny"
 		"reverse flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"reverse flare sound" "plasma tiny"
