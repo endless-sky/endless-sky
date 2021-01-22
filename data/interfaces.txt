@@ -258,7 +258,7 @@ interface "start conditions menu"
 
 	box "start entry list"
 		from -470 -157
-		to -200 157
+		to -200 120
 
 	box "start entry"
 		from 0 0 # Doesn't matter, never gets used
