@@ -210,9 +210,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		if(GameData::StartOptions().size() == 1) 
 		{
-			const StartConditions *startConditions = &GameData::StartOptions().front();
-			const Conversation &startConversation = startConditions->GetConversation();
-			player.New(*startConditions);
+			const StartConditions &startConditions = GameData::StartOptions().front();
+			const Conversation &startConversation = startConditions.GetConversation();
+			player.New(startConditions);
 			
 			if(startConversation.IsEmpty())
 			{

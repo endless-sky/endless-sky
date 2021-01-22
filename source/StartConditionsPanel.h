@@ -45,9 +45,8 @@ private:
 	
 	WrappedText descriptionWrappedText;
 	
-	// Workaround around the absence of std::optional<>
-	const StartConditions *chosenStart;
-	bool hasChosenStart = false;
+	const StartConditions *chosenStart = nullptr;
+	std::vector<StartConditions>::const_iterator chosenStartIterator;
 	
 	// Stored here so that we can remove it if the player chooses a scenario
 	Panel *parent = nullptr; 
@@ -57,7 +56,7 @@ private:
 	double descriptionScroll = 0;
 	
 	// This is a map that will let us figure out which start conditions item the user clicked on
-	std::vector<ClickZone<const StartConditions&>> startConditionsClickZones;
+	std::vector<ClickZone<std::vector<StartConditions>::const_iterator>> startConditionsClickZones;
 	
 	Rectangle descriptionBox;
 	Rectangle entryBox;

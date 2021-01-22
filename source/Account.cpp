@@ -402,13 +402,3 @@ int64_t Account::YearlyRevenue() const
 	// played for long enough to accumulate a full income history.
 	return ((history.back() - history.front()) * 365) / HISTORY;
 }
-
-
-bool Account::operator==(const Account &other) const
-{
-	return (
-		Credits() == other.Credits() &&
-		SalariesOwed() == other.SalariesOwed() &&
-		TotalDebt() == other.TotalDebt()
-	);
-}

@@ -58,7 +58,6 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 		// By default, select the last defined start conditions
 		// (which are usually the ones defined by a plugin)
 		chosenStart = &GameData::StartOptions().back();
-		hasChosenStart = true;
 	}
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	
@@ -70,18 +69,11 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
 	}
 	
-	size_t i = 0;
-	// Fill up the startConditionsClickZones vector
-	for(const StartConditions &it : GameData::StartOptions())
+	const Rectangle &firstRectangle = Rectangle::FromCorner(entryListBox.TopLeft(), entryBox.Dimensions());
+	startConditionsClickZones.reserve(GameData::StartOptions().size());
+	for(size_t i = 0; i < GameData::StartOptions().size(); ++i)
 	{
-		// emplace_back will implicitly instantiate a ClickZone
-		startConditionsClickZones.emplace_back(
-			Rectangle::FromCorner(
-				Point(entryListBox.Left(), entryListBox.Top() + i * entryBox.Height()),
-				entryBox.Dimensions()
-			),
-			it);
-		i++;
+		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), GameData::StartOptions().begin() + i);
 	}
 	const Font &font = FontSet::Get(14);
 	
@@ -90,7 +82,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	descriptionWrappedText.SetAlignment(Alignment::LEFT);
 	descriptionWrappedText.SetWrapWidth(descriptionBox.Width());
 	
-	if (hasChosenStart)
+	if(chosenStart)
 		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 	
 	bright = *GameData::Colors().Get("bright");
@@ -108,7 +100,7 @@ void StartConditionsPanel::Draw()
 	// String that will be shown in the description panel
 	string descriptionText; 
 	
-	if(hasChosenStart) 
+	if(chosenStart) 
 	{
 		info.SetCondition("chosen start");
 		if(chosenStart->GetSprite())
@@ -121,10 +113,6 @@ void StartConditionsPanel::Draw()
 		info.SetString("credits", Format::Credits(chosenStart->GetAccounts().Credits()));
 
 		descriptionText = chosenStart->GetDescription();
-	}
-	else if(!GameData::StartOptions().size())
-	{
-		descriptionText = "No start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly";
 	}
 	
 	GameData::Background().Draw(Point(), Point());
@@ -213,60 +201,37 @@ bool StartConditionsPanel::Hover(int x, int y)
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	
-	// To select the previous start conditions, we'll search for the selected start
-	// conditions, and move the iterator backwards when we find them
-	
-	// Similar actions can be performed to select the next one
-	
-	auto chosenStartPosition = find(GameData::StartOptions().begin(), GameData::StartOptions().end(), *chosenStart);
-	
-	
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(key == SDLK_UP) 
+	else if(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) 
 	{
-		if (chosenStart == &*GameData::StartOptions().begin())
-			return false;
+		int offset = 0;
+		offset += (key == SDLK_DOWN) - (key == SDLK_UP);
+		offset += PAGE_INTERVAL * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
 		
-		chosenStart = &*chosenStartPosition-1;
-	}
-	else if (key == SDLK_DOWN)
-	{
-		if (chosenStart == &*GameData::StartOptions().end() - 1)
-			return false;
+		listScroll += offset * entryBox.Height();
+		listScroll = min(max(listScroll, 0.), (GameData::StartOptions().size() - 1) * entryBox.Height());
 		
-		chosenStart = &*chosenStartPosition+1;	
-	}
-	// When using the pageup and pagedown keys, it's slighly more complex
-	// We'll select the StartConditions 10 (PAGE_INTERVAL) positions before or after the selected one
-	// We have to make sure that the iterator we move doesn't go off bounds
-	
-	// In the future, we should consider dynamically calculating PAGE_INTERVAL based on the dimensions of the entryListBox,
-	// but it's unlikely that the player will install enough plugins with start conditions at once 
-	// so that such a feature were required
-	else if(key == SDLK_PAGEUP) 
-	{
-		if ((chosenStartPosition - GameData::StartOptions().begin()) < PAGE_INTERVAL)
+		chosenStartIterator += offset;
+		
+		if(chosenStartIterator < GameData::StartOptions().begin())
 		{
-			chosenStart = &GameData::StartOptions().front();
-			return false;
+			chosenStartIterator = GameData::StartOptions().begin();
 		}
 		
-		chosenStart = &*chosenStartPosition-PAGE_INTERVAL;
-	}
-	else if(key == SDLK_PAGEDOWN) 
-	{
-		if ((GameData::StartOptions().end() - 1 - chosenStartPosition) < PAGE_INTERVAL)
+		if(chosenStartIterator >= GameData::StartOptions().end())
 		{
-			chosenStart = &GameData::StartOptions().back();
-			return false;
+			chosenStartIterator = GameData::StartOptions().end() - 1;
 		}
 		
-		chosenStart = &*chosenStartPosition+PAGE_INTERVAL;
+		
+		chosenStart = &*chosenStartIterator;
+		
+		return false;
 	}
 	else if(key == 's' || key == 'n' || key == '\n')
 	{
-		if(!hasChosenStart)
+		if(!chosenStart)
 			return true;
 		
 		player.New(*chosenStart);
@@ -301,15 +266,16 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 	{
 		if(it.Contains(Point(x, y + listScroll)))
 		{
-			if(chosenStart != &it.Value())
+			chosenStartIterator = it.Value();
+			
+			if(chosenStart != &*chosenStartIterator)
 				descriptionScroll = 0;
-			chosenStart = &it.Value();
-			hasChosenStart = true;
+			chosenStart = &*chosenStartIterator;
 			break;
 		}
 	}
 	
-	if (hasChosenStart)
+	if(chosenStart)
 		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 	
 	return true;
