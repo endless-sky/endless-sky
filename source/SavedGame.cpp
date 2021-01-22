@@ -36,7 +36,7 @@ void SavedGame::Load(const string &path)
 	if(file.begin() != file.end())
 		this->path = path;
 	
-	int flagshipIterator = 0;
+	int flagshipIterator = -1;
 	int flagshipTarget = 0;
 	for(const DataNode &node : file)
 	{
@@ -63,17 +63,15 @@ void SavedGame::Load(const string &path)
 		}
 		else if(node.Token(0) == "ship" && !shipSprite)
 		{
-			if(flagshipIterator != flagshipTarget)
+			if(++flagshipIterator == flagshipTarget)
 			{
-				++flagshipIterator;
-				continue;
-			}
 			for(const DataNode &child : node)
 			{
 				if(child.Token(0) == "name" && child.Size() >= 2)
 					shipName = child.Token(1);
 				else if(child.Token(0) == "sprite" && child.Size() >= 2)
 					shipSprite = SpriteSet::Get(child.Token(1));
+			}
 			}
 		}
 	}
