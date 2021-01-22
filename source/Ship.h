@@ -151,7 +151,7 @@ public:
 	
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
-	std::vector<std::string> FlightCheck(bool isFlagship = false) const;
+	std::vector<std::string> FlightCheck(bool isFlagship = false, bool isInPlayerSystem = false) const;
 	
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
