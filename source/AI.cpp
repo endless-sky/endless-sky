@@ -1791,16 +1791,29 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
-
-	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
+	
+	// Calculate target vector required to get where we want to be.
+	Point tv = dp;
+	bool hasCruiseSpeed = (cruiseSpeed > 0.);
+	if(hasCruiseSpeed){
+		// The ship prefers a velocity at cruise-speed towards the target, so we need
+		// to compare this preffered velocity to the current velocity and apply the
+		// delta to get to the preferred velocity.
+		tv = (dp.Unit() * cruiseSpeed) - velocity;
+		// If we are moving close to our preferred velocity, then face towards the target.
+		if(tv.Length() < .1)
+			tv = dp;
+	}
+	
+	bool isFacing = (tv.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
+		command.SetTurn(TurnToward(ship, tv));
 	if(isFacing)
 	{
 		// We set full forward power when we don't have a cruise-speed, when we are below
 		// cruise-speed or when we need to do course corrections.
-		bool facesMovementDirection = (velocity.Unit().Dot(angle.Unit()) > .95);
-		if(cruiseSpeed < 0. || !facesMovementDirection || velocity.Length() < cruiseSpeed)
+		bool movingTowardsTarget = (velocity.Unit().Dot(dp.Unit()) > .95);
+		if(!hasCruiseSpeed || !movingTowardsTarget || velocity.Length() < cruiseSpeed)
 			command |= Command::FORWARD;
 	}
 	else if(shouldReverse)
