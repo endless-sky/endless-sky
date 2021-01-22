@@ -224,6 +224,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		
 		
 		chosenStart = &*chosenStartIterator;
+		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 		
 		return false;
 	}
@@ -269,6 +270,7 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 			if(chosenStart != &*chosenStartIterator)
 				descriptionScroll = 0;
 			chosenStart = &*chosenStartIterator;
+			descriptionWrappedText.Wrap(chosenStart->GetDescription());
 			break;
 		}
 	}
