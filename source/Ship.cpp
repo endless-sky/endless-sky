@@ -257,30 +257,30 @@ void Ship::Load(const DataNode &node)
 					}
 					else if(grand.Token(0) == "parallel")
 						attributes.isParallel = true;
-					else if(grand.Token(0) == "swept angle" && grand.Size() >= 3)
+					else if(grand.Token(0) == "arc" && grand.Size() >= 3)
 					{
 						attributes.isOmnidirectional = false;
-						attributes.sweptAngle = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
+						attributes.arc = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
 						needToCheckAngles = true;
 					}
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
-							+ "\" tokens can only be \"angle\", \"parallel\", or \"swept angle\":");
+							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
 					
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
 						const Angle &base = attributes.baseAngle;
-						if(!base.IsInRange(attributes.sweptAngle))
+						if(!base.IsInRange(attributes.arc))
 						{
-							grand.PrintTrace("Warning: Custom base angle is ignored as it is outside the given swept range:");
+							grand.PrintTrace("Warning: Custom base angle is ignored as it is outside the given arc range:");
 							defaultBaseAngle = true;
 						}
 					}
 				}
 				if(!attributes.isOmnidirectional && defaultBaseAngle)
 				{
-					const Angle &first = attributes.sweptAngle.first;
-					const Angle &second = attributes.sweptAngle.second;
+					const Angle &first = attributes.arc.first;
+					const Angle &second = attributes.arc.second;
 					attributes.baseAngle = first + (second - first).AbsDegrees() / 2.;
 				}
 			}
@@ -808,8 +808,8 @@ void Ship::Save(DataWriter &out) const
 					if(attributes.isParallel)
 						out.Write("parallel");
 					if(!attributes.isOmnidirectional)
-						out.Write("swept angle",
-							attributes.sweptAngle.first.Degrees(), attributes.sweptAngle.second.Degrees());
+						out.Write("arc",
+							attributes.arc.first.Degrees(), attributes.arc.second.Degrees());
 				}
 				out.EndChild();
 			}

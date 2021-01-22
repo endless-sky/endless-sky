@@ -43,7 +43,7 @@ Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes, bool 
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
 	isTurret(isTurret), isParallel(baseAttributes.isParallel)
 {
-	UpdateSweptAngle();
+	UpdateArc();
 }
 
 
@@ -82,10 +82,11 @@ const Angle &Hardpoint::GetIdleAngle() const
 
 
 
-// Get the swept angle. Return value is invalid if this is omnidirectional.
-const std::pair<Angle, Angle> &Hardpoint::GetSweptAngle() const
+// Get the arc of fire if this is a directional turret,
+// otherwise a pair of 180 degree + baseAngle.
+const std::pair<Angle, Angle> &Hardpoint::GetArc() const
 {
-	return sweptAngle;
+	return arc;
 }
 
 
@@ -217,10 +218,10 @@ void Hardpoint::Aim(double amount)
 	else
 	{
 		const Angle newAngle = angle + add;
-		if(add < 0. && sweptAngle.first.IsInRange(newAngle, angle))
-			angle = sweptAngle.first;
-		else if(add > 0. && sweptAngle.second.IsInRange(angle, newAngle))
-			angle = sweptAngle.second;
+		if(add < 0. && arc.first.IsInRange(newAngle, angle))
+			angle = arc.first;
+		else if(add > 0. && arc.second.IsInRange(angle, newAngle))
+			angle = arc.second;
 		else
 			angle += add;
 	}
@@ -277,11 +278,11 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	if(offset.Length() > range)
 		return false;
 	
-	// Check if the missile is within the swept angle.
+	// Check if the missile is within the arc of fire.
 	Angle aim(offset);
 	if(!IsOmnidirectional())
 	{
-		auto range = GetSweptAngle();
+		auto range = GetArc();
 		range.first += facing;
 		range.second += facing;
 		if(!aim.IsInRange(range))
@@ -323,8 +324,8 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 		
-		// Update swept angle because of change an outfit.
-		UpdateSweptAngle();
+		// Update the arc of fire because of change an outfit.
+		UpdateArc();
 		
 		// For fixed weapons and idling turrets, apply "gun harmonization,"
 		// pointing them slightly inward so the projectiles will converge.
@@ -334,9 +335,9 @@ void Hardpoint::Install(const Outfit *outfit)
 		if(!isParallel && !outfit->IsParallel())
 		{
 			const Angle harmonized = baseAngle + HarmonizedAngle();
-			// The harmonized angle might be out of swept angle of a turret.
+			// The harmonized angle might be out of the arc of a turret.
 			// If so, this turret is forced "parallel."
-			if(!isTurret || isOmnidirectional || harmonized.IsInRange(GetSweptAngle()))
+			if(!isTurret || isOmnidirectional || harmonized.IsInRange(GetArc()))
 				baseAngle = harmonized;
 		}
 		angle = baseAngle;
@@ -360,8 +361,8 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 	
-	// Update swept angle because of change an outfit.
-	UpdateSweptAngle();
+	// Update the arc of fire because of change an outfit.
+	UpdateArc();
 }
 
 
@@ -402,8 +403,8 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 
 
 
-// The swept angle depends on both the base hardpoint and the installed outfit.
-void Hardpoint::UpdateSweptAngle()
+// The arc depends on both the base hardpoint and the installed outfit.
+void Hardpoint::UpdateArc()
 {
 	const BaseAttributes &attributes = baseAttributes;
 	// Restore the initial value.
@@ -412,25 +413,25 @@ void Hardpoint::UpdateSweptAngle()
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
-		sweptAngle = make_pair(opposite, opposite);
+		arc = make_pair(opposite, opposite);
 	}
 	else
-		sweptAngle = attributes.sweptAngle;
+		arc = attributes.arc;
 	
 	if(!outfit)
 		return;
 	
-	// The installed weapon restricts the swept angle.
-	const double hardpointsArc = (sweptAngle.second - sweptAngle.first).AbsDegrees();
-	const double weaponsArc = outfit->SweptAngle();
+	// The installed weapon restricts the arc of fire.
+	const double hardpointsArc = (arc.second - arc.first).AbsDegrees();
+	const double weaponsArc = outfit->Arc();
 	if(weaponsArc < 360. && (isOmnidirectional || weaponsArc < hardpointsArc))
 	{
 		isOmnidirectional = false;
 		const double weaponsHalf = weaponsArc / 2.;
 		
 		// The base angle is placed at center as possible.
-		const Angle &firstAngle = sweptAngle.first;
-		const Angle &secondAngle = sweptAngle.second;
+		const Angle &firstAngle = arc.first;
+		const Angle &secondAngle = arc.second;
 		double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();
 		double hardpointsSecondArc = (secondAngle - baseAngle).AbsDegrees();
 		if(hardpointsFirstArc < weaponsHalf)
@@ -442,6 +443,6 @@ void Hardpoint::UpdateSweptAngle()
 			hardpointsFirstArc = weaponsHalf;
 			hardpointsSecondArc = weaponsHalf;
 		}
-		sweptAngle = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
+		arc = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
 	}
 }

@@ -2726,7 +2726,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					offset = (targetAngle - hardpoint.GetAngle()).Degrees();
 				else
 				{
-					const auto arcRange = hardpoint.GetSweptAngle();
+					const auto arcRange = hardpoint.GetArc();
 					const double targetDegree = (targetAngle - arcRange.first).AbsDegrees();
 					const double currentDegree = (hardpoint.GetAngle() - arcRange.first).AbsDegrees();
 					offset = targetDegree - currentDegree;
@@ -2802,7 +2802,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					degrees = (angleToPoint - aim).Degrees();
 				else
 				{
-					auto range = hardpoint.GetSweptAngle();
+					auto range = hardpoint.GetArc();
 					const Angle facing = ship.Facing();
 					range.first += facing;
 					range.second += facing;

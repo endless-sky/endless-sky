@@ -41,7 +41,7 @@ public:
 		bool isOmnidirectional;
 		// Range over which the turret can turn, from leftmost position to rightmost position.
 		// (directional turret only)
-		std::pair<Angle, Angle> sweptAngle;
+		std::pair<Angle, Angle> arc;
 	};
 	
 public:
@@ -59,9 +59,9 @@ public:
 	// Get the angle of a turret when idling, relative to the ship.
 	// For guns, this function is equal to GetAngle().
 	const Angle &GetIdleAngle() const;
-	// Get the swept angle if this is a directional turret,
+	// Get the arc of fire if this is a directional turret,
 	// otherwise a pair of 180 degree + baseAngle.
-	const std::pair<Angle, Angle> &GetSweptAngle() const;
+	const std::pair<Angle, Angle> &GetArc() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
@@ -107,8 +107,8 @@ private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 	
-	// The swept angle depends on both the base hardpoint and the installed outfit.
-	void UpdateSweptAngle();
+	// The arc depends on both the base hardpoint and the installed outfit.
+	void UpdateArc();
 	
 	
 private:
@@ -120,7 +120,7 @@ private:
 	Angle baseAngle;
 	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
 	// otherwise a pair of 180 degree + baseAngle.
-	std::pair<Angle, Angle> sweptAngle;
+	std::pair<Angle, Angle> arc;
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	BaseAttributes baseAttributes;
 	// This hardpoint is for a turret or a gun.
