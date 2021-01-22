@@ -24,3 +24,666 @@ start
 			term 365
 	set "license: Pilot's"
 	conversation "intro"
+
+start
+	name "Endless Sky 1"
+	description "The default scenario for Endless Sky 1"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 2"
+	description "The default scenario for Endless Sky 2"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 3"
+	description "The default scenario for Endless Sky 3"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 4"
+	description "The default scenario for Endless Sky 4"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 5"
+	description "The default scenario for Endless Sky 5"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 6"
+	description "The default scenario for Endless Sky 6"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 7"
+	description "The default scenario for Endless Sky 7"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 8"
+	description "The default scenario for Endless Sky 8"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 9"
+	description "The default scenario for Endless Sky 9"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 10"
+	description "The default scenario for Endless Sky 10"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 11"
+	description "The default scenario for Endless Sky 11"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 12"
+	description "The default scenario for Endless Sky 12"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 13"
+	description "The default scenario for Endless Sky 13"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 14"
+	description "The default scenario for Endless Sky 14"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 15"
+	description "The default scenario for Endless Sky 15"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 16"
+	description "The default scenario for Endless Sky 16"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 17"
+	description "The default scenario for Endless Sky 17"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 18"
+	description "The default scenario for Endless Sky 18"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 19"
+	description "The default scenario for Endless Sky 19"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 20"
+	description "The default scenario for Endless Sky 20"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 21"
+	description "The default scenario for Endless Sky 21"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 22"
+	description "The default scenario for Endless Sky 22"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 23"
+	description "The default scenario for Endless Sky 23"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 24"
+	description "The default scenario for Endless Sky 24"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 25"
+	description "The default scenario for Endless Sky 25"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 26"
+	description "The default scenario for Endless Sky 26"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 27"
+	description "The default scenario for Endless Sky 27"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 28"
+	description "The default scenario for Endless Sky 28"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 29"
+	description "The default scenario for Endless Sky 29"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 30"
+	description "The default scenario for Endless Sky 30"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 31"
+	description "The default scenario for Endless Sky 31"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 32"
+	description "The default scenario for Endless Sky 32"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 33"
+	description "The default scenario for Endless Sky 33"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 34"
+	description "The default scenario for Endless Sky 34"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 35"
+	description "The default scenario for Endless Sky 35"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 36"
+	description "The default scenario for Endless Sky 36"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 37"
+	description "The default scenario for Endless Sky 37"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 38"
+	description "The default scenario for Endless Sky 38"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"
+
+start
+	name "Endless Sky 39"
+	description "The default scenario for Endless Sky 39"
+	sprite "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	conversation "intro"

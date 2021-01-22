@@ -51,7 +51,7 @@ namespace {
 }
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent)
+	: player(player), gamePanels(gamePanels), descriptionWrappedText(WrappedText(FontSet::Get(14))), parent(parent)
 {
 	if(!GameData::StartOptions().empty())
 	{
@@ -75,9 +75,6 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	{
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), GameData::StartOptions().begin() + i);
 	}
-	const Font &font = FontSet::Get(14);
-	
-	descriptionWrappedText = WrappedText(font);
 	
 	descriptionWrappedText.SetAlignment(Alignment::LEFT);
 	descriptionWrappedText.SetWrapWidth(descriptionBox.Width());
@@ -111,6 +108,7 @@ void StartConditionsPanel::Draw()
 		info.SetString("system", chosenStart->GetSystem()->Name());
 		info.SetString("date", chosenStart->GetDate().ToString());
 		info.SetString("credits", Format::Credits(chosenStart->GetAccounts().Credits()));
+		info.SetString("debt", Format::Credits(chosenStart->GetAccounts().TotalDebt()));
 
 		descriptionText = chosenStart->GetDescription();
 	}
