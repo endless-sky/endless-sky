@@ -90,6 +90,7 @@ Version 0.9.13:
         * Expanded the list of potential Heliarch ship names. (@Arachi-Lover)
         * Scouts will now actually spawn in merchant fleets. (@ScruffyKitty)
         * Added various new help messages describing hidden features. (@Terin)
+        * The supermassive black hole in Sagittarius A* now pulls in ships that get too close. (@Zitchas)
     * Mission changes:
       * "FW Hope Recon 1C" now refers to the proper number of crew on a Gunboat. (@Beccabunny)
       * Rewrote some of the conversation for "Wanderers: Defend Vara Ke'sok Hint". (@Anarchist2)
