@@ -50,6 +50,7 @@ public:
 	
 	std::vector<std::shared_ptr<Ship>> &Ships();
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
+	bool ReorderShips(const std::set<int> &fromIndices, int toIndex);
 	
 	ShipComparator *CurrentSort() const;
 	void SetCurrentSort(ShipComparator *s);

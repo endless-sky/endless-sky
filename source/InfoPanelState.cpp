@@ -141,6 +141,53 @@ const vector<shared_ptr<Ship>> &InfoPanelState::Ships() const
 
 
 
+// If the move accesses invalid indices, no moves are done.
+bool InfoPanelState::ReorderShips(const set<int> &fromIndices, int toIndex)
+{
+	if(fromIndices.empty() || static_cast<unsigned>(toIndex) >= ships.size())
+		return false;
+	
+	// When shifting ships up in the list, move to the desired index. If
+	// moving down, move after the selected index.
+	int direction = (*fromIndices.begin() < toIndex) ? 1 : 0;
+	
+	// Remove the ships from last to first, so that each removal leaves all the
+	// remaining indices in the set still valid.
+	vector<shared_ptr<Ship>> removed;
+	for(set<int>::const_iterator it = fromIndices.end(); it != fromIndices.begin(); )
+	{
+		// The "it" pointer doesn't point to the beginning of the list, so it is
+		// safe to decrement it here.
+		--it;
+		
+		// Bail out if any invalid indices are encountered.
+		if(static_cast<unsigned>(*it) >= ships.size())
+			return false;
+		
+		removed.insert(removed.begin(), ships[*it]);
+		ships.erase(ships.begin() + *it);
+		// If this index is before the insertion point, removing it causes the
+		// insertion point to shift back one space.
+		if(*it < toIndex)
+			--toIndex;
+	}
+	// Make sure the insertion index is within the list.
+	toIndex = min<int>(toIndex + direction, ships.size());
+	ships.insert(ships.begin() + toIndex, removed.begin(), removed.end());
+	
+	// Change the selected indices so they still refer to the block of ships
+	// that just got moved.
+	int lastIndex = toIndex + allSelected.size();
+	DeselectAll();
+	SelectMany(toIndex, lastIndex);
+	
+	// The ships are no longer sorted.
+	SetCurrentSort(nullptr);
+	return true;
+}
+
+
+
 InfoPanelState::ShipComparator *InfoPanelState::CurrentSort() const
 {
 	return currentSort;

@@ -172,7 +172,7 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
 void PlayerInfoPanel::Step()
 {
 	// If the player has acquired a second ship for the first time, explain to
-	// them how to reorder the ships in their fleet.
+	// them how to reorder and sort the ships in their fleet.
 	if(panelState.Ships().size() > 1)
 		DoHelp("multiple ships");
 }
@@ -313,21 +313,10 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			// Clamp the destination index to the end of the ships list.
 			size_t moved = panelState.AllSelected().size();
 			toIndex = min(panelState.Ships().size() - moved, toIndex);
-			player.SaveShipOrder(panelState.Ships());
 			
-			int selectedIndex = player.ReorderShips(panelState.AllSelected(), toIndex);
-			// If the move accessed invalid indices, no moves are done
-			// but the selectedIndex is set to -1.
-			if(selectedIndex >= 0)
-			{
-				// Update the selected indices so they still refer
-				// to the block of ships that just got moved.
-				panelState.Ships() = player.Ships();
-				// The order has now changed, so the ships are no longer sorted.
-				panelState.SetCurrentSort(nullptr);
-				panelState.DeselectAll();
-				panelState.SelectMany(selectedIndex, selectedIndex + moved);
-			}
+			if(panelState.ReorderShips(panelState.AllSelected(), toIndex))
+				ScrollAbsolute(panelState.SelectedIndex() - 12);
+			return true;
 		}
 		else
 		{
@@ -358,6 +347,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				panelState.DeselectAll();
 		}
 		
+		// Update the scroll.
 		int selected = panelState.SelectedIndex();
 		if(selected >= 0)
 		{
@@ -409,7 +399,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	// If "Save order" button is pressed.
 	else if(panelState.CanEdit() && key == 'v')
-		player.SaveShipOrder(panelState.Ships());
+		player.SetShipOrder(panelState.Ships());
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
@@ -540,22 +530,7 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */)
 	if(!panelState.CanEdit() || hoverIndex < 0 || hoverIndex == panelState.SelectedIndex())
 		return true;
 	
-	// If the ships are sorted, the sort order is not automatically saved.
-	// This makes the order the player sees and actual saved ship order different.
-	// To correct this, the ships must be saved when the player wants to reorder them.
-	player.SaveShipOrder(panelState.Ships());
-	// The ships are no longer sorted.
-	panelState.SetCurrentSort(nullptr);
-	
-	// Try to move all the selected ships to this location.
-	int selectedIndex = player.ReorderShips(panelState.AllSelected(), hoverIndex);
-	panelState.Ships() = player.Ships();
-	
-	// Change the selected indices so they still refer to the block of ships
-	// that just got moved.
-	int lastIndex = selectedIndex + panelState.AllSelected().size();
-	panelState.DeselectAll();
-	panelState.SelectMany(selectedIndex, lastIndex);
+	panelState.ReorderShips(panelState.AllSelected(), hoverIndex);
 	
 	return true;
 }
