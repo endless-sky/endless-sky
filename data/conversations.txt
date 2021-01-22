@@ -30,7 +30,12 @@ conversation "flight check: no energy flagship!"
 conversation "flight check: no energy escort!"
 	scene "scene/engine2"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
-	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that their generator is not powerful enough to power their ship's systems. How unfortunate. You'll have to tell the captain of <ship> to remain parked until you arrive to fix it.`
+	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that their generator is not powerful enough to power their ship's systems. How unfortunate. You'll have to fix it before departing or tell the captain of the <ship> to remain parked.`
+	
+conversation "flight check: no energy remote escort!"
+	scene "scene/engine2"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
+	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that their generator is not powerful enough to power their ship's systems. How unfortunate. You'll have to tell the captain of the <ship> to remain parked until you arrive to fix it.`
 	
 conversation "flight check: no thruster flagship!"
 	scene "scene/engine2"
@@ -38,6 +43,11 @@ conversation "flight check: no thruster flagship!"
 	`	It is all going smoothly until it comes time to fire up the thrusters for a test run... and you realize, much to your embarrassment, that you do not have any thrusters installed. Time to head back to the outfitter and fix that!`
 	
 conversation "flight check: no thruster escort!"
+	scene "scene/engine2"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
+	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that they have no engines. How embarrassing. You'll have to fix it before departing or tell the captain of the <ship> to remain parked.`
+	
+conversation "flight check: no thruster remote escort!"
 	scene "scene/engine2"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
 	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that they have no engines. How embarrassing. You'll have to tell the captain of the <ship> to remain parked until you arrive to fix it.`
@@ -50,6 +60,11 @@ conversation "flight check: no steering flagship!"
 conversation "flight check: no steering escort!"
 	scene "scene/engine"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
+	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that they have no steering engines. How embarrassing.  You'll have to fix it before departing or tell the captain of the <ship> to remain parked.`
+	
+conversation "flight check: no steering remote escort!"
+	scene "scene/engine"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
 	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that they have no steering engines. How embarrassing. You'll have to tell the captain of <ship> to remain parked until you arrive to fix it.`
 	
 conversation "flight check: overheating flagship!"
@@ -58,6 +73,11 @@ conversation "flight check: overheating flagship!"
 	`	By the time you reach the end of the checklist, it has grown uncomfortably warm. The air smells like ozone and hot metal, and your cameras are showing a plume of steam or smoke escaping from the hull near the engines. If your systems are running this hot while still in the atmosphere, they're likely to overheat the moment you hit hard vacuum. You are going to have to either install cooling systems, or trade out some components for lower-heat alternatives.`
 	
 conversation "flight check: overheating escort!"
+	scene "scene/engine"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
+	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that their ship was producing so much heat that they didn't think it would be able to travel anywhere without overheating. How embarrassing. You'll have to fix it before departing or tell the captain of the <ship> to remain parked.`
+	
+conversation "flight check: overheating remote escort!"
 	scene "scene/engine"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of your ship warming up, you run through a mental checklist. Computers: check. Life support: check. Engines: check. Steering: check.`
 	`	It is all going smoothly until the captain of the <ship> contacts you and tells you that their ship was producing so much heat that they didn't think it would be able to travel anywhere without overheating. How embarrassing. You'll have to tell the captain of the <ship> to remain parked until you arrive to fix it.`
