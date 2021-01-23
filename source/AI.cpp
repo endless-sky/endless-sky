@@ -1612,8 +1612,11 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				{
 					ship.SetTargetStellar(&object);
 					ship.SetTargetSystem(nullptr);
-					MoveToPlanet(ship, command);
-					command |= Command::LAND;
+					if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
+					{
+						MoveToPlanet(ship, command);
+						command |= Command::LAND;
+					}
 					return;
 				}
 			}

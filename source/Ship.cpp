@@ -2759,7 +2759,7 @@ bool Ship::NeedsFuel(bool followParent) const
 	}
 	if(!jumpFuel)
 		jumpFuel = JumpFuel(targetSystem);
-	return (fuel < jumpFuel) && !(Fuel() == 1.);
+	return (fuel < jumpFuel) && Fuel() != 1.;
 }
 
 
