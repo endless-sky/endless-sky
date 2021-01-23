@@ -71,7 +71,7 @@ void StartConditions::Load(const DataNode &node)
 	}
 	if(description.empty())
 	{
-		description = "No description provided";
+		description = "No description provided.";
 	}
 }
 
