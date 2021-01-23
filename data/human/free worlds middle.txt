@@ -865,7 +865,7 @@ mission "FW Northern 2B"
 	on offer
 		conversation
 			`As you approach the planet, Freya sits down at your ship's sensor console and begins fiddling with some settings that you didn't even know existed. She seems entirely focused, and clearly knows what she is doing. You recall being told that she is an engineer, not a politician or a military commander, which makes the fact that she has been able to step up as such a strong leader in the Council very impressive.`
-			`	"Yup, eight different stations," she says finally, "including this one that I nearly overlooked, buried twenty feet under the ice, that is acting as a relay for them." She points out each station on your map, and you fly by each one and destroy it. "Now," she says, "that was what had me most worried, but for the sake of completeness we should sweep the other new worlds, too. Let's go to <planet> next."`
+			`	"Yup, eight different stations," she says finally, "including this one that I nearly overlooked, buried ten meters under the ice, that is acting as a relay for them." She points out each station on your map, and you fly by each one and destroy it. "Now," she says, "that was what had me most worried, but for the sake of completeness we should sweep the other new worlds, too. Let's go to <planet> next."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`

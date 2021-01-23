@@ -367,8 +367,8 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			{
 				DistanceMap distance(player.GetSystem(), mapSize);
 				for(const System *system : distance.Systems())
-					if(!player.HasVisited(system))
-						player.Visit(system);
+					if(!player.HasVisited(*system))
+						player.Visit(*system);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(-price);
 			}
@@ -867,7 +867,7 @@ bool OutfitterPanel::HasMapped(int mapSize) const
 {
 	DistanceMap distance(player.GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
-		if(!player.HasVisited(system))
+		if(!player.HasVisited(*system))
 			return false;
 	
 	return true;

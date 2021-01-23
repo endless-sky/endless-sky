@@ -459,14 +459,14 @@ ship "Pond Strider"
 	turret -18 -53 "Bullfrog Anti-Missile"
 	turret 18 -53 "Bullfrog Anti-Missile"
 	turret 0 14 "Chameleon Anti-Missile"
-	drone -70 -45 left under
-	drone 70 -45 right under
-	drone -70 28 left under
-	drone 70 28 right under
-	drone -70 -45 over
-	drone 70 -45 over
-	drone -70 28 over
-	drone 70 28 over
+	bay "Drone" -70 -45 left under
+	bay "Drone" 70 -45 right under
+	bay "Drone" -70 28 left under
+	bay "Drone" 70 28 right under
+	bay "Drone" -70 -45 over
+	bay "Drone" 70 -45 over
+	bay "Drone" -70 28 over
+	bay "Drone" 70 28 over
 	leak "leak" 40 50
 	leak "flame" 40 70
 	leak "big leak" 70 30
@@ -791,12 +791,12 @@ ship "Solifuge"
 	turret -55 1 "Pulse Turret"
 	turret 54.5 50.5 "Bullfrog Anti-Missile"
 	turret -54.5 50.5 "Bullfrog Anti-Missile"
-	fighter -51.5 -71 under
-	fighter 51.5 -71 under
-	fighter -58.5 2 under
-	fighter 58.5 2 under
-	fighter -51.5 76 under
-	fighter 51.5 76 under
+	bay "Fighter" -51.5 -71 under
+	bay "Fighter" 51.5 -71 under
+	bay "Fighter" -58.5 2 under
+	bay "Fighter" 58.5 2 under
+	bay "Fighter" -51.5 76 under
+	bay "Fighter" 51.5 76 under
 	leak "leak" 40 50
 	leak "flame" 60 70
 	leak "big leak" 70 50

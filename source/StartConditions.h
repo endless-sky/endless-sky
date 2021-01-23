@@ -42,6 +42,7 @@ public:
 	void Save(DataWriter &out) const;
 	
 	Date GetDate() const;
+	
 	const Planet *GetPlanet() const;
 	const System *GetSystem() const;
 	

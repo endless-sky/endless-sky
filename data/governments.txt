@@ -542,6 +542,12 @@ government "Scar's Legion (Killable)"
 	fine 0
 	"hostile hail" "hostile pirate"
 
+government "Sheragi"
+	swizzle 3
+	"player reputation" 1
+	"crew attack" 0
+	"crew defense" 0
+
 government "Syndicate"
 	swizzle 4
 	color 0 .41 .71

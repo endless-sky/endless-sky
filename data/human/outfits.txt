@@ -271,7 +271,7 @@ outfit "Cloaking Device"
 outfit "Outfits Expansion"
 	category "Systems"
 	cost 50000
-	thumbnail "outfit/blue screwdriver"
+	thumbnail "outfit/outfit expansion"
 	"mass" 5
 	"outfit space" 15
 	"cargo space" -20
@@ -284,7 +284,7 @@ outfit "Outfits Expansion"
 outfit "Cargo Expansion"
 	category "Systems"
 	cost 30000
-	thumbnail "outfit/red screwdriver"
+	thumbnail "outfit/cargo expansion"
 	"mass" 5
 	"cargo space" 15
 	"outfit space" -20

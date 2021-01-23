@@ -134,6 +134,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
+	isDefined = true;
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
@@ -292,7 +293,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			continue;
 		}
 		else if(key == "pos" && child.Size() >= 3)
+		{
 			position.Set(child.Value(valueIndex), child.Value(valueIndex + 1));
+			hasPosition = true;
+		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "music")
@@ -374,6 +378,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
+	// Print a warning if this system wasn't explicitly given a position.
+	if(!hasPosition)
+		node.PrintTrace("Warning: system will be ignored due to missing position:");
 }
 
 
@@ -437,7 +444,15 @@ void System::Unlink(System *other)
 
 
 
-// Get this system's name and position (in the star map).
+// Check that this system has been loaded and given a position.
+bool System::IsValid() const
+{
+	return isDefined && hasPosition;
+}
+
+
+
+// Get this system's name.
 const string &System::Name() const
 {
 	return name;
@@ -445,6 +460,14 @@ const string &System::Name() const
 
 
 
+void System::SetName(const std::string &name)
+{
+	this->name = name;
+}
+
+
+
+// Get this system's position in the star map.
 const Point &System::Position() const
 {
 	return position;
