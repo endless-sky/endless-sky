@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-start
+start "default"
 	name "Endless Sky"
 	description "The default scenario for Endless Sky"
 	sprite "scene/lobby"
@@ -24,3 +24,4 @@ start
 			term 365
 	set "license: Pilot's"
 	conversation "intro"
+

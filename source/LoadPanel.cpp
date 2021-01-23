@@ -206,33 +206,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(key == 'n')
 	{
-
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
-		if(GameData::StartOptions().size() == 1) 
-		{
-			const StartConditions &startConditions = GameData::StartOptions().front();
-			const Conversation &startConversation = startConditions.GetConversation();
-			player.New(startConditions);
-			
-			if(startConversation.IsEmpty())
-			{
-				// If no conversation was defined, then skip the conversation panel
-				OnCallback(0);
-			} 
-			else
-			{	
-				ConversationPanel *panel = new ConversationPanel(
-					player, startConversation);
-				GetUI()->Push(panel);
-				panel->SetCallback(this, &LoadPanel::OnCallback);
-			}	
-		} 
-		else 
-		{
-			// Request that the player chooses a start scenario
-			// StartConditionsPanel also handles the case where there's no scenarios
-			GetUI()->Push(new StartConditionsPanel(player, gamePanels, this));
-		}
+		// Request that the player chooses a start scenario
+		// StartConditionsPanel also handles the case where there's no scenarios
+		GetUI()->Push(new StartConditionsPanel(player, gamePanels, this));
 	}
 	else if(key == 'D' && !selectedPilot.empty())
 	{

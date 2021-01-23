@@ -63,6 +63,10 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	
 	if(startConditionsMenu)	
 	{
+		// Ideally, we want the content of the boxes to be drawn in Interface.cpp
+		// However, we'd need a way to specify arbitrarily extensible lists there
+		// We also would need to a way to specify truncation for such a list
+		// Such a list would also have to be scrollable
 		descriptionBox =   startConditionsMenu->GetBox("start description");
 		entryBox =         startConditionsMenu->GetBox("start entry");
 		entryListBox =     startConditionsMenu->GetBox("start entry list");
@@ -81,7 +85,10 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	
 	if(chosenStart)
 		descriptionWrappedText.Wrap(chosenStart->GetDescription());
-	
+	else 
+	{
+		descriptionWrappedText.Wrap("No valid start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly");
+	}
 	bright = *GameData::Colors().Get("bright");
 }
 
@@ -120,7 +127,7 @@ void StartConditionsPanel::Draw()
 	
 	
 	
-	// TODO: Prevent text from overflowing	
+	// TODO: Prevent text from overflowing
 	descriptionWrappedText.Draw(
 		Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll),
 		bright
@@ -170,11 +177,8 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 		listScroll = min(entryBox.Height() * (GameData::StartOptions().size()-1), listScroll); 
 		listScroll = max(0., listScroll);
 	}
-	else if(descriptionBox.Contains(hoverPoint))
-	{		
-		descriptionScroll += dy;
-		descriptionScroll = min(0., descriptionScroll); // Snap the list to avoid people scrolling too far up
-	}
+	// TODO: When #4123 gets merged, re-add scrolling support
+	// Right now it's pointless because it would make the text overflow
 	
 	return true;
 }

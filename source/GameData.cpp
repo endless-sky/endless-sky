@@ -102,7 +102,10 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
+	
 	vector<StartConditions> startConditions;
+	// After all start scenarios are loaded, the values in this set are added to startConditions
+	Set<StartConditions> namedStartConditions;
 	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
@@ -193,6 +196,13 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
+	// Add the named start conditions to the start conditions vector
+	startConditions.reserve(namedStartConditions.size() + startConditions.size());
+	for(auto &it : namedStartConditions)
+	{
+		startConditions.push_back(it.second);
+	}
+	
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
 	// neighbor distances to be updated.
@@ -203,6 +213,7 @@ bool GameData::BeginLoad(const char * const *argv)
 		it.second.FinishLoading(true);
 	for(auto &it : persons)
 		it.second.FinishLoading();
+	
 	for(auto &it : startConditions)
 		it.FinishLoading();
 	
@@ -1031,8 +1042,30 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "start")
+		else if(key == "start" && node.Size() >= 2)
+		{
+			// This copies the StartConditions. We're avoiding using the pointer
+			// returned by Get in case the newly updated start conditions turn out to be invalid
+			StartConditions thisStart = (*namedStartConditions.Get(node.Token(1)));
+			thisStart.Load(node);
+			
+			if (!thisStart.Valid())
+				node.PrintTrace("Invalid start scenario\n"
+						"A valid start scenario has a name, a date, a system and a planet");
+			else
+				*namedStartConditions.Get(node.Token(1)) = thisStart;
+		}
+		else if(key == "start" && node.Size() == 1)
+		{
+			
 			startConditions.emplace_back(node);
+			if (!startConditions.back().Valid())
+			{
+				startConditions.erase(startConditions.end()-1);
+				node.PrintTrace("Invalid start scenario\n"
+						"A valid start scenario has a name, a date, a system and a planet");
+			}
+		}
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)

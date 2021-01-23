@@ -58,6 +58,12 @@ public:
 	const ConditionSet &GetConditions() const;
 	const std::list<Ship> &Ships() const;
 	
+	// Check whether a start scenario is valid
+	// A valid start scenario has a name, a date, a system and a planet
+	// Invalid start scenarios found in the data files are ignored
+	// See https://github.com/endless-sky/endless-sky/pull/5512#pullrequestreview-572539898	
+	bool Valid() const;
+	
 private:
 	Date date;
 	const Planet *planet = nullptr;
@@ -70,7 +76,6 @@ private:
 	const Sprite *sprite = nullptr;
 	
 	// Conversation to show when the start conditions are selected
-	
 	// This is set when the start conditions provide an "inline conversation"
 	Conversation conversation;
 	// stockConversation is set when the conversation is provided as 

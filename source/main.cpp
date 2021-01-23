@@ -98,9 +98,6 @@ int main(int argc, char *argv[])
 		if(!GameData::BeginLoad(argv))
 			return 0;
 		
-		if (GameData::StartOptions().empty())	
-			GameWindow::ExitWithError("No start conditions were defined! Make sure you have installed the game correctly.");
-		
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
 			Files::LogError("Test \"" + testToRunName + "\" not found.");

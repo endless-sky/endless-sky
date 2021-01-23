@@ -66,6 +66,15 @@ void StartConditions::Load(const DataNode &node)
 
 
 
+// Finish loading the ship definitions.
+void StartConditions::FinishLoading()
+{
+	for(Ship &ship : ships)
+		ship.FinishLoading(true);
+}
+
+
+
 void StartConditions::Save(DataWriter &out) const
 {
 	// Only the parts of the start conditions that might have to be used later
@@ -96,15 +105,6 @@ void StartConditions::Save(DataWriter &out) const
 
 
 
-// Finish loading the ship definitions.
-void StartConditions::FinishLoading()
-{
-	for(Ship &ship : ships)
-		ship.FinishLoading(true);
-}
-
-
-
 Date StartConditions::GetDate() const
 {
 	return date ? date : Date(16, 11, 3013);
@@ -126,10 +126,30 @@ const System *StartConditions::GetSystem() const
 
 
 
-
 const Conversation &StartConditions::GetConversation() const 
 {
 	return stockConversation ? *stockConversation : conversation;
+}
+
+
+
+const Sprite *StartConditions::GetSprite() const 
+{
+	return sprite;	
+}
+
+
+
+const std::string &StartConditions::GetName() const
+{
+	return name;
+}
+
+
+
+const std::string &StartConditions::GetDescription() const
+{
+	return description;
 }
 
 
@@ -155,21 +175,8 @@ const list<Ship> &StartConditions::Ships() const
 
 
 
-const std::string &StartConditions::GetName() const
+
+bool StartConditions::Valid() const
 {
-	return name;
-}
-
-
-
-const std::string &StartConditions::GetDescription() const
-{
-	return description;
-}
-
-
-
-const Sprite *StartConditions::GetSprite() const 
-{
-	return sprite;	
+	return system && planet && date && !name.empty();
 }
