@@ -61,17 +61,14 @@ void SavedGame::Load(const string &path)
 					break;
 				}
 		}
-		else if(node.Token(0) == "ship" && !shipSprite)
+		else if(node.Token(0) == "ship" && !shipSprite && ++flagshipIterator == flagshipTarget)
 		{
-			if(++flagshipIterator == flagshipTarget)
-			{
 			for(const DataNode &child : node)
 			{
 				if(child.Token(0) == "name" && child.Size() >= 2)
 					shipName = child.Token(1);
 				else if(child.Token(0) == "sprite" && child.Size() >= 2)
 					shipSprite = SpriteSet::Get(child.Token(1));
-			}
 			}
 		}
 	}
