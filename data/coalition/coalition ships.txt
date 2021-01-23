@@ -716,12 +716,12 @@ ship "Heliarch Judicator"
 	gun -13 -124.5 "Finisher Pod"
 	gun 13 -124.5 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
-	fighter -34.5 -82
-	fighter 34.5 -82
-	fighter -67.5 35
-	fighter -67.5 35
-	fighter 67.5 35
-	fighter 67.5 35
+	bay "Fighter" -34.5 -82
+	bay "Fighter" 34.5 -82
+	bay "Fighter" -67.5 35
+	bay "Fighter" -67.5 35
+	bay "Fighter" 67.5 35
+	bay "Fighter" 67.5 35
 	explode "small explosion" 20
 	explode "medium explosion" 50
 	explode "large explosion" 20
