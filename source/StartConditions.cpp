@@ -64,7 +64,7 @@ void StartConditions::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
-		else if(child.Token(0) == "conversation" && child.Size() >= 1)
+		else if(child.Token(0) == "conversation" && child.Size() >= 2)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else
 			conditions.Add(child);
