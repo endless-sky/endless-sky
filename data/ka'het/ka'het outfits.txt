@@ -351,7 +351,7 @@ outfit "Maeri Engine Nacelles"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
-	description "The Ka'het engines are peculiar in that they need to be continuously charged with large amounts of energy: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
+	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
 	category "Engines"
@@ -372,7 +372,7 @@ outfit "Ka'het Sustainer Nacelles"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
-	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer needs constant energy to maintain its thrusters and steering."
+	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer requires no power to function at the cost of constant energy consumption."
 
 outfit "Telis Engine Nacelles"
 	category "Engines"
