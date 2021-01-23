@@ -738,7 +738,7 @@ void Engine::Step(bool isActive)
 			info.SetBar("target shields", target->Shields());
 			info.SetBar("target hull", target->Hull(), 20.);
 			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
-		
+			
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
 			double size = (target->Width() + target->Height()) * .35;
@@ -839,7 +839,7 @@ void Engine::Step(bool isActive)
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
 			Point offset = minable->Position() - center;
-			if(offset.Length() > scanRange)
+			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
 				continue;
 			
 			targets.push_back({
@@ -1782,6 +1782,10 @@ void Engine::HandleMouseClicks()
 	if(!flagship)
 		return;
 	
+	// Track if player clicked on something.
+	bool clickedAsteroid = false;
+	bool clickedPlanet = false;
+	
 	// Handle escort travel orders sent via the Map.
 	if(player.HasEscortDestination())
 	{
@@ -1820,6 +1824,8 @@ void Engine::HandleMouseClicks()
 					}
 					else
 						flagship->SetTargetStellar(&object);
+					
+					clickedPlanet = true;
 				}
 			}
 	
@@ -1875,11 +1881,16 @@ void Engine::HandleMouseClicks()
 			double range = clickPoint.Distance(position) - minable->Radius();
 			if(range <= clickRange)
 			{
+				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
 			}
 		}
 	}
+	
+	// If the player didn't click on anything, clear ship and asteroid targets.
+	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
+		flagship->SetTargetShip(nullptr);
 }
 
 
