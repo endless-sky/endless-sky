@@ -4254,7 +4254,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"I did. The senior researcher told me that most of the team feels something is not quite right here. They say there are some potential theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
 			label quantumcondensate
-			`	"It is basically a project examining the density of Bose–Einstein condensates as correlated to the revised relativity paradigm's conceptualization of the fabric of space-time. It has a lot of potential implications, particularly for ramscoop, scanner, and weapons technology. At least, that is the hope. For now, though, I am trying to figure out what is off about this data."`
+			`	"It is basically a project examining the density of Bose-Einstein condensates as correlated to the revised relativity paradigm's conceptualization of the fabric of space-time. It has a lot of potential implications, particularly for ramscoop, scanner, and weapons technology. At least, that is the hope. For now, though, I am trying to figure out what is off about this data."`
 			choice
 				`	"Have you asked someone with more experience for advice?"`
 				`	"Don't worry about it."`
