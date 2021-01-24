@@ -933,7 +933,7 @@ mission "Hai Leaks Response 7"
 		"hai slave prereq" >= 3
 	on offer
 		conversation
-			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you should go tell Sayari first to see how to proceed.`
+			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you should go tell Sayari soon to see how to proceed.`
 				decline
 
 event "role-play fleet deception"

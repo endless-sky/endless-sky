@@ -10,9 +10,32 @@
 
 ########################################################################
 
-#Investigate a theorised smuggling route and rescue Hai. You have to do at least three of these missions.
+#Investigate a theorized smuggling route and rescue Hai. You have to do at least three of these missions.
 
 #NOTE: The Hai Leaks Response 6 and 7 missions will break if any of these missions have Hai-home as a destination.
+
+mission "Hai Rescue: Yeertle Hint"
+	landing
+	name "Investigate a Were-Squirrel"
+	description "A truly outlandish rumor has been floating around that might be a Hai."
+	source
+		near "Prime" 4
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+		not attributes "station"
+	destination Prime
+	to offer
+		"combat rating" > 50
+		has "Hai Leaks Response 6: offered"
+		not "Hai Rescue: Yeertle Family: offered"
+		not "event: hai-human treaty signed"
+		random < 50
+	on offer
+		conversation
+			`As you come in to land at the spaceport you listen to the usual chatter of captains coming and going. Often this contains useful tidbits like, which merchants are ticked off at the moment, and whether you should expect to wait a while for refueling. Today though you overhear one captain, obviously having encountered a common acquaintance relaying a very remarkable tale.`
+			`	Apparently there is a man-beast on Prime, and when the other captain laughs at the idea of a modern 'werewolf' the first one is quick to clarify that it's more like a five foot tall 'were-squirrel'. There seems to be some confused discussion about the mythology of such beasts being revealed when caught staring at bright lights until a third captain, listening in the same as you, butts in to inform them that one of them stole that from a popular show a few years back.`
+			`	You stop listening on your final approach as the conversation descends into a good-natured argument. Nevertheless, it sounds like a lead on a possible stranded Hai that would be worth following up.`
+				accept
 
 mission "Hai Rescue: Yeertle Family"
 	landing
@@ -80,6 +103,28 @@ mission "Hai Rescue: Yeertle Family"
 		fleet "Small Core Pirates" 1
 
 
+mission "Hai Rescue: Prison RP Hint"
+	landing
+	name "Phantom Distress Calls"
+	description "Some merchants have mentioned picking up a distress call they couldn't locate the source of."
+	source
+		near "Sunracer" 4
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+		not attributes "station"
+	destination Sunracer
+	to offer
+		has "Hai Leaks Response 6: offered"
+		not "Hai Rescue: Prison Role-Players: offered"
+		not "event: hai-human treaty signed"
+		random < 80
+	on offer
+		conversation
+			`As you come in to land at the spaceport you listen to the usual chatter of captains coming and going. Out here on the edge of things, towards the core, it is a popular pastime for merchants to swap ghost stories. In all likelihood the majority of these stories can be put down to minor failures from cheap, mass-produced Syndicate equipment. Nevertheless, something about one of them stands out this time.`
+			`	It seems a handful of merchants have all been picking up a very faint distress signal in the vicinity of Sunracer, but every time they've gone to look for it, they've either experienced some kind of engine warning, or a large group of pirates has jumped into the system and they've bugged out.`
+			`	It seems like a long-shot but you wonder if perhaps this might be a legitimate call for help, maybe from someone who can't risk broadcasting themselves too aggressively...`
+				accept
+
 mission "Hai Rescue: Prison Role-Players"
 	# You get to rescue the Hai from "First Contact: Hai"
 	landing
@@ -100,7 +145,7 @@ mission "Hai Rescue: Prison Role-Players"
 	on offer
 		"Hai Rescue: Prison Role-Players (offer count)" ++
 		conversation
-			`As you set your landing vector, you detect a distress call directed at your ship. Your scanners show it comes from a remote island. Do you want to check it out?`
+			`As you set your landing vector, you detect a very faint distress call directed at your ship. Your scanners show it appears to come from a remote island. Do you want to check it out?`
 			choice
 				`	(Follow the distress signal.)`
 				`	(Ignore it and come back later.)`
@@ -143,6 +188,28 @@ mission "Hai Rescue: Prison Role-Players"
 		dialog `The Hai researchers thank you for rescuing them from their ill-fated "prison role-play cruise" and promise to stick to safer pastimes in the future. They happily give you <payment>.`
 	# No NPCs for this one since the Hai are presumed dead.
 
+
+mission "Hai Rescue: Oonem Hint"
+	landing
+	name "A (Short) Angel of Death"
+	description "There have been some mysterious deaths on Stormhold."
+	source
+		near "Stormhold" 3
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+		not attributes "station"
+	destination Stormhold
+	to offer
+		has "Hai Leaks Response 6: offered"
+		not "Hai Rescue: Ooonem: offered"
+		not "event: hai-human treaty signed"
+		random < 30
+	on offer
+		conversation
+			`As you come in to land at the spaceport you listen to the usual chatter of captains coming and going. To your surprise, on one of the lower less obvious bands, you hear a pair of captains talking about the pirate world of Stormhold. Apparently these two have enough connections to profit off the occasional trip there, but one of them is warning the other not to go by at the moment.`
+			`	You listen in carefully as the speaker relays that there's some kind of hunt going on there. All the ships are being searched before departure and there's a lot of paranoid goons with weapons hot. A merchant has been killed on his own ship and random people keep getting into firefights with a short, hooded, 'angel of death' in dark alleyways. So far, no one claims to know what's going on.`
+			`	It's really hard to say what this could be, but it might be worth checking out.`
+				accept
 
 mission "Hai Rescue: Ooonem"
 	landing
@@ -223,6 +290,28 @@ mission "Hai Rescue: Ooonem"
 		fleet "Small Core Pirates" 1
 
 
+mission "Hai Rescue: Meroot and Lucy Hint"
+	landing
+	name "Deep Crevasses"
+	description "There could be kidnappers or kidnapped Hai hiding on Canyon."
+	source
+		near "Canyon" 4
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+		not attributes "station"
+	destination Canyon
+	to offer
+		"combat rating" > 50
+		has "Unwanted Cargo: done"
+		has "Hai Leaks Response 6: offered"
+		not "Hai Rescue: Meroot and Lucy: offered"
+		not "event: hai-human treaty signed"
+		random < 80
+	on offer
+		conversation
+			`As you come in to land at the spaceport you listen to the usual chatter of captains coming and going. You don't hear anything specific to Hai, but when the punchline of a joke is 'deep crevasses' on <destination> and it occurs to you that it would be the perfect place for both illicit activities and escapees to hide out under the radar for a long time. It's probably worth a look...`
+				accept
+
 mission "Hai Rescue: Meroot and Lucy"
 	landing
 	name "Return Meroot and Lucy"
@@ -290,6 +379,28 @@ mission "Hai Rescue: Meroot and Lucy"
 		fleet "Large Core Pirates" 1
 		fleet "Small Core Pirates" 1
 			
+
+mission "Hai Rescue: Gipeep Hint"
+	landing
+	name "Lucrative Transport"
+	description "You've heard there's some suspiciously lucrative transport jobs on Maelstrom."
+	source
+		near "Maelstrom" 4
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+		not attributes "station"
+	destination Maelstrom
+	to offer
+		"combat rating" > 50
+		has "Unwanted Cargo: done"
+		has "Hai Leaks Response 6: offered"
+		not "Hai Rescue: Gipeep: offered"
+		not "event: hai-human treaty signed"
+		random < 80
+	on offer
+		conversation
+			`As you come in to land at the spaceport you listen to the usual chatter of captains coming and going. One guy is bragging particularly odiously about some lucrative transport jobs he'd picked up on <destination>. Of course it could mean nothing, but it's also very suspicious.`
+				accept
 
 mission "Hai Rescue: Gipeep"
 	landing
