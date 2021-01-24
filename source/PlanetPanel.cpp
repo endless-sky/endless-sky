@@ -14,11 +14,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Information.h"
 
+#include "text/alignment.hpp"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
@@ -52,7 +53,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring.reset(new HiringPanel(player));
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
 	
@@ -145,11 +146,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
-		requestedLaunch = true;
-	else if(key == 'l')
 	{
-		selectedPanel = nullptr;
+		requestedLaunch = true;
+		return true;
 	}
+	else if(key == 'l')
+		selectedPanel = nullptr;
 	else if(key == 't' && hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
 	{
 		selectedPanel = trading.get();
@@ -233,7 +235,7 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
-	// Check whether the player should be warned before taking off.
+	// Check whether the player can be warned before takeoff.
 	if(player.ShouldLaunch())
 	{
 		TakeOff();
@@ -256,14 +258,11 @@ void PlanetPanel::TakeOffIfReady()
 			}
 		}
 	
-	// The checks that follow are typically caused by parking or selling
-	// ships or changing outfits.
+	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
-	
-	// Are you overbooked? Don't count fireable flagship crew. If your
-	// ship can't hold the required crew, count it as having no fireable
-	// crew rather than a negative number.
 	const CargoHold &cargo = player.Cargo();
+	// Are you overbooked? Don't count fireable flagship crew.
+	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
 	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
@@ -289,18 +288,19 @@ void PlanetPanel::TakeOffIfReady()
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
+		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
 			out << "If you take off now you will fail a mission due to not having enough ";
-
+			
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
 				out << (both ? " and not having enough " : ".");
 			}
-
+			
 			if(missionCargoToSell > 0)
 			{
 				out << "cargo space to hold " << missionCargoToSell;
@@ -308,6 +308,7 @@ void PlanetPanel::TakeOffIfReady()
 				out << " of your mission cargo.";
 			}
 		}
+		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
 		{
 			out << "If you take off now you will launch with ";
@@ -317,10 +318,11 @@ void PlanetPanel::TakeOffIfReady()
 				out << nonJumpCount << " ships";
 			out << " that will not be able to leave the system.";
 		}
+		// Warn about non-commodity cargo you will have to sell.
 		else
 		{
 			out << "If you take off now you will have to sell ";
-
+			
 			if(cargoToSell == 1)
 				out << "a ton of cargo";
 			else if(cargoToSell > 0)

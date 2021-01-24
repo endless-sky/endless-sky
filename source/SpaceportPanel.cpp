@@ -12,8 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpaceportPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
@@ -33,7 +34,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(player.GetPlanet()->SpaceportDescription());
 	

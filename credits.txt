@@ -240,6 +240,7 @@ contributed to Endless Sky:
   tboby
   tehhowch
   temtemy
+  thebigh2014
   TheMarksman-ES
   thenerdfreak
   TheUnfetteredOne
@@ -268,6 +269,6 @@ contributed to Endless Sky:
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the nightly & continuous builds
-that make so much of this work
-possible.
+the ESLauncher, nightly, & 
+continuous builds that make so
+much of this work possible.

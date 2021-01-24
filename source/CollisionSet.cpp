@@ -315,11 +315,20 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 // Get all objects within the given range of the given point.
 const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) const
 {
-	// Calculate the range of (x, y) grid coordinates this circle covers.
-	int minX = static_cast<int>(center.X() - radius) >> SHIFT;
-	int minY = static_cast<int>(center.Y() - radius) >> SHIFT;
-	int maxX = static_cast<int>(center.X() + radius) >> SHIFT;
-	int maxY = static_cast<int>(center.Y() + radius) >> SHIFT;
+	return Ring(center, 0., radius);
+}
+
+
+
+// Get all objects touching a ring with a given inner and outer range
+// centered at the given point.
+const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double outer) const
+{
+	// Calculate the range of (x, y) grid coordinates this ring covers.
+	int minX = static_cast<int>(center.X() - outer) >> SHIFT;
+	int minY = static_cast<int>(center.Y() - outer) >> SHIFT;
+	int maxX = static_cast<int>(center.X() + outer) >> SHIFT;
+	int maxY = static_cast<int>(center.Y() + outer) >> SHIFT;
 	
 	// Keep track of which objects we've already considered.
 	set<const Body *> seen;
@@ -347,7 +356,9 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 				
 				const Mask &mask = it->body->GetMask(step);
 				Point offset = center - it->body->Position();
-				if(offset.Length() <= radius || mask.WithinRange(offset, it->body->Facing(), radius))
+				double length = offset.Length();
+				if((length <= outer && length >= inner)
+					|| mask.WithinRing(offset, it->body->Facing(), inner, outer))
 					result.push_back(it->body);
 			}
 		}

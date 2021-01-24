@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Point.h"
 #include "Rectangle.h"
+#include "text/truncate.hpp"
 
 #include <map>
 #include <string>
@@ -169,6 +170,7 @@ private:
 		int fontSize = 14;
 		char buttonKey = '\0';
 		bool isDynamic = false;
+		Truncate truncate = Truncate::NONE;
 	};
 	
 	// This class handles "bar" and "ring" elements.

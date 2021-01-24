@@ -12,14 +12,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "OutfitterPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "DistanceMap.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
+#include "text/layout.hpp"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -29,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -109,6 +113,9 @@ bool OutfitterPanel::HasItem(const string &name) const
 	if(player.Cargo().Get(outfit) && (!playerShip || showForSale))
 		return true;
 	
+	if(player.Storage() && player.Storage()->Get(outfit))
+		return true;
+	
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
 			return true;
@@ -172,12 +179,21 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
+	int storage = player.Storage() ? player.Storage()->Get(outfit) : 0;
 	
 	string message;
-	if(cargo && stock)
+	if(cargo && storage && stock)
+		message = "cargo+stored: " + to_string(cargo + storage) + ", in stock: " + to_string(stock);
+	else if(cargo && storage)
+		message = "in cargo: " + to_string(cargo) + ", in storage: " + to_string(storage);
+	else if(cargo && stock)
 		message = "in cargo: " + to_string(cargo) + ", in stock: " + to_string(stock);
+	else if(storage && stock)
+		message = "in storage: " + to_string(storage) + ", in stock: " + to_string(stock);
 	else if(cargo)
 		message = "in cargo: " + to_string(cargo);
+	else if(storage)
+		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
 	else if(!outfitter.Has(outfit))
@@ -278,9 +294,9 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 	
 	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(
-		center.X() - font.Width(selectedItem) / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright);
+	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
+	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+		selectedPoint, bright);
 	
 	return heightOffset;
 }
@@ -292,8 +308,8 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	bool isInCargo = player.Cargo().Get(selectedOutfit) && playerShip;
-	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo))
+	bool isAlreadyOwned = IsAlreadyOwned();
+	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -307,8 +323,8 @@ bool OutfitterPanel::CanBuy() const
 	if(licenseCost < 0)
 		return false;
 	cost += licenseCost;
-	// If you have this in your cargo hold, installing it is free.
-	if(cost > player.Accounts().Credits() && !isInCargo)
+	// If you have this in your cargo hold or in planetary storage, installing it is free.
+	if(cost > player.Accounts().Credits() && !isAlreadyOwned)
 		return false;
 	
 	if(HasLicense(selectedOutfit->Name()))
@@ -329,7 +345,7 @@ bool OutfitterPanel::CanBuy() const
 
 
 
-void OutfitterPanel::Buy(bool fromCargo)
+void OutfitterPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost)
@@ -351,8 +367,8 @@ void OutfitterPanel::Buy(bool fromCargo)
 			{
 				DistanceMap distance(player.GetSystem(), mapSize);
 				for(const System *system : distance.Systems())
-					if(!player.HasVisited(system))
-						player.Visit(system);
+					if(!player.HasVisited(*system))
+						player.Visit(*system);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(-price);
 			}
@@ -372,13 +388,27 @@ void OutfitterPanel::Buy(bool fromCargo)
 			return;
 		}
 		
+		// Buying into cargo, either from storage or from stock/supply.
 		if(!playerShip)
 		{
-			player.Cargo().Add(selectedOutfit);
-			int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(-price);
-			player.AddStock(selectedOutfit, -1);
-			continue;
+			if(alreadyOwned)
+			{
+				if(!player.Storage() || !player.Storage()->Get(selectedOutfit))
+					continue;
+				player.Cargo().Add(selectedOutfit);
+				player.Storage()->Remove(selectedOutfit);
+			}
+			else
+			{
+				// Check if the outfit is for sale or in stock so that we can actualy buy it.
+				if(!outfitter.Has(selectedOutfit) && player.Stock(selectedOutfit) <= 0)
+					continue;
+				player.Cargo().Add(selectedOutfit);
+				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
+				player.Accounts().AddCredits(-price);
+				player.AddStock(selectedOutfit, -1);
+				continue;
+			}
 		}
 		
 		// Find the ships with the fewest number of these outfits.
@@ -391,7 +421,9 @@ void OutfitterPanel::Buy(bool fromCargo)
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
-			else if(fromCargo || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
+				player.Storage()->Remove(selectedOutfit);
+			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{
@@ -418,7 +450,8 @@ void OutfitterPanel::FailBuy() const
 	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
 	int64_t credits = player.Accounts().Credits();
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
-	if(!isInCargo && cost > credits)
+	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
+	if(!isInCargo && !isInStorage && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
 			+ Format::Credits(cost) + " credits, and you only have "
@@ -433,7 +466,7 @@ void OutfitterPanel::FailBuy() const
 			"You cannot buy this outfit, because it requires a license that you don't have."));
 		return;
 	}
-	if(!isInCargo && cost + licenseCost > credits)
+	if(!isInCargo && !isInStorage && cost + licenseCost > credits)
 	{
 		GetUI()->Push(new Dialog(
 			"You don't have enough money to buy this outfit, because it will cost you an extra "
@@ -441,7 +474,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo))
+	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
@@ -545,12 +578,15 @@ void OutfitterPanel::FailBuy() const
 
 
 
-bool OutfitterPanel::CanSell(bool toCargo) const
+bool OutfitterPanel::CanSell(bool toStorage) const
 {
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	if(!toCargo && player.Cargo().Get(selectedOutfit))
+	if(player.Cargo().Get(selectedOutfit))
+		return true;
+		
+	if(!toStorage && player.Storage() && player.Storage()->Get(selectedOutfit))
 		return true;
 	
 	for(const Ship *ship : playerShips)
@@ -562,29 +598,56 @@ bool OutfitterPanel::CanSell(bool toCargo) const
 
 
 
-void OutfitterPanel::Sell(bool toCargo)
+void OutfitterPanel::Sell(bool toStorage)
 {
-	if(!toCargo && player.Cargo().Get(selectedOutfit))
+	// Retrieve the players storage. If we want to store to storage, then
+	// we also request storage to be created if possible.
+	// Will be nullptr if no storage is available.
+	CargoHold *storage = player.Storage(toStorage);
+	
+	if(player.Cargo().Get(selectedOutfit))
 	{
 		player.Cargo().Remove(selectedOutfit);
-		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
-		player.Accounts().AddCredits(price);
-		player.AddStock(selectedOutfit, 1);
+		if(toStorage && storage && storage->Add(selectedOutfit))
+		{
+			// Transfer to planetary storage completed.
+			// The storage->Add() function should never fail as long as
+			// planetary storage has unlimited size.
+		}
+		else
+		{
+			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(price);
+			player.AddStock(selectedOutfit, 1);
+		}
+		return;
 	}
-	else
+
+	// Get the ships that have the most of this outfit installed.
+	// If there are no ships that have this outfit, then sell from storage.
+	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
+	
+	if(shipsToOutfit.size() > 0)
 	{
-		// Get the ships that have the most of this outfit installed.
-		const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
-		
 		for(Ship *ship : shipsToOutfit)
 		{
 			ship->AddOutfit(selectedOutfit, -1);
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			ship->Recharge();
-			if(toCargo && player.Cargo().Add(selectedOutfit))
+
+			if(toStorage && storage && storage->Add(selectedOutfit))
 			{
-				// Transfer to cargo completed.
+				// Transfer to planetary storage completed.
+			}
+			else if(toStorage)
+			{
+				// No storage available; transfer to cargo even if it
+				// would exceed the cargo capacity.
+				int size = player.Cargo().Size();
+				player.Cargo().SetSize(-1);
+				player.Cargo().Add(selectedOutfit);
+				player.Cargo().SetSize(size);
 			}
 			else
 			{
@@ -605,8 +668,8 @@ void OutfitterPanel::Sell(bool toCargo)
 				if(mustSell)
 				{
 					ship->AddOutfit(ammo, -mustSell);
-					if(toCargo)
-						mustSell -= player.Cargo().Add(ammo, mustSell);
+					if(toStorage && storage)
+						mustSell -= storage->Add(ammo, mustSell);
 					if(mustSell)
 					{
 						int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
@@ -616,14 +679,23 @@ void OutfitterPanel::Sell(bool toCargo)
 				}
 			}
 		}
+		return;
+	}
+	
+	if(!toStorage && storage && storage->Get(selectedOutfit))
+	{
+		storage->Remove(selectedOutfit);
+		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+		player.Accounts().AddCredits(price);
+		player.AddStock(selectedOutfit, 1);
 	}
 }
 
 
 
-void OutfitterPanel::FailSell(bool toCargo) const
+void OutfitterPanel::FailSell(bool toStorage) const
 {
-	const string &verb = toCargo ? "uninstall" : "sell";
+	const string &verb = toStorage ? "uninstall" : "sell";
 	if(!planet || !selectedOutfit)
 		return;
 	else if(selectedOutfit->Get("map"))
@@ -632,7 +704,8 @@ void OutfitterPanel::FailSell(bool toCargo) const
 		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
-		bool hasOutfit = !toCargo && player.Cargo().Get(selectedOutfit);
+		bool hasOutfit = player.Cargo().Get(selectedOutfit);
+		hasOutfit = hasOutfit || (!toStorage && player.Storage() && player.Storage()->Get(selectedOutfit));
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(selectedOutfit))
 			{
@@ -690,7 +763,7 @@ void OutfitterPanel::DrawKey()
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 	
-	Font font = FontSet::Get(14);
+	const Font &font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 	
@@ -783,8 +856,9 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	// Draw the outfit name.
 	const string &name = outfit.Name();
 	const Font &font = FontSet::Get(14);
-	Point offset(-.5f * font.Width(name), -.5f * OUTFIT_SIZE + 10.f);
-	font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
+	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
+	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
+		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
 }
 
 
@@ -793,7 +867,7 @@ bool OutfitterPanel::HasMapped(int mapSize) const
 {
 	DistanceMap distance(player.GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
-		if(!player.HasVisited(system))
+		if(!player.HasVisited(*system))
 			return false;
 	
 	return true;

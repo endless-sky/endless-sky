@@ -1525,6 +1525,30 @@ ship "Leviathan" "Leviathan (Laser)"
 	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
+	
+
+ship "Leviathan" "Leviathan (Plasma Repeater)"
+	outfits
+		"A375 Atomic Steering"
+		"Afterburner"
+		"Breeder Reactor"
+		"D94-YV Shield Generator" 2
+		"Heavy Anti-Missile Turret" 2
+		"Impala Plasma Thruster"
+		"Laser Rifle" 25
+		"Liquid Nitrogen Cooler"
+		"LP036a Battery Pack"
+		"Plasma Repeater" 4
+		"Ramscoop"
+		"Scram Drive"
+	gun "Plasma Repeater"
+	gun "Plasma Repeater"
+	gun "Plasma Repeater"
+	gun "Plasma Repeater"
+	turret
+	turret
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
 
 ship "Leviathan" "Leviathan (Particle Chaser)"
 	outfits
