@@ -8012,12 +8012,12 @@ system Diespiter
 	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	link Statina
-	asteroids "small metal" 74 2
-	asteroids "medium metal" 26 4
-	asteroids "large metal" 76 3
 	asteroids "small rock" 65 3
 	asteroids "medium rock" 14 1
 	asteroids "large rock" 3 1
+	asteroids "small metal" 74 2
+	asteroids "medium metal" 26 4
+	asteroids "large metal" 76 3
 	minables iron 22 3
 	minables silicon 46 3
 	minables tungsten 17 3
@@ -8733,11 +8733,11 @@ system Egeria
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
-	asteroids "medium metal" 86 3
-	asteroids "large metal" 5 4
 	asteroids "small rock" 1 8
 	asteroids "medium rock" 20 5
 	asteroids "large rock" 9 7
+	asteroids "medium metal" 86 3
+	asteroids "large metal" 5 4
 	minables iron 20 4
 	minables lead 28 5
 	hazard "Ember Waste Base Heat" 100
@@ -19456,10 +19456,10 @@ system Postverta
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
-	asteroids "medium metal" 52 1
-	asteroids "large metal" 9 3
 	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
+	asteroids "medium metal" 52 1
+	asteroids "large metal" 9 3
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -23250,10 +23250,10 @@ system Statina
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
+	asteroids "large rock" 1 4
 	asteroids "small metal" 39 3
 	asteroids "medium metal" 72 3
 	asteroids "large metal" 3 5
-	asteroids "large rock" 1 4
 	minables iron 5 6
 	minables silicon 11 5
 	minables titanium 10 4
@@ -24697,12 +24697,12 @@ system Vaticanus
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
-	asteroids "small metal" 14 8
-	asteroids "medium metal" 47 11
-	asteroids "large metal" 11 7
 	asteroids "small rock" 3 6
 	asteroids "medium rock" 11 9
 	asteroids "large rock" 5 8
+	asteroids "small metal" 14 8
+	asteroids "medium metal" 47 11
+	asteroids "large metal" 11 7
 	minables lead 16 13
 	minables tungsten 10 13
 	hazard "Ember Waste Base Heat" 100
