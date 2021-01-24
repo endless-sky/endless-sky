@@ -1782,10 +1782,6 @@ void Engine::HandleMouseClicks()
 	if(!flagship)
 		return;
 	
-	// Track if player clicked on something.
-	bool clickedAsteroid = false;
-	bool clickedPlanet = false;
-	
 	// Handle escort travel orders sent via the Map.
 	if(player.HasEscortDestination())
 	{
@@ -1800,6 +1796,7 @@ void Engine::HandleMouseClicks()
 	
 	// Check for clicks on stellar objects. Only left clicks apply, and the
 	// flagship must not be in the process of landing or taking off.
+	bool clickedPlanet = false;
 	const System *playerSystem = player.GetSystem();
 	if(!isRightClick && flagship->Zoom() == 1.)
 		for(const StellarObject &object : playerSystem->Objects())
@@ -1849,6 +1846,8 @@ void Engine::HandleMouseClicks()
 					break;
 			}
 		}
+		
+	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
 		if(isRightClick)
@@ -1888,7 +1887,7 @@ void Engine::HandleMouseClicks()
 		}
 	}
 	
-	// If the player didn't click on anything, clear ship and asteroid targets.
+	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
 		flagship->SetTargetShip(nullptr);
 }
