@@ -738,7 +738,7 @@ void Engine::Step(bool isActive)
 			info.SetBar("target shields", target->Shields());
 			info.SetBar("target hull", target->Hull(), 20.);
 			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
-		
+			
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
 			double size = (target->Width() + target->Height()) * .35;
@@ -839,7 +839,7 @@ void Engine::Step(bool isActive)
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
 			Point offset = minable->Position() - center;
-			if(offset.Length() > scanRange)
+			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
 				continue;
 			
 			targets.push_back({
@@ -1796,6 +1796,7 @@ void Engine::HandleMouseClicks()
 	
 	// Check for clicks on stellar objects. Only left clicks apply, and the
 	// flagship must not be in the process of landing or taking off.
+	bool clickedPlanet = false;
 	const System *playerSystem = player.GetSystem();
 	if(!isRightClick && flagship->Zoom() == 1.)
 		for(const StellarObject &object : playerSystem->Objects())
@@ -1820,6 +1821,8 @@ void Engine::HandleMouseClicks()
 					}
 					else
 						flagship->SetTargetStellar(&object);
+					
+					clickedPlanet = true;
 				}
 			}
 	
@@ -1843,6 +1846,8 @@ void Engine::HandleMouseClicks()
 					break;
 			}
 		}
+		
+	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
 		if(isRightClick)
@@ -1875,11 +1880,16 @@ void Engine::HandleMouseClicks()
 			double range = clickPoint.Distance(position) - minable->Radius();
 			if(range <= clickRange)
 			{
+				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
 			}
 		}
 	}
+	
+	// Treat an "empty" click as a request to clear targets.
+	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
+		flagship->SetTargetShip(nullptr);
 }
 
 

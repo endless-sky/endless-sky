@@ -3475,6 +3475,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		cargoScan = 0.;
 		outfitScan = 0.;
 	}
+	targetAsteroid.reset();
 }
 
 
@@ -3504,6 +3505,7 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
 	targetAsteroid = asteroid;
+	targetShip.reset();
 }
 
 
