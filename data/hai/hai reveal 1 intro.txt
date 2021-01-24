@@ -883,8 +883,7 @@ mission "Hai Leaks Response 6"
 		"reputation: Hai" >?= 100
 		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act as an isolated furry role-play community. This is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
 		conversation
-			`When you return to Hai-home, you are met by a group of relieved diplomats.`
-			`	Of all of them, Alondo seems to be the least tired and takes the time to let you know what's been going on. "Captain <last>! You've missed quite the palaver. Still, I doubt you lost much. We've spent four hours trying to explain to Sayari what a 'furry' is."`
+			`When you return to Hai-home, you are met by a group of relieved diplomats. Of all of them, Alondo seems to be the least tired and takes the time to let you know what's been going on. "Captain <last>! You've missed quite the palaver. Still, I doubt you lost much. We've spent four hours trying to explain to Sayari what a 'furry' is."`
 			choice
 				`	"What? That could've been entertaining."`
 				`	"Hmm. No, I probably didn't miss much."`
