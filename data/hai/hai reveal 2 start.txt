@@ -19,7 +19,7 @@ mission "Hai Rescue: Yeertle Hint"
 	name "Investigate a Were-Squirrel"
 	description "A truly outlandish rumor has been floating around that might be a Hai."
 	source
-		near "Prime" 4
+		near "Betelgeuse" 4
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
@@ -27,6 +27,7 @@ mission "Hai Rescue: Yeertle Hint"
 	to offer
 		"combat rating" > 50
 		has "Hai Leaks Response 6: offered"
+		has "event: slightly lost"
 		not "Hai Rescue: Yeertle Family: offered"
 		not "event: hai-human treaty signed"
 		random < 50
@@ -108,13 +109,14 @@ mission "Hai Rescue: Prison RP Hint"
 	name "Phantom Distress Calls"
 	description "Some merchants have mentioned picking up a distress call they couldn't locate the source of."
 	source
-		near "Sunracer" 4
+		near "Mirfak" 4
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
 	destination Sunracer
 	to offer
 		has "Hai Leaks Response 6: offered"
+		has "event: slightly lost"
 		not "Hai Rescue: Prison Role-Players: offered"
 		not "event: hai-human treaty signed"
 		random < 80
@@ -194,13 +196,14 @@ mission "Hai Rescue: Oonem Hint"
 	name "A (Short) Angel of Death"
 	description "There have been some mysterious deaths on Stormhold."
 	source
-		near "Stormhold" 3
+		near "Alcyone" 3
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
 	destination Stormhold
 	to offer
 		has "Hai Leaks Response 6: offered"
+		has "event: slightly lost"
 		not "Hai Rescue: Ooonem: offered"
 		not "event: hai-human treaty signed"
 		random < 30
@@ -295,7 +298,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 	name "Deep Crevasses"
 	description "There could be kidnappers or kidnapped Hai hiding on Canyon."
 	source
-		near "Canyon" 4
+		near "Zaurak" 4
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
@@ -304,6 +307,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 		"combat rating" > 50
 		has "Unwanted Cargo: done"
 		has "Hai Leaks Response 6: offered"
+		has "event: slightly lost"
 		not "Hai Rescue: Meroot and Lucy: offered"
 		not "event: hai-human treaty signed"
 		random < 80
@@ -385,7 +389,7 @@ mission "Hai Rescue: Gipeep Hint"
 	name "Lucrative Transport"
 	description "You've heard there's some suspiciously lucrative transport jobs on Maelstrom."
 	source
-		near "Maelstrom" 4
+		near "Nihal" 4
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
@@ -394,6 +398,7 @@ mission "Hai Rescue: Gipeep Hint"
 		"combat rating" > 50
 		has "Unwanted Cargo: done"
 		has "Hai Leaks Response 6: offered"
+		has "event: slightly lost"
 		not "Hai Rescue: Gipeep: offered"
 		not "event: hai-human treaty signed"
 		random < 80

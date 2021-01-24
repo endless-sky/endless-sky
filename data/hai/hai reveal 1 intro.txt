@@ -746,7 +746,7 @@ mission "Hai Leaks Response 4A"
 	destination "Allhome"
 	to offer
 		has "Hai Leaks Response 3: done"
-	npc board kill
+	npc capture
 		government "Pirate"
 		personality staying marked mute
 		system "Waypoint"
@@ -879,6 +879,7 @@ mission "Hai Leaks Response 6"
 	on offer
 		event "secret mountaintop"
 		event "role-play fleet deception"
+		event "slightly lost" 10
 		# Hai like you a lot now, and as a result, you have permanent access to Hai-home:
 		"reputation: Hai" >?= 100
 		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act as an isolated furry role-play community. This is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
@@ -934,6 +935,8 @@ mission "Hai Leaks Response 7"
 		conversation
 			`You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you should go tell Sayari soon to see how to proceed.`
 				decline
+
+event "slightly lost"
 
 event "role-play fleet deception"
 	system "Ultima Thule"

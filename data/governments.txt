@@ -822,7 +822,7 @@ government "Smuggler (Hai Trafficker)"
 		board 0
 		capture 0
 		destroy 0
-		atrocity 0>>>>>>> master
+		atrocity 0
 
 government "Syndicate"
 	swizzle 4
