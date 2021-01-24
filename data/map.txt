@@ -8012,25 +8012,20 @@ system Diespiter
 	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	link Statina
-	asteroids "large metal" 76 3
-	asteroids "large rock" 3 1
-	asteroids "medium metal" 26 4
-	asteroids "medium rock" 14 1
 	asteroids "small metal" 74 2
+	asteroids "medium metal" 26 4
+	asteroids "large metal" 76 3
 	asteroids "small rock" 65 3
+	asteroids "medium rock" 14 1
+	asteroids "large rock" 3 1
 	minables iron 22 3
 	minables silicon 46 3
 	minables tungsten 17 3
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		distance 1600
-		period 398
-		sprite planet/gas11
-		object
-			distance 270
-			period 14
-			sprite planet/rock3
+		period 10
+		sprite star/k5-old
 	object
 		distance 745
 		period 394
@@ -8040,8 +8035,13 @@ system Diespiter
 		period 543
 		sprite planet/lava0
 	object
-		period 10
-		sprite star/k5-old
+		distance 1600
+		period 398
+		sprite planet/gas11
+		object
+			distance 270
+			period 14
+			sprite planet/rock3
 
 system Diphda
 	pos -262 61
@@ -8733,15 +8733,28 @@ system Egeria
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
-	asteroids "large metal" 5 4
-	asteroids "large rock" 9 7
 	asteroids "medium metal" 86 3
-	asteroids "medium rock" 20 5
+	asteroids "large metal" 5 4
 	asteroids "small rock" 1 8
+	asteroids "medium rock" 20 5
+	asteroids "large rock" 9 7
 	minables iron 20 4
 	minables lead 28 5
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	object
+		distance 40
+		offset 180
+		period 19
+		sprite star/k5-old
+	object
+		distance 74
+		period 19
+		sprite star/g0
+	object
+		distance 248
+		period 61
+		sprite planet/ice4
 	object
 		distance 1326
 		period 2174
@@ -8750,19 +8763,6 @@ system Egeria
 			distance 270
 			period 16
 			sprite planet/rhea
-	object
-		distance 40
-		offset 180
-		period 19
-		sprite star/k5-old
-	object
-		distance 248
-		period 61
-		sprite planet/ice4
-	object
-		distance 74
-		period 19
-		sprite star/g0
 
 system "Ehma Ti"
 	pos 39.1085 -749.244
@@ -19456,20 +19456,15 @@ system Postverta
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
-	asteroids "large metal" 9 3
-	asteroids "large rock" 4 3
 	asteroids "medium metal" 52 1
+	asteroids "large metal" 9 3
 	asteroids "medium rock" 4 2
+	asteroids "large rock" 4 3
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
-	object "Ssil Vida"
-		distance 1408
-		period 554
-		sprite planet/sheragi_postverta
 	object
-		distance 1208
-		period 654
-		sprite planet/rock10
+		period 19
+		sprite star/m4
 	object
 		distance 439
 		period 143
@@ -19483,8 +19478,13 @@ system Postverta
 			period 21
 			sprite planet/dust4
 	object
-		period 19
-		sprite star/m4
+		distance 1208
+		period 654
+		sprite planet/rock10
+	object "Ssil Vida"
+		distance 1408
+		period 554
+		sprite planet/sheragi_postverta
 	
 system Prakacha'a
 	pos -35.1114 -802.607
@@ -19628,14 +19628,18 @@ system Prosa
 	attributes "ember waste" "inaccessible"
 	haze _menu/haze-red
 	link Vaticanus
-	asteroids "large metal" 2 2
-	asteroids "large rock" 16 1
 	asteroids "medium metal" 11 2
-	asteroids "medium rock" 16 1
+	asteroids "large metal" 2 2
 	asteroids "small rock" 4 1
+	asteroids "medium rock" 16 1
+	asteroids "large rock" 16 1
 	minables copper 5 2
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	object
+		offset 180
+		period 7
+		sprite star/giant
 	object
 		distance 311
 		period 34
@@ -19648,10 +19652,6 @@ system Prosa
 		distance 941
 		period 179
 		sprite planet/rock6
-	object
-		offset 180
-		period 7
-		sprite star/giant
 	object
 		distance 1311
 		period 695
@@ -23250,15 +23250,18 @@ system Statina
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
+	asteroids "small metal" 39 3
+	asteroids "medium metal" 72 3
 	asteroids "large metal" 3 5
 	asteroids "large rock" 1 4
-	asteroids "medium metal" 72 3
-	asteroids "small metal" 39 3
 	minables iron 5 6
 	minables silicon 11 5
 	minables titanium 10 4
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	object
+		period 10
+		sprite star/m4
 	object
 		distance 111
 		period 30
@@ -23271,9 +23274,6 @@ system Statina
 		distance 636
 		period 420
 		sprite planet/gas8
-	object
-		period 10
-		sprite star/m4
 	object
 		distance 1364
 		period 84
@@ -24697,16 +24697,27 @@ system Vaticanus
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
-	asteroids "large metal" 11 7
-	asteroids "large rock" 5 8
-	asteroids "medium metal" 47 11
-	asteroids "medium rock" 11 9
 	asteroids "small metal" 14 8
+	asteroids "medium metal" 47 11
+	asteroids "large metal" 11 7
 	asteroids "small rock" 3 6
+	asteroids "medium rock" 11 9
+	asteroids "large rock" 5 8
 	minables lead 16 13
 	minables tungsten 10 13
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	object
+		period 19
+		sprite star/m0
+	object
+		distance 261
+		period 73
+		sprite planet/ice6
+	object
+		distance 768
+		period 368
+		sprite planet/tethys
 	object
 		distance 1670
 		period 1181
@@ -24723,17 +24734,6 @@ system Vaticanus
 			distance 235
 			period 14
 			sprite planet/luna
-	object
-		distance 261
-		period 73
-		sprite planet/ice6
-	object
-		distance 768
-		period 368
-		sprite planet/tethys
-	object
-		period 19
-		sprite star/m0
 	object wormhole_link
 		distance 2754
 		period 389
