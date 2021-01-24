@@ -8007,6 +8007,7 @@ system Denebola
 		period 2740.45
 
 system Diespiter
+	pos 332 210
 	asteroids "large metal" 76 3
 	asteroids "large rock" 3 1
 	asteroids "medium metal" 26 4
@@ -8041,7 +8042,6 @@ system Diespiter
 	object
 		period 10
 		sprite star/k5-old
-	pos 332 210
 
 system Diphda
 	pos -262 61
@@ -8727,6 +8727,7 @@ system Edusa
 		period 1675.01
 
 system Egeria
+	pos 288 146
 	asteroids "large metal" 5 4
 	asteroids "large rock" 9 7
 	asteroids "medium metal" 86 3
@@ -8762,7 +8763,6 @@ system Egeria
 		distance 74
 		period 19
 		sprite star/g0
-	pos 288 146
 
 system "Ehma Ti"
 	pos 39.1085 -749.244
@@ -19623,6 +19623,7 @@ system Procyon
 		period 3311.38
 
 system Prosa
+	pos 303 194
 	asteroids "large metal" 2 2
 	asteroids "large rock" 16 1
 	asteroids "medium metal" 11 2
@@ -19663,7 +19664,6 @@ system Prosa
 			distance 351
 			period 28
 			sprite planet/dust5
-	pos 303 194
 
 system "Pug Iyik"
 	pos -361.149 -883.233
@@ -23244,6 +23244,7 @@ system Spica
 			period 26.1539
 
 system Statina
+	pos 385 198
 	asteroids "large metal" 3 5
 	asteroids "large rock" 1 4
 	asteroids "medium metal" 72 3
@@ -23285,7 +23286,6 @@ system Statina
 		distance 2754
 		period 389
 		sprite planet/wormhole-red
-	pos 385 198
 
 system "Steep Roof"
 	pos -1113.59 570.051
@@ -24691,6 +24691,7 @@ system "Uwa Fahn"
 		period 5060.21
 
 system Vaticanus
+	pos 324 112
 	asteroids "large metal" 11 7
 	asteroids "large rock" 5 8
 	asteroids "medium metal" 47 11
@@ -24737,7 +24738,6 @@ system Vaticanus
 		distance 2754
 		period 389
 		sprite planet/wormhole-red
-	pos 324 112
 
 system Vega
 	pos -402 182
