@@ -200,7 +200,7 @@ fleet "Large Hai"
 # Hai that hunt pirates near the wormhole. They have custom builds suitable for smashing pirates but useless against other Hai. Two versions: travel through wormhole or not.
 
 fleet "Anti-Pirate Hai (Wormhole Travel)"
-	government " Hai "
+	government "Hai (Wormhole Access)"
 	names "hai"
 	cargo 0
 	personality

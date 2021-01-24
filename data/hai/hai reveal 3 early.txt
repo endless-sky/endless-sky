@@ -163,7 +163,7 @@ mission "Hai Building Mountaintop [1a] Construction Escorts"
 		dialog `You have arrived without the seven Geocoris you are escorting from <origin> to <destination>. You must take off and wait for them to finish this mission.`
 	npc accompany save
 		personality escort timid
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		ship Geocoris "Du Cor Hey"
 		ship Geocoris "Mon Yo Sen"
 		ship Geocoris "Vai e Lur"

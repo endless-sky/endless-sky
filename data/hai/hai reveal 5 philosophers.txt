@@ -325,7 +325,7 @@ mission "Hai Rescue [B02] Diplomacy: Syndicate"
 	on complete
 		payment 400000
 	npc save accompany
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality timid escort
 		ship "Centipede (Teeneep)" "Teeneep's Ship"
 
@@ -363,7 +363,7 @@ mission "Hai Rescue [B02B] Diplomacy: Syndicate (Retry)"
 		# Lower payment because she's annoyed at the delay.
 		payment 350000
 	npc save accompany
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality timid escort
 		ship "Centipede (Teeneep)" "Teeneep's Ship"
 
@@ -400,7 +400,7 @@ mission "Hai Rescue [B03] Diplomacy: Syndicate Internal Affairs"
 	on visit
 		dialog `You left Teeneep's ship behind. Depart and wait for it to arrive before landing again.`
 	npc save accompany
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality timid escort
 		ship "Centipede (Teeneep)" "Teeneep's Ship"
 
@@ -481,7 +481,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 			`	Teeneep thanks you with <payment>. "I cannot understate how much you've helped us. On behalf of the Hai, thank you."`
 				decline
 	npc save accompany
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality timid escort
 		ship "Centipede (Teeneep)" "Teeneep's Ship"
 
@@ -628,7 +628,7 @@ mission "Hai Rescue [B08] Re-Plan"
 			`	Teeneep sighs, "Captain <last>, I need you to escort me to <destination>." Stephen looks worried at that suggestion. "The Unfettered Hai have plenty of Jump Drives and troops. They could liberate our people. I know their ways, and I can convince them to help, if my ship survives the journey. I'll pay you double this time: <payment>."`
 				accept
 	npc save accompany
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality timid escort
 		ship "Centipede (Teeneep)" "Teeneep's Ship"
 	on complete

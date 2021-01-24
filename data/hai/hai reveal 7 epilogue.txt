@@ -171,10 +171,10 @@ mission "HRF 02 Escort to Cardax"
 		dialog "You have arrived but either the Geocoris has not arrived, or the pirates are still threatening the construction site."
 	npc accompany save
 		personality escort timid
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		ship Geocoris "Du Pli Hey"
 	npc
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality escort heroic
 		fleet "Anti-Pirate Hai (Wormhole Travel)" 2
 	npc kill
@@ -211,7 +211,7 @@ mission "HRF 03 Defend Mooncreek Construction Site"
 			`	Now you just need to keep the pirates away from the nascent station core until they can get here. The message from Mountaintop also warned that there may be a hasty response from the pirates.`
 				accept
 	npc
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		personality escort heroic
 		fleet "Anti-Pirate Hai (Wormhole Travel)" 2
 	npc accompany
@@ -228,7 +228,7 @@ mission "HRF 03 Defend Mooncreek Construction Site"
 				"Cruiser (Mark II)" 3
 				"Combat Drone" 12
 	npc accompany save
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		system "Ultima Thule"
 		personality escort timid
 		ship Geocoris "Du Cor Hey"
@@ -528,7 +528,7 @@ mission "HRF 09 Escort Hai Outfitters"
 				accept
 	npc accompany save
 		personality escort timid
-		government " Hai "
+		government "Hai (Wormhole Access)"
 		ship Geocoris "Du Cor Hey"
 		ship Geocoris "Mon Yo Sen"
 		
