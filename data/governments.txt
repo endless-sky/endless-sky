@@ -86,7 +86,7 @@ government "Bounty Hunter that Attacks Hai"
 	"attitude toward"
 		"Hai (Friendly Unfettered)" -.3
 		"Hai" -.3
-		" Hai " -.3
+		"Hai (Wormhole Access)" -.3
 		"Hai (Unfettered)" -.3
 
 	"player reputation" -1000
@@ -186,7 +186,7 @@ government "Forest (Predator)"
 		"Forest (Prey)" -.01
 		"Author" -.01
 		"Hai" -.01
-		" Hai " -.01
+		"Hai (Wormhole Access)" -.01
 		"Korath" -.01
 		"Merchant" -.01
 		"Syndicate" -.01
@@ -657,7 +657,7 @@ government "Pirate (Devil-Run Gang)"
 	"attitude toward"
 		"Author" -.001
 		"Hai" -.001
-		" Hai " -.001
+		"Hai (Wormhole Access)" -.001
 		"Korath" -.001
 		"Merchant" -.001
 		"Syndicate" -.001
