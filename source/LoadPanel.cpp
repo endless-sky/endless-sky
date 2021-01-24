@@ -327,6 +327,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 			{
 				selectedPilot = it.first;
 				selectedFile = it.second.front().first;
+				centerScroll = 0;
 			}
 	}
 	else if(x >= -110 && x < 110)

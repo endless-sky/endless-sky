@@ -35,7 +35,18 @@ void StartConditions::Load(const DataNode &node)
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
-			ships.emplace_back(child);
+		{
+			// TODO: support named stock ships.
+			// Assume that child nodes introduce a full ship definition. Even without child nodes,
+			// Ship::Load + Ship::FinishLoading will create the expected ship instance if there is
+			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
+			// without making the variant available to the rest of GameData).
+			if(child.HasChildren() || child.Size() >= 3)
+				ships.emplace_back(child);
+			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
+			else
+				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
+		}
 		else
 			conditions.Add(child);
 	}
