@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Ship.h"
 #include "text/WrappedText.h"
 
 #include <functional>
@@ -46,6 +47,7 @@ protected:
 	
 private:
 	void TakeOffIfReady();
+	void ParkInvalidAndTakeOff();
 	void TakeOff();
 	
 	
@@ -65,6 +67,8 @@ private:
 	Panel *selectedPanel = nullptr;
 	
 	WrappedText text;
+	
+	std::vector<std::shared_ptr<Ship>> invalidShips;
 };
 
 

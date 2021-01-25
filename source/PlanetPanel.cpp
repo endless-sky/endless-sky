@@ -243,20 +243,32 @@ void PlanetPanel::TakeOffIfReady()
 	}
 	
 	// Check if any of the player's ships are configured in such a way that they
-	// will be impossible to fly.
-	const auto flightChecks = player.FlightCheck();
+	// will be impossible to fly. If so, let the player choose whether to park them.
+	ostringstream out;
+	const auto &flightChecks = player.FlightCheck();
 	if(!flightChecks.empty())
+	{
 		for(const auto &result : flightChecks)
 		{
 			// If there is a flightcheck error, it will be the first (and only) entry.
 			auto &check = result.second.front();
 			if(check.back() == '!')
 			{
-				GetUI()->Push(new ConversationPanel(player,
-					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
-				return;
+				out << result.first->Name() << ", ";
+				invalidShips.push_back(result.first);
 			}
 		}
+		if(!invalidShips.empty())
+		{
+			string shipNames = out.str();
+			shipNames.pop_back();
+			shipNames.pop_back();
+			GetUI()->Push(new Dialog(this, &PlanetPanel::ParkInvalidAndTakeOff,
+				"If you take off now, some of your ships will not be able to fly:\n" + shipNames +
+				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
+		}
+		return;
+	}
 	
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
@@ -336,6 +348,16 @@ void PlanetPanel::TakeOffIfReady()
 	
 	// There was no need to ask the player whether we can get rid of anything,
 	// so go ahead and take off.
+	TakeOff();
+}
+
+
+
+void PlanetPanel::ParkInvalidAndTakeOff()
+{
+	for(const auto &ship : invalidShips)
+		ship->SetIsParked(true);
+	invalidShips.clear();
 	TakeOff();
 }
 

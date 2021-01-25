@@ -562,6 +562,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color elsewhere = *GameData::Colors().Get("dim");
 	Color dead(.4f, 0.f, 0.f, 0.f);
 	Color disabled(.5f, .3f, .1f, 0.f);
+	Color cannotFly(.6f, .2f, .1f, 0.f);
+	Color flightIssues(.2f, .4f, .4f, 0.f);
 	
 	// Table attributes.
 	Table table;
@@ -587,6 +589,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	table.Draw("crew");
 	table.DrawGap(5);
 	
+	// Get ships that are unable to depart.
+	const auto &flightChecks = player.FlightCheck();
+	
 	// Loop through all the player's ships.
 	int index = scroll;
 	for(auto sit = player.Ships().begin() + scroll; sit < player.Ships().end(); ++sit)
@@ -595,6 +600,21 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		if(!bounds.Contains(table.GetRowBounds()))
 			break;
 		
+		// Check if this ship will be able to fly.
+		if(!flightChecks.empty())
+		{
+			const auto &shipPtr = *sit;
+			for(const auto &result : flightChecks)
+				if(result.first == shipPtr)
+				{
+					auto &check = result.second.front();
+					if(check.back() == '!')
+						table.DrawHighlight(cannotFly);
+					else if(check.back() == '?')
+						table.DrawHighlight(flightIssues);
+					break;
+				}
+		}
 		// Check if this row is selected.
 		if(allSelected.count(index))
 			table.DrawHighlight(back);

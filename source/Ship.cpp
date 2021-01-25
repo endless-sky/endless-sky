@@ -1029,7 +1029,7 @@ int64_t Ship::ChassisCost() const
 
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
-vector<string> Ship::FlightCheck(bool isFlagship, bool isInPlayerSystem) const
+vector<string> Ship::FlightCheck() const
 {
 	auto checks = vector<string>{};
 	
@@ -1050,22 +1050,18 @@ vector<string> Ship::FlightCheck(bool isFlagship, bool isInPlayerSystem) const
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
 	
+	// TODO: Maybe use enum to report error details?
 	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
-		checks.emplace_back(isFlagship ? "overheating flagship!"
-			: isInPlayerSystem ? "overheating escort!" : "overheating remote escort!");
+		checks.emplace_back("overheating!");
 	else if(energy <= 0.)
-		checks.emplace_back(isFlagship ? "no energy flagship!"
-			: isInPlayerSystem ? "no energy escort!" : "no energy remote escort!");
+		checks.emplace_back("no energy!");
 	else if((energy - burning <= 0.) && (fuel <= 0.))
-		checks.emplace_back(isFlagship ? "no fuel flagship!"
-			: isInPlayerSystem ? "no fuel escort!" : "no fuel remote escort!");
+		checks.emplace_back("no fuel!");
 	else if(!thrust && !reverseThrust && !afterburner)
-		checks.emplace_back(isFlagship ? "no thruster flagship!"
-			: isInPlayerSystem ? "no thruster escort!" : "no thruster remote escort!");
+		checks.emplace_back("no thruster!");
 	else if(!turn)
-		checks.emplace_back(isFlagship ? "no steering flagship!"
-			: isInPlayerSystem ? "no steering escort!" : "no steering remote escort!");
+		checks.emplace_back("no steering!");
 	
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
