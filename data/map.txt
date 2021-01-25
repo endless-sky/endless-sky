@@ -8024,24 +8024,24 @@ system Diespiter
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		period 10
 		sprite star/k5-old
+		period 10
 	object
+		sprite planet/ice6
 		distance 745
 		period 394
-		sprite planet/ice6
 	object
+		sprite planet/lava0
 		distance 922
 		period 543
-		sprite planet/lava0
 	object
+		sprite planet/gas11
 		distance 1600
 		period 398
-		sprite planet/gas11
 		object
+			sprite planet/rock3
 			distance 270
 			period 14
-			sprite planet/rock3
 
 system Diphda
 	pos -262 61
@@ -8743,26 +8743,26 @@ system Egeria
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/k5-old
 		distance 40
 		offset 180
 		period 19
-		sprite star/k5-old
 	object
+		sprite star/g0
 		distance 74
 		period 19
-		sprite star/g0
 	object
+		sprite planet/ice4
 		distance 248
 		period 61
-		sprite planet/ice4
 	object
+		sprite planet/gas9
 		distance 1326
 		period 2174
-		sprite planet/gas9
 		object
+			sprite planet/rhea
 			distance 270
 			period 16
-			sprite planet/rhea
 
 system "Ehma Ti"
 	pos 39.1085 -749.244
@@ -19463,28 +19463,28 @@ system Postverta
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		period 19
 		sprite star/m4
+		period 19
 	object
+		sprite planet/desert7
 		distance 439
 		period 143
-		sprite planet/desert7
 	object
+		sprite planet/fog0
 		distance 814
 		period 362
-		sprite planet/fog0
 		object
+			sprite planet/dust4
 			distance 202
 			period 21
-			sprite planet/dust4
 	object
+		sprite planet/rock10
 		distance 1208
 		period 654
-		sprite planet/rock10
 	object "Ssil Vida"
+		sprite planet/sheragi_postverta
 		distance 1408
 		period 554
-		sprite planet/sheragi_postverta
 	
 system Prakacha'a
 	pos -35.1114 -802.607
@@ -19637,33 +19637,33 @@ system Prosa
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/giant
 		offset 180
 		period 7
-		sprite star/giant
 	object
+		sprite planet/cloud1
 		distance 311
 		period 34
-		sprite planet/cloud1
 	object
+		sprite planet/desert9
 		distance 749
 		period 127
-		sprite planet/desert9
 	object
+		sprite planet/rock6
 		distance 941
 		period 179
-		sprite planet/rock6
 	object
+		sprite planet/gas17
 		distance 1311
 		period 695
-		sprite planet/gas17
 		object
+			sprite planet/callisto
 			distance 227
 			period 14
-			sprite planet/callisto
 		object
+			sprite planet/dust5
 			distance 351
 			period 28
-			sprite planet/dust5
 
 system "Pug Iyik"
 	pos -361.149 -883.233
@@ -23260,32 +23260,32 @@ system Statina
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		period 10
 		sprite star/m4
+		period 10
 	object
+		sprite planet/desert4
 		distance 111
 		period 30
-		sprite planet/desert4
 	object
+		sprite planet/dust3
 		distance 308
 		period 142
-		sprite planet/dust3
 	object
+		sprite planet/gas8
 		distance 636
 		period 420
-		sprite planet/gas8
 	object
+		sprite planet/ice5
 		distance 1364
 		period 84
-		sprite planet/ice5
 		object
+			sprite planet/dust4
 			distance 158
 			period 17
-			sprite planet/dust4
 	object wormhole_link
+		sprite planet/wormhole-red
 		distance 2754
 		period 389
-		sprite planet/wormhole-red
 
 system "Steep Roof"
 	pos -1113.59 570.051
@@ -24708,36 +24708,36 @@ system Vaticanus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		period 19
 		sprite star/m0
+		period 19
 	object
+		sprite planet/ice6
 		distance 261
 		period 73
-		sprite planet/ice6
 	object
+		sprite planet/tethys
 		distance 768
 		period 368
-		sprite planet/tethys
 	object
 		distance 1670
 		period 1181
 		sprite planet/gas16
 		object
+			sprite planet/lava1
 			distance 204
 			period 14
-			sprite planet/lava1
 	object
+		sprite planet/uranus
 		distance 2105
 		period 3438
-		sprite planet/uranus
 		object
+			sprite planet/luna
 			distance 235
 			period 14
-			sprite planet/luna
 	object wormhole_link
+		sprite planet/wormhole-red
 		distance 2754
 		period 389
-		sprite planet/wormhole-red
 
 system Vega
 	pos -402 182
