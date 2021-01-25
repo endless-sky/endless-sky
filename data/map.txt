@@ -8010,6 +8010,7 @@ system Diespiter
 	pos 332 210
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 534.375
 	haze _menu/haze-red
 	link Statina
 	asteroids "small rock" 65 3
@@ -8730,6 +8731,7 @@ system Egeria
 	pos 288 146
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 1505.92
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
@@ -19455,6 +19457,7 @@ system Postverta
 	pos 15000 15000
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 135
 	haze _menu/haze-red
 	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
@@ -19626,6 +19629,7 @@ system Prosa
 	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 2372.76
 	haze _menu/haze-red
 	link Vaticanus
 	asteroids "medium metal" 11 2
@@ -23247,6 +23251,7 @@ system Statina
 	pos 385 198
 	government Uninhabited
 	attributes "ember waste" "wormhole" "inaccessible"
+	habitable 135
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
@@ -24694,6 +24699,7 @@ system Vaticanus
 	pos 324 112
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 320
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
