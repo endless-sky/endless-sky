@@ -3205,7 +3205,7 @@ mission "Raid Warning"
 				decline
 			
 			label rebuff
-			`	"Sure doesn't look like it." The man gives an exaggerated shrug and starts to walk off. "Alright then, get yourself killed. Not like I use to haul cargo from one end of the galaxy to the other for fifty years or anything." The man gets further and further away, continuing to grumble about "kids these days" and other such things until you can no longer hear him.`
+			`	"Sure doesn't look like it." The man gives an exaggerated shrug and starts to walk off. "Alright then, get yourself killed. Not like I used to haul cargo from one end of the galaxy to the other for fifty years or anything." The man gets further and further away, continuing to grumble about "kids these days" and other such things until you can no longer hear him.`
 				decline
 
 
