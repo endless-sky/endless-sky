@@ -1401,6 +1401,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);
 			command |= Command::BOARD;
 		}
+		else if(hasBoarded && ship.GetPersonality().Disables())
+		{
+			// Ships with "disables" personality don't destroy their targets after boarding.
+		}
 		else
 			Attack(ship, command, *target);
 		return;
