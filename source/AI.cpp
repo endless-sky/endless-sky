@@ -1401,10 +1401,6 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);
 			command |= Command::BOARD;
 		}
-		else if(hasBoarded && ship.GetPersonality().Disables())
-		{
-			// Ships with "disables" personality don't destroy their targets after boarding.
-		}
 		else
 			Attack(ship, command, *target);
 		return;
@@ -2953,7 +2949,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, currentTarget, ShipEvent::BOARD);
-			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
+			if(currentTarget->IsDisabled() && spareDisabled && (!hasBoarded || person.Disables()) && !disabledOverride)
 				continue;
 			// Don't fire secondary weapons at targets that have started jumping.
 			if(weapon->Icon() && currentTarget->IsEnteringHyperspace())
@@ -2988,7 +2984,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, target, ShipEvent::BOARD);
-			if(target->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
+			if(target->IsDisabled() && spareDisabled && (!hasBoarded || person.Disables()) && !disabledOverride)
 				continue;
 			
 			Point p = target->Position() - start;
