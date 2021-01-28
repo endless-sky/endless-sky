@@ -268,8 +268,8 @@ void PlanetPanel::TakeOffIfReady()
 			GetUI()->Push(new Dialog(this, &PlanetPanel::ParkInvalidAndTakeOff,
 				"If you take off now, some of your ships will not be able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
+			return;
 		}
-		return;
 	}
 	
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.

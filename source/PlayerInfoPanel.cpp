@@ -562,8 +562,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color elsewhere = *GameData::Colors().Get("dim");
 	Color dead(.4f, 0.f, 0.f, 0.f);
 	Color disabled(.5f, .3f, .1f, 0.f);
-	Color cannotFly(.6f, .2f, .1f, 0.f);
-	Color flightIssues(.2f, .4f, .4f, 0.f);
+	Color cannotFly(.5f, .1f, .1f, 0.f);
+	Color flightIssues(.5f, .4f, 0.f, 0.f);
 	
 	// Table attributes.
 	Table table;
