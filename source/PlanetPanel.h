@@ -68,7 +68,8 @@ private:
 	
 	WrappedText text;
 	
-	std::vector<std::shared_ptr<Ship>> invalidShips;
+	// Ships that cannot fly for some reason.
+	std::vector<std::shared_ptr<Ship>> cannotFly;
 };
 
 

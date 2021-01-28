@@ -227,6 +227,8 @@ void PlanetPanel::TakeOffIfReady()
 	// to take off until the button is clicked again.
 	requestedLaunch = false;
 	
+	cannotFly.clear();
+	
 	// Check for any landing missions that have not been offered.
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
@@ -255,10 +257,10 @@ void PlanetPanel::TakeOffIfReady()
 			if(check.back() == '!')
 			{
 				out << result.first->Name() << ", ";
-				invalidShips.push_back(result.first);
+				cannotFly.push_back(result.first);
 			}
 		}
-		if(!invalidShips.empty())
+		if(!cannotFly.empty())
 		{
 			string shipNames = out.str();
 			shipNames.pop_back();
@@ -355,9 +357,9 @@ void PlanetPanel::TakeOffIfReady()
 
 void PlanetPanel::ParkInvalidAndTakeOff()
 {
-	for(const auto &ship : invalidShips)
+	for(const auto &ship : cannotFly)
 		ship->SetIsParked(true);
-	invalidShips.clear();
+	cannotFly.clear();
 	TakeOff();
 }
 
