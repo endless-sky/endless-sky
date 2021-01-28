@@ -80,8 +80,8 @@ ship "Void Sprite"
 		"gaslining" 1
 	outfits
 		Mouthparts? 2
-	gun -4 -111
-	gun 6 -111
+	gun 0 -156
+	gun 0 -156
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
