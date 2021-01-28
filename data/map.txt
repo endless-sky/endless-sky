@@ -26431,6 +26431,14 @@ planet "Blue Interior"
 	shipyard Kimek
 	outfitter "Coalition Advanced"
 
+planet Bluerun
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Bluestone
 	attributes core oil research frontier
 	landscape land/mountain2
@@ -26700,6 +26708,14 @@ planet "Cool Forest"
 	description `Much of Cool Forest's land mass is covered by the sort of temperate woodlands that the Saryds prefer to build their residential neighborhoods in. The total population is over a billion, but living in small settlements so well integrated with the surrounding forest that from space only a few major cities are visible.`
 	spaceport `The spaceport here is a major city, with a continuous stream of cargo transports bringing goods manufactured on Cool Forest's sister planet, Diligent Hand. Here, some final assembly, testing, and repackaging is performed before those goods are shipped out to the rest of Saryd space and beyond.`
 
+planet Coppermist
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Cornucopia
 	attributes south farming research frontier
 	landscape land/fields0
@@ -26790,6 +26806,14 @@ planet Darkstone
 	tribute 200
 		threshold 1500
 		fleet "Small Militia" 18
+
+planet Darkrest
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Darkwaste
 	landscape land/canyon10-harro
@@ -26965,6 +26989,14 @@ planet Echo
 	bribe 0
 	security 0.9
 
+planet Eldergrasp
+	attributes station hai retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is a generously appointed reception area with an orderly on duty who informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
+	description `The spaceport is virtually nonexistent, with just a single cafeteria, a fuel pump for the desperate, and a dedicated loading area for loading and unloading this retirement home's regular deliveries. Despite it's small size though, everything is in excellent condition.`
+	bribe 0.1
+	security 0.8
+
 planet "Elek Kartanu"
 	attributes korath
 	landscape land/lava2
@@ -27031,6 +27063,14 @@ planet "Esquiline"
 	description `Esquiline's wispy skies billow with raging winds and continuous storms. The Remnant have discovered that its upper atmosphere contains a useful source of certain chemicals. Although few spacecraft can penetrate its depths, specially-designed aero scoop drones can be seen regularly dipping into the atmosphere for shipments to Aventine.`
 	security 0
 	government Uninhabited
+
+planet Everhope
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet "Factory of Eblumab"
 	attributes arach factory mining
@@ -27142,6 +27182,14 @@ planet "Fenrir Station"
 	tribute 600
 		threshold 3000
 		fleet "Small Deep Security" 14
+
+planet Firefall
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Firelode
 	attributes unfettered
@@ -27369,6 +27417,14 @@ planet Glory
 		threshold 7500
 		fleet "Large Republic" 16
 
+planet Goldcrawl
+	attributes station hai retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is reception area just beyond the docking bay with an extremely long desk and a receptionist who informs you that, unless you have family at this respite facility, you will not be permitted to wander the station. At various stations along the desk there are different service functions and a small sales counter with handicrafts made by the residents.`
+	description `The spaceport is nonexistent, a trio of vending machines occupy the entranceway from the dedicated loading area for this retirement home's regular deliveries. The entire place has a somewhat tacky vibe to it, and the ventilation doesn't quite cover up the antiseptic hospital smell of terrestrial aged care facilities. Nevertheless everything appears serviceable.`
+	bribe 0.1
+	security 0.8
+
 planet Grakhord
 	attributes quarg moon
 	landscape land/badlands6
@@ -27383,6 +27439,14 @@ planet "Graveyard Wormhole (Unstable)"
 
 planet "Graveyard Wormhole (Stable)"
 	description ``
+
+planet Graymoon
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -27413,6 +27477,14 @@ planet Greenrock
 	tribute 1800
 		threshold 3500
 		fleet "Large Northern Pirates" 13
+
+planet Greenview
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Greenwater
 	attributes hai farming fishing "human tourism"
@@ -27659,6 +27731,22 @@ planet Icelake
 	outfitter "Hai Advanced"
 	security 0.3
 
+planet Icemeet
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
+planet Indigosprint
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Ingot
 	attributes "dirt belt" volcanic mining moon
 	landscape land/mountain8
@@ -27684,6 +27772,22 @@ planet "Into White"
 	spaceport `The spaceport city was once the largest on the planet, but now more than half of it is uninhabited, buried in snowdrifts. Within the next century, the Kimek will probably need to build a new spaceport closer to the equator, unless they choose to abandon this world altogether.`
 	spaceport `	The Kimek who live here are dressed in puffy winter coats that entirely cover their bodies and heads; only their spindly legs protrude out.`
 	"required reputation" 15
+
+planet Iritoroost
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
+planet Ironfirth
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Janiculum
 	attributes "requires: inaccessible" uninhabited
@@ -27844,6 +27948,22 @@ planet Lichen
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet Lightstead
+	attributes station hai retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. The reception area is lavish with several artworks and exotic plants. A well-groomed Hai receptionist informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
+	description `The spaceport is small but serviceable, and has what looks like a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with things like gold watches, jewellery, wines and other pricey trinkets. This place provides aged care respite only for the very wealthy.`
+	bribe 0.3
+	security 1
+
+planet Limejog
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Lodestone
 	attributes core volcanic mining
 	landscape land/lava5
@@ -27919,6 +28039,14 @@ planet Mainsail
 	tribute 1600
 		threshold 3500
 		fleet "Small Republic" 57
+
+planet Mahoganybox
+	attributes station hai retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. Leaving the docking bay brings one into a expansive room that can only be described as stately. A round reception desk greets you just inside, and is situated such that the occupants can face any direction that suits them and observe the room. A smiling Hai in a suit informs unless you have family at this respite facility, you will not be permitted to wander beyond this room. However, you are welcome to visit with anyone who has come down, or to ask an orderly if you need to contact someone on business.`
+	description `The spaceport here is scarcely worthy of the name, and does not facilitate materials trade, but is well equipped to handle regular traffic bringing people to and from the station. This place appears to service the fit but retiring demographic whose minds are as sharp as ever, but who benefit from fewer demanding pressures on their physical bodies.`
+	bribe 0.1
+	security 1
 
 planet Maker
 	attributes core factory mining
@@ -28432,6 +28560,15 @@ planet Oblivion
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet Ochrescoop
+	attributes station hai
+	landscape land/space6
+	description `A massive plaque attached to a bulkhead in the promenade entry proudly denotes this station to be run by "Yoot Ki Magnetic Fuel Harvesting". It seems that the powerful magnetic field of the gas giant below makes this station an ideal location for harvesting, and re-harvesting, the massive fuel volumes that are demanded by the Hai space industry. Despite the plaque also proudly denoting nearly 75,000 years of operation, the station seems to be in an excellent state of repair.`
+	spaceport `The spaceport, which consists of a wide promenade running around the interior of the station, seems to be divided into two distinct areas. The lower level, which contains all manner of amenities, services and food places, and the upper level, which hosts the official Yoot Ki sales centre in addition to a suite of different facilities for various research institutes. As it turns out, the powerful magnetic field of the world below also has certain advantages for scientific experiments.`
+    spaceport `Floating next to the stairs a holographic sign proudly states that it's been over 7000 years since the last fatal safety accident.`
+	bribe 0.1
+	security 0.5
+
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/forest4
@@ -28620,6 +28757,14 @@ planet Rand
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet Redwatch
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Refuge of Belugt"
 	attributes arach tourism urban
 	landscape land/beach9-sfiera
@@ -28773,6 +28918,14 @@ planet "Sandy Two"
 	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
 	outfitter "Coalition Advanced"
+
+planet Sandsnap
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet "Sapira Mereti"
 	attributes korath
@@ -29020,6 +29173,14 @@ planet Silver
 		threshold 4000
 		fleet "Small Republic" 25
 
+planet Silverleap
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Sinter
 	attributes "dirt belt" mining
 	landscape land/nasa2
@@ -29256,6 +29417,14 @@ planet Sunracer
 		threshold 5000
 		fleet "Large Syndicate" 10
 
+planet Swiftsong
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Tebuteb's Table"
 	attributes arach farming
 	landscape land/fields11-sfiera
@@ -29275,6 +29444,14 @@ planet "Third Umber"
 	description `	Closer to the poles, the air is too cold to be comfortable for the Kimek, but a small community of Saryd engineers has established a factory compound where they produce their own equipment to sell to the Kimek.`
 	spaceport `This is a sparsely populated world by Kimek standards, with a population of slightly less than a billion, but by the standards of most other species the spaceport is still a crowded and chaotic metropolis, with constant streams of traffic both on the roads and on the pedestrian walkways and footbridges. It is somewhat disconcerting to be surrounded by a sea of giant beetles scurrying back and forth between the landing pads and the port buildings.`
 	"required reputation" 15
+
+planet Thornlight
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Thrall
 	attributes paradise textiles
@@ -29663,6 +29840,14 @@ planet Vinci
 	tribute 2800
 		threshold 5000
 		fleet "Large Republic" 11
+
+planet Violetwake
+	attributes station hai uninhabited
+	landscape land/space6
+	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Warfeed
 	attributes unfettered
