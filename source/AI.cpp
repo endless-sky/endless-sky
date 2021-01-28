@@ -2876,7 +2876,8 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
-	bool spareDisabled = (person.Disables() || (person.Plunders() && ship.Cargo().Free()));
+	bool plunders = (person.Plunders() && ship.Cargo().Free());
+	bool disables = person.Disables();
 	
 	// Don't use weapons with firing force if you are preparing to jump.
 	bool isWaitingToJump = ship.Commands().Has(Command::JUMP | Command::WAIT);
@@ -2949,7 +2950,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, currentTarget, ShipEvent::BOARD);
-			if(currentTarget->IsDisabled() && spareDisabled && (!hasBoarded || person.Disables()) && !disabledOverride)
+			if(currentTarget->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			// Don't fire secondary weapons at targets that have started jumping.
 			if(weapon->Icon() && currentTarget->IsEnteringHyperspace())
@@ -2984,7 +2985,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, target, ShipEvent::BOARD);
-			if(target->IsDisabled() && spareDisabled && (!hasBoarded || person.Disables()) && !disabledOverride)
+			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			
 			Point p = target->Position() - start;
