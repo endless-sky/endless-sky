@@ -28658,7 +28658,7 @@ planet Ochrescoop
 	landscape land/space6
 	description `A massive plaque attached to a bulkhead in the promenade entry proudly denotes this station to be run by "Yoot Ki Magnetic Fuel Harvesting". It seems that the powerful magnetic field of the gas giant below makes this station an ideal location for harvesting, and re-harvesting, the massive fuel volumes that are demanded by the Hai space industry. Despite the plaque also proudly denoting nearly 75,000 years of operation, the station seems to be in an excellent state of repair.`
 	spaceport `The spaceport, which consists of a wide promenade running around the interior of the station, seems to be divided into two distinct areas. The lower level, which contains all manner of amenities, services and food places, and the upper level, which hosts the official Yoot Ki sales center in addition to a suite of different facilities for various research institutes. As it turns out, the powerful magnetic field of the world below also has certain advantages for scientific experiments.`
-    spaceport `Floating next to the stairs a holographic sign proudly states that it's been over 7000 years since the last fatal safety accident.`
+	spaceport `Floating next to the stairs a holographic sign proudly states that it's been over 7000 years since the last fatal safety accident.`
 	bribe 0.1
 	security 0.5
 
