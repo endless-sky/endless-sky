@@ -35,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -72,7 +73,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
-		if(!flagship->JumpsRemaining() || flagship->IsDisabled())
+		if(flagship->NeedsFuel(false) || flagship->IsDisabled())
 			message = "Sorry, we can't help you, because our ship is disabled.";
 	}
 	else
@@ -80,7 +81,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
 		// Check if the player is out of fuel.
-		if(!flagship->JumpsRemaining())
+		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
 			canGiveFuel = ship->CanRefuel(*flagship);
