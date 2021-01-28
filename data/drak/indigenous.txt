@@ -58,6 +58,7 @@ ship "Void Sprite"
 	sprite "ship/void sprite adult"
 		"frame rate" 6.2
 		rewind
+	thumbnail "thumbnail/void sprite adult"
 	"never disabled"
 	attributes
 		category "Medium Warship"
@@ -109,6 +110,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 	sprite "ship/void sprite infant"
 		"frame rate" 7.4
 		rewind
+	thumbnail "thumbnail/void sprite infant"
 	"never disabled"
 	attributes
 		category "Light Warship"
