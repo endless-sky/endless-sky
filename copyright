@@ -825,6 +825,8 @@ Files:
  images/ship/selii'mar*
  images/ship/vareti'het*
  images/ship/ember?waste?node/ember?waste?node*
+ images/ship/void?sprite?adult*
+ images/ship/void?sprite?infant*
  images/thumbnail/maeri'het*
  images/thumbnail/telis'het*
  images/thumbnail/faes'mar*
@@ -832,6 +834,8 @@ Files:
  images/thumbnail/subsidurial*
  images/thumbnail/ember?waste?node*
  images/thumbnail/vareti'het*
+ images/thumbnail/void?sprite?adult*
+ images/thumbnail/void?sprite?infant*
  images/effect/ravager?impact*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
