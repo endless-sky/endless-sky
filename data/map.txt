@@ -5802,6 +5802,10 @@ system "Bore Fah"
 		sprite planet/ice2
 		distance 678.69
 		period 282.896
+		object Silverleap
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas13-b
 		distance 1704.93
@@ -5872,6 +5876,10 @@ system "Bote Asu"
 		sprite planet/gas11
 		distance 1111.15
 		period 277.063
+		object Everhope
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/neptune
 		distance 2561.56
@@ -7278,10 +7286,18 @@ system "Da Ent"
 		sprite planet/desert10-b
 		distance 622.02
 		period 406.282
+		object Violetwake
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/lava4
 		distance 1094.46
 		period 948.246
+		object Darkrest
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas12
 		distance 1915.5
@@ -7340,6 +7356,10 @@ system "Da Lest"
 		sprite planet/desert2-b
 		distance 676.46
 		period 393.413
+		object Eldergrasp
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas9
 		distance 1903.15
@@ -8454,6 +8474,10 @@ system "Due Yoot"
 		sprite planet/cloud3
 		distance 204.76
 		period 76.7342
+		object Greenview
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/ganymede
 		distance 391.65
@@ -8466,6 +8490,10 @@ system "Due Yoot"
 		sprite planet/mercury-b
 		distance 1042.35
 		period 881.336
+		object Indigosprint
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas15
 		distance 2335.56
@@ -9796,6 +9824,10 @@ system "Fah Soom"
 		sprite planet/lava3
 		distance 884.21
 		period 509.6
+		object Firefall
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas3-b
 		distance 1760.62
@@ -12204,10 +12236,18 @@ system "Heia Due"
 		sprite planet/titan
 		distance 279.538
 		period 53.6331
+		object Coppermist
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/desert3
 		distance 637.538
 		period 184.727
+		object Sandsnap
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object Allhome
 		sprite planet/forest1
 		distance 1294.54
@@ -12921,6 +12961,10 @@ system "Imo Dep"
 		sprite planet/rock19
 		distance 1157.36
 		period 380.304
+		object Bluerun
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object Stonebreak
 		sprite planet/forest4
 		distance 1708.25
@@ -13041,6 +13085,10 @@ system "Io Lowe"
 		sprite planet/gas11-b
 		distance 500.32
 		period 385.27
+		object Graymoon
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/uranus-b
 		distance 1441.33
@@ -13110,6 +13158,10 @@ system "Io Mann"
 			sprite planet/oberon
 			distance 260
 			period 22.0677
+		object Lightstead
+			sprite planet/station-hai-ancient
+			distance 500
+			period 32.5
 	object
 		sprite planet/gas2
 		distance 1068.21
@@ -13118,6 +13170,10 @@ system "Io Mann"
 			sprite planet/ice7
 			distance 182
 			period 14.8772
+		object Thornlight
+			sprite planet/station-hai-ancient
+			distance 422
+			period 28.5
 	object
 		sprite planet/gas6-b
 		distance 2046.3
@@ -15370,6 +15426,10 @@ system "Lom Tahr"
 		distance 170.795
 		period 18.3293
 		offset 149.808
+		object Iritoroost
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/uranus
 		distance 554.485
@@ -16089,6 +16149,10 @@ system "Mei Yohn"
 		sprite planet/cloud8-b
 		distance 228.21
 		period 66.8187
+		object Icemeet
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object Darkmetal
 		sprite planet/rock1
 		distance 578.21
@@ -20268,15 +20332,19 @@ system "Rati Cal"
 		period 10
 	object
 		sprite planet/ice0-b
-		distance 193.64
+		distance 393.64
 		period 52.2262
+		object Limejog
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object Dustmaker
 		sprite planet/rock15
-		distance 341.05
+		distance 741.05
 		period 122.074
 	object
 		sprite planet/gas7
-		distance 804.29
+		distance 1204.29
 		period 442.094
 		object
 			sprite planet/dust1-b
@@ -24365,6 +24433,7 @@ system "Ula Mon"
 		sprite planet/ganymede
 		distance 365.32
 		period 110.403
+		
 	object Makerplace
 		sprite planet/desert2
 		distance 597.32
@@ -24375,11 +24444,19 @@ system "Ula Mon"
 		distance 1109.57
 		period 584.389
 		offset 301.398
+		object Goldcrawl
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/rock6-b
 		distance 1370.41
 		period 802.132
 		offset 325.062
+		object Ironfirth
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas8-b
 		distance 7288.57
@@ -24682,6 +24759,10 @@ system "Uwa Fahn"
 		sprite planet/ice6-b
 		distance 616.77
 		period 342.507
+		object Swiftsong
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/rock4
 		distance 1093.66
@@ -25026,6 +25107,10 @@ system "Wah Oh"
 		sprite planet/gas8-hot
 		distance 341.76
 		period 17.1522
+		object Ochrescoop
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas11
 		distance 897.53
@@ -25515,6 +25600,10 @@ system "Ya Hai"
 			sprite planet/dust0-b
 			distance 291
 			period 26.1298
+		object Mahoganybox
+			sprite planet/station-hai-ancient
+			distance 440
+			period 47.5
 	object
 		sprite planet/gas16-b
 		distance 2811.53
@@ -25893,6 +25982,10 @@ system "Zuba Zub"
 		sprite planet/cloud5
 		distance 1458.86
 		period 1079.98
+		object Redwatch
+			sprite planet/station-hai-ancient
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas3-b
 		distance 3987.87
@@ -27952,7 +28045,7 @@ planet Lightstead
 	attributes station hai retirement
 	landscape land/space6
 	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. The reception area is lavish with several artworks and exotic plants. A well-groomed Hai receptionist informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
-	description `The spaceport is small but serviceable, and has what looks like a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with things like gold watches, jewellery, wines and other pricey trinkets. This place provides aged care respite only for the very wealthy.`
+	description `The spaceport is small but serviceable, and has what looks like a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with things like gold watches, jewelery, wines and other pricey trinkets. This place provides aged care respite only for the very wealthy.`
 	bribe 0.3
 	security 1
 
@@ -28564,7 +28657,7 @@ planet Ochrescoop
 	attributes station hai
 	landscape land/space6
 	description `A massive plaque attached to a bulkhead in the promenade entry proudly denotes this station to be run by "Yoot Ki Magnetic Fuel Harvesting". It seems that the powerful magnetic field of the gas giant below makes this station an ideal location for harvesting, and re-harvesting, the massive fuel volumes that are demanded by the Hai space industry. Despite the plaque also proudly denoting nearly 75,000 years of operation, the station seems to be in an excellent state of repair.`
-	spaceport `The spaceport, which consists of a wide promenade running around the interior of the station, seems to be divided into two distinct areas. The lower level, which contains all manner of amenities, services and food places, and the upper level, which hosts the official Yoot Ki sales centre in addition to a suite of different facilities for various research institutes. As it turns out, the powerful magnetic field of the world below also has certain advantages for scientific experiments.`
+	spaceport `The spaceport, which consists of a wide promenade running around the interior of the station, seems to be divided into two distinct areas. The lower level, which contains all manner of amenities, services and food places, and the upper level, which hosts the official Yoot Ki sales center in addition to a suite of different facilities for various research institutes. As it turns out, the powerful magnetic field of the world below also has certain advantages for scientific experiments.`
     spaceport `Floating next to the stairs a holographic sign proudly states that it's been over 7000 years since the last fatal safety accident.`
 	bribe 0.1
 	security 0.5
