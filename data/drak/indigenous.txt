@@ -56,7 +56,7 @@ effect "subsidurial death"
 ship "Void Sprite"
 	noun "creature"
 	sprite "ship/void sprite adult"
-		"frame rate" 3.2
+		"frame rate" 6.2
 		rewind
 	"never disabled"
 	attributes
