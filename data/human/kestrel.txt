@@ -308,8 +308,8 @@ ship "Kestrel"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
-	fighter -46 106 under
-	fighter 46 106 under
+	bay "Fighter" -46 106 under
+	bay "Fighter" 46 106 under
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
 	gun -53 61 "Particle Cannon"
