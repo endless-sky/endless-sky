@@ -635,11 +635,12 @@ void Engine::Step(bool isActive)
 	if(flagship)
 	{
 		const double fuelCap = 2000.;
-		// if there is a lot of fuel, display a solid homogenous bar instead of many notches in the bar
-		if ( flagship->Attributes().Get("fuel capacity") <= fuelCap)
+		// If there is a lot of fuel, display a solid homogenous bar,
+		// instead of many notches in the bar.
+		if(flagship->Attributes().Get("fuel capacity") <= fuelCap)
 		{
 			info.SetBar("fuel", flagship->Fuel(),
-				flagship->Attributes().Get("fuel capacity") * .01);
+				    flagship->Attributes().Get("fuel capacity") * .01);
 		} else {
 			info.SetBar("fuel", flagship->Fuel());
 		}
