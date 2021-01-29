@@ -242,7 +242,7 @@ news "company psychologist"
 			"I've gotten incredibly good at doing this thing with my face that makes it look like I care."
 			"A trouble shared is a trouble halved, so most resource issues can be brought within acceptable limits by just pretending to listen."
 			"A man is judged by his deeds, not by his words, except in my profession; the more I talk, the more people value me."
-			"People are sometimes affraid that we psyhologists can read their minds, but we are actually more scared of learning our own motivations during our studies."
+			"People are sometimes afraid that we psychologists can read their minds, but we are actually more scared of learning our own motivations during our studies."
 		word
 			`"`
 
@@ -309,7 +309,7 @@ news "union organizer"
 			"Syndicate managers get paid three times as much as their employees, just for sitting in an office all day and watching us sweat."
 			"My job is to encourage workers to place a higher value on their own lives despite being surrounded by a culture that tells them they are worthless."
 			"Management warning workers not to join the union is one of our best sources of visiblity among the workers."
-			"Young people usually don't join an union, so we are mostly working for the benefit of higher aged workers."
+			"Young people usually don't join a union, so we are mostly working for the benefit of higher aged workers."
 		word
 			`"`
 
@@ -351,7 +351,7 @@ news "housekeeper"
 			"How is it possible that a man who manages a billion-credit corporation can still be so incompetent or so careless that he routinely misses the toilet bowl when he takes a piss?"
 			"The family I work for offered to let me live in a room in the attic for free, but I'm not sure I want to have that little separation between work and my personal life."
 			"If rich kids are so pampered that they've never so much as had to wash a dish in their entire lives, it makes me wonder how they hope to be independent adults one day."
-			"The kids here are not spoiled at all; the kids in the family I work for typically don't get a new computergame until two days after it gets on the market."
+			"The kids here are not spoiled at all; the kids in the family I work for typically don't get a new computer game until two days after it gets on the market."
 		word
 			`"`
 
@@ -373,7 +373,7 @@ news "groundskeeper"
 			"They told me that they wanted the landscaping to be classic and entertaining, so I constructed a giant hedge maze."
 			"Despite all our best terraforming efforts, it can still be hard to get native Earth plants to grow on an alien world."
 			"My employer once asked me to add a garden in their Star Queen. The pirates were sure confused when they boarded us."
-			"My employer owns almost 2 complete planets, but today I'm watering the plans in the small appartment she owns on this planet."
+			"My employer owns almost 2 complete planets, but today I'm watering the plants in the small apartment she owns on this planet."
 		word
 			`"`
 
