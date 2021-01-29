@@ -2177,15 +2177,14 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	{
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(cargo, false);
-		// Stop targeting this ship.
-		SetTargetShip(shared_ptr<Ship>());
 		
 		// Pause for two seconds before moving on.
 		pilotError = 120;
 	}
 	
 	// Stop targeting this ship (so you will not board it again right away).
-	SetTargetShip(shared_ptr<Ship>());
+	if(personality.Disables() || !personality.Plunders())
+		SetTargetShip(shared_ptr<Ship>());
 	return victim;
 }
 
