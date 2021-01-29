@@ -3174,7 +3174,7 @@ mission "Raid Warning"
 		"pirate attraction" >= 15
 	on offer
 		conversation
-			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled-looking old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
+			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
 			choice
 				`	"Excuse me?"`
 					goto advice
