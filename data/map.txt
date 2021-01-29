@@ -13085,7 +13085,7 @@ system "Io Lowe"
 		sprite planet/gas11-b
 		distance 500.32
 		period 385.27
-		object Graymoon
+		object Greymoon
 			sprite planet/station-hai-ancient
 			distance 240
 			period 17.5
@@ -27158,12 +27158,12 @@ planet "Esquiline"
 	government Uninhabited
 
 planet Everhope
-	attributes station hai uninhabited
+	attributes station hai
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
-	government Uninhabited
-	bribe 0
-	security 0
+	description `This station appears to consistently have a large number of Hai warships docked at it, and a cursory investigation will reveal that it serves as the principle supply of fuel for the Hai military, as well as the staging point for resupplying ships heading to defend Wah Ki from the Unfettered. A monument just inside from the docking area attests to its history performing a similar role during the Korath raids before that.`
+	spaceport `The spaceport is dominated by its function as a military station, though it still has a dual-level promenade like its civilian counterparts of Ochrescoop and Greymoon. Several areas are restricted, but there are also several freely accessible pubs and eateries, as well as an impressive cinema and a warehousing section for trading supplies. Only the flooring appears to be relatively new, textured to prevent any slips, where the rest of the station has a polished but well-worn feel to it.`
+	bribe 0.5
+	security 1
 
 planet "Factory of Eblumab"
 	attributes arach factory mining
@@ -27533,13 +27533,14 @@ planet "Graveyard Wormhole (Unstable)"
 planet "Graveyard Wormhole (Stable)"
 	description ``
 
-planet Graymoon
-	attributes station hai uninhabited
+planet Greymoon
+	attributes station hai
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
-	government Uninhabited
-	bribe 0
-	security 0
+	description `This station is owned and operated by the Far Loo Bah fuel collection corporation. This is a fact that you cannot avoid seeing, as their logo is emblazoned on nearly every possible surface and sign indicating their sponsorship of every service or feature on the station. Interestingly this includes a "History of Spaceflight" museum which takes up an entire branch of the station. Naturally, the museum focuses very heavily on the Far Loo Bah corporation's role in that history.`
+	spaceport `The spaceport consists of a wide promenade running around the interior of the station and is divided into two levels, with the docking access opening directly onto the mezzanine. The upper level is mostly devoted to amenities, light commercial businesses, a medical center, and a bank. The lower level has all of the real businesses, including frontage from multiple manufacturers fed by the heavier elements that are filtered out after being scooped up with the fuel from the planet below. A virtual outfitter provides sale options for sundry items manufactured locally that can be installed on your ship without you ever leaving the comfort of the promenade.`
+	outfitter "Hai Basics"
+	bribe 0.1
+	security 0.5
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -29511,12 +29512,13 @@ planet Sunracer
 		fleet "Large Syndicate" 10
 
 planet Swiftsong
-	attributes station hai uninhabited
+	attributes station hai "hai tourism"
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
-	government Uninhabited
-	bribe 0
-	security 0
+	description `Swiftsong station is maintained by the Imo Blep corporation, and is operated as a giant convention center. Most Hai stations have some degree of restricted access either beyond the docking bay or beyond the promenade possessed by all these stations of the same era. Swiftsong contrasts this by being almost completely open.`
+	description `Tens of thousands of Hai pass through the docks of Swiftsong on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals and the like roll on in an endless cavalcade of life. With Icelake below and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
+	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels reaching up where the promenade intersects the base of each of the stations main branches. Almost any business or service you could want can be found somewhere in the spaceport, except for that of an outfitter or shipyard, both of which are precluded by the expansion of the docking bay to accommodate the massive volume of daily traffic.`
+	bribe 0.1
+	security 0.5
 
 planet "Tebuteb's Table"
 	attributes arach farming
