@@ -3586,7 +3586,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				double fuel = it.first->Get("jump fuel");
 				// If the jump drive or hyperdrive has an attached
 				// (mass/distance) (reference/exponent), calculate
-				// the fuel about to be used for this jump
+				// the fuel about to be used for this jump.
 				double mass = Mass();
 				double driveMassExp = 0;
 				double driveMassRef = 400;
@@ -3607,9 +3607,8 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				// if a "startup" fuel is provided, add that to the above formula.
 				// It's a constant fuel consumption regardless of mass or distance of jump.
 				if(it.first->Get("jump startup fuel") > 0)
-				{
 					fuel = fuel + it.first->Get("jump startup fuel");
-				}
+				
 				// finally, use that here to test if it's better than any previous fuel usages.
 				if(!fuel)
 					fuel = defaultFuel;
