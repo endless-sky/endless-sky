@@ -405,6 +405,7 @@ news "tour guide"
 			"At least they don't make me dress up like anything. I knew a woman whose tour job made her dress up like a twenty-first century person. Apparently back then they all wore very tight-fitting pants."
 			"It's kind of amazing to me that people would travel halfway across the galaxy to see this dump. To me, it's the one place I've always wished I could get away from."
 			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
+			"If you have any tourists onboard that want to go anti-gravity boarding, then let them ask for me. I'll pay you commission."
 		word
 			`"`
 
@@ -674,6 +675,7 @@ news "actor"
 			"Right now I'm mostly just doing commercials, but I'm working on a concept for a zero-gravity musical that will be truly epic."
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
 			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to watch."
+			"Hey, you are so beautifull, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
 		word
 			`"`
 
@@ -870,6 +872,7 @@ news "human syndicate manager"
 			"You look like the kind of captain who could benefit from a Syndicate Proton Gun. Would you care to schedule a test-firing?"
 			"Have you considered a Syndicate Freighter for your next ship? Captains like you swear by them!"
 			"Nobody ever got fired for buying Syndicate."
+			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agremeement I signed."
 		word
 			`"`
 
@@ -978,6 +981,7 @@ news "human tourism"
 			"I'm not riding on any ship that doesn't have the decency to have luxurious accomodations!"
 			"It's criminal how cheap the fares are to get here. For around a few thousand credits, you get to see stunning sights and shocking spectacles well worth double of what you paid."
 			"I was really hoping for more aliens in space. What's the point if there's no steamy interspecies romance!?"
+			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
 		word
 			`"`
 
@@ -1096,6 +1100,9 @@ news "human pirate"
 			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
 			"Crime pays, and the hours are good!"
 			"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
+			"Your credits or your life!! Oh you don't have either? Never mind then."
+			"Don't count on the navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
+			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
 		word
 			`"`
 
@@ -1192,3 +1199,6 @@ news "graffiti on spaceport wall"
 			"A long time ago / I was respected by all, / but now I sit here."
 			"A handsome young cyborg named Ace / Wooed women at every base / But once ladies glanced at / His special enhancement / They vanished with nary a trace"
 			"Mary had a little lamb / Little lamb little lamb / Mary had a little lamb / Whose fleece was white as snow"
+			"You think piracy is bad and want to stop us? You and what army?"
+			"Messing with the Syndicate, Does That Sound Like Fun to You?"
+			"83 percent of all statistics are just made up."
