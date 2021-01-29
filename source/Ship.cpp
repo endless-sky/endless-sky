@@ -3560,9 +3560,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// if a "startup" fuel is provided, add that to the above formula.
 		// It's a constant fuel consumption regardless of mass or distance of jump.
 		if(baseAttributes.Get("jump startup fuel") > 0)
-		{
 			fuel = fuel + baseAttributes.Get("jump startup fuel");
-		}
 		
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
