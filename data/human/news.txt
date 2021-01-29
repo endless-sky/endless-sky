@@ -675,7 +675,7 @@ news "actor"
 			"Right now I'm mostly just doing commercials, but I'm working on a concept for a zero-gravity musical that will be truly epic."
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
 			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to watch."
-			"Hey, you are so beautifull, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
+			"Hey, you are so beautiful, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
 		word
 			`"`
 
@@ -872,7 +872,7 @@ news "human syndicate manager"
 			"You look like the kind of captain who could benefit from a Syndicate Proton Gun. Would you care to schedule a test-firing?"
 			"Have you considered a Syndicate Freighter for your next ship? Captains like you swear by them!"
 			"Nobody ever got fired for buying Syndicate."
-			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agremeement I signed."
+			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
 		word
 			`"`
 
@@ -1101,7 +1101,7 @@ news "human pirate"
 			"Crime pays, and the hours are good!"
 			"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
 			"Your credits or your life!! Oh you don't have either? Never mind then."
-			"Don't count on the navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
+			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
 			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
 		word
 			`"`
