@@ -55,9 +55,10 @@ effect "subsidurial death"
 
 ship "Void Sprite"
 	noun "creature"
-	sprite "ship/void sprite adult"
-		"frame rate" 3.2
+	sprite "ship/void sprite/void sprite adult"
+		"frame rate" 14.3
 		rewind
+	thumbnail "thumbnail/void sprite adult"
 	"never disabled"
 	attributes
 		category "Medium Warship"
@@ -79,8 +80,8 @@ ship "Void Sprite"
 		"gaslining" 1
 	outfits
 		Mouthparts? 2
-	gun -4 -111
-	gun 6 -111
+	gun 0 -156
+	gun 0 -156
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
@@ -106,9 +107,10 @@ effect "void sprite adult death"
 
 
 ship "Void Sprite" "Void Sprite (Infant)"
-	sprite "ship/void sprite infant"
-		"frame rate" 7.4
+	sprite "ship/void sprite/void sprite infant"
+		"frame rate" 24.7
 		rewind
+	thumbnail "thumbnail/void sprite infant"
 	"never disabled"
 	attributes
 		category "Light Warship"
