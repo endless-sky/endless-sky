@@ -2183,7 +2183,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	}
 	
 	// Stop targeting this ship (so you will not board it again right away).
-	if(personality.Disables() || !personality.Plunders())
+	if(!autoPlunder || personality.Disables())
 		SetTargetShip(shared_ptr<Ship>());
 	return victim;
 }

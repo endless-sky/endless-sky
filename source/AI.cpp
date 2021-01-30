@@ -1090,13 +1090,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!gov || ship.GetPersonality().IsPacifist())
 		return target;
 	
-	// Ships with 'plunders' personality always destroy the ships they have boarded.
-	const Personality &person = ship.GetPersonality();
-	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
-	if(oldTarget && oldTarget->IsTargetable() && oldTarget->IsDisabled() && person.Plunders()
-			&& !person.Disables() && Has(ship, oldTarget, ShipEvent::BOARD))
-		return oldTarget;
-	
 	bool isYours = ship.IsYours();
 	if(isYours)
 	{
@@ -1117,11 +1110,17 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!maxRange)
 		return target;
 	
+	const Personality &person = ship.GetPersonality();
+	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
 	if(oldTarget && !oldTarget->IsTargetable())
 		oldTarget.reset();
 	if(oldTarget && person.IsTimid() && oldTarget->IsDisabled()
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
+	// Ships with 'plunders' personality always destroy the ships they have boarded.
+	if(oldTarget && oldTarget->IsDisabled() && person.Plunders()
+			&& !person.Disables() && Has(ship, oldTarget, ShipEvent::BOARD))
+		return oldTarget;
 	shared_ptr<Ship> parentTarget;
 	bool parentIsEnemy = (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	if(ship.GetParent() && !parentIsEnemy)
