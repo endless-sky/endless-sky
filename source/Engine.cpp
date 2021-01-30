@@ -270,6 +270,9 @@ void Engine::Place()
 	
 	// Update the active NPCs for missions based on the player's conditions.
 	player.UpdateMissionNPCs();
+	
+	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
+	// and all but "uninterested" ships should follow the player.
 	for(const Mission &mission : player.Missions())
 		Place(mission.NPCs(), flagship);
 	
@@ -284,7 +287,7 @@ void Engine::Place()
 		planetRadius = object->Radius();
 	}
 	
-	// Give each non-carried player's ship a random heading and position.
+	// Give each non-carried, special ship we just added a random heading and position.
 	// (While carried by a parent, ships will not be present in `Engine::ships`.)
 	for(const shared_ptr<Ship> &ship : ships)
 	{
@@ -309,8 +312,6 @@ void Engine::Place()
 			}
 			else if(hasOwnPlanet)
 				pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
-			else
-				pos = planetPos + angle.Unit() * Random::Real() * planetRadius * 3;
 		}
 		// If a special ship somehow was saved without a system reference, place it into the
 		// player's system to avoid a nullptr deference.
