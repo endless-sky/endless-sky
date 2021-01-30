@@ -101,8 +101,7 @@ namespace {
 
 
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
-	: player(player), canEdit(player.GetPlanet()
-			&& !player.GetPlanet()->Attributes().count("requires: gaslining"))
+	: player(player), canEdit(player.GetPlanet())
 {
 	SetInterruptible(false);
 }

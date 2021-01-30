@@ -743,7 +743,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && planet->CanLand(*it) && it->CanBeFlagship())
 			{
 				flagship = it;
 				break;
