@@ -1148,7 +1148,7 @@ void PlayerInfo::Land(UI *ui)
 			{
 				ship->Recharge(hasSpaceport);
 				ship->Cargo().TransferAll(cargo);
-				if(!ship->GetPlanet())
+				if(!ship->GetPlanet() && planet->CanLand(*ship))
 					ship->SetPlanet(planet);
 			}
 			else

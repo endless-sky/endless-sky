@@ -298,10 +298,10 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || planet->CanLand(*ship))
+			bool launchesWithPlayer = ((ship->IsYours() && planet->CanLand(*ship)) || planet->CanLand(*ship))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
-					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
+			ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
 			// Default to the player's planet in the case of data definition errors.
 			if(person.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
@@ -311,6 +311,8 @@ void Engine::Place()
 			}
 			else if(hasOwnPlanet)
 				pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
+			else
+				pos = planetPos + angle.Unit() * Random::Real() * planetRadius * 3;
 		}
 		// If a special ship somehow was saved without a system reference, place it into the
 		// player's system to avoid a nullptr deference.
