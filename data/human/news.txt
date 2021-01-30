@@ -287,7 +287,7 @@ news "unemployed youth"
 			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
-			"Are you hiring new crewmembers? And are you by chance planning to fly to the paradise worlds?"
+			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
 			"We had to stay at home during a pandemic years ago. It was horrible, the walls of my appartment made me crazy."
 		word
 			`"`
@@ -373,7 +373,7 @@ news "groundskeeper"
 			"They told me that they wanted the landscaping to be classic and entertaining, so I constructed a giant hedge maze."
 			"Despite all our best terraforming efforts, it can still be hard to get native Earth plants to grow on an alien world."
 			"My employer once asked me to add a garden in their Star Queen. The pirates were sure confused when they boarded us."
-			"My employer owns almost 2 complete planets, but today I'm watering the plants in the small apartment she owns on this planet."
+			"My employer owns almost two complete planets, but today I'm watering the plants in the small apartment she owns on this planet."
 		word
 			`"`
 
