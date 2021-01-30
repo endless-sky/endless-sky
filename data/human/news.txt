@@ -1100,7 +1100,7 @@ news "human pirate"
 			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
 			"Crime pays, and the hours are good!"
 			"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
-			"Your credits or your life!! Oh you don't have either? Never mind then."
+			"Your credits or your life! Oh you don't have either? Never mind then."
 			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
 			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
 		word
