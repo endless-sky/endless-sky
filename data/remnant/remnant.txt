@@ -43,20 +43,28 @@ fleet "Large Remnant"
 		heroic plunders appeasing
 	variant 6
 		"Albatross"
+		"Starling" 2
 	variant 6
 		"Albatross (Sniper)"
+		"Starling (Sniper)" 2
 	variant 6
 		"Albatross (Turret)"
+		"Starling (Thrasher)" 2
 	variant 6
 		"Albatross (Heavy)"
+		"Starling (Heavy)" 2
 	variant 3
 		"Albatross"
+		"Starling (Hunter)" 2
 	variant 3
 		"Albatross (Sniper)"
+		"Starling (Hunter)" 2
 	variant 2
 		"Albatross"
+		"Albatross (Sniper)"
 	variant 2
 		"Albatross (Heavy)"
+		"Albatross (Turret)"
 
 fleet "Remnant Transport"
 	government "Remnant"
