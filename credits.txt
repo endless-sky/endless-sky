@@ -32,7 +32,7 @@ Major Programming
   MarcelineVQ
   NomadicVolcano
   oo13
-  petervdmeer
+  Peter van der Meer
   tehhowch
 
 Storyline & Faction Authors
@@ -40,7 +40,7 @@ Storyline & Faction Authors
   Arachi-Lover
   beccabunny
   LocalGod79
-  Petervdmeer
+  Peter van der Meer
   Pointedstick
   TheUnfetteredOne
   Zitchas
