@@ -288,7 +288,6 @@ news "unemployed youth"
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
-			"We had to stay at home during a pandemic years ago. It was horrible, the walls of my appartment made me crazy."
 		word
 			`"`
 
@@ -433,7 +432,8 @@ news "human resources worker"
 			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
 			"I once had to find a delicate way to explain to a worker that he smelled bad. Like, so bad that no one could bear to be in a small meeting room with him."
 			"For most jobs, it's essential to know how to get along with others and be a team player. But I bet a freelance pilot like you never needs to worry about that."
-			"Most people overestimate or underestimate their own capabilities. The people who overestimate their capabilities usually don't last long in their jobs."
+			"Many people overestimate their own capabilities. Those people usually don't last long in their jobs."
+			"Some people underestimate their own capabilities. Those people usually get bored and unproductive over time due to their work not being enough of a challenge."
 		word
 			`"`
 
