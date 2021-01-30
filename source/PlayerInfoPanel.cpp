@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/layout.hpp"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -100,7 +101,7 @@ namespace {
 
 
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
-	: player(player), canEdit(player.GetPlanet())
+: player(player), canEdit(player.GetPlanet() && !player.GetPlanet()->Attributes().count("requires: gaslining"))
 {
 	SetInterruptible(false);
 }
