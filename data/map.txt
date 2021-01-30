@@ -26527,7 +26527,7 @@ planet "Blue Interior"
 planet Bluerun
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
