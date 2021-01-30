@@ -24433,7 +24433,6 @@ system "Ula Mon"
 		sprite planet/ganymede
 		distance 365.32
 		period 110.403
-		
 	object Makerplace
 		sprite planet/desert2
 		distance 597.32
@@ -26804,7 +26803,7 @@ planet "Cool Forest"
 planet Coppermist
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -26903,7 +26902,7 @@ planet Darkstone
 planet Darkrest
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -27086,7 +27085,7 @@ planet Eldergrasp
 	attributes station hai retirement
 	landscape land/space6
 	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is a generously appointed reception area with an orderly on duty who informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
-	description `	The spaceport is virtually nonexistent, with just a single cafeteria, a fuel pump for the desperate, and a dedicated loading area for loading and unloading this retirement home's regular deliveries. Despite it's small size though, everything is in excellent condition.`
+	description `	The spaceport is virtually non-existent, with just a single cafeteria, a fuel pump for the desperate, and a dedicated loading area for loading and unloading this retirement home's regular deliveries. Despite it's small size though, everything is in excellent condition.`
 	bribe 0.1
 	security 0.8
 
@@ -27279,7 +27278,7 @@ planet "Fenrir Station"
 planet Firefall
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -27829,7 +27828,7 @@ planet Icelake
 planet Icemeet
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -27837,7 +27836,7 @@ planet Icemeet
 planet Indigosprint
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -27871,7 +27870,7 @@ planet "Into White"
 planet Iritoroost
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -27879,7 +27878,7 @@ planet Iritoroost
 planet Ironfirth
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -28047,14 +28046,14 @@ planet Lightstead
 	attributes station hai retirement
 	landscape land/space6
 	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. The reception area is lavish with several artworks and exotic plants. A well-groomed Hai receptionist informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
-	description `	The spaceport is small but serviceable, and has what looks like a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with things like gold watches, jewelery, wines and other pricey trinkets. This place provides aged care respite only for the very wealthy.`
+	description `	The spaceport is small but serviceable, and has what looks like a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with gold watches, jewelery, wines and other pricey trinkets. This place provides aged care respite for only the very wealthy.`
 	bribe 0.3
 	security 1
 
 planet Limejog
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -28139,7 +28138,7 @@ planet Mahoganybox
 	attributes station hai retirement
 	landscape land/space6
 	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. Leaving the docking bay brings one into a expansive room that can only be described as stately. A round reception desk greets you just inside, and is situated such that the occupants can face any direction that suits them and observe the room. A smiling Hai in a suit informs unless you have family at this respite facility, you will not be permitted to wander beyond this room. However, you are welcome to visit with anyone who has come down, or to ask an orderly if you need to contact someone on business.`
-	description `	The spaceport here is scarcely worthy of the name, and does not facilitate materials trade, but is well equipped to handle regular traffic bringing people to and from the station. This place appears to service the fit but retiring demographic whose minds are as sharp as ever, but who benefit from fewer demanding pressures on their physical bodies.`
+	description `	The spaceport here is scarcely worthy of the name, and does not facilitate trading, but is well equipped to handle regular traffic bringing people to and from the station. This place appears to service the fit but retiring demographic whose minds are as sharp as ever, but who benefit from fewer demanding pressures on their physical bodies.`
 	bribe 0.1
 	security 1
 
@@ -28855,7 +28854,7 @@ planet Rand
 planet Redwatch
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -29017,7 +29016,7 @@ planet "Sandy Two"
 planet Sandsnap
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -29271,7 +29270,7 @@ planet Silver
 planet Silverleap
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -29544,7 +29543,7 @@ planet "Third Umber"
 planet Thornlight
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -29940,7 +29939,7 @@ planet Vinci
 planet Violetwake
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station has been mothballed sometime in the last sixty thousand years, the docking area has atmosphere and a status panel indicates that the generators are functional but shut down, with the standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
