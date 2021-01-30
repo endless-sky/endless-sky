@@ -301,7 +301,7 @@ void Engine::Place()
 			bool launchesWithPlayer = ((ship->IsYours() && planet->CanLand(*ship)) || planet->CanLand(*ship))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
-			ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
+					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
 			// Default to the player's planet in the case of data definition errors.
 			if(person.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
