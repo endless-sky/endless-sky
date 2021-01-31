@@ -16,6 +16,31 @@ using namespace std;
 
 
 
+// Empty constructor, just results in an emtpy store.
+ConditionsStore::ConditionsStore()
+{
+}
+
+
+
+// Constructor where a number of initial manually-set values are set.
+ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initialConditions)
+{
+	for(auto it : initialConditions)
+		SetCondition(it.first, it.second);
+}
+
+
+
+// Constructor where a number of initial manually-set values are set.
+ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
+{
+	for(auto it : initialConditions)
+		SetCondition(it.first, it.second);
+}
+
+
+
 int64_t ConditionsStore::operator [] (const std::string &name) const
 {
 	return GetCondition(name);

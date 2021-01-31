@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionsProvider.h"
 
+#include <initializer_list>
 #include <map>
 #include <string>
 
@@ -28,6 +29,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // this class should inherit from ConditionsProvider.
 class ConditionsStore : public ConditionsProvider {
 public:
+	// Constructors to initialize this class.
+	ConditionsStore();
+	ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
+	ConditionsStore(const std::map<std::string, int64_t> initialConditions);
+
 	// Retrieve a "condition" flag from this provider.
 	int64_t operator [] (const std::string &name) const;
 	virtual bool HasCondition(const std::string &name) const override;
