@@ -44,12 +44,49 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 		THEN( "given conditions are in the Store" ) {
 			REQUIRE( store.GetCondition("hello world") == 100 );
 			REQUIRE( store.GetCondition("goodbye world") == 404 );
+			REQUIRE( store.Locals().size() == 2 );
 		}
 		THEN( "not given conditions return the default value" ) {
 			REQUIRE( store.GetCondition("ungreeted world") == 0 );
+			REQUIRE( store.Locals().size() == 2 );
 		}
 	}
 }
+
+SCENARIO( "Setting and erasing conditions", "[ConditionSet][ConditionSetting]" ) {
+	GIVEN( "an empty starting store" ) {
+		auto store = ConditionsStore();
+		THEN( "stored values can be retrieved" ) {
+			REQUIRE( store.Locals().size() == 0 );
+			REQUIRE( store.SetCondition("myFirstVar", 10) == true );
+			REQUIRE( store.GetCondition("myFirstVar") == 10 );
+			REQUIRE( store.HasCondition("myFirstVar") == true );
+			REQUIRE( store.Locals().size() == 1 );
+		}
+		THEN( "defaults are returned for unstored values and are not stored" ) {
+			REQUIRE( store.Locals().size() == 0 );
+			REQUIRE( store.GetCondition("mySecondVar") == 0 );
+			REQUIRE( store.Locals().size() == 0 );
+			REQUIRE( store.HasCondition("mySecondVar") == false );
+		}
+		THEN( "erased conditions are indeed removed" ) {
+			REQUIRE( store.Locals().size() == 0 );
+			REQUIRE( store.SetCondition("myFirstVar", 10) == true );
+			REQUIRE( store.HasCondition("myFirstVar") == true );
+			REQUIRE( store.Locals().size() == 1 );
+			REQUIRE( store.GetCondition("myFirstVar") == 10 );
+			REQUIRE( store.Locals().size() == 1 );
+			REQUIRE( store.EraseCondition("myFirstVar") == true );
+			REQUIRE( store.HasCondition("myFirstVar") == false );
+			REQUIRE( store.Locals().size() == 0 );
+			REQUIRE( store.GetCondition("myFirstVar") == 0 );
+			REQUIRE( store.HasCondition("myFirstVar") == false );
+			REQUIRE( store.Locals().size() == 0 );
+		}
+	}
+}
+
+
 // #endregion unit tests
 
 
