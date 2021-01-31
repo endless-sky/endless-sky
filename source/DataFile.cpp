@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 
 #include "Files.h"
-#include "Utf8.h"
+#include "text/Utf8.h"
 
 using namespace std;
 

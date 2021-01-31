@@ -40,9 +40,15 @@ class Planet {
 public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
+	// Check if both this planet and its containing system(s) have been defined.
+	bool IsValid() const;
 	
-	// Get the name of the planet.
+	// Get the name of the planet (all wormholes use the same name).
+	// When saving missions or writing the player's save, the reference name
+	// associated with this planet is used even if the planet was not fully
+	// defined (i.e. it belongs to an inactive plugin).
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
 	// Get the planet's descriptive text.
@@ -130,6 +136,7 @@ public:
 	
 	
 private:
+	bool isDefined = false;
 	std::string name;
 	std::string description;
 	std::string spaceport;

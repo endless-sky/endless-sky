@@ -183,7 +183,7 @@ mission "Remnant: Lost in Ember Waste"
 		has "event: lost in ember waste"
 	on offer
 		outfit "Quantum Key Stone" 1
-		log `Became stuck in the Ember Waste, but was given a quantum key stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
+		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
 			`You wander the <origin> spaceport feeling very lost in this strange region of space. Having flown around for a few weeks with no idea of how to get out, you wonder if you'll be stuck here forever.`
 			`	You sit down on a bench and think about how you're going to get out of this situation. While you think, an old woman approaches you and signs something.`
@@ -196,14 +196,14 @@ mission "Remnant: Lost in Ember Waste"
 				`	"I do, I just can't get through them."`
 					goto know
 			
-			`	"There are red wormholes scattered around this region of space. You can only access them if you have a key stone on your ship, though. Don't ask me how it works, but that's how it is."`
+			`	"There are red wormholes scattered around this region of space. You can only access them if you have a Key Stone on your ship, though. Don't ask me how it works, but that's how it is."`
 				goto keystone
 			
 			label know
-			`	"Get scammed out of your key stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
+			`	"Get scammed out of your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
 			
 			label keystone
-			`	The woman reaches into a bag that she has with her and hands you a quantum key stone. "Just put this on your ship and you can be on your way out of here."`
+			`	The woman reaches into a bag that she has with her and hands you a Quantum Key Stone. "Just put this on your ship and you can be on your way out of here."`
 			choice
 				`	"You're just giving this to me?"`
 					goto thanks
@@ -211,7 +211,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	She chuckles again. "No catch."`
 			
 			label thanks
-			`	The woman sits down on the bench next to you. "I was once lost in Republic space for many years after losing my key stone. I know what it can be like to be away from your people for that long, so I'd rather not see you share the same fate."`
+			`	The woman sits down on the bench next to you. "I was once lost in Republic space for many years after losing my Key Stone. I know what it can be like to be away from your people for that long, so I'd rather not see you share the same fate."`
 			choice
 				`	"Thanks for the help. I'll go fit this on my ship."`
 				`	"How'd you get to Republic space?"`
@@ -222,7 +222,7 @@ mission "Remnant: Lost in Ember Waste"
 			
 			label republic
 			`	"I was an adventurous spirit in my youth," she says. "One day I found my way out of the Ember Waste and back to what I learned was the rest of humanity. For years my people had hidden here believing the Alphas had killed everyone else, but I discovered that we had little to fear.`
-			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my key stone had been stolen at some point during my journey. I had no way to return."`
+			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my Key Stone had been stolen at some point during my journey. I had no way to return."`
 			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered the Hai."`
 			branch hai
 				has "First Contact: Hai: offered"
@@ -237,7 +237,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	"Well of course. How else would I have been able to return home?`
 			
 			label next
-			`	"To my surprise, the Hai had a large number of quantum key stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai key stones here. Anyway, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
+			`	"To my surprise, the Hai had a large number of Quantum Key Stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai keystones here. Anyway, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
 			choice
 				`	"How long ago was that?"`
 				`	"What about your daughters?"`
@@ -488,7 +488,7 @@ conversation "remnant key stones"
 		`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
 			decline
 	
-	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 	`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
 	choice
 		`	"I can purchase outfits into my cargo bay?"`
@@ -509,7 +509,7 @@ conversation "remnant key stones"
 
 
 conversation "remnant key stones done"
-	`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
+	`You visit the local outfitter and tell the manager that you have brought a shipment of "quantum keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
 	`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
 
 
@@ -553,7 +553,7 @@ mission "Remnant: Found Keystones"
 mission "Remnant: Key Stones (Pre-Hai) 2"
 	landing
 	name "Key Stones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
 		has "Remnant: Key Stones (Pre-Hai) 1: done"
@@ -561,7 +561,7 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 		conversation "remnant key stones"
 		
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -572,7 +572,7 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	
 mission "Remnant: Key Stones (Hai)"
 	name "Keystones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
@@ -586,7 +586,7 @@ mission "Remnant: Key Stones (Hai)"
 		conversation "remnant key stones"
 			
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -596,7 +596,7 @@ mission "Remnant: Key Stones (Hai)"
 
 mission "Remnant: Key Stones"
 	name "Keystones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
 		has "remnant blood test pure"
@@ -625,7 +625,7 @@ mission "Remnant: Key Stones"
 				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
 					decline
 			
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 			`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
 			choice
 				`	"I can purchase outfits into my cargo bay?"`
@@ -644,7 +644,7 @@ mission "Remnant: Key Stones"
 				accept
 	
 	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -808,7 +808,7 @@ mission "Remnant: Void Sprites 3"
 	on accept
 		event "remnant: puffin"
 	npc
-		government " Drak "
+		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
@@ -842,13 +842,6 @@ mission "Remnant: Void Sprites 3"
 event "remnant: puffin"
 	planet "Viminal"
 		add shipyard "Remnant Puffin"
-
-government " Drak "
-	"display name" "Drak"
-	swizzle 5
-	"player reputation" -1000
-	"attitude toward"
-		"Indigenous Lifeform" 1
 
 event "remnant: void sprite research"
 
@@ -1064,6 +1057,692 @@ mission "Remnant: Learn Sign Follow Up"
 		conversation
 			`As you make your way into the spaceport, it occurs to you that one of the information directors who gave you the instructional videos might appreciate how much you have learned over the past months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
 			`	"Congratulations, Captain <last>!" the director signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways than just by blood. I look forward to seeing what results from your work with us." The director is interrupted by the arrival of other Remnant asking for something and bids you farewell with an apologetic gesture.`
+				decline
+
+
+
+mission "Remnant: Deep Surveillance"
+	name "Investigate Ivan"
+	description "Travel to <destination> where Ivan's office is in order to ask him what he knows about the Ember Waste."
+	minor
+	source
+		government "Remnant"
+	stopover "Valhalla"
+	to offer
+		has "License: Remnant"
+		or
+			and
+				has "Terminus Exploration: done"
+				not "Deep: Remnant 0: done"
+			has "Deep: Remnant Research: done"
+	on offer
+		conversation
+			branch "told before"
+				has "remnant: told about deep"
+			
+			branch terminus1
+				not "Deep: Remnant Research: done"
+			
+			`	While wandering the spaceport, you think back to the scientists from the Deep that you helped discover the Ember Waste. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
+			choice
+				`	(Find a prefect to tell.)`
+					goto telling
+				`	(Don't tell the Remnant.)`
+					decline
+			
+			label terminus1
+			`	While wandering the spaceport, you think back to the scientists researching the wormhole in Terminus. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
+			choice
+				`	(Find a prefect to tell.)`
+				`	(Don't tell the Remnant.)`
+					decline
+			
+			label telling
+			apply
+				set "remnant: told about deep"
+			`	You ask one of the Remnant in the spaceport where you would be able to find a prefect, and they point you to what looks like an information desk of sorts. There you tell the attendant that you have something potentially important to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
+			`	"Greetings, Captain. I am Prefect Torza. I was told you had information that could be important to our security." He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same. "What do you have to tell us?"`
+			branch terminus2
+				not "Deep: Remnant Research: done"
+			
+			choice
+				`	"I helped a group of scientists from the Deep to discover the Ember Waste."`
+				`	"A group of scientists from the Deep has discovered the Ember Waste."`
+					goto discovered
+			
+			apply
+				set "remnant: admitted to helping deep"
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			choice
+				`	"I don't believe that they will be a threat to you."`
+					goto threat
+				`	"I'm sorry, but I helped them before coming to understand this."`
+			
+			`	Torza seems to relax slightly. "This is unfortunate. I can not get angry at you for that which you did not understand. But now that you do understand, seek to not make this same mistake in the future.`
+			`	"What do they know?"`
+				goto knowledge
+			
+			label terminus2
+			choice
+				`	"I helped a group of scientists who were researching the wormhole in Terminus."`
+				`	"I discovered that a group of scientists are researching the wormhole in Terminus."`
+			
+			`	"Do they know how to enter it?" Torza asks, not sounding concerned with this new information.`
+			`	"No," you say. "But they know, or at least think, that it is a wormhole, and are attempting to learn how to enter it."`
+			`	"Well, it is unlikely that they will ever learn. The only way to stabilize the wormholes is by using a Key Stone, but I have never heard of one being found in Ancestral space. Learning what these scientists know would still be helpful, though. Would you be able to get us a copy of their findings?"`
+			choice
+				`	"I'll try. The lead scientist told me where his office is."`
+					goto accept
+				`	"I'm sorry, but I don't believe I'll be able to."`
+			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. I do not expect anything to come of this for now, but should anything occur we can be more prepared than we otherwise would have been." Torza gets up from the bench and shows you out. "May the Embers burn bright for you."`
+				decline
+			
+			label accept
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. May the Embers burn bright for you."`
+				accept
+			
+			label "told before"
+			`	Since you last told the Remnant about Ivan's research on the wormhole in Terminus, you have helped him to discover the Ember Waste. The Remnant may be interested in being updated on Ivan's progress.`
+			choice
+				`	(Find a prefect to tell.)`
+				`	(Don't update the Remnant.)`
+					decline
+			
+			`	You approach a spaceport information desk and ask to see Prefect Torza, who you spoke to the last time you informed the Remnant about the Deep researching the wormhole. Luckily, Torza is on-world at the moment, and you are told to meet him in the cafeteria. When you arrive, you find that Torza has just finished a meal and was leaving.`
+			`	"Ah, Captain. I was told you were looking for me. We should find a private place to talk."`
+			`	You follow Torza to a similar armory as before. "Is there an update to the research on the Threshold that the Deep are doing?" he asks after sitting down.`
+			choice
+				`	"I've helped the scientists learn how to pass through the wormhole."`
+				`	"The scientists have discovered how to pass through the wormhole."`
+					goto discovered
+			
+			apply
+				set "remnant: admitted to helping deep"
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			choice
+				`	"I don't believe that they will be a threat to you."`
+					goto threat
+				`	"I'm sorry, but I helped them before coming to understand this."`
+			
+			apply
+				set "remnant: lied to torza: understanding"
+			`	"Liar!" Torza yells at you while standing up from the bench. "You told us of these scientists after we had already trusted you with a license." Torza walks away from you angrily, then turns his head.`
+			`	"What do they know?"`
+				goto knowledge
+			
+			label threat
+			`	"It is not a matter of them being a threat," Torza says angrily. "They may be peaceful, but who they tell or who may learn from them may not.`
+			`	"What do they know?"`
+				goto knowledge
+			
+			label discovered
+			`	Torza's eyes go wide. "What do they know?"`
+			
+			label knowledge
+			branch unknown
+				has "deep: did not reveal remnant"
+			
+			branch technology
+				has "Deep: Remnant: Engines: done"
+			
+			branch surveillance
+				has "Deep: Remnant Surveillance: done"
+			
+			choice
+				`	"They know where the Remnant are in the Ember Waste."`
+					goto location
+				`	"They have scans of a few Remnant ships."`
+					goto scans
+			
+			label technology
+			choice
+				`	"They know where the Remnant are in the Ember Waste."`
+					goto location
+				`	"They have scans of a few Remnant ships."`
+					goto scans
+				`	"They have samples of some Remnant technology."`
+					goto tech
+			
+			label surveillance
+			choice
+				`	"They know where the Remnant are in the Ember Waste."`
+					goto location
+				`	"They have scans of a few Remnant ships."`
+					goto scans
+				`	"They have samples of some Remnant technology."`
+					goto tech
+				`	"They are actively surveilling Remnant worlds."`
+					goto surveilled
+			
+			label unknown
+			choice
+				`	"They don't know about the Remnant, at least not yet."`
+				`	"They have only discovered the void sprites."`
+					goto sprites
+			
+			apply
+				set "remnant: told that deep knows nothing"
+			`	Torza seems to calm down greatly after hearing this. "This is most fortunate. We will need to work to ensure that this remains the case."`
+				goto end
+			
+			label sprites
+			apply
+				set "remnant: told that deep knows sprites"
+			`	Torza seems to calm down greatly after hearing this. "Then may they not anger the Archon with their curiosity, as we have."`
+				goto end
+			
+			label location
+			apply
+				set "remnant: told that deep knows location"
+			`	Torza pauses for a long while. "I assume it only makes sense that they would know of us after discovering the Ember Waste."`
+				goto end
+			
+			label scans
+			apply
+				set "remnant: told that deep has scans"
+			`	Torza pauses for a long while. "These scientists knowing of our whereabouts is much more of a concern than them having scans of our ships."`
+				goto end
+			
+			label tech
+			apply
+				set "remnant: told that deep has tech"
+			`	"And you were the one who brought it to them," Torza responds.`
+			branch reciprocal 
+				has "Remnant: Tech Retrieval: done"
+			
+			choice
+				`	"Yes, but what I do with your technology after buying it is none of your concern."`
+					goto concern
+				`	"No, they obtain it by other means."`
+					goto other
+			
+			label reciprocal
+			choice
+				`	"Yes, but it is no different than me bringing technology from the Republic to you."`
+				`	"No, they obtained it by other means."`
+					goto other
+			
+			`	Torza scowls in response to this, but doesn't say anything.`
+				goto end
+			
+			label concern
+			`	"What you do with our technology is much of a concern to us!" Torza yells.`
+				goto end
+			
+			label other
+			apply
+				set "remnant: lied to torza: technology"
+			`	Torza grits his teeth. "There are no reports of missing ships or outfits, and the only visitor capable of delivering our technology is you."`
+				goto end
+			
+			label surveilled
+			apply
+				set "remnant: told about surveillance"
+			`	"How are they doing this?" Torza asks.`
+			choice
+				`	"Surveillance devices have been placed in each of your spaceports."`
+				`	"I don't know. I only know that they are."`
+					goto secret
+			
+			apply
+				set "remnant: told about cubes"
+			`	Torza punches a wall in anger, then relaxes. "Thank you for telling us this. We will search for and remove these devices immediately."`
+				goto end
+			
+			label secret
+			`	"Whatever methods they are using, we will discover them in due time," Torza says.`
+			
+			label end
+			`	Torza begins tapping on a data pad. "We must act to rectify this situation," he says calmly.`
+			branch repeat
+				has "retreived before"
+			
+			`	"I presume that you know of the whereabouts of these scientists. Would you be able to get us a copy of their findings?"`
+			choice
+				`	"I'll try. The lead scientist told me where his office is."`
+					goto accepted
+				`	"I'm sorry, but I don't believe I'll be able to."`
+					goto decline
+			
+			label repeat
+			`	"You have brought us the information that these scientists had before. I ask that you do so again."`
+			choice
+				`	"I'll return with their information as quickly as I can."`
+					goto accepted
+				`	"I'm sorry, but I don't believe I'll be able to."`
+					goto decline
+			
+			label decline
+			branch revealed
+				has "deep: did reveal remnant"
+			
+			branch admitted
+				has "remnant: admitted to helping deep"
+			
+			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. We will be on high alert to see if these scientists make any moves deeper into the Ember Waste." Torza gets up from the bench and shows you out. "May the Embers burn bright for you."`
+				decline
+			
+			label admitted
+			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. We will be on high alert to see if these scientists make any moves deeper into the Ember Waste." Torza gets up from the bench and shows you out. "We may also be keeping a closer eye on you going forward to avoid another situation like this."`
+				decline
+			
+			label revealed
+			branch liar
+				or
+					has "remnant: lied to torza: technology"
+					has "remnant: lied to torza: understanding"
+			
+			`	"This is unfortunate," Torza responds. "Very unfortunate. We will be on high alert to see if these scientists make any moves. I at least commend you for giving what information you have to us." Torza gets up from the bench and shows you out without another word.`
+				decline
+			
+			label liar
+			apply
+				set "remnant: player is surveilled"
+			`	"Then perhaps the Remnant should reassess their trust placed in you," Torza responds. "We will be on high alert to see if these scientists make any moves. I at least commend you for giving what information you have to us, but know that you will be watched closely by us from now on." Torza gets up from the bench and shows you out without another word.`
+				decline
+			
+			label accepted
+			branch revealed2
+				has "deep: did reveal remnant"
+			
+			branch admitted2
+				has "remnant: admitted to helping deep"
+			
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. May the Embers burn bright for you."`
+				accept
+			
+			label admitted2
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. But know that we may be keeping a closer eye on you going forward to avoid another situation like this."`
+				accept
+			
+			label revealed2
+			branch liar2
+				or
+					has "remnant: lied to torza: technology"
+					has "remnant: lied to torza: understanding"
+			
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out without another word.`
+				accept
+			
+			label liar2
+			apply
+				set "remnant: player is surveilled"
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreed to bring us this information, but we can not allow another situation like this to occur."`
+				accept
+	
+	on stopover
+		"retrieved information" ++
+		conversation
+			branch "retrieved before"
+				"retrieved information" == 2
+			
+			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport, just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it's rather brutalistic.`
+			branch gone
+				has "Deep: Remnant Research: done"
+			
+			`	You ask a receptionist what Ivan's room number is, and he points you to a room on the tweentieth floor. After taking an elevator up, you knock on the door to Ivan's office.`
+			`	"Who is it?" Ivan says before peaking out the blinds. "Oh! Captain <last>! Please, come in."`
+			`	Ivan opens the door and lets you inside. The office is cramped, the walls almost entirely obscured by filing cabinets. Ivan walks over to a desk that he barely has space to get behind, picking up a collection of papers and shoving them into the nearest cabinet. "Sorry about the mess," he says nervously. "I didn't know you were coming. Is there something I can help you with?"`
+			choice
+				`	"I was wondering if you'd found out anything new about the anomaly in Terminus."`
+				`	"Do you think I could get a copy of your research on the anomaly in Terminus?"`
+					goto "terminus copy"
+			
+			`	"Oh, yes. We haven't been able to do too much with what funding we have left, but we have made one important discovery." Ivan turns to one of his filing cabinets and pulls out some sort of graphic that you would guess is depicting the anomaly, but you can't make any sense of it.`
+			`	"One of our ideas has been that the anomaly is some sort of unstable wormhole. Reports of its existence go back to at least the times of the first Alpha War, with rumors that ships have left for Terminus to never return, presumably having entered the anomaly somehow. Now I'm not one to go off of rumors, but they certainly have to come from somewhere, so the idea was at least worth investigating.`
+			`	"Going under the assumption that it is a wormhole that is simply too unstable to allow a ship to pass through, we wanted to see if we could get anything at all to pass through. What we've discovered is that given a small and smooth enough object, we can get it to disappear within the anomaly without a trace." He then pulls out a small metallic sphere about the size of a ping pong ball from one of the cabinets which he holds onto by a wire.`
+			`	"Now this is only a model, but we created a number of small sensors about this size and sent them through the anomaly. We'd hoped that we could take some readings from whatever is on the other side of the anomaly, as it clearly goes somewhere, but we only ever get static coming back through the wire, followed by nothing a few minutes later. And unfortunately, whatever we send in we can't seem to pull back. The wire always snaps.`
+			`	"So the anomaly is clearly a wormhole. Now we just need to figure out how to get whatever we send into it to come back, and how to get something the size of a ship to enter it."`
+			`	"Sounds like you're making good progress," you respond. "Do you think I could get a copy of your research so far?"`
+			
+			label "terminus copy"
+			`	"A copy?" Ivan looks off into space for a moment. "Well, I suppose since you helped us from losing valuable equipment, I could make an exception for you. I typically don't share findings with those not on my research team until they're finalized. I've been burned one too many times because of that."`
+			`	Ivan moves to another filing cabinet and pulls out a number of folders. "This will be for your eyes only. Promise you won't share this with anyone."`
+			choice
+				`	"I promise."`
+					goto digitize
+				`	"I'll try."`
+			`	"Funny," Ivan says with a blank expression.`
+			label digitize
+			`	"Let me just get these folders digitized for you, then I can hand you a data chip with everything on it. It'll only be a few minutes."`
+			apply
+				set "remnant: got deep anomaly research"
+			`	Ivan leaves the room with all the folders, and when he returns, he hands you a data chip before shoving all the folders back into the filing cabinet. "Well, anything else you need?"`
+			`	"No. That's all I was here for," you respond. "Good luck on the rest of your work."`
+			`	"Thank you," Ivan says. "We might be in touch in the future. I might need your help again for this project, hopefully during a less dire situation than last time."`
+				decline
+			
+			label "retrieved before"
+			`	You return to the office complex where Ivan's office is and ask the receptionist if Ivan is available, and he looks at you with confusion.`
+				goto moved
+			
+			label gone
+			`	You ask a receptionist what Ivan's room number is, and he looks at you with confusion.`
+			
+			label moved
+			`	"Ivan Haataja? He moved out weeks ago. Said something about 'moving up in this world' while dragging a pallet of filing cabinets out of the building. I can look up where he is now if you need me to."`
+			`	"I'd appreciate that," you say.`
+			`	The receptionist spends a few minutes tapping away at a keyboard. "Looks like he had his office moved to... the Deep Polytechnic Institute of Valhalla?" he says with a surprised look. "Damn, must have gotten someone's attention in the government to be moved there. Do you need directions?"`
+			`	You get directions from the receptionist and thank him for his time. Turns out this Institute is in the heart of the university district of the spaceport city. Several planets in the Deep, Paradise Worlds, and even many near Earth have a similar university district, but the one on Valhalla is the largest of its kind in the entire Republic.`
+			`	As you enter the district, you note that the architecture here is much more appealing than the brutalistic architecture of Ivan's old office building. The buildings consist of more curves than right angles with a textured metallic surface that scatters the sunlight to give the area a warm glow, as opposed to directing it right into your eyes if you happen to be standing in the wrong spot. Even among all the metallic buildings, there is still a good amount of greenery: well-trimmed bushes and trees line the streets, and many of the buildings are topped with gardens.`
+			`	You ascend the stairs of the Institute, the massive building looming over you as you approach. Its more ancient design makes the building stand out from the rest of the district, the entrance being guarded by massive marble pillars that manage to not clash with the metallic sheen of the rest of the buildings. The interior is similarly impressive, with a massive lobby area centered by an impressive water fountain.`
+			`	You approach one of the receptionist desks and ask to see Ivan Haataja. "It looks like he's available right now," she says. "We'll let him know you're coming and have someone here to escort you to Doctor Haataja's office shortly."`
+			`	You're escorted through what seems like endless hallways and stairwells, the entire building being as impressively decorated as the lobby, before finally coming to Ivan's office. You thank the escort for bringing you here (as you would have been lost for hours without him, surely why they have people just for escorting guests) and knock on Ivan's door.`
+			`	Ivan opens to door with a big smile on his face. "Captain <last>! So great to see you here. Please, have a seat." Ivan ushers you inside his office, an impressively large room with a window wall overseeing a beautiful courtyard. You sit down in a cushioned chair on the opposite side of a desk. You lean back into the chair and get comfortable. "I know the chairs are cozy," Ivan says. "Don't fall asleep on me though."`
+			branch second
+				"retrieved information" == 2
+			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work .`
+				goto reason
+			
+			label second
+			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from that dingy complex to here. I have you to thank for much of that work.`
+			
+			label reason
+			`	"So. What brings you here, Captain?" he asks.`
+			branch remnant
+				has "deep: did reveal remnant"
+			choice
+				`	"I was wondering what your research on the wormholes and alien creatures has brought up."`
+				`	"Could I get a copy of your research on the wormholes and alien creatures?"`
+					goto "sprites copy"
+			`	"Ah. Well, there's quite a bit to talk about." Ivan reclines his chair.`
+			`	"As far as the wormholes go, we're still trying to theorize how the wormholes in this region of space work. A wormhole in the classical sense is some aberration in the fabric of space that allows for instantaneous movement between two points. You can think of it like a tunnel, where you can go one way or the other. But how then does the loop of wormholes that you discovered work? Four different wormholes creating a loop where travel is unidirectional." Ivan turns his chair and glances out at the courtyard. "We aren't yet sure how they could be functioning like this. Anything we come up with seems to violate some law of physics that we're certain is true."`
+			`	Ivan turns back to you. "As for those alien creatures, they're similarly complexing. Humanity has found life on other worlds before, but it has always conformed to our ideas of what life is given our experience on Earth centuries ago. But these creatures are something else entirely. There are no terrestrial planets in the system you found them in suitable for life, so they must have evolved on the gas giants in the system. How life can even begin in such an environment, let alone evolve to be able to travel the vacuum of space, is a mystery to us.`
+			`	"By the way, do you want to take the honors of naming these creatures? My team has some ideas, but we're not particularly convinced by any of them, so I thought I'd ask you."`
+			choice
+				`	"How about 'void sprites'?"`
+					goto sprites
+				`	"How about 'Floaty McFloat Face'?"`
+					goto joke
+				`	"Sorry, I don't have any ideas."`
+			
+			`	"That's unfortunate," Ivan says. "I've been thinking of a name that references the void of space. I'll come up with something eventually."`
+				goto ask
+			
+			label joke
+			`	"In a joking mood, I see. We're not naming them 'Floaty McFloat Face,'" Ivan says with a blank expression. "I've been thinking of something in relation to the void of space. I'll come up with something eventually."`
+				goto ask
+			
+			label sprites
+			apply
+				set "deep: named void sprites"
+			`	"Void sprites," Ivan says slowly, as if letting the name sit on his tongue. "Void sprites... I like it."`
+			
+			label ask
+			`	"Do you think I could get a copy of your research?" you ask.`
+			label "sprites copy"
+			branch again
+				"retrieved information" == 2
+			
+			`	"A copy?" Ivan looks off into space for a moment. "Well, I suppose since you helped me so much, I could make an exception for you. I typically don't share findings with those not on my research team until they're finalized. I've been burned one too many times because of that."`
+			`	Ivan leans over to his desk. "This will be for your eyes only."`
+				goto next
+			
+			label again 
+			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
+			
+			label next
+			apply
+				set "remnant: got deep wormhole and sprite research"
+			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP', and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+				goto reencrypt
+			
+			label remnant
+			apply
+				"ivan's suspicion" = ( "retrieved information" / 2 * "deep: knew of stones before scientists" ) + "deep: knew of stones before scientists" + 2 * "Deep: Remnant: Engines: declined" + 2 * "Deep: Remnant: Engines: failed" + "Deep: Remnant Surveillance: declined" + "Deep: Remnant Surveillance: failed"
+			
+			branch technology
+				has "remnant: told that deep has technology"
+			
+			branch surveillance
+				has "remnant: told about surveillance"
+			
+			choice
+				`	"I was wondering what your research on those Remnant ship scans has brought up."`
+				`	"Could I get a copy of your research on those Remnant ship scans?"`
+					goto suspicion
+			branch cubes
+				has "Deep: Remnant Surveillance: done"
+			`	"Ah. Well, there's quite a bit to talk about." Ivan reclines his chair.`
+			`	"The ship scans look like nothing we've ever seen before. The ships seem to have a sort of... organic property to them. Here, let me show you." Ivan pulls up a schematic on his computer of the Remnant ships that you scanned. You're somewhat surprised that he could pull so much information from an outfit scan. "The ships look relatively normal for the most part, but their hulls have an almost organic structure to them." He zooms in on a section of the schematic that highlights the hull structure. "Now, when it comes to ships designed by, say, Betelgeuse, or even the Navy, the hull supports are arranged in triangular or square sections. But these ships have a pseudo-hexagonal design to them, completely non-uniform. It almost looks like the cell structure of some plants.`
+			`	"Aside from the strange hull structure, they also seem to have a considerable amount of equipment integrated directly into the ships themselves. Built-in scanners and ramscoops, for example. Stuff that didn't come up on the surface of the outfit scan but that we can tell is there. The smaller of the two ships you scanned also has some sort of built-in device that we can't make any sense of. It doesn't look like any sort of device that we've seen before, but it takes up a considerable portion of the ship's structure, so it must have some purpose. We'd need to get a closer look to figure out what it is."`
+			`	"Do you think I could get a copy of your research?" you ask.`
+				goto suspicion
+			
+			label technology
+			choice
+				`	"I was wondering what your research on Remnant technology has brought up."`
+				`	"Could I get a copy of your research on Remnant technology?"`
+					goto suspicion
+			branch cubes
+				has "Deep: Remnant Surveillance: done"
+			`	"Ah. Well, there's quite a bit to talk about." Ivan reclines his chair.`
+			`	Ivan pulls out a schematic showing the engines you brought. "The engines you brought us are very interesting. We already mentioned to you how they're rather powerful for their size, more so than even atomic engines of a similar size, while not producing very much heat at all. Their major downside though seems to be the immense amount of energy they draw. The energy drain is not surprising given that they seem to be improved ion engines, but the fact that ion engines could ever become more powerful for their size than atomic engines is something spectacular. The thrusters also seem to have the ability to provide reverse thrust, making any ship with them rather maneuverable."`
+			
+			branch skip
+				not "Deep: Remnant: Generators: done"
+			`	He pulls out a schematic showing the generator. "The generator on the other hand wasn't all too interesting. Little more than an improved generator of the type you might find down in the Rim. Somewhat interesting that it doesn't produce much energy when compared to something like a fusion reactor given the energy requirement of their engines, but I suppose this people are concerned more with keeping their ships running cool then having excess energy. The one interesting characteristic we discovered though is that the generator seemed to handle the effects of ionization, like something the Hai ion cannons apply, much better than normal. It seemed to be an intentional result of how the generator was designed."`
+			
+			branch skip
+				not "Deep: Remnant: Inhibitor Cannon: done"
+			`	He then pulls out a schematic showing the weapon. "And finally, the weapon you brought us. The Inhibitor Cannon is quite the technical marvel, having properties we've never seen before. Imagine a Particle Cannon, but half the size and with more range. Two Inhibitor Cannons would take up about the same amount of space as a single Particle Cannon, yet the Inhibitor Cannons would deal more damage. On top of that, the projectiles of the Inhibitor Cannons have the strange ability to slow down any ship they hit. Ships that we tested them on were unable to turn and accelerate at their normal rates."`
+			
+			label skip
+			`	"Do you think I could get a copy of your research?" you ask.`
+			
+			label suspicion
+			branch cubes
+				has "Deep: Remnant Surveillance: done"
+			branch again2
+				"retrieved information" == 2
+			
+			`	"A copy?" Ivan looks off into space for a moment. "Well, I suppose since you helped me so much, I could make an exception for you. I typically don't share findings with those not on my research team until they're finalized. I've been burned one too many times because of that."`
+			`	Ivan leans over to his desk. "This will be for your eyes only."`
+				goto branches
+			
+			label again2
+			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
+			
+			label branches
+			branch one
+				"ivan's suspicion" == 1
+			
+			branch two
+				"ivan's suspicion" == 2
+			
+			branch three
+				"ivan's suspicion" == 3
+			
+			branch four
+				"ivan's suspicion" == 4
+			
+			label one
+			apply
+				set "remnant: got deep research"
+			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP' and 'RTS-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+				goto reencrypt
+			
+			label two
+			apply
+				set "remnant: got deep research"
+			`	He hesistates for a moment before pressing a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP' and 'RTS-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you.`
+			`	"So, not handing this off to anyone, are we?" he asks you.`
+			choice
+				`	"Of course not."`
+					goto course
+				`	"No. Why do you ask?"`
+			`	"Just curious," he responds.`
+				goto reencrypt
+			label course
+			`	"Good," he responds.`
+				goto reencrypt
+			
+			label three
+			apply
+				set "remnant: got old deep research"
+			`	He hesistates for a moment, looks up at you, then presses a button on the desk while still looking into your eyes. "Abigail, could you please make a copy of the encrypted folders... 'TAI-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			`	"So, you said you knew of the Remnant before working with me, right?" he asks you.`
+			choice
+				`	"Yeah. Why do you ask?"`
+				`	"Not that I recall."`
+					goto recall
+			`	"Just curious. Do you care to tell me what your relationship with them is like?"`
+				goto relationship
+			label recall
+			`	"Well I seem to recall that being what you told me. Do you care to tell me what your relationship with them is like?"`
+			label relationship
+			choice
+				`	"I just do odd jobs for them. Nothing official."`
+				`	"I'd rather not disclose that."`
+			`	"Interesting," he says.`
+				goto reencrypt
+			
+			label four
+			apply
+				set "remnant: got no deep research"
+			`	He is about to press a button on his desk, then pulls away from it and turns his chair toward the courtyard. "Never mind. I can't give you a copy. That research is classified."`
+			choice
+				`	"Okay. I'll just head out then."`
+					goto leave
+				`	"But I helped you with it. I really can't see it?"`
+			
+			`	"No, you can't see it. Is there a problem with that?"`
+			choice
+				`	"Yes. I need that research."`
+				`	"No, there's no problem. I'll just see myself out."`
+					goto leave
+			
+			`	He turns his chair back to you and stands up. "Tough shit, <first>. I'm on to you. You asked for the research I had back before we had entered the wormhole in Terminus, and then you later told me that you'd already been through there and met these Remnant. Then when I asked you to help me learn more about them, you said no. I think you're covering for them in some way and giving them information on what I know. Why you're doing that, I don't know, but that's what my gut says, and I've learned to trust my gut on feelings like these. Now get out of my office.`
+			choice
+				`	"You've got me. I'll leave."`
+					goto out
+				`	"You have it all wrong, Ivan."`
+			`	"I said get out of my office. Or do I need to call security?" Ivan hovers his finger over the button on the desk.`
+			choice
+				`	"Okay, okay. I'll leave."`
+					goto out
+				`	"I think you do need to call security. I'm not leaving without that reserach."`
+			`	Ivan presses down on the button. "Security. I have a guest in my office who is no longer welcome."`
+			`	Not even thirty seconds later, a group of security guards enter the office. "<first> <last>, you're going to need to come with us," one of them says.`
+			choice
+				`	"Okay, okay. I'll leave."`
+					goto escorted
+				`	"I don't think so."`
+					goto resist
+			
+			label resist
+			`	"Well I think so," the security guard quips back, pulling a taser from his holster. The other security guards equip various equipment of their own, some of it looking lethal. "I'm going to give you one more chance to leave."`
+			choice
+				`	"Okay, okay. I'll leave."`
+					goto escorted
+				`	"Well you're going to need to make me leave."`
+			
+			`	Before you can even finish your sentence, you can already feel your muscles tensing up from the taser. You collapse, hitting your head on Ivan's desk as you go down. Before you lose consciousness from the impact, you hear Ivan yell, "Come on! Now I'm going to need to get a new desk."`
+			`	You eventually wake up in a cell with handcuffs on. You look around and see a security guard looking at you from outside of the cell. "Ah, you're finally awake." The guard opens the cell. "Doctor Haataja says he isn't going to be pressing charges. Right this way, please."`
+			`	The guard escorts you out of the cell, which was inside the security office of the Institute near the lobby. You get some puzzled looks from those in the lobby as you're escorted by the security guard in cuffs. After bringing you outside, the guard unlocks the cuffs. "Don't cause any more trouble, now," he says.`
+				decline
+			
+			label escorted
+			`	The security guards escort you out of Ivan's office, and then out of the building. Looks like the Remnant won't be getting what they were hoping for.`
+				decline
+				
+			label out
+			`	You back out of Ivan's office with him looking at you the entire time. Looks like the Remnant won't be getting what they were hoping for.`
+				decline
+			
+			label leave
+			`	Ivan smiles, but it looks forced. "Come back any time you want. You're free to roam the Institute whenver you desire. Most of the building is closed to the public, but I can always mark you as my guest whenever you're interested in looking around."`
+				decline
+			
+			label cubes
+			`	Ivan laughs as he reclines his chair. "Screw that. You should see what I've been able to recover from those sensor cubes you placed.`
+				goto ramble
+			
+			label surveillance
+			choice
+				`	"I was wondering what came of those sensor cubes I placed."`
+				`	"Could I get a copy of what you've found from those sensor cubes?"`
+					goto "surveillance copy"
+			`	Ivan laughs as he reclines his chair. "Oh, it's absolutely fascinating what I've been able to find.`
+			label ramble
+			`	"With a cube in each of the Remnant systems, I was able to track all their fleet movements, and I've discovered some interesting things. For one, ships either make trips between the three systems, or they leave the cluster entirely for significant amounts of time, often at least a month at a time. There weren't very many ships or fleets that took short trips out of the cluster, say only one or two weeks in length. Seems like they're sending people on rather lengthy missions.`
+			`	"Aside from fleet movements, the number of ships was of note. The cubes track the number of unique ships seen, and they rarely tracked the same ship more than a handful of times. The Remnant seem to have an incredible number of ships, more than perhaps Deep Security and the Navy combined. Certainly impressive for a group consisting of only three star systems. The cubes are also able to make low quality scans of any ships in the system. While those individual scans are less than what an outfit scan provides, given enough scans you're able to get a clearer picture. These ship scan results were... interesting, though. There seemed to be very few ships like the ones you scanned. Perhaps those were their most advanced ships, but the rest of what I was able to see didn't seem more powerful than your average merchant ship."`
+			`	"I actually lost connection to the cubes a few weeks ago now, but I'd gathered enough information already."`
+			`	"Do you think I could get a copy of your research?" you ask.`
+			label "surveillance copy"
+			`	"A copy? Of course! Of course! You're the reason I have any of this information in the first place, so you have every right to it." Ivan presses a button on his desk. "Abigail, could you please make a copy of everything on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			apply
+				set "remnant: got all deep research"
+				
+			label reencrypt
+			`	Only a few minutes later there is a knock at the door. Ivan retrieves the data chip from the person who brought it, then plugs it into a computer on his desk. "Let me reencrypt these then leave the new key in the chip for you. Leaving the key right next to the lock isn't exactly the most secure thing to do, but I take it you'll be smart enough to remedy that whenever you use this. Aaaand... done." He pulls the chip from his computer and hands it to you.`
+			`	"Anything else?" he asks.`
+			`	"No. That's all I was here for," you respond. "Good luck on the rest of your work."`
+			`	"Thank you," Ivan says. "Come back any time you want. You're free to roam the Institute whenever you desire. Most of the building is closed to the public, but I can always mark you as my guest whenever you're interested in looking around."`
+				decline
+			
+	on complete
+		payment 1000000
+		conversation
+			`	When you return to <origin>, you approach the information desk that Torza told you to go to. You tell the person at the desk that you're here to meet Torza. They have you wait on a bench nearby, and Torza arrives some time later. "Hello, Captain. I take it you have a copy of the findings."`
+			
+			branch terminus
+				"retrieved information" == 1
+				has "remnant: got deep anomaly research"
+			
+			branch sprites
+				has "remnant: got deep wormhole and sprite research"
+			
+			branch everything
+				has "remnant: got all deep research"
+			
+			branch research
+				has "remnant: got deep research"
+			
+			branch old
+				"retrieved information" == 1
+				has "remnant: got old research"
+			
+			branch repeat
+				"retrieved information" == 2
+				has "remnant: got old research"
+			
+			branch nothing
+				has "remnant: got no deep research"
+			
+			label terminus
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "Interesting research they have done," he says. "So they understand that it is a wormhole, but still have no means of passing through to the other side." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information. For the time being we have little to fear, but I ask that you inform us if they make any further progress. May the Embers burn bright for you."`
+				decline
+			
+			label sprites
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "They seem to have taking a liking to the void sprites," he says. "This is good that they are distracted. It is human nature to be curious, and they will be kept curious by the void sprites for a while. This buys us time." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
+				decline
+			
+			label everything
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "Impressive that you've brought us so much," he says. "This appears to be absolutely everything they know about us. While not ideal, at the very least we now know what they know and can use that to our advantage." Torza removes the data chip from the terminal and pockets it. He then pulls out what you recognize as the sensor cubes you placed on the Remnant worlds and puts them on the table. "We disabled these some time ago, but not before feeding them some junk data. And judging by this information, it worked. We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
+				decline
+			
+			label research
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "So, they know of some, but not all, of our technological capabilities," he says. "We can use this fog of war to our advantage, should we need to." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
+				decline
+			
+			label old
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly with a puzzled look on his face. "There is nothing here like what you mentioned that the Deep knows. Are you sure you received the correct information?"`
+				goto tricked
+			
+			label repeat
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly with a puzzled look on his face. "This is the same information as what you brought us last time. Are you sure you received the correct information?"`
+			
+			label tricked
+			`	Torza turns the terminal to face you. You read through it and see that all the data is on the wormhole in Terminus, but it says that they are still looking for a way to pass through it. "This isn't what I asked for," you say. "He must have purposefully given me the wrong information."`
+			`	"Then he understands why you asked for it," he responds as he turns the terminal back and pockets the data chip.`
+				goto disappointing
+			
+			label nothing
+			`	"No," you respond. "The lead scientist guessed correctly that I was asking for his research to give to you."`
+			
+			label disappointing
+			`	Torza scratches his chin. "This is... disappointing. You've helped to place us in a scenario where a potential adversary knows much about us, but we know little about them." Torza stares at you, but doesn't appear to be angry. "Perhaps espionage is in order. But given your connections to the Deep, we will pursue such actions on our own. Should something arise in the future where we need you, we'll contact you. Until then, do not compromise our position any further. We won't take it so lightly a second time."`
 				decline
 
 
@@ -1430,7 +2109,7 @@ mission "Remnant: Return the Samples"
 			`	"Just remember: you will need to use a Puffin to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
-		government " Drak "
+		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
@@ -1526,6 +2205,43 @@ event "remnant: wait for plume"
 
 
 
+conversation "taely cultural data"
+	branch return
+		has "Remnant: Salvage 1B: done"
+	`As you step out into the icy chill of Viminal, you get a message from Taely, the engineering prefect, asking if you could meet her in the cafeteria.`
+	choice
+		`	(Accept her invitation.)`
+		`	(Not right now.)`
+			defer
+	`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
+	`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
+	`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
+	choice
+		`	"Yes. What can I do to help?"`
+		`	"Sorry, not interested."`
+			decline
+	branch data
+		has "human cultural data"
+	`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
+		accept
+	label data
+	`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, Captain <last>. I suppose that makes things rather straight forward."`
+	`	"I actually already have a copy of the library's data in my ship," you respond.`
+	`	"Oh, that's even better," Taely trills. "Go ahead and get it."`
+	`	You return to your ship to get the data chip, but when you glance out the cockpit you notice that the spaceport is more animated than usual. Remnant look to be running to their ships as fast as they can when you notice that Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+		goto launch
+	
+	label return
+	`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
+	`	Before you have even taken the time to shut down the engines Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+	
+	label launch
+	`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
+	`	After some tense minutes of waiting, the planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
+		launch
+
+
+
 mission "Remnant: Salvage 1"
 	name "Remnant History Updates"
 	description `The Remnant are interested in learning about what has happened in human space since they left. Find a copy of human history on <destination>.`
@@ -1533,6 +2249,7 @@ mission "Remnant: Salvage 1"
 	source "Viminal"
 	destination "Alexandria"
 	to offer
+		not "human cultural data"
 		has "Remnant: Learn Sign Follow Up: offered"
 		random < 50
 		or
@@ -1541,31 +2258,13 @@ mission "Remnant: Salvage 1"
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		conversation
-			`As you step out into the icy chill of Viminal, you get a message from Taely, the engineering prefect, asking if you could meet her in the cafeteria.`
-			choice
-				`	(Not right now.)`
-					defer
-				`	(Accept her invitation.)`
-			`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
-			`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
-			`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
-			choice
-				`	"Yes. What can I do to help?"`
-				`	"Sorry, not interested."`
-					decline
-			branch library
-				has "Human Cultural Archives: done"
-			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
-				accept
-			label library
-			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, Captain <last>. I suppose that makes things rather straight forward."`
-				accept
+		conversation "taely cultural data"
 	on visit
 		dialog
 			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
 			`	Go earn some money, then return here.`
 	on complete
+		set "human cultural data"
 		payment -40
 
 
@@ -1591,14 +2290,19 @@ mission "Remnant: Salvage 2"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	source "Viminal"
 	to offer
-		has "Remnant: Salvage 1B: done"
+		or
+			has "Remnant: Salvage 1B: done"
+			and
+				has "human cultural data"
+				has "Remnant: Learn Sign Follow Up: offered"
+				random < 50
+				or
+					has "Remnant: Catalytic Ramscoop: done"
+					has "Remnant: Plasma Cannon: done"
+					has "Remnant: Heavy Laser: done"
+					has "Remnant: Tech Retrieval: done"
 	on offer
-		conversation
-			`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
-			`	Before you have even taken the time to shut down the engines Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
-			`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
-			`	After some tense minutes of waiting, the planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
-				launch
+		conversation "taely cultural data"
 	npc
 		government "Remnant"
 		personality staying uninterested disables plunders
@@ -2348,9 +3052,9 @@ mission "Remnant: Face to Maw 2B"
 
 
 
-mission "Remnant: Crystal Research 1"
-	name "Retrieve more crystals"
-	description `Retrieve crystals from the Hai for the Remnant to study, starting in <destination>.`
+mission "Remnant: Keystone Research 1"
+	name "Retrieve more keystones"
+	description `Retrieve quantum keystones from the Hai for the Remnant to study, starting in <destination>.`
 	minor
 	source "Viminal"
 	destination "Greenwater"
@@ -2369,7 +3073,7 @@ mission "Remnant: Crystal Research 1"
 				`	"That last job payed rather well. Do you have any more like it?"`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved," he gestures appreciatively. "I am told that we have you to thank for some of that.`
-			`	"Those crystals you brought back have been quite interesting. The process of dismantling them for analysis yielded some intriguing results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
+			`	"Those 'quantum keystones' you brought back have been quite interesting. The process of dismantling them for analysis yielded some intriguing results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
 			choice
 				`	(Nod affirmatively.)`
 					goto notforsale
@@ -2386,10 +3090,10 @@ mission "Remnant: Crystal Research 1"
 					goto notforsale
 				`	"No, I suspected they would be studied instead."`
 			label notreally
-			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the quantum key stone does without being identical to it is clearly much more valuable as a subject of research than as a miscellaneous commodity. Add the security implications of slapping an alien device on a ship without thoroughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfitting inventory."`
+			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the Quantum Key Stone does without being identical to it is clearly much more valuable as a subject of research than as a miscellaneous commodity. Add the security implications of slapping an alien device on a ship without thoroughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfitting inventory."`
 				goto clarification
 			label notforsale
-			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: something that does what the quantum key stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
+			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
 			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, I ensure that Remnant captains have the resources they need. What you see listed as the 'price,' Remnant captains see listed instead as a 'logistics adjustment' that indicates the amount of resources needed to supply that component. Every ship has a resource budget allocated to it, determining how much it can utilize for repairs, restocking, and improvements."`
 			label clarification
 			choice
@@ -2407,7 +3111,7 @@ mission "Remnant: Crystal Research 1"
 					decline
 			label crystaldecision
 			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
-			`	"That being said, if you happen to pick up any additional crystals, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
+			`	"That being said, if you happen to pick up any additional keystones, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
 				`	"Sounds good."`
@@ -2431,9 +3135,9 @@ mission "Remnant: Crystal Research 1"
 			`	"I am glad that some are willling to act for what is right, necessary or even just curiosity; and not just what they are paid for. It gives me hope for ancestral humanity." His look brightens a bit. "So, are you interested in another job to help us?"`
 			label greedchoice
 			choice
-				`	"Yes"`
+				`	"Yes."`
 					goto crystaldecision
-				`	"No"`
+				`	"No."`
 					decline
 			label greedconfirmation
 			`	Aeolus nods sadly. "We appreciate the confirmation, and hope to learn more about those who remained in ancestral lands. It is depressing, however, to think that humanity is so self-centered to put financial wealth as such a high priority. Nonetheless, we do have another job for you. Are you interested?"`
@@ -2447,23 +3151,23 @@ mission "Remnant: Crystal Research 1"
 
 
 
-mission "Remnant: Crystal Research 2"
-	name "Retrieve more crystals"
-	description `Retrieve crystals from the Hai for the Remnant to study, next from <destination>`
+mission "Remnant: Keystone Research 2"
+	name "Retrieve more keystones"
+	description `Retrieve quantum keystones from the Hai for the Remnant to study, next from <destination>`
 	landing
 	source "Greenwater"
 	destination "Allhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 1: done"
+		has "Remnant: Keystone Research 1: done"
 	on complete
 		payment 250000
 
 
 
-mission "Remnant: Crystal Research 3"
-	name "Retrieve more crystals"
-	description `Retrieve crystals from several Hai worlds, ending on Newhome.`
+mission "Remnant: Keystone Research 3"
+	name "Retrieve more keystones"
+	description `Retrieve quantum keystones from several Hai worlds, ending on Newhome.`
 	landing
 	source "Allhome"
 	destination "Newhome"
@@ -2476,7 +3180,7 @@ mission "Remnant: Crystal Research 3"
 	stopover "Heartvalley"
 	cargo "Keystones" 4
 	to offer
-		has "Remnant: Crystal Research 2: done"
+		has "Remnant: Keystone Research 2: done"
 	on offer
 		conversation
 			`True to Aeolus' word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message has arrived. It has no indication of provenance, but appears to be a notification that a payment of 250,000 credits marked 'on-assignment allowance' has been made to your account.`
@@ -2484,7 +3188,7 @@ mission "Remnant: Crystal Research 3"
 				accept
 	on stopover
 		dialog
-			`You quickly locate and load the shipment of crystals. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
+			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 	on complete
 		payment 250000
 		dialog
@@ -2492,7 +3196,7 @@ mission "Remnant: Crystal Research 3"
 
 
 
-mission "Remnant: Crystal Research 3A"
+mission "Remnant: Keystone Research 3A"
 	invisible
 	landing
 	source
@@ -2500,7 +3204,7 @@ mission "Remnant: Crystal Research 3A"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3: active"
+		has "Remnant: Keystone Research 3: active"
 	on offer
 		conversation
 			`Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
@@ -2508,7 +3212,7 @@ mission "Remnant: Crystal Research 3A"
 
 
 
-mission "Remnant: Crystal Research 3B"
+mission "Remnant: Keystone Research 3B"
 	invisible
 	landing
 	source
@@ -2516,11 +3220,11 @@ mission "Remnant: Crystal Research 3B"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3A: active"
+		has "Remnant: Keystone Research 3A: active"
 
 
 
-mission "Remnant: Crystal Research 3C"
+mission "Remnant: Keystone Research 3C"
 	invisible
 	landing
 	source
@@ -2528,11 +3232,11 @@ mission "Remnant: Crystal Research 3C"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3B: active"
+		has "Remnant: Keystone Research 3B: active"
 
 
 
-mission "Remnant: Crystal Research 3D"
+mission "Remnant: Keystone Research 3D"
 	invisible
 	landing
 	source
@@ -2540,11 +3244,11 @@ mission "Remnant: Crystal Research 3D"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3C: active"
+		has "Remnant: Keystone Research 3C: active"
 
 
 
-mission "Remnant: Crystal Research 3E"
+mission "Remnant: Keystone Research 3E"
 	invisible
 	landing
 	source
@@ -2552,11 +3256,11 @@ mission "Remnant: Crystal Research 3E"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3D: active"
+		has "Remnant: Keystone Research 3D: active"
 
 
 
-mission "Remnant: Crystal Research 3F"
+mission "Remnant: Keystone Research 3F"
 	invisible
 	landing
 	source
@@ -2564,11 +3268,11 @@ mission "Remnant: Crystal Research 3F"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3E: active"
+		has "Remnant: Keystone Research 3E: active"
 
 
 
-mission "Remnant: Crystal Research 3G"
+mission "Remnant: Keystone Research 3G"
 	invisible
 	landing
 	source
@@ -2576,20 +3280,20 @@ mission "Remnant: Crystal Research 3G"
 	destination "Newhome"
 	cargo "Keystones" 2
 	to offer
-		has "Remnant: Crystal Research 3F: active"
+		has "Remnant: Keystone Research 3F: active"
 
 
 
-mission "Remnant: Crystal Research 4"
-	name "Retrieve more crystals"
-	description `Return the crystals to Viminal.`
+mission "Remnant: Keystone Research 4"
+	name "Retrieve more keystones"
+	description `Return the quantum keystones to Viminal.`
 	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
 	landing
 	source "Newhome"
 	destination "Viminal"
 	cargo "Keystones" 19
 	to offer
-		has "Remnant: Crystal Research 3: done"
+		has "Remnant: Keystone Research 3: done"
 	on accept
 		dialog
 			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 keystones. While there are no new instructions, the subtext is clear: Time to head back.`
@@ -2620,7 +3324,7 @@ ship "Starling" "Starling (Keystone)"
 
 
 
-mission "Remnant: Crystal Research 5"
+mission "Remnant: Keystone Research 5"
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the keystone post-wormhole.`
 	landing
@@ -2628,7 +3332,7 @@ mission "Remnant: Crystal Research 5"
 	source "Viminal"
 	destination "Viminal"
 	to offer
-		has "Remnant: Crystal Research 4: done"
+		has "Remnant: Keystone Research 4: done"
 	on offer
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
@@ -2640,9 +3344,9 @@ mission "Remnant: Crystal Research 5"
 			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me." Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
 				goto work
 			label capitalists
-			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these crystals could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
+			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these keystones could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
 			label work
-			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular keystone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the quantum keystone built with Hai crystals for one made from our crystals. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
+			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular Key Stone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the Hai keystone with one of our Key Stones. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
 				`	"Wait, you are a pilot?"`
 				`	"Okay."`
@@ -2663,9 +3367,9 @@ mission "Remnant: Crystal Research 5"
 
 
 
-mission "Remnant: Crystal Research 6"
+mission "Remnant: Keystone Research 6"
 	name "Scan the <npc>"
-	description `Go scan the <npc> in <waypoints> to record the key stone post-wormhole.`
+	description `Go scan the <npc> in <waypoints> to record the Key Stone post-wormhole.`
 	landing
 	waypoint "Peragenor"
 	source "Viminal"
@@ -2678,10 +3382,10 @@ mission "Remnant: Crystal Research 6"
 		dialog
 			`The scanner chimes softly once again, informing you that it has completed scanning the Winds of Light and has successfully archived the data from this second scanning.`
 	to offer
-		has "Remnant: Crystal Research 5: done"
+		has "Remnant: Keystone Research 5: done"
 	on offer
 		conversation
-			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a key stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement key stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
+			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
 			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
 				launch
 	on visit
@@ -2689,14 +3393,14 @@ mission "Remnant: Crystal Research 6"
 	on complete
 		payment 150000
 		conversation
-			`While in transit, you took the opportunity to examine the preliminary results of the scans: there are a few differences between the two crystals, but both appear to have functioned similarly. Upon landing on Viminal, Aeolus comes over to collect a copy of the data for the researchers.`
+			`While in transit, you took the opportunity to examine the preliminary results of the scans: there are a few differences between the two stones, but both appear to have functioned similarly. Upon landing on Viminal, Aeolus comes over to collect a copy of the data for the researchers.`
 			`	"Thanks for your help, Captain <first>. This information may be valuable in understanding how the wormholes work." He pauses, then continues thoughtfully. "Perhaps more importantly, it may help us understand how the wormholes of the Ember Waste are different from the wormholes elsewhere that require no such aid."`
 			`	He looks down at the data crystal. "I have one more task to ask of you. Meet me in the cafeteria in an hour to discuss it. May the Embers burn bright for you, Captain." He gives a wave that seems vaguely like a salute and heads off.`
 			`	As he disappears from sight you hear a faint chime from your commlink, which displays a message indicating that two payments of <payment> have been allocated to your account. You recall that you didn't get a message after the last mission, so whichever Remnant person or agency is sending you these payments must have combined them. You do find it odd, however, that they always seem to know exactly when you finish a delivery.`
 
 
 
-mission "Remnant: Crystal Research 7"
+mission "Remnant: Keystone Research 7"
 	name "Deliver Data to <planet>"
 	description `A copy of the scanner data needs to be delivered to the researchers on <destination>.`
 	source "Viminal"
@@ -2704,7 +3408,7 @@ mission "Remnant: Crystal Research 7"
 		government "Remnant"
 		not planet "Viminal"
 	to offer
-		has "Remnant: Crystal Research 6: done"
+		has "Remnant: Keystone Research 6: done"
 	on offer
 		conversation
 			`You walk into the cafeteria and spot Aeolus halfway through an impressively large meal. He waves you over, and by the time you are seated a tray with a significantly smaller meal is waiting for you. While you have become accustomed to a few of the dishes, most of them are still very unappetizing.`
@@ -2746,7 +3450,7 @@ mission "Remnant: Crystal Research 7"
 			label creepy
 			`	"Creepy? I do not understand how something so useful and beneficial could be 'creepy,' but I suppose some might equate our symbionts with leeches. To each their own, I suppose." He shrugs, then continues. "But enough. We still have work to do."`
 			label deliverdata
-			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to some researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these crystals and the wormholes. Will you do it?"`
+			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to some researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these stones and the wormholes. Will you do it?"`
 			choice
 				`	"Okay."`
 					accept
@@ -2848,7 +3552,7 @@ mission "Remnant: Cognizance 2"
 					goto acceptance
 				`	"I thought prefects were specialists."`
 			`	"Well, they are and are not. Most prefects are assigned particular tasks that they are expected to devote themselves to. Often, this task relates to their area of expertise, but it is not always the case. Generally speaking, a prefect is considered to be the ultimate authority on tasks that they have been assigned to, but they are expected to take into account the suggestions from other prefects and the specialists in the fields relevant to the task.`
-			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia, coordinates the military defense of the Remnant, and Prefect Taely, who integrates our latest innovations into usable ships."`
+			`	"Given your own skills, I suspect that the prefects you are most likely to interact with would be Prefect Chilia, who coordinates the military defense of the Remnant, and Prefect Taely, who integrates our latest innovations into usable ships."`
 			choice
 				`	"Thanks! That was more detail than I was expecting."`
 				`	"Okay, that satisfied my curiosity for now."`
@@ -3409,7 +4113,7 @@ mission "Remnant: Cognizance 18"
 			label goodidea
 			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs. "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect to them to talk to you. That is, if they do not simply start shooting, anyway."`
 			label letsgo
-			`	Chilia continues. "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, load up, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of Pelicans are warming up, each one synchronizing to your IFF and confirming their status."`
+			`	Chilia continues. "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, load up, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of Pelicans are warming up, each one synchronizing to your IFF and confirming their status.`
 				accept
 	npc save accompany
 		government "Remnant"
@@ -3549,7 +4253,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"I did. The senior researcher told me that most of the team feels something is not quite right here. They say there are some potential theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
 			label quantumcondensate
-			`	"It is basically a project examining the density of Bose–Einstein condensates as correlated to the revised relativity paradigm's conceptualization of the fabric of space-time. It has a lot of potential implications, particularly for ramscoop, scanner, and weapons technology. At least, that is the hope. For now, though, I am trying to figure out what is off about this data."`
+			`	"It is basically a project examining the density of Bose-Einstein condensates as correlated to the revised relativity paradigm's conceptualization of the fabric of space-time. It has a lot of potential implications, particularly for ramscoop, scanner, and weapons technology. At least, that is the hope. For now, though, I am trying to figure out what is off about this data."`
 			choice
 				`	"Have you asked someone with more experience for advice?"`
 				`	"Don't worry about it."`

@@ -12,14 +12,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "OutfitterPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "DistanceMap.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
+#include "text/layout.hpp"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -29,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -292,9 +296,9 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 	
 	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(
-		center.X() - font.Width(selectedItem) / 2, center.Y());
-	font.Draw(selectedItem, selectedPoint, bright);
+	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
+	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+		selectedPoint, bright);
 	
 	return heightOffset;
 }
@@ -365,8 +369,8 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			{
 				DistanceMap distance(player.GetSystem(), mapSize);
 				for(const System *system : distance.Systems())
-					if(!player.HasVisited(system))
-						player.Visit(system);
+					if(!player.HasVisited(*system))
+						player.Visit(*system);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(-price);
 			}
@@ -761,7 +765,7 @@ void OutfitterPanel::DrawKey()
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 	
-	Font font = FontSet::Get(14);
+	const Font &font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 	
@@ -854,8 +858,9 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	// Draw the outfit name.
 	const string &name = outfit.Name();
 	const Font &font = FontSet::Get(14);
-	Point offset(-.5f * font.Width(name), -.5f * OUTFIT_SIZE + 10.f);
-	font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
+	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
+	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
+		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
 }
 
 
@@ -864,7 +869,7 @@ bool OutfitterPanel::HasMapped(int mapSize) const
 {
 	DistanceMap distance(player.GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
-		if(!player.HasVisited(system))
+		if(!player.HasVisited(*system))
 			return false;
 	
 	return true;
