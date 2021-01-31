@@ -95,8 +95,10 @@ public:
 	void Link(System *other);
 	void Unlink(System *other);
 	
+	bool IsValid() const;
 	// Get this system's name and position (in the star map).
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
@@ -114,7 +116,9 @@ public:
 	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
 	// Additional travel distance to target for ships entering through hyperspace.
-	double ExtraArrivalDistance() const;
+	double ExtraHyperArrivalDistance() const;
+	// Additional travel distance to target for ships entering using a jumpdrive.
+	double ExtraJumpArrivalDistance() const;
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
 	const std::set<const System *> &VisibleNeighbors() const;
@@ -188,6 +192,8 @@ private:
 	
 	
 private:
+	bool isDefined = false;
+	bool hasPosition = false;
 	// Name and position (within the star map) of this system.
 	std::string name;
 	Point position;
@@ -213,10 +219,16 @@ private:
 	double solarPower = 0.;
 	double solarWind = 0.;
 	
-	// The amount of additional distance that ships will arrive away from their
-	// target (system center or planet) when entering this system through a
-	// hyperspace link.
-	double extraArrivalDistance = 0.;
+	// The amount of additional distance that ships will arrive away from the
+	// system center when entering this system through a hyperspace link.
+	// Negative values are allowed, causing ships to jump beyond their target.
+	double extraHyperArrivalDistance = 0.;
+	// The amount of additional distance that ships will arrive away from the
+	// system center when entering this system through a jumpdrive jump.
+	// Jump drives use a circle around the target for targeting, so a value below
+	// 0 doesn't have the same meaning as for hyperdrives. Negative values will
+	// be interpreted as positive values.
+	double extraJumpArrivalDistance = 0.;
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;

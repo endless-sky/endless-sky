@@ -114,7 +114,7 @@ const float MapPanel::LINK_OFFSET = 7.f;
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	: player(player), distance(player),
-	playerSystem(player.GetSystem()),
+	playerSystem(*player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
 	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
@@ -139,13 +139,12 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	
 	// Find out how far the player is able to jump. The range of the system
 	// takes priority over the range of the player's flagship.
-	double systemRange = playerSystem ? playerSystem->JumpRange() : 0.;
+	double systemRange = playerSystem.JumpRange();
 	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 	
-	if(selectedSystem)
-		CenterOnSystem(selectedSystem, true);
+	CenterOnSystem(selectedSystem, true);
 }
 
 
@@ -176,16 +175,16 @@ void MapPanel::Draw()
 	
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1f, 0.f);
-	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+	RingShader::Draw(Zoom() * (playerSystem.Position() + center),
 		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
 	// Draw the jump range circle around your current location if it is different than the
 	// visible range.
 	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
-		RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
 			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
 	
 	Color brightColor(.4f, 0.f);
-	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
+	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
 		11.f, 9.f, brightColor);
 	
 	// Advance a "blink" timer.
@@ -202,13 +201,13 @@ void MapPanel::Draw()
 	DrawMissions();
 	DrawTooltips();
 	
-	if(!distance.HasRoute(selectedSystem))
+	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
 	{
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
 		const Font &font = FontSet::Get(18);
 		
-		const string &message = player.HasVisited(selectedSystem) ? UNAVAILABLE : UNKNOWN;
+		const string &message = player.HasVisited(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
 		Point point(-font.Width(message) / 2, Screen::Top() + 40);
 		font.Draw(message, point + Point(1, 1), black);
 		font.Draw(message, point, red);
@@ -254,26 +253,26 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	for(int i = 0; i < 2; ++i)
 	{
 		static const string UNKNOWN_SYSTEM = "Unexplored System";
-		const System *system = jump[i];
-		const Government *gov = system->GetGovernment();
-		Point from = system->Position() - center + drawPos;
-		const string &name = player.KnowsName(system) ? system->Name() : UNKNOWN_SYSTEM;
+		const System &system = *jump[i];
+		const Government *gov = system.GetGovernment();
+		Point from = system.Position() - center + drawPos;
+		const string &name = player.KnowsName(system) ? system.Name() : UNKNOWN_SYSTEM;
 		font.Draw(name, from + Point(OUTER, -.5 * font.Height()), lineColor);
 		
 		// Draw the origin and destination systems, since they
 		// might not be linked via hyperspace.
 		Color color = Color(.5f * alpha, 0.f);
-		if(player.HasVisited(system) && system->IsInhabited(flagship) && gov)
+		if(player.HasVisited(system) && system.IsInhabited(flagship) && gov)
 			color = Color(
 				alpha * gov->GetColor().Get()[0],
 				alpha * gov->GetColor().Get()[1],
 				alpha * gov->GetColor().Get()[2], 0.f);
 		RingShader::Draw(from, OUTER, INNER, color);
 		
-		for(const System *link : system->Links())
+		for(const System *link : system.Links())
 		{
 			// Only draw systems known to be attached to the jump systems.
-			if(!player.HasVisited(system) && !player.HasVisited(link))
+			if(!player.HasVisited(system) && !player.HasVisited(*link))
 				continue;
 			
 			// Draw the system link. This will double-draw the jump
@@ -288,7 +287,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			
 			gov = link->GetGovernment();
 			Color color = Color(.5f * alpha, 0.f);
-			if(player.HasVisited(link) && link->IsInhabited(flagship) && gov)
+			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
 				color = Color(
 					alpha * gov->GetColor().Get()[0],
 					alpha * gov->GetColor().Get()[1],
@@ -302,7 +301,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			if(!mission.IsVisible())
 				continue;
 			
-			if(mission.Destination()->IsInSystem(system))
+			if(mission.Destination()->IsInSystem(&system))
 			{
 				bool blink = false;
 				if(mission.Deadline())
@@ -319,10 +318,10 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			}
 			
 			for(const System *waypoint : mission.Waypoints())
-				if(waypoint == system)
+				if(waypoint == &system)
 					DrawPointer(from, angle, waypointColor, false);
 			for(const Planet *stopover : mission.Stopovers())
-				if(stopover->IsInSystem(system))
+				if(stopover->IsInSystem(&system))
 					DrawPointer(from, angle, waypointColor, false);
 		}
 	}
@@ -391,9 +390,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:"));
 		return true;
 	}
-	else if(key == '+' || key == '=')
+	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
-	else if(key == '-')
+	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	else
 		return false;
@@ -408,8 +407,8 @@ bool MapPanel::Click(int x, int y, int clicks)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
+		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
+				&& (player.HasSeen(it.second) || &it.second == specialSystem))
 		{
 			Select(&it.second);
 			break;
@@ -446,7 +445,7 @@ bool MapPanel::Hover(int x, int y)
 	{
 		const System *system = squad.first;
 		if(pos.Distance(system->Position()) < maxDistance
-				&& (player.HasSeen(system) || system == specialSystem))
+				&& (player.HasSeen(*system) || system == specialSystem))
 		{
 			// Start tracking this system.
 			hoverSystem = system;
@@ -580,7 +579,7 @@ void MapPanel::Select(const System *system)
 		return;
 	
 	bool isJumping = flagship->IsEnteringHyperspace();
-	const System *source = isJumping ? flagship->GetTargetSystem() : playerSystem;
+	const System *source = isJumping ? flagship->GetTargetSystem() : &playerSystem;
 	
 	auto mod = SDL_GetModState();
 	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
@@ -631,7 +630,7 @@ void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
 	for(const auto &it : GameData::Systems())
-		if(player.HasVisited(&it.second))
+		if(it.second.IsValid() && player.HasVisited(it.second))
 		{
 			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
@@ -647,7 +646,7 @@ void MapPanel::Find(const string &name)
 			}
 		}
 	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 		{
 			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
@@ -726,15 +725,15 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		// Referring to a non-existent system in a mission can create a spurious
-		// system record. Ignore those.
-		if(system.Name().empty())
+		// Ignore systems which have been referred to, but not actually defined.
+		if(!system.IsValid())
 			continue;
-		if(!player.HasSeen(&system) && &system != specialSystem)
+		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
+		if(!player.HasSeen(system) && &system != specialSystem)
 			continue;
 		
 		Color color = UninhabitedColor();
-		if(!player.HasVisited(&system))
+		if(!player.HasVisited(system))
 			color = UnexploredColor();
 		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
 		{
@@ -776,7 +775,7 @@ void MapPanel::UpdateCache()
 						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole()
 							&& object.GetPlanet()->IsAccessible(player.Flagship()))
 						{
-							bool visited = player.HasVisited(object.GetPlanet());
+							bool visited = player.HasVisited(*object.GetPlanet());
 							all &= visited;
 							some |= visited;
 							colorSystem = true;
@@ -828,9 +827,9 @@ void MapPanel::UpdateCache()
 		}
 		
 		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(&system) ? system.Name() : "",
-			(&system == playerSystem) ? closeNameColor : farNameColor,
-			player.HasVisited(&system) ? system.GetGovernment() : nullptr);
+			player.KnowsName(system) ? system.Name() : "",
+			(&system == &playerSystem) ? closeNameColor : farNameColor,
+			player.HasVisited(system) ? system.GetGovernment() : nullptr);
 	}
 	
 	// Now, update the cache of the links.
@@ -842,19 +841,19 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
-		if(!player.HasSeen(system))
+		if(!system->IsValid() || !player.HasSeen(*system))
 			continue;
 		
 		for(const System *link : system->Links())
-			if(link < system || !player.HasSeen(link))
+			if(link < system || !player.HasSeen(*link))
 			{
 				// Only draw links between two systems if one of the two is
 				// visited. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
-				if(!player.HasVisited(system) && !player.HasVisited(link))
+				if((!player.HasVisited(*system) && !player.HasVisited(*link)) || !link->IsValid())
 					continue;
 				
-				bool isClose = (system == playerSystem || link == playerSystem);
+				bool isClose = (system == &playerSystem || link == &playerSystem);
 				links.emplace_back(system->Position(), link->Position(), isClose ? closeColor : farColor);
 			}
 	}
@@ -864,9 +863,6 @@ void MapPanel::UpdateCache()
 
 void MapPanel::DrawTravelPlan()
 {
-	if(!playerSystem)
-		return;
-	
 	const Set<Color> &colors = GameData::Colors();
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
@@ -896,7 +892,7 @@ void MapPanel::DrawTravelPlan()
 		}
 	stranded |= !hasEscort;
 	
-	const System *previous = playerSystem;
+	const System *previous = &playerSystem;
 	double jumpRange = flagship->JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
@@ -905,9 +901,9 @@ void MapPanel::DrawTravelPlan()
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
-			isWormhole |= (object.GetPlanet() && player.HasVisited(object.GetPlanet())
+			isWormhole |= (object.GetPlanet() && player.HasVisited(*object.GetPlanet())
 				&& !object.GetPlanet()->Description().empty()
-				&& player.HasVisited(previous) && player.HasVisited(next)
+				&& player.HasVisited(*previous) && player.HasVisited(*next)
 				&& object.GetPlanet()->WormholeDestination(previous) == next);
 		
 		if(!isHyper && !isJump && !isWormhole)
@@ -963,7 +959,7 @@ void MapPanel::DrawEscorts()
 	const Color &parked = *GameData::Colors().Get("dim");
 	double zoom = Zoom();
 	for(const auto &squad : escortSystems)
-		if(player.HasSeen(squad.first) || squad.first == specialSystem)
+		if(player.HasSeen(*squad.first) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
 			
@@ -994,16 +990,17 @@ void MapPanel::DrawWormholes()
 	// Avoid iterating each StellarObject in every system by iterating over planets instead. A
 	// system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector. If a wormhole's planet has no description, no link will be drawn.
-	for(const auto &it : GameData::Planets())
+	for(auto &&it : GameData::Planets())
 	{
-		if(!it.second.IsWormhole() || !player.HasVisited(&it.second) || it.second.Description().empty())
+		const Planet &p = it.second;
+		if(!p.IsValid() || !p.IsWormhole() || !player.HasVisited(p) || p.Description().empty())
 			continue;
 		
-		const vector<const System *> &waypoints = it.second.WormholeSystems();
+		const vector<const System *> &waypoints = p.WormholeSystems();
 		const System *from = waypoints.back();
 		for(const System *to : waypoints)
 		{
-			if(player.HasVisited(from) && player.HasVisited(to))
+			if(player.HasVisited(*from) && player.HasVisited(*to))
 				arrowsToDraw.emplace(from, to);
 			
 			from = to;
@@ -1175,7 +1172,7 @@ void MapPanel::DrawTooltips()
 	if(tooltip.empty())
 	{
 		pair<pair<int, int>, int> t = escortSystems.at(hoverSystem);
-		if(hoverSystem == playerSystem)
+		if(hoverSystem == &playerSystem)
 		{
 			--t.first.first;
 			if(t.first.first || t.first.second || t.second)

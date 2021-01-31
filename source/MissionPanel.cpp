@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "StartConditions.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -190,6 +191,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced");
 	DoHelp("jobs");
 }
 
@@ -330,8 +333,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		selectedSystem = acceptedIt->Destination()->GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
-	if(selectedSystem)
-		CenterOnSystem(selectedSystem);
+	CenterOnSystem(selectedSystem);
 	
 	return true;
 }
@@ -385,8 +387,8 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
+		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
+				&& (player.HasSeen(it.second) || &it.second == specialSystem))
 		{
 			system = &it.second;
 			break;
@@ -557,9 +559,7 @@ void MissionPanel::DrawSelectedSystem() const
 	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
 	
 	string text;
-	if(!selectedSystem)
-		text = "Selected system: none";
-	else if(!player.KnowsName(selectedSystem))
+	if(!player.KnowsName(*selectedSystem))
 		text = "Selected system: unexplored system";
 	else
 		text = "Selected system: " + selectedSystem->Name();

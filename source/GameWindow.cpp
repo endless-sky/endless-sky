@@ -67,6 +67,22 @@ namespace {
 
 
 
+string GameWindow::SDLVersions()
+{
+	SDL_version built;
+	SDL_version linked;
+	SDL_VERSION(&built);
+	SDL_GetVersion(&linked);
+	
+	auto toString = [](const SDL_version &v) -> string
+	{
+		return to_string(v.major) + "." + to_string(v.minor) + "." + to_string(v.patch);
+	};
+	return "Compiled against SDL v" + toString(built) + "\nUsing SDL v" + toString(linked);
+}
+
+
+
 bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
@@ -81,7 +97,9 @@ bool GameWindow::Init()
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
-		
+	if(mode.refresh_rate && mode.refresh_rate < 60)
+		Files::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + "). The game will run more slowly.");
+	
 	// Make the window just slightly smaller than the monitor resolution.
 	int minWidth = 640;
 	int minHeight = 480;
@@ -385,29 +403,32 @@ bool GameWindow::HasSwizzle()
 
 
 
-void GameWindow::ExitWithError(const string& message)
+void GameWindow::ExitWithError(const string& message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
 	Files::LogError(message);		
 	checkSDLerror();
 	
 	// Show the error message in a message box.
-	SDL_MessageBoxData box;
-	box.flags = SDL_MESSAGEBOX_ERROR;
-	box.window = nullptr;
-	box.title = "Endless Sky: Error";
-	box.message = message.c_str();
-	box.colorScheme = nullptr;
-	
-	SDL_MessageBoxButtonData button;
-	button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
-	button.buttonid = 0;
-	button.text = "OK";
-	box.numbuttons = 1;
-	box.buttons = &button;
-	
-	int result = 0;
-	SDL_ShowMessageBox(&box, &result);
+	if(doPopUp)
+	{
+		SDL_MessageBoxData box;
+		box.flags = SDL_MESSAGEBOX_ERROR;
+		box.window = nullptr;
+		box.title = "Endless Sky: Error";
+		box.message = message.c_str();
+		box.colorScheme = nullptr;
+		
+		SDL_MessageBoxButtonData button;
+		button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
+		button.buttonid = 0;
+		button.text = "OK";
+		box.numbuttons = 1;
+		box.buttons = &button;
+		
+		int result = 0;
+		SDL_ShowMessageBox(&box, &result);
+	}
 	
 	GameWindow::Quit();	
 }

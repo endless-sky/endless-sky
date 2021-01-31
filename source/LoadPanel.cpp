@@ -127,6 +127,7 @@ void LoadPanel::Draw()
 			info.SetString("planet", loadedInfo.GetPlanet());
 		info.SetString("credits", loadedInfo.Credits());
 		info.SetString("date", loadedInfo.GetDate());
+		info.SetString("playtime", loadedInfo.GetPlayTime());
 	}
 	else
 		info.SetString("pilot", "No Pilot Loaded");
@@ -326,6 +327,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 			{
 				selectedPilot = it.first;
 				selectedFile = it.second.front().first;
+				centerScroll = 0;
 			}
 	}
 	else if(x >= -110 && x < 110)

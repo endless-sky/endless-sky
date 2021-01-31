@@ -174,6 +174,7 @@ void Ship::Load(const DataNode &node)
 		base = GameData::Ships().Get(modelName);
 		variantName = node.Token(2);
 	}
+	isDefined = true;
 	
 	government = GameData::PlayerGovernment();
 	equipped.clear();
@@ -612,11 +613,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
+	vector<string> undefinedOutfits;
 	for(const auto &it : outfits)
 	{
-		if(it.first->Name().empty())
+		if(!it.first->IsDefined())
 		{
-			Files::LogError("Unrecognized outfit in " + modelName + " \"" + name + "\"");
+			undefinedOutfits.emplace_back("\"" + it.first->Name() + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -634,15 +636,39 @@ void Ship::FinishLoading(bool isNewInstance)
 				armament.Add(it.first, count);
 		}
 	}
+	if(!undefinedOutfits.empty())
+	{
+		bool plural = undefinedOutfits.size() > 1;
+		// Print the ship name once, then all undefined outfits. If we're reporting for a stock ship, then it
+		// doesn't have a name, and missing outfits aren't named yet either. A variant name might exist, though.
+		string message;
+		if(isYours)
+		{
+			message = "Player ship " + modelName + " \"" + name + "\":";
+			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
+			for(auto &&outfit : undefinedOutfits)
+				message += PREFIX + outfit;
+		}
+		else
+		{
+			message = variantName.empty() ? "Stock ship \"" + modelName + "\": "
+				: modelName + " variant \"" + variantName + "\": ";
+			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
+		}
+		
+		Files::LogError(message);
+	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
-	// is configured incorrectly in a ship or variant definition.
+	// is configured incorrectly in a ship or variant definition. Do not
+	// bother printing this warning if the outfit is not fully defined.
 	for(const Hardpoint &hardpoint : armament.Get())
 	{
 		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit && (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
+		if(outfit && outfit->IsDefined()
+				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			string warning = modelName;
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
@@ -699,6 +725,18 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	// Cache this ship's jump range so that it doesn't need calculated when needed.
 	jumpRange = JumpRange(false);
+}
+
+
+
+// Check if this ship (model) and its outfits have been defined.
+bool Ship::IsValid() const
+{
+	for(auto &&outfit : outfits)
+		if(!outfit.first->IsDefined())
+			return false;
+	
+	return isDefined;
 }
 
 
@@ -894,13 +932,14 @@ void Ship::Save(DataWriter &out) const
 			out.Write("system", currentSystem->Name());
 		else
 		{
+			// A carried ship is saved in its carrier's system.
 			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
 				out.Write("system", parent->currentSystem->Name());
 		}
 		if(landingPlanet)
-			out.Write("planet", landingPlanet->Name());
-		if(targetSystem && !targetSystem->Name().empty())
+			out.Write("planet", landingPlanet->TrueName());
+		if(targetSystem)
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
 			out.Write("parked");
@@ -913,6 +952,14 @@ void Ship::Save(DataWriter &out) const
 const string &Ship::Name() const
 {
 	return name;
+}
+
+
+
+// Set / Get the name of this class of ships, e.g. "Marauder Raven."
+void Ship::SetModelName(const string &model)
+{
+	this->modelName = model;
 }
 
 
@@ -1022,7 +1069,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar)
+		if(!generation && !solar && !burning)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -1464,7 +1511,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			Point target;
 			// Except when you arrive at an extra distance from the target,
 			// in that case always use the system-center as target.
-			double extraArrivalDistance = currentSystem->ExtraArrivalDistance();
+			double extraArrivalDistance = isUsingJumpDrive ? currentSystem->ExtraJumpArrivalDistance() : currentSystem->ExtraHyperArrivalDistance();
+			
 			if(extraArrivalDistance == 0)
 			{
 				if(targetPlanet)
@@ -1482,7 +1530,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			
 			if(isUsingJumpDrive)
 			{
-				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
+				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
 				return;
 			}
 			
@@ -1827,8 +1875,6 @@ void Ship::DoGeneration()
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			bay.ship->DoGeneration();
-	
-	// TODO: Heat transfer between carried ships and the mothership?
 	
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
@@ -3328,13 +3374,18 @@ bool Ship::CanFire(const Weapon *weapon) const
 			return false;
 	}
 	
-	if(energy < weapon->FiringEnergy())
+	if(energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
 		return false;
-	if(fuel < weapon->FiringFuel())
+	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
 		return false;
+	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
+	// Ships should not disable themselves, so we check if we stay above minimumHull.
+	if(hull - MinimumHull() <= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+		return false;
+
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat()))
+	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
 		return false;
 	
 	return true;
@@ -3342,8 +3393,9 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 
 
-// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
-// and add whatever heat it generates. Assume that CanFire() is true.
+// Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
+// or fuel it uses and add whatever heat it generates. Assume that CanFire()
+// is true.
 void Ship::ExpendAmmo(const Weapon *weapon)
 {
 	if(!weapon)
@@ -3351,9 +3403,19 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 	if(weapon->Ammo())
 		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
 	
-	energy -= weapon->FiringEnergy();
-	fuel -= weapon->FiringFuel();
-	heat += weapon->FiringHeat();
+	energy -= weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity");
+	fuel -= weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity");
+	heat += weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat();
+	// Weapons fire from within shields, so hull damage goes directly into the hull, while shield damage
+	// only affects shields.
+	hull -= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull");
+	shields -= weapon->FiringShields() + weapon->RelativeFiringShields() * attributes.Get("shields");
+	
+	// Those values are usually reduced by active shields, but weapons fire from within the shields, so
+	// it seems more appropriate to apply those damages with a factor 1 directly.
+	ionization += weapon->FiringIon();
+	disruption += weapon->FiringDisruption();
+	slowness += weapon->FiringSlowing();
 }
 
 
@@ -3413,6 +3475,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		cargoScan = 0.;
 		outfitScan = 0.;
 	}
+	targetAsteroid.reset();
 }
 
 
@@ -3442,6 +3505,7 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
 	targetAsteroid = asteroid;
+	targetShip.reset();
 }
 
 
@@ -3637,8 +3701,6 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 // A helper method for taking damage from either a projectile or a hazard.
 int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast)
 {
-	int type = 0;
-	
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Scale blast damage based on the distance from the blast
@@ -3712,6 +3774,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Report what happened to this ship from this weapon.
+	int type = 0;
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;

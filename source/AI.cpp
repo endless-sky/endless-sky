@@ -1636,9 +1636,13 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	{
 		ship.SetTargetSystem(nullptr);
 		ship.SetTargetStellar(parent.GetTargetStellar());
-		MoveToPlanet(ship, command);
 		if(parent.IsLanding() || parent.CanLand())
+		{
+			MoveToPlanet(ship, command);
 			command |= Command::LAND;
+		}
+		else
+			KeepStation(ship, command, parent);
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
 		Stop(ship, command, .2);
@@ -1794,20 +1798,17 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
-	if(shouldReverse && dp.Length() < radius)
-	{
-		// We can directly use the reverse thrusters to stop at the target.
-		command |= Command::BACK;
-		return false;
-	}
 
-	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .8);
-	if(!isClose || !isFacing)
+	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
+	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
+	{
+		command.SetTurn(TurnToward(ship, velocity));
 		command |= Command::BACK;
+	}
 	
 	return false;
 }
@@ -3153,8 +3154,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Determine if the player is jumping to their target system or landing on a wormhole.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
-				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(system))
+			if(object.HasSprite() && object.GetPlanet()
+				&& object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(*object.GetPlanet())
+				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(*system))
 			{
 				isWormhole = true;
 				if(!ship.GetTargetStellar() || autoPilot.Has(Command::JUMP))
@@ -3478,7 +3480,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(ship.GetTargetSystem() && !isWormhole)
 		{
 			string name = "selected star";
-			if(player.KnowsName(ship.GetTargetSystem()))
+			if(player.KnowsName(*ship.GetTargetSystem()))
 				name = ship.GetTargetSystem()->Name();
 			
 			Messages::Add("Engaging autopilot to jump to the " + name + " system.");

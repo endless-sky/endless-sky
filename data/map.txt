@@ -8007,41 +8007,42 @@ system Denebola
 		period 2740.45
 
 system Diespiter
-	asteroids "large metal" 76 3
-	asteroids "large rock" 3 1
-	asteroids "medium metal" 26 4
-	asteroids "medium rock" 14 1
-	asteroids "small metal" 74 2
-	asteroids "small rock" 65 3
+	pos 332 210
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 534.375
 	haze _menu/haze-red
 	link Statina
+	asteroids "small rock" 65 3
+	asteroids "medium rock" 14 1
+	asteroids "large rock" 3 1
+	asteroids "small metal" 74 2
+	asteroids "medium metal" 26 4
+	asteroids "large metal" 76 3
 	minables iron 22 3
 	minables silicon 46 3
 	minables tungsten 17 3
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		distance 1600
-		period 398
-		sprite planet/gas11
-		object
-			distance 270
-			period 14
-			sprite planet/rock3
+		sprite star/k5-old
+		period 10
 	object
+		sprite planet/ice6
 		distance 745
 		period 394
-		sprite planet/ice6
 	object
+		sprite planet/lava0
 		distance 922
 		period 543
-		sprite planet/lava0
 	object
-		period 10
-		sprite star/k5-old
-	pos 332 210
+		sprite planet/gas11
+		distance 1600
+		period 398
+		object
+			sprite planet/rock3
+			distance 270
+			period 14
 
 system Diphda
 	pos -262 61
@@ -8727,42 +8728,43 @@ system Edusa
 		period 1675.01
 
 system Egeria
-	asteroids "large metal" 5 4
-	asteroids "large rock" 9 7
-	asteroids "medium metal" 86 3
-	asteroids "medium rock" 20 5
-	asteroids "small rock" 1 8
+	pos 288 146
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 1505.92
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
+	asteroids "small rock" 1 8
+	asteroids "medium rock" 20 5
+	asteroids "large rock" 9 7
+	asteroids "medium metal" 86 3
+	asteroids "large metal" 5 4
 	minables iron 20 4
 	minables lead 28 5
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		distance 1326
-		period 2174
-		sprite planet/gas9
-		object
-			distance 270
-			period 16
-			sprite planet/rhea
-	object
+		sprite star/k5-old
 		distance 40
 		offset 180
 		period 19
-		sprite star/k5-old
 	object
-		distance 248
-		period 61
-		sprite planet/ice4
-	object
+		sprite star/g0
 		distance 74
 		period 19
-		sprite star/g0
-	pos 288 146
+	object
+		sprite planet/ice4
+		distance 248
+		period 61
+	object
+		sprite planet/gas9
+		distance 1326
+		period 2174
+		object
+			sprite planet/rhea
+			distance 270
+			period 16
 
 system "Ehma Ti"
 	pos 39.1085 -749.244
@@ -19455,36 +19457,37 @@ system Postverta
 	pos 15000 15000
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 135
 	haze _menu/haze-red
-	asteroids "large metal" 9 3
+	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
 	asteroids "medium metal" 52 1
-	asteroids "medium rock" 4 2
+	asteroids "large metal" 9 3
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
-	object "Ssil Vida"
-		distance 1408
-		period 554
-		sprite planet/sheragi_postverta
 	object
-		distance 1208
-		period 654
-		sprite planet/rock10
+		sprite star/m4
+		period 19
 	object
+		sprite planet/desert7
 		distance 439
 		period 143
-		sprite planet/desert7
 	object
+		sprite planet/fog0
 		distance 814
 		period 362
-		sprite planet/fog0
 		object
+			sprite planet/dust4
 			distance 202
 			period 21
-			sprite planet/dust4
 	object
-		period 19
-		sprite star/m4
+		sprite planet/rock10
+		distance 1208
+		period 654
+	object "Ssil Vida"
+		sprite planet/sheragi_postverta
+		distance 1408
+		period 554
 	
 system Prakacha'a
 	pos -35.1114 -802.607
@@ -19623,47 +19626,48 @@ system Procyon
 		period 3311.38
 
 system Prosa
-	asteroids "large metal" 2 2
-	asteroids "large rock" 16 1
-	asteroids "medium metal" 11 2
-	asteroids "medium rock" 16 1
-	asteroids "small rock" 4 1
+	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 2372.76
 	haze _menu/haze-red
 	link Vaticanus
+	asteroids "medium metal" 11 2
+	asteroids "large metal" 2 2
+	asteroids "small rock" 4 1
+	asteroids "medium rock" 16 1
+	asteroids "large rock" 16 1
 	minables copper 5 2
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		distance 311
-		period 34
-		sprite planet/cloud1
-	object
-		distance 749
-		period 127
-		sprite planet/desert9
-	object
-		distance 941
-		period 179
-		sprite planet/rock6
-	object
+		sprite star/giant
 		offset 180
 		period 7
-		sprite star/giant
 	object
+		sprite planet/cloud1
+		distance 311
+		period 34
+	object
+		sprite planet/desert9
+		distance 749
+		period 127
+	object
+		sprite planet/rock6
+		distance 941
+		period 179
+	object
+		sprite planet/gas17
 		distance 1311
 		period 695
-		sprite planet/gas17
 		object
+			sprite planet/callisto
 			distance 227
 			period 14
-			sprite planet/callisto
 		object
+			sprite planet/dust5
 			distance 351
 			period 28
-			sprite planet/dust5
-	pos 303 194
 
 system "Pug Iyik"
 	pos -361.149 -883.233
@@ -21145,6 +21149,7 @@ system "Sagittarius A*"
 	government Uninhabited
 	habitable 10000
 	haze _menu/haze-full
+	arrival 500
 	hazard "Black Hole Gravity" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Accretion Disk" 1
@@ -23243,48 +23248,49 @@ system Spica
 			period 26.1539
 
 system Statina
-	asteroids "large metal" 3 5
-	asteroids "large rock" 1 4
-	asteroids "medium metal" 72 3
-	asteroids "small metal" 39 3
+	pos 385 198
 	government Uninhabited
 	attributes "ember waste" "wormhole" "inaccessible"
+	habitable 135
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
+	asteroids "large rock" 1 4
+	asteroids "small metal" 39 3
+	asteroids "medium metal" 72 3
+	asteroids "large metal" 3 5
 	minables iron 5 6
 	minables silicon 11 5
 	minables titanium 10 4
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/desert4
 		distance 111
 		period 30
-		sprite planet/desert4
 	object
+		sprite planet/dust3
 		distance 308
 		period 142
-		sprite planet/dust3
 	object
+		sprite planet/gas8
 		distance 636
 		period 420
-		sprite planet/gas8
 	object
-		period 10
-		sprite star/m4
-	object
+		sprite planet/ice5
 		distance 1364
 		period 84
-		sprite planet/ice5
 		object
+			sprite planet/dust4
 			distance 158
 			period 17
-			sprite planet/dust4
 	object wormhole_link
+		sprite planet/wormhole-red
 		distance 2754
 		period 389
-		sprite planet/wormhole-red
-	pos 385 198
 
 system "Steep Roof"
 	pos -1113.59 570.051
@@ -24690,53 +24696,54 @@ system "Uwa Fahn"
 		period 5060.21
 
 system Vaticanus
-	asteroids "large metal" 11 7
-	asteroids "large rock" 5 8
-	asteroids "medium metal" 47 11
-	asteroids "medium rock" 11 9
-	asteroids "small metal" 14 8
-	asteroids "small rock" 3 6
+	pos 324 112
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 320
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
+	asteroids "small rock" 3 6
+	asteroids "medium rock" 11 9
+	asteroids "large rock" 5 8
+	asteroids "small metal" 14 8
+	asteroids "medium metal" 47 11
+	asteroids "large metal" 11 7
 	minables lead 16 13
 	minables tungsten 10 13
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/m0
+		period 19
+	object
+		sprite planet/ice6
+		distance 261
+		period 73
+	object
+		sprite planet/tethys
+		distance 768
+		period 368
+	object
 		distance 1670
 		period 1181
 		sprite planet/gas16
 		object
+			sprite planet/lava1
 			distance 204
 			period 14
-			sprite planet/lava1
 	object
+		sprite planet/uranus
 		distance 2105
 		period 3438
-		sprite planet/uranus
 		object
+			sprite planet/luna
 			distance 235
 			period 14
-			sprite planet/luna
-	object
-		distance 261
-		period 73
-		sprite planet/ice6
-	object
-		distance 768
-		period 368
-		sprite planet/tethys
-	object
-		period 19
-		sprite star/m0
 	object wormhole_link
+		sprite planet/wormhole-red
 		distance 2754
 		period 389
-		sprite planet/wormhole-red
-	pos 324 112
 
 system Vega
 	pos -402 182
@@ -25961,6 +25968,92 @@ system Zubenelgenubi
 		distance 1993.37
 		period 1158.05
 
+system Zubenelhakrabi
+	pos -9743.265 9377.932
+	government Uninhabited
+	habitable 486.68
+	belt 1669
+	asteroids "medium rock" 7 1.5946
+	asteroids "large rock" 1 1.5946
+	asteroids "medium metal" 12 2.8798
+	asteroids "large metal" 2 3.1654
+	minables uranium 6 4.40134
+	minables platinum 3 4.48669
+	minables tungsten 3 3.76004
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava4
+		distance 147
+		period 32.3158
+		offset 98.3841
+	object "Valley of the Damned"
+		sprite planet/earth
+		distance 502.704
+		period 204.365
+		offset 314.841
+	object
+		sprite planet/gas8
+		distance 1345.85
+		period 895.229
+		offset 153.957
+		object
+			sprite planet/luna
+			distance 288.272
+			period 26.0544
+			offset 72.9809
+		object
+			sprite planet/ice8
+			distance 373.272
+			period 38.3898
+			offset 185.14
+	object
+		sprite planet/rock17
+		distance 2322.59
+		period 2029.54
+		offset 267.221
+		object
+			sprite planet/oberon
+			distance 83
+			period 41.6711
+			offset 44.2239
+	object
+		sprite planet/gas6
+		distance 3672.78
+		period 4035.81
+		offset 46.4282
+		object
+			sprite planet/lava0
+			distance 281.814
+			period 12.0839
+			offset 337.102
+		object
+			sprite planet/dust5
+			distance 464.272
+			period 25.5519
+			offset 284.511
+		object
+			sprite planet/ice7
+			distance 568.272
+			period 34.6019
+			offset 45.9014
+		object
+			sprite planet/callisto
+			distance 672.272
+			period 44.5228
+			offset 128.448
+
 system Zubeneschamali
 	pos -759 338
 	government Republic
@@ -26073,7 +26166,7 @@ planet Ahr
 	outfitter "Coalition Advanced"
 
 planet Aksaray
-	attributes "moon" uninhabited
+	attributes "requires: inaccessible" "moon" uninhabited
 	landscape land/mountain26
 	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
 	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are very common across the galaxy and have an extremely low value.`
@@ -26247,7 +26340,7 @@ planet Aventine
 		fleet "Heavy Remnant Defense" 30
 
 planet Babiali
-	attributes "ice giant" uninhabited
+	attributes "requires: inaccessible" "ice giant" uninhabited
 	landscape land/canyon12
 	description `Babiali's surface is a bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
 	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered to set up anything resembling a spaceport.`
@@ -26462,7 +26555,7 @@ planet Canyon
 		fleet "Small Syndicate" 5
 
 planet Capitoline
-	attributes "lava" uninhabited
+	attributes "requires: inaccessible" "lava" uninhabited
 	landscape land/lava8
 	description `The harsh landscape of Capitoline is a demonstration of the forces of nature at work. Lava flows and eruptions are regularly seen, and seismic activity is a daily occurrence. As a result, the surface is of comparatively recent origin. Despite this, you can spot a small survey station in the middle of an old lava field. In response to your landing computer's query, the transponder issues a terse statement about the automated scientific station and a warning that its defense systems are active.`
 	description `	Heeding the warning, you land over the horizon from the station. Stepping out onto the surface, you can feel the rumble of the planet beneath you. Despite the ever-present seismic heaving, it feels like you can pick up a subtle pulse in the vibrations. The impression never goes away, but neither you nor your sensors can determine an actual pattern.`
@@ -26564,7 +26657,7 @@ planet "Chosen Nexus"
 planet Clark
 	attributes "dirt belt" forest factory
 	landscape land/valley3
-	description `Clark is a recently settled world, and most of its surface remains covered in dense forests and uninhabited mountains. Because clearing new land is so difficult, agriculture here has not grown far beyond the level of subsistence farming. But the temperate climate has drawn several million settlers, most of whom work in factories that have been planted here by off-world corporations to take advantage of the cheap labor.`
+	description `Clark is a recently settled world, and most of its surface remains covered in dense forests and uninhabited mountains. Because clearing new land is so difficult, agriculture here has not grown far beyond the level of subsistence farming. But the temperate climate has drawn tens of millions of settlers, most of whom work in factories that have been planted here by off-world corporations to take advantage of the cheap labor.`
 	description `	The low cost of living and virtually zero unemployment rate make poverty and crime relatively rare occurrences. Instead there is a pioneering spirit, a startup-world attitude that anything is attainable with a bit of hard work and frugality.`
 	spaceport `The spaceport is at the heart of one of Clark's largest cities, surrounded by smokestacks and factories. There are a few hangars owned by different corporations where their cargo ships can load and unload, but you are relegated to a set of concrete landing pads farther from the main buildings. Large trucks rumble by carrying carts loaded down with cargo crates.`
 	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, very different from most of the Dirt Belt worlds you have visited.`
@@ -27593,7 +27686,7 @@ planet "Into White"
 	"required reputation" 15
 
 planet Janiculum
-	attributes uninhabited
+	attributes "requires: inaccessible" uninhabited
 	landscape land/canyon11
 	description `As you pass low over Janiculum, you see that its surface is little more than a gravitational graveyard for asteroids and debris. Impact craters litter the surface, with some looking fairly recent.`
 	description `	Janiculum is the subject of regular surveillance by the Remnant, who track impacts and investigate them whenever they occur. While it is not clear what the Remnant are recovering from these investigations, they continue to do them with meticulous regularity.`
@@ -27688,10 +27781,10 @@ planet "Kraken Station"
 		fleet "Small Syndicate" 7
 
 planet Kumkapi
-	attributes moon uninhabited
+	attributes "requires: inaccessible" moon uninhabited
 	landscape land/mars0
-	description `While this moon's minerals aren't particularly rare or exotic, its closeness to Viminal has made it the subject of many mining projects over the centuries - efforts to find traces of the valuable Keystones which permit travel through this region of space. None of them were successful, and most Remnant scientists believe that Kumkapi formed somewhere else and was captured by Vimnal's gravitational pull at some time during its formation.`
-	description `	When the absence of Keystones became clear, most scientific and mining interests faded away, and today the surface is scattered with abandoned outposts whose somber tunnels are thousand-kilometer labyrinths.`
+	description `While this moon's minerals aren't particularly rare or exotic, its closeness to Viminal has made it the subject of many mining projects over the centuries - efforts to find traces of the valuable Key Stones which permit travel through this region of space. None of them were successful, and most Remnant scientists believe that Kumkapi formed somewhere else and was captured by Vimnal's gravitational pull at some time during its formation.`
+	description `	When the absence of Key Stones became clear, most scientific and mining interests faded away, and today the surface is scattered with abandoned outposts whose somber tunnels are thousand-kilometer labyrinths.`
 	security 0
 	government Uninhabited
 
@@ -28409,7 +28502,7 @@ planet Pilot
 		fleet "Small Republic" 21
 
 planet Pincian
-	attributes moon uninhabited
+	attributes "requires: inaccessible" moon uninhabited
 	landscape land/mars3
 	description `Pincian is a small rocky moon, tiny enough to avoid most asteroids attracted by the nearby gas giant of Palatine. Nevertheless, a huge crater, old enough to have collected some dust and regolith, dominates its surface. Whatever crashed here, it must be tens of thousands of years since the impact.`
 	description `	There are some small-scale mining operations all around Pincian, but everything around the crater has been left untouched except for a Remnant research station nestled into one of its edges.`
@@ -28790,7 +28883,7 @@ planet "Septar Lorku"
 	security 0
 
 planet Seraglio
-	attributes "ice giant" uninhabited
+	attributes "requires: inaccessible" "ice giant" uninhabited
 	landscape land/snow13
 	description `Seraglio's vast ice fields hint at a variety of mysteries, most notably the chasms that suggest the planet was somehow subjected to massive compressive forces at some point in its recent geological history.`
 	description `At present, Seraglio is the focus of considerable attention from researchers searching for clues as to the planet's history.`
@@ -28808,7 +28901,7 @@ planet Serpens
 		fleet "Large Republic" 3
 
 planet Servian
-	attributes "requires: gaslining" "gas giant" uninhabited
+	attributes "requires: gaslining" "requires: inaccessible" "gas giant" uninhabited
 	landscape land/nasa28
 	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the planet, where automated scoop probes don't have any trouble gathering gasses and various exotic elements. Underneath the peaceful exterior, the norm is extreme turbulence and violent storms with lightning thousands of times more powerful than anything observed on nearby planets.`
 	description `	While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early puffins. Every ship was destroyed before reaching the depths of the planet, but it nonetheless proved a valuable testing ground for their early ship hulls and helped to refine the technology.`
@@ -29146,7 +29239,7 @@ planet Sundrinker
 planet Sunracer
 	attributes core urban factory farming fishing frontier
 	landscape land/myrabella8
-	description `Sunracer is home of Megaparsec, Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of nearly half a billion, and a diverse economy that includes farming and fishing in addition to the shipyards.`
+	description `Sunracer is home of Megaparsec, Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of over a billion, and a diverse economy that includes farming and fishing in addition to the shipyards.`
 	description `	Outside the cities, large regions of undeveloped land still remain. Hovercraft racing is a major local sport, and some massive and elaborate courses have been constructed in the wilderness.`
 	spaceport `On Sunracer, the spaceport and shipyard are one and the same. As you walk among the landing pads and hangars, it is not immediately clear which ships are visiting starships undergoing minor repairs, and which are new ones under construction. A series of enormous cranes tower over one section of landing pads. From them hang hull fragments, engines, and even a few small ships, each being swung from one location within the shipyard to another. Meanwhile, forklifts and flatbed trucks are weaving between the buildings in every direction.`
 	shipyard "Basic Ships"
@@ -29262,7 +29355,7 @@ planet Tinker
 		fleet "Large Syndicate" 7
 
 planet Topkapi
-	attributes "moon" uninhabited
+	attributes "requires: inaccessible" "moon" uninhabited
 	landscape land/mars1
 	description `Much like Aksaray, Topkapi is an old moon formed from the smashed remains of countless eons worth of stellar debris. The surface appears to be regularly bombarded by asteroids, although some of the craters show signs of being the site of rather large explosions. Your sensors pick up traces of materials most commonly found in Korath ships.`
 	description `	Topkapi does not appear to have any routine activity, although satellites in orbit indicate that the Remnant monitor it for activity and send ships to investigate asteroid or other impacts on a regular basis.`
@@ -29362,7 +29455,7 @@ planet Vail
 planet Valhalla
 	attributes deep farming fishing urban factory
 	landscape land/mfield3
-	description `Valhalla was the first world to be settled in this region of space, which is known as the Deep. It is rich in natural resources, but all its vast farms and fisheries are insufficient to feed its population of nearly five billion.`
+	description `Valhalla was the first world to be settled in this region of space, which is known as the Deep. It is rich in natural resources, but all its vast farms and fisheries are insufficient to feed its population of over five billion.`
 	description `	The shipyards of Lionheart Industries are located here. Centuries ago, warships built here turned the tide of the Alpha War, and today the ships designed and built in the Deep continue to be some of the most technologically advanced ships in human space - and the most expensive.`
 	spaceport `Surrounding the spaceport is a metropolis of skyscrapers and factories that spreads all the way to the horizon in every direction. The spaceport itself is an imposing building, composed of three towers rising over a hundred stories into the air and connected at various levels by bridges. The docking bays are on the higher levels, with warehouse space lower down and loading platforms for trucks at ground level. Massive cargo elevators run up and down in the center of each building, and the hallways are all wide enough to allow small robotic carts and forklifts in addition to foot traffic.`
 	shipyard "Basic Ships"
@@ -29378,11 +29471,17 @@ planet Valhalla
 		threshold 7000
 		fleet "Large Deep Security" 35
 
+planet "Valley of the Damned"
+	attributes uninhabited
+	landscape land/fog4
+	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has a high concentration of water vapor in its atmosphere and hosts primitive life, with mosses covering nearly all moist surfaces and exotic crustacean-like animals roaming the land, their carapaces made of what would be considered synthetic plastic elsewhere.`
+	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Most traces of attempted colonization by the Sheragi have eroded away by now, leaving only broken buildings and decaying bones.`
+
 planet "Var' Kar'i'i"
 	attributes wanderer urban farming
 	landscape land/valley13-harro
 	description `This is a populous Wanderer world, with small farming villages scattered across all the land, and even a few larger population centers that might almost qualify as a city. But from the air, it is not evident at first that the planet is so heavily settled, because the village tree-houses are mostly hidden beneath the forest canopies. The farms, too, are almost indistinguishable from natural land, due to a permaculture system where many varieties of plants are growing side by side.`
-	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly eight feet tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
+	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly three meters tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
 	spaceport `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
 	shipyard "Wanderer Basics"
 	outfitter "Wanderer Basics"
@@ -29522,7 +29621,7 @@ planet "Varu Tev'kei"
 	bribe 0
 
 planet Vatican
-	attributes "lava" uninhabited
+	attributes "requires: inaccessible" "lava" uninhabited
 	landscape land/lava10
 	description `Vatican's propensity for constant renewal of the surface has resulted in a flourishing astrogeological academic program. While it has frequently been dismissed as a low priority for Remnant efforts, it has nonetheless received continued support from the defense prefects. Why they would be concerned with the geological formations of an uninhabited planet is unknown, but the research continues.`
 	security 0
@@ -29544,7 +29643,7 @@ planet "Vibrant Water"
 planet Viminal
 	attributes remnant
 	landscape land/snow3
-	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the "key stones" that enable ships to travel through certain wormholes in the Ember Waste can be found.`
+	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the Key Stones that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
 	bribe 0
 	shipyard Remnant
@@ -29662,7 +29761,7 @@ planet "Wyvern Station"
 		fleet "Large Militia" 6
 
 planet Xerolophos
-	attributes "requires: gaslining" "gas giant" uninhabited
+	attributes "requires: gaslining" "requires: inaccessible" "gas giant" uninhabited
 	landscape land/nasa29
 	description `Although formerly classified as a "Hot Jupiter", Xerolophos does not present all the characteristics of one: it is very far from the system star - so distant that it isn't even tidally locked to it. Its temperature, instead, is unusually high even for a Hot Jupiter, with the core internally heating up the atmosphere much more than expected.`
 	description `	While it's possible that Xerolophos might have migrated here long ago, the Remnant haven't been able to explain the extreme temperatures of the planet even after years of studies and dispatching dozens of probes.`
