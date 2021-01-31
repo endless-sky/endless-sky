@@ -1783,8 +1783,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 // Get the value of the given condition (default 0).
 int64_t PlayerInfo::GetCondition(const string &name) const
 {
-	auto it = conditions.find(name);
-	return (it == conditions.end()) ? 0 : it->second;
+	return conditions.GetCondition(name);
 }
 
 
@@ -1792,8 +1791,7 @@ int64_t PlayerInfo::GetCondition(const string &name) const
 // Set a condition to the given value.
 bool PlayerInfo::SetCondition(const string &name, int64_t value)
 {
-	conditions[name] = value;
-	return true;
+	return conditions.SetCondition(name, value);
 }
 
 
@@ -1801,8 +1799,7 @@ bool PlayerInfo::SetCondition(const string &name, int64_t value)
 // Add a value to the given condition.
 bool PlayerInfo::AddCondition(const string &name, int64_t value)
 {
-	conditions[name] += value;
-	return true;
+	return conditions.AddCondition(name, value);
 }
 
 
@@ -1810,8 +1807,7 @@ bool PlayerInfo::AddCondition(const string &name, int64_t value)
 // Remove the value for some condition.
 bool PlayerInfo::EraseCondition(const string &name)
 {
-	conditions.erase(name);
-	return true;
+	return conditions.EraseCondition(name);
 }
 
 
@@ -1838,7 +1834,7 @@ void PlayerInfo::EraseManualByPrefix(const string &prefix)
 
 
 // Get mutable access to the player's list of conditions.
-map<string, int64_t> &PlayerInfo::Conditions()
+ConditionsStore &PlayerInfo::Conditions()
 {
 	return conditions;
 }
@@ -1846,7 +1842,7 @@ map<string, int64_t> &PlayerInfo::Conditions()
 
 
 // Access the player's list of conditions.
-const map<string, int64_t> &PlayerInfo::Conditions() const
+const ConditionsStore &PlayerInfo::Conditions() const
 {
 	return conditions;
 }
@@ -1856,7 +1852,7 @@ const map<string, int64_t> &PlayerInfo::Conditions() const
 // Iteratable read-only access to all manual (non-automatic) player conditions.
 const std::map<std::string, int64_t> &PlayerInfo::GetManualConditions() const
 {
-	return conditions;
+	return conditions.Locals();
 }
 
 

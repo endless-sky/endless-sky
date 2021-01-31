@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 
@@ -28,7 +29,7 @@ class DataWriter;
 // values.
 class ConditionSet {
 public:
-	using Conditions = std::map<std::string, int64_t>;
+	using Conditions = ConditionsStore;
 	ConditionSet() = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);

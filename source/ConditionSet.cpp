@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 
+#include "ConditionsStore.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
@@ -149,7 +150,7 @@ namespace {
 	
 	// Converts the given vector of condition tokens (like "reputation: Republic",
 	// "random", or "4") into the integral values they have at runtime.
-	vector<int64_t> SubstituteValues(const vector<string> &side, const map<string, int64_t> &conditions, const map<string, int64_t> &created)
+	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions, const ConditionsStore &created)
 	{
 		auto result = vector<int64_t>();
 		result.reserve(side.size());
@@ -162,12 +163,12 @@ namespace {
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				const auto temp = created.find(str);
-				const auto perm = conditions.find(str);
-				if(temp != created.end())
-					value = temp->second;
-				else if(perm != conditions.end())
-					value = perm->second;
+				bool tempHas = created.HasCondition(str);
+				bool permHas = conditions.HasCondition(str);
+				if(tempHas)
+					value = created[str];
+				else if(permHas)
+					value = conditions[str];
 			}
 			result.emplace_back(value);
 		}
@@ -548,9 +549,9 @@ bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditio
 // Assign the computed value to the desired condition.
 void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created) const
 {
-	int64_t &c = conditions[Name()];
+	int64_t c = conditions[Name()];
 	int64_t value = right.Evaluate(conditions, created);
-	c = fun(c, value);
+	conditions.SetCondition(Name(), fun(c, value));
 }
 
 
@@ -558,9 +559,9 @@ void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created
 // Assign the computed value to the desired temporary condition.
 void ConditionSet::Expression::TestApply(const Conditions &conditions, Conditions &created) const
 {
-	int64_t &c = created[Name()];
+	int64_t c = created[Name()];
 	int64_t value = right.Evaluate(conditions, created);
-	c = fun(c, value);
+	created.SetCondition(Name(), fun(c, value));
 }
 
 

@@ -111,7 +111,7 @@ bool News::IsEmpty() const
 
 
 // Check if this news item is available given the player's planet and conditions.
-bool News::Matches(const Planet *planet, const map<string, int64_t> &conditions) const
+bool News::Matches(const Planet *planet, const ConditionsStore &conditions) const
 {
 	// If no location filter is specified, it should never match. This can be
 	// used to create news items that are never shown until an event "activates"

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "CargoHold.h"
+#include "ConditionsStore.h"
 #include "DataNode.h"
 #include "Date.h"
 #include "Depreciation.h"
@@ -196,8 +197,8 @@ public:
 	bool EraseCondition(const std::string &name);
 	void EraseManualByPrefix(const std::string &prefix);
 	// Direct access to "condition" flags data.
-	std::map<std::string, int64_t> &Conditions();
-	const std::map<std::string, int64_t> &Conditions() const;
+	ConditionsStore &Conditions();
+	const ConditionsStore &Conditions() const;
 	const std::map<std::string, int64_t> &GetManualConditions() const;
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.
@@ -340,7 +341,7 @@ private:
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
 	
-	std::map<std::string, int64_t> conditions;
+	ConditionsStore conditions;
 	
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
