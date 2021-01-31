@@ -7,6 +7,9 @@
 #include "../../source/DataFile.h"
 #include "../../source/DataNode.h"
 
+// Include ConditionStore, to enable usage of them for testing ConditionSets.
+#include "../../source/ConditionsStore.h"
+
 // ... and any system includes needed for the test file.
 #include <map>
 #include <sstream>
@@ -123,7 +126,8 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 }
 
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto mutableList = ConditionSet::Conditions{};
+	auto conditionsStore = ConditionSet::Conditions{};
+	auto mutableList = conditionsStore.Locals();
 	REQUIRE( mutableList.empty() );
 	
 	GIVEN( "an empty ConditionSet" ) {
@@ -131,12 +135,12 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		REQUIRE( emptySet.IsEmpty() );
 		
 		THEN( "no conditions are added via Apply" ) {
-			emptySet.Apply(mutableList);
+			emptySet.Apply(conditionsStore);
 			REQUIRE( mutableList.empty() );
 			
-			mutableList.emplace("event: war begins", 1);
+			conditionsStore.SetCondition("event: war begins", 1);
 			REQUIRE( mutableList.size() == 1 );
-			emptySet.Apply(mutableList);
+			emptySet.Apply(conditionsStore);
 			REQUIRE( mutableList.size() == 1 );
 		}
 	}
@@ -149,12 +153,12 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		REQUIRE_FALSE( compareSet.IsEmpty() );
 		
 		THEN( "no conditions are added via Apply" ) {
-			compareSet.Apply(mutableList);
+			compareSet.Apply(conditionsStore);
 			REQUIRE( mutableList.empty() );
 			
-			mutableList.emplace("event: war begins", 1);
+			conditionsStore.SetCondition("event: war begins", 1);
 			REQUIRE( mutableList.size() == 1 );
-			compareSet.Apply(mutableList);
+			compareSet.Apply(conditionsStore);
 			REQUIRE( mutableList.size() == 1 );
 		}
 	}
@@ -163,7 +167,7 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		REQUIRE_FALSE( applySet.IsEmpty() );
 		
 		THEN( "the condition list is updated via Apply" ) {
-			applySet.Apply(mutableList);
+			applySet.Apply(conditionsStore);
 			REQUIRE_FALSE( mutableList.empty() );
 			
 			const auto &inserted = mutableList.find("year");
