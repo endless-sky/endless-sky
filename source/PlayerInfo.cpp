@@ -719,7 +719,7 @@ int64_t PlayerInfo::Maintenance() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
@@ -728,7 +728,7 @@ const Ship *PlayerInfo::Flagship() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
@@ -740,7 +740,7 @@ Ship *PlayerInfo::Flagship()
 // Determine which ship is the flagship and return the shared pointer to it.
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
-	if(!flagship)
+	if(!flagship && planet)
 	{
 		for(const shared_ptr<Ship> &it : ships)
 			if(!it->IsParked() && it->GetSystem() == system && planet->CanLand(*it) && it->CanBeFlagship())
@@ -1136,24 +1136,62 @@ void PlayerInfo::Land(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
 	
-	// Ships that are landed with you on the planet should fully recharge
-	// and pool all their cargo together. Those that are in remote systems
-	// or cannot land on your planet restore what they can without landing.
+	// Ships that are landed with you on the planet should fully recharge and pool
+	// all their cargo together. Those that are in remote systems or cannot land
+	// anywhere in the player's system restore what they can without landing.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
-			if(ship->GetSystem() == system && planet->CanLand(*ship))
+			if(ship->GetSystem() == system)
 			{
-				ship->Recharge(hasSpaceport);
-				ship->Cargo().TransferAll(cargo);
-				if(!ship->GetPlanet())
-					ship->SetPlanet(planet);
+				if(planet->CanLand(*ship) || (ship->IsCarried() && ship->GetParent()->GetSystem() == system
+						&& planet->CanLand(*ship->GetParent())))
+				{
+					ship->Recharge(hasSpaceport);
+					ship->Cargo().TransferAll(cargo);
+					if(!ship->GetPlanet())
+						ship->SetPlanet(planet);
+				}
+				// Ships that cannot land with the flagship choose the most suitable planet
+				// in the system.
+				else if(!ship->GetPlanet())
+				{
+					for(const StellarObject &object : system->Objects())
+					{
+						const Planet *pl = object.GetPlanet();
+						if(object.HasSprite() && pl && pl->HasFuelFor(*ship))
+						{
+							ship->SetPlanet(pl);
+							ship->Recharge();
+							break;
+						}
+					}
+					// If the ship cannot refuel anywhere, it lands on any planet.
+					if(!ship->GetPlanet())
+					{
+						for(const StellarObject &object : system->Objects())
+						{
+							const Planet *pl = object.GetPlanet();
+							if(object.HasSprite() && pl && pl->CanLand(*ship))
+							{
+								ship->SetPlanet(pl);
+								ship->Recharge(false);
+								break;
+							}
+						}
+						if(!ship->GetPlanet())
+							ship->Recharge(false);
+					}
+				}
+				else
+					ship->Recharge(false);
 			}
 			else
 				ship->Recharge(false);
 		}
+	
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
