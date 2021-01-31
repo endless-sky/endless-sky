@@ -268,11 +268,12 @@ void Engine::Place()
 	
 	shared_ptr<Ship> flagship = player.FlagshipPtr();
 	
+	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
+	// and all but "uninterested" ships should follow the player.
+	
 	// Update the active NPCs for missions based on the player's conditions.
 	player.UpdateMissionNPCs();
 	
-	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
-	// and all but "uninterested" ships should follow the player.
 	for(const Mission &mission : player.Missions())
 		Place(mission.NPCs(), flagship);
 	
