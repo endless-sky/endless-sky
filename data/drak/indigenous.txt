@@ -57,6 +57,7 @@ ship "Void Sprite"
 	noun "creature"
 	sprite "ship/void sprite/void sprite adult"
 		"frame rate" 14.3
+		"random start frame"
 		rewind
 	thumbnail "thumbnail/void sprite adult"
 	"never disabled"
@@ -109,6 +110,7 @@ effect "void sprite adult death"
 ship "Void Sprite" "Void Sprite (Infant)"
 	sprite "ship/void sprite/void sprite infant"
 		"frame rate" 24.7
+		"random start frame"
 		rewind
 	thumbnail "thumbnail/void sprite infant"
 	"never disabled"
