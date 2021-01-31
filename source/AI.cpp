@@ -208,25 +208,6 @@ namespace {
 		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
 	}
 	
-	// Wrapper for ship - target system uses.
-	bool ShouldRefuel(const Ship &ship, const System *to)
-	{
-		if(!to || ship.Fuel() == 1. || !ship.GetSystem()->HasFuelFor(ship))
-			return false;
-		double fuelCapacity = ship.Attributes().Get("fuel capacity");
-		if(!fuelCapacity)
-			return false;
-		double needed = ship.JumpFuel(to);
-		if(needed && to->HasFuelFor(ship))
-			return ship.Fuel() * fuelCapacity < needed;
-		else
-		{
-			// If no direct jump route, or the target system has no
-			// fuel, perform a more elaborate refueling check.
-			return ShouldRefuel(ship, DistanceMap(ship, to), fuelCapacity);
-		}
-	}
-	
 	const StellarObject *GetRefuelLocation(const Ship &ship)
 	{
 		const StellarObject *target = nullptr;
@@ -1599,58 +1580,64 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		DistanceMap distance(ship, parent.GetTargetSystem());
-		const System *dest = distance.Route(currentSystem);
+		SelectRoute(ship, parent.GetTargetSystem());
 		
-		// Find out if this ship can reach target system via wormhole.
-		if(dest)
-			for(const StellarObject &object : currentSystem->Objects())
-			{
-				const Planet *planet = object.GetPlanet();
-				if(object.HasSprite() && planet && planet->IsWormhole() && planet->IsAccessible(&ship)
-					&& (planet->WormholeDestination(currentSystem) == dest))
-				{
-					ship.SetTargetStellar(&object);
-					ship.SetTargetSystem(nullptr);
-					if(parent.IsEnteringHyperspace() || parent.IsReadyToJump())
-					{
-						MoveToPlanet(ship, command);
-						command |= Command::LAND;
-					}
-					return;
-				}
-			}
-		
-		ship.SetTargetSystem(dest);
-		ship.SetTargetStellar(nullptr);
-		if(!dest)
-			// This ship has no route to the parent's destination system, so protect it until it jumps away.
-			KeepStation(ship, command, parent);
-		else if(ShouldRefuel(ship, dest))
-			Refuel(ship, command);
-		else if(needsFuel)
-			// Return to the system center to maximize solar collection rate.
-			MoveTo(ship, command, Point(), Point(), 40., 0.1);
-		else
+		if(ship.GetTargetSystem())
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
 			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
+		else if(ship.GetTargetStellar())
+		{
+			MoveToPlanet(ship, command);
+			if(parent.IsEnteringHyperspace())
+				command |= Command::LAND;
+		}
+		else if(needsFuel)
+			// Return to the system center to maximize solar collection rate.
+			MoveTo(ship, command, Point(), Point(), 40., 0.1);
+		else
+			// This ship has no route to the parent's destination system, so protect it until it jumps away.
+			KeepStation(ship, command, parent);
 	}
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
 	else if(systemHasFuel && needsFuel)
 		Refuel(ship, command);
-	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
+	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere)
 	{
-		ship.SetTargetSystem(nullptr);
-		ship.SetTargetStellar(parent.GetTargetStellar());
-		if(parent.IsLanding() || parent.CanLand())
+		if(parentPlanet->CanLand(ship))
 		{
+			ship.SetTargetSystem(nullptr);
+			ship.SetTargetStellar(parent.GetTargetStellar());
 			MoveToPlanet(ship, command);
-			command |= Command::LAND;
+			if(parent.IsLanding())
+				command |= Command::LAND;
+		}
+		else if(parentPlanet->IsWormhole())
+		{
+			SelectRoute(ship, parentPlanet->WormholeDestination(currentSystem));
+			
+			if(ship.GetTargetSystem())
+			{
+				PrepareForHyperspace(ship, command);
+				if(parent.IsLanding())
+					command |= Command::JUMP;
+			}
+			else if(ship.GetTargetStellar())
+			{
+				MoveToPlanet(ship, command);
+				if(parent.IsLanding())
+					command |= Command::LAND;
+			}
+			else if(needsFuel)
+				// Return to the system center to maximize solar collection rate.
+				MoveTo(ship, command, Point(), Point(), 40., 0.1);
+			else
+				// This ship has no route to the parent's destination system, so protect it until it jumps away.
+				KeepStation(ship, command, parent);
 		}
 		else
 			KeepStation(ship, command, parent);
