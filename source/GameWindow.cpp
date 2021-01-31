@@ -367,27 +367,6 @@ int GameWindow::Height()
 
 
 
-// These functions also work for fullscreen mode
-int GameWindow::TrueWidth()
-{
-	if(!IsFullscreen())
-		return Width();
-	SDL_DisplayMode DM;
-	SDL_GetCurrentDisplayMode(0, &DM);
-	return DM.w;
-}
-
-
-int GameWindow::TrueHeight()
-{
-
-	if(!IsFullscreen())
-		return Height();
-	SDL_DisplayMode DM;
-	SDL_GetCurrentDisplayMode(0, &DM);
-	return DM.h;
-}
-
 bool GameWindow::IsMaximized()
 {
 	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED);

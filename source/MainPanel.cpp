@@ -127,7 +127,7 @@ void MainPanel::Step()
 	
 	engine.Step(isActive);
 	
-	// Splice new events onto the eventQueue for(eventual) handling. No
+	// Splice new events onto the eventQueue for (eventual) handling. No
 	// other classes use Engine::Events() after Engine::Step() completes.
 	eventQueue.splice(eventQueue.end(), engine.Events());
 	// Handle as many ShipEvents as possible (stopping if no longer active

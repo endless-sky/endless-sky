@@ -104,7 +104,7 @@ namespace {
 	Politics politics;
 	
 	vector<StartConditions> startConditions;
-	// After all start scenarios are loaded, the values in this set are added to startConditions
+	// After all start scenarios are loaded, the values in this set are added to startConditions.
 	Set<StartConditions> namedStartConditions;
 	
 	Trade trade;
@@ -221,7 +221,7 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
-	// Add the named start conditions to the start conditions vector
+	// Add the named start conditions to the start conditions vector.
 	startConditions.reserve(namedStartConditions.size() + startConditions.size());
 	for(auto &it : namedStartConditions)
 	{
@@ -1083,7 +1083,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "start" && node.Size() >= 2)
 		{
 			// This copies the StartConditions. We're avoiding using the pointer
-			// returned by Get in case the newly updated start conditions turn out to be invalid
+			// returned by Get in case the newly updated start conditions turn out to be invalid.
 			StartConditions thisStart = (*namedStartConditions.Get(node.Token(1)));
 			thisStart.Load(node);
 			

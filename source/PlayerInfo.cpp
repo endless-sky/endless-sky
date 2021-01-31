@@ -95,7 +95,7 @@ void PlayerInfo::New(const StartConditions &start)
 	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
 	
-	SetSystem(*	start.GetSystem());
+	SetSystem(*start.GetSystem());
 	SetPlanet(start.GetPlanet());
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
@@ -118,8 +118,7 @@ void PlayerInfo::Load(const string &path)
 	// Make sure any previously loaded data is cleared.
 	Clear();
 	
-	filePath = path;
-	
+	filePath = path;	
 
 	bool hasChosenStart = false;
 	// Strip anything after the "~" from snapshots, so that the file we save

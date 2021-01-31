@@ -190,7 +190,6 @@ const list<Ship> &StartConditions::Ships() const
 
 
 
-
 bool StartConditions::Valid() const
 {
 	return system && planet && date && !name.empty();

@@ -39,10 +39,7 @@ public:
 	// Last known windowed-mode width & height.
 	static int Width();
 	static int Height();
-	// Queries SDL for the screen size if fullscreen. Otherwise, it uses Width() and Height().
-	static int TrueWidth();
-	static int TrueHeight();
-	// 
+	
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();	

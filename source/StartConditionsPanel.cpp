@@ -56,29 +56,27 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	if(!GameData::StartOptions().empty())
 	{
 		// By default, select the last defined start conditions
-		// (which are usually the ones defined by a plugin)
+		// (which are usually the ones defined by a plugin).
 		chosenStart = &GameData::StartOptions().back();
 	}
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	
 	if(startConditionsMenu)	
 	{
-		// Ideally, we want the content of the boxes to be drawn in Interface.cpp
-		// However, we'd need a way to specify arbitrarily extensible lists there
-		// We also would need to a way to specify truncation for such a list
-		// Such a list would also have to be scrollable
-		descriptionBox =   startConditionsMenu->GetBox("start description");
-		entryBox =         startConditionsMenu->GetBox("start entry");
-		entryListBox =     startConditionsMenu->GetBox("start entry list");
+		// Ideally, we want the content of the boxes to be drawn in Interface.cpp.
+		// However, we'd need a way to specify arbitrarily extensible lists there.
+		// We also would need to a way to specify truncation for such a list.
+		// Such a list would also have to be scrollable.
+		descriptionBox = startConditionsMenu->GetBox("start description");
+		entryBox = startConditionsMenu->GetBox("start entry");
+		entryListBox = startConditionsMenu->GetBox("start entry list");
 		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
 	}
 	
 	const Rectangle &firstRectangle = Rectangle::FromCorner(entryListBox.TopLeft(), entryBox.Dimensions());
 	startConditionsClickZones.reserve(GameData::StartOptions().size());
 	for(size_t i = 0; i < GameData::StartOptions().size(); ++i)
-	{
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), GameData::StartOptions().begin() + i);
-	}
 	
 	descriptionWrappedText.SetAlignment(Alignment::LEFT);
 	descriptionWrappedText.SetWrapWidth(descriptionBox.Width());
@@ -86,9 +84,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	if(chosenStart)
 		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 	else 
-	{
 		descriptionWrappedText.Wrap("No valid start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly");
-	}
 	bright = *GameData::Colors().Get("bright");
 }
 
@@ -127,7 +123,7 @@ void StartConditionsPanel::Draw()
 	
 	
 	
-	// TODO: Prevent text from overflowing
+	// TODO: Prevent text from overflowing.
 	descriptionWrappedText.Draw(
 		Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll),
 		bright
@@ -145,7 +141,7 @@ void StartConditionsPanel::Draw()
 		);
 		if(point.Y() > entryListBox.Bottom() || point.Y() < entryListBox.Top())
 		{
-			// Don't bother drawing if the item is above or under the list
+			// Don't bother drawing if the item is above or under the list.
 			point += Point(0., entryBox.Height());
 			continue;
 		}
@@ -153,13 +149,10 @@ void StartConditionsPanel::Draw()
 		
 		bool isHighlighted = (&it == chosenStart);
 		
-		// double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		double alpha = 1;
 		
 		if(&it == chosenStart)
-		{
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
-		}
 		
 		DisplayText name = DisplayText(it.GetName(), Truncate::BACK);
 		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
@@ -177,8 +170,8 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 		listScroll = min(entryBox.Height() * (GameData::StartOptions().size()-1), listScroll); 
 		listScroll = max(0., listScroll);
 	}
-	// TODO: When #4123 gets merged, re-add scrolling support
-	// Right now it's pointless because it would make the text overflow
+	// TODO: When #4123 gets merged, re-add scrolling support.
+	// Right now it's pointless because it would make the text overflow.
 	
 	return true;
 }
@@ -217,14 +210,10 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		chosenStartIterator += offset;
 		
 		if(chosenStartIterator < GameData::StartOptions().begin())
-		{
 			chosenStartIterator = GameData::StartOptions().begin();
-		}
 		
 		if(chosenStartIterator >= GameData::StartOptions().end())
-		{
 			chosenStartIterator = GameData::StartOptions().end() - 1;
-		}
 		
 		
 		chosenStart = &*chosenStartIterator;
@@ -241,7 +230,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		
 		if(chosenStart->GetConversation().IsEmpty())
 		{
-			// If no conversation was defined, then skip the conversation panel
+			// If no conversation was defined, then skip the conversation panel.
 			OnCallback(0);
 		}
 		else
@@ -261,7 +250,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 bool StartConditionsPanel::Click(int x, int y, int clicks)
 {
-	// Check it's inside of the entry list box
+	// Check it's inside of the entry list box.
 	if(!entryListBox.Contains(Point(x, y)))
 		return false;
 	
@@ -287,7 +276,7 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 
 
 
-// Called when the conversation ends
+// Called when the conversation ends.
 void StartConditionsPanel::OnCallback(int)
 {
 	gamePanels.Reset();
@@ -301,7 +290,7 @@ void StartConditionsPanel::OnCallback(int)
 		gamePanels.Push(new ShipyardPanel(player));
 		gamePanels.StepAll();
 	}
-	// It's possible that the player got to this menu directly from the main menu, so we need to check for that
+	// It's possible that the player got to this menu directly from the main menu, so we need to check for that.
 	if(parent)
 		GetUI()->Pop(parent);
 	
