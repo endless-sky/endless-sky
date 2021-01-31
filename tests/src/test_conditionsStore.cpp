@@ -86,7 +86,30 @@ SCENARIO( "Setting and erasing conditions", "[ConditionSet][ConditionSetting]" )
 	}
 }
 
-
+SCENARIO( "Adding and removing on condition values", "[ConditionSet][ConditionArithmetic]" ) {
+	GIVEN( "an starting store with 1 condition" ) {
+		auto store = ConditionsStore{{"myFirstVar", 10}};
+		THEN( "adding to an existing variable gives the new value" ) {
+			REQUIRE( store.GetCondition("myFirstVar") == 10 );
+			REQUIRE( store.AddCondition("myFirstVar", 10) == true );
+			REQUIRE( store.GetCondition("myFirstVar") == 20 );
+			REQUIRE( store.AddCondition("myFirstVar", -15) == true );
+			REQUIRE( store.GetCondition("myFirstVar") == 5 );
+			REQUIRE( store.AddCondition("myFirstVar", -15) == true );
+			REQUIRE( store.GetCondition("myFirstVar") == -10 );
+		}
+		THEN( "adding to an non-existing variable sets the new value" ) {
+			REQUIRE( store.Locals().size() == 1 );
+			REQUIRE( store.AddCondition("mySecondVar", -30) == true );
+			REQUIRE( store.GetCondition("mySecondVar") == -30 );
+			REQUIRE( store.Locals().size() == 2 );
+			REQUIRE( store.HasCondition("mySecondVar") == true );
+			REQUIRE( store.AddCondition("mySecondVar", 60) == true );
+			REQUIRE( store.GetCondition("mySecondVar") == 30 );
+			REQUIRE( store.Locals().size() == 2 );
+		}
+	}
+}
 // #endregion unit tests
 
 
