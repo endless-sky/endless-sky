@@ -189,16 +189,16 @@ public:
 	
 	// Access the "condition" flags for this player.
 	int64_t GetCondition(const std::string &name) const;
-	// Copy conditions matching the prefix into the given map.
-	void GetConditions(std::map<std::string, int64_t> &targetMap, const std::string &prefix) const;
 	// Set a "condition" flag to the given value. Returns true on success,
 	// false on failure.
 	bool SetCondition(const std::string &name, int64_t value);
 	bool AddCondition(const std::string &name, int64_t value);
 	bool EraseCondition(const std::string &name);
+	void EraseManualByPrefix(const std::string &prefix);
 	// Direct access to "condition" flags data.
 	std::map<std::string, int64_t> &Conditions();
 	const std::map<std::string, int64_t> &Conditions() const;
+	const std::map<std::string, int64_t> &GetManualConditions() const;
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();

@@ -58,10 +58,8 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	
 	// Add owned licenses
 	const string PREFIX = "license: ";
-	map<string, int64_t> licensesMap;
-	player.GetConditions(licensesMap, PREFIX);
-	for(auto &it : licensesMap)
-		if(it.second > 0)
+	for(auto &it : player.GetManualConditions())
+		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
 		{
 			const string name = it.first.substr(PREFIX.length()) + " License";
 			const Outfit *outfit = GameData::Outfits().Get(name);
