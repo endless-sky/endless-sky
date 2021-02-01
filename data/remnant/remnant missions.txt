@@ -3955,8 +3955,9 @@ event "remnant: postverta reveal"
 		link Postverta
 		link Statina
 	system Statina
-		link Postverta
 		link Diespiter
+		link Egeria
+		link Postverta
 	system Levana
 		add object wormhole_barren
 			distance 2313
