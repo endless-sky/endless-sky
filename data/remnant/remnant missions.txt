@@ -3951,13 +3951,6 @@ event "remnant: postverta reveal"
 		link Diespiter
 		link Prosa
 		link Statina
-	system Diespiter
-		link Postverta
-		link Statina
-	system Statina
-		link Diespiter
-		link Egeria
-		link Postverta
 	system Levana
 		add object wormhole_barren
 			distance 2313
@@ -3969,8 +3962,6 @@ event "remnant: postverta reveal"
 			period 391
 			sprite planet/wormhole-red
 	system Prosa
-		link Postverta
-		link Vaticanus
 		add object wormhole_barren2
 			distance 2313
 			period 389
@@ -3980,7 +3971,10 @@ event "remnant: postverta reveal"
 			distance 2313
 			period 389
 			sprite planet/wormhole-red
-		
+	link Postverta Diespiter
+	link Postverta Prosa
+	link Postverta Statina
+
 
 
 mission "Remnant: Cognizance 14"
