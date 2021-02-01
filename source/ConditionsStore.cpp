@@ -50,13 +50,24 @@ int64_t ConditionsStore::operator [] (const std::string &name) const
 
 bool ConditionsStore::HasCondition(const std::string &name) const
 {
-	ConditionsProvider* cp = GetRegisteredChild(name);
-	if(cp != nullptr)
-		return cp->HasCondition(name);
+	// When we add support for on-demand conditions, then we can
+	// lookup the on-demand condition here before searching the
+	// manually set conditions.
 	
-	// No other table matches, lets search in the internal storage.
 	auto it = conditions.find(name);
 	return it != conditions.end();
+}
+
+
+
+// Add a value to a condition. Returns true on success, false on failure.
+bool ConditionsStore::AddCondition(const string &name, int64_t value)
+{
+	// This code performes 2 lookups of the condition, once for get and
+	// once for set. This might be optimized to a single lookup in a
+	// later version of the code when we add on-demand conditions.
+	
+	return SetCondition(name, GetCondition(name) + value);
 }
 
 
@@ -65,11 +76,10 @@ bool ConditionsStore::HasCondition(const std::string &name) const
 // that doesn't succeed then internally in the store
 int64_t ConditionsStore::GetCondition(const string &name) const
 {
-	ConditionsProvider* cp = GetRegisteredChild(name);
-	if(cp != nullptr)
-		return cp->GetCondition(name);
+	// When we add support for on-demand conditions, then we can
+	// lookup the on-demand condition here before searching the
+	// manually set conditions.
 	
-	// No other table matches, lets search in the internal storage.
 	auto it = conditions.find(name);
 	if(it != conditions.end())
 		return it->second;
@@ -84,11 +94,10 @@ int64_t ConditionsStore::GetCondition(const string &name) const
 // that doesn't succeed then internally in the store.
 bool ConditionsStore::SetCondition(const string &name, int64_t value)
 {
-	ConditionsProvider* cp = GetRegisteredChild(name);
-	if(cp != nullptr)
-		return cp->SetCondition(name, value);
+	// When we add support for on-demand conditions, then we can
+	// lookup if an on-demand condition matches before we set in
+	// the area of manually set conditions.
 	
-	// No other table matches, lets store it in internal storage.
 	conditions[name] = value;
 	return true;
 }
@@ -99,9 +108,10 @@ bool ConditionsStore::SetCondition(const string &name, int64_t value)
 // that doesn't succeed then internally in the store.
 bool ConditionsStore::EraseCondition(const string &name)
 {
-	ConditionsProvider* cp = GetRegisteredChild(name);
-	if(cp != nullptr)
-		return cp->EraseCondition(name);
+	// When we add support for on-demand conditions, then we should
+	// go through both on-demand conditions as well as the manually set
+	// conditions below (and only return true when all erases were
+	// succesfull).
 	
 	auto it = conditions.find(name);
 	if(it != conditions.end())
@@ -118,64 +128,4 @@ bool ConditionsStore::EraseCondition(const string &name)
 const map<string, int64_t> &ConditionsStore::Locals() const
 {
 	return conditions;
-}
-
-
-
-void ConditionsStore::RegisterChild(ConditionsProvider &child, const vector<string> &matchPrefixes, const vector<string> &matchExacts)
-{
-	// Store the pointers to the children to forward to.
-	for(auto &matchPrefix: matchPrefixes)
-		this->matchPrefixes[matchPrefix] = &child;
-	for(auto &matchExact: matchExacts)
-		this->matchExacts[matchExact] = &child;
-}
-
-
-
-void ConditionsStore::DeRegisterChild(ConditionsProvider &child)
-{
-	ConditionsProvider *childPtr = &child;
-	// Remove the child from all matchlist entries where it was listed.
-	for(auto it = matchPrefixes.begin(); it != matchPrefixes.end(); it++)
-		if(it->second == childPtr)
-			it = matchPrefixes.erase(it);
-	
-	for(auto it = matchExacts.begin(); it != matchExacts.end(); it++)
-		if(it->second == childPtr)
-			it = matchExacts.erase(it);
-}
-
-
-
-ConditionsProvider* ConditionsStore::GetRegisteredChild(const std::string &name) const
-{
-	// First check if we should set based on exact names.
-	auto exIt = matchExacts.find(name);
-	if(exIt != matchExacts.end())
-		return exIt->second;
-	
-	// Then check if this is a known prefix.
-	// The lower_bound function will typically end up beyond the required
-	// entry, because the entries are prefixes, but we can still arrive on
-	// the exact location in case of an exact match.
-	if(matchPrefixes.empty())
-		return nullptr;
-	
-	auto preIt = matchPrefixes.lower_bound(name);
-	if(preIt == matchPrefixes.end())
-		--preIt;
-	else if(preIt->first.compare(0, preIt->first.length(), name))
-		return preIt->second;
-	else if(preIt == matchPrefixes.begin())
-		return nullptr;
-	else
-		--preIt;
-	
-	// We should have a match for preIt at this point if there were any
-	// prefix matches to be made.
-	if(preIt->first.compare(0, preIt->first.length(), name))
-		return preIt->second;
-	
-	return nullptr;
 }

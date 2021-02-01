@@ -1,4 +1,4 @@
-/* ConditionsProvider.h
+/* ConditionsStore.h
 Copyright (c) 2020 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,21 +13,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CONDITIONS_STORE_H_
 #define CONDITIONS_STORE_H_
 
-#include "ConditionsProvider.h"
-
 #include <initializer_list>
 #include <map>
 #include <string>
 
 
 
-// Class that describes and implements the interface to retrieve and store
-// condition-variables. This class can be used as stand-alone conditions-
-// provider or as basis for other classes that need the same implementation
-// as is done in this class.
-// Classes that want to store conditions differently than that is done in
-// this class should inherit from ConditionsProvider.
-class ConditionsStore : public ConditionsProvider {
+// Class that contains storage for conditions. The conditions can be
+// set directly in internal storage of this class.
+//
+// The intention of this class is that we can add code in the future to
+// also allow conditions to be provided "on demand" from outside the
+// storage class. This gives some restrictions on direct access to such
+// storage, since the outside providers might not use int64_t as basic
+// storage element for the information (but translates to int64_t from
+// it's internal storage format).
+class ConditionsStore {
 public:
 	// Constructors to initialize this class.
 	ConditionsStore();
@@ -36,36 +37,22 @@ public:
 
 	// Retrieve a "condition" flag from this provider.
 	int64_t operator [] (const std::string &name) const;
-	virtual bool HasCondition(const std::string &name) const override;
-	virtual int64_t GetCondition(const std::string &name) const override;
+	bool HasCondition(const std::string &name) const;
+	bool AddCondition(const std::string &name, int64_t value);
+	int64_t GetCondition(const std::string &name) const;
 	// Add a value to a condition, set a value for a condition or erase a
 	// condition completely. Returns true on success, false on failure.
-	virtual bool SetCondition(const std::string &name, int64_t value) override;
-	virtual bool EraseCondition(const std::string &name) override;
+	bool SetCondition(const std::string &name, int64_t value);
+	bool EraseCondition(const std::string &name);
 	
 	// Direct (read-only) access to non-child (local to this class) "condition" flags data.
 	const std::map<std::string, int64_t> &Locals() const;
 
 
 
-protected:
-	//Inherited from ConditionsProvider
-	virtual void RegisterChild(ConditionsProvider &child, const std::vector<std::string> &matchPrefixes, const std::vector<std::string> &matchExacts) override;
-	virtual void DeRegisterChild(ConditionsProvider &child) override;
-
-
-
-private:
-	ConditionsProvider* GetRegisteredChild(const std::string &name) const;
-
-
-
 private:
 	// Storage for the actual conditions.
 	std::map<std::string, int64_t> conditions;
-	// Storage of child providers by prefix and full string.
-	std::map<std::string, ConditionsProvider*> matchPrefixes;
-	std::map<std::string, ConditionsProvider*> matchExacts;
 };
 
 
