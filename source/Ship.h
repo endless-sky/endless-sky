@@ -221,8 +221,6 @@ public:
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
-	// Check if this ship is carried at the moment.
-	bool IsCarried() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if some condition is keeping this ship from acting. (That is, it is
@@ -463,7 +461,6 @@ private:
 	bool isYours = false;
 	bool isParked = false;
 	// Whether this ship is carried at the moment.
-	bool isCarried = false;
 	bool shouldDeploy = false;
 	bool isOverheated = false;
 	bool isDisabled = false;

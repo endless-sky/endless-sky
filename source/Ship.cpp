@@ -2111,7 +2111,6 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + bay.facing;
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(exitPoint, v, launchAngle);
-			bay.ship->isCarried = false;
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
@@ -2405,13 +2404,6 @@ bool Ship::IsBoarding() const
 bool Ship::IsLanding() const
 {
 	return landingPlanet;
-}
-
-
-
-bool Ship::IsCarried() const
-{
-	return isCarried;
 }
 
 
@@ -3176,7 +3168,6 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 		if((bay.category == category) && !bay.ship)
 		{
 			bay.ship = ship;
-			ship->isCarried = true;
 			ship->SetSystem(nullptr);
 			ship->SetPlanet(nullptr);
 			ship->SetTargetSystem(nullptr);
@@ -3208,7 +3199,6 @@ void Ship::UnloadBays()
 		if(bay.ship)
 		{
 			carriedMass -= bay.ship->Mass();
-			bay.ship->isCarried = false;
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();

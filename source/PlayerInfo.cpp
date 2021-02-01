@@ -742,21 +742,11 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
+					&& (!planet || planet->CanLand(*it)))
 			{
-				if(planet)
-				{
-					if(planet->CanLand(*it))
-					{
-						flagship = it;
-						break;
-					}
-				}
-				else
-				{
-					flagship = it;
-					break;
-				}
+				flagship = it;
+				break;
 			}
 	
 	static const shared_ptr<Ship> empty;
@@ -1141,10 +1131,6 @@ void PlayerInfo::Land(UI *ui)
 			++it; 
 	}
 	
-	// "Unload" all fighters, so they will get recharged, etc.
-	for(const shared_ptr<Ship> &ship : ships)
-		ship->UnloadBays();
-	
 	// Ships that are landed with you on the planet should fully recharge and pool
 	// all their cargo together. Those that are in remote systems or cannot land
 	// anywhere in the player's system restore what they can without landing.
@@ -1155,43 +1141,45 @@ void PlayerInfo::Land(UI *ui)
 		{
 			if(ship->GetSystem() == system)
 			{
-				if(planet->CanLand(*ship) || (ship->IsCarried() && ship->GetParent()->GetSystem() == system
-						&& planet->CanLand(*ship->GetParent())))
+				if(planet->CanLand(*ship))
 				{
 					ship->Recharge(hasSpaceport);
 					ship->Cargo().TransferAll(cargo);
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
+					// Recharge and unload carried ships.
+					for(const auto &bay : ship->Bays())
+						if(bay.ship)
+						{
+							bay.ship->Recharge(hasSpaceport);
+							bay.ship->Cargo().TransferAll(cargo);
+						}
+					ship->UnloadBays();
 				}
 				// Ships that cannot land with the flagship choose the most suitable planet
 				// in the system.
 				else if(!ship->GetPlanet())
 				{
+					const Planet *landingPlanet = nullptr;
 					for(const StellarObject &object : system->Objects())
 					{
 						const Planet *pl = object.GetPlanet();
-						if(object.HasSprite() && pl && pl->HasFuelFor(*ship))
+						if(object.HasSprite() && pl && pl->CanLand(*ship))
 						{
-							ship->SetPlanet(pl);
-							ship->Recharge();
-							break;
-						}
-					}
-					// If the ship cannot refuel anywhere, it lands on any planet.
-					if(!ship->GetPlanet())
-					{
-						for(const StellarObject &object : system->Objects())
-						{
-							const Planet *pl = object.GetPlanet();
-							if(object.HasSprite() && pl && pl->CanLand(*ship))
+							if(pl->HasFuelFor(*ship))
 							{
 								ship->SetPlanet(pl);
-								ship->Recharge(false);
+								ship->Recharge();
 								break;
 							}
+							else if(!landingPlanet)
+								landingPlanet = pl;
 						}
-						if(!ship->GetPlanet())
-							ship->Recharge(false);
+					}
+					if(!ship->GetPlanet())
+					{
+						ship->SetPlanet(landingPlanet);
+						ship->Recharge(false);
 					}
 				}
 				else
