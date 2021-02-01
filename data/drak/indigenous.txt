@@ -304,20 +304,16 @@ fleet "Embershades"
 	cargo 0
 	personality
 		timid shy elusive mute
+	variant 1
+		"Embershade" 5
 	variant 2
-		"Embershade" 7
-	variant 2
-		"Embershade" 6
-	variant 3
 		"Embershade" 4
-	variant 2
+	variant 3
 		"Embershade" 3
-	variant 2
+	variant 5
 		"Embershade" 2
-	variant 1
+	variant 10
 		"Embershade" 1
-	variant 1
-		"Embershade" 8
 
 
 fleet "Ember Waste Node"
