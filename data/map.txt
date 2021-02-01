@@ -23287,7 +23287,7 @@ system Statina
 			sprite planet/dust4
 			distance 158
 			period 17
-	object wormhole_link
+	object "Wormhole Link"
 		sprite planet/wormhole-red
 		distance 2754
 		period 389
@@ -24740,7 +24740,7 @@ system Vaticanus
 			sprite planet/luna
 			distance 235
 			period 14
-	object wormhole_link
+	object "Wormhole Link"
 		sprite planet/wormhole-red
 		distance 2754
 		period 389
@@ -29808,11 +29808,11 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
-planet wormhole_barren
+planet "Wormhole Barren Alpha"
 	attributes "requires: quantum keystone"
 	description ``
-planet wormhole_barren2
+planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
 	description ``
-planet wormhole_link
+planet "Wormhole Link"
 	description ``

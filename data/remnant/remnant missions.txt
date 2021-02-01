@@ -3946,28 +3946,28 @@ event "remnant: postverta reveal"
 	unvisit Caeculus
 	unvisit Prosa
 	unvisit Egeria
+	system Caeculus
+		add object "Wormhole Barren Beta"
+			sprite planet/wormhole-red
+			distance 2400
+			period 391
+	system Egeria
+		add object "Wormhole Barren Alpha"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
+	system Levana
+		add object "Wormhole Barren Alpha"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
 	system Postverta
 		pos 297 269
 		link Diespiter
 		link Prosa
 		link Statina
-	system Caeculus
-		add object "wormhole barren beta"
-			sprite planet/wormhole-red
-			distance 2400
-			period 391
-	system Egeria
-		add object "wormhole barren alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Levana
-		add object "wormhole barren alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
 	system Prosa
-		add object "wormhole barren beta"
+		add object "Wormhole Barren Beta"
 			sprite planet/wormhole-red
 			distance 2313
 			period 389
