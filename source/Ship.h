@@ -460,7 +460,6 @@ private:
 	bool isSpecial = false;
 	bool isYours = false;
 	bool isParked = false;
-	// Whether this ship is carried at the moment.
 	bool shouldDeploy = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
