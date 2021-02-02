@@ -296,7 +296,7 @@ void PreferencesPanel::DrawControls()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
-	Color warning(.5f, .3f, 0.f, 0.f);
+	const Color &warning = *GameData::Colors().Get("warning conflict");
 	
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
