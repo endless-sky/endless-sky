@@ -531,7 +531,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		if(it.get() == flagship)
 		{
-			MovePlayer(*it, player, activeCommands);
+			// Player cannot do anything if the flagship is landing / departing.
+			if(flagship->Zoom() == 1.)
+				MovePlayer(*it, player, activeCommands);
 			continue;
 		}
 		
