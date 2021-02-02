@@ -41,7 +41,7 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
 
 
 
-int64_t ConditionsStore::operator [] (const std::string &name) const
+int64_t ConditionsStore::operator[](const std::string &name) const
 {
 	return GetCondition(name);
 }
