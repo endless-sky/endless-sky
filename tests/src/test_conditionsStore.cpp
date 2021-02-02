@@ -28,12 +28,12 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 		const auto store = ConditionsStore{{"hello world", 100}, {"goodbye world", 404}};
 		
 		THEN( "given conditions are in the Store" ) {
-			REQUIRE( store.GetCondition("hello world") == 100 );
-			REQUIRE( store.GetCondition("goodbye world") == 404 );
+			REQUIRE( store["hello world"] == 100 );
+			REQUIRE( store["goodbye world"] == 404 );
 			REQUIRE( store.Locals().size() == 2 );
 		}
 		THEN( "not given conditions return the default value" ) {
-			REQUIRE( store.GetCondition("ungreeted world") == 0 );
+			REQUIRE( store["ungreeted world"] == 0 );
 			REQUIRE( store.Locals().size() == 2 );
 		}
 	}
@@ -42,12 +42,12 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 		const auto store = ConditionsStore(initmap);
 		
 		THEN( "given conditions are in the Store" ) {
-			REQUIRE( store.GetCondition("hello world") == 100 );
-			REQUIRE( store.GetCondition("goodbye world") == 404 );
+			REQUIRE( store["hello world"] == 100 );
+			REQUIRE( store["goodbye world"] == 404 );
 			REQUIRE( store.Locals().size() == 2 );
 		}
 		THEN( "not given conditions return the default value" ) {
-			REQUIRE( store.GetCondition("ungreeted world") == 0 );
+			REQUIRE( store["ungreeted world"] == 0 );
 			REQUIRE( store.Locals().size() == 2 );
 		}
 	}
@@ -59,13 +59,13 @@ SCENARIO( "Setting and erasing conditions", "[ConditionSet][ConditionSetting]" )
 		THEN( "stored values can be retrieved" ) {
 			REQUIRE( store.Locals().size() == 0 );
 			REQUIRE( store.SetCondition("myFirstVar", 10) == true );
-			REQUIRE( store.GetCondition("myFirstVar") == 10 );
+			REQUIRE( store["myFirstVar"] == 10 );
 			REQUIRE( store.HasCondition("myFirstVar") == true );
 			REQUIRE( store.Locals().size() == 1 );
 		}
 		THEN( "defaults are returned for unstored values and are not stored" ) {
 			REQUIRE( store.Locals().size() == 0 );
-			REQUIRE( store.GetCondition("mySecondVar") == 0 );
+			REQUIRE( store["mySecondVar"] == 0 );
 			REQUIRE( store.Locals().size() == 0 );
 			REQUIRE( store.HasCondition("mySecondVar") == false );
 		}
@@ -74,12 +74,12 @@ SCENARIO( "Setting and erasing conditions", "[ConditionSet][ConditionSetting]" )
 			REQUIRE( store.SetCondition("myFirstVar", 10) == true );
 			REQUIRE( store.HasCondition("myFirstVar") == true );
 			REQUIRE( store.Locals().size() == 1 );
-			REQUIRE( store.GetCondition("myFirstVar") == 10 );
+			REQUIRE( store["myFirstVar"] == 10 );
 			REQUIRE( store.Locals().size() == 1 );
 			REQUIRE( store.EraseCondition("myFirstVar") == true );
 			REQUIRE( store.HasCondition("myFirstVar") == false );
 			REQUIRE( store.Locals().size() == 0 );
-			REQUIRE( store.GetCondition("myFirstVar") == 0 );
+			REQUIRE( store["myFirstVar"] == 0 );
 			REQUIRE( store.HasCondition("myFirstVar") == false );
 			REQUIRE( store.Locals().size() == 0 );
 		}
@@ -90,22 +90,22 @@ SCENARIO( "Adding and removing on condition values", "[ConditionSet][ConditionAr
 	GIVEN( "an starting store with 1 condition" ) {
 		auto store = ConditionsStore{{"myFirstVar", 10}};
 		THEN( "adding to an existing variable gives the new value" ) {
-			REQUIRE( store.GetCondition("myFirstVar") == 10 );
+			REQUIRE( store["myFirstVar"] == 10 );
 			REQUIRE( store.AddCondition("myFirstVar", 10) == true );
-			REQUIRE( store.GetCondition("myFirstVar") == 20 );
+			REQUIRE( store["myFirstVar"] == 20 );
 			REQUIRE( store.AddCondition("myFirstVar", -15) == true );
-			REQUIRE( store.GetCondition("myFirstVar") == 5 );
+			REQUIRE( store["myFirstVar"] == 5 );
 			REQUIRE( store.AddCondition("myFirstVar", -15) == true );
-			REQUIRE( store.GetCondition("myFirstVar") == -10 );
+			REQUIRE( store["myFirstVar"] == -10 );
 		}
 		THEN( "adding to an non-existing variable sets the new value" ) {
 			REQUIRE( store.Locals().size() == 1 );
 			REQUIRE( store.AddCondition("mySecondVar", -30) == true );
-			REQUIRE( store.GetCondition("mySecondVar") == -30 );
+			REQUIRE( store["mySecondVar"] == -30 );
 			REQUIRE( store.Locals().size() == 2 );
 			REQUIRE( store.HasCondition("mySecondVar") == true );
 			REQUIRE( store.AddCondition("mySecondVar", 60) == true );
-			REQUIRE( store.GetCondition("mySecondVar") == 30 );
+			REQUIRE( store["mySecondVar"] == 30 );
 			REQUIRE( store.Locals().size() == 2 );
 		}
 	}

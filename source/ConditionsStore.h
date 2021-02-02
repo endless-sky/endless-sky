@@ -39,7 +39,6 @@ public:
 	int64_t operator[](const std::string &name) const;
 	bool HasCondition(const std::string &name) const;
 	bool AddCondition(const std::string &name, int64_t value);
-	int64_t GetCondition(const std::string &name) const;
 	// Add a value to a condition, set a value for a condition or erase a
 	// condition completely. Returns true on success, false on failure.
 	bool SetCondition(const std::string &name, int64_t value);

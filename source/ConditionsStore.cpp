@@ -41,9 +41,21 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
 
 
 
+// Get a condition from the Conditions-Store. Retrieves both conditions
+// that were directly set as well as conditions derived from other
+// data-structures.
 int64_t ConditionsStore::operator[](const std::string &name) const
 {
-	return GetCondition(name);
+	// When we add support for on-demand conditions, then we can
+	// lookup the on-demand condition here before searching the
+	// manually set conditions.
+	
+	auto it = conditions.find(name);
+	if(it != conditions.end())
+		return it->second;
+	
+	// Return the default value if nothing was found.
+	return 0;
 }
 
 
@@ -67,25 +79,7 @@ bool ConditionsStore::AddCondition(const string &name, int64_t value)
 	// once for set. This might be optimized to a single lookup in a
 	// later version of the code when we add on-demand conditions.
 	
-	return SetCondition(name, GetCondition(name) + value);
-}
-
-
-
-// Get a value for a condition, first by trying the children and if
-// that doesn't succeed then internally in the store
-int64_t ConditionsStore::GetCondition(const string &name) const
-{
-	// When we add support for on-demand conditions, then we can
-	// lookup the on-demand condition here before searching the
-	// manually set conditions.
-	
-	auto it = conditions.find(name);
-	if(it != conditions.end())
-		return it->second;
-	
-	// Return the default value if nothing was found.
-	return 0;
+	return SetCondition(name, (*this)[name] + value);
 }
 
 

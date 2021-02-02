@@ -1783,7 +1783,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 // Get the value of the given condition (default 0).
 int64_t PlayerInfo::GetCondition(const string &name) const
 {
-	return conditions.GetCondition(name);
+	return conditions[name];
 }
 
 
