@@ -531,8 +531,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		if(it.get() == flagship)
 		{
-			// Player cannot do anything if the flagship is landing / departing.
-			if(flagship->Zoom() == 1.)
+			// Player cannot do anything if the flagship is landing.
+			if(!flagship->IsLanding())
 				MovePlayer(*it, player, activeCommands);
 			continue;
 		}
@@ -3302,7 +3302,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				activeCommands.Clear(Command::BOARD);
 		}
 	}
-	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace())
+	// Player cannot attempt to land while departing from a planet.
+	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace() && ship.Zoom() == 1.)
 	{
 		// Track all possible landable objects in the current system.
 		auto landables = vector<const StellarObject *>{};
