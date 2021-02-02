@@ -107,6 +107,10 @@ namespace {
 	// After all start scenarios are loaded, the values in this set are added to startConditions.
 	Set<StartConditions> namedStartConditions;
 	
+	// These are used for logging invalid start scenarios after the datanodes they came from go out of scope
+	vector<DataNode> startConditionsSourceNodes;
+	Set<DataNode> namedStartConditionsSourceNodes;
+	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
 	
@@ -129,6 +133,8 @@ namespace {
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
+	
+	
 	
 	const Government *playerGovernment = nullptr;
 	
@@ -222,10 +228,31 @@ bool GameData::BeginLoad(const char * const *argv)
 	}
 	
 	// Add the named start conditions to the start conditions vector.
-	startConditions.reserve(namedStartConditions.size() + startConditions.size());
-	for(auto &it : namedStartConditions)
-	{
+	for (auto &it : namedStartConditions)
 		startConditions.push_back(it.second);
+	for (auto &it : namedStartConditionsSourceNodes)
+		startConditionsSourceNodes.push_back(it.second);
+	
+	vector<int> removeIndexes;
+	// Here we're iterating over two vectors at the same time
+	vector<StartConditions>::iterator it = startConditions.begin();
+	vector<DataNode>::iterator dataNodeIt = startConditionsSourceNodes.begin();
+	for(;it < startConditions.end() && dataNodeIt < startConditionsSourceNodes.end(); it++, dataNodeIt++)
+		if(!(*it).Valid())
+		{
+			(*dataNodeIt).PrintTrace("Invalid start scenario\n"
+				"A valid start scenario has a name, a date, a system and a planet");
+			removeIndexes.push_back(it - startConditions.begin());	
+		}
+		
+	// Here we remove all invalid start conditions from the vector.
+	// Since we are erasing items while iterating over the indexes, we have to shift the remove index
+	// to accomodate for the erasing items every time we erase one.
+	int removedConditions = 0;
+	for(int index : removeIndexes)
+	{
+		startConditions.erase(startConditions.begin() + index - removedConditions);
+		++removedConditions;
 	}
 	
 	// Now that all data is loaded, update the neighbor lists and other
@@ -1082,27 +1109,13 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			shipSales.Get(node.Token(1))->Load(node, ships);
 		else if(key == "start" && node.Size() >= 2)
 		{
-			// This copies the StartConditions. We're avoiding using the pointer
-			// returned by Get in case the newly updated start conditions turn out to be invalid.
-			StartConditions thisStart = (*namedStartConditions.Get(node.Token(1)));
-			thisStart.Load(node);
-			
-			if (!thisStart.Valid())
-				node.PrintTrace("Invalid start scenario\n"
-						"A valid start scenario has a name, a date, a system and a planet");
-			else
-				*namedStartConditions.Get(node.Token(1)) = thisStart;
+			namedStartConditions.Get(node.Token(1))->Load(node);
+			*namedStartConditionsSourceNodes.Get(node.Token(1)) = node;
 		}
 		else if(key == "start" && node.Size() == 1)
-		{
-			
+		{	
 			startConditions.emplace_back(node);
-			if (!startConditions.back().Valid())
-			{
-				startConditions.erase(startConditions.end()-1);
-				node.PrintTrace("Invalid start scenario\n"
-						"A valid start scenario has a name, a date, a system and a planet");
-			}
+			startConditionsSourceNodes.push_back(node);
 		}
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);

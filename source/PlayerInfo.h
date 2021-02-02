@@ -370,7 +370,9 @@ private:
 	
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
+	
 	StartConditions chosenStart;
+	bool hasChosenStart = false;
 };
 
 

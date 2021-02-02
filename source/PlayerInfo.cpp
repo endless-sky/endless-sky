@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Messages.h"
@@ -120,7 +121,6 @@ void PlayerInfo::Load(const string &path)
 	
 	filePath = path;	
 
-	bool hasChosenStart = false;
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
 	size_t pos = filePath.find('~');
@@ -291,13 +291,6 @@ void PlayerInfo::Load(const string &path)
 			}
 		}
 	}
-
-	// For old saves, default to the first start condition, which is always
-	// our default start.
-	// It is not necessary to check whether GameData::StartOptions().empty(),
-	// because that's already covered in main.cpp
-	if(!hasChosenStart)
-		chosenStart = GameData::StartOptions().front(); 
 
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -2458,6 +2451,15 @@ void PlayerInfo::ValidateLoad()
 		Files::LogError("Warning: reset the travel plan due to use of invalid system(s).");
 	}
 	
+	// For old saves, default to the first start condition, which is 
+	// always our default start.
+	// It is possible that there are no start conditions. In that case, it is not 
+	//possible to guess which start conditions this was created with so exit with an error.
+	if (GameData::StartOptions().empty())
+		GameWindow::ExitWithError("A old pilot was loaded, but no valid start conditions defined in the data files! Make sure that you've installed the game properly.", true);
+	else if(!hasChosenStart)
+		chosenStart = GameData::StartOptions().front(); 
+
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored. 
 	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });

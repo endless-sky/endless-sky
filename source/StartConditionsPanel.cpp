@@ -51,7 +51,7 @@ namespace {
 }
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, Panel *parent)
-	: player(player), gamePanels(gamePanels), descriptionWrappedText(WrappedText(FontSet::Get(14))), parent(parent)
+	: player(player), gamePanels(gamePanels), descriptionWrappedText(FontSet::Get(14)), parent(parent)
 {
 	if(!GameData::StartOptions().empty())
 	{
@@ -86,14 +86,14 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	else 
 		descriptionWrappedText.Wrap("No valid start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly");
 	bright = *GameData::Colors().Get("bright");
+	medium = *GameData::Colors().Get("medium");
+	selectedBackground = *GameData::Colors().Get("selected start conditions background");
 }
 
 
 void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	
-	const Font &font = FontSet::Get(14);
 	
 	Information info;
 	
@@ -130,13 +130,13 @@ void StartConditionsPanel::Draw()
 	);
 	
 	Point point(entryListBox.Left(), entryListBox.Top() - listScroll);
+	const Point offset = entryInternalBox.Dimensions() * 2;
 	
+	const Font &font = FontSet::Get(14);
 	for(const auto &it : GameData::StartOptions())
 	{
 		Rectangle zone(
-			point  + Point(
-				(entryInternalBox.Width()) / 2, 
-				(entryInternalBox.Height()) / 2), 
+			point + offset, 
 			entryBox.Dimensions()
 		);
 		if(point.Y() > entryListBox.Bottom() || point.Y() < entryListBox.Top())
@@ -149,13 +149,11 @@ void StartConditionsPanel::Draw()
 		
 		bool isHighlighted = (&it == chosenStart);
 		
-		double alpha = 1;
-		
-		if(&it == chosenStart)
-			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
+		if(isHighlighted)
+			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground);
 		
 		DisplayText name = DisplayText(it.GetName(), Truncate::BACK);
-		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+		font.Draw(name, point, isHighlighted ? bright : medium);
 		point += Point(0., entryBox.Height());
 	}
 }
@@ -207,14 +205,12 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		listScroll += offset * entryBox.Height();
 		listScroll = min(max(listScroll, 0.), (GameData::StartOptions().size() - 1) * entryBox.Height());
 		
-		chosenStartIterator += offset;
-		
-		if(chosenStartIterator < GameData::StartOptions().begin())
+		if(GameData::StartOptions().begin() - chosenStartIterator < offset)
 			chosenStartIterator = GameData::StartOptions().begin();
-		
-		if(chosenStartIterator >= GameData::StartOptions().end())
+		else if(GameData::StartOptions().end() - chosenStartIterator < offset)
 			chosenStartIterator = GameData::StartOptions().end() - 1;
-		
+		else
+			chosenStartIterator += offset;
 		
 		chosenStart = &*chosenStartIterator;
 		descriptionWrappedText.Wrap(chosenStart->GetDescription());

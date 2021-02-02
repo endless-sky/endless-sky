@@ -64,6 +64,8 @@ private:
 	Rectangle entryInternalBox;
 	
 	Color bright;
+	Color medium;
+	Color selectedBackground;
 };
 
 #endif
