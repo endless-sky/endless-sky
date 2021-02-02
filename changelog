@@ -54,6 +54,9 @@ Version 0.9.13:
       * Ships with reverse thrusters no longer struggle to land. (@Terin, @Vitalchip)
       * The planet panel will no longer become blank when departure requires confirmation. (@tatami4)
       * Planets are now written to the save file using their true name instead of their display name. (@tehhowch)
+      * An error is now produced when improperly granting a ship in a start condition. (@tehhowch)
+      * The "battery only" warning in the outfitter now takes fuel energy into account. (@Amazinite)
+      * All flagship commands and the hailing command are now ignored while in the process of landing or departing from a planet. (@tatami4)
   * Game content:
     * New content: 
       * New missions:
@@ -66,6 +69,7 @@ Version 0.9.13:
         * Added a new string of missions during the start of the Wanderer campaign that leads to a sideplot to help the Hai build a new ship. (@Amazinite, @Arachi-Lover, @beccabunny, @LocalGod79, @Zitchas)
         * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
         * Created a mission where you can inform the Remnant about the research that the Deep are doing on the Ember Waste. (@Amazinite, @Zitchas)
+        * The player will now be warned the first time their pirate attraction is greater than 50%. (@Amazinite)
       * New outfits and ships:
         * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
         * Ka'het ships now have power generation and storage outfits. (@beccabunny)
@@ -130,6 +134,7 @@ Version 0.9.13:
       * Reworked the graphics of Syndicated Shipyards ships. (@beccabunny)
       * Reworked the graphics of the Korath Raider. (@ravenshining, @Red-57)
       * Reworked the graphics of some Korath outfit images. (@beccabunny)
+      * Replaced the 2D assets of the void sprite images with 3D models. (@beccabunny)
     * Other:
       * Renamed the Gascraft to the Puffin so that all Remnant ships are named after birds. (@Zitchas)
       * Removed the Quarg ringworld from the Graveyard. (@Arachi-Lover)
@@ -145,6 +150,7 @@ Version 0.9.13:
       * Prevented various governments from being able to fine or be bribed by the player. (@petervdmeer)
       * Standardized capitalization of certain terms. (@Amazinite)
       * Replaced some remaining imperial measurements with metric ones. (@prophile)
+      * The starting frame of a void sprite is now randomized. (@Zitchas)
   * Game mechanics:
     * New weapon and outfit attributes:
       * Weapon attributes to override the range and velocity values used by the AI to determine where the aim and when to fire. (@Amazinite)
@@ -194,6 +200,8 @@ Version 0.9.13:
       * Heat can now be used as a resource for shield and hull repairs. (@Amazinite)
       * Escorts will now follow their parent to landing instead of racing ahead of it. (@petervdmeer)
       * Pirate deterrence takes relative shield and hull damage into account by scaling relative to the ship with the weapons. (@Terin)
+      * Ships with the disables and plunders personalities will no longer destroy ships that have plundered. (@tatami4)
+      * Ships with the plunders personality will now always aim to destroy ships they plundered. (@tatami4)
   * User interface:
     * The outfitter help now explains how to buy outfits into cargo. (@Zitchas)
     * Fast-forward will now be turned off if the player is not in flight, such as when landing or boarding a ship. (@petervdmeer)
@@ -212,6 +220,9 @@ Version 0.9.13:
     * Text truncating is now used more widely for shortening long text. (@oo13, @tehhowch)
     * A warning dialog will appear when attempting to change the vsync setting fails. (@tatami4)
     * The main view, map, hiring, and trading panels are now capable of using the numpad + and - keys for zooming in/out, hiring/firing crew, or buying/selling goods. (@tatami4)
+    * The list of pilot snapshots now resets to the top when switching between pilots. (@Terin)
+    * Clicking on empty space now deselects the player's current ship or asteroid target. (@ChamEV, @tatami4)
+    * Conflicting keybinds are no longer reset when loading the game, allowing for one key to be bound to multiple controls. (@tatami4, @yobbo2020)
   * Under the hood:
     * Carried ships are now identified by their category instead of a boolean. (@petervdmeer)
     * The game will now report more errors in conversations, including incorrect indentation. (@NomadicVolcano)
