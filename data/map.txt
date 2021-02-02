@@ -5803,7 +5803,7 @@ system "Bore Fah"
 		distance 678.69
 		period 282.896
 		object Silverleap
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
@@ -5877,7 +5877,7 @@ system "Bote Asu"
 		distance 1111.15
 		period 277.063
 		object Everhope
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient2
 			distance 240
 			period 17.5
 	object
@@ -7287,7 +7287,7 @@ system "Da Ent"
 		distance 622.02
 		period 406.282
 		object Violetwake
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
@@ -7295,7 +7295,7 @@ system "Da Ent"
 		distance 1094.46
 		period 948.246
 		object Darkrest
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 240
 			period 17.5
 	object
@@ -7357,7 +7357,7 @@ system "Da Lest"
 		distance 676.46
 		period 393.413
 		object Eldergrasp
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
@@ -8475,7 +8475,7 @@ system "Due Yoot"
 		distance 204.76
 		period 76.7342
 		object Greenview
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 240
 			period 17.5
 	object
@@ -8491,7 +8491,7 @@ system "Due Yoot"
 		distance 1042.35
 		period 881.336
 		object Indigosprint
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
@@ -9825,7 +9825,7 @@ system "Fah Soom"
 		distance 884.21
 		period 509.6
 		object Firefall
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 240
 			period 17.5
 	object
@@ -12237,7 +12237,7 @@ system "Heia Due"
 		distance 279.538
 		period 53.6331
 		object Coppermist
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
@@ -12245,7 +12245,7 @@ system "Heia Due"
 		distance 637.538
 		period 184.727
 		object Sandsnap
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 240
 			period 17.5
 	object Allhome
@@ -12962,7 +12962,7 @@ system "Imo Dep"
 		distance 1157.36
 		period 380.304
 		object Bluerun
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object Stonebreak
@@ -13086,7 +13086,7 @@ system "Io Lowe"
 		distance 500.32
 		period 385.27
 		object Greymoon
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient2
 			distance 240
 			period 17.5
 	object
@@ -13159,7 +13159,7 @@ system "Io Mann"
 			distance 260
 			period 22.0677
 		object Lightstead
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 500
 			period 32.5
 	object
@@ -13171,7 +13171,7 @@ system "Io Mann"
 			distance 182
 			period 14.8772
 		object Thornlight
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 422
 			period 28.5
 	object
@@ -15427,7 +15427,7 @@ system "Lom Tahr"
 		period 18.3293
 		offset 149.808
 		object Iritoroost
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 240
 			period 17.5
 	object
@@ -16150,7 +16150,7 @@ system "Mei Yohn"
 		distance 228.21
 		period 66.8187
 		object Icemeet
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object Darkmetal
@@ -20335,7 +20335,7 @@ system "Rati Cal"
 		distance 393.64
 		period 52.2262
 		object Limejog
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 240
 			period 17.5
 	object Dustmaker
@@ -24444,7 +24444,7 @@ system "Ula Mon"
 		period 584.389
 		offset 301.398
 		object Goldcrawl
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
@@ -24453,7 +24453,7 @@ system "Ula Mon"
 		period 802.132
 		offset 325.062
 		object Ironfirth
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 240
 			period 17.5
 	object
@@ -24759,7 +24759,7 @@ system "Uwa Fahn"
 		distance 616.77
 		period 342.507
 		object Swiftsong
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
@@ -25107,7 +25107,7 @@ system "Wah Oh"
 		distance 341.76
 		period 17.1522
 		object Ochrescoop
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient2
 			distance 240
 			period 17.5
 	object
@@ -25600,7 +25600,7 @@ system "Ya Hai"
 			distance 291
 			period 26.1298
 		object Mahoganybox
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient1
 			distance 440
 			period 47.5
 	object
@@ -25982,7 +25982,7 @@ system "Zuba Zub"
 		distance 1458.86
 		period 1079.98
 		object Redwatch
-			sprite planet/station-hai-ancient
+			sprite planet/stationh-ancient0
 			distance 240
 			period 17.5
 	object
