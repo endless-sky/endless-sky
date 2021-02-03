@@ -481,6 +481,7 @@ government "Quarg"
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
+	"friendly hail" "friendly quarg"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 
