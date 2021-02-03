@@ -39,7 +39,7 @@ public:
 	ConditionsStore(const std::map<std::string, int64_t> initialConditions);
 
 	// Retrieve a "condition" flag from this provider.
-	int64_t operator[](const std::string &name) const;
+	int64_t GetCondition(const std::string &name) const;
 	bool HasCondition(const std::string &name) const;
 	bool AddCondition(const std::string &name, int64_t value);
 	// Add a value to a condition, set a value for a condition or erase a

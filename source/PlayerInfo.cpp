@@ -1764,7 +1764,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target() && !event.Target()->IsYours())
 		{
-			auto rating = conditions["combat rating"];
+			auto rating = conditions.GetCondition("combat rating");
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
 			SetCondition("combat rating", rating);
@@ -1783,7 +1783,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 // Get the value of the given condition (default 0).
 int64_t PlayerInfo::GetCondition(const string &name) const
 {
-	return conditions[name];
+	return conditions.GetCondition(name);
 }
 
 
@@ -1875,7 +1875,7 @@ void PlayerInfo::CheckReputationConditions()
 	for(const auto &it : GameData::Governments())
 	{
 		int64_t rep = it.second.Reputation();
-		int64_t newRep = conditions["reputation: " + it.first];
+		int64_t newRep = conditions.GetCondition("reputation: " + it.first);
 		if(newRep != rep)
 			it.second.AddReputation(newRep - rep);
 	}

@@ -44,7 +44,7 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
 // Get a condition from the Conditions-Store. Retrieves both conditions
 // that were directly set (primary conditions) as well as conditions
 //derived from other data-structures (derived conditions).
-int64_t ConditionsStore::operator[](const std::string &name) const
+int64_t ConditionsStore::GetCondition(const std::string &name) const
 {
 	ConditionsProvider* cp = GetProvider(name);
 	if(cp != nullptr)
@@ -79,7 +79,7 @@ bool ConditionsStore::AddCondition(const string &name, int64_t value)
 	// once for set. This might be optimized to a single lookup in a
 	// later version of the code when we add derived conditions.
 	
-	return SetCondition(name, (*this)[name] + value);
+	return SetCondition(name, GetCondition(name) + value);
 }
 
 
