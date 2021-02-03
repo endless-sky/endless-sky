@@ -111,8 +111,8 @@ void BankPanel::Draw()
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
 	{
-		auto it = player.GetManualConditions().lower_bound(prefix[i]);
-		for( ; it != player.GetManualConditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
+		auto it = player.GetPrimaryConditions().lower_bound(prefix[i]);
+		for( ; it != player.GetPrimaryConditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			income[i] += it->second;
 	}
 	// Check if maintenance needs to be drawn.

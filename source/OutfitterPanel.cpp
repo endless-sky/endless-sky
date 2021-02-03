@@ -58,7 +58,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	
 	// Add owned licenses
 	const string PREFIX = "license: ";
-	for(auto &it : player.GetManualConditions())
+	for(auto &it : player.GetPrimaryConditions())
 		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
 		{
 			const string name = it.first.substr(PREFIX.length()) + " License";

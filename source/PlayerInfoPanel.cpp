@@ -49,8 +49,8 @@ namespace {
 	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
 	{
 		vector<pair<int64_t, string>> match;
-		auto it = player.GetManualConditions().lower_bound(prefix);
-		for( ; it != player.GetManualConditions().end(); ++it)
+		auto it = player.GetPrimaryConditions().lower_bound(prefix);
+		for( ; it != player.GetPrimaryConditions().end(); ++it)
 		{
 			if(it->first.compare(0, prefix.length(), prefix))
 				break;

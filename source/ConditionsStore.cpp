@@ -42,13 +42,13 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
 
 
 // Get a condition from the Conditions-Store. Retrieves both conditions
-// that were directly set as well as conditions derived from other
-// data-structures.
+// that were directly set (primary conditions) as well as conditions
+//derived from other data-structures (derived conditions).
 int64_t ConditionsStore::operator[](const std::string &name) const
 {
-	// When we add support for on-demand conditions, then we can
-	// lookup the on-demand condition here before searching the
-	// manually set conditions.
+	// When we add support for derived conditions, then we can
+	// lookup the derived condition here before searching the
+	// primary conditions.
 	
 	auto it = conditions.find(name);
 	if(it != conditions.end())
@@ -62,8 +62,8 @@ int64_t ConditionsStore::operator[](const std::string &name) const
 
 bool ConditionsStore::HasCondition(const std::string &name) const
 {
-	// When we add support for on-demand conditions, then we can
-	// lookup the on-demand condition here before searching the
+	// When we add support for derived conditions, then we can
+	// lookup the derived condition here before searching the
 	// manually set conditions.
 	
 	auto it = conditions.find(name);
@@ -77,7 +77,7 @@ bool ConditionsStore::AddCondition(const string &name, int64_t value)
 {
 	// This code performes 2 lookups of the condition, once for get and
 	// once for set. This might be optimized to a single lookup in a
-	// later version of the code when we add on-demand conditions.
+	// later version of the code when we add derived conditions.
 	
 	return SetCondition(name, (*this)[name] + value);
 }
@@ -88,9 +88,9 @@ bool ConditionsStore::AddCondition(const string &name, int64_t value)
 // that doesn't succeed then internally in the store.
 bool ConditionsStore::SetCondition(const string &name, int64_t value)
 {
-	// When we add support for on-demand conditions, then we can
-	// lookup if an on-demand condition matches before we set in
-	// the area of manually set conditions.
+	// When we add support for derived conditions, then we can
+	// lookup if a derived condition matches before we set in
+	// the map for primary conditions conditions.
 	
 	conditions[name] = value;
 	return true;
@@ -102,9 +102,9 @@ bool ConditionsStore::SetCondition(const string &name, int64_t value)
 // that doesn't succeed then internally in the store.
 bool ConditionsStore::EraseCondition(const string &name)
 {
-	// When we add support for on-demand conditions, then we should
-	// go through both on-demand conditions as well as the manually set
-	// conditions below (and only return true when all erases were
+	// When we add support for derived conditions, then we should
+	// go through both derived conditions as well as the primary
+	// conditions (and only return true when all erases were
 	// succesfull).
 	
 	auto it = conditions.find(name);
@@ -118,8 +118,8 @@ bool ConditionsStore::EraseCondition(const string &name)
 
 
 
-// Read-only access to the local (non-child) conditions of this store.
-const map<string, int64_t> &ConditionsStore::Locals() const
+// Direct (read-only) access to the stored primary conditions.
+const map<string, int64_t> &ConditionsStore::GetPrimaryConditions() const
 {
 	return conditions;
 }

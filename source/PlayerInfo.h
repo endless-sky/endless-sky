@@ -199,7 +199,7 @@ public:
 	// Direct access to "condition" flags data.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
-	const std::map<std::string, int64_t> &GetManualConditions() const;
+	const std::map<std::string, int64_t> &GetPrimaryConditions() const;
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();

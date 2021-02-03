@@ -19,15 +19,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Class that contains storage for conditions. The conditions can be
-// set directly in internal storage of this class.
+// Class that contains storage for conditions. Those conditions can be
+// set directly in internal storage of this class (primary conditions)
+// and those conditions can also be provided from other locations in the
+// code (derived conditions).
 //
-// The intention of this class is that we can add code in the future to
-// also allow conditions to be provided "on demand" from outside the
-// storage class. This gives some restrictions on direct access to such
-// storage, since the outside providers might not use int64_t as basic
-// storage element for the information (but translates to int64_t from
-// it's internal storage format).
+// The derived conditions are typically provided "on demand" from outside
+// this storage class. Some of those derived conditions could be read-only
+// and in a number of cases the conditions might be converted from other
+// data types than int64_t (for example double, float or even complex
+// formulae).
 class ConditionsStore {
 public:
 	// Constructors to initialize this class.
@@ -44,13 +45,13 @@ public:
 	bool SetCondition(const std::string &name, int64_t value);
 	bool EraseCondition(const std::string &name);
 	
-	// Direct (read-only) access to non-child (local to this class) "condition" flags data.
-	const std::map<std::string, int64_t> &Locals() const;
+	// Direct (read-only) access to the stored primary conditions.
+	const std::map<std::string, int64_t> &GetPrimaryConditions() const;
 
 
 
 private:
-	// Storage for the actual conditions.
+	// Storage for the primary conditions.
 	std::map<std::string, int64_t> conditions;
 };
 

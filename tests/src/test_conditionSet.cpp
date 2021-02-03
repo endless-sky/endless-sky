@@ -127,7 +127,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 	auto store = ConditionSet::Conditions{};
-	REQUIRE( store.Locals().empty() );
+	REQUIRE( store.GetPrimaryConditions().empty() );
 	
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
@@ -135,12 +135,12 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		
 		THEN( "no conditions are added via Apply" ) {
 			emptySet.Apply(store);
-			REQUIRE( store.Locals().empty() );
+			REQUIRE( store.GetPrimaryConditions().empty() );
 			
 			store.SetCondition("event: war begins", 1);
-			REQUIRE( store.Locals().size() == 1 );
+			REQUIRE( store.GetPrimaryConditions().size() == 1 );
 			emptySet.Apply(store);
-			REQUIRE( store.Locals().size() == 1 );
+			REQUIRE( store.GetPrimaryConditions().size() == 1 );
 		}
 	}
 	GIVEN( "a ConditionSet with only comparison expressions" ) {
@@ -153,12 +153,12 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		
 		THEN( "no conditions are added via Apply" ) {
 			compareSet.Apply(store);
-			REQUIRE( store.Locals().empty() );
+			REQUIRE( store.GetPrimaryConditions().empty() );
 			
 			store.SetCondition("event: war begins", 1);
-			REQUIRE( store.Locals().size() == 1 );
+			REQUIRE( store.GetPrimaryConditions().size() == 1 );
 			compareSet.Apply(store);
-			REQUIRE( store.Locals().size() == 1 );
+			REQUIRE( store.GetPrimaryConditions().size() == 1 );
 		}
 	}
 	GIVEN( "a ConditionSet with an assignable expression" ) {
@@ -167,10 +167,10 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		
 		THEN( "the condition list is updated via Apply" ) {
 			applySet.Apply(store);
-			REQUIRE_FALSE( store.Locals().empty() );
+			REQUIRE_FALSE( store.GetPrimaryConditions().empty() );
 			
-			const auto &inserted = store.Locals().find("year");
-			REQUIRE( inserted != store.Locals().end() );
+			const auto &inserted = store.GetPrimaryConditions().find("year");
+			REQUIRE( inserted != store.GetPrimaryConditions().end() );
 			CHECK( inserted->second == 3013 );
 		}
 	}
