@@ -33,6 +33,8 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			REQUIRE( store.GetPrimaryConditions().size() == 2 );
 		}
 		THEN( "not given conditions return the default value" ) {
+			REQUIRE( 0 == store["ungreeted world"] );
+			REQUIRE( store.GetPrimaryConditions().size() == 2 );
 			REQUIRE( store["ungreeted world"] == 0 );
 			REQUIRE( store.GetPrimaryConditions().size() == 2 );
 		}
