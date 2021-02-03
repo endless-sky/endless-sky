@@ -29815,4 +29815,5 @@ planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
 	description ``
 planet "Wormhole Link"
+	attributes "requires: quantum keystone"
 	description ``
