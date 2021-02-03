@@ -4569,7 +4569,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			label basics
 			`	She nods "Those are the basics, a good starting point."`
 			label explanation
-			`	A hologram of the Ember Waste appears over her commlink. "As you have no doubt picked up on, the Ember Waste do not conform to humanity's commonly understood rules about space. For instance, the standard background temperature is 2.B1 degrees, and the average density of the interstellar medium is F4240 particles per cubic meter. Here in the Ember Waste, the average background temperature is an order of magnitude greater and has an average density of E8D4A51000 particles per cubic meter."`
+			`	A hologram of the Ember Waste appears over her commlink. "As you have no doubt picked up on, the Ember Waste does not conform to humanity's commonly understood rules about space. For instance, the standard background temperature is 2.B1 degrees, and the average density of the interstellar medium is F4240 particles per cubic meter. Here in the Ember Waste, the average background temperature is an order of magnitude greater and has an average density of E8D4A51000 particles per cubic meter."`
 			`	The display changes as an overlay of haze appears, pulsing in intensity. "Most interestingly, though, is that this area is significantly more variable than the rest of the galaxy. The haze shown here represents the heat hazard schematic we produce for our captains. It combines the local density with the measured heat values to estimate how much heat ships will be exposed to in the area."`
 			choice
 				`	"Interesting! Is that what causes the red glow?"`
