@@ -89,9 +89,10 @@ color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
 
-# Colors used for warning and error tooltip backdrops.
+# Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
+color "warning conflict" .315 .27 .12 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
