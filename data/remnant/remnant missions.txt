@@ -4573,8 +4573,11 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	The display changes as an overlay of haze appears, pulsing in intensity. "Most interestingly, though, is that this area is significantly more variable than the rest of the galaxy. The haze shown here represents the heat hazard schematic we produce for our captains. It combines the local density with the measured heat values to estimate how much heat ships will be exposed to in the area."`
 			choice
 				`	"Interesting! Is that what causes the red glow?"`
+				`	"Wait a second. Why are there letters in your numbers?"`
+					goto numericsystem
 				`	"Thanks! I think that is all the details I can handle right now."`
 					goto stormend
+			label stormresume
 			`	"Not really, although it does contribute. Most of the red glow seems to be the result of clouds of hydrogen gases at aproximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures depreciatingly. "One more mystery to keep us alert and attentive."`
 			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorythms have identified a significant number of ripples of energy." She appears thoughtful.`
 			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation one can pick out individual ripples and trace their pathes backwards... Except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millenia."`
@@ -4587,6 +4590,21 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	She looks mischevious "I can not tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
 			`	She takes on a serious tone. "This data suggests enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transfered into the clouds." Her display vanishes and she slings her backpack over her shoulder.`
 				goto stormend
+			label numericsystem
+			`	She looks confused for a moment before responding. "It is called hexadecimal. It is a base 16 numeric system." She pauses to look at you. "Based on your reaction, I assume that base 10 is still the standard in human space?"`
+			choice
+				`	"Yes."`
+					goto  stormcontinue
+				`	"How does that work?"`
+			`	"Quite simply: We have added some extra characters so that when counting instead of a single digit position restarting at 0 every 10, they cycle every 16. So when we count we start at 1, but when we reach 9, the next number will be A. Then B, C, D, E and F. Then it is at that point that we add an extra digit and restart at 0 with 10. So in hexadecimal F would be equal to 15 in base 10. One of the advantages of using a numeric system with a higher base is that we can handle larger numbers with fewer digits. For example, with two digits we can communicate any integer up to what would be 255 in base 10. Or with three digits we can reach 4095. Saving an extra digit here or there is fairly meaningless in written formats, nor is it much of a difference in oral communication. However, when one communicates by gestures it is helpful to shorten the numbers where we can."`
+			label stormcontinue
+			`	"Now that you understand our numbers a bit better, you will be able to recognize that there is a lot of unexplained energy being transfered out there."`
+			choice
+				`	"Right. Is that what causes the red glow?"`
+					goto stormresume
+				`	"Thanks! I think that is all the details I can handle right now."`
+					goto stormend
+			
 			label tempunits
 			`	She looks at you curiously. "Corrected degrees Kelvin, of course. Why?"`
 			choice
