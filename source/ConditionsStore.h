@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CONDITIONS_STORE_H_
 #define CONDITIONS_STORE_H_
 
+#include "ConditionsProvider.h"
+
 #include <initializer_list>
 #include <map>
 #include <string>
@@ -47,12 +49,25 @@ public:
 	
 	// Direct (read-only) access to the stored primary conditions.
 	const std::map<std::string, int64_t> &GetPrimaryConditions() const;
+	
+	// Set providers for derived conditions based on prefix and name.
+	void SetProviderPrefixed(const std::string &prefix, ConditionsProvider *child);
+	void SetProviderNamed(const std::string &name, ConditionsProvider *child);
+
+
+
+private:
+	// Retrieve a condition provider based on a condition name.
+	ConditionsProvider* GetProvider(const std::string &name) const;
 
 
 
 private:
 	// Storage for the primary conditions.
 	std::map<std::string, int64_t> conditions;
+	// Storage of child providers by prefix and full string.
+	std::map<std::string, ConditionsProvider*> providersPrefixed;
+	std::map<std::string, ConditionsProvider*> providersNamed;
 };
 
 

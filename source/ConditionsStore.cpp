@@ -46,9 +46,9 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
 //derived from other data-structures (derived conditions).
 int64_t ConditionsStore::operator[](const std::string &name) const
 {
-	// When we add support for derived conditions, then we can
-	// lookup the derived condition here before searching the
-	// primary conditions.
+	ConditionsProvider* cp = GetProvider(name);
+	if(cp != nullptr)
+		return cp->GetCondition(name);
 	
 	auto it = conditions.find(name);
 	if(it != conditions.end())
@@ -62,9 +62,9 @@ int64_t ConditionsStore::operator[](const std::string &name) const
 
 bool ConditionsStore::HasCondition(const std::string &name) const
 {
-	// When we add support for derived conditions, then we can
-	// lookup the derived condition here before searching the
-	// manually set conditions.
+	ConditionsProvider* cp = GetProvider(name);
+	if(cp != nullptr)
+		return cp->HasCondition(name);
 	
 	auto it = conditions.find(name);
 	return it != conditions.end();
@@ -88,9 +88,9 @@ bool ConditionsStore::AddCondition(const string &name, int64_t value)
 // that doesn't succeed then internally in the store.
 bool ConditionsStore::SetCondition(const string &name, int64_t value)
 {
-	// When we add support for derived conditions, then we can
-	// lookup if a derived condition matches before we set in
-	// the map for primary conditions conditions.
+	ConditionsProvider* cp = GetProvider(name);
+	if(cp != nullptr)
+		return cp->SetCondition(name, value);
 	
 	conditions[name] = value;
 	return true;
@@ -102,10 +102,12 @@ bool ConditionsStore::SetCondition(const string &name, int64_t value)
 // that doesn't succeed then internally in the store.
 bool ConditionsStore::EraseCondition(const string &name)
 {
-	// When we add support for derived conditions, then we should
-	// go through both derived conditions as well as the primary
-	// conditions (and only return true when all erases were
-	// succesfull).
+	// We go through both derived conditions as well as the primary
+	// conditions (and only return true when all erases were succesfull).
+	bool success = true;
+	ConditionsProvider* cp = GetProvider(name);
+	if(cp != nullptr)
+		success = success && cp->EraseCondition(name);
 	
 	auto it = conditions.find(name);
 	if(it != conditions.end())
@@ -113,7 +115,7 @@ bool ConditionsStore::EraseCondition(const string &name)
 	
 	// The condition was either erased at this point, or it was not present
 	// when we started. In either case the condition got succesfully removed.
-	return true;
+	return success;
 }
 
 
@@ -122,4 +124,49 @@ bool ConditionsStore::EraseCondition(const string &name)
 const map<string, int64_t> &ConditionsStore::GetPrimaryConditions() const
 {
 	return conditions;
+}
+
+
+
+// Sets a provider for a certain prefix. Calling this function with a
+// nullpointer will unset the provider for the prefix.
+void ConditionsStore::SetProviderPrefixed(const string &prefix, ConditionsProvider *child)
+{
+	if(child != nullptr)
+		providersPrefixed[prefix] = child;
+	else
+		providersPrefixed.erase(prefix);
+}
+
+
+
+// Sets a provider for a certain prefix. Calling this function with a
+// nullpointer will unset the provider for the prefix.
+void ConditionsStore::SetProviderNamed(const string &name, ConditionsProvider *child)
+{
+	if(child != nullptr)
+		providersNamed[name] = child;
+	else
+		providersNamed.erase(name);
+}
+
+
+
+ConditionsProvider* ConditionsStore::GetProvider(const string &name) const
+{
+	// First check if we should set based on exact names.
+	auto it = providersNamed.find(name);
+	if(it != providersNamed.end())
+		return it->second;
+
+	// Then check if this is a known prefix.
+	if(providersPrefixed.empty())
+		return nullptr;
+	it = providersPrefixed.upper_bound(name);
+	if(it == providersPrefixed.begin())
+		return nullptr;
+	--it;
+	if(!(name.compare(0, it->first.length(), it->first)))
+		return it->second;
+	return nullptr;
 }
