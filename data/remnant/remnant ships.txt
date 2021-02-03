@@ -453,42 +453,42 @@ ship "Heron"
 	turret 0 -240.5 "Point Defense Turret"
 	turret 0 0 "Point Defense Turret"
 	turret 0 250 "Point Defense Turret"
-	drone -124 -122.5
-	drone 124 -122.5
-	drone -176 -50.5
-	drone 176 -50.5
-	drone -148.5 4
-	drone 148.5 4
-	drone -56 -150
-	drone 56 -150
-	drone -37 -121.5
-	drone 37 -121.5
-	drone -33.5 -99
-	drone 33.5 -99
-	drone -27 -81
-	drone 27 -81
-	drone -24 -49.5
-	drone 24 -49.5
-	drone -40 -3
-	drone 40 -3
-	drone -28 22.5
-	drone 28 22.5
-	drone -77.5 71.5
-	drone 77.5 71.5
-	drone -89.5 114
-	drone 89.5 114
-	drone -138.5 152.5
-	drone 138.5 152.5
-	drone -171 165.5
-	drone 171 165.5
-	drone -190.5 197.5
-	drone 190.5 197.5
-	drone -105 229.5
-	drone 105 229.5
-	fighter -31 70.5
-	fighter 31 70.5
-	fighter -40 190
-	fighter 40 190
+	bay "Drone" -124 -122.5
+	bay "Drone" 124 -122.5
+	bay "Drone" -176 -50.5
+	bay "Drone" 176 -50.5
+	bay "Drone" -148.5 4
+	bay "Drone" 148.5 4
+	bay "Drone" -56 -150
+	bay "Drone" 56 -150
+	bay "Drone" -37 -121.5
+	bay "Drone" 37 -121.5
+	bay "Drone" -33.5 -99
+	bay "Drone" 33.5 -99
+	bay "Drone" -27 -81
+	bay "Drone" 27 -81
+	bay "Drone" -24 -49.5
+	bay "Drone" 24 -49.5
+	bay "Drone" -40 -3
+	bay "Drone" 40 -3
+	bay "Drone" -28 22.5
+	bay "Drone" 28 22.5
+	bay "Drone" -77.5 71.5
+	bay "Drone" 77.5 71.5
+	bay "Drone" -89.5 114
+	bay "Drone" 89.5 114
+	bay "Drone" -138.5 152.5
+	bay "Drone" 138.5 152.5
+	bay "Drone" -171 165.5
+	bay "Drone" 171 165.5
+	bay "Drone" -190.5 197.5
+	bay "Drone" 190.5 197.5
+	bay "Drone" -105 229.5
+	bay "Drone" 105 229.5
+	bay "Fighter" -31 70.5
+	bay "Fighter" 31 70.5
+	bay "Fighter" -40 190
+	bay "Fighter" 40 190
 	explode "small explosion" 40
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -551,12 +551,12 @@ ship "Ibis"
 		"Forge-Class Steering" 2
 		"Scram Drive"
 		
-	drone 0 30 over 
-	drone -34 68 over
-	drone 0 81 over
-	drone 34 68 over
-	fighter -25 10 under
-	fighter 25 10 under
+	bay "Drone" 0 30 over 
+	bay "Drone" -34 68 over
+	bay "Drone" 0 81 over
+	bay "Drone" 34 68 over
+	bay "Fighter" -25 10 under
+	bay "Fighter" 25 10 under
 	engine -16.5 120 0.7
 	engine 0 116.5 1
 	engine 16.5 120 0.7
@@ -693,9 +693,15 @@ ship "Penguin"
 		"outfit scan speed" 1
 		"tactical scan power" 50
 		"atmosphere scan" 100
-		"reverse thrust" 16
-		"reverse thrusting energy" 2.5
-		"reverse thrusting heat" 2.0
+		"thrust" 4.2
+		"turn" 80.0
+		"reverse thrust" 4.2
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		"steering flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"steering flare sound" "plasma tiny"
 		"reverse flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"reverse flare sound" "plasma tiny"

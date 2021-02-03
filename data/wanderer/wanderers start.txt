@@ -283,6 +283,7 @@ mission "Visit Wanderers Again"
 	source "Greenwater"
 	destination "Vara K'chrai"
 	to offer
+		has "Cultural Data to Greenwater: done"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
@@ -891,7 +892,7 @@ mission "Wanderers: Alpha Surveillance A"
 		event "wanderers: alpha surveillance done" 30
 		conversation
 			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. When they realize that you are the one who made contact with the Wanderers, they quickly give you an appointment.`
-			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
+			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says. "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
 			choice
 				`	"Thank you." (Explain about the Alphas.)`
 			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
