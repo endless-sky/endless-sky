@@ -50,7 +50,6 @@ namespace{
 		{Test::TestStep::Type::BRANCH, "branch"},
 		{Test::TestStep::Type::INJECT, "inject"},
 		{Test::TestStep::Type::INPUT, "input"},
-		{Test::TestStep::Type::INVALID, "invalid"},
 		{Test::TestStep::Type::LABEL, "label"},
 		{Test::TestStep::Type::NAVIGATE, "navigate"},
 		{Test::TestStep::Type::WATCHDOG, "watchdog"},
@@ -87,6 +86,13 @@ Test::TestStep::TestStep(Type stepType) : stepType(stepType)
 
 void Test::LoadSequence(const DataNode &node)
 {
+	if(!steps.empty())
+	{
+		status = Status::BROKEN;
+		node.PrintTrace("Error: duplicate sequence keyword");
+		return;
+	}
+	
 	for(const DataNode &child: node)
 	{
 		const string &typeName = child.Token(0);
@@ -94,14 +100,91 @@ void Test::LoadSequence(const DataNode &node)
 			[&typeName](const std::pair<TestStep::Type, const string> &e) {
 				return e.second == typeName;
 			});
-		if(it != STEPTYPE_TO_TEXT.end())
-			steps.emplace_back(it->first);
-		else
+		if(it == STEPTYPE_TO_TEXT.end())
 		{
 			status = Status::BROKEN;
 			child.PrintTrace("Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
 			// Don't bother loading more steps once broken.
-			break;
+			return;
+		}
+		
+		steps.emplace_back(it->first);
+		TestStep &step = steps.back();
+		switch(step.stepType)
+		{
+			case TestStep::Type::APPLY:
+			case TestStep::Type::ASSERT:
+				step.conditions.Load(child);
+				break;
+			case TestStep::Type::BRANCH:
+				if(child.Size() < 2)
+				{
+					status = Status::BROKEN;
+					child.PrintTrace("Error: Invalid use of \"branch\" without target label:");
+					return;
+				}
+				step.jumpOnTrueTarget = child.Token(1);
+				if(child.Size() > 2)
+					step.jumpOnFalseTarget = child.Token(2);
+				step.conditions.Load(child);
+				break;
+			case TestStep::Type::INJECT:
+				if(child.Size() < 2)
+				{
+					status = Status::BROKEN;
+					child.PrintTrace("Error: Invalid use of \"inject\" without data identifier:");
+					return;
+				}
+				else
+					step.nameOrLabel = child.Token(1);
+			case TestStep::Type::INPUT:
+				child.PrintTrace("Error: Not yet implemented step type input");
+				status = Status::BROKEN;
+				return;
+			case TestStep::Type::LABEL:
+				if(child.Size() < 2)
+					child.PrintTrace("Ignoring empty label");
+				else
+				{
+					step.nameOrLabel = child.Token(1);
+					if(jumpTable.find(step.nameOrLabel) != jumpTable.end())
+					{
+						child.PrintTrace("Error: duplicate label");
+						status = Status::BROKEN;
+						return;
+					}
+					else
+						jumpTable[step.nameOrLabel] = steps.size() - 1;
+				}
+				break;
+			case TestStep::Type::NAVIGATE:
+				child.PrintTrace("Error: Not yet implemented step type navigation");
+				status = Status::BROKEN;
+				return;
+			case TestStep::Type::WATCHDOG:
+				step.watchdog = child.Size() >= 2 ? child.Value(1) : 0;
+				break;
+			default:
+				child.PrintTrace("Error: unknown step type in test");
+				status = Status::BROKEN;
+				return;
+		}
+	}
+	
+	// Check if all jump-labels are present after loading the sequence.
+	for(const TestStep &step : steps)
+	{
+		if(!step.jumpOnTrueTarget.empty() && jumpTable.find(step.jumpOnTrueTarget) == jumpTable.end())
+		{
+			node.PrintTrace("Error: missing label " + step.jumpOnTrueTarget);
+			status = Status::BROKEN;
+			return;
+		}
+		if(!step.jumpOnFalseTarget.empty() && jumpTable.find(step.jumpOnFalseTarget) == jumpTable.end())
+		{
+			node.PrintTrace("Error: missing label " + step.jumpOnFalseTarget);
+			status = Status::BROKEN;
+			return;
 		}
 	}
 }
@@ -155,8 +238,7 @@ void Test::Load(const DataNode &node)
 			}
 		}
 		else if(child.Token(0) == "sequence")
-			// Test-steps are not in the basic framework.
-			continue;
+			LoadSequence(child);
 	}
 }
 
@@ -183,7 +265,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		return;
 		
 	if(status == Status::BROKEN)
-		Fail("Test has a broken status.");
+		Fail(context, player, "Test has a broken status.");
 	
 	if(context.stepToRun >= steps.size())
 	{
@@ -192,12 +274,79 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		return;
 	}
 	
-	const TestStep &stepToRun = steps[context.stepToRun];
+	// All processing was done just before this step started.
+	context.branchesSinceGameStep.clear();
 	
-	// Exit with error on a failing testStep.
-	const string &stepTypeName = STEPTYPE_TO_TEXT.at(stepToRun.stepType);
-	
-	Fail("Test step " + to_string(context.stepToRun) + " (" + stepTypeName + ") failed");
+	bool continueGameLoop = false;
+	do
+	{
+		// Fail if we encounter a watchdog timeout
+		if(context.watchdog == 1)
+			Fail(context, player, "watchdog timeout");
+		else if(context.watchdog > 1)
+			--(context.watchdog);
+		
+		const TestStep &stepToRun = steps[context.stepToRun];
+		switch(stepToRun.stepType)
+		{
+			case TestStep::Type::APPLY:
+				stepToRun.conditions.Apply(player.Conditions());
+				++(context.stepToRun);
+				break;
+			case TestStep::Type::ASSERT:
+				if(!stepToRun.conditions.Test(player.Conditions()))
+					Fail(context, player, "asserted false");
+				++(context.stepToRun);
+				break;
+			case TestStep::Type::BRANCH:
+				// If we encounter a branch entry twice, then resume the gameloop before the second encounter.
+				// Encountering branch entries twice typically only happen in "wait loops" and we should give
+				// the game cycles to proceed if we are in a wait loop for something that happens over time.
+				if(context.branchesSinceGameStep.count(context.stepToRun))
+				{
+					continueGameLoop = true;
+					break;
+				}
+				if(stepToRun.conditions.Test(player.Conditions()))
+					context.stepToRun = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
+				else if(!stepToRun.jumpOnFalseTarget.empty())
+					context.stepToRun = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
+				else
+					++(context.stepToRun);
+				context.branchesSinceGameStep.insert(context.stepToRun);
+				break;
+			case TestStep::Type::INJECT:
+				{
+					// Lookup the data and inject it in the game or into the environment.
+					const TestData* testData = (GameData::TestDataSets()).Get(stepToRun.nameOrLabel);
+					if(!testData->Inject())
+						Fail(context, player, "injecting data failed");
+				}
+				++(context.stepToRun);
+				break;
+			case TestStep::Type::INPUT:
+				// Give the relevant inputs here.
+				Fail(context, player, "Input not implemented");
+				// Make sure that we run a gameloop to process the input.
+				continueGameLoop = true;
+				++(context.stepToRun);
+				break;
+			case TestStep::Type::LABEL:
+				++(context.stepToRun);
+				break;
+			case TestStep::Type::NAVIGATE:
+				Fail(context, player, "Navigate not implemented");
+				break;
+			case TestStep::Type::WATCHDOG:
+				context.watchdog = stepToRun.watchdog;
+				++(context.stepToRun);
+				break;
+			default:
+				Fail(context, player, "Unknown step type");
+				break;
+		}
+	}
+	while(context.stepToRun < steps.size() && !continueGameLoop);
 }
 
 
@@ -210,10 +359,31 @@ const string &Test::StatusText() const
 
 
 // Fail the test using the given message as reason.
-void Test::Fail(const string &testFailMessage) const
+void Test::Fail(const Context &context, const PlayerInfo &player, const string &testFailReason) const
 {
+	string message = "Test failed";
+	if(context.stepToRun < steps.size())
+		message += " at step " + to_string(1 + context.stepToRun) + " (" +
+			STEPTYPE_TO_TEXT.at(steps[context.stepToRun].stepType) + ")";
+	
+	if(!testFailReason.empty())
+		message += ": " + testFailReason;
+	
+	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
+	// Future versions of the test-framework could also print all conditions that are used in the test.
+	string conditions = "";
+	const string TEST_PREFIX = "test: ";
+	auto it = player.Conditions().lower_bound(TEST_PREFIX);
+	for( ; it != player.Conditions().end() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
+		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
+	
+	if(!conditions.empty())
+		Files::LogError(conditions);
+	else
+		Files::LogError("No conditions were set at the moment of failure.");
+	
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
-	throw runtime_error(testFailMessage);	
+	throw runtime_error(message);
 }
