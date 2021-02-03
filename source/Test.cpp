@@ -369,9 +369,6 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
 	
-	// Add generic logging of the failed test.
-	Files::LogError(message);
-	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.
 	string conditions = "";
