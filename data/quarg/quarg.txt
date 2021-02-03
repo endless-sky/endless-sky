@@ -41,6 +41,42 @@ phrase "quarg"
 		"ruk"
 		"rook"
 
+phrase "friendly quarg"
+	word
+		"We"
+		"The Quarg"
+	word
+		" "
+	word
+		"are the "
+	word
+		"keepers"
+		"guardians"
+		"protectors"
+		"enforcers"
+	word
+		" "
+	word
+		"of the "
+	word
+		"peace"
+		"tranquility"
+		"calm"
+		"order"
+		"harmony"
+		"accord"
+	word
+		" "
+	word
+		"in the "
+	word
+		"galaxy"
+		"universe"
+		"heavens"
+		"cosmos"
+	word
+		"."
+
 # From the "Southern Television broadcast interruption."
 phrase "hostile quarg"
 	word
