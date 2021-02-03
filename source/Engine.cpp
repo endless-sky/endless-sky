@@ -1747,7 +1747,7 @@ void Engine::HandleKeyboardInputs()
 	// restore any autopilot commands still being requested.
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
 		
 		// Do not switch landing targets when restoring autopilot.
 		landKeyInterval = landCooldown;
@@ -1760,7 +1760,7 @@ void Engine::HandleKeyboardInputs()
 	
 	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
-
+	
 	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
 	// Translation is done here to allow the autopilot (which will execute the STOP-command) to
 	// act on a single STOP command instead of the shift+BACK modifier).

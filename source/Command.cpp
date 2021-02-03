@@ -53,22 +53,23 @@ const Command Command::BOARD(1uL << 9, "Board selected ship");
 const Command Command::HAIL(1uL << 10, "Talk to selected ship");
 const Command Command::SCAN(1uL << 11, "Scan selected ship");
 const Command Command::JUMP(1uL << 12, "Initiate hyperspace jump");
-const Command Command::TARGET(1uL << 13, "Select next ship");
-const Command Command::NEAREST(1uL << 14, "Select nearest hostile ship");
-const Command Command::DEPLOY(1uL << 15, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(1uL << 16, "Fire afterburner");
-const Command Command::CLOAK(1uL << 17, "Toggle cloaking device");
-const Command Command::MAP(1uL << 18, "View star map");
-const Command Command::INFO(1uL << 19, "View player info");
-const Command Command::FULLSCREEN(1uL << 20, "Toggle fullscreen");
-const Command Command::FASTFORWARD(1uL << 21, "Toggle fast-forward");
-const Command Command::FIGHT(1uL << 22, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 23, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 24, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 26, "");
-const Command Command::STOP(1ul << 27, "");
-const Command Command::SHIFT(1uL << 28, "");
+const Command Command::FLEET_JUMP(1uL << 13, "Fleet: Hyperspace jump");
+const Command Command::TARGET(1uL << 14, "Select next ship");
+const Command Command::NEAREST(1uL << 15, "Select nearest hostile ship");
+const Command Command::DEPLOY(1uL << 16, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(1uL << 17, "Fire afterburner");
+const Command Command::CLOAK(1uL << 18, "Toggle cloaking device");
+const Command Command::MAP(1uL << 19, "View star map");
+const Command Command::INFO(1uL << 20, "View player info");
+const Command Command::FULLSCREEN(1uL << 21, "Toggle fullscreen");
+const Command Command::FASTFORWARD(1uL << 22, "Toggle fast-forward");
+const Command Command::FIGHT(1uL << 23, "Fleet: Fight my target");
+const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
+const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
+const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(1uL << 27, "");
+const Command Command::STOP(1ul << 28, "");
+const Command Command::SHIFT(1uL << 29, "");
 
 
 
@@ -101,9 +102,8 @@ void Command::ReadKeyboard()
 	Clear();
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 	
-	// Each command can only have one keycode, but misconfigured settings can
-	// temporarily cause one keycode to be used for two commands. Also, more
-	// than one key can be held down at once.
+	// Each command can only have one keycode, multiple commands can be activated
+	// with one key. Also, more than one key can be held down at once.
 	for(const auto &it : keycodeForCommand)
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 			*this |= it.first;
@@ -240,6 +240,7 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
+			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
 			{"deploy", Command::DEPLOY},
