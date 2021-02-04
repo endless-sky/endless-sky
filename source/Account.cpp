@@ -402,3 +402,54 @@ int64_t Account::YearlyRevenue() const
 	// played for long enough to accumulate a full income history.
 	return ((history.back() - history.front()) * 365) / HISTORY;
 }
+
+
+
+int64_t Account::GetCondition(const string &name) const
+{
+	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
+	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
+	if(name == "net worth")
+		return min(limit, max(-limit, NetWorth()));
+	else if(name == "credits")
+		return min(limit, Credits());
+	else if(name == "unpaid mortgages")
+		return min(limit, TotalDebt("Mortgage"));
+	else if(name == "unpaid fines")
+		return min(limit, TotalDebt("Fine"));
+	else if(name == "unpaid salaries")
+		return min(limit, SalariesOwed());
+	else if(name == "unpaid maintenance")
+		return min(limit, MaintenanceDue());
+	else if(name == "credit score")
+		return CreditScore();
+	
+	return 0;
+}
+
+
+
+bool Account::HasCondition(const string &name) const
+{
+	return name == "net worth" ||
+		name == "credits" ||
+		name == "unpaid mortgages" ||
+		name == "unpaid fines" ||
+		name == "unpaid salaries" ||
+		name == "unpaid maintenance" ||
+		name == "credit score";
+}
+
+
+
+bool Account::SetCondition(const string &name, int64_t value)
+{
+	return false;
+}
+
+
+
+bool Account::EraseCondition(const string &name)
+{
+	return false;
+}

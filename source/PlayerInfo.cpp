@@ -57,6 +57,15 @@ void PlayerInfo::Clear()
 	Random::Seed(time(nullptr));
 	GameData::Revert();
 	Messages::Reset();
+	
+	// Clear the automaticly provided conditions that were set earlier
+	conditions.SetProviderNamed("net worth", nullptr);
+	conditions.SetProviderNamed("credits", nullptr);
+	conditions.SetProviderNamed("unpaid mortgages", nullptr);
+	conditions.SetProviderNamed("unpaid fines", nullptr);
+	conditions.SetProviderNamed("unpaid salaries", nullptr);
+	conditions.SetProviderNamed("unpaid maintenance", nullptr);
+	conditions.SetProviderNamed("credit score", nullptr);
 }
 
 
@@ -97,6 +106,13 @@ void PlayerInfo::New()
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
+	conditions.SetProviderNamed("net worth", &accounts);
+	conditions.SetProviderNamed("credits", &accounts);
+	conditions.SetProviderNamed("unpaid mortgages", &accounts);
+	conditions.SetProviderNamed("unpaid fines", &accounts);
+	conditions.SetProviderNamed("unpaid salaries", &accounts);
+	conditions.SetProviderNamed("unpaid maintenance", &accounts);
+	conditions.SetProviderNamed("credit score", &accounts);
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
 	
@@ -2507,15 +2523,6 @@ void PlayerInfo::ValidateLoad()
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 {
-	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
-	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
-	SetCondition("net worth", min(limit, max(-limit, accounts.NetWorth())));
-	SetCondition("credits", min(limit, accounts.Credits()));
-	SetCondition("unpaid mortgages", min(limit, accounts.TotalDebt("Mortgage")));
-	SetCondition("unpaid fines", min(limit, accounts.TotalDebt("Fine")));
-	SetCondition("unpaid salaries", min(limit, accounts.SalariesOwed()));
-	SetCondition("unpaid maintenance", min(limit, accounts.MaintenanceDue()));
-	SetCondition("credit score", accounts.CreditScore());
 	// Serialize the current reputation with other governments.
 	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ACCOUNT_H_
 #define ACCOUNT_H_
 
+#include "ConditionsProvider.h"
 #include "Mortgage.h"
 
 #include <cstdint>
@@ -26,7 +27,7 @@ class DataWriter;
 
 // Class representing all your assets and liabilities and tracking their change
 // over time.
-class Account {
+class Account : public ConditionsProvider {
 public:
 	// Default constructor.
 	Account();
@@ -62,6 +63,12 @@ public:
 	int CreditScore() const;
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
+	
+	// Derived conditions provider interface.
+	virtual int64_t GetCondition(const std::string &name) const override;
+	virtual bool HasCondition(const std::string &name) const override;
+	virtual bool SetCondition(const std::string &name, int64_t value) override;
+	virtual bool EraseCondition(const std::string &name) override;
 	
 	
 private:
