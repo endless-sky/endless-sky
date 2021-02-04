@@ -107,8 +107,8 @@ void StartConditionsPanel::Draw()
 			info.SetSprite("start sprite", chosenStart->GetSprite());
 		info.SetString("name", chosenStart->GetName());
 		info.SetString("description", chosenStart->GetDescription());
-		info.SetString("planet", chosenStart->GetPlanet()->Name());
-		info.SetString("system", chosenStart->GetSystem()->Name());
+		info.SetString("planet", chosenStart->GetPlanet().Name());
+		info.SetString("system", chosenStart->GetSystem().Name());
 		info.SetString("date", chosenStart->GetDate().ToString());
 		info.SetString("credits", Format::Credits(chosenStart->GetAccounts().Credits()));
 		info.SetString("debt", Format::Credits(chosenStart->GetAccounts().TotalDebt()));
@@ -121,8 +121,6 @@ void StartConditionsPanel::Draw()
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
 	
-	
-	
 	// TODO: Prevent text from overflowing.
 	descriptionWrappedText.Draw(
 		Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll),
@@ -130,7 +128,7 @@ void StartConditionsPanel::Draw()
 	);
 	
 	Point point(entryListBox.Left(), entryListBox.Top() - listScroll);
-	const Point offset = entryInternalBox.Dimensions() * 2;
+	const Point offset = entryInternalBox.Dimensions() * .5;
 	
 	const Font &font = FontSet::Get(14);
 	for(const auto &it : GameData::StartOptions())
@@ -145,7 +143,6 @@ void StartConditionsPanel::Draw()
 			point += Point(0., entryBox.Height());
 			continue;
 		}
-		
 		
 		bool isHighlighted = (&it == chosenStart);
 		

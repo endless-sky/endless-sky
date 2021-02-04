@@ -43,8 +43,8 @@ public:
 	
 	Date GetDate() const;
 	
-	const Planet *GetPlanet() const;
-	const System *GetSystem() const;
+	const Planet &GetPlanet() const;
+	const System &GetSystem() const;
 	
 	// Choose the appropiate conversation to display
 	const Conversation &GetConversation() const;
@@ -61,9 +61,7 @@ public:
 	
 	// Check whether a start scenario is valid
 	// A valid start scenario has a name, a date, a system and a planet
-	// Invalid start scenarios found in the data files are ignored
-	// See https://github.com/endless-sky/endless-sky/pull/5512#pullrequestreview-572539898	
-	bool Valid() const;
+	bool IsValid() const;
 	
 private:
 	Date date;
@@ -72,7 +70,7 @@ private:
 	Account accounts;
 	ConditionSet conditions;
 	std::list<Ship> ships;
-	std::string name = "Unnamed start";
+	std::string name;
 	std::string description;
 	const Sprite *sprite = nullptr;
 	

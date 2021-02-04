@@ -107,10 +107,6 @@ namespace {
 	// After all start scenarios are loaded, the values in this set are added to startConditions.
 	Set<StartConditions> namedStartConditions;
 	
-	// These are used for logging invalid start scenarios after the datanodes they came from go out of scope
-	vector<DataNode> startConditionsSourceNodes;
-	Set<DataNode> namedStartConditionsSourceNodes;
-	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
 	
@@ -228,20 +224,16 @@ bool GameData::BeginLoad(const char * const *argv)
 	}
 	
 	// Add the named start conditions to the start conditions vector.
-	for (auto &it : namedStartConditions)
+	for(auto &it : namedStartConditions)
 		startConditions.push_back(it.second);
-	for (auto &it : namedStartConditionsSourceNodes)
-		startConditionsSourceNodes.push_back(it.second);
 	
 	vector<int> removeIndexes;
 	// Here we're iterating over two vectors at the same time
-	vector<StartConditions>::iterator it = startConditions.begin();
-	vector<DataNode>::iterator dataNodeIt = startConditionsSourceNodes.begin();
-	for(;it < startConditions.end() && dataNodeIt < startConditionsSourceNodes.end(); it++, dataNodeIt++)
-		if(!(*it).Valid())
+	for(vector<StartConditions>::iterator it = startConditions.begin(); it < startConditions.end(); ++it)
+		if(!(*it).IsValid())
 		{
-			(*dataNodeIt).PrintTrace("Invalid start scenario\n"
-				"A valid start scenario has a name, a date, a system and a planet");
+			Files::LogError("Invalid start scenario: " + (*it).GetName() + ". "
+				"A valid start scenario has a name, a date, a system and a planet.");
 			removeIndexes.push_back(it - startConditions.begin());	
 		}
 		
@@ -1108,15 +1100,9 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
 		else if(key == "start" && node.Size() >= 2)
-		{
 			namedStartConditions.Get(node.Token(1))->Load(node);
-			*namedStartConditionsSourceNodes.Get(node.Token(1)) = node;
-		}
 		else if(key == "start" && node.Size() == 1)
-		{	
 			startConditions.emplace_back(node);
-			startConditionsSourceNodes.push_back(node);
-		}
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)

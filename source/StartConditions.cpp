@@ -69,10 +69,15 @@ void StartConditions::Load(const DataNode &node)
 		else
 			conditions.Add(child);
 	}
-	if(description.empty())
+	if(name.empty())
 	{
-		description = "No description provided.";
+		if (node.Size() >= 2)
+			name = node.Token(1);
+		else
+			name = "Unnamed start";
 	}
+	if(description.empty())
+		description = "No description provided.";
 }
 
 
@@ -123,20 +128,20 @@ Date StartConditions::GetDate() const
 
 
 
-const Planet *StartConditions::GetPlanet() const
+const Planet &StartConditions::GetPlanet() const
 {
-	return planet ? planet : GameData::Planets().Get("New Boston");
+	return planet ? *planet : *GameData::Planets().Get("New Boston");
 }
 
 
 
-const System *StartConditions::GetSystem() const
+const System &StartConditions::GetSystem() const
 {
 	if(system)
-		return system;
-	const System *planetSystem = GetPlanet()->GetSystem();
+		return *system;
+	const System *planetSystem = GetPlanet().GetSystem();
 	
-	return planetSystem ? planetSystem : GameData::Systems().Get("Rutilicus");
+	return planetSystem ? *planetSystem : *GameData::Systems().Get("Rutilicus");
 }
 
 
@@ -190,7 +195,7 @@ const list<Ship> &StartConditions::Ships() const
 
 
 
-bool StartConditions::Valid() const
+bool StartConditions::IsValid() const
 {
 	return system && planet && date && !name.empty();
 }

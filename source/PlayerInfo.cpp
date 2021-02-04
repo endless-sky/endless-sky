@@ -82,8 +82,8 @@ void PlayerInfo::New(const StartConditions &start)
 	for(const Ship &ship : start.Ships())
 	{
 		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(start.GetSystem());
-		ships.back()->SetPlanet(start.GetPlanet());
+		ships.back()->SetSystem(&start.GetSystem());
+		ships.back()->SetPlanet(&start.GetPlanet());
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
@@ -96,8 +96,8 @@ void PlayerInfo::New(const StartConditions &start)
 	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
 	
-	SetSystem(*start.GetSystem());
-	SetPlanet(start.GetPlanet());
+	SetSystem(start.GetSystem());
+	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
@@ -2411,8 +2411,8 @@ void PlayerInfo::ValidateLoad()
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
-		system = chosenStart.GetSystem();
-		planet = chosenStart.GetPlanet();
+		system = &chosenStart.GetSystem();
+		planet = &chosenStart.GetPlanet();
 		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
 	}
 	
@@ -2456,7 +2456,8 @@ void PlayerInfo::ValidateLoad()
 	// It is possible that there are no start conditions. In that case, it is not 
 	//possible to guess which start conditions this was created with so exit with an error.
 	if (GameData::StartOptions().empty())
-		GameWindow::ExitWithError("A old pilot was loaded, but no valid start conditions defined in the data files! Make sure that you've installed the game properly.", true);
+		GameWindow::ExitWithError("A old pilot was loaded, but no valid start conditions were defined in the data files! " 
+			"Make sure that you've installed the game properly.");
 	else if(!hasChosenStart)
 		chosenStart = GameData::StartOptions().front(); 
 
