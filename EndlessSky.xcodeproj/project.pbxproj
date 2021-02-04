@@ -754,7 +754,7 @@
 				A968639D1AE6FD0D004FE1FE /* Weapon.h */,
 				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
 				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
-				BE5A4F53B2C99722705622F8 /* ConditionsProvider.h */
+				BE5A4F53B2C99722705622F8 /* ConditionsProvider.h */,
 				4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */,
 				A3B9425983D66B182BD724B4 /* ConditionsStore.h */,
 				2E8047A8987DD8EC99FF8E2E /* Test.cpp */,
