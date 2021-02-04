@@ -270,7 +270,43 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.HasCondition("prefixA: ") == true );
 				REQUIRE( store.HasCondition("prefixA:") == false );
 				REQUIRE( mockProv0.values.size() == 0 );
+				REQUIRE( mockProv.values.size() == 3 );
 				REQUIRE( mockProvB.values.size() == 0 );
+
+				mockProv.readOnly = false;
+				REQUIRE( store.SetCondition("prefix: beginning", 42) == true );
+				REQUIRE( mockProv0.values.size() == 1 );
+				REQUIRE( mockProv.values.size() == 3 );
+				REQUIRE( mockProvB.values.size() == 0 );
+
+				REQUIRE( store.SetCondition("prefixB: ending", 142) == true );
+				REQUIRE( mockProv0.values.size() == 1 );
+				REQUIRE( mockProv.values.size() == 3 );
+				REQUIRE( mockProvB.values.size() == 1 );
+
+				REQUIRE( store.SetCondition("prefixA: middle", 40) == true );
+				REQUIRE( mockProv0.values.size() == 1 );
+				REQUIRE( mockProv.values.size() == 4 );
+				REQUIRE( mockProvB.values.size() == 1 );
+
+				REQUIRE( store.SetCondition("prefixA: middle2", 90) == true );
+				REQUIRE( mockProv0.values.size() == 1 );
+				REQUIRE( mockProv.values.size() == 5 );
+				REQUIRE( mockProvB.values.size() == 1 );
+
+				REQUIRE( store.GetCondition("prefix: beginning") == 42 );
+				REQUIRE( store.GetCondition("prefixB: ending") == 142 );
+				REQUIRE( store.GetCondition("prefixA: ") == 22 );
+				REQUIRE( store.GetCondition("prefixA:") == 0 );
+				REQUIRE( store.GetCondition("prefixA: middle") == 40 );
+				REQUIRE( store.GetCondition("prefixA: middle2") == 90 );
+				REQUIRE( store.GetCondition("prefixA: test") == -30 );
+				REQUIRE( store.GetCondition("myFirstVar") == 10 );
+
+				REQUIRE( mockProv0.values.size() == 1 );
+				REQUIRE( mockProv.values.size() == 5 );
+				REQUIRE( mockProvB.values.size() == 1 );
+				REQUIRE( store.GetPrimaryConditions().size() == 1 );
 			}
 		}
 	}
