@@ -141,13 +141,6 @@ const string &SavedGame::GetPlanet() const
 
 
 
-const StartConditions &SavedGame::GetChosenStart() const
-{
-	return chosenStart;
-}
-
-
-
 const string &SavedGame::GetPlayTime() const
 {
 	return playTime;
