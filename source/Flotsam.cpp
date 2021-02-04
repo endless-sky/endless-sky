@@ -35,7 +35,7 @@ const int Flotsam::TONS_PER_BOX = 5;
 Flotsam::Flotsam(const string &commodity, int count)
 	: commodity(commodity), count(count)
 {
-	lifetime = Random::Int(300) + 360;
+	lifetime = Random::Int(3600) + 7200;
 	// Scale lifetime in proportion to the expected amount per box.
 	if(count != TONS_PER_BOX)
 		lifetime = sqrt(count * (1. / TONS_PER_BOX)) * lifetime;
@@ -47,8 +47,8 @@ Flotsam::Flotsam(const Outfit *outfit, int count)
 	: outfit(outfit), count(count)
 {
 	// The more the outfit costs, the faster this flotsam should disappear.
-	int lifetimeBase = 300000000 / (outfit->Cost() * count + 1000000);
-	lifetime = Random::Int(lifetimeBase) + lifetimeBase + 60;
+	int lifetimeBase = 3000000000 / (outfit->Cost() * count + 1000000);
+	lifetime = Random::Int(lifetimeBase) + lifetimeBase + 600;
 }
 
 
@@ -95,6 +95,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 void Flotsam::Move(vector<Visual> &visuals)
 {
 	position += velocity;
+	velocity *= drag;
 	angle += spin;
 	--lifetime;
 	if(lifetime > 0)
