@@ -33,6 +33,11 @@ StartConditions::StartConditions(const DataNode &node)
 
 void StartConditions::Load(const DataNode &node)
 {
+	if (node.Size() >= 2)
+		name = node.Token(1);
+	else
+		name = "Unnamed start";
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "date" && child.Size() >= 4)
@@ -68,13 +73,6 @@ void StartConditions::Load(const DataNode &node)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else
 			conditions.Add(child);
-	}
-	if(name.empty())
-	{
-		if (node.Size() >= 2)
-			name = node.Token(1);
-		else
-			name = "Unnamed start";
 	}
 	if(description.empty())
 		description = "No description provided.";
