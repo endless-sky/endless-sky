@@ -109,7 +109,7 @@ ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
 	attributes
-		category "Medium Warship"
+		category "Heavy Warship"
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
