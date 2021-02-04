@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConditionSet.h"
 
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -53,8 +54,6 @@ public:
 			INJECT,
 			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
 			INPUT,
-			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
-			INVALID,
 			// Label to jump to (similar as is done in conversations). Does not cause the game to step.
 			LABEL,
 			// Instructs the game to set navigation / travel plan to a target system
@@ -63,18 +62,7 @@ public:
 			// a watchdog in number of frames/steps.
 			WATCHDOG,
 		};
-		
-		// Result returned from a TestStep.
-		enum class Result {
-			// Step was successful. Proceed with next step in the sequence.
-			DONE,
-			// Step failed. Fail test. Exit program with non-zero exitcode.
-			FAIL,
-			// Step is incomplete (waiting for a condition). Retry step on the next frame.
-			RETRY,
-			// Step was ok, but triggered a jump (GOTO or BRANCH to a label).
-			GOTO,
-		};
+
 		
 		
 	public:
@@ -82,7 +70,19 @@ public:
 		
 		
 	public:
-		Type stepType = Type::INVALID;
+		Type stepType = Type::ASSERT;
+		std::string nameOrLabel;
+		// For applying condition changes, branching based on conditions or
+		// checking asserts (similar to Conversations).
+		ConditionSet conditions;
+		// Labels to jump to in case of branches. We could optimize during
+		// load to lookup the step numbers (and provide integer stepnumbers
+		// here), but we can also use the textual information during error/
+		// debug printing, so keeping the strings for now.
+		std::string jumpOnTrueTarget;
+		std::string jumpOnFalseTarget;
+		
+		unsigned int watchdog = 0;
 	};
 	
 	class Context {
@@ -95,6 +95,8 @@ public:
 	protected:
 		// Teststep to run.
 		unsigned int stepToRun = 0;
+		unsigned int watchdog = 0;
+		std::set<unsigned int> branchesSinceGameStep;
 	};
 	
 	
@@ -115,12 +117,14 @@ private:
 	void LoadSequence(const DataNode &node);
 	
 	// Fail the test using the given message as reason.
-	void Fail(const std::string &testFailMessage) const;
+	void Fail(const Context &context, const PlayerInfo &player, const std::string &testFailReason) const;
 	
 	
 private:
 	std::string name;
 	Status status = Status::ACTIVE;
+	// Jump-table that specifies which labels map to which teststeps.
+	std::map<std::string, unsigned int> jumpTable;
 	std::vector<TestStep> steps;
 };
 
