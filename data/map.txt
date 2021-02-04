@@ -8012,6 +8012,7 @@ system Diespiter
 	attributes "ember waste" "inaccessible"
 	habitable 534.375
 	haze _menu/haze-red
+	link Postverta
 	link Statina
 	asteroids "small rock" 65 3
 	asteroids "medium rock" 14 1
@@ -19454,11 +19455,15 @@ system Porrima
 			period 11.4255
 
 system Postverta
-	pos 15000 15000
+	invisible
+	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	habitable 135
 	haze _menu/haze-red
+	link Diespiter
+	link Prosa
+	link Statina
 	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
 	asteroids "medium metal" 52 1
@@ -19631,6 +19636,7 @@ system Prosa
 	attributes "ember waste" "inaccessible"
 	habitable 2372.76
 	haze _menu/haze-red
+	link Postverta
 	link Vaticanus
 	asteroids "medium metal" 11 2
 	asteroids "large metal" 2 2
@@ -23255,6 +23261,7 @@ system Statina
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
+	link Postverta
 	asteroids "large rock" 1 4
 	asteroids "small metal" 39 3
 	asteroids "medium metal" 72 3
@@ -23287,7 +23294,7 @@ system Statina
 			sprite planet/dust4
 			distance 158
 			period 17
-	object wormhole_link
+	object "Wormhole Link"
 		sprite planet/wormhole-red
 		distance 2754
 		period 389
@@ -24740,7 +24747,7 @@ system Vaticanus
 			sprite planet/luna
 			distance 235
 			period 14
-	object wormhole_link
+	object "Wormhole Link"
 		sprite planet/wormhole-red
 		distance 2754
 		period 389
@@ -25969,7 +25976,8 @@ system Zubenelgenubi
 		period 1158.05
 
 system Zubenelhakrabi
-	pos -9743.265 9377.932
+	invisible
+	pos -755 365
 	government Uninhabited
 	habitable 486.68
 	belt 1669
@@ -29808,11 +29816,12 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
-planet wormhole_barren
+planet "Wormhole Barren Alpha"
 	attributes "requires: quantum keystone"
 	description ``
-planet wormhole_barren2
+planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
 	description ``
-planet wormhole_link
+planet "Wormhole Link"
+	attributes "requires: quantum keystone"
 	description ``

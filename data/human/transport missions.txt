@@ -23,7 +23,7 @@ mission "Immigrant Workers"
 		payment
 		payment 10000
 		dialog "The young couple from <origin> pays you and thanks you profusely as they gather up their goods and depart. You wish them the best of luck in their new life on <planet>."
-		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha’s conditions.`
+		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha's conditions.`
 	on offer
 		conversation
 			"As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
