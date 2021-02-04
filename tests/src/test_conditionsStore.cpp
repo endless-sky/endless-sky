@@ -234,8 +234,49 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			REQUIRE( store.HasCondition("prefixA: ") == true );
 			REQUIRE( store.HasCondition("prefixA:") == false );
 		}
+		AND_GIVEN( "more derived conditions are added" )
+		{
+			auto mockProv0 = MockConditionsProvider();
+			store.SetProviderPrefixed("prefix: ", &mockProv0);
+			auto mockProvB = MockConditionsProvider();
+			store.SetProviderPrefixed("prefixB: ", &mockProvB);
+			THEN( "derived prefixed conditions should be set properly" ) {
+				REQUIRE( store.GetPrimaryConditions().size() == 1 );
+				REQUIRE( store.AddCondition("prefixA: test", -30) == true );
+				REQUIRE( store.GetPrimaryConditions().size() == 1 );
+				REQUIRE( mockProv.values["prefixA: test"] == -30 );
+				REQUIRE( store.GetCondition("myFirstVar") == 10 );
+
+				mockProv.readOnly = true;
+				REQUIRE( store.AddCondition("prefixA: test", -20) == false );
+				REQUIRE( mockProv.values["prefixA: test"] == -30 );
+				REQUIRE( mockProv.values.size() == 1 );
+				REQUIRE( store.GetCondition("myFirstVar") == 10 );
+
+				REQUIRE( store.EraseCondition("prefixA: test") == false );
+				REQUIRE( mockProv.values["prefixA: test"] == -30 );
+				REQUIRE( mockProv.values.size() == 1 );
+				REQUIRE( store.GetCondition("myFirstVar") == 10 );
+
+				REQUIRE( store.HasCondition("prefixA: test") == true );
+				REQUIRE( store.HasCondition("prefixA: t") == false );
+				REQUIRE( store.HasCondition("prefixA: ") == false );
+				REQUIRE( store.HasCondition("prefixA:") == false );
+
+				mockProv.values["prefixA: "] = 22;
+				mockProv.values["prefixA:"] = 21;
+				REQUIRE( store.HasCondition("prefixA: test") == true );
+				REQUIRE( store.HasCondition("prefixA: t") == false );
+				REQUIRE( store.HasCondition("prefixA: ") == true );
+				REQUIRE( store.HasCondition("prefixA:") == false );
+				REQUIRE( mockProv0.values.size() == 0 );
+				REQUIRE( mockProvB.values.size() == 0 );
+			}
+		}
 	}
 }
+
+
 
 // #endregion unit tests
 
