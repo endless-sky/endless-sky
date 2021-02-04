@@ -95,7 +95,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 void Flotsam::Move(vector<Visual> &visuals)
 {
 	position += velocity;
-	velocity *= 0.999;
+	velocity *= drag;
 	angle += spin;
 	--lifetime;
 	if(lifetime > 0)
