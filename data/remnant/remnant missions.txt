@@ -3966,6 +3966,7 @@ event "remnant: postverta reveal"
 			period 389
 
 
+
 mission "Remnant: Cognizance 14"
 	name "Investigate strange sensor readings"
 	description "Long range sensors have picked up strange gravitational waves. Go investigate, then return to <destination>."
