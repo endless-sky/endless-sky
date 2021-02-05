@@ -126,7 +126,7 @@ bool BatchDrawList::Add(const Body &body, Point position, float clip)
 	
 	// Get unit vectors in the direction of the object's width and height.
 	Point unit = body.Unit() * zoom;
-	Point uw = Point(unit.Y(), -unit.X()) * body.Width();
+	Point uw = Point(-unit.Y(), unit.X()) * body.Width();
 	Point uh = unit * body.Height();
 	
 	// Get the "bottom" corner, the one that won't be clipped.
