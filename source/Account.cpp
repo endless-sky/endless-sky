@@ -420,7 +420,7 @@ int64_t Account::YearlyRevenue() const
 
 int64_t Account::GetCondition(const string &name) const
 {
-	AccountCondition aC;
+	AccountCondition aC = AccountCondition::CREDITS;
 	bool found = false;
 	
 	for(auto it: CONDITION_TO_TEXT)
