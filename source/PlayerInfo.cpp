@@ -59,13 +59,8 @@ void PlayerInfo::Clear()
 	Messages::Reset();
 	
 	// Clear the automaticly provided conditions that were set earlier
-	conditions.SetProviderNamed("net worth", nullptr);
-	conditions.SetProviderNamed("credits", nullptr);
-	conditions.SetProviderNamed("unpaid mortgages", nullptr);
-	conditions.SetProviderNamed("unpaid fines", nullptr);
-	conditions.SetProviderNamed("unpaid salaries", nullptr);
-	conditions.SetProviderNamed("unpaid maintenance", nullptr);
-	conditions.SetProviderNamed("credit score", nullptr);
+	for(auto it : accounts.GetProvidedConditions())
+		conditions.SetProviderNamed(it, nullptr);
 }
 
 
@@ -106,13 +101,8 @@ void PlayerInfo::New()
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
-	conditions.SetProviderNamed("net worth", &accounts);
-	conditions.SetProviderNamed("credits", &accounts);
-	conditions.SetProviderNamed("unpaid mortgages", &accounts);
-	conditions.SetProviderNamed("unpaid fines", &accounts);
-	conditions.SetProviderNamed("unpaid salaries", &accounts);
-	conditions.SetProviderNamed("unpaid maintenance", &accounts);
-	conditions.SetProviderNamed("credit score", &accounts);
+	for(auto it : accounts.GetProvidedConditions())
+		conditions.SetProviderNamed(it, &accounts);
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();
 	

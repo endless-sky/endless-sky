@@ -70,6 +70,9 @@ public:
 	virtual bool SetCondition(const std::string &name, int64_t value) override;
 	virtual bool EraseCondition(const std::string &name) override;
 	
+	// Helper for registering the provided conditions.
+	std::vector<std::string> GetProvidedConditions() const;
+	
 	
 private:
 	int64_t YearlyRevenue() const;
