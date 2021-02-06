@@ -290,6 +290,7 @@ void GameWindow::AdjustViewport()
 	drawWidth = (drawWidth * roundWidth) / windowWidth;
 	drawHeight = (drawHeight * roundHeight) / windowHeight;
 	glViewport(0, 0, drawWidth, drawHeight);
+	Screen::SetViewport(drawWidth, drawHeight);
 }
 
 

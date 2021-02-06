@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Screen {
 public:
 	static void SetRaw(int width, int height);
+	// Set the viewport size. It's not equal to the raw size if the screen is high DPI.
+	static void SetViewport(int viewportWidth, int viewportHeight);
 	
 	// Zoom level as specified by the user.
 	static int UserZoom();
@@ -41,6 +43,9 @@ public:
 	
 	static int RawWidth();
 	static int RawHeight();
+	
+	static int ViewportWidth();
+	static int ViewportHeight();
 	
 	// Get the positions of the edges and corners of the viewport.
 	static int Left();

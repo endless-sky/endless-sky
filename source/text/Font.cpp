@@ -423,10 +423,8 @@ void Font::DrawCommon(const DisplayText &text, double x, double y, const Color &
 	{
 		screenWidth = Screen::Width();
 		screenHeight = Screen::Height();
-		GLint xyhw[4] = {};
-		glGetIntegerv(GL_VIEWPORT, xyhw);
-		viewportWidth = xyhw[2];
-		viewportHeight = xyhw[3];
+		viewportWidth = Screen::ViewportWidth();
+		viewportHeight = Screen::ViewportHeight();
 		
 		// Use the view port size as a rough estimation of the RAM size of the VIDEO system.
 		// The surface size is larger than the initial size because the surface is never shrunk.

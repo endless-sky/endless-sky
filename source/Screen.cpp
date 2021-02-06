@@ -19,6 +19,8 @@ using namespace std;
 namespace {
 	int RAW_WIDTH = 0;
 	int RAW_HEIGHT = 0;
+	int VIEWPORT_WIDTH = 0;
+	int VIEWPORT_HEIGHT = 0;
 	int WIDTH = 0;
 	int HEIGHT = 0;
 	int USER_ZOOM = 100;
@@ -32,7 +34,17 @@ void Screen::SetRaw(int width, int height)
 {
 	RAW_WIDTH = width;
 	RAW_HEIGHT = height;
+	VIEWPORT_WIDTH = width;
+	VIEWPORT_HEIGHT = height;
 	SetZoom(USER_ZOOM);
+}
+
+
+
+void Screen::SetViewport(int viewportWidth, int viewportHeight)
+{
+	VIEWPORT_WIDTH = viewportWidth;
+	VIEWPORT_HEIGHT = viewportHeight;
 }
 
 
@@ -120,6 +132,20 @@ int Screen::RawWidth()
 int Screen::RawHeight()
 {
 	return RAW_HEIGHT;
+}
+
+
+
+int Screen::ViewportWidth()
+{
+	return VIEWPORT_WIDTH;
+}
+
+
+
+int Screen::ViewportHeight()
+{
+	return VIEWPORT_HEIGHT;
 }
 
 
