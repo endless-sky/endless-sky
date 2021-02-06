@@ -480,7 +480,7 @@ conversation "end of intro missions"
 		goto more
 	
 	label jobs
-	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every Earth Day. That's April 22nd, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
+	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every April 22nd, Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
 	
 	label more
 	`	"Anything else you want to ask me?"`
