@@ -260,7 +260,7 @@ void PlanetPanel::TakeOffIfReady()
 				cannotFly.push_back(result.first);
 			}
 		}
-		if(!cannotFly.empty())
+		if(!cannotFly.empty()) // TODO: how to show both ships error and warning dialogs one after another?
 		{
 			string shipNames = out.str();
 			shipNames.pop_back();
