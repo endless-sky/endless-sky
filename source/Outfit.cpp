@@ -319,7 +319,7 @@ double Outfit::Get(const string &attribute) const
 
 
 
-const Dictionary &Outfit::Attributes() const
+const Dictionary<double> &Outfit::Attributes() const
 {
 	return attributes;
 }

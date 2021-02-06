@@ -61,7 +61,7 @@ public:
 	
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const Dictionary &Attributes() const;
+	const Dictionary<double> &Attributes() const;
 	
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -107,7 +107,7 @@ private:
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 	
-	Dictionary attributes;
+	Dictionary<double> attributes;
 	
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
