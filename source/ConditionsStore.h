@@ -65,9 +65,10 @@ private:
 private:
 	// Storage for the primary conditions.
 	std::map<std::string, int64_t> conditions;
-	// Storage of child providers by prefix and full string.
-	std::map<std::string, ConditionsProvider*> providersPrefixed;
-	std::map<std::string, ConditionsProvider*> providersNamed;
+	// Storage of derived condition providers by prefix and full string.
+	// Setting true in the pair means that the string must match exactly (full string).
+	// Setting false in the pair means that the string is to be used as prefix.
+	std::map<std::string, std::pair<bool, ConditionsProvider*>> providers;
 };
 
 

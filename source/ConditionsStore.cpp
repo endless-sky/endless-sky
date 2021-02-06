@@ -133,9 +133,9 @@ const map<string, int64_t> &ConditionsStore::GetPrimaryConditions() const
 void ConditionsStore::SetProviderPrefixed(const string &prefix, ConditionsProvider *child)
 {
 	if(child != nullptr)
-		providersPrefixed[prefix] = child;
+		providers[prefix] = make_pair(false, child);
 	else
-		providersPrefixed.erase(prefix);
+		providers.erase(prefix);
 }
 
 
@@ -145,28 +145,26 @@ void ConditionsStore::SetProviderPrefixed(const string &prefix, ConditionsProvid
 void ConditionsStore::SetProviderNamed(const string &name, ConditionsProvider *child)
 {
 	if(child != nullptr)
-		providersNamed[name] = child;
+		providers[name] = make_pair(true, child);
 	else
-		providersNamed.erase(name);
+		providers.erase(name);
 }
 
 
 
 ConditionsProvider* ConditionsStore::GetProvider(const string &name) const
 {
-	// First check if we should set based on exact names.
-	auto it = providersNamed.find(name);
-	if(it != providersNamed.end())
-		return it->second;
-
-	// Then check if this is a known prefix.
-	if(providersPrefixed.empty())
+	// Perform a single search for named and prefixed providers.
+	if(providers.empty())
 		return nullptr;
-	it = providersPrefixed.upper_bound(name);
-	if(it == providersPrefixed.begin())
+	auto it = providers.upper_bound(name);
+	if(it == providers.begin())
 		return nullptr;
 	--it;
-	if(!(name.compare(0, it->first.length(), it->first)))
-		return it->second;
+	// it->second.first is true if the string needs to match exactly. The strings
+	// match exactly if they are the same over the length of the first string and
+	// have the same length.
+	if(!(name.compare(0, it->first.length(), it->first)) && (!it->second.first || it->first.length() == name.length()))
+		return it->second.second;
 	return nullptr;
 }
