@@ -64,14 +64,16 @@ public:
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
 	
-	// Derived conditions provider interface.
-	virtual int64_t GetCondition(const std::string &name) const override;
-	virtual bool HasCondition(const std::string &name) const override;
-	virtual bool SetCondition(const std::string &name, int64_t value) override;
-	virtual bool EraseCondition(const std::string &name) override;
-	
 	// Helper for registering the provided conditions.
 	std::vector<std::string> GetProvidedConditions() const;
+	
+	
+protected:
+	// Derived conditions provider interface.
+	virtual int64_t GetConditionImpl(const std::string &name) const override;
+	virtual bool HasConditionImpl(const std::string &name) const override;
+	virtual bool SetConditionImpl(const std::string &name, int64_t value) override;
+	virtual bool EraseConditionImpl(const std::string &name) override;
 	
 	
 private:

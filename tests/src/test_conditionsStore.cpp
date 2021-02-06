@@ -15,11 +15,11 @@ namespace { // test namespace
 
 class MockConditionsProvider : public ConditionsProvider
 {
-public:
-	virtual int64_t GetCondition(const std::string &name) const override;
-	virtual bool HasCondition(const std::string &name) const override;
-	virtual bool SetCondition(const std::string &name, int64_t value) override;
-	virtual bool EraseCondition(const std::string &name) override;
+protected:
+	virtual int64_t GetConditionImpl(const std::string &name) const override;
+	virtual bool HasConditionImpl(const std::string &name) const override;
+	virtual bool SetConditionImpl(const std::string &name, int64_t value) override;
+	virtual bool EraseConditionImpl(const std::string &name) override;
 
 
 public:
@@ -27,7 +27,7 @@ public:
 	std::map<std::string, int64_t> values;
 };
 
-int64_t MockConditionsProvider::GetCondition(const std::string &name) const
+int64_t MockConditionsProvider::GetConditionImpl(const std::string &name) const
 {
 	auto it = values.find(name);
 	if(it != values.end())
@@ -35,13 +35,13 @@ int64_t MockConditionsProvider::GetCondition(const std::string &name) const
 	return 0;
 }
 
-bool MockConditionsProvider::HasCondition(const std::string &name) const
+bool MockConditionsProvider::HasConditionImpl(const std::string &name) const
 {
 	auto it = values.find(name);
 	return it != values.end();
 }
 
-bool MockConditionsProvider::SetCondition(const std::string &name, int64_t value)
+bool MockConditionsProvider::SetConditionImpl(const std::string &name, int64_t value)
 {
 	if(readOnly)
 		return false;
@@ -49,7 +49,7 @@ bool MockConditionsProvider::SetCondition(const std::string &name, int64_t value
 	return true;
 }
 
-bool MockConditionsProvider::EraseCondition(const std::string &name)
+bool MockConditionsProvider::EraseConditionImpl(const std::string &name)
 {
 	if(readOnly)
 		return false;

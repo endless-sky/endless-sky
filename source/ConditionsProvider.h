@@ -23,12 +23,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class ConditionsProvider {
 public:
 	// Retrieve a "condition" flag from this provider.
-	virtual int64_t GetCondition(const std::string &name) const = 0;
-	virtual bool HasCondition(const std::string &name) const = 0;
+	int64_t GetCondition(const std::string &name) const;
+	bool HasCondition(const std::string &name) const;
 	// Set a value for a condition or erase a condition completely. Returns
 	// true on success, false on failure.
-	virtual bool SetCondition(const std::string &name, int64_t value) = 0;
-	virtual bool EraseCondition(const std::string &name) = 0;
+	bool SetCondition(const std::string &name, int64_t value);
+	bool EraseCondition(const std::string &name);
+	
+	
+protected:
+	// Protected versions of the public interface calls to be implemented
+	// by classes that implement this interface.
+	virtual int64_t GetConditionImpl(const std::string &name) const = 0;
+	virtual bool HasConditionImpl(const std::string &name) const = 0;
+	virtual bool SetConditionImpl(const std::string &name, int64_t value) = 0;
+	virtual bool EraseConditionImpl(const std::string &name) = 0;
+
 };
 
 

@@ -418,7 +418,7 @@ int64_t Account::YearlyRevenue() const
 
 
 
-int64_t Account::GetCondition(const string &name) const
+int64_t Account::GetConditionImpl(const string &name) const
 {
 	AccountCondition aC = AccountCondition::CREDITS;
 	bool found = false;
@@ -458,7 +458,7 @@ int64_t Account::GetCondition(const string &name) const
 
 
 
-bool Account::HasCondition(const string &name) const
+bool Account::HasConditionImpl(const string &name) const
 {
 	for(auto it: CONDITION_TO_TEXT)
 		if(it.second == name)
@@ -469,14 +469,14 @@ bool Account::HasCondition(const string &name) const
 
 
 
-bool Account::SetCondition(const string &name, int64_t value)
+bool Account::SetConditionImpl(const string &name, int64_t value)
 {
 	return false;
 }
 
 
 
-bool Account::EraseCondition(const string &name)
+bool Account::EraseConditionImpl(const string &name)
 {
 	return false;
 }
