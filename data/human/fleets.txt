@@ -1697,7 +1697,7 @@ fleet "Small Southern Pirates"
 	variant 1
 		"Fury" 3
 	variant 1
-		"Fury (Missile)" 3
+		"Fury (Missile)" 2
 	variant 1
 		"Fury (Heavy)" 2
 	variant 1
