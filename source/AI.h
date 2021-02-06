@@ -111,6 +111,7 @@ private:
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command);
 	bool DoCloak(Ship &ship, Command &command);
+	void DoRoving(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 	

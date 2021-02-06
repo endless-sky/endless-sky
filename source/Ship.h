@@ -394,6 +394,8 @@ public:
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
+	// Movement target.
+	Point GetTargetPosition() const;
 	
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
@@ -403,6 +405,8 @@ public:
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
+	// Movement target.
+	void SetTargetPosition(const Point &position);
 	
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
@@ -570,6 +574,7 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
+	Point targetPosition;
 	
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

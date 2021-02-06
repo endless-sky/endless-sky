@@ -762,6 +762,14 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			else
 				it->SetTargetAsteroid(nullptr);
 		}
+
+		// Ships with the Roving personality should aimlessly scoot about the system.
+		if(isPresent && personality.IsRoving() && !target && !isStranded)
+		{
+			DoRoving(*it, command);
+			it->SetCommands(command);
+			continue;
+		}
 		
 		// Handle carried ships:
 		if(it->CanBeCarried())
@@ -2559,6 +2567,19 @@ bool AI::DoCloak(Ship &ship, Command &command)
 			command |= Command::CLOAK;
 	}
 	return false;
+}
+
+
+
+void AI::DoRoving(Ship &ship, Command &command)
+{
+	const Point target = ship.GetTargetPosition();
+	const auto v = ship.MaxVelocity();
+    if(!target || MoveTo(ship, command, target, Point(), v, v))
+    {
+        Point newTarget = Angle::Random().Unit() * Random::Real() * 3000;
+        ship.SetTargetPosition(newTarget);
+    }
 }
 
 
