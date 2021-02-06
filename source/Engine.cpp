@@ -227,14 +227,15 @@ Engine::Engine(PlayerInfo &player)
 			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 		}
 	
-	// Add all neighboring systems to the radar.
+	// Add all neighboring systems that the player has seen to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
 	const set<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
 		player.GetSystem()->JumpNeighbors(flagship->JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
-		radar[calcTickTock].AddPointer(
-			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
-			system->Position() - player.GetSystem()->Position());
+		if(player.HasSeen(*system))
+			radar[calcTickTock].AddPointer(
+				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
+				system->Position() - player.GetSystem()->Position());
 	
 	GameData::SetHaze(player.GetSystem()->Haze());
 }
@@ -2137,9 +2138,10 @@ void Engine::FillRadar()
 		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
 			playerSystem->JumpNeighbors(flagship->JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
-			radar[calcTickTock].AddPointer(
-				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
-				system->Position() - playerSystem->Position());
+			if(player.HasSeen(*system))
+				radar[calcTickTock].AddPointer(
+					(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
+					system->Position() - playerSystem->Position());
 	}
 	
 	// Add viewport brackets.
