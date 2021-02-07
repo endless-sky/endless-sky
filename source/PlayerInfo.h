@@ -88,7 +88,7 @@ public:
 	// Get or change the current date.
 	const Date &GetDate() const;
 	void IncrementDate();
-	// Get the chosen start scenario
+	// Get the chosen start scenario.
 	const StartConditions &ChosenStart() const;
 	
 	// Set the system the player is in. This must be stored here so that even if

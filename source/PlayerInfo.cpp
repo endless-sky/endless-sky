@@ -75,8 +75,8 @@ void PlayerInfo::New(const StartConditions &start)
 {
 	// Clear any previously loaded data.
 	Clear();
-
-	this->chosenStart = start;
+	
+	chosenStart = start;
 	
 	// Copy any ships in the start conditions.
 	for(const Ship &ship : start.Ships())
@@ -119,8 +119,8 @@ void PlayerInfo::Load(const string &path)
 	// Make sure any previously loaded data is cleared.
 	Clear();
 	
-	filePath = path;	
-
+	filePath = path;
+	
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
 	size_t pos = filePath.find('~');
@@ -291,7 +291,7 @@ void PlayerInfo::Load(const string &path)
 			}
 		}
 	}
-
+	
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
 	// Ensure the player is in a valid state after loading & applying changes.
@@ -2336,7 +2336,7 @@ void PlayerInfo::ApplyChanges()
 	AddChanges(dataChanges);
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
-
+	
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(GetDate());
@@ -2454,13 +2454,13 @@ void PlayerInfo::ValidateLoad()
 	// For old saves, default to the first start condition, which is 
 	// always our default start.
 	// It is possible that there are no start conditions. In that case, it is not 
-	//possible to guess which start conditions this was created with so exit with an error.
-	if (GameData::StartOptions().empty())
+	// possible to guess which start conditions this was created with so exit with an error.
+	if(GameData::StartOptions().empty())
 		GameWindow::ExitWithError("A old pilot was loaded, but no valid start conditions were defined in the data files! " 
 			"Make sure that you've installed the game properly.");
 	else if(!hasChosenStart)
 		chosenStart = GameData::StartOptions().front(); 
-
+	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored. 
 	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
@@ -2804,7 +2804,6 @@ void PlayerInfo::Save(const string &path) const
 		}
 		out.EndChild();
 	}
-	
 	
 	// Save accounting information, the start scenario used in this save, cargo, and cargo cost bases.
 	accounts.Save(out);

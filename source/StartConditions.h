@@ -32,13 +32,13 @@ class StartConditions {
 public:
 	StartConditions() = default;
 	
-	// Implicit constructor
+	// Implicit constructor.
 	StartConditions(const DataNode &node);
 	
 	void Load(const DataNode &node);
 	// Finish loading the ship definitions.
 	void FinishLoading();
-	// Serialize the basic information of this start
+	// Serialize the basic information of this start.
 	void Save(DataWriter &out) const;
 	
 	Date GetDate() const;
@@ -46,10 +46,10 @@ public:
 	const Planet &GetPlanet() const;
 	const System &GetSystem() const;
 	
-	// Choose the appropiate conversation to display
+	// Choose the appropiate conversation to display.
 	const Conversation &GetConversation() const;
 	
-	// The sprite that will be outlined on StartConditionsPanel.cpp
+	// The sprite that will be outlined on StartConditionsPanel.cpp.
 	const Sprite *GetSprite() const;
 	
 	const std::string &GetName() const;
@@ -59,9 +59,10 @@ public:
 	const ConditionSet &GetConditions() const;
 	const std::list<Ship> &Ships() const;
 	
-	// Check whether a start scenario is valid
-	// A valid start scenario has a name, a date, a system and a planet
+	// Check whether a start scenario is valid.
+	// A valid start scenario has a name, a date, a system and a planet.
 	bool IsValid() const;
+	
 	
 private:
 	Date date;
@@ -70,15 +71,15 @@ private:
 	Account accounts;
 	ConditionSet conditions;
 	std::list<Ship> ships;
-	std::string name;
+	std::string name = "Unnamed start";
 	std::string description;
 	const Sprite *sprite = nullptr;
 	
-	// Conversation to show when the start conditions are selected
-	// This is set when the start conditions provide an "inline conversation"
+	// Conversation to show when the start conditions are selected.
+	// This is set when the start conditions provide an "inline conversation."
 	Conversation conversation;
 	// stockConversation is set when the conversation is provided as 
-	// a string which references another conversation in GameData
+	// a string which references another conversation in GameData.
 	const Conversation *stockConversation = nullptr;
 };
 

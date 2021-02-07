@@ -33,10 +33,8 @@ StartConditions::StartConditions(const DataNode &node)
 
 void StartConditions::Load(const DataNode &node)
 {
-	if (node.Size() >= 2)
+	if(node.Size() >= 2)
 		name = node.Token(1);
-	else
-		name = "Unnamed start";
 	
 	for(const DataNode &child : node)
 	{
@@ -92,9 +90,9 @@ void StartConditions::FinishLoading()
 void StartConditions::Save(DataWriter &out) const
 {
 	// Only the parts of the start conditions that might have to be used later
-	// (such as the date for the tutorial dialogs) are saved
-	// Things like the starting ship, the intro conversation, the name or the description  
-	// (which are meant to be used only once), aren't saved.
+	// (such as the date for the tutorial dialogs) are saved.
+	// Things like the starting ship or the intro conversation, which are
+	// meant to be used only once, aren't saved.
 	out.Write("start");
 	out.BeginChild();
 	{
@@ -142,7 +140,7 @@ const Conversation &StartConditions::GetConversation() const
 
 const Sprite *StartConditions::GetSprite() const 
 {
-	return sprite;	
+	return sprite;
 }
 
 
