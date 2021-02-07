@@ -1299,6 +1299,23 @@ void Engine::CalculateStep()
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
+	// If the player's flagship has been destroyed, deploy an escape pod.
+	if(flagship && flagship->IsDestroyed() && flagship->Attributes().Category() != "Fighter" && !player.DeployedPod())
+	{
+		player.DeployedPod(true);
+		auto pod = make_shared<Ship>(*GameData::Ships().Get("Escape Pod"));
+		pod->WasCaptured(make_shared<Ship>(*flagship));
+		player.AddShip(pod);
+		newShips.push_back(pod);
+		Point pos = flagship->Position();
+		double maxV = pod->MaxVelocity() * 10;
+		Angle angle = Angle::Random();
+		Point v = flagship->Velocity() + (.3 * maxV) * angle.Unit() + (.2 * maxV) * Angle::Random().Unit();
+		pod->Place(pos, v, angle);
+		pod->SetSystem(flagship->GetSystem());
+		player.SetFlagship(pod);
+		flagship = player.Flagship();
+	}
 	// Move all the ships.
 	for(const shared_ptr<Ship> &it : ships)
 		MoveShip(it);

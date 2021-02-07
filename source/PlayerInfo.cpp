@@ -465,6 +465,22 @@ bool PlayerInfo::IsDead() const
 
 
 
+bool PlayerInfo::DeployedPod(bool deploy)
+{
+	if(deploy)
+		deployedPod = true;
+	return deployedPod;
+}
+
+
+
+void PlayerInfo::SetFlagship(shared_ptr<Ship> flagship)
+{
+	this->flagship = flagship;
+}
+
+
+
 // Get the player's first name.
 const string &PlayerInfo::FirstName() const
 {
@@ -1773,9 +1789,10 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
 	
-	// If the player's flagship was destroyed, the player is dead.
-	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
-		Die();
+	// If the player's escape pod was destroyed, the player is dead.
+	if((event.Type() & ShipEvent::DESTROY) && !ships.empty()
+		&& event.Target().get() == Flagship() && Flagship()->Attributes().Category() == "Fighter")
+			Die();
 }
 
 

@@ -78,6 +78,8 @@ public:
 	// Mark the player as dead, or check if they have died.
 	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);
 	bool IsDead() const;
+	bool DeployedPod(bool deploy = false);
+	void SetFlagship(std::shared_ptr<Ship> flagship);
 	
 	// Get or set the player's name.
 	const std::string &FirstName() const;
@@ -298,6 +300,7 @@ private:
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
 	bool isDead = false;
+	bool deployedPod = false;
 	
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.0;

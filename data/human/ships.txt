@@ -8,6 +8,43 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+ship "Escape Pod"
+	sprite "ship/escape pod"
+	"never disabled"
+	attributes
+		category "Fighter"
+		"cost" 30000
+		"hull" 500
+		"required crew" 1
+		"bunks" 1
+		"mass" 50
+		"drag" 1
+		"heat dissipation" .9
+		"fuel capacity" 150
+		"ramscoop" 3
+		"hyperdrive" 1
+		"jump speed" .1
+		"jump fuel" 100
+		"energy generation" 1
+		"energy capacity" 50
+		"thrust" 4
+		"flare sprite" "effect/ion flare/tiny"
+			"frame rate" 1.2
+		"flare sound" "ion tiny"
+		"turn" 110
+		"steering flare sprite" "effect/ion flare/tiny"
+			"frame rate" 1.2
+		"steering flare sound" "ion tiny"
+	engine -6 13 .5
+	engine 6 13 .5
+	engine 0 13 .5
+	engine 0 13 .5
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 10
+	explode "smoke" 10
+	description "Escape."
+
 ship "Aerie"
 	sprite "ship/aerie"
 	thumbnail "thumbnail/aerie"
