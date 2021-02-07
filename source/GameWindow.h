@@ -43,8 +43,7 @@ public:
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();	
-
-
+	
 	// Check if the initialized window system supports OpenGL texture_swizzle.
 	static bool HasSwizzle();
 	

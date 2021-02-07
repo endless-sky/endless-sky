@@ -97,7 +97,7 @@ void StartConditionsPanel::Draw()
 	
 	Information info;
 	
-	// String that will be shown in the description panel
+	// String that will be shown in the description panel.
 	string descriptionText; 
 	
 	if(chosenStart) 

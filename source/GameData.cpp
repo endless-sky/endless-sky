@@ -130,8 +130,6 @@ namespace {
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 	
-	
-	
 	const Government *playerGovernment = nullptr;
 	
 	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
@@ -228,15 +226,15 @@ bool GameData::BeginLoad(const char * const *argv)
 		startConditions.push_back(it.second);
 	
 	vector<int> removeIndexes;
-	// Here we're iterating over two vectors at the same time
+	// Here we're iterating over two vectors at the same time.
 	for(vector<StartConditions>::iterator it = startConditions.begin(); it < startConditions.end(); ++it)
 		if(!(*it).IsValid())
 		{
 			Files::LogError("Invalid start scenario: " + (*it).GetName() + ". "
 				"A valid start scenario has a name, a date, a system and a planet.");
-			removeIndexes.push_back(it - startConditions.begin());	
+			removeIndexes.push_back(it - startConditions.begin());
 		}
-		
+	
 	// Here we remove all invalid start conditions from the vector.
 	// Since we are erasing items while iterating over the indexes, we have to shift the remove index
 	// to accomodate for the erasing items every time we erase one.
