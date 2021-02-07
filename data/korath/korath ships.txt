@@ -51,20 +51,26 @@ ship "Korath Dredger"
 		"Hyperdrive"
 		"Jump Drive"
 		
-	turret -37 -155 "Korath Banisher"
-	turret 0 -155 "Korath Warder"
-	turret 37 -155 "Korath Grab-Strike"
-	turret -96 0 "Korath Grab-Strike"
-	turret 96 0 "Korath Grab-Strike"
-	turret -80 130 "Korath Warder"
-	turret 80 130 "Korath Banisher"
-	engine -33 171 .4
-	engine -2 182 .6
-	engine 31 171 .4
-	fighter 51 59
-	fighter -51 59
-	fighter 0 -42
-	fighter 0 16
+    turret -37.5 -152.5 "Korath Warder"
+    turret 37.5 -152.5 "Korath Warder"
+    turret 0 -153 "Korath Grab-Strike"
+    turret -42 -28 "Korath Banisher"
+    turret 42 -28 "Korath Banisher"
+    turret -86 128.5 "Korath Grab-Strike"
+    turret 86 128.5 "Korath Grab-Strike"
+    engine 0 179
+    engine -32 164 .7
+    engine 32 164 .7
+    "reverse engine" -93.5 -65
+    "reverse engine" 93.5 -65
+    "reverse engine" -79 80.5
+        over
+    "reverse engine" 79 80.5
+        over
+    bay Fighter -93.5 -20.5
+    bay Fighter 93.5 -20.5
+    bay Fighter -87 128.5
+    bay Fighter 87 128.5
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
