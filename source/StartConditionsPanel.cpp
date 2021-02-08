@@ -73,7 +73,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
 	}
 	
-	const Rectangle &firstRectangle = Rectangle::FromCorner(entryListBox.TopLeft(), entryBox.Dimensions());
+	const Rectangle firstRectangle = Rectangle::FromCorner(entryListBox.TopLeft(), entryBox.Dimensions());
 	startConditionsClickZones.reserve(GameData::StartOptions().size());
 	for(size_t i = 0; i < GameData::StartOptions().size(); ++i)
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), GameData::StartOptions().begin() + i);
@@ -85,6 +85,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 	else 
 		descriptionWrappedText.Wrap("No valid start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly");
+	
 	bright = *GameData::Colors().Get("bright");
 	medium = *GameData::Colors().Get("medium");
 	selectedBackground = *GameData::Colors().Get("selected start conditions background");
@@ -183,7 +184,7 @@ bool StartConditionsPanel::Scroll(double dx, double dy)
 bool StartConditionsPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
-	return true;
+	return false;
 }
 
 
@@ -195,7 +196,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		GetUI()->Pop(this);
 	else if(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) 
 	{
-		int offset = 0;
+		ptrdiff_t offset = 0;
 		offset += (key == SDLK_DOWN) - (key == SDLK_UP);
 		offset += PAGE_INTERVAL * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
 		
@@ -212,27 +213,21 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		chosenStart = &*chosenStartIterator;
 		descriptionWrappedText.Wrap(chosenStart->GetDescription());
 		
-		return false;
+		return true;
 	}
 	else if(key == 's' || key == 'n' || key == '\n')
 	{
 		if(!chosenStart)
-			return true;
+			return false;
 		
 		player.New(*chosenStart);
+	
+		ConversationPanel *panel = new ConversationPanel(
+			player, chosenStart->GetConversation());
+		GetUI()->Push(panel);
+		panel->SetCallback(this, &StartConditionsPanel::OnCallback);
 		
-		if(chosenStart->GetConversation().IsEmpty())
-		{
-			// If no conversation was defined, then skip the conversation panel.
-			OnCallback(0);
-		}
-		else
-		{
-			ConversationPanel *panel = new ConversationPanel(
-				player, chosenStart->GetConversation());
-			GetUI()->Push(panel);
-			panel->SetCallback(this, &StartConditionsPanel::OnCallback);
-		}
+		return true;
 	}
 	else 
 		return true;
@@ -245,7 +240,7 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 {
 	// Check it's inside of the entry list box.
 	if(!entryListBox.Contains(Point(x, y)))
-		return false;
+		return true;
 	
 	for(const auto &it : startConditionsClickZones)
 	{
@@ -261,10 +256,7 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 		}
 	}
 	
-	if(chosenStart)
-		descriptionWrappedText.Wrap(chosenStart->GetDescription());
-	
-	return true;
+	return false;
 }
 
 

@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "GameWindow.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Messages.h"
@@ -201,7 +200,6 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "start")
 		{
 			chosenStart.Load(child);
-			hasChosenStart = true;
 		}
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
@@ -2456,9 +2454,10 @@ void PlayerInfo::ValidateLoad()
 	// It is possible that there are no start conditions. In that case, it is not 
 	// possible to guess which start conditions this was created with so exit with an error.
 	if(GameData::StartOptions().empty())
-		GameWindow::ExitWithError("A old pilot was loaded, but no valid start conditions were defined in the data files! " 
+		throw runtime_error("A old pilot was loaded, but no valid start conditions were defined in the data files! " 
 			"Make sure that you've installed the game properly.");
-	else if(!hasChosenStart)
+	
+	else if(chosenStart.GetName().empty())
 		chosenStart = GameData::StartOptions().front(); 
 	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from

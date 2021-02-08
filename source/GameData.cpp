@@ -225,25 +225,13 @@ bool GameData::BeginLoad(const char * const *argv)
 	for(auto &it : namedStartConditions)
 		startConditions.push_back(it.second);
 	
-	vector<int> removeIndexes;
-	// Here we're iterating over two vectors at the same time.
+	
 	for(vector<StartConditions>::iterator it = startConditions.begin(); it < startConditions.end(); ++it)
 		if(!(*it).IsValid())
-		{
 			Files::LogError("Invalid start scenario: " + (*it).GetName() + ". "
 				"A valid start scenario has a name, a date, a system and a planet.");
-			removeIndexes.push_back(it - startConditions.begin());
-		}
 	
-	// Here we remove all invalid start conditions from the vector.
-	// Since we are erasing items while iterating over the indexes, we have to shift the remove index
-	// to accomodate for the erasing items every time we erase one.
-	int removedConditions = 0;
-	for(int index : removeIndexes)
-	{
-		startConditions.erase(startConditions.begin() + index - removedConditions);
-		++removedConditions;
-	}
+	remove_if(startConditions.begin(), startConditions.end(), [](StartConditions &it){return it.IsValid();});
 	
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the

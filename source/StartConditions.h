@@ -73,7 +73,7 @@ private:
 	Account accounts;
 	ConditionSet conditions;
 	std::list<Ship> ships;
-	std::string name = "Unnamed start";
+	std::string name;
 	std::string description;
 	const Sprite *sprite = nullptr;
 	

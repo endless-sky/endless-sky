@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "Ship.h"
@@ -33,6 +34,8 @@ StartConditions::StartConditions(const DataNode &node)
 
 void StartConditions::Load(const DataNode &node)
 {
+	name = "Unnamed start";
+	
 	if(node.Size() >= 2)
 		name = node.Token(1);
 	
@@ -74,8 +77,11 @@ void StartConditions::Load(const DataNode &node)
 	}
 	if(description.empty())
 		description = "No description provided.";
+	
+	if(GetConversation().IsEmpty())
+		Files::LogError("Warning: The start scenario \"" + name + "\" has no conversation defined.");
 }
-
+ 
 
 
 // Finish loading the ship definitions.
