@@ -2720,6 +2720,20 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 
 
 
+// This ship was ejected as an escape pod. Inherit characteristics of the ejector.
+void Ship::WasEjected(const shared_ptr<Ship> &ejector)
+{
+	government = ejector->GetGovernment();
+	// If the ejecting ship had a parent, use that as the escape pod's parent.
+	SetParent(ejector->GetParent());
+	// This ship behaviors like its ejector did.
+	isSpecial = ejector->isSpecial;
+	isYours = ejector->isYours;
+	personality = ejector->personality;
+}
+
+
+
 // Get characteristics of this ship, as a fraction between 0 and 1.
 double Ship::Shields() const
 {

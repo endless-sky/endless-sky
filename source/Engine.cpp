@@ -1304,17 +1304,15 @@ void Engine::CalculateStep()
 	{
 		player.DeployedPod(true);
 		auto pod = make_shared<Ship>(*GameData::Ships().Get("Escape Pod"));
-		pod->WasCaptured(make_shared<Ship>(*flagship));
+		pod->WasEjected(make_shared<Ship>(*flagship));
 		player.AddShip(pod);
 		newShips.push_back(pod);
-		Point pos = flagship->Position();
-		double maxV = pod->MaxVelocity() * 10;
+		double maxV = pod->MaxVelocity() * 5;
 		Angle angle = Angle::Random();
 		Point v = flagship->Velocity() + (.3 * maxV) * angle.Unit() + (.2 * maxV) * Angle::Random().Unit();
-		pod->Place(pos, v, angle);
+		pod->Place(flagship->Position(), v, angle);
 		pod->SetSystem(flagship->GetSystem());
 		player.SetFlagship(pod);
-		flagship = player.Flagship();
 	}
 	// Move all the ships.
 	for(const shared_ptr<Ship> &it : ships)

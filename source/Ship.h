@@ -267,6 +267,7 @@ public:
 	double TransferFuel(double amount, Ship *to);
 	// Mark this ship as property of the given ship.
 	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	void WasEjected(const std::shared_ptr<Ship> &ejector);
 	
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
