@@ -38,15 +38,35 @@ namespace {
 	GLuint vbo;
 
 	const vector<vector<GLint>> SWIZZLE = {
-		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
-		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
-		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)
-		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA}, // green + cyan
-		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // blue + magenta (syndicate)
-		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // blue + cyan (merchant)
-		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // red and black (pirate)
-		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA},  // red only (cloaked)
-		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}  // black only (outline)
+		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // 0 red + yellow markings (republic)
+		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // 1 red + magenta markings
+		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // 2 green + yellow (free worlds)
+		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA}, // 3 green + cyan
+		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // 4 blue + magenta (syndicate)
+		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // 5 blue + cyan (merchant)
+		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // 6 red and black (pirate)
+		{GL_RED, GL_BLUE, GL_BLUE, GL_ALPHA}, // 7 pure red
+		{GL_RED, GL_GREEN, GL_GREEN, GL_ALPHA}, // 8 faded red
+		{GL_BLUE, GL_BLUE, GL_BLUE, GL_ALPHA}, // 9 pure black
+		{GL_GREEN, GL_GREEN, GL_GREEN, GL_ALPHA}, // 10 faded black
+		{GL_RED, GL_RED, GL_RED, GL_ALPHA}, // 11 pure white
+		{GL_BLUE, GL_BLUE, GL_GREEN, GL_ALPHA}, // 12 darkened blue
+		{GL_BLUE, GL_BLUE, GL_RED, GL_ALPHA}, // 13 pure blue
+		{GL_GREEN, GL_GREEN, GL_RED, GL_ALPHA}, // 14 faded blue
+		{GL_BLUE, GL_GREEN, GL_GREEN, GL_ALPHA}, // 15 darkened cyan
+		{GL_BLUE, GL_RED, GL_RED, GL_ALPHA}, // 16 pure cyan
+		{GL_GREEN, GL_RED, GL_RED, GL_ALPHA}, // 17 faded cyan
+		{GL_BLUE, GL_GREEN, GL_BLUE, GL_ALPHA}, // 18 darkened green
+		{GL_BLUE, GL_RED, GL_BLUE, GL_ALPHA}, // 19 pure green
+		{GL_GREEN, GL_RED, GL_GREEN, GL_ALPHA}, // 20 faded green
+		{GL_GREEN, GL_GREEN, GL_BLUE, GL_ALPHA}, // 21 darkened yellow
+		{GL_RED, GL_RED, GL_BLUE, GL_ALPHA}, // 22 pure yellow
+		{GL_RED, GL_RED, GL_GREEN, GL_ALPHA}, // 23 faded yellow
+		{GL_GREEN, GL_BLUE, GL_GREEN, GL_ALPHA}, // 24 darkened magenta
+		{GL_RED, GL_BLUE, GL_RED, GL_ALPHA}, // 25 pure magenta
+		{GL_RED, GL_GREEN, GL_RED, GL_ALPHA}, // 26 faded magenta
+		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA}, // 27 red only (cloaked)
+		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA} // 28 black only (outline)
 	};
 }
 
@@ -150,9 +170,69 @@ void SpriteShader::Init(bool useShaderSwizzle)
 		"      color = color.gbba;\n"
 		"      break;\n"
 		"    case 7:\n"
-		"      color = vec4(color.b, 0.f, 0.f, color.a);\n"
+		"      color = color.rbba;\n"
 		"      break;\n"
 		"    case 8:\n"
+		"      color = color.rgga;\n"
+		"      break;\n"
+		"    case 9:\n"
+		"      color = color.bbba;\n"
+		"      break;\n"
+		"    case 10:\n"
+		"      color = color.ggga;\n"
+		"      break;\n"
+		"    case 11:\n"
+		"      color = color.rrra;\n"
+		"      break;\n"
+		"    case 12:\n"
+		"      color = color.bbga;\n"
+		"      break;\n"
+		"    case 13:\n"
+		"      color = color.bbra;\n"
+		"      break;\n"
+		"    case 14:\n"
+		"      color = color.ggra;\n"
+		"      break;\n"
+		"    case 15:\n"
+		"      color = color.bgga;\n"
+		"      break;\n"
+		"    case 16:\n"
+		"      color = color.brra;\n"
+		"      break;\n"
+		"    case 17:\n"
+		"      color = color.grra;\n"
+		"      break;\n"
+		"    case 18:\n"
+		"      color = color.bgba;\n"
+		"      break;\n"
+		"    case 19:\n"
+		"      color = color.brba;\n"
+		"      break;\n"
+		"    case 20:\n"
+		"      color = color.grga;\n"
+		"      break;\n"
+		"    case 21:\n"
+		"      color = color.ggba;\n"
+		"      break;\n"
+		"    case 22:\n"
+		"      color = color.rrba;\n"
+		"      break;\n"
+		"    case 23:\n"
+		"      color = color.rrga;\n"
+		"      break;\n"
+		"    case 24:\n"
+		"      color = color.gbga;\n"
+		"      break;\n"
+		"    case 25:\n"
+		"      color = color.rbra;\n"
+		"      break;\n"
+		"    case 26:\n"
+		"      color = color.rgra;\n"
+		"      break;\n"
+		"    case 27:\n"
+		"      color = vec4(color.b, 0.f, 0.f, color.a);\n"
+		"      break;\n"
+		"    case 28:\n"
 		"      color = vec4(0.f, 0.f, 0.f, color.a);\n"
 		"      break;\n"
 		"  }\n";
