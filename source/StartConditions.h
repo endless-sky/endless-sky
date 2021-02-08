@@ -40,7 +40,7 @@ public:
 	void FinishLoading();
 	// Serialize the basic information of this start.
 	void Save(DataWriter &out) const;
-	
+	// Get this start's date, or 16/11/3013 if not set.
 	Date GetDate() const;
 	
 	const Planet &GetPlanet() const;
@@ -60,7 +60,7 @@ public:
 	const std::list<Ship> &Ships() const;
 	
 	// Check whether a start scenario is valid.
-	// A valid start scenario has a name, a date, a system and a planet.
+	// A valid start scenario has a valid system, planet, and conversation.
 	bool IsValid() const;
 	
 	

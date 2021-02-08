@@ -182,5 +182,14 @@ const list<Ship> &StartConditions::Ships() const
 
 bool StartConditions::IsValid() const
 {
-	return system && planet && date && !name.empty();
+	if(system && (!planet || !system->IsValid()))
+		return false;
+	
+	if(planet && (!system || !planet->IsValid() || planet->GetSystem() != system))
+		return false;
+	
+	if(!stockConversation || conversation.IsEmpty())
+		return false;
+	
+	return true;
 }
