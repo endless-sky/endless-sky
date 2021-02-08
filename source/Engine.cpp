@@ -1510,7 +1510,7 @@ void Engine::MoveShip(shared_ptr<Ship> &ship)
 	if(ship->IsDestroyed() && ship->HasEscapePods())
 	{
 		bool flag = (ship.get() == flagship);
-		vector<const Ship *> pods = ship->Attributes().EscapePods();
+		vector<const Ship *> &pods = ship->EscapePods();
 		for(auto it = pods.begin(); it != pods.end(); ++it)
 		{
 			if((!flag && Random::Int(6)) || !(*it)->IsValid())

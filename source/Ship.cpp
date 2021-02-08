@@ -2619,6 +2619,13 @@ bool Ship::HasEscapePods() const
 
 
 
+vector<const Ship *> &Ship::EscapePods()
+{
+	return attributes.EscapePods();
+}
+
+
+
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(bool atSpaceport)
 {
