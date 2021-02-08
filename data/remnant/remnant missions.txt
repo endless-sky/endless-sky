@@ -4531,6 +4531,9 @@ mission "Remnant: Expanded Horizons Storms 1"
 			label readyforstorms
 			`	"I will settle into a bunk to do some pre-calculations. Please let me know when we arrive in Aescolanus."`
 				accept
+	on waypoint
+		require "Research Laboratory"
+		dialog `Dawn quickly sets to work expanding the laboratory and setting up her instruments. After a few minutes she returns to the cockpit and settles into a chair by the window. "Everything is ready, Captain. Now we just wait for the storm to arrive. I will let you know when we are ready to leave."`
 	npc kill
 		government "Test Dummy"
 		system "Aescolanus"
