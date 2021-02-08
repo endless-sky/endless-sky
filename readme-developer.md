@@ -66,7 +66,7 @@ MinGW provides the tools used to compile the source code into the game's executa
 - Threads: `posix`
 - Exception: `seh`
 
-Endless Sky will requires precompiled libraries to compile and play: [Download link](http://endless-sky.github.io/win64-dev.zip)
+Endless Sky requires precompiled libraries to compile and play: [Download link](http://endless-sky.github.io/win64-dev.zip)
 
 The zip can be extracted anywhere on your filesystem; to minimize additional configuration, you can move the `dev64` folder to `C:\`.
 
