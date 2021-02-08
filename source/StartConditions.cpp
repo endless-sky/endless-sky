@@ -188,7 +188,7 @@ bool StartConditions::IsValid() const
 	if(planet && (!system || !planet->IsValid() || planet->GetSystem() != system))
 		return false;
 	
-	if(!stockConversation || conversation.IsEmpty())
+	if(!stockConversation && conversation.IsEmpty())
 		return false;
 	
 	return true;
