@@ -11,7 +11,7 @@
 outfit "Escape Pod"
 	category "Special"
 	thumbnail "ship/escape pod"
-	"mass" 5
+	"mass" 20
 	"outfit space" -5
 	"escape pod" "Escape Pod"
 	description "Escape."

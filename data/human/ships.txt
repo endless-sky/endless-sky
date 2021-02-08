@@ -17,21 +17,20 @@ ship "Escape Pod"
 		"hull" 500
 		"required crew" 1
 		"bunks" 1
-		"mass" 50
-		"drag" 1
+		"mass" 20
+		"drag" 0.35
 		"heat dissipation" .9
-		"fuel capacity" 150
+		"fuel capacity" 100
 		"ramscoop" 3
 		"hyperdrive" 1
-		"jump speed" .2
+		"jump speed" .1
 		"jump fuel" 100
-		"energy generation" 1
-		"energy capacity" 50
-		"thrust" 4
+		"energy generation" .6
+		"thrust" 3
 		"flare sprite" "effect/ion flare/tiny"
 			"frame rate" 1.2
 		"flare sound" "ion tiny"
-		"turn" 110
+		"turn" 75
 		"steering flare sprite" "effect/ion flare/tiny"
 			"frame rate" 1.2
 		"steering flare sound" "ion tiny"
