@@ -95,7 +95,7 @@ private:
 	void ThreadEntryPoint();
 	void CalculateStep();
 	
-	void MoveShip(const std::shared_ptr<Ship> &ship);
+	void MoveShip(std::shared_ptr<Ship> &ship);
 	
 	void SpawnFleets();
 	void SpawnPersons();

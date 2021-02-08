@@ -93,9 +93,9 @@ public:
 	const std::map<const Sound *, int> &JumpInSounds() const;
 	const std::map<const Sound *, int> &JumpOutSounds() const;
 	// Get the escape pods this outfit creates when the ship is destroyed.
-	const std::map<const Ship *, int> &EscapePods() const;
+	const std::vector<const Ship *> &EscapePods() const;
 	// This map is non-const, as pods get removed from a ship as it explodes.
-	std::map<const Ship *, int> &EscapePods();
+	std::vector<const Ship *> &EscapePods();
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 	
@@ -130,7 +130,7 @@ private:
 	std::map<const Sound *, int> jumpSounds;
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
-	std::map<const Ship *, int> escapePods;
+	std::vector<const Ship *> escapePods;
 	const Sprite *flotsamSprite = nullptr;
 };
 

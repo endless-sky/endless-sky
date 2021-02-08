@@ -812,8 +812,7 @@ void Ship::Save(DataWriter &out) const
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
 			for(const auto &it : baseAttributes.EscapePods())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("escape pod", it.first->VariantName());
+				out.Write("escape pod", it->VariantName());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -2616,13 +2615,6 @@ bool Ship::IsDestroyed() const
 bool Ship::HasEscapePods() const
 {
 	return !attributes.EscapePods().empty() && !attributes.Get("automaton") && attributes.Category() != "Escape Pod";
-}
-
-
-
-string Ship::EscapePods() const
-{
-	return "Escape Pod";
 }
 
 
