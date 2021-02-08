@@ -57,8 +57,6 @@ void SavedGame::Load(const string &path)
 					break;
 				}
 		}
-		else if(node.Token(0) == "start")
-			chosenStart.Load(node);
 		else if(node.Token(0) == "ship" && !shipSprite)
 		{
 			for(const DataNode &child : node)

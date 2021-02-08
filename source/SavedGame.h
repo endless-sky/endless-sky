@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SAVED_GAME_H_
 #define SAVED_GAME_H_
 
-#include "StartConditions.h"
-
 #include <string>
 
 class Sprite;
@@ -42,7 +40,6 @@ public:
 	
 	const std::string &GetSystem() const;
 	const std::string &GetPlanet() const;
-	
 	const std::string &GetPlayTime() const;
 	
 	const Sprite *ShipSprite() const;
@@ -58,7 +55,6 @@ private:
 	
 	std::string system;
 	std::string planet;
-	StartConditions chosenStart;
 	std::string playTime;
 	
 	const Sprite *shipSprite = nullptr;
