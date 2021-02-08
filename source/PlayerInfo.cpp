@@ -465,15 +465,6 @@ bool PlayerInfo::IsDead() const
 
 
 
-bool PlayerInfo::DeployedPod(bool deploy)
-{
-	if(deploy)
-		deployedPod = true;
-	return deployedPod;
-}
-
-
-
 void PlayerInfo::SetFlagship(shared_ptr<Ship> flagship)
 {
 	this->flagship = flagship;
@@ -1789,9 +1780,10 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
 	
-	// If the player's escape pod was destroyed, the player is dead.
+	// If the player's flagship was destroyed and they don't have an escape pod,
+	// the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty()
-		&& event.Target().get() == Flagship() && Flagship()->Attributes().Category() == "Fighter")
+		&& event.Target().get() == Flagship() && !Flagship()->HasEscapePods())
 			Die();
 }
 

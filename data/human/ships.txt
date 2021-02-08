@@ -12,7 +12,7 @@ ship "Escape Pod"
 	sprite "ship/escape pod"
 	"never disabled"
 	attributes
-		category "Fighter"
+		category "Escape Pod"
 		"cost" 30000
 		"hull" 500
 		"required crew" 1
@@ -23,7 +23,7 @@ ship "Escape Pod"
 		"fuel capacity" 150
 		"ramscoop" 3
 		"hyperdrive" 1
-		"jump speed" .1
+		"jump speed" .2
 		"jump fuel" 100
 		"energy generation" 1
 		"energy capacity" 50
@@ -39,10 +39,9 @@ ship "Escape Pod"
 	engine 6 13 .5
 	engine 0 13 .5
 	engine 0 13 .5
-	leak "leak" 50 50
-	leak "flame" 50 80
+	leak "leak" 60 60
+	leak "flame" 60 60
 	explode "tiny explosion" 10
-	explode "smoke" 10
 	description "Escape."
 
 ship "Aerie"

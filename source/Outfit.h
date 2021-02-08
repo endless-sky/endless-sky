@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Body;
 class DataNode;
 class Effect;
+class Ship;
 class Sound;
 class Sprite;
 
@@ -91,6 +92,10 @@ public:
 	const std::map<const Sound *, int> &JumpSounds() const;
 	const std::map<const Sound *, int> &JumpInSounds() const;
 	const std::map<const Sound *, int> &JumpOutSounds() const;
+	// Get the escape pods this outfit creates when the ship is destroyed.
+	const std::map<const Ship *, int> &EscapePods() const;
+	// This map is non-const, as pods get removed from a ship as it explodes.
+	std::map<const Ship *, int> &EscapePods();
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 	
@@ -125,6 +130,7 @@ private:
 	std::map<const Sound *, int> jumpSounds;
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
+	std::map<const Ship *, int> escapePods;
 	const Sprite *flotsamSprite = nullptr;
 };
 

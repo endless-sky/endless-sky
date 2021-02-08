@@ -259,6 +259,8 @@ public:
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
+	bool HasEscapePods() const;
+	std::string EscapePods() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(bool atSpaceport = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.

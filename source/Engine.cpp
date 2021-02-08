@@ -1300,10 +1300,9 @@ void Engine::CalculateStep()
 	const Ship *flagship = player.Flagship();
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// If the player's flagship has been destroyed, deploy an escape pod.
-	if(flagship && flagship->IsDestroyed() && flagship->Attributes().Category() != "Fighter" && !player.DeployedPod())
+	if(flagship && flagship->IsDestroyed() && flagship->HasEscapePods() && !Random::Int(6))
 	{
-		player.DeployedPod(true);
-		auto pod = make_shared<Ship>(*GameData::Ships().Get("Escape Pod"));
+		auto pod = make_shared<Ship>(*GameData::Ships().Get(flagship->EscapePods()));
 		pod->WasEjected(make_shared<Ship>(*flagship));
 		player.AddShip(pod);
 		newShips.push_back(pod);
