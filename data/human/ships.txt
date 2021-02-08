@@ -13,8 +13,8 @@ ship "Escape Pod"
 	"never disabled"
 	attributes
 		category "Escape Pod"
-		"cost" 30000
-		"hull" 500
+		"cost" 40000
+		"hull" 400
 		"required crew" 1
 		"bunks" 1
 		"mass" 20

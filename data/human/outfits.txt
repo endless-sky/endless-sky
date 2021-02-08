@@ -10,6 +10,7 @@
 
 outfit "Escape Pod"
 	category "Special"
+	"cost" 10000
 	thumbnail "ship/escape pod"
 	"mass" 20
 	"outfit space" -5
