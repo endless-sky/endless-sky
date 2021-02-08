@@ -397,6 +397,10 @@ bool MainPanel::ShowHailPanel()
 	if(!flagship || flagship->IsDestroyed())
 		return false;
 	
+	// Player cannot hail while landing / departing.
+	if(flagship->Zoom() < 1.)
+		return false;
+	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
 		target.reset();

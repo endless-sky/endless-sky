@@ -57,7 +57,9 @@ public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
-	bool IsEmpty() const;
+	bool IsEmpty() const noexcept;
+	// Check if this conversation includes a name prompt.
+	bool IsValidIntro() const noexcept;
 	
 	// Do text replacement throughout this conversation. This returns a new
 	// Conversation object with things like the player's name filled in.

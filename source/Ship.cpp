@@ -1069,7 +1069,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar)
+		if(!generation && !solar && !burning)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -2177,15 +2177,14 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	{
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(cargo, false);
-		// Stop targeting this ship.
-		SetTargetShip(shared_ptr<Ship>());
 		
 		// Pause for two seconds before moving on.
 		pilotError = 120;
 	}
 	
 	// Stop targeting this ship (so you will not board it again right away).
-	SetTargetShip(shared_ptr<Ship>());
+	if(!autoPlunder || personality.Disables())
+		SetTargetShip(shared_ptr<Ship>());
 	return victim;
 }
 
@@ -3475,6 +3474,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		cargoScan = 0.;
 		outfitScan = 0.;
 	}
+	targetAsteroid.reset();
 }
 
 
@@ -3504,6 +3504,7 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
 	targetAsteroid = asteroid;
+	targetShip.reset();
 }
 
 

@@ -190,15 +190,18 @@ const list<Ship> &StartConditions::Ships() const
 
 
 bool StartConditions::IsValid() const
-{
-	if(system && (!planet || !system->IsValid()))
+{	// A start must specify a valid system.
+	if(!system || !system->IsValid())
 		return false;
 	
-	if(planet && (!system || !planet->IsValid() || planet->GetSystem() != system))
+	// A start must specify a valid planet in its specified system.
+	if(!planet || !planet->IsValid() || planet->GetSystem() != system)
 		return false;
 	
-	if(!stockConversation && conversation.IsEmpty())
+	// A start must reference a valid "intro" conversation, either stock or custom.
+	if((stockConversation && !stockConversation->IsValidIntro()) || (!stockConversation && !conversation.IsValidIntro()))
 		return false;
 	
 	return true;
+	
 }

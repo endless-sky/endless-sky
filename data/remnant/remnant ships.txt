@@ -917,13 +917,14 @@ ship "Puffin"
 		"energy capacity" 150
 		"ramscoop" 0.5
 		"cargo space" 8
-		"outfit space" 80
+		"outfit space" 79
 		"engine capacity" 26
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
+		"quantum keystone" 1
 		"cooling" 1
 		"active cooling" 8
 		"cooling energy" .4
@@ -934,7 +935,6 @@ ship "Puffin"
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
-		"Quantum Key Stone"
 
 		"Anvil-Class Engine"
 		"Hyperdrive"
