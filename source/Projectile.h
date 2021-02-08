@@ -53,7 +53,7 @@ public:
 	// Move the projectile. It may create effects or submunitions.
 	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles);
 	// This projectile hit something. Create the explosion, if any. This also
-	// marks the projectile as needing deletion.
+	// marks the projectile as needing deletion if it has run out of penetrations.
 	void Explode(std::vector<Visual> &visuals, double intersection, Point hitVelocity = Point());
 	// Get the amount of clipping that should be applied when drawing this projectile.
 	double Clip() const;
@@ -90,7 +90,8 @@ private:
 	
 	double clip = 1.;
 	int lifetime = 0;
-	double distanceTraveled = 0;
+	double distanceTraveled = 0.;
+	int penetrations = 0;
 	bool hasLock = true;
 };
 

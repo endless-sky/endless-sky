@@ -227,14 +227,17 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 // marks the projectile as needing deletion.
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
-	clip = intersection;
 	distanceTraveled += velocity.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
 			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
-	lifetime = -100;
+	if(++penetrations > weapon->Penetration())
+	{
+		clip = intersection;
+		lifetime = -100;
+	}
 }
 
 
