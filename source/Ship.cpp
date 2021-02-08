@@ -1050,7 +1050,6 @@ vector<string> Ship::FlightCheck() const
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
 	
-	// TODO: Maybe use enum to report error details?
 	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
 		checks.emplace_back("overheating!");
@@ -1062,6 +1061,8 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
+	else if(attributes.Get("required crew") > attributes.Get("bunks"))
+		checks.emplace_back("insufficient bunks!");
 	
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())

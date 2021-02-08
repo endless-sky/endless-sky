@@ -686,6 +686,9 @@ tip "no thruster!"
 tip "no steering!"
 	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
 
+tip "insufficient bunks!"
+	`This ship does not have enough bunks for its crew. It cannot take off.`
+
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
 
