@@ -23,6 +23,21 @@ tip "atmosphere scan:"
 tip "bunks:"
 	`How many people (passengers or crew) your ship can hold.`
 
+tip "burn protection:"
+	`Protection against weapons that have a burn effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in burn damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "burn resistance:"
+	`How much burn damage this ship can resist per second.`
+
+tip "burn resistance energy:"
+	`Energy consumed per second when resisting burn damage.`
+
+tip "burn resistance fuel:"
+	`Fuel consumed per second when resisting burn damage.`
+
+tip "burn resistance heat:"
+	`Heat generated per second when resisting burn damage.`
+
 tip "capture attack:"
 	`Increases the "strength" of one crew member when attacking another ship to capture it. Each crew member can only wield one weapon at a time, but they will use whichever weapons provide the highest power.`
 
@@ -65,8 +80,38 @@ tip "cooling energy:"
 tip "cooling inefficiency:"
 	`Interferes with your ship's ability to cool itself. Its cooling systems will only be about 75% effective at a cooling inefficiency of 5, and 30% at an inefficiency of 10.`
 
+tip "corrosion protection:"
+	`Protection against weapons that have a corrosion effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in corrosion damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "corrosion resistance:"
+	`How much corrosion damage this ship can resist per second.`
+
+tip "corrosion resistance energy:"
+	`Energy consumed per second when resisting corrosion damage.`
+
+tip "corrosion resistance fuel:"
+	`Fuel consumed per second when resisting corrosion damage.`
+
+tip "corrosion resistance heat:"
+	`Heat generated per second when resisting corrosion damage.`
+
 tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
+
+tip "discharge protection:"
+	`Protection against weapons that have a discharge effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in discharge damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "discharge resistance:"
+	`How much shield discharge damage this ship can resist per second.`
+
+tip "discharge resistance energy:"
+	`Energy consumed per second when resisting discharge damage.`
+
+tip "discharge resistance fuel:"
+	`Fuel consumed per second when resisting discharge damage.`
+
+tip "discharge resistance heat:"
+	`Heat generated per second when resisting discharge damage.`
 
 tip "disruption protection:"
 	`Protection against weapons that have a disruption effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in disruption damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -223,6 +268,21 @@ tip "jump fuel:"
 
 tip "jump range:"
 	`How far you can jump between systems using this drive.`
+
+tip "leak protection:"
+	`Protection against weapons that have a leak effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "leak resistance:"
+	`How much leak damage this ship can resist per second.`
+
+tip "leak resistance energy:"
+	`Energy consumed per second when resisting leak damage.`
+
+tip "leak resistance fuel:"
+	`Fuel consumed per second when resisting leak damage.`
+
+tip "leak resistance heat:"
+	`Heat generated per second when resisting leak damage.`
 
 tip "maintenance costs:"
 	`How many credits per day you need to spend to maintain this outfit. Even if a ship is parked or an outfit is in cargo, you still need to pay for its maintenance.`
@@ -497,6 +557,18 @@ tip "slowing damage / second:"
 tip "disruption damage / second:"
 	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
 
+tip "discharge damage / second:"
+	`Amount of shield damage over time dealt by this weapon per second when firing.`
+
+tip "corrosion damage / second:"
+	`Amount of hull damage over time dealt by this weapon per second when firing.`
+
+tip "leak damage / second:"
+	`Amount of fuel damage over time dealt by this weapon per second when firing.`
+
+tip "burn damage / second:"
+	`Amount of heat damage over time dealt by this weapon per second when firing.`
+
 tip "% shield damage / second:"
 	`Relative shield damage, converted to damage per second to allow easy comparisons between different weapons.`
 
@@ -535,6 +607,18 @@ tip "firing slowing / second:"
 
 tip "firing disruption / second:"
 	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "firing discharge / second:"
+	`Amount of shield damage over time by this weapon per second when firing.`
+
+tip "firing corrosion / second:"
+	`Amount of hull damage over time by this weapon per second when firing.`
+
+tip "firing leak / second:"
+	`Amount of fuel damage over time by this weapon per second when firing.`
+
+tip "firing burn / second:"
+	`Amount of heat damage over time by this weapon per second when firing.`
 
 tip "% firing energy / second:"
 	`Relative firing energy costs, converted to energy per second to allow easy comparisons between different weapons.`
@@ -602,6 +686,18 @@ tip "slowing damage / shot:"
 tip "disruption damage / shot:"
 	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
 
+tip "discharge damage / shot:"
+	`Amount of shield damage over time dealt by this weapon per shot when firing.`
+
+tip "corrosion damage / shot:"
+	`Amount of hull damage over time dealt by this weapon per shot when firing.`
+
+tip "leak damage / shot:"
+	`Amount of fuel damage over time dealt by this weapon per shot when firing.`
+
+tip "burn damage / shot:"
+	`Amount of heat damage over time dealt by this weapon per shot when firing.`
+
 tip "% shield damage / shot:"
 	`Each shot fired by this weapon does this amount of shield damage as a percentage of the target ship's total shields.`
 
@@ -640,6 +736,18 @@ tip "firing slowing / shot:"
 
 tip "firing disruption / shot:"
 	`Each shot disrupts the target's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "firing discharge / shot:"
+	`Amount of shield damage over time by this weapon per shot when firing.`
+
+tip "firing corrosion / shot:"
+	`Amount of hull damage over time by this weapon per shot when firing.`
+
+tip "firing leak / shot:"
+	`Amount of fuel damage over time by this weapon per shot when firing.`
+
+tip "firing burn / shot:"
+	`Amount of heat damage over time by this weapon per shot when firing.`
 
 tip "% firing energy / shot:"
 	`Each shot reduces the ship's energy as a percentage of the ship's total energy capacity by this amount.`

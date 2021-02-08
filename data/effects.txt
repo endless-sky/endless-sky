@@ -51,6 +51,45 @@ effect "slowing spark"
 	"random spin" 30
 	"random velocity" .1
 
+effect "discharge spark"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
+effect "corrosion spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+effect "leakage spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+effect "burning spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
 
 effect "flame"
 	sprite "effect/flame"

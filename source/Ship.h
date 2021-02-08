@@ -517,6 +517,10 @@ private:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+	double discharge = 0.;
+	double corrosion = 0.;
+	double leakage = 0.;
+	double burning = 0.;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
