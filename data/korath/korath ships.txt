@@ -67,10 +67,10 @@ ship "Korath Dredger"
 		over
 	"reverse engine" 79 80.5
 		over
-	bay Fighter -93.5 -20.5
-	bay Fighter 93.5 -20.5
-	bay Fighter -87 128.5
-	bay Fighter 87 128.5
+	bay "Fighter" -93.5 -20.5
+	bay "Fighter" 93.5 -20.5
+	bay "Fighter" -87 128.5
+	bay "Fighter" 87 128.5
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
