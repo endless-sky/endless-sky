@@ -1306,7 +1306,7 @@ void Engine::CalculateStep()
 		pod->WasEjected(make_shared<Ship>(*flagship));
 		player.AddShip(pod);
 		newShips.push_back(pod);
-		double maxV = pod->MaxVelocity() * 5;
+		double maxV = pod->MaxVelocity() * 3;
 		Angle angle = Angle::Random();
 		Point v = flagship->Velocity() + (.3 * maxV) * angle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 		pod->Place(flagship->Position(), v, angle);

@@ -1298,6 +1298,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
 	forget += !isInSystem;
+	untargetable = max(0, untargetable - 1);
 	isThrusting = false;
 	isReversing = false;
 	isSteering = false;
@@ -2372,7 +2373,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70 && !untargetable);
 }
 
 
@@ -2747,6 +2748,11 @@ void Ship::WasEjected(const shared_ptr<Ship> &ejector)
 	isSpecial = ejector->isSpecial;
 	isYours = ejector->isYours;
 	personality = ejector->personality;
+	
+	// Escape pods won't get targeted for the first 3 seconds after being ejected.
+	// Escape pods are very fragile ships, and this gives them a chance to escape.
+	if(attributes.Category() == "Escape Pod")
+		untargetable = 180;
 }
 
 

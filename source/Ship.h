@@ -475,6 +475,7 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	int untargetable = 0;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
