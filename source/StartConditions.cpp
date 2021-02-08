@@ -71,15 +71,12 @@ void StartConditions::Load(const DataNode &node)
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
 		else if(child.Token(0) == "conversation" && child.Size() >= 2)
-			stockConversation = GameData::Conversations().Get(child.Token(1));
+			stockConversationName = child.Token(1);
 		else
 			conditions.Add(child);
 	}
 	if(description.empty())
 		description = "No description provided.";
-	
-	if(GetConversation().IsEmpty())
-		Files::LogError("Warning: The start scenario \"" + name + "\" has no conversation defined.");
 }
  
 
@@ -89,6 +86,12 @@ void StartConditions::FinishLoading()
 {
 	for(Ship &ship : ships)
 		ship.FinishLoading(true);
+	
+	if (!stockConversationName.empty())
+		stockConversation = GameData::Conversations().Get(stockConversationName);
+	
+	if(GetConversation().IsEmpty())
+		Files::LogError("Warning: The start scenario \"" + name + "\" has no conversation defined.");
 }
 
 

@@ -83,6 +83,9 @@ private:
 	// stockConversation is set when the conversation is provided as 
 	// a string which references another conversation in GameData.
 	const Conversation *stockConversation = nullptr;
+	
+	// Used for loading stockConversation in FinishLoading
+	std::string stockConversationName;
 };
 
 

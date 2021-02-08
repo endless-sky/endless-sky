@@ -220,19 +220,10 @@ bool GameData::BeginLoad(const char * const *argv)
 		for(const string &path : dataFiles)
 			LoadFile(path, debugMode);
 	}
-	
 	// Add the named start conditions to the start conditions vector.
 	for(auto &it : namedStartConditions)
 		startConditions.push_back(it.second);
-	
-	
-	for(vector<StartConditions>::iterator it = startConditions.begin(); it < startConditions.end(); ++it)
-		if(!(*it).IsValid())
-			Files::LogError("Invalid start scenario: " + (*it).GetName() + ". "
-				"A valid start scenario has a name, a date, a system and a planet.");
-	
-	remove_if(startConditions.begin(), startConditions.end(), [](StartConditions &it){return it.IsValid();});
-	
+		
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
 	// neighbor distances to be updated.
@@ -243,9 +234,16 @@ bool GameData::BeginLoad(const char * const *argv)
 		it.second.FinishLoading(true);
 	for(auto &it : persons)
 		it.second.FinishLoading();
-	
 	for(auto &it : startConditions)
 		it.FinishLoading();
+	
+	
+	for(vector<StartConditions>::iterator it = startConditions.begin(); it < startConditions.end(); ++it)
+		if(!(*it).IsValid())
+			Files::LogError("Skipped invalid start scenario: " + (*it).GetName() + ". "
+				"A valid start scenario has a valid system, planet, and conversation.");
+	
+	remove_if(startConditions.begin(), startConditions.end(), [](StartConditions &it){return it.IsValid();});
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
