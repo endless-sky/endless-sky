@@ -43,7 +43,9 @@ public:
 	// Get this start's date, or 16/11/3013 if not set.
 	Date GetDate() const;
 	
+	// Get this start's planet, or New Boston if not set.
 	const Planet &GetPlanet() const;
+	// Get this start's system, or Rutilicus if not set.
 	const System &GetSystem() const;
 	
 	// Choose the appropiate conversation to display.
