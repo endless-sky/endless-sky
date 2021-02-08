@@ -170,7 +170,7 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
 			++jumpOutSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "escape pod" && child.Size() >= 2)
-			escapePods.emplace_back(GameData::Ships().Get(child.Token(1)));
+			escapePods.emplace_back(GameData::Ships().Get(child.Token(1)), 1);
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -389,7 +389,20 @@ void Outfit::Add(const Outfit &other, int count)
 	MergeMaps(jumpSounds, other.jumpSounds, count);
 	MergeMaps(jumpInSounds, other.jumpInSounds, count);
 	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
-	escapePods.insert(escapePods.end(), other.escapePods.begin(), other.escapePods.end());
+	for(const auto &it : other.escapePods)
+	{
+		auto oit = find_if(escapePods.begin(), escapePods.end(),
+			[&it](const pair<const Ship *, int> &pod)
+			{
+				return it.first->VariantName() == pod.first->VariantName();
+			}
+		);
+		
+		if(oit == escapePods.end())
+			escapePods.emplace_back(it.first, count * it.second);
+		else
+			oit->second += count * it.second;
+	}
 }
 
 
@@ -503,14 +516,14 @@ const map<const Sound *, int> &Outfit::JumpOutSounds() const
 
 
 
-const vector<const Ship *> &Outfit::EscapePods() const
+const vector<pair<const Ship *, int>> &Outfit::EscapePods() const
 {
 	return escapePods;
 }
 
 
 
-vector<const Ship *> &Outfit::EscapePods()
+vector<pair<const Ship *, int>> &Outfit::EscapePods()
 {
 	return escapePods;
 }

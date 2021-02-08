@@ -1510,16 +1510,17 @@ void Engine::MoveShip(shared_ptr<Ship> &ship)
 	if(ship->IsDestroyed() && ship->HasEscapePods())
 	{
 		bool flag = (ship.get() == flagship);
-		vector<const Ship *> &pods = ship->EscapePods();
+		vector<pair<const Ship *, int>> &pods = ship->EscapePods();
 		for(auto it = pods.begin(); it != pods.end(); ++it)
 		{
 			// The player's escape pod ejects immediately, but all other escape pods 
 			// eject at random times.
-			if((!flag && Random::Int(30)) || !(*it)->IsValid())
+			if((!flag && Random::Int(30)) || !(*it).first->IsValid())
 				continue;
 			
-			auto pod = make_shared<Ship>(**it);
-			pods.erase(it--);
+			auto pod = make_shared<Ship>(*(*it).first);
+			if((--(*it).second) <= 0)
+				pods.erase(it--);
 			
 			pod->WasEjected(ship);
 			newShips.push_back(pod);

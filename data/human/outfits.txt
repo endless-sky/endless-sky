@@ -8,6 +8,14 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+outfit "Escape Pod"
+	category "Special"
+	thumbnail "ship/escape pod"
+	"mass" 5
+	"outfit space" -5
+	"escape pod" "Escape Pod"
+	description "Escape."
+
 outfit "Cooling Ducts"
 	plural "Cooling Ducts"
 	category "Systems"
