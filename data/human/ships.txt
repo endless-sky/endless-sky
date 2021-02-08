@@ -8,41 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-ship "Escape Pod"
-	sprite "ship/escape pod"
-	"never disabled"
-	attributes
-		category "Escape Pod"
-		"cost" 40000
-		"hull" 400
-		"required crew" 1
-		"bunks" 1
-		"mass" 20
-		"drag" 0.35
-		"heat dissipation" .9
-		"fuel capacity" 100
-		"ramscoop" 3
-		"hyperdrive" 1
-		"jump speed" .1
-		"jump fuel" 100
-		"energy generation" .6
-		"thrust" 3
-		"flare sprite" "effect/ion flare/tiny"
-			"frame rate" 1.2
-		"flare sound" "ion tiny"
-		"turn" 75
-		"steering flare sprite" "effect/ion flare/tiny"
-			"frame rate" 1.2
-		"steering flare sound" "ion tiny"
-	engine -6 13 .5
-	engine 6 13 .5
-	engine 0 13 .5
-	engine 0 13 .5
-	leak "leak" 60 60
-	leak "flame" 60 60
-	explode "tiny explosion" 10
-	description "Escape."
-
 ship "Aerie"
 	sprite "ship/aerie"
 	thumbnail "thumbnail/aerie"
@@ -1384,6 +1349,43 @@ ship "Dropship"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Dropships were designed with the Navy's Auxiliary in mind. Landed Auxiliaries often act as forward operating bases, so troops needing transport to another area often rely on their Dropships. This cramped and uncomfortable vessel is able to move a squad of Republic soldiers at great speed for its size."
+
+
+
+ship "Escape Pod"
+	sprite "ship/escape pod"
+	"never disabled"
+	attributes
+		category "Escape Pod"
+		"cost" 40000
+		"hull" 400
+		"required crew" 1
+		"bunks" 1
+		"mass" 20
+		"drag" 0.35
+		"heat dissipation" .9
+		"fuel capacity" 100
+		"ramscoop" 3
+		"hyperdrive" 1
+		"jump speed" .1
+		"jump fuel" 100
+		"energy generation" .6
+		"thrust" 3
+		"flare sprite" "effect/ion flare/tiny"
+			"frame rate" 1.2
+		"flare sound" "ion tiny"
+		"turn" 75
+		"steering flare sprite" "effect/ion flare/tiny"
+			"frame rate" 1.2
+		"steering flare sound" "ion tiny"
+	engine -6 13 .5
+	engine 6 13 .5
+	engine 0 13 .5
+	engine 0 13 .5
+	leak "leak" 60 60
+	leak "flame" 60 60
+	explode "tiny explosion" 10
+	description "Escape."
 
 
 

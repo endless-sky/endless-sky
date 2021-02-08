@@ -150,6 +150,7 @@ outfitter "Basic Outfits"
 	"Cargo Scanner"
 	"Local Map"
 	"Pilot's License"
+	"Escape Pod"
 
 outfitter "Common Outfits"
 	"Energy Blaster"
