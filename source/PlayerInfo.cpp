@@ -465,9 +465,17 @@ bool PlayerInfo::IsDead() const
 
 
 
+// Set the player's flagship. To be used while in space when the player
+// ejects in an escape pod.
 void PlayerInfo::SetFlagship(shared_ptr<Ship> flagship)
 {
 	this->flagship = flagship;
+	// Make sure your jump-capable ships all know who the new flagship is.
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
+		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
+	}
 }
 
 

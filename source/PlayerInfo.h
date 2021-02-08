@@ -78,6 +78,8 @@ public:
 	// Mark the player as dead, or check if they have died.
 	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);
 	bool IsDead() const;
+	// Set the player's flagship. To be used while in space when the player
+	// ejects in an escape pod.
 	void SetFlagship(std::shared_ptr<Ship> flagship);
 	
 	// Get or set the player's name.
