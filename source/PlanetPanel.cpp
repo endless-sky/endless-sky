@@ -247,7 +247,7 @@ void PlanetPanel::TakeOffIfReady()
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly. If so, let the player choose whether to park them.
 	ostringstream out;
-	const auto &flightChecks = player.FlightCheck();
+	flightChecks = player.FlightCheck();
 	if(!flightChecks.empty())
 	{
 		for(const auto &result : flightChecks)
@@ -260,17 +260,29 @@ void PlanetPanel::TakeOffIfReady()
 				cannotFly.push_back(result.first);
 			}
 		}
-		if(!cannotFly.empty()) // TODO: how to show both ships error and warning dialogs one after another?
+		if(!cannotFly.empty())
 		{
 			string shipNames = out.str();
 			shipNames.pop_back();
 			shipNames.pop_back();
-			GetUI()->Push(new Dialog(this, &PlanetPanel::ParkInvalidAndTakeOff,
+			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
 				"If you take off now, some of your ships will not be able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}
 	}
+	
+	CheckWarningsAndTakeOff();
+}
+
+
+
+void PlanetPanel::CheckWarningsAndTakeOff()
+{
+	// Park ships that cannot fly.
+	for(const auto &ship : cannotFly)
+		ship->SetIsParked(true);
+	cannotFly.clear();
 	
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
@@ -355,18 +367,9 @@ void PlanetPanel::TakeOffIfReady()
 
 
 
-void PlanetPanel::ParkInvalidAndTakeOff()
-{
-	for(const auto &ship : cannotFly)
-		ship->SetIsParked(true);
-	cannotFly.clear();
-	TakeOff();
-}
-
-
-
 void PlanetPanel::TakeOff()
 {
+	flightChecks.clear();
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{

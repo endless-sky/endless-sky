@@ -47,7 +47,7 @@ protected:
 	
 private:
 	void TakeOffIfReady();
-	void ParkInvalidAndTakeOff();
+	void CheckWarningsAndTakeOff();
 	void TakeOff();
 	
 	
@@ -70,6 +70,9 @@ private:
 	
 	// Ships that cannot fly for some reason.
 	std::vector<std::shared_ptr<Ship>> cannotFly;
+	
+	// Cache flightchecks to not calculate them twice before each takeoff.
+	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> flightChecks;
 };
 
 
