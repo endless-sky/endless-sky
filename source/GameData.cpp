@@ -1260,7 +1260,7 @@ void GameData::PrintShipTable()
 void GameData::PrintWeaponTable()
 {
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "move/s" << '\t'
+		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
 		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
 		<< "homing" << '\t' << "strength" <<'\n';
 	for(auto &it : outfits)
