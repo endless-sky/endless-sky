@@ -53,12 +53,6 @@ namespace {
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, Panel *parent)
 	: player(player), gamePanels(gamePanels), descriptionWrappedText(FontSet::Get(14)), parent(parent)
 {
-	if(!GameData::StartOptions().empty())
-	{
-		// By default, select the last defined start conditions
-		// (which are usually the ones defined by a plugin).
-		chosenStart = &GameData::StartOptions().back();
-	}
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	
 	if(startConditionsMenu)	
@@ -71,6 +65,15 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 		entryBox = startConditionsMenu->GetBox("start entry");
 		entryListBox = startConditionsMenu->GetBox("start entry list");
 		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
+	}
+	
+	if(!GameData::StartOptions().empty())
+	{
+		// By default, select the last defined start conditions
+		// (which are usually the ones defined by a plugin).
+		chosenStart = &GameData::StartOptions().back();
+		chosenStartIterator = GameData::StartOptions().end() - 1;
+		listScroll = (chosenStartIterator - GameData::StartOptions().begin()) * entryBox.Height();
 	}
 	
 	const Rectangle firstRectangle = Rectangle::FromCorner(entryListBox.TopLeft(), entryBox.Dimensions());
@@ -90,6 +93,31 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	medium = *GameData::Colors().Get("medium");
 	selectedBackground = *GameData::Colors().Get("selected start conditions background");
 }
+
+
+
+// Called when the conversation ends.
+void StartConditionsPanel::OnCallback(int)
+{
+	gamePanels.Reset();
+	gamePanels.CanSave(true);
+	gamePanels.Push(new MainPanel(player));
+	// Tell the main panel to re-draw itself (and pop up the planet panel).
+	gamePanels.StepAll();
+	// If the starting conditions don't specify any ships, let the player buy one.
+	if(player.Ships().empty())
+	{
+		gamePanels.Push(new ShipyardPanel(player));
+		gamePanels.StepAll();
+	}
+	// It's possible that the player got to this menu directly from the main menu, so we need to check for that.
+	if(parent)
+		GetUI()->Pop(parent);
+	
+	GetUI()->Pop(GetUI()->Root().get());
+	GetUI()->Pop(this);
+}
+
 
 
 void StartConditionsPanel::Draw()
@@ -158,37 +186,6 @@ void StartConditionsPanel::Draw()
 
 
 
-bool StartConditionsPanel::Drag(double dx, double dy)
-{
-	if(entryListBox.Contains(hoverPoint))
-	{
-		listScroll -= dy;
-		listScroll = min(entryBox.Height() * (GameData::StartOptions().size()-1), listScroll); 
-		listScroll = max(0., listScroll);
-	}
-	// TODO: When #4123 gets merged, re-add scrolling support.
-	// Right now it's pointless because it would make the text overflow.
-	
-	return true;
-}
-
-
-
-bool StartConditionsPanel::Scroll(double dx, double dy)
-{
-	return Drag(0., dy * Preferences::ScrollSpeed());
-}
-
-
-
-bool StartConditionsPanel::Hover(int x, int y)
-{
-	hoverPoint = Point(x, y);
-	return false;
-}
-
-
-
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	
@@ -200,12 +197,11 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		offset += (key == SDLK_DOWN) - (key == SDLK_UP);
 		offset += PAGE_INTERVAL * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
 		
-		listScroll += offset * entryBox.Height();
-		listScroll = min(max(listScroll, 0.), (GameData::StartOptions().size() - 1) * entryBox.Height());
+		DoScrolling(offset * entryBox.Height());
 		
-		if(GameData::StartOptions().begin() - chosenStartIterator < offset)
+		if(GameData::StartOptions().begin() - chosenStartIterator > offset)
 			chosenStartIterator = GameData::StartOptions().begin();
-		else if(GameData::StartOptions().end() - chosenStartIterator < offset)
+		else if(GameData::StartOptions().end() - chosenStartIterator <= offset)
 			chosenStartIterator = GameData::StartOptions().end() - 1;
 		else
 			chosenStartIterator += offset;
@@ -261,24 +257,40 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 
 
 
-// Called when the conversation ends.
-void StartConditionsPanel::OnCallback(int)
+bool StartConditionsPanel::Hover(int x, int y)
 {
-	gamePanels.Reset();
-	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
+	hoverPoint = Point(x, y);
+	return false;
+}
+
+
+
+bool StartConditionsPanel::Drag(double dx, double dy)
+{
+	if(entryListBox.Contains(hoverPoint))
 	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
+		DoScrolling(-dy);
 	}
-	// It's possible that the player got to this menu directly from the main menu, so we need to check for that.
-	if(parent)
-		GetUI()->Pop(parent);
+	// TODO: When #4123 gets merged, re-add scrolling support.
+	// Right now it's pointless because it would make the text overflow.
 	
-	GetUI()->Pop(GetUI()->Root().get());
-	GetUI()->Pop(this);
+	return true;
+}
+
+
+
+bool StartConditionsPanel::Scroll(double dx, double dy)
+{
+	return Drag(0., dy * Preferences::ScrollSpeed());
+}
+
+
+
+double StartConditionsPanel::DoScrolling(int scrollAmount)
+{
+	int originalScrolling = listScroll;
+	listScroll += scrollAmount;
+	listScroll = min(max(listScroll, 0.), (GameData::StartOptions().size() - 1) * entryBox.Height());
+	
+	return (listScroll - originalScrolling) / entryBox.Height();
 }

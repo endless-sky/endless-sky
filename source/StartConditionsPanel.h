@@ -40,6 +40,11 @@ protected:
 	
 	
 private:
+	// This takes in the amount of pixels to be scrolled, and returns the amount of entries that were actually scrolled.
+	double DoScrolling(int scrollAmount);
+
+
+private:
 	PlayerInfo &player;
 	UI &gamePanels;
 	
