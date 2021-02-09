@@ -46,6 +46,12 @@ public:
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
+	static double StarViewZoom();
+	static bool StarZoomViewIn();
+	static bool StarZoomViewOut();
+	static double HazeViewZoom();
+	static bool HazeZoomViewIn();
+	static bool HazeZoomViewOut();
 	
 	// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();

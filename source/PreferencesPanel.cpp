@@ -48,6 +48,8 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string STAR_ZOOM_FACTOR = "TMP Star zoom factor";
+	const string HAZE_ZOOM_FACTOR = "TMP Haze factor";
 	const string VSYNC_SETTING = "VSync";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -171,6 +173,20 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				// case, cycle around to the lowest zoom factor.
 				if(!Preferences::ZoomViewIn())
 					while(Preferences::ZoomViewOut()) {}
+			}
+			else if(zone.Value() == STAR_ZOOM_FACTOR)
+			{
+				// Increase the zoom factor unless it is at the maximum. In that
+				// case, cycle around to the lowest zoom factor.
+				if(!Preferences::StarZoomViewIn())
+					while(Preferences::StarZoomViewOut()) {}
+			}
+			else if(zone.Value() == HAZE_ZOOM_FACTOR)
+			{
+				// Increase the zoom factor unless it is at the maximum. In that
+				// case, cycle around to the lowest zoom factor.
+				if(!Preferences::HazeZoomViewIn())
+					while(Preferences::HazeZoomViewOut()) {}
 			}
 			else if(zone.Value() == VSYNC_SETTING)
 			{
@@ -432,6 +448,8 @@ void PreferencesPanel::DrawSettings()
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		STAR_ZOOM_FACTOR,
+		HAZE_ZOOM_FACTOR,
 		VSYNC_SETTING,
 		"Show status overlays",
 		"Highlight player's flagship",
@@ -452,6 +470,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		"Parallax space",
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
 		"",
@@ -505,6 +524,16 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
+		else if(setting == STAR_ZOOM_FACTOR)
+		{
+			isOn = true;
+			text = to_string(static_cast<int>(100. * Preferences::StarViewZoom()));
+		}
+		else if(setting == HAZE_ZOOM_FACTOR)
+		{
+			isOn = true;
+			text = to_string(static_cast<int>(100. * Preferences::HazeViewZoom()));
 		}
 		else if(setting == VSYNC_SETTING)
 		{

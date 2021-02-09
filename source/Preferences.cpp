@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <map>
+#include <iostream>
 
 using namespace std;
 
@@ -35,6 +36,10 @@ namespace {
 	
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
+	const vector<double> STARZOOMS = {.25, .35, .50, .60, .70, .80, .90, 1.00, 1.10, 1.25, 1.40, 2.00};
+	int starZoomIndex = 4;
+	const vector<double> HAZEZOOMS = {.25, .35, .50, .60, .70, .80, .90, 1.00, 1.10, 1.25, 1.40, 2.00};
+	int hazeZoomIndex = 6;
 	constexpr double VOLUME_SCALE = .25;
 	
 	// Enable standard VSync by default.
@@ -60,6 +65,7 @@ void Preferences::Load()
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
+	settings["Parallax space"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
@@ -176,6 +182,70 @@ bool Preferences::ZoomViewOut()
 		return false;
 	
 	--zoomIndex;
+	return true;
+}
+
+
+
+// TEMP Star View zoom.
+double Preferences::StarViewZoom()
+{
+	return STARZOOMS[starZoomIndex];
+}
+
+
+
+bool Preferences::StarZoomViewIn()
+{
+	if(starZoomIndex == static_cast<int>(STARZOOMS.size() - 1))
+		return false;
+	
+	++starZoomIndex;
+	cout << "Star zoom is: " << STARZOOMS[starZoomIndex] << endl;
+	return true;
+}
+
+
+
+bool Preferences::StarZoomViewOut()
+{
+	if(starZoomIndex == 0)
+		return false;
+	
+	--starZoomIndex;
+	cout << "Star zoom is: " << STARZOOMS[starZoomIndex] << endl;
+	return true;
+}
+
+
+
+// TEMP Haze View zoom.
+double Preferences::HazeViewZoom()
+{
+	return HAZEZOOMS[hazeZoomIndex];
+}
+
+
+
+bool Preferences::HazeZoomViewIn()
+{
+	if(hazeZoomIndex == static_cast<int>(HAZEZOOMS.size() - 1))
+		return false;
+	
+	++hazeZoomIndex;
+	cout << "Haze zoom is: " << HAZEZOOMS[hazeZoomIndex] << endl;
+	return true;
+}
+
+
+
+bool Preferences::HazeZoomViewOut()
+{
+	if(hazeZoomIndex == 0)
+		return false;
+	
+	--hazeZoomIndex;
+	cout << "Haze zoom is: " << HAZEZOOMS[hazeZoomIndex] << endl;
 	return true;
 }
 
