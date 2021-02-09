@@ -1835,6 +1835,16 @@ void PlayerInfo::CheckReputationConditions()
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
 {
+	// Shrouded systems are only seen if they're currently in view range, or
+	// if a visited system that is non-shrouded is linked to it.
+	if(system.Shrouded())
+		return (system.VisibleNeighbors().count(this->system) || &system == this->system
+			|| any_of(visitedSystems.begin(), visitedSystems.end(), 
+				[&system](const System *s) noexcept -> bool
+				{
+					return (!s->Shrouded() && s->Links().count(&system));
+				}));
+	
 	if(seen.count(&system))
 		return true;
 	
@@ -1862,7 +1872,8 @@ bool PlayerInfo::HasSeen(const System &system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const System &system) const
 {
-	return visitedSystems.count(&system);
+	// Shrouded systems are only considered visited if you're currently in them.
+	return (visitedSystems.count(&system) && !system.Shrouded()) || (system.Shrouded() && &system == this->system);
 }
 
 
