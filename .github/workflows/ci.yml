@@ -55,7 +55,6 @@ jobs:
       matrix:
         os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
     env:
-        CCACHE_DIR: ./ccache/
         CXX: ccache g++
         AR: gcc-ar
         RANLIB: gcc-ranlib
@@ -75,6 +74,10 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        key: ${{ matrix.os }}
     - name: Print toolchain versions
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -82,16 +85,6 @@ jobs:
         gcc-ar --version
         gcc-ranlib --version
         ld -v
-    - name: Cache ccache results
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
-      with:
-        path: ${{ env.CCACHE_DIR }}
-        key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
-          ${{ matrix.os }}-ccache-${{ github.repository }}-
-          ${{ matrix.os }}-ccache-
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: scons -Qj $(nproc);
@@ -108,13 +101,16 @@ jobs:
       matrix:
         os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
     env:
-        CCACHE_DIR: ./ccache/
         CXX: ccache g++
         AR: gcc-ar
         RANLIB: gcc-ranlib
         TEST_BINARY: tests/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        key: ${{ matrix.os }}
     - name: Restore cached test binary
       id: cache-tests
       uses: actions/cache@v2
@@ -127,16 +123,6 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
-    - name: Cache ccache results
-      if: steps.cache-tests.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
-      with:
-        path: ${{ env.CCACHE_DIR }}
-        key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
-          ${{ matrix.os }}-ccache-${{ github.repository }}-
-          ${{ matrix.os }}-ccache-
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: scons -Qj $(nproc) build-tests
