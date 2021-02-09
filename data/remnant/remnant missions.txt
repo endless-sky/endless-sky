@@ -3944,7 +3944,7 @@ mission "Remnant: Cognizance 13"
 
 event "remnant: postverta reveal"
 	system Postverta
-		remove invisible
+		remove hidden
 	system Egeria
 		add object "Wormhole Barren Alpha"
 			sprite planet/wormhole-red
