@@ -249,7 +249,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	}
 	
 	// Print the number of bays for each bay-type we have
-	for(auto bayType : Ship::BAY_TYPES)
+	for(auto bayType : GameData::Category("bay type"))
 	{
 		int totalBays = ship.BaysTotal(bayType);
 		if(totalBays)

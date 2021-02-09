@@ -132,14 +132,6 @@ namespace {
 
 
 
-// Set of ship types that can be carried in bays.
-const set<string> Ship::BAY_TYPES = {
-	"Drone",
-	"Fighter"
-};
-
-
-
 // Construct and Load() at the same time.
 Ship::Ship(const DataNode &node)
 {
@@ -304,11 +296,6 @@ void Ship::Load(const DataNode &node)
 			{
 				category = child.Token(1);
 				childOffset += 1;
-			}
-			if(!BAY_TYPES.count(category))
-			{
-				child.PrintTrace("Warning: Invalid category defined for bay:");
-				continue;
 			}
 			
 			if(!hasBays)
@@ -678,15 +665,27 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 	
-	// Add a default "launch effect" to any internal bays if this ship is crewed (i.e. pressurized).
-	for(Bay &bay : bays)
+	// Ensure that all defined bays are of a valid category. Remove and warn about any
+	// invalid bays. Add a default "launch effect" to any remaining internal bays if
+	// this ship is crewed (i.e. pressurized).
+	string warning;
+	for(auto it = bays.begin(); it != bays.end(); ++it)
+	{
+		Bay &bay = *it;
+		if(!GameData::CategorySet("bay type").count(bay.category))
+		{
+			bays.erase(it);
+			--it;
+			warning += "Invalid bay category: " + bay.category + "\n";
+			continue;
+		}
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
+	}
 	
-	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
+	canBeCarried = GameData::CategorySet("bay type").count(attributes.Category()) > 0;
 	
 	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
-	string warning;
 	for(const string &attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
 	{
 		double val = attributes.Get(attr);
@@ -3129,7 +3128,7 @@ bool Ship::CanCarry(const Ship &ship) const
 
 void Ship::AllowCarried(bool allowCarried)
 {
-	canBeCarried = allowCarried && BAY_TYPES.count(attributes.Category()) > 0;
+	canBeCarried = allowCarried && GameData::CategorySet("bay type").count(attributes.Category()) > 0;
 }
 
 

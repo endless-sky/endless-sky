@@ -8,9 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-categories "ship"
-	"Fighter"
-	"Drone"
+category "ship"
 	"Transport"
 	"Light Freighter"
 	"Heavy Freighter"
@@ -18,8 +16,14 @@ categories "ship"
 	"Light Warship"
 	"Medium Warship"
 	"Heavy Warship"
+	"Fighter"
+	"Drone"
+
+category "bay type"
+	"Fighter"
+	"Drone"
 	
-categories "outfit"
+category "outfit"
 	"Guns"
 	"Turrets"
 	"Secondary Weapons"

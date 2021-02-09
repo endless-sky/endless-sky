@@ -137,7 +137,9 @@ public:
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
-	static const std::vector<std::string> &Categories(const std::string &type);
+	// Strings for categories of ships, outfits, etc.
+	static const std::vector<std::string> &Category(const std::string &type);
+	static const std::set<std::string> &CategorySet(const std::string &type);
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);

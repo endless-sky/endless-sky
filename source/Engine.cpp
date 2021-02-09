@@ -364,7 +364,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const string &bayType : Ship::BAY_TYPES)
+				for(const string &bayType : GameData::Category("bay type"))
 				{
 					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)

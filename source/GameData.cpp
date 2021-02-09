@@ -904,7 +904,7 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 
-// Strings for combat rating levels, etc.
+// Strings for categories of ships, outfits, etc.
 const string &GameData::Rating(const string &type, int level)
 {
 	static const string EMPTY;
@@ -918,10 +918,19 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
-// Get player-defined categories for outfits and ships.
-const vector<string> &GameData::Categories(const string &type)
+// Get player-defined categories.
+const vector<string> &GameData::Category(const string &type)
 {
 	return categories[type];
+}
+
+
+
+// Get player-defined categories for bay types as a set.
+const set<string> &GameData::CategorySet(const string &type)
+{
+	static const set<string> categorySet(categories[type].begin(), categories[type].end());
+	return categorySet;
 }
 
 
@@ -1118,23 +1127,18 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
 		}
-		else if(key == "categories" && node.Size() >= 2)
+		else if(key == "category" && node.Size() >= 2)
 		{
-			if(node.Token(1) == "outfit" || node.Token(1) == "ship")
+			vector<string> &categoryList = categories[node.Token(1)];
+			// Get the list of categories from data files. If a given category
+			// already exists, it will be moved to the back of the list.
+			for(const DataNode &child : node)
 			{
-				vector<string> &categoryList = categories[node.Token(1)];
-				// Get the list of outfit and ship categories from data files.
-				// If a category already exists, it will be moved to the back of the list.
-				for(const DataNode &child : node)
-				{
-					const auto &it = find(categoryList.begin(), categoryList.end(), child.Token(0));
-					if(it != categoryList.end())
-						categoryList.erase(it);
-					categoryList.push_back(child.Token(0));
-				}
+				const auto &it = find(categoryList.begin(), categoryList.end(), child.Token(0));
+				if(it != categoryList.end())
+					categoryList.erase(it);
+				categoryList.push_back(child.Token(0));
 			}
-			else
-				node.PrintTrace("Skipping unsupported use of \"categories\" object:");
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{
