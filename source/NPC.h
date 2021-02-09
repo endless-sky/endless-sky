@@ -17,15 +17,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "LocationFilter.h"
 #include "Personality.h"
+#include "Phrase.h"
 
-#include <string>
 #include <list>
 #include <map>
 #include <memory>
+#include <string>
 
 class DataNode;
 class DataWriter;
 class Government;
+class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -49,14 +51,25 @@ public:
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
 	
+	// Determine if this NPC or NPC template uses well-defined data.
+	bool IsValid(bool asTemplate = false) const;
+	
+	// Update or check spawning and despawning for this NPC.
+	void UpdateSpawning(const PlayerInfo &player);
+	bool ShouldSpawn() const;
+	
 	// Get the ships associated with this set of NPCs.
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 	
 	// Handle the given ShipEvent.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
-	bool HasSucceeded(const System *playerSystem) const;
+	// Determine if the NPC is in a successful state, assuming the player is in the given system.
+	// (By default, a despawnable NPC has succeeded and is not actually checked.)
+	bool HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable = true) const;
 	// Check if the NPC is supposed to be accompanied and is not.
 	bool IsLeftBehind(const System *playerSystem) const;
+	// Determine if the NPC is in a failed state. A failed state is irrecoverable, except for
+	// NPCs which would despawn upon the player's next landing.
 	bool HasFailed() const;
 	
 	// Create a copy of this NPC but with the fleets replaced by the actual
@@ -73,11 +86,29 @@ private:
 	LocationFilter location;
 	const System *system = nullptr;
 	bool isAtDestination = false;
+	// Start out landed on this planet.
+	const Planet *planet = nullptr;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
+	const Phrase *stockDialogPhrase = nullptr;
+	Phrase dialogPhrase;
+	
 	Conversation conversation;
 	const Conversation *stockConversation = nullptr;
+	
+	// Conditions that must be met in order for this NPC to be placed or despawned:
+	ConditionSet toSpawn;
+	ConditionSet toDespawn;
+	// Once true, the NPC will be spawned on takeoff and its success state will influence
+	// the parent mission's ability to be completed.
+	bool passedSpawnConditions = false;
+	// Once true, the NPC will be despawned on landing and it will no longer contribute to
+	// the parent mission's ability to be completed or failed.
+	bool passedDespawnConditions = false;
+	// Whether we have actually checked spawning conditions yet. (This
+	// will generally be true, except when reloading a save.)
+	bool checkedSpawnConditions = false;
 	
 	// The ships may be listed individually or referred to as a fleet, and may
 	// be customized or just refer to stock objects:

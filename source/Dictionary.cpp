@@ -1,4 +1,4 @@
-/* Dictionary.h
+/* Dictionary.cpp
 Copyright (c) 2017 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

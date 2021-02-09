@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Format.h"
+#include "text/Format.h"
 
 #include <SDL2/SDL.h>
 
@@ -61,12 +61,14 @@ const Command Command::CLOAK(1uL << 17, "Toggle cloaking device");
 const Command Command::MAP(1uL << 18, "View star map");
 const Command Command::INFO(1uL << 19, "View player info");
 const Command Command::FULLSCREEN(1uL << 20, "Toggle fullscreen");
-const Command Command::FIGHT(1uL << 21, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 24, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 25, "");
-const Command Command::STOP(1ul << 26, "");
+const Command Command::FASTFORWARD(1uL << 21, "Toggle fast-forward");
+const Command Command::FIGHT(1uL << 22, "Fleet: Fight my target");
+const Command Command::GATHER(1uL << 23, "Fleet: Gather around me");
+const Command Command::HOLD(1uL << 24, "Fleet: Hold position");
+const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(1uL << 26, "");
+const Command Command::STOP(1ul << 27, "");
+const Command Command::SHIFT(1uL << 28, "");
 
 
 
@@ -105,6 +107,10 @@ void Command::ReadKeyboard()
 	for(const auto &it : keycodeForCommand)
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 			*this |= it.first;
+	
+	// Check whether the `Shift` modifier key was pressed for this step.
+	if(SDL_GetModState() & KMOD_SHIFT)
+		*this |= SHIFT;
 }
 
 
@@ -119,8 +125,8 @@ void Command::LoadSettings(const string &path)
 	for(const auto &it : description)
 		commands[it.second] = it.first;
 	
-	// Each command can only have one keycode, but misconfigured settings can
-	// temporarily cause one keycode to be used for two commands.
+	// Each command can only have one keycode, one keycode can be assigned
+	// to multiple commands.
 	for(const DataNode &node : file)
 	{
 		auto it = commands.find(node.Token(0));
@@ -150,11 +156,11 @@ void Command::SaveSettings(const string &path)
 {
 	DataWriter out(path);
 	
-	for(const auto &it : commandForKeycode)
+	for(const auto &it : keycodeForCommand)
 	{
-		auto dit = description.find(it.second);
+		auto dit = description.find(it.first);
 		if(dit != description.end())
-			out.Write(dit->second, it.first);
+			out.Write(dit->second, it.second);
 	}
 }
 
@@ -215,6 +221,48 @@ bool Command::HasConflict() const
 
 
 
+// Load this command from an input file (for testing or scripted missions).
+void Command::Load(const DataNode &node)
+{
+	for(int i = 1; i < node.Size(); ++i)
+	{
+		static const map<string, Command> lookup = {
+			{"menu", Command::MENU},
+			{"forward", Command::FORWARD},
+			{"left", Command::LEFT},
+			{"right", Command::RIGHT},
+			{"back", Command::BACK},
+			{"primary", Command::PRIMARY},
+			{"secondary", Command::SECONDARY},
+			{"select", Command::SELECT},
+			{"land", Command::LAND},
+			{"board", Command::BOARD},
+			{"hail", Command::HAIL},
+			{"scan", Command::SCAN},
+			{"jump", Command::JUMP},
+			{"target", Command::TARGET},
+			{"nearest", Command::NEAREST},
+			{"deploy", Command::DEPLOY},
+			{"afterburner", Command::AFTERBURNER},
+			{"cloak", Command::CLOAK},
+			{"map", Command::MAP},
+			{"info", Command::INFO},
+			{"fight", Command::FIGHT},
+			{"gather", Command::GATHER},
+			{"hold", Command::HOLD},
+			{"ammo", Command::AMMO}
+		};
+		
+		auto it = lookup.find(node.Token(i));
+		if(it != lookup.end())
+			Set(it->second);
+		else
+			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
+	}
+}
+
+
+
 // Reset this to an empty command.
 void Command::Clear()
 {
@@ -243,6 +291,14 @@ void Command::Set(Command command)
 bool Command::Has(Command command) const
 {
 	return (state & command.state);
+}
+
+
+
+// Get the commands that are set in this and in the given command.
+Command Command::And(Command command) const
+{
+	return Command(state & command.state);
 }
 
 

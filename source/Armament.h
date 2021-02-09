@@ -39,7 +39,7 @@ class Visual;
 class Armament {
 public:
 	// Add a gun or turret hard-point.
-	void AddGunPort(const Point &point, const Outfit *outfit = nullptr);
+	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, const Outfit *outfit = nullptr);
 	void AddTurret(const Point &point, const Outfit *outfit = nullptr);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.

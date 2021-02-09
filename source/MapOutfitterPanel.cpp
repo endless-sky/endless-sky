@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -20,8 +20,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Sprite.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <cmath>
@@ -45,6 +47,7 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 {
 	Init();
 	onlyShowSoldHere = onlyHere;
+	UpdateCache();
 }
 
 
@@ -122,7 +125,7 @@ void MapOutfitterPanel::Compare(int index)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	if(!system)
+	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
 	
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
@@ -133,6 +136,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
+	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())
@@ -170,6 +174,8 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 void MapOutfitterPanel::DrawItems()
 {
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	for(const string &category : categories)
@@ -202,7 +208,7 @@ void MapOutfitterPanel::DrawItems()
 			}
 			
 			bool isForSale = true;
-			if(selectedSystem && player.HasVisited(selectedSystem))
+			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
@@ -229,8 +235,8 @@ void MapOutfitterPanel::Init()
 {
 	catalog.clear();
 	set<const Outfit *> seen;
-	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+	for(auto &&it : GameData::Planets())
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
@@ -246,5 +252,5 @@ void MapOutfitterPanel::Init()
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Outfit *a, const Outfit *b) {return a->Name() < b->Name();});
+			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });
 }

@@ -50,11 +50,17 @@ Government::Government()
 void Government::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
+	{
 		name = node.Token(1);
+		if(displayName.empty())
+			displayName = name;
+	}
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "swizzle" && child.Size() >= 2)
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "swizzle" && child.Size() >= 2)
 			swizzle = child.Value(1);
 		else if(child.Token(0) == "color" && child.Size() >= 4)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
@@ -103,6 +109,10 @@ void Government::Load(const DataNode &node)
 			bribe = child.Value(1);
 		else if(child.Token(0) == "fine" && child.Size() >= 2)
 			fine = child.Value(1);
+		else if(child.Token(0) == "enforces" && child.HasChildren())
+			enforcementZones.emplace_back(child);
+		else if(child.Token(0) == "enforces" && child.Size() == 2 && child.Token(1) == "all")
+			enforcementZones.clear();
 		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
 			deathSentence = GameData::Conversations().Get(child.Token(1));
 		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
@@ -130,8 +140,23 @@ void Government::Load(const DataNode &node)
 
 
 
-// Get the name of this government.
+// Get the display name of this government.
 const string &Government::GetName() const
+{
+	return displayName;
+}
+
+
+
+// Set / Get the name used for this government in the data files.
+void Government::SetName(const string &trueName)
+{
+	this->name = trueName;
+}
+
+
+
+const string &Government::GetTrueName() const
 {
 	return name;
 }
@@ -202,6 +227,30 @@ double Government::GetBribeFraction() const
 double Government::GetFineFraction() const
 {
 	return fine;
+}
+
+
+
+// Returns true if this government has no enforcement restrictions, or if the
+// indicated system matches at least one enforcement zone.
+bool Government::CanEnforce(const System *system) const
+{
+	for(const LocationFilter &filter : enforcementZones)
+		if(filter.Matches(system))
+			return true;
+	return enforcementZones.empty();
+}
+
+
+
+// Returns true if this government has no enforcement restrictions, or if the
+// indicated planet matches at least one enforcement zone.
+bool Government::CanEnforce(const Planet *planet) const
+{
+	for(const LocationFilter &filter : enforcementZones)
+		if(filter.Matches(planet))
+			return true;
+	return enforcementZones.empty();
 }
 
 
@@ -332,4 +381,3 @@ double Government::CrewDefense() const
 {
 	return crewDefense;
 }
-

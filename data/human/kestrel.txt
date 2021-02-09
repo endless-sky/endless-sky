@@ -1,0 +1,361 @@
+# Copyright (c) 2014-2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Kestrel Testing"
+	name "Warship Testing"
+	description "Travel to the <waypoints> system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
+	source "Wayfarer"
+	waypoint "Umbral"
+	to offer
+		"combat rating" > 8000
+	
+	on offer
+		conversation
+			`As you are visiting one of the spaceport bars, a man recognizes you. "<first> <last>!" he says. "It's an honor to meet you. Your exploits in battle are well known." He picks up his drink and walks over to sit next to you. "My name is Charles Atinoda," he says, "the chief starship designer for Tarazed Corporation. Say, would you be willing to help us test out a new warship?"`
+			choice
+				`	"Tell me more."`
+				`	"Sorry, I don't have time right now."`
+					defer
+			`	"Well," he says, "here's the story. Seven years ago, in a time of deep personal crisis, I left my job at Tarazed to wander the galaxy with nothing in my backpack but a change of clothes, a canteen of water, and a few boxes of emergency rations. An anarchist commune on one of the fringe worlds took me in. After I had been there for a month, the village elder, sensing my inner turmoil, invited me to a vision quest in their sweat lodge. I fell into a trance and my consciousness journeyed through many universes, where I saw strange things. I saw a sword made of light. I saw a blue sun. I saw..." He pauses for a moment. "...a Welsh Corgi hacking into a computer? Some of it was hard to understand."`
+			choice
+				`	"Fascinating."`
+					goto continue
+				`	"Were there illicit substances involved in this vision quest?"`
+			`	He ignores your question. "But then I saw one more thing," he says.`
+				goto kestrel
+			label continue
+			`	"But then I saw one more thing," he says.`
+			label kestrel
+			`	He is silent for a long moment, then says, "I saw a dark ship, more graceful and elegant than any I had ever designed, battling an alien vessel with a mottled red hull. And when I saw that ship, I knew that I must build one like it. I hitched a ride back to Wayfarer, begged for my old job back, and got to work. Seven years later, the ship is nearly done. It has passed all our non-destructive testing with flying colors, which leaves only the combat test remaining. And who better to battle it than the renowned warrior, <first> <last>?"`
+			choice
+				`	"I would be glad to."`
+					goto test
+				`	"What will I receive in return?"`
+			`	"A generous payment," he says, "and the right to purchase one of the very first units off the production line, if you wish."`
+			`	"Sounds fair," you say.`
+			label test
+			`	"Excellent," he says. "I'll need your signature on a few forms. Waivers of liability in case you die, permission to use your name and likeness in certain promotional materials. You know, the usual legal stuff."`
+			choice
+				`	"No problem. Where will I battle this ship?"`
+				`	"Sorry, I don't think I can agree to that."`
+					decline
+			`	"We do most of our starship testing in the <waypoints> system," he says. "The test ship is unmistakable. Journey there, disable it without destroying it, then return here and we'll ask you about any weaknesses you found or improvements you would make. And if you destroy the ship or steal it, naturally you will forfeit your payment."`
+				accept
+	
+	npc disable save
+		government "Test Dummy"
+		personality disables staying nemesis heroic
+		system "Umbral"
+		ship "Unknown Ship Type" "Tarazed Prototype"
+	
+	on complete
+		payment 2000000
+		conversation
+			`Atinoda meets up with you soon after you land. "I see that you survived," he says. "Was it a difficult fight?"`
+			choice
+				`	"Yes, you have built an impressive ship."`
+					goto yes
+				`	"No, I'm afraid I made short work of it."`
+					goto no
+			
+			label yes
+			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+				goto changes
+			
+			label no
+			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+				goto changes
+			
+			label changes
+			choice
+				`	"Lots of weapon space is always my first priority."`
+					goto weapons
+				`	"You should make sure it has enough space for any engine."`
+					goto engines
+				`	"Maybe you should work on improving the shields and hull."`
+					goto shields
+			
+			label weapons
+			apply
+				set "kestrel: more weapons"
+			`	"Very well," he says, "we'll see if we can expand the weapon capacity so that even the biggest weapons will fit."`
+				goto name
+			
+			label engines
+			apply
+				set "kestrel: more engines"
+			`	"Very well," he says, "we'll see if we can expand the engine capacity enough that even the biggest engines will fit."`
+				goto name
+			
+			label shields
+			apply
+				set "kestrel: more shields"
+			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
+				goto name
+			
+			label name
+			`	"Does the ship model have a name yet?" you ask.`
+			`	"Not yet," he says. "Do you have a suggestion?"`
+			choice
+				`	"The Wraith."`
+					goto wraith
+				`	"The Grey Goose."`
+					goto goose
+			
+			label wraith
+			`	"Not a bad name, I suppose," he says, "but at Tarazed we usually name our ships after animals. Any other ideas?"`
+			choice
+				`	"The Dire Wolf."`
+					goto wolf
+				`	"The Kestrel."`
+					goto kestrel
+			
+			label goose
+			`	"I suppose it does sort of look like a goose in flight," he says, "but that's hardly an intimidating name. Do you have any scarier ideas?"`
+			choice
+				`	"The Reaper."`
+					goto reaper
+				`	"The Kestrel."`
+					goto kestrel
+			
+			label wolf
+			`	"Not bad," he says, "but all our other ships - the Falcon, the Osprey, the Hawk - they're all birds. Maybe a bird name?"`
+			choice
+				`	"The Grey Goose."`
+					goto goose
+				`	"The Kestrel."`
+					goto kestrel
+			
+			label reaper
+			`	"I don't know," he says, "that sounds a little bit over the top. Any other suggestions?"`
+			choice
+				`	"The Wraith."`
+					goto wraith
+				`	"The Kestrel."`
+					goto kestrel
+			
+			label kestrel
+			`	When you say the word 'Kestrel' he jerks as if he's just been electrocuted. "Yes," he says, "that's it! That's the name we'll go with. Thank you, Captain. I will let you know as soon as the Kestrel is available for sale, and we will take your recommendations into account when making our final modifications to the design." He pays you two million credits and wishes you the best of luck in your future endeavors.`
+
+
+
+mission "Kestrel: More Weapons"
+	landing
+	invisible
+	to offer
+		has "kestrel: more weapons"
+	on offer
+		event "kestrel available: more weapons" 50
+	to complete
+		has "kestrel available"
+
+
+
+mission "Kestrel: More Engines"
+	landing
+	invisible
+	to offer
+		has "kestrel: more engines"
+	on offer
+		event "kestrel available: more engines" 50
+	to complete
+		has "kestrel available"
+
+
+
+mission "Kestrel: More Shields"
+	landing
+	invisible
+	to offer
+		has "kestrel: more shields"
+	on offer
+		event "kestrel available: more shields" 50
+	to complete
+		has "kestrel available"
+
+
+
+mission "Kestrel Available"
+	landing
+	source
+		near "Tarazed" 100
+	to offer
+		has "kestrel available"
+	destination "Wayfarer"
+	on offer
+		conversation
+			scene thumbnail/kestrel
+			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
+				decline
+
+
+
+event "kestrel available: more weapons"
+	set "kestrel available"
+	shipyard "Tarazed Advanced"
+		"Kestrel (More Weapons)"
+event "kestrel available: more engines"
+	set "kestrel available"
+	shipyard "Tarazed Advanced"
+		"Kestrel (More Engines)"
+event "kestrel available: more shields"
+	set "kestrel available"
+	shipyard "Tarazed Advanced"
+		"Kestrel (More Shields)"
+
+
+ship "Unknown Ship Type"
+	sprite "ship/kestrel"
+	thumbnail "thumbnail/kestrel"
+	attributes
+		category "Heavy Warship"
+		"cost" 14700000
+		"shields" 19400
+		"hull" 7200
+		"required crew" 64
+		"bunks" 128
+		"mass" 740
+		"drag" 11
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 120
+		"outfit space" 810
+		"weapon capacity" 390
+		"engine capacity" 210
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Particle Cannon" 4
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
+		
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+	engine -14 177
+	engine 14 177
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	gun -53 61 "Particle Cannon"
+	gun 53 61 "Particle Cannon"
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
+	turret -7 -4 "Heavy Laser Turret"
+	turret 7 -4 "Heavy Laser Turret"
+	turret -23 14 "Heavy Laser Turret"
+	turret 23 14 "Heavy Laser Turret"
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large"
+
+
+ship "Kestrel"
+	sprite "ship/kestrel"
+	thumbnail "thumbnail/kestrel"
+	attributes
+		category "Heavy Warship"
+		"cost" 14700000
+		"shields" 19400
+		"hull" 7200
+		"required crew" 64
+		"bunks" 128
+		"mass" 740
+		"drag" 11
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 120
+		"outfit space" 810
+		"weapon capacity" 390
+		"engine capacity" 210
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Particle Cannon" 4
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
+		
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+	engine -14 177
+	engine 14 177
+	bay "Fighter" -46 106 under
+	bay "Fighter" 46 106 under
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	gun -53 61 "Particle Cannon"
+	gun 53 61 "Particle Cannon"
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
+	turret -7 -4 "Heavy Laser Turret"
+	turret 7 -4 "Heavy Laser Turret"
+	turret -23 14 "Heavy Laser Turret"
+	turret 23 14 "Heavy Laser Turret"
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large"
+	description "Several years ago, while visiting a sweat lodge in search of spiritual renewal, Tarazed's chief ship designer fell into a trance and journeyed to a reality separate from our own. There he saw visions of a strange and elegant starship. Returning to his work with renewed purpose, he spent the next seven years making the Kestrel a reality."
+
+
+ship "Kestrel" "Kestrel (More Engines)"
+	add attributes
+		"drag" -1.0
+		"fuel capacity" 100
+		"engine capacity" 30
+
+ship "Kestrel" "Kestrel (More Shields)"
+	add attributes
+		"shields" 3000
+		"hull" 1500
+		"heat dissipation" .06
+
+ship "Kestrel" "Kestrel (More Weapons)"
+	add attributes
+		"weapon capacity" 40
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
+	gun -31 66
+	gun 31 66
+	gun -53 61 "Particle Cannon"
+	gun 53 61 "Particle Cannon"
+	gun -53 61
+	gun 53 61
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	gun -75 57
+	gun 75 57
+	turret -7 -4 "Heavy Laser Turret"
+	turret 7 -4 "Heavy Laser Turret"
+	turret -23 14 "Heavy Laser Turret"
+	turret 23 14 "Heavy Laser Turret"

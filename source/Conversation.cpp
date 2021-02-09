@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -114,8 +114,17 @@ void Conversation::Load(const DataNode &node)
 		{
 			// Create a new node with one or more choices in it.
 			nodes.emplace_back(true);
+			bool foundErrors = false;
 			for(const DataNode &grand : child)
 			{
+				// Check for common errors such as indenting a goto incorrectly:
+				if(grand.Size() > 1)
+				{
+					grand.PrintTrace("Conversation choices should be a single token:");
+					foundErrors = true;
+					continue;
+				}
+				
 				// Store the text of this choice. By default, the choice will
 				// just bring you to the next node in the script.
 				nodes.back().data.emplace_back(grand.Token(0), nodes.size());
@@ -125,7 +134,8 @@ void Conversation::Load(const DataNode &node)
 			}
 			if(nodes.back().data.empty())
 			{
-				child.PrintTrace("Conversation contains an empty \"choice\" node:");
+				if(!foundErrors)
+					child.PrintTrace("Conversation contains an empty \"choice\" node:");
 				nodes.pop_back();
 			}
 		}
@@ -163,6 +173,9 @@ void Conversation::Load(const DataNode &node)
 			nodes.back().canMergeOnto = false;
 			nodes.back().conditions.Load(child);
 		}
+		// Check for common errors such as indenting a goto incorrectly:
+		else if(child.Size() > 1)
+			child.PrintTrace("Conversation text should be a single token:");
 		else
 		{
 			// This is just an ordinary text node.
@@ -271,9 +284,19 @@ void Conversation::Save(DataWriter &out) const
 
 
 // Check if this conversation contains any data.
-bool Conversation::IsEmpty() const
+bool Conversation::IsEmpty() const noexcept
 {
 	return nodes.empty();
+}
+
+
+
+// Check if this conversation contains a name prompt, and thus can be used as an "intro" conversation.
+bool Conversation::IsValidIntro() const noexcept
+{
+	return any_of(nodes.begin(), nodes.end(), [](const Node &node) noexcept -> bool {
+		return node.isChoice && node.data.empty();
+	});
 }
 
 

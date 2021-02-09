@@ -39,10 +39,16 @@ class System;
 class Planet {
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits);
+	void Load(const DataNode &node);
+	// Check if both this planet and its containing system(s) have been defined.
+	bool IsValid() const;
 	
-	// Get the name of the planet.
+	// Get the name of the planet (all wormholes use the same name).
+	// When saving missions or writing the player's save, the reference name
+	// associated with this planet is used even if the planet was not fully
+	// defined (i.e. it belongs to an inactive plugin).
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
 	// Get the planet's descriptive text.
@@ -67,6 +73,10 @@ public:
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
 	bool IsInhabited() const;
+	
+	// Check if the security of this planet has been changed from the default so
+	// that we can check if an uninhabited world should fine the player.
+	bool HasCustomSecurity() const;
 	
 	// Check if this planet has a shipyard.
 	bool HasShipyard() const;
@@ -108,6 +118,9 @@ public:
 	// Check if the given ship has all the attributes necessary to allow it to
 	// land on this planet.
 	bool IsAccessible(const Ship *ship) const;
+	// Check if this planet has any required attributes that restrict landability.
+	bool IsUnrestricted() const;
+	
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
 	bool HasFuelFor(const Ship &ship) const;
@@ -123,6 +136,7 @@ public:
 	
 	
 private:
+	bool isDefined = false;
 	std::string name;
 	std::string description;
 	std::string spaceport;
@@ -142,7 +156,10 @@ private:
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;
-	bool inhabited;
+	bool inhabited = false;
+	bool customSecurity = false;
+	// Any required attributes needed to land on this planet.
+	std::set<std::string> requiredAttributes;
 	
 	// The salary to be paid if this planet is dominated.
 	int tribute = 0;

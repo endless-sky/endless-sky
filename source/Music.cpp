@@ -48,7 +48,7 @@ void Music::Init(const vector<string> &sources)
 			if(path.length() < root.length() + 4)
 				continue;
 			string ext = path.substr(path.length() - 4);
-			if(ext != ".mp3" && path != ".MP3")
+			if(ext != ".mp3" && ext != ".MP3")
 				continue;
 			
 			string name = path.substr(root.length(), path.length() - root.length() - 4);
@@ -254,7 +254,10 @@ void Music::Decode()
 		
 					// Clip and scale the sample to 16 bits.
 					sample += (1L << (MAD_F_FRACBITS - 16));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
 					sample = max(-MAD_F_ONE, min(MAD_F_ONE - 1, sample));
+#pragma GCC diagnostic pop
 					next.push_back(sample >> (MAD_F_FRACBITS + 1 - 16));
 				}
 				// Now, the "next" buffer can be used by others. In theory, the

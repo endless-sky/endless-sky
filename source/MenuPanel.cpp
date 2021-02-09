@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Files.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
@@ -38,11 +38,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 
+#include <algorithm>
+#include <stdexcept>
+
 using namespace std;
 
 namespace {
-	bool isReady = false;
-	float alpha = 1.;
+	float alpha = 1.f;
 	const int scrollSpeed = 2;
 }
 
@@ -60,24 +62,20 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) && alpha < 1.)
+	if(GetUI()->IsTop(this) && alpha < 1.f)
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
 			scroll = 0;
 	}
 	progress = static_cast<int>(GameData::Progress() * 60.);
-	if(progress == 60 && !isReady)
+	if(GameData::IsLoaded() && gamePanels.IsEmpty())
 	{
-		if(gamePanels.IsEmpty())
-		{
-			gamePanels.Push(new MainPanel(player));
-			// It takes one step to figure out the planet panel should be created, and
-			// another step to actually place it. So, take two steps to avoid a flicker.
-			gamePanels.StepAll();
-			gamePanels.StepAll();
-		}
-		isReady = true;
+		gamePanels.Push(new MainPanel(player));
+		// It takes one step to figure out the planet panel should be created, and
+		// another step to actually place it. So, take two steps to avoid a flicker.
+		gamePanels.StepAll();
+		gamePanels.StepAll();
 	}
 }
 
@@ -93,12 +91,12 @@ void MenuPanel::Draw()
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", font.TruncateMiddle(flagship.Name(), 165));
+			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->Name());
@@ -106,11 +104,12 @@ void MenuPanel::Draw()
 			info.SetString("planet", player.GetPlanet()->Name());
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
+		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
 	}
 	else if(player.IsLoaded())
 	{
 		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		info.SetString("ship", "You have died.");
 	}
 	else
@@ -131,8 +130,8 @@ void MenuPanel::Draw()
 		Angle a(0.);
 		for(int i = 0; i < progress; ++i)
 		{
-			Color color(.5 * alpha, 0.f);
-			PointerShader::Draw(Point(), a.Unit(), 8., 20., 140. * alpha, color);
+			Color color(.5f * alpha, 0.f);
+			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 			a += da;
 		}
 	}
@@ -147,7 +146,7 @@ void MenuPanel::Draw()
 			fade = max(0.f, (115 - y) / 20.f);
 		if(fade)
 		{
-			Color color(((line.empty() || line[0] == ' ') ? .2 : .4) * fade, 0.);
+			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
 			font.Draw(line, Point(-470., y), color);
 		}
 		y += 20;
@@ -175,9 +174,9 @@ void MenuPanel::OnCallback(int)
 
 
 
-bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!isReady)
+	if(!GameData::IsLoaded())
 		return false;
 	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
@@ -194,8 +193,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		player.New();
 		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
+		const auto &intro = *GameData::Conversations().Get("intro");
+		if(!intro.IsValidIntro())
+			throw runtime_error("The \"intro\" conversation must contain a \"name\" node");
+		ConversationPanel *panel = new ConversationPanel(player, intro);
 		GetUI()->Push(panel);
 		panel->SetCallback(this, &MenuPanel::OnCallback);
 	}

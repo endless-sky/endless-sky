@@ -1,0 +1,2426 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Deep: Syndicate Convoy"
+	minor
+	name `Pickup from Hephaestus`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
+	source
+		attributes "deep"
+		near "Gomeisa" 2
+	stopover "Hephaestus"
+	deadline
+	to offer
+		"combat rating" > 65
+		not "Deep: Mystery Cubes 4: done"
+		random < 20 + "deep convoy" * 15
+		or
+			not "chosen sides"
+			has "main plot completed"
+		
+	on offer
+		conversation
+			`You are approached by a man in a Deep Security uniform who asks if you would be willing to escort a few freighters to <stopovers> and back by <day>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
+			choice
+				`	"Sure, I can do that."`
+				`	"Sorry, but I won't be traveling in that direction any time soon."`
+					decline
+			
+			`	"Good. Before you leave, know that there may be pirate forces waiting for you in Alphard, Sirius, and Altair. You can try to avoid them, but make sure you get the freighters back on time."`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you to wonder how he knows where pirate fleets might be waiting for you.`
+				accept
+	
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter" 2
+				"Mule"
+	npc
+		government "Merchant"
+		personality timid
+		fleet
+			fighters "civilian"
+			variant
+				"Dagger"
+			variant
+				"Boxwing"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Alphard"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Sirius"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Altair"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Castor"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Porrima"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Markab"
+		fleet "Large Northern Pirates"
+	
+	on stopover
+		dialog `You arrive at the pickup location on the night side of Hephaestus. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
+	on complete
+		"deep convoy" ++
+		payment 500000
+		conversation
+			`A Deep Security officer greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+
+
+
+mission "Deep: Tarazed Convoy"
+	minor
+	name `Pickup from Tarazed`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
+	source
+		attributes "deep"
+		near "Gomeisa" 2
+	stopover "Wayfarer"
+	deadline
+	to offer
+		"combat rating" > 65
+		not "Deep: Mystery Cubes 4: done"
+		random < 20 + "deep convoy" * 15
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, a woman in a Deep Security uniform stops you. "You're Captain <last>, correct?" You nod. "Would you be willing to transport a handful of freighters to <stopovers> to pick up some cargo? We'd need them to return here by <day>. Normally this kind of job would be done by Deep Security, but we have no ships to spare at the moment."`
+			choice
+				`	"Sure, I can do that."`
+				`	"Sorry, but I won't be traveling in that direction any time soon."`
+					decline
+			
+			`	"Thank you, Captain. Before you go, I need to inform you that you may encounter pirate fleets near Tania Australis, Muphrid, and Ascella, and you might not have time to go around these systems."`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you to wonder how she knows where pirate fleets might be waiting for you.`
+				accept
+	
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		fleet
+			names "civilian"
+			variant
+				"Freighter" 3
+				"Mule" 2
+	npc
+		government "Merchant"
+		personality timid
+		fleet
+			fighters "civilian"
+			variant
+				"Dagger" 2
+			variant
+				"Boxwing" 2
+			variant
+				"Dagger"
+				"Boxwing"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Tania Australis"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Muphrid"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Ascella"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Sirius"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Seginus"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Tarazed"
+		fleet "Large Northern Pirates"
+	
+	on stopover
+		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
+	on complete
+		"deep convoy" ++
+		payment 650000
+		conversation
+			`A Deep Security officer greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+
+
+
+mission "Deep: Kraz Convoy"
+	minor
+	name `Pickup from Kraz`
+	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
+	source
+		attributes "deep"
+		near "Gomeisa" 2
+	stopover "Rust"
+	deadline
+	to offer
+		"combat rating" > 80
+		not "Deep: Mystery Cubes 4: done"
+		random < 20 + "deep convoy" * 15
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		conversation
+			`A Deep Security officer approaches you when you enter the spaceport and asks if you would be able to do a job for the Deep. "We're short on Deep Security ships at the moment, but we need three Behemoths escorted to <stopovers>. After they pick up the cargo, bring them back here by <day>."`
+			choice
+				`	"Sure, I can do that."`
+				`	"Sorry, but I won't be traveling in that direction any time soon."`
+					decline
+			
+			`	"Much appreciated, Captain. And for your well-being as well as that of the cargo, you must know that there may be pirates waiting in Algieba, Cor Caroli, and Wei. Behemoths are tough ships, so you should be able to travel through those systems and not slow yourself down by taking alternative routes."`
+			`	The Deep Security officer wishes you good luck and walks off, leaving you to wonder how she knows where pirate fleets might be waiting for you.`
+				accept
+	
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		fleet
+			names "civilian"
+			variant
+				"Behemoth" 3
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Algieba"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Cor Caroli"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Wei"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Rutilicus"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system destination
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Kraz"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	
+	on stopover
+		dialog `When you arrive, Kraz Cybernetics already has the cargo waiting by the spaceport. After a few hours of loading the massive freighters, the spaceport crew gives you the 'all clear' signal, and the Behemoth captains get ready to depart.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
+	on complete
+		"deep convoy" ++
+		payment 800000
+		conversation
+			`A Deep Security officer greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+
+
+
+mission "Deep: Mystery Cubes 0"
+	minor
+	name `Gaining an Edge`
+	description `Land on the designated systems to place the mysterious cubes that Lieutenant Paris has given you, then return to <destination>.`
+	source
+		attributes "deep"
+		not system "Zosma"
+		not attributes "station"
+	destination "Memory"
+	stopover "New Sahara"
+	stopover "Bounty"
+	stopover "Heartland"
+	stopover "New Tibet"
+	stopover "New Greenland"
+	stopover "New Switzerland"
+	stopover "Tundra"
+	stopover "Arabia"
+	to offer
+		"mystery cube" >= 3
+		"combat rating" > 100
+		random < "deep convoy" * 30
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		conversation
+			`A Deep Security officer calls your name and approaches you as you enter the spaceport's central market. "Greetings, Captain <last>, I'm Lieutenant Paris. Would you be interested in conducting some more work for the Deep? We are currently in need of a few extra ships to assist in an ongoing situation."`
+			choice
+				`	"I'd love to help. What's the situation?"`
+					goto situation
+				`	"Sorry, but I can't help right now."`
+			
+			`	"Whatever plans you have, I suggest you change them, as this is an urgent situation."`
+			choice
+				`	"Okay, I'll help. What is the situation?"`
+				`	"Then I can't help you. Sorry."`
+					decline
+			
+			label situation
+			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been recruiting merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of 'Beelzebub.' From what we can ascertain, Beelzebub has extensive knowledge on the inner workings of Deep Security, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
+			`	Paris reaches into his pocket and pulls out a bag. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference: a thick red streak running down the middle of each cube.`
+			`	"The Deep requires that you place these on a number of worlds in the Dirt Belt which I will mark on your map for you. Place at least four of these devices around the spaceport of each marked planet, then come to <destination> where I will collect any remaining cubes that you may have. If a Deep Security ship did this then it would likely catch the attention of any pirates in the system and that information would make its way to Beelzebub, but random merchants should be inconspicuous enough to throw Beelzebub off our trail. Is that clear?"`
+			choice
+				`	"Crystal clear, Lieutenant. I will prepare to leave shortly."`
+					accept
+				`	"What do these cubes do?"`
+			
+			`	"I don't believe that I am authorized to tell you that. Just know that they will help us catch Beelzebub."`
+			choice
+				`	"Understood. I'll place the cubes for you."`
+					accept
+				`	"This feels too secretive for me. I don't want to help anymore."`
+					decline
+	
+	npc
+		government "Pirate"
+		personality disables plunders harvests
+		system
+			distance 5 10
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality disables plunders harvests
+		system
+			distance 10 15
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality disables plunders harvests
+		system
+			distance 15 20
+		fleet "Large Northern Pirates"
+	on stopover
+		dialog `You have placed cubes on the last of the planets that Paris has asked you to. When you look into the bag you find that there are three left. Go to <destination> to give the remaining cubes to Paris.`
+	on complete
+		event "deep: warlord detected" 21
+		payment 500000
+		log `Placed multiple mysterious cubes on planets in the Dirt Belt for the Deep. Deep Security is using these cubes to somehow help in their hunt for a pirate warlord named "Beelzebub."`
+		conversation
+			`You find Lieutenant Paris waiting for you in the spaceport. You hand him the bag of remaining cubes, and he hands you <payment> for helping.`
+			choice
+				`	"Is there anything else that you need me to do?"`
+					goto next
+				`	"Are you able to tell me what the cubes are for?"`
+			
+			`	Paris takes a moment to pause before responding. "They're sensor devices. They are used to track the movement of pirate fleets, but they are almost useless alone; dozens could be needed in a single system to track entire fleets. The ones that I gave you were fine-tuned though, designed to only detect the ship that we know that Beelzebub is using. That is all that I am allowed to tell you, at least for the time being."`
+			
+			choice
+				`	"Is there anything else that you need me to do?"`
+			
+			label next
+			`	"Not at the moment, Captain, but I'll contact you should anything else arise."`
+
+event "deep: warlord detected"
+
+
+
+mission "Deep: Mystery Cubes 1"
+	landing
+	name `Travel to <planet>`
+	description `Travel to <destination> to learn more about the situation with the warlord Beelzebub.`
+	source
+		government "Republic" "Free Worlds" "Neutral" "Syndicate" "Independent"
+		not system "Sol"
+	destination "Luna"
+	to offer
+		has "event: deep: warlord detected"
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		dialog `You receive a message from Lieutenant Paris. "Greetings, Captain. The situation involving Beelzebub has gone slightly sour, and the Navy is involved now. I have been asked to gather the merchants who assisted the Deep previously in placing the cubes. If you are interested, please come to <destination>."`
+
+
+
+mission "Deep: Mystery Cubes 2"
+	landing
+	name `Blockading the Devil`
+	description `Travel to <destination> to set up a blockade in hopes of capturing the warlord Beelzebub.`
+	source "Luna"
+	destination "Maelstrom"
+	deadline
+	to offer
+		has "Deep: Mystery Cubes 1: done"
+	
+	on offer
+		log `Traveled to a restricted Navy base on Luna. Beelzebub has been causing trouble for both Deep Security and the Navy, so Navy has begun recruiting merchants to help in the search for the warlord.`
+		conversation
+			`A pair of men in Navy uniforms escort you to a restricted area of the Luna facility. One of them uses a keycard to open an elevator and ushers you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
+			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of the galaxy.`
+			`	An hour of waiting passes, and Lieutenant Paris walks into the room followed by a Navy admiral. "I hope you are all enjoying your stay," the admiral remarks. "Now. How is it that most of the cubes you placed were mysteriously disabled shortly after pirates entered each system?"`
+			`	The admiral looks to each of the captains in the room, seemingly waiting for a response.`
+			choice
+				`	(Say nothing.)`
+					goto next
+				`	"Maybe they know how to detect the cubes."`
+			
+			`	The admiral looks at you. "Doubtful." Paris nods, as if to back up this claim.`
+			label next
+			`	He clears his throat and continues, "Allow me to explain the situation. Roughly two weeks after the last of your 'deliveries' were activated, the sensors identified Beelzebub's ship in the northern reaches of the Dirt Belt. We dispatched half of the nearest Navy garrison to apprehend the vessel, only to arrive and find a convoy of Star Barges instead.`
+			`	"Worse, while our ships were in pursuit of the decoys, a pirate fleet managed to assault their home base and captured a handful of docked Cruisers. And, amidst the chaos, most of the cubes you placed in the Dirt Belt and Core were disabled!"`
+			`	Before the admiral can work himself up further, Paris intercedes with the rest of the story. "The cubes that Deep Security had you position on multiple worlds were surveillance devices - sensor cubes, as we call them - designed to track Beelzebub's ship and notify us when the ship was located. It can be presumed that Beelzebub now has access to these cubes and has undoubtedly converted them to work in his favor. It may take us weeks to retrieve them, but at the moment it can be assumed that Beelzebub knows where we will be."`
+			choice
+				`	"Why are you involving us in this?"`
+				`	"Are we part of a plan to take Beelzebub down?"`
+			
+			`	"Beelzebub is perhaps the most wanted pirate warlord since the 28th century. With both Navy and Deep technology now in the hands of this criminal, every available ship will be required to take him down. Given this, we are now hoping that you would be willing to assist us in trapping Beelzebub. The six of your fleets combined would certainly make up for anything that the Navy has lost in the attack."`
+			`	"How much will we be paid?" one of the other merchant captains asks. "At minimum, one million credits," the admiral replies. The captain who asked instantly agrees to help, as do two others.`
+			choice
+				`	"I'll help as well."`
+					goto accept
+				`	"Sorry, but I am not interested in helping."`
+			
+			`	One other merchant captain also declines, and you both are escorted out of the room, into the waiting elevator. The trip back to the surface is silent, and your escort dismisses you both with a simple "Goodbye."`
+				decline
+			
+			label accept
+			`	In the end, only one of the merchant captains declines. She is escorted out of the room, and the admiral explains each merchant captain's new role.`
+			`	"We assume that Beelzebub knows where we will be, but we know where he is as well - the stolen Cruisers and the pirate fleet that attacked our base moved toward the Core. Given the severity of the crime that Beelzebub has just committed, he will undoubtedly attempt to get as far away from the law as possible. That leaves us only two possible destinations: Buccaneer Bay, or the anarchist colonies of the Far North. Our best guess is that the colonies are the more appealing option to a warlord.`
+			`	"We'll be setting up multiple blockades in hopes of boxing Beelzebub in as a number of fleets sweep the galaxy. Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
+				accept
+			
+	on visit
+		dialog `You have reached <planet>, but some of your escorts have not yet reached the system. Wait for all escorts to enter the system before landing.`
+	
+	npc accompany save
+		government "Deep Security"
+		personality heroic escort
+		fleet
+			names "deep"
+			variant
+				"Mule"
+				"Raven" 2
+	npc accompany save
+		government "Republic"
+		personality heroic opportunistic escort
+		fleet
+			names "republic capital"
+			variant
+				"Cruiser"
+				"Gunboat" 2
+
+
+
+mission "Deep: Mystery Cubes 3: Escorts"
+	landing
+	invisible
+	to offer
+		has "Deep: Mystery Cubes 2: done"
+	to fail
+		has "Deep: Mystery Cubes 4: done"
+	npc kill
+		government "Deep Security"
+		personality heroic escort vindictive
+		fleet
+			names "deep"
+			fighters "deep fighter"
+			variant
+				"Mule"
+				"Raven" 2
+				"Dagger"
+	npc kill
+		government "Republic"
+		personality heroic opportunistic escort vindictive
+		fleet
+			names "republic capital"
+			variant
+				"Cruiser"
+				"Gunboat" 2
+	npc kill
+		government "Republic"
+		personality timid
+		fleet
+			fighters "republic fighter"
+			variant
+				"Combat Drone" 4
+
+
+
+mission "Deep: Mystery Cubes 3"
+	landing
+	name `Defend <planet>`
+	description `Destroy the pirates attacking <planet>.`
+	source "Maelstrom"
+	to offer
+		has "Deep: Mystery Cubes 2: done"
+	
+	on offer
+		conversation
+			`Several of the <planet> spaceport landing pads are suitable for even the largest of Navy capital ships. Paris explains to you that at one time this world was used as a major Navy base, but has since been replaced by Farpoint closer to the Far North anarchist worlds.`
+			`	Once every ship is parked, a captains' briefing is held on an empty landing pad. "Don't expect this job to be fun," Lieutenant Paris states. "We could be waiting around here for days before anything happens, and we need to stay in system the entire time."`
+			choice
+				`	"What do we do while we wait?"`
+			`	"For now, you can walk around the spaceport and see what there might be to do, but don't stray too far, otherwise you might never get back to your ship in time." Paris hands you a communication device. "This way you can be notified when something happens regardless of where you are. I'm going to stay on my ship and monitor the incoming transmissions."`
+			choice
+				`	(Wander the spaceport.)`
+				`	(Stay near my ship.)`
+					goto ship
+			`	Other than the occasional blaring of a train whistle, the spaceport of <planet> is rather tranquil. You pass the time by talking to a few tourists, most of whom are getting ready to go rock climbing. While walking through the restaurant district, the ground begins to shake slightly. Many of the locals don't even react to the earthquake, and eventually it subsides. Once you have walked through the entire spaceport and seen all that it has to offer, you begin to make your way back to your ship.`
+				goto mirfak
+				
+			label ship
+			`	One of the Navy crewmen produces a football from their cabin, and a small game begins inside of an open landing pad. Others try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to rumble; an earthquake. A Navy member calls out to everyone. "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The shaking eventually subsides, and you decide to go into your ship to rest.`
+			
+			label mirfak
+			`	Suddenly, your communication device beeps and you hear Lieutenant Paris' voice, "The blockade in Mirfak has just been attacked. I repeat, the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as the pirate fleet included one of the stolen Cruisers."`
+			`	A rather young recruit asks, "Should we go help them?" to which a senior officer responds, "We were given orders and we're going to follow them unless told otherwise." The comms fall silent, and the waiting resumes.`
+			``
+			`	A few anxious hours pass with no new information. Suddenly, without warning, one of the Ravens takes off and your communications device begins blaring. "A pirate fleet just jumped into the system, alongside two Navy Cruisers painted in pirate colors!" All the captains and their crew scatter for their ships, ready to fight.`
+				launch
+	
+	npc kill
+		government "Pirate"
+		personality staying heroic unconstrained target harvests plunders
+		fleet
+			names "pirate"
+			variant
+				"Cruiser" 2
+				"Fury (Laser)" 3
+
+
+
+mission "Deep: Mystery Cubes 4"
+	landing
+	name `Rendezvous on <planet>`
+	description `Travel to <destination> with reinforcements for its blockade.`
+	source "Maelstrom"
+	destination "Farpoint"
+	to offer
+		has "Deep: Mystery Cubes 3: done"
+	
+	on offer
+		conversation
+			`Despite the commandeered Navy Cruisers, the pirates were unable to break through the blockade. After all of your group has landed, Paris invites the captains into his ship and makes contact with mission control. He relays the battle report, and you hear that the blockade in Matar was also attacked, but no stolen Cruisers were sighted.`
+			`	"What are your orders, Admiral?" Paris asks over the comms.`
+			`	"Lieutenant, your report makes three Cruisers accounted for, yet still no sign of Beelzebub. Our recon fleets have almost reached the blockades, meaning we'll catch this warlord soon enough. After the Navy fleet sweeping toward your post enters Nihal, I want you to lead everyone to <destination>. Beelzebub may be planning an attack on the blockade there with the remaining three Cruisers."`
+			`	"Understood sir." After contacting the captain of the Navy fleet approaching <origin>, Paris holds a short all-hands briefing to inform the crew that they should be ready to leave for <destination> in a few hours.`
+				accept
+	
+	npc
+		government "Republic"
+		personality heroic opportunistic escort entering
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Combat Drone" 6
+				"Dagger" 4
+	npc
+		government "Merchant"
+		personality staying vindictive
+		system destination
+		fleet
+			names civilian
+			variant
+				"Bastion"
+				"Manta" 2
+	npc
+		government "Republic"
+		personality staying heroic opportunistic vindictive
+		system destination
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate"
+	npc
+		government "Deep Security"
+		personality staying heroic opportunistic vindictive
+		system destination
+		fleet
+			names "deep"
+			fighters "deep fighter"
+			variant
+				"Aerie" 2
+				"Dagger" 4
+				"Corvette (Speedy)"
+	npc
+		government "Republic"
+		personality heroic opportunistic vindictive
+		system Sol
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Cruiser" 2
+				"Combat Drone" 14
+				"Lance" 4
+				"Frigate" 2
+	npc evade
+		government "Pirate"
+		personality staying heroic unconstrained target plunders harvests
+		system destination
+		fleet
+			names pirate
+			variant
+				"Cruiser" 3
+				"Marauder Leviathan"
+				"Leviathan (Hai Engines)"
+				"Headhunter (Particle)" 3
+				"Firebird (Plasma)" 2
+				"Marauder Firebird (Weapons)" 2
+	
+	on enter "Alnitak"
+		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates your sensors identify the three stolen Cruisers.`
+	on visit
+		dialog `You have landed on <planet>, but there are still pirates attacking the system. Defeat all of the pirates in order to complete this mission.`
+	on enter "Hassaleh"
+		set "deep: passed through north"
+	on complete
+		event "assisted the deep" 7
+		payment 1000000
+		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but he has escaped. The Navy is still searching, but is no longer asking for help from merchants.`
+		log "People" "Beelzebub" `Beelzebub, as many call them, is one of the most notorious pirates in human space. They're responsible for committing countless acts of crimes against both humanity and the Republic government and are still at large somewhere in the galaxy despite a major setback.`
+		conversation
+			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up to tend to the wounded and multiple ships are being repaired. You are directed to an unscathed building in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and your fellow merchant captains have convened. After you enter the room and get settled down, the admiral begins to speak.`
+			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
+			branch core
+				not "deep: passed through north"
+			
+			`	"Beelzebub can't have gone to the Core," Paris butts in. "We traveled here through the uninhabited systems. We would have seen Beelzebub had he gone that way."`
+			`	"That's good news then. All we have to do is wait Beelzebub out until he decides to poke his little head back out.`
+			
+			label core
+			`	"Luckily, all six stolen Cruisers are accounted for, albeit destroyed. Deep Security forces have begun to collect the stolen sensor cubes. We can confirm that Beelzebub was watching our every move, since the cubes are being found all over the Paradise Worlds and Core. They should all be retrieved within the next week." The admiral then turns to the merchant captains. "Now that Beelzebub doesn't have the upper hand anymore, you are no longer needed. As promised, <payment> will be transferred to each of your accounts for your services."`
+			`	"Thank you, Admiral," one of the captains replies.`
+			`	"No, thank you. All of you. You didn't have to accept this risk but you did, and I speak for the whole Navy when I say that we are grateful for that."`
+
+event "assisted the deep"
+
+
+
+mission "Deep: TMBR 0"
+	minor
+	name `Find "There Might Be Riots"`
+	description `Find and convince "There Might Be Riots" to throw a concert on <destination>.`
+	source
+		not system "Aludra"
+		attributes "deep"
+	destination "Midgard"
+	deadline 120
+	to offer
+		random < 60
+		has "There Might Be Riots part 3B: done"
+		not "Deep: Remnant 0: offered"
+		not "Deep: Project Hawking: offered"
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		conversation
+			`When you enter the <origin> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
+			choice
+				`	(Dance with them.)`
+					goto dance
+				`	(See what's going on.)`
+				`	(Ignore them.)`
+					defer
+			
+			`	You approach the Bounder and count five people dancing in total: three women and two men. One of the women dancing notices you walking over and exclaims, "Looks like someone else is about to join the party!" Her shout is met by a raucous cheer from the rest of the dancers, but you refuse to dance when they try to pull you into the fray.`
+			`	After the music begins to subside, one of the dancers introduces himself to you as Garrison. Garrison then lists off the names of his fellow dancers: Pierre, Rayna, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
+				goto choice
+			
+			label dance
+			`	You approach the Bounder and count five people dancing in total: three women and two men. One of the women dancing notices you walking over and exclaims, "Looks like someone else is about to join the party!" Her shout is met by a raucous cheer from the rest of the dancers, and they pull you into the fray.`
+			`	After a few minutes of dancing, the music begins to subside. One of the dancers introduces himself to you as Garrison, and lists off the names of his fellow dancers: Pierre, Rayna, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
+			
+			label choice
+			`	"How do you know about 'There Might Be Riots?'" Hannah asks you.`
+			choice
+				`	"I've met them."`
+					goto met
+				`	"I just like to listen to their music."`
+			
+			`	One of the other scientists, an older looking man named Pierre, looks right at you and stares. After a few moments he says, "I know you! You were in the 'Songs for the End of Civilization' broadcast from Pilot!" The rest of the scientists start agreeing with him as they look at you closer.`
+			
+			label met
+			`	"You know 'There Might Be Riots?' You are so lucky!" says Rayna.`
+			`	"I couldn't even see them during the 'Trouble on the Tarmac' tour, but you've met them? That's insane!" shrieks Laura.`
+			`	Hannah chimes in, "Do you know where the band is? They've been quiet for a while now, ever since that broadcast. I heard rumors that the Republic detained them for trespassing, but since you're here..."`
+			choice
+				`	"I know where they are and rest assured, they're safe."`
+				`	"Sorry, I don't know where they are."`
+					goto decline
+			
+			`	The group falls silent until Rayna asks "Do you think you could bring them to us for a live concert?"`
+			choice
+				`	"I'd love to."`
+				`	"No thanks. I have better things to do."`
+					goto decline
+			
+			`	All five scientists burst out in a cheer, clearly excited for the chance to see their favorite band live. As the cheering dies down Laura says, "We must get going now, <first>. We're being stationed on Midgard for the next few months, so if you do find 'There Might Be Riots,' please bring them there." Each member of the group says goodbye to you as they depart.`
+				accept
+			
+			label decline
+			`	The group looks visibly disappointed. A few minutes of talking later, they inform you that they must depart for Midgard and say their farewells.`
+				decline
+	to complete
+		has "Deep: TMBR 1: offered"
+
+
+
+mission "Deep: TMBR: Hint"
+	name `Reunite with the band`
+	description `A human on <origin> indicated she saw "There Might Be Riots" perform on <destination> last week. Hopefully they are still there.`
+	source
+		not system "Fah Soom"
+		government "Hai"
+		attributes "human tourism"
+	destination "Greenwater"
+	to offer
+		has "Deep: TMBR 0: active"
+		not "Deep: TMBR 1: offered"
+		random < 30
+	
+	on offer
+		conversation
+			`It takes you a while, but after a few hours of asking around the spaceport, you finally find someone who knows where the band is. "I saw them on <destination>," she says. "They were throwing a pretty gnarly concert just last week. I haven't heard of them playing anywhere else, so they might still be there."`
+				accept
+
+
+
+mission "Deep: TMBR 1"
+	landing
+	name `Transport band to <planet>`
+	description `Give the band "There Might Be Riots" a ride to <destination> so that they can perform for the Deep scientists.`
+	source "Greenwater"
+	destination "Midgard"
+	blocked "You have reached <origin>, but you'll need <capacity> to continue this mission. Return here when you have the required space free."
+	cargo "musical equipment" 4
+	passengers 8
+	to offer
+		has "Deep: TMBR 0: active"
+	on offer
+		conversation
+			`You find "There Might Be Riots" playing a gig right in the spaceport of <origin>. Judging by the large number of Hai in the audience, they seem to have amassed quite the following, even in Hai space.`
+			`	While the band intermixes crowd favorites and some new songs clearly inspired by their time in Hai space, you make your way to the side of the makeshift stage. Once the concert ends, Ulrich notices you and approaches.`
+			`	"Captain <last>, it's been a while! We've been having a great time with the peaceful squirrels ever since you dropped us off. It's the craziest experience we've ever had." He regales you with a number of adventures the band has been on since they came to Hai space, and how they were all surprised that even in such an idyllic place war was still a reality. "Say, what brings you here?"`
+			`	He listens intently to your story of the scientists on <planet>, but his brow furrows when you mention the rumor of imprisonment by the Republic.`
+			`	"Maybe we've been away long enough. I thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a pretty well-kept secret, so perhaps not. Maybe it's time to go back to the land of the humans."`
+			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as the band load their musical equipment on your ship and get ready for the long ride back to human space.`
+				accept
+	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
+	on complete
+		payment 250000
+		log `Brought "There Might Be Riots" back to human space from their vacation in Hai space to play a concert for a team of scientists in the Deep.`
+		conversation
+			`Almost as soon as "There Might Be Riots" steps off your ship, a crowd gathers. When it is clear that the band is not simply disembarking, but preparing to perform, the uproar makes you glad that you had not given any advance notification to the locals. As the band gets ready, you contact the spaceport authorities and have them notify Garrison and the other scientists that you have returned. The authorities don't seem too enthused about hosting a concert with no advance warning, but they agree to send your message.`
+			`	The crowd gets larger and larger over time, and judging by the increased number of ships landing, word has quickly spread that "There Might Be Riots" is back.`
+			`	As Ulrich and the band take the stage, you spot the scientists in the front row, grinning and cheering wildly. The first song is one you heard them play in Hai space, and even though none in the audience know the words to sing along, they appear to love the message, and the cheers and screams only grow more frenetic.`
+			`	During an intermission, you invite the scientists onto your ship to personally meet the band. The thrill in the eyes of each of the scientists is astounding as they meet the members of "There Might Be Riots."`
+			`	Before the intermission ends, each of the scientists thank you personally for bringing the band to Midgard, and Pierre even hands you <payment>. "It's the least we could give you," he adds. As the scientists start to depart your ship to listen to the rest of the concert, Hannah runs back to hug you before rejoining her friends in the crowd.`
+
+
+
+mission "Deep: Interrogation"
+	landing
+	invisible
+	source
+		attributes "deep"
+		attributes "spaceport"
+	to offer
+		has "Deep Archaeology 5: done"
+	
+	on offer
+		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
+		conversation "deep: questioning"
+
+
+
+mission "Deep: Questions"
+	landing
+	name `Mysterious Message`
+	description `Travel to <destination> to meet the author of an encrypted message.`
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system "Zosma"
+	destination
+		attributes "deep"
+		attributes "urban"
+	to offer
+		has "event: assisted the deep"
+		has "Deep: Interrogation: offered"
+		not "deep: helped before archaeology"
+	
+	on offer
+		dialog `Upon landing, you receive an encrypted message from an unknown sender. "Hello, Captain <last>. Your recent assistance of the Deep is much appreciated. I'd like to speak with you on <destination> if you are interested." The message is not signed.`
+	on complete
+		conversation "deep: questioning"
+
+
+
+conversation "deep: questioning"
+	branch question1
+		has "Deep: Interrogation: offered"
+	
+	`When you land on <origin> and open your ship's main hatch, you find yourself face-to-face with two Deep Security officers, neither of whom appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us, that would be much appreciated."`
+	choice
+		`	(Follow their orders.)`
+			goto orders
+		`	"Why do you need to question me?"`
+		`	(Close the hatch and flee)`
+			goto flee
+	
+	`	"Because we wish to question you on the nature of your work for Albert Foster. Now please, step off your ship and come with us."`
+	choice
+		`	(Follow their orders.)`
+		`	(Close the hatch and flee.)`
+			goto flee
+	
+	label orders
+	`	You follow the officers to a building located on the eastern edge of the spaceport. You are led to a small, dimly lit room on the second floor that contains nothing but two chairs and a table. You are told to sit in one of the chairs and wait.`
+		goto questioning
+	
+	label flee
+	`	You attempt to close the hatch, but a strong tingling sensation radiates from your abdomen. As you drop to the floor convulsing, you hold your eyes open long enough to glimpse a stun gun in one officer's hand.`
+	``
+	`	You wake up, slumped in a chair, in a dimly lit room. Across the table is another chair, empty. As you twist about, examining the rest of the room, the lingering soreness in your abdomen reminds you that even though you are alone for the moment, attempting to leave is likely unwise.`
+	
+	label questioning
+	choice
+		`	(Wait.)`
+	
+	`	Ten minutes pass in silence until a figure enters the room. In the dim light, you discern a tall, dark woman wearing what looks like a Deep Security uniform. Some of its badges, pins, and striping are unfamiliar to you.`
+	`	"I hope my men didn't have to struggle too much to get you here."`
+	choice
+		`	"Don't worry, it was just fine."`
+		`	"It wasn't the warmest welcome I've ever received."`
+	
+	`	The woman chuckles slightly. "No need to be sarcastic with me. Now, you know why you're here."`
+	choice
+		`	"I do?"`
+			goto clueless
+		`	"I didn't commit any crimes, so you have no right to detain me."`
+	
+	`	"Indeed, no crimes were committed during your work for Albert Foster, but we still have the right to detain you to keep the Deep safe. Cause us no trouble during this little meeting, answer my questions, and you will be on your way in a few minutes' time.`
+		goto foster
+	
+	label clueless
+	`	"Well if you don't then let me jog your memory: You took a small chip of wood from a historical church on Midgard - nothing criminal, mind you - and returned it to Vinci, where I assume you handed it over to the 'archaeologist' Albert Foster." The tone of her voice as she says "archaeologist," clearly conveys her disdain for his title. "Later you returned to Midgard with Albert Foster in tow, prompting us to run you out of the Deep.`
+	
+	label foster
+	`	"My first question to you: what exactly were you doing with Albert Foster?"`
+	choice
+		`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
+			goto honest
+		`	"He told me he was researching the Deep and he needed help conducting his research."`
+	
+	`	"And why do you think he needed someone else to do the work for him?"`
+	choice
+		`	"Because he wanted something illegal done."`
+		`	"Because he isn't allowed in the Deep."`
+			goto allowed
+	
+	`	"I already told you that you didn't commit a crime. The reason is that Foster has caused the Deep plenty of trouble in the past, so we don't particularly enjoy his presence. Now, did Albert make any discoveries due to your assistance?"`
+		goto choice
+	
+	label allowed
+	`	"Precisely. Now, did Albert make any discoveries due to your assistance?"`
+	
+	label choice
+	choice
+		`	"He discovered that the church on Midgard is far older than should be possible, dating back to at least the early 1700s."`
+		`	"We spotted something on Midgard that he called an 'artificial singularity.'"`
+			goto honest
+		
+	`	"Interesting finding, Captain. Is there anything else that he discovered?"`
+	choice
+		`	"No."`
+		`	"Yes. We used gravitational mapping equipment on Midgard and we found what looked like an artificial singularity."`
+			goto honest
+	
+	`	The woman does not respond for a few seconds. When she does begin speaking, you have to lean in to hear her. "Don't lie to me. I can make this experience very uncomfortable for you."`
+	choice
+		`	"Alright. We discovered an artificial singularity on Midgard."`
+	
+	`	"See? That wasn't so hard to admit, now was it?"`
+	
+	label honest
+	branch helped
+		has "Deep: Mystery Cubes 4: done"
+	
+	`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information. That is all we needed you for. You will be escorted back outside momentarily. Enjoy the rest of your day, <first> <last>."`
+		goto next
+	
+	label helped
+	apply
+		set "deep: helped before archaeology"
+	`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information, Captain. Before I let you go, I'd like to thank you for the work you've done for the Deep. I was interested to hear that the same Captain who helped us pursue Beelzebub also helped Albert Foster. Don't worry, we all make stupid mistakes. We'll scratch this one off your record.`
+	`	"You clearly mean no harm to the Deep, so I'll give you the privilege of asking me any questions you might have after this encounter."`
+		goto questions
+	
+	label question1
+	`You are escorted by two <planet> security guards to a Corvette occupying a landing pad close to the spaceport's Deep Security complex. Standing below the Corvette is the tall, dark-skinned woman who questioned you on your work for Albert Foster.`
+	`	"Good evening, Captain," she looks up to the overcast sky for a moment, "or whatever time of day it might be right now. I've been informed that you proved yourself a great asset to the Navy and Deep Security in tracking down and... almost trapping Beelzebub. Please, come inside my ship for a moment."`
+	choice
+		`	(Follow her.)`
+			goto ask
+		`	"Why?"`
+	
+	`	"You can leave if you wish to, but I'd only be keeping you for a moment."`
+	choice
+		`	(Enter her ship.)`
+		`	(Leave.)`
+			decline
+	
+	label ask
+	`	The woman closes the Corvette's hatch, leaving you in the light of dim fluorescent bulbs. This must be quite an old ship to still be using fluorescent bulbs instead of the LED lights that most modern ships use for their interiors.`
+	`	"I've asked you onto my ship so that we may have some privacy. You clearly mean no harm to the Deep. For starters, I'm sure you'll be happy to hear that we've scratched your incident with Albert Foster from your record. Additionally, I'm extending you the privilege of asking me any questions you might have relating to our last encounter."`
+		goto questions
+	
+	label questions
+	choice
+		`	"When was the Deep really settled?"`
+		`	"Is there really an artificial singularity on Midgard?"`
+			goto singularity?
+		`	"I don't have any questions."`
+			goto none
+		
+	`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
+	choice
+		`	"Were the original humans of the Deep really brought here by aliens?"`
+		`	"I don't have any more questions."`
+			goto none
+		
+	`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
+	choice
+		`	"Is there really an artificial singularity on Midgard?"`
+		`	"I don't have any more questions."`
+			goto none
+		
+	`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
+		goto done
+	
+	label singularity?
+	`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
+	choice
+		`	"When was the Deep really settled?"`
+		`	"I don't have any questions."`
+			goto none
+		
+	`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
+	choice
+		`	"Were the original humans of the Deep really brought here by aliens?"`
+		`	"I don't have any more questions."`
+			goto none
+		
+	`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
+	
+	label done
+	branch question2
+		has "Deep: Interrogation: offered"
+	
+	`	"That will be enough questions for now. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
+		goto next
+	
+	label question2
+	`	"That will be enough questions for now."`
+		goto next
+	
+	label none
+	branch question3
+		has "Deep: Interrogation: offered"
+	
+	`	"If that is all, then this meeting is over. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
+		goto next
+		
+	label question3
+	`	"Very well."`
+		goto next
+	
+	label next
+	branch question4
+		has "Deep: Interrogation: offered"
+	
+	`	The woman gets up from her chair and stops in the doorway. She turns her head slightly and says in a low voice, "I'll be watching," then leaves. Moments later, the same two men that brought you here step into the room and ask you to follow them. They lead you to an entryway and lock the door as you step out into the spaceport.`
+		decline
+
+	label question4
+	`	The woman opens the hatch to the ship. "We might meet again in the future. Stay on your best behavior and our next meeting will surely be on good terms. Goodbye, Captain."`
+		decline
+	
+
+
+mission "Deep: Project Hawking"
+	minor
+	name `Research Supplies`
+	description `Fetch research supplies from <stopovers> and return them to <destination> by <date> for "Project Hawking."`
+	source
+		attributes "deep"
+		not attributes "station"
+	destination "Midgard"
+	clearance
+	stopover "Carbuncle Station"
+	stopover "Prime"
+	stopover "Vinci"
+	passengers 4
+	cargo "project supplies" 50
+	deadline
+	deadline 10
+	to offer
+		random < 40
+		has "Deep: Mystery Cubes 4: done"
+		or
+			not "chosen sides"
+			has "main plot completed"
+		
+	on offer
+		conversation
+			`While walking away from an argument with a local merchant over the price of a basket of fruit (ten credits is far too much for only a dozen pieces of fruit), you spy a group of four scientists moving about, briefly speaking with various captains.`
+			branch know
+				has "Deep: TMBR 0: offered"
+			`	One of them sees you, and after a brief moment examining the tablet in his hand, leads the group toward you.`
+			`	"Hello, Captain," the tall man among the group says. "<first> <last>, is it?" You nod. "Splendid. I'm Garrison, and these are my colleagues Hannah, Pierre, and Laura. We're looking for a captain who would be able to give us a ride to a few planets in the Paradise sector where we will be acquiring supplies for our research. The Deep is currently short on spare transport ships, but did give us permission to hire trustworthy merchant captains so we don't miss our deadline. Would you be able to help?"`
+			choice
+				`	"I'd be glad to help. Where do you need to go?"`
+					goto accept
+				`	"Sorry, I'm too busy at the moment. You'll need to find a different captain."`
+					decline
+			
+			label know
+			`	You recognize them as Garrison, Hannah, Pierre, and Laura, the scientists who asked you to find There Might Be Riots. "<first> <last>, is that you? What a great time to run in to you!" Garrison exclaims. "We're looking for a captain who can give us a ride to a few planets in the Paradise sector while we pick up supplies for our research. We'd normally use an official transport from the Deep, but they're having some trouble sparing one at the moment. Instead, we received permission to hire a trustworthy merchant captain to act as our transport. Would you be able to help?"`
+			choice
+				`	"I'd be glad to help. Where do you need to go?"`
+				`	"Sorry, I'm too busy at the moment. You'll need to find a different captain."`
+					decline
+			
+			label accept
+			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
+			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
+			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
+				accept
+	
+	on visit
+		dialog `You have arrived on <planet>, but you do not have all the supplies needed for "Project Hawking." Return to <stopovers> to collect all of the required cargo.`
+	
+	npc
+		government "Independent"
+		personality staying
+		system "Naos"
+		ship "Marauder Quicksilver (Engines)" "Gusoyn"
+	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the scientists and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
+	on complete
+		payment 1500000
+		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
+		conversation
+			`"Don't go to the spaceport," Garrison says. "We'll be dropping the supplies off elsewhere." He directs you toward the mountains.`
+			branch know
+				has "Deep Archaeology 5: done"
+			`	As the peaks loom nearer, Garrison points to a set of four landing pads adjacent to a single building, the entire complex surrounded by trees. The nearest village is easily a few kilometers away.`
+				goto next
+			
+			label know
+			`	As the peaks loom nearer, Garrison points to a set of four landing pads adjacent to a single building, the entire complex surrounded by trees. It is very close to the church whose wood you sampled for Albert Foster, meaning that it is also very close to where his gravitational sensors supposedly identified an "artificial singularity."`
+			
+			label next
+			`	Several dozen forklifts are waiting for your ship on the surface, and your passengers busy themselves by supervising the unloading process. The high fencing around the landing pads prevents you from wandering, but you stretch your legs and enjoy the clear mountain air while you can.`
+			`	Your stroll around the launchpads is interrupted by the familiar warning tones emitted by landing spacecraft, and you look up to see a Deep Security Raven, descending rapidly. It lands next to the <ship>, and Lieutenant Paris steps out, looking rather distressed.`
+			`	"Captain! I'm going to need your ship's scanner logs from as far back as when you took this job."`
+			`	Hearing the urgency in his voice, you hastily return to your ship's cockpit, copy the scanner logs onto a data chip, and bring it to Paris. He views the logs on a tablet.`
+			`	"There appear to be three unidentified ships that began following you after each time you retrieved more cargo. Whether their intent is malicious or not, they are clearly interested in this project."`
+			choice
+				`	"What are you going to do?"`
+				`	"Do you fear that we're in danger?"`
+			`	"I have no idea." Paris looks over to the crew that are unloading the cargo. "Hurry up, men!" One of them shouts back, "Only a few more crates left, Sir."`
+			`	Paris turns to you and says "I suggest you leave immediately," and then turns to the scientists, "and you four should come with me while we figure out what is happening here. Here may not be safe for you."`
+			`	In space, the noise from high-powered atomic engines can only be heard as a dull rumbling, and even then, only aboard the ship they propel. In atmosphere, however, they are deafening. The thunderclap of a high-speed atmospheric re-entry forces everyone to look up. A battle-scarred Quicksilver in pirate colors is racing toward the building. The workers scramble for cover, abandoning their machinery and the cargo.`
+			choice
+				`	(Run for my ship.)`
+				`	(Run for the nearest cover.)`
+					goto cover
+			
+			`	You sprint toward your ship as fast as you can, but before you can reach it you hear the Quicksilver's cannons roar to life. The projectiles stream right overhead, exploding into the side of the building, sending rubble everywhere and knocking you off your feet.`
+				goto crash
+			
+			label cover
+			`	You duck for cover behind a concrete barrier that divides two landing pads when you hear the Quicksilver's cannons roar to life. The projectiles stream right overhead, exploding into the side of the building, sending rubble everywhere.`
+			
+			label crash
+			`	As quickly as it appeared, the Quicksilver disappears, shrouded from view by the trees. Even though its engine noise has abated, Paris has to shout for his orders to be heard above the commotion. As you rise to your feet you feel the earth heave, and a few moments later the muffled thud of an explosion drowns out Paris's voice. A dark cloud of smoke is rising up from a half kilometer away, in the direction the Quicksilver flew. Even in daylight you can see light from the fires below, reflected ominously by the airborne soot. A second tremor, somehow larger than the first, catches everyone off guard, knocking you back to the ground.`
+			choice
+				`	"Earthquake!"`
+				`	"What is happening?"`
+			
+			`	No one is able to hear you over the low rumble of the shaking ground and the rustling of the forest around the complex. The building, already scarred and torn open by weapons fire, crumbles under the new stresses leaving only a pile of rubble. A minute after the tremor began, the vibrations stop, leaving the air silent; not even the rustle of the leaves or the tweet of a bird can be heard.`
+			`	Everyone is clearly startled by the experience as they slowly raise themselves from the ground. You spot Garrison helping up Pierre and Hannah. Lieutenant Paris and Laura are in a tight embrace, but quickly release each other when they notice you looking.`
+			`	A few Deep Security ships begin to land, dropping off medics and cleanup crews to take care of the destroyed building. One of the ships flies in the direction of the fire. Paris says to you, "Captain, I think you should leave. Deep Security will handle the situation here."`
+			`	You say goodbye to the scientists, who thank you for helping them, even if much of the cargo was destroyed. You board your ship and fly toward the spaceport. Upon landing, you find that <payment> have been transferred to your account from Deep Security.`
+
+
+
+mission "Deep: Project Hawking: Carbuncle"
+	landing
+	invisible
+	source "Carbuncle Station"
+	to offer
+		has "Deep: Project Hawking: active"
+	to fail
+		has "Deep: Project Hawking: done"
+	npc kill
+		government "Independent"
+		personality waiting
+		ship "Marauder Splinter (Engines)" "Abaddon"
+	on offer
+		conversation
+			`The majority of Carbuncle Station is restricted to normal visitors. The workers here will not even refuel your ship upon request. It's clear that Lovelace Labs, the owners of this station, have secrets stored within the walls of this station.`
+			`	You open your docking doors, only to find the bulkhead doors to the rest of the station blocked by three well-armed security officers. You follow the scientists' lead and approach the guards. They spend several minutes conversing, but eventually a guard activates a toggle on his communicator. A video screen next to the bulkhead blinks on, revealing a woman in a uniform distinctly more embellished than those of the guards before you.`
+			`	"What brings you here to Carbuncle Station?"`
+			`	Pierre responds with only two words, "Project Hawking," and the screen momentarily goes blank. When it flickers on again, she is equally succinct and says only, "Admit three."`
+			`	After a short discussion, Garrison agrees to stay behind with you. Pierre, Hannah, and Laura are lead through an awkwardly small opening in the bulkhead door, into the restricted area. Rather than wait in front of the guards, you return to the comfort of your ship with Garrison.`
+			choice
+				`	"How should we pass the time while we wait?"`
+				`	"How long will it be before they come back?"`
+					goto wait
+			
+			`	"It shouldn't take long for them to come back, so we could have a short chat if you want."`
+				goto questions
+			
+			label wait
+			`	"At most ten minutes. In the meantime, we could have a short chat. I find dead air annoyingly awkward."`
+			
+			label questions
+			choice
+				`	"Do you know what Lovelace Labs keeps in this station?"`
+				`	"What is 'Project Hawking'?"`
+					goto project
+			
+			`	"I haven't the faintest idea what they keep here. Even if I did, I'm sure I wouldn't be allowed to tell you. The only thing I know for sure they have here are components for the project we're working on."`
+			`	"Project Hawking?" you ask. Garrison nods.`
+			
+			label project
+			`	"The exact details of Project Hawking are classified. I'm not able to tell you much aside from the fact that we're doing energy and weapons research. Scientists from the Deep who are highly specialized in a certain field will be asked to work on government projects every so often.`
+			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a battery packs that I have yet to see a single ship using.`
+			`	"Anyhow, because of my past work, the Deep approached me to work on this project. The pay was better than what I was getting before so I accepted it. It was a pleasant surprise to meet my partners as well. Hannah graduated in the same undergrad class as me, double majoring in quantum mechanics and ancient history, of all things."`
+			choice
+				`	"What is it that you need from Carbuncle Station that is so secret?"`
+				`	"What about Pierre and Laura?"`
+					goto partners
+			
+			`	"Like I said already, the project is classified. It's not something I would understand, though. It's in Laura's field of expertise. You see, she has a PHD in-"`
+				goto end
+			
+			label partners
+			branch electron
+				has "event: navy using mark ii ships"
+			`	"Pierre is an older guy, he's been working on laser weaponry for the better part of three decades now. Before this he was working on a separate project, but the Deep asked that he take time away from that to work on Project Hawking while they try to find a replacement for him, since the project needed someone with better knowledge in laser weaponry than the rest of us.`
+				goto laura
+			
+			label electron
+			`	"Pierre is an older guy. He has been working on laser weaponry for the better part of three decades now. If you've ever seen an electron beam in action, you have him to thank for that. And a few others, of course, but one of his findings is really what brought the whole project together.`
+			
+			label laura
+			`	"Laura, on the other hand-"`
+			
+			label end
+			`	Before Garrison can finish speaking, the other three scientists return, helping each other carry a sealed metal box. "We're just going to set this in the back, if you don't mind," Pierre says. The scientists make themselves cozy in the bunk rooms and get ready to depart.`
+			`	A chirping from your ship's radio indicates you have received a message from the station. You open it and are not shocked at its contents:`
+			``
+			`		Your immediate departure is required.`
+			`					Carbuncle Station Docking Authority`
+			``
+			`	You signal to your crew and passengers that takeoff is imminent, and obey the wishes of the Lovelace Lab's research station.`
+				launch
+
+
+
+mission "Deep: Project Hawking: Prime"
+	landing
+	invisible
+	source "Prime"
+	to offer
+		has "Deep: Project Hawking: active"
+	to fail
+		has "Deep: Project Hawking: done"
+	npc kill
+		government "Independent"
+		personality waiting
+		ship "Marauder Raven (Engines)" "Krampus"
+	on offer
+		conversation
+			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story close to the warehouse section. "We're picking up various materials used in the creation of ships that we need samples of for testing," Pierre explains.`
+			`	The scientists speak with the spaceport authorities, who begin loading several tons of alloys into your cargo from an overhead platform. You sit with Pierre as you wait for them to finish.`
+			choice
+				`	"That's a lot of different alloys. What are they going to be used for?"`
+				`	"Why did we need to come all the way to Prime to get these materials?"`
+					goto alloys
+			
+			`	Pierre cocks his head to the side as he looks at you. "We're going to destroy them. Short and simple. We need to see how different ship alloys hold up to the technology we're working on.`
+			
+			label alloys
+			`	"We could have gotten materials from a shipyard local to the Deep, but Betelgeuse Shipyards gets regular shipments of metals more commonly used by shipyards in the Dirt Belt, so it's really the closest place to get everything we need."`
+			choice
+				`	"Do you enjoy the work you do for the Deep?"`
+				`	"How long have you been working for the Deep?"`
+			
+			label story
+			`	"Let me answer that question with a short story of my life." Pierre clears his throat and puffs up his chest a little, as if preparing himself to tell a great epic. He may enjoy talking about himself a little too much...`
+			`	"I was born on Windblain in the Regor system. It's a small, quiet world of little galactic importance, but you should give it a visit sometime. My family wasn't the most well off, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job even before graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it! My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law.`
+			`	"How about you?"`
+			`	You tell Pierre about your life on New Boston, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
+			`	"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
+			`	"The cargo is all in, Captain!" Garrison yells down from the platform above. "We're ready when you are!"`
+				accept
+
+
+
+mission "Deep: Project Hawking: Vinci"
+	landing
+	invisible
+	source "Vinci"
+	to offer
+		has "Deep: Project Hawking: active"
+	to fail
+		has "Deep: Project Hawking: done"
+	npc kill
+		government "Independent"
+		personality waiting
+		ship "Marauder Manta (Engines)" "Valac"
+	on offer
+		conversation
+			`"It might take a while to get a hold of the electronics we need," Pierre says after you land. "Just stick around the spaceport while we're gone."`
+			`	"You guys can handle it, right?" Hannah asks. "I haven't been to Vinci in years. I want to see the virtual reality activities they have in the spaceport arcade now."`
+			`	The other three scientists agree that they can make do without her, and she immediately runs off in the direction of the spaceport arcade. When you find her, she is busy playing a VR table tennis game against an AI hologram. By the look of things she is an amazing player, and the score is currently tied.`
+			choice
+				`	"You're doing great! Do you play table tennis often?"`
+				`	"You can do it!"`
+				
+			`	Hannah slams the virtual ball with her paddle, causing it to bounce off the table, fly right past her opponent, and disintegrate into thin air.`
+			`	"I did pretty good, didn't I? It's my first time playing table tennis, too."`
+			`	"How did you do that good for your first time?"`
+			`	"I'm just a quick learner. Always have been. In university I would do work for my history courses while sitting through lectures on quantum mechanics. Got straight A's in both classes without a problem."`
+			choice
+				`	"That's a strange combination of classes."`
+				`	"What did you learn in ancient history?"`
+					goto history
+			
+			`	"That's what everyone else told me, too. It was fun though, and a lot of what I learned in ancient history was just as interesting as what I learned in quantum mechanics."`
+			`	"What did you learn in ancient history?" you ask.`
+			
+			label history
+			`	"I could spend weeks on end talking about what I learned in those classes. The most interesting thing I learned has to be my ancestry. Most of my ancestors came from a place on Earth called Scandinavia, and my last name means 'garden' in an ancient language.`
+			`	"It's interesting to know where my ancestors lived over a thousand years ago when humanity was still stuck on Earth. It's amazing that the hyperdrive was invented when it was too, because we could have easily wiped ourselves out if we hadn't. Life still isn't perfect across the galaxy, but it's still far better on average than it was on Earth alone."`
+			`	Hannah looks like she is ready to endlessly blather on about Earth before the hyperdrive was invented, but you are saved by Laura. "We got the electronics we need loaded onto your ship, Captain. Garrison and Pierre are waiting for us there."`
+				accept
+
+
+
+mission "Deep: Remnant 0"
+	minor
+	name `Fetching keystones`
+	description `Buy 10 quantum keystones from Hai space and return them to <destination>, where Ivan and his team will research them and their link to the spatial anomaly in Terminus.`
+	source
+		attributes "deep"
+		not system "Epsilon Leonis"
+	to offer
+		random < 40
+		has "Deep: Mystery Cubes 4: done"
+		has "Terminus exploration: done"
+		has "First Contact: Hai: offered"
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		conversation
+			`While wandering through the spaceport, you are approached by a man you instantly recognize as Ivan, the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He mentions that he heard how helpful you have been to others within the Deep.`
+			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it.`
+			`	Ivan looks around then leans in to whisper to you. "I must ask you, do you know of the Hai?" You nod. "Splendid!" He jumps up, nearly knocking his own glasses off his face. "Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'quantum keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
+			branch remnant
+				has "First Contact: Remnant: offered"
+			choice
+				`	"I would be glad to help."`
+				`	"Sorry, but Hai space is too far for me."`
+					decline
+					
+			`	"Thank you again, Captain!" he says very enthusiastically. "I'd have traveled myself, but I must confess we are low on funds and will not receive more unless we make some sort of discovery. We will be able to pay for half the cost of the stones once you return."`
+				accept
+			
+			label remnant
+			choice
+				`	"I already know what is on the other side of the wormhole. In fact, installing a single quantum keystone is enough to enter into the spatial anomaly."`
+				`	"Sorry, but Hai space is too far for me right now."`
+					decline
+			apply
+				set "deep: knew of stones before scientists"
+			`	Ivan looks like he is about to fall over with joy after you mention having entered the wormhole. "Really? Please, tell me what you found!"`
+			branch friendly
+				has "event: ember waste label"
+			apply
+				set "deep: did reveal remnant"
+			`	You tell Ivan all that you saw on the other side of the wormhole, and how you found strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test. You also mention the other oddities of the region of space, including the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
+				goto end
+			
+			label friendly
+			choice
+				`	(Reveal the existence of the Remnant.)`
+				`	(Don't reveal the existence of the Remnant.)`
+					goto secret
+			apply
+				set "deep: did reveal remnant"
+			`	You tell Ivan about how the region of space beyond the wormhole is known as the "Ember Waste" and that it is inhabited by a group of friendly humans who fled there during the Alpha Wars. These humans have advanced independently from the rest of humanity for centuries. You mention their strange culture, sharing what you can remember about the songs the Remnant people sang.`
+			`	You also mention the other oddities of the Ember Waste, including the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
+				goto end
+				
+			label secret
+			apply
+				set "deep: did not reveal remnant"
+			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever-present red glow, similar to the color of the wormhole. You also mention the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
+				
+			label end
+			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the quantum keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about this region that you describe. Oh, before I forget: we can pay you for half of the cost of the keystones."`
+			choice
+				`	"I would be glad to help."`
+					accept
+				`	"Sorry, I don't want to help with this."`
+					decline
+	on visit
+		dialog `You do not have the 10 quantum keystones that Ivan asked you to purchase in Hai space. You should return here after obtaining them.`
+	on complete
+		outfit "Quantum Keystone" -10
+		event "deep: keystone research" 14
+		payment 60000
+		log `Ran into the scientists who are investigating the anomaly in Terminus. Gave them ten quantum keystones from Hai space to examine.`
+		conversation
+			branch TMBR
+				has "Deep: TMBR 0: offered"
+			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but his research assistant, Rayna, is waiting to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
+				goto end
+			
+			label TMBR
+			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but instead you find that Rayna is waiting to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
+			
+			label end
+			`	"Thank you for buying these keystones for us. It may take us a month or two to fully study them. We'll contact you when we're in need of your assistance again."`
+
+event "deep: keystone research"
+
+
+
+mission "Deep: Remnant: Keystone Research"
+	landing
+	name `Travel to <planet>`
+	description `Meet up with Ivan on <destination> to learn about his research on the quantum keystones you brought him.`
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system "Epsilon Leonis"
+	destination "Valhalla"
+	to offer
+		has "event: deep: keystone research"
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		dialog
+			`You receive a message from Ivan, the scientist working on the spatial anomaly in Terminus. "Captain, we have finished studying the quantum keystones, and they do in fact allow access through the wormhole. Please meet with me on <destination> if you wish to continue helping us with our research."`
+
+
+
+mission "Deep: Remnant 1"
+	landing
+	name `Exploring the Unknown`
+	description `Explore the region of space beyond the Terminus wormhole. Return to <destination> after exploring everything you can reach.`
+	source "Valhalla"
+	waypoint "Terminus"
+	to offer
+		has "Deep: Remnant: Keystone Research: done"
+		not "deep: knew of stones before scientists"
+		not "First Contact: Remnant: offered"
+		# A relic of how Deep: Remnant use to be structured.
+		not "Deep: Remnant 1A: offered"
+		not "Deep: Remnant 1B: offered"
+		not "Deep: Remnant 1C: offered"
+	
+	on offer
+		conversation "deep: remnant"
+	on accept
+		outfit "Quantum Keystone" 1
+	on enter "Arculus"
+		dialog `This region of space appears to be inhabited. You should attempt to find out more about the beings living here.`
+	on enter "Nenia"
+		set "discovered void sprites"
+		dialog
+			`This system is full of strange, space-dwelling creatures that appear to be eating asteroids. The sight of their mouthparts chewing rock into dust is sure to be a recurring nightmare for any captain who visits this system. You make a note to avoid flying too close, in case they mistake your ship for their next meal.`
+			`	With these strange creatures so close to the wormhole, one can only wonder what lies deeper in this region of space.`
+	on visit
+		dialog `You have landed on <planet>, but you have not explored enough of the space beyond the wormhole. Return to the wormhole and continue exploring the region for anything of interest.`
+	to complete
+		has "First Contact: Remnant: offered"
+		has "discovered void sprites"
+
+
+
+mission "Deep: Remnant 2"
+	landing
+	name `Analyze Wormholes`
+	description `Ivan and his team are interested in studying the wormholes beyond the one in Terminus. Return to the strange region of space and travel through the wormholes that create a loop while carrying the scanning equipment.`
+	source "Valhalla"
+	waypoint "Cardea"
+	waypoint "Insitor"
+	waypoint "Segesta"
+	waypoint "Aescolanus"
+	cargo "astronomical recorders" 5
+	blocked `You've returned to <planet>, but Ivan informs you that you'll need <capacity> available for this next mission. Return when you have the available space.`
+	to offer
+		or
+			has "Deep: Remnant 1: done"
+			and
+				has "Deep: Remnant: Keystone Research: done"
+				not "Deep: Remnant 1: offered"
+				not "Deep: Remnant 1A: offered"
+				not "Deep: Remnant 1B: offered"
+				not "Deep: Remnant 1C: offered"
+				or
+					has "deep: knew of stones before scientists"
+					has "First Contact: Remnant: offered"
+	on offer
+		conversation "deep: remnant"
+	on visit
+		dialog `You've returned to <planet>, but you haven't traveled through all the wormholes yet. Return to the strange region of space and travel through the loop of wormholes.`
+
+
+
+conversation "deep: remnant"
+	branch "on second mission" "on first mission"
+		has "Deep: Remnant A: done"
+	
+	label "on first mission"
+	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. "Quite the distance from my office, but we work with what we have," he comments. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the quantum keystones.`
+	branch "knew before" "didn't know before"
+		has "deep: knew of stones before scientists"
+	
+	label "knew before"
+	`	"As you mentioned before, a single keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
+	branch remnant1
+		has "deep: did reveal remnant"
+	`	"Last time, you mentioned that there were alien creatures able to survive the vacumm of space, correct?"`
+	`	You nod.`
+	`	"Right. Well, it would be extremely interesting if we were to learn more about these alien creatures.`
+		goto end
+
+	label remnant1
+	`	"Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
+	`	"Remnant," you say.`
+	`	"Right, that was it. Well, it would be extremely interesting if we were to learn more about this people.`
+		goto end
+	
+	label "didn't know before"
+	`	"We've analyzed the keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
+	`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
+	branch "know now" "still don't know"
+		has "First Contact: Remnant: offered"
+	
+	label "know now"
+	choice
+		`	"Actually, I already explored the region beyond the wormhole while you were researching."`
+			goto skip
+		`	"Sorry, I don't want to work for you anymore."`
+			decline
+	
+	label "on second mission"
+	`When you return, Ivan and the rest of the scientists wait eagerly for you to explain what you discovered.`
+	
+	label skip
+	`	You begin by recounting your experience with the strange space-dwelling creatures you found in the Nenia system. Ivan's eyes go wide when you mention the ease with which they fed on asteroids, and how they seemed to effortlessly escape from the gravity of local gas giants. You also mention that there are more strange wormholes like the one that you passed through to enter the region of space, including a series of wormholes that create a loop between multiple systems.`
+	branch friendly
+		has "event: ember waste label"
+	apply
+		set "deep: did reveal remnant"
+	`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
+		goto remnant2
+				
+	label friendly
+	choice
+		`	(Reveal the existence of the Remnant.)`
+		`	(Don't reveal the existence of the Remnant.)`
+			goto secret
+	apply
+		set "deep: did reveal remnant"
+	`	You then tell them about the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
+		goto remnant2
+
+	label secret
+	apply
+		set "deep: did not reveal remnant"
+	`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the alien creatures which inhabit the region. They seem to agree that they need to learn more about these aliens.`
+	`	"We can seek to learn more about these alien creatures later," Ivan says.`
+		goto end
+		
+	label remnant2
+	`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the human beings which inhabit the region. They seem to agree that they need to learn more about these humans, and more specifically about the technology which they have developed.`
+	`	"We can seek to learn more about this group of humans later," Ivan says.`
+
+	label end
+	`	"But, first and foremost, we should continue our work on understanding these wormholes. You mentioned a strange series of wormholes. Their behavior is definitely noteworthy. Could you return to this region of space while carrying a suite of astronomic instruments? If you travel through these wormholes, we may learn more about what makes them tick."`
+	choice
+		`	"Okay, I'm willing to do it."`
+		`	"Sorry, but I didn't agree to help you beyond that first job. Goodbye."`
+			decline
+	`	"Wonderful! We'll get the instruments loaded onto your ship immediately."`
+		accept
+
+	label "still don't know"
+	choice
+		`	"I'm always willing to go on an adventure."`
+		`	"This sounds too risky. You're going to need to find someone else to go exploring."`
+			decline	
+	`	"Splendid! We will give you a single quantum keystone in order to travel through the wormhole. Return here once you have finished exploring."`
+		accept
+
+
+
+mission "Deep: Remnant 3: Secret"
+	name `Analyze Alien Creatures`
+	description `Scan the "outfits" of the alien creatures in Nenia, then return to the scientists on <destination> with the detailed scanner logs.`
+	source "Valhalla"
+	waypoint "Nenia"
+	to offer
+		has "Deep: Remnant 2: done"
+		has "deep: did not reveal remnant"
+	
+	on offer
+		conversation "deep: remnant 3"
+	on accept
+		event "remnant: nenia empty"
+	
+	npc "scan outfits"
+		government "Indigenous Lifeform"
+		personality timid mining harvests staying mute
+		system "Nenia"
+		fleet
+			cargo 0
+			variant
+				"Void Sprite"
+				"Void Sprite (Infant)"
+		dialog `You have finished scanning the alien creatures in the system. You may now return to <destination> with the scanner logs.`
+	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more creatures for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
+	on complete
+		event "deep: scan log research" 14
+		event "remnant: nenia restored"
+		log `Scanned alien creatures beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
+		dialog `The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
+
+
+
+mission "Deep: Remnant 3: Revealed"
+	name `Analyze Remnant Ships`
+	description `Scan the outfits of the Remnant ships in Arculus, then return to the scientists on <destination> with the detailed scanner logs.`
+	source "Valhalla"
+	waypoint "Arculus"
+	to offer
+		has "Deep: Remnant 2: done"
+		has "deep: did reveal remnant"
+	
+	on offer
+		conversation "deep: remnant 3"
+	on accept
+		event "deep: arculus empty"
+	
+	npc "scan outfits"
+		government "Remnant"
+		personality staying uninterested
+		system "Arculus"
+		fleet
+			names "remnant"
+			variant
+				"Albatross"
+				"Starling"
+		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
+	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
+	on complete
+		event "deep: scan log research" 14
+		event "deep: arculus restored"
+		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
+		dialog `The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
+
+event "deep: arculus empty"
+	system "Arculus"
+		remove fleet "Large Remnant"
+		remove fleet "Small Remnant"
+		remove fleet "Remnant Transport"
+		remove fleet "Remnant Home Guard"
+		remove fleet "Korath Ember Waste Raid"
+
+event "deep: arculus restored"
+	system "Arculus"
+		add fleet "Large Remnant" 3000
+		add fleet "Small Remnant" 2200
+		add fleet "Remnant Transport" 2200
+		add fleet "Remnant Home Guard" 2000
+		add fleet "Korath Ember Waste Raid" 40000
+
+
+
+conversation "deep: remnant 3"
+	`The team of scientists is already waiting in the spaceport when you arrive. They remove the equipment from your ship and immediately being analyzing the results after returning to the lab.`
+	`	"At first glance, this series of wormholes seems no different than the one that is used to enter this region of space, but it will require some time for us to go over all the data the sensors collected," Ivan explains to you.`
+	branch revealed
+		has "deep: did reveal remnant"
+	`	"While you wait, though, I have another job you could do. You mentioned something about strange alien creatures beyond the wormhole that seemed to be able to survive in the vacuum of space. Would you be able to return there and scan them for us? These alien creatures won't have 'outfits' for the scanners to pick up, but a typical outfits scanner is still likely to give us the most information."`
+		goto end
+
+	label revealed
+	`	"While you wait, though, I have another job you could do. You mentioned something about a group of humans, or at least human-like beings, beyond the wormhole. Would you be able to return there and scan their ships for us? I'd be interested in seeing what an outfits scanner returns. You need not contact them, simply find a couple of ships and scan them so that we might learn more about their capabilities."`
+	label end
+	choice
+		`	"Sounds like a good plan. I'll be back as soon as I can."`
+			accept
+		`	"Sorry, but I'm not comfortable with this idea. You'll need to find someone else."`
+			decline
+
+
+
+event "deep: scan log research"
+
+
+
+mission "Deep: Remnant Technology"
+	landing
+	name `Travel to <planet>`
+	description `Meet up with Ivan on <destination> to learn what he wants you to do next.`
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system "Epsilon Leonis"
+	destination "Valhalla"
+	to offer
+		has "event: deep: scan log research"
+	
+	on offer
+		payment 250000
+		conversation
+			branch technology
+				has "deep: did reveal remnant"
+			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
+				decline
+			
+			label technology
+			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. Please meet us on <destination> if you wish to assist us further. Your help would be appreciated, but we will make progress even if you're a bit busy at the moment."`
+			choice
+				`	(Accept.)`
+					accept
+				`	(Decline.)`
+					decline
+	on decline
+		set "Deep: Remnant Research: done"
+	on fail
+		set "Deep: Remnant Research: done"
+
+
+
+# Patch mission for v0.9.13. If the player finished these missions prior to this update, then that means they must have revealed the existence of the Remnant to the Deep.
+mission "deep: player revealed remnant"
+	landing
+	invisible
+	to offer
+		has "Deep: Remnant Research: done"
+		not "deep: did reveal remnant"
+		not "deep: did not reveal remnant"
+	on offer
+		set "deep: did reveal remnant"
+		fail
+
+
+
+mission "Deep: Remnant: Engines"
+	landing
+	name `Fetching Engines`
+	description `Acquire "Forge-Class" thruster and steering engines from the Remnant and bring them to <destination>.`
+	source "Valhalla"
+	to offer
+		has "Deep: Remnant Technology: done"
+		has "deep: did reveal remnant"
+	
+	on offer
+		conversation
+			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months. It's also much closer to my office, which will make life much easier," Ivan adds. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before.`
+			
+			branch friendly
+				has "event: ember waste label"
+			`	"Even though the Remnant have attacked you, we are very interested in what additional secrets their technology may hold. Are you willing to steal some of their technology and bring it to us for analysis?"`
+			choice
+				`	"Is this really necessary?"`
+				`	"I'd be more than happy to help."`
+					goto accept
+				`	"Sorry, but I'm not interested in working for you anymore."`
+					decline
+			
+			`	"If they aren't willing to be friendly and simply sell you their technology then I'm afraid that this is the only way that we can obtain it. You don't have to destroy their ships if you don't want to, we simply need you to disable a few and take some of their outfits."`
+			choice
+				`	"Alright, I'll do it."`
+					goto accept
+				`	"Sorry, but I'm not going to attack human beings for the sake of science."`
+					decline
+			
+			label friendly
+			`	"You told us that these humans were friendly. Do they allow you to purchase their technology?"`
+			branch license
+				has "license: Remnant"
+			`	"No," you respond. "They haven't given me a license to buy any of their outfits or ships."`
+			`	The scientists ponder this for a moment. Eventually, Rayna speaks up. "Maybe if you assist them in some way they may welcome you into their society. I can imagine that they are a little wary after all those years on their own. Try doing jobs for them or see if anyone in their spaceports needs something from you."`
+			`	"You could also plunder their technology if they won't sell it to you," Ivan chimes in.`
+			choice
+				`	"I'll see if I can try to get my hands on what you need."`
+					goto accept
+				`	"Sorry, but I'm not interested in doing that kind of work for you."`
+					decline
+			
+			label license
+			`	"Yes," you respond. "I had to do a few odd jobs for them, but they eventually allowed me to purchase their outfits and ships."`
+			`	"Then all you need to do is buy whatever we ask you to and bring it back here. Are you interested?"`
+			choice
+				`	"I'd be glad to help."`
+				`	"Sorry, but I don't want to spend money for your research."`
+					decline
+			
+			label accept
+			`	"Great!" Ivan exclaims. "Right now we'd be interested in studying their engines. Please bring us one Forge-Class Thruster and one Forge-Class Steering. They shouldn't be too hard to get."`
+				accept
+	
+	on decline
+		set "Deep: Remnant Research: done"
+	on fail
+		set "Deep: Remnant Research: done"
+	on visit
+		dialog `You have landed on <planet>, but you do not have both a Forge-Class Thruster and Forge-Class Steering. Return to <planet> once you have obtained both engines.`
+	on complete
+		outfit "Forge-Class Thruster" -1
+		outfit "Forge-Class Steering" -1
+
+
+
+mission "Deep: Remnant: Generators"
+	landing
+	name `Fetching a Generator`
+	description `Acquire a Millennium Cell generator from the Remnant and bring it to <destination>.`
+	source "Valhalla"
+	to offer
+		has "Deep: Remnant: Engines: done"
+	
+	on offer
+		payment 417000
+		conversation
+			`An unloading crew quickly removes the engines from your ship and transports them to Ivan's research lab. You are escorted into a lobby where one of the administrative staff pays you <payment> in exchange for the engines. He asks you to wait, indicating that Ivan or one of the other scientists should be out to meet you shortly. After about three hours of waiting, Ivan enters the room.`
+			`	"These engines, they are fantastic! The scans made them seem similar to human ion engines, but surprisingly they can outperform even atomic engines! The thrust-to-mass ratio is great, and they have somehow avoided the immense heat generation that our engines emit. They do have some downsides, but it's still amazing that such an isolated group of humans could make technological leaps beyond even what the Deep has accomplished.`
+			`	"We've decided that the next Remnant technology we'd like to examine is their power generation. Could you bring us one of their Millennium Cells?"`
+			choice
+				`	"Sure. I'll be back in no time at all."`
+					accept
+				`	"Sorry, but I'm no longer interested in working for you."`
+					decline
+	
+	on decline
+		set "Deep: Remnant Research: done"
+	on fail
+		set "Deep: Remnant Research: done"
+	on visit
+		dialog `You have landed on <planet>, but you do not have a Millennium Cell. Return to <planet> once you have obtained the generator.`
+	on complete
+		outfit "Millennium Cell" -1
+
+
+
+mission "Deep: Remnant: Inhibitor Cannon"
+	landing
+	name `Fetching a Cannon`
+	description `Acquire an Inhibitor Cannon from the Remnant and bring the weapon to <destination>.`
+	source "Valhalla"
+	to offer
+		has "Deep: Remnant: Generators: done"
+	
+	on offer
+		payment 276500
+		conversation
+			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area and are paid <payment>. After several hours, the scientists come to you with their initial findings.`
+			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our fusion reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
+			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified particle cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
+			choice
+				`	"I'd be glad to."`
+					accept
+				`	"Sorry, but I'm no longer interested in working for you."`
+					decline
+	
+	on decline
+		set "Deep: Remnant Research: done"
+	on fail
+		set "Deep: Remnant Research: done"
+	on visit
+		dialog `You have landed on <planet>, but you do not have an Inhibitor Cannon. Return to <planet> once you have the weapon.`
+	on complete
+		outfit "Inhibitor Cannon" -1
+
+
+
+mission "Deep: Remnant Surveillance"
+	landing
+	name `Remnant Surveillance`
+	description `Land on each of the Remnant worlds (<stopovers>) and place a number of sensor cubes. Then return to <destination> once you are done.`
+	source "Valhalla"
+	stopover "Viminal"
+	stopover "Aventine"
+	stopover "Caelian"
+	to offer
+		has "Deep: Remnant: Inhibitor Cannon: done"
+	
+	on offer
+		payment 235500
+		log `Delivered various pieces of Remnant technology to the Deep to be examined. Ivan's project has drawn the attention of the Deep, and the Inhibitor Cannon was taken away by Deep Security before it could be researched.`
+		conversation
+			`Instead of sending the Inhibitor Cannon to Ivan's lab, the unloading crew transfers it to a waiting Deep Security ship, which immediately departs when its cargo bay doors close. Unlike the previous crews that met you upon landing, they are all in military garb. When you meet Ivan at his lab, he explains that the Deep was especially interested in the Remnant technology after reading his previous reports, and that his team would need to study it in a "more secure location."`
+			branch friendly
+				"reputation: Remnant" >= 1
+			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>. You've done a lot for humanity in these past few months. It may take us years to fully understand the technology you have brought us, but rest assured that that once we do understand it, the galaxy will be a better place. I'll see you later, Captain. Stay safe."`
+				decline
+				
+			label friendly
+			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>, but I have one last thing to ask." Ivan reaches into his pocket and retrieves six objects that you recognize as sensor cubes. "Would you bring two of these to each of the Remnant worlds? We've been learning a great deal from the study of the Remnant outfits, but aside from your scanning logs we have very little information on the Remnant ships. If you were to place these near their spaceports, they would be able to scan any nearby ships, which would be most helpful."`
+			choice
+				`	"You can count on me, Ivan."`
+				`	"Sorry, but this doesn't seem like the right thing to do. You'll need to find someone else to do this for you."`
+					decline
+			
+			`	"Thank you, Captain. Return here once you have finished, and I'll ensure you are well compensated for the journey."`
+				accept
+	
+	on decline
+		set "Deep: Remnant Research: done"
+	on fail
+		set "Deep: Remnant Research: done"
+	on visit
+		dialog `You have landed on <planet>, but you have not placed two cubes on all the Remnant worlds. Return to the Ember Waste and make sure you have placed surveillance devices on <stopovers>.`
+	on complete
+		payment 500000
+		set "Deep: Remnant Research: done"
+		log `Secretly placed sensor cubes near the spaceport of each Remnant planet. Ivan hopes to use the data gathered from these cubes to learn more about Remnant ships.`
+		dialog 
+			`When you return to <planet>, you are unable to find Ivan. Instead, Rayna waves you down and hands you a credits chip worth <payment>.`
+			`"Ivan told me to give this to you, Captain. Thanks again for helping us out so much. We couldn't have done it without you."`
+
+
+
+mission "Deep: Remnant Surveillance - Viminal"
+	landing
+	invisible
+	source "Viminal"
+	to offer
+		has "Deep: Remnant Surveillance: active"
+	on offer
+		conversation
+			`You try to make an effort to not be seen as you decide where to place the cubes. You place one outside of the spaceport dome, burying it in the snow so it is difficult to find. The other you tuck into a dark corner of the spaceport, and as soon as you let it go it blends in surprisingly well with its surroundings.`
+				decline
+
+mission "Deep: Remnant Surveillance - Caelian"
+	landing
+	invisible
+	source "Caelian"
+	to offer
+		has "Deep: Remnant Surveillance: active"
+	on offer
+		conversation
+			`You place the first of the cubes at the entrance of a now-abandoned underground settlement, in a dark area where it will not be seen. Unable to find a good spot for the second, you decide to leave it in a ditch and cover it in sand. Although you are unable to see anyone, you feel that you are being watched. As the only non-Remnant you are not exactly inconspicuous, but no one approaches you as you return to your ship.`
+				decline
+
+mission "Deep: Remnant Surveillance - Aventine"
+	landing
+	invisible
+	source "Aventine"
+	to offer
+		has "Deep: Remnant Surveillance: active"
+	on offer
+		conversation
+			`As you walk through the oldest part of the town, you spot an alleyway that has plenty of nooks in which a cube can be concealed. You decide to place the other one far outside of town, near the top of the valley where the spaceport can still be seen.`
+				decline
+
+
+
+mission "remnant: clear deep surveillance"
+	landing
+	invisible
+	to offer
+		has "Deep: Remnant Research: done"
+	on offer
+		clear "Remnant: Deep Surveillance: offered"
+		fail
+
+mission "Deep: Scientist Rescue Timer"
+	landing
+	invisible
+	to offer
+		has "Deep: Remnant Research: done"
+		has "Deep: Project Hawking: done"
+	on offer
+		event "deep: scientist rescue timer" 60
+		fail
+
+event "deep: scientist rescue timer"
+
+
+
+mission "Deep: Scientist Rescue 0"
+	minor
+	name "Locate Missing Scientists"
+	description "A Star Queen transporting prominent Deep scientists has gone missing. It was last seen near the Betelgeuse system in the Far North. Find its whereabouts and return it to <destination> if possible."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination "Valhalla"
+	waypoint "Betelgeuse"
+	to offer
+		has "event: deep: scientist rescue timer"
+		or
+			not "chosen sides"
+			has "main plot completed"
+	
+	on offer
+		conversation
+			`While watching a local sports game on the telescreen of a spaceport restaurant called "The <origin> Sif," your name is called from the entrance. You turn your head and spot Lieutenant Paris waving at you to come outside. You pay for your meal and walk outside.`
+			`	"Hello Captain. Do you have a moment to talk?"`
+			choice
+				`	"I do. What do you need?"`
+					goto situation
+				`	"Sorry, but I'm busy right now."`
+			
+			`	"This isn't a situation that can wait, Captain. You are needed immediately."`
+			choice
+				`	"What is it?"`
+				`	"I can't help you. You're going to need to find someone else."`
+					decline
+			
+			label situation
+			`	"A number of scientists have been kidnapped during a venture to the Far North. Their intent was to research the Wolf-Rayet star in the Gorvi system. Due to this system's proximity to the anarchist worlds, very little research has been conducted on it. Pierre, Hannah, and... and Laura were all aboard the Star Queen which contained the scientists. Since you know them I only thought it fair that you should know about the situation.`
+			`	"It was yesterday that we were informed of the kidnapping. The Star Queen and its escorts were preparing to refuel on Prime in the Betelgeuse system when a large pirate fleet entered the system. The Star Queen's escorts were swiftly destroyed, and she was captured. We lost all communications with the vessel after that. Would you be willing to help us locate the Star Queen while we prepare a rescue force?"`
+			choice
+				`	"I would be glad to help. I'll prepare my ship immediately."`
+					accept
+				`	"Why can't you locate it yourself?"`
+			
+			`	"Given the importance of the scientists aboard the Star Queen, we took great care in providing them with some of the strongest warships we had. The loss of these ships and their crew is a major blow to Deep Security's combat capabilities. We are recoiling from the impact of this loss while we assemble a proper rescue fleet and are unable to spare any ships for a scout fleet at this moment.`
+			`	"In a situation like this, every minute matters, and if someone like you can find the Star Queen quickly then that means that there is a higher chance everyone can come out of this alive."`
+			choice
+				`	"Okay, I'm willing to help."`
+					accept
+				`	"Sorry, but this doesn't sound worth it to me."`
+					decline
+
+	on enter "Arneb"
+		set "found star queen"
+		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to Paris on <destination> for further instruction.`
+	on visit
+		dialog `You have landed on Valhalla, but you have not located the Star Queen! Find it somewhere in the Far North.`
+	to complete
+		has "found star queen"
+
+
+
+mission "Deep: Scientist Rescue 0: Prime"
+	landing
+	source "Prime"
+	to offer
+		has "Deep: Scientist Rescue 0: active"
+		not "found star queen"
+	
+	on offer
+		conversation
+			`The Star Queen is not in this system, so you attempt to find somebody who may have some information. After visiting several shops, you find a merchant who was clearing cargo through customs as the Star Queen departed. According to her, a large pirate fleet jumped in, eviscerated the escorts with weapons she had never seen before, and escaped north towards Rigel with the hostage Star Queen. You can only hope the trail is not already cold.`
+				decline
+
+
+
+mission "Deep: Scientist Rescue 0: Farpoint"
+	landing
+	source "Farpoint"
+	to offer
+		has "Deep: Scientist Rescue 0: active"
+		not "found star queen"
+	
+	on offer
+		conversation
+			`After speaking with a Navy officer for a few minutes, you find out that the Star Queen came through here over a week ago, escorted by several large pirate ships. The Navy did not want to risk the lives of those on the ship by engaging the pirate fleet, so they let it continue north.`
+			`	You spot preparations for a rescue mission, but upon inquiring, learn that the recent destruction of a number of Navy capital ships in the days preceding the Star Queen's abduction resulted in an order to wait for additional reinforcements before any Navy ships are allowed to leave station.`
+			`	The Navy officer ends by hinting that the Star Queen is likely to be in Alnilam or Arneb, as those systems are the farthest from anyone looking to find or rescue the ship.`
+				decline
+
+
+
+mission "Deep: Scientist Rescue 0: Pirates"
+	invisible
+	landing
+	destination "Haven"
+	to offer
+		has "Deep: Scientist Rescue 0: active"
+	to fail
+		or
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
+	npc kill
+		government "Pirate"
+		personality nemesis staying
+		system Arneb
+		ship "Leviathan (Hai Engines)" "Barbas"
+		ship "Leviathan (Hai Engines)" "Barbatos"
+
+
+
+mission "Deep: Scientist Rescue 0: Haven"
+	landing
+	source "Haven"
+	to offer
+		has "Deep: Scientist Rescue 0: active"
+	
+	on offer
+		conversation
+			`You spend a few hours scanning the surface of the planet in an attempt to find the Star Queen, but nothing comes up. It will likely require military-grade scanners in order to find the ship, which the Deep Security rescue fleet will undoubtedly have.`
+				decline
+
+
+
+mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
+	landing
+	invisible
+	source "Haven"
+	destination "Valhalla"
+	to offer
+		has "Deep: Scientist Rescue 0: Haven: offered"
+		has "Deep: Scientist Rescue 0: Pirates: done"
+		has "Deep: Scientist Rescue 0: active"
+	npc evade
+		government "Pirate"
+		personality staying harvests plunders
+			confusion 20
+		system "Arneb"
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates"
+
+
+
+mission "Deep: Scientist Rescue 1"
+	landing
+	autosave
+	name "Secure the Scientists"
+	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
+	source "Valhalla"
+	destination "Haven"
+	clearance
+	to offer
+		has "Deep: Scientist Rescue 0: done"
+	
+	on offer
+		payment 250000
+		log `Located the Deep Star Queen that was kidnapped by pirates while en route to Gorvi. Deep Security has finished gathering their rescue fleet and will soon be making the trip to rescue the scientists.`
+		log "People" "Tom Paris" `Paris is a high ranking guard in Deep Security, equivalent to an admiral in the Republic Navy. While most of Deep Security is designed to keep the Deep safe internally and repel any pirates that might try to make their way into the region, Paris is in charge of Deep Security's external affairs, defending the Deep's interests outside its own borders.`
+		conversation
+			`You return to Valhalla and find Lieutenant Paris with a large group of men and women in Deep Security uniforms. As you approach them, the Lieutenant stops speaking to the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
+			choice
+				`	"Yes, it is located on <destination>, but is heavily defended."`
+			
+			branch unknown
+				has "Deep: Scientist Rescue 0: Prime: offered"
+			`	You mention the multiple heavy warships that you saw in the system, and the fact that there are likely many more waiting on Haven.`
+				goto next
+			
+			label unknown
+			`	You mention the multiple heavy warships that you saw in the system, and the fact that there are likely many more waiting on Haven. You also relay the merchant's claim that the pirates were using weapons she had never seen before.`
+			
+			label next
+			`	After hearing this news, many of the faces in the group turn grim as they realize that they will need to fight to retrieve the Star Queen. Paris ponders this information for a moment, then turns back to the group. "Guards, ready your ships!" The group responds with a collective "Sir, yes sir!" before running off to their ships.`
+			`	Before leaving for his own ship, he walks up to you and hands you <payment>.`
+			`	"Thank you for locating the Star Queen. Now, Captain <last>, would you be willing to help us? If the Star Queen is as heavily defended as you say it is, we are going to need every ship we can get."`
+			choice
+				`	"I'd be glad to."`
+				`	"I would rather let the professionals handle things. Good luck."`
+					decline
+			
+			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the admiral on Farpoint that there are a number of Navy ships at the ready to avenge their fallen comrades, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles tensely, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
+			`	The communications device on his belt rings, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Good luck, Captain, and may we all make it out of this alive. We'll meet you in orbit."`
+				accept
+	
+	npc save accompany
+		government "Deep Security"
+		personality escort
+		ship "Mule (Heavy)" "D.S.S. Faraday"
+	
+	on visit
+		dialog `You have landed on Haven, but you left the <npc> behind! Wait for the <npc> to enter the system before landing.`
+	on accept
+		event "battle in arneb"
+	on fail
+		event "battle in arneb end"
+
+event "battle in arneb"
+	system "Arneb"
+		remove fleet "Large Northern Pirates"
+		remove fleet "Small Northern Pirates"
+		remove fleet "Large Republic"
+		add fleet "Large Republic" 10000
+
+
+
+mission "Deep: Scientist Rescue 1: Pirates"
+	invisible
+	landing
+	to offer
+		has "Deep: Scientist Rescue 0: done"
+	to fail
+		or
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
+	npc kill
+		government "Pirate"
+		personality nemesis staying
+		system "Arneb"
+		ship "Firebird (Hai Shields)" "Murmur"
+		ship "Firebird (Hai Shields)" "Ronove"
+		ship "Headhunter (Hai)" "Naberius"
+		ship "Headhunter (Hai)" "Zozo"
+
+
+
+mission "Deep: Scientist Rescue 1: Recruit Escorts"
+	landing
+	name "Deep Security escorts on <planet>"
+	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
+	source "Valhalla"
+	destination "Memory"
+	to offer
+		has "Deep: Scientist Rescue 0: done"
+	to fail
+		or
+			has "Deep: Scientist Rescue 1: declined"
+			has "Deep: Scientist Rescue 1: done"
+
+
+
+mission "Deep: Scientist Rescue 1: Escorts"
+	invisible
+	landing
+	source "Memory"
+	to offer
+		has "Deep: Scientist Rescue 1: Recruit Escorts: done"
+	to fail
+		has "Deep: Scientist Rescue 2: done"
+	
+	on offer
+		conversation
+			`As you land, you notice a group of Deep Security warships - three Aeries and their fighter squadrons - loading munitions just outside of the spaceport. Before you can make it into the spaceport, one of the pilots waves you over for a brief conversation: aside from a few trivial items left on their preflight checklist, the warships are ready to launch and join in on the rescue mission.`
+				accept
+	npc kill
+		government "Deep Security"
+		personality heroic escort
+		fleet 3
+			names "deep"
+			fighters "deep fighter"
+			variant
+				"Aerie"
+				"Dagger" 2
+
+
+
+mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
+	landing
+	name "Republic Navy escorts on <planet>"
+	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
+	source "Valhalla"
+	destination "Farpoint"
+	to offer
+		has "Deep: Scientist Rescue 0: done"
+	to fail
+		or
+			has "Deep: Scientist Rescue 1: declined"
+			has "Deep: Scientist Rescue 1: done"
+
+
+
+mission "Deep: Scientist Rescue 1: Reinforcements"
+	invisible
+	landing
+	source "Farpoint"
+	to offer
+		has "Deep: Scientist Rescue 1: Recruit Reinforcements: done"
+	to fail
+		has "Deep: Scientist Rescue 2: done"
+	
+	on offer
+		conversation
+			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
+				accept
+	npc kill
+		government "Republic"
+		personality heroic escort
+		fleet 2
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser"
+				"Combat Drone" 4
+
+
+
+ship "Star Queen" "Star Queen (Unarmed)"
+	outfits
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Small Radar Jammer" 3
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+
+mission "Deep: Scientist Rescue 2"
+	landing
+	name "Return to <planet>"
+	description "Now that you have secured the Star Queen, escort it safely to <destination>."
+	source "Haven"
+	destination "Valhalla"
+	to offer
+		has "Deep: Scientist Rescue 1: done"
+	
+	on offer
+		conversation
+			`The remaining fleet quickly enters the atmosphere of Haven and begins scanning the surface. After roughly an hour of flying, you receive a transmission that the Star Queen has been found, along with its coordinates.`
+			`	You watch from afar as the Mule lands outside a hangar in some sort of pirate facility. The Mule immediately unloads what looks to be at least four dozen armed soldiers who quickly surround and breach the hangar. "Lieutenant, they have alien technology in here," one of the soldiers says over the radio. "Some of it is from the Hai, but some of it I've never seen before."`
+			`	"Plant explosives on any alien technology you find. We don't have the capabilities to take it all back with us. It's better off destroyed."`
+			`	After fifteen minutes, the hangar doors slide open to reveal the Star Queen, still intact. You hear chatter over the radio saying that most of the crew and scientists are still inside.`
+			`	"Good job, everyone," you hear Lieutenant Paris say over the comms. "Now we just need to make it back to <destination> in one piece." Just as he says that, a bright light pierces the sky, obliterating the Mule while its shields are down. Soldiers begin scrambling into the Star Queen, which quickly takes off into space along with the rest of the fleet. You turn your repulsor engines to full and begin flying up into space behind them as multiple explosions come from the facility behind you.`
+				launch
+	
+	on enter
+		dialog "As your engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but how a pirate could ever attain one is a mystery."
+		dialog `	You receive a transmission from Lieutenant Paris. "I have a sneaking suspicion that Beelzebub may be behind this. I suggest we jump out of here immediately and make it back to the Deep alive before taking on that Bactrian."`
+	
+	npc save accompany
+		government "Deep Security"
+		personality timid escort
+		ship "Star Queen (Unarmed)" "D.S.S. Alcubierre"
+	
+	on visit
+		dialog `You have landed on Valhalla, but you left the <npc> behind! Wait for it to enter the system before landing.`
+	on fail
+		event "battle in arneb end"
+
+
+
+ship "Bactrian" "Bactrian (Cosmic Devil)"
+	outfits
+		"Inhibitor Cannon" 2
+		"Thrasher Turret" 4
+		"Point Defense Turret"
+		"Heavy Anti-Missile Turret"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 4
+		"Quantum Keystone"
+		"Ramscoop"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		Hyperdrive
+
+
+
+mission "Deep: Scientist Rescue 2: Pirate Bactrian"
+	landing
+	invisible
+	destination "Valhalla"
+	to offer
+		has "Deep: Scientist Rescue 1: done"
+	to fail
+		has "Deep: Scientist Rescue 2: done"
+	npc kill
+		government "Pirate"
+		personality staying nemesis
+		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+		dialog
+			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
+			`The transmission cuts out as abruptly as it had started.`
+
+
+
+mission "Deep: Scientist Rescue 2: More Pirates"
+	landing
+	invisible
+	to offer
+		has "Deep: Scientist Rescue 1: done"
+	to fail
+		or
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
+	npc kill
+		government "Pirate"
+		personality staying nemesis
+		ship "Leviathan (Hai Weapons)" "Furfur"
+		ship "Leviathan (Hai Weapons)" "Pithius"
+
+
+
+mission "Deep: Scientist Rescue 3A"
+	landing
+	name "Take down the Devil"
+	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
+	source "Valhalla"
+	waypoint "Arneb"
+	to offer
+		has "Deep: Scientist Rescue 2: done"
+		not "Deep: Scientist Rescue 2: Pirate Bactrian: done"
+		not "Deep: Scientist Rescue 3B: offered"
+	
+	on offer
+		payment 2000000
+		log `Escorted the rescued Star Queen back to the Deep. Some of the crew didn't make it. The pirates still have a Bactrian, and the Deep wants it destroyed.`
+		conversation
+			`As you land near the Star Queen, you can see its passengers being escorted off. Rayna and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
+			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
+			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died.`
+			`	He talks to you in a rather strained voice. "I want you to return to Arneb and take out every single one of those pirates that are left. Especially the Bactrian. We try to keep Bactrians out of unworthy hands, so whenever a pirate gets one we make sure we destroy it immediately. Seeing as how we're going to be busy here for a while, you need to be the one who destroys it."`
+			choice
+				`	"I'll make sure it gets done, Lieutenant."`
+					goto accept
+				`	"I'm sorry, but I don't have the power to defeat that Bactrian. You're going to need to do it yourself."`
+			
+			`	"I see... Good luck on your travels, Captain <last>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+				decline
+			
+			label accept
+			`	"Thank you, <first>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+				accept
+	
+	npc kill
+		government "Pirate"
+		personality staying nemesis
+		system "Arneb"
+		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+		dialog
+			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
+			`The transmission cuts out as abruptly as it had started.`
+	on decline
+		event "battle in arneb end"
+	on visit
+		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
+	on fail
+		event "battle in arneb end"
+	on complete
+		set "license: City-Ship"
+		event "battle in arneb end"
+		log `Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen and was given a city-ship license by Paris.`
+		log "People" "Beelzebub" `Deep Security suspect that Beelzebub was behind the kidnapping of a Star Queen full of Deep scientists. In the attempt to rescue the scientists, a pirate owned Bactrian known as the "Cosmic Devil" was destroyed, although it would appear that either Beelzebub was not on the ship, or escaped the ship before it was destroyed.`
+		conversation
+			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
+			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
+			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death, and the government of the Deep agrees. It's really the least I... we could do for you."`
+			choice
+				`	"Thank you so much! I'll make sure that this gets put to good use."`
+				`	"Really? You shouldn't have."`
+			
+			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris pays his bill and leaves, as you ponder the possibilities that await.`
+
+
+
+mission "Deep: Scientist Rescue 3B"
+	landing
+	invisible
+	to offer
+		has "Deep: Scientist Rescue 2: done"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
+		not "Deep: Scientist Rescue 3A: offered"
+	
+	on offer
+		set "license: City-Ship"
+		event "battle in arneb end"
+		payment 2000000
+		log `Escorted the rescued Star Queen back to the Deep. Some of the crew didn't make it. Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen and was given a city-ship license by Paris.`
+		log "People" "Beelzebub" `Deep Security suspect that Beelzebub was behind the kidnapping of a Star Queen full of Deep scientists. In the attempt to rescue the scientists, a pirate owned Bactrian known as the "Cosmic Devil" was destroyed, although it would appear that either Beelzebub was not on the ship, or escaped the ship before it was destroyed.`
+		conversation
+			`As you land near the Star Queen, you can see its passengers being escorted off. Rayna and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
+			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
+			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died.`
+			`	He turns to you and hands you a license, then says in a rather strained voice. "Thank you. I've said it before, but there's really no way I can thank you enough.`
+			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death, and the government of the Deep agrees. It's really the least I... we could do for you."`
+			choice
+				`	"Thank you so much! I'll make sure that this gets put to good use."`
+				`	"Really? You shouldn't have."`
+			
+			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
+				decline
+			
+event "battle in arneb end"
+	system Arneb
+		remove fleet "Large Republic"
+		add fleet "Small Northern Pirates" 400
+		add fleet "Large Northern Pirates" 500
+		add fleet "Large Republic" 15000

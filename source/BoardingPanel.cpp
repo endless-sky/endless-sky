@@ -12,13 +12,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BoardingPanel.h"
 
+#include "text/alignment.hpp"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -31,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -145,12 +148,8 @@ void BoardingPanel::Draw()
 		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
-		
-		Point valuePos(pos.X() + 260. - font.Width(item.Value()), pos.Y());
-		font.Draw(item.Value(), valuePos, color);
-		
-		Point sizePos(pos.X() + 330. - font.Width(item.Size()), pos.Y());
-		font.Draw(item.Size(), sizePos, color);
+		font.Draw({item.Value(), {260, Alignment::RIGHT}}, pos, color);
+		font.Draw({item.Size(), {330, Alignment::RIGHT}}, pos, color);
 	}
 	
 	// Set which buttons are active.
@@ -220,7 +219,7 @@ void BoardingPanel::Draw()
 
 
 // Handle key presses or button clicks that were mapped to key presses.
-bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
@@ -517,9 +516,10 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 
-// Constructor (outfit installed in the victim ship).
+// Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost() * Depreciation::Full())
+	: name(outfit->Name()), outfit(outfit), count(count),
+	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	UpdateStrings();
 }

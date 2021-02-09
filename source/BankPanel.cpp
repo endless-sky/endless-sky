@@ -12,15 +12,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Dialog.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <string>
@@ -71,10 +74,10 @@ void BankPanel::Draw()
 {
 	// Set up the table that will contain most of the information.
 	Table table;
-	for(int x : COLUMN)
-		table.AddColumn(x, Table::LEFT);
+	for(auto x : COLUMN)
+		table.AddColumn(x);
 	// The last column is for the "pay extra" button.
-	table.AddColumn(MAX_X - 20, Table::RIGHT);
+	table.AddColumn(MAX_X - 20, {Alignment::RIGHT});
 	table.SetHighlight(MIN_X + 10, MAX_X - 10);
 	table.DrawAt(Point(0., FIRST_Y));
 	
@@ -103,6 +106,7 @@ void BankPanel::Draw()
 	
 	// Check if salaries need to be drawn.
 	int64_t salaries = player.Salaries();
+	int64_t salariesOwed = player.Accounts().SalariesOwed();
 	int64_t income[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
@@ -111,9 +115,12 @@ void BankPanel::Draw()
 		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			income[i] += it->second;
 	}
+	// Check if maintenance needs to be drawn.
+	int64_t maintenance = player.Maintenance();
+	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0) - (income[0] != 0 || income[1] != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (maintenance != 0 || maintenanceDue != 0) - (income[0] != 0 || income[1] != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
@@ -166,16 +173,16 @@ void BankPanel::Draw()
 	}
 	table.SetColor(unselected);
 	// Draw the salaries, if necessary.
-	if(salaries)
+	if(salaries || salariesOwed)
 	{
 		// Include salaries in the total daily payment.
 		totalPayment += salaries;
 		
 		table.Draw("Crew Salaries");
 		// Check whether the player owes back salaries.
-		if(player.Accounts().SalariesOwed())
+		if(salariesOwed)
 		{
-			table.Draw(Format::Credits(player.Accounts().SalariesOwed()));
+			table.Draw(Format::Credits(salariesOwed));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
@@ -184,13 +191,31 @@ void BankPanel::Draw()
 		table.Draw(salaries);
 		table.Advance();
 	}
+	// Draw the maintenance costs, if necessary.
+	if(maintenance || maintenanceDue)
+	{
+		totalPayment += maintenance;
+		
+		table.Draw("Maintenance");
+		if(maintenanceDue)
+		{
+			table.Draw(Format::Credits(maintenanceDue));
+			table.Draw("(overdue)");
+			table.Advance(1);
+		}
+		else
+			table.Advance(3);
+		table.Draw(maintenance);
+		table.Advance();
+	}
 	if(income[0] || income[1])
 	{
 		// Your daily income offsets expenses.
 		totalPayment -= income[0] + income[1];
 		
 		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income"};
-		table.Draw(LABEL[(income[0] != 0) + 2 * (income[1] != 0)]);
+		const auto incomeLayout = Layout(310, Truncate::BACK);
+		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0)], incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
 		table.Draw(-(income[0] + income[1]));
@@ -206,7 +231,8 @@ void BankPanel::Draw()
 	// Draw the credit score.
 	table.DrawAt(Point(0., FIRST_Y + 210.));
 	string credit = "Your credit score is " + to_string(player.Accounts().CreditScore()) + ".";
-	table.Draw(credit);
+	const auto scoreLayout = Layout(460, Truncate::MIDDLE);
+	table.DrawCustom({credit, scoreLayout});
 	table.Advance(5);
 	
 	// Report whether the player qualifies for a new loan.
@@ -217,7 +243,8 @@ void BankPanel::Draw()
 		amount = "You qualify for a new loan of up to " + Format::Credits(qualify) + " credits.";
 	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
-	table.Draw(amount, unselected);
+	const auto amountLayout = Layout(380, Truncate::MIDDLE);
+	table.DrawCustom({amount, amountLayout}, unselected);
 	if(qualify)
 	{
 		table.Advance(4);
@@ -227,28 +254,36 @@ void BankPanel::Draw()
 	// Draw the "Pay All" button.
 	const Interface *interface = GameData::Interfaces().Get("bank");
 	Information info;
-	for(const Mortgage &mortgage : player.Accounts().Mortgages())
-		if(mortgage.Principal() <= player.Accounts().Credits())
-			info.SetCondition("can pay");
+	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
+		info.SetCondition("can pay");
+	else
+		for(const Mortgage &mortgage : player.Accounts().Mortgages())
+			if(mortgage.Principal() <= player.Accounts().Credits())
+				info.SetCondition("can pay");
 	interface->Draw(info, this);
 }
 
 
 
 // Handle key presses, or clicks that the interface has mapped to a key press.
-bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == SDLK_UP && selectedRow)
 		--selectedRow;
 	else if(key == SDLK_DOWN && selectedRow < mortgageRows)
 		++selectedRow;
 	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
+	{
 		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
-	else if(key == SDLK_RETURN && qualify)
+		DoHelp("bank advanced");
+	}
+	else if(key == SDLK_RETURN && qualify) {
 		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
+		DoHelp("bank advanced");
+	}
 	else if(key == 'a')
 	{
 		// Pay all mortgages, skipping any you cannot afford to pay entirely.
@@ -262,6 +297,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				++i;
 		}
 		player.Accounts().PaySalaries(player.Accounts().SalariesOwed());
+		player.Accounts().PayMaintenance(player.Accounts().MaintenanceDue());
 		qualify = player.Accounts().Prequalify();
 	}
 	else

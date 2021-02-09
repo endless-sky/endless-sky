@@ -45,6 +45,7 @@ public:
 	
 	// Check if this filter contains any specifications.
 	bool IsEmpty() const;
+	bool IsValid() const;
 	
 	// If the player is in the given system, does this filter match?
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;
@@ -59,7 +60,7 @@ public:
 	// Generic find system / find planet methods, based on the given origin
 	// system (e.g. the player's current system) and ability to land.
 	const System *PickSystem(const System *origin) const;
-	const Planet *PickPlanet(const System *origin, bool hasClearance = false) const;
+	const Planet *PickPlanet(const System *origin, bool hasClearance = false, bool requireSpaceport = true) const;
 	
 	
 private:

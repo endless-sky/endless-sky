@@ -1,0 +1,1031 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Ship names:
+phrase "wanderer"
+	word
+		"Iyik'"
+		"Ai'"
+		"Yek'"
+		"K'ch'"
+		"Rei'"
+		"Vek'"
+		"Sa'"
+		"Ik'k'"
+		"Kach'"
+		"Vori'"
+		"Vek'"
+		"Sach'"
+		"Kri'"
+	word
+		"cach"
+		"sek"
+		"esei"
+		"ai"
+		"key"
+		"ik"
+		"kur"
+		"ar"
+		"cha"
+		"rek"
+		"rai"
+		"sek"
+
+
+fleet "Wanderer Freight"
+	government "Wanderer"
+	names "wanderer"
+	cargo 3
+	personality
+		timid
+	variant
+		"Deep River 0"
+	variant
+		"Deep River 1"
+	variant
+		"Deep River 2"
+	variant
+		"Deep River 3"
+	variant
+		"Deep River 4"
+	variant
+		"Deep River"
+	variant
+		"Deep River 0"
+		"Summer Leaf" 2
+	variant
+		"Deep River 1"
+		"Summer Leaf" 1
+	variant
+		"Deep River 2"
+		"Summer Leaf" 2
+	variant
+		"Deep River 3"
+		"Summer Leaf" 1
+	variant
+		"Deep River 4"
+		"Summer Leaf" 2
+	variant
+		"Deep River"
+		"Summer Leaf" 3
+
+fleet "Wanderer Drones"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		surveillance
+	variant 4
+		"Earth Shaper"
+	variant 2
+		"Earth Shaper" 2
+	variant
+		"Earth Shaper" 3
+
+fleet "Wanderer Defense"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		heroic opportunistic
+	variant 3
+		"Strong Wind"
+		"Summer Leaf" 2
+	variant
+		"Summer Leaf" 5
+	variant 2
+		"Strong Wind" 2
+	variant 2
+		"Strong Wind"
+		"Summer Leaf"
+	variant
+		"Strong Wind"
+		"Summer Leaf" 3
+	variant
+		"Strong Wind" 3
+
+fleet "Wanderer Flycatchers"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		swarming
+		heroic
+	variant
+		"Flycatcher" 5
+	variant
+		"Flycatcher" 4
+	variant
+		"Flycatcher" 3
+	variant
+		"Flycatcher" 2
+
+fleet "Wanderer Kor Efret Traders"
+	government "Wanderer"
+	names "wanderer"
+	cargo 3
+	personality
+		timid
+	variant
+		"Deep River"
+	variant 6
+		"Summer Leaf" 2
+		"Strong Wind"
+	variant 2
+		"Summer Leaf"
+	variant 4
+		"Strong Wind"
+	variant 2
+		"Tempest"
+	variant 3
+		"Autumn Leaf"
+
+shipyard "Wanderer Basics"
+	"Earth Shaper"
+	"Summer Leaf"
+
+shipyard "Wanderer Advanced"
+	"Earth Shaper"
+	"Summer Leaf"
+	"Strong Wind"
+	"Deep River"
+
+outfitter "Wanderer Basics"
+	"Thunderhead Missile"
+	"Small Biochemical Cell"
+	"Large Biochemical Cell"
+	"Yellow Sun Reactor"
+	"Type 1 Radiant Thruster"
+	"Type 2 Radiant Thruster"
+	"Type 3 Radiant Thruster"
+	"Type 1 Radiant Steering"
+	"Type 2 Radiant Steering"
+	"Type 3 Radiant Steering"
+	"Bright Cloud Shielding"
+	"Fuel Pod"
+	"Wanderer Ramscoop"
+	"Cargo Expansion"
+	"Outfits Expansion"
+	"Small Bunk Room"
+	"Local Map"
+	"Hyperdrive"
+
+outfitter "Wanderer Advanced"
+	"Sunbeam"
+	"Thunderhead Missile"
+	"Thunderhead Launcher"
+	"Thunderhead Storage Array"
+	"Small Biochemical Cell"
+	"Large Biochemical Cell"
+	"Yellow Sun Reactor"
+	"White Sun Reactor"
+	"Type 1 Radiant Thruster"
+	"Type 2 Radiant Thruster"
+	"Type 3 Radiant Thruster"
+	"Type 4 Radiant Thruster"
+	"Type 1 Radiant Steering"
+	"Type 2 Radiant Steering"
+	"Type 3 Radiant Steering"
+	"Type 4 Radiant Steering"
+	"Bright Cloud Shielding"
+	"Dark Storm Shielding"
+	"Fuel Pod"
+	"Wanderer Ramscoop"
+	"Cargo Expansion"
+	"Outfits Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Local Map"
+	"Hyperdrive"
+
+
+# Hails:
+phrase "wanderer untranslated"
+	word
+		"Ayek"
+		"V'"
+		"Ik"
+		"I'"
+		"Ai'"
+		"Kek"
+		"Tek"
+		"Rei'"
+		"Vorek"
+		"Isk"
+		"Scha'"
+		"Kera'"
+		"Tai'"
+	word
+		"evar"
+		"eska"
+		"eteka"
+		"i'atai"
+		"ik'lek"
+		"ivar"
+		"erei"
+		"ai"
+		"ek"
+		"ik"
+		"eyek"
+		"u"
+		"uk"
+		"urek"
+	word
+		"'i "
+		"'i'ai "
+		"'ak iy "
+		"'urek esek "
+		" iy "
+		" esek "
+		" ek "
+		" v'"
+		" va'"
+		"'a iy cha'"
+		" "
+		" "
+		" "
+	word
+		"akai'"
+		"ar"
+		"ek"
+		"skak"
+		"isk"
+		"tesk"
+		"chik"
+		"chu'"
+		"lak"
+		"tel"
+		"te'"
+		"ke'"
+		"le'"
+		"yech"
+	word
+		"ar"
+		"eru"
+		"eska"
+		"i'i"
+		"i'ai"
+		"eru"
+		"eleka"
+		"eka"
+		"achi"
+		"a'a"
+		"u'ei"
+		"u'ai"
+	word
+		"'ei ek "
+		"'elek iy "
+		"'rei "
+		"'ket "
+		"'ret "
+		"'sai "
+		" sek "
+		" iy "
+		" salek "
+		" "
+		" "
+	word
+		"reku'"
+		"sarka'"
+		"cha'"
+		"erek"
+		"krech"
+		"rek"
+		"kik"
+		"tik"
+		"vek"
+		"k'"
+		"ch'"
+		"s'"
+	word
+		"er"
+		"elek"
+		"kar"
+		"kurei"
+		"ai"
+		"i"
+		"i'ai"
+		"i'lek"
+		"a'uk"
+		"echa"
+	word
+		"."
+		"."
+		"."
+		"'i."
+		"'ai."
+		" eku."
+		" sat."
+		"'i sek."
+		"'ar."
+		" kar."
+		" esek'cha."
+
+phrase "friendly wanderer"
+	word
+		"We are"
+		"This [space, territory] belongs to"
+		"You are a guest of"
+	word
+		" the Wanderers, the "
+		" the "
+	word
+		"[repairers, fixers] "
+		"restorers "
+		"healers "
+		"[shapers, remakers] "
+		"[transformers, renewers] "
+		"revitalizers "
+		"ones who take care "
+		"renewers "
+		"settlers "
+		"friends "
+	word
+		"of "
+	word
+		"[harmed, abused] "
+		"broken "
+		"[brutalized, mistreated] "
+		"[wasted, spent] "
+		"dead "
+		"[lifeless, barren] "
+		"ruined "
+		"[consumed, devoured] "
+		"exploited "
+		"poisoned "
+		"wrecked "
+		"abandoned "
+	word
+		"worlds"
+		"planets"
+		"places"
+		"lands"
+		"ecosystems"
+		"biospheres"
+	word
+		"."
+
+phrase "friendly wanderer"
+	word
+		"You are "
+	word
+		"a welcome "
+		"an honored "
+	word
+		"[visitor, traveler] "
+		"guest "
+	word
+		"to "
+		"[amongst, with] "
+	word
+		"us"
+		"our people"
+		"the Wanderers"
+	word
+		", "
+		" - "
+	word
+		"so long as "
+		"as long as "
+		"[providing, given] "
+	word
+		"you respect our ways"
+		"you respect our worlds"
+		"you respect our ecosystems"
+		"you show respect for our ways"
+		"you show respect for our worlds"
+		"you show respect for our ecosystems"
+		"you live sustainably"
+		"you [consume, devour] no more than you need"
+		"you cause no harm"
+		"you come in peace"
+	word
+		"."
+
+phrase "friendly wanderer"
+	word
+		"We mean "
+		"We intend "
+		"We plan "
+		"We come "
+	word
+		"to "
+		"only to "
+		"simply to "
+		"solely to "
+	word
+		"[repair, fix] "
+		"restore "
+		"heal "
+		"[shape, remake] "
+		"[transform, renew] "
+		"revitalize "
+		"take care of "
+		"breathe [life, hope] into "
+		"[cure, remedy] "
+	word
+		"what has been "
+		"what others have "
+		"what those who came before have "
+	word
+		"[harmed, abused]"
+		"broken"
+		"[brutalized, mistreated]"
+		"[wasted, spent]"
+		"killed"
+		"rendered [lifeless, barren]"
+		"ruined"
+		"[consumed, devoured]"
+		"exploited"
+		"poisoned"
+		"wrecked"
+	word
+		"."
+			
+phrase "friendly wanderer"
+	word
+		"Wanderer "
+		"Our "
+		"These "
+	word
+		"worlds"
+		"planets"
+		"places"
+		"lands"
+		"ecosystems"
+		"biospheres"
+	word
+		" are open to "
+		" are available to "
+		" welcome "
+	word
+		"anyone"
+		"anybody"
+		"any being"
+		"any lifeform"
+		"any [identity? consciousness? entity?]"
+	word
+		" "
+		", if they are "
+		", so long as they are "
+		", as long as they are "
+		", [providing, given] they are "
+	word
+		"willing"
+		"wishing"
+		"wanting"
+		"intending"
+		"looking"
+		"meaning"
+		"planning"
+	word
+		" to help "
+	word
+		"us "
+		"us to "
+		""	
+	word
+		"[repair, fix]"
+		"restore"
+		"heal"
+		"[shape, remake]"
+		"[transform, renew]"
+		"revitalize"
+		"take care of"
+		"breathe [life, hope] into"
+		"[cure, remedy]"
+	word
+		" them."
+
+phrase "friendly disabled wanderer"
+	word
+		"[Visitor, Traveler]"
+		"Guest"
+	word
+		", "
+	word
+		"our work is in [danger, peril]"
+		"we have been [assaulted, attacked]"
+		"we have become [disabled, incapacitated]"
+	word
+		". "
+		"! "
+	word
+		"We need to be [repaired, fixed]"
+		"Assist us"
+		"Fight for us"
+	word
+		", please"
+		", we beg you"
+		""
+		""
+		""
+	word
+		"."
+		"!"
+
+phrase "hostile wanderer"
+	word
+		"We do not wish to "
+		"We do not want to "
+		"We wish not to "
+		"It gives us no [joy, pleasure] to "	
+	word
+		"harm you"
+		"destroy you"
+		"kill you"
+		"[end, terminate] you"
+		"be [violent, destructive]"
+	word
+		", "
+	word
+		"but we must "
+		"but we will "
+	word
+		"[protect, shepherd] "
+		"defend "
+		"guard "
+		"preserve "
+	word
+		"our "
+	word
+		"[space, territory]"
+		"[territory, responsibility]"
+		"worlds"
+		"planets"
+		"lands"
+		"ecosystems"
+		"biospheres"
+		"people"
+		"[calling, work]"
+		"ways"
+	word
+		"."
+		
+phrase "hostile wanderer"
+	word
+		"Your "
+	word
+		"actions "
+		"deeds "
+		"crimes "
+	word
+		"are "
+	word
+		"those of [consumers, devourers]"
+		"those of destroyers"
+		"those of [murderers, exploiters]"
+		"shameless"
+		"unforgivable"
+		"against nature"
+	word
+		". "
+	word
+		"You will not "
+		"You shall not "
+		"You cannot be allowed to "
+	word
+		"prevail"
+		"succeed"
+		"win"
+		"continue"
+		"remain"
+	word
+		"."
+		
+phrase "hostile wanderer"
+	word
+		"You "
+		"[Murderers, exploiters] "
+	word
+		"have no place "
+		"do not belong "
+		"are not welcome "
+	word
+		"here"
+		"in our [space, territory]"
+		"amongst us"
+	word
+		". "
+	word
+		"Leave"
+		"Begone"
+		"Remove yourself"
+	word
+		", "
+	word
+		"so we may continue our [calling, work]"
+		"and we will not pursue you"
+		"and we will allow you to live"
+		"or we will destroy you"
+		"or we will be forced to kill you"
+		"or we will be forced to [end, terminate] you"
+		"and never return"
+		"and learn [wisdom, balance]"
+	word
+		"."
+		
+phrase "hostile disabled wanderer"
+	word
+		"It is not too late "
+		"There is still time "
+		"You still have an opportunity "
+	word
+		"to "
+	word
+		"leave"
+		"leave in peace"
+		"surrender"
+		"desist"
+		"make [amends, reparations]"
+		"make [amends, reparations] for your crimes"
+		"make things right with us"
+		"learn [wisdom, balance]"
+		"end this violence"
+		"end this destruction"
+		"put a stop to this"
+	word
+		"."
+		
+phrase "hostile disabled wanderer"
+	word
+		"We "
+		"The [leaders, elders] "
+	word
+		"were wrong to trust you, "
+		"were mistaken in trusting you, "
+		"should never have welcomed you, "
+	word
+		"[alien, outsider]"
+		"human"
+		"[murderer, exploiter]"
+	word
+		"."
+		"!"
+		
+phrase "hostile disabled wanderer"
+	word
+		"Our people "
+		"Our young ones "
+		"We "
+	word
+		"do not deserve this "
+		"should not suffer this "
+	word
+		"violence"
+		"betrayal"
+		"[harm, abuse]"
+	word
+		". "
+	word 
+		"You must "
+		"Please "
+	word
+		"desist"
+		"stop"
+		"stop this"
+		"leave"
+		"begone"
+		"remove yourself"
+		"have mercy"
+	word
+		"."
+
+event "wanderers: first tech increase"
+	system "Ik'kara'ka"
+		add fleet "Wanderer Flycatchers" 400
+	system "Chy'chra"
+		add fleet "Wanderer Flycatchers" 300
+	system "Prakacha'a"
+		remove fleet "Unfettered Tribute"
+	system "Sich'ka'ara"
+		add fleet "Wanderer Flycatchers" 600
+	system "Chirr'ay'akai"
+		add fleet "Wanderer Flycatchers" 800
+	system "Kiro'ku"
+		add fleet "Wanderer Flycatchers" 1000
+	system "Ap'arak"
+		add fleet "Wanderer Flycatchers" 1200
+	fleet "Wanderer Defense"
+		add variant 2
+			"Autumn Leaf" 2
+		add variant 2
+			"Strong Wind"
+			"Autumn Leaf" 2
+		add variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		add variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		add variant 2
+			"Autumn Leaf"
+			"Summer Leaf"
+	shipyard "Wanderer Basics"
+		"Flycatcher"
+	shipyard "Wanderer Advanced"
+		"Flycatcher"
+		"Autumn Leaf"
+	outfitter "Wanderer Basics"
+		"Wanderer Anti-Missile"
+	outfitter "Wanderer Advanced"
+		"Wanderer Anti-Missile"
+		"Sunbeam Turret"
+		"Dual Sunbeam Turret"
+
+event "wanderers: unfettered invasion starts"
+	system "Ik'kara'ka"
+		fleet "Wanderer Freight" 1200
+		fleet "Wanderer Drones" 900
+		fleet "Wanderer Defense" 200
+		fleet "Wanderer Flycatchers" 200
+		fleet "Small Unfettered" 1200
+		fleet "Large Unfettered" 500
+	system "Chy'chra"
+		government "Hai (Unfettered)"
+		fleet "Wanderer Defense" 3000
+		fleet "Unfettered Raid" 1000
+		fleet "Small Unfettered" 400
+		fleet "Large Unfettered" 400
+	system "Prakacha'a"
+		fleet "Wanderer Freight" 900
+		fleet "Wanderer Drones" 800
+		fleet "Wanderer Defense" 200
+		fleet "Small Unfettered" 1800
+		fleet "Large Unfettered" 800
+	system "Ehma Ti"
+		remove fleet "Unfettered Tribute"
+	system "Sich'ka'ara"
+		add fleet "Wanderer Defense" 500
+		add fleet "Wanderer Flycatchers" 600
+		add fleet "Large Unfettered" 1200
+	system "Chirr'ay'akai"
+		add fleet "Wanderer Defense" 500
+		add fleet "Wanderer Flycatchers" 480
+		add fleet "Large Unfettered" 1200
+	"reputation: Hai (Unfettered)" <?= -100
+	government "Hai (Unfettered)"
+		"attitude toward"
+			"Wanderer" -.01
+	planet "Varu K'est"
+		attributes "unfettered"
+		description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. Before the Unfettered invaded, the only Wanderer settlements remaining here were the military bases they had set up to defend their frontier. Now, it is home to an ever-growing number of Unfettered settlements, including many civilians who have come here just for the chance to live on a world that is not overcrowded and polluted.`
+		spaceport `The Unfettered are using the few jump drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the jump drives from all but a few of them. A few well guarded jump-capable ships then carry those spare jump drives back to Unfettered space, where they are used to bring more ships and people.`
+		shipyard clear
+		outfitter clear
+	planet "Varu Mer'ek"
+		add attributes "evacuation"
+
+event "wanderers: riptide mass production"
+	fleet "Wanderer Freight"
+		add variant 3
+			"Riptide"
+		add variant
+			"Riptide"
+			"Tempest"
+		add variant
+			"Riptide"
+			"Strong Wind"
+			"Autumn Leaf"
+		add variant
+			"Riptide"
+			"Summer Leaf" 2
+	shipyard "Wanderer Advanced"
+		"Riptide"
+
+event "wanderers: tempest mass production"
+	fleet "Wanderer Defense"
+		add variant 6
+			"Tempest"
+			"Summer Leaf"
+			"Autumn Leaf"
+		add variant 4
+			"Tempest (Heavy)"
+			"Strong Wind"
+		add variant 1
+			"Tempest (Heavy)"
+			"Tempest"
+			"Tempest (Missile)"
+		add variant 2
+			"Tempest (Heavy)"
+			"Tempest"
+		add variant 1
+			"Tempest (Missile)" 2
+		add variant 2
+			"Strong Wind"
+			"Autumn Leaf"
+		add variant 2
+			"Autumn Leaf" 3
+		add variant 1
+			"Summer Leaf" 4
+		remove variant
+			"Summer Leaf" 5
+		remove variant
+			"Strong Wind"
+			"Summer Leaf"
+		remove variant
+			"Strong Wind"
+			"Summer Leaf" 3
+		remove variant
+			"Autumn Leaf" 2
+		remove variant
+			"Strong Wind"
+			"Autumn Leaf" 2
+		remove variant
+			"Autumn Leaf"
+			"Summer Leaf"
+	shipyard "Wanderer Advanced"
+		"Tempest"
+	outfitter "Wanderer Advanced"
+		"Red Sun Reactor"
+
+event "wanderers: more systems lost"
+	system "Ka'pru"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 2000
+		fleet "Small Unfettered" 1000
+	system "Kiro'ku"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 1200
+		fleet "Small Unfettered" 800
+	system "Sich'ka'ara"
+		government "Hai (Unfettered)"
+		fleet "Large Unfettered" 400
+		fleet "Small Unfettered" 400
+		fleet "Wanderer Defense" 600
+	planet "Vara Ke'stai"
+		attributes "unfettered" "farming"
+		description `The Wanderers worked for years to make this desert world bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
+		description `	Now that the Unfettered have taken over control of the planet, it may be only a matter of time before the deserts dominate it once again.`
+		spaceport `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. Although they are very different from Hai architecture, the Unfettered seem to be quite at home living in the tree-houses, and have not built many of their own structures yet.`
+		outfitter clear
+	planet "Var' Kar'i'i"
+		attributes "unfettered" "urban" "farming"
+		description `Of all the worlds that the Unfettered have captured, this is surely the one that the Wanderers will miss the most: a heavily forested planet that was once home to countless small villages and even a few cities. The Unfettered are clearly doing their best to tend the farms here, but they operate on a permaculture system that relies heavily on maintaining a delicate ecological balance, rather than on machines and pesticides.`
+		spaceport `A large number of Unfettered settlers have already arrived here and begun setting up a spaceport village, complete with markets, taverns, and military barracks. To the Unfettered, who have lived their whole lives on worlds where the local ecology is in shambles, this planet must seem like a paradise.`
+		shipyard clear
+		outfitter clear
+	planet "Vara Ke'sok"
+		attributes "unfettered" "fishing"
+		description `The surface of this world is almost entirely ocean. The Wanderer settlements were built on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
+		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
+
+planet "The Eye"
+	description ""
+	spaceport ""
+
+event "wanderers: the eye begins to open"
+	system Sko'karak
+		fleet "Wanderer Defense" 500
+		add object
+			sprite planet/wisp
+			distance 2331.95
+			period 2518.05
+
+event "wanderers: the eye opens"
+	unvisit Sabriset
+	system Sabriset
+		add fleet "Wanderer Defense" 1200
+		add fleet "Wanderer Drones" 600
+		add fleet "Wanderer Freight" 4000
+		add object "The Eye"
+			sprite planet/wormhole
+			distance 2022.87
+			period 919.438
+	system Sepriaptu
+		add fleet "Wanderer Defense" 1600
+		add fleet "Wanderer Drones" 800
+	system Kaliptari
+		fleet "Large Quarg" 2000
+		fleet "Small Kor Mereti" 8000
+		fleet "Large Kor Mereti" 3600
+		fleet "Wanderer Defense" 1000
+		fleet "Wanderer Drones" 500
+	system Solifar
+		fleet "Large Quarg" 3000
+		fleet "Wanderer Defense" 1800
+		fleet "Wanderer Drones" 700
+	system Fornarep
+		fleet "Large Quarg" 1000
+		fleet "Small Kor Mereti" 7000
+		fleet "Large Kor Mereti" 4000
+	system Skeruto
+		fleet "Large Quarg" 1000
+	system Mekislepti
+		add fleet "Small Kor Mereti" 4000
+		add fleet "Large Kor Mereti" 12000
+		add fleet "Wanderer Drones" 2000
+	unvisit Sko'karak
+	system Sko'karak
+		add fleet "Wanderer Drones" 400
+		add fleet "Wanderer Freight" 2000
+		object
+			sprite star/m0
+			period 10
+		object
+			sprite planet/rock8
+			distance 154.36
+			period 42.8832
+		object
+			sprite planet/rock18
+			distance 384.05
+			period 168.293
+		object
+			sprite planet/desert1
+			distance 617.3
+			period 342.949
+		object
+			sprite planet/gas4
+			distance 1227.46
+			period 961.603
+			object
+				sprite planet/callisto
+				distance 272
+				period 15.8216
+			object
+				sprite planet/rock3
+				distance 406
+				period 28.8527
+		object "The Eye"
+			sprite planet/wormhole
+			distance 2331.95
+			period 2518.05
+
+event "wanderers: derecho mass production"
+	fleet "Wanderer Defense"
+		add variant 4
+			"Derecho"
+			"Tempest"
+		add variant 3
+			"Derecho (Turret)"
+			"Tempest (Missile)"
+		add variant 2
+			"Derecho (Tough)"
+			"Tempest (Heavy)"
+		add variant 4
+			"Derecho"
+			"Strong Wind" 2
+		add variant 3
+			"Derecho (Tough)"
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		add variant 2
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Tempest"
+	shipyard "Wanderer Advanced"
+		"Derecho"
+	outfitter "Wanderer Advanced"
+		"Blue Sun Reactor"
+		"Wanderer Heat Sink"
+
+event "wanderers: spera anatrusk colony"
+	system Ap'arak
+		remove fleet "Large Unfettered"
+		add fleet "Large Unfettered" 8000
+	system Kaliptari
+		government "Wanderer"
+	planet "Spera Anatrusk"
+		attributes "wanderer"
+		add description `	Hidden deep in a canyon, the Wanderers have begun establishing a military base here.`
+		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
+		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
+
+event "wanderers: hurricane mass production"
+	fleet "Wanderer Defense"
+		add variant 5
+			"Hurricane"
+		add variant 2
+			"Hurricane (Turret)"
+		add variant 2
+			"Hurricane (Tough)"
+		add variant 3
+			"Hurricane"
+			"Derecho"
+			"Tempest"
+		add variant 2
+			"Hurricane"
+			"Tempest" 2
+		add variant 3
+			"Hurricane (Turret)"
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+		add variant 2
+			"Hurricane (Tough)"
+			"Tempest (Missile)" 2
+	shipyard "Wanderer Advanced"
+		"Hurricane"
+
+event "wanderers: desi seledrak"
+	system "Solifar"
+		government "Wanderer"
+	planet "Desi Seledrak"
+		attributes "wanderer"
+		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`
+		description `	With some help from the Mereti drones, the Wanderers have set up factories here that are pumping out carbon dioxide and methane to warm the atmosphere. In a few decades, the glaciers may start to recede.`
+		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`

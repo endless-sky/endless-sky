@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 
+#include <algorithm>
 #include <cmath>
 #include <vector>
 
@@ -61,6 +62,7 @@ namespace {
 void FogShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex fog shader\n"
 		"uniform vec2 corner;\n"
 		"uniform vec2 dimensions;\n"
 		
@@ -73,6 +75,7 @@ void FogShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+		"// fragment fog shader\n"
 		"uniform sampler2D tex;\n"
 		
 		"in vec2 fragTexCoord;\n"
@@ -164,7 +167,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		for(const auto &it : GameData::Systems())
 		{
 			const System &system = it.second;
-			if(system.Name().empty() || !player.HasVisited(&system))
+			if(!system.IsValid() || !player.HasVisited(system))
 				continue;
 			Point pos = zoom * (system.Position() + center);
 		
@@ -225,12 +228,12 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	glBindVertexArray(vao);
 	
 	GLfloat corner[2] = {
-		static_cast<float>((left - .5f * GRID * zoom) / (.5f * Screen::Width())),
-		static_cast<float>((top - .5f * GRID * zoom) / (-.5f * Screen::Height()))};
+		static_cast<float>(left - .5 * GRID * zoom) / (.5f * Screen::Width()),
+		static_cast<float>(top - .5 * GRID * zoom) / (-.5f * Screen::Height())};
 	glUniform2fv(cornerI, 1, corner);
 	GLfloat dimensions[2] = {
-		static_cast<float>(GRID * zoom * (columns + 1.f) / (.5f * Screen::Width())),
-		static_cast<float>(GRID * zoom * (rows + 1.f) / (-.5f * Screen::Height()))};
+		GRID * static_cast<float>(zoom) * (columns + 1.f) / (.5f * Screen::Width()),
+		GRID * static_cast<float>(zoom) * (rows + 1.f) / (-.5f * Screen::Height())};
 	glUniform2fv(dimensionsI, 1, dimensions);
 	
 	// Call the shader program to draw the image.
