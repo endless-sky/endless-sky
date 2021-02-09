@@ -77,7 +77,10 @@ If you want to build the game from the command line via Scons, you will need [Py
 
 Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, to to **Settings** > **System** > **About** > **System info** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
 
-Click New, and then if you used a default MinGW installation, enter `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin` as the path, then hit OK to exit out of these windows.
+If you used the defaults for MinGW up to this point, add "New" and enter the following in separate entries:
+
+- `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`
+- `C:\Program Files (x86)\Git\usr\bin\`
 
 From there, restart your command line if you had one open, and simply `cd` to your Endless Sky directory, then type `mingw32-make.exe -f .winmake`. (`make`'s standard `-j N` flag is supported, to increase the number of active parallel build tasks to N.)
 
