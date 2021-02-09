@@ -112,6 +112,8 @@ private:
 	// The current choices being presented to you:
 	std::list<Paragraph> choices;
 	int choice;
+	// Flicker time, set if the player enters invald input for a pilot's name
+	int flickerTime = 0;
 	
 	// Text entry fields for changing the player's name.
 	std::string firstName;

@@ -112,6 +112,7 @@ void ConversationPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &grey = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &extrafaint = *GameData::Colors().Get("extrafaint");
 	
 	// Figure out where we should start drawing.
 	Point point(
@@ -142,6 +143,7 @@ void ConversationPanel::Draw()
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
+			Point unselected = point + Point(side ? 190 : 420, 7);
 			// Handle mouse clicks in whatever field is not selected.
 			if(side != choice)
 			{
@@ -149,8 +151,15 @@ void ConversationPanel::Draw()
 				continue;
 			}
 			
-			// Fill in whichever entry box is active right now.
-			FillShader::Fill(center, fieldSize, selectionColor);
+			// Color selected text box, or flicker if user attempts an error
+			if(flickerTime % 6 > 3)
+				FillShader::Fill(center, fieldSize, dim);
+			else
+				FillShader::Fill(center, fieldSize, selectionColor);
+			if(flickerTime)
+				--flickerTime;
+			// Fill non-selected text box with dimmer color
+			FillShader::Fill(unselected, fieldSize, extrafaint);
 			// Draw the text cursor.
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
@@ -239,11 +248,15 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 #endif
 			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
+			else
+				flickerTime = 18;	
 		}
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
 			choice = !choice;
+		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && (firstName.empty() || lastName.empty()))
+			flickerTime = 18;
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
 		{
 			// Display the name the player entered.
