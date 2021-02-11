@@ -284,9 +284,19 @@ void Conversation::Save(DataWriter &out) const
 
 
 // Check if this conversation contains any data.
-bool Conversation::IsEmpty() const
+bool Conversation::IsEmpty() const noexcept
 {
 	return nodes.empty();
+}
+
+
+
+// Check if this conversation contains a name prompt, and thus can be used as an "intro" conversation.
+bool Conversation::IsValidIntro() const noexcept
+{
+	return any_of(nodes.begin(), nodes.end(), [](const Node &node) noexcept -> bool {
+		return node.isChoice && node.data.empty();
+	});
 }
 
 

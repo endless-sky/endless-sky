@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 
 #include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 
@@ -192,8 +193,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		player.New();
 		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
+		const auto &intro = *GameData::Conversations().Get("intro");
+		if(!intro.IsValidIntro())
+			throw runtime_error("The \"intro\" conversation must contain a \"name\" node");
+		ConversationPanel *panel = new ConversationPanel(player, intro);
 		GetUI()->Push(panel);
 		panel->SetCallback(this, &MenuPanel::OnCallback);
 	}
