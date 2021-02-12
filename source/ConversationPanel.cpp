@@ -155,7 +155,7 @@ void ConversationPanel::Draw()
 			FillShader::Fill(center, fieldSize, (flickerTime % 6 > 3) ? dim : selectionColor);
 			if(flickerTime)
 				--flickerTime;
-			// Fill non-selected text box with dimmer color
+			// Fill non-selected text box with dimmer color.
 			FillShader::Fill(unselected, fieldSize, dark);
 			// Draw the text cursor.
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
