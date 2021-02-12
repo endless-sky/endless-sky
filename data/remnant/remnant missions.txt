@@ -4610,7 +4610,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	"Corrected degrees Kelvin are basically the standard Kelvin scale developed millennia ago, but with a slight correction factor to account for the adjustments determined by the conjunction of 2730. It is a rather miniscule change to the scale that is mostly only applicable to experiments or industrial applications that require micro-degree temperature precision, but can be significant at the larger scales." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
 				goto stormend
 			label centigrade
-			`	"People still use that? We learned about it in our studies, mostly in case we came across references to it in reference books. I have seen it a few times, but it is rarely used among us." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
+			`	"People still use that? We learned about it in our studies, mostly in case we came across references to it our library. I have seen it a few times, but it is rarely used among us." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
 				goto stormend
 			label fahrenheit
 			`	She looks at you quizically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
