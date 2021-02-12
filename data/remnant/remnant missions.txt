@@ -4479,3 +4479,140 @@ mission "Remnant: Expanded Horizons Astral job"
 		payment 500000
 		"reputation: Remnant" ++
 		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
+
+
+
+outfit "_Ion Storm Timer: Generator"
+	# This generator will fail when an ion storm comes and the ship runs out of energy
+	"hull repair rate" 60000
+	"hull energy" 1
+
+
+
+ship "_Ion Timer Ship"
+	# The Timer Weapon causes this ship to continually lose hull points
+	# The _Ion Storm Timer: Generator outfit counteracts this until there is an ion storm
+	# sprite "ship/shuttle" # uncomment this for debugging
+	attributes
+		"heat dissipation" 1
+		"hull" 1.0
+		"mass" 100
+		"drag" 5
+		"automaton" 1
+		"energy generation" 1
+		"thrust" 10
+		"turn" 600
+	outfits
+		"Timer Weapon"
+		"_Ion Storm Timer: Generator"
+	gun 0 0
+
+
+
+mission "Remnant: Expanded Horizons Storms 1"
+	name "Ember Waste Storm Scanning"
+	description "Dawn has asked that you scan one of the Ember Waste's storms at <waypoints> and return with the data to <planet>."
+	passengers 1
+	source
+		government "Remnant"
+	waypoint
+		system "Aescolanus"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		random < 30
+	on offer
+		require "Research Laboratory"
+		conversation
+			`As you cross the starport, you are suddenly ambushed by Dawn appearing out of a side hallway. "Captain <first>! I have been hoping to catch you. I need some help." She hurries up, waving a datapad full of charts. "I have some additional leads for my research project, and I need a pilot who can take me out to Aescolanus." She looks at you hopefully.`
+			choice
+				`	"Sure; I am always willing to help."`
+				`	"Not today, sorry."`
+					decline
+			`	"Excellent! You already have a research laboratory onboard, and it has all the equipment I need. Now, before we head out, you should know that the goal of this mission is to do some analysis on the leading edge of a storm that will be breaking on the system shortly. We will not have to stay for the whole storm, but we will have to be there for at least the first part."`
+			choice
+				`	"Are there any special adjustments needed?"`
+				`	"The <ship> is ready to go."`
+					goto readyforstorms
+			`	"Well, I expect you are already set up to handle the normal Ember Waste heat, correct?" She continues without waiting for you to reply. "The Ember Waste storms primarily are a risk to electrical systems - typically by draining your power. So you can compensate by ensuring that you have some excess available to use. I know some captains carry extra generators to ensure they always have extra power, but others instead carry extra crystal capacitors so they can outlast the storm. In theory, you could just accept that the your ship will be shut down during the height of the storm, and reboot everything afterwards. So long as no threats are present, it is safe, but somewhat nerve-wracking. Which strategy fits the <ship> is up to you."`
+			label readyforstorms
+			`	"I will settle into a bunk to do some pre-calculations. Please let me know when we arrive in Aescolanus."`
+				accept
+	on waypoint
+		dialog `Dawn quickly sets to work expanding the laboratory and setting up her instruments. After a few minutes, she returns to the cockpit and settles into a chair by the window. "Everything is ready, Captain. Now we just wait for the storm to arrive. I will let you know when we are ready to leave."`
+	npc kill
+		government "Test Dummy"
+		system "Aescolanus"
+		ship "_Ion Timer Ship" "Timer"
+		personality unconstrained heroic nemesis
+		dialog `As the storm starts to swell around you, the instrumentation chimes to indicate that it has collected all the data it needs. Dawn quickly begins the shutdown routine to protect the equipment against potential damage, and gives you the OK to return to <planet>.`
+	on complete
+		payment 250000
+		conversation
+			`"Thank you for your help, <first>. Sometimes I have to wait a while before we have a ship available to do missions like these." She pauses, then taps her commlink. "Speaking of which, I have confirmed the transfer of the logistics fee of <payment> to your account."`
+			choice
+				`	"I am always happy to help. What are you working on now, anyway?"`
+				`	"I am always happy to help. See you around!"`
+					goto stormend
+			`	"How familiar are you with the nature of space?"`
+			choice
+				`	"Not very, to be honest."`
+				`	"I know space is a vacuum, and can be either extremely hot or extremely cold depending on circumstances..."`
+					goto basics
+			`	She nods "Honesty is good. It is hard to learn when we are not willing to admit that we do not know something."`
+				goto explanation
+			label basics
+			`	She nods "Those are the basics, a good starting point."`
+			label explanation
+			`	A hologram of the Ember Waste appears over her commlink. "As you have no doubt picked up on, the Ember Waste does not conform to humanity's commonly understood rules about space. For instance, the standard background temperature is 2.B1 degrees, and the average density of the interstellar medium is F4240 particles per cubic meter. Here in the Ember Waste, the average background temperature is an order of magnitude greater and has an average density of E8D4A51000 particles per cubic meter."`
+			`	The display changes as an overlay of haze appears, pulsing in intensity. "Most interestingly, though, is that this area is significantly more variable than the rest of the galaxy. The haze shown here represents the heat hazard schematic we produce for our captains. It combines the local density with the measured heat values to estimate how much heat ships will be exposed to in the area."`
+			choice
+				`	"Interesting! Is that what causes the red glow?"`
+				`	"Wait a second. Why are there letters in your numbers?"`
+					goto numericsystem
+				`	"Thanks! I think that is all the details I can handle right now."`
+					goto stormend
+			label stormresume
+			`	"Not really, although it does contribute. Most of the red glow seems to be the result of clouds of hydrogen gases at aproximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures depreciatingly. "One more mystery to keep us alert and attentive."`
+			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorithms have identified a significant number of ripples of energy." She appears thoughtful.`
+			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... Except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
+			choice
+				`	"What do the storms have to do with the heat?"`
+				`	"What units do you use for temperature?"`
+					goto tempunits
+				`	"I think that is all the technical detail I can take."`
+					goto stormend
+			`	She looks mischievous. "I can not tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
+			`	She takes on a serious tone. "This data suggests there is enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transferred into the clouds." Her display vanishes, and she slings her backpack over her shoulder.`
+				goto stormend
+			label numericsystem
+			`	She looks confused for a moment before responding. "It is called hexadecimal. It is a base 16 numeric system." She pauses to look at you. "Based on your reaction, I assume that base 10 is still the standard in human space?"`
+			choice
+				`	"Yes."`
+					goto  stormcontinue
+				`	"How does that work?"`
+			`	"Quite simply: We have added some extra characters. When counting, instead of a single digit position restarting at 0 every 10, they cycle every 16. So when we count, we start at 1, but when we reach 9, the next number will be A. Then B, C, D, E and F. Then, it is at that point that we add an extra digit and restart at 0 with 10. So in hexadecimal F would be equal to 15 in base 10. One of the advantages of using a numeric system with a higher base is that we can handle larger numbers with fewer digits. For example, with two digits we can communicate any integer up to what would be 255 in base 10. Or with three digits we can reach 4095. Saving an extra digit here or there is fairly meaningless in written formats, nor is it much of a difference in oral communication. However, when one communicates by gestures, it is helpful to shorten the numbers where we can."`
+			label stormcontinue
+			`	"Now that you understand our numbers a bit better, you will be able to recognize that there is a lot of unexplained energy being transfered out there."`
+			choice
+				`	"Right. Is that what causes the red glow?"`
+					goto stormresume
+				`	"Thanks! I think that is all the details I can handle right now."`
+					goto stormend
+			
+			label tempunits
+			`	She looks at you curiously. "Corrected degrees Kelvin, of course. Why?"`
+			choice
+				`	"What are 'Corrected degrees Kelvin'?"`
+				`	"Just clarifying. I prefer to use degrees Centigrade."`
+					goto centigrade
+				`	"Just clarifying. I prefer to use degrees Fahrenheit."`
+					goto fahrenheit
+			`	"Corrected degrees Kelvin are basically the standard Kelvin scale developed millennia ago, but with a slight correction factor to account for the adjustments determined by the conjunction of 2730. It is a rather miniscule change to the scale that is mostly only applicable to experiments or industrial applications that require micro-degree temperature precision, but can be significant at the larger scales." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
+				goto stormend
+			label centigrade
+			`	"People still use that? We learned about it in our studies, mostly in case we came across references to it our library. I have seen it a few times, but it is rarely used among us." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
+				goto stormend
+			label fahrenheit
+			`	She looks at you quizically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
+			label stormend
+			`	"Thanks for the ride, Captain. I have to get working on this data, but if you are interested in helping some more, I hope to have more research expeditions planned soon."`
