@@ -1277,3 +1277,106 @@ person "Zitchas"
 	ship "Tern" "Shadow Flight 22"
 	ship "Tern" "Shadow Flight 23"
 	ship "Tern" "Shadow Flight 24"
+
+
+
+person "Brick"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+			"If sticks and stones break bones bricks should work wonders."
+			"The red coloring in bricks is caused by rust or iron oxide in the clay prior to baking."
+			"Bricks and blenders make monsters."
+			"I have no idea what im doing."
+	ship "Modified Boxwing" "Quarg Block"
+	ship "Modified Boxwing" "Hai Block"
+	ship "Modified Boxwing" "Remnant Block"
+
+ship "Modified Boxwing"
+	sprite "ship/modified boxwing"
+	thumbnail "thumbnail/modified boxwing"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		cost 3690000
+		"shields" 8000
+		"hull" 8000
+		"required crew" 1
+		"bunks" 3
+		"mass" 60
+		"drag" 2.59
+		"heat dissipation" .27
+		"fuel capacity" 500
+		"cargo space" 80
+		"outfit space" 350
+		"weapon capacity" 130
+		"engine capacity" 100
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Electron Beam" 2
+		"Heavy Laser" 2
+		"Beam Laser" 2
+
+		"Quarg Anti-Missile"
+
+		"Asteroid Scanner"
+		"Fuel Processor"
+		"Water Coolant System"
+		"Luxury Accommodations"
+		"Pebble Core"
+		"Hai Chasm Batteries"
+
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"Scram Drive"
+
+	gun -3 -44.5 "Beam Laser"
+	gun 3 -44.5 "Beam Laser"
+	gun -8.5 -43 "Heavy Laser"
+	gun 8.5 -43 "Heavy Laser"
+	gun -15 -39 "Electron Beam"
+	gun 15 -39 "Electron Beam"
+	turret 0 7.5 "Quarg Anti-Missile"	
+	engine -5 42
+		zoom 1
+	engine 5 42
+		zoom 1
+	engine -12 44
+		zoom 1
+	engine 12 44
+		zoom 1
+	engine -21.5 35
+		zoom 0.75
+	engine 21.5 35
+		zoom 0.75
+	engine -26 2
+		zoom 0.5
+	engine 26 2
+		zoom 0.5
+	"steering engine" -26.5 2
+		zoom 0.5
+		right
+	"steering engine" 26.5 2
+		zoom 0.5
+		left
+	"steering engine" -21.5 35
+		zoom 0.5
+		right
+	"steering engine" 21.5 35
+		zoom 0.5
+		left
+	leak "leak" 70 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `No matter how maligned, every ship has someone out there that loves it.`
+	description `Surprisingly, someone invested a lot of time, money, and effort into transforming this humble boxwing from a flying coffin into a palatial sarcophogus. It is still terribly cramped, but at least it is luxurious and shiny!`
