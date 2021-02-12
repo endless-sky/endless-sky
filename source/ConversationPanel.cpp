@@ -112,7 +112,7 @@ void ConversationPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &grey = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &extrafaint = *GameData::Colors().Get("extrafaint");
+	const Color &dark = *GameData::Colors().Get("dark");
 	
 	// Figure out where we should start drawing.
 	Point point(
@@ -152,14 +152,11 @@ void ConversationPanel::Draw()
 			}
 			
 			// Color selected text box, or flicker if user attempts an error
-			if(flickerTime % 6 > 3)
-				FillShader::Fill(center, fieldSize, dim);
-			else
-				FillShader::Fill(center, fieldSize, selectionColor);
+			FillShader::Fill(center, fieldSize, (flickerTime % 6 > 3) ? dim : selectionColor);
 			if(flickerTime)
 				--flickerTime;
 			// Fill non-selected text box with dimmer color
-			FillShader::Fill(unselected, fieldSize, extrafaint);
+			FillShader::Fill(unselected, fieldSize, dark);
 			// Draw the text cursor.
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
