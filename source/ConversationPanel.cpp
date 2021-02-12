@@ -151,7 +151,7 @@ void ConversationPanel::Draw()
 				continue;
 			}
 			
-			// Color selected text box, or flicker if user attempts an error
+			// Color selected text box, or flicker if user attempts an error.
 			FillShader::Fill(center, fieldSize, (flickerTime % 6 > 3) ? dim : selectionColor);
 			if(flickerTime)
 				--flickerTime;
