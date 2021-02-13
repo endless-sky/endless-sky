@@ -23,6 +23,7 @@ hazard "Ember Waste Base Storm"
 	weapon
 		"ion damage" 0.5
 		"shield damage" 5
+		"hull damage" 0.01
 
 effect "ion hazard"
 	sprite "effect/spark"

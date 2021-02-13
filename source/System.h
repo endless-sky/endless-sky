@@ -116,7 +116,7 @@ public:
 	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
 	// Whether this system can be seen when not linked.
-	bool IsInvisible() const;
+	bool Hidden() const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
@@ -207,7 +207,7 @@ private:
 	std::map<double, std::set<const System *>> neighbors;
 	
 	// Defines whether this system can be seen when not linked.
-	bool invisible = false;
+	bool hidden = false;
 	
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in

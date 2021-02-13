@@ -396,7 +396,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		{
 			seen.insert(system);
 			for(const System *neighbor : system->VisibleNeighbors())
-				if(!neighbor->IsInvisible() || system->Links().count(neighbor))
+				if(!neighbor->Hidden() || system->Links().count(neighbor))
 					seen.insert(neighbor);
 		}
 	}
@@ -1914,7 +1914,7 @@ void PlayerInfo::Visit(const System &system)
 	visitedSystems.insert(&system);
 	seen.insert(&system);
 	for(const System *neighbor : system.VisibleNeighbors())
-		if(!neighbor->IsInvisible() || system.Links().count(neighbor))
+		if(!neighbor->Hidden() || system.Links().count(neighbor))
 			seen.insert(neighbor);
 }
 

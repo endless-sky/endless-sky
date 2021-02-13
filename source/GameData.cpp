@@ -1280,8 +1280,9 @@ void GameData::PrintShipTable()
 void GameData::PrintWeaponTable()
 {
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
-		<< "homing" << '\t' << "strength" << '\n';
+		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
+		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
+		<< "homing" << '\t' << "strength" <<'\n';
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
@@ -1299,11 +1300,15 @@ void GameData::PrintWeaponTable()
 		cout << energy << '\t';
 		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
 		cout << heat << '\t';
+		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
+		cout << firingforce << '\t';
 		
 		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
 		cout << shield << '\t';
 		double hull = outfit.HullDamage() * 60. / outfit.Reload();
 		cout << hull << '\t';
+		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+		cout << hitforce << '\t';
 		
 		cout << outfit.Homing() << '\t';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();
