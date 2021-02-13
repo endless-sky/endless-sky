@@ -2073,19 +2073,19 @@ ship "Heavy Shuttle"
 	thumbnail "thumbnail/heavy shuttle"
 	attributes
 		category "Transport"
-		"cost" 320000
+		"cost" 470000
 		"shields" 700
 		"hull" 700
 		"required crew" 1
-		"bunks" 8
-		"mass" 110
-		"drag" 2.1
+		"bunks" 10
+		"mass" 85
+		"drag" 1.9
 		"heat dissipation" .8
 		"fuel capacity" 500
-		"cargo space" 35
-		"outfit space" 120
-		"weapon capacity" 10
-		"engine capacity" 60
+		"cargo space" 40
+		"outfit space" 130
+		"weapon capacity" 15
+		"engine capacity" 65
 		weapon
 			"blast radius" 12
 			"shield damage" 120
