@@ -79,6 +79,7 @@ Version 0.9.13:
         * Ka'het ships now have engine outfits. (@beccabunny, @Karirawri, @TheronEpic)
         * Created six new Heliarch ships. (@Arachi-Lover)
         * Added a new Ka'het ship with a unique superweapon and other new outfits. (@beccabunny, @Karirawri)
+        * Added a new Korath Exiles ship, the Dredger, intended to replace the World-Ship in combat missions that need a stronger Korath ship. (@beccabunny, @NomadicVolcano, @Zitchas)
       * Other new content:
         * The Penguin now uses the new engine flare mechanics. (@Zitchas)
         * Added new civilian hails. (@Anarchist2, @Naminson, @petervdmeer)
@@ -121,6 +122,8 @@ Version 0.9.13:
       * Changed the outfits on the stock Aphid as to nearly cut its cost in half. (@Terin)
       * Some Remnant outfits now come with ion resistance to help against the Ember Waste's new ion storms. (@Zitchas)
       * Gave Remnant thrusters built-in reverse thrust and slight slowing resistance on all their engines to make them stick out more. (@Zitchas)
+      * Reduced the number of missile-equipped ships in one of the small pirate fleet variants. (@Terin)
+      * The Puffin's Quantum Key Stone is now integrated into the hull to prevent access to stone before the player has a license for them. (@Zitchas)
     * Graphics:
       * "Mouthparts?" now has a sprite. (@beccabunny)
       * Added a scene image to the on enter conversation in the Graveyard. (@beccabunny)
@@ -184,6 +187,7 @@ Version 0.9.13:
       * Escorts can now be commanded to move to other systems by using the galaxy map. This must be opted into via the "System map sends move orders" preference. (@tehhowch)
       * Systems can change the range at which ships enter the system, with potentially different ranges for hyperdrive and jump drive travel. (@petervdmeer)
       * Playtime is now tracked for each pilot save. (@Terin)
+      * Systems can now be hidden from view unless they are linked to a visited system. (@Amazinite)
     * Changed mechanics:
       * Certain attributes are now capable of being made negative in the outfitter. For example, shield energy is now allowed to be negative, resulting in shield generation also creating energy. (@Amazinite)
       * Fines for illegal mission cargo are now added together instead of only the worst being applied. (@Amazinite)
@@ -202,6 +206,7 @@ Version 0.9.13:
       * Pirate deterrence takes relative shield and hull damage into account by scaling relative to the ship with the weapons. (@Terin)
       * Ships with the disables and plunders personalities will no longer destroy ships that have plundered. (@tatami4)
       * Ships with the plunders personality will now always aim to destroy ships they plundered. (@tatami4)
+      * Greatly increased the lifetime of flotsams by at least 10x and added drag to them so that they slow down over time. (@Amazinite)
   * User interface:
     * The outfitter help now explains how to buy outfits into cargo. (@Zitchas)
     * Fast-forward will now be turned off if the player is not in flight, such as when landing or boarding a ship. (@petervdmeer)
@@ -246,6 +251,7 @@ Version 0.9.13:
     * The game will now fallback onto using shaders for swizzling if the player's hardware does not have the swizzle extension. (@janisozaur, @thomasballinger)
     * References to undefined data are now preserved in the save file, preventing crashes or lost data caused by removing plugins. (@tehhowch)
     * The game will now warn about having a low monitor frame rate, which causes the game to run at a reduced frame rate. (@tehhowch)
+    * The --weapons flag now outputs the firing force and hit force of weapons. (@petervdmeer)
   * CI/CD and development environment
     * Make (test-)executables available (for Linux, MacOS and Windows) for every in-progress PR. (@MCOfficer)
     * Update CI/CD environment to the latest GitHub actions and Linux runtime environments. (@MCOfficer)
