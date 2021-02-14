@@ -61,7 +61,7 @@ Version 0.9.13:
     * New content: 
       * New missions:
         * New missions offered by the Quarg. (@Arachi-Lover)
-        * Created two short spaceport missions in human space. (@Nameson2)
+        * Created two short spaceport missions in human space. (@Naminson)
         * Created a difficult combat mission only available to early pilots. (@Anarchist2)
         * The player will now be warned when their combat rating is high enough that Marauder Hunted fleets will start showing up. (@Amazinite)
         * Created jobs and missions available on Kor Efreti worlds. (@W1zrad)
@@ -97,7 +97,7 @@ Version 0.9.13:
         * Added various new help messages describing hidden features. (@Terin)
         * The supermassive black hole in Sagittarius A* now pulls in ships that get too close. (@Zitchas)
     * Mission changes:
-      * "FW Hope Recon 1C" now refers to the proper number of crew on a Gunboat. (@Beccabunny)
+      * "FW Hope Recon 1C" now refers to the proper number of crew on a Gunboat. (@beccabunny)
       * Rewrote some of the conversation for "Wanderers: Defend Vara Ke'sok Hint". (@Anarchist2)
       * If the player has forgotten, the Remnant outfitter asking for Hai keystones will now explain how to purchase outfits into cargo. (@Zitchas)
       * Corrected the on visit dialog for some missions that had multiple objectives to now refer to all possible missing objectives. (@W1zrad)
