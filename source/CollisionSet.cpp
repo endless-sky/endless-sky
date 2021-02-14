@@ -80,10 +80,10 @@ void CollisionSet::Clear(int step)
 void CollisionSet::Add(Body &body)
 {
 	// Calculate the range of (x, y) grid coordinates this object covers.
-	int minX = static_cast<int>(body.Position().X() - body.Radius()) >> SHIFT;
-	int minY = static_cast<int>(body.Position().Y() - body.Radius()) >> SHIFT;
-	int maxX = static_cast<int>(body.Position().X() + body.Radius()) >> SHIFT;
-	int maxY = static_cast<int>(body.Position().Y() + body.Radius()) >> SHIFT;
+	int minX = static_cast<int>(body.Position().X() - body.Radius() * body.Scale()) >> SHIFT;
+	int minY = static_cast<int>(body.Position().Y() - body.Radius() * body.Scale()) >> SHIFT;
+	int maxX = static_cast<int>(body.Position().X() + body.Radius() * body.Scale()) >> SHIFT;
+	int maxY = static_cast<int>(body.Position().Y() + body.Radius() * body.Scale()) >> SHIFT;
 	
 	// Add a pointer to this object in every grid cell it occupies.
 	for(int y = minY; y <= maxY; ++y)
@@ -185,7 +185,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
-			double range = mask.Collide(offset, to - from, it->body->Facing());
+			double range = mask.Collide(offset, to - from, it->body->Facing(), it->body->Scale());
 			
 			if(range < closest)
 			{
@@ -259,7 +259,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
-			double range = mask.Collide(offset, to - from, it->body->Facing());
+			double range = mask.Collide(offset, to - from, it->body->Facing(), it->body->Scale());
 			
 			if(range < closest)
 			{
@@ -358,7 +358,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 				Point offset = center - it->body->Position();
 				double length = offset.Length();
 				if((length <= outer && length >= inner)
-					|| mask.WithinRing(offset, it->body->Facing(), inner, outer))
+					|| mask.WithinRing(offset, it->body->Facing(), inner, outer, it->body->Scale()))
 					result.push_back(it->body);
 			}
 		}

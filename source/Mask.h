@@ -43,17 +43,17 @@ public:
 	// intersection occurs. The sA should be relative to this object's center.
 	// If this object contains the given point, the return value is 0. If there
 	// is no collision, the return value is 1.
-	double Collide(Point sA, Point vA, Angle facing) const;
+	double Collide(Point sA, Point vA, Angle facing, double scale) const;
 	
 	// Check whether the mask contains the given point.
-	bool Contains(Point point, Angle facing) const;
+	bool Contains(Point point, Angle facing, double scale) const;
 	
 	// Find out whether this object (rotated and scaled as represented by the given
 	// unit vector) is touching a ring defined by the given inner and outer ranges.
-	bool WithinRing(Point point, Angle facing, double inner, double outter) const;
+	bool WithinRing(Point point, Angle facing, double inner, double outer, double scale) const;
 	
 	// Find out how close the given point is to the mask.
-	double Range(Point point, Angle facing) const;
+	double Range(Point point, Angle facing, double scale) const;
 	// Get the maximum distance from the center of this mask.
 	double Radius() const;
 	
@@ -62,8 +62,8 @@ public:
 	
 	
 private:
-	double Intersection(Point sA, Point vA) const;
-	bool Contains(Point point) const;
+	double Intersection(Point sA, Point vA, double scale) const;
+	bool Contains(Point point, double scale) const;
 	
 	
 private:

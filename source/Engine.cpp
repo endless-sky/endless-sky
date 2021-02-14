@@ -1835,7 +1835,7 @@ void Engine::HandleMouseClicks()
 		{
 			Point position = ship->Position() - flagship->Position();
 			const Mask &mask = ship->GetMask(step);
-			double range = mask.Range(clickPoint - position, ship->Facing());
+			double range = mask.Range(clickPoint - position, ship->Facing(), ship->Scale());
 			if(range <= clickRange)
 			{
 				clickRange = range;
@@ -1918,7 +1918,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
-			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
+			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing(), target->Scale());
 			if(range < 1.)
 			{
 				closestHit = range;

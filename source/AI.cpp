@@ -3015,7 +3015,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			v *= lifetime;
 			
 			const Mask &mask = target->GetMask(step);
-			if(mask.Collide(-p, v, target->Facing()) < 1.)
+			if(mask.Collide(-p, v, target->Facing(), target->Scale()) < 1.)
 			{
 				command.SetFire(index);
 				break;
@@ -3061,7 +3061,7 @@ void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
 		v *= lifetime;
 		
 		const Mask &mask = target.GetMask(step);
-		if(mask.Collide(-p, v, target.Facing()) < 1.)
+		if(mask.Collide(-p, v, target.Facing(), target.Scale()) < 1.)
 			command.SetFire(index);
 	}
 }
