@@ -114,7 +114,7 @@ news "human farming"
 			"My neighbor is using some sort of newfangled pesticides. The wind carried their residue onto my fields and destroyed half my crops."
 			"This year, only the farms with enough money to pay for irrigation are thriving. In most of my fields, there's nothing growing but knotweed and razor grass. I hope we can make it to the next season."
 			"The corporate farms keep buying out more and more small farmers to expand their own operations. Pretty soon there won't be any of us left."
-			"Fancy folks in the big cities and the Paradise planets think they've got life all figured out, but if you scratch the surface, you'll find that they're slaves to their lifestyles, and we're the ones who are free."
+			"Fancy folks in the big cities and the Paradise Planets think they've got life all figured out, but if you scratch the surface, you'll find that they're slaves to their lifestyles, and we're the ones who are free."
 			"I moved here from a richer world and wouldn't ever go back."
 			"Surprised to see horses and wooden carts in the 31st century, huh? Sometimes the old ways are the best."
 			"Everybody who wants to stay here is crazy. We can't hardly make any money and nobody appreciates what we do."
@@ -220,6 +220,7 @@ news "street vendor"
 			"Here, have a sample of my famous lemonsausage. What's a lemonsausage? It's, erm... It's a blend of lemon and pig meat! Trust me! No, don't go away!"
 			"I wish I had enough money to ask captains roaming around the spaceport for transport to somewhere nicer."
 			"Sell a man a fish and you can sell him fish every day; teach a man to fish and you lose your customer."
+			"I have the safest stall in town; nobody ever died from the food that I serve. At least, nobody that I know."
 		word
 			`"`
 
@@ -241,6 +242,7 @@ news "company psychologist"
 			"I've gotten incredibly good at doing this thing with my face that makes it look like I care."
 			"A trouble shared is a trouble halved, so most resource issues can be brought within acceptable limits by just pretending to listen."
 			"A man is judged by his deeds, not by his words, except in my profession; the more I talk, the more people value me."
+			"People are sometimes afraid that we psychologists can read their minds, but we are actually more scared of learning our own motivations during our studies."
 		word
 			`"`
 
@@ -262,6 +264,7 @@ news "genetic counselor"
 			"Technically speaking, social status is a much better predictor of future health outcomes than anything in your genome. But most of my clients are too rich to ever need to worry about that."
 			"I just had to break the news to one of my clients that he's likely to develop alarmingly long nose hair as he ages. He took it surprisingly well."
 			"No, science can't make anyone immortal, but for anyone with enough money it can substantially reduce their chances of dying young."
+			"I was once asked to help genetically engineer a baby for a very rich couple, but the amount of money they offered me for such a highly illegal activity was laughable."
 		word
 			`"`
 
@@ -284,6 +287,7 @@ news "unemployed youth"
 			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
+			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
 		word
 			`"`
 
@@ -303,6 +307,8 @@ news "union organizer"
 			"There's more than enough wealth to go around. All that we're asking for is our fair share."
 			"Syndicate managers get paid three times as much as their employees, just for sitting in an office all day and watching us sweat."
 			"My job is to encourage workers to place a higher value on their own lives despite being surrounded by a culture that tells them they are worthless."
+			"Management warning workers not to join the union is one of our best sources of visiblity among the workers."
+			"Young people usually don't join a union, so we are mostly working for the benefit of higher aged workers."
 		word
 			`"`
 
@@ -344,6 +350,7 @@ news "housekeeper"
 			"How is it possible that a man who manages a billion-credit corporation can still be so incompetent or so careless that he routinely misses the toilet bowl when he takes a piss?"
 			"The family I work for offered to let me live in a room in the attic for free, but I'm not sure I want to have that little separation between work and my personal life."
 			"If rich kids are so pampered that they've never so much as had to wash a dish in their entire lives, it makes me wonder how they hope to be independent adults one day."
+			"The kids here are not spoiled at all; the kids in the family I work for typically don't get a new computer game until two days after it gets on the market."
 		word
 			`"`
 
@@ -365,6 +372,7 @@ news "groundskeeper"
 			"They told me that they wanted the landscaping to be classic and entertaining, so I constructed a giant hedge maze."
 			"Despite all our best terraforming efforts, it can still be hard to get native Earth plants to grow on an alien world."
 			"My employer once asked me to add a garden in their Star Queen. The pirates were sure confused when they boarded us."
+			"My employer owns almost two complete planets, but today I'm watering the plants in the small apartment she owns on this planet."
 		word
 			`"`
 
@@ -405,6 +413,7 @@ news "tour guide"
 			"At least they don't make me dress up like anything. I knew a woman whose tour job made her dress up like a twenty-first century person. Apparently back then they all wore very tight-fitting pants."
 			"It's kind of amazing to me that people would travel halfway across the galaxy to see this dump. To me, it's the one place I've always wished I could get away from."
 			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
+			"If you have any tourists onboard that want to go anti-gravity boarding, then let them ask for me. I'll pay you commission."
 		word
 			`"`
 
@@ -423,6 +432,8 @@ news "human resources worker"
 			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
 			"I once had to find a delicate way to explain to a worker that he smelled bad. Like, so bad that no one could bear to be in a small meeting room with him."
 			"For most jobs, it's essential to know how to get along with others and be a team player. But I bet a freelance pilot like you never needs to worry about that."
+			"Many people overestimate their own capabilities. Those people usually don't last long in their jobs."
+			"Some people underestimate their own capabilities. Those people usually get bored and unproductive over time due to their work not being enough of a challenge."
 		word
 			`"`
 
@@ -443,6 +454,7 @@ news "loan officer"
 			"We charge however much interest the market will support. The only captains who can't manage to pay their debts are the ones with no business sense whatsoever."
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
 			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
+			"Do you know how hard it is to force somebody that joined the pirates to pay off their loans?"
 		word
 			`"`
 
@@ -525,7 +537,7 @@ news "agricultural scientist"
 		word
 			"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."
 			"Even though there are some alien ungulates that put on weight much quicker than Earth animals, or that have much leaner meat, most people still prefer to eat cows."
-			"I've heard that the corporate farms on some paradise worlds don't even need irrigation systems. They can just call up the terraforming office and order a rainstorm whenever they need one."
+			"I've heard that the corporate farms on some Paradise Worlds don't even need irrigation systems. They can just call up the terraforming office and order a rainstorm whenever they need one."
 			"People have been farming for thousands of years, but finding the best way to maximize yields without wearing out the land is still a hard problem to solve."
 		word
 			`"`
@@ -674,6 +686,7 @@ news "actor"
 			"Right now I'm mostly just doing commercials, but I'm working on a concept for a zero-gravity musical that will be truly epic."
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
 			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to watch."
+			"Hey, you are so beautiful, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
 		word
 			`"`
 
@@ -751,7 +764,7 @@ news "insurance agent"
 			`"`
 		word
 			"No, we don't sell insurance policies on private starships in this day and age. We also don't insure buildings in flood plains and houses inhabited by convicted serial arsonists."
-			"Among the paradise worlds, there's currently a fad of taking out insurance policies on pets, to pay for therapy if the animal dies unexpectedly."
+			"Among the Paradise Worlds, there's currently a fad of taking out insurance policies on pets, to pay for therapy if the animal dies unexpectedly."
 			"Insurance is all about mitigating risks. But you're flying around the vacuum of space in a tin can, so you probably don't know much about that."
 			"I just got done handling an insurance fraud case where the owner claimed her entire home had been eaten by Sagittarian sand-fleas."
 		word
@@ -774,7 +787,7 @@ news "excavation specialist"
 			"Those newfangled mining lasers are pretty cool, but there's nothing like good old-fashioned dynamite for shifting a lot of rock in a hurry."
 			"Sure, you may have been to outer space, but I bet you've never been ten kilometers underground."
 			"For hundreds of years we've been worried that asteroid harvesting will put terrestrial miners out of business, but it still hasn't happened."
-			"Once I've worked here for another decade, I plan to move to some paradise world and earn a living excavating bunkers for paranoid rich folks to hide in."
+			"Once I've worked here for another decade, I plan to move to some Paradise World and earn a living excavating bunkers for paranoid rich folks to hide in."
 			"Once we had to stop work on a mine for a month because the archaeologists thought we found evidence of a million-year-old civilization. It turned out the site was just radioactive. Dodged that one!"
 			"Last month, we had some loony pilot offer to use their missile launchers to help us mine!"
 			"Last month, we had some loony pilot request a reactor upgrade after delivering some explosives to us!"
@@ -799,6 +812,8 @@ news "chauffeur"
 			"My company gives private gyrocopter rides to rich tourists. I built the gyrocopter myself, but it's a very safe vehicle."
 			"You wouldn't believe the sorts of things that go on in the back of my car after certain extravagant social galas."
 			"You'll never believe what happened on my first day on the job. Someone tried to rob a building while I was in the parking lot. I had to ram their van to keep them from getting away!"
+			"They make me fly around the planet for ridiculous things, but you don't hear me complain with the salary they pay me."
+			"The vegetables are supposedly more fresh when I personally pick them up at the spaceport than when they get delivered through the 1-hour delivery service."
 		word
 			`"`
 
@@ -870,6 +885,7 @@ news "human syndicate manager"
 			"You look like the kind of captain who could benefit from a Syndicate Proton Gun. Would you care to schedule a test-firing?"
 			"Have you considered a Syndicate Freighter for your next ship? Captains like you swear by them!"
 			"Nobody ever got fired for buying Syndicate."
+			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
 		word
 			`"`
 
@@ -978,6 +994,7 @@ news "human tourism"
 			"I'm not riding on any ship that doesn't have the decency to have luxurious accomodations!"
 			"It's criminal how cheap the fares are to get here. For around a few thousand credits, you get to see stunning sights and shocking spectacles well worth double of what you paid."
 			"I was really hoping for more aliens in space. What's the point if there's no steamy interspecies romance!?"
+			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
 		word
 			`"`
 
@@ -1095,7 +1112,11 @@ news "human pirate"
 			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
 			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
 			"Crime pays, and the hours are good!"
-			"I'll retire as a security adviser in the paradise worlds. You know the saying: An old poacher makes the best gamekeeper."
+			"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
+			"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
+			"Your credits or your life! Oh you don't have either? Never mind then."
+			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
+			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
 		word
 			`"`
 
@@ -1142,7 +1163,7 @@ news "human farming in pirate space"
 		word
 			`"`
 		word
-			"Fancy folks in the big cities and the Paradise planets think they've got life all figured out, but if you dig below the surface, you'll find that they're slaves to their lifestyles, and we're the ones who are free."
+			"Fancy folks in the big cities and the Paradise Planets think they've got life all figured out, but if you dig below the surface, you'll find that they're slaves to their lifestyles, and we're the ones who are free."
 			"I moved here from a richer world and wouldn't ever go back."
 			"Surprised to see horses and wooden carts in the 31st century, huh? Sometimes the old ways are the best."
 			"Everybody who wants to stay here is crazy. We can't hardly make any money and nobody appreciates what we do."
@@ -1174,17 +1195,15 @@ news "graffiti on spaceport wall"
 			"Graffiti painted on a wall"
 	message
 		word
-			`"`
-		word
-			"A lone, soulless husk. / Appointed immortal king. / To sulk forever. - fgnt"
-			"The galaxy's child / Cursed with madness of time / Behind bloody chains - fgnt"
+			"A lone, soulless husk. / Appointed immortal king. / To sulk forever."
+			"The galaxy's child / Cursed with madness of time / Behind bloody chains"
 			"Too proud for farming / Too poor to buy Paradise / I'll hoist the black flag - Lake"
 			"A small cosmological speck drifting in and out of time - Swiren"
-			"Tear down the planet / Draw the most perfect circle / Idle endlessly - fgnt"
-			"Polish hull plating / Bring guns and ammunition / When will the blood stop? -fgnt"
-			"Farmer's family / Where's our guardian fleet? / Trapped in Paradise - fgnt"
-			"Built on graveyards / Our infant species pretends / No bodies remain - fgnt"
-			"The honest soldier / Rescue children when Hope dies / Fired by Earth's wisest - fgnt"
+			"Tear down the planet / Draw the most perfect circle / Idle endlessly"
+			"Polish hull plating / Bring guns and ammunition / When will the blood stop?"
+			"Farmer's family / Where's our guardian fleet? / Trapped in Paradise"
+			"Built on graveyards / Our infant species pretends / No bodies remain"
+			"The honest soldier / Rescue children when Hope dies / Fired by Earth's wisest"
 			"What lies beyond life / A Rampant AI wonders / Exit door leads in - Warlord Mike"
 			"There once was a man from New Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
 			"There once was a man from New Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
@@ -1192,5 +1211,8 @@ news "graffiti on spaceport wall"
 			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
 			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
 			"A long time ago / I was respected by all, / but now I sit here."
-		word
-			`"`
+			"A handsome young cyborg named Ace / Wooed women at every base / But once ladies glanced at / His special enhancement / They vanished with nary a trace"
+			"Mary had a little lamb / Little lamb little lamb / Mary had a little lamb / Whose fleece was white as snow"
+			"You think piracy is bad and want to stop us? You and what army?"
+			"Messing with the Syndicate, Does That Sound Like Fun to You?"
+			"83 percent of all statistics are just made up."

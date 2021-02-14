@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 
 #include "DataNode.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Random.h"
 

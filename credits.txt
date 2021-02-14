@@ -14,12 +14,13 @@ Creator and Lead Programmer
 
 Developers
   Amazinite
+  Benjamin Hauch
   Pointedstick
-  tehhowch
 
 Major Programming
   AdamKauffman
   Amazinite
+  Benjamin Hauch
   CyberShadow
   db47h
   Elyssaen
@@ -32,15 +33,14 @@ Major Programming
   MarcelineVQ
   NomadicVolcano
   oo13
-  petervdmeer
-  tehhowch
+  Peter van der Meer
 
 Storyline & Faction Authors
   Amazinite
   Arachi-Lover
   beccabunny
   LocalGod79
-  Petervdmeer
+  Peter van der Meer
   Pointedstick
   TheUnfetteredOne
   Zitchas
@@ -240,6 +240,7 @@ contributed to Endless Sky:
   tboby
   tehhowch
   temtemy
+  thebigh2014
   TheMarksman-ES
   thenerdfreak
   TheUnfetteredOne

@@ -167,6 +167,8 @@ mission "Quarg Satellites"
 	on enter "Han"
 		dialog "Although those that live on the planet here don't seem to mind the occasional pirates demanding tribute, maybe they will come to appreciate the reduced pirate presence here, assuming the Quarg scanner really does help with that."
 	on complete
+		dialog phrase "generic waypoint on visit"
+	on complete
 		payment 263000
 		dialog `You land to find a Quarg waiting right at the docks. It hands you <payment>, and thanks you for your help.`
 
@@ -210,6 +212,8 @@ mission "Lagrange Ring: Cargo"
 				accept
 	on stopover
 		dialog `The <cargo> is loaded into your ship under strict supervision, each crate carefully accounted for.`
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 953000
 		conversation
@@ -238,7 +242,7 @@ mission "Ask Quarg About Coalition Early"
 					decline
 			`	You stop the first Quarg that passes by you, and ask if they could tell their side of the story about the Coalition.`
 			`	"Ah, so you have encountered the foolish Coalition," it begins. "They once were three promising species, before they succumbed to the unwise desire for usurpation of the great deeds of others.`
-			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs"`
+			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs."`
 			choice
 				`	"Is it true that they defeated you?"`
 					goto defeat

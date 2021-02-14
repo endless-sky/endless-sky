@@ -36,8 +36,8 @@ public:
 	bool operator!() const;
 	
 	// Move the date forward one day.
-	void operator++();
-	void operator++(int);
+	Date &operator++();
+	Date operator++(int);
 	// Get the date this number of days in the future.
 	Date operator+(int days) const;
 	// Get the number of days between two dates.

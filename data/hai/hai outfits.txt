@@ -107,58 +107,67 @@ effect "ion impact"
 
 outfit "Railgun Slug"
 	category "Ammunition"
-	cost 60
+	cost 13
 	thumbnail "outfit/railslug"
-	"mass" 0.02
+	"mass" 0.003
 	"railgun slug capacity" -1
-	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning, and they can punch crippling holes in the hull of a ship whose shields are down."
+	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
+
+outfit "Railgun Slug Rack"
+	category "Ammunition"
+	cost 15000
+	thumbnail "outfit/railslug rack"
+	"mass" 1
+	"outfit space" -3
+	"railgun slug capacity" 500
+	ammo "Railgun Slug"
+	description "The railgun slug rack is used to store and load extra railgun ammunition."
 
 outfit "Railgun"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/railgun"
-	"mass" 4
-	"outfit space" -7
-	"weapon capacity" -7
+	"mass" 1
+	"outfit space" -4
+	"weapon capacity" -4
 	"gun ports" -1
-	"railgun slug capacity" 150
+	"railgun slug capacity" 1000
 	weapon
 		sprite "projectile/rail slug"
 			"frame rate" 30
 		ammo "Railgun Slug"
 		icon "icon/rail gun"
 		sound "ion impact"
-		"fire effect" "rail sparks" 2
-		"live effect" "rail sparks" 5
+		"fire effect" "rail sparks"
 		"hit effect" "bullet impact"
 		"inaccuracy" 3
-		"velocity" 22
+		"velocity" 44
 		"lifetime" 1
-		"reload" 120
-		"firing energy" 92
-		"firing heat" 39
-		"hit force" 44
+		"range override" 2100
+		"reload" 12
+		"firing energy" 3.5
+		"firing heat" 7.2
+		"firing force" 70
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai created this compact weapon for their Flea drones, providing mobile long-range support for the close quarters Pond Strider carrier."
+	description "The Hai designed this weapon to best compliment their Flea drones. Each railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
 	weapon
-		"acceleration" .022
-		"drag" .001
-		"lifetime" 99
 		sprite "projectile/rail slug"
 			"frame rate" 30
-		"live effect" "rail sparks" 5
 		"hit effect" "bullet impact"
-		"shield damage" 65
-		"hull damage" 95
+		"lifetime" 49
+		"acceleration" 2.2
+		"drag" .05
+		"turn" .6
 		"homing" 1
 		"optical tracking" .4
-		"turn" .3
-		"hit force" 44
-		"missile strength" 14
-		"piercing" .1
+		"shield damage" 4.2
+		"hull damage" 8.4
+		"ion damage" .3
+		"hit force" 15
 
 effect "bullet impact"
 	sprite "effect/bullet impact"
@@ -442,25 +451,25 @@ outfit "Sand Cell"
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
 	"outfit space" -24
-	"energy generation" 1.55
-	"heat generation" 2.4
-	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human fuel cells."
+	"energy generation" 1.65
+	"heat generation" 2.45
+	description "The Sand Cell is the smallest Hai generator. It was designed for ships which don't need or are unable to carry a nuclear reactor, and it clearly resembles human fuel cells."
 
 
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
 	category "Engines"
-	"cost" 240000
+	"cost" 230000
 	thumbnail "outfit/tiny atomic engines hai"
-	"mass" 24
-	"outfit space" -24
-	"engine capacity" -24
+	"mass" 22
+	"outfit space" -22
+	"engine capacity" -22
+	"thrust" 7.7
+	"thrusting energy" .92
+	"thrusting heat" 1.83
 	"turn" 250
-	"turning energy" .6
-	"turning heat" 1.3
-	"thrust" 10.1
-	"thrusting energy" 1.2
-	"thrusting heat" 2.4
+	"turning energy" .64
+	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"

@@ -1,0 +1,52 @@
+# Copyright 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+test "Test-Framework - Empty Testcase"
+	status "active"
+	description "Test with no test sequence. Only starts and exits the game"
+
+
+
+test "Test-Framework - Empty Test Sequence"
+	status "active"
+	description "Test with an empty sequence. Only starts and exits the game"
+	sequence
+
+
+
+test "Test-Framework - Conditions Arithmetic and Loops"
+	status "active"
+	description "Test condition-setting, condition-checking, additions, labels and branching."
+	sequence
+		watchdog 100
+		apply
+			"test: myFirstTestVariable" = 100
+			"test: mySecondTestVariable" = 200
+		assert
+			"test: myFirstTestVariable" == 100
+			"test: mySecondTestVariable" == 200
+		apply
+			"test: myFirstTestVariable" += 100
+			"test: mySecondTestVariable" += 200
+		assert
+			200 == "test: myFirstTestVariable"
+		assert
+			400 == "test: mySecondTestVariable"
+		label looping
+		apply
+			"test: loopControl" += 1
+			"test: myFirstTestVariable" -= 5
+			"test: mySecondTestVariable" *= 2
+		branch looping
+			"test: loopControl" < 10
+		assert
+			10 == "test: loopControl"
+			"test: myFirstTestVariable" == 200 - 50
+			400 * 1024 == "test: mySecondTestVariable"

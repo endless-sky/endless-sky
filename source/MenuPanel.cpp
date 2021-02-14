@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Files.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 
 #include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 
@@ -90,12 +91,12 @@ void MenuPanel::Draw()
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", font.TruncateMiddle(flagship.Name(), 165));
+			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->Name());
@@ -103,11 +104,12 @@ void MenuPanel::Draw()
 			info.SetString("planet", player.GetPlanet()->Name());
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
+		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
 	}
 	else if(player.IsLoaded())
 	{
 		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		info.SetString("ship", "You have died.");
 	}
 	else
@@ -191,8 +193,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		player.New();
 		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
+		const auto &intro = *GameData::Conversations().Get("intro");
+		if(!intro.IsValidIntro())
+			throw runtime_error("The \"intro\" conversation must contain a \"name\" node");
+		ConversationPanel *panel = new ConversationPanel(player, intro);
 		GetUI()->Push(panel);
 		panel->SetCallback(this, &MenuPanel::OnCallback);
 	}
