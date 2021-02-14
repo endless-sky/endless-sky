@@ -35,7 +35,8 @@ const int Flotsam::TONS_PER_BOX = 5;
 Flotsam::Flotsam(const string &commodity, int count)
 	: commodity(commodity), count(count)
 {
-	lifetime = Random::Int(3600) + 7200;
+	drag = GameData::Gamerule("flotsam: drag");
+	lifetime = Random::Int(GameData::Gamerule("flotsam: commodity: random lifetime")) + GameData::Gamerule("flotsam: commodity: base lifetime");
 	// Scale lifetime in proportion to the expected amount per box.
 	if(count != TONS_PER_BOX)
 		lifetime = sqrt(count * (1. / TONS_PER_BOX)) * lifetime;
@@ -46,9 +47,10 @@ Flotsam::Flotsam(const string &commodity, int count)
 Flotsam::Flotsam(const Outfit *outfit, int count)
 	: outfit(outfit), count(count)
 {
+	drag = GameData::Gamerule("flotsam: drag");
 	// The more the outfit costs, the faster this flotsam should disappear.
-	int lifetimeBase = 3000000000 / (outfit->Cost() * count + 1000000);
-	lifetime = Random::Int(lifetimeBase) + lifetimeBase + 600;
+	int lifetimeBase = GameData::Gamerule("flotsam: outfit: numerator scale") / (outfit->Cost() * count + GameData::Gamerule("flotsam: outfit: denominator scale"));
+	lifetime = Random::Int(lifetimeBase) + lifetimeBase + GameData::Gamerule("flotsam: outfit: base lifetime");
 }
 
 

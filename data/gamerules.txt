@@ -13,3 +13,12 @@ gamerule
 	"depreciation: daily" 0.997
 	"depreciation: grace period" 7
 	"depreciation: max age" 1000
+	
+	"flotsam: drag" 0.999
+	"flotsam: commodity: base lifetime" 7200
+	"flotsam: commodity: random lifetime" 3600
+	"flotsam: outfit: base lifetime" 600
+	"flotsam: outfit: numerator scale" 3000000000
+	"flotsam: outfit: denominator scale" 1000000
+	
+	"person spawnrate" 36000
