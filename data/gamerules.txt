@@ -21,4 +21,7 @@ gamerule
 	"flotsam: outfit: cost scale" 3000000000
 	"flotsam: outfit: base cost" 1000000
 	
+	"hit force: base mass" 400
+	"hit force: base scale" 0.3
+	
 	"person spawnrate" 36000
