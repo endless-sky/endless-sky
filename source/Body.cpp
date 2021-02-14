@@ -114,7 +114,7 @@ const Mask &Body::GetMask(int step) const
 		SetStep(step);
 	
 	static const Mask EMPTY;
-	return sprite ? ((Scale() != 1.) ? GetScaledMask(round(frame)) : sprite->GetMask(round(frame))) : EMPTY;
+	return sprite ? sprite->GetMask(round(frame)) : EMPTY;
 }
 
 
@@ -222,10 +222,6 @@ void Body::LoadSprite(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
-	// Cache any resized masks.
-	if(Scale() != 1.)
-		ScaleMasks();
 }
 
 
@@ -262,10 +258,6 @@ void Body::SetSprite(const Sprite *sprite)
 {
 	this->sprite = sprite;
 	currentStep = -1;
-	
-	// Cache any resized masks.
-	if(Scale() != 1.)
-		ScaleMasks();
 }
 
 
@@ -385,26 +377,4 @@ void Body::SetStep(int step) const
 		// be less than 0, clamp it to 0.
 		frame = max(0.f, lastFrame * 2.f - frame);
 	}
-}
-
-
-
-// Cache scaled masks for this body.
-void Body::ScaleMasks()
-{
-	masks.clear();
-	for(const auto &mask : sprite->GetMasks())
-		masks.push_back(mask * Scale());
-}
-
-
-
-const Mask &Body::GetScaledMask(int frame) const
-{
-	static const Mask EMPTY;
-	if(frame < 0 || masks.empty())
-		return EMPTY;
-	
-	// Assume that if a masks array exists, it has the right number of frames.
-	return masks[frame % masks.size()];
 }
