@@ -214,7 +214,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	
 	// Apply the aim and hardpoint offset.
 	aim += angle;
-	start += aim.Rotate(outfit->HardpointOffset() * outfit->HardpointSprite().Scale());
+	start += aim.Rotate(outfit->HardpointOffset());
 	
 	// Create a new projectile, originating from this hardpoint.
 	projectiles.emplace_back(ship, start, aim, outfit);
