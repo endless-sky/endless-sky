@@ -8,13 +8,14 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-start "default"
+start "Endless Sky"
 	name "Endless Sky"
 	description "The default scenario for Endless Sky"
-	sprite "scene/lobby"
+	thumbnail "scene/lobby"
 	date 16 11 3013
 	system "Rutilicus"
 	planet "New Boston"
+	conversation "intro"
 	account
 		credits 480000
 		score 400
@@ -23,4 +24,3 @@ start "default"
 			interest 0.004
 			term 365
 	set "license: Pilot's"
-	conversation "intro"

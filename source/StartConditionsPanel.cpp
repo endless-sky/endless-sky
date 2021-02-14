@@ -132,8 +132,8 @@ void StartConditionsPanel::Draw()
 	if(chosenStart) 
 	{
 		info.SetCondition("chosen start");
-		if(chosenStart->GetSprite())
-			info.SetSprite("start sprite", chosenStart->GetSprite());
+		if(chosenStart->GetThumbnail())
+			info.SetSprite("thumbnail", chosenStart->GetThumbnail());
 		info.SetString("name", chosenStart->GetName());
 		info.SetString("description", chosenStart->GetDescription());
 		info.SetString("planet", chosenStart->GetPlanet().Name());

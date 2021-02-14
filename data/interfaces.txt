@@ -211,7 +211,7 @@ interface "menu player info"
 
 interface "menu start info"
 	visible if "chosen start"
-	image "start sprite"
+	image "thumbnail"
 		center 360 -100
 		dimensions 220 240
 	label "name:"

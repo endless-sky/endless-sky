@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Planet.h"
 #include "Ship.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "System.h"
 
@@ -34,10 +35,7 @@ StartConditions::StartConditions(const DataNode &node)
 
 void StartConditions::Load(const DataNode &node)
 {
-	name = "Unnamed start";
-	
-	if(node.Size() >= 2)
-		name = node.Token(1);
+	name = (node.Size() >= 2) ? node.Token(1) : "(Unnamed Start)";
 	
 	for(const DataNode &child : node)
 	{
@@ -51,8 +49,8 @@ void StartConditions::Load(const DataNode &node)
 			name = child.Token(1);
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description += child.Token(1) + "\n";
-		else if(child.Token(0) == "sprite" && child.Size() >= 2)
-			sprite = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
@@ -71,12 +69,12 @@ void StartConditions::Load(const DataNode &node)
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
 		else if(child.Token(0) == "conversation" && child.Size() >= 2)
-			stockConversationName = child.Token(1);
+			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else
 			conditions.Add(child);
 	}
 	if(description.empty())
-		description = "No description provided.";
+		description = "(No description provided.)";
 }
  
 
@@ -87,11 +85,8 @@ void StartConditions::FinishLoading()
 	for(Ship &ship : ships)
 		ship.FinishLoading(true);
 	
-	if (!stockConversationName.empty())
-		stockConversation = GameData::Conversations().Get(stockConversationName);
-	
-	if(GetConversation().IsEmpty())
-		Files::LogError("Warning: The start scenario \"" + name + "\" has no conversation defined.");
+	if(!GetConversation().IsValidIntro())
+		Files::LogError("Warning: The start scenario \"" + name + "\" has an invalid starting conversation.");
 }
 
 
@@ -111,6 +106,28 @@ void StartConditions::Save(DataWriter &out) const
 		accounts.Save(out);
 	}
 	out.EndChild();
+}
+
+
+
+bool StartConditions::IsValid() const
+{	// A start must specify a valid system.
+	if(!system || !system->IsValid())
+		return false;
+	
+	// A start must specify a valid planet in its specified system.
+	if(!planet || !planet->IsValid() || planet->GetSystem() != system)
+		return false;
+	
+	// A start must reference a valid "intro" conversation, either stock or custom.
+	if((stockConversation && !stockConversation->IsValidIntro()) || (!stockConversation && !conversation.IsValidIntro()))
+		return false;
+	
+	// All ship models must be valid.
+	if(any_of(ships.begin(), ships.end(), [](const Ship &it) noexcept -> bool { return !it.IsValid(); }))
+		return false;
+	
+	return true;
 }
 
 
@@ -140,34 +157,6 @@ const System &StartConditions::GetSystem() const
 
 
 
-const Conversation &StartConditions::GetConversation() const 
-{
-	return stockConversation ? *stockConversation : conversation;
-}
-
-
-
-const Sprite *StartConditions::GetSprite() const 
-{
-	return sprite;
-}
-
-
-
-const std::string &StartConditions::GetName() const
-{
-	return name;
-}
-
-
-
-const std::string &StartConditions::GetDescription() const
-{
-	return description;
-}
-
-
-
 const Account &StartConditions::GetAccounts() const
 {
 	return accounts;
@@ -182,26 +171,35 @@ const ConditionSet &StartConditions::GetConditions() const
 
 
 
-const list<Ship> &StartConditions::Ships() const
+const vector<Ship> &StartConditions::Ships() const
 {
 	return ships;
 }
 
 
 
-bool StartConditions::IsValid() const
-{	// A start must specify a valid system.
-	if(!system || !system->IsValid())
-		return false;
-	
-	// A start must specify a valid planet in its specified system.
-	if(!planet || !planet->IsValid() || planet->GetSystem() != system)
-		return false;
-	
-	// A start must reference a valid "intro" conversation, either stock or custom.
-	if((stockConversation && !stockConversation->IsValidIntro()) || (!stockConversation && !conversation.IsValidIntro()))
-		return false;
-	
-	return true;
-	
+const Conversation &StartConditions::GetConversation() const
+{
+	return stockConversation ? *stockConversation : conversation;
+}
+
+
+
+const Sprite *StartConditions::GetThumbnail() const
+{
+	return thumbnail;
+}
+
+
+
+const std::string &StartConditions::GetName() const
+{
+	return name;
+}
+
+
+
+const std::string &StartConditions::GetDescription() const
+{
+	return description;
 }
