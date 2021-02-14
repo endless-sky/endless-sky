@@ -80,10 +80,10 @@ void CollisionSet::Clear(int step)
 void CollisionSet::Add(Body &body)
 {
 	// Calculate the range of (x, y) grid coordinates this object covers.
-	int minX = static_cast<int>(body.Position().X() - body.Radius() * body.Scale()) >> SHIFT;
-	int minY = static_cast<int>(body.Position().Y() - body.Radius() * body.Scale()) >> SHIFT;
-	int maxX = static_cast<int>(body.Position().X() + body.Radius() * body.Scale()) >> SHIFT;
-	int maxY = static_cast<int>(body.Position().Y() + body.Radius() * body.Scale()) >> SHIFT;
+	int minX = static_cast<int>(body.Position().X() - body.Radius()) >> SHIFT;
+	int minY = static_cast<int>(body.Position().Y() - body.Radius()) >> SHIFT;
+	int maxX = static_cast<int>(body.Position().X() + body.Radius()) >> SHIFT;
+	int maxY = static_cast<int>(body.Position().Y() + body.Radius()) >> SHIFT;
 	
 	// Add a pointer to this object in every grid cell it occupies.
 	for(int y = minY; y <= maxY; ++y)
