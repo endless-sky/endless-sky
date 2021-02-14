@@ -207,6 +207,8 @@ interface "menu player info"
 		from 315 105
 		align left
 
+
+
 interface "menu start info"
 	visible if "chosen start"
 	image "start sprite"
@@ -250,45 +252,46 @@ interface "menu start info"
 		align left
 
 
+
 interface "start conditions menu"
 	sprite "_menu/side panel"
 		center -360 0
-
+	
 	sprite "_menu/buttonless side panel"
 		center 0 0
-
+	
 	sprite "_menu/buttonless side panel"
 		center 360 0
-
+	
 	box "start description" # The box that will contain the description text
 		from -105 -160
 		to 105 160
-
+	
 	box "start entry list"
 		from -470 -157
 		to -200 120
-
+	
 	box "start entry"
 		from 0 0 # Doesn't matter, never gets used
 		dimensions 230 20
-
+	
 	box "start entry internal"
 		from 0 0 # Doesn't matter, never gets used
 		dimensions 220 14
-		
-
-
+	
 	outline "ship/clipper"
 		center 360 -90
 		dimensions 120 120
-
-	button b "Back to menu"
+	
+	button b "_Back to Menu"
 		center -420 155
 		dimensions 120 30
 	active if "chosen start"
-	button s "Select"
+	button s "_Start Game"
 		center -285 155
 		dimensions 90 30
+
+
 
 interface "load menu"
 	sprite "_menu/side panel"
