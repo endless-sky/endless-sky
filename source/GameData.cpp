@@ -119,6 +119,8 @@ namespace {
 	map<string, string> helpMessages;
 	map<string, string> plugins;
 	
+	map<string, double> gamerules;
+	
 	SpriteQueue spriteQueue;
 	// Whether sprites and audio have finished loading at game startup.
 	bool initiallyLoaded = false;
@@ -968,6 +970,13 @@ const map<string, string> &GameData::PluginAboutText()
 
 
 
+double GameData::Gamerule(const string &rule)
+{
+	return gamerules[rule];
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -1121,6 +1130,20 @@ void GameData::LoadFile(const string &path, bool debugMode)
 						text += '\t';
 				}
 				text += child.Token(0);
+			}
+		}
+		else if(key == "gamerule" && node.HasChildren())
+		{
+			for(const DataNode &child : node)
+			{
+				if(child.Size() < 2)
+				{
+					child.PrintTrace("Skipping gamerule with no value:");
+					continue;
+				}
+				
+				const string &token = child.Token(1);
+				gamerules[child.Token(0)] = token == "true" ? 1. : (token == "false" ? 0. : child.Value(1));
 			}
 		}
 		else

@@ -147,6 +147,8 @@ public:
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
 	
+	static double Gamerule(const std::string &rule);
+	
 	
 private:
 	static void LoadSources();
