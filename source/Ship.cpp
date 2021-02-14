@@ -3066,7 +3066,7 @@ void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, doubl
 // impact, or from firing a weapon, for example.
 void Ship::ApplyForce(const Point &force, bool gravitational)
 {
-	double baseMass = GameData::Gamerule("force: base mass")
+	double baseMass = GameData::Gamerule("hit force: base mass")
 	if(gravitational)
 	{
 		// Treat all ships as if they have a mass of 400. This prevents
@@ -3083,7 +3083,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 	// Reduce acceleration of small ships and increase acceleration of large
 	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
 	// mass of a typical light warship:
-	double scale = GameData::Gamerule("force: base scale");
+	double scale = GameData::Gamerule("hit force: base scale");
 	acceleration += force * (scale / baseMass + (1. - scale) / currentMass);
 }
 
