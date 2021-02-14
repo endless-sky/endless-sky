@@ -49,7 +49,7 @@ Flotsam::Flotsam(const Outfit *outfit, int count)
 {
 	drag = GameData::Gamerule("flotsam: drag");
 	// The more the outfit costs, the faster this flotsam should disappear.
-	int lifetimeBase = GameData::Gamerule("flotsam: outfit: numerator scale") / (outfit->Cost() * count + GameData::Gamerule("flotsam: outfit: denominator scale"));
+	int lifetimeBase = GameData::Gamerule("flotsam: outfit: cost scale") / (outfit->Cost() * count + GameData::Gamerule("flotsam: outfit: base cost"));
 	lifetime = Random::Int(lifetimeBase) + lifetimeBase + GameData::Gamerule("flotsam: outfit: base lifetime");
 }
 
