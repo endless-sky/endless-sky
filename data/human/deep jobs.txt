@@ -25,7 +25,16 @@ phrase "deep mystery cube pickup"
 	word
 		` `
 	word
-		`and pick up the mystery package. It is a small black cube, about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd.`
+		`and pick up the mystery package. It is a small black cube, about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind.`
+	word
+		` `
+	word
+		`Odd.`
+		`Strange.`
+		`Bizarre.`
+		`You think you see a shady figure watching you, but it could be your imagination.`
+		`You overhear someone giving your description, but you can't see where it's coming from or who they're talking to.`
+		`As you leave, you make eye contact with a dangerous-looking individual. Were they watching you? Probably a coincidence.`
 
 phrase "deep mystery cube dropoff payment"
 	word
