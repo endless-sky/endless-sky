@@ -65,6 +65,8 @@ public:
 	bool IsSwarming() const;
 	bool IsRoving() const;
 	
+	bool IsHiding() const;
+
 	// Special flags:
 	bool IsEscort() const;
 	bool IsTarget() const;

@@ -699,6 +699,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			targetDistance = target->Position().Distance(it->Position());
 		
 		// Behave in accordance with personality traits.
+		if(isPresent && personality.IsHiding() && !isStranded)
+		{
+			command |= Command::CLOAK;
+		}
+
 		if(isPresent && personality.IsSwarming() && !isStranded)
 		{
 			// Swarming ships should not wait for (or be waited for by) any ship.
