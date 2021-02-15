@@ -28,7 +28,6 @@ color "map side panel background" .125 .125 .125 1.
 color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
 color "shop info panel background" .055 .055 .055 1.
-color "selected start conditions background" .25 .25 .25 1.
 color "tooltip background" .2 .2 .2 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
@@ -278,10 +277,6 @@ interface "start conditions menu"
 	box "start entry internal"
 		from 0 0 # Doesn't matter, never gets used
 		dimensions 220 14
-	
-	outline "ship/clipper"
-		center 360 -90
-		dimensions 120 120
 	
 	button b "_Back to Menu"
 		center -420 155

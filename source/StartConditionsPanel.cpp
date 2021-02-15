@@ -46,13 +46,13 @@ namespace {
 }
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent), 
+	: player(player), gamePanels(gamePanels), parent(parent),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
-	selectedBackground(*GameData::Colors().Get("selected start conditions background")),
+	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
 {
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
-	if(startConditionsMenu)	
+	if(startConditionsMenu)
 	{
 		// Ideally, we want the content of the boxes to be drawn in Interface.cpp.
 		// However, we'd need a way to specify arbitrarily extensible lists there.
@@ -91,10 +91,10 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	GameData::Background().Draw(Point(), Point());
 	
 	Information info;
-	
-	if(chosenStart) 
+	if(chosenStart)
 	{
 		info.SetCondition("chosen start");
 		if(chosenStart->GetThumbnail())
@@ -108,7 +108,6 @@ void StartConditionsPanel::Draw()
 		info.SetString("debt", Format::Credits(chosenStart->GetAccounts().TotalDebt()));
 	}
 	
-	GameData::Background().Draw(Point(), Point());
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
@@ -128,12 +127,10 @@ void StartConditionsPanel::Draw()
 			continue;
 		}
 		
-		bool isHighlighted = (&it == chosenStart);
-		if(isHighlighted)
-		{
-			const auto zone = Rectangle(pos + offset, entryBox.Dimensions());
+		const auto zone = Rectangle(pos + offset, entryBox.Dimensions());
+		bool isHighlighted = &it == chosenStart || zone.Contains(hoverPoint);
+		if(&it == chosenStart)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground);
-		}
 		
 		const auto name = DisplayText(it.GetDisplayName(), Truncate::BACK);
 		font.Draw(name, pos, isHighlighted ? bright : medium);
