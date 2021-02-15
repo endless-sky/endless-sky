@@ -3133,8 +3133,8 @@ ship "Star Queen"
 		"heat dissipation" .65
 		"fuel capacity" 700
 		"cargo space" 60
-		"outfit space" 360
-		"weapon capacity" 120
+		"outfit space" 366
+		"weapon capacity" 124
 		"engine capacity" 100
 		weapon
 			"blast radius" 60
@@ -3153,11 +3153,16 @@ ship "Star Queen"
 		"Luxury Accommodations"
 		
 		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"X2200 Ion Steering"
+		"AR120 Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -18.5 115
 	engine 18.5 115
+	"reverse engine" -19 51
+		over
+	"reverse engine" 19 51
+		over
 	gun 0 -113 "Sidewinder Missile Launcher"
 	gun -24 -76 "Sidewinder Missile Launcher"
 	gun 24 -76 "Sidewinder Missile Launcher"
