@@ -1,5 +1,6 @@
 /* StartConditionsPanel.cpp
-Copyright (c) 2020 by FranchuFranchu <fff999abc999@gmail.com>
+Copyright (c) 2020-2021 by FranchuFranchu <fff999abc999@gmail.com>
+Copyright (c) 2021 by Benjamin Hauch
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -45,10 +46,12 @@ namespace {
 }
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const Panel *parent)
-	: player(player), gamePanels(gamePanels), descriptionWrappedText(FontSet::Get(14)), parent(parent)
+	: player(player), gamePanels(gamePanels), parent(parent), 
+	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
+	selectedBackground(*GameData::Colors().Get("selected start conditions background")),
+	description(FontSet::Get(14))
 {
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
-	
 	if(startConditionsMenu)	
 	{
 		// Ideally, we want the content of the boxes to be drawn in Interface.cpp.
@@ -61,54 +64,26 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
 	}
 	
-	if(!GameData::StartOptions().empty())
+	const auto startCount = GameData::StartOptions().size();
+	if(startCount >= 1)
 	{
 		// Default the selection to the most recently loaded scenario.
 		chosenStart = &GameData::StartOptions().back();
 		chosenStartIterator = GameData::StartOptions().end() - 1;
-		listScroll = (chosenStartIterator - GameData::StartOptions().begin()) * entryBox.Height();
+		listScroll = (startCount - 1) * entryBox.Height();
 	}
+	else
+		chosenStartIterator = GameData::StartOptions().end();
 	
 	const Rectangle firstRectangle = Rectangle::FromCorner(entryListBox.TopLeft(), entryBox.Dimensions());
-	startConditionsClickZones.reserve(GameData::StartOptions().size());
-	for(size_t i = 0; i < GameData::StartOptions().size(); ++i)
+	startConditionsClickZones.reserve(startCount);
+	for(size_t i = 0; i < startCount; ++i)
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), GameData::StartOptions().begin() + i);
 	
-	descriptionWrappedText.SetAlignment(Alignment::LEFT);
-	descriptionWrappedText.SetWrapWidth(descriptionBox.Width());
-	
-	if(chosenStart)
-		descriptionWrappedText.Wrap(chosenStart->GetDescription());
-	else 
-		descriptionWrappedText.Wrap("No valid start scenarios were defined!\n\nMake sure that you installed Endless Sky and all of your plugins properly");
-	
-	bright = *GameData::Colors().Get("bright");
-	medium = *GameData::Colors().Get("medium");
-	selectedBackground = *GameData::Colors().Get("selected start conditions background");
-}
-
-
-
-// Called when the conversation ends.
-void StartConditionsPanel::OnCallback(int)
-{
-	gamePanels.Reset();
-	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
-	// It's possible that the player got to this menu directly from the main menu, so we need to check for that.
-	if(parent)
-		GetUI()->Pop(parent);
-	
-	GetUI()->Pop(GetUI()->Root().get());
-	GetUI()->Pop(this);
+	description.SetAlignment(Alignment::LEFT);
+	description.SetWrapWidth(descriptionBox.Width());
+	description.Wrap(chosenStart ? chosenStart->GetDescription() : "No valid starting scenarios were defined!\n\n"
+		"Make sure you installed Endless Sky (and any plugins) properly.");
 }
 
 
@@ -118,9 +93,6 @@ void StartConditionsPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	Information info;
-	
-	// String that will be shown in the description panel.
-	string descriptionText; 
 	
 	if(chosenStart) 
 	{
@@ -134,8 +106,6 @@ void StartConditionsPanel::Draw()
 		info.SetString("date", chosenStart->GetDate().ToString());
 		info.SetString("credits", Format::Credits(chosenStart->GetAccounts().Credits()));
 		info.SetString("debt", Format::Credits(chosenStart->GetAccounts().TotalDebt()));
-
-		descriptionText = chosenStart->GetDescription();
 	}
 	
 	GameData::Background().Draw(Point(), Point());
@@ -143,26 +113,20 @@ void StartConditionsPanel::Draw()
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
 	
-	// TODO: Prevent text from overflowing.
-	descriptionWrappedText.Draw(
-		Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll),
-		bright
-	);
+	// TODO: Prevent lengthy descriptions from overflowing.
+	description.Draw(Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll), bright);
 	
-	Point point(entryListBox.Left(), entryListBox.Top() - listScroll);
+	auto pos = Point(entryListBox.Left(), entryListBox.Top() - listScroll);
 	const Point offset = entryInternalBox.Dimensions() * .5;
 	
 	const Font &font = FontSet::Get(14);
 	for(const auto &it : GameData::StartOptions())
 	{
-		Rectangle zone(
-			point + offset, 
-			entryBox.Dimensions()
-		);
-		if(point.Y() > entryListBox.Bottom() || point.Y() < entryListBox.Top())
+		const auto zone = Rectangle(pos + offset, entryBox.Dimensions());
+		if(pos.Y() > entryListBox.Bottom() || pos.Y() < entryListBox.Top())
 		{
-			// Don't bother drawing if the item is above or under the list.
-			point += Point(0., entryBox.Height());
+			// Don't bother drawing if the item is outside the list's bounds.
+			pos += Point(0., entryBox.Height());
 			continue;
 		}
 		
@@ -172,8 +136,8 @@ void StartConditionsPanel::Draw()
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground);
 		
 		DisplayText name = DisplayText(it.GetName(), Truncate::BACK);
-		font.Draw(name, point, isHighlighted ? bright : medium);
-		point += Point(0., entryBox.Height());
+		font.Draw(name, pos, isHighlighted ? bright : medium);
+		pos += Point(0., entryBox.Height());
 	}
 }
 
@@ -181,7 +145,6 @@ void StartConditionsPanel::Draw()
 
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) 
@@ -200,27 +163,21 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 			chosenStartIterator += offset;
 		
 		chosenStart = &*chosenStartIterator;
-		descriptionWrappedText.Wrap(chosenStart->GetDescription());
-		
-		return true;
+		description.Wrap(chosenStart->GetDescription());
 	}
-	else if(key == 's' || key == 'n' || key == '\n')
+	else if(chosenStart && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN))
 	{
-		if(!chosenStart)
-			return false;
-		
 		player.New(*chosenStart);
-	
+		
 		ConversationPanel *panel = new ConversationPanel(
 			player, chosenStart->GetConversation());
 		GetUI()->Push(panel);
-		panel->SetCallback(this, &StartConditionsPanel::OnCallback);
-		
-		return true;
+		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
 	}
 	else 
-		return true;
-	return false;
+		return false;
+	
+	return true;
 }
 
 
@@ -229,10 +186,9 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 {
 	// Check it's inside of the entry list box.
 	if(!entryListBox.Contains(Point(x, y)))
-		return true;
+		return false;
 	
 	for(const auto &it : startConditionsClickZones)
-	{
 		if(it.Contains(Point(x, y + listScroll)))
 		{
 			chosenStartIterator = it.Value();
@@ -240,10 +196,9 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 			if(chosenStart != &*chosenStartIterator)
 				descriptionScroll = 0;
 			chosenStart = &*chosenStartIterator;
-			descriptionWrappedText.Wrap(chosenStart->GetDescription());
-			break;
+			description.Wrap(chosenStart->GetDescription());
+			return true;
 		}
-	}
 	
 	return false;
 }
@@ -253,7 +208,7 @@ bool StartConditionsPanel::Click(int x, int y, int clicks)
 bool StartConditionsPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
-	return false;
+	return true;
 }
 
 
@@ -263,11 +218,12 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 	if(entryListBox.Contains(hoverPoint))
 	{
 		DoScrolling(-dy);
+		return true;
 	}
 	// TODO: When #4123 gets merged, re-add scrolling support to the description.
 	// Right now it's pointless because it would make the text overflow.
 	
-	return true;
+	return false;
 }
 
 
@@ -275,6 +231,30 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 bool StartConditionsPanel::Scroll(double dx, double dy)
 {
 	return Drag(0., dy * Preferences::ScrollSpeed());
+}
+
+
+
+// Called when the conversation ends. The exit code is intentionally ignored.
+void StartConditionsPanel::OnConversationEnd(int)
+{
+	gamePanels.Reset();
+	gamePanels.CanSave(true);
+	gamePanels.Push(new MainPanel(player));
+	// Tell the main panel to re-draw itself (and pop up the planet panel).
+	gamePanels.StepAll();
+	// If the starting conditions don't specify any ships, let the player buy one.
+	if(player.Ships().empty())
+	{
+		gamePanels.Push(new ShipyardPanel(player));
+		gamePanels.StepAll();
+	}
+	// It's possible that the player got to this menu directly from the main menu, so we need to check for that.
+	if(parent)
+		GetUI()->Pop(parent);
+	
+	GetUI()->Pop(GetUI()->Root().get());
+	GetUI()->Pop(this);
 }
 
 

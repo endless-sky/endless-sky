@@ -1,5 +1,6 @@
 /* StartConditionsPanel.h
-Copyright (c) 2020 by FranchuFranchu <fff999abc999@gmail.com>
+Copyright (c) 2020-2021 by FranchuFranchu <fff999abc999@gmail.com>
+Copyright (c) 2021 by Benjamin Hauch
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -23,38 +24,45 @@ class PlayerInfo;
 class StartConditions;
 class UI;
 
+
+
 class StartConditionsPanel : public Panel {
 public:
 	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const Panel *parent);
-	void OnCallback(int);
-	virtual void Draw() override;
+	
+	virtual void Draw() override final;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
-	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(double dx, double dy) override;
-	virtual bool Scroll(double dx, double dy) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override final;
+	virtual bool Click(int x, int y, int clicks) override final;
+	virtual bool Hover(int x, int y) override final;
+	virtual bool Drag(double dx, double dy) override final;
+	virtual bool Scroll(double dx, double dy) override final;
 	
 	
 private:
+	void OnConversationEnd(int);
 	// This takes in the amount of pixels to be scrolled, and returns the amount of entries that were actually scrolled.
 	double DoScrolling(int scrollAmount);
-
-
+	
+	
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
-	
-	WrappedText descriptionWrappedText;
+	// The panel to close when a scenario is chosen.
+	const Panel *parent;
+	// Colors with which to draw text.
+	const Color &bright;
+	const Color &medium;
+	const Color &selectedBackground;
+	// The selected scenario's description.
+	WrappedText description;
 	
 	const StartConditions *chosenStart = nullptr;
 	std::vector<StartConditions>::const_iterator chosenStartIterator;
 	
-	// Stored here so that we can remove it if the player chooses a scenario.
-	const Panel *parent = nullptr; 
 	Point hoverPoint;
 	
 	double listScroll = 0;
@@ -63,14 +71,13 @@ private:
 	// This is a map that will let us figure out which start conditions item the user clicked on.
 	std::vector<ClickZone<std::vector<StartConditions>::const_iterator>> startConditionsClickZones;
 	
+	// Interface-controlled positions & dimensions.
 	Rectangle descriptionBox;
 	Rectangle entryBox;
 	Rectangle entryListBox;
 	Rectangle entryInternalBox;
-	
-	Color bright;
-	Color medium;
-	Color selectedBackground;
 };
+
+
 
 #endif
