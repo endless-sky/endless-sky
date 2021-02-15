@@ -99,7 +99,7 @@ void StartConditionsPanel::Draw()
 		info.SetCondition("chosen start");
 		if(chosenStart->GetThumbnail())
 			info.SetSprite("thumbnail", chosenStart->GetThumbnail());
-		info.SetString("name", chosenStart->GetName());
+		info.SetString("name", chosenStart->GetDisplayName());
 		info.SetString("description", chosenStart->GetDescription());
 		info.SetString("planet", chosenStart->GetPlanet().Name());
 		info.SetString("system", chosenStart->GetSystem().Name());
@@ -122,20 +122,20 @@ void StartConditionsPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	for(const auto &it : GameData::StartOptions())
 	{
-		const auto zone = Rectangle(pos + offset, entryBox.Dimensions());
-		if(pos.Y() > entryListBox.Bottom() || pos.Y() < entryListBox.Top())
+		if(!entryListBox.Contains(pos))
 		{
-			// Don't bother drawing if the item is outside the list's bounds.
 			pos += Point(0., entryBox.Height());
 			continue;
 		}
 		
 		bool isHighlighted = (&it == chosenStart);
-		
 		if(isHighlighted)
+		{
+			const auto zone = Rectangle(pos + offset, entryBox.Dimensions());
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground);
+		}
 		
-		DisplayText name = DisplayText(it.GetName(), Truncate::BACK);
+		const auto name = DisplayText(it.GetDisplayName(), Truncate::BACK);
 		font.Draw(name, pos, isHighlighted ? bright : medium);
 		pos += Point(0., entryBox.Height());
 	}

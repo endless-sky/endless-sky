@@ -136,7 +136,7 @@ const Sprite *StartConditions::GetThumbnail() const noexcept
 
 
 
-const std::string &StartConditions::GetName() const noexcept
+const std::string &StartConditions::GetDisplayName() const noexcept
 {
 	return name;
 }

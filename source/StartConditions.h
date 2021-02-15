@@ -48,7 +48,7 @@ public:
 	
 	// Information needed for the scenario picker.
 	const Sprite *GetThumbnail() const noexcept;
-	const std::string &GetName() const noexcept;
+	const std::string &GetDisplayName() const noexcept;
 	const std::string &GetDescription() const noexcept;
 	
 	
