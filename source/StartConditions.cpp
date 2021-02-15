@@ -35,24 +35,19 @@ StartConditions::StartConditions(const DataNode &node)
 
 void StartConditions::Load(const DataNode &node)
 {
-	name = (node.Size() >= 2) ? node.Token(1) : "(Unnamed Start)";
-	
+	identifier = (node.Size() >= 2) ? node.Token(1) : "(Unnamed Start)";
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "date" && child.Size() >= 4)
-			date = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "system" && child.Size() >= 2)
-			system = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = GameData::Planets().Get(child.Token(1));
+		if(CoreStartData::LoadChild(child))
+		{
+			// This child node contained core information and was successfully parsed.
+		}
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description += child.Token(1) + "\n";
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "account")
-			accounts.Load(child);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{
 			// TODO: support named stock ships.
@@ -91,25 +86,6 @@ void StartConditions::FinishLoading()
 
 
 
-void StartConditions::Save(DataWriter &out) const
-{
-	// Only the parts of the start conditions that might have to be used later
-	// (such as the date for the tutorial dialogs) are saved.
-	// Things like the starting ship or the intro conversation, which are
-	// meant to be used only once, aren't saved.
-	out.Write("start");
-	out.BeginChild();
-	{
-		out.Write("system", system->Name());
-		out.Write("planet", planet->TrueName());
-		out.Write("date", date.Year(), date.Month(), date.Day());
-		accounts.Save(out);
-	}
-	out.EndChild();
-}
-
-
-
 bool StartConditions::IsValid() const
 {	// A start must specify a valid system.
 	if(!system || !system->IsValid())
@@ -132,46 +108,14 @@ bool StartConditions::IsValid() const
 
 
 
-Date StartConditions::GetDate() const
-{
-	return date ? date : Date(16, 11, 3013);
-}
-
-
-
-const Planet &StartConditions::GetPlanet() const
-{
-	return planet ? *planet : *GameData::Planets().Get("New Boston");
-}
-
-
-
-const System &StartConditions::GetSystem() const
-{
-	if(system)
-		return *system;
-	const System *planetSystem = GetPlanet().GetSystem();
-	
-	return planetSystem ? *planetSystem : *GameData::Systems().Get("Rutilicus");
-}
-
-
-
-const Account &StartConditions::GetAccounts() const
-{
-	return accounts;
-}
-
-
-
-const ConditionSet &StartConditions::GetConditions() const
+const ConditionSet &StartConditions::GetConditions() const noexcept
 {
 	return conditions;
 }
 
 
 
-const vector<Ship> &StartConditions::Ships() const
+const vector<Ship> &StartConditions::Ships() const noexcept
 {
 	return ships;
 }
@@ -185,21 +129,21 @@ const Conversation &StartConditions::GetConversation() const
 
 
 
-const Sprite *StartConditions::GetThumbnail() const
+const Sprite *StartConditions::GetThumbnail() const noexcept
 {
 	return thumbnail;
 }
 
 
 
-const std::string &StartConditions::GetName() const
+const std::string &StartConditions::GetName() const noexcept
 {
 	return name;
 }
 
 
 
-const std::string &StartConditions::GetDescription() const
+const std::string &StartConditions::GetDescription() const noexcept
 {
 	return description;
 }

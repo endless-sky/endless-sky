@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
+#include "StartConditions.h"
 #include "System.h"
 #include "text/alignment.hpp"
 #include "text/DisplayText.h"

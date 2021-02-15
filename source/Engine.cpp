@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 #include "Audio.h"
+#include "CoreStartData.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -1231,7 +1232,7 @@ void Engine::EnterSystem()
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
-	if(today <= player.ChosenStart().GetDate() + 4)
+	if(today <= player.StartData().GetDate() + 4)
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"));
 		Messages::Add(GameData::HelpMessage("basics 2"));

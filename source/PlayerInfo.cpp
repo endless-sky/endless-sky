@@ -43,6 +43,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <ctime>
 #include <iterator>
 #include <sstream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -75,8 +76,8 @@ void PlayerInfo::New(const StartConditions &start)
 	// Clear any previously loaded data.
 	Clear();
 	
-	chosenStart = start;
-	
+	// Copy the core information from the full starting scenario.
+	startData = start;
 	// Copy any ships in the start conditions.
 	for(const Ship &ship : start.Ships())
 	{
@@ -119,7 +120,6 @@ void PlayerInfo::Load(const string &path)
 	Clear();
 	
 	filePath = path;
-	
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
 	size_t pos = filePath.find('~');
@@ -197,10 +197,6 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
-		else if(child.Token(0) == "start")
-		{
-			chosenStart.Load(child);
-		}
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "basis")
@@ -288,8 +284,9 @@ void PlayerInfo::Load(const string &path)
 				}
 			}
 		}
+		else if(child.Token(0) == "start")
+			startData.Load(child);
 	}
-	
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
 	// Ensure the player is in a valid state after loading & applying changes.
@@ -596,9 +593,9 @@ void PlayerInfo::IncrementDate()
 
 
 
-const StartConditions &PlayerInfo::ChosenStart() const
+const CoreStartData &PlayerInfo::StartData() const noexcept
 {
-	return chosenStart;
+	return startData;
 }
 
 
@@ -2411,8 +2408,8 @@ void PlayerInfo::ValidateLoad()
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
-		system = &chosenStart.GetSystem();
-		planet = &chosenStart.GetPlanet();
+		system = &startData.GetSystem();
+		planet = &startData.GetPlanet();
 		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
 	}
 	
@@ -2451,16 +2448,23 @@ void PlayerInfo::ValidateLoad()
 		Files::LogError("Warning: reset the travel plan due to use of invalid system(s).");
 	}
 	
-	// For old saves, default to the first start condition, which is 
-	// always our default start.
-	// It is possible that there are no start conditions. In that case, it is not 
-	// possible to guess which start conditions this was created with so exit with an error.
-	if(GameData::StartOptions().empty())
-		throw runtime_error("A old pilot was loaded, but no valid start conditions were defined in the data files! " 
-			"Make sure that you've installed the game properly.");
-	
-	else if(chosenStart.GetName().empty())
-		chosenStart = GameData::StartOptions().front(); 
+	// For old saves, default to the first start condition (the default "Endless Sky" start).
+	if(startData.Identifier().empty())
+	{
+		// It is possible that there are no start conditions defined (e.g. a bad installation or
+		// incomplete total conversion plugin). In that case, it is not possible to continue.
+		const auto startCount = GameData::StartOptions().size();
+		if(startCount >= 1)
+		{
+			startData = GameData::StartOptions().front();
+			// When necessary, record in the pilot file that the starting data is just an assumption.
+			if(startCount >= 2)
+				conditions["unverified start scenario"] = true;
+		}
+		else
+			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
+				"nodes were found in data files or loaded plugins--make sure you've installed the game properly.)");
+	}
 	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored. 
@@ -2806,9 +2810,8 @@ void PlayerInfo::Save(const string &path) const
 		out.EndChild();
 	}
 	
-	// Save accounting information, the start scenario used in this save, cargo, and cargo cost bases.
+	// Save accounting information, cargo, and cargo cost bases.
 	accounts.Save(out);
-	chosenStart.Save(out);
 	cargo.Save(out);
 	if(!costBasis.empty())
 	{
@@ -2969,6 +2972,9 @@ void PlayerInfo::Save(const string &path) const
 			}
 	}
 	out.EndChild();
+	
+	out.WriteComment("How you began:");
+	startData.Save(out);
 }
 
 

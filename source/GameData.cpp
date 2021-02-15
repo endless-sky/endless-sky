@@ -1086,9 +1086,9 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				startConditions.emplace_back(node);
 			else
 			{
-				const string &startName = node.Token(1);
+				const string &identifier = node.Token(1);
 				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
-					[&startName](const StartConditions &it) noexcept -> bool { return it.GetName() == startName; });
+					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
 				if(existingStart != startConditions.end())
 					existingStart->Load(node);
 				else

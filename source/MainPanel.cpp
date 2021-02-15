@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
+#include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -35,7 +36,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -110,7 +110,7 @@ void MainPanel::Step()
 		if(isActive && player.Ships().size() > 1)
 			isActive = !DoHelp("multiple ship controls");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-				&& player.GetDate() <= player.ChosenStart().GetDate() + 4)
+				&& player.GetDate() <= player.StartData().GetDate() + 4)
 		{
 			++lostness;
 			int count = 1 + lostness / 3600;

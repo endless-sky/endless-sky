@@ -13,22 +13,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef START_CONDITIONS_H_
 #define START_CONDITIONS_H_
 
-#include "Account.h"
+#include "CoreStartData.h"
+
 #include "ConditionSet.h"
 #include "Conversation.h"
-#include "Date.h"
 
+#include <string>
 #include <vector>
 
 class DataNode;
-class Planet;
 class Ship;
 class Sprite;
-class System;
 
 
 
-class StartConditions {
+class StartConditions : public CoreStartData {
 public:
 	StartConditions() = default;
 	explicit StartConditions(const DataNode &node);
@@ -37,38 +36,23 @@ public:
 	// Finish loading the ship definitions.
 	void FinishLoading();
 	
-	// Serialize the basic information of this start.
-	void Save(DataWriter &out) const;
-	
 	// A valid start scenario has a valid system, planet, and conversation.
 	// Any ships given to the player must also be valid models.
 	bool IsValid() const;
 	
-	// Get this start's date, or 16/11/3013 if not set.
-	Date GetDate() const;
-	// Get this start's planet, or New Boston if not set.
-	const Planet &GetPlanet() const;
-	// Get this start's system, or Rutilicus if not set.
-	const System &GetSystem() const;
-	const Account &GetAccounts() const;
-	const ConditionSet &GetConditions() const;
-	const std::vector<Ship> &Ships() const;
+	const ConditionSet &GetConditions() const noexcept;
+	const std::vector<Ship> &Ships() const noexcept;
 	
 	// Get this start's intro conversation.
 	const Conversation &GetConversation() const;
 	
 	// Information needed for the scenario picker.
-	const Sprite *GetThumbnail() const;
-	const std::string &GetName() const;
-	const std::string &GetDescription() const;
+	const Sprite *GetThumbnail() const noexcept;
+	const std::string &GetName() const noexcept;
+	const std::string &GetDescription() const noexcept;
 	
 	
 private:
-	Date date;
-	const Planet *planet = nullptr;
-	const System *system = nullptr;
-	// Starting credits & debts.
-	Account accounts;
 	// Conditions that will be set for any pilot that begins with this scenario.
 	ConditionSet conditions;
 	// Ships that a new pilot begins with (rather than being required to purchase one).
@@ -79,6 +63,7 @@ private:
 	const Conversation *stockConversation = nullptr;
 	
 	const Sprite *thumbnail = nullptr;
+	// The user-friendly display name for this starting scenario.
 	std::string name;
 	std::string description;
 };
