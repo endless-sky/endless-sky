@@ -12,20 +12,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StartConditionsPanel.h"
 
-#include "Color.h"
+#include "text/alignment.hpp"
 #include "Command.h"
 #include "ConversationPanel.h"
-#include "DataFile.h"
-#include "Dialog.h"
-#include "Files.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
-#include "GameWindow.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LoadPanel.h"
+#include "text/layout.hpp"
 #include "MainPanel.h"
-#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Planet.h"
 #include "Preferences.h"
@@ -34,12 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "text/alignment.hpp"
-#include "text/DisplayText.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
-#include "text/layout.hpp"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -51,7 +44,7 @@ namespace {
 	const int PAGE_INTERVAL = 10;
 }
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, Panel *parent)
+StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const Panel *parent)
 	: player(player), gamePanels(gamePanels), descriptionWrappedText(FontSet::Get(14)), parent(parent)
 {
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
@@ -70,8 +63,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, P
 	
 	if(!GameData::StartOptions().empty())
 	{
-		// By default, select the last defined start conditions
-		// (which are usually the ones defined by a plugin).
+		// Default the selection to the most recently loaded scenario.
 		chosenStart = &GameData::StartOptions().back();
 		chosenStartIterator = GameData::StartOptions().end() - 1;
 		listScroll = (chosenStartIterator - GameData::StartOptions().begin()) * entryBox.Height();
@@ -272,7 +264,7 @@ bool StartConditionsPanel::Drag(double dx, double dy)
 	{
 		DoScrolling(-dy);
 	}
-	// TODO: When #4123 gets merged, re-add scrolling support.
+	// TODO: When #4123 gets merged, re-add scrolling support to the description.
 	// Right now it's pointless because it would make the text overflow.
 	
 	return true;

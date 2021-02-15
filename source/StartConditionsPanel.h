@@ -25,7 +25,7 @@ class UI;
 
 class StartConditionsPanel : public Panel {
 public:
-	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, Panel *parent);
+	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const Panel *parent);
 	void OnCallback(int);
 	virtual void Draw() override;
 	
@@ -54,7 +54,7 @@ private:
 	std::vector<StartConditions>::const_iterator chosenStartIterator;
 	
 	// Stored here so that we can remove it if the player chooses a scenario.
-	Panel *parent = nullptr; 
+	const Panel *parent = nullptr; 
 	Point hoverPoint;
 	
 	double listScroll = 0;
