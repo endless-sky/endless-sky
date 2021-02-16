@@ -30,8 +30,9 @@ phrase "deep mystery cube pickup"
 		` `
 	word
 		`Odd.`
+		`Odd.`
 		`Strange.`
-		`Bizarre.`
+		`Strange.`
 		`You think you see a shady figure watching you, but it could be your imagination.`
 		`You overhear someone giving your description, but you can't see where it's coming from or who they're talking to.`
 		`As you leave, you make eye contact with a dangerous-looking individual. Were they watching you? Probably a coincidence.`
