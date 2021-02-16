@@ -102,6 +102,10 @@ public:
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
 	
+	// Keep track of whether the player is cloaking.
+	bool IsCloaking() const;
+	void SetIsCloaking(bool cloaking);
+	
 	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
@@ -298,6 +302,7 @@ private:
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
 	bool isDead = false;
+	bool isCloaking = false;
 	
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.0;

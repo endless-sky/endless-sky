@@ -437,6 +437,8 @@ void Ship::Load(const DataNode &node)
 			hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
+		else if(key == "cloak" && child.Size() >= 2)
+			cloak = child.Value(1);
 		else if(key == "system" && child.Size() >= 2)
 			currentSystem = GameData::Systems().Get(child.Token(1));
 		else if(key == "planet" && child.Size() >= 2)
@@ -839,6 +841,7 @@ void Ship::Save(DataWriter &out) const
 		out.Write("shields", shields);
 		out.Write("hull", hull);
 		out.Write("position", position.X(), position.Y());
+		out.Write("cloak", cloak);
 		
 		for(const EnginePoint &point : enginePoints)
 		{

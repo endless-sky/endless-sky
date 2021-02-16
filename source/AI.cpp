@@ -362,8 +362,8 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		for(const auto &it : player.Ships())
 			if(!it->IsParked() && it->Attributes().Get("cloak"))
 			{
-				isCloaking = !isCloaking;
-				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device.");
+				player.SetIsCloaking(!player.IsCloaking());
+				Messages::Add(player.IsCloaking() ? "Engaging cloaking device." : "Disengaging cloaking device.");
 				break;
 			}
 	
@@ -589,7 +589,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				command |= Command::DEPLOY;
 				Deploy(*it, !fightersRetreat);
 			}
-			if(isCloaking)
+			if(player.IsCloaking())
 				command |= Command::CLOAK;
 		}
 		// Cloak if the AI considers it appropriate.
@@ -3607,7 +3607,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		command |= Command::DEPLOY;
 		Deploy(ship, !Preferences::Has("Damaged fighters retreat"));
 	}
-	if(isCloaking)
+	if(player.IsCloaking())
 		command |= Command::CLOAK;
 	
 	ship.SetCommands(command);

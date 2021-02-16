@@ -189,8 +189,6 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	
-	bool isCloaking = false;
-	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
 	
