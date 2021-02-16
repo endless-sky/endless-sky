@@ -43,11 +43,12 @@ using namespace std;
 
 
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent),
+StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent)
+	: player(player), gamePanels(gamePanels), scenarios(scenarios), parent(parent),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
-	description(FontSet::Get(14))
+	description(FontSet::Get(14)),
+	startIt(scenarios.end())
 {
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
@@ -62,24 +63,22 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 		entryTextPadding = startConditionsMenu->GetBox("start entry text padding").Dimensions();
 	}
 	
-	const auto startCount = GameData::StartOptions().size();
+	const auto startCount = scenarios.size();
 	if(startCount >= 1)
 	{
 		// Default the selection to the most recently loaded scenario.
-		startIt = GameData::StartOptions().end() - 1;
+		startIt = scenarios.end() - 1;
 		ScrollToSelected();
 	}
-	else
-		startIt = GameData::StartOptions().end();
 	
 	const Rectangle firstRectangle = Rectangle::FromCorner(entriesContainer.TopLeft(), entryBox.Dimensions());
 	startConditionsClickZones.reserve(startCount);
 	for(size_t i = 0; i < startCount; ++i)
-		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), GameData::StartOptions().begin() + i);
+		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
 	
 	description.SetAlignment(Alignment::LEFT);
 	description.SetWrapWidth(descriptionBox.Width());
-	description.Wrap(startIt != GameData::StartOptions().end() ? startIt->GetDescription()
+	description.Wrap(startIt != scenarios.end() ? startIt->GetDescription()
 		: "No valid starting scenarios were defined!\n\n"
 		"Make sure you installed Endless Sky (and any plugins) properly.");
 }
@@ -92,7 +91,7 @@ void StartConditionsPanel::Draw()
 	GameData::Background().Draw(Point(), Point());
 	
 	Information info;
-	if(startIt != GameData::StartOptions().end())
+	if(startIt != scenarios.end())
 	{
 		info.SetCondition("chosen start");
 		if(startIt->GetThumbnail())
@@ -114,7 +113,7 @@ void StartConditionsPanel::Draw()
 	auto pos = entriesContainer.TopLeft() - Point(0., entriesScroll);
 	
 	const Font &font = FontSet::Get(14);
-	for(auto it = GameData::StartOptions().begin(); it != GameData::StartOptions().end();
+	for(auto it = scenarios.begin(); it != scenarios.end();
 			++it, pos += Point(0., entryBox.Height()))
 	{
 		// TODO: replace skips with alpha fade-in/fade-out.
@@ -145,17 +144,17 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		ptrdiff_t offset = (key == SDLK_DOWN) - (key == SDLK_UP);
 		offset += (entriesContainer.Height() / entryBox.Height()) * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
 		
-		if(GameData::StartOptions().begin() - startIt > offset)
-			startIt = GameData::StartOptions().begin();
-		else if(GameData::StartOptions().end() - startIt <= offset)
-			startIt = GameData::StartOptions().end() - 1;
+		if(scenarios.begin() - startIt > offset)
+			startIt = scenarios.begin();
+		else if(scenarios.end() - startIt <= offset)
+			startIt = scenarios.end() - 1;
 		else
 			startIt += offset;
 		
 		ScrollToSelected();
 		description.Wrap(startIt->GetDescription());
 	}
-	else if(startIt != GameData::StartOptions().end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN))
+	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN))
 	{
 		player.New(*startIt);
 		
@@ -208,7 +207,7 @@ bool StartConditionsPanel::Drag(double /* dx */, double dy)
 	if(entriesContainer.Contains(hoverPoint))
 	{
 		entriesScroll = max(0., min(entriesScroll - dy,
-			GameData::StartOptions().size() * entryBox.Height() - entriesContainer.Height()));
+			scenarios.size() * entryBox.Height() - entriesContainer.Height()));
 	}
 	else if(descriptionBox.Contains(hoverPoint))
 	{
@@ -260,7 +259,7 @@ void StartConditionsPanel::ScrollToSelected()
 	// If there are fewer starts than there are displayable starts, never scroll.
 	const double entryHeight = entryBox.Height();
 	const int maxDisplayedRows = entriesContainer.Height() / entryHeight;
-	const auto startCount = GameData::StartOptions().size();
+	const auto startCount = scenarios.size();
 	if(static_cast<int>(startCount) < maxDisplayedRows)
 	{
 		entriesScroll = 0.;
@@ -268,8 +267,7 @@ void StartConditionsPanel::ScrollToSelected()
 	}
 	// Otherwise, scroll the minimum of the desired amount and the amount that
 	// brings the scrolled-to edge within view.
-	const auto countBefore = static_cast<size_t>(
-		distance(GameData::StartOptions().begin(), startIt));
+	const auto countBefore = static_cast<size_t>(distance(scenarios.begin(), startIt));
 	
 	const double maxScroll = startCount * entryHeight;
 	const double pageScroll = maxDisplayedRows * entryHeight;
