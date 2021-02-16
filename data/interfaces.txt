@@ -255,28 +255,10 @@ interface "menu start info"
 interface "start conditions menu"
 	sprite "_menu/side panel"
 		center -360 0
-	
 	sprite "_menu/buttonless side panel"
 		center 0 0
-	
 	sprite "_menu/buttonless side panel"
 		center 360 0
-	
-	box "start description" # The box that will contain the description text
-		from -105 -160
-		to 105 160
-	
-	box "start entry list"
-		from -470 -157
-		to -200 120
-	
-	box "start entry"
-		from 0 0 # Doesn't matter, never gets used
-		dimensions 230 20
-	
-	box "start entry internal"
-		from 0 0 # Doesn't matter, never gets used
-		dimensions 220 14
 	
 	button b "_Back to Menu"
 		center -420 155
@@ -285,6 +267,21 @@ interface "start conditions menu"
 	button s "_Start Game"
 		center -285 155
 		dimensions 90 30
+	
+	# The box that will contain the description text
+	box "start description"
+		from -105 -160
+		to 105 160
+	# Bounding box for the list of start conditions.
+	box "start entry list"
+		from -475 -160
+		to -245 110 # 120 with applied alpha fade-in/out
+	# Size of the highlighted box for the selected start
+	box "start entry item bounds"
+		dimensions 230 20
+	# Visual padding applied to each scenario item
+	box "start entry text padding"
+		dimensions 5 3
 
 
 

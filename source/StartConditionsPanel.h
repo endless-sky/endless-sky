@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 #include "Color.h"
+#include "Point.h"
+#include "Rectangle.h"
 #include "text/WrappedText.h"
 
 class PlayerInfo;
@@ -44,8 +46,7 @@ protected:
 	
 private:
 	void OnConversationEnd(int);
-	// This takes in the amount of pixels to be scrolled, and returns the amount of entries that were actually scrolled.
-	double DoScrolling(int scrollAmount);
+	void ScrollToSelected();
 	
 	
 private:
@@ -65,8 +66,8 @@ private:
 	
 	Point hoverPoint;
 	
-	double listScroll = 0;
-	double descriptionScroll = 0;
+	double entriesScroll = 0.;
+	double descriptionScroll = 0.;
 	
 	// This is a map that will let us figure out which start conditions item the user clicked on.
 	std::vector<ClickZone<std::vector<StartConditions>::const_iterator>> startConditionsClickZones;
@@ -74,8 +75,8 @@ private:
 	// Interface-controlled positions & dimensions.
 	Rectangle descriptionBox;
 	Rectangle entryBox;
-	Rectangle entryListBox;
-	Rectangle entryInternalBox;
+	Rectangle entriesContainer;
+	Point entryTextPadding;
 };
 
 

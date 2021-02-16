@@ -41,9 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	const int PAGE_INTERVAL = 10;
-}
+
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const Panel *parent)
 	: player(player), gamePanels(gamePanels), parent(parent),
@@ -59,9 +57,9 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 		// We also would need to a way to specify truncation for such a list.
 		// Such a list would also have to be scrollable.
 		descriptionBox = startConditionsMenu->GetBox("start description");
-		entryBox = startConditionsMenu->GetBox("start entry");
-		entryListBox = startConditionsMenu->GetBox("start entry list");
-		entryInternalBox = startConditionsMenu->GetBox("start entry internal");	
+		entriesContainer = startConditionsMenu->GetBox("start entry list");
+		entryBox = startConditionsMenu->GetBox("start entry item bounds");
+		entryTextPadding = startConditionsMenu->GetBox("start entry text padding").Dimensions();
 	}
 	
 	const auto startCount = GameData::StartOptions().size();
@@ -70,12 +68,12 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 		// Default the selection to the most recently loaded scenario.
 		chosenStart = &GameData::StartOptions().back();
 		chosenStartIterator = GameData::StartOptions().end() - 1;
-		listScroll = (startCount - 1) * entryBox.Height();
+		ScrollToSelected();
 	}
 	else
 		chosenStartIterator = GameData::StartOptions().end();
 	
-	const Rectangle firstRectangle = Rectangle::FromCorner(entryListBox.TopLeft(), entryBox.Dimensions());
+	const Rectangle firstRectangle = Rectangle::FromCorner(entriesContainer.TopLeft(), entryBox.Dimensions());
 	startConditionsClickZones.reserve(startCount);
 	for(size_t i = 0; i < startCount; ++i)
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), GameData::StartOptions().begin() + i);
@@ -112,45 +110,43 @@ void StartConditionsPanel::Draw()
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
 	
-	// TODO: Prevent lengthy descriptions from overflowing.
-	description.Draw(Point(descriptionBox.Left(), descriptionBox.Top() + descriptionScroll), bright);
-	
-	auto pos = Point(entryListBox.Left(), entryListBox.Top() - listScroll);
-	const Point offset = entryInternalBox.Dimensions() * .5;
+	// Start at the top left of the list and offset by the text margins and scroll.
+	auto pos = entriesContainer.TopLeft() - Point(0., entriesScroll);
 	
 	const Font &font = FontSet::Get(14);
 	for(const auto &it : GameData::StartOptions())
 	{
-		if(!entryListBox.Contains(pos))
+		// TODO: replace skips with alpha fade-in/fade-out.
+		if(!entriesContainer.Contains(pos) && !entriesContainer.Contains(pos + entryTextPadding))
 		{
 			pos += Point(0., entryBox.Height());
 			continue;
 		}
 		
-		const auto zone = Rectangle(pos + offset, entryBox.Dimensions());
+		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
 		bool isHighlighted = &it == chosenStart || zone.Contains(hoverPoint);
 		if(&it == chosenStart)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground);
 		
 		const auto name = DisplayText(it.GetDisplayName(), Truncate::BACK);
-		font.Draw(name, pos, isHighlighted ? bright : medium);
+		font.Draw(name, pos + entryTextPadding, isHighlighted ? bright : medium);
 		pos += Point(0., entryBox.Height());
 	}
+	
+	// TODO: Prevent lengthy descriptions from overflowing.
+	description.Draw(descriptionBox.TopLeft(), bright);
 }
 
 
 
-bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) 
 	{
-		ptrdiff_t offset = 0;
-		offset += (key == SDLK_DOWN) - (key == SDLK_UP);
-		offset += PAGE_INTERVAL * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
-		
-		DoScrolling(offset * entryBox.Height());
+		ptrdiff_t offset = (key == SDLK_DOWN) - (key == SDLK_UP);
+		offset += (entriesContainer.Height() / entryBox.Height()) * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
 		
 		if(GameData::StartOptions().begin() - chosenStartIterator > offset)
 			chosenStartIterator = GameData::StartOptions().begin();
@@ -159,6 +155,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		else
 			chosenStartIterator += offset;
 		
+		ScrollToSelected();
 		chosenStart = &*chosenStartIterator;
 		description.Wrap(chosenStart->GetDescription());
 	}
@@ -179,14 +176,14 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 
 
-bool StartConditionsPanel::Click(int x, int y, int clicks)
+bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 {
 	// Check it's inside of the entry list box.
-	if(!entryListBox.Contains(Point(x, y)))
+	if(!entriesContainer.Contains(Point(x, y)))
 		return false;
 	
 	for(const auto &it : startConditionsClickZones)
-		if(it.Contains(Point(x, y + listScroll)))
+		if(it.Contains(Point(x, y + entriesScroll)))
 		{
 			chosenStartIterator = it.Value();
 			
@@ -210,22 +207,28 @@ bool StartConditionsPanel::Hover(int x, int y)
 
 
 
-bool StartConditionsPanel::Drag(double dx, double dy)
+bool StartConditionsPanel::Drag(double /* dx */, double dy)
 {
-	if(entryListBox.Contains(hoverPoint))
+	if(entriesContainer.Contains(hoverPoint))
 	{
-		DoScrolling(-dy);
-		return true;
+		entriesScroll = max(0., min(entriesScroll - dy,
+			GameData::StartOptions().size() * entryBox.Height() - entriesContainer.Height()));
 	}
-	// TODO: When #4123 gets merged, re-add scrolling support to the description.
-	// Right now it's pointless because it would make the text overflow.
+	else if(descriptionBox.Contains(hoverPoint))
+	{
+		descriptionScroll = 0.;
+		// TODO: When #4123 gets merged, re-add scrolling support to the description.
+		// Right now it's pointless because it would make the text overflow.
+	}
+	else
+		return false;
 	
-	return false;
+	return true;
 }
 
 
 
-bool StartConditionsPanel::Scroll(double dx, double dy)
+bool StartConditionsPanel::Scroll(double /* dx */, double dy)
 {
 	return Drag(0., dy * Preferences::ScrollSpeed());
 }
@@ -256,11 +259,35 @@ void StartConditionsPanel::OnConversationEnd(int)
 
 
 
-double StartConditionsPanel::DoScrolling(int scrollAmount)
+// Scroll the selected starting condition into view, if necessary.
+void StartConditionsPanel::ScrollToSelected()
 {
-	int originalScrolling = listScroll;
-	listScroll += scrollAmount;
-	listScroll = min(max(listScroll, 0.), (GameData::StartOptions().size() - 1) * entryBox.Height());
+	// If there are fewer starts than there are displayable starts, never scroll.
+	const double entryHeight = entryBox.Height();
+	const int maxDisplayedRows = entriesContainer.Height() / entryHeight;
+	const auto startCount = GameData::StartOptions().size();
+	if(static_cast<int>(startCount) < maxDisplayedRows)
+	{
+		entriesScroll = 0.;
+		return;
+	}
+	// Otherwise, scroll the minimum of the desired amount and the amount that
+	// brings the scrolled-to edge within view.
+	const auto countBefore = static_cast<size_t>(
+		distance(GameData::StartOptions().begin(), chosenStartIterator));
 	
-	return (listScroll - originalScrolling) / entryBox.Height();
+	const double maxScroll = startCount * entryHeight;
+	const double pageScroll = maxDisplayedRows * entryHeight;
+	const double desiredScroll = countBefore * 20.;
+	const double bottomOfPage = entriesScroll + pageScroll;
+	if(desiredScroll < entriesScroll)
+	{
+		// Scroll upwards.
+		entriesScroll = desiredScroll;
+	}
+	else if(desiredScroll > bottomOfPage)
+	{
+		// Scroll downwards (but not so far that we overscroll).
+		entriesScroll = min(maxScroll, entriesScroll + (desiredScroll - bottomOfPage));
+	}
 }
