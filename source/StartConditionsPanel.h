@@ -61,8 +61,7 @@ private:
 	// The selected scenario's description.
 	WrappedText description;
 	
-	const StartConditions *chosenStart = nullptr;
-	std::vector<StartConditions>::const_iterator chosenStartIterator;
+	std::vector<StartConditions>::const_iterator startIt;
 	
 	Point hoverPoint;
 	
