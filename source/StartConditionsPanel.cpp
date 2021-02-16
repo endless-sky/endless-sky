@@ -235,7 +235,7 @@ bool StartConditionsPanel::Scroll(double /* dx */, double dy)
 
 
 
-// Called when the conversation ends. The exit code is intentionally ignored.
+// Transition from the completed "new pilot" conversation into the actual game.
 void StartConditionsPanel::OnConversationEnd(int)
 {
 	gamePanels.Reset();
@@ -249,7 +249,6 @@ void StartConditionsPanel::OnConversationEnd(int)
 		gamePanels.Push(new ShipyardPanel(player));
 		gamePanels.StepAll();
 	}
-	// It's possible that the player got to this menu directly from the main menu, so we need to check for that.
 	if(parent)
 		GetUI()->Pop(parent);
 	

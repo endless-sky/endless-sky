@@ -439,26 +439,6 @@ void LoadPanel::UpdateLists()
 
 
 
-// New player "conversation" callback.
-void LoadPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	GetUI()->Pop(GetUI()->Root().get());
-	gamePanels.Reset();
-	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
-}
-
-
-
 // Snapshot name callback.
 void LoadPanel::SnapshotCallback(const string &name)
 {

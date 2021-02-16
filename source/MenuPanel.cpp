@@ -156,25 +156,6 @@ void MenuPanel::Draw()
 
 
 
-// New player "conversation" callback.
-void MenuPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	gamePanels.Reset();
-	gamePanels.Push(new MainPanel(player));
-	gamePanels.CanSave(true);
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
-}
-
-
-
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!GameData::IsLoaded())
