@@ -3133,8 +3133,8 @@ ship "Star Queen"
 		"heat dissipation" .65
 		"fuel capacity" 700
 		"cargo space" 60
-		"outfit space" 366
-		"weapon capacity" 124
+		"outfit space" 360
+		"weapon capacity" 120
 		"engine capacity" 100
 		weapon
 			"blast radius" 60
@@ -3142,8 +3142,8 @@ ship "Star Queen"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Sidewinder Missile Launcher" 3
-		"Sidewinder Missile" 135
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
 		"Heavy Anti-Missile Turret" 2
 		
 		"KP-6 Photovoltaic Array" 4
@@ -3163,7 +3163,7 @@ ship "Star Queen"
 		over
 	"reverse engine" 19 51
 		over
-	gun 0 -113 "Sidewinder Missile Launcher"
+	gun 0 -113
 	gun -24 -76 "Sidewinder Missile Launcher"
 	gun 24 -76 "Sidewinder Missile Launcher"
 	turret -21.5 2.5 "Heavy Anti-Missile Turret"
