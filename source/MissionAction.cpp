@@ -43,6 +43,18 @@ namespace {
 	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
+		// Special case: map
+		int mapSize = outfit->Get("map");
+		if(mapSize > 0)
+		{
+			if(player.HasMapped(mapSize))
+				return;
+
+			player.Map(mapSize);
+			Messages::Add("You received a map of nearby systems");
+			return;
+		}
+
 		Ship *flagship = player.Flagship();
 		bool isSingle = (abs(count) == 1);
 		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
@@ -419,6 +431,25 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	
 	for(const auto &it : requiredOutfits)
 	{
+		// Special case: map
+		int mapSize = it.first->Get("map");
+		if(mapSize > 0)
+		{
+			// Condition is to _not_ have mapped the whole local map
+			if(it.second == 0)
+			{
+				if(player.HasMapped(mapSize))
+					return false;
+			// Condition is to have mapped at least the given amount of systems
+			}
+			else
+			{
+				if(!player.HasMapped(it.second))
+					return false;
+			}
+			continue;
+		}
+
 		int available = 0;
 		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
 		// must be checked, even if the ship is disabled, parked, or out-of-system.
