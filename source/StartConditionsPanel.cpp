@@ -101,7 +101,7 @@ void StartConditionsPanel::Draw()
 			continue;
 		
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
-		bool isHighlighted = it == startIt || zone.Contains(hoverPoint);
+		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground);
 		
@@ -152,6 +152,9 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 {
+	// When the user clicks, clear the hovered state.
+	hasHover = false;
+	
 	// Only clicks within the list of scenarios should have an effect.
 	if(!entriesContainer.Contains(Point(x, y)))
 		return false;
@@ -171,6 +174,7 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 
 bool StartConditionsPanel::Hover(int x, int y)
 {
+	hasHover = true;
 	hoverPoint = Point(x, y);
 	return true;
 }

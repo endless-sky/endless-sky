@@ -314,6 +314,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 bool LoadPanel::Click(int x, int y, int clicks)
 {
+	// When the user clicks, clear the hovered state.
+	hasHover = false;
+	
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))
 		return false;

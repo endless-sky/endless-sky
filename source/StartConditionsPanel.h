@@ -70,6 +70,7 @@ private:
 	// Displayed information for the selected scenario.
 	Information info;
 	
+	bool hasHover = false;
 	Point hoverPoint;
 	
 	double entriesScroll = 0.;
