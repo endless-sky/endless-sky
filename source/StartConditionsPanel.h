@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 #include "Color.h"
+#include "Information.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "text/WrappedText.h"
@@ -48,23 +49,26 @@ protected:
 private:
 	void OnConversationEnd(int);
 	void ScrollToSelected();
+	void Select(StartConditionsList::const_iterator it);
 	
 	
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
-	// The list of starting scenarios to pick from.
-	const StartConditionsList &scenarios;
 	// The panel to close when a scenario is chosen.
 	const Panel *parent;
+	// The list of starting scenarios to pick from.
+	const StartConditionsList &scenarios;
+	// The currently selected starting scenario.
+	StartConditionsList::const_iterator startIt;
 	// Colors with which to draw text.
 	const Color &bright;
 	const Color &medium;
 	const Color &selectedBackground;
 	// The selected scenario's description.
 	WrappedText description;
-	// The currently selected starting scenario.
-	StartConditionsList::const_iterator startIt;
+	// Displayed information for the selected scenario.
+	Information info;
 	
 	Point hoverPoint;
 	

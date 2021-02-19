@@ -44,11 +44,10 @@ using namespace std;
 
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), scenarios(scenarios), parent(parent),
+	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.end()),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
-	description(FontSet::Get(14)),
-	startIt(scenarios.end())
+	description(FontSet::Get(14))
 {
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
@@ -63,13 +62,10 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 		entryTextPadding = startConditionsMenu->GetBox("start entry text padding").Dimensions();
 	}
 	
+	// Default the selection to the most recently loaded scenario, if possible.
 	const auto startCount = scenarios.size();
 	if(startCount >= 1)
-	{
-		// Default the selection to the most recently loaded scenario.
-		startIt = scenarios.end() - 1;
-		ScrollToSelected();
-	}
+		--startIt;
 	
 	const Rectangle firstRectangle = Rectangle::FromCorner(entriesContainer.TopLeft(), entryBox.Dimensions());
 	startConditionsClickZones.reserve(startCount);
@@ -78,9 +74,8 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 	
 	description.SetAlignment(Alignment::LEFT);
 	description.SetWrapWidth(descriptionBox.Width());
-	description.Wrap(startIt != scenarios.end() ? startIt->GetDescription()
-		: "No valid starting scenarios were defined!\n\n"
-		"Make sure you installed Endless Sky (and any plugins) properly.");
+	
+	Select(startIt);
 }
 
 
@@ -89,21 +84,6 @@ void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
-	
-	Information info;
-	if(startIt != scenarios.end())
-	{
-		info.SetCondition("chosen start");
-		if(startIt->GetThumbnail())
-			info.SetSprite("thumbnail", startIt->GetThumbnail());
-		info.SetString("name", startIt->GetDisplayName());
-		info.SetString("description", startIt->GetDescription());
-		info.SetString("planet", startIt->GetPlanet().Name());
-		info.SetString("system", startIt->GetSystem().Name());
-		info.SetString("date", startIt->GetDate().ToString());
-		info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
-		info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
-	}
 	
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
@@ -151,8 +131,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		else
 			startIt += offset;
 		
-		ScrollToSelected();
-		description.Wrap(startIt->GetDescription());
+		Select(startIt);
 	}
 	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN))
 	{
@@ -181,11 +160,7 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 		if(it.Contains(Point(x, y + entriesScroll)))
 		{
 			if(startIt != it.Value())
-			{
-				descriptionScroll = 0;
-				startIt = it.Value();
-				description.Wrap(startIt->GetDescription());
-			}
+				Select(it.Value());
 			return true;
 		}
 	
@@ -283,4 +258,40 @@ void StartConditionsPanel::ScrollToSelected()
 		// Scroll downwards (but not so far that we overscroll).
 		entriesScroll = min(maxScroll, entriesScroll + (desiredScroll - bottomOfPage));
 	}
+}
+
+
+
+// Update the UI to reflect the given starting scenario.
+void StartConditionsPanel::Select(StartConditionsList::const_iterator it)
+{
+	startIt = it;
+	if(startIt == scenarios.end())
+	{
+		// The only time we should be here is if there are no scenarios at all.
+		// Just in case that's not true, clear out the displayed information.
+		info = Information();
+		description.Wrap("No valid starting scenarios were defined!\n\n"
+			"Make sure you installed Endless Sky (and any plugins) properly.");
+		return;
+	}
+	
+	// Update the information summary.
+	info.SetCondition("chosen start");
+	if(startIt->GetThumbnail())
+		info.SetSprite("thumbnail", startIt->GetThumbnail());
+	info.SetString("name", startIt->GetDisplayName());
+	info.SetString("description", startIt->GetDescription());
+	info.SetString("planet", startIt->GetPlanet().Name());
+	info.SetString("system", startIt->GetSystem().Name());
+	info.SetString("date", startIt->GetDate().ToString());
+	info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
+	info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
+	
+	// Update the displayed description text.
+	descriptionScroll = 0;
+	description.Wrap(startIt->GetDescription());
+	
+	// Scroll the selected scenario into view.
+	ScrollToSelected();
 }
