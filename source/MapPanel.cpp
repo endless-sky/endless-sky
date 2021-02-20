@@ -899,6 +899,7 @@ void MapPanel::DrawTravelPlan()
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
+		bool systemJumpRange = previous->JumpRange() > 0.;
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.GetPlanet() && player.HasVisited(*object.GetPlanet())
@@ -916,7 +917,7 @@ void MapPanel::DrawTravelPlan()
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel(jumpDistance) : it.first->HyperdriveFuel();
+					double cost = isJump ? it.first->JumpDriveFuel(systemJumpRange ? 0. : jumpDistance) : it.first->HyperdriveFuel();
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;
