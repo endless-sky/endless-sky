@@ -338,9 +338,10 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
+	const Ship *flagship = player.Flagship();
 	autoPilot |= activeCommands;
 	// While the flagship is landing, it cannot do most actions.
-	if(player.Flagship()->IsLanding())
+	if(flagship && flagship->IsLanding())
 		autoPilot.Clear(Command::JUMP | Command::LAND | Command::BOARD | Command::STOP);
 	else if(activeCommands.Has(AutopilotCancelCommands()))
 	{
@@ -352,7 +353,6 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			Messages::Add("Disengaging autopilot.");
 		autoPilot.Clear();
 	}
-	const Ship *flagship = player.Flagship();
 	
 	if(!flagship || flagship->IsDestroyed())
 		return;
