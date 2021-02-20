@@ -339,7 +339,10 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
 	autoPilot |= activeCommands;
-	if(activeCommands.Has(AutopilotCancelCommands()))
+	// While the flagship is landing, it cannot do most actions.
+	if(player.Flagship()->IsLanding())
+		autoPilot.Clear(Command::JUMP | Command::LAND | Command::BOARD | Command::STOP);
+	else if(activeCommands.Has(AutopilotCancelCommands()))
 	{
 		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
@@ -531,7 +534,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		if(it.get() == flagship)
 		{
-			MovePlayer(*it, player, activeCommands);
+			// Player cannot do anything if the flagship is landing.
+			if(!flagship->IsLanding())
+				MovePlayer(*it, player, activeCommands);
 			continue;
 		}
 		
@@ -3301,7 +3306,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 	}
 	// Player cannot attempt to land while departing from a planet.
-	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace())
+	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace() && ship.Zoom() == 1.)
 	{
 		// Track all possible landable objects in the current system.
 		auto landables = vector<const StellarObject *>{};
@@ -3329,7 +3334,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(landIt == landables.cend())
 			target = nullptr;
 		
-		if(target && (ship.Position().Distance(target->Position()) < target->Radius()))
+		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
 		{
 			// Special case: if there are two planets in system and you have one
 			// selected, then press "land" again, do not toggle to the other if
