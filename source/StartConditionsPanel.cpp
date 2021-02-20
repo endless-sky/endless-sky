@@ -89,6 +89,11 @@ void StartConditionsPanel::Draw()
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
 	
+	// Rather than blink list items in & out of existence, fade them in/out over half the entry height.
+	const double fadeDistance = .5 * entryBox.Height();
+	const double fadeInY = entriesContainer.Top() - fadeDistance + entryTextPadding.Y();
+	const double fadeOutY = fadeInY + entriesContainer.Height();
+	
 	// Start at the top left of the list and offset by the text margins and scroll.
 	auto pos = entriesContainer.TopLeft() - Point(0., entriesScroll);
 	
@@ -96,17 +101,21 @@ void StartConditionsPanel::Draw()
 	for(auto it = scenarios.begin(); it != scenarios.end();
 			++it, pos += Point(0., entryBox.Height()))
 	{
-		// TODO: replace skips with alpha fade-in/fade-out.
-		if(!entriesContainer.Contains(pos) && !entriesContainer.Contains(pos + entryTextPadding))
+		// Any scenario wholly outside the bounds can be skipped.
+		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
+		if(!(entriesContainer.Contains(zone.TopLeft()) || entriesContainer.Contains(zone.BottomRight())))
 			continue;
 		
-		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
+		// Partially visible entries should fade in or out.
+		double opacity = entriesContainer.Contains(zone) ? 1.
+			: min(1., max(0., min(pos.Y() - fadeInY, fadeOutY - pos.Y()) / fadeDistance));
+		
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
-			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground);
+			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
 		
 		const auto name = DisplayText(it->GetDisplayName(), Truncate::BACK);
-		font.Draw(name, pos + entryTextPadding, isHighlighted ? bright : medium);
+		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
 	}
 	
 	// TODO: Prevent lengthy descriptions from overflowing.

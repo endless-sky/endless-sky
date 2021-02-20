@@ -275,7 +275,7 @@ interface "start conditions menu"
 	# Bounding box for the list of start conditions.
 	box "start entry list"
 		from -475 -160
-		to -245 110 # 120 with applied alpha fade-in/out
+		to -245 120
 	# Size of the highlighted box for the selected start
 	box "start entry item bounds"
 		dimensions 230 20
