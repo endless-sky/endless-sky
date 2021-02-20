@@ -526,17 +526,10 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 
-// Whether this system can be seen (and used).
+// Whether this system can be seen when not linked.
 bool System::Hidden() const
 {
 	return hidden;
-}
-
-
-
-void System::SetHidden(bool isHidden)
-{
-	hidden = isHidden;
 }
 
 

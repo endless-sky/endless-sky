@@ -626,15 +626,7 @@ void GameData::Change(const DataNode &node)
 	else if(node.Token(0) == "news" && node.Size() >= 2)
 		news.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
-	{
-		System *source = systems.Get(node.Token(1));
-		System *dest = systems.Get(node.Token(2));
-		source->Link(dest);
-		
-		// Both systems now have neighbours, so they are no longer hidden.
-		source->SetHidden(false);
-		dest->SetHidden(false);
-	}
+		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
 	else

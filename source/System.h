@@ -115,10 +115,8 @@ public:
 	// If this system has its own jump range, then it will always return the
 	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
-	// Whether this system can be seen (and used). If the system has links to other
-	// systems, it is not hidden.
+	// Whether this system can be seen when not linked.
 	bool Hidden() const;
-	void SetHidden(bool isHidden);
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
