@@ -446,7 +446,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				{
 					// TODO: handle keys also in-flight (as single inputset)
 					// TODO: combine keys with mouse-inputs
-					for(const string key : stepToRun.inputKeys)
+					for(const string &key : stepToRun.inputKeys)
 					{
 						const char* inputChar = key.c_str();
 						if(!menuPanels.IsEmpty())
