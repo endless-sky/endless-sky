@@ -43,7 +43,7 @@ hazard "Black Hole Accretion Disk"
 		"hit effect" "nano spark"
 		"damage dropoff" 150 600
 		"dropoff modifier" 0
-		"relative shield damage" .00028
+		"relative shield damage" .00056
 
 hazard "Black Hole Event Horizon"
 	"constant strength"
@@ -52,7 +52,7 @@ hazard "Black Hole Event Horizon"
 		"hit effect" "nano spark"
 		"damage dropoff" 0 150
 		"dropoff modifier" 0
-		"relative hull damage" .00028
+		"relative hull damage" .00056
 		"piercing" 10
 
 hazard "Black Hole Gravity"
