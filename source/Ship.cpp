@@ -1595,6 +1595,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 		
+		// If the player tries to land while departing, flagship lands.
+		if(commands.Has(Command::LAND) && !landingPlanet)
+			landingPlanet = GetTargetStellar()->GetPlanet();
+		// If the player tries to do something while landing, flagship does not land.
+		else if(!commands.Has(Command::LAND) && landingPlanet)
+			landingPlanet = nullptr;
+		
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)

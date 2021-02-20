@@ -353,7 +353,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	
 	if(!flagship || flagship->IsDestroyed())
 		return;
-
+	
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.");
 	
@@ -398,7 +398,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-
+	
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
@@ -531,9 +531,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		if(it.get() == flagship)
 		{
-			// Player cannot do anything if the flagship is landing.
-			if(!flagship->IsLanding())
-				MovePlayer(*it, player, activeCommands);
+			MovePlayer(*it, player, activeCommands);
 			continue;
 		}
 		
@@ -3303,7 +3301,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 	}
 	// Player cannot attempt to land while departing from a planet.
-	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace() && ship.Zoom() == 1.)
+	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace())
 	{
 		// Track all possible landable objects in the current system.
 		auto landables = vector<const StellarObject *>{};
@@ -3331,7 +3329,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(landIt == landables.cend())
 			target = nullptr;
 		
-		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
+		if(target && (ship.Position().Distance(target->Position()) < target->Radius()))
 		{
 			// Special case: if there are two planets in system and you have one
 			// selected, then press "land" again, do not toggle to the other if
@@ -3373,7 +3371,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						types.insert(planet->Noun());
 						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
 							distance += 10000.;
-					
+						
 						if(distance < closest)
 						{
 							ship.SetTargetStellar(object);
