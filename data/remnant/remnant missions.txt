@@ -3948,8 +3948,18 @@ mission "Remnant: Cognizance 13"
 	
 
 event "remnant: postverta reveal"
-	system Postverta
-		remove hidden
+	unvisit Caeculus
+	unvisit Egeria
+	unvisit Levana
+	unvisit Prosa
+	unvisit Statina
+	system Caeculus
+		add object "Wormhole Barren Beta"
+			sprite planet/wormhole-red
+			distance 2400
+			period 391
+	system Diespiter
+		add link Postverta
 	system Egeria
 		add object "Wormhole Barren Alpha"
 			sprite planet/wormhole-red
@@ -3960,16 +3970,19 @@ event "remnant: postverta reveal"
 			sprite planet/wormhole-red
 			distance 2313
 			period 389
-	system Caeculus
-		add object "Wormhole Barren Beta"
-			sprite planet/wormhole-red
-			distance 2400
-			period 391
+	system Postverta
+		remove hidden
+		add link Diespiter
+		add link Prosa
+		add link Statina
 	system Prosa
+		add link Postverta
 		add object "Wormhole Barren Beta"
 			sprite planet/wormhole-red
 			distance 2313
 			period 389
+	system Statina
+		add link Postverta
 
 
 
