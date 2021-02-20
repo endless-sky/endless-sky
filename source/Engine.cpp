@@ -475,7 +475,8 @@ void Engine::Step(bool isActive)
 		HandleKeyboardInputs();
 		// Ignore any inputs given when first becoming active, since those inputs
 		// were issued when some other panel (e.g. planet, hail) was displayed.
-		if(!wasActive)
+		// Also, if the player is landing, the flagship cannot do anything.
+		if(!wasActive || flagship->IsLanding())
 			activeCommands.Clear();
 		else
 			ai.UpdateKeys(player, activeCommands);
