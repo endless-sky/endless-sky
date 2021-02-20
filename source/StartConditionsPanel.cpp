@@ -248,19 +248,19 @@ void StartConditionsPanel::ScrollToSelected()
 	// brings the scrolled-to edge within view.
 	const auto countBefore = static_cast<size_t>(distance(scenarios.begin(), startIt));
 	
-	const double maxScroll = startCount * entryHeight;
+	const double maxScroll = (startCount - maxDisplayedRows) * entryHeight;
 	const double pageScroll = maxDisplayedRows * entryHeight;
-	const double desiredScroll = countBefore * 20.;
+	const double desiredScroll = countBefore * entryHeight;
 	const double bottomOfPage = entriesScroll + pageScroll;
 	if(desiredScroll < entriesScroll)
 	{
 		// Scroll upwards.
 		entriesScroll = desiredScroll;
 	}
-	else if(desiredScroll > bottomOfPage)
+	else if(desiredScroll + entryHeight > bottomOfPage)
 	{
 		// Scroll downwards (but not so far that we overscroll).
-		entriesScroll = min(maxScroll, entriesScroll + (desiredScroll - bottomOfPage));
+		entriesScroll = min(maxScroll, entriesScroll + entryHeight + desiredScroll - bottomOfPage);
 	}
 }
 
