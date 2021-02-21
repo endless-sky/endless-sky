@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -206,14 +207,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(key == 'n')
 	{
-		player.New();
-		
-		const auto &intro = *GameData::Conversations().Get("intro");
-		if(!intro.IsValidIntro())
-			throw runtime_error("The \"intro\" conversation must contain a \"name\" node");
-		ConversationPanel *panel = new ConversationPanel(player, intro);
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &LoadPanel::OnCallback);
+		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
+		// Request that the player chooses a start scenario.
+		// StartConditionsPanel also handles the case where there's no scenarios.
+		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
 	}
 	else if(key == 'D' && !selectedPilot.empty())
 	{
@@ -317,6 +314,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 bool LoadPanel::Click(int x, int y, int clicks)
 {
+	// When the user clicks, clear the hovered state.
+	hasHover = false;
+	
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))
 		return false;
@@ -437,26 +437,6 @@ void LoadPanel::UpdateLists()
 				loadedInfo.Load(Files::Saves() + selectedFile);
 			}
 		}
-	}
-}
-
-
-
-// New player "conversation" callback.
-void LoadPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	GetUI()->Pop(GetUI()->Root().get());
-	gamePanels.Reset();
-	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
 	}
 }
 

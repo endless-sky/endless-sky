@@ -33,9 +33,6 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 	
-	// New player "conversation" callback.
-	void OnCallback(int value);
-	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
