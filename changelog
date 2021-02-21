@@ -207,7 +207,7 @@ Version 0.9.13:
       * Heat can now be used as a resource for shield and hull repairs. (@Amazinite)
       * Escorts will now follow their parent to landing instead of racing ahead of it. (@petervdmeer)
       * Pirate deterrence takes relative shield and hull damage into account by scaling relative to the ship with the weapons. (@Terin)
-      * Ships with the disables and plunders personalities will no longer destroy ships that have plundered. (@tatami4)
+      * Ships with both the disables and plunders personalities will no longer destroy ships that have been plundered. (@tatami4)
       * Ships with the plunders personality will now always aim to destroy ships they plundered. (@tatami4)
       * Greatly increased the lifetime of flotsams by at least 10x and added drag to them so that they slow down over time. (@Amazinite)
   * User interface:
