@@ -259,14 +259,17 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				break;
 			case TestStep::Type::NAVIGATE:
-				if(child.Token(0) == "travel" && child.Size() >= 2)
-					step.travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
-				else if(child.Token(0) == "travel destination" && child.Size() >= 2)
-					step.travelDestination = GameData::Planets().Get(child.Token(1));
-				else
+				for(const DataNode &grand: child)
 				{
-					child.PrintTrace("Error: Invalid or incomplete keywords for navigation");
-					status = Status::BROKEN;
+					if(grand.Token(0) == "travel" && grand.Size() >= 2)
+						step.travelPlan.push_back(GameData::Systems().Get(grand.Token(1)));
+					else if(grand.Token(0) == "travel destination" && grand.Size() >= 2)
+						step.travelDestination = GameData::Planets().Get(grand.Token(1));
+					else
+					{
+						grand.PrintTrace("Error: Invalid or incomplete keywords for navigation");
+						status = Status::BROKEN;
+					}
 				}
 				break;
 			case TestStep::Type::WATCHDOG:
@@ -415,13 +418,13 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					continueGameLoop = true;
 					break;
 				}
+				context.branchesSinceGameStep.insert(context.stepToRun);
 				if(stepToRun.conditions.Test(player.Conditions()))
 					context.stepToRun = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
 					context.stepToRun = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
 				else
 					++(context.stepToRun);
-				context.branchesSinceGameStep.insert(context.stepToRun);
 				break;
 			case TestStep::Type::INJECT:
 				{
@@ -477,6 +480,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
 				player.SetTravelDestination(stepToRun.travelDestination);
+				++(context.stepToRun);
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
