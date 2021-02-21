@@ -22,6 +22,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "System.h"
 
+#include <sstream>
+
 using namespace std;
 
 
@@ -35,7 +37,6 @@ StartConditions::StartConditions(const DataNode &node)
 
 void StartConditions::Load(const DataNode &node)
 {
-	identifier = (node.Size() >= 2) ? node.Token(1) : "(Unnamed Start)";
 	for(const DataNode &child : node)
 	{
 		if(CoreStartData::LoadChild(child))
@@ -70,8 +71,19 @@ void StartConditions::Load(const DataNode &node)
 	}
 	if(description.empty())
 		description = "(No description provided.)";
+	
+	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
+	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
+	if(identifier.empty() && node.Size() >= 2)
+		identifier = node.Token(1);
+	else if(identifier.empty())
+	{
+		stringstream addr;
+		addr << name << " " << this;
+		identifier = addr.str();
+	}
 }
- 
+
 
 
 // Finish loading the ship definitions.
@@ -87,7 +99,8 @@ void StartConditions::FinishLoading()
 
 
 bool StartConditions::IsValid() const
-{	// A start must specify a valid system.
+{
+	// A start must specify a valid system.
 	if(!system || !system->IsValid())
 		return false;
 	

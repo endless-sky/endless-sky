@@ -2973,6 +2973,7 @@ void PlayerInfo::Save(const string &path) const
 	}
 	out.EndChild();
 	
+	out.Write();
 	out.WriteComment("How you began:");
 	startData.Save(out);
 }
