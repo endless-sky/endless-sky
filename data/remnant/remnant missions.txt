@@ -3948,6 +3948,15 @@ mission "Remnant: Cognizance 13"
 	
 
 event "remnant: postverta reveal"
+	unvisit Caeculus
+	unvisit Diespiter
+	unvisit Egeria
+	unvisit Levana
+	unvisit Prosa
+	unvisit Statina
+	link Postverta Diespiter
+	link Postverta Prosa
+	link Postverta Statina
 	system Postverta
 		remove hidden
 	system Egeria
