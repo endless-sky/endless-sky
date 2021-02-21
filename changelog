@@ -96,6 +96,7 @@ Version 0.9.13:
         * Scouts will now actually spawn in merchant fleets. (@ScruffyKitty)
         * Added various new help messages describing hidden features. (@Terin)
         * The supermassive black hole in Sagittarius A* now pulls in ships that get too close. (@Zitchas)
+        * Wrote a description for the vanilla start of the game for the new start scenario picker. (@Amazinite)
     * Mission changes:
       * "FW Hope Recon 1C" now refers to the proper number of crew on a Gunboat. (@beccabunny)
       * Rewrote some of the conversation for "Wanderers: Defend Vara Ke'sok Hint". (@Anarchist2)
@@ -110,6 +111,7 @@ Version 0.9.13:
       * The Marauder Hunted mission has been changed to now scale with the player's fleet strength. (@Amazinite)
       * During the "Deep: Remnant" mission string, it is now optional whether you reveal the existence of the Remnant to the Deep. (@Amazinite, @Zitchas)
       * The player now saves the cultural data from Alexandria, allowing missions to be skipped that need it instead of having the player fly to Alexandria again. (@Amazinite)
+      * The mystery cube jobs will now hint that you are being followed by bounty hunters when you accept it. (@jmathes)
     * Balance:
       * Buffed the Heliarch reactors and Coalition engines. (@Arachi-Lover)
       * Buffed the Drak Draining Field and Antimatter Cannon. (@Zitchas)
@@ -188,6 +190,7 @@ Version 0.9.13:
       * Systems can change the range at which ships enter the system, with potentially different ranges for hyperdrive and jump drive travel. (@petervdmeer)
       * Playtime is now tracked for each pilot save. (@Terin)
       * Systems can now be hidden from view unless they are linked to a visited system. (@Amazinite)
+      * Added a "New Pilot" scenario picker, allowing players to choose between game and plugin starts. (@FranchuFranchu, @tehhowch)
     * Changed mechanics:
       * Certain attributes are now capable of being made negative in the outfitter. For example, shield energy is now allowed to be negative, resulting in shield generation also creating energy. (@Amazinite)
       * Fines for illegal mission cargo are now added together instead of only the worst being applied. (@Amazinite)

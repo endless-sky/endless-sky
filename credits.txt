@@ -181,6 +181,7 @@ contributed to Endless Sky:
   Janaszar
   janisozaur
   jjhankins
+  jmathes
   jmhorjus
   jostephd
   jozef-mitro
