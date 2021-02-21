@@ -259,9 +259,16 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				break;
 			case TestStep::Type::NAVIGATE:
-				child.PrintTrace("Error: Not yet implemented step type navigation");
-				status = Status::BROKEN;
-				return;
+				if(child.Token(0) == "travel" && child.Size() >= 2)
+					step.travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
+				else if(child.Token(0) == "travel destination" && child.Size() >= 2)
+					step.travelDestination = GameData::Planets().Get(child.Token(1));
+				else
+				{
+					child.PrintTrace("Error: Invalid or incomplete keywords for navigation");
+					status = Status::BROKEN;
+				}
+				break;
 			case TestStep::Type::WATCHDOG:
 				step.watchdog = child.Size() >= 2 ? child.Value(1) : 0;
 				break;
@@ -467,7 +474,9 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				++(context.stepToRun);
 				break;
 			case TestStep::Type::NAVIGATE:
-				Fail(context, player, "Navigate not implemented");
+				player.TravelPlan().clear();
+				player.TravelPlan() = stepToRun.travelPlan;
+				player.SetTravelDestination(stepToRun.travelDestination);
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
