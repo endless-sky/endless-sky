@@ -97,7 +97,7 @@ test "Test-Framework - UI Keyboard controls"
 
 test "Test-Framework - UI Pointer controls"
 	status active
-	description "Tests if the in-game panels can be controlled by keypresses"
+	description "Tests if the in-game panels can be controlled by pointer controls"
 	sequence
 		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
 		inject "Three Earthly Barges"
