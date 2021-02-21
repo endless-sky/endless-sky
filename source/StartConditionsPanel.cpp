@@ -128,17 +128,25 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) 
+	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
-		ptrdiff_t offset = (key == SDLK_DOWN) - (key == SDLK_UP);
-		offset += (entriesContainer.Height() / entryBox.Height()) * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
-		
-		if(scenarios.begin() - startIt > offset)
-			startIt = scenarios.begin();
-		else if(scenarios.end() - startIt <= offset)
-			startIt = scenarios.end() - 1;
+		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
+		const ptrdiff_t magnitude = (key == SDLK_UP || key == SDLK_DOWN) ? 1
+				: entriesContainer.Height() / entryBox.Height() - 1;
+		if(key == SDLK_UP || key == SDLK_PAGEUP)
+		{
+			if(startIt == scenarios.begin())
+				startIt = scenarios.end() - 1;
+			else
+				startIt -= min(magnitude, distance(scenarios.begin(), startIt));
+		}
 		else
-			startIt += offset;
+		{
+			if(startIt + 1 == scenarios.end())
+				startIt = scenarios.begin();
+			else
+				startIt += min(magnitude, distance(startIt, scenarios.end() - 1));
+		}
 		
 		Select(startIt);
 	}
