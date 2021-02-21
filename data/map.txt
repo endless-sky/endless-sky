@@ -21155,7 +21155,7 @@ system "Sagittarius A*"
 	government Uninhabited
 	habitable 10000
 	haze _menu/haze-full
-	arrival 2500
+	arrival 2000
 	hazard "Black Hole Gravity" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Accretion Disk" 1
