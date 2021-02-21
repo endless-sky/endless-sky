@@ -191,3 +191,40 @@ test "Test-Framework - Load and depart"
 		# Re-check startup conditions.
 		assert
 			"ships: Light Freighter" = 3
+
+
+test "Test-Framework - Navigate"
+	status active
+	description "Test-Framework - Navigation to other star system"
+	sequence
+		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		inject "Three Earthly Barges"
+		input
+			key l
+		input
+			key l
+		# Set desired travel plan.
+		navigate
+			travel "Alpha Centauri"
+			travel "Sol"
+			travel "Alpha Centauri"
+		# Launch.
+		input
+			key d
+		input
+		input
+		# Give jump command.
+		input
+			command	jump
+		watchdog 12000
+		label notAlpha1
+		branch notAlpha1
+			not "flagship system: Alpha Centauri"
+		watchdog 12000
+		label notSol
+		branch notSol
+			not "flagship system: Sol"
+		watchdog 12000
+		label notAlpha2
+		branch notAlpha2
+			not "flagship system: Alpha Centauri"
