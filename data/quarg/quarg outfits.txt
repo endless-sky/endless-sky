@@ -46,16 +46,16 @@ outfit "Quarg Skylance"
 		"hardpoint offset" 10
 		sound "skylance"
 		"hit effect" "skylance impact"
-		"inaccuracy" .4
-		"turret turn" 4.
+		"inaccuracy" 0.8
+		"turret turn" 2.0
 		"velocity" 500
 		"lifetime" 1
-		"reload" 1
-		"firing energy" 30
-		"firing heat" 10
-		"shield damage" 50
-		"hull damage" 40
-		"ion damage" .1
+		"reload" 2.0
+		"firing energy" 60.0
+		"firing heat" 20.0
+		"shield damage" 100.0
+		"hull damage" 80.0
+		"ion damage" 0.2
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 effect "skylance impact"
@@ -82,8 +82,8 @@ outfit "Quarg Anti-Missile"
 		"anti-missile" 25
 		"velocity" 500
 		"lifetime" 1
-		"reload" 10
-		"firing energy" 50
+		"reload" 20.0
+		"firing energy" 100.0
 	description "Quarg anti-missile defenses can target projectiles from considerable range compared to human technology, ensuring that only the most powerful missiles are capable of even getting near a Quarg ship."
 
 effect "quarg anti-missile"

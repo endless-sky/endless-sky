@@ -90,16 +90,16 @@ outfit "Drak Turret"
 			"frame rate" 13.318
 			"random start frame"
 		"hit effect" "drak bolt impact"
-		"inaccuracy" 1
-		"turret turn" 4.
-		"velocity" 30
-		"lifetime" 36
-		"reload" 16
-		"firing energy" 160
-		"firing heat" 160
-		"shield damage" 256
-		"hull damage" 256
-		"hit force" 120
+		"inaccuracy" 2.0
+		"turret turn" 2.0
+		"velocity" 15.0
+		"lifetime" 72.0
+		"reload" 32.0
+		"firing energy" 320.0
+		"firing heat" 320.0
+		"shield damage" 512.0
+		"hull damage" 512.0
+		"hit force" 240.0
 	description "This is a turret based cannon with significant range and accuracy."
 
 effect "drak bolt impact"

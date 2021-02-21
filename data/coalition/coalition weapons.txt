@@ -24,15 +24,15 @@ outfit "Bombardment Cannon"
 			"no repeat"
 		sound "bombardment"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 4
-		"velocity" 6
+		"inaccuracy" 8.0
+		"velocity" 3.0
 		"random velocity" 1
-		"lifetime" 150
-		"reload" 9
-		"firing energy" 17
-		"firing heat" 14
-		"shield damage" 22
-		"hull damage" 25
+		"lifetime" 300.0
+		"reload" 18.0
+		"firing energy" 34.0
+		"firing heat" 28.0
+		"shield damage" 44.0
+		"hull damage" 50.0
 	description `The Bombardment Cannon was designed during the original war with the Quarg, in order to give Heliarch civilian ships a way to strike Quarg warships from a safe distance. But now, as with all their weapons, its use is limited to Heliarch warships.`
 
 outfit "Bombardment Turret"
@@ -54,16 +54,16 @@ outfit "Bombardment Turret"
 		"hardpoint offset" 10.
 		sound "bombardment"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 4
-		"turret turn" 2.8
-		"velocity" 6
+		"inaccuracy" 8.0
+		"turret turn" 1.4
+		"velocity" 3.0
 		"random velocity" 1
-		"lifetime" 150
-		"reload" 3
-		"firing energy" 17
-		"firing heat" 14
-		"shield damage" 22
-		"hull damage" 25
+		"lifetime" 300.0
+		"reload" 6.0
+		"firing energy" 34.0
+		"firing heat" 28.0
+		"shield damage" 44.0
+		"hull damage" 50.0
 	description `A Bombardment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
 
 effect "bombardment impact"
@@ -99,12 +99,12 @@ outfit "Finisher Pod"
 		"hit effect" "finisher impact" 2
 		"hit effect" "finisher fragment" 12
 		"die effect" "finisher fragment" 6
-		"inaccuracy" 5
-		"velocity" 10
-		"lifetime" 60
-		"reload" 80
-		"firing energy" 120
-		"firing heat" 20
+		"inaccuracy" 10.0
+		"velocity" 5.0
+		"lifetime" 120.0
+		"reload" 160.0
+		"firing energy" 240.0
+		"firing heat" 40.0
 		"acceleration" .8
 		"drag" .1
 		"turn" 0.1
@@ -122,7 +122,7 @@ outfit "Active Finisher"
 		"hit effect" "finisher impact" 2
 		"hit effect" "finisher fragment" 12
 		"die effect" "small explosion"
-		"lifetime" 500
+		"lifetime" 1000.0
 		"acceleration" 1
 		"drag" .1
 		"turn" 2
@@ -130,9 +130,9 @@ outfit "Active Finisher"
 		"radar tracking" .8
 		"optical tracking" .5
 		"missile strength" 50
-		"shield damage" 1500
-		"hull damage" 1900
-		"hit force" 750
+		"shield damage" 3000.0
+		"hull damage" 3800.0
+		"hit force" 1500.0
 
 outfit "Finisher Storage Tube"
 	category "Ammunition"
@@ -211,17 +211,17 @@ outfit "Heliarch Attractor"
 		"hardpoint offset" 9.
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
-		"inaccuracy" 2
-		"turret turn" 4.1
-		"velocity" 640
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 4.8
-		"firing heat" 4.5
-		"shield damage" 5.4
-		"hull damage" 4.2
-		"firing force" -30
-		"hit force" -30
+		"inaccuracy" 4.0
+		"turret turn" 2.05
+		"velocity" 640.0
+		"lifetime" 1.0
+		"reload" 2.0
+		"firing energy" 9.6
+		"firing heat" 9.0
+		"shield damage" 10.8
+		"hull damage" 8.4
+		"firing force" -60.0
+		"hit force" -60.0
 	description "When battling the Quarg, the Heliarchs learned that the Quarg would not engage in a battle that their ships might be unable to escape. In response, they focused on building weapons that would keep a ship from being able to come to a stop and activate its jump drive."
 
 effect "attractor impact"
@@ -254,18 +254,18 @@ outfit "Heliarch Repulsor"
 		"hardpoint offset" 9.
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
-		"inaccuracy" 3
-		"turret turn" 3.4
-		"velocity" 560
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 5.9
-		"firing heat" 1.2
-		"shield damage" 3.6
-		"hull damage" 5.8
-		"firing force" 60
-		"hit force" 60
-		"slowing damage" .1
+		"inaccuracy" 6.0
+		"turret turn" 1.7
+		"velocity" 560.0
+		"lifetime" 1.0
+		"reload" 2.0
+		"firing energy" 11.8
+		"firing heat" 2.4
+		"shield damage" 7.2
+		"hull damage" 11.6
+		"firing force" 120.0
+		"hit force" 120.0
+		"slowing damage" 0.2
 	description "This beam turret allows a Heliarch ship to hold its enemies far enough away that they cannot make use of their short-range weapons."
 
 effect "repulsor impact"
@@ -294,14 +294,14 @@ outfit "Ion Hail Turret"
 		"hardpoint sprite" "hardpoint/ion hail turret"
 		"hardpoint offset" 10.
 		sound "ion rain"
-		"inaccuracy" 3
-		"turret turn" 4.2
-		"velocity" 12
-		"reload" 15
+		"inaccuracy" 6.0
+		"turret turn" 2.1
+		"velocity" 6.0
+		"reload" 30.0
 		"burst reload" 3
 		"burst count" 5
-		"firing energy" 48
-		"firing heat" 24
+		"firing energy" 96.0
+		"firing heat" 48.0
 		"submunition" "ion hail" 4
 	description "Instead of just placing an Ion Rain Gun on a turret mount, the Heliarch tweaked the cycles of shots, having each shot be significantly more effective and seeing an overall increase to the weapon's range, but at the cost of a reload period."
 
@@ -311,14 +311,14 @@ outfit "ion hail"
 			"frame rate" 7
 			"random start frame"
 		"hit effect" "ion rain impact"
-		"inaccuracy" 1
+		"inaccuracy" 2.0
 		"random velocity" 3
-		"lifetime" 40
+		"lifetime" 80.0
 		"random lifetime" 4
-		"hit force" 1
-		"shield damage" 12
-		"hull damage" 5
-		"ion damage" .32
+		"hit force" 2.0
+		"shield damage" 24.0
+		"hull damage" 10.0
+		"ion damage" 0.64
 
 
 outfit "Ion Rain Gun"
@@ -337,17 +337,17 @@ outfit "Ion Rain Gun"
 			"random start frame"
 		sound "ion rain"
 		"hit effect" "ion rain impact"
-		"inaccuracy" 4.5
-		"velocity" 16
+		"inaccuracy" 9.0
+		"velocity" 8.0
 		"random velocity" 2
-		"lifetime" 25
+		"lifetime" 50.0
 		"random lifetime" 5
-		"reload" 4
-		"firing energy" 12
-		"firing heat" 4
-		"shield damage" 12
-		"hull damage" 5
-		"ion damage" .32
+		"reload" 8.0
+		"firing energy" 24.0
+		"firing heat" 8.0
+		"shield damage" 24.0
+		"hull damage" 10.0
+		"ion damage" 0.64
 	description "Heliarch ships primarily serve as a police force. This weapon is designed to neutralize a target's offensive capabilities until more Heliarch ships can join the fray."
 
 effect "ion rain impact"
