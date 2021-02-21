@@ -44,7 +44,7 @@ using namespace std;
 
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.end()),
+	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.begin()),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
@@ -62,12 +62,8 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 		entryTextPadding = startConditionsMenu->GetBox("start entry text padding").Dimensions();
 	}
 	
-	// Default the selection to the most recently loaded scenario, if possible.
-	const auto startCount = scenarios.size();
-	if(startCount >= 1)
-		--startIt;
-	
 	const Rectangle firstRectangle = Rectangle::FromCorner(entriesContainer.TopLeft(), entryBox.Dimensions());
+	const auto startCount = scenarios.size();
 	startConditionsClickZones.reserve(startCount);
 	for(size_t i = 0; i < startCount; ++i)
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
