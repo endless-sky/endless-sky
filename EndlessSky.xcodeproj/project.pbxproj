@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */; };
 		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		4C2DEF56201B8FAE0062315E /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; };
 		4C2DEF57201B90310062315E /* libSDL2-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -181,6 +182,7 @@
 
 /* Begin PBXFileReference section */
 		02D34A71AE3BC4C93FC6865B /* TestData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestData.cpp; path = source/TestData.cpp; sourceTree = "<group>"; };
+		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
+		98104FFDA18E40F4A712A8BE /* CoreStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStartData.h; path = source/CoreStartData.h; sourceTree = "<group>"; };
 		9BCF4321AF819E944EC02FB9 /* layout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = layout.hpp; path = source/text/layout.hpp; sourceTree = "<group>"; };
 		9DA14712A9C68E00FBFD9C72 /* TestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestData.h; path = source/TestData.h; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
@@ -767,6 +770,8 @@
 				F8C14CFB89472482F77C051D /* Weather.h */,
 				11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */,
 				F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */,
+				0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */,
+				98104FFDA18E40F4A712A8BE /* CoreStartData.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1053,6 +1058,7 @@
 				C4264774A89C0001B6FFC60E /* Hazard.cpp in Sources */,
 				94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */,
 				6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */,
+				03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
