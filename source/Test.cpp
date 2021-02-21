@@ -159,15 +159,7 @@ void Test::LoadSequence(const DataNode &node)
 				break;
 			case TestStep::Type::NAVIGATE:
 				if(child.Token(0) == "travel" && child.Size() >= 2)
-				{
-					// Using get instead of find since the test might be loaded
-					// before the actual system is loaded.
-					const System *next = GameData::Systems().Get(child.Token(1));
-					if(next)
-						step.travelPlan.push_back(next);
-				}
-				// Using get instead of find since the test might be loaded before
-				// the actual planet is loaded.
+				step.travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 				else if(child.Token(0) == "travel destination" && child.Size() >= 2)
 					step.travelDestination = GameData::Planets().Get(child.Token(1));
 				else
@@ -352,10 +344,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 			case TestStep::Type::NAVIGATE:
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
-				if(stepToRun.travelDestination)
-					player.SetTravelDestination(stepToRun.travelDestination);
-				else
-					player.SetTravelDestination(nullptr);
+				player.SetTravelDestination(stepToRun.travelDestination);
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
