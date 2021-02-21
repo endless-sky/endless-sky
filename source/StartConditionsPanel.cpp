@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StartConditionsPanel.h"
 
-#include "text/alignment.hpp"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
@@ -68,7 +67,6 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 	for(size_t i = 0; i < startCount; ++i)
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
 	
-	description.SetAlignment(Alignment::LEFT);
 	description.SetWrapWidth(descriptionBox.Width());
 	
 	Select(startIt);
