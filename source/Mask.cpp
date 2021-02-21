@@ -287,7 +287,7 @@ bool Mask::Contains(Point point, Angle facing, double scale) const
 
 // Find out whether this object is touching a ring defined by the given
 // inner and outer ranges.
-bool Mask::WithinRing(Point point, Angle facing, double inner, double outer, double scale) const
+bool Mask::WithinRing(Point point, Angle facing, double scale, double inner, double outer) const
 {
 	// Bail out if the object is too far away to possibly be touched.
 	if(outline.empty() || inner > point.Length() + radius * scale || outer < point.Length() - radius * scale)

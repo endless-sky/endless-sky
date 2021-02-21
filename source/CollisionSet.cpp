@@ -358,7 +358,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 				Point offset = center - it->body->Position();
 				double length = offset.Length();
 				if((length <= outer && length >= inner)
-					|| mask.WithinRing(offset, it->body->Facing(), inner, outer, it->body->Scale()))
+					|| mask.WithinRing(offset, it->body->Facing(), it->body->Scale(), inner, outer))
 					result.push_back(it->body);
 			}
 		}
