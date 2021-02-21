@@ -159,7 +159,7 @@ void Test::LoadSequence(const DataNode &node)
 				break;
 			case TestStep::Type::NAVIGATE:
 				if(child.Token(0) == "travel" && child.Size() >= 2)
-				step.travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
+					step.travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 				else if(child.Token(0) == "travel destination" && child.Size() >= 2)
 					step.travelDestination = GameData::Planets().Get(child.Token(1));
 				else
