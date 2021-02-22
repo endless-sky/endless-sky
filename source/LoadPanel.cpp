@@ -150,9 +150,10 @@ void LoadPanel::Draw()
 	// The list has space for 14 entries. Alpha should be 100% for Y = -157 to
 	// 103, and fade to 0 at 10 pixels beyond that.
 	Point point(-470., -157. - sideScroll);
+	const double centerY = font.Height() / 2;
 	for(const auto &it : files)
 	{
-		Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+		Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 		bool isHighlighted = (it.first == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
 		
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
@@ -173,7 +174,7 @@ void LoadPanel::Draw()
 		for(const auto &it : files.find(selectedPilot)->second)
 		{
 			const string &file = it.first;
-			Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+			Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			bool isHovering = (alpha && hasHover && zone.Contains(hoverPoint));
 			bool isHighlighted = (file == selectedFile || isHovering);
