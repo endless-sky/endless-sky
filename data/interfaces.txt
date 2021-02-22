@@ -281,7 +281,7 @@ interface "start conditions menu"
 		dimensions 230 20
 	# Visual padding applied to each scenario item
 	box "start entry text padding"
-		dimensions 5 3
+		dimensions 5 2
 
 
 
