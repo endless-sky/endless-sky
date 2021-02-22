@@ -1074,7 +1074,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar)
+		if(!generation && !solar && !burning)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -2182,15 +2182,14 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	{
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(cargo, false);
-		// Stop targeting this ship.
-		SetTargetShip(shared_ptr<Ship>());
 		
 		// Pause for two seconds before moving on.
 		pilotError = 120;
 	}
 	
 	// Stop targeting this ship (so you will not board it again right away).
-	SetTargetShip(shared_ptr<Ship>());
+	if(!autoPlunder || personality.Disables())
+		SetTargetShip(shared_ptr<Ship>());
 	return victim;
 }
 
@@ -2833,7 +2832,7 @@ double Ship::JumpFuel(const System *destination) const
 		return HyperdriveFuel();
 	
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel(linked ? 0. : currentSystem->Position().Distance(destination->Position()));
+		return JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 	
 	// If the given system is not a possible destination, return 0.
 	return 0.;
@@ -3480,6 +3479,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		cargoScan = 0.;
 		outfitScan = 0.;
 	}
+	targetAsteroid.reset();
 }
 
 
@@ -3509,6 +3509,7 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
 	targetAsteroid = asteroid;
+	targetShip.reset();
 }
 
 
@@ -3704,8 +3705,6 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 // A helper method for taking damage from either a projectile or a hazard.
 int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast)
 {
-	int type = 0;
-	
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Scale blast damage based on the distance from the blast
@@ -3779,6 +3778,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Report what happened to this ship from this weapon.
+	int type = 0;
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;

@@ -358,6 +358,8 @@ void PrintVersion()
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
+	cerr << GameWindow::SDLVersions() << endl;
+	cerr << endl;
 }
 
 

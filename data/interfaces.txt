@@ -89,9 +89,10 @@ color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
 
-# Colors used for warning and error tooltip backdrops.
+# Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
+color "warning conflict" .315 .27 .12 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -204,6 +205,83 @@ interface "menu player info"
 	string "playtime"
 		from 315 105
 		align left
+
+
+
+interface "menu start info"
+	visible if "chosen start"
+	image "thumbnail"
+		center 360 -100
+		dimensions 220 240
+	label "name:"
+		from 250 -35
+		align left
+	string "name"
+		from 310 -35
+		align left
+	label "date:"
+		from 250 -15
+		align left
+	string "date"
+		from 310 -15
+		align left
+	label "planet:"
+		from 250 15
+		align left
+	string "planet"
+		from 310 15
+		align left
+	label "system:"
+		from 250 35
+		align left
+	string "system"
+		from 310 35
+		align left
+	label "credits:"
+		from 250 65
+		align left
+	string "credits"
+		from 310 65
+		align left
+	label "debt:"
+		from 250 85
+		align left
+	string "debt"
+		from 310 85
+		align left
+
+
+
+interface "start conditions menu"
+	sprite "_menu/side panel"
+		center -360 0
+	sprite "_menu/buttonless side panel"
+		center 0 0
+	sprite "_menu/buttonless side panel"
+		center 360 0
+	
+	button b "_Back to Menu"
+		center -420 155
+		dimensions 120 30
+	active if "chosen start"
+	button s "_Start Game"
+		center -285 155
+		dimensions 90 30
+	
+	# The box that will contain the description text
+	box "start description"
+		from -105 -160
+		to 105 160
+	# Bounding box for the list of start conditions.
+	box "start entry list"
+		from -475 -160
+		to -245 120
+	# Size of the highlighted box for the selected start
+	box "start entry item bounds"
+		dimensions 230 20
+	# Visual padding applied to each scenario item
+	box "start entry text padding"
+		dimensions 5 1
 
 
 

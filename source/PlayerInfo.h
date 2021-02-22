@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "CargoHold.h"
+#include "CoreStartData.h"
 #include "DataNode.h"
 #include "Date.h"
 #include "Depreciation.h"
@@ -36,6 +37,7 @@ class Planet;
 class Rectangle;
 class Ship;
 class ShipEvent;
+class StartConditions;
 class StellarObject;
 class System;
 class UI;
@@ -58,7 +60,7 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New();
+	void New(const StartConditions &start);
 	// Load an existing player.
 	void Load(const std::string &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
@@ -89,6 +91,9 @@ public:
 	// Get or change the current date.
 	const Date &GetDate() const;
 	void IncrementDate();
+	
+	// Get basic data about the player's starting scenario.
+	const CoreStartData &StartData() const noexcept;
 	
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
@@ -303,7 +308,7 @@ private:
 	
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.0;
-
+	
 	Account accounts;
 	
 	std::shared_ptr<Ship> flagship;
@@ -369,6 +374,9 @@ private:
 	
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
+	
+	// Basic information about the player's starting scenario.
+	CoreStartData startData;
 };
 
 

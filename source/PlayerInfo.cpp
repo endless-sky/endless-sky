@@ -44,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <ctime>
 #include <iterator>
 #include <sstream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -71,12 +72,13 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New()
+void PlayerInfo::New(const StartConditions &start)
 {
 	// Clear any previously loaded data.
 	Clear();
 	
-	const StartConditions &start = GameData::Start();
+	// Copy the core information from the full starting scenario.
+	startData = start;
 	// Copy any ships in the start conditions.
 	for(const Ship &ship : start.Ships())
 	{
@@ -285,6 +287,8 @@ void PlayerInfo::Load(const string &path)
 				}
 			}
 		}
+		else if(child.Token(0) == "start")
+			startData.Load(child);
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -392,7 +396,8 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		{
 			seen.insert(system);
 			for(const System *neighbor : system->VisibleNeighbors())
-				seen.insert(neighbor);
+				if(!neighbor->Hidden() || system->Links().count(neighbor))
+					seen.insert(neighbor);
 		}
 	}
 	
@@ -587,6 +592,13 @@ void PlayerInfo::IncrementDate()
 	
 	// Re-calculate all automatic conditions
 	UpdateAutoConditions();
+}
+
+
+
+const CoreStartData &PlayerInfo::StartData() const noexcept
+{
+	return startData;
 }
 
 
@@ -786,7 +798,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				flightChecks.emplace(ship, checks);
 			
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
-			if(ship->CanBeCarried() || ship->Bays().empty())
+			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
 			
 			for(auto &bay : ship->Bays())
@@ -1903,7 +1915,8 @@ void PlayerInfo::Visit(const System &system)
 	visitedSystems.insert(&system);
 	seen.insert(&system);
 	for(const System *neighbor : system.VisibleNeighbors())
-		seen.insert(neighbor);
+		if(!neighbor->Hidden() || system.Links().count(neighbor))
+			seen.insert(neighbor);
 }
 
 
@@ -2399,8 +2412,8 @@ void PlayerInfo::ValidateLoad()
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
-		system = &GameData::Start().GetSystem();
-		planet = &GameData::Start().GetPlanet();
+		system = &startData.GetSystem();
+		planet = &startData.GetPlanet();
 		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
 	}
 	
@@ -2437,6 +2450,24 @@ void PlayerInfo::ValidateLoad()
 		travelPlan.clear();
 		travelDestination = nullptr;
 		Files::LogError("Warning: reset the travel plan due to use of invalid system(s).");
+	}
+	
+	// For old saves, default to the first start condition (the default "Endless Sky" start).
+	if(startData.Identifier().empty())
+	{
+		// It is possible that there are no start conditions defined (e.g. a bad installation or
+		// incomplete total conversion plugin). In that case, it is not possible to continue.
+		const auto startCount = GameData::StartOptions().size();
+		if(startCount >= 1)
+		{
+			startData = GameData::StartOptions().front();
+			// When necessary, record in the pilot file that the starting data is just an assumption.
+			if(startCount >= 2)
+				conditions["unverified start scenario"] = true;
+		}
+		else
+			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
+				"nodes were found in data files or loaded plugins--make sure you've installed the game properly.)");
 	}
 	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
@@ -2920,30 +2951,36 @@ void PlayerInfo::Save(const string &path) const
 	
 	out.Write("logbook");
 	out.BeginChild();
-	for(const auto &it : logbook)
 	{
-		out.Write(it.first.Day(), it.first.Month(), it.first.Year());
-		out.BeginChild();
+		for(auto &&it : logbook)
 		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(it.second, "\n\t"))
-				out.Write(line);
-		}
-		out.EndChild();
-	}
-	for(const auto &it : specialLogs)
-		for(const auto &eit : it.second)
-		{
-			out.Write(it.first, eit.first);
+			out.Write(it.first.Day(), it.first.Month(), it.first.Year());
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(eit.second, "\n\t"))
+				for(const string &line : Format::Split(it.second, "\n\t"))
 					out.Write(line);
 			}
 			out.EndChild();
 		}
+		for(auto &&it : specialLogs)
+			for(auto &&eit : it.second)
+			{
+				out.Write(it.first, eit.first);
+				out.BeginChild();
+				{
+					// Break the text up into paragraphs.
+					for(const string &line : Format::Split(eit.second, "\n\t"))
+						out.Write(line);
+				}
+				out.EndChild();
+			}
+	}
 	out.EndChild();
+	
+	out.Write();
+	out.WriteComment("How you began:");
+	startData.Save(out);
 }
 
 

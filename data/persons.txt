@@ -50,8 +50,8 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
-		fighter -46 106 under
-		fighter 46 106 under
+		bay "Fighter" -46 106 under
+		bay "Fighter" 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -944,6 +944,7 @@ person "Prototype B3-CC4"
 	ship "Shooting Star" "Prototype B3-CC4"
 
 ship "Shooting Star"
+	swizzle 0
 	noun "genocidal maniac"
 	sprite "ship/shooting star/shooting star"
 		"frame time" 3

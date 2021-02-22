@@ -134,11 +134,6 @@ Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
 
-Files: images/ship/peregrine/peregrine*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
-
 Files: images/outfit/city-ship?license*
 Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
@@ -360,6 +355,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
+ images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/inhibitor?turret*
  images/hardpoint/ion?hail?turret*
@@ -376,18 +372,83 @@ Files:
  images/outfit/salvage?scanner*
  images/outfit/tiny?remnant?engine*
  images/outfit/void?rifle*
+ images/outfit/fragmentation?grenades*
+ images/outfit/nerve?gas*
+ images/outfit/catalytic?ramscoop*
+ images/outfit/plasma?repeater*
+ images/outfit/afterburner*
+ images/outfit/anti-missile*
+ images/outfit/blaster?turret*
+ images/outfit/blaster*
+ images/outfit/breeder*
+ images/outfit/bunk?room*
+ images/outfit/dwarf?core*
+ images/outfit/electron?beam*
+ images/outfit/electron?turret*
+ images/outfit/fission*
+ images/outfit/flamethrower*
+ images/outfit/fuel?pod*
+ images/outfit/gat*
+ images/outfit/grab-strike*
+ images/outfit/heavy?anti-missile*
+ images/outfit/heavy?laser?turret*
+ images/outfit/heavy?laser*
+ images/outfit/huge?fuel?cell*
+ images/outfit/large?fuel?cell*
+ images/outfit/medium?fuel?cell*
+ images/outfit/small?fuel?cell*
+ images/outfit/tiny?fuel?cell*
+ images/outfit/huge?shield*
+ images/outfit/large?shield*
+ images/outfit/medium?shield*
+ images/outfit/small?shield*
+ images/outfit/tiny?shield*
+ images/outfit/hyperdrive*
+ images/outfit/scram?drive*
+ images/outfit/large?radar?jammer*
+ images/outfit/small?radar?jammer*
+ images/outfit/meteor?launcher*
+ images/outfit/meteor*
+ images/outfit/meteor?storage*
+ images/outfit/mod?blaster?turret*
+ images/outfit/mod?blaster*
+ images/outfit/particle?cannon*
+ images/outfit/plasma?cannon*
+ images/outfit/plasma?turret*
+ images/outfit/proton?gun*
+ images/outfit/quad?blaster?turret*
+ images/outfit/rocket*
+ images/outfit/rocket?launcher*
+ images/outfit/rocket?storage*
+ images/outfit/sidewinder*
+ images/outfit/sidewinder?launcher*
+ images/outfit/sidewinder?storage*
+ images/outfit/small?bunk?room*
+ images/outfit/small?nucleovoltaic*
+ images/outfit/small?radiothermal*
+ images/outfit/small?thermionic*
+ images/outfit/stack?core*
+ images/outfit/surveillance?pod*
+ images/outfit/banisher*
+ images/outfit/command?center*
+ images/outfit/fire-lance*
+ images/outfit/piercer*
+ images/outfit/piercer?launcher*
+ images/outfit/korath?piercer?storage*
  images/outfit/rock?0*
  images/outfit/rock?1*
  images/outfit/rock?2*
  images/outfit/rock?3*
  images/outfit/rock?4*
  images/scene/penguinscene*
+ images/ship/dredger*
  images/ship/ibis*
  images/ship/mbactriane*
- images/ship/penguin/penguin*
+ images/ship/penguin/*
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
+ images/thumbnail/dredger*
  images/thumbnail/ibis*
  images/thumbnail/penguin*
  images/thumbnail/petrel*
@@ -607,7 +668,9 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
-Files: images/outfit/security?station*
+Files:
+ images/outfit/security?station*
+ images/ship/peregrine/*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
@@ -734,7 +797,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 
 Files: images/ship/mosprey*
-Copyright: tehhowch (https://github.com/tehhowch)
+Copyright: Benjamin Hauch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 
@@ -765,7 +828,8 @@ Files:
  images/ship/faes'mar*
  images/ship/selii'mar*
  images/ship/vareti'het*
- images/ship/ember?waste?node/ember?waste?node*
+ images/ship/ember?waste?node/*
+ images/ship/void?sprite/*
  images/thumbnail/maeri'het*
  images/thumbnail/telis'het*
  images/thumbnail/faes'mar*
@@ -773,6 +837,8 @@ Files:
  images/thumbnail/subsidurial*
  images/thumbnail/ember?waste?node*
  images/thumbnail/vareti'het*
+ images/thumbnail/void?sprite?adult*
+ images/thumbnail/void?sprite?infant*
  images/effect/ravager?impact*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
@@ -787,6 +853,40 @@ Files:
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/ka'het?nullifier*
  images/outfit/mouthparts*
+ images/outfit/fuel?pod*
+ images/outfit/fusion*
+ images/outfit/core*
+ images/outfit/ionic?afterburner*
+ images/outfit/tiny?ion*
+ images/outfit/small?ion*
+ images/outfit/medium?ion*
+ images/outfit/large?ion*
+ images/outfit/huge?ion*
+ images/outfit/tiny?atomic*
+ images/outfit/small?atomic*
+ images/outfit/medium?atomic*
+ images/outfit/large?atomic*
+ images/outfit/huge?atomic*
+ images/outfit/javelin*
+ images/outfit/javelin?storage*
+ images/outfit/javelin?pod*
+ images/outfit/torpedo*
+ images/outfit/torpedo?launcher*
+ images/outfit/torpedo?storage*
+ images/outfit/typhoon*
+ images/outfit/typhoon?launcher*
+ images/outfit/typhoon?storage*
+ images/outfit/cooling?ducts*
+ images/outfit/liquid?helium*
+ images/outfit/liquid?nitrogen*
+ images/outfit/water?cooling*
+ images/outfit/large?regenerator*
+ images/outfit/small?regenerator*
+ images/outfit/cargo?scanner*
+ images/outfit/outfit?scanner*
+ images/outfit/outfit?expansion*
+ images/outfit/cargo?expansion*
+ images/outfit/control?transceiver*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -958,6 +1058,23 @@ Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by To
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
 License: CC-BY-SA-4.0
+
+Files: images/outfit/plasma?repeater*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Darcy Manoel.
+
+Files:
+ images/outfit/proton?turret*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Nate Graham.
+
+Files:
+ images/outfit/brig*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license).
 
 Files: sounds/ionball*
 Copyright: pluralz

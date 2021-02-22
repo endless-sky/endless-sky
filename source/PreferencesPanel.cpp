@@ -295,7 +295,7 @@ void PreferencesPanel::DrawControls()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
-	Color red(.3f, 0.f, 0.f, .3f);
+	const Color &warning = *GameData::Colors().Get("warning conflict");
 	
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -373,7 +373,7 @@ void PreferencesPanel::DrawControls()
 			if(isConflicted || isEditing)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim: red);
+				table.DrawHighlight(isEditing ? dim: warning);
 			}
 			
 			// Mark the selected row.

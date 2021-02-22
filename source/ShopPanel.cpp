@@ -278,7 +278,7 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw("cargo space:", point, medium);
 		
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		font.Draw({space, {SIDE_WIDTH - 20, Alignment::RIGHT}}, point, bright);
+		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
 	maxSidebarScroll = max(0., point.Y() + sidebarScroll - Screen::Bottom() + BUTTON_HEIGHT);

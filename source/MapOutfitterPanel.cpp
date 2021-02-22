@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
+#include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
@@ -20,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Sprite.h"
-#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -174,7 +174,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 void MapOutfitterPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);

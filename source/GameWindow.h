@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // This class is a collection of global functions for handling SDL_Windows.
 class GameWindow {
 public:
+	static std::string SDLVersions();
 	static bool Init();
 	static void Quit();
 	
@@ -38,7 +39,7 @@ public:
 	// Last known windowed-mode width & height.
 	static int Width();
 	static int Height();
-	// 
+	
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();	
