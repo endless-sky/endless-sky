@@ -342,7 +342,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	autoPilot |= activeCommands;
 	// While the flagship is landing, it cannot do most actions.
 	if(flagship && flagship->IsLanding())
-		autoPilot.Clear(Command::JUMP | Command::LAND | Command::BOARD | Command::STOP);
+		autoPilot.Clear(Command::LAND | Command::BOARD | Command::STOP);
 	else if(activeCommands.Has(AutopilotCancelCommands()))
 	{
 		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
