@@ -75,7 +75,7 @@ namespace{
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
 	
-	// Send an SDL_event to on of the UIs.
+	// Send an SDL_event to one of the UIs.
 	bool EventToUI(UI &menuOrGamePanels, const SDL_Event &event)
 	{
 		return menuOrGamePanels.Handle(event);
@@ -112,7 +112,7 @@ Test::TestStep::TestStep(Type stepType) : stepType(stepType)
 
 
 
-void Test::TestStep::LoadInput(DataNode node)
+void Test::TestStep::LoadInput(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
@@ -446,7 +446,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 						Fail(context, player, "engine not active due to panel on top, and can only send commands to the engine");
 					
 					// Both get as well as the cast can result in a nullpointer. In both cases we
-					MainPanel* mainPanel = dynamic_cast<MainPanel*> (gamePanels.Root().get());
+					auto mainPanel = dynamic_cast<MainPanel *>(gamePanels.Root().get());
 					if(!mainPanel)
 						Fail(context, player, "root gamepanel of wrong type when sending command");
 
