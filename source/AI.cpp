@@ -2310,7 +2310,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	else if(ship.GetTargetStellar())
 	{
 		// Approach the planet and "land" on it (i.e. scan it).
-		MoveToPlanet(ship, command, ship.CruiseVelocity());
+		MoveToPlanet(ship, command);
 		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
