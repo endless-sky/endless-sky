@@ -142,7 +142,7 @@ Version 0.9.13:
       * Reworked the graphics of Syndicated Shipyards ships. (@beccabunny)
       * Reworked the graphics of the Korath Raider. (@ravenshining, @Red-57)
       * Reworked the graphics of some Korath outfit images. (@beccabunny)
-      * Replaced the 2D assets of the void sprite images with 3D models. (@beccabunny)
+      * Replaced the 2D assets of the void sprite images with 3D models, and update associated images. (@beccabunny)
     * Other:
       * Renamed the Gascraft to the Puffin so that all Remnant ships are named after birds. (@Zitchas)
       * Removed the Quarg ringworld from the Graveyard. (@Arachi-Lover)
@@ -233,6 +233,7 @@ Version 0.9.13:
     * The list of pilot snapshots now resets to the top when switching between pilots. (@Terin)
     * Clicking on empty space now deselects the player's current ship or asteroid target. (@ChamEV, @tatami4)
     * Conflicting keybinds are no longer reset when loading the game, allowing for one key to be bound to multiple controls. (@tatami4, @yobbo2020)
+    * Fix a small misalignment of list items in the Pilot & New Pilot pickers. (@oo13)
   * Under the hood:
     * Carried ships are now identified by their category instead of a boolean. (@petervdmeer)
     * The game will now report more errors in conversations, including incorrect indentation. (@NomadicVolcano)
