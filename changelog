@@ -1,4 +1,6 @@
 Version 0.9.13:
+  * Breaking changes:
+    * Starting conditions defined by plugins no longer automatically override the game's default start. (@FranchuFranchu, @tehhowch)
   * Big changes:
     * Added over 30 new spaceport missions to Coalition space. (@Arachi-Lover)
     * Added over 25 new missions to Remnant space, as well as a new region of the Ember Waste. (@Zitchas)
@@ -6,6 +8,7 @@ Version 0.9.13:
     * The Ember Waste has become a more hostile place with the introduction of system hazards. Be prepared the next time you visit. (@Zitchas)
     * Outfits can now be stored on planets by pressing U or R on installed or in cargo outfits in the outfitter. (@petervdmeer)
     * Completely redid and improved the graphics for most human outfit images. (@beccabunny)
+    * Added a "New Pilot" scenario picker, allowing players to choose between game and plugin starts. (@FranchuFranchu, @tehhowch)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @arkhne, @beccabunny, @Darcman99, @FixItYondu, @Galaucus, @infinitewarp, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @thebigh2014, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
@@ -107,7 +110,7 @@ Version 0.9.13:
       * The first contact missions for the Hai and Unfettered now change depending on the order in which they are done. (@Amazinite, @arkhne)
       * Reworded the Sestor search hint conversation to make more sense if offered on Farpoint. (@Amazinite)
       * The Kestrel mission now shows the ship's thumbnail during the conversation instead of its sprite. (@Anarchist2)
-      * Updated various missions to make use of the new abort behavior. (@petervdmeer)
+      * Updated various missions to make use of the new "on abort" behavior. (@petervdmeer)
       * The Marauder Hunted mission has been changed to now scale with the player's fleet strength. (@Amazinite)
       * During the "Deep: Remnant" mission string, it is now optional whether you reveal the existence of the Remnant to the Deep. (@Amazinite, @Zitchas)
       * The player now saves the cultural data from Alexandria, allowing missions to be skipped that need it instead of having the player fly to Alexandria again. (@Amazinite)
@@ -190,7 +193,6 @@ Version 0.9.13:
       * Systems can change the range at which ships enter the system, with potentially different ranges for hyperdrive and jump drive travel. (@petervdmeer)
       * Playtime is now tracked for each pilot save. (@Terin)
       * Systems can now be hidden from view unless they are linked to a visited system. (@Amazinite)
-      * Added a "New Pilot" scenario picker, allowing players to choose between game and plugin starts. (@FranchuFranchu, @tehhowch)
     * Changed mechanics:
       * Certain attributes are now capable of being made negative in the outfitter. For example, shield energy is now allowed to be negative, resulting in shield generation also creating energy. (@Amazinite)
       * Fines for illegal mission cargo are now added together instead of only the worst being applied. (@Amazinite)
@@ -209,14 +211,14 @@ Version 0.9.13:
       * Pirate deterrence takes relative shield and hull damage into account by scaling relative to the ship with the weapons. (@Terin)
       * Ships with both the disables and plunders personalities will no longer destroy ships that have been plundered. (@tatami4)
       * Ships with the plunders personality will now always aim to destroy ships they plundered. (@tatami4)
-      * Greatly increased the lifetime of flotsams by at least 10x and added drag to them so that they slow down over time. (@Amazinite)
+      * Greatly increased the lifetime of flotsam by at least 10x and added drag so they slow down over time. (@Amazinite)
   * User interface:
     * The outfitter help now explains how to buy outfits into cargo. (@Zitchas)
     * Fast-forward will now be turned off if the player is not in flight, such as when landing or boarding a ship. (@petervdmeer)
     * The fast-forward interrupt can be turned off in preferences. (@Amazinite)
     * Added a preference to change the graphics of the player's ship outlines in the shipyard/outfitter. (@Amazinite)
     * Simply clicking on a player ship in the player info planel or shop panel doesn't create an overlay for the ship's name or sprite/outline. (@tehhowch)
-    * Holding control when clicking a system on the map now doesn't set a travel plan. (@Terin)
+    * Holding Control when clicking a system on the map now doesn't set a travel plan. (@Terin)
     * Renaming a ship or save file will now prefill the UI with the existing name instead of starting blank. (@jostephd)
     * Added a confirmation when overwriting a save snapshot. (@tehhowch)
     * Information for a selected outfit or ship in the shop panel now appears in a separate details column instead of being drawn under the selected item. (@ThrosturX)
@@ -234,31 +236,32 @@ Version 0.9.13:
   * Under the hood:
     * Carried ships are now identified by their category instead of a boolean. (@petervdmeer)
     * The game will now report more errors in conversations, including incorrect indentation. (@NomadicVolcano)
-    * The --ships flag now outputs the number of guns and turrets on a ship. (@fcfort)
+    * The `--ships` command-line option now outputs the number of guns and turrets on a ship. (@fcfort)
+    * The `--weapons` command-line option now outputs the firing force and hit force of weapons. (@petervdmeer)
     * The systems that were defined in the Pug file have been moved to the map file. (@Zitchas)
-    * Copy constructor and assignment operators for File now close own file, preventing a memory leak. (@tehhowch)
+    * Fixed a memory leak related to recreating the errors.txt log file. (@tehhowch)
     * A single bind + unbind is used when drawing mission system rings instead of one for each ring. (@tehhowch)
     * Commands can now be created from datafile text. (@petervdmeer)
-    * Added CLion IDE files to the gitignore. (@Ririshi)
     * Various sections of a save file, including the outfits on a ship and visited systems and planets, are now saved in alphabetical order instead of the save order being random. (@petervdmeer, @tehhowch)
     * Data files encoded by UTF-8 are now supported. (@flaviojs, @oo13)
     * Fixed a potential compiler error for older compilers. (@thebigh2014)
-    * The Code::Blocks project file now uses default MinGW paths. (@Terin)
     * Added nullptr checks where they were missing. (@tehhowch)
     * Updated the copyright file with a "catch-all" line for contributors. (@oo13)
     * Pre/post-fix operators now function as expected on dates. (@tehhowch)
     * Added a missing virtual destructor for ItemInfoDisplay. (@tehhowch)
     * Prevented a race condition scenario when loading audio. (@Rakete1111)
-    * Created a unit testing framework. (@tehhowch)
-    * Added an initial framework for integration testing. (@petervdmeer, @tehhowch)
-    * The game will now fallback onto using shaders for swizzling if the player's hardware does not have the swizzle extension. (@janisozaur, @thomasballinger)
+    * The game will use shaders for swizzling if the player's hardware does not have the swizzle extension. (@janisozaur, @thomasballinger)
     * References to undefined data are now preserved in the save file, preventing crashes or lost data caused by removing plugins. (@tehhowch)
     * The game will now warn about having a low monitor frame rate, which causes the game to run at a reduced frame rate. (@tehhowch)
-    * The --weapons flag now outputs the firing force and hit force of weapons. (@petervdmeer)
   * CI/CD and development environment
     * Make (test-)executables available (for Linux, MacOS and Windows) for every in-progress PR. (@MCOfficer)
     * Update CI/CD environment to the latest GitHub actions and Linux runtime environments. (@MCOfficer)
     * A number of smaller CI/CD updates. (@MCOfficer, @petervdmeer, @tehhowch)
+    * Added CLion IDE files to the gitignore. (@Ririshi)
+    * The Code::Blocks project file now uses default MinGW paths. (@Terin)
+    * Created a unit-testing framework. (@tehhowch)
+    * Converted the Windows makefile build to use Scons, to match linux development. (@tehhowch)
+    * Added an initial framework for integration testing. (@petervdmeer, @tehhowch)
 
 Version 0.9.12:
   * Bug fixes:
