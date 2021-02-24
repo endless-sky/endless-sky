@@ -1795,7 +1795,8 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	// Calculate target vector required to get where we want to be.
 	Point tv = dp;
 	bool hasCruiseSpeed = (cruiseSpeed > 0.);
-	if(hasCruiseSpeed){
+	if(hasCruiseSpeed)
+	{
 		// The ship prefers a velocity at cruise-speed towards the target, so we need
 		// to compare this preffered velocity to the current velocity and apply the
 		// delta to get to the preferred velocity.
