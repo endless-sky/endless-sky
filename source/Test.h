@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConditionSet.h"
 
+#include <SDL2/SDL.h>
+
 #include <map>
 #include <set>
 #include <string>
@@ -67,7 +69,7 @@ public:
 		
 	public:
 		TestStep(Type stepType);
-		void LoadInput(DataNode node);
+		void LoadInput(const DataNode &node);
 		
 		
 	public:
@@ -91,10 +93,8 @@ public:
 		// Input variables.
 		Command command;
 		std::set<std::string> inputKeys;
-		bool modShift = false;
-		bool modAlt = false;
-		bool modControl = false;
-
+		Uint16 modKeys;
+		
 		bool XAxis = false;
 		int XAbs = 0;
 		double XRel = 0.;

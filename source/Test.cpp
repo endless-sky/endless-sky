@@ -82,7 +82,7 @@ namespace{
 	}
 	
 	// Send an keyboard input to one of the UIs.
-	bool KeyInputToUI(UI &menuOrGamePanels, const char* keyName, bool shift=false, bool ctrl=false, bool alt=false)
+	bool KeyInputToUI(UI &menuOrGamePanels, const char* keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
@@ -90,14 +90,7 @@ namespace{
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
-		event.key.keysym.mod = KMOD_NONE;
-		if(shift)
-			event.key.keysym.mod |= KMOD_SHIFT;
-		if(ctrl)
-			event.key.keysym.mod |= KMOD_CTRL;
-		if(alt)
-			event.key.keysym.mod |= KMOD_ALT;
-		
+		event.key.keysym.mod = modKeys;
 		// Sending directly as event to the UI. We might want to switch to
 		// SDL_PushEvent in the future to use the regular SDL event-handling loops.
 		return EventToUI(menuOrGamePanels, event);
@@ -123,11 +116,11 @@ void Test::TestStep::LoadInput(const DataNode &node)
 			
 			for(const DataNode &grand: child){
 				if(grand.Token(0) == "shift")
-					modShift = true;
+					modKeys |= KMOD_SHIFT;
 				else if(grand.Token(0) == "alt")
-					modAlt = true;
+					modKeys |=  KMOD_ALT;
 				else if(grand.Token(0) == "control")
-					modControl = true;
+					modKeys |= KMOD_CTRL;
 				else
 					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"key\" section:");
 			}
@@ -446,6 +439,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 						Fail(context, player, "engine not active due to panel on top, and can only send commands to the engine");
 					
 					// Both get as well as the cast can result in a nullpointer. In both cases we
+					// will fail the test, since we expect the MainPanel to be here.
 					auto mainPanel = dynamic_cast<MainPanel *>(gamePanels.Root().get());
 					if(!mainPanel)
 						Fail(context, player, "root gamepanel of wrong type when sending command");
@@ -461,10 +455,10 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 						const char* inputChar = key.c_str();
 						if(!menuPanels.IsEmpty())
 						{
-							if(!KeyInputToUI(menuPanels, inputChar))
+							if(!KeyInputToUI(menuPanels, inputChar, stepToRun.modKeys))
 								Fail(context, player, "key input on menuPanel failed");
 						}
-						else if(!KeyInputToUI(gamePanels, inputChar))
+						else if(!KeyInputToUI(gamePanels, inputChar, stepToRun.modKeys))
 							Fail(context, player, "key input on gamePanel failed");
 					}
 				}
