@@ -38,6 +38,12 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.9.13" date="2021-02-28" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>TODO!</p>
+      </description>
+    </release>
     <release version="0.9.12" date="2020-05-01">
       <description>
         <p>This is a stable release focusing on bug fixes and polishing the recent v0.9.11 release.</p>
