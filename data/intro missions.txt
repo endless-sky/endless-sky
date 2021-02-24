@@ -161,7 +161,7 @@ mission "Intro [3 Transport]"
 	on offer
 		conversation
 			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Ten billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
 			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
@@ -480,7 +480,7 @@ conversation "end of intro missions"
 		goto more
 	
 	label jobs
-	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
+	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every April 22nd, Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
 	
 	label more
 	`	"Anything else you want to ask me?"`

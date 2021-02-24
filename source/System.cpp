@@ -197,6 +197,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				
 				objects.clear();
 			}
+			else if(key == "hidden")
+				hidden = false;
 			
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -206,7 +208,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		
 		// Handle the attributes which can be "removed."
-		if(!hasValue && key != "object")
+		if(key == "hidden")
+			hidden = true;
+		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
@@ -518,6 +522,14 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 	static const set<const System *> EMPTY;
 	const auto it = neighbors.find(jumpRange ? jumpRange : neighborDistance);
 	return it == neighbors.end() ? EMPTY : it->second;
+}
+
+
+
+// Whether this system can be seen when not linked.
+bool System::Hidden() const
+{
+	return hidden;
 }
 
 

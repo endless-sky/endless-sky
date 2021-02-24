@@ -111,12 +111,12 @@ ship "Emerald Sword"
 	turret 0 114 "Sheragi Anti-Missile"
 	turret 0 183 "Sheragi Anti-Missile"
 	gun 0 -276 "Dragonflame Cannon"
-	fighter 0 220.5 back
-	fighter 0 220.5 back
-	fighter 0 220.5 back
-	fighter 0 220.5 back
-	fighter 0 220.5 back
-	fighter 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
 	explode "tiny explosion" 60
 	explode "small explosion" 26
 	explode "medium explosion" 47
