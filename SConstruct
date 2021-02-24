@@ -69,7 +69,6 @@ game_libs = [
 	"png.dll",
 	"turbojpeg.dll",
 	"jpeg.dll",
-	"mad.dll",
 	"openal32.dll",
 	"glew32.dll",
 	"opengl32",
