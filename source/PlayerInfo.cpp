@@ -2518,7 +2518,7 @@ void PlayerInfo::ValidateLoad()
 			startData = GameData::StartOptions().front();
 			// When necessary, record in the pilot file that the starting data is just an assumption.
 			if(startCount >= 2)
-				conditions["unverified start scenario"] = true;
+				conditions.SetCondition("unverified start scenario", true);
 		}
 		else
 			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
