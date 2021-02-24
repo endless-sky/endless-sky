@@ -201,6 +201,7 @@ fleet "Korath Raid"
 		"Korath Raider"
 		"Korath Chaser" 2
 
+
 fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
@@ -211,6 +212,7 @@ fleet "Korath Ember Waste Raid"
 	variant
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
+
 
 fleet "Korath Home"
 	government "Korath"
@@ -225,6 +227,9 @@ fleet "Korath Home"
 		"Korath World-Ship B"
 	variant 12
 		"Korath World-Ship C"
+	variant 12
+		"Korath Dredger"
+		"Korath Chaser" 4
 
 
 fleet "Kor Efret Home"

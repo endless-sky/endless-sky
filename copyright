@@ -351,6 +351,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
+ images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/inhibitor?turret*
  images/hardpoint/ion?hail?turret*
@@ -436,12 +437,14 @@ Files:
  images/outfit/rock?3*
  images/outfit/rock?4*
  images/scene/penguinscene*
+ images/ship/dredger*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/penguin/*
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
+ images/thumbnail/dredger*
  images/thumbnail/ibis*
  images/thumbnail/penguin*
  images/thumbnail/petrel*
@@ -790,7 +793,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 
 Files: images/ship/mosprey*
-Copyright: tehhowch (https://github.com/tehhowch)
+Copyright: Benjamin Hauch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 

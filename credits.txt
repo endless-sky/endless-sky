@@ -14,12 +14,13 @@ Creator and Lead Programmer
 
 Developers
   Amazinite
+  Benjamin Hauch
   Pointedstick
-  tehhowch
 
 Major Programming
   AdamKauffman
   Amazinite
+  Benjamin Hauch
   CyberShadow
   db47h
   Elyssaen
@@ -33,7 +34,6 @@ Major Programming
   NomadicVolcano
   oo13
   Peter van der Meer
-  tehhowch
 
 Storyline & Faction Authors
   Amazinite

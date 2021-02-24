@@ -51,8 +51,6 @@ protected:
 private:
 	void UpdateLists();
 	
-	// New player "conversation" callback.
-	void OnCallback(int value);
 	// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
 	void WriteSnapshot(const std::string &sourceFile, const std::string &snapshotName);
