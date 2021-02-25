@@ -32,3 +32,10 @@ const char *StringInterner::Intern(const char *key)
 	lock_guard<mutex> lock(m);
 	return interned.insert(key).first->c_str();
 }
+
+
+
+const char *StringInterner::Intern(const string key)
+{
+	return Intern(key.c_str());
+}

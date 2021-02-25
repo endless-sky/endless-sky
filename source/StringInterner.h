@@ -21,6 +21,7 @@ class StringInterner
 {
 public:
 	static const char *Intern(const char *key);
+	static const char *Intern(const std::string key);
 };
 
 
