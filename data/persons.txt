@@ -1091,6 +1091,77 @@ person "Rais Iris XVIII"
 	phrase
 		phrase
 			"friendly author"
+	phrase
+		word
+			"When in doubt, add more flammenwerfer."
+			"Why settle for something reasonable, when you can have something completely bonkers?"
+			"Bactrian Gaming."
+			"His Union's Qi Pianist."
+			"I'm basically a computer gynecologist."
+			"Your ship looks like it came out of a liquidizer!"
+			"Look at me. I am the Captain now."
+			"Pronounce 'Wrzlprnft'. You have 5 seconds."
+
+			"To this day, I can still hear the Teeworlds title music."
+			"I am a light sleeper; but I am a heavy dreamer." # Owl City
+			"Did you know Viggo broke his toe?" # LoTR
+			"Meet me at the Prancing Pony." # LoTR
+			"This isn't my first ship. I fondly remember The Blin Machine and The Chernomobil." # Life of Boris
+			"Heard of solar panels? Now you can eat sunlight!" # bill wurtz
+			"So you want to be a pirate, m'lad? Well, let me tell ye: Being a pirate, be all about Branding." # CGP Grey
+			"Do not greed for the Thrumbo horns." # RimWorld
+
+			# Walter Moers: The Mugg's Code of Conduct
+			"Honour thy muggroom."
+			"If thou seest two sticks lying one on top of the other, thou shalt walk backwards over them with thy left foot first, not with thy right. Moreover, thou shalt not devour them."
+			"Should a vulture's shadow fall across a fire that has gone out, thou shalt rekindle it three times or a great misfortune will ensue."
+			"If thou cross the path of a white cockerel seated on two superimposed sticks, thou shalt not strike it, nor shalt thou address it by name nor partake of the said sticks."
+			"Thou shalt not finkle backwards."
+			"Thou shalt not finkle forwards."
+
+			# SovietWomble
+			"Get the doomsday rounds."
+			"I wouldn't recommend shooting at me, because your gun goes 'pew pew', but my gun goes BBBRRRRRRR!"
+			"Ramming speed!"
+
+			# videogamedonkey
+			"Tony. Get the boulder."
+			"Not even close!"
+			"Knack II, baby!"
+
+			# League of Legends
+			"Damnit Skaarl, did you hide my mushroom juice again?"
+			"Stand still! My eyes are on the side of my head!"
+			"One, two, three, four, two, two, three, four."
+			"Luck is failure that failed."
+			"If you want a weapon, here's a weapon. If you want conversation - here's a weapon."
+			"Working with you is almost like working alone. Almost."
+			"I will go over there. It looks quiet. It will be nice."
+
+			# Star Wars
+			"Yes, using Parsecs as measurement of speed does make sense."
+			"Hello there."
+			"I'm just a simple man trying to make my way in the universe."
+			"Did you ever hear the tragedy of Darth Plagueis the wise?"
+			"Congratulations, you are being rescued. Please do not resist."
+			"I'll be there for you. Cassian said I had to."
+
+	phrase
+		word
+			"We all serve "
+			"Praise be upon "
+			"I'm definitely not being held hostage by "
+		word
+			"the "
+		word
+			"barmy bronc."
+			"crazy colt."
+			"daft dobbin."
+			"foolish filly."
+			"scatty stallion."
+			"potty pony."
+			"mental mustang."
+
 	ship "Marauder Bactrian" "Rais Iris XVIII"
 		"never disabled"
 
