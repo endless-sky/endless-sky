@@ -162,6 +162,7 @@
 		DFAAE2A71FD4A25C0072C0A8 /* BatchShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A41FD4A25C0072C0A8 /* BatchShader.cpp */; };
 		DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */; };
 		F55745BDBC50E15DCEB2ED5B /* layout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF4321AF819E944EC02FB9 /* layout.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
+		F7EC4CE8931B5733526B5103 /* StringInterner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B4DDDB61F0AE8550015E1 /* StringInterner.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -209,6 +210,7 @@
 		98104FFDA18E40F4A712A8BE /* CoreStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStartData.h; path = source/CoreStartData.h; sourceTree = "<group>"; };
 		9BCF4321AF819E944EC02FB9 /* layout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = layout.hpp; path = source/text/layout.hpp; sourceTree = "<group>"; };
 		9DA14712A9C68E00FBFD9C72 /* TestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestData.h; path = source/TestData.h; sourceTree = "<group>"; };
+		A0B349A6B0AEA616C1E3282B /* StringInterner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringInterner.h; path = source/StringInterner.h; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
 		A90633FE1EE602FD000DA6C0 /* LogbookPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogbookPanel.h; path = source/LogbookPanel.h; sourceTree = "<group>"; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
 		C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hazard.cpp; path = source/Hazard.cpp; sourceTree = "<group>"; };
+		D83B4DDDB61F0AE8550015E1 /* StringInterner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringInterner.cpp; path = source/StringInterner.cpp; sourceTree = "<group>"; };
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
 		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
 		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 				F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */,
 				0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */,
 				98104FFDA18E40F4A712A8BE /* CoreStartData.h */,
+				D83B4DDDB61F0AE8550015E1 /* StringInterner.cpp */,
+				A0B349A6B0AEA616C1E3282B /* StringInterner.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1059,6 +1064,7 @@
 				94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */,
 				6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */,
 				03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */,
+				F7EC4CE8931B5733526B5103 /* StringInterner.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
