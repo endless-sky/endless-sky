@@ -268,6 +268,8 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	bay "Fighter" 0 -21
 	bay "Fighter" 0 31
 	bay "Fighter" 0 83
+	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of cargo transported with a guarantee that they'll reach the destination."
+	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	plural "Auxiliaries"
