@@ -229,11 +229,11 @@ ship "Auxiliary"
 		"Scram Drive"
 	engine -41 181
 	engine 41 181
-	gun -12 -180
-	gun 12 -180
+	gun -12 -180 "Sidewinder Missile Launcher"
+	gun 12 -180 "Sidewinder Missile Launcher"
 	turret 0 -75 "Heavy Anti-Missile Turret"
-	turret 0 -18
-	turret 0 22.5
+	turret 0 -18 "Quad Blaster Turret"
+	turret 0 22.5 "Quad Blaster Turret"
 	turret 0 73.5 "Heavy Anti-Missile Turret"
 	bay "Fighter" 0 -75
 	bay "Fighter" 0 -18
@@ -258,11 +258,11 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	add attributes
 		"bunks" -112
 		"cargo space" 380 # Cargo space for Auxiliary (Cargo) is 580
-	gun -12 -180
-	gun 12 -180
+	gun -12 -180 "Sidewinder Missile Launcher"
+	gun 12 -180 "Sidewinder Missile Launcher"
 	turret 0 -72 "Heavy Anti-Missile Turret"
-	turret 0 -21
-	turret 0 31
+	turret 0 -21 "Quad Blaster Turret"
+	turret 0 31 "Quad Blaster Turret"
 	turret 0 83 "Heavy Anti-Missile Turret"
 	bay "Fighter" 0 -72
 	bay "Fighter" 0 -21
@@ -278,11 +278,11 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	add attributes
 		"bunks" 112 # Bunks for Auxiliary (Transport) is 362
 		"cargo space" -200
-	gun -12 -180
-	gun 12 -180
+	gun -12 -180 "Sidewinder Missile Launcher"
+	gun 12 -180 "Sidewinder Missile Launcher"
 	turret 0 -73.5 "Heavy Anti-Missile Turret"
-	turret 0 -17
-	turret 0 20
+	turret 0 -17 "Quad Blaster Turret"
+	turret 0 20 "Quad Blaster Turret"
 	turret 0 79 "Heavy Anti-Missile Turret"
 	bay "Fighter" 0 -73.5
 	bay "Fighter" 0 -17
