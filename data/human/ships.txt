@@ -248,7 +248,7 @@ ship "Auxiliary"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
+	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or large amounts of cargo transported with a guarantee that they'll reach the destination."
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 ship "Auxiliary" "Auxiliary (Cargo)"
@@ -257,7 +257,7 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	thumbnail "thumbnail/auxiliaryc"
 	add attributes
 		"bunks" -112
-		"cargo space" 200
+		"cargo space" 380 # Cargo space for Auxiliary (Cargo) is 580
 	gun -12 -180
 	gun 12 -180
 	turret 0 -72 "Heavy Anti-Missile Turret"
