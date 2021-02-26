@@ -200,7 +200,7 @@ ship "Auxiliary"
 		"drag" 13.3
 		"heat dissipation" .45
 		"fuel capacity" 900
-		"cargo space" 250
+		"cargo space" 295
 		"outfit space" 720
 		"weapon capacity" 160
 		"engine capacity" 200
@@ -257,7 +257,7 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	thumbnail "thumbnail/auxiliaryc"
 	add attributes
 		"bunks" -112
-		"cargo space" 380 # Cargo space for Auxiliary (Cargo) is 580
+		"cargo space" 295 # Cargo space for Auxiliary (Cargo) is 580
 	gun -12 -180 "Sidewinder Missile Launcher"
 	gun 12 -180 "Sidewinder Missile Launcher"
 	turret 0 -72 "Heavy Anti-Missile Turret"
@@ -277,7 +277,7 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	thumbnail "thumbnail/auxiliaryt"
 	add attributes
 		"bunks" 112 # Bunks for Auxiliary (Transport) is 362
-		"cargo space" -200
+		"cargo space" -245
 	gun -12 -180 "Sidewinder Missile Launcher"
 	gun 12 -180 "Sidewinder Missile Launcher"
 	turret 0 -73.5 "Heavy Anti-Missile Turret"
