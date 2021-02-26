@@ -276,7 +276,7 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	sprite "ship/auxiliaryt"
 	thumbnail "thumbnail/auxiliaryt"
 	add attributes
-		"bunks" 112
+		"bunks" 112 # Bunks for Auxiliary (Transport) is 362
 		"cargo space" -200
 	gun -12 -180
 	gun 12 -180
@@ -288,8 +288,8 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	bay "Fighter" 0 -17
 	bay "Fighter" 0 20
 	bay "Fighter" 0 79
-
-
+	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops transported with a guarantee that they'll reach the destination."
+	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 ship "Bactrian"
 	sprite "ship/bactrian"
