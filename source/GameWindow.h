@@ -39,7 +39,7 @@ public:
 	// Last known windowed-mode width & height.
 	static int Width();
 	static int Height();
-	// 
+	
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();	
