@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Hazard.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
@@ -3048,16 +3047,16 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 
 
 
-// This ship just got hit by the given hazard. Take damage according to what
+// This ship just got hit by an hazard. Take damage according to what
 // sort of weapon the hazard has, and create any hit effects as sparks.
-void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, double strength)
+void Ship::TakeDamage(vector<Visual> &visuals, const Weapon *weapon, double damageScaling)
 {
 	// Rather than exactly compute the distance between the hazard origin and
 	// the closest point on the ship, estimate it using the mask's Radius.
 	double distanceTraveled = position.Length() - GetMask().Radius();
-	TakeDamage(*hazard, strength, distanceTraveled, Point(), hazard->BlastRadius() > 0.);
-	for(const auto &effect : hazard->TargetEffects())
-		CreateSparks(visuals, effect.first, effect.second * strength);
+	TakeDamage(*weapon, damageScaling, distanceTraveled, Point(), weapon->BlastRadius() > 0.);
+	for(const auto &effect : weapon->TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damageScaling);
 }
 
 
