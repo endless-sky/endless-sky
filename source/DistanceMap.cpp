@@ -203,6 +203,10 @@ void DistanceMap::Init(const Ship *ship)
 		Edge top = edges.top();
 		edges.pop();
 		
+		// If the system is invisible, it cannot be used.
+		if(top.next->Invisible())
+			continue;
+		
 		// Source is only defined when given a ship and a destination system.
 		// Once we have a route between them, stop searching for more routes.
 		if(top.next == source)

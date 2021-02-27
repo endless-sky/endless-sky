@@ -8012,6 +8012,7 @@ system Diespiter
 	attributes "ember waste" "inaccessible"
 	habitable 534.375
 	haze _menu/haze-red
+	link Postverta
 	link Statina
 	asteroids "small rock" 65 3
 	asteroids "medium rock" 14 1
@@ -19454,12 +19455,15 @@ system Porrima
 			period 11.4255
 
 system Postverta
-	hidden
+	invisible
 	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	habitable 135
 	haze _menu/haze-red
+	link Diespiter
+	link Prosa
+	link Statina
 	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
 	asteroids "medium metal" 52 1
@@ -19632,6 +19636,7 @@ system Prosa
 	attributes "ember waste" "inaccessible"
 	habitable 2372.76
 	haze _menu/haze-red
+	link Postverta
 	link Vaticanus
 	asteroids "medium metal" 11 2
 	asteroids "large metal" 2 2
@@ -23256,6 +23261,7 @@ system Statina
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
+	link Postverta
 	asteroids "large rock" 1 4
 	asteroids "small metal" 39 3
 	asteroids "medium metal" 72 3
@@ -25970,7 +25976,7 @@ system Zubenelgenubi
 		period 1158.05
 
 system Zubenelhakrabi
-	hidden
+	invisible
 	pos -755 365
 	government Uninhabited
 	habitable 486.68

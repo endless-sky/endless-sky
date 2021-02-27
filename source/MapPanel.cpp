@@ -271,8 +271,8 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		
 		for(const System *link : system.Links())
 		{
-			// Only draw systems known to be attached to the jump systems.
-			if(!player.HasVisited(system) && !player.HasVisited(*link))
+			// Only draw visible systems known to be attached to the jump systems.
+			if((!player.HasVisited(system) && !player.HasVisited(*link)) || system.Invisible() || link->Invisible())
 				continue;
 			
 			// Draw the system link. This will double-draw the jump
@@ -725,8 +725,8 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		// Ignore systems which have been referred to, but not actually defined.
-		if(!system.IsValid())
+		// Ignore systems which are invisible or have been referred to, but not actually defined.
+		if(!system.IsValid() || system.Invisible())
 			continue;
 		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
 		if(!player.HasSeen(system) && &system != specialSystem)
@@ -847,10 +847,10 @@ void MapPanel::UpdateCache()
 		for(const System *link : system->Links())
 			if(link < system || !player.HasSeen(*link))
 			{
-				// Only draw links between two systems if one of the two is
+				// Only draw links between two visible systems if one of the two is
 				// visited. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
-				if((!player.HasVisited(*system) && !player.HasVisited(*link)) || !link->IsValid())
+				if((!player.HasVisited(*system) && !player.HasVisited(*link)) || !link->IsValid() || link->Invisible())
 					continue;
 				
 				bool isClose = (system == &playerSystem || link == &playerSystem);

@@ -3954,11 +3954,8 @@ event "remnant: postverta reveal"
 	unvisit Levana
 	unvisit Prosa
 	unvisit Statina
-	link Postverta Diespiter
-	link Postverta Prosa
-	link Postverta Statina
 	system Postverta
-		remove hidden
+		remove invisible
 	system Egeria
 		add object "Wormhole Barren Alpha"
 			sprite planet/wormhole-red
