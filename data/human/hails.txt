@@ -1708,6 +1708,31 @@ phrase "friendly civilian"
 		", but I still had to take a big loan to buy my first ship."
 		", but it was my grandma's inheritance that allowed me to buy this ship."
 
+phrase "friendly civilian"
+	word
+		"Don't be too picky about the jobs you take. It is better to be"
+	word
+		" "
+	word
+		" shipping shit, than having a shitty ship."
+		" shipping crooks, than having a crooked ship."
+		" shipping shells, than having your ship shelled."
+		" shipping slugs, than having a sluggish ship."
+		" shipping junk, than having a junk ship."
+		" flying to the ruins, than flying in ruins."
+
+phrase "friendly civilian"
+	word
+		"Ey Comrade,"
+	word
+		" "
+	word
+		"your ship is in space? I have space in my ship."
+		"you captain hurl towards the stars? On my planet stars hurl towards our captains."
+		"your ship has loaded on a planet? I have loaded a planet onto my ship."
+		"you have cargo in your ship? I have ships in my cargo."
+		"you have fighters in bays? We have bays in our fighters."
+
 
 phrase "friendly navy"
 	word
