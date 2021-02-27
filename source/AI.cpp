@@ -338,8 +338,12 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
+	const Ship *flagship = player.Flagship();
 	autoPilot |= activeCommands;
-	if(activeCommands.Has(AutopilotCancelCommands()))
+	// While the flagship is landing, it cannot do most actions.
+	if(flagship && flagship->IsLanding())
+		autoPilot.Clear(Command::JUMP | Command::LAND | Command::BOARD | Command::STOP);
+	else if(activeCommands.Has(AutopilotCancelCommands()))
 	{
 		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
@@ -349,11 +353,10 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			Messages::Add("Disengaging autopilot.");
 		autoPilot.Clear();
 	}
-	const Ship *flagship = player.Flagship();
 	
 	if(!flagship || flagship->IsDestroyed())
 		return;
-
+	
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.");
 	
@@ -398,7 +401,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-
+	
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
@@ -3373,7 +3376,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						types.insert(planet->Noun());
 						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
 							distance += 10000.;
-					
+						
 						if(distance < closest)
 						{
 							ship.SetTargetStellar(object);
