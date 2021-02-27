@@ -1738,6 +1738,7 @@ phrase "friendly civilian"
 		"your ship has loaded on a planet? I have loaded a planet onto my ship."
 		"you have cargo in your ship? I have ships in my cargo."
 		"you have fighters in bays? We have bays in our fighters."
+		"you have torpedos in your cargo? I put cargo in my torpedos."
 
 
 phrase "friendly navy"
