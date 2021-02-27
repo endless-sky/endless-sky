@@ -88,7 +88,7 @@ Version 0.9.13:
         * Added new civilian hails. (@Anarchist2, @Naminson, @petervdmeer)
         * New logs for various characters, factions, and plot points. (@MasterOfGrey, @pega3)
         * Added a new Builder station to the Graveyard. (@beccabunny)
-        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @petervdmeer, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
+        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @petervdmeer, @Plip-Plop, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
         * Wrote friendly and hostile hails for the Remnant. (@temtemy)
         * The Archon now has a ship description. (@Zitchas)
         * Added three new person ships. (@beccabunny, @Brick63, @MCOfficer, @Zitchas)
@@ -161,8 +161,8 @@ Version 0.9.13:
       * The starting frame of a void sprite is now randomized. (@Zitchas)
   * Game mechanics:
     * New weapon and outfit attributes:
-      * Weapon attributes to override the range and velocity values used by the AI to determine where the aim and when to fire. (@Amazinite)
-      * Multiplier attributes for various shield and hull related attributes. (@Amazinite)
+      * Weapon attributes to override the range and velocity values used by the AI to determine where to aim and when to fire. (@Amazinite)
+      * Multiplier attributes for various shield and hull-related attributes. (@Amazinite)
       * "Protection" attributes that reduce the effect of incoming damage types. (@Amazinite)
       * A resistance attribute for piercing that subtracts from the piercing of incoming projectiles. (@Amazinite)
       * The sound and visual effects of hyperdrives and jump drives can now be customized. (@Amazinite)

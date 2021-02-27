@@ -41,8 +41,35 @@
     <release version="0.9.13" date="2021-02-28" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
-        <p>TODO!</p>
+        <p>Breaking changes:</p>
+        <ul>
+          <li>Starting conditions no longer automatically override the game's default start. Plugins that use a "start" node will need to make changes to restore the previous behavior.</li>
+        </ul>
+        <p>Major new changes include the following:</p>
+        <ul>
+          <li>70+ new missions in human and alien space</li>
+          <li>Outfits can now be stored on planets, without needing to install them on a parked ship</li>
+          <li>An overhaul of almost all human outfit images</li>
+          <li>Players can now choose their starting scenario</li>
+          <li>Spaceport news messages no longer include portraits by default</li>
+          <li>Better handling for missing content definitions (e.g. from plugin removal)</li>
+        </ul>
+        <p>Several features have been added to the game engine, for use by plugins and other content creators.</p>
+        <p>These include:</p>
+        <ul>
+          <li>Dynamic stopover selection will consider planets without spaceports</li>
+          <li>A number of new outfit and weapon attributes, offering shield/hull multipliers, weapon aiming &amp; firing overrides, percentage-based damage, and additional damage mitigation</li>
+          <li>Arbitrary angles for hardpoints, engine flares, and fighter bays</li>
+          <li>NPCs' objectives can now include provocation or capture</li>
+          <li>Mission NPCs can be conditionally spawned or removed without needing to change the player's active missions</li>
+          <li>Missions can react differently when the player aborts a mission, and when the player fails a mission</li>
+          <li>Missions can give ships to the player</li>
+          <li>Systems may generate environmental hazards, control the range at which ships enter, and be hidden on the map</li>
+        </ul>
+        <p>In addition to the major changes above, there are lots of smaller changes, content additions, and (of course) countless bug and typo fixes.</p>
+        <p>Thanks to all of our contributors for their time and effort in making Endless Sky a community-driven project!</p>
       </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.13/changelog</url>
     </release>
     <release version="0.9.12" date="2020-05-01">
       <description>
@@ -136,6 +163,17 @@
     </release>
   </releases>
   <content_rating type="oars-1.1">
+    <content_attribute id="violence-fantasy">moderate</content_attribute>
+    <content_attribute id="violence-slavery">moderate</content_attribute>
     <content_attribute id="drugs-alcohol">mild</content_attribute>
+    <content_attribute id="drugs-narcotics">moderate</content_attribute>
+    <content_attribute id="drugs-tobacco">mild</content_attribute>
+    <content_attribute id="sex-themes">mild</content_attribute>
+    <content_attribute id="sex-homosexuality">mild</content_attribute>
+    <content_attribute id="sex-prostitution">moderate</content_attribute>
+    <content_attribute id="language-profanity">mild</content_attribute>
+    <content_attribute id="language-humor">moderate</content_attribute>
+    <content_attribute id="language-discrimination">mild</content_attribute>
+    <content_attribute id="money-gambling">mild</content_attribute>
   </content_rating>
 </component>
