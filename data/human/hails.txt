@@ -1710,16 +1710,22 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Don't be too picky about the jobs you take. It is better to be"
+		"Don't be too picky about the jobs you take. It is better to"
 	word
 		" "
 	word
-		" shipping shit, than having a shitty ship."
-		" shipping crooks, than having a crooked ship."
-		" shipping shells, than having your ship shelled."
-		" shipping slugs, than having a sluggish ship."
-		" shipping junk, than having a junk ship."
-		" flying to the ruins, than flying in ruins."
+		" ship shit, than having a shitty ship."
+		" ship crooks, than having a crooked ship."
+		" ship shells, than having your ship shelled."
+		" ship slugs, than having a sluggish ship."
+		" ship junk, than having a junk ship."
+		" ship buckles, than having your ship bucle."
+		" ship squash, than having your ship squashed."
+		" ship bad bands, than having your ship badly banned."
+		" fly to the ruins, than flying in ruins."
+		" be fired, than having your ship on fire."
+		" transport mines, than handling transport in the mines."
+
 
 phrase "friendly civilian"
 	word
