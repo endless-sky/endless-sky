@@ -3056,7 +3056,7 @@ void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, doubl
 	// the closest point on the ship, estimate it using the mask's Radius.
 	double distanceTraveled = position.Length() - GetMask().Radius();
 	TakeDamage(*hazard, strength, distanceTraveled, Point(), hazard->BlastRadius() > 0.);
-	for(const auto &effect : hazard->HitEffects())
+	for(const auto &effect : hazard->TargetEffects())
 		CreateSparks(visuals, effect.first, effect.second * strength);
 }
 

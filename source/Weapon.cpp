@@ -80,6 +80,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hitEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(key == "target effect")
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			targetEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
 		else if(key == "die effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -336,6 +341,13 @@ const map<const Effect *, int> &Weapon::LiveEffects() const
 const map<const Effect *, int> &Weapon::HitEffects() const
 {
 	return hitEffects;
+}
+
+
+
+const map<const Effect *, int> &Weapon::TargetEffects() const
+{
+	return targetEffects;
 }
 
 
