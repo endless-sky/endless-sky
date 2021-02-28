@@ -105,7 +105,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"I will have a look," is all she says.`
 			`	No sooner has she pocketed it than there is a knock at the door and an aide looks in, "The Council will see you now."`
 			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recorded in the FOI report. You're not really sure what most of it has to do with anything, but eventually one of the elders stands up.`
-			`	"I think we've generally had enough of this here. Answer me two questions, and then we shall make our decision."
+			`	"I think we've generally had enough of this here. Answer me two questions, and then we shall make our decision."`
 			`	"Do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
 			`	This seems like a very strange question...`
 			choice
