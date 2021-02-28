@@ -1319,6 +1319,8 @@ phrase "friendly civilian"
 		"do secret deals with pirates."
 		"are aiding the Alphas."
 		"are secretly taking out Alpha enclaves."
+		"got the secret to antigravity repulsors from teddybears with antique guns."
+		"are working on a virus that turns humanity into a single large thinking organism."
 
 phrase "friendly civilian"
 	word
@@ -4099,7 +4101,7 @@ phrase "test dummy"
 		"Look at your precious human ship, for the last time!"
 		"This is not a pre-recorded message."
 		"The answer is 42, I'm quite certain of it. Do you want me to calculate the question?"
-		"Is there a God you ask me? Yes, here is a God."
+		"Is there a God they asked me... Yes, here is a God."
 
 phrase "disabled test dummy"
 	word
