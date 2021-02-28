@@ -23,6 +23,7 @@ mission "Hai Rescue: Yeertle Hint"
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
+		not planet "Prime"
 	destination Prime
 	to offer
 		"combat rating" > 50
@@ -200,6 +201,7 @@ mission "Hai Rescue: Oonem Hint"
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
+		not planet "Stormhold"
 	destination Stormhold
 	to offer
 		has "Hai Leaks Response 6: offered"
@@ -302,6 +304,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
+		not planet "Canyon"
 	destination Canyon
 	to offer
 		"combat rating" > 50
@@ -393,6 +396,7 @@ mission "Hai Rescue: Gipeep Hint"
 		government "Republic" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
+		not planet "Maelstrom"
 	destination Maelstrom
 	to offer
 		"combat rating" > 50
