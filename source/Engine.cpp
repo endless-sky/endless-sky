@@ -1769,6 +1769,9 @@ void Engine::HandleKeyboardInputs()
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
 	}
+	// Translate shift+JUMP to FLEET_JUMP.
+	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
+		activeCommands |= Command::FLEET_JUMP;
 }
 
 

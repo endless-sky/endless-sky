@@ -353,7 +353,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	
 	if(!flagship || flagship->IsDestroyed())
 		return;
-
+	
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.");
 	

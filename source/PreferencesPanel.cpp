@@ -341,7 +341,6 @@ void PreferencesPanel::DrawControls()
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::NONE,
-		Command::FLEET_JUMP,
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
