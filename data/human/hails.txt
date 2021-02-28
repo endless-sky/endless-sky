@@ -1716,7 +1716,6 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		" ship shit, than having a shitty ship."
 		" ship crooks, than having a crooked ship."
 		" ship shells, than having your ship shelled."
 		" ship slugs, than having a sluggish ship."
