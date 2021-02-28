@@ -53,7 +53,7 @@ const Command Command::BOARD(1uL << 9, "Board selected ship");
 const Command Command::HAIL(1uL << 10, "Talk to selected ship");
 const Command Command::SCAN(1uL << 11, "Scan selected ship");
 const Command Command::JUMP(1uL << 12, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(1uL << 13, "Fleet: Hyperspace jump");
+const Command Command::FLEET_JUMP(1uL << 13, "");
 const Command Command::TARGET(1uL << 14, "Select next ship");
 const Command Command::NEAREST(1uL << 15, "Select nearest hostile ship");
 const Command Command::DEPLOY(1uL << 16, "Deploy / recall fighters");
