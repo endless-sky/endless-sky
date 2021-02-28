@@ -711,7 +711,7 @@ mission "Hai Leaks Response 4"
 			`	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy."`
 			`	"I do need to do a full security scan of it to complete all the incident paperwork before I let it go, so if you have any business on-world here, please take your time."`
 			label end
-			`	"In any event, let's hope a more permanent solution can be devised soon. In the meantime, the local dealers have decided to start selling the Ladybug's again. I hear it's something about a spike in interest among the humans here, so feel free to have a look at them. I shouldn't get too distracted though, I'm sure they'll be waiting for you back on Hai-home."`
+			`	"In any event, let's hope a more permanent solution can be devised soon. In the meantime, the local dealers have decided to start selling the Ladybugs again. I hear it's something about a spike in interest among the humans here, so feel free to have a look at them. I shouldn't get too distracted though, I'm sure they'll be waiting for you back on Hai-home."`
 			branch "saved geocoris2"
 				has "00 Hai Leaks Response 4B: declined"
 			`	With a final nod of thanks, he departs to attend to his business: leaving you free to go about your own.`

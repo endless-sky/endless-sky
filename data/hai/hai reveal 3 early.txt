@@ -66,8 +66,8 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 	on offer
 		conversation
 			`When you return to Hai-home you are directed now to a government hangar where you are met by Xilin and Sayari, both looking very relieved.`
-			`	"I am very glad to see you returned Captain <last>, Sayari said you were away on an important errand but I've been hoping for a day now you would appear, as I think you might be the solution to the current impasse."`
-			`	"You see," says Sayari, "in the light of the recent civil war your species has had, some of the Elder's are less than keen with allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
+			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now you would appear. I think you might be the solution to the current impasse."`
+			`	"You see," says Sayari, "in the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
 			`	Now that she mentions it, you don't think you've seen a Hai station at all.`
 			`	"However, therein lies a problem," says Xilin.`
 			`	"The Republic will not allow the Hai to build a station this side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
@@ -76,13 +76,13 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"Anyway, thanks to a little Freedom of Information request to the Republic, I have been looking at things and I think I have the solution."`
 			choice
 				`	"Is it me?"`
-			`Sayari winks at you, "Catch on quick don't you."`
+			`Sayari winks at you, "Catch on quick, don't you?"`
 			`	"The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and the Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
 			choice
 				`	"Who are these Elders?"`
 				`	"Of course, that's natural."`
 					goto main
-			`	Sayari explains, "The Hai are ruled by an elected 'Council of Elders', they are not responsible for every administrative decision that occurs but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
+			`	Sayari explains, "The Hai are ruled by an elected council of elders. They are not responsible for every administrative decision that occurs, but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
 			label main
 			`	"If you're willing, there will be a council meeting in an hour, I can put you first on the agenda. Will you do this?" asks Sayari.`
 			choice
@@ -100,12 +100,12 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			choice
 				`	"Yes, actually I found proof."`
 				`	"Unfortunately, I did find something."`
-			`	You hand Sayari a data stick, "I have saved everything from my logs on there."`
+			`	You hand Sayari a data stick. "I have saved everything from my logs on there."`
 			`	Sayari looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
 			`	"I will have a look," is all she says.`
 			`	No sooner has she pocketed it than there is a knock at the door and an aide looks in, "The Council will see you now."`
 			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recorded in the FOI report. You're not really sure what most of it has to do with anything, but eventually one of the elders stands up.`
-			`	"I think we've generally had enough of this here, answer me two questions and we shall make our decision," he says.`
+			`	"I think we've generally had enough of this here. Answer me two questions, and then we shall make our decision."
 			`	"Do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
 			`	This seems like a very strange question...`
 			choice
@@ -275,7 +275,7 @@ event "role-play station after construction"
 
 mission "Hai Building Mountaintop [2] Recruits"
 	name "Encourage recruits for Mountaintop"
-	description "Now that the station is going ahead, the Hai need to recruit some people to play the part. Someone needs to sell it to them though."
+	description "Now that the station is going ahead, the Hai need to recruit people to play the part. Someone needs to sell it to them, and apparently that someone is you."
 	landing
 	source "Hai-home"
 	stopover "Makerplace"
@@ -318,13 +318,13 @@ mission "Hai Building Mountaintop [2] Recruits"
 			# And how did that turn out for you eh? lol
 			`	"As it turns out, that same computer is predicting that the Syndicate stands to lose billions of credits, per day, for the duration of any crisis evolving from this which involves the uncontrolled release of the Hai secret; however, we have a plan."`
 			choice
-				`	"Oh yes?"`
+				`	"And that is?"`
 				`	"What's the deal then?"`
 			`	Terry crosses her arms and leans back against the bulkhead, "We need a recruitment campaign, and if you haven't guessed, you're the man to do it."`
 			`	"The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I will stage manage, and have promotional material ready inside of 3 hours."`
 			choice
-				`	"I don't really have a choice in this matter do I?"`
-			`	Terry's answering grin was... predatory.`
+				`	"I don't really have a choice in this matter, do I?"`
+			`	Terry's answering grin is best described as "predatory".`
 				accept
 	on stopover
 		conversation
@@ -359,7 +359,7 @@ mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 
 mission "Hai Building Mountaintop [3] Furnishings"
 	name "Retrieve human furnishings."
-	description "The volunteers are so numerous, that they've worked out that the Hai aren't going to be able to coordinate a realistic access"
+	description "The volunteers are so numerous that the Hai need outside help transporting furnishings for their quarters to the new station."
 	autosave
 	landing
 	source "Mountaintop"
@@ -381,7 +381,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 			`	You assure her you can handle a simple pick-up.`
 				accept
 	on stopover
-		dialog `You have the furnishings the Hai ordered. It's time to return them to <destination>`
+		dialog `You have the furnishings the Hai ordered. It's time to return them to <destination>.`
 	on complete
 		event "role-play station active" 12
 		event "news: hai video clip debunked"
