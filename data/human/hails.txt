@@ -1722,6 +1722,8 @@ phrase "friendly civilian"
 		" ship buckles, than having your ship bucle."
 		" ship squash, than having your ship squashed."
 		" ship bad bands, than having your ship badly banned."
+		" ship shots, than having your ship shot."
+		" be working hard at shipping, than having your ship hardly working."
 		" fly to the ruins, than flying in ruins."
 		" be fired, than having your ship on fire."
 		" transport mines, than handling transport in the mines."
@@ -1740,6 +1742,44 @@ phrase "friendly civilian"
 		"you have fighters in bays? We have bays in our fighters."
 		"you have torpedos in your cargo? I put cargo in my torpedos."
 
+phrase "friendly civilian"
+	word
+		"Somebody"
+		"Some nut"
+	word
+		" "
+	word
+		"put"
+		"placed"
+	word
+		" "
+	word
+		"a blue phonebooth"
+		"a silver car"
+	word
+		" "
+	word
+		"on my bridge"
+		"in my armoury"
+		"in my cargohold"
+	word
+		" and "
+	word
+		"claimed to be"
+		"told my crew to be"
+	word
+		" "
+	word
+		"a time traveller"
+		"from another time"
+	word
+		", "
+	word
+		"and suddenly it disappeared."
+		"but the only travel he did was to a mental institution."
+		"I still don't know how she got into my spaceship."
+		"the thing looked bigger on the inside than on the outside."
+		"and some weirdos were flying around it on hoverboards."
 
 phrase "friendly navy"
 	word
@@ -1835,6 +1875,58 @@ phrase "friendly navy"
 		"in the Republic"
 	word
 		"!"
+		
+phrase "friendly navy"
+	word
+		"Dying"
+		"Getting wounded"
+		"Taking a hit"
+	word
+		" "
+	word
+		"during"
+		"in"
+	word
+		"a firefight"
+		"battle"
+		"space battle"
+		"war"
+	word
+		" is "
+	word
+		"heroic"
+		"honourable"
+		"respectable"
+		"valuable"
+		"well rewarded"
+	word
+		". "
+	word
+		"Having"
+		"Making"
+		"Letting"
+	word
+		" "
+	word
+		"our adversaries"
+		"our enemies"
+		"terrorists"
+	word
+		" "
+	word
+		"be destroyed"
+		"die"
+		"flee"
+		"imprisoned"
+	word
+		" is "
+	word
+		"better"
+		"more efficient"
+		"more desired"
+		"more practical"
+	word
+		"."
 
 phrase "friendly navy"
 	word
@@ -3005,6 +3097,11 @@ phrase "shakespearean insults"
 		"vassal"
 		"whey-face"
 		"wagtail"
+		
+phrase "hostile disabled pirate"
+	word
+		"Don't hurt me! Please!"
+		"Waaaaaa mommy!"
 
 phrase "hostile civilian"
 	word
@@ -4002,6 +4099,7 @@ phrase "test dummy"
 		"Look at your precious human ship, for the last time!"
 		"This is not a pre-recorded message."
 		"The answer is 42, I'm quite certain of it. Do you want me to calculate the question?"
+		"Is there a God you ask me? Yes, here is a God."
 
 phrase "disabled test dummy"
 	word
