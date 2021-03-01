@@ -60,6 +60,7 @@ Version 0.9.13:
       * An error is now produced when improperly granting a ship in a start condition. (@tehhowch)
       * The "battery only" warning in the outfitter now takes fuel energy into account. (@Amazinite)
       * All flagship commands and the hailing command are now ignored while in the process of landing or departing from a planet. (@tatami4)
+      * Ships no longer preserve inaccessible jump targets when loading the game. (@tehhowch) 
   * Game content:
     * New content: 
       * New missions:

@@ -723,8 +723,27 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = true;
 	isDisabled = IsDisabled();
 	
-	// Cache this ship's jump range so that it doesn't need calculated when needed.
+	// Cache this ship's jump range.
 	jumpRange = JumpRange(false);
+	
+	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
+	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
+	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
+	if(!isNewInstance && targetSystem)
+	{
+		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + modelName + " \"" + name + "\": "
+			"Cannot reach target system \"" + targetSystem->Name();
+		if(!currentSystem)
+		{
+			Files::LogError(message + "\" (no current system).");
+			targetSystem = nullptr;
+		}
+		else if(!currentSystem->Links().count(targetSystem) && (!jumpRange || !currentSystem->JumpNeighbors(jumpRange).count(targetSystem)))
+		{
+			Files::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			targetSystem = nullptr;
+		}
+	}
 }
 
 
