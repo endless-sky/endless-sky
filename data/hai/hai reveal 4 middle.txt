@@ -44,7 +44,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 		log "People" "Teeneep Goot'r" `Teeneep is a civil rights leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
 		log `Hai you have rescued are among many that have gone missing over the past few decades, along with humans as well. They all have microtransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, used her network of information-gatherers to find contacts to help you research the problem in human space and beyond. Your search begins with the Quarg south of Hai space.`
 		conversation
-			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship is outfitted to fly rapidly through unfriendly territory without stopping.`
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship is outfitted to fly rapidly through unfriendly territory without stopping.`
 			choice
 				`	(Walk into the cave.)`
 				`	(Come back later.)`
@@ -460,4 +460,3 @@ mission "Hai Rescue [A09] Slaver Ships"
 				accept
 	on complete
 		payment 2000000
-

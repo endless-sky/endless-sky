@@ -165,7 +165,7 @@ mission "HRF 02 Escort to Cardax"
 			choice
 				` 	"Makes sense."`
 				`	"I suppose..."`
-			`	"The  Geocoris and security force are ready whenever you are. Be safe out there <last>, and remember we can't have any pirates observing the construction."`
+			`	"The Geocoris and security force are ready whenever you are. Be safe out there <last>, and remember we can't have any pirates observing the construction."`
 				accept
 	on visit
 		dialog "You have arrived but either the Geocoris has not arrived, or the pirates are still threatening the construction site."
