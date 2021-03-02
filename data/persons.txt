@@ -1093,6 +1093,7 @@ person "Rais Iris XVIII"
 			"friendly author"
 	phrase
 		word
+			"Remember, overkill is underrated."
 			"When in doubt, add more flammenwerfer."
 			"Why settle for something reasonable, when you can have something completely bonkers?"
 			"Bactrian Gaming."
@@ -1101,6 +1102,7 @@ person "Rais Iris XVIII"
 			"Your ship looks like it came out of a liquidizer!"
 			"Look at me. I am the Captain now."
 			"Pronounce 'Wrzlprnft'. You have 5 seconds."
+			"Everything you see here has been created by volunteers. You can join us if you want!"
 
 			"To this day, I can still hear the Teeworlds title music."
 			"I am a light sleeper; but I am a heavy dreamer." # Owl City
