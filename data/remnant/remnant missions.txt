@@ -163,7 +163,6 @@ mission "lost in ember waste"
 	to offer
 		has "remnant blood test pure"
 		not "license: Remnant"
-		not "event: remnant: puffin"
 	on offer
 		require "Quantum Keystone" 0
 		require "Quantum Key Stone" 0
@@ -784,7 +783,7 @@ mission "Remnant: Void Sprites 3"
 		has "Remnant: Void Sprites 2: done"
 	on offer
 		conversation
-			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that our university had several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I won't have the money to purchase one, but if you buy one you could land on the void sprite worlds and observe them in their natural habitat."`
+			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that we have several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I won't have the resources to compensate you, but I can provide you with one of our ships. Then you could land on the void sprite worlds and observe them in their natural habitat."`
 			choice
 				`	"How much will it cost to buy one?"`
 				`	"Didn't you say before that anyone entering that system in a Remnant ship gets attacked?"`
@@ -792,7 +791,7 @@ mission "Remnant: Void Sprites 3"
 				`	"Sorry, I'm not interested in helping you anymore."`
 					decline
 
-			`	"Only a few million credits," he says. "Don't worry, you can sell it back to them afterwards and recoup most of your investment. And, just think of how much you will be doing to advance the cause of science."`
+			`	"Only a few million credits," he says. "Don't worry, I will provide you with one. Consider it an advance on the resources I owe you. And, just think of how much you will be doing to advance the cause of science."`
 				goto end
 
 			label attack
@@ -808,6 +807,7 @@ mission "Remnant: Void Sprites 3"
 				accept
 	on accept
 		event "remnant: puffin"
+		give ship "Puffin" "Shadow in the Depths"
 	npc
 		government "Drak (Hostile)"
 		system "Nenia"
@@ -879,7 +879,7 @@ mission "Remnant: Technology Available"
 			has "Remnant: Key Stones (Pre-Hai) 2: done"
 			has "Remnant: Broken Jump Drive 2: done"
 	on offer
-		payment 2000000
+		payment 600000
 		set "license: Remnant"
 		log "The prefects have reached a consensus: now considered a valuable friend of the Remnant, and given permission to purchase their ships and technology."
 		conversation

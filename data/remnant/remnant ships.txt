@@ -905,6 +905,8 @@ ship "Puffin"
 	thumbnail "thumbnail/puffin"
 	attributes
 		category Transport
+		licenses
+			Remnant
 		cost 530000
 		"shields" 800
 		"hull" 1500
