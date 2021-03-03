@@ -166,7 +166,7 @@ mission "Quarg Satellites"
 		dialog "You set a Quarg scanner free, and let it leave your ship."
 	on enter "Han"
 		dialog "Although those that live on the planet here don't seem to mind the occasional pirates demanding tribute, maybe they will come to appreciate the reduced pirate presence here, assuming the Quarg scanner really does help with that."
-	on complete
+	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 263000

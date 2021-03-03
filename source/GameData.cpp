@@ -102,7 +102,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
-	StartConditions startConditions;
+	vector<StartConditions> startConditions;
 	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
@@ -224,11 +224,18 @@ bool GameData::BeginLoad(const char * const *argv)
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
-	for(auto &it : ships)
+	for(auto &&it : ships)
 		it.second.FinishLoading(true);
-	for(auto &it : persons)
+	for(auto &&it : persons)
 		it.second.FinishLoading();
-	startConditions.FinishLoading();
+	for(auto &&it : startConditions)
+		it.FinishLoading();
+	
+	// Remove any invalid starting conditions, so the game does not use incomplete data.
+	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
+			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
+		startConditions.end()
+	);
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -846,7 +853,7 @@ Politics &GameData::GetPolitics()
 
 
 
-const StartConditions &GameData::Start()
+const vector<StartConditions> &GameData::StartOptions()
 {
 	return startConditions;
 }
@@ -1071,8 +1078,23 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "start")
-			startConditions.Load(node);
+		else if(key == "start" && node.HasChildren())
+		{
+			// This node may either declare an immutable starting scenario, or one that is open to extension
+			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
+			if(node.Size() == 1)
+				startConditions.emplace_back(node);
+			else
+			{
+				const string &identifier = node.Token(1);
+				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
+					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
+				if(existingStart != startConditions.end())
+					existingStart->Load(node);
+				else
+					startConditions.emplace_back(node);
+			}
+		}
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)
@@ -1263,8 +1285,9 @@ void GameData::PrintShipTable()
 void GameData::PrintWeaponTable()
 {
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
-		<< "homing" << '\t' << "strength" << '\n';
+		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
+		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
+		<< "homing" << '\t' << "strength" <<'\n';
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
@@ -1282,11 +1305,15 @@ void GameData::PrintWeaponTable()
 		cout << energy << '\t';
 		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
 		cout << heat << '\t';
+		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
+		cout << firingforce << '\t';
 		
 		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
 		cout << shield << '\t';
 		double hull = outfit.HullDamage() * 60. / outfit.Reload();
 		cout << hull << '\t';
+		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+		cout << hitforce << '\t';
 		
 		cout << outfit.Homing() << '\t';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();
