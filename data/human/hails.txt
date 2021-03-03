@@ -1888,6 +1888,8 @@ phrase "friendly navy"
 		"during"
 		"in"
 	word
+		" "
+	word
 		"a firefight"
 		"battle"
 		"space battle"
