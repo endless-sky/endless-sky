@@ -139,14 +139,17 @@ test "Test-Framework - Navigate"
 		# Give jump command.
 		input
 			command	jump
+		# Wait loop while jumping to Alpha Centuari (with a timeout for if this jump fails).
 		watchdog 12000
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
+		# Wait loop while jumping back to Sol (with a timeout for if this jump fails).
 		watchdog 12000
 		label notSol
 		branch notSol
 			not "flagship system: Sol"
+		# Wait loop while jumping to Alpha Centauri again (with again a timeout for if this jump fails).
 		watchdog 12000
 		label notAlpha2
 		branch notAlpha2
