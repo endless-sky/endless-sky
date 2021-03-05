@@ -42,7 +42,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <ctime>
 #include <iterator>
+#include <limits>
 #include <sstream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -70,12 +72,13 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New()
+void PlayerInfo::New(const StartConditions &start)
 {
 	// Clear any previously loaded data.
 	Clear();
 	
-	const StartConditions &start = GameData::Start();
+	// Copy the core information from the full starting scenario.
+	startData = start;
 	// Copy any ships in the start conditions.
 	for(const Ship &ship : start.Ships())
 	{
@@ -282,6 +285,8 @@ void PlayerInfo::Load(const string &path)
 				}
 			}
 		}
+		else if(child.Token(0) == "start")
+			startData.Load(child);
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -585,6 +590,13 @@ void PlayerInfo::IncrementDate()
 	
 	// Re-calculate all automatic conditions
 	UpdateAutoConditions();
+}
+
+
+
+const CoreStartData &PlayerInfo::StartData() const noexcept
+{
+	return startData;
 }
 
 
@@ -2397,8 +2409,8 @@ void PlayerInfo::ValidateLoad()
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
-		system = &GameData::Start().GetSystem();
-		planet = &GameData::Start().GetPlanet();
+		system = &startData.GetSystem();
+		planet = &startData.GetPlanet();
 		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
 	}
 	
@@ -2435,6 +2447,24 @@ void PlayerInfo::ValidateLoad()
 		travelPlan.clear();
 		travelDestination = nullptr;
 		Files::LogError("Warning: reset the travel plan due to use of invalid system(s).");
+	}
+	
+	// For old saves, default to the first start condition (the default "Endless Sky" start).
+	if(startData.Identifier().empty())
+	{
+		// It is possible that there are no start conditions defined (e.g. a bad installation or
+		// incomplete total conversion plugin). In that case, it is not possible to continue.
+		const auto startCount = GameData::StartOptions().size();
+		if(startCount >= 1)
+		{
+			startData = GameData::StartOptions().front();
+			// When necessary, record in the pilot file that the starting data is just an assumption.
+			if(startCount >= 2)
+				conditions["unverified start scenario"] = true;
+		}
+		else
+			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
+				"nodes were found in data files or loaded plugins--make sure you've installed the game properly.)");
 	}
 	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
@@ -2943,6 +2973,10 @@ void PlayerInfo::Save(const string &path) const
 			}
 	}
 	out.EndChild();
+	
+	out.Write();
+	out.WriteComment("How you began:");
+	startData.Save(out);
 }
 
 

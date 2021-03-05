@@ -31,6 +31,10 @@ chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
 if 'steamrt' in chroot_name:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])
 
+# Don't spawn a console window by default on Windows builds.
+if is_windows_host:
+	env.Append(LINKFLAGS = ["-mwindows"])
+
 opts = Variables()
 opts.AddVariables(
 	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
@@ -69,7 +73,6 @@ game_libs = [
 	"png.dll",
 	"turbojpeg.dll",
 	"jpeg.dll",
-	"mad.dll",
 	"openal32.dll",
 	"glew32.dll",
 	"opengl32",

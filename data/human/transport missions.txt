@@ -3173,7 +3173,7 @@ mission "Earth Retirement"
 	
 	on offer
 		conversation
-			`As you wander through the spaceport, you are see an elderly man and woman sitting on a bench. They both seem to be talking about something that is causing them some amount of stress.`
+			`As you wander through the spaceport, you see an elderly man and woman sitting on a bench. They both seem to be talking about something that is causing them some amount of stress.`
 			choice
 				`	"Who are you two?"`
 				`	(Ignore them.)`

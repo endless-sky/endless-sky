@@ -283,7 +283,7 @@ mission "Visit Wanderers Again"
 	source "Greenwater"
 	destination "Vara K'chrai"
 	to offer
-		has "Cultural Data to Greenwater: done"
+		has "Wanderers: Translation Machine: done"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
