@@ -150,15 +150,15 @@ outfit "Dragonflame Cannon"
 		"hit effect" "dragonflame debris" 50
 		"velocity" 2000
 		"lifetime" 1
-		"reload" 360.0
-		"firing energy" 32000.0
+		"reload" 180.0
+		"firing energy" 16000.0
 		"firing fuel" 200
-		"firing heat" 80000.0
-		"firing force" 2000.0
-		"hit force" 4000.0
-		"shield damage" 50000.0
-		"hull damage" 30000.0
-		"heat damage" 100000.0
+		"firing heat" 40000.0
+		"firing force" 1000.0
+		"hit force" 2000.0
+		"shield damage" 25000.0
+		"hull damage" 15000.0
+		"heat damage" 50000.0
 		"piercing" 0.4
 		"blast radius" 50
 	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to trigger an extremely powerful thermonuclear reaction, directing most of the energy from the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
@@ -217,9 +217,9 @@ outfit "Sheragi Anti-Missile"
 		"anti-missile" 200
 		"velocity" 450
 		"lifetime" 1
-		"reload" 120.0
-		"firing energy" 440.0
-		"firing heat" 880.0
+		"reload" 60
+		"firing energy" 220.0
+		"firing heat" 440
 	description "This Sheragi anti-missile system fires an extremely powerful laser pulse capable of obliterating any missile in a single shot, but it comes at the expense of a long recharge time."
 
 effect "sheragiam"
