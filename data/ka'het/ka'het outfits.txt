@@ -120,11 +120,11 @@ outfit "Ka'het Ravager Beam"
 		"inaccuracy" 0.4
 		"velocity" 480
 		"lifetime" 1
-		"reload" 2.0
-		"firing energy" 7.4
-		"firing heat" 3.0
-		"shield damage" 3.6
-		"hull damage" 8.6
+		"reload" 1
+		"firing energy" 3.7
+		"firing heat" 1.5
+		"shield damage" 0.9
+		"hull damage" 2.15
 	description "This laser beam was created by the Builders for use in asteroid mining. Unfortunately, they understood its effectiveness in combat only after it turned against them."
 
 outfit "Ka'het Ravager Turret"
@@ -146,11 +146,11 @@ outfit "Ka'het Ravager Turret"
 		"turret turn" 0.9
 		"velocity" 480
 		"lifetime" 1
-		"reload" 2.0
-		"firing energy" 7.4
-		"firing heat" 3.0
-		"shield damage" 3.6
-		"hull damage" 8.6
+		"reload" 1
+		"firing energy" 3.7
+		"firing heat" 1.5
+		"shield damage" 0.9
+		"hull damage" 2.15
 	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons the Ka'het possess."
 
 effect "ravager impact"
