@@ -2995,7 +2995,7 @@ ship "Sparrow"
 	thumbnail "thumbnail/sparrow"
 	attributes
 		category "Interceptor"
-		"cost" 225000
+		"cost" 220000
 		"shields" 1200
 		"hull" 300
 		"required crew" 1
