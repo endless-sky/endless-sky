@@ -73,7 +73,7 @@ ship "Centipede"
 		"hull" 2400
 		"required crew" 35
 		"bunks" 131
-		"mass" 187
+		"mass" 197
 		"drag" 3.9
 		"heat dissipation" .75
 		"fuel capacity" 600
@@ -190,7 +190,7 @@ ship "Geocoris"
 		"hull" 6200
 		"required crew" 15
 		"bunks" 56
-		"mass" 810
+		"mass" 891
 		"drag" 17.1
 		"heat dissipation" 0.45
 		"fuel capacity" 800
@@ -421,7 +421,7 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 168
+		"mass" 177
 		"drag" 3.55
 		"hull repair rate" 1
 		"heat dissipation" .5
@@ -559,7 +559,7 @@ ship "Shield Beetle"
 		"hull" 9800
 		"required crew" 47
 		"bunks" 95
-		"mass" 650
+		"mass" 715
 		"drag" 8.8
 		"heat dissipation" .60
 		"fuel capacity" 500
@@ -747,7 +747,7 @@ ship "Solifuge"
 		"hull" 11000
 		"required crew" 62
 		"bunks" 118
-		"mass" 925
+		"mass" 1018
 		"drag" 15.4
 		"heat dissipation" .42
 		"fuel capacity" 600
@@ -971,7 +971,7 @@ ship "Water Bug"
 		"hull" 4500
 		"required crew" 5
 		"bunks" 29
-		"mass" 270
+		"mass" 297
 		"drag" 5.9
 		"heat dissipation" .75
 		"fuel capacity" 600

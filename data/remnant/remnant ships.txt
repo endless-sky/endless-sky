@@ -15,7 +15,7 @@ ship "Albatross"
 	sprite "ship/albatross"
 	thumbnail "thumbnail/albatross"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		licenses
 			"Remnant Capital"
 		cost 20250000
@@ -24,7 +24,7 @@ ship "Albatross"
 		"required crew" 44
 		"bunks" 75
 		"cargo space" 124
-		"mass" 610
+		"mass" 641
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
@@ -512,7 +512,7 @@ ship "Ibis"
 		"hull" 6200
 		"required crew" 16
 		"bunks" 36
-		"mass" 350
+		"mass" 368
 		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700

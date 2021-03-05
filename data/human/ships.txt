@@ -18,7 +18,7 @@ ship "Aerie"
 		"hull" 1900
 		"required crew" 10
 		"bunks" 28
-		"mass" 130
+		"mass" 137
 		"drag" 4.1
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -196,7 +196,7 @@ ship "Auxiliary"
 		"hull" 5900
 		"required crew" 87
 		"bunks" 250
-		"mass" 820
+		"mass" 861
 		"drag" 13.3
 		"heat dissipation" .45
 		"fuel capacity" 900
@@ -295,13 +295,13 @@ ship "Bactrian"
 	attributes
 		licenses
 			City-Ship
-		category "Heavy Warship"
+		category "Transport"
 		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 940
+		"mass" 1034
 		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
@@ -317,8 +317,8 @@ ship "Bactrian"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
-		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo Launcher"
+		"Torpedo" 30
 		"Heavy Laser Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		
@@ -335,7 +335,6 @@ ship "Bactrian"
 		
 	engine -18 230
 	engine 18 230
-	gun -15 -226 "Torpedo Launcher"
 	gun 15 -226 "Torpedo Launcher"
 	gun -40 -133 "Sidewinder Missile Launcher"
 	gun -45 -128 "Sidewinder Missile Launcher"
@@ -457,7 +456,7 @@ ship "Bastion"
 		"hull" 4700
 		"required crew" 17
 		"bunks" 40
-		"mass" 580
+		"mass" 609
 		"drag" 10.3
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -521,7 +520,7 @@ ship "Behemoth"
 		"hull" 6300
 		"required crew" 12
 		"bunks" 30
-		"mass" 540
+		"mass" 594
 		"drag" 11.7
 		"heat dissipation" .4
 		"fuel capacity" 600
@@ -775,7 +774,7 @@ ship "Bulk Freighter"
 		"hull" 7600
 		"required crew" 6
 		"bunks" 18
-		"mass" 870
+		"mass" 957
 		"drag" 15.8
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -836,7 +835,7 @@ ship "Carrier"
 		"hull" 8300
 		"required crew" 111
 		"bunks" 184
-		"mass" 910
+		"mass" 1001
 		"drag" 17.7
 		"heat dissipation" .45
 		"fuel capacity" 700
@@ -919,7 +918,7 @@ ship "Class C Freighter"
 		"hull" 7600
 		"required crew" 18
 		"bunks" 43
-		"mass" 810
+		"mass" 891
 		"drag" 16.4
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -1077,7 +1076,7 @@ ship "Corvette"
 		"hull" 800
 		"required crew" 8
 		"bunks" 32
-		"mass" 150
+		"mass" 158
 		"drag" 3.5
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -1141,7 +1140,7 @@ ship "Cruiser"
 		"hull" 6400
 		"required crew" 81
 		"bunks" 136
-		"mass" 680
+		"mass" 748
 		"drag" 10.1
 		"heat dissipation" .45
 		"fuel capacity" 600
@@ -1263,7 +1262,7 @@ ship "Dreadnought"
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
-		"mass" 630
+		"mass" 693
 		"drag" 10.1
 		"heat dissipation" .65
 		"fuel capacity" 600
@@ -1376,7 +1375,7 @@ ship "Falcon"
 		"hull" 3700
 		"required crew" 52
 		"bunks" 75
-		"mass" 510
+		"mass" 561
 		"drag" 6.7
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -1488,7 +1487,7 @@ ship "Firebird"
 		"hull" 3400
 		"required crew" 7
 		"bunks" 22
-		"mass" 290
+		"mass" 305
 		"drag" 4.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -1646,7 +1645,7 @@ ship "Frigate"
 		"hull" 2500
 		"required crew" 21
 		"bunks" 44
-		"mass" 310
+		"mass" 326
 		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -1877,7 +1876,7 @@ ship "Hauler II"
 		"hull" 5200
 		"required crew" 3
 		"bunks" 12
-		"mass" 360
+		"mass" 396
 		"drag" 11.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -1936,7 +1935,7 @@ ship "Hauler III"
 		"hull" 6700
 		"required crew" 3
 		"bunks" 12
-		"mass" 470
+		"mass" 517
 		"drag" 12.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2093,19 +2092,19 @@ ship "Heavy Shuttle"
 	thumbnail "thumbnail/heavy shuttle"
 	attributes
 		category "Transport"
-		"cost" 320000
+		"cost" 470000
 		"shields" 700
 		"hull" 700
 		"required crew" 1
-		"bunks" 8
-		"mass" 110
-		"drag" 2.1
+		"bunks" 10
+		"mass" 85
+		"drag" 1.9
 		"heat dissipation" .8
 		"fuel capacity" 500
-		"cargo space" 35
-		"outfit space" 120
-		"weapon capacity" 10
-		"engine capacity" 60
+		"cargo space" 40
+		"outfit space" 130
+		"weapon capacity" 15
+		"engine capacity" 65
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -2187,7 +2186,7 @@ ship "Leviathan"
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 480
+		"mass" 528
 		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -2247,7 +2246,7 @@ ship "Manta"
 		"hull" 1500
 		"required crew" 6
 		"bunks" 10
-		"mass" 170
+		"mass" 179
 		"drag" 4.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2366,7 +2365,7 @@ ship "Mule"
 		"hull" 4400
 		"required crew" 14
 		"bunks" 43
-		"mass" 320
+		"mass" 336
 		"drag" 5.7
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -2428,7 +2427,7 @@ ship "Nest"
 		"hull" 3700
 		"required crew" 5
 		"bunks" 14
-		"mass" 250
+		"mass" 263
 		"drag" 10.5
 		"heat dissipation" .67
 		"fuel capacity" 500
@@ -2489,7 +2488,7 @@ ship "Osprey"
 		"hull" 1600
 		"required crew" 9
 		"bunks" 24
-		"mass" 270
+		"mass" 284
 		"drag" 5.9
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -2550,7 +2549,7 @@ ship "Protector"
 		"hull" 6500
 		"required crew" 30
 		"bunks" 69
-		"mass" 500
+		"mass" 525
 		"drag" 10.3
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2771,7 +2770,7 @@ ship "Roost"
 		"hull" 5200
 		"required crew" 7
 		"bunks" 16
-		"mass" 360
+		"mass" 378
 		"drag" 11.5
 		"heat dissipation" .67
 		"fuel capacity" 600
@@ -2935,7 +2934,7 @@ ship "Skein"
 		"hull" 6700
 		"required crew" 7
 		"bunks" 18
-		"mass" 470
+		"mass" 494
 		"drag" 12.5
 		"heat dissipation" .71
 		"fuel capacity" 700
@@ -3049,7 +3048,7 @@ ship "Splinter"
 		"hull" 1700
 		"required crew" 7
 		"bunks" 21
-		"mass" 250
+		"mass" 263
 		"drag" 4.0
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -3152,7 +3151,7 @@ ship "Star Queen"
 		"hull" 2200
 		"required crew" 41
 		"bunks" 112
-		"mass" 230
+		"mass" 242
 		"drag" 4.5
 		"heat dissipation" .65
 		"fuel capacity" 700
@@ -3166,8 +3165,8 @@ ship "Star Queen"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Sidewinder Missile Launcher" 3
-		"Sidewinder Missile" 135
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
 		"Heavy Anti-Missile Turret" 2
 		
 		"KP-6 Photovoltaic Array" 4
@@ -3177,12 +3176,17 @@ ship "Star Queen"
 		"Luxury Accommodations"
 		
 		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"X2200 Ion Steering"
+		"AR120 Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -18.5 115
 	engine 18.5 115
-	gun 0 -113 "Sidewinder Missile Launcher"
+	"reverse engine" -19 51
+		over
+	"reverse engine" 19 51
+		over
+	gun 0 -113
 	gun -24 -76 "Sidewinder Missile Launcher"
 	gun 24 -76 "Sidewinder Missile Launcher"
 	turret -21.5 2.5 "Heavy Anti-Missile Turret"
@@ -3246,7 +3250,7 @@ ship "Vanguard"
 		"hull" 6000
 		"required crew" 23
 		"bunks" 45
-		"mass" 500
+		"mass" 550
 		"drag" 8
 		"heat dissipation" .6
 		"fuel capacity" 400

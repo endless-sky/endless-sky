@@ -208,7 +208,7 @@ ship "Strong Wind"
 		"hull" 19600
 		"required crew" 17
 		"bunks" 39
-		"mass" 260
+		"mass" 273
 		"drag" 4.7
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -266,7 +266,7 @@ ship "Tempest"
 		"hull" 25900
 		"required crew" 38
 		"bunks" 53
-		"mass" 320
+		"mass" 336
 		"drag" 6.2
 		"heat dissipation" 0.65
 		"fuel capacity" 600
@@ -365,7 +365,7 @@ ship "Derecho"
 		"hull" 32700
 		"required crew" 53
 		"bunks" 82
-		"mass" 540
+		"mass" 594
 		"drag" 8.7
 		"heat dissipation" 0.6
 		"fuel capacity" 500
@@ -466,7 +466,7 @@ ship "Hurricane"
 		"hull" 46500
 		"required crew" 76
 		"bunks" 117
-		"mass" 770
+		"mass" 847
 		"drag" 11.9
 		"heat dissipation" 0.55
 		"fuel capacity" 500
@@ -736,7 +736,7 @@ ship "Deep River"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 22
-		"mass" 750
+		"mass" 825
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
@@ -825,7 +825,7 @@ ship "Deep River Transport"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 166
-		"mass" 750
+		"mass" 825
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
@@ -877,7 +877,7 @@ ship "Riptide"
 		"hull" 22350
 		"required crew" 47
 		"bunks" 233
-		"mass" 500
+		"mass" 550
 		"drag" 7.3
 		"heat dissipation" .7
 		"fuel capacity" 800
