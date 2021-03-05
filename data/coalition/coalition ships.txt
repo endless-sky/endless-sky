@@ -1163,12 +1163,12 @@ ship "Heliarch Pursuer"
 		"hull" 1600
 		"required crew" 1
 		"bunks" 1
-		"mass" 31
-		"drag" 0.8
+		"mass" 15
+		"drag" 1.6
 		"heat dissipation" 0.99
-		"outfit space" 105
+		"outfit space" 137
 		"weapon capacity" 19
-		"engine capacity" 36
+		"engine capacity" 64
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1183,8 +1183,8 @@ ship "Heliarch Pursuer"
 		"Small Shield Module"
 		"Small Repair Module"
 		
-		"Small Steering Module" 2
-		"Small Thrust Module" 2
+		"Small Steering Module" 4
+		"Small Thrust Module" 4
 	
 	engine 0 34.5
 	engine 7 33.5
@@ -1221,12 +1221,12 @@ ship "Heliarch Rover"
 		"hull" 3100
 		"required crew" 1
 		"bunks" 1
-		"mass" 37
-		"drag" 1.19
+		"mass" 18
+		"drag" 2.38
 		"heat dissipation" .96
-		"outfit space" 125
+		"outfit space" 156
 		"weapon capacity" 24
-		"engine capacity" 32
+		"engine capacity" 64
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1240,8 +1240,8 @@ ship "Heliarch Rover"
 		"Small Shield Module"
 		"Small Repair Module" 3
 		
-		"Small Thrust Module" 2
-		"Small Steering Module" 2
+		"Small Thrust Module" 4
+		"Small Steering Module" 4
 	
 	engine 7 28
 	engine -7 28
@@ -1277,12 +1277,12 @@ ship "Heliarch Stalker"
 		"hull" 5200
 		"required crew" 1
 		"bunks" 2
-		"mass" 80
-		"drag" 2.1
+		"mass" 40
+		"drag" 4.2
 		"heat dissipation" 0.64
-		"outfit space" 133
+		"outfit space" 149
 		"weapon capacity" 43
-		"engine capacity" 16
+		"engine capacity" 32
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1297,8 +1297,8 @@ ship "Heliarch Stalker"
 		"Large Shield Module"
 		"Large Repair Module"
 		
-		"Small Steering Module"
-		"Small Thrust Module"
+		"Small Steering Module" 2
+		"Small Thrust Module" 2
 	
 	engine 0 40 .8
 	turret 0 -1.5

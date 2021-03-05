@@ -452,13 +452,13 @@ ship "Selii'mar"
 		category "Drone"
 		"cost" 965000
 		"hull" 2800
-		"mass" 65
-		"drag" .8
+		"mass" 32
+		"drag" 1.6
 		"heat dissipation" 1.1
 		"cargo space" 14
-		"outfit space" 77
+		"outfit space" 101
 		"weapon capacity" 18
-		"engine capacity" 21
+		"engine capacity" 42
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -468,7 +468,7 @@ ship "Selii'mar"
 		"Ka'het Ravager Beam"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator" 3
-		"Ka'het Compact Engine"
+		"Ka'het Compact Engine" 2
 	
 	gun 0 -32.5
 	engine 0 28 1.5
@@ -483,12 +483,12 @@ ship "Faes'mar"
 		"cost" 1180000
 		"shields" 200
 		"hull" 1900
-		"mass" 46
-		"drag" .7
+		"mass" 23
+		"drag" 1.4
 		"heat dissipation" 1.05
 		"cargo space" 102
-		"outfit space" 92
-		"engine capacity" 21
+		"outfit space" 114
+		"engine capacity" 42
 		weapon
 			"blast radius" 52
 			"shield damage" 410
@@ -499,7 +499,7 @@ ship "Faes'mar"
 		"Ka'het Support Cooling"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator" 5
-		"Ka'het Compact Engine"
+		"Ka'het Compact Engine" 2
 	
 	engine -7 34.5
 	engine 7 34.5

@@ -857,12 +857,16 @@ ship "Petrel"
 		"ramscoop" 0.5
 		"required crew" 2
 		"bunks" 3
-		"mass" 50
-		"drag" 1.55
+		"mass" 25
+		"drag" 3.10
 		"heat dissipation" .8
-		"outfit space" 133
+		"outfit space" 159
 		"weapon capacity" 33
-		"engine capacity" 34
+		"engine capacity" 52
+		"thrust" 27
+		"turn" 369.6
+		"reverse thrust" 16.2
+		"slowing resistance" 0.04
 		"shield generation" 0.36
 		"shield energy" 0.24
 		"hull repair rate" 0.82
@@ -885,7 +889,7 @@ ship "Petrel"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		
-		"Anvil-Class Engine"
+		"Anvil-Class Engine" 2
 		
 	gun 0 -38.5
 	gun -10.5 -24 "Inhibitor Cannon"
@@ -1117,15 +1121,19 @@ ship "Tern"
 		"hull" 2500
 		"automaton" 1
 		"cargo space" 5
-		"mass" 32
-		"drag" 1.0
+		"mass" 16
+		"drag" 2.0
 		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500
 		"ramscoop" 0.5
-		"outfit space" 76
+		"outfit space" 102
 		"weapon capacity" 16
-		"engine capacity" 26
+		"engine capacity" 52
+		"thrust" 27
+		"turn" 369.6
+		"reverse thrust" 16.2
+		"slowing resistance" 0.04
 		"shield generation" 0.25
 		"shield energy" 0.16
 		"hull repair rate" 0.55
@@ -1148,7 +1156,7 @@ ship "Tern"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		
-		"Anvil-Class Engine"
+		"Anvil-Class Engine" 2
 		
 	gun 0 -22 "Inhibitor Cannon"
 	engine -5 20.5

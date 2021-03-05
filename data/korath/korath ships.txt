@@ -261,12 +261,14 @@ ship "Korath Chaser"
 		"hull" 900
 		"required crew" 1
 		"bunks" 1
-		"mass" 40
-		"drag" .9
+		"mass" 20
+		"drag" 1.8
 		"heat dissipation" .9
-		"outfit space" 92
+		"outfit space" 116
 		"weapon capacity" 25
-		"engine capacity" 30
+		"engine capacity" 48
+		"thrust" 22.4
+		"turn" 280.0
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -279,8 +281,8 @@ ship "Korath Chaser"
 		"Small Heat Shunt"
 		"Korath Repeater Rifle" 
 		
-		"Thruster (Asteroid Class)"
-		"Steering (Asteroid Class)"
+		"Thruster (Asteroid Class)" 2
+		"Steering (Asteroid Class)" 2
 	
 	engine -7 23
 	engine 7 23
@@ -1014,13 +1016,15 @@ ship "Far Lek 14"
 		"shields" 900
 		"hull" 1600
 		"automaton" 1
-		"mass" 26
-		"drag" .8
+		"mass" 13
+		"drag" 1.6
 		"heat dissipation" 1.1
-		"outfit space" 65
+		"outfit space" 89
 		"weapon capacity" 11
-		"engine capacity" 24
+		"engine capacity" 48
 		"self destruct" .6
+		"thrust" 22.4
+		"turn" 280.0
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -1052,13 +1056,15 @@ ship "Far Osk 27"
 		"shields" 1500
 		"hull" 2400
 		"automaton" 1
-		"mass" 34
-		"drag" 1.1
+		"mass" 17
+		"drag" 2.2
 		"heat dissipation" 1.0
-		"outfit space" 99
+		"outfit space" 123
 		"weapon capacity" 22
-		"engine capacity" 24
+		"engine capacity" 48
 		"self destruct" .6
+		"thrust" 22.4
+		"turn" 280.0
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1070,8 +1076,8 @@ ship "Far Osk 27"
 		"Generator (Furnace Class)"
 		"Small Heat Shunt" 2
 		
-		"Thruster (Asteroid Class)"
-		"Steering (Asteroid Class)"
+		"Thruster (Asteroid Class)" 2
+		"Steering (Asteroid Class)" 2
 		
 	engine -4 37
 	engine 4 37

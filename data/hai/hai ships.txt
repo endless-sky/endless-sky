@@ -145,12 +145,12 @@ ship "Flea"
 		"cost" 142400
 		"shields" 200
 		"hull" 700
-		"mass" 21
-		"drag" .55
+		"mass" 10
+		"drag" 1.10
 		"heat dissipation" .83
-		"outfit space" 63
+		"outfit space" 84
 		"weapon capacity" 13
-		"engine capacity" 22
+		"engine capacity" 44
 		"automaton" 1
 		weapon
 			"blast radius" 6
@@ -162,7 +162,7 @@ ship "Flea"
 		"Railgun Slug" 3000
 		"Sand Cell"
 		"Supercapacitor" 2
-		`"Baellie" Atomic Engines`
+		`"Baellie" Atomic Engines` 2
 
 	engine 0 27 1.4
 	gun 0 -27 "Railgun"
@@ -918,12 +918,12 @@ ship "Violin Spider"
 		"hull" 600
 		"required crew" 1
 		"bunks" 1
-		"mass" 31
-		"drag" 0.9
+		"mass" 15
+		"drag" 1.9
 		"heat dissipation" .7
-		"outfit space" 92
+		"outfit space" 121
 		"weapon capacity" 19
-		"engine capacity" 30
+		"engine capacity" 60
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -936,8 +936,8 @@ ship "Violin Spider"
 		Supercapacitor
 		"Hai Williwaw Cooling"
 		"Pulse Rifle"
-		`"Basrem" Atomic Steering`
-		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic Steering` 2
+		`"Basrem" Atomic Thruster` 2
 
 	engine -15 30
 	engine 15 30

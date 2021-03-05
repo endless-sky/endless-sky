@@ -56,12 +56,12 @@ ship "Flycatcher"
 		"cost" 830000
 		"hull" 4700
 		"automaton" 1
-		"mass" 40
-		"drag" .6
+		"mass" 20
+		"drag" 1.2
 		"heat dissipation" .9
-		"outfit space" 86
+		"outfit space" 100
 		"weapon capacity" 28
-		"engine capacity" 26
+		"engine capacity" 42
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -72,8 +72,8 @@ ship "Flycatcher"
 		
 		"Small Biochemical Cell" 2
 		
-		"Type 1 Radiant Thruster"
-		"Type 1 Radiant Steering"
+		"Type 1 Radiant Thruster" 2
+		"Type 1 Radiant Steering" 2
 		
 	engine -9 28
 	engine 9 28

@@ -371,12 +371,14 @@ ship "Barb"
 		"hull" 200
 		"required crew" 1
 		"bunks" 2
-		"mass" 20
-		"drag" .8
+		"mass" 10
+		"drag" 1.6
 		"heat dissipation" .78
-		"outfit space" 85
+		"outfit space" 105
 		"weapon capacity" 24
-		"engine capacity" 22
+		"engine capacity" 40
+		"thrust" 8.0
+		"turn" 110
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -390,7 +392,7 @@ ship "Barb"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 
-		"X1050 Ion Engines"
+		"X1050 Ion Engines" 2
 		
 	engine 9 25
 	engine -8 25
@@ -413,12 +415,14 @@ ship "Barb" "Barb (Proton)"
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 20
-		"drag" .8
+		"mass" 10
+		"drag" 1.6
 		"heat dissipation" .78
-		"outfit space" 85
+		"outfit space" 105
 		"weapon capacity" 28
-		"engine capacity" 22
+		"engine capacity" 40
+		"thrust" 8.0
+		"turn" 110
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -431,7 +435,7 @@ ship "Barb" "Barb (Proton)"
 		Supercapacitor
 		"D14-RN Shield Generator"
 
-		"X1050 Ion Engines"
+		"X1050 Ion Engines" 2
 		
 	engine 9 25
 	engine -8 25
@@ -578,14 +582,16 @@ ship "Berserker"
 		"hull" 500
 		"required crew" 1
 		"bunks" 2
-		"mass" 110
-		"drag" 2.2
+		"mass" 55
+		"drag" 4.4
 		"heat dissipation" .85
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 200
+		"outfit space" 262
 		"weapon capacity" 35
-		"engine capacity" 65
+		"engine capacity" 127
+		"thrust" 23.0
+		"turn" 590
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -600,8 +606,8 @@ ship "Berserker"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
-		"X2700 Ion Thruster"
-		"X3200 Ion Steering"
+		"X2700 Ion Thruster" 2
+		"X3200 Ion Steering" 2
 		"Hyperdrive"
 		
 	engine -10 45
@@ -730,12 +736,14 @@ ship "Boxwing"
 		"hull" 800
 		"required crew" 1
 		"bunks" 1
-		"mass" 45
-		"drag" .59
+		"mass" 22
+		"drag" 1.18
 		"heat dissipation" .27
-		"outfit space" 45
-		"engine capacity" 28
+		"outfit space" 60
+		"engine capacity" 40
 		"cargo space" 80
+		"thrust" 8.0
+		"turn" 110
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -744,7 +752,7 @@ ship "Boxwing"
 	outfits
 		"nGVF-AA Fuel Cell"
 
-		"X1050 Ion Engines"
+		"X1050 Ion Engines" 2
 
 	engine 23 -1
 	engine -23 -1
@@ -1029,12 +1037,14 @@ ship "Combat Drone"
 		"cost" 83000
 		"hull" 700
 		"automaton" 1
-		"mass" 20
-		"drag" .59
+		"mass" 10
+		"drag" 1.18
 		"heat dissipation" .9
-		"outfit space" 58
+		"outfit space" 86
 		"weapon capacity" 8
-		"engine capacity" 28
+		"engine capacity" 56
+		"thrust" 12.0
+		"turn" 160
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -1046,8 +1056,8 @@ ship "Combat Drone"
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X1700 Ion Thruster" 2
+		"X1200 Ion Steering" 2
 		
 	engine -9 29
 	engine 9 29
@@ -1204,12 +1214,14 @@ ship "Dagger"
 		"hull" 300
 		"required crew" 1
 		"bunks" 1
-		"mass" 20
-		"drag" .63
+		"mass" 10
+		"drag" 1.26
 		"heat dissipation" .9
-		"outfit space" 90
+		"outfit space" 117
 		"weapon capacity" 20
-		"engine capacity" 30
+		"engine capacity" 56
+		"thrust" 12.0
+		"turn" 160
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1225,8 +1237,8 @@ ship "Dagger"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X1700 Ion Thruster" 2
+		"X1200 Ion Steering" 2
 		
 	engine -15 30
 	engine 15 30
@@ -1318,13 +1330,15 @@ ship "Dropship"
 		"hull" 200
 		"required crew" 1
 		"bunks" 9
-		"mass" 30
-		"drag" 0.8
+		"mass" 15
+		"drag" 1.6
 		"heat dissipation" .9
 		"cargo space" 5
-		"outfit space" 100
+		"outfit space" 123
 		"weapon capacity" 16
-		"engine capacity" 40
+		"engine capacity" 56
+		"thrust" 12.0
+		"turn" 160
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1338,8 +1352,8 @@ ship "Dropship"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X1700 Ion Thruster" 2
+		"X1200 Ion Steering" 2
 	
 	engine 13 26
 	engine -13 26
@@ -1428,12 +1442,14 @@ ship "Finch"
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 40
-		"drag" .83
+		"mass" 20
+		"drag" 1.66
 		"heat dissipation" .85
-		"outfit space" 110
+		"outfit space" 145
 		"weapon capacity" 20
-		"engine capacity" 40
+		"engine capacity" 70
+		"thrust" 19.2
+		"turn" 256
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1448,8 +1464,8 @@ ship "Finch"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster" 2
+		"Chipmunk Plasma Steering" 2
 		
 	engine -5 32
 	engine 5 32
@@ -1694,14 +1710,16 @@ ship "Fury"
 		"hull" 400
 		"required crew" 1
 		"bunks" 3
-		"mass" 70
-		"drag" 1.6
+		"mass" 35
+		"drag" 3.2
 		"heat dissipation" .9
 		"fuel capacity" 600
 		"cargo space" 15
-		"outfit space" 160
+		"outfit space" 207
 		"weapon capacity" 40
-		"engine capacity" 60
+		"engine capacity" 107
+		"thrust" 23.0
+		"turn" 307
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -1715,8 +1733,8 @@ ship "Fury"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"X2700 Ion Thruster" 2
+		"X2200 Ion Steering" 2
 		"Hyperdrive"
 		
 	engine -11 35 0.8
@@ -1977,14 +1995,16 @@ ship "Hawk"
 		"hull" 500
 		"required crew" 2
 		"bunks" 4
-		"mass" 150
-		"drag" 2.1
+		"mass" 75
+		"drag" 4.2
 		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 20
-		"outfit space" 200
+		"outfit space" 250
 		"weapon capacity" 50
-		"engine capacity" 70
+		"engine capacity" 120
+		"thrust" 36.8
+		"turn" 492
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -1999,8 +2019,8 @@ ship "Hawk"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster" 2
+		"Greyhound Plasma Steering" 2
 		"Hyperdrive"
 		
 	engine -23.5 41
@@ -2121,12 +2141,14 @@ ship "Lance"
 		"hull" 400
 		"required crew" 1
 		"bunks" 1
-		"mass" 30
-		"drag" .7
+		"mass" 15
+		"drag" 1.4
 		"heat dissipation" .8
-		"outfit space" 100
+		"outfit space" 128
 		"weapon capacity" 20
-		"engine capacity" 30
+		"engine capacity" 56
+		"thrust" 12.0
+		"turn" 160
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -2142,8 +2164,8 @@ ship "Lance"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X1700 Ion Thruster" 2
+		"X1200 Ion Steering" 2
 		
 	engine -15 30
 	engine 15 30
@@ -2979,14 +3001,16 @@ ship "Sparrow"
 		"hull" 300
 		"required crew" 1
 		"bunks" 2
-		"mass" 50
-		"drag" .9
+		"mass" 25
+		"drag" 1.8
 		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 15
-		"outfit space" 130
+		"outfit space" 165
 		"weapon capacity" 20
-		"engine capacity" 40
+		"engine capacity" 75
+		"thrust" 19.2
+		"turn" 256
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -2999,8 +3023,8 @@ ship "Sparrow"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster" 2
+		"Chipmunk Plasma Steering" 2
 		"Hyperdrive"
 		
 	engine -5 35
@@ -3185,12 +3209,14 @@ ship "Surveillance Drone"
 		"cost" 50000
 		"hull" 300
 		"automaton" 1
-		"mass" 15
-		"drag" .53
+		"mass" 7
+		"drag" 1.06
 		"heat dissipation" .9
-		"outfit space" 53
+		"outfit space" 81
 		"weapon capacity" 0
-		"engine capacity" 28
+		"engine capacity" 56
+		"thrust" 12.0
+		"turn" 160
 		weapon
 			"blast radius" 3
 			"shield damage" 30
@@ -3200,8 +3226,8 @@ ship "Surveillance Drone"
 		"nGVF-AA Fuel Cell"
 		"Surveillance Pod"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X1700 Ion Thruster" 2
+		"X1200 Ion Steering" 2
 		
 	engine -5 29
 	engine 5 29
@@ -3285,14 +3311,16 @@ ship "Wasp"
 		"hull" 500
 		"required crew" 1
 		"bunks" 2
-		"mass" 60
-		"drag" 1.2
+		"mass" 30
+		"drag" 2.4
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 150
+		"outfit space" 197
 		"weapon capacity" 28
-		"engine capacity" 60
+		"engine capacity" 107
+		"thrust" 23.0
+		"turn" 307
 		weapon
 			"blast radius" 20
 			"shield damage" 200
@@ -3308,8 +3336,8 @@ ship "Wasp"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"X2700 Ion Thruster" 2
+		"X2200 Ion Steering" 2
 		"Hyperdrive"
 		
 	engine -5.5 32.5
