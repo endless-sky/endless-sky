@@ -1058,7 +1058,7 @@ mission "Deep: Project Hawking"
 		dialog `You have arrived on <planet>, but you do not have all the supplies needed for "Project Hawking." Return to <stopovers> to collect all of the required cargo.`
 	
 	npc
-		government "Independent"
+		government "Independent (Killable)"
 		personality staying
 		system "Naos"
 		ship "Marauder Quicksilver (Engines)" "Gusoyn"
@@ -1123,7 +1123,7 @@ mission "Deep: Project Hawking: Carbuncle"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Splinter (Engines)" "Abaddon"
 	on offer
@@ -1198,7 +1198,7 @@ mission "Deep: Project Hawking: Prime"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
@@ -1238,7 +1238,7 @@ mission "Deep: Project Hawking: Vinci"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Manta (Engines)" "Valac"
 	on offer
