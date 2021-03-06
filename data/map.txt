@@ -21470,7 +21470,6 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
-	arrival 1500
 	habitable 10000
 	haze _menu/haze-full
 	arrival 2000

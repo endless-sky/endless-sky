@@ -847,6 +847,7 @@ ship "Petrel"
 	thumbnail "thumbnail/petrel"
 	attributes
 		category "Fighter"
+		rear 1
 		licenses
 			Remnant
 		"cost" 1141000
@@ -1114,6 +1115,7 @@ ship "Tern"
 	thumbnail "thumbnail/tern"
 	attributes
 		category "Drone"
+		rear 1
 		licenses
 			Remnant
 		"cost" 860000

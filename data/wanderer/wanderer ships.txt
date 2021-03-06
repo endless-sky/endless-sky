@@ -51,6 +51,7 @@ ship "Flycatcher"
 	thumbnail "thumbnail/flycatcher"
 	attributes
 		category "Drone"
+		rear 1
 		licenses
 			Wanderer
 		"cost" 830000

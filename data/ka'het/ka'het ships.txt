@@ -450,6 +450,7 @@ ship "Selii'mar"
 	thumbnail "thumbnail/selii'mar"
 	attributes
 		category "Drone"
+		rear 1
 		"cost" 965000
 		"hull" 2800
 		"mass" 32
@@ -480,6 +481,7 @@ ship "Faes'mar"
 	thumbnail "thumbnail/faes'mar"
 	attributes
 		category "Drone"
+		rear 1
 		"cost" 1180000
 		"shields" 200
 		"hull" 1900

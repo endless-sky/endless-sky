@@ -143,6 +143,7 @@ ship "Flea"
 	thumbnail "thumbnail/hai flea"
 	attributes
 		category "Drone"
+		rear 1
 		"cost" 142400
 		"shields" 200
 		"hull" 700
@@ -921,6 +922,7 @@ ship "Violin Spider"
 	thumbnail "thumbnail/hai violin spider"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 139000
 		"shields" 1400
 		"hull" 600

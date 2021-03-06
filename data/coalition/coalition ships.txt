@@ -1156,6 +1156,7 @@ ship "Heliarch Pursuer"
 	thumbnail "thumbnail/heliarch pursuer"
 	attributes
 		category "Fighter"
+		rear 1
 		licenses
 			Heliarch
 		"cost" 1029000
@@ -1214,6 +1215,7 @@ ship "Heliarch Rover"
 	thumbnail "thumbnail/heliarch rover"
 	attributes
 		category "Fighter"
+		rear 1
 		licenses
 			Heliarch
 		"cost" 1238000
@@ -1270,6 +1272,7 @@ ship "Heliarch Stalker"
 	thumbnail "thumbnail/heliarch stalker"
 	attributes
 		category "Fighter"
+		rear 1
 		licenses
 			Heliarch
 		"cost" 1358000

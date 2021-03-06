@@ -320,6 +320,8 @@ void PreferencesPanel::DrawControls()
 		Command::LEFT,
 		Command::RIGHT,
 		Command::BACK,
+        Command::STRAFELEFT,
+        Command::STRAFERIGHT,	 
 		Command::AFTERBURNER,
 		Command::LAND,
 		Command::JUMP,

@@ -256,6 +256,7 @@ ship "Korath Chaser"
 	thumbnail "thumbnail/chaser"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 671000
 		"shields" 2300
 		"hull" 900
@@ -1012,6 +1013,7 @@ ship "Far Lek 14"
 	thumbnail "thumbnail/far lek 14"
 	attributes
 		category "Drone"
+		rear 1
 		"cost" 573000
 		"shields" 900
 		"hull" 1600
@@ -1052,6 +1054,7 @@ ship "Far Osk 27"
 	thumbnail "thumbnail/far osk 27"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 761000
 		"shields" 1500
 		"hull" 2400

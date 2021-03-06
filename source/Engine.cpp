@@ -773,6 +773,10 @@ void Engine::Step(bool isActive)
 				info.SetString("target energy", to_string(energy));
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
+                int turret = round(target->TurretRange());
+                info.SetString("target turret", to_string(turret) + " ");
+                int turn = round(60 * target->TrueTurnRate());
+                info.SetString("target turnrate", to_string(turn) + " ");
 			}
 		}
 	}
@@ -1732,7 +1736,7 @@ void Engine::HandleKeyboardInputs()
 	
 	// Certain commands are always sent when the corresponding key is depressed.
 	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
-		Command::FORWARD | Command::LEFT | Command::RIGHT;
+		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STRAFELEFT | Command::STRAFERIGHT;
 	
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |

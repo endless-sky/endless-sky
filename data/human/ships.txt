@@ -368,6 +368,7 @@ ship "Barb"
 	thumbnail "thumbnail/barb"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 50000
 		"shields" 800
 		"hull" 200
@@ -413,6 +414,7 @@ ship "Barb" "Barb (Proton)"
 	thumbnail "thumbnail/barbp"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 50000
 		"shields" 800
 		"hull" 200
@@ -738,6 +740,7 @@ ship "Boxwing"
 	thumbnail "thumbnail/boxwing"
 	attributes
 		category "Fighter"
+		rear 1
 		cost 369000
 		"shields" 400
 		"hull" 800
@@ -1041,6 +1044,7 @@ ship "Combat Drone"
 	thumbnail "thumbnail/combat drone"
 	attributes
 		category "Drone"
+		rear 1
 		licenses
 			Navy
 		"cost" 83000
@@ -1218,6 +1222,7 @@ ship "Dagger"
 	thumbnail "thumbnail/dagger"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 129000
 		"shields" 1000
 		"hull" 300
@@ -1333,6 +1338,7 @@ ship "Dropship"
 	thumbnail "thumbnail/dropship"
 	attributes
 		category "Fighter"
+		rear 1
 		licenses
 			Navy
 		"cost" 91000
@@ -1448,6 +1454,7 @@ ship "Finch"
 	thumbnail "thumbnail/finch"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 126000
 		"shields" 1100
 		"hull" 200
@@ -2156,6 +2163,7 @@ ship "Lance"
 	thumbnail "thumbnail/lance"
 	attributes
 		category "Fighter"
+		rear 1
 		"cost" 93000
 		"shields" 800
 		"hull" 400
@@ -3234,6 +3242,7 @@ ship "Surveillance Drone"
 	thumbnail "thumbnail/surveillance drone"
 	attributes
 		category "Drone"
+		rear 1
 		licenses
 			Navy
 		"cost" 50000
