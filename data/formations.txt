@@ -1,0 +1,649 @@
+# Copyright (c) 2019 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+# Triangle forming behind the formation leader with each alternating line getting filled from the other direction.
+formation "Delta (tailing)"
+	flippable y
+	line
+		start diameter -1 2
+		end diameter 1 2
+		slots 2
+		centered
+		repeat
+			start diameter -1 2
+			end diameter 1 2
+			alternating
+			slots 1
+
+
+
+# Regular triangle with the formation leader as center of the formation and the point of the triangle facing forward.
+formation "Delta (centered)"
+	flippable y
+	rotatable 120
+	line
+		start polar diameter 30 1
+		start polar 30 40
+		# Combine two end coordinates into one (walking the "triangular grid" one step "right" one step "right-down").
+		# This is simpler than performing the Pythagoras type calculations for the final coordinate and lenghts.
+		end polar diameter 90 1
+		end polar diameter 150 1
+		end polar 90 40
+		end polar 150 40
+		slots 3
+		repeat
+			start polar diameter 30 1
+			start polar diameter 330 1
+			start polar 30 40
+			start polar 330 40
+			end polar diameter 90 1
+			end polar diameter 150 1
+			end polar 90 40
+			end polar 150 40
+			slots 3
+	line
+		start polar diameter 150 1
+		start polar 150 40
+		end polar diameter 210 1
+		end polar diameter 270 1
+		end polar 210 40
+		end polar 270 40
+		slots 3
+		repeat
+			start polar diameter 90 1
+			start polar diameter 150 1
+			start polar 90 40
+			start polar 150 40
+			end polar diameter 210 1
+			end polar diameter 270 1
+			end polar 210 40
+			end polar 270 40
+			slots 3
+	line
+		start polar diameter 270 1
+		start polar 270 40
+		end polar diameter 30 1
+		end polar 30 40
+		end polar diameter 330 1
+		end polar 330 40
+		slots 3
+		repeat
+			start polar diameter 210 1
+			start polar diameter 270 1
+			start polar 210 40
+			start polar 270 40
+			end polar diameter 330 1
+			end polar diameter 30 1
+			end polar 330 40
+			end polar 30 40
+			slots 3
+
+
+
+# Regular triangle with the formation leader near the front and the point of the triangle facing backwards.
+formation "Nabla"
+	flippable y
+	line
+		start polar diameter 330 1
+		start polar 330 40
+		end polar diameter 30 1
+		end polar 30 40
+		slots 2
+	line
+		start polar diameter 30 1
+		start polar diameter 90 1
+		start polar 30 40
+		start polar 90 40
+		end polar diameter 150 1
+		end polar 150 40
+		slots 3
+		repeat
+			start polar diameter 90 2
+			start polar 90 80
+			end polar diameter 150 2
+			end polar diameter 210 2
+			end polar 150 80
+			end polar 210 80
+			slots 4
+	line
+		start polar diameter 150 1
+		start polar diameter 210 1
+		start polar 150 40
+		start polar 210 40
+		end polar diameter 270 1
+		end polar diameter 330 1
+		end polar 270 40
+		end polar 330 40
+		slots 4
+		repeat
+			start polar diameter 150 2
+			start polar diameter 210 2
+			start polar 150 80
+			start polar 210 80
+			end polar diameter 270 2
+			end polar 270 80
+			slots 4
+	line
+		start polar diameter 330 1
+		start polar diameter 270 2
+		start polar 330 40
+		start polar 270 80
+		end polar diameter 210 2
+		end polar diameter 150 1
+		end polar 210 80
+		end polar 150 40
+		slots 5
+		repeat
+			start polar diameter 270 2
+			start polar 270 80
+			end polar diameter 150 2
+			end polar diameter 210 2
+			end polar 150 80
+			end polar 210 80
+			slots 4
+	line
+		start polar diameter 210 2
+		start polar diameter 150 2
+		start polar 210 80
+		start polar 150 80
+		end polar diameter 30 1
+		end polar diameter 90 2
+		end polar 30 40
+		end polar 90 80
+		slots 6
+		repeat
+			start polar diameter 150 2
+			start polar diameter 210 2
+			start polar 150 80
+			start polar 210 80
+			end polar diameter 90 2
+			end polar 90 80
+			slots 4
+
+
+
+# Triangular (arrowhead) forming in front of the formation leader.
+formation "Wedge"
+	flippable y
+	line
+		start diameter -1 0
+		end diameter -1 0
+		start -10 0
+		end -10 0
+		slots 1
+		repeat
+			start diameter -2 0
+			end diameter 0 -2
+			start -20 0
+			end 0 -20
+			slots 2
+	line
+		start diameter 0 -1
+		end diameter 1 0
+		start 0 -10
+		end 10 0
+		slots 2
+		repeat
+			start diameter 0 -2
+			end diameter 2 0
+			start 0 -20
+			end 20 0
+			slots 2
+	line
+		start diameter 2 0
+		end diameter 1 -1
+		start 20 0
+		end 10 -10
+		slots 2
+		repeat
+			start diameter 2 0
+			end diameter 0 -2
+			start 20 0
+			end 0 -20
+			slots 2
+	line
+		start diameter 0 -2
+		end diameter -2 0
+		start 0 -20
+		end -20 0
+		slots 3
+		repeat
+			start diameter 0 -2
+			end diameter -2 0
+			start 0 -20
+			end -20 0
+			slots 2
+
+
+
+# Diamond (tilted square) formation around the formation leader.
+formation "Diamond"
+	flippable x y
+	rotatable 90
+	line
+		start polar diameter 45 1
+		start polar 45 40
+		end polar diameter 45 1
+		end polar 45 40
+		slots 1
+		repeat
+			start polar diameter 0 1.414
+			start polar 0 56.569
+			end polar diameter 90 1.414
+			end polar 90 56.569
+			slots 2
+	line
+		start polar diameter 90 1.414
+		start polar 90 56.569
+		end polar diameter 180 1.414
+		end polar 180 56.569
+		slots 3
+		repeat
+			start polar diameter 90 1.414
+			start polar 90 56.569
+			end polar diameter 180 1.414
+			end polar 180 56.569
+			slots 2
+	line
+		start polar diameter 225 1
+		start polar 225 40
+		end polar diameter 225 1
+		end polar 225 40
+		slots 1
+		repeat
+			start polar diameter 180 1.414
+			start polar 180 56.569
+			end polar diameter 270 1.414
+			end polar 270 56.569
+			slots 2
+	line
+		start polar diameter 270 1.414
+		start polar 270 56.569
+		end polar diameter 0 1.414
+		end polar 0 56.569
+		slots 3
+		repeat
+			start polar diameter 270 1.414
+			start polar 270 56.569
+			end polar diameter 0 1.414
+			end polar 0 56.569
+			slots 2
+
+
+
+# Hexagon around the formation leader.
+formation "Hexagon"
+	flippable y
+	rotatable 60
+	line
+		start polar diameter 330 1
+		start polar 330 40
+		end polar diameter 330 1
+		end polar 330 40
+		slots 1
+		repeat
+			start polar diameter 270 1
+			start polar 270 40
+			end polar diameter 330 1
+			end polar 330 40
+			slots 1
+	line
+		start polar diameter 30 1
+		start polar 30 40
+		end polar diameter 30 1
+		end polar 30 40
+		slots 1
+		repeat
+			start polar diameter 330 1
+			start polar 330 40
+			end polar diameter 30 1
+			end polar 30 40
+			slots 1
+	line
+		start polar diameter 90 1
+		start polar 90 40
+		end polar diameter 90 1
+		end polar 90 40
+		slots 1
+		repeat
+			start polar diameter 30 1
+			start polar 30 40
+			end polar diameter 90 1
+			end polar 90 40
+			slots 1
+	line
+		start polar diameter 150 1
+		start polar 150 40
+		end polar diameter 150 1
+		end polar 150 40
+		slots 1
+		repeat
+			start polar diameter 90 1
+			start polar 90 40
+			end polar diameter 150 1
+			end polar 150 40
+			slots 1
+	line
+		start polar diameter 210 1
+		start polar 210 40
+		end polar diameter 210 1
+		end polar 210 40
+		slots 1
+		repeat
+			start polar diameter 150 1
+			start polar 150 40
+			end polar diameter 210 1
+			end polar 210 40
+			slots 1
+	line
+		start polar diameter 270 1
+		start polar 270 40
+		end polar diameter 270 1
+		end polar 270 40
+		slots 1
+		repeat
+			start polar diameter 210 1
+			start polar 210 40
+			end polar diameter 270 1
+			end polar 270 40
+			slots 1
+
+
+
+# A (hexagonal grid based) block of ships in front of the lead ship.
+formation "Block"
+	flippable y
+	line
+		start diameter 0 -6.928
+		end diameter 0 -3.464
+		slots 2
+		repeat
+			start diameter -2 0
+			end diameter -2 0
+		repeat
+			start diameter 2 0
+			end diameter 2 0
+	line
+		start diameter 1 -5.196
+		end diameter 1 -1.732
+		slots 2
+		repeat
+			start diameter 2 0
+			end diameter 2 0
+	line
+		start diameter -1 -5.196
+		end diameter -1 -1.732
+		slots 2
+		repeat
+			start diameter -2 0
+			end diameter -2 0
+
+
+
+# Formation with two legs extending on a 45 degree angle behind the lead ship.
+# This formation is naturally used by birds due to energy efficiency and it
+# is realatively easy to fly for pilots, since they just look at 1 ship in
+# front of them.
+formation "Vee"
+	flippable y
+	line
+		start diameter -2 2
+		repeat
+			start diameter -2 2
+	line
+		start diameter 2 2
+		repeat
+			start diameter 2 2
+
+
+
+# Formation where ships form a line right of the formation leader.
+formation "Line (right)"
+	flippable x
+	line
+		start diameter 1.5 0
+		repeat
+			start diameter 1.5 0
+
+
+
+# Formation where ships form a line left of the formation leader.
+formation "Line (left)"
+	flippable x
+	line
+		start diameter -1.5 0
+		repeat
+			start diameter -1.5 0
+
+
+
+# Formation where ships form a line behind the formation leader.
+formation "Line (back)"
+	flippable y
+	line
+		start diameter 0 1.5
+		repeat
+			start diameter 0 1.5
+
+
+
+# Formation where ships form a line right and left of the formation leader.
+# Using repeating segments of 3 so that the formation doesn't collapse and expand if a single ship leaves.
+# (The collapse and expand still happens when 3 ships leave on one side.)
+formation "Line (center)"
+	flippable x y
+	rotatable 180
+	line
+		start diameter -1 0
+		repeat
+			start diameter -1 0
+	line
+		start diameter 1 0
+		repeat
+			start diameter 1 0
+
+
+
+# Formation where ships form a line right and left in front of the formation leader.
+formation "Frontline"
+	flippable y
+	line
+		start diameter 0 -3
+		repeat
+			start diameter -1 0
+		repeat
+			start diameter 1 0
+
+
+
+# Formation where ships form a line right and left behind the formation leader.
+formation "Rearline"
+	flippable y
+	line
+		start diameter 0 3
+		repeat
+			start diameter -1 0
+		repeat
+			start diameter 1 0
+
+
+
+# Formation which is small at the center and expands outwards left-forward and right-forward.
+formation "Claw"
+	flippable y
+	line
+		start diameter -1 -0.5
+		end diameter -1 -1.5
+		slots 2
+		repeat
+			start diameter -1 -0.5
+			end diameter -1 -1.5
+			slots 1
+	line
+		start diameter 1 -0.5
+		end diameter 1 -1.5
+		slots 2
+		repeat
+			start diameter 1 -0.5
+			end diameter 1 -1.5
+			slots 1
+
+
+
+# Formation which is small at the center and expands outwards left and right.
+formation "Bowtie"
+	flippable x y
+	rotatable 180
+	line
+		start diameter -1 -0.5
+		end diameter -1 0.5
+		slots 2
+		repeat
+			start diameter -1 -0.5
+			end diameter -1 0.5
+			slots 1
+	line
+		start diameter 1 -0.5
+		end diameter 1 0.5
+		slots 2
+		repeat
+			start diameter 1 -0.5
+			end diameter 1 0.5
+			slots 1
+
+
+
+# Formation which looks like the wings of an airplane.
+formation "Wing"
+	flippable y
+	line
+		start diameter -1 0.5
+		end diameter -1 1.5
+		slots 2
+		repeat
+			start diameter -1 0.5
+			end diameter -1 0.5
+	line
+		start diameter 1 0.5
+		end diameter 1 1.5
+		slots 2
+		repeat
+			start diameter 1 0.5
+			end diameter 1 0.5
+
+
+
+# Formation where ships fly in a diagonal line right behind the formation leader.
+formation "Echelon (right)"
+	line
+		start diameter 2 2
+		repeat
+			start diameter 2 2
+
+
+
+# Formation where ships fly in a diagonal line left behind the formation leader.
+formation "Echelon (left)"
+	line
+		start diameter -2 2
+		repeat
+			start diameter -2 2
+
+
+
+# Formation that forms an X around the formation leader.
+formation "X"
+	flippable x y
+	rotatable 90
+	line
+		start diameter 2 -2
+		repeat
+			start diameter 2 -2
+	line
+		start diameter -2 -2
+		repeat
+			start diameter -2 -2
+	line
+		start diameter -2 2
+		repeat
+			start diameter -2 2
+	line
+		start diameter 2 2
+		repeat
+			start diameter 2 2
+
+
+
+# A sphere (or circle if one ring is used).
+# Built in six segment sections using the same layouting as the hexagon shape.
+formation "Sphere"
+	flippable x y
+	# Could also be set to 1 or smaller.
+	rotatable 60
+	arc
+		start polar diameter 180 1
+		start polar 180 40
+		angle 360
+		centered
+		# start and end positions overlap, so need to specify 7 instead of 6 and use skip first or skip last.
+		skip last
+		slots 7
+		repeat
+			start polar diameter 180 1
+			start polar 180 40
+			slots 6
+
+
+
+formation "Atomic"
+	flippable x
+	rotatable 120
+	arc
+		start polar diameter 330 1
+		start polar 330 40
+		angle 60
+		slots 2
+		repeat
+			start polar diameter 330 1
+			start polar 330 40
+			slots 1
+	arc
+		start polar diameter 90 1
+		start polar 90 40
+		angle 60
+		slots 2
+		repeat
+			start polar diameter 90 1
+			start polar 90 40
+			slots 1
+	arc
+		start polar diameter 210 1
+		start polar 210 40
+		angle 60
+		slots 2
+		repeat
+			start polar diameter 210 1
+			start polar 210 40
+			slots 1
+
+
+
+# Formation with five trailing lines behind the lead-ship.
+formation "Trails"
+	flippable y
+	arc
+		anchor diameter 0 -3
+		start polar diameter 194 5
+		angle -28
+		slots 5
+		repeat
+			alternating
+			start polar diameter 194 1.05

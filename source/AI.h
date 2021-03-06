@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define AI_H_
 
 #include "Command.h"
+#include "FormationPositioner.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -51,6 +52,9 @@ template <class Type>
 	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 	
 	// Fleet commands from the player.
+	void IssueFormationChange(const PlayerInfo &player);
+	void IssueFormationRingIncrease(const PlayerInfo &player);
+	void IssueFormationRingDecrease(const PlayerInfo &player);
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
@@ -84,8 +88,9 @@ private:
 	std::vector<std::shared_ptr<Ship>> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 	
 	bool FollowOrders(Ship &ship, Command &command) const;
+	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command) const;
-	void MoveEscort(Ship &ship, Command &command) const;
+	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
@@ -215,6 +220,9 @@ private:
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasmentThreshold;
+	
+	// Records for formations flying around leadships and other formation leading objects.
+	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	

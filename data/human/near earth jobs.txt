@@ -97,6 +97,55 @@ mission "To Earth Day celebration [1]"
 		dialog `Spaceport workers already festively dressed for Earth Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
 
 
+mission "To Earth Day celebration [2]"
+	name `Earth Day Celebration`
+	job
+	repeat
+	description `Escort stunt pilots to <destination> by <date> so that they can perform on Earth Day celebration on April 22nd. Payment is <payment>.`
+	deadline
+	to offer
+		or
+			and
+				random < 60
+				month == 2
+				day >= 6
+			and
+				random < 80
+				month == 3
+			and
+				random < 20
+				month == 4
+				day < 22
+	to fail
+		month == 4
+		day == 22
+	source
+		near "Sol" 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "Earth"
+	npc
+		government Merchant
+		personality timid escort
+		fleet
+			names "civilian"
+			formation "Wedge"
+			variant
+				"Flivver (Racing)" 9
+	npc
+		government Merchant
+		personality timid escort
+		fleet
+			names "civilian"
+			formation "Delta (tailing)"
+			variant
+				"Flivver (Racing)" 10
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
+	on complete
+		payment 1000 180
+		dialog phrase "generic safe escort completion dialog"
+
+
 mission "From Earth Day celebration [0]"
 	name `Return from Earth Day`
 	job
