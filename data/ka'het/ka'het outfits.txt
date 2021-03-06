@@ -379,7 +379,7 @@ outfit "Telis Engine Nacelles"
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
 	"mass" 81
-	"outfit space" -109
+	"outfit space" -101
 	"engine capacity" -81
 	"energy consumption" 6.81
 	"heat generation" 1.4
