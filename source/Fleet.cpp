@@ -237,6 +237,29 @@ void Fleet::Load(const DataNode &node)
 
 
 
+bool Fleet::IsValid(bool requireGovernment) const
+{
+	// Generally, a government is required for a fleet to be valid.
+	if(requireGovernment && !government)
+		return false;
+	
+	if(names && names->IsEmpty())
+		return false;
+	
+	if(fighterNames && fighterNames->IsEmpty())
+		return false;
+	
+	// A fleet's variants should reference at least one valid ship.
+	for(auto &&v : variants)
+		if(none_of(v.ships.begin(), v.ships.end(),
+				[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
+			return false;
+	
+	return true;
+}
+
+
+
 // Get the government of this fleet.
 const Government *Fleet::GetGovernment() const
 {
@@ -566,16 +589,16 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *model : variant.ships)
 	{
-		if(model->ModelName().empty())
+		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
+		if(!model->IsValid())
 		{
-			Files::LogError("Skipping unknown ship in fleet \"" + fleetName + "\".");
+			Files::LogError("Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 		
-		shared_ptr<Ship> ship(new Ship(*model));
+		auto ship = make_shared<Ship>(*model);
 		
-		bool isFighter = ship->CanBeCarried();
-		const Phrase *phrase = ((isFighter && fighterNames) ? fighterNames : names);
+		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
@@ -618,7 +641,7 @@ void Fleet::SetCargo(Ship *ship) const
 	// Choose random outfits or commodities to transport.
 	for(int i = 0; i < cargo; ++i)
 	{
-		if(!free)
+		if(free <= 0)
 			break;
 		// Remove any outfits that do not fit into remaining cargo.
 		if(canChooseOutfits && !outfits.empty())

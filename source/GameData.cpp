@@ -104,7 +104,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
-	StartConditions startConditions;
+	vector<StartConditions> startConditions;
 	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
@@ -130,6 +130,31 @@ namespace {
 	map<const Sprite *, int> preloaded;
 	
 	const Government *playerGovernment = nullptr;
+	
+	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
+	// Log a warning for an "undefined" class object that was never loaded from disk.
+	void Warn(const string &noun, const string &name)
+	{
+		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but never defined.");
+	}
+	// Class objects with a deferred definition should still get named when content is loaded.
+	template <class Type>
+	bool NameIfDeferred(const set<string> &deferred, pair<const string, Type> &it)
+	{
+		if(deferred.count(it.first))
+			it.second.SetName(it.first);
+		else
+			return false;
+		
+		return true;
+	}
+	// Set the name of an "undefined" class object, so that it can be written to the player's save.
+	template <class Type>
+	void NameAndWarn(const string &noun, pair<const string, Type> &it)
+	{
+		it.second.SetName(it.first);
+		Warn(noun, it.first);
+	}
 }
 
 
@@ -201,11 +226,18 @@ bool GameData::BeginLoad(const char * const *argv)
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
-	for(auto &it : ships)
+	for(auto &&it : ships)
 		it.second.FinishLoading(true);
-	for(auto &it : persons)
+	for(auto &&it : persons)
 		it.second.FinishLoading();
-	startConditions.FinishLoading();
+	for(auto &&it : startConditions)
+		it.FinishLoading();
+	
+	// Remove any invalid starting conditions, so the game does not use incomplete data.
+	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
+			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
+		startConditions.end()
+	);
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -230,76 +262,89 @@ bool GameData::BeginLoad(const char * const *argv)
 
 
 
-// Check for objects that are referred to but never defined.
+// Check for objects that are referred to but never defined. Some elements, like
+// fleets, don't need to be given a name if undefined. Others (like outfits and
+// planets) are written to the player's save and need a name to prevent data loss.
 void GameData::CheckReferences()
 {
-	// Parse all GameEvents for object definitions & references.
+	// Parse all GameEvents for object definitions.
 	auto deferred = map<string, set<string>>{};
-	const auto eventDefinitionNodes = set<string>{
-		"fleet",
-		"galaxy",
-		"government",
-		"outfitter",
-		"news",
-		"planet",
-		"shipyard",
-		"system"
-	};
-	for(const auto &it : events)
+	for(auto &&it : events)
 	{
+		// Stock GameEvents are serialized in MissionActions by name.
 		if(it.second.Name().empty())
-			Files::LogError("Warning: event \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("event", it);
 		else
 		{
-			for(const DataNode &node : it.second.Changes())
-				if(node.Size() >= 2)
-				{
-					const string &key = node.Token(0);
-					if(eventDefinitionNodes.count(key))
-						deferred[key].emplace(node.Token(1));
-				}
+			// Any already-named event (i.e. loaded) may alter the universe.
+			auto definitions = GameEvent::DeferredDefinitions(it.second.Changes());
+			for(auto &&type : definitions)
+				deferred[type.first].insert(type.second.begin(), type.second.end());
 		}
 	}
 	
+	// Stock conversations are never serialized.
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
-			Files::LogError("Warning: conversation \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : effects)
+			Warn("conversation", it.first);
+	// The "default intro" conversation must invoke the prompt to set the player's name.
+	if(!conversations.Get("default intro")->IsValidIntro())
+		Files::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
+	// Effects are serialized as a part of ships.
+	for(auto &&it : effects)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("effect", it);
+	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(const auto &it : fleets)
-		if(!it.second.GetGovernment() && !deferred["fleet"].count(it.first))
-			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : governments)
-		if(it.second.GetTrueName().empty() && !deferred["government"].count(it.first))
-			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
+			Warn("fleet", it.first);
+	// Government names are used in mission NPC blocks and LocationFilters.
+	for(auto &&it : governments)
+		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
+			NameAndWarn("government", it);
+	// Minables are not serialized.
 	for(const auto &it : minables)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: minable \"" + it.first + "\" is referred to, but never defined.");
+			Warn("minable", it.first);
+	// Stock missions are never serialized, and an accepted mission is
+	// always fully defined (though possibly not "valid").
 	for(const auto &it : missions)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: mission \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : outfits)
+			Warn("mission", it.first);
+	
+	// News are never serialized or named, except by events (which would then define them).
+	
+	// Outfit names are used by a number of classes.
+	for(auto &&it : outfits)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("outfit", it);
+	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
 		if(it.second.empty() && !deferred["outfitter"].count(it.first))
 			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
+	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : planets)
-		if(it.second.TrueName().empty() && !deferred["planet"].count(it.first))
-			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : ships)
+			Warn("phrase", it.first);
+	// Planet names are used by a number of classes.
+	for(auto &&it : planets)
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
+			NameAndWarn("planet", it);
+	// Ship model names are used by missions and depreciation.
+	for(auto &&it : ships)
 		if(it.second.ModelName().empty())
-			Files::LogError("Warning: ship \"" + it.first + "\" is referred to, but never defined.");
+		{
+			it.second.SetModelName(it.first);
+			Warn("ship", it.first);
+		}
+	// Shipyards are never serialized.
 	for(const auto &it : shipSales)
 		if(it.second.empty() && !deferred["shipyard"].count(it.first))
 			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
-	for(const auto &it : systems)
-		if(it.second.Name().empty() && !deferred["system"].count(it.first))
-			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
+	// System names are used by a number of classes.
+	for(auto &&it : systems)
+		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
+			NameAndWarn("system", it);
 }
 
 
@@ -483,6 +528,7 @@ void GameData::WriteEconomy(DataWriter &out)
 	out.Write("economy");
 	out.BeginChild();
 	{
+		// Write each system and the commodity quantities purchased there.
 		if(!purchases.empty())
 		{
 			out.Write("purchases");
@@ -493,20 +539,22 @@ void GameData::WriteEconomy(DataWriter &out)
 					{ return lhs->first->Name() < rhs->first->Name(); },
 				[&out](const Purchase &pit)
 				{
+					// Write purchases for all systems, even ones from removed plugins.
 					for(const auto &cit : pit.second)
 						out.Write(pit.first->Name(), cit.first, cit.second);
 				});
 			out.EndChild();
 		}
+		// Write the "header" row.
 		out.WriteToken("system");
 		for(const auto &cit : GameData::Commodities())
 			out.WriteToken(cit.name);
 		out.Write();
 		
+		// Write the per-system data for all systems that are either known-valid, or non-empty.
 		for(const auto &sit : GameData::Systems())
 		{
-			// Skip systems that have no name.
-			if(sit.first.empty() || sit.second.Name().empty())
+			if(!sit.second.IsValid() && !sit.second.HasTrade())
 				continue;
 			
 			out.WriteToken(sit.second.Name());
@@ -814,7 +862,7 @@ Politics &GameData::GetPolitics()
 
 
 
-const StartConditions &GameData::Start()
+const vector<StartConditions> &GameData::StartOptions()
 {
 	return startConditions;
 }
@@ -1041,8 +1089,23 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "start")
-			startConditions.Load(node);
+		else if(key == "start" && node.HasChildren())
+		{
+			// This node may either declare an immutable starting scenario, or one that is open to extension
+			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
+			if(node.Size() == 1)
+				startConditions.emplace_back(node);
+			else
+			{
+				const string &identifier = node.Token(1);
+				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
+					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
+				if(existingStart != startConditions.end())
+					existingStart->Load(node);
+				else
+					startConditions.emplace_back(node);
+			}
+		}
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)
@@ -1233,8 +1296,9 @@ void GameData::PrintShipTable()
 void GameData::PrintWeaponTable()
 {
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
-		<< "homing" << '\t' << "strength" << '\n';
+		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
+		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
+		<< "homing" << '\t' << "strength" <<'\n';
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
@@ -1252,11 +1316,15 @@ void GameData::PrintWeaponTable()
 		cout << energy << '\t';
 		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
 		cout << heat << '\t';
+		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
+		cout << firingforce << '\t';
 		
 		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
 		cout << shield << '\t';
 		double hull = outfit.HullDamage() * 60. / outfit.Reload();
 		cout << hull << '\t';
+		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+		cout << hitforce << '\t';
 		
 		cout << outfit.Homing() << '\t';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();

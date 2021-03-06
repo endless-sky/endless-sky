@@ -134,6 +134,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
+	isDefined = true;
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
@@ -196,6 +197,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				
 				objects.clear();
 			}
+			else if(key == "hidden")
+				hidden = false;
 			
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -205,7 +208,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		
 		// Handle the attributes which can be "removed."
-		if(!hasValue && key != "object")
+		if(key == "hidden")
+			hidden = true;
+		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
@@ -292,7 +297,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			continue;
 		}
 		else if(key == "pos" && child.Size() >= 3)
+		{
 			position.Set(child.Value(valueIndex), child.Value(valueIndex + 1));
+			hasPosition = true;
+		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "music")
@@ -310,7 +318,23 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "object")
 			LoadObject(child, planets);
 		else if(key == "arrival")
-			extraArrivalDistance = child.Value(valueIndex);
+		{
+			if(child.Size() >= 2)
+			{
+				extraHyperArrivalDistance = child.Value(1);
+				extraJumpArrivalDistance = fabs(child.Value(1));
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
+					extraHyperArrivalDistance = grand.Value(1);
+				else if(type == "jump" && grand.Size() >= 2)
+					extraJumpArrivalDistance = fabs(grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -358,6 +382,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
+	// Print a warning if this system wasn't explicitly given a position.
+	if(!hasPosition)
+		node.PrintTrace("Warning: system will be ignored due to missing position:");
 }
 
 
@@ -421,7 +448,15 @@ void System::Unlink(System *other)
 
 
 
-// Get this system's name and position (in the star map).
+// Check that this system has been loaded and given a position.
+bool System::IsValid() const
+{
+	return isDefined && hasPosition;
+}
+
+
+
+// Get this system's name.
 const string &System::Name() const
 {
 	return name;
@@ -429,6 +464,14 @@ const string &System::Name() const
 
 
 
+void System::SetName(const std::string &name)
+{
+	this->name = name;
+}
+
+
+
+// Get this system's position in the star map.
 const Point &System::Position() const
 {
 	return position;
@@ -483,10 +526,26 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 
-// Additional travel distance to target for ships entering through hyperspace.
-double System::ExtraArrivalDistance() const
+// Whether this system can be seen when not linked.
+bool System::Hidden() const
 {
-	return extraArrivalDistance;
+	return hidden;
+}
+
+
+
+// Additional travel distance to target for ships entering through hyperspace.
+double System::ExtraHyperArrivalDistance() const
+{
+	return extraHyperArrivalDistance;
+}
+
+
+
+// Additional travel distance to target for ships entering using a jumpdrive.
+double System::ExtraJumpArrivalDistance() const
+{
+	return extraJumpArrivalDistance;
 }
 
 

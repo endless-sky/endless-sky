@@ -48,6 +48,9 @@ public:
 	
 	void Load(const DataNode &node);
 	
+	// Determine if this fleet template uses well-defined data.
+	bool IsValid(bool requireGovernment = true) const;
+	
 	// Get the government of this fleet.
 	const Government *GetGovernment() const;
 	

@@ -175,6 +175,7 @@ void Ship::Load(const DataNode &node)
 		base = GameData::Ships().Get(modelName);
 		variantName = node.Token(2);
 	}
+	isDefined = true;
 	
 	government = GameData::PlayerGovernment();
 	equipped.clear();
@@ -615,11 +616,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
+	vector<string> undefinedOutfits;
 	for(const auto &it : outfits)
 	{
-		if(it.first->Name().empty())
+		if(!it.first->IsDefined())
 		{
-			Files::LogError("Unrecognized outfit in " + modelName + " \"" + name + "\"");
+			undefinedOutfits.emplace_back("\"" + it.first->Name() + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -637,15 +639,39 @@ void Ship::FinishLoading(bool isNewInstance)
 				armament.Add(it.first, count);
 		}
 	}
+	if(!undefinedOutfits.empty())
+	{
+		bool plural = undefinedOutfits.size() > 1;
+		// Print the ship name once, then all undefined outfits. If we're reporting for a stock ship, then it
+		// doesn't have a name, and missing outfits aren't named yet either. A variant name might exist, though.
+		string message;
+		if(isYours)
+		{
+			message = "Player ship " + modelName + " \"" + name + "\":";
+			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
+			for(auto &&outfit : undefinedOutfits)
+				message += PREFIX + outfit;
+		}
+		else
+		{
+			message = variantName.empty() ? "Stock ship \"" + modelName + "\": "
+				: modelName + " variant \"" + variantName + "\": ";
+			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
+		}
+		
+		Files::LogError(message);
+	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
-	// is configured incorrectly in a ship or variant definition.
+	// is configured incorrectly in a ship or variant definition. Do not
+	// bother printing this warning if the outfit is not fully defined.
 	for(const Hardpoint &hardpoint : armament.Get())
 	{
 		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit && (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
+		if(outfit && outfit->IsDefined()
+				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			string warning = modelName;
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
@@ -700,8 +726,39 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = true;
 	isDisabled = IsDisabled();
 	
-	// Cache this ship's jump range so that it doesn't need calculated when needed.
+	// Cache this ship's jump range.
 	jumpRange = JumpRange(false);
+	
+	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
+	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
+	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
+	if(!isNewInstance && targetSystem)
+	{
+		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + modelName + " \"" + name + "\": "
+			"Cannot reach target system \"" + targetSystem->Name();
+		if(!currentSystem)
+		{
+			Files::LogError(message + "\" (no current system).");
+			targetSystem = nullptr;
+		}
+		else if(!currentSystem->Links().count(targetSystem) && (!jumpRange || !currentSystem->JumpNeighbors(jumpRange).count(targetSystem)))
+		{
+			Files::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			targetSystem = nullptr;
+		}
+	}
+}
+
+
+
+// Check if this ship (model) and its outfits have been defined.
+bool Ship::IsValid() const
+{
+	for(auto &&outfit : outfits)
+		if(!outfit.first->IsDefined())
+			return false;
+	
+	return isDefined;
 }
 
 
@@ -900,13 +957,14 @@ void Ship::Save(DataWriter &out) const
 			out.Write("system", currentSystem->Name());
 		else
 		{
+			// A carried ship is saved in its carrier's system.
 			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
 				out.Write("system", parent->currentSystem->Name());
 		}
 		if(landingPlanet)
-			out.Write("planet", landingPlanet->Name());
-		if(targetSystem && !targetSystem->Name().empty())
+			out.Write("planet", landingPlanet->TrueName());
+		if(targetSystem)
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
 			out.Write("parked");
@@ -919,6 +977,14 @@ void Ship::Save(DataWriter &out) const
 const string &Ship::Name() const
 {
 	return name;
+}
+
+
+
+// Set / Get the name of this class of ships, e.g. "Marauder Raven."
+void Ship::SetModelName(const string &model)
+{
+	this->modelName = model;
 }
 
 
@@ -1028,7 +1094,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar)
+		if(!generation && !solar && !burning)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -1470,7 +1536,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			Point target;
 			// Except when you arrive at an extra distance from the target,
 			// in that case always use the system-center as target.
-			double extraArrivalDistance = currentSystem->ExtraArrivalDistance();
+			double extraArrivalDistance = isUsingJumpDrive ? currentSystem->ExtraJumpArrivalDistance() : currentSystem->ExtraHyperArrivalDistance();
+			
 			if(extraArrivalDistance == 0)
 			{
 				if(targetPlanet)
@@ -1488,7 +1555,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			
 			if(isUsingJumpDrive)
 			{
-				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
+				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
 				return;
 			}
 			
@@ -2135,15 +2202,14 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	{
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(cargo, false);
-		// Stop targeting this ship.
-		SetTargetShip(shared_ptr<Ship>());
 		
 		// Pause for two seconds before moving on.
 		pilotError = 120;
 	}
 	
 	// Stop targeting this ship (so you will not board it again right away).
-	SetTargetShip(shared_ptr<Ship>());
+	if(!autoPlunder || personality.Disables())
+		SetTargetShip(shared_ptr<Ship>());
 	return victim;
 }
 
@@ -2786,7 +2852,7 @@ double Ship::JumpFuel(const System *destination) const
 		return HyperdriveFuel();
 	
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel(linked ? 0. : currentSystem->Position().Distance(destination->Position()));
+		return JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 	
 	// If the given system is not a possible destination, return 0.
 	return 0.;
@@ -3455,6 +3521,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		cargoScan = 0.;
 		outfitScan = 0.;
 	}
+	targetAsteroid.reset();
 }
 
 
@@ -3484,6 +3551,7 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
 	targetAsteroid = asteroid;
+	targetShip.reset();
 }
 
 
@@ -3686,8 +3754,6 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 // A helper method for taking damage from either a projectile or a hazard.
 int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast)
 {
-	int type = 0;
-	
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Scale blast damage based on the distance from the blast
@@ -3761,6 +3827,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Report what happened to this ship from this weapon.
+	int type = 0;
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;

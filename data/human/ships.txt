@@ -56,8 +56,8 @@ ship "Aerie"
 	turret 0 0 "Heavy Anti-Missile Turret"
 	turret -17 14 "Heavy Laser Turret"
 	turret 17 14 "Heavy Laser Turret"
-	fighter -42 -2
-	fighter 42 2
+	bay "Fighter" -42 -2
+	bay "Fighter" 42 2
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -235,10 +235,10 @@ ship "Auxiliary"
 	turret 0 -18
 	turret 0 22.5
 	turret 0 73.5 "Heavy Anti-Missile Turret"
-	fighter 0 -75
-	fighter 0 -18
-	fighter 0 22.5
-	fighter 0 73.5
+	bay "Fighter" 0 -75
+	bay "Fighter" 0 -18
+	bay "Fighter" 0 22.5
+	bay "Fighter" 0 73.5
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -264,10 +264,10 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	turret 0 -21
 	turret 0 31
 	turret 0 83 "Heavy Anti-Missile Turret"
-	fighter 0 -72
-	fighter 0 -21
-	fighter 0 31
-	fighter 0 83
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -21
+	bay "Fighter" 0 31
+	bay "Fighter" 0 83
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	plural "Auxiliaries"
@@ -282,10 +282,10 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	turret 0 -17
 	turret 0 20
 	turret 0 79 "Heavy Anti-Missile Turret"
-	fighter 0 -73.5
-	fighter 0 -17
-	fighter 0 20
-	fighter 0 79
+	bay "Fighter" 0 -73.5
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 20
+	bay "Fighter" 0 79
 
 
 
@@ -345,9 +345,9 @@ ship "Bactrian"
 	turret 32 -7 "Heavy Laser Turret"
 	turret 53 82 "Heavy Laser Turret"
 	turret -37 186 "Heavy Anti-Missile Turret"
-	fighter -38 -26
-	fighter 35 36
-	fighter -47 97
+	bay "Fighter" -38 -26
+	bay "Fighter" 35 36
+	bay "Fighter" -47 97
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -878,16 +878,16 @@ ship "Carrier"
 	turret 0 15 "Heavy Laser Turret"
 	turret 0 103 "Heavy Anti-Missile Turret"
 	turret 0 157 "Heavy Laser Turret"
-	fighter -37 -65
-	fighter 37 -65
-	fighter -46 40
-	fighter 46 40
-	drone -72 -46
-	drone 72 -46
-	drone -101 57
-	drone 101 57
-	drone -74 57
-	drone 74 57
+	bay "Fighter" -37 -65
+	bay "Fighter" 37 -65
+	bay "Fighter" -46 40
+	bay "Fighter" 46 40
+	bay "Drone" -72 -46
+	bay "Drone" 72 -46
+	bay "Drone" -101 57
+	bay "Drone" 101 57
+	bay "Drone" -74 57
+	bay "Drone" 74 57
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -943,18 +943,18 @@ ship "Class C Freighter"
 	turret 0 9.5 "Heavy Laser Turret"
 	turret 0 59.5 "Heavy Anti-Missile Turret"
 	turret 0 109 "Heavy Laser Turret"
-	drone -66 -115 left
-	drone -66 -65 left
-	drone -66 -15 left
-	drone -66 35 left
-	drone -66 85 left
-	drone -66 135 left
-	drone 66 -115 right
-	drone 66 -65 right
-	drone 66 -15 right
-	drone 66 35 right
-	drone 66 85 right
-	drone 66 135 right
+	bay "Drone" -66 -115 left
+	bay "Drone" -66 -65 left
+	bay "Drone" -66 -15 left
+	bay "Drone" -66 35 left
+	bay "Drone" -66 85 left
+	bay "Drone" -66 135 left
+	bay "Drone" 66 -115 right
+	bay "Drone" 66 -65 right
+	bay "Drone" 66 -15 right
+	bay "Drone" 66 35 right
+	bay "Drone" 66 85 right
+	bay "Drone" 66 135 right
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -1177,10 +1177,10 @@ ship "Cruiser"
 	turret -33 -19 "Heavy Laser Turret"
 	turret 33 -19 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
-	drone -25 18
-	drone 25 18
-	drone -25 49
-	drone 25 49
+	bay "Drone" -25 18
+	bay "Drone" 25 18
+	bay "Drone" -25 49
+	bay "Drone" 25 49
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -2384,7 +2384,7 @@ ship "Mule"
 	turret -37 -21 "Heavy Laser Turret"
 	turret 39 35 "Heavy Laser Turret"
 	turret -9 59 "Heavy Anti-Missile Turret"
-	fighter -16 -9
+	bay "Fighter" -16 -9
 	leak "leak" 50 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2443,8 +2443,8 @@ ship "Nest"
 	turret 21.5 -48 "Heavy Anti-Missile Turret"
 	turret -18.5 78.5 "Heavy Anti-Missile Turret"
 	turret 18.5 78.5 "Quad Blaster Turret"
-	fighter -47 12 under
-	fighter 47 12 under
+	bay "Fighter" -47 12 under
+	bay "Fighter" 47 12 under
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -2787,10 +2787,10 @@ ship "Roost"
 	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
 	turret -18.5 115.5 "Heavy Anti-Missile Turret"
 	turret 18.5 115.5 "Quad Blaster Turret"
-	fighter -47 -24 under
-	fighter 47 -24 under
-	fighter -47 50 under
-	fighter 47 50 under
+	bay "Fighter" -47 -24 under
+	bay "Fighter" 47 -24 under
+	bay "Fighter" -47 50 under
+	bay "Fighter" 47 50 under
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -2951,12 +2951,12 @@ ship "Skein"
 	turret 21.5 -122 "Heavy Anti-Missile Turret"
 	turret -18.5 152.5 "Heavy Anti-Missile Turret"
 	turret 18.5 152.5 "Quad Blaster Turret"
-	fighter -47 -61 under
-	fighter 47 -61 under
-	fighter -47 14 under
-	fighter 47 14 under
-	fighter -47 88 under
-	fighter 47 88 under
+	bay "Fighter" -47 -61 under
+	bay "Fighter" 47 -61 under
+	bay "Fighter" -47 14 under
+	bay "Fighter" 47 14 under
+	bay "Fighter" -47 88 under
+	bay "Fighter" 47 88 under
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
@@ -3011,7 +3011,7 @@ ship "Sparrow"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is to upgrade the weapons and hunt pirates... or become one. In either case, it is a perilous way to earn a living."
-	description "	Insurance reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it. Pilots who have survived longer than that tend to swear by replacing the stock weapons with missile launchers."
+	description "	Government reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it. Pilots who have survived longer than that tend to swear by replacing the stock weapons with missile launchers."
 
 
 

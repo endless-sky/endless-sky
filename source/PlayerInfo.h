@@ -15,12 +15,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "CargoHold.h"
+#include "CoreStartData.h"
 #include "DataNode.h"
 #include "Date.h"
 #include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
 
+#include <chrono>
 #include <list>
 #include <map>
 #include <memory>
@@ -35,6 +37,7 @@ class Planet;
 class Rectangle;
 class Ship;
 class ShipEvent;
+class StartConditions;
 class StellarObject;
 class System;
 class UI;
@@ -57,7 +60,7 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New();
+	void New(const StartConditions &start);
 	// Load an existing player.
 	void Load(const std::string &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
@@ -87,12 +90,15 @@ public:
 	const Date &GetDate() const;
 	void IncrementDate();
 	
+	// Get basic data about the player's starting scenario.
+	const CoreStartData &StartData() const noexcept;
+	
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
 	// This also marks the given system as visited.
-	void SetSystem(const System *system);
+	void SetSystem(const System &system);
 	const System *GetSystem() const;
-	// Set what planet the player is on.
+	// Set what planet the player is on (or nullptr, if taking off).
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
 	// If the player is landed, return the stellar object they are on.
@@ -136,9 +142,9 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
-	// Get planetary storage for players current planet.
+	// Get items stored on the player's current planet.
 	CargoHold *Storage(bool forceCreate = false);
-	// Get planetary storage for all planets (for map display).
+	// Get items stored on all planets (for map display).
 	const std::map<const Planet *, CargoHold> &PlanetaryStorage() const;
 	// Get cost basis for commodities.
 	void AdjustBasis(const std::string &commodity, int64_t adjustment);
@@ -149,6 +155,10 @@ public:
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
+
+	// Get or add to pilot's playtime.
+	double GetPlayTime() const noexcept;
+	void AddPlayTime(std::chrono::nanoseconds timeVal);
 	
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
@@ -192,16 +202,16 @@ public:
 	void CheckReputationConditions();
 	
 	// Check what the player knows about the given system or planet.
-	bool HasSeen(const System *system) const;
-	bool HasVisited(const System *system) const;
-	bool HasVisited(const Planet *planet) const;
-	bool KnowsName(const System *system) const;
+	bool HasSeen(const System &system) const;
+	bool HasVisited(const System &system) const;
+	bool HasVisited(const Planet &planet) const;
+	bool KnowsName(const System &system) const;
 	// Marking a system as visited also "sees" its neighbors.
-	void Visit(const System *system);
-	void Visit(const Planet *planet);
+	void Visit(const System &system);
+	void Visit(const Planet &planet);
 	// Mark a system and its planets as unvisited, even if visited previously.
-	void Unvisit(const System *system);
-	void Unvisit(const Planet *planet);
+	void Unvisit(const System &system);
+	void Unvisit(const Planet &planet);
 	
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;
@@ -263,6 +273,8 @@ private:
 	
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
+	// After loading & applying changes, make sure the player & ship locations are sensible.
+	void ValidateLoad();
 	
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions(bool isBoarding = false);
@@ -290,8 +302,10 @@ private:
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
-	bool hasFullClearance = true;
 	bool isDead = false;
+	
+	// The amount of in-game time played, in seconds.
+	double playTime = 0.0;
 	
 	Account accounts;
 	
@@ -312,6 +326,9 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
+	// If any mission component is not fully defined, the mission is deactivated
+	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
+	std::list<Mission> inactiveMissions;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
@@ -355,6 +372,9 @@ private:
 	
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
+	
+	// Basic information about the player's starting scenario.
+	CoreStartData startData;
 };
 
 
