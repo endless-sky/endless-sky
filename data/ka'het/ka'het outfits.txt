@@ -399,15 +399,15 @@ outfit "Vareti Engine Block"
 	category "Engines"
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
-	"mass" 143
-	"outfit space" -171
-	"engine capacity" -143
-	"energy consumption" 13.04
-	"heat generation" 2.7
+	"mass" 137
+	"outfit space" -168
+	"engine capacity" -137
+	"energy consumption" 10.90
+	"heat generation" 2.58
 	"thrust" 93.9
 	"thrusting heat" 6.7
 	"turn" 2288.2
-	"turning heat" 3.9
+	"turning heat" 3.32
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma large"
