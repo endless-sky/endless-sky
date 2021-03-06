@@ -42,7 +42,7 @@ ship "Korath Dredger"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 3
 		"Fuel Processor"
-		"Korath Repeater Rifle" 190
+		"Korath Repeater Rifle" 200
 		
 		"Steering (Planetary Class)"
 		"Steering (Asteroid Class)"
@@ -91,7 +91,7 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 3
 		"Fuel Processor"
-		"Korath Repeater Rifle" 190
+		"Korath Repeater Rifle" 200
 		
 		"Steering (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -324,7 +324,7 @@ ship "Korath World-Ship"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 800
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -383,7 +383,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 800
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -409,7 +409,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 800
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -435,7 +435,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 800
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -461,7 +461,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 800
 		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
@@ -486,7 +486,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
-		"Korath Repeater Rifle" 150
+		"Korath Repeater Rifle" 800
 		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"

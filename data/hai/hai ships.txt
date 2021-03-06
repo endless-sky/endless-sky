@@ -100,6 +100,7 @@ ship "Centipede"
 		`"Biroo" Atomic Steering`
 		`"Basrem" Atomic Steering`
 		Hyperdrive
+		"Pulse Rifle" 35
 		
 	engine -15 113
 	engine 15 113
@@ -129,7 +130,7 @@ ship "Centipede" "Centipede (Pulse)"
 		"Hai Williwaw Cooling" 5
 		"Luxury Accommodations"
 		"Quantum Keystone"
-		"Pulse Rifle" 24
+		"Pulse Rifle" 35
 		`"Biroo" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		`"Biroo" Atomic Steering`
@@ -214,6 +215,7 @@ ship "Geocoris"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
+		"Pulse Rifle" 15
 
 	engine 100 39
 	engine -100 39
@@ -244,12 +246,12 @@ ship "Geocoris" "Geocoris (Tracker)"
 		"Chameleon Anti-Missile"
 		"Boulder Reactor"
 		"Pebble Core"
+		"Pulse Rifle" 15
 		"Hai Ravine Batteries"
 		"Hai Corundum Regenerator" 2
 		"Hai Williwaw Cooling" 7
 		"Tracker Storage Pod" 3
 		"Quantum Keystone"
-		"Pulse Rifle" 14
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
@@ -289,6 +291,7 @@ ship "Grasshopper"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
+		"Pulse Rifle" 1
 
 	engine 0 36
 	gun -6 -34 "Pulse Cannon"
@@ -309,7 +312,7 @@ ship "Grasshopper" "Grasshopper (Tracker)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
-		"Pulse Rifle"
+		"Pulse Rifle" 1
 		`"Basrem" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		Hyperdrive
@@ -322,6 +325,7 @@ ship "Grasshopper" "Grasshopper (Surveillance)"
 		"Supercapacitor"
 		"Outfit Scanner" 5
 		"Cargo Scanner" 5
+		"Pulse Rifle" 1
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
@@ -365,6 +369,8 @@ ship "Lightning Bug"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+		"Pulse Rifle" 5
+		
 	engine -40 22
 	engine 40 22
 	gun 0 -40 "Ion Cannon"
@@ -385,9 +391,9 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
 		"Geode Reactor"
+		"Pulse Rifle" 5
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
-		"Pulse Rifle" 2
 		`"Biroo" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -401,10 +407,10 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Geode Reactor"
 		"Outfit Scanner" 5
 		"Cargo Scanner" 5
+		"Pulse Rifle" 5
 		"Hai Williwaw Cooling"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
-		"Pulse Rifle" 2
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -585,6 +591,7 @@ ship "Shield Beetle"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle" 47
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -703,7 +710,7 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 3
-		"Pulse Rifle" 27
+		"Pulse Rifle" 47
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -728,7 +735,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
-		"Pulse Rifle" 32
+		"Pulse Rifle" 47
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -772,6 +779,7 @@ ship "Solifuge"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
 		"Quantum Keystone"
+		"Pulse Rifle" 62
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -900,7 +908,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
-		"Pulse Rifle" 59
+		"Pulse Rifle" 62
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -996,6 +1004,7 @@ ship "Water Bug"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle" 5
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -1043,7 +1052,7 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
-		"Pulse Rifle" 3
+		"Pulse Rifle" 5
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"

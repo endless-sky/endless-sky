@@ -43,7 +43,7 @@ ship "Aerie"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
-		"Laser Rifle" 3
+		"Laser Rifle" 10
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -104,6 +104,7 @@ ship "Argosy"
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
+		"Laser Rifle" 4
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -164,6 +165,7 @@ ship "Arrow"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		"Luxury Accommodations"
+		"Laser Rifle" 2
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
@@ -222,6 +224,7 @@ ship "Auxiliary"
 		"Water Coolant System"
 		"Large Radar Jammer"
 		"Ramscoop"
+		"Laser Rifle" 87
 		
 		"X4700 Ion Thruster"
 		"X1700 Ion Thruster"
@@ -327,7 +330,7 @@ ship "Bactrian"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
-		"Laser Rifle" 15
+		"Laser Rifle" 70
 		
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
@@ -390,6 +393,7 @@ ship "Barb"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Laser Rifle" 2
 
 		"X1050 Ion Engines" 2
 		
@@ -433,6 +437,7 @@ ship "Barb" "Barb (Proton)"
 		"nGVF-AA Fuel Cell"
 		Supercapacitor
 		"D14-RN Shield Generator"
+		"Laser Rifle" 1
 
 		"X1050 Ion Engines" 2
 		
@@ -483,7 +488,7 @@ ship "Bastion"
 		"D67-TM Shield Generator"
 		"Water Coolant System"
 		"Tactical Scanner"
-		"Laser Rifle" 7
+		"Laser Rifle" 17
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -541,7 +546,7 @@ ship "Behemoth"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
-		"Laser Rifle" 3
+		"Laser Rifle" 12
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -604,6 +609,7 @@ ship "Berserker"
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
+		"Laser Rifle" 1
 		
 		"X2700 Ion Thruster" 2
 		"X3200 Ion Steering" 2
@@ -657,6 +663,7 @@ ship "Blackbird"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		"Luxury Accommodations"
+		"Laser Rifle" 5
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -707,6 +714,7 @@ ship "Bounder"
 		"KP-6 Photovoltaic Array"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Laser Rifle" 2
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -750,6 +758,7 @@ ship "Boxwing"
 			"hit force" 180
 	outfits
 		"nGVF-AA Fuel Cell"
+		"Laser Rifle" 1
 
 		"X1050 Ion Engines" 2
 
@@ -796,7 +805,7 @@ ship "Bulk Freighter"
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D23-QP Shield Generator"
-		"Laser Rifle"
+		"Laser Rifle" 6
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -862,7 +871,7 @@ ship "Carrier"
 		"Large Radar Jammer" 2
 		"Water Coolant System"
 		"Brig"
-		"Laser Rifle" 40
+		"Laser Rifle" 100
 		"Fragmentation Grenades" 40
 		"Security Station"
 		"Tactical Scanner"
@@ -938,7 +947,7 @@ ship "Class C Freighter"
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
-		"Laser Rifle" 5
+		"Laser Rifle" 18
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -1005,6 +1014,7 @@ ship "Clipper"
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
+		"Laser Rifle" 3
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -1102,7 +1112,7 @@ ship "Corvette"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
-		"Laser Rifle" 3
+		"Laser Rifle" 8
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -1165,7 +1175,7 @@ ship "Cruiser"
 		"D67-TM Shield Generator"
 		"Large Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 20
+		"Laser Rifle" 80
 		"Fragmentation Grenades" 20
 		"Security Station"
 		"Tactical Scanner"
@@ -1235,6 +1245,7 @@ ship "Dagger"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
+		"Laser Rifle" 1
 		
 		"X1700 Ion Thruster" 2
 		"X1200 Ion Steering" 2
@@ -1288,7 +1299,7 @@ ship "Dreadnought"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
 		"Tactical Scanner"
-		"Laser Rifle" 25
+		"Laser Rifle" 85
 		
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
@@ -1350,6 +1361,7 @@ ship "Dropship"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
+		"Laser Rifle" 1
 		
 		"X1700 Ion Thruster" 2
 		"X1200 Ion Steering" 2
@@ -1402,7 +1414,7 @@ ship "Falcon"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 15
+		"Laser Rifle" 52
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -1462,6 +1474,7 @@ ship "Finch"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Laser Rifle" 1
 		
 		"Chipmunk Plasma Thruster" 2
 		"Chipmunk Plasma Steering" 2
@@ -1511,7 +1524,7 @@ ship "Firebird"
 		"nGVF-AA Fuel Cell"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
-		"Laser Rifle" 3
+		"Laser Rifle" 8
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -1566,6 +1579,7 @@ ship "Flivver"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Laser Rifle" 1
 		
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
@@ -1612,6 +1626,7 @@ ship "Freighter"
 		"nGVF-EE Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Laser Rifle" 2
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -1669,7 +1684,7 @@ ship "Frigate"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
-		"Laser Rifle" 5
+		"Laser Rifle" 20
 		"Fragmentation Grenades" 5
 		"Security Station"
 		
@@ -1731,6 +1746,7 @@ ship "Fury"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
+		"Laser Rifle" 1
 		
 		"X2700 Ion Thruster" 2
 		"X2200 Ion Steering" 2
@@ -1788,6 +1804,7 @@ ship "Gunboat"
 		"Outfit Scanner"
 		"Tactical Scanner"
 		"Brig"
+		"Laser Rifle" 7
 		
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -1841,6 +1858,7 @@ ship "Hauler"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
+		"Laser Rifle" 3
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -1899,7 +1917,7 @@ ship "Hauler II"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
-		"Laser Rifle"
+		"Laser Rifle" 3
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -1958,7 +1976,7 @@ ship "Hauler III"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
-		"Laser Rifle"
+		"Laser Rifle" 3
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -2017,6 +2035,7 @@ ship "Hawk"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
+		"Laser Rifle" 2
 		
 		"Greyhound Plasma Thruster" 2
 		"Greyhound Plasma Steering" 2
@@ -2065,6 +2084,7 @@ ship "Headhunter"
 		"KP-6 Photovoltaic Array"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
+		"Laser Rifle" 2
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -2114,6 +2134,7 @@ ship "Heavy Shuttle"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Laser Rifle" 1
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2162,6 +2183,7 @@ ship "Lance"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
+		"Laser Rifle" 1
 		
 		"X1700 Ion Thruster" 2
 		"X1200 Ion Steering" 2
@@ -2208,7 +2230,7 @@ ship "Leviathan"
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
 		"Liquid Helium Cooler"
-		"Laser Rifle" 15
+		"Laser Rifle" 43
 		
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -2268,7 +2290,7 @@ ship "Manta"
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
-		"Laser Rifle"
+		"Laser Rifle" 6
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -2328,7 +2350,7 @@ ship "Modified Argosy"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		"Brig"
-		"Laser Rifle" 2
+		"Laser Rifle" 5
 		
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
@@ -2391,7 +2413,7 @@ ship "Mule"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer" 2
 		"Ramscoop"
-		"Laser Rifle"
+		"Laser Rifle" 15
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -2450,7 +2472,7 @@ ship "Nest"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator" 2
 		"Large Radar Jammer"
-		"Laser Rifle" 2
+		"Laser Rifle" 5
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -2511,7 +2533,7 @@ ship "Osprey"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Laser Rifle" 3
+		"Laser Rifle" 9
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -2573,7 +2595,7 @@ ship "Protector"
 		"D67-TM Shield Generator"
 		"Small Radar Jammer" 3
 		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 6
+		"Laser Rifle" 30
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -2630,6 +2652,7 @@ ship "Quicksilver"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
 		"Cooling Ducts"
+		"Laser Rifle" 3
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -2683,6 +2706,7 @@ ship "Rainmaker"
 		"D14-RN Shield Generator"
 		"Large Radar Jammer"
 		"Tactical Scanner"
+		"Laser Rifle" 7
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2737,7 +2761,7 @@ ship "Raven"
 		"KP-6 Photovoltaic Panel" 2
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
-		"Laser Rifle" 2
+		"Laser Rifle" 6
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -2794,7 +2818,7 @@ ship "Roost"
 		"D41-HY Shield Generator" 4
 		"Large Radar Jammer"
 		"Tactical Scanner"
-		"Laser Rifle" 2
+		"Laser Rifle" 7
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -2856,6 +2880,7 @@ ship "Scout"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		"Ramscoop"
+		"Laser Rifle" 2
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -2958,7 +2983,7 @@ ship "Skein"
 		"D67-TM Shield Generator" 4
 		"Large Radar Jammer"
 		"Tactical Scanner"
-		"Laser Rifle" 4
+		"Laser Rifle" 7
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -3071,7 +3096,7 @@ ship "Splinter"
 		"D67-TM Shield Generator"
 		"Small Radar Jammer" 2
 		"Water Coolant System"
-		"Laser Rifle"
+		"Laser Rifle" 7
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -3174,6 +3199,7 @@ ship "Star Queen"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer" 3
 		"Luxury Accommodations"
+		"Laser Rifle" 41
 		
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -3271,7 +3297,7 @@ ship "Vanguard"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
 		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 4
+		"Laser Rifle" 23
 		
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -3339,6 +3365,7 @@ ship "Wasp"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
+		"Laser Rifle" 1
 		
 		"X2700 Ion Thruster" 2
 		"X2200 Ion Steering" 2

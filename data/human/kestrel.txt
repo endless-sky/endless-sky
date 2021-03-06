@@ -302,6 +302,7 @@ ship "Kestrel"
 		"D94-YV Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Tactical Scanner" 2
+		"Laser Rifle" 64
 		
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
