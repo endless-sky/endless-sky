@@ -400,7 +400,7 @@ outfit "Vareti Engine Block"
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
 	"mass" 137
-	"outfit space" -171
+	"outfit space" -168
 	"engine capacity" -137
 	"energy consumption" 10.90
 	"heat generation" 2.58
