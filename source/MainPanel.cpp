@@ -215,9 +215,13 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
-		Preferences::ZoomViewOut();
+		Preferences::StarZoomViewOut();
 	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)
-		Preferences::ZoomViewIn();
+		Preferences::StarZoomViewIn();
+	else if((key == SDLK_PAGEUP) && !command)
+		Preferences::HazeZoomViewOut();
+	else if((key == SDLK_PAGEDOWN) && !command)
+		Preferences::HazeZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
 	else

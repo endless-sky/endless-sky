@@ -90,9 +90,14 @@ void StarField::SetHaze(const Sprite *sprite)
 
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
+	double savedZoom = zoom;
+
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
 	{
+		// Modify zoom for first parallax layer
+		if(Preferences::Has("Parallax space"))
+			zoom = savedZoom * Preferences::StarViewZoom();	
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
 	
@@ -150,9 +155,16 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	if(!Preferences::Has("Draw background haze"))
 		return;
 	
+	// Modify zoom for second parallax layer
+	if(Preferences::Has("Parallax space"))
+		zoom = savedZoom * Preferences::HazeViewZoom();
+	
 	DrawList drawList;
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
+	
+	// Set zoom to max for haze, so they won't get culled prematurely
+	zoom = .25;
 	
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
