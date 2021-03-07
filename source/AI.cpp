@@ -1591,8 +1591,8 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	if(!parent)
 		return;
 	
-	const Body * formationLead = parent.get();
-	const FormationPattern * pattern = ship.GetFormationPattern();
+	const Body *formationLead = parent.get();
+	const FormationPattern *pattern = ship.GetFormationPattern();
 	
 	// First we retrieve the patterns available for the parent.
 	std::map<const FormationPattern *, FormationPositioner> * patterns = &formations[formationLead];
@@ -1884,6 +1884,10 @@ void AI::MoveEscort(Ship &ship, Command &command)
 			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
+		else if(ship.GetFormationPattern())
+			MoveInFormation(ship, command);
+		else
+			KeepStation(ship, command, parent);
 	}
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
