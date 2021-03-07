@@ -214,6 +214,8 @@ government "Independent (Killable)"
 	color .78 .36 .36
 	
 	"player reputation" 10
+	bribe .05
+	fine 0
 	# Nothing you do should anger the Killable Independents, as the
 	# should not reveal themselves to you.
 	"penalty for"
