@@ -153,14 +153,14 @@ outfit "Beam Laser"
 			"frame rate" 1
 		sound "laser"
 		"hit effect" "beam laser impact"
-		"inaccuracy" 1.0
+		"inaccuracy" 0.5
 		"velocity" 300
 		"lifetime" 1
-		"reload" 1.0
+		"reload" 1
 		"firing energy" 0.5
 		"firing heat" 1.2
-		"shield damage" 0.5
-		"hull damage" 0.65
+		"shield damage" 0.75
+		"hull damage" 0.975
 	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere."
 
 outfit "Laser Turret"
@@ -179,15 +179,15 @@ outfit "Laser Turret"
 		"hardpoint offset" -0.5 8.
 		sound "laser"
 		"hit effect" "beam laser impact"
-		"inaccuracy" 1.0
+		"inaccuracy" 0.5
 		"turret turn" 2.0
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 1
 		"firing heat" 2.4
-		"shield damage" 1.0
-		"hull damage" 1.3
+		"shield damage" 1.5
+		"hull damage" 1.95
 	description "Laser Turrets are hated by fighter pilots because it is nearly impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel almost instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
 
 effect "beam laser impact"
@@ -644,7 +644,7 @@ outfit "Meteor Missile"
 	thumbnail "outfit/meteor"
 	"mass" .2
 	"meteor capacity" -1
-	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 30 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
+	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 15 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
 
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
@@ -653,7 +653,7 @@ outfit "Meteor Missile Box"
 	thumbnail "outfit/meteor storage"
 	"mass" 2
 	"outfit space" -5
-	"meteor capacity" 15
+	"meteor capacity" 8
 	ammo "Meteor Missile"
 	description "The Meteor Missile Box is used to store extra ammunition for Meteor Missile Launchers."
 
@@ -665,7 +665,7 @@ outfit "Meteor Missile Launcher"
 	"outfit space" -10
 	"weapon capacity" -10
 	"gun ports" -1
-	"meteor capacity" 30
+	"meteor capacity" 15
 	weapon
 		sprite "projectile/meteor"
 			"no repeat"
@@ -715,7 +715,7 @@ outfit "Sidewinder Missile Rack"
 	thumbnail "outfit/sidewinder storage"
 	"mass" 2.4
 	"outfit space" -7
-	"sidewinder capacity" 23
+	"sidewinder capacity" 12
 	ammo "Sidewinder Missile"
 	description "The Sidewinder Missile Rack is used to store extra ammunition for Sidewinder Missile Launchers."
 
@@ -727,7 +727,7 @@ outfit "Sidewinder Missile Launcher"
 	"outfit space" -14
 	"weapon capacity" -14
 	"gun ports" -1
-	"sidewinder capacity" 45
+	"sidewinder capacity" 22
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -778,7 +778,7 @@ outfit "Javelin Storage Crate"
 	thumbnail "outfit/javelin storage"
 	"mass" 2
 	"outfit space" -6
-	"javelin capacity" 100
+	"javelin capacity" 50
 	ammo "Javelin"
 	description "The Javelin Storage Crate is used to store extra ammunition for Javelin Pods."
 
@@ -790,7 +790,7 @@ outfit "Javelin Pod"
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
-	"javelin capacity" 200
+	"javelin capacity" 100
 	weapon
 		sprite "projectile/javelin"
 		sound "javelin"
@@ -826,7 +826,7 @@ outfit "Torpedo Storage Rack"
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
 	"outfit space" -9
-	"torpedo capacity" 15
+	"torpedo capacity" 8
 	ammo "Torpedo"
 	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
 
@@ -838,7 +838,7 @@ outfit "Torpedo Launcher"
 	"outfit space" -25
 	"weapon capacity" -25
 	"gun ports" -1
-	"torpedo capacity" 30
+	"torpedo capacity" 15
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -888,7 +888,7 @@ outfit "Typhoon Storage Tube"
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
 	"outfit space" -10
-	"typhoon capacity" 15
+	"typhoon capacity" 8
 	ammo "Typhoon Torpedo"
 	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
 
@@ -900,7 +900,7 @@ outfit "Typhoon Launcher"
 	"outfit space" -35
 	"weapon capacity" -35
 	"gun ports" -1
-	"typhoon capacity" 30
+	"typhoon capacity" 15
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -949,7 +949,7 @@ outfit "Heavy Rocket Rack"
 	thumbnail "outfit/rocket storage"
 	"mass" 2
 	"outfit space" -7
-	"rocket capacity" 10
+	"rocket capacity" 5
 	ammo "Heavy Rocket"
 	description "The Heavy Rocket Rack is used to store extra ammunition for Heavy Rocket Launchers."
 
@@ -961,7 +961,7 @@ outfit "Heavy Rocket Launcher"
 	"outfit space" -20
 	"weapon capacity" -20
 	"gun ports" -1
-	"rocket capacity" 20
+	"rocket capacity" 10
 	weapon
 		sprite "projectile/rocket"
 			"frame rate" 4
@@ -1020,11 +1020,11 @@ outfit "Nuclear Missile"
 		"hit effect" "nuke residue slow" 10
 		"die effect" "missile death"
 		"inaccuracy" 2.0
-		"velocity" 3.0
-		"lifetime" 1600.0
-		"reload" 800.0
-		"firing energy" 20.0
-		"firing heat" 800.0
+		"velocity" 4.0
+		"lifetime" 1200.0
+		"reload" 400.0
+		"firing energy" 10.0
+		"firing heat" 400.0
 		"acceleration" .8
 		"drag" .1
 		"turn" 4
@@ -1033,9 +1033,9 @@ outfit "Nuclear Missile"
 		"optical tracking" 1
 		"trigger radius" 30
 		"blast radius" 150
-		"shield damage" 18000.0
-		"hull damage" 14000.0
-		"hit force" 8000.0
+		"shield damage" 9000.0
+		"hull damage" 7000.0
+		"hit force" 4000.0
 		"missile strength" 200
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
 	description "	[Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"

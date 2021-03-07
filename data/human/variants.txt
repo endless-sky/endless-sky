@@ -40,7 +40,7 @@ ship "Argosy" "Argosy (Laser)"
 ship "Argosy" "Argosy (Missile)"
 	outfits
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 165
+		"Meteor Missile" 84
 		"Meteor Missile Box" 3
 		"Anti-Missile Turret"
 		"Heavy Anti-Missile Turret"
@@ -88,7 +88,7 @@ ship "Argosy" "Argosy (Turret)"
 ship "Arrow" "Arrow (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Bullfrog Anti-Missile"
 		"Pebble Core"
 		"Supercapacitor" 2
@@ -104,9 +104,9 @@ ship "Arrow" "Arrow (Hai)"
 ship "Bactrian" "Bactrian (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 15
 		"Heavy Laser Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		"Fusion Reactor"
@@ -229,7 +229,7 @@ ship "Bastion" "Bastion (Scanner)"
 	outfits
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket" 10
 		"Blaster Turret" 3
 		"S3 Thermionic"
 		"LP144a Battery Pack"
@@ -247,7 +247,7 @@ ship "Bastion" "Bastion (Scanner)"
 ship "Behemoth" "Behemoth (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Pulse Turret" 6
 		"Boulder Reactor"
 		"Hai Ravine Batteries"
@@ -265,7 +265,7 @@ ship "Behemoth" "Behemoth (Hai)"
 ship "Behemoth" "Behemoth (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
-		Torpedo 60
+		Torpedo 30
 		"Quad Blaster Turret" 2
 		"Plasma Turret" 2
 		"Heavy Anti-Missile Turret" 2
@@ -290,7 +290,7 @@ ship "Behemoth" "Behemoth (Heavy)"
 ship "Behemoth" "Behemoth (Proton)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Proton Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		"Breeder Reactor"
@@ -315,7 +315,7 @@ ship "Behemoth" "Behemoth (Proton)"
 ship "Behemoth" "Behemoth (Speedy)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Heavy Laser Turret" 6
 		"Breeder Reactor"
 		"LP144a Battery Pack"
@@ -335,7 +335,7 @@ ship "Berserker" "Berserker (Afterburner)"
 	outfits
 		"Energy Blaster" 2
 		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin" 200
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
@@ -350,9 +350,9 @@ ship "Berserker" "Berserker (Afterburner)"
 ship "Berserker" "Berserker (Strike)"
 	outfits
 		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
+		"Heavy Rocket" 10
 		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile" 22
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D23-QP Shield Generator"
@@ -396,7 +396,7 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 	outfits
 		"Quad Blaster Turret" 5
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Fusion Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -411,7 +411,7 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 ship "Bulk Freighter" "Bulk Freighter (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Pulse Turret" 2
 		"Chameleon Anti-Missile" 3
 		"RT-I Radiothermal"
@@ -435,7 +435,7 @@ ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -456,7 +456,7 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -472,7 +472,7 @@ ship "Carrier" "Carrier (Jump)"
 	outfits
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile" 88
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"Laser Rifle" 100
@@ -508,7 +508,7 @@ ship "Carrier" "Carrier (Mark II)"
 	outfits
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile" 88
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"Armageddon Core"
@@ -543,9 +543,9 @@ ship "Carrier" "Carrier (Mark II)"
 ship "Clipper" "Clipper (Heavy)"
 	outfits
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket" 10
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"RT-I Radiothermal"
 		"Supercapacitor"
 		"Laser Rifle" 3
@@ -602,9 +602,9 @@ ship "Corvette" "Corvette (Hai)"
 ship "Corvette" "Corvette (Missile)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 15
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 159
+		"Sidewinder Missile" 80
 		"Sidewinder Missile Rack" 3
 		"Heavy Anti-Missile Turret" 2
 		"Fission Reactor"
@@ -641,7 +641,7 @@ ship "Corvette" "Corvette (Speedy)"
 ship "Cruiser" "Cruiser (Heavy)"
 	outfits
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket" 10
 		"Particle Cannon" 4
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
@@ -678,7 +678,7 @@ ship "Cruiser" "Cruiser (Jump)"
 		"Typhoon Launcher" 2
 		"Typhoon Torpedo" 60
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile" 88
 		"Electron Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Laser Rifle" 80
@@ -710,9 +710,9 @@ ship "Cruiser" "Cruiser (Jump)"
 ship "Cruiser" "Cruiser (Mark II)"
 	outfits
 		"Typhoon Launcher" 2
-		"Typhoon Torpedo" 60
+		"Typhoon Torpedo" 30
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile" 88
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"Armageddon Core"
@@ -744,7 +744,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Torpedo Launcher" 4
-		"Torpedo" 120
+		"Torpedo" 60
 		"Plasma Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		"Stack Core"
@@ -768,9 +768,9 @@ ship "Dreadnought" "Dreadnought (Jump)"
 ship "Falcon" "Falcon (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 15
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Fusion Reactor"
@@ -869,10 +869,10 @@ ship "Firebird" "Firebird (Laser)"
 ship "Firebird" "Firebird (Missile)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 90
+		"Meteor Missile" 46
 		"Meteor Missile Box" 2
 		"Torpedo Launcher" 2
-		"Torpedo" 75
+		"Torpedo" 38
 		"Torpedo Storage Rack"
 		"Heavy Laser Turret" 2
 		"Fission Reactor"
@@ -920,7 +920,7 @@ ship "Flivver" "Flivver (Hai)"
 ship "Flivver" "Flivver (Luxury)"
 	outfits
 		"Meteor Missile Launcher"
-		"Meteor Missile" 30
+		"Meteor Missile" 15
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -1042,9 +1042,9 @@ ship "Frigate" "Frigate (Mark II)"
 ship "Fury" "Fury (Bomber)"
 	outfits
 		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
+		"Heavy Rocket" 10
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
@@ -1085,7 +1085,7 @@ ship "Fury" "Fury (Heavy)"
 	outfits
 		"Proton Gun"
 		"Javelin Pod"
-		"Javelin" 200
+		"Javelin" 100
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -1111,9 +1111,9 @@ ship "Fury" "Fury (Laser)"
 ship "Fury" "Fury (Missile)"
 	outfits
 		"Javelin Pod"
-		"Javelin" 200
+		"Javelin" 100
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 75
+		"Meteor Missile" 38
 		"Meteor Missile Box"
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor" 3
@@ -1159,7 +1159,7 @@ ship "Gunboat" "Gunboat (Mark II)"
 ship "Hauler" "Hauler (Hai)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Quad Blaster Turret" 2
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
@@ -1181,7 +1181,7 @@ ship "Hauler" "Hauler (Hai)"
 ship "Hauler II" "Hauler II (Hai)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Quad Blaster Turret" 2
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
@@ -1203,7 +1203,7 @@ ship "Hauler II" "Hauler II (Hai)"
 ship "Hauler III" "Hauler III (Hai)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Quad Blaster Turret" 2
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
@@ -1225,9 +1225,9 @@ ship "Hauler III" "Hauler III (Hai)"
 ship "Hawk" "Hawk (Bomber)"
 	outfits
 		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
+		"Heavy Rocket" 10
 		"Torpedo Launcher"
-		"Torpedo" 30
+		"Torpedo" 15
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D41-HY Shield Generator"
@@ -1253,7 +1253,7 @@ ship "Hawk" "Hawk (Plasma)"
 ship "Hawk" "Hawk (Rocket)"
 	outfits
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket" 20
 		"RT-I Radiothermal"
 		"Supercapacitor" 2
 		"D41-HY Shield Generator"
@@ -1330,9 +1330,9 @@ ship "Headhunter" "Headhunter (Miner)"
 ship "Headhunter" "Headhunter (Strike)"
 	outfits
 		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin" 200
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Anti-Missile Turret"
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
@@ -1405,9 +1405,9 @@ ship "Leviathan" "Leviathan (Hai Weapons)"
 ship "Leviathan" "Leviathan (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 30
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"
@@ -1480,7 +1480,7 @@ ship "Manta" "Manta (Mark II)"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
@@ -1523,7 +1523,7 @@ ship "Manta" "Manta (Nuclear)"
 ship "Manta" "Manta (Proton)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Proton Gun" 4
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -1651,10 +1651,10 @@ ship "Modified Argosy" "Modified Argosy (Heavy)"
 ship "Modified Argosy" "Modified Argosy (Missile)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 105
+		"Meteor Missile" 54
 		"Meteor Missile Box" 3
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 30
 		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret"
 		"S3 Thermionic"
@@ -1688,7 +1688,7 @@ ship "Modified Argosy" "Modified Argosy (Smuggler)"
 ship "Mule" "Mule (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Heavy Laser Turret" 3
 		"Chameleon Anti-Missile"
 		"Boulder Reactor"
@@ -1726,7 +1726,7 @@ ship "Mule" "Mule (Hai Weapons)"
 ship "Mule" "Mule (Heavy)"
 	outfits
 		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile" 22
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
@@ -1746,7 +1746,7 @@ ship "Mule" "Mule (Heavy)"
 ship "Nest" "Nest (Sidewinder)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"S3 Thermionic"
@@ -1796,10 +1796,10 @@ ship "Osprey" "Osprey (Laser)"
 ship "Osprey" "Osprey (Missile)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 75
+		"Torpedo" 38
 		"Torpedo Storage Rack"
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 60
+		"Heavy Rocket" 30
 		"Heavy Rocket Rack" 2
 		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret"
@@ -1824,7 +1824,7 @@ ship "Osprey" "Osprey (Missile)"
 ship "Protector" "Protector (Laser)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Anti-Missile Turret" 2
 		"Heavy Laser Turret" 4
 		"Fusion Reactor"
@@ -1847,7 +1847,7 @@ ship "Protector" "Protector (Laser)"
 ship "Protector" "Protector (Proton)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Proton Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		"Fusion Reactor"
@@ -1912,7 +1912,7 @@ ship "Quicksilver" "Quicksilver (Scanner)"
 ship "Rainmaker" "Rainmaker (Mark II)"
 	outfits
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile" 88
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D67-TM Shield Generator"
@@ -1946,7 +1946,7 @@ ship "Raven" "Raven (Heavy)"
 	outfits
 		"Particle Cannon" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"Fission Reactor"
 		"Supercapacitor" 3
 		"D23-QP Shield Generator"
@@ -1966,7 +1966,7 @@ ship "Raven" "Raven (Heavy)"
 ship "Roost" "Roost (Sidewinder)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"LP144a Battery Pack"
@@ -1985,7 +1985,7 @@ ship "Scout" "Scout (Speedy)"
 		"Meteor Missile Launcher"
 		"Meteor Missile" 30
 		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile" 22
 		"Anti-Missile Turret"
 		"NT-200 Nucleovoltaic"
 		"Supercapacitor"
@@ -2002,7 +2002,7 @@ ship "Scout" "Scout (Speedy)"
 ship "Skein" "Skein (Sidewinder)"
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 44
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"LP144a Battery Pack"
@@ -2131,10 +2131,10 @@ ship "Star Queen" "Star Queen (Hai)"
 ship "Vanguard" "Vanguard (Missile)"
 	outfits
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 295
+		"Sidewinder Missile" 148
 		"Sidewinder Missile Rack" 5
 		"Torpedo Launcher" 3
-		"Torpedo" 120
+		"Torpedo" 61
 		"Torpedo Storage Rack" 2
 		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
@@ -2192,7 +2192,7 @@ ship "Wasp" "Wasp (Gatling)"
 ship "Wasp" "Wasp (Javelin)"
 	outfits
 		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin" 200
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -2209,7 +2209,7 @@ ship "Wasp" "Wasp (Meteor)"
 	outfits
 		"Energy Blaster"
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 30
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
