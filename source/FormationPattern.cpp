@@ -33,7 +33,7 @@ void FormationPattern::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 		if(child.Token(0) == "flippable" && child.Size()>=2)
-			for(int i = 1; i<child.Size(); ++i)
+			for(int i=1; i<child.Size(); i++)
 			{
 				if(child.Token(i) == "x")
 					flippable_x = true;
@@ -65,7 +65,7 @@ void FormationPattern::Load(const DataNode &node)
 				else if(grand.Token(0) == "centered")
 					line.centered = true;
 				else if(grand.Token(0) == "skip")
-					for(int i = 1; i < grand.Size(); ++i)
+					for(int i=1; i < grand.Size(); ++i)
 					{
 						if(grand.Token(i) == "first")
 							line.skipFirst = true;
@@ -300,7 +300,7 @@ void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
 	double scalingFactor = 1.;
 
 	// Parse all the keywords before the coordinate
-	for(int i = 1; i < node.Size() - 2; ++i)
+	for(int i=1; i < node.Size() - 2; i++)
 	{
 		if(node.Token(i) == "polar")
 			parsePolar = true;
