@@ -1886,8 +1886,6 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		}
 		else if(ship.GetFormationPattern())
 			MoveInFormation(ship, command);
-		else
-			KeepStation(ship, command, parent);
 	}
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
