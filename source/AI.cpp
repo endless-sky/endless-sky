@@ -1885,6 +1885,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
+		else if(ship.GetFormationPattern())
+			MoveInFormation(ship, command);
 		else
 			KeepStation(ship, command, parent);
 	}
