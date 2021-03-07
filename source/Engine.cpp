@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 #include "Audio.h"
+#include "CoreStartData.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -50,7 +51,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
-#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -227,14 +227,15 @@ Engine::Engine(PlayerInfo &player)
 			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 		}
 	
-	// Add all neighboring systems to the radar.
+	// Add all neighboring systems that the player has seen to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
 	const set<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
 		player.GetSystem()->JumpNeighbors(flagship->JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
-		radar[calcTickTock].AddPointer(
-			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
-			system->Position() - player.GetSystem()->Position());
+		if(player.HasSeen(*system))
+			radar[calcTickTock].AddPointer(
+				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
+				system->Position() - player.GetSystem()->Position());
 	
 	GameData::SetHaze(player.GetSystem()->Haze());
 }
@@ -1231,7 +1232,7 @@ void Engine::EnterSystem()
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
-	if(today <= GameData::Start().GetDate() + 4)
+	if(today <= player.StartData().GetDate() + 4)
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"));
 		Messages::Add(GameData::HelpMessage("basics 2"));
@@ -2137,9 +2138,10 @@ void Engine::FillRadar()
 		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
 			playerSystem->JumpNeighbors(flagship->JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
-			radar[calcTickTock].AddPointer(
-				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
-				system->Position() - playerSystem->Position());
+			if(player.HasSeen(*system))
+				radar[calcTickTock].AddPointer(
+					(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
+					system->Position() - playerSystem->Position());
 	}
 	
 	// Add viewport brackets.

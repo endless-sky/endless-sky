@@ -6,7 +6,7 @@
 # The MIT License (MIT)
 #
 # Copyright (c) 2015 Davide Kirchner
-# Copyright (c) 2020 tehhowch
+# Copyright (c) 2020 Benjamin Hauch
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -99,7 +99,7 @@ ifeq ($(needs_tarball),true)
 # Download / Unpack the tarball, and mark it as up-to-date (vs. the packaged-on date).
 scons-local-%.tar.gz:
 	@echo "No system installation of SCons, downloading version $(SCONS_VERSION)"
-	curl -sS -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/$@ > $@
+	curl -sSf -L http://sourceforge.net/projects/scons/files/scons-local/$(SCONS_VERSION)/$@ > $@
 	@touch $@
 scons-local: scons-local-$(SCONS_VERSION).tar.gz
 	@echo "Unpacking tarball into $@"

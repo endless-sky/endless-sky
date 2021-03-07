@@ -1257,7 +1257,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 
 event "zubenelhakrabi discovered"
 	system "Zubenelhakrabi"
-		pos -755.265 364.932
+		remove hidden
 
 mission "Sheragi Archaeology: The Emerald Sword 3"
 	landing

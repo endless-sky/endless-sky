@@ -349,11 +349,11 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			Messages::Add("Disengaging autopilot.");
 		autoPilot.Clear();
 	}
-	const Ship *flagship = player.Flagship();
 	
+	const Ship *flagship = player.Flagship();
 	if(!flagship || flagship->IsDestroyed())
 		return;
-
+	
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.");
 	
@@ -398,7 +398,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-
+	
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
@@ -531,7 +531,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		if(it.get() == flagship)
 		{
-			MovePlayer(*it, player, activeCommands);
+			// Player cannot do anything if the flagship is landing.
+			if(!flagship->IsLanding())
+				MovePlayer(*it, player, activeCommands);
 			continue;
 		}
 		
@@ -1144,6 +1146,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(oldTarget && person.IsTimid() && oldTarget->IsDisabled()
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
+	// Ships with 'plunders' personality always destroy the ships they have boarded.
+	if(oldTarget && person.Plunders() && !person.Disables() 
+			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
+		return oldTarget;
 	shared_ptr<Ship> parentTarget;
 	bool parentIsEnemy = (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	if(ship.GetParent() && !parentIsEnemy)
@@ -2953,7 +2959,8 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
-	bool spareDisabled = (person.Disables() || (person.Plunders() && ship.Cargo().Free()));
+	bool plunders = (person.Plunders() && ship.Cargo().Free());
+	bool disables = person.Disables();
 	
 	// Don't use weapons with firing force if you are preparing to jump.
 	bool isWaitingToJump = ship.Commands().Has(Command::JUMP | Command::WAIT);
@@ -3026,7 +3033,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, currentTarget, ShipEvent::BOARD);
-			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
+			if(currentTarget->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			// Don't fire secondary weapons at targets that have started jumping.
 			if(weapon->Icon() && currentTarget->IsEnteringHyperspace())
@@ -3061,7 +3068,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, target, ShipEvent::BOARD);
-			if(target->IsDisabled() && spareDisabled && !hasBoarded && !disabledOverride)
+			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			
 			Point p = target->Position() - start;
@@ -3372,7 +3379,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				activeCommands.Clear(Command::BOARD);
 		}
 	}
-	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace())
+	// Player cannot attempt to land while departing from a planet.
+	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace() && ship.Zoom() == 1.)
 	{
 		// Track all possible landable objects in the current system.
 		auto landables = vector<const StellarObject *>{};
@@ -3442,7 +3450,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						types.insert(planet->Noun());
 						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
 							distance += 10000.;
-					
+						
 						if(distance < closest)
 						{
 							ship.SetTargetStellar(object);
@@ -3495,6 +3503,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				ship.GetSystem()->JumpNeighbors(ship.JumpRange()) : ship.GetSystem()->Links());
 			for(const System *link : links)
 			{
+				// Not all systems in range are necessarily visible. Don't allow
+				// jumping to systems which haven't been seen.
+				if(!player.HasSeen(*link))
+					continue;
+				
 				Point direction = link->Position() - ship.GetSystem()->Position();
 				double match = ship.Facing().Unit().Dot(direction.Unit());
 				if(match > bestMatch)
