@@ -194,6 +194,8 @@ fleet "Korath Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
+	formation "Vee"
+	formation "Vee"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
@@ -206,6 +208,8 @@ fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
+	formation "Vee"
+	formation "Vee"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
@@ -218,6 +222,8 @@ fleet "Korath Home"
 	government "Korath"
 	names "korath"
 	fighters "korath"
+	formation "Vee"
+	formation "Vee"
 	cargo 3
 	personality
 		timid opportunistic
@@ -236,6 +242,8 @@ fleet "Kor Efret Home"
 	government "Kor Efret"
 	names "korath"
 	fighters "korath"
+	formation "Vee"
+	formation "Vee"
 	cargo 3
 	personality
 		timid
@@ -575,6 +583,8 @@ fleet "Large Kor Mereti"
 fleet "Kor Mereti Miners"
 	government "Kor Mereti"
 	names "kor mereti"
+	formation "Vee"
+	formation "Vee"
 	cargo 0
 	personality
 		mining harvests

@@ -11,6 +11,7 @@
 fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 3
 	personality
 		confusion 40
@@ -74,6 +75,7 @@ fleet "Small Southern Merchants"
 fleet "Large Southern Merchants"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 4
 	personality
 		confusion 30
@@ -159,6 +161,7 @@ fleet "Large Southern Merchants"
 fleet "Small Core Merchants"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 3
 	personality
 		confusion 30
@@ -225,6 +228,7 @@ fleet "Small Core Merchants"
 fleet "Large Core Merchants"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 4
 	personality
 		confusion 20
@@ -342,6 +346,7 @@ fleet "Large Core Merchants"
 fleet "Paradise Merchants"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 2
 	personality
 		confusion 50
@@ -405,6 +410,7 @@ fleet "Paradise Merchants"
 fleet "Small Northern Merchants"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 3
 	personality
 		confusion 40
@@ -474,6 +480,7 @@ fleet "Small Northern Merchants"
 fleet "Large Northern Merchants"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 4
 	personality
 		confusion 30
@@ -658,6 +665,7 @@ fleet "Large Northern Merchants"
 fleet "Small Human Merchants (Hai)"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 3
 	personality
 		confusion 40
@@ -719,6 +727,7 @@ fleet "Small Human Merchants (Hai)"
 fleet "Large Human Merchants (Hai)"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 4
 	personality
 		confusion 30
@@ -878,6 +887,7 @@ fleet "Large Human Merchants (Hai)"
 fleet "Human Miners"
 	government "Merchant"
 	names "civilian"
+	formation "Vee"
 	cargo 0
 	personality
 		confusion 20
@@ -900,6 +910,7 @@ fleet "Human Miners"
 fleet "Small Free Worlds"
 	government "Free Worlds"
 	names "free worlds small"
+	formation "Vee"
 	cargo 1
 	personality
 		heroic disables frugal opportunistic
@@ -961,6 +972,7 @@ fleet "Small Free Worlds"
 fleet "Large Free Worlds"
 	government "Free Worlds"
 	names "free worlds capital"
+	formation "Vee"
 	cargo 1
 	personality
 		heroic disables frugal opportunistic
@@ -1068,6 +1080,7 @@ fleet "Large Free Worlds"
 fleet "Small Militia"
 	government "Militia"
 	names "militia"
+	formation "Vee"
 	cargo 1
 	personality
 		heroic frugal
@@ -1123,6 +1136,7 @@ fleet "Small Militia"
 fleet "Large Militia"
 	government "Militia"
 	names "militia"
+	formation "Vee"
 	cargo 1
 	personality
 		heroic frugal
@@ -1192,6 +1206,7 @@ fleet "Large Militia"
 fleet "Small Republic"
 	government "Republic"
 	names "republic small"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1213,6 +1228,7 @@ fleet "Large Republic"
 	government "Republic"
 	names "republic capital"
 	fighters "republic fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1254,6 +1270,7 @@ fleet "Republic Logistics"
 	government "Republic"
 	names "republic capital"
 	fighters "republic fighter"
+	formation "Vee"
 	cargo 3
 	personality
 		heroic opportunistic
@@ -1306,6 +1323,7 @@ fleet "Navy Surveillance"
 	government "Republic"
 	names "republic capital"
 	fighters "republic fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		surveillance opportunistic
@@ -1319,6 +1337,7 @@ fleet "Small Deep Merchants"
 	government "Merchant"
 	names "deep"
 	fighters "deep fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic
@@ -1354,6 +1373,7 @@ fleet "Large Deep Merchants"
 	government "Merchant"
 	names "deep"
 	fighters "deep fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic
@@ -1416,6 +1436,7 @@ fleet "Small Deep Security"
 	government "Deep Security"
 	names "deep"
 	fighters "deep fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic
@@ -1445,6 +1466,7 @@ fleet "Large Deep Security"
 	government "Deep Security"
 	names "deep"
 	fighters "deep fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic
@@ -1504,6 +1526,7 @@ fleet "Large Deep Security"
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
 	names "republic small"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1525,6 +1548,7 @@ fleet "Large Oathkeeper"
 	government "Navy (Oathkeeper)"
 	names "republic capital"
 	fighters "republic fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1565,6 +1589,7 @@ fleet "Large Oathkeeper"
 fleet "Small Syndicate"
 	government "Syndicate"
 	names "syndicate small"
+	formation "Vee"
 	cargo 2
 	personality
 		heroic
@@ -1589,6 +1614,7 @@ fleet "Large Syndicate"
 	government "Syndicate"
 	names "syndicate capital"
 	fighters "syndicate fighter"
+	formation "Vee"
 	cargo 2
 	personality
 		heroic
@@ -1662,6 +1688,7 @@ fleet "Large Syndicate"
 fleet "Small Southern Pirates"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		disables plunders harvests
@@ -1732,6 +1759,7 @@ fleet "Small Southern Pirates"
 fleet "Large Southern Pirates"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders harvests
@@ -1842,6 +1870,7 @@ fleet "Large Southern Pirates"
 fleet "Small Independent"
 	government "Independent"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		disables plunders
@@ -1899,6 +1928,7 @@ fleet "Small Independent"
 fleet "Large Independent"
 	government "Independent"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -1960,6 +1990,7 @@ fleet "Large Independent"
 fleet "Small Core Pirates"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		disables plunders harvests
@@ -2001,6 +2032,7 @@ fleet "Small Core Pirates"
 fleet "Large Core Pirates"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders harvests
@@ -2075,6 +2107,7 @@ fleet "Large Core Pirates"
 fleet "Small Northern Pirates"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		disables plunders harvests
@@ -2136,6 +2169,7 @@ fleet "Small Northern Pirates"
 fleet "Large Northern Pirates"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders harvests
@@ -2240,6 +2274,7 @@ fleet "Large Northern Pirates"
 fleet "pirate raid"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		nemesis plunders harvests
@@ -2375,6 +2410,7 @@ fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"
 	names "syndicate capital"
 	fighters "syndicate fighter"
+	formation "Vee"
 	cargo 0
 	personality
 		heroic
@@ -2459,6 +2495,7 @@ fleet "Bounty Hunters"
 fleet "Marauder fleet I"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2498,6 +2535,7 @@ fleet "Marauder fleet I"
 fleet "Marauder fleet II"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2537,6 +2575,7 @@ fleet "Marauder fleet II"
 fleet "Marauder fleet III"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2576,6 +2615,7 @@ fleet "Marauder fleet III"
 fleet "Marauder fleet IV"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2619,6 +2659,7 @@ fleet "Marauder fleet IV"
 fleet "Marauder fleet V"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2662,6 +2703,7 @@ fleet "Marauder fleet V"
 fleet "Marauder fleet VI"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2705,6 +2747,7 @@ fleet "Marauder fleet VI"
 fleet "Marauder fleet VII"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2745,6 +2788,7 @@ fleet "Marauder fleet VII"
 fleet "Marauder fleet VIII"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2782,6 +2826,7 @@ fleet "Marauder fleet VIII"
 fleet "Marauder fleet IX"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders
@@ -2823,6 +2868,7 @@ fleet "Marauder fleet IX"
 fleet "Marauder fleet X"
 	government "Pirate"
 	names "pirate"
+	formation "Vee"
 	cargo 1
 	personality
 		plunders

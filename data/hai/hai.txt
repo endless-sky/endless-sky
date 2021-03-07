@@ -11,6 +11,7 @@
 fleet "Small Hai"
 	government "Hai"
 	names "hai"
+	formation "Vee"
 	cargo 3
 	personality
 		disables opportunistic
@@ -96,6 +97,7 @@ fleet "Small Hai"
 fleet "Large Hai"
 	government "Hai"
 	names "hai"
+	formation "Vee"
 	cargo 3
 	personality
 		disables opportunistic
@@ -200,6 +202,7 @@ fleet "Large Hai"
 fleet "Hai Surveillance"
 	government "Hai"
 	names "hai"
+	formation "Vee"
 	cargo 0
 	personality
 		surveillance unconstrained
@@ -222,6 +225,7 @@ fleet "Hai Surveillance"
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
+	formation "Vee"
 	cargo 1
 	personality
 		disables
@@ -238,6 +242,7 @@ fleet "Small Unfettered"
 fleet "Large Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
+	formation "Vee"
 	cargo 1
 	personality
 		disables
@@ -284,6 +289,7 @@ fleet "Large Unfettered"
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
+	formation "Vee"
 	cargo 1
 	personality
 		disables

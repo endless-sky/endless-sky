@@ -42,6 +42,7 @@ phrase "wanderer"
 fleet "Wanderer Freight"
 	government "Wanderer"
 	names "wanderer"
+	formation "Vee"
 	cargo 3
 	personality
 		timid
@@ -79,6 +80,7 @@ fleet "Wanderer Freight"
 fleet "Wanderer Drones"
 	government "Wanderer"
 	names "wanderer"
+	formation "Vee"
 	personality
 		surveillance
 	variant 4
@@ -91,6 +93,7 @@ fleet "Wanderer Drones"
 fleet "Wanderer Defense"
 	government "Wanderer"
 	names "wanderer"
+	formation "Vee"
 	personality
 		heroic opportunistic
 	variant 3
@@ -112,6 +115,7 @@ fleet "Wanderer Defense"
 fleet "Wanderer Flycatchers"
 	government "Wanderer"
 	names "wanderer"
+	formation "Vee"
 	personality
 		swarming
 		heroic
@@ -127,6 +131,7 @@ fleet "Wanderer Flycatchers"
 fleet "Wanderer Kor Efret Traders"
 	government "Wanderer"
 	names "wanderer"
+	formation "Vee"
 	cargo 3
 	personality
 		timid
