@@ -1591,8 +1591,8 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	if(!parent)
 		return;
 	
-	const Body * formationLead = parent.get();
-	const FormationPattern * pattern = ship.GetFormationPattern();
+	const Body *formationLead = parent.get();
+	const FormationPattern *pattern = ship.GetFormationPattern();
 	
 	// First we retrieve the patterns available for the parent.
 	std::map<const FormationPattern *, FormationPositioner> * patterns = &formations[formationLead];
@@ -1898,6 +1898,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
+		else if(ship.GetFormationPattern())
+			MoveInFormation(ship, command);
 		else
 			KeepStation(ship, command, parent);
 	}
