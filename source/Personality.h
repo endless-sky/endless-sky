@@ -48,6 +48,7 @@ public:
 	bool IsCoward() const;
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
+	bool IsEvasive() const;
 	
 	// Mission NPC states:
 	bool IsStaying() const;
@@ -64,7 +65,6 @@ public:
 	bool Harvests() const;
 	bool IsSwarming() const;
 	bool IsRoving() const;
-	
 	bool IsHiding() const;
 
 	// Special flags:

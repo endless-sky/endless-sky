@@ -611,7 +611,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
-		if(isPresent && !personality.IsSwarming())
+		if(isPresent && !personality.IsSwarming() && !personality.IsEvasive())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
@@ -702,6 +702,16 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(isPresent && personality.IsHiding() && !isStranded)
 		{
 			command |= Command::CLOAK;
+		}
+		
+		// Evasive ships will run away from other ships
+		if(isPresent && personality.IsEvasive() && !isStranded)
+		{
+			if(DoEvasive(*it, command))
+			{
+				it->SetCommands(command);
+				continue;
+			}
 		}
 
 		if(isPresent && personality.IsSwarming() && !isStranded)
@@ -1097,6 +1107,10 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 // Pick a new target for the given ship.
 shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 {
+	// If this ship is evasive, it will not fight.
+	if(ship.GetPersonality().IsEvasive())
+		return nullptr;
+	
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
@@ -2585,6 +2599,43 @@ void AI::DoRoving(Ship &ship, Command &command)
         Point newTarget = Angle::Random().Unit() * Random::Real() * 3000;
         ship.SetTargetPosition(newTarget);
     }
+}
+
+
+
+bool AI::DoEvasive(Ship &ship, Command &command)
+{
+	// Create a list of optimal target positions directly away from each enemy.
+	vector<Point> targets;
+	for(const auto otherShip : GetShipsList(ship, true))
+	{
+		
+		double maxRange = 100;
+		for(const auto weapon : otherShip->Weapons())
+		{
+			if(weapon.CanAim())
+				maxRange = max(weapon.GetOutfit()->Range(), maxRange);
+		}
+		
+		if(ship.Position().Distance(otherShip->Position()) <= maxRange)
+			targets.push_back(Point(otherShip->Position().X() + maxRange - ship.Position().X(), otherShip->Position().Y() + maxRange - ship.Position().Y()) * -15);
+	}
+	
+	// If there are any enemies that are close enough to be moved away from, average all the optimal paths
+	// and take the result.
+	if(targets.size() > 0)
+	{
+		auto targetAvg = Point();
+		for(const auto target : targets)
+			targetAvg += target;
+		targetAvg /= targets.size();
+		
+		MoveTo(ship, command, targetAvg, Point(), 0, 0);
+		
+		return true;
+	}
+	
+	return false;
 }
 
 
