@@ -3211,7 +3211,7 @@ ship "Star Queen"
 		
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
-		"AR120 Reverse Thruster"
+		"X1100 Ion Reverse Engines"
 		"Hyperdrive"
 		
 	engine -18.5 115
