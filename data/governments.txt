@@ -216,7 +216,7 @@ government "Independent (Killable)"
 	"player reputation" 10
 	bribe .05
 	fine 0
-	# Nothing you do should anger the Killable Independents, as the
+	# Nothing you do should anger the Killable Independents, as they
 	# should not reveal themselves to you.
 	"penalty for"
 		disable 0
