@@ -684,12 +684,12 @@ outfit "Meteor Missile Launcher"
 		"firing heat" 40.0
 		"acceleration" 1
 		"drag" .1
-		"turn" 1.35
-		"homing" 3
-		"infrared tracking" .8
+		"turn" 1.8
+		"homing" 1
+		"infrared tracking" .65
 		"shield damage" 520.0
 		"hull damage" 320.0
-		"hit force" 440.0
+		"hit force" 220.0
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 
@@ -740,7 +740,7 @@ outfit "Sidewinder Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 8.0
 		"velocity" 7.0
-		"lifetime" 940.0
+		"lifetime" 700.0
 		"reload" 120.0
 		"firing energy" 2.0
 		"firing heat" 30.0
@@ -850,8 +850,8 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 10.0
-		"velocity" 3.0
-		"lifetime" 1200.0
+		"velocity" 3.5
+		"lifetime" 1800
 		"reload" 300.0
 		"firing energy" 4.0
 		"firing heat" 90.0
@@ -912,8 +912,8 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 10.0
-		"velocity" 2.5
-		"lifetime" 1200.0
+		"velocity" 3
+		"lifetime" 2200.0
 		"reload" 240.0
 		"firing energy" 8.0
 		"firing heat" 100.0
@@ -924,7 +924,7 @@ outfit "Typhoon Launcher"
 		"optical tracking" .9
 		"shield damage" 1760.0
 		"hull damage" 1760.0
-		"hit force" 900.0
+		"hit force" 450.0
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 
