@@ -227,6 +227,7 @@ outfit "Asteroid Scanner"
 	category "Systems"
 	cost 122000
 	thumbnail "outfit/asteroid scanner"
+	miner 1
 	"mass" 6
 	"outfit space" -6
 	"asteroid scan power" 40
