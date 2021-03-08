@@ -18,12 +18,12 @@ ship "Aphid"
 		"hull" 1400
 		"required crew" 1
 		"bunks" 5
-		"mass" 100
+		"mass" 242
 		"drag" 1.9
 		"heat dissipation" .90
 		"fuel capacity" 400
-		"cargo space" 51
-		"outfit space" 185
+		"cargo space" 131
+		"outfit space" 475
 		"weapon capacity" 37
 		"engine capacity" 48
 		weapon
@@ -73,12 +73,12 @@ ship "Centipede"
 		"hull" 2400
 		"required crew" 35
 		"bunks" 131
-		"mass" 187
+		"mass" 2184
 		"drag" 3.9
 		"heat dissipation" .75
 		"fuel capacity" 600
-		"cargo space" 38
-		"outfit space" 375
+		"cargo space" 522
+		"outfit space" 5148
 		"weapon capacity" 78
 		"engine capacity" 88
 		weapon
@@ -190,12 +190,12 @@ ship "Geocoris"
 		"hull" 6200
 		"required crew" 15
 		"bunks" 56
-		"mass" 810
+		"mass" 10324
 		"drag" 17.1
 		"heat dissipation" 0.45
 		"fuel capacity" 800
-		"cargo space" 761
-		"outfit space" 582
+		"cargo space" 11566
+		"outfit space" 8845
 		"weapon capacity" 172
 		"engine capacity" 94
 		weapon
@@ -341,12 +341,12 @@ ship "Lightning Bug"
 		"hull" 1700
 		"required crew" 4
 		"bunks" 10
-		"mass" 220
+		"mass" 702
 		"drag" 3.8
 		"heat dissipation" .85
 		"fuel capacity" 600
-		"cargo space" 73
-		"outfit space" 278
+		"cargo space" 388
+		"outfit space" 1478
 		"weapon capacity" 87
 		"engine capacity" 93
 		weapon
@@ -421,13 +421,13 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 168
+		"mass" 16860
 		"drag" 3.55
 		"hull repair rate" 1
 		"heat dissipation" .5
 		"fuel capacity" 300
-		"cargo space" 71
-		"outfit space" 354
+		"cargo space" 869
+		"outfit space" 4331
 		"weapon capacity" 144
 		"engine capacity" 76
 		weapon
@@ -559,12 +559,12 @@ ship "Shield Beetle"
 		"hull" 9800
 		"required crew" 47
 		"bunks" 95
-		"mass" 650
+		"mass" 5097
 		"drag" 8.8
 		"heat dissipation" .60
 		"fuel capacity" 500
-		"cargo space" 142
-		"outfit space" 798
+		"cargo space" 1495
+		"outfit space" 8402
 		"weapon capacity" 333
 		"engine capacity" 150
 		weapon
@@ -747,12 +747,12 @@ ship "Solifuge"
 		"hull" 11000
 		"required crew" 62
 		"bunks" 118
-		"mass" 925
+		"mass" 5360
 		"drag" 15.4
 		"heat dissipation" .42
 		"fuel capacity" 600
-		"cargo space" 142
-		"outfit space" 828
+		"cargo space" 1516
+		"outfit space" 8837
 		"weapon capacity" 342
 		"engine capacity" 166
 		weapon
