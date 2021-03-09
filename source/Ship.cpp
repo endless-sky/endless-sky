@@ -1775,7 +1775,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / (mass/60));
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
