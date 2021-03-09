@@ -1480,7 +1480,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				int i = Random::Int(outline.size() - 1);
 				
 				// Position the leak along the outline of the ship, facing outward.
-				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
+				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5 * Scale();
 				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
 			}
 		for(Leak &leak : activeLeaks)
@@ -3136,7 +3136,7 @@ void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, doubl
 {
 	// Rather than exactly compute the distance between the hazard origin and
 	// the closest point on the ship, estimate it using the mask's Radius.
-	double distanceTraveled = position.Length() - GetMask().Radius();
+	double distanceTraveled = position.Length() - GetMask().Radius() * Scale();
 	TakeDamage(*hazard, strength, distanceTraveled, Point(), hazard->BlastRadius() > 0.);
 	for(const auto &effect : hazard->HitEffects())
 		CreateSparks(visuals, effect.first, effect.second * strength);
@@ -3751,7 +3751,7 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 	{
 		Point point((Random::Real() - .5) * Width(),
 			(Random::Real() - .5) * Height());
-		if(GetMask().Contains(point, Angle()))
+		if(GetMask().Contains(point, Angle(), Scale()))
 		{
 			// Pick an explosion.
 			int type = Random::Int(explosionTotal);
@@ -3801,7 +3801,7 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		
 		Point point((Random::Real() - .5) * Width(),
 			(Random::Real() - .5) * Height());
-		if(GetMask().Contains(point, Angle()))
+		if(GetMask().Contains(point, Angle(), Scale()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
 }
@@ -3822,7 +3822,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
 		// Rather than exactly compute the distance between the explosion and
 		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (damagePosition - position).Length() - GetMask().Radius());
+		double d = max(0., (damagePosition - position).Length() - GetMask().Radius() * Scale());
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}

@@ -185,7 +185,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
-			double range = mask.Collide(offset, to - from, it->body->Facing());
+			double range = mask.Collide(offset, to - from, it->body->Facing(), it->body->Scale());
 			
 			if(range < closest)
 			{
@@ -259,7 +259,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
-			double range = mask.Collide(offset, to - from, it->body->Facing());
+			double range = mask.Collide(offset, to - from, it->body->Facing(), it->body->Scale());
 			
 			if(range < closest)
 			{
@@ -358,7 +358,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 				Point offset = center - it->body->Position();
 				double length = offset.Length();
 				if((length <= outer && length >= inner)
-					|| mask.WithinRing(offset, it->body->Facing(), inner, outer))
+					|| mask.WithinRing(offset, it->body->Facing(), it->body->Scale(), inner, outer))
 					result.push_back(it->body);
 			}
 		}

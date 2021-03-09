@@ -62,18 +62,18 @@ const Sprite *Body::GetSprite() const
 
 
 
-// Get the width of this object, in world coordinates (i.e. taking zoom into account).
+// Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Width() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
 }
 
 
 
-// Get the height of this object, in world coordinates (i.e. taking zoom into account).
+// Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Height() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
 }
 
 
@@ -147,7 +147,7 @@ const Angle &Body::Facing() const
 // and transform that should be applied to the sprite before drawing it.
 Point Body::Unit() const
 {
-	return angle.Unit() * (.5 * Zoom());
+	return angle.Unit() * (.5 * Zoom()) * Scale();
 }
 
 
@@ -156,6 +156,13 @@ Point Body::Unit() const
 double Body::Zoom() const
 {
 	return max(zoom, 0.f);
+}
+
+
+
+double Body::Scale() const
+{
+	return static_cast<double>(scale);
 }
 
 
@@ -196,6 +203,8 @@ void Body::LoadSprite(const DataNode &node)
 			frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
+		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
+			scale = static_cast<float>(child.Value(1));
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
@@ -230,6 +239,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
+		if(scale != 1.f)
+			out.Write("scale", scale);
 		if(randomize)
 			out.Write("random start frame");
 		if(!repeat)
