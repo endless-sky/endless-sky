@@ -406,7 +406,7 @@ outfit "Vareti Engine Block"
 	"heat generation" 2.58
 	"thrust" 93.9
 	"thrusting heat" 6.7
-	"turn" 2288.2
+	"turn" 2333.9
 	"turning heat" 3.32
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
