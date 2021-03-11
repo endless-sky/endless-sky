@@ -200,6 +200,33 @@ effect "beam laser impact"
 	"velocity scale" -.005
 
 
+outfit "Mining Laser"
+	category "Guns"
+	cost 29000
+	thumbnail "outfit/mining laser"
+	"mass" 6
+	"outfit space" -6
+	"weapon capacity" -6
+	"gun ports" -1
+	miner 1
+	"asteroid scan power" 5
+	weapon
+		sprite "projectile/mining laser"
+			"frame rate" 1
+		sound "laser"
+		"hit effect" "beam laser impact"
+		"inaccuracy" 1
+		"velocity" 50
+		"lifetime" 1
+		"reload" 1
+		"firing energy" .5
+		"firing heat" 1.2
+		"shield damage" 0.1
+		"hull damage" 1.5
+	description "While it was the Deep that developped the militarized laser beam in common use today, short range mining lasers have been a mainstay of human asteroid mining since the dawn of spaceflight. Given their strength at drilling through rock and metal some people do use them as weapons, although their inefficacity against shields and short range have long since sidelined them from serious combat."
+	description "	This mining laser comes equipped with an extremely short range asteroid targetting scanner as well as mining algorythms. As such, drones and fighters that have it installed will automatically engage in mining when launched."
+
+
 outfit "Heavy Laser"
 	category "Guns"
 	cost 60000
