@@ -822,6 +822,46 @@ outfit "Sidewinder Missile Launcher"
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 
+outfit "Sidewinder Missile Pod"
+	category "Secondary Weapons"
+	cost 60000
+	thumbnail "outfit/sidewinder pod"
+	"mass" 3
+	"outfit space" -4
+	"weapon capacity" -3
+	"gun ports" -1
+	"sidewinder capacity" 4
+	weapon
+		sprite "projectile/sidewinder"
+			"no repeat"
+			"frame rate" .25
+		sound "sidewinder"
+		ammo "Sidewinder Missile"
+		icon "icon/sidewinder"
+		"fire effect" "sidewinder fire"
+		"die effect" "missile death"
+		"hit effect" "missile hit"
+		"inaccuracy" 8.0
+		"velocity" 7.0
+		"lifetime" 700.0
+		"reload" 300.0
+		"burst count" 4
+		"burst reload" 120
+		"firing energy" 2.0
+		"firing heat" 30.0
+		"acceleration" 1.2
+		"drag" .1
+		"turn" 4
+		"homing" 4
+		"radar tracking" .9
+		"shield damage" 360.0
+		"hull damage" 250.0
+		"hit force" 340.0
+		"missile strength" 12
+	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
+	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
+	description "	Sidewinder Missile Pods are compact pods designed to allow small ships to carry a single set of missiles which they can fire quickly. While they can be paired with missiles boxes, their reracking mechanisms are significantly slower than those on the larger launchers."
+
 effect "sidewinder fire"
 	sprite "effect/sidewinder fire"
 		"no repeat"
@@ -875,6 +915,37 @@ outfit "Javelin Pod"
 		"missile strength" 3
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
+
+outfit "Javelin Pod"
+	category "Secondary Weapons"
+	cost 20000
+	thumbnail "outfit/javelin mini pod"
+	"mass" 1
+	"outfit space" -3
+	"weapon capacity" -3
+	"gun ports" -1
+	"javelin capacity" 20
+	weapon
+		sprite "projectile/javelin"
+		sound "javelin"
+		ammo "Javelin"
+		icon "icon/javelin"
+		"hit effect" "tiny explosion"
+		"inaccuracy" 2.0
+		"velocity" 5.0
+		"lifetime" 120.0
+		"reload" 100.0
+		"burst count" 20
+		"burst reload" 25
+		"firing energy" 0.4
+		"firing heat" 24.0
+		"shield damage" 96.0
+		"hull damage" 52.0
+		"hit force" 100.0
+		"missile strength" 3
+	description "The Javelin Mini Pod fires a rapid stream of unguided missiles. They do far more damage than any gun of a comparable size, and thus are attractive armaments for fighters and drones, but once a ship has expended all of its ammunition it must leave combat and return to its carrier where it can rearm, which makes Javelins less useful in protracted battles. This is particularly problematic for the mini pod, as it has a much smaller capacity than the normal pod."
+	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
+	description "	Javelin Mini Pods are compact systems designed to allow small ships to carry a single volley which they can fire quickly. While they can be paired with storage crates, their reracking mechanisms are significantly slower than those on the larger launchers."
 
 
 outfit "Torpedo"
@@ -1051,6 +1122,42 @@ outfit "Heavy Rocket Launcher"
 		"hit force" 1200.0
 		"missile strength" 16
 	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+
+outfit "Heavy Rocket Pod"
+	category "Secondary Weapons"
+	cost 40000
+	thumbnail "outfit/rocket pod"
+	"mass" 3
+	"outfit space" -5
+	"weapon capacity" -5
+	"gun ports" -1
+	"rocket capacity" 2
+	weapon
+		sprite "projectile/rocket"
+			"frame rate" 4
+		sound "rocket"
+		ammo "Heavy Rocket"
+		icon "icon/rocket"
+		"hit effect" "heavy rocket hit"
+		"die effect" "small explosion"
+		"inaccuracy" 2.0
+		"velocity" 4.0
+		"lifetime" 250.0
+		"reload" 1000.0
+		"burst count" 2
+		"burst reload" 400
+		"firing energy" 2.0
+		"firing heat" 500.0
+		"acceleration" .8
+		"drag" .1
+		"trigger radius" 20
+		"blast radius" 50
+		"shield damage" 1700.0
+		"hull damage" 1440.0
+		"hit force" 1200.0
+		"missile strength" 16
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Rocket Pods are compact launchers designed to allow small ships to carry and launch single pair of heavy rockets. While some pilots prefer pods over launchers due to how fast they can launch their initial pair of rockets, the reloading mechanism that pulls from rocket racks is significantly slower than that of the full sized launchers. Thus if one can fit a launcher, it is usually a better choice than trying to pair a pod with a rack."
 
 effect "heavy rocket hit"
 	sprite "effect/explosion/huge"
