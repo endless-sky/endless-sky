@@ -18,7 +18,7 @@ ship "Aerie"
 		"hull" 1900
 		"required crew" 10
 		"bunks" 28
-		"mass" 130
+		"mass" 260
 		"drag" 4.1
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -196,7 +196,7 @@ ship "Auxiliary"
 		"hull" 5900
 		"required crew" 87
 		"bunks" 250
-		"mass" 820
+		"mass" 1540
 		"drag" 13.3
 		"heat dissipation" .45
 		"fuel capacity" 900
@@ -301,7 +301,7 @@ ship "Bactrian"
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 940
+		"mass" 1820
 		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
@@ -453,7 +453,7 @@ ship "Bastion"
 		"hull" 4700
 		"required crew" 17
 		"bunks" 40
-		"mass" 580
+		"mass" 780
 		"drag" 10.3
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -578,7 +578,7 @@ ship "Berserker"
 		"hull" 500
 		"required crew" 1
 		"bunks" 2
-		"mass" 110
+		"mass" 90
 		"drag" 2.2
 		"heat dissipation" .85
 		"fuel capacity" 400
@@ -828,7 +828,7 @@ ship "Carrier"
 		"hull" 8300
 		"required crew" 111
 		"bunks" 184
-		"mass" 910
+		"mass" 1640
 		"drag" 17.7
 		"heat dissipation" .45
 		"fuel capacity" 700
@@ -1067,7 +1067,7 @@ ship "Corvette"
 		"hull" 800
 		"required crew" 8
 		"bunks" 32
-		"mass" 150
+		"mass" 290
 		"drag" 3.5
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -1131,7 +1131,7 @@ ship "Cruiser"
 		"hull" 6400
 		"required crew" 81
 		"bunks" 136
-		"mass" 680
+		"mass" 1280
 		"drag" 10.1
 		"heat dissipation" .45
 		"fuel capacity" 600
@@ -1251,7 +1251,7 @@ ship "Dreadnought"
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
-		"mass" 630
+		"mass" 1240
 		"drag" 10.1
 		"heat dissipation" .65
 		"fuel capacity" 600
@@ -1362,7 +1362,7 @@ ship "Falcon"
 		"hull" 3700
 		"required crew" 52
 		"bunks" 75
-		"mass" 510
+		"mass" 910
 		"drag" 6.7
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -1472,7 +1472,7 @@ ship "Firebird"
 		"hull" 3400
 		"required crew" 7
 		"bunks" 22
-		"mass" 290
+		"mass" 460
 		"drag" 4.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -1630,7 +1630,7 @@ ship "Frigate"
 		"hull" 2500
 		"required crew" 21
 		"bunks" 44
-		"mass" 310
+		"mass" 490
 		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -1746,7 +1746,7 @@ ship "Gunboat"
 		"hull" 1400
 		"required crew" 7
 		"bunks" 12
-		"mass" 150
+		"mass" 200
 		"drag" 3.1
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -1977,7 +1977,7 @@ ship "Hawk"
 		"hull" 500
 		"required crew" 2
 		"bunks" 4
-		"mass" 150
+		"mass" 110
 		"drag" 2.1
 		"heat dissipation" .8
 		"fuel capacity" 300
@@ -2025,7 +2025,7 @@ ship "Headhunter"
 		"hull" 700
 		"required crew" 2
 		"bunks" 4
-		"mass" 120
+		"mass" 160
 		"drag" 2.6
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2165,7 +2165,7 @@ ship "Leviathan"
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 480
+		"mass" 950
 		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -2225,7 +2225,7 @@ ship "Manta"
 		"hull" 1500
 		"required crew" 6
 		"bunks" 10
-		"mass" 170
+		"mass" 300
 		"drag" 4.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2282,7 +2282,7 @@ ship "Modified Argosy"
 		"hull" 1900
 		"required crew" 5
 		"bunks" 12
-		"mass" 250
+		"mass" 280
 		"drag" 6.2
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2344,7 +2344,7 @@ ship "Mule"
 		"hull" 4400
 		"required crew" 14
 		"bunks" 43
-		"mass" 320
+		"mass" 550
 		"drag" 5.7
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -2406,7 +2406,7 @@ ship "Nest"
 		"hull" 3700
 		"required crew" 5
 		"bunks" 14
-		"mass" 250
+		"mass" 410
 		"drag" 10.5
 		"heat dissipation" .67
 		"fuel capacity" 500
@@ -2467,7 +2467,7 @@ ship "Osprey"
 		"hull" 1600
 		"required crew" 9
 		"bunks" 24
-		"mass" 270
+		"mass" 450
 		"drag" 5.9
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -2528,7 +2528,7 @@ ship "Protector"
 		"hull" 6500
 		"required crew" 30
 		"bunks" 69
-		"mass" 500
+		"mass" 930
 		"drag" 10.3
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2589,7 +2589,7 @@ ship "Quicksilver"
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
-		"mass" 120
+		"mass" 160
 		"drag" 2.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2638,7 +2638,7 @@ ship "Rainmaker"
 		"hull" 1200
 		"required crew" 7
 		"bunks" 14
-		"mass" 180
+		"mass" 220
 		"drag" 3.8
 		"heat dissipation" .6
 		"fuel capacity" 500
@@ -2694,7 +2694,7 @@ ship "Raven"
 		"hull" 1400
 		"required crew" 6
 		"bunks" 13
-		"mass" 130
+		"mass" 170
 		"drag" 3.7
 		"heat dissipation" .8
 		"fuel capacity" 500
@@ -2749,7 +2749,7 @@ ship "Roost"
 		"hull" 5200
 		"required crew" 7
 		"bunks" 16
-		"mass" 360
+		"mass" 540
 		"drag" 11.5
 		"heat dissipation" .67
 		"fuel capacity" 600
@@ -2913,7 +2913,7 @@ ship "Skein"
 		"hull" 6700
 		"required crew" 7
 		"bunks" 18
-		"mass" 470
+		"mass" 670
 		"drag" 12.5
 		"heat dissipation" .71
 		"fuel capacity" 700
@@ -3025,7 +3025,7 @@ ship "Splinter"
 		"hull" 1700
 		"required crew" 7
 		"bunks" 21
-		"mass" 250
+		"mass" 420
 		"drag" 4.0
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -3220,7 +3220,7 @@ ship "Vanguard"
 		"hull" 6000
 		"required crew" 23
 		"bunks" 45
-		"mass" 500
+		"mass" 850
 		"drag" 8
 		"heat dissipation" .6
 		"fuel capacity" 400
