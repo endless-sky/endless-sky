@@ -68,12 +68,7 @@ public:
 		
 		// Copying a bay does not copy the ship inside it.
 		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
-		Bay &operator=(const Bay &b)
-		{
-			*this = Bay(b);
-			ship.reset();
-			return *this;
-		}
+		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
