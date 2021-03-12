@@ -720,6 +720,45 @@ outfit "Meteor Missile Launcher"
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 
+outfit "Meteor Missile Pod"
+	category "Secondary Weapons"
+	cost 15000
+	thumbnail "outfit/meteor pod"
+	"mass" 4
+	"outfit space" -5
+	"weapon capacity" -5
+	"gun ports" -1
+	"meteor capacity" 4
+	weapon
+		sprite "projectile/meteor"
+			"no repeat"
+			"frame rate" .25
+		sound "meteor"
+		ammo "Meteor Missile"
+		icon "icon/meteor"
+		"fire effect" "meteor fire"
+		"die effect" "missile death"
+		"hit effect" "missile hit"
+		"inaccuracy" 10.0
+		"velocity" 5.5
+		"lifetime" 980.0
+		"reload" 320.0
+		"burst count" 4
+		"burst reload" 80
+		"firing energy" 2.0
+		"firing heat" 40.0
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.8
+		"homing" 1
+		"infrared tracking" .65
+		"shield damage" 520.0
+		"hull damage" 320.0
+		"hit force" 220.0
+		"missile strength" 6
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
+	description "Meteor Missile Pods are compact pods designed to allow small ships to carry a single wave of missiles in a quick burst. While they can be paired with missiles boxes, their reracking mechanisms are significantly slower than those on the larger launchers."
+
 effect "meteor fire"
 	sprite "effect/meteor fire"
 		"no repeat"
