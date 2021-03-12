@@ -916,7 +916,7 @@ outfit "Javelin Pod"
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 
-outfit "Javelin Pod"
+outfit "Javelin Mini Pod"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/javelin mini pod"
