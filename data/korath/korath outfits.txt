@@ -79,6 +79,7 @@ outfit "Small Heat Shunt"
 	thumbnail "outfit/small heat shunt"
 	"mass" 7
 	"outfit space" -7
+	"energy consumption" 3
 	"cooling" 13.5
 	description "The sheer inefficiency of most Korath equipment has forced them to become exceptionally good at one thing: dealing with large amounts of waste heat."
 
@@ -88,6 +89,7 @@ outfit "Large Heat Shunt"
 	thumbnail "outfit/large heat shunt"
 	"mass" 24
 	"outfit space" -24
+	"energy consumption" 5
 	"cooling" 54
 	description "Without these powerful cooling systems, most Korath warships would overheat within seconds as soon as they began to fire their weapons."
 

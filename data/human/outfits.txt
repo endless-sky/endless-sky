@@ -15,6 +15,7 @@ outfit "Cooling Ducts"
 	thumbnail "outfit/cooling ducts"
 	"mass" 5
 	"outfit space" -5
+	"energy consumption" 1
 	"cooling" 5
 	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where it is sporadically overheating and shutting down. In that case, you may need to install one of these."
 
@@ -24,6 +25,7 @@ outfit "Water Coolant System"
 	thumbnail "outfit/water cooling"
 	"mass" 10
 	"outfit space" -10
+	"energy consumption" 2
 	"cooling" 12
 	description "This system is a step up from ordinary cooling ducts; it circulates water in between an external radiator and your ship's hottest internal components to keep them from overheating."
 
@@ -33,6 +35,7 @@ outfit "Liquid Nitrogen Cooler"
 	thumbnail "outfit/liquid nitrogen"
 	"mass" 20
 	"outfit space" -20
+	"energy consumption" 3
 	"cooling" 29
 	description "For ships with extreme cooling needs, liquid nitrogen is the answer. One of these coolers will dissipate the heat produced by anything but the heaviest of armaments."
 
@@ -42,6 +45,7 @@ outfit "Liquid Helium Cooler"
 	thumbnail "outfit/liquid helium"
 	"mass" 40
 	"outfit space" -40
+	"energy consumption" 4
 	"cooling" 69
 	description "Liquid helium is the ultimate in cooling technology. Given how much space this cooling system takes up, you may be better off just installing more efficient, low-heat components instead, but where that is not an option, this cooler can handle almost anything you throw at it."
 

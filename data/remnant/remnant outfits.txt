@@ -375,7 +375,8 @@ outfit "Thermoelectric Cooler"
 	thumbnail "outfit/thermoelectric cooler"
 	"mass" 4
 	"outfit space" -4
-	"active cooling" 8
+	"cooling" 2
+	"active cooling" 10
 	"cooling energy" .4
 	description "This cooler is actually just one of the power-generating elements of a Millennium Cell, but wired so it can run in reverse: consuming electricity in order to transfer heat from a ship's systems to its exterior."
 

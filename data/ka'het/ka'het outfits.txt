@@ -270,7 +270,8 @@ outfit "Ka'het Support Cooling"
 	thumbnail "outfit/ka'het support cooling"
 	"mass" 6
 	"outfit space" -8
-	"active cooling" 32
+	"cooling" 3
+	"active cooling" 36
 	"cooling energy" 3.1
 	description "While the cooling on a typical ship only needs to worry about keeping the crew comfortable in certain areas, the entirety of a Ka'het ship needs to maintain a suitable temperature for the Het inside to survive."
 
@@ -281,7 +282,8 @@ outfit "Ka'het Primary Cooling"
 	thumbnail "outfit/ka'het primary cooling"
 	"mass" 11
 	"outfit space" -14
-	"active cooling" 65
+	"cooling" 5
+	"active cooling" 70
 	"cooling energy" 5.9
 	description "This is the main cooler used by the Ka'het. Although energy intensive, it is very effective, capable of single-handedly cooling some Het."
 
