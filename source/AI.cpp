@@ -3184,9 +3184,9 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 		auto enemies = GetShipsList(ship, true, maxRange);
 		// Convert the shared_ptr<Ship> into const Body *, to allow aiming turrets
 		// at a targeted asteroid. Skip disabled ships, which pose no threat.
-		for(const shared_ptr<Ship> &ship : enemies)
-			if(!ship->IsDisabled())
-				targets.emplace_back(ship.get());
+		for(auto &&foe : enemies)
+			if(!foe->IsDisabled())
+				targets.emplace_back(foe.get());
 		// Even if the ship's current target ship is beyond maxRange,
 		// or is already disabled, consider aiming at it.
 		if(currentTarget && currentTarget->IsTargetable()

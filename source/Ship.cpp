@@ -1422,13 +1422,17 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				double scale = .03 * size + .5;
 				double radius = .2 * size;
 				int debrisCount = attributes.Mass() * .07;
+				
+				// Estimate how many new visuals will be added during destruction.
+				visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions.size());
+				
 				for(int i = 0; i < debrisCount; ++i)
 				{
 					Angle angle = Angle::Random();
 					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 					Point effectPosition = position + radius * angle.Unit();
 					
-					visuals.emplace_back(*effect, effectPosition, effectVelocity, angle);
+					visuals.emplace_back(*effect, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
 				}
 				
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
@@ -1922,13 +1926,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Finally, move the ship and create any movement visuals.
 	position += velocity;
-	if(isUsingAfterburner)
+	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 		for(const EnginePoint &point : enginePoints)
 		{
 			Point pos = angle.Rotate(point) * Zoom() + position;
 			// Stream the afterburner effects outward in the direction the engines are facing.
 			Point effectVelocity = velocity - 6. * angle.Unit();
-			for(const auto &it : attributes.AfterburnerEffects())
+			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
 		}
@@ -3768,7 +3772,7 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
-			visuals.emplace_back(*it->first, angle.Rotate(point) + position, effectVelocity, angle);
+			visuals.emplace_back(*it->first, angle.Rotate(point) + position, std::move(effectVelocity), angle);
 			++explosionCount;
 			return;
 		}
@@ -3792,6 +3796,8 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 	
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
+	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
+	visuals.reserve(visuals.size() + static_cast<int>(amount));
 	
 	while(true)
 	{

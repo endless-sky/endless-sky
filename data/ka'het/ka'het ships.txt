@@ -354,6 +354,7 @@ ship "Vareti'het" "Vareti'het (EMP)"
 	turret 13.5 16.5
 
 ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
+	"uncapturable"
 	outfits
 		"Ka'het Nullifier"
 		"Ka'het Ravager Beam" 4
