@@ -570,7 +570,7 @@ outfit "AR120 Reverse Thruster"
 	thumbnail "outfit/reverse thruster"
 	"mass" 22
 	"outfit space" -22
-	"weapon capacity" -22
+	"weapon capacity" -11
 	"reverse thrust" 15.4
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
@@ -585,13 +585,13 @@ outfit "Capybara Reverse Thruster"
 	thumbnail "outfit/reverse thruster plasma"
 	"mass" 20
 	"outfit space" -20
-	"weapon capacity" -20
+	"weapon capacity" -10
 	"reverse thrust" 9.6
 	"reverse thrusting energy" 1.0
 	"reverse thrusting heat" 1.8
-	"flare sprite" "effect/plasma flare/tiny"
+	"reverse flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
-	"flare sound" "plasma tiny"
+	"reverse flare sound" "plasma tiny"
 	description "Particularly large ships often lack the manouverability to perform 180 degree spins to come to a stop on short notice. For such ships, a reverse thruster allows them to accelerate smoothly backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 outfit "X1100 Ion Reverse Engines"
@@ -600,11 +600,11 @@ outfit "X1100 Ion Reverse Engines"
 	thumbnail "outfit/reverse thruster ion"
 	"mass" 16
 	"outfit space" -16
-	"weapon capacity" -16
+	"weapon capacity" -8
 	"reverse thrust" 6.0
 	"reverse thrusting energy" .6
 	"reverse thrusting heat" .9
-	"flare sprite" "effect/ion flare/tiny"
+	"reverse flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
-	"flare sound" "ion tiny"
+	"reverse flare sound" "ion tiny"
 	description "Traditionally, ships turn around so that they can use their main thrusters for deceleration. Some ships, however, are too massive for such manouvers to be convenient, or carry cargo that dislikes being swung around. For such ships, a reverse thruster allows them to apply thrust smoothly backwards. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."

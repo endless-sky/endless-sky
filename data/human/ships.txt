@@ -400,7 +400,9 @@ ship "Barb"
 		
 	engine 9 25
 	engine -8 25
+	"reverse engine" -7.5 -24.5
 	gun -7.5 -24.5 "Energy Blaster"
+	gun -7.5 -24.5
 	turret 9.5 8.5 "Blaster Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
@@ -445,7 +447,9 @@ ship "Barb" "Barb (Proton)"
 		
 	engine 9 25
 	engine -8 25
+	"reverse engine" -7.5 -24.5
 	gun -7.5 -24.5 "Proton Gun"
+	gun -7.5 -24.5
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -604,9 +608,9 @@ ship "Berserker"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Energy Blaster" 2
-		"Javelin Pod" 2
-		"Javelin" 200
+		"Energy Blaster" 4
+		"Javelin Mini Pod" 2
+		"Javelin" 40
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -619,10 +623,16 @@ ship "Berserker"
 		
 	engine -10 45
 	engine 10 45
+	"reverse engine" -12 10
+		under
+	"reverse engine" 12 10
+		under
+	gun -12 10 "Energy Blaster"
+	gun 12 10 "Energy Blaster"
 	gun -20 12 "Energy Blaster"
 	gun 20 12 "Energy Blaster"
-	gun -44 10 "Javelin Pod"
-	gun 44 10 "Javelin Pod"
+	gun -44 10 "Javelin Mini Pod"
+	gun 44 10 "Javelin Mini Pod"
 	leak "leak" 60 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
@@ -769,6 +779,10 @@ ship "Boxwing"
 	engine -23 -1
 	engine 19 29
 	engine -19 29
+	"reverse engine" -4 -32
+		under
+	"reverse engine" 4 -32
+		under
 	leak "leak" 70 50
 	leak "flame" 50 80
 	explode "tiny explosion" 15
@@ -1074,7 +1088,12 @@ ship "Combat Drone"
 		
 	engine -9 29
 	engine 9 29
+	"reverse engine" -9 -0.5
+		under
+	"reverse engine" 9 -0.5
+		under
 	gun 0 -29 "Beam Laser"
+	gun 0 -29
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 
@@ -1243,8 +1262,8 @@ ship "Dagger"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Pod"
-		"Javelin" 100
+		"Javelin Mini Pod" 2
+		"Javelin" 40
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -1257,8 +1276,10 @@ ship "Dagger"
 		
 	engine -15 30
 	engine 15 30
-	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Javelin Pod"
+	gun -16 -20 "Beam Laser"
+	gun 16 -20
+	gun -12 -21 "Javelin Mini Pod"
+	gun 12 -21 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1374,8 +1395,12 @@ ship "Dropship"
 	
 	engine 13 26
 	engine -13 26
+	"reverse engine" -12.5 -5
+	"reverse engine" 12.5 -5
 	gun 2 -27 "Beam Laser"
 	gun -2 -27 "Beam Laser"
+	gun -12.5 -5
+	gun 12.5 -5
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1475,8 +1500,8 @@ ship "Finch"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Pod"
-		"Javelin" 100
+		"Javelin Mini Pod" 2
+		"Javelin" 40
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1488,8 +1513,14 @@ ship "Finch"
 		
 	engine -5 32
 	engine 5 32
+	"reverse engine" -5 21.5
+		over
+	"reverse engine" 5 21.5
+		over
 	gun -7 -14 "Beam Laser"
-	gun 7 -14 "Javelin Pod"
+	gun 7 -14
+	gun -14 -9.5 "Javelin Mini Pod"
+	gun 14 -9.5 "Javelin Mini Pod"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1760,13 +1791,35 @@ ship "Fury"
 		"Hyperdrive"
 		
 	engine -11 35 0.8
+		angle -10
 	engine 11 35 0.8
-	engine -18 37 0.6
-	engine 18 37 0.6
+		angle 10
+	engine -18 38 0.6
+		angle -10
+	engine 18 38 0.6
+		angle 10
+	"reverse engine" -24 9
+		zoom 0.5
+		angle -10
+		over
+	"reverse engine" 24 9
+		zoom 0.5
+		angle 10
+		over
+	"reverse engine" -18 7
+		zoom 0.5
+		angle -10
+		over
+	"reverse engine" 18 7
+		zoom 0.5
+		angle 10
+		over
 	gun -10.5 -25.5
 	gun 10.5 -25.5
 	gun -17 -19.5
 	gun 17 -19.5
+	gun -37 16.5
+	gun 37 16.5
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -2050,6 +2103,12 @@ ship "Hawk"
 		
 	engine -23.5 41
 	engine 23.5 41
+	"reverse engine" -23.5 11.5
+		under
+	"reverse engine" 23.5 11.5
+		under
+	gun -8.5 -17.5 "Heavy Laser"
+	gun 8.5 -17.5 "Heavy Laser"
 	gun -8.5 -17.5
 	gun 8.5 -17.5
 	leak "leak" 60 50
@@ -2183,9 +2242,9 @@ ship "Lance"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Energy Blaster"
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 22
+		"Energy Blaster" 2
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 8
 		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
@@ -2198,8 +2257,14 @@ ship "Lance"
 		
 	engine -15 30
 	engine 15 30
+	"reverse engine" -13 9.5
+		under
+	"reverse engine" 13 9.5
+		under
 	gun -14 -10 "Energy Blaster"
-	gun 14 -10 "Sidewinder Missile Launcher"
+	gun 14 -10 "Energy Blaster"
+	gun -8 3 "Sidewinder Missile Pod"
+	gun 8 3 "Sidewinder Missile Pod"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -3061,8 +3126,16 @@ ship "Sparrow"
 		
 	engine -5 35
 	engine 5 35
+	"reverse engine" -4 20.5
+		over
+	"reverse engine" 4 20.5
+		over
 	gun -7 -10
 	gun 7 -10
+	gun -20 -13
+	gun 20 -13
+	gun -30 -10
+	gun 30 -10
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -3270,6 +3343,8 @@ ship "Surveillance Drone"
 		
 	engine -5 29
 	engine 5 29
+	"reverse engine" 0 -25.5
+		under
 	explode "tiny explosion" 15
 	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
 
@@ -3367,8 +3442,8 @@ ship "Wasp"
 			"hit force" 300
 	outfits
 		"Energy Blaster" 2
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 22
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -3382,9 +3457,11 @@ ship "Wasp"
 		
 	engine -5.5 32.5
 	engine 5.5 32.5
-	gun 0 -41 "Sidewinder Missile Launcher"
+	gun 0 -41 "Sidewinder Missile Pod"
 	gun -13 -30.5 "Energy Blaster"
 	gun 13 -30.5 "Energy Blaster"
+	gun -13 -30.5
+	gun 13 -30.5
 	leak "leak" 60 50
 	explode "tiny explosion" 20
 	explode "small explosion" 10

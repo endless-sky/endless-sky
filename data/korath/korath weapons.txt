@@ -282,6 +282,49 @@ outfit "Korath Piercer Launcher"
 		"stream"
 	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
 
+outfit "Korath Piercer Pod"
+	category "Secondary Weapons"
+	cost 593000
+	thumbnail "outfit/piercer launcher"
+	"mass" 4
+	"outfit space" -7
+	"weapon capacity" -7
+	"energy capacity" 50
+	"gun ports" -1
+	"piercer capacity" 6
+	weapon
+		sprite "projectile/piercer"
+			"frame rate" 5
+			"random start frame"
+		sound "piercer"
+		ammo "Korath Piercer"
+		icon "icon/piercer"
+		"fire effect" "piercer fire"
+		"hit effect" "piercer impact"
+		"hit effect" "piercer explosion"
+		"die effect" "piercer explosion"
+		"inaccuracy" 6.0
+		"velocity" 9.0
+		"lifetime" 400.0
+		"reload" 350.0
+		"burst count" 6
+		"burst reload" 140
+		"firing energy" 58.0
+		"firing heat" 288.0
+		"acceleration" .54
+		"drag" .03
+		"turn" 1.6
+		"homing" 4
+		"infrared tracking" .9
+		"shield damage" 580.0
+		"hull damage" 880.0
+		"piercing" .2
+		"hit force" 600.0
+		"missile strength" 73
+		"stream"
+	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+	description "	Piercer Missile Pods are compact missile launchers designed to be fitted onto drone, fighter, and interceptor class ships. They are much more compact that the standard launcher, with a correspondingly limited capacity. While they can launch their complement of piercers slightly faster than normal, their reloading mechanism is significantly slower."
+
 effect "piercer fire"
 	sprite "effect/piercer fire"
 		"no repeat"

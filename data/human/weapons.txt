@@ -757,7 +757,7 @@ outfit "Meteor Missile Pod"
 		"hit force" 220.0
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
-	description "Meteor Missile Pods are compact pods designed to allow small ships to carry a single wave of missiles in a quick burst. While they can be paired with missiles boxes, their reracking mechanisms are significantly slower than those on the larger launchers."
+	description "	Meteor Missile Pods are compact pods designed to allow small ships to carry a single wave of missiles in a quick burst. While they can be paired with missiles boxes, their reracking mechanisms are significantly slower than those on the larger launchers."
 
 effect "meteor fire"
 	sprite "effect/meteor fire"
@@ -1108,8 +1108,8 @@ outfit "Heavy Rocket Launcher"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 2.0
-		"velocity" 4.0
-		"lifetime" 250.0
+		"velocity" 3.5
+		"lifetime" 290.0
 		"reload" 480.0
 		"firing energy" 2.0
 		"firing heat" 500.0
@@ -1141,8 +1141,8 @@ outfit "Heavy Rocket Pod"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 2.0
-		"velocity" 4.0
-		"lifetime" 250.0
+		"velocity" 3.5
+		"lifetime" 290.0
 		"reload" 1000.0
 		"burst count" 2
 		"burst reload" 400
@@ -1157,7 +1157,7 @@ outfit "Heavy Rocket Pod"
 		"hit force" 1200.0
 		"missile strength" 16
 	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
-	description "Rocket Pods are compact launchers designed to allow small ships to carry and launch single pair of heavy rockets. While some pilots prefer pods over launchers due to how fast they can launch their initial pair of rockets, the reloading mechanism that pulls from rocket racks is significantly slower than that of the full sized launchers. Thus if one can fit a launcher, it is usually a better choice than trying to pair a pod with a rack."
+	description "	Rocket Pods are compact launchers designed to allow small ships to carry and launch single pair of heavy rockets. While some pilots prefer pods over launchers due to how fast they can launch their initial pair of rockets, the reloading mechanism that pulls from rocket racks is significantly slower than that of the full sized launchers. Thus if one can fit a launcher, it is usually a better choice than trying to pair a pod with a rack."
 
 effect "heavy rocket hit"
 	sprite "effect/explosion/huge"
