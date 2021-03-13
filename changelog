@@ -6,7 +6,7 @@ Version 0.9.13:
     * Added over 25 new missions to Remnant space, as well as a new region of the Ember Waste. (@Zitchas)
     * Added 15 new archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@Karirawri)
     * The Ember Waste has become a more hostile place with the introduction of system hazards. Be prepared the next time you visit. (@Zitchas)
-    * Outfits can now be stored on planets by pressing U or R on installed or in cargo outfits in the outfitter. (@petervdmeer)
+    * Outfits can now be stored on planets by pressing U or R on installed or in-cargo outfits in the outfitter. (@petervdmeer)
     * Completely redid and improved the graphics for most human outfit images. (@beccabunny)
     * Added a "New Pilot" scenario picker, allowing players to choose between game and plugin starts. (@FranchuFranchu, @tehhowch)
   * Bug fixes:
@@ -60,7 +60,8 @@ Version 0.9.13:
       * An error is now produced when improperly granting a ship in a start condition. (@tehhowch)
       * The "battery only" warning in the outfitter now takes fuel energy into account. (@Amazinite)
       * All flagship commands and the hailing command are now ignored while in the process of landing or departing from a planet. (@tatami4)
-      * Ships no longer preserve inaccessible jump targets when loading the game. (@tehhowch) 
+      * Ships no longer preserve inaccessible jump targets when loading the game. (@tehhowch)
+      * Reduced likelihood of integer overflow when selling commodities. (@tehhowch)
   * Game content:
     * New content: 
       * New missions:
@@ -89,7 +90,7 @@ Version 0.9.13:
         * Added new civilian hails. (@Anarchist2, @Naminson, @petervdmeer)
         * New logs for various characters, factions, and plot points. (@MasterOfGrey, @pega3)
         * Added a new Builder station to the Graveyard. (@beccabunny)
-        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @petervdmeer, @Plip-Plop, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
+        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @NRK4, @petervdmeer, @Plip-Plop, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
         * Wrote friendly and hostile hails for the Remnant. (@temtemy)
         * The Archon now has a ship description. (@Zitchas)
         * Added three new person ships. (@beccabunny, @Brick63, @MCOfficer, @Zitchas)
@@ -130,6 +131,7 @@ Version 0.9.13:
       * Gave Remnant thrusters built-in reverse thrust and slight slowing resistance on all their engines to make them stick out more. (@Zitchas)
       * Reduced the number of missile-equipped ships in one of the small pirate fleet variants. (@Terin)
       * The Puffin's Quantum Key Stone is now integrated into the hull to prevent access to stone before the player has a license for them. (@Zitchas)
+      * Human missiles were updated to reflect changes to missile tracking behavior. (@Pointedstick)
     * Graphics:
       * "Mouthparts?" now has a sprite. (@beccabunny)
       * Added a scene image to the on enter conversation in the Graveyard. (@beccabunny)
@@ -213,6 +215,7 @@ Version 0.9.13:
       * Ships with both the disables and plunders personalities will no longer destroy ships that have been plundered. (@tatami4)
       * Ships with the plunders personality will now always aim to destroy ships they plundered. (@tatami4)
       * Greatly increased the lifetime of flotsam by at least 10x and added drag so they slow down over time. (@Amazinite)
+      * Modify missile tracking calculations to improve usefulness of radar jammers and heat reduction. (@Pointedstick)
   * User interface:
     * The outfitter help now explains how to buy outfits into cargo. (@Zitchas)
     * Fast-forward will now be turned off if the player is not in flight, such as when landing or boarding a ship. (@petervdmeer)
