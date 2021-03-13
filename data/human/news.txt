@@ -663,7 +663,7 @@ news "reporter"
 			"Look at my new article! 'The Protector - Actually a SCAM?'"
 			"Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'"
 			"Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'"
-			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, nevermind."
+			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, never mind."
 		word
 			`"`
 
