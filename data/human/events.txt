@@ -2109,6 +2109,10 @@ event "pug flee"
 			sprite planet/wormhole
 			distance 2320.29
 			period 1788.2712
+	planet "Pugglemug"
+		attributes uninhabited
+	planet "Pugglequat"
+		attributes uninhabited
 
 
 
@@ -2153,6 +2157,10 @@ event "pug territory liberated"
 		fleet "Large Republic" 900 
 		fleet "Small Syndicate" 1200
 		fleet "Large Syndicate" 2000
+	planet "Pugglemug"
+		remove attributes
+	planet "Pugglequat"
+		remove attributes
 	planet "Rand"
 		security 0.05
 		tribute 500
@@ -2797,6 +2805,10 @@ event "fwc pug defeated"
 		fleet "Large Syndicate" 2000
 	system Nocte
 		government Republic
+	planet "Pugglemug"
+		remove attributes
+	planet "Pugglequat"
+		remove attributes
 	planet "Shiver"
 		security 0.1
 		tribute 300
