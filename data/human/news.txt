@@ -472,7 +472,7 @@ news "loan officer"
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
 			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
 			"Do you know how hard it is to force somebody that joined the pirates to pay off their loans?"
-			"Some people say that we are loan sharks, but I don't understand why. I think that killer whales are way cooler than sharks."
+			"Some people say that we're loan sharks, but I don't understand why. I think that killer whales are way cooler than sharks."
 		word
 			`"`
 
