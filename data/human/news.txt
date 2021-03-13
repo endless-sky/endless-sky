@@ -289,6 +289,9 @@ news "unemployed youth"
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
+			"Whatcha looking at, ya old good-fur-nothing?"
+			"I'll get my act together someday. For now I'm just enjoying life one moment at a time."
+			"I'd love to get a job, but they all require so much experience, even for those so-called 'entry-level' jobs."
 		word
 			`"`
 
@@ -404,6 +407,8 @@ news "hair stylist"
 			"For too long, the creativity of trend-setting stylists like myself has been held in check by the limited height of the doorways in most houses."
 			"My work is made possible by vision, creativity, and hairspray. Lots and lots of hairspray."
 			"The newest fad is hairstyles made to look like starships. Those boxy Navy ships are particularly hard to model in such a fluid medium."
+			"It's a real shame that captains don't think to hire a good hair stylist or two for their ships. You wouldn't believe how little so many crew members take care of their hair."
+			"A real challenge for my profession in this day and age is finding styles that work in both high and low gravity environments."
 		word
 			`"`
 
@@ -467,6 +472,7 @@ news "loan officer"
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
 			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
 			"Do you know how hard it is to force somebody that joined the pirates to pay off their loans?"
+			"Some people say that we are loan sharks, but I don't understand why. I think that killer whales are way cooler than sharks."
 		word
 			`"`
 
@@ -551,6 +557,7 @@ news "agricultural scientist"
 			"Even though there are some alien ungulates that put on weight much quicker than Earth animals, or that have much leaner meat, most people still prefer to eat cows."
 			"I've heard that the corporate farms on some Paradise Worlds don't even need irrigation systems. They can just call up the terraforming office and order a rainstorm whenever they need one."
 			"People have been farming for thousands of years, but finding the best way to maximize yields without wearing out the land is still a hard problem to solve."
+			"Don't ever forget that you have us to thank for humanity's ability to support our growing population."
 		word
 			`"`
 
@@ -630,6 +637,7 @@ news "substance abuse counselor"
 			"Zooming around in your fancy space ship, I bet you don't realize the sort of desperation that some of the folks down here below you are carrying around."
 			"The government pays my salary. They say it's worth it, because every credit spent on me prevents ten credits of lost productivity."
 			"Honestly, drugs are a problem throughout human space, but the richer folks have the resources to keep their addictions well-managed and well-hidden."
+			"If someone ever offers you a drug running job, I beg you to deny it and direct them toward one of us. That person will thank you later."
 		word
 			`"`
 
@@ -654,7 +662,8 @@ news "reporter"
 			"Read this! 'The Real UGLIEST Starship that Lionheart Don't Want You to Know About!'"
 			"Look at my new article! 'The Protector - Actually a SCAM?'"
 			"Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'"
-			`Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'`
+			"Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'"
+			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, nevermind."
 		word
 			`"`
 
@@ -699,6 +708,7 @@ news "actor"
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
 			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to watch."
 			"Hey, you are so beautiful, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
+			"Don't be fooled by my jovial appearance onstage. I take my work very seriously."
 		word
 			`"`
 
@@ -759,6 +769,7 @@ news "chef"
 			"I'm employed as the chef on a luxury cruise ship. A Star Queen. The captain tells me that Star Queens are considered the safest way to travel in outer space."
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
 			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
+			"Eating fancy dishes is great, but sometimes there's nothing you want more than a good old sandwich."
 		word
 			`"`
 
@@ -779,6 +790,8 @@ news "insurance agent"
 			"Among the Paradise Worlds, there's currently a fad of taking out insurance policies on pets, to pay for therapy if the animal dies unexpectedly."
 			"Insurance is all about mitigating risks. But you're flying around the vacuum of space in a tin can, so you probably don't know much about that."
 			"I just got done handling an insurance fraud case where the owner claimed her entire home had been eaten by Sagittarian sand-fleas."
+			"It's a real shame that not everyone is able to afford insurance. More people insured means more money for us."
+			"I used to be a gambler. Still am in a way, but I'm acceptable to society now." 
 		word
 			`"`
 
@@ -803,6 +816,7 @@ news "excavation specialist"
 			"Once we had to stop work on a mine for a month because the archaeologists thought we found evidence of a million-year-old civilization. It turned out the site was just radioactive. Dodged that one!"
 			"Last month, we had some loony pilot offer to use their missile launchers to help us mine!"
 			"Last month, we had some loony pilot request a reactor upgrade after delivering some explosives to us!"
+			"I'm a former pirate. Now I've found more productive ways to blow stuff up."
 		word
 			`"`
 
@@ -849,6 +863,7 @@ news "human retiree"
 			"I don't stand for it when I hear youngsters complain about the fact that I have a generous pension. I worked for 40 years to earn this retirement!"
 			"I feel sorry for the young workers who are supporting me right now. They have to pay more in taxes and pension contributions than I ever did, and they probably won't get to retire until they're 70, at least."
 			"We're very fortunate to have been able to retire here. Don't ever take your blessings for granted, captain."
+			"It's amazing how much technology has progressed in my lifetime!"
 		word
 			`"`
 
@@ -1160,6 +1175,9 @@ news "human merchant in pirate space"
 			"Why am I here? I really needed the fuel and decided that bribing off pirates until another ship entered the system wasn't smart long-term."
 			"There's some real creeps around here. All I wanted to do was sell some cargo at this port, but it definitely wasn't worth the risk."
 			"Whatever you do, don't try the ${contraband}. That stuff's nasty."
+			"Why am I here? I could ask the same of you!"
+			"I have to admit, the thought of being a pirate is tempting."
+			"You're not going to kill me, are you?"
 		word
 			`"`
 
