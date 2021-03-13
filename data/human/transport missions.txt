@@ -3214,71 +3214,65 @@ mission "Earth Retirement"
 
 mission "Spacediving professionals"
 	name "Spacediving at <destination>"
-	description "Drop skydivers from the edge of space. They are carrying cooled spacesuits, durable parachutes and oxygen bottles to ensure the survival of their party. Payment is <payment>."
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes and oxygen bottles to ensure their survival. Payment is <payment>."
 	passengers 5 10
 	repeat
 	job
 	source
-		government "Republic" "Free Worlds" "Syndicate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 7 9
-		government "Republic" "Free Worlds" "Syndicate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
-		and
-			credits >= 1000000
-			random > 96
+		credits >= 1000000
+		random < 3
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 8000
-		dialog "The skydivers jump from your ship and make a spectacular dive until they open their parachutes and land safely near the spaceport. You received payment of <payment> just before they jumped out."
+		dialog "As you descend through the upper atmosphere, the skydivers pay you <payment> before jumping from your ship, spectacularly diving until they open their parachutes and land safely near the spaceport."
 
 
 
 mission "Spacediving amateurs"
 	name "Spacediving at <destination>"
-	description "Drop skydivers from the edge of space. They are carrying cool wingsuits, fashionable parachutes and beer bottles to ensure the trip will be a great party. Payment is 8000 credits."
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing tricked-out wingsuits, brightly-patterned parachutes and carrying beer bottles for an after-landing celebration. Payment is 8000 credits."
 	passengers 5 10
 	repeat 3
 	job
 	source
-		government "Republic" "Free Worlds" "Syndicate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 7 9
-		government "Republic" "Free Worlds" "Syndicate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
-		and
-			"Spacediving professionals: done" >= 1
-			"Spacediving amateurs: offered" <= 6
-			"Spacediving fools: offered" <= 2
-			credits >= 1000000
-			random > 40
+		has "Spacediving professionals: done"
+		credits >= 1000000
+		random < 60
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		dialog "The skydivers were too affraid to jump and refuse to pay after you land with them. Maybe next time check if your passengers have suitable preparation for a high-altitude jump like this."
+		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meagre <payment> before hopping off."
 
 
 
 mission "Spacediving fools"
 	name "Spacediving at <destination>"
-	description "Drop skydivers from the edge of space. They are carrying cooked chicken wings, fashionable umbrellas and whiskey bottles to ensure the trip will be a grandiose party. Payment is 8000 credits."
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are carrying cooked chicken wings, fashionable umbrellas and bottles of whiskey for a grand after-landing celebration. Payment is 8000 credits."
 	passengers 5 10
 	repeat 2
 	job
 	source
-		government "Republic" "Free Worlds" "Syndicate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 7 9
-		government "Republic" "Free Worlds" "Syndicate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
-		and
-			"Spacediving amateurs: done" >= 1
-			"Spacediving fools: offered" <= 4
-			credits >= 1000000
-			random > 40
+		has "Spacediving professionals: done"
+		credits >= 1000000
+		random < 60
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment -80000
-		dialog "The skydivers jump from your ship with their umbrellas opened. All die before landing. Authorities investigate the matter and fine you <payment> for allowing unprepared skydivers to die."
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship... with their umbrellas open, and while wearing their ordinary clothes. Authorities fine you <payment> when you land for enabling such a dangerous and deadly act."
