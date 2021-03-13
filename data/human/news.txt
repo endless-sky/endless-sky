@@ -289,7 +289,7 @@ news "unemployed youth"
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
-			"Whatcha looking at, ya old good-fur-nothing?"
+			"Whatcha looking at, ya old geezer?"
 			"I'll get my act together someday. For now I'm just enjoying life one moment at a time."
 			"I'd love to get a job, but they all require so much experience, even for those so-called 'entry-level' positions."
 		word
