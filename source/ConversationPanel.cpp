@@ -301,13 +301,13 @@ bool ConversationPanel::Scroll(double dx, double dy)
 
 
 // The player just selected the given choice.
-void ConversationPanel::Goto(int index, int choice)
+void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	if(index)
 	{
 		// Add the chosen option to the text.
-		if(choice >= 0 && choice < static_cast<int>(choices.size()))
-			text.splice(text.end(), choices, next(choices.begin(), choice));
+		if(selectedChoice >= 0 && selectedChoice < static_cast<int>(choices.size()))
+			text.splice(text.end(), choices, next(choices.begin(), selectedChoice));
 		
 		// Scroll to the start of the new text, unless the conversation ended.
 		if(index >= 0)
