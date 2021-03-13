@@ -1143,7 +1143,7 @@ news "human pirate"
 			"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
 			"Your credits or your life! Oh you don't have either? Never mind then."
 			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
-			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
+			"Did I attack you? Well, I have attacked many people, could you be a bit more specific?"
 		word
 			`"`
 
