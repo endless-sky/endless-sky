@@ -134,6 +134,8 @@ test "Test-Framework - Navigate"
 		# Launch.
 		input
 			key d
+		# The game needs 2 gamesteps for processing the launch before the jump command can be given.
+		# Sending empty inputs causes the game to make a step. The game also steps every time it encounters a branch for a second time.
 		input
 		input
 		# Give jump command.
