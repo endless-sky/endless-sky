@@ -57,7 +57,7 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	virtual bool CanBuy() const = 0;
+	virtual bool CanBuy(bool checkAlreadyOwned = true) const = 0;
 	virtual void Buy(bool alreadyOwned = false) = 0;
 	virtual void FailBuy() const = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
