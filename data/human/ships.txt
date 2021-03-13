@@ -2078,7 +2078,7 @@ ship "Heavy Shuttle"
 		"hull" 700
 		"required crew" 1
 		"bunks" 10
-		"mass" 85
+		"mass" 90
 		"drag" 1.9
 		"heat dissipation" .8
 		"fuel capacity" 500
