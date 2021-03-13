@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
 
@@ -155,25 +156,6 @@ void MenuPanel::Draw()
 
 
 
-// New player "conversation" callback.
-void MenuPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	gamePanels.Reset();
-	gamePanels.Push(new MainPanel(player));
-	gamePanels.CanSave(true);
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
-}
-
-
-
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!GameData::IsLoaded())
@@ -191,14 +173,9 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
-		player.New();
-		
-		const auto &intro = *GameData::Conversations().Get("intro");
-		if(!intro.IsValidIntro())
-			throw runtime_error("The \"intro\" conversation must contain a \"name\" node");
-		ConversationPanel *panel = new ConversationPanel(player, intro);
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &MenuPanel::OnCallback);
+		// Request that the player chooses a start scenario.
+		// StartConditionsPanel also handles the case where there's no scenarios.
+		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'q')
 		GetUI()->Quit();

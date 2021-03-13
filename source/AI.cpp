@@ -349,11 +349,11 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			Messages::Add("Disengaging autopilot.");
 		autoPilot.Clear();
 	}
-	const Ship *flagship = player.Flagship();
 	
+	const Ship *flagship = player.Flagship();
 	if(!flagship || flagship->IsDestroyed())
 		return;
-
+	
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.");
 	
@@ -398,7 +398,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-
+	
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
@@ -2725,9 +2725,9 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 		auto enemies = GetShipsList(ship, true, maxRange);
 		// Convert the shared_ptr<Ship> into const Body *, to allow aiming turrets
 		// at a targeted asteroid. Skip disabled ships, which pose no threat.
-		for(const shared_ptr<Ship> &ship : enemies)
-			if(!ship->IsDisabled())
-				targets.emplace_back(ship.get());
+		for(auto &&foe : enemies)
+			if(!foe->IsDisabled())
+				targets.emplace_back(foe.get());
 		// Even if the ship's current target ship is beyond maxRange,
 		// or is already disabled, consider aiming at it.
 		if(currentTarget && currentTarget->IsTargetable()
@@ -3373,7 +3373,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						types.insert(planet->Noun());
 						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
 							distance += 10000.;
-					
+						
 						if(distance < closest)
 						{
 							ship.SetTargetStellar(object);

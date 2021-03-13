@@ -538,7 +538,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
