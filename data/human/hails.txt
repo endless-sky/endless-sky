@@ -1319,8 +1319,6 @@ phrase "friendly civilian"
 		"do secret deals with pirates."
 		"are aiding the Alphas."
 		"are secretly taking out Alpha enclaves."
-		"got the secret to antigravity repulsors from teddybears with antique guns."
-		"are working on a virus that turns humanity into a single large thinking organism."
 
 phrase "friendly civilian"
 	word
@@ -1717,17 +1715,9 @@ phrase "friendly civilian"
 		" "
 	word
 		" ship crooks, than having a crooked ship."
-		" ship shells, than having your ship shelled."
 		" ship slugs, than having a sluggish ship."
-		" ship junk, than having a junk ship."
-		" ship buckles, than having your ship buckle."
-		" ship squash, than having your ship squashed."
 		" ship bad bands, than having your ship badly banned."
-		" ship shots, than having your ship shot."
 		" be working hard at shipping, than having your ship hardly working."
-		" fly to the ruins, than flying in ruins."
-		" be fired, than having your ship on fire."
-		" transport mines, than handling transport in the mines."
 
 
 phrase "friendly civilian"
@@ -1736,12 +1726,9 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"your ship is in space? I have space in my ship."
-		"you captain hurl towards the stars? On my planet stars hurl towards our captains."
 		"your ship has loaded on a planet? I have loaded a planet onto my ship."
 		"you have cargo in your ship? I have ships in my cargo."
-		"you have fighters in bays? We have bays in our fighters."
-		"you have torpedos in your cargo? I put cargo in my torpedos."
+		"you have fighters in your bays? We have bays in our fighters."
 
 phrase "friendly civilian"
 	word
@@ -1900,27 +1887,22 @@ phrase "friendly navy"
 		"heroic"
 		"honourable"
 		"respectable"
-		"valuable"
-		"well rewarded"
 	word
 		". "
 	word
-		"Having"
-		"Making"
-		"Letting"
+		"Destroying"
+		"Killing"
+		"Imprisoning"
+		"Eliminating"
+		"Expelling"
+		"Fending off"
+		"Driving back"
 	word
 		" "
 	word
 		"our adversaries"
 		"our enemies"
 		"terrorists"
-	word
-		" "
-	word
-		"be destroyed"
-		"die"
-		"flee"
-		"imprisoned"
 	word
 		" is "
 	word
