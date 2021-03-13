@@ -291,7 +291,7 @@ news "unemployed youth"
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
 			"Whatcha looking at, ya old good-fur-nothing?"
 			"I'll get my act together someday. For now I'm just enjoying life one moment at a time."
-			"I'd love to get a job, but they all require so much experience, even for those so-called 'entry-level' jobs."
+			"I'd love to get a job, but they all require so much experience, even for those so-called 'entry-level' positions."
 		word
 			`"`
 
