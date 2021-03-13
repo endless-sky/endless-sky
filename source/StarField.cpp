@@ -257,7 +257,7 @@ void StarField::MakeStars(int stars, int width)
 	
 	tileCols = (width / TILE_SIZE);
 	tileIndex.clear();
-	tileIndex.resize(tileCols * tileCols, 0);
+	tileIndex.resize(static_cast<size_t>(tileCols) * tileCols, 0);
 	
 	vector<int> off;
 	static const int MAX_OFF = 50;
