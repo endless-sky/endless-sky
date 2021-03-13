@@ -18,7 +18,7 @@ ship "Aerie"
 		"hull" 1900
 		"required crew" 10
 		"bunks" 28
-		"mass" 260
+		"mass" 300
 		"drag" 4.1
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -371,7 +371,7 @@ ship "Barb"
 		"hull" 200
 		"required crew" 1
 		"bunks" 2
-		"mass" 20
+		"mass" 15
 		"drag" .8
 		"heat dissipation" .78
 		"outfit space" 85
@@ -413,7 +413,7 @@ ship "Barb" "Barb (Proton)"
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 20
+		"mass" 15
 		"drag" .8
 		"heat dissipation" .78
 		"outfit space" 85
@@ -578,7 +578,7 @@ ship "Berserker"
 		"hull" 500
 		"required crew" 1
 		"bunks" 2
-		"mass" 80
+		"mass" 70
 		"drag" 2.2
 		"heat dissipation" .85
 		"fuel capacity" 400
@@ -730,7 +730,7 @@ ship "Boxwing"
 		"hull" 800
 		"required crew" 1
 		"bunks" 1
-		"mass" 45
+		"mass" 40
 		"drag" .59
 		"heat dissipation" .27
 		"outfit space" 45
@@ -1029,7 +1029,7 @@ ship "Combat Drone"
 		"cost" 83000
 		"hull" 700
 		"automaton" 1
-		"mass" 20
+		"mass" 15
 		"drag" .59
 		"heat dissipation" .9
 		"outfit space" 58
@@ -1318,7 +1318,7 @@ ship "Dropship"
 		"hull" 200
 		"required crew" 1
 		"bunks" 9
-		"mass" 30
+		"mass" 25
 		"drag" 0.8
 		"heat dissipation" .9
 		"cargo space" 5
@@ -1428,7 +1428,7 @@ ship "Finch"
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 40
+		"mass" 35
 		"drag" .83
 		"heat dissipation" .85
 		"outfit space" 110
@@ -1694,7 +1694,7 @@ ship "Fury"
 		"hull" 400
 		"required crew" 1
 		"bunks" 3
-		"mass" 70
+		"mass" 60
 		"drag" 1.6
 		"heat dissipation" .9
 		"fuel capacity" 600
@@ -1746,7 +1746,7 @@ ship "Gunboat"
 		"hull" 1400
 		"required crew" 7
 		"bunks" 12
-		"mass" 200
+		"mass" 170
 		"drag" 3.1
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -1977,7 +1977,7 @@ ship "Hawk"
 		"hull" 500
 		"required crew" 2
 		"bunks" 4
-		"mass" 100
+		"mass" 90
 		"drag" 2.1
 		"heat dissipation" .8
 		"fuel capacity" 300
@@ -2025,7 +2025,7 @@ ship "Headhunter"
 		"hull" 700
 		"required crew" 2
 		"bunks" 4
-		"mass" 150
+		"mass" 120
 		"drag" 2.6
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2121,7 +2121,7 @@ ship "Lance"
 		"hull" 400
 		"required crew" 1
 		"bunks" 1
-		"mass" 30
+		"mass" 25
 		"drag" .7
 		"heat dissipation" .8
 		"outfit space" 100
@@ -2225,7 +2225,7 @@ ship "Manta"
 		"hull" 1500
 		"required crew" 6
 		"bunks" 10
-		"mass" 300
+		"mass" 370
 		"drag" 4.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2282,7 +2282,7 @@ ship "Modified Argosy"
 		"hull" 1900
 		"required crew" 5
 		"bunks" 12
-		"mass" 380
+		"mass" 280
 		"drag" 6.2
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2589,7 +2589,7 @@ ship "Quicksilver"
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
-		"mass" 130
+		"mass" 120
 		"drag" 2.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2638,7 +2638,7 @@ ship "Rainmaker"
 		"hull" 1200
 		"required crew" 7
 		"bunks" 14
-		"mass" 170
+		"mass" 130
 		"drag" 3.8
 		"heat dissipation" .6
 		"fuel capacity" 500
@@ -2979,7 +2979,7 @@ ship "Sparrow"
 		"hull" 300
 		"required crew" 1
 		"bunks" 2
-		"mass" 50
+		"mass" 45
 		"drag" .9
 		"heat dissipation" .8
 		"fuel capacity" 300
@@ -3185,7 +3185,7 @@ ship "Surveillance Drone"
 		"cost" 50000
 		"hull" 300
 		"automaton" 1
-		"mass" 15
+		"mass" 10
 		"drag" .53
 		"heat dissipation" .9
 		"outfit space" 53
@@ -3285,7 +3285,7 @@ ship "Wasp"
 		"hull" 500
 		"required crew" 1
 		"bunks" 2
-		"mass" 60
+		"mass" 55
 		"drag" 1.2
 		"heat dissipation" .8
 		"fuel capacity" 400
