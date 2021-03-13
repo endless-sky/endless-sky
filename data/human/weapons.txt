@@ -678,15 +678,15 @@ outfit "Meteor Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
 		"velocity" 11
-		"lifetime" 490
+		"lifetime" 350
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
 		"acceleration" 1
 		"drag" .1
-		"turn" 1.35
-		"homing" 3
-		"infrared tracking" .8
+		"turn" 1.8
+		"homing" 1
+		"infrared tracking" .65
 		"shield damage" 260
 		"hull damage" 160
 		"hit force" 220
@@ -740,7 +740,7 @@ outfit "Sidewinder Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 4
 		"velocity" 14
-		"lifetime" 470
+		"lifetime" 350
 		"reload" 60
 		"firing energy" 1
 		"firing heat" 15
@@ -850,8 +850,8 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 6
-		"lifetime" 600
+		"velocity" 7
+		"lifetime" 900
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
@@ -912,8 +912,8 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 5
-		"lifetime" 600
+		"velocity" 6
+		"lifetime" 1100
 		"reload" 120
 		"firing energy" 4
 		"firing heat" 50
@@ -922,8 +922,8 @@ outfit "Typhoon Launcher"
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
-		"shield damage" 880
-		"hull damage" 880
+		"shield damage" 920
+		"hull damage" 920
 		"hit force" 450
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."

@@ -26,7 +26,17 @@ void CoreStartData::Load(const DataNode &node)
 {
 	identifier = node.Size() >= 2 ? node.Token(1) : "Unidentified Start";
 	for(const DataNode &child : node)
-		LoadChild(child);
+	{
+		// Check for the "add" or "remove" keyword.
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
+		if((add || remove) && child.Size() < 2)
+		{
+			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
+			continue;
+		}
+		LoadChild(child, add, remove);
+	}
 }
 
 
@@ -39,7 +49,7 @@ void CoreStartData::Save(DataWriter &out) const
 		out.Write("system", system->Name());
 		out.Write("planet", planet->TrueName());
 		if(date)
-			out.Write("date", date.Year(), date.Month(), date.Day());
+			out.Write("date", date.Day(), date.Month(), date.Year());
 		accounts.Save(out);
 	}
 	out.EndChild();
@@ -86,16 +96,21 @@ const string &CoreStartData::Identifier() const noexcept
 
 
 
-bool CoreStartData::LoadChild(const DataNode &child)
+bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
 {
+	const string &key = child.Token((isAdd || isRemove) ? 1 : 0);
+	int valueIndex = (isAdd || isRemove) ? 2 : 1;
+	bool hasValue = (child.Size() > valueIndex);
+	const string &value = child.Token(hasValue ? valueIndex : 0);
+	
 	if(child.Token(0) == "date" && child.Size() >= 4)
 		date = Date(child.Value(1), child.Value(2), child.Value(3));
-	else if(child.Token(0) == "system" && child.Size() >= 2)
-		system = GameData::Systems().Get(child.Token(1));
-	else if(child.Token(0) == "planet" && child.Size() >= 2)
-		planet = GameData::Planets().Get(child.Token(1));
-	else if(child.Token(0) == "account")
-		accounts.Load(child);
+	else if(key == "system" && hasValue)
+		system = GameData::Systems().Get(value);
+	else if(key == "planet" && hasValue)
+		planet = GameData::Planets().Get(value);
+	else if(key == "account")
+		accounts.Load(child, !isAdd);
 	else
 		return false;
 	

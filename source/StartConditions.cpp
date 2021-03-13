@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "System.h"
 
+#include <algorithm>
 #include <sstream>
 
 using namespace std;
@@ -37,18 +38,69 @@ StartConditions::StartConditions(const DataNode &node)
 
 void StartConditions::Load(const DataNode &node)
 {
+	// When a plugin modifies an existing starting condition, default to
+	// clearing the previously-defined description text. The plugin may
+	// amend it by using "add description"
+	bool clearDescription = !description.empty();
+	
 	for(const DataNode &child : node)
 	{
-		if(CoreStartData::LoadChild(child))
+		// Check for the "add" or "remove" keyword.
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
+		if((add || remove) && child.Size() < 2)
 		{
-			// This child node contained core information and was successfully parsed.
+			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
+			continue;
 		}
-		else if(child.Token(0) == "name" && child.Size() >= 2)
-			name = child.Token(1);
-		else if(child.Token(0) == "description" && child.Size() >= 2)
-			description += child.Token(1) + "\n";
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			thumbnail = SpriteSet::Get(child.Token(1));
+		
+		// Determine if the child is a "core" attribute.
+		if(CoreStartData::LoadChild(child, add, remove))
+			continue;
+		
+		// Otherwise, we should try to parse it.
+		const string &key = child.Token((add || remove) ? 1 : 0);
+		int valueIndex = (add || remove) ? 2 : 1;
+		bool hasValue = (child.Size() > valueIndex);
+		const string &value = child.Token(hasValue ? valueIndex : 0);
+		
+		if(remove)
+		{
+			if(key == "name")
+				name.clear();
+			else if(key == "description")
+				description.clear();
+			else if(key == "thumbnail")
+				thumbnail = nullptr;
+			else if(key == "ships")
+				ships.clear();
+			else if(key == "ship" && hasValue)
+				ships.erase(remove_if(ships.begin(), ships.end(),
+					[&value](const Ship &s) noexcept -> bool { return s.ModelName() == value; }),
+					ships.end());
+			else if(key == "conversation")
+			{
+				stockConversation = nullptr;
+				conversation = Conversation();
+			}
+			else if(key == "conditions")
+				conditions = ConditionSet();
+			else
+				child.PrintTrace("Skipping unsupported use of \"remove\":");
+		}
+		else if(key == "name" && hasValue)
+			name = value;
+		else if(key == "description" && hasValue)
+		{
+			if(!add && clearDescription)
+			{
+				description.clear();
+				clearDescription = false;
+			}
+			description += value + "\n";
+		}
+		else if(key == "thumbnail" && hasValue)
+			thumbnail = SpriteSet::Get(value);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{
 			// TODO: support named stock ships.
@@ -62,15 +114,19 @@ void StartConditions::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
 		}
-		else if(child.Token(0) == "conversation" && child.HasChildren())
+		else if(key == "conversation" && child.HasChildren() && !add)
 			conversation.Load(child);
-		else if(child.Token(0) == "conversation" && child.Size() >= 2)
-			stockConversation = GameData::Conversations().Get(child.Token(1));
+		else if(key == "conversation" && hasValue && !child.HasChildren())
+			stockConversation = GameData::Conversations().Get(value);
+		else if(add)
+			child.PrintTrace("Skipping unsupported use of \"add\":");
 		else
 			conditions.Add(child);
 	}
 	if(description.empty())
 		description = "(No description provided.)";
+	if(name.empty())
+		name = "(Unnamed start)";
 	
 	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
 	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
@@ -93,7 +149,8 @@ void StartConditions::FinishLoading()
 		ship.FinishLoading(true);
 	
 	if(!GetConversation().IsValidIntro())
-		Files::LogError("Warning: The start scenario \"" + name + "\" has an invalid starting conversation.");
+		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
+			+ GetDisplayName() + "\") has an invalid starting conversation.");
 }
 
 
