@@ -1712,7 +1712,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Don't be too picky about the jobs you take. It is better to"
+		"Don't be too picky about the jobs you take. It's better to"
 	word
 		" "
 	word
@@ -1720,7 +1720,7 @@ phrase "friendly civilian"
 		" ship shells, than having your ship shelled."
 		" ship slugs, than having a sluggish ship."
 		" ship junk, than having a junk ship."
-		" ship buckles, than having your ship bucle."
+		" ship buckles, than having your ship buckle."
 		" ship squash, than having your ship squashed."
 		" ship bad bands, than having your ship badly banned."
 		" ship shots, than having your ship shot."
