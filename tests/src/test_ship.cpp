@@ -53,7 +53,7 @@ SCENARIO( "Creating a Ship::Bay instance", "[ship][bay]" ) {
 }
 
 SCENARIO( "A Ship::Bay instance is being copied", "[ship][bay]") {
-	auto source = Ship::Bay(0., 0., "Fighter");
+	auto source = Ship::Bay(-10., 10., "Fighter");
 	GIVEN( "the bay is occupied" ) {
 		auto occupant = std::make_shared<Ship>();
 		REQUIRE( occupant );
@@ -61,6 +61,14 @@ SCENARIO( "A Ship::Bay instance is being copied", "[ship][bay]") {
 		REQUIRE( source.ship );
 		WHEN( "the copy is made via ctor" ) {
 			Ship::Bay copy(source);
+			THEN( "the copy has the correct attributes" ) {
+				CHECK( copy.point.X() == source.point.X() );
+				CHECK( copy.point.Y() == source.point.Y() );
+				CHECK( copy.category == source.category );
+				CHECK( copy.side == source.side );
+				CHECK( copy.facing.Degrees() == source.facing.Degrees() );
+				CHECK( copy.launchEffects == source.launchEffects );
+			}
 			THEN( "the copy is unoccupied" ) {
 				CHECK_FALSE( copy.ship );
 			}
@@ -70,6 +78,14 @@ SCENARIO( "A Ship::Bay instance is being copied", "[ship][bay]") {
 		}
 		WHEN( "the copy is made via assignment" ) {
 			Ship::Bay copy = source;
+			THEN( "the copy has the correct attributes" ) {
+				CHECK( copy.point.X() == source.point.X() );
+				CHECK( copy.point.Y() == source.point.Y() );
+				CHECK( copy.category == source.category );
+				CHECK( copy.side == source.side );
+				CHECK( copy.facing.Degrees() == source.facing.Degrees() );
+				CHECK( copy.launchEffects == source.launchEffects );
+			}
 			THEN( "the copy is unoccupied" ) {
 				CHECK_FALSE( copy.ship );
 			}

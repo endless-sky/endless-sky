@@ -2019,6 +2019,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2041,6 +2042,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2048,6 +2050,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier"
 				"Lance" 4
 				"Combat Drone" 6
@@ -2207,6 +2210,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2226,6 +2230,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)"
@@ -2233,6 +2238,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
@@ -2748,6 +2754,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
@@ -2755,6 +2762,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier"
 				"Lance" 4
 				"Combat Drone" 6
