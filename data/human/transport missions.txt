@@ -3231,11 +3231,11 @@ mission "Spacediving professionals"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 8000
-		dialog "As you descend through the upper atmosphere, the skydivers pay you <payment> before jumping from your ship, spectacularly diving until they open their parachutes and land safely near the spaceport."
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they open their parachutes and land safely near the spaceport. You collect your payment of <payment>."
 
 
 
-mission "Spacediving defaulters"
+mission "Spacediving professionals accident"
 	name "Spacediving at <planet>"
 	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes and oxygen bottles to ensure their survival. Payment is 8000."
 	passengers 5 10
@@ -3249,12 +3249,36 @@ mission "Spacediving defaulters"
 		not attributes station
 		not attributes research
 	to offer
-		has "Spacediving professionals: done"
+		"Spacediving professionals: done" > 7
+		random < 2
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they try to open their parachutes. Some of the parachutes open only partially and part of the team suffers an uncontrolled hard landing. Medical teams respond quickly, but the skydivers are too preoccupied with their injured teammates to pay you the credits they owe you."
+
+
+
+mission "Spacediving professionals disaster"
+	name "Spacediving at <planet>"
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes and oxygen bottles to ensure their survival. Payment is 8000."
+	passengers 5 10
+	repeat
+	job
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
+	to offer
+		has "Spacediving professionals accident: done"
 		random < 1
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		dialog "As you descend through the upper atmosphere, the skydivers open the airlocks and jump quickly to avoid paying you. They open their parachutes and land far away from the spaceport."
+		payment -10000
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship. Some minutes into the jump disaster strikes; the skydivers start moving very spasticly. It's unclear if the spacesuits or the oxygen supplies were at fault, but it looks unlikely that any of the skydivers makes it safely to the ground. Authorities investigate the incident and although they don't find serious wrongdoings on your part, they still fine you <payment> for enabling such a dangerous and deadly act."
 
 
 
@@ -3272,37 +3296,10 @@ mission "Spacediving amateurs"
 		not attributes station
 		not attributes research
 	to offer
-		has "Spacediving professionals: done"
+		"Spacediving professionals: done" > 3
 		random < 5
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000
 		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meagre <payment> before hopping off."
-
-
-
-mission "Spacediving fools"
-	name "Spacediving at <planet>"
-	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are carrying fashionable umbrellas and bottles of whiskey for a grand after-landing celebration. Payment is 8000 credits."
-	passengers 5 10
-	repeat 20
-	job
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	destination
-		distance 1 7
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes station
-		not attributes research
-	to offer
-		has "Spacediving defaulters: done"
-		has "Spacediving amateurs: done"
-		not "Spacediving fools: done"
-		credits >= 100000
-		random < 10
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		payment -10000
-		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship... with their umbrellas open, and while wearing their ordinary clothes. Authorities fine you <payment> when you land for enabling such a dangerous and deadly act."
