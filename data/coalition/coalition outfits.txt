@@ -167,8 +167,9 @@ outfit "Cooling Module"
 	thumbnail "outfit/cooling module"
 	"mass" 5
 	"outfit space" -5
-	"active cooling" 21
+	"active cooling" 24
 	"cooling energy" 1.4
+	"cooling" 2
 	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 outfit "Scanning Module"

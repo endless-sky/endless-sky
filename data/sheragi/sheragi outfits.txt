@@ -40,9 +40,10 @@ outfit "Small Hybrid Cooling"
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
 	"outfit space" -8
-	"cooling" 9
-	"active cooling" 17
+	"cooling" 10
+	"active cooling" 25
 	"cooling energy" 3.1
+	"energy consumption" 0.1
 	description "This small cooling solution was designed with fighters in mind, and as such, it does not store fuel. However, it provides more passive cooling than its big brother."
 
 outfit "Large Hybrid Cooling"
@@ -51,9 +52,10 @@ outfit "Large Hybrid Cooling"
 	thumbnail "outfit/sheragicooling"
 	"mass" 40
 	"outfit space" -40
-	"cooling" 24
-	"active cooling" 128
+	"cooling" 30
+	"active cooling" 175
 	"cooling energy" 16.2
+	"energy consumption" 0.2
 	"fuel capacity" 200
 	description "This Sheragi cooling system is primitive at best, but it works both actively and passively, allowing it to dissipate much more heat than a simple radiator would. It does, however, drain a lot of power when subjected to the heat of battle. It also includes cryogenic tanks to hold some additional fuel, which is used as a temporary heat reservoir."
 
