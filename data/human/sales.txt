@@ -153,7 +153,7 @@ outfitter "Basic Outfits"
 
 outfitter "Common Outfits"
 	"Energy Blaster"
-	"X1100 Ion Reverse Engines"
+	"X1100 Ion Reverse Thruster"
 	"X1700 Ion Thruster"
 	"X1200 Ion Steering"
 	"X2700 Ion Thruster"
