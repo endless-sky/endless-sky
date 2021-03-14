@@ -3223,6 +3223,8 @@ mission "Spacediving professionals"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
 	to offer
 		random < 14
 	on visit
@@ -3244,6 +3246,8 @@ mission "Spacediving defaulters"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
 	to offer
 		has "Spacediving professionals: done"
 		random < 1
@@ -3265,6 +3269,8 @@ mission "Spacediving amateurs"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
 	to offer
 		has "Spacediving professionals: done"
 		random < 5
@@ -3287,6 +3293,8 @@ mission "Spacediving fools"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
 	to offer
 		has "Spacediving defaulters: done"
 		has "Spacediving amateurs: done"
