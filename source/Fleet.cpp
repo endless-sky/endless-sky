@@ -233,6 +233,9 @@ void Fleet::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	if(variants.empty())
+		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
 }
 
 
@@ -524,6 +527,9 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
+	if(!total || variants.empty())
+		return 0;
+	
 	int64_t sum = 0;
 	for(const Variant &variant : variants)
 	{
