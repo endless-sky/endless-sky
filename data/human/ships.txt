@@ -1205,7 +1205,7 @@ ship "Dagger"
 		"required crew" 1
 		"bunks" 1
 		"mass" 20
-		"drag" .63
+		"drag" .4
 		"heat dissipation" .9
 		"outfit space" 90
 		"weapon capacity" 20
@@ -1252,7 +1252,7 @@ ship "Dreadnought"
 		"required crew" 84
 		"bunks" 147
 		"mass" 1810
-		"drag" 10.1
+		"drag" 11.1
 		"heat dissipation" .65
 		"fuel capacity" 600
 		"cargo space" 100
