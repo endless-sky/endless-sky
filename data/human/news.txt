@@ -925,6 +925,7 @@ news "human scientist"
 	name
 		word
 			"Scientist"
+			"Researcher"
 	message
 		word
 			`"`
@@ -1212,6 +1213,29 @@ news "human farming in pirate space"
 			"Pirates may look fierce, but the moment you start pushing against most of them, they fold like paper."
 			"I came here due to all of those oppressive rules and regulations that the Republic force down your throat. Now I'm dealing with all the oppressive demands and threats that pirates force down my throat. It's a start."
 			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path and could return to living normally. I'm talking from personal experience."
+		word
+			`"`
+
+
+
+news "human republic reporter in pirate space"
+	location
+		government "Pirate"
+	name
+		word
+			"Reporter"
+	message
+		word
+			`"`
+		word
+			"I should never have taken this assignment. Yesterday I interviewed a young pirate and he tried to rob me!"
+			"It really isn't so bad here, but I have to make it sound worse than it is to keep my ratings high."
+			"The political hierarchy out here is way more chaotic than any other planet I've been. In the past year I've had to report on five coups d'etat!"
+			"Understanding pirates is the key to defeating them. Yesterday I learned that the local warlord goes sock-shoe-sock-shoe and not sock-sock-shoe-shoe."
+			"I titled my latest article 'New Bombshell Interview Reveals All!' In fact, there were many bombs dropped and many shells fired during my conversation. It was really quite frightening."
+			"Look at this! 'Top Ten Pirates Hector Barbarossa is Too Afraid to Cross!'"
+			"Read this! 'Twenty Smartest Pirates in the Galaxy - You'll Never Guess Who's Number One!'"
+			"Check this out! 'Telltale Signs Your Spouse is Secretly a Pirate - Number Five Says it All!'"
 		word
 			`"`
 
