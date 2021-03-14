@@ -561,6 +561,9 @@ outfit "A865 Atomic Steering"
 	description "Atomic engines are considered by many to be Deep Sky's crowning achievement. Although they are so expensive that relatively few of them are in use, there are few captains who do not dream of one day installing a set of them."
 
 
+
+# Reverse Thrusters
+
 outfit "AR120 Reverse Thruster"
 	category "Engines"
 	"cost" 140000
@@ -574,4 +577,37 @@ outfit "AR120 Reverse Thruster"
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"reverse flare sound" "atomic tiny"
-	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+outfit "Capybara Reverse Thruster"
+	category "Engines"
+	"cost" 140000
+	thumbnail "outfit/reverse thruster plasma"
+	"mass" 20
+	"outfit space" -20
+	"weapon capacity" -20
+	"reverse thrust" 9.6
+	"reverse thrusting energy" 1.0
+	"reverse thrusting heat" 1.8
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
+	description "Particularly large ships often lack the manouverability to perform 180 degree spins to come to a stop on short notice. For such ships, a reverse thruster allows them to accelerate smoothly backwards, without needing to turn around."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+outfit "X1100 Ion Reverse Thruster"
+	category "Engines"
+	"cost" 12000
+	thumbnail "outfit/reverse thruster ion"
+	"mass" 16
+	"outfit space" -16
+	"weapon capacity" -16
+	"reverse thrust" 6.0
+	"reverse thrusting energy" .6
+	"reverse thrusting heat" .9
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
+	description "Traditionally, ships turn around so that they can use their main thrusters for deceleration. Some ships, however, are too ungainly for such manouvers to be convenient, or carry cargo that dislikes being swung around. For such ships, a reverse thruster allows them to apply thrust smoothly backwards."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
