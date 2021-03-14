@@ -629,6 +629,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			continue;
 		}
 		
+		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
 		
 		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
@@ -636,7 +637,6 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
-		ship->NewUUID();
 		
 		placed.push_back(ship);
 	}

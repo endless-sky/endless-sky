@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define NPC_H_
 
 #include "Conversation.h"
+#include "EsUuid.h"
 #include "Fleet.h"
 #include "LocationFilter.h"
 #include "Personality.h"
@@ -62,9 +63,7 @@ public:
 	// Returns the reason the NPC is not valid, or an empty string if valid.
 	std::string Validate(bool asTemplate = false) const;
 	
-	const std::string &UUID() const;
-	void EnsureUUID();
-	void NewUUID();
+	const EsUuid &UUID() const noexcept;
 	
 	// Update or check spawning and despawning for this NPC.
 	void UpdateSpawning(const PlayerInfo &player);
@@ -94,7 +93,7 @@ private:
 	const Government *government = nullptr;
 	Personality personality;
 	
-	std::string uuid;
+	EsUuid uuid;
 	
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;

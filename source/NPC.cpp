@@ -96,7 +96,7 @@ void NPC::Load(const DataNode &node)
 				location.Load(child);
 		}
 		else if(child.Token(0) == "uuid" && child.Size() >= 2)
-			uuid = child.Token(1);
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
 			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "succeed" && child.Size() >= 2)
@@ -225,8 +225,7 @@ void NPC::Save(DataWriter &out) const
 	out.Write("npc");
 	out.BeginChild();
 	{
-		if(!uuid.empty())
-			out.Write("uuid", uuid);
+		out.Write("uuid", uuid.ToString());
 		if(succeedIf)
 			out.Write("succeed", succeedIf);
 		if(failIf)
@@ -347,24 +346,9 @@ string NPC::Validate(bool asTemplate) const
 
 
 
-const string &NPC::UUID() const
+const EsUuid &NPC::UUID() const noexcept
 {
 	return uuid;
-}
-
-
-
-void NPC::EnsureUUID()
-{
-	if(uuid.empty())
-		uuid = Random::UUID();
-}
-
-
-
-void NPC::NewUUID()
-{
-	uuid = Random::UUID();
 }
 
 
@@ -425,6 +409,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
 				Ship *copy = new Ship(*ptr);
+				copy->SetUUID(ptr->UUID());
 				copy->Destroy();
 				actions[copy] = actions[ptr.get()];
 				// Count this ship as destroyed, as well as captured.
@@ -580,7 +565,6 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.government = government;
 	if(!result.government)
 		result.government = GameData::PlayerGovernment();
-	result.uuid = Random::UUID();
 	result.personality = personality;
 	result.succeedIf = succeedIf;
 	result.failIf = failIf;
@@ -615,8 +599,6 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.ships.push_back(make_shared<Ship>(**shipIt));
 		result.ships.back()->SetName(*nameIt);
 	}
-	for(auto resultShipIt : result.ships)
-		resultShipIt->NewUUID();
 	for(const Fleet &fleet : fleets)
 		fleet.Place(*result.system, result.ships, false);
 	for(const Fleet *fleet : stockFleets)
