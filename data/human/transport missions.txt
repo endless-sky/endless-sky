@@ -3194,7 +3194,7 @@ mission "Earth Retirement"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 80 2000
+		payment 2000 80 # To be made conditional later.
 		conversation
 			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves, Charles stops and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
 			choice
@@ -3205,6 +3205,7 @@ mission "Earth Retirement"
 			
 			label payment
 			`	They slowly make their way to the train station. Presumably, their new apartment is far from here.`
+				accept
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`

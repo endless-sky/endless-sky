@@ -1876,8 +1876,7 @@ mission "FWC Pug 4B"
 			`	"Well," she says, "you're the captain, I'll leave that choice up to you."`
 				accept
 			label detour
-			`	"Trust me," she says, "it's worth it, if we can get some real answers."`
-			`	"Straight answers from the Quarg?" you say. "Not likely, but it can't hurt to try."`
+			`	"Thanks," she says, "Let's just hope that we can get some real answers."`
 				accept
 	on visit
 		dialog `You land on <planet>, but you realize that Freya and the graviton reflector are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`

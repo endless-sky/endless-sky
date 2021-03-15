@@ -303,12 +303,12 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 
 
-bool OutfitterPanel::CanBuy() const
+bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 {
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	bool isAlreadyOwned = IsAlreadyOwned();
+	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
 	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 	
@@ -357,7 +357,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 	}
 	
 	int modifier = Modifier();
-	for(int i = 0; i < modifier && CanBuy(); ++i)
+	for(int i = 0; i < modifier && CanBuy(alreadyOwned); ++i)
 	{
 		// Special case: maps.
 		int mapSize = selectedOutfit->Get("map");
@@ -416,7 +416,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		
 		for(Ship *ship : shipsToOutfit)
 		{
-			if(!CanBuy())
+			if(!CanBuy(alreadyOwned))
 				return;
 		
 			if(player.Cargo().Get(selectedOutfit))

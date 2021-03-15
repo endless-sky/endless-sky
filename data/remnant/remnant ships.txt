@@ -937,10 +937,10 @@ ship "Puffin"
 		"Millennium Cell"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-
+		
 		"Anvil-Class Engine"
 		"Hyperdrive"
-
+		
 	engine 0 30
 	leak "remnant leak sparkle" 20 2
 	explode "tiny explosion" 8
