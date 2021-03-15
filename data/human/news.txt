@@ -179,7 +179,7 @@ news "human mining"
 news "human factory"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes factory
+		attributes "factory"
 	name
 		word
 			"Factory worker"
@@ -316,6 +316,39 @@ news "union organizer"
 		word
 			`"`
 
+phrase "small trash item"
+	word
+		"outfit scanner"
+		"cargo scanner"
+		"energy blaster"
+		"laser rifle"
+		"cooling duct"
+		"radar jammer"
+		"fuel pod"
+		
+		
+
+news "waste collector"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "urban" "factory"
+		not attributes "paradise" "station"
+	name
+		word
+			"Waste collector"
+			"Garbage collector"
+			"Trash collector"
+	message
+		word
+			`"`
+		word
+			"My job is cleaner than people think it is. Mostly just consists of loading these bins into a ship to be deposited in a remote area of space."
+			"All's fine and dandy until someone dumps a ton of rotten Caldan lobsters and you have to deal with the smell."
+			"My worth comes from removing what's worthless!"
+			"You wouldn't believe some of the stuff people throw away around the spaceport. Yesterday I found a perfectly intact ${small trash item} that someone had dumped."
+		word
+			`"`
+
 
 
 news "dock worker"
@@ -363,7 +396,7 @@ news "housekeeper"
 			`"`
 		word
 			"How is it possible that a man who manages a billion-credit corporation can still be so incompetent or so careless that he routinely misses the toilet bowl when he takes a piss?"
-			"The family I work for offered to let me live in a room in the attic for free, but I'm not sure I want to have that little separation between work and my personal life."
+			"The family I work for offered to let me live in a room in the attic for free, but I'm sure I want to have that little separation between work and my personal life."
 			"If rich kids are so pampered that they've never so much as had to wash a dish in their entire lives, it makes me wonder how they hope to be independent adults one day."
 			"The kids here are not spoiled at all; the kids in the family I work for typically don't get a new computer game until two days after it gets on the market."
 		word
@@ -748,7 +781,7 @@ news "musician"
 			"Excuse me! I seem to have lost my violin. Have you seen it?"
 			"You think human critics are hard to impress? Try performing for the Quarg!"
 			"I'm writing a new song called 'Ode to a Burthen Goat.' Nobody seems to like it. What do you think?"
-			"I put on a concert here a few months ago, but some wacky band scheduled their own on the same day and everybody went there instead. I think the group was called 'Maybe an Uproar Will Happen' or something like that."
+			"I put on a concert here a while back, but some wacky band scheduled their own on the same day and everybody went there instead. I think the group was called 'Maybe an Uproar Will Happen' or something like that."
 			"The spaceport is a great place to go busking. People seem to give money more enthusiastically when they are excited about going to a new planet."
 			"The music played by all these young new performers is so shallow and artless. Music requires thoughtful consideration to every detail and nuance, yet so many 'musicians' think they can carelessly throw whatever together and call it 'music.'"
 			"Some musicians think they are so sophisticated just because they play antique tunes. I prefer to innovate beyond what already exists, even if the result is different. Doesn't the art of music demand such creativity?"
@@ -1044,7 +1077,7 @@ news "human tourism"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "rich" "paradise" "tourism"
-		not attributes station
+		not attributes "station"
 	name
 		word
 			"Tourist"
