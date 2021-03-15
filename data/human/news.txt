@@ -563,6 +563,26 @@ news "agricultural scientist"
 
 
 
+news "dentist"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Dentist"
+	message
+		word
+			`"`
+		word
+			"Remember to pack a toothcleanser for your journey!"
+			"My new anti-cavity campaign is called 'Plaque Doesn't Deserve a Plaque.' Do you like it?"
+			"If the galaxy has many alien species, I hope they all have teeth."
+			"The advent of almost perfect artificial teeth may tempt you to stop caring if your natural teeth start to rot. Trust me that taking care of your teeth saves a lot of pain from both your mouth and your wallet."
+			"I'm that one dentist that doesn't recommend anything."
+		word
+			`"`
+
+
+
 news "epidemiologist"
 	location
 		government "Republic"
