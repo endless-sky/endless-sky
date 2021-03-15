@@ -730,7 +730,7 @@ outfit "Meteor Missile Pod"
 		"hit force" 220
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
-	description "	Pods are designed to enable fighters and other light craft to carry small quantities of munitions into battle. While they are quite efficient at launching their normal capacity, the reduced size results in a less efficient loader that doesn't accommodate boxes as well as a normal launcher."
+	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "meteor fire"
 	sprite "effect/meteor fire"
