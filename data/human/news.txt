@@ -714,6 +714,29 @@ news "actor"
 
 
 
+news "musician"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "south" "paradise" "near earth"
+	name
+		word
+			"Musician"
+	message
+		word
+			`"`
+		word
+			"Excuse me! I seem to have lost my violin. Have you seen it?"
+			"You think human critics are hard to impress? Try performing for the Quarg!"
+			"I'm writing a new song called 'Ode to a Burthen Goat.' Nobody seems to like it. What do you think?"
+			"I put on a concert here a few months ago, but some wacky band scheduled their own on the same day and everybody went there instead. I think the group was called 'Maybe an Uproar Will Happen' or something like that."
+			"The spaceport is a great place to go busking. People seem to give money more enthusiastically when they are excited about going to a new planet."
+			"The music played by all these young new performers is so shallow and artless. Music requires thoughtful consideration to every detail and nuance, yet so many 'musicians' think they can carelessly throw whatever together and call it 'music.'"
+			"Some musicians think they are so sophisticated just because they play antique tunes. I prefer to innovate beyond what already exists, even if the result is different. Doesn't the art of music demand such creativity?"
+		word
+			`"`
+
+
+
 news "technical writer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
