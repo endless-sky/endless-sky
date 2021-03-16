@@ -843,7 +843,7 @@ person "Subsidurial"
 	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests
-	ship "Subsidurial"
+	ship "Subsidurial" "Subsidurial"
 		"never disabled"
 	system
 		government "Uninhabited"
@@ -892,8 +892,8 @@ phrase "OOO"
 
 
 person "Prototype B3-CC4"
-	frequency 1000
 	government "Author"
+	frequency 1000
 	personality
 		forbearing mining unconstrained swarming
 	system
@@ -1125,8 +1125,8 @@ outfit "Tree Skeleton Key Stone"
 
 
 person "Rais Iris XVIII"
-	frequency 200
 	government "Author"
+	frequency 200
 	personality
 		disables heroic plunders opportunistic
 	phrase
@@ -1194,8 +1194,8 @@ ship "Marauder Bactrian"
 
 
 person "Zitchas"
-	frequency 1000
 	government "Author"
+	frequency 1000
 	personality
 		mining harvests unconstrained opportunistic
 	system
