@@ -1096,19 +1096,6 @@ ship "Fury" "Fury (Missile)"
 		"Hyperdrive"
 
 
-ship "Fury" "Fury (Miner)"
-	outfits
-		"Heavy Laser" 2
-		"nGVF-CC Fuel Cell"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Asteroid Scanner"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
-
 ship "Gunboat" "Gunboat (Mark II)"
 	outfits
 		"Electron Beam" 2
@@ -1242,7 +1229,7 @@ ship "Hawk" "Hawk (Speedy)"
 
 ship "Hawk" "Hawk (Miner)"
 	outfits
-		"Heavy Laser" 2
+		"Modified Blaster" 2
 		"S3 Thermionic"
 		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
@@ -1977,6 +1964,19 @@ ship "Sparrow" "Sparrow (Gatling)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
+
+
+ship "Sparrow" "Sparrow (Miner)"
+	outfits
+		"Energy Blaster" 2
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
 
 
 ship "Sparrow" "Sparrow (Patrol)"

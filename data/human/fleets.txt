@@ -883,18 +883,12 @@ fleet "Human Miners"
 		confusion 20
 		timid frugal mining harvests
 	variant 5
-		"Sparrow"
-	variant 1
+		"Sparrow (Miner)"
+	variant 5
 		"Fury"
-	variant 2
-		"Fury (Miner)"
 	variant 1
-		"Hawk"
-	variant 2
 		"Hawk (Miner)"
 	variant 1
-		"Headhunter"
-	variant 2
 		"Headhunter (Miner)"
 
 fleet "Small Free Worlds"
