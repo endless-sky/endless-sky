@@ -840,7 +840,7 @@ outfit "LG Gridfire Turret"
 
 person "Subsidurial"
 	government "Indigenous Lifeform"
-	frequency 100
+	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests mute
 	ship "Subsidurial"
@@ -851,7 +851,7 @@ person "Subsidurial"
 
 
 person "Prototype B3-CC4"
-	frequency 20000
+	frequency 1000
 	government "Author"
 	personality
 		forbearing mining unconstrained swarming
@@ -1153,7 +1153,7 @@ ship "Marauder Bactrian"
 
 
 person "Zitchas"
-	frequency 200
+	frequency 1000
 	government "Author"
 	personality
 		mining harvests unconstrained opportunistic
