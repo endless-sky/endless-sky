@@ -3071,6 +3071,10 @@ mission "Remnant: Keystone Research 1"
 		random < 30
 		has "Remnant: Learn Sign 2: done"
 		has "Remnant: Technology Available: offered"
+		or
+			has "Remnant: Key Stones: done"
+			has "Remnant: Key Stones (Hai): done"
+			has "Remnant: Key Stones (Pre-Hai) 2: done"
 	on offer
 		log "People" "Aeolus" `As an outfitter, Aeolus is responsible for managing the logistics that supply the Remnant with materials, equipment, and resources. In contrast to outfitters in what the Remnant term "ancestral space," he is focused on ensuring the efficient optimization of Remnant ships, not making a profit.`
 		conversation
