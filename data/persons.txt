@@ -842,15 +842,6 @@ person "Subsidurial"
 	government "Indigenous Lifeform"
 	frequency 1000
 	personality
-		timid unconstrained coward appeasing uninterested mining harvests mute
-	ship "Subsidurial"
-		"never disabled"
-	system
-		government "Uninhabited"
-person "Subsidurial"
-	government "Indigenous Lifeform"
-	frequency 1000000000
-	personality
 		timid unconstrained coward appeasing uninterested mining harvests
 	ship "Subsidurial" "Subsidurial"
 		"never disabled"
