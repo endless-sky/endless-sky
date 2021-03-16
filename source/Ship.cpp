@@ -3465,7 +3465,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() <= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
