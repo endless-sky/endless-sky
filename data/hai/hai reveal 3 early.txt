@@ -317,8 +317,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 			choice
 				`	"And that is?"`
 				`	"What's the deal then?"`
-			`	Terry crosses her arms and leans back against the bulkhead, "We need a recruitment campaign, and if you haven't guessed, you're the man to do it."`
-			`	"The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I will stage manage, and have promotional material ready inside of 3 hours."`
+			`	Terry crosses her arms and leans back against the bulkhead, "We need a recruitment campaign, and if you haven't guessed, you're the man to do it. The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I'll obviously stage manage your image, and will have promotional material ready inside of 3 hours."`
 			choice
 				`	"I don't really have a choice in this matter, do I?"`
 			`	Terry's answering grin is best described as "predatory".`
@@ -423,7 +422,7 @@ event "role-play station active"
 		government "Neutral"
 		attributes station tourism
 		landscape land/station5
-		description `This brand new station is built with wide spacious interiors, though that is largely because it was built for having expansion room inside it to accommodate the Hai's preferred geometric development pattern and long-term perspectives. At the moment there is a number of hai pretending to be humans in costume, and a number of volunteer humans from Hai space helping to make up the act. A powerful holoprojection system is projecting an 'anomaly' into space nearby as a novelty. Some 'investigators' following rumors of the Hai are being entertained at most any time.`
+		description `This brand new station is built with wide spacious interiors for later expansion, a staple of the Hai's geometric building designs. At the moment, there is a number of Hai pretending to be humans in costume and volunteer humans from Hai space helping to make up the act. A powerful holoprojection system is projecting an 'anomaly' into space nearby as a novelty. It seems to reasonably entertain some 'investigators' following rumors of the Hai.`
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad, carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 0.7
 		"required reputation" -10

@@ -35,7 +35,7 @@ mission "Hai Rescue: Yeertle Hint"
 	on offer
 		conversation
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. Often this contains useful tidbits, such as which merchants are ticked off at the moment and whether you should expect to wait a while for refueling. Today, though, you overhear a captain telling an acquaintance a remarkable tale.`
-			`	Apparently, there is a man-beast on <planet>, and when the other captain laughs at the idea of a modern "werewolf", the first one is quick to clarify that it's more like a five-foot tall "were-squirrel". There seems to be some confused discussion about the mythology of such beasts being revealed when caught staring at bright lights until a third captain, listening in the same as you, butts in to inform them that one of them stole that from a popular show a few years back.`
+			`	Apparently, there is a man-beast on <planet>, and when the other captain laughs at the idea of a modern "werewolf", the first one is quick to clarify that it's more like a meter and a half tall "were-squirrel". There seems to be some confused discussion about the mythology of such beasts being revealed when caught staring at bright lights until a third captain, listening in the same as you, butts in to inform them that one of them stole that from a popular show a few years back.`
 			`	You stop listening on your final approach as the conversation descends into a good-natured argument. Nevertheless, it sounds like a lead on a possible stranded Hai that would be worth following up.`
 				accept
 
