@@ -20,14 +20,14 @@ outfit "Energy Blaster"
 		sprite "projectile/blaster"
 		sound "blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 12.0
-		"velocity" 10
+		"inaccuracy" 3
+		"velocity" 10.625
 		"lifetime" 48
-		"reload" 12.0
+		"reload" 12
 		"firing energy" 9.6
 		"firing heat" 30
-		"shield damage" 9
-		"hull damage" 5
+		"shield damage" 9.6
+		"hull damage" 6
 	description "Although not the most accurate or damaging of weapons, the Energy Blaster is popular because it is small enough to be installed on even the tiniest of ships. One blaster is not enough to do appreciable damage to anything larger than a fighter, but a ship equipped with several of them becomes a force to be reckoned with."
 
 outfit "Blaster Turret"
@@ -45,15 +45,15 @@ outfit "Blaster Turret"
 		"hardpoint offset" 9.
 		sound "blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 12
-		"turret turn" 3
-		"velocity" 10
+		"inaccuracy" 3
+		"turret turn" 3.7
+		"velocity" 10.625
 		"lifetime" 48
-		"reload" 6.0
+		"reload" 6
 		"firing energy" 9.6
 		"firing heat" 30
-		"shield damage" 9
-		"hull damage" 5
+		"shield damage" 9.6
+		"hull damage" 6
 	description "A Blaster Turret is a pair of Energy Blasters mounted on a rotating platform, allowing it to fire in any direction. Sophisticated software algorithms allow the turret to correct for a target's motion, making the Blaster Turret effective even against small, quickly moving fighters. Because it needs a special mounting point with a 360 degree field of view, not all ships are capable of being equipped with a turret."
 
 outfit "Quad Blaster Turret"
@@ -71,15 +71,15 @@ outfit "Quad Blaster Turret"
 		"hardpoint offset" 9.
 		sound "blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 12.0
-		"turret turn" 3.7
-		"velocity" 10
-		"lifetime" 48.0
-		"reload" 6.0
+		"inaccuracy" 3
+		"turret turn" 3.2
+		"velocity" 10.625
+		"lifetime" 48
+		"reload" 3
 		"firing energy" 9.6
 		"firing heat" 30
-		"shield damage" 9
-		"hull damage" 5
+		"shield damage" 9.6
+		"hull damage" 6
 	description "A Quad Blaster Turret carries four guns on a single turret mount, doubling the firepower of an ordinary Blaster Turret for ships with enough space to install one and energy to drive it."
 
 effect "blaster impact"
@@ -103,14 +103,14 @@ outfit "Modified Blaster"
 		sprite "projectile/mod blaster"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 8.0
-		"velocity" 5.0
-		"lifetime" 96.0
-		"reload" 24.0
-		"firing energy" 21.6
-		"firing heat" 84.0
-		"shield damage" 24.0
-		"hull damage" 16.0
+		"inaccuracy" 4
+		"velocity" 10
+		"lifetime" 48
+		"reload" 12
+		"firing energy" 10.8
+		"firing heat" 42
+		"shield damage" 12
+		"hull damage" 8
 	description "This is an Energy Blaster that has been tampered with to increase its power slightly, at the cost of reduced range and higher energy consumption. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
 
 outfit "Modified Blaster Turret"
@@ -128,15 +128,15 @@ outfit "Modified Blaster Turret"
 		"hardpoint offset" 9.
 		sound "mod blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 8.0
-		"turret turn" 1.75
-		"velocity" 5.0
-		"lifetime" 96.0
-		"reload" 12.0
-		"firing energy" 21.6
-		"firing heat" 84.0
-		"shield damage" 24.0
-		"hull damage" 16.0
+		"inaccuracy" 4
+		"turret turn" 3.5
+		"velocity" 10
+		"lifetime" 48
+		"reload" 6
+		"firing energy" 10.8
+		"firing heat" 42
+		"shield damage" 12
+		"hull damage" 8
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
 
@@ -153,12 +153,12 @@ outfit "Beam Laser"
 			"frame rate" 1
 		sound "laser"
 		"hit effect" "beam laser impact"
-		"inaccuracy" 0.5
+		"inaccuracy" .5
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.0
-		"firing heat" 2.4
+		"firing energy" .5
+		"firing heat" 1.2
 		"shield damage" 1
 		"hull damage" 1.3
 	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere."
@@ -179,13 +179,13 @@ outfit "Laser Turret"
 		"hardpoint offset" -0.5 8.
 		sound "laser"
 		"hit effect" "beam laser impact"
-		"inaccuracy" 0.5
-		"turret turn" 2.0
+		"inaccuracy" .5
+		"turret turn" 4.0
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2
-		"firing heat" 4.8
+		"firing energy" 1
+		"firing heat" 2.4
 		"shield damage" 2
 		"hull damage" 2.6
 	description "Laser Turrets are hated by fighter pilots because it is nearly impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel almost instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
@@ -240,12 +240,12 @@ outfit "Heavy Laser"
 			"frame rate" 1
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
-		"inaccuracy" 0.8
+		"inaccuracy" .4
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2
-		"firing heat" 4.2
+		"firing energy" 1
+		"firing heat" 2.1
 		"shield damage" 1.7
 		"hull damage" 2.4
 	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
@@ -266,13 +266,13 @@ outfit "Heavy Laser Turret"
 		"hardpoint offset" 8.
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
-		"inaccuracy" 0.8
-		"turret turn" 1.1
+		"inaccuracy" .4
+		"turret turn" 2.2
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 4
-		"firing heat" 8.4
+		"firing energy" 2
+		"firing heat" 4.2
 		"shield damage" 3.4
 		"hull damage" 4.8
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
@@ -301,12 +301,12 @@ outfit "Electron Beam"
 			"frame rate" 60
 		sound "electron beam"
 		"hit effect" "electron impact"
-		"inaccuracy" 0.6
+		"inaccuracy" .3
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3.0
-		"firing heat" 5.4
+		"firing energy" 1.5
+		"firing heat" 2.7
 		"shield damage" 2.4
 		"hull damage" 3.3
 	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns."
@@ -327,13 +327,13 @@ outfit "Electron Turret"
 		"hardpoint offset" 8.
 		sound "electron beam"
 		"hit effect" "electron impact"
-		"inaccuracy" 0.6
-		"turret turn" 0.7
+		"inaccuracy" .3
+		"turret turn" 1.4
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 6.0
-		"firing heat" 10.8
+		"firing energy" 3.0
+		"firing heat" 5.4
 		"shield damage" 4.8
 		"hull damage" 6.6
 	description "This turret places two of Deep Sky's recently developed electron beam weapons onto a rotating turret, providing unsurpassed accuracy and power for shooting down fast-moving targets."
@@ -363,9 +363,9 @@ outfit "Anti-Missile Turret"
 		"anti-missile" 5
 		"velocity" 150
 		"lifetime" 1
-		"reload" 16.0
-		"firing energy" 10.0
-		"firing heat" 6.0
+		"reload" 8
+		"firing energy" 5
+		"firing heat" 3
 	description "Centuries ago, space battles were fought mostly with missiles, with the outcome dependent only on which ship had more shielding or ammunition. Lovelace Labs was originally founded to remedy that situation by developing a protective system that could shoot missiles out of the air, defending freighter convoys from pirates who could otherwise simply bombard them into submission without ever venturing within range of their guns."
 
 effect "small anti-missile"
@@ -392,9 +392,9 @@ outfit "Heavy Anti-Missile Turret"
 		"anti-missile" 8
 		"velocity" 200
 		"lifetime" 1
-		"reload" 12.0
-		"firing energy" 20.0
-		"firing heat" 10.0
+		"reload" 6
+		"firing energy" 10
+		"firing heat" 5
 	description "The Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than its smaller sibling. The only way to overcome it is by firing missiles in a cluster so that while one is being targeted, the others can get through, and as a result all missile systems on the market now default to firing in clusters if multiple copies of the same launcher are installed, rather than staggering their fire as ordinary guns do."
 
 effect "large anti-missile"
@@ -418,16 +418,16 @@ outfit "Particle Cannon"
 		sprite "projectile/particle beam"
 		sound "particle"
 		"hit effect" "particle impact"
-		"inaccuracy" 1.0
-		"velocity" 15.0
-		"lifetime" 50.0
-		"reload" 40.0
-		"firing energy" 70.0
-		"firing force" 20.0
-		"firing heat" 240.0
-		"hit force" 160.0
-		"shield damage" 108.0
-		"hull damage" 104.0
+		"inaccuracy" .5
+		"velocity" 30
+		"lifetime" 25
+		"reload" 20
+		"firing energy" 35
+		"firing force" 10
+		"firing heat" 120
+		"hit force" 80
+		"shield damage" 54
+		"hull damage" 52
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
 
 effect "particle impact"
@@ -453,14 +453,14 @@ outfit "Proton Gun"
 		sprite "projectile/proton"
 		sound "proton"
 		"hit effect" "proton impact" 3
-		"inaccuracy" 8.0
+		"inaccuracy" 4
 		"submunition" "Proton Fragment" 3
-		"velocity" 12.0
-		"lifetime" 4.0
-		"reload" 16.0
-		"firing energy" 30.0
-		"firing force" 4.0
-		"firing heat" 120.0
+		"velocity" 24
+		"lifetime" 2
+		"reload" 8
+		"firing energy" 15
+		"firing force" 2
+		"firing heat" 60
 	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
 
 outfit "Proton Fragment"
@@ -469,11 +469,11 @@ outfit "Proton Fragment"
 			"no repeat"
 			"frame rate" 2
 		"hit effect" "proton impact"
-		"inaccuracy" 4.0
-		"lifetime" 48.0
-		"hit force" 12.0
-		"shield damage" 16.8
-		"hull damage" 14.0
+		"inaccuracy" 2
+		"lifetime" 24
+		"hit force" 6
+		"shield damage" 8.4
+		"hull damage" 7
 
 effect "proton impact"
 	sprite "effect/proton impact"
@@ -499,15 +499,15 @@ outfit "Proton Turret"
 		"hardpoint offset" 14.
 		sound "proton"
 		"hit effect" "proton impact" 3
-		"inaccuracy" 8.0
-		"turret turn" 1.0
+		"inaccuracy" 4
+		"turret turn" 2.0
 		"submunition" "Proton Fragment" 3
-		"velocity" 12.0
-		"lifetime" 4.0
-		"reload" 16.0
-		"firing energy" 30.0
-		"firing force" 4.0
-		"firing heat" 120.0
+		"velocity" 24
+		"lifetime" 2
+		"reload" 8
+		"firing energy" 15
+		"firing force" 2
+		"firing heat" 60
 	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially popular laser turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
 
 
@@ -524,16 +524,16 @@ outfit "Plasma Cannon"
 			"frame rate" 3
 		sound "plasma"
 		"hit effect" "plasma explosion"
-		"inaccuracy" 4.0
-		"velocity" 6.0
-		"lifetime" 80.0
-		"reload" 36.0
-		"firing energy" 60.0
-		"firing heat" 360.0
-		"hit force" 60.0
-		"shield damage" 126.0
-		"hull damage" 50.0
-		"heat damage" 680.0
+		"inaccuracy" 2
+		"velocity" 12
+		"lifetime" 40
+		"reload" 18
+		"firing energy" 30
+		"firing heat" 180
+		"hit force" 30
+		"shield damage" 63
+		"hull damage" 25
+		"heat damage" 340
 	description "The Plasma Cannon fires bursts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
 outfit "Plasma Turret"
@@ -552,17 +552,17 @@ outfit "Plasma Turret"
 		"hardpoint offset" 15.
 		sound "plasma"
 		"hit effect" "plasma explosion"
-		"inaccuracy" 4.0
-		"turret turn" 0.6
-		"velocity" 6.0
-		"lifetime" 80.0
-		"reload" 18.0
-		"firing energy" 60.0
-		"firing heat" 360.0
-		"hit force" 60.0
-		"shield damage" 126.0
-		"hull damage" 50.0
-		"heat damage" 680.0
+		"inaccuracy" 2
+		"turret turn" 1.2
+		"velocity" 12
+		"lifetime" 40
+		"reload" 9
+		"firing energy" 30
+		"firing heat" 180
+		"hit force" 30
+		"shield damage" 63
+		"hull damage" 25
+		"heat damage" 340
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
 outfit "Plasma Repeater"
@@ -578,16 +578,16 @@ outfit "Plasma Repeater"
 			"frame rate" 3
 		sound "plasma"
 		"hit effect" "plasma explosion"
-		"lifetime" 76.0
-		"velocity" 6.0
-		"inaccuracy" 10.0
-		"reload" 14.0
-		"firing energy" 26.0
-		"firing heat" 200.0
-		"shield damage" 66.0
-		"hull damage" 26.0
-		"heat damage" 288.0
-		"hit force" 38.0
+		"lifetime" 38
+		"velocity" 12
+		"inaccuracy" 5
+		"reload" 7
+		"firing energy" 13
+		"firing heat" 100
+		"shield damage" 33
+		"hull damage" 13
+		"heat damage" 144
+		"hit force" 19
 	description `Decades after buying the rights for the Plasma Cannon, Kraz Cybernetics put this weapon on the shelves of every high-end outfitter of the Southern Rim. The repeater has so far proved immensely popular amongst any who braved testing it, and is shaping up to become an essential deterrent for anyone who flaunts their haul for pirate plunder.`
 	description `	Derived from the original Plasma Cannon, this heavier version trades off its larger bursts for a much faster rate of fire. Although the smaller bursts of superheated plasma deal far less damage than its predecessor, the volume of fire results in more damage to the target overall.`
 
@@ -618,13 +618,13 @@ outfit "Flamethrower"
 		sound "flamethrower"
 		icon "icon/flamethrower"
 		"submunition" "Flamethrower Projectile"
-		"inaccuracy" 24.0
-		"velocity" 4.5
-		"lifetime" 10.0
-		"reload" 2.0
-		"firing energy" 0.2
-		"firing fuel" .50
-		"firing heat" 4.0
+		"inaccuracy" 12
+		"velocity" 9
+		"lifetime" 5
+		"reload" 1
+		"firing energy" .1
+		"firing fuel" .25
+		"firing heat" 2
 	description "A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight."
 
 outfit "Flamethrower Projectile"
@@ -634,11 +634,11 @@ outfit "Flamethrower Projectile"
 			"random start frame"
 		"hit effect" "flamethrower hit"
 		"die effect" "flamethrower die"
-		"inaccuracy" 40.0
-		"lifetime" 44.0
-		"shield damage" 1.6
-		"hull damage" 1.4
-		"heat damage" 400.0
+		"inaccuracy" 20
+		"lifetime" 22
+		"shield damage" .8
+		"hull damage" .7
+		"heat damage" 200
 
 effect "flamethrower die"
 	sprite "effect/explosion/small"
@@ -704,7 +704,7 @@ outfit "Meteor Missile Launcher"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 10.0
-		"velocity" 5.5
+		"velocity" 5.0
 		"lifetime" 980.0
 		"reload" 160.0
 		"firing energy" 2.0
@@ -740,7 +740,7 @@ outfit "Meteor Missile Pod"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 10.0
-		"velocity" 5.5
+		"velocity" 5.0
 		"lifetime" 980.0
 		"reload" 320.0
 		"burst count" 4
@@ -827,10 +827,10 @@ outfit "Sidewinder Missile Pod"
 	cost 60000
 	thumbnail "outfit/sidewinder pod"
 	"mass" 3
-	"outfit space" -4
-	"weapon capacity" -3
+	"outfit space" -5
+	"weapon capacity" -5
 	"gun ports" -1
-	"sidewinder capacity" 4
+	"sidewinder capacity" 2
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -989,7 +989,7 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 10.0
-		"velocity" 3.5
+		"velocity" 3.0
 		"lifetime" 1800
 		"reload" 300.0
 		"firing energy" 4.0
@@ -1051,7 +1051,7 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 10.0
-		"velocity" 3
+		"velocity" 2.5
 		"lifetime" 2200.0
 		"reload" 240.0
 		"firing energy" 8.0
@@ -1110,7 +1110,7 @@ outfit "Heavy Rocket Launcher"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 2.0
-		"velocity" 3.5
+		"velocity" 3.0
 		"lifetime" 290.0
 		"range override" 400
 		"reload" 480.0
@@ -1144,7 +1144,7 @@ outfit "Heavy Rocket Pod"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 2.0
-		"velocity" 3.5
+		"velocity" 3.0
 		"lifetime" 290.0
 		"range override" 400
 		"reload" 1000.0
@@ -1197,7 +1197,7 @@ outfit "Nuclear Missile"
 		"hit effect" "nuke residue slow" 10
 		"die effect" "missile death"
 		"inaccuracy" 2.0
-		"velocity" 4.0
+		"velocity" 3.5
 		"lifetime" 1200.0
 		"reload" 400.0
 		"firing energy" 10.0
@@ -1284,14 +1284,14 @@ outfit "Gatling Gun"
 		sound "explosion tiny"
 		ammo "Gatling Gun Ammo"
 		icon "icon/gat"
-		"inaccuracy" 4.0
-		"velocity" 8.0
-		"lifetime" 2.0
-		"reload" 6.0
+		"inaccuracy" 2
+		"velocity" 16
+		"lifetime" 1
+		"reload" 3
 		"burst count" 180
 		"burst reload" 1
-		"firing energy" 0.06
-		"firing heat" 5.0
+		"firing energy" .03
+		"firing heat" 2.5
 		"submunition" "gbullet"
 		"cluster"
 		"hit effect" "bullet impact"
@@ -1304,9 +1304,9 @@ outfit "gbullet"
 			"random start frame"
 			"frame rate" 0
 		"random velocity" 8
-		"lifetime" 40.0
+		"lifetime" 20
 		"random lifetime" 5
-		"shield damage" 6.0
-		"hull damage" 12.0
-		"hit force" 4.0
+		"shield damage" 3
+		"hull damage" 6
+		"hit force" 2
 		"hit effect" "bullet impact"

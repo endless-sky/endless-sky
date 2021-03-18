@@ -30,18 +30,18 @@ outfit "Ka'het Nullifier"
 		"live effect" "ionball spark" 140
 		"live effect" "ionball trail" 140
 		"live effect" "ionball twinkle" 560
-		"inaccuracy" 0.4
-		"velocity" 4.5
-		"lifetime" 400.0
-		"reload" 700.0
-		"firing energy" 1420.0
-		"firing force" 180.0
-		"firing heat" 320.0
+		"inaccuracy" 0.2
+		"velocity" 9
+		"lifetime" 200
+		"reload" 350
+		"firing energy" 710
+		"firing force" 90
+		"firing heat" 160
 		"turn" 73
-		"shield damage" 240.0
-		"hull damage" 80.0
-		"ion damage" 300.0
-		"hit force" 100.0
+		"shield damage" 120
+		"hull damage" 40
+		"ion damage" 150
+		"hit force" 50
 		"blast radius" 20
 	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does almost no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."
 
@@ -117,14 +117,14 @@ outfit "Ka'het Ravager Beam"
 			"frame rate" 15
 		sound "disruptor"
 		"hit effect" "ravager impact"
-		"inaccuracy" 0.4
+		"inaccuracy" .2
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 3.7
 		"firing heat" 1.5
-		"shield damage" 0.9
-		"hull damage" 2.15
+		"shield damage" 1.8
+		"hull damage" 4.3
 	description "This laser beam was created by the Builders for use in asteroid mining. Unfortunately, they understood its effectiveness in combat only after it turned against them."
 
 outfit "Ka'het Ravager Turret"
@@ -142,15 +142,15 @@ outfit "Ka'het Ravager Turret"
 		"hardpoint offset" 3.
 		sound "disruptor"
 		"hit effect" "ravager impact"
-		"inaccuracy" 0.4
-		"turret turn" 0.9
+		"inaccuracy" .2
+		"turret turn" 1.8
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 3.7
 		"firing heat" 1.5
-		"shield damage" 0.9
-		"hull damage" 2.15
+		"shield damage" 1.8
+		"hull damage" 4.3
 	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons the Ka'het possess."
 
 effect "ravager impact"
@@ -173,14 +173,14 @@ outfit "Ka'het Annihilator"
 			"frame rate" 7
 		sound "inhibitor"
 		"hit effect" "bullet impact"
-		"inaccuracy" 5.0
-		"velocity" 9.0
-		"lifetime" 70.0
-		"reload" 20.0
-		"firing energy" 62.0
-		"firing heat" 16.0
-		"shield damage" 86.0
-		"hull damage" 24.0
+		"inaccuracy" 2.5
+		"velocity" 18
+		"lifetime" 35
+		"reload" 10
+		"firing energy" 31
+		"firing heat" 8
+		"shield damage" 43
+		"hull damage" 12
 	description "The Builders initially created the Annihilator long ago, as a countermeasure to their newly discovered shield matrix. They kept developing it for centuries, with this being its final version."
 
 outfit "Ka'het Annihilator Turret"
@@ -197,13 +197,13 @@ outfit "Ka'het Annihilator Turret"
 		"hardpoint sprite" "hardpoint/annihilator turret"
 		"hardpoint offset" 15.
 		"hit effect" "bullet impact"
-		"inaccuracy" 2.0
-		"turret turn" 1.15
+		"inaccuracy" 1
+		"turret turn" 2.3
 		"range override" 630
 		"velocity override" 18
-		"reload" 20.0
-		"firing energy" 124.0
-		"firing heat" 32.0
+		"reload" 10
+		"firing energy" 62
+		"firing heat" 16
 		"submunition" "Annihilator Projectile" 2
 	description "The Builders mounted two Annihilators on this turret, making it highly efficient against enemy shields."
 
@@ -213,11 +213,11 @@ outfit "Annihilator Projectile"
 			"frame rate" 7
 		sound "inhibitor"
 		"hit effect" "bullet impact"
-		"inaccuracy" 4.0
-		"velocity" 9.0
-		"lifetime" 70.0
-		"shield damage" 86.0
-		"hull damage" 24.0
+		"inaccuracy" 2
+		"velocity" 18
+		"lifetime" 35
+		"shield damage" 43
+		"hull damage" 12
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"

@@ -20,14 +20,14 @@ outfit "Pulse Cannon"
 		sprite "projectile/pulse"
 		sound "pulse"
 		"hit effect" "pulse impact"
-		"inaccuracy" 2.0
-		"velocity" 7.5
-		"lifetime" 60.0
-		"reload" 40.0
-		"firing energy" 48.0
-		"firing heat" 140.0
-		"shield damage" 90.0
-		"hull damage" 68.0
+		"inaccuracy" 1
+		"velocity" 15
+		"lifetime" 30
+		"reload" 20
+		"firing energy" 24
+		"firing heat" 70
+		"shield damage" 45
+		"hull damage" 34
 	description "Like most examples of Hai engineering that you have seen, the Pulse Cannon does not stand out as a particularly advanced or elegant technology, but it has a reputation for being efficient, reliable, and well-balanced."
 
 outfit "Pulse Turret"
@@ -45,15 +45,15 @@ outfit "Pulse Turret"
 		"hardpoint offset" 7.
 		sound "pulse"
 		"hit effect" "pulse impact"
-		"inaccuracy" 2.0
-		"turret turn" 1.15
-		"velocity" 7.5
-		"lifetime" 60.0
-		"reload" 20.0
-		"firing energy" 48.0
-		"firing heat" 140.0
-		"shield damage" 90.0
-		"hull damage" 68.0
+		"inaccuracy" 1
+		"turret turn" 2.3
+		"velocity" 15
+		"lifetime" 30
+		"reload" 10
+		"firing energy" 24
+		"firing heat" 70
+		"shield damage" 45
+		"hull damage" 34
 	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
 
 effect "pulse impact"
@@ -80,17 +80,17 @@ outfit "Ion Cannon"
 			"frame rate" 5
 		sound "ion"
 		"hit effect" "ion impact" 2
-		"inaccuracy" 2.0
-		"velocity" 8.0
-		"lifetime" 100.0
-		"reload" 120.0
-		"firing energy" 240.0
-		"firing force" 20.0
-		"firing heat" 300.0
-		"hit force" 240.0
-		"shield damage" 336.0
-		"hull damage" 120.0
-		"ion damage" 10.0
+		"inaccuracy" 1
+		"velocity" 16
+		"lifetime" 50
+		"reload" 60
+		"firing energy" 120
+		"firing force" 10
+		"firing heat" 150
+		"hit force" 120
+		"shield damage" 168
+		"hull damage" 60
+		"ion damage" 5
 	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
 
 effect "ion impact"
@@ -140,14 +140,14 @@ outfit "Railgun"
 		sound "ion impact"
 		"fire effect" "rail sparks"
 		"hit effect" "bullet impact"
-		"inaccuracy" 6.0
-		"velocity" 22.0
-		"lifetime" 2.0
+		"inaccuracy" 3
+		"velocity" 44
+		"lifetime" 1
 		"range override" 2100
-		"reload" 24.0
-		"firing energy" 7.0
-		"firing heat" 14.4
-		"firing force" 140.0
+		"reload" 12
+		"firing energy" 3.5
+		"firing heat" 7.2
+		"firing force" 70
 		"stream"
 		"submunition" "rslug" 1
 	description "The Hai designed this weapon to best compliment their Flea drones. Each railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
@@ -158,16 +158,16 @@ outfit "rslug"
 		sprite "projectile/rail slug"
 			"frame rate" 30
 		"hit effect" "bullet impact"
-		"lifetime" 98.0
+		"lifetime" 49
 		"acceleration" 2.2
 		"drag" .05
 		"turn" .6
 		"homing" 1
 		"optical tracking" .4
-		"shield damage" 8.4
-		"hull damage" 16.8
-		"ion damage" 0.6
-		"hit force" 30.0
+		"shield damage" 4.2
+		"hull damage" 8.4
+		"ion damage" .3
+		"hit force" 15
 
 effect "bullet impact"
 	sprite "effect/bullet impact"
@@ -288,11 +288,11 @@ outfit "Bullfrog Anti-Missile"
 		"hardpoint offset" 3.
 		"hit effect" "small anti-missile"
 		"anti-missile" 12
-		"velocity" 150.0
-		"lifetime" 1.0
-		"reload" 40.0
-		"firing energy" 24.0
-		"firing heat" 10.0
+		"velocity" 150
+		"lifetime" 1
+		"reload" 20
+		"firing energy" 12
+		"firing heat" 5
 		"stream"
 	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defense against them. In spite of the dated design, it is still effective against small numbers of their latest missile weapons."
 
@@ -310,11 +310,11 @@ outfit "Chameleon Anti-Missile"
 		"hardpoint offset" 4.
 		"hit effect" "large anti-missile"
 		"anti-missile" 16
-		"velocity" 200.0
-		"lifetime" 1.0
-		"reload" 30.0
-		"firing energy" 46.0
-		"firing heat" 12.0
+		"velocity" 200
+		"lifetime" 1
+		"reload" 15
+		"firing energy" 23
+		"firing heat" 6
 		"stream"
 	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
 

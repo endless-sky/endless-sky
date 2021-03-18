@@ -26,19 +26,19 @@ outfit "Inhibitor Cannon"
 			"no repeat"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
-		"inaccuracy" 1.0
-		"velocity" 18.0
+		"inaccuracy" .5
+		"velocity" 36
 		"random velocity" .5
-		"lifetime" 48.0
-		"reload" 26.0
+		"lifetime" 24
+		"reload" 13
 		"cluster"
-		"firing energy" 52.0
-		"firing heat" 91.0
-		"firing force" 26.0
-		"shield damage" 52.0
-		"hull damage" 39.0
-		"hit force" 78.0
-		"slowing damage" 1.0
+		"firing energy" 26
+		"firing heat" 45.5
+		"firing force" 13
+		"shield damage" 26
+		"hull damage" 19.5
+		"hit force" 39
+		"slowing damage" .5
 	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
 	description `	Although the Remnant appreciated the original weapon, they were disappointed that it was too big to fit on most of their ships. Instead of letting their effort go to waste, they instead opted to put their newfound knowledge to use creating a weapon suitable for their more nimble craft. Thus, the Inhibitor is excellent at controlling engagement distances, keeping targets at range by both pushing them backward with the impact of each shot while also slowing their approach by interfering with their engines.`
 
@@ -71,20 +71,20 @@ outfit "Inhibitor Turret"
 		"hardpoint offset" 6.
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
-		"inaccuracy" 1.0
-		"turret turn" 1.75
-		"velocity" 18.0
+		"inaccuracy" .5
+		"turret turn" 3.5
+		"velocity" 36
 		"random velocity" .5
-		"lifetime" 48.0
-		"reload" 13.0
+		"lifetime" 24
+		"reload" 6.5
 		"cluster"
-		"firing energy" 52.0
-		"firing heat" 91.0
-		"firing force" 26.0
-		"shield damage" 52.0
-		"hull damage" 39.0
-		"hit force" 78.0
-		"slowing damage" 1.0
+		"firing energy" 26
+		"firing heat" 45.5
+		"firing force" 13
+		"shield damage" 26
+		"hull damage" 19.5
+		"hit force" 39
+		"slowing damage" .5
 	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
 	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
 
@@ -106,14 +106,14 @@ outfit "Thrasher Cannon"
 			"no repeat"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
-		"inaccuracy" 18.0
-		"velocity" 5.0
-		"lifetime" 72.0
-		"reload" 40.0
-		"firing energy" 72.0
-		"firing heat" 54.0
-		"shield damage" 76.0
-		"hull damage" 92.0
+		"inaccuracy" 9
+		"velocity" 10
+		"lifetime" 36
+		"reload" 20
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
 	description "This weapon was originally developed in an attempt to reverse engineer a long-range energy projectile favored by an alien species that the Remnant encountered nearby. In the process they discovered that by adding more energy to the projectiles they could do a lot more damage in exchange for shorter range, and the Thrasher Cannon was born."
 
 effect "thrasher impact"
@@ -147,15 +147,15 @@ outfit "Thrasher Turret"
 		"hardpoint offset" 6.
 		sound "thrasher"
 		"hit effect" "thrasher impact"
-		"inaccuracy" 12.0
-		"turret turn" 1.2
-		"velocity" 5.0
-		"lifetime" 72.0
-		"reload" 10.0
-		"firing energy" 72.0
-		"firing heat" 54.0
-		"shield damage" 76.0
-		"hull damage" 92.0
+		"inaccuracy" 6
+		"turret turn" 2.4
+		"velocity" 10
+		"lifetime" 36
+		"reload" 5
+		"firing energy" 36
+		"firing heat" 27
+		"shield damage" 38
+		"hull damage" 46
 	description "This turret mounts four Thrasher Cannons on a single rotating base. The resulting weapon deals a very satisfying amount of damage when fired from close range, especially against a slow-moving target."
 
 
@@ -177,9 +177,9 @@ outfit "Point Defense Turret"
 		"anti-missile" 42
 		"velocity" 270
 		"lifetime" 1
-		"reload" 20.0
-		"firing energy" 124.0
-		"firing heat" 36.0
+		"reload" 10
+		"firing energy" 62
+		"firing heat" 18
 	description "Not long after the Remnant settled on Aventine, they began to discover caches of alien technology in vaults deep under the mountains, guarded by ancient but still-functioning point-defense systems. The Remnant learned how to duplicate those defense systems, and they are now considered to be much more useful than most of the items that they were guarding."
 
 effect "point defense fire"
