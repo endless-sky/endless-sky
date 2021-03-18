@@ -2039,7 +2039,7 @@ void Ship::DoGeneration()
 		// close to the star. Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
-			double scale = 2 / exp((.0008 * position.Length() + 1), 2);
+			double scale = 2 / pow((.0008 * position.Length() + 1), 2);
 			fuel += currentSystem->SolarWind() * .03 * scale * max(sqrt(attributes.Get("ramscoop")), .05);
 			
 			double solarScaling = currentSystem->SolarPower() * (2 / (.0008 * position.Length() + 1));
