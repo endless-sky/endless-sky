@@ -373,19 +373,19 @@ outfit "Korath Detainer"
 		"hit effect" "detainer impact" 3
 		"hit effect" "detainer smoke" 5
 		"live effect" "detainer sparks" 50
-		"inaccuracy" 1.0
-		"velocity" 7.0
-		"lifetime" 280.0
-		"reload" 120.0
+		"inaccuracy" .5
+		"velocity" 14
+		"lifetime" 140
+		"reload" 60
 		"burst reload" 10
 		"burst count" 2
-		"firing energy" 1512.0
-		"firing force" 80.0
-		"firing heat" 800.0
-		"hit force" 160.0
-		"shield damage" 640.0
-		"hull damage" 480.0
-		"slowing damage" 80.0
+		"firing energy" 756
+		"firing force" 40
+		"firing heat" 400
+		"hit force" 80
+		"shield damage" 320
+		"hull damage" 240
+		"slowing damage" 40
 		"blast radius" 20
 	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes."
 

@@ -2231,7 +2231,7 @@ ship "Lance"
 		"mass" 15
 		"drag" 1.4
 		"heat dissipation" .8
-		"outfit space" 128
+		"outfit space" 129
 		"weapon capacity" 20
 		"engine capacity" 56
 		"thrust" 12.0
