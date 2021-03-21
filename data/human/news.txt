@@ -316,6 +316,8 @@ news "union organizer"
 		word
 			`"`
 
+
+
 phrase "small trash item"
 	word
 		"outfit scanner"
@@ -591,6 +593,38 @@ news "agricultural scientist"
 			"I've heard that the corporate farms on some Paradise Worlds don't even need irrigation systems. They can just call up the terraforming office and order a rainstorm whenever they need one."
 			"People have been farming for thousands of years, but finding the best way to maximize yields without wearing out the land is still a hard problem to solve."
 			"Don't ever forget that you have us to thank for humanity's ability to support our growing population."
+		word
+			`"`
+
+
+phrase "athlete competition location"
+	word
+		"Earth"
+		"Pearl in the Phurad system"
+		"Valhalla in the Epsilon Leonis system"
+		"Bourne in the Gamma Corvi system"
+		"Trinket in the Sargas system"
+		"Shangri-La in the Polaris system"
+		
+
+
+news "athlete"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Athlete"
+	message
+		word
+			`"`
+		word
+			"I'm planning to compete in a game on ${athlete competition location}!"
+			"I tried to compete in the Burthen Triathalon once, but the gravity was too much for me. Now I'm training to try again next year!"
+			"Have you ever done the long jump on Longjump? Even an untrained individual can jump ten meters in that environment!"
+			"I sure am glad we'll never have to compete against any Alphas. We would all lose!"
+			"Does your ship have a weight room?"
+			"I'm hoping to get a sponsorhip, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
+			"I don't expect everyone to be as fit as I am, but do remember to get up and excercise a little every once and a while!"		
 		word
 			`"`
 
