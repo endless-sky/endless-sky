@@ -1340,7 +1340,7 @@ news "human republic reporter in pirate space"
 		word
 			"I should never have taken this assignment. Yesterday I interviewed a young pirate and he tried to rob me!"
 			"It really isn't so bad here, but I have to make it sound worse than it is to keep my ratings high."
-			"The political hierarchy out here is way more chaotic than any other planet I've visited. In the past year I've had to report on five coups d'etat!"
+			"The political hierarchy out here is way more chaotic than any other planet I've visited. In the past year, I've had to report on five coups d'etat!"
 			"Understanding pirates is the key to defeating them. Yesterday I learned that the local warlord goes sock-shoe-sock-shoe and not sock-sock-shoe-shoe."
 			"I titled my latest article 'New Bombshell Interview Reveals All!' In fact, there were many bombs dropped and many shells fired during my conversation. It was really quite frightening."
 			"Look at this! 'Top Ten Pirates Hector Barbarossa is Too Afraid to Cross!'"
