@@ -385,7 +385,6 @@ Files:
  images/outfit/flamethrower*
  images/outfit/fuel?pod*
  images/outfit/gat*
- images/outfit/grab-strike*
  images/outfit/heavy?anti-missile*
  images/outfit/heavy?laser?turret*
  images/outfit/heavy?laser*
@@ -924,6 +923,13 @@ Files:
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
+
+Files:
+ images/outfit/grab-strike*
+ images/hardpoint/grab-strike*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tomaso (under the same licence).
 
 Files:
  images/ship/raider*
