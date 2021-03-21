@@ -415,8 +415,10 @@ mission "Slave Crew Rescue (No Brig Variant)"
 	deadline 1
 	to offer
 		random < 10
+		not "Slave Crew Rescue (Brig Variant): offered"
 	source
-		category "Medium Freighter" "Heavy Freighter"
+		government "Merchant"
+		category "Heavy Freighter"
 		not attributes "automaton"
 	destination "Earth"
 	on offer
@@ -430,11 +432,11 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				"flagship crew" == 1
 
 			label "flagship is empty"
-			`You leave your ship empty and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
+			`You leave your ship empty and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
 				goto "first decision"
 
 			label "first mate left on flagship"
-			`You leave your first mate in charge of your ship and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
+			`You leave your first mate in charge of your ship and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
 				goto "first decision"
 
 			label "boarding with a big boarding party"
@@ -452,11 +454,11 @@ mission "Slave Crew Rescue (No Brig Variant)"
 					goto "crew missing"
 
 			label probe
-			`Tarquin laughs self-consciously. "The truth is, I'm a bit desperate," he says. "My cargo hold is full of perishable goods that need to be delivered in three days to a very important client who will probably cut me off if I don't make the deadline. I thought I could save money by hiring inexperienced peasants to crew the ship, but as you can see, that hasn't worked out very well. They're cowering in their quarters even now. I'm offering you my profits from being a cheapskate. We'll call it paying for a lesson learned."`
+			`	Tarquin laughs self-consciously. "The truth is, I'm a bit desperate," he says. "My cargo hold is full of perishable goods that need to be delivered in three days to a very important client who will probably cut me off if I don't make the deadline. I thought I could save money by hiring inexperienced peasants to crew the ship, but as you can see, that hasn't worked out very well. They're cowering in their quarters even now. I'm offering you my profits from being a cheapskate. We'll call it paying for a lesson learned.`
 				goto "get to work"
 
 			label "crew missing"
-			`Tarquin laughs heartily. "That lot? They're a bunch of simple peasants I picked up on New India, off hiding in their quarters right now. The bumpkins are unaccustomed to this kind of danger, and don't have a lot of technical skills. My fault for being too cheap to hire good help, I suppose. I'm definitely going to pick up some more experienced and reliable crewmen after we get out of this mess."`
+			`	Tarquin laughs heartily. "That lot? They're a bunch of simple peasants I picked up on New India, off hiding in their quarters right now. The bumpkins are unaccustomed to this kind of danger, and don't have a lot of technical skills. My fault for being too cheap to hire good help, I suppose. I'm definitely going to pick up some more experienced and reliable crewmen after we get out of this mess.`
 
 			label "get to work"
 			`	"Can we get to work now?"`
@@ -464,7 +466,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				`	(Get to work repairing the ship.)`
 					accept
 				`	(Press the matter.)`
-			`Something about captain Tarquin's explanation doesn't sit right with you, so you keep asking questions to distract him while subtly walking towards the ship's crew section. As you get closer, you start to hear the faint sounds of people banging on walls and yelling for help. You turn back to Tarquin, whose face is displaying an almost uncannily neutral expression, but his body is taut as as though every muscle has tensed up all at once.`
+			`	Something about captain Tarquin's explanation doesn't sit right with you, so you keep asking questions to distract him while subtly walking towards the ship's crew section. As you get closer, you start to hear the faint sounds of people banging on walls and yelling for help. You turn back to Tarquin, whose face is displaying an almost uncannily neutral expression, but his body is taut as as though every muscle has tensed up all at once.`
 			choice
 				`	"I think we took a wrong turn. Let's go repair your ship."`
 					goto coward
@@ -478,14 +480,14 @@ mission "Slave Crew Rescue (No Brig Variant)"
 					goto "attack but tarquin is prepared"
 
 			label coward
-			`"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
+			`	"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				accept
 
 			label "trickster or monster"
-			`Tarquin relaxes. "It's so nice to encounter a like-minded captain in this unfriendly galaxy," he says. "I wouldn't dream of accepting repairs for free. Take the money anyway, I insist."`
+			`	Tarquin relaxes. "It's so nice to encounter a like-minded captain in this unfriendly galaxy," he says. "I wouldn't dream of accepting repairs for free. Take the money anyway, I insist."`
 			choice
 				`	(Now go repair his ship.)`
 					accept
@@ -501,7 +503,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				"flagship crew" < 3
 
 			label "attack alone with the element of surprise"
-			`You draw your weapon as fast as you can.`
+			`	You draw your weapon as fast as you can.`
 			branch "good luck" "bad luck"
 				random < 80
 
@@ -510,13 +512,13 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				random < 40
 
 			label "attack with a big boarding party"
-			`Tarquin can't hope to stand alone against your entire boarding party and quickly surrenders. A look of cold fury glints in his eyes, even as the rest of his face remains calm.`
+			`	Tarquin can't hope to stand alone against your entire boarding party and quickly surrenders. A look of cold fury glints in his eyes, even as the rest of his face remains calm.`
 			choice
 				`	(Execute him here and now.)`
 					goto execution
 				`	(Take him prisoner.)`
 
-			`You instruct one of the members of your boarding party to tie him up and guard him. Tarquin curses you foully and bucks around as you search him, finding a concealed handgun and knife, and the credit chip he was going to pay you. You go to rescue the ship's crew.`
+			`	You instruct one of the members of your boarding party to tie him up and guard him. Tarquin curses you foully and bucks around as you search him, finding a concealed handgun and knife, and the credit chip he was going to pay you. You go to rescue the ship's crew.`
 			`	The crew quarters have been fashioned into a brig with stout cell doors. There is no obvious way to open them, so you and your compatriots begin blasting them open.`
 			`	Suddenly, a warning klaxon cuts through the noise with a harsh staccato. The ship's self-destruct sequence has been activated! You race to the room where Tarquin was being held, and find that he has somehow escaped. In his place is an unconscious member of your crew with a savage slash across his face, evidently inflicted by an additional concealed weapon you didn't manage to find. A nearby panel indicates that an escape pod has been jettisoned.`
 			`	The ship will explode in less than 30 seconds. You realize bitterly that there is no chance you can release the prisoners in time, and trying anyway will just get everyone killed. You and your boarding party storm angrily back to your ship and release the docking clamps just in time for the <origin> to disintegrate into a cloud of space debris, cruelly ending the already unhappy lives of captain Tarquin's victims.`
@@ -526,7 +528,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				launch
 
 			label execution
-			`You gun captain Tarquin down in cold blood, to the shock of at least one member of your boarding party. Good riddance to bad rubbish, you think, as you search the body of ex-captain Tarquin. You find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue his crew with it.`
+			`	You gun captain Tarquin down in cold blood, to the shock of at least one member of your boarding party. Good riddance to bad rubbish, you think, as you search the body of ex-captain Tarquin. You find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue his crew with it.`
 				goto "rescue the crew"
 
 			label blackmailer
@@ -534,14 +536,14 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				"flagship crew" < 3
 
 			label "blackmailing with a big boarding party"
-			`Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he said coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
+			`	Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he said coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				decline
 
 			label "blackmailing alone"
-			`"It'll be a cold day in hell before I get blackmailed by someone dumb enough to board a disabled ship all alone," sneers Tarquin.`
+			`	"It'll be a cold day in hell before I get blackmailed by someone dumb enough to board a disabled ship all alone," sneers Tarquin.`
 				goto "attack alone but tarquin is prepared"
 
 			label "the direct approach"
@@ -549,15 +551,15 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				"flagship crew" < 3
 
 			label "acting stupid alone"
-			`Captain Tarquin throws back his head and laughs at the exact moment that he draws a concealed pistol and shoots you with it five times - all in the blink of an eye. Your last thoughts concern the effectiveness of his distraction and the foolishness of your bravado.`
+			`	Captain Tarquin throws back his head and laughs at the exact moment that he draws a concealed pistol and shoots you with it five times - all in the blink of an eye. Your last thoughts concern the effectiveness of his distraction and the foolishness of your bravado.`
 				die
 
 			label "bad luck"
-			`Quick as a flash, he whips out a concealed pistol and drills a hole in your spine before you can react. The dangerous game you were playing ends abruptly.`
+			`	Quick as a flash, he whips out a concealed pistol and drills a hole in your spine before you can react. The dangerous game you were playing ends abruptly.`
 				die
 
 			label "good luck"
-			`Quick as a flash, he whips out a concealed pistol, but you're faster. It's the last mistake he ever makes. You search the body of ex-captain Tarquin, finding several concealed knives in addition to his handgun, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue the crew with it.`
+			`	Quick as a flash, he whips out a concealed pistol, but you're faster. It's the last mistake he ever makes. You search the body of ex-captain Tarquin, finding several concealed knives in addition to his handgun, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue the crew with it.`
 				goto "rescue the crew"
 
 			label "rescue the crew"
@@ -579,8 +581,10 @@ mission "Slave Crew Rescue (Brig Variant)"
 	passengers 1
 	to offer
 		random < 10
+		not "Slave Crew Rescue (No Brig Variant): offered"
 	source
-		category "Medium Freighter" "Heavy Freighter"
+		government "Merchant"
+		category "Heavy Freighter"
 		not attributes "automaton"
 	destination "Earth"
 	on offer
@@ -594,11 +598,11 @@ mission "Slave Crew Rescue (Brig Variant)"
 				"flagship crew" == 1
 
 			label "flagship is empty"
-			`You leave your ship empty and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
+			`You leave your ship empty and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
 				goto "first decision"
 
 			label "first mate left on flagship"
-			`You leave your first mate in charge of your ship and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
+			`You leave your first mate in charge of your ship and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
 				goto "first decision"
 
 			label "boarding with a big boarding party"
@@ -616,11 +620,11 @@ mission "Slave Crew Rescue (Brig Variant)"
 					goto "crew missing"
 
 			label probe
-			`Tarquin laughs self-consciously. "The truth is, I'm a bit desperate," he says. "My cargo hold is full of perishable goods that need to be delivered in three days to a very important client who will probably cut me off if I don't make the deadline. I thought I could save money by hiring inexperienced peasants to crew the ship, but as you can see, that hasn't worked out very well. They're cowering in their quarters even now. I'm offering you my profits from being a cheapskate. We'll call it paying for a lesson learned."`
+			`	Tarquin laughs self-consciously. "The truth is, I'm a bit desperate," he says. "My cargo hold is full of perishable goods that need to be delivered in three days to a very important client who will probably cut me off if I don't make the deadline. I thought I could save money by hiring inexperienced peasants to crew the ship, but as you can see, that hasn't worked out very well. They're cowering in their quarters even now. I'm offering you my profits from being a cheapskate. We'll call it paying for a lesson learned.`
 				goto "get to work"
 
 			label "crew missing"
-			`Tarquin laughs heartily. "That lot? They're a bunch of simple peasants I picked up on New India, off hiding in their quarters right now. The bumpkins are unaccustomed to this kind of danger, and don't have a lot of technical skills. My fault for being too cheap to hire good help, I suppose. I'm definitely going to pick up some more experienced and reliable crewmen after we get out of this mess."`
+			`	Tarquin laughs heartily. "That lot? They're a bunch of simple peasants I picked up on New India, off hiding in their quarters right now. The bumpkins are unaccustomed to this kind of danger, and don't have a lot of technical skills. My fault for being too cheap to hire good help, I suppose. I'm definitely going to pick up some more experienced and reliable crewmen after we get out of this mess.`
 
 			label "get to work"
 			`	"Can we get to work now?"`
@@ -628,7 +632,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 				`	(Get to work repairing the ship.)`
 					accept
 				`	(Press the matter.)`
-			`Something about captain Tarquin's explanation doesn't sit right with you, so you keep asking questions to distract him while subtly walking towards the ship's crew section. As you get closer, you start to hear the faint sounds of people banging on walls and yelling for help. You turn back to Tarquin, whose face is displaying an almost uncannily neutral expression, but his body is taut as as though every muscle has tensed up all at once.`
+			`	Something about captain Tarquin's explanation doesn't sit right with you, so you keep asking questions to distract him while subtly walking towards the ship's crew section. As you get closer, you start to hear the faint sounds of people banging on walls and yelling for help. You turn back to Tarquin, whose face is displaying an almost uncannily neutral expression, but his body is taut as as though every muscle has tensed up all at once.`
 			choice
 				`	"I think we took a wrong turn. Let's go repair your ship."`
 					goto coward
@@ -642,14 +646,14 @@ mission "Slave Crew Rescue (Brig Variant)"
 					goto "attack but tarquin is prepared"
 
 			label coward
-			`"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
+			`	"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				accept
 
 			label "trickster or monster"
-			`Tarquin relaxes. "It's so nice to encounter a like-minded captain in this unfriendly galaxy," he says. "I wouldn't dream of accepting repairs for free. Take the money anyway, I insist."`
+			`	Tarquin relaxes. "It's so nice to encounter a like-minded captain in this unfriendly galaxy," he says. "I wouldn't dream of accepting repairs for free. Take the money anyway, I insist."`
 			choice
 				`	(Now go repair his ship.)`
 					accept
@@ -665,7 +669,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 				"flagship crew" < 3
 
 			label "attack alone with the element of surprise"
-			`You draw your weapon as fast as you can.`
+			`	You draw your weapon as fast as you can.`
 			branch "good luck" "bad luck"
 				random < 80
 
@@ -674,17 +678,17 @@ mission "Slave Crew Rescue (Brig Variant)"
 				random < 40
 
 			label "attack with a big boarding party"
-			`Tarquin can't hope to stand alone against your entire boarding party and quickly surrenders. A look of cold fury glints in his eyes, even as the rest of his face remains calm.`
+			`	Tarquin can't hope to stand alone against your entire boarding party and quickly surrenders. A look of cold fury glints in his eyes, even as the rest of his face remains calm.`
 			choice
 				`	(Execute him here and now.)`
 					goto execution
 				`	(Take him prisoner.)`
 
-			`You search Tarquin and find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. Then you instruct one of the members of your boarding party to lock him in your ship's brig. Tarquin curses you foully as he is marched to captivity at gunpoint. You resolve to figure out what to do with him later, and go to rescue the ship's crew.`
+			`	You search Tarquin and find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. Then you instruct one of the members of your boarding party to lock him in your ship's brig. Tarquin curses you foully as he is marched to captivity at gunpoint. You resolve to figure out what to do with him later, and go to rescue the ship's crew.`
 				goto "rescue the crew with tarquin captured"
 
 			label execution
-			`You gun captain Tarquin down in cold blood, to the shock of at least one member of your boarding party. Good riddance to bad rubbish, you think, as you search the body of ex-captain Tarquin. You find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue his crew with it.`
+			`	You gun captain Tarquin down in cold blood, to the shock of at least one member of your boarding party. Good riddance to bad rubbish, you think, as you search the body of ex-captain Tarquin. You find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue his crew with it.`
 				goto "rescue the crew"
 
 			label blackmailer
@@ -692,14 +696,14 @@ mission "Slave Crew Rescue (Brig Variant)"
 				"flagship crew" < 3
 
 			label "blackmailing with a big boarding party"
-			`Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he said coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
+			`	Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he said coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				decline
 
 			label "blackmailing alone"
-			`"It'll be a cold day in hell before I get blackmailed by someone dumb enough to board a disabled ship all alone," sneers Tarquin.`
+			`	"It'll be a cold day in hell before I get blackmailed by someone dumb enough to board a disabled ship all alone," sneers Tarquin.`
 				goto "attack alone but tarquin is prepared"
 
 			label "the direct approach"
@@ -707,15 +711,15 @@ mission "Slave Crew Rescue (Brig Variant)"
 				"flagship crew" < 3
 
 			label "acting stupid alone"
-			`Captain Tarquin throws back his head and laughs at the exact moment that he draws a concealed pistol and shoots you with it five times - all in the blink of an eye. Your last thoughts concern the effectiveness of his distraction and the foolishness of your bravado.`
+			`	Captain Tarquin throws back his head and laughs at the exact moment that he draws a concealed pistol and shoots you with it five times - all in the blink of an eye. Your last thoughts concern the effectiveness of his distraction and the foolishness of your bravado.`
 				die
 
 			label "bad luck"
-			`Quick as a flash, he whips out a concealed pistol and drills a hole in your spine before you can react. The dangerous game you were playing ends abruptly.`
+			`	Quick as a flash, he whips out a concealed pistol and drills a hole in your spine before you can react. The dangerous game you were playing ends abruptly.`
 				die
 
 			label "good luck"
-			`Quick as a flash, he whips out a concealed pistol, but you're faster. It's the last mistake he ever makes. You search the body of ex-captain Tarquin, finding several concealed knives in addition to his handgun, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue the crew with it.`
+			`	Quick as a flash, he whips out a concealed pistol, but you're faster. It's the last mistake he ever makes. You search the body of ex-captain Tarquin, finding several concealed knives in addition to his handgun, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue the crew with it.`
 				goto "rescue the crew"
 
 			label "rescue the crew"
