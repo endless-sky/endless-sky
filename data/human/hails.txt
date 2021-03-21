@@ -1769,6 +1769,31 @@ phrase "friendly civilian"
 		"the thing looked bigger on the inside than on the outside."
 		"and some weirdos were flying around it on hoverboards."
 
+phrase "friendly civilian"
+	word
+		"I bought "
+	word
+		"a power generator"
+		"explosives"
+		"my new thrusters"
+		"some toothpaste"
+	word
+		" "
+	word
+		"from"
+	word
+		" "
+	word
+		"the ACME company"
+		"the Astronomical Conglomeration of Manufacturing Entities"
+	word
+		" "
+	word
+		", a company many times smaller than the Syndicate."
+		", a minor company but with much better service than the Syndicate."
+		", a pretty insignificant company located just on one planet."
+		" but next time I buy from the much larger Syndicate again."
+
 phrase "friendly navy"
 	word
 		"The Navy"

@@ -289,6 +289,7 @@ news "unemployed youth"
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
+			"Beat it, old-timer, I've got more important things to do than chat with you."
 		word
 			`"`
 
@@ -310,6 +311,7 @@ news "union organizer"
 			"My job is to encourage workers to place a higher value on their own lives despite being surrounded by a culture that tells them they are worthless."
 			"Management warning workers not to join the union is one of our best sources of visiblity among the workers."
 			"Young people usually don't join a union, so we are mostly working for the benefit of higher aged workers."
+			"Our visibility is increasing among the workforce; A rolling snowball will be harder to stop!"
 		word
 			`"`
 
@@ -748,6 +750,7 @@ news "chef"
 			"I'm employed as the chef on a luxury cruise ship. A Star Queen. The captain tells me that Star Queens are considered the safest way to travel in outer space."
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
 			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
+			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
 		word
 			`"`
 
@@ -887,6 +890,7 @@ news "human syndicate manager"
 			"Have you considered a Syndicate Freighter for your next ship? Captains like you swear by them!"
 			"Nobody ever got fired for buying Syndicate."
 			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
+			"Those union boys are completely unreasable; if we give them a finger then they try to eat up the whole arm up to the elbow."
 		word
 			`"`
 
@@ -1118,6 +1122,7 @@ news "human pirate"
 			"Your credits or your life! Oh you don't have either? Never mind then."
 			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
 			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
+			"The size of my crimes no longer matter; One may as well hang for a sheep as for a lamb."
 		word
 			`"`
 
@@ -1217,3 +1222,6 @@ news "graffiti on spaceport wall"
 			"You think piracy is bad and want to stop us? You and what army?"
 			"Messing with the Syndicate, Does That Sound Like Fun to You?"
 			"83 percent of all statistics are just made up."
+			"Ask not what your planet can do for you; ask what you can do for your planet. - based on John F. Kennedy"
+			"Fair is foul, and foul is fair - Shakespeare, Macbeth"
+			"For want of a shoe the crewmember was lost. / For want of a crewmember the ship was lost. / For want of a ship, the fleet was lost. / For want of a fleet, the battle was lost. And all for the want of a shoe."
