@@ -74,10 +74,10 @@ outfit "Korath Banisher"
 		"velocity" 590
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3.3
-		"firing heat" 4.9
-		"shield damage" 2.8
-		"hull damage" .9
+		"firing energy" 4.0
+		"firing heat" 5.9
+		"shield damage" 2.2
+		"hull damage" .7
 		"hit force" 40
 	description "The Korath like to keep their enemies close... but not too close."
 
@@ -137,10 +137,10 @@ outfit "Korath Fire-Lance"
 		"velocity" 350
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2.5
-		"firing heat" 1.7
-		"shield damage" 3.5
-		"hull damage" 1.5
+		"firing energy" 3
+		"firing heat" 2.0
+		"shield damage" 2.8
+		"hull damage" 1.2
 		"heat damage" 12
 	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
 
@@ -538,10 +538,10 @@ outfit "Korath Disruptor"
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 8.0
-		"firing heat" 2.7
-		"shield damage" 3.8
-		"hull damage" .5
+		"firing energy" 9.6
+		"firing heat" 3.2
+		"shield damage" 3.0
+		"hull damage" .4
 		"disruption damage" .24
 	description "Korath Disruptors interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
 

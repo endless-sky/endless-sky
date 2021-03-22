@@ -216,10 +216,10 @@ outfit "Heliarch Attractor"
 		"velocity" 640
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 4.8
-		"firing heat" 4.5
-		"shield damage" 5.4
-		"hull damage" 4.2
+		"firing energy" 5.2
+		"firing heat" 5.4
+		"shield damage" 4.3
+		"hull damage" 3.4
 		"firing force" -30
 		"hit force" -30
 	description "When battling the Quarg, the Heliarchs learned that the Quarg would not engage in a battle that their ships might be unable to escape. In response, they focused on building weapons that would keep a ship from being able to come to a stop and activate its jump drive."
@@ -259,10 +259,10 @@ outfit "Heliarch Repulsor"
 		"velocity" 560
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 5.9
-		"firing heat" 1.2
-		"shield damage" 3.6
-		"hull damage" 5.8
+		"firing energy" 7.1
+		"firing heat" 1.4
+		"shield damage" 2.9
+		"hull damage" 4.6
 		"firing force" 60
 		"hit force" 60
 		"slowing damage" .1

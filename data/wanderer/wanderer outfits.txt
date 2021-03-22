@@ -28,10 +28,10 @@ outfit "Sunbeam"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 5.2
-		"firing heat" 6.2
-		"shield damage" 7.2
-		"hull damage" 3.0
+		"firing energy" 6.2
+		"firing heat" 7.4
+		"shield damage" 5.8
+		"hull damage" 2.4
 		"heat damage" 12.1
 	description "The Wanderers do not devote much time to developing weapon technology, preferring to focus their attention on more constructive endeavors. However, the few weapons they have created are efficient and deadly."
 
@@ -69,10 +69,10 @@ outfit "Sunbeam Turret"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 5.2
-		"firing heat" 6.2
-		"shield damage" 7.2
-		"hull damage" 3.0
+		"firing energy" 6.2
+		"firing heat" 7.4
+		"shield damage" 5.8
+		"hull damage" 2.4
 		"heat damage" 12.1
 	description "As the Wanderers slowly cope with the transition from peacetime to the growing conflict with the Unfettered Hai, they have begun building ships that are capable of carrying turret-mounted weapons. Because of the sheer size of the Sunbeam, this turret only carries one of them."
 
@@ -100,10 +100,10 @@ outfit "Dual Sunbeam Turret"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 10.4
-		"firing heat" 12.4
-		"shield damage" 14.4
-		"hull damage" 6.0
+		"firing energy" 12.5
+		"firing heat" 14.9
+		"shield damage" 11.5
+		"hull damage" 4.8
 		"heat damage" 24.2
 	description "This turret carries a pair of Wanderer Sunbeams. For any ship that can support its energy requirements, it is an immensely powerful weapon."
 
@@ -130,10 +130,10 @@ outfit "Moonbeam"
 		"reload" 1.8
 		"burst count" 25
 		"burst reload" 1
-		"firing energy" 5.4
-		"firing heat" 1.8
-		"shield damage" 4.8
-		"hull damage" 8.4
+		"firing energy" 6.5
+		"firing heat" 2.2
+		"shield damage" 3.8
+		"hull damage" 6.7
 	description "Because their Sunbeams are not very effective against the heavy plating of the Korath drones, the Wanderers have developed a new beam weapon that is considerably more effective against hull armor."
 
 effect "moonbeam fleck"
@@ -178,10 +178,10 @@ outfit "Moonbeam Turret"
 		"reload" 1.2
 		"burst count" 30
 		"burst reload" 1
-		"firing energy" 5.4
-		"firing heat" 1.8
-		"shield damage" 4.8
-		"hull damage" 8.4
+		"firing energy" 6.5
+		"firing heat" 2.2
+		"shield damage" 3.8
+		"hull damage" 6.7
 	description "This turret only carries a single Moonbeam weapon, but with its duty cycle increased so it can do 50% more damage than the non-turreted version."
 
 outfit "Wanderer Anti-Missile"

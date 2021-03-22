@@ -51,10 +51,10 @@ outfit "Quarg Skylance"
 		"velocity" 500
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 30
-		"firing heat" 10
-		"shield damage" 50
-		"hull damage" 40
+		"firing energy" 36
+		"firing heat" 12
+		"shield damage" 40
+		"hull damage" 32
 		"ion damage" .1
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
