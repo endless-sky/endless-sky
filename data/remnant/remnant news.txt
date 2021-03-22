@@ -213,6 +213,8 @@ news "remnant security advisory"
 news "remnant incomprehensible"
 	location
 		government "Remnant"
+	to show
+		not "remnant: sign studies complete"
 	name
 		word
 			"Spaceport"
@@ -301,5 +303,73 @@ news "remnant cafeteria"
 			"are signing to each other over a large meal"
 			"are reading reports over a large meal"
 			"are examining holo projections over a large meal"
+		word
+			"."
+
+
+
+news "remnant comprehensible"
+	location
+		government "Remnant"
+	to show
+		has "remnant: sign studies complete"
+	name
+		word
+			"Spaceport"
+			"Loading dock"
+			"Cafeteria"
+			"Landing pad"
+			"Landing dock"
+			"Spaceport alley"
+			"Spaceport hallway"
+	message
+		phrase
+			"Amount of Remnant"
+		word
+			" sign "
+			" gesture "
+		word
+			"quickly"
+			"calmly"
+			"leisurely"
+			"slowly"
+			"deliberately"
+			"carefully"
+			"precisely"
+			"sharply"
+			"briskly"
+			"sweepingly"
+			"intensively"
+			"meticulously"
+			"at length"
+			"vaguely"
+			"briskly"
+			"hurriedly"
+			"hastily"
+			"abruptly"
+			"spontaneously"
+		word
+			" to "
+		word
+			"each other"
+			"another Remnant"
+			"other Remnant"
+			"a Remnant at the information desk"
+			"a dockworker"
+			"something or someone you can't see"
+		word
+			". "
+		word
+			"From this angle, all you can "
+		word
+			"make out"
+			"catch"
+		word
+			" is that they are "
+		word
+			"discussing a recent salvage operation"
+			"making lunch plans"
+			"arguing about engine efficiencies"
+			"gossipping about a visitor from outside the Ember Waste"
 		word
 			"."
