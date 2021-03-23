@@ -1714,10 +1714,10 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		" ship crooks, than having a crooked ship."
-		" ship slugs, than having a sluggish ship."
-		" ship bad bands, than having your ship badly banned."
-		" be working hard at shipping, than having your ship hardly working."
+		"ship crooks, than having a crooked ship."
+		"ship slugs, than having a sluggish ship."
+		"ship bad bands, than having your ship badly banned."
+		"be working hard at shipping, than having your ship hardly working."
 
 
 phrase "friendly civilian"
@@ -1786,8 +1786,6 @@ phrase "friendly civilian"
 	word
 		"the ACME company"
 		"the Astronomical Conglomeration of Manufacturing Entities"
-	word
-		" "
 	word
 		", a company many times smaller than the Syndicate."
 		", a minor company but with much better service than the Syndicate."
