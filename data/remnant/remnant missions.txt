@@ -1808,6 +1808,7 @@ mission "Remnant: Heavy Laser"
 	source "Viminal"
 	destination
 		government "Remnant"
+		attributes outfitter
 		not distance 0
 	to offer
 		or
@@ -1848,6 +1849,7 @@ mission "Remnant: Plasma Cannon"
 	source "Viminal"
 	destination
 		government "Remnant"
+		attributes outfitter
 		not distance 0
 	to offer
 		or
@@ -1896,6 +1898,7 @@ mission "Remnant: Catalytic Ramscoop"
 	source "Viminal"
 	destination
 		government "Remnant"
+		attributes outfitter
 		not distance 0
 	to offer
 		or
@@ -1935,6 +1938,7 @@ mission "Remnant: Electron Beam"
 	source "Viminal"
 	destination
 		government "Remnant"
+		attributes outfitter
 		not distance 0
 	to offer
 		or
@@ -1974,6 +1978,7 @@ mission "Remnant: D94-YV Shield Generator"
 	source "Viminal"
 	destination
 		government "Remnant"
+		attributes outfitter
 		not distance 0
 	to offer
 		or
@@ -2013,6 +2018,7 @@ mission "Remnant: S-970 Regenerator"
 	source "Viminal"
 	destination
 		government "Remnant"
+		attributes outfitter
 		not distance 0
 	to offer
 		or
