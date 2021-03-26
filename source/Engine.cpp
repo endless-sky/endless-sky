@@ -881,7 +881,7 @@ void Engine::Draw() const
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
-	const Interface *interface = GameData::Interfaces().Get("hud");
+	const Interface *hud = GameData::Interfaces().Get("hud");
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -929,7 +929,7 @@ void Engine::Draw() const
 	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
-	Rectangle messageBox = interface->GetBox("messages");
+	Rectangle messageBox = hud->GetBox("messages");
 	WrappedText messageLine(font);
 	messageLine.SetWrapWidth(messageBox.Width());
 	messageLine.SetParagraphBreak(0.);
@@ -962,27 +962,27 @@ void Engine::Draw() const
 	}
 	
 	// Draw the heads-up display.
-	interface->Draw(info);
-	if(interface->HasPoint("radar"))
+	hud->Draw(info);
+	if(hud->HasPoint("radar"))
 	{
 		radar[drawTickTock].Draw(
-			interface->GetPoint("radar"),
+			hud->GetPoint("radar"),
 			RADAR_SCALE,
-			interface->GetValue("radar radius"),
-			interface->GetValue("radar pointer radius"));
+			hud->GetValue("radar radius"),
+			hud->GetValue("radar pointer radius"));
 	}
-	if(interface->HasPoint("target") && targetVector.Length() > 20.)
+	if(hud->HasPoint("target") && targetVector.Length() > 20.)
 	{
-		Point center = interface->GetPoint("target");
-		double radius = interface->GetValue("target radius");
+		Point center = hud->GetPoint("target");
+		double radius = hud->GetValue("target radius");
 		PointerShader::Draw(center, targetVector.Unit(), 10.f, 10.f, radius, Color(1.f));
 	}
 	
 	// Draw the faction markers.
-	if(targetSwizzle >= 0 && interface->HasPoint("faction markers"))
+	if(targetSwizzle >= 0 && hud->HasPoint("faction markers"))
 	{
 		int width = font.Width(info.GetString("target government"));
-		Point center = interface->GetPoint("faction markers");
+		Point center = hud->GetPoint("faction markers");
 		
 		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
 		// Round the x offsets to whole numbers so the icons are sharp.
@@ -996,7 +996,7 @@ void Engine::Draw() const
 	// Draw ammo status.
 	static const double ICON_SIZE = 30.;
 	static const double AMMO_WIDTH = 80.;
-	Rectangle ammoBox = interface->GetBox("ammo");
+	Rectangle ammoBox = hud->GetBox("ammo");
 	// Pad the ammo list by the same amount on all four sides.
 	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
@@ -1032,7 +1032,7 @@ void Engine::Draw() const
 	}
 	
 	// Draw escort status.
-	escorts.Draw(interface->GetBox("escorts"));
+	escorts.Draw(hud->GetBox("escorts"));
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
@@ -1066,9 +1066,9 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	isRightClick = false;
 	
 	// Determine if the left-click was within the radar display.
-	const Interface *interface = GameData::Interfaces().Get("hud");
-	Point radarCenter = interface->GetPoint("radar");
-	double radarRadius = interface->GetValue("radar radius");
+	const Interface *hud = GameData::Interfaces().Get("hud");
+	Point radarCenter = hud->GetPoint("radar");
+	double radarRadius = hud->GetValue("radar radius");
 	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
@@ -1092,9 +1092,9 @@ void Engine::RClick(const Point &point)
 	isRightClick = true;
 	
 	// Determine if the right-click was within the radar display, and if so, rescale.
-	const Interface *interface = GameData::Interfaces().Get("hud");
-	Point radarCenter = interface->GetPoint("radar");
-	double radarRadius = interface->GetValue("radar radius");
+	const Interface *hud = GameData::Interfaces().Get("hud");
+	Point radarCenter = hud->GetPoint("radar");
+	double radarRadius = hud->GetValue("radar radius");
 	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
 		clickPoint = (point - radarCenter) / RADAR_SCALE;
 	else
