@@ -48,8 +48,8 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
-	const string STAR_ZOOM_FACTOR = "TMP Star zoom factor";
-	const string HAZE_ZOOM_FACTOR = "TMP Haze factor";
+	const string STAR_ZOOM_FACTOR = "Star zoom factor";
+	const string HAZE_ZOOM_FACTOR = "Haze factor";
 	const string VSYNC_SETTING = "VSync";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
