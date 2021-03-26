@@ -13,9 +13,119 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EsUuid.h"
 
 #include "Files.h"
-#include "Random.h"
+#if defined(_WIN32)
+#include "text/Utf8.h"
+#endif
 
-#include <algorithm>
+
+#include <stdexcept>
+
+#if defined(_WIN32)
+#include <windows.h>
+#else
+#include <uuid/uuid.h>
+#endif
+
+namespace es_uuid {
+namespace detail {
+constexpr std::size_t UUID_BUFFER_LENGTH = 37;
+
+#if defined(_WIN32)
+// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
+EsUuid::UuidType MakeUuid()
+{
+	EsUuid::UuidType value;
+	RPC_STATUS status = UuidCreate(&value.id);
+	if(status == RPC_S_UUID_LOCAL_ONLY)
+		Files::LogError("Created locally unique UUID only");
+	else if(status == RPC_S_UUID_NO_ADDRESS)
+		throw std::runtime_error("Failed to create UUID");
+	
+	return value;
+}
+
+EsUuid::UuidType ParseUuid(const std::string &str)
+{
+	EsUuid::UuidType value;
+	auto data = Utf8::ToUTF16(str, false);
+	RPC_STATUS status = UuidFromStringW(reinterpret_cast<RPC_WSTR>(&data[0]), &value.id);
+	if(status == RPC_S_INVALID_STRING_UUID)
+		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
+	else if(status != RPC_S_OK)
+		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
+	
+	return value;
+}
+
+bool IsNil(const UUID &id) noexcept
+{
+	RPC_STATUS status;
+	return UuidIsNil(const_cast<UUID *>(&id), &status);
+}
+
+std::string Serialize(const UUID &id)
+{
+	wchar_t *buf = nullptr;
+	RPC_STATUS status = UuidToStringW(const_cast<UUID *>(&id), reinterpret_cast<RPC_WSTR *>(&buf));
+	
+	std::string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
+	if(result.empty())
+		Files::LogError("Failed to serialize UUID!");
+	else
+		RpcStringFreeW(reinterpret_cast<RPC_WSTR *>(&buf));
+	
+	return result;
+}
+
+signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b)
+{
+	RPC_STATUS status;
+	auto result = UuidCompare(const_cast<UUID *>(&a.id), const_cast<UUID *>(&b.id), &status);
+	if(status != RPC_S_OK)
+		throw std::runtime_error("Fatal error comparing UUIDs \"" + Serialize(a.id) + "\" and \"" + Serialize(b.id) + "\"");
+	return result;
+}
+#else
+// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
+EsUuid::UuidType MakeUuid()
+{
+	EsUuid::UuidType value;
+	uuid_generate_random(value.id);
+	return value;
+}
+
+EsUuid::UuidType ParseUuid(const std::string &str)
+{
+	EsUuid::UuidType value;
+	auto result = uuid_parse(str.data(), value.id);
+	if(result == -1)
+		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
+	else if(result != 0)
+		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
+	
+	return value;
+}
+
+bool IsNil(const uuid_t &id) noexcept
+{
+	return uuid_is_null(id) == 1;
+}
+
+std::string Serialize(const uuid_t &id)
+{
+	char buf[UUID_BUFFER_LENGTH];
+	uuid_unparse(id, buf);
+	return std::string(buf);
+}
+
+signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b) noexcept
+{
+	return uuid_compare(a.id, b.id);
+}
+#endif
+}
+}
+using namespace es_uuid::detail;
 
 
 
@@ -34,53 +144,53 @@ void EsUuid::clone(const EsUuid &other)
 
 
 
-bool EsUuid::operator==(const EsUuid &other) const
+bool EsUuid::operator==(const EsUuid &other) const noexcept(false)
 {
-	return Value() == other.Value();
+	return Compare(Value(), other.Value()) == 0;
 }
 
 
 
-bool EsUuid::operator!=(const EsUuid &other) const
+bool EsUuid::operator!=(const EsUuid &other) const noexcept(false)
 {
-	return Value() != other.Value();
+	return !(*this == other);
 }
 
 
 
-const std::string &EsUuid::ToString() const
+bool EsUuid::operator<(const EsUuid &other) const noexcept(false)
 {
-	return Value();
+	return Compare(Value(), other.Value()) < 0;
 }
 
 
 
-// Internal constructor. Note that the provided value may not be a valid v4 UUID, in which case an error is logged
-// and we return a new UUID.
+std::string EsUuid::ToString() const noexcept(false)
+{
+	return Serialize(Value().id);
+}
+
+
+
+// Internal constructor. Note that the provided value may not be a valid v4 UUID,
+// in which case an error is logged and we return a new UUID.
 EsUuid::EsUuid(const std::string &input)
 {
-	// The input must have the correct number of characters and contain the correct subset
-	// of characters. This validation isn't exact, nor do we really require it to be, since
-	// this is not a networked application.
-	bool isValid = input.size() == 36
-			&& std::count(input.begin(), input.end(), '-') == 4
-			&& std::all_of(input.begin(), input.end(), [](const char &c) noexcept -> bool
-			{
-				return c == '-' || std::isxdigit(static_cast<unsigned char>(c));
-			});
-	
-	if(isValid)
-		value = input;
-	else
-		Files::LogError("Warning: Replacing invalid v4 UUID string \"" + input + "\"");
+	try {
+		value = ParseUuid(input);
+	}
+	catch (const std::invalid_argument &err)
+	{
+		Files::LogError(err.what());
+	}
 }
 
 
 
-const std::string &EsUuid::Value() const
+const EsUuid::UuidType &EsUuid::Value() const
 {
-	if(value.empty())
-		value = Random::UUID();
+	if(IsNil(value.id))
+		value = MakeUuid();
 	
 	return value;
 }

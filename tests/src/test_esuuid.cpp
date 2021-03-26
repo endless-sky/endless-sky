@@ -15,10 +15,28 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Include only the tested class's header.
 #include "../../source/EsUuid.h"
+// Declare the existence of the class internals that will be tested.
+namespace es_uuid {
+namespace detail {
+	EsUuid::UuidType MakeUuid();
+}
+}
 
 // ... and any system includes needed for the test file.
+#include <algorithm>
 #include <string>
 #include <type_traits>
+#include <vector>
+
+// Provide a string conversion for failing tests.
+namespace Catch {
+	template<>
+	struct StringMaker<EsUuid> {
+		static std::string convert(const EsUuid &value ) {
+			return value.ToString();
+		}
+	};
+}
 
 namespace { // test namespace
 
@@ -28,7 +46,12 @@ struct Identifiable {
 };
 // #endregion mock data
 
-
+auto AsStrings = [](const std::vector<EsUuid> &container) -> std::vector<std::string> {
+	auto strings = std::vector<std::string>(container.size());
+	std::transform(container.begin(), container.end(), strings.begin(),
+		[](const EsUuid &v) { return v.ToString(); });
+	return strings;
+};
 
 // #region unit tests
 TEST_CASE( "EsUuid class", "[uuid]" ) {
@@ -37,10 +60,7 @@ TEST_CASE( "EsUuid class", "[uuid]" ) {
 		CHECK_FALSE( std::is_trivial<T>::value );
 		CHECK( std::is_standard_layout<T>::value );
 		CHECK( std::is_nothrow_destructible<T>::value );
-		// Class stores a string, and thus has the same behavior as that string.
-		CHECK_FALSE( std::is_trivially_destructible<T>::value );
-		CHECK( std::is_trivially_destructible<T>::value ==
-			std::is_trivially_destructible<std::string>::value );
+		CHECK( std::is_trivially_destructible<T>::value );
 	}
 	SECTION( "Construction Traits" ) {
 		CHECK( std::is_default_constructible<T>::value );
@@ -48,10 +68,7 @@ TEST_CASE( "EsUuid class", "[uuid]" ) {
 		// TODO: enable after refactoring how we create ships from stock models.
 		// CHECK_FALSE( std::is_copy_constructible<T>::value );
 		CHECK( std::is_move_constructible<T>::value );
-		// Class stores a string, and thus has the same behavior as that string.
-		CHECK_FALSE( std::is_trivially_move_constructible<T>::value );
-		CHECK( std::is_trivially_move_constructible<T>::value ==
-			std::is_trivially_move_constructible<std::string>::value );
+		CHECK( std::is_trivially_move_constructible<T>::value );
 		CHECK( std::is_nothrow_move_constructible<T>::value );
 	}
 	// TODO: enable, as above.
@@ -60,10 +77,7 @@ TEST_CASE( "EsUuid class", "[uuid]" ) {
 	// }
 	SECTION( "Move Traits" ) {
 		CHECK( std::is_move_assignable<T>::value );
-		// Class stores a string, and thus has the same behavior as that string.
-		CHECK_FALSE( std::is_trivially_move_assignable<T>::value );
-		CHECK( std::is_trivially_move_assignable<T>::value ==
-			std::is_trivially_move_assignable<std::string>::value );
+		CHECK( std::is_trivially_move_assignable<T>::value );
 		CHECK( std::is_nothrow_move_assignable<T>::value );
 	}
 }
@@ -127,6 +141,22 @@ SCENARIO( "Comparing IDs", "[uuid][comparison]" ) {
 			}
 		}
 	}
+	GIVEN( "a reorderable collection of UUIDs" ) {
+		auto ids = std::vector<EsUuid>{
+			EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(),
+			EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(), EsUuid(),
+		};
+		const auto idValues = AsStrings(ids);
+		REQUIRE( idValues.size() == ids.size() );
+		THEN( "it can be sorted by value" ) {
+			std::sort(ids.begin(), ids.end());
+			const auto sortedValues = AsStrings(ids);
+			CHECK_FALSE( idValues == sortedValues );
+			AND_THEN( "it still contains the same UUIDs" ) {
+				CHECK( std::is_permutation(idValues.begin(), idValues.end(), sortedValues.begin()) );
+			}
+		}
+	}
 }
 
 SCENARIO( "Copying uniquely identifiable objects", "[uuid][copying]" ) {
@@ -179,6 +209,16 @@ SCENARIO( "Copying uniquely identifiable objects", "[uuid][copying]" ) {
 // of the block's statements will still be evaluated, but a REQUIRE failure will exit the current block.
 
 // #endregion unit tests
+
+// #region benchmarks
+#ifdef CATCH_CONFIG_ENABLE_BENCHMARKING
+TEST_CASE( "Benchmark UUID Creation", "[!benchmark][uuid]" ) {
+	BENCHMARK( "MakeUuid" ) {
+		return es_uuid::detail::MakeUuid();
+	};
+}
+#endif
+// #endregion benchmarks
 
 
 

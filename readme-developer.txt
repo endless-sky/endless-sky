@@ -15,7 +15,8 @@ DEB-based distros:
    libgl1-mesa-dev \
    libglew-dev \
    libopenal-dev \
-   libmad0-dev
+   libmad0-dev \
+   uuid-dev
 
 RPM-based distros:
    gcc-c++ \
@@ -26,7 +27,8 @@ RPM-based distros:
    mesa-libGL-devel \
    glew-devel \
    openal-soft-devel \
-   libmad-devel
+   libmad-devel \
+   libuuid-devel
 
 Then, from the project root folder, simply type:
 
