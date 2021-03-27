@@ -711,8 +711,7 @@ void MissionPanel::DrawMissionInfo()
 	
 	info.SetString("today", player.GetDate().ToString());
 	
-	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info, this);
+	GameData::Interfaces().Get("mission")->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
