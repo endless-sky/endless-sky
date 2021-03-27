@@ -38,7 +38,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.13" date="2021-02-28" type="development" urgency="low">
+    <release version="0.9.13" date="2021-03-28" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
         <p>Breaking changes:</p>

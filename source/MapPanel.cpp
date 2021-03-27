@@ -229,8 +229,8 @@ void MapPanel::DrawButtons(const string &condition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
+	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
+	mapButtonUi->Draw(info, this);
 }
 
 
