@@ -2624,7 +2624,7 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 		}
 		
 		if(ship.Position().Distance(otherShip->Position()) <= maxRange)
-			targets.push_back(Point(otherShip->Position().X() + maxRange - ship.Position().X(), otherShip->Position().Y() + maxRange - ship.Position().Y()) * -15);
+			targets.push_back(Point(otherShip->Position().X() + maxRange - ship.Position().X(), otherShip->Position().Y() + maxRange - ship.Position().Y()) * -30);
 	}
 	
 	// If there are any enemies that are close enough to be moved away from, average all the optimal paths
