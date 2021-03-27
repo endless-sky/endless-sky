@@ -131,6 +131,8 @@ test = env.Program(
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=[],
+	# Pass the necessary link flags for a console program.
+	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)]
 )
 # Invoking scons with the `build-tests` target will build the unit test framework
 env.Alias("build-tests", test)

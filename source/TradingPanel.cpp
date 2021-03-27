@@ -203,7 +203,7 @@ void TradingPanel::Draw()
 		}
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	Information info;
 	if(sellOutfits)
 		info.SetCondition("can sell outfits");
@@ -211,7 +211,7 @@ void TradingPanel::Draw()
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
-	interface->Draw(info, this);
+	tradeUi->Draw(info, this);
 }
 
 

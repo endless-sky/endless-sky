@@ -472,7 +472,7 @@ conversation "end of intro missions"
 		goto more
 	
 	label aliens
-	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens," he pauses for a moment, " as far as I'm aware, that is, but I'm sure they're out there if you go looking hard enough. I've explored all of Republic space in my many years, but there are far more systems out there that we don't even know how to reach.`
+	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens," he pauses for a moment, "as far as I'm aware, that is, but I'm sure they're out there if you go looking hard enough. I've explored all of Republic space in my many years, but there are far more systems out there that we don't even know how to reach.`
 		goto more
 	
 	label trade

@@ -6,13 +6,13 @@ Version 0.9.13:
     * Added over 25 new missions to Remnant space, as well as a new region of the Ember Waste. (@Zitchas)
     * Added 15 new archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@Karirawri)
     * The Ember Waste has become a more hostile place with the introduction of system hazards. Be prepared the next time you visit. (@Zitchas)
-    * Outfits can now be stored on planets by pressing U or R on installed or in cargo outfits in the outfitter. (@petervdmeer)
+    * Outfits can now be stored on planets by pressing U or R on installed or in-cargo outfits in the outfitter. (@petervdmeer)
     * Completely redid and improved the graphics for most human outfit images. (@beccabunny)
     * Added a "New Pilot" scenario picker, allowing players to choose between game and plugin starts. (@FranchuFranchu, @tehhowch)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @arkhne, @beccabunny, @Darcman99, @FixItYondu, @Galaucus, @infinitewarp, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @thebigh2014, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
-      * The Subsidurial person ship can now appear in uninhabited systems as intended. (@Zitchas)
+      * The Subsidurial person ship can now appear in uninhabited systems as intended. (@Zitchas, @Terin)
       * "Deep Mystery Cube [3]" no longer offers on stations. (@Anarchist2)
       * Corrected the hull mass of the Faes'mar. (@Amazinite)
       * Tinker's tribute is now properly restored after the main plot. (@Zitchas)
@@ -30,6 +30,8 @@ Version 0.9.13:
       * The Core Blockade mission now gives clearance to land on the pirate planet destination. (@Amazinite)
       * The Remembrance Day jobs now properly have a deadline. (@Amazinite)
       * Shortened the descriptions of some jobs as to not overflow the UI. (@Amazinite)
+      * Added missing "variant" keyword to NPC fleets in several Wanderer missions. (@tehhowch)
+      * Remnant "tech retrieval" missions have more appropriate destinations. (@jerith)
     * Engine bugs:
       * Missions with illegal cargo that fail when scanned can no longer be scanned again before landing. (@Amazinite)
       * The outfitter will no longer allow purchasing licensed outfits under certain circumstances where the player didn't have a license. (@Rakete1111)
@@ -60,7 +62,9 @@ Version 0.9.13:
       * An error is now produced when improperly granting a ship in a start condition. (@tehhowch)
       * The "battery only" warning in the outfitter now takes fuel energy into account. (@Amazinite)
       * All flagship commands and the hailing command are now ignored while in the process of landing or departing from a planet. (@tatami4)
-      * Ships no longer preserve inaccessible jump targets when loading the game. (@tehhowch) 
+      * Ships no longer preserve inaccessible jump targets when loading the game. (@tehhowch)
+      * Reduced likelihood of integer overflow when selling commodities. (@tehhowch)
+      * Fixed a divide-by-zero error when a fleet contains no variant definitions. (@tehhowch)
   * Game content:
     * New content: 
       * New missions:
@@ -74,6 +78,7 @@ Version 0.9.13:
         * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
         * Created a mission where you can inform the Remnant about the research that the Deep are doing on the Ember Waste. (@Amazinite, @Zitchas)
         * The player will now be warned the first time their pirate attraction is greater than 50%. (@Amazinite)
+        * Added a boarding mission about a secret slave ship (@Pointedstick, @oo13)
       * New outfits and ships:
         * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
         * Ka'het ships now have power generation and storage outfits. (@beccabunny)
@@ -89,7 +94,7 @@ Version 0.9.13:
         * Added new civilian hails. (@Anarchist2, @Naminson, @petervdmeer)
         * New logs for various characters, factions, and plot points. (@MasterOfGrey, @pega3)
         * Added a new Builder station to the Graveyard. (@beccabunny)
-        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @petervdmeer, @Plip-Plop, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
+        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @NRK4, @petervdmeer, @Plip-Plop, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
         * Wrote friendly and hostile hails for the Remnant. (@temtemy)
         * The Archon now has a ship description. (@Zitchas)
         * Added three new person ships. (@beccabunny, @Brick63, @MCOfficer, @Zitchas)
@@ -130,6 +135,7 @@ Version 0.9.13:
       * Gave Remnant thrusters built-in reverse thrust and slight slowing resistance on all their engines to make them stick out more. (@Zitchas)
       * Reduced the number of missile-equipped ships in one of the small pirate fleet variants. (@Terin)
       * The Puffin's Quantum Key Stone is now integrated into the hull to prevent access to stone before the player has a license for them. (@Zitchas)
+      * Human missiles were updated to reflect changes to missile tracking behavior. (@Pointedstick)
     * Graphics:
       * "Mouthparts?" now has a sprite. (@beccabunny)
       * Added a scene image to the on enter conversation in the Graveyard. (@beccabunny)
@@ -213,6 +219,7 @@ Version 0.9.13:
       * Ships with both the disables and plunders personalities will no longer destroy ships that have been plundered. (@tatami4)
       * Ships with the plunders personality will now always aim to destroy ships they plundered. (@tatami4)
       * Greatly increased the lifetime of flotsam by at least 10x and added drag so they slow down over time. (@Amazinite)
+      * Modify missile tracking calculations to improve usefulness of radar jammers and heat reduction. (@Pointedstick)
   * User interface:
     * The outfitter help now explains how to buy outfits into cargo. (@Zitchas)
     * Fast-forward will now be turned off if the player is not in flight, such as when landing or boarding a ship. (@petervdmeer)
