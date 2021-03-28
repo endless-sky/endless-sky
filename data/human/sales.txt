@@ -154,6 +154,7 @@ outfitter "Basic Outfits"
 
 outfitter "Common Outfits"
 	"Energy Blaster"
+	"Mining Laser"
 	"X1100 Ion Reverse Engines"
 	"X1700 Ion Thruster"
 	"X1200 Ion Steering"
@@ -468,3 +469,13 @@ outfitter "Stack Core"
 
 outfitter "Nuke"
 	"Nuclear Missile"
+
+# Temporary outfitters for Omnis
+outfitter "human vanilla"
+	"Mining Laser"
+	"Heavy Rocket Pod"
+	"Javelin Mini Pod"
+	"Meteor Missile Pod"
+	"Sidewinder Missile Pod"
+	"Capybara Reverse Thruster"
+	"X1100 Ion Reverse Engines"
