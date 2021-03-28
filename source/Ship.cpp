@@ -3154,10 +3154,10 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 {
 	if(gravitational)
 	{
-		// Treat all ships as if they have a mass of 400. This prevents
+		// Treat all ships as if they have a mass of 500. This prevents
 		// gravitational hit force values from needing to be extremely
 		// small in order to have a reasonable effect.
-		acceleration += force / 400.;
+		acceleration += force / 500.;
 		return;
 	}
 	
@@ -3166,9 +3166,9 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 		return;
 	
 	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
-	// mass of a typical light warship:
-	acceleration += force * (.3 / 400. + .7 / currentMass);
+	// ones by having 20% of the force be based on a fixed mass of 500, about the
+	// mass of a human light warship:
+	acceleration += force * (.2 / 500. + .8 / currentMass);
 }
 
 

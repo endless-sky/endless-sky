@@ -70,7 +70,7 @@ outfit "X1050 Ion Engines"
 	"thrust" 4.0
 	"thrusting energy" .4
 	"thrusting heat" .6
-	"turn" 110
+	"turn" 138
 	"turning energy" .25
 	"turning heat" .5
 	"flare sprite" "effect/ion flare/tiny"
@@ -171,7 +171,7 @@ outfit "X1200 Ion Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 160
+	"turn" 200
 	"turning energy" .3
 	"turning heat" .6
 	"steering flare sprite" "effect/ion flare/tiny"
@@ -187,7 +187,7 @@ outfit "X2200 Ion Steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 307
+	"turn" 381
 	"turning energy" .6
 	"turning heat" 1.1
 	"steering flare sprite" "effect/ion flare/small"
@@ -203,7 +203,7 @@ outfit "X3200 Ion Steering"
 	"mass" 35
 	"outfit space" -35
 	"engine capacity" -35
-	"turn" 590
+	"turn" 760
 	"turning energy" 1.1
 	"turning heat" 2.0
 	"steering flare sprite" "effect/ion flare/medium"
@@ -219,7 +219,7 @@ outfit "X4200 Ion Steering"
 	"mass" 59
 	"outfit space" -59
 	"engine capacity" -59
-	"turn" 1132
+	"turn" 1432
 	"turning energy" 1.9
 	"turning heat" 3.9
 	"steering flare sprite" "effect/ion flare/large"
@@ -235,7 +235,7 @@ outfit "X5200 Ion Steering"
 	"mass" 100
 	"outfit space" -100
 	"engine capacity" -100
-	"turn" 2174
+	"turn" 2718
 	"turning energy" 3.5
 	"turning heat" 7.3
 	"steering flare sprite" "effect/ion flare/huge"
@@ -334,7 +334,7 @@ outfit "Chipmunk Plasma Steering"
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
-	"turn" 256
+	"turn" 323
 	"turning energy" .5
 	"turning heat" 1.1
 	"steering flare sprite" "effect/plasma flare/tiny"
@@ -350,7 +350,7 @@ outfit "Greyhound Plasma Steering"
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"turn" 492
+	"turn" 639
 	"turning energy" 0.9
 	"turning heat" 2.1
 	"steering flare sprite" "effect/plasma flare/small"
@@ -366,7 +366,7 @@ outfit "Impala Plasma Steering"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
-	"turn" 944
+	"turn" 1210
 	"turning energy" 1.6
 	"turning heat" 4.1
 	"steering flare sprite" "effect/plasma flare/medium"
@@ -382,7 +382,7 @@ outfit "Orca Plasma Steering"
 	"mass" 74
 	"outfit space" -74
 	"engine capacity" -74
-	"turn" 1812
+	"turn" 2315
 	"turning energy" 2.9
 	"turning heat" 7.7
 	"steering flare sprite" "effect/plasma flare/large"
@@ -398,7 +398,7 @@ outfit "Tyrant Plasma Steering"
 	"mass" 125
 	"outfit space" -125
 	"engine capacity" -125
-	"turn" 3479
+	"turn" 4359
 	"turning energy" 5.2
 	"turning heat" 14.7
 	"steering flare sprite" "effect/plasma flare/huge"
@@ -416,7 +416,7 @@ outfit "A120 Atomic Thruster"
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"thrust" 15.4
+	"thrust" 12.7
 	"thrusting energy" 1.8
 	"thrusting heat" 3.5
 	"flare sprite" "effect/atomic flare/tiny"
@@ -431,7 +431,7 @@ outfit "A250 Atomic Thruster"
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"thrust" 27.3
+	"thrust" 22.1
 	"thrusting energy" 3.1
 	"thrusting heat" 6.1
 	"flare sprite" "effect/atomic flare/small"
@@ -446,7 +446,7 @@ outfit "A370 Atomic Thruster"
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
-	"thrust" 47.6
+	"thrust" 37.7
 	"thrusting energy" 5.1
 	"thrusting heat" 10.3
 	"flare sprite" "effect/atomic flare/medium"
@@ -461,7 +461,7 @@ outfit "A520 Atomic Thruster"
 	"mass" 82
 	"outfit space" -82
 	"engine capacity" -82
-	"thrust" 81.9
+	"thrust" 63.6
 	"thrusting energy" 8.3
 	"thrusting heat" 17.4
 	"flare sprite" "effect/atomic flare/large"
@@ -476,7 +476,7 @@ outfit "A860 Atomic Thruster"
 	"mass" 127
 	"outfit space" -127
 	"engine capacity" -127
-	"thrust" 139.7
+	"thrust" 106.2
 	"thrusting energy" 13.3
 	"thrusting heat" 29.1
 	"flare sprite" "effect/atomic flare/huge"
@@ -571,7 +571,7 @@ outfit "AR120 Reverse Thruster"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -11
-	"reverse thrust" 15.4
+	"reverse thrust" 12.7
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 	"reverse flare sprite" "effect/atomic flare/tiny"

@@ -334,11 +334,13 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->Tracking())
 		hasLock |= Check(weapon->Tracking(), base);
 	
-	// Optical tracking is about 15% for interceptors and 75% for medium warships.
+	// Optical tracking is about 15% for interceptors, 39% for light warships,
+	// 70% for medium warships, and 94% for heavy warships, given the average
+	// mass of human ships of these categories.
 	if(weapon->OpticalTracking())
 	{
 		double weight = target.Mass() * target.Mass();
-		double probability = weapon->OpticalTracking() * weight / (150000. + weight);
+		double probability = weapon->OpticalTracking() * weight / (300000. + weight);
 		hasLock |= Check(probability, base);
 	}
 	
