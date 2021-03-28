@@ -218,8 +218,8 @@ ship "Marauder Fury"
 		"hull" 600
 		"required crew" 1
 		"bunks" 3
-		"mass" 100
-		"drag" 1.9
+		"mass" 80
+		"drag" 1.57
 		"heat dissipation" .85
 		"fuel capacity" 500
 		"cargo space" 15
