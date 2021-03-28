@@ -2613,11 +2613,11 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 {
 	// Create a list of optimal target positions directly away from each enemy.
 	vector<Point> targets;
-	for(const auto &otherShip : GetShipsList(ship, true))
+	for(const auto otherShip : GetShipsList(ship, true))
 	{
 		
 		double maxRange = 100;
-		for(const auto &weapon : otherShip->Weapons())
+		for(const auto weapon : otherShip->Weapons())
 		{
 			if(weapon.CanAim())
 				maxRange = max(weapon.GetOutfit()->Range(), maxRange);
@@ -2632,7 +2632,7 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 	if(targets.size() > 0)
 	{
 		auto targetAvg = Point();
-		for(const auto &target : targets)
+		for(const auto target : targets)
 			targetAvg += target;
 		targetAvg /= targets.size();
 		
