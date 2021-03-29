@@ -906,7 +906,7 @@ outfit "Javelin Pod"
 		"inaccuracy" 2.0
 		"velocity" 5.0
 		"lifetime" 120.0
-		"range override" 400
+		"range override" 500
 		"reload" 30.0
 		"firing energy" 0.4
 		"firing heat" 24.0
@@ -935,7 +935,7 @@ outfit "Javelin Mini Pod"
 		"inaccuracy" 2.0
 		"velocity" 5.0
 		"lifetime" 120.0
-		"range override" 400
+		"range override" 500
 		"reload" 100.0
 		"burst count" 20
 		"burst reload" 25

@@ -349,10 +349,11 @@ ship "Berserker" "Berserker (Afterburner)"
 
 ship "Berserker" "Berserker (Strike)"
 	outfits
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 10
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 22
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket" 4
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 8
+		"Modified Blaster" 2
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D23-QP Shield Generator"
