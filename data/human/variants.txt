@@ -87,8 +87,8 @@ ship "Argosy" "Argosy (Turret)"
 
 ship "Arrow" "Arrow (Hai)"
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 44
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 4
 		"Bullfrog Anti-Missile"
 		"Pebble Core"
 		"Supercapacitor" 2
@@ -1225,10 +1225,10 @@ ship "Hauler III" "Hauler III (Hai)"
 
 ship "Hawk" "Hawk (Bomber)"
 	outfits
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 10
-		"Torpedo Launcher"
-		"Torpedo" 15
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket" 4
+		"Javelin Mini Pod" 2
+		"Javelin" 40
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D41-HY Shield Generator"
@@ -1253,8 +1253,9 @@ ship "Hawk" "Hawk (Plasma)"
 
 ship "Hawk" "Hawk (Rocket)"
 	outfits
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 20
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket" 4
+		"Modified Blaster" 2
 		"RT-I Radiothermal"
 		"Supercapacitor" 2
 		"D41-HY Shield Generator"
@@ -1330,10 +1331,10 @@ ship "Headhunter" "Headhunter (Miner)"
 
 ship "Headhunter" "Headhunter (Strike)"
 	outfits
-		"Javelin Pod" 2
-		"Javelin" 200
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 30
+		"Javelin Mini Pod" 2
+		"Javelin" 40
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 8
 		"Anti-Missile Turret"
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
@@ -1983,10 +1984,8 @@ ship "Roost" "Roost (Sidewinder)"
 
 ship "Scout" "Scout (Speedy)"
 	outfits
-		"Meteor Missile Launcher"
-		"Meteor Missile" 30
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 22
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 8
 		"Anti-Missile Turret"
 		"NT-200 Nucleovoltaic"
 		"Supercapacitor"
