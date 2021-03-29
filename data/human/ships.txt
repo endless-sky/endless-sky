@@ -891,7 +891,7 @@ ship "Carrier"
 		"Brig"
 		"Laser Rifle" 100
 		"Fragmentation Grenades" 40
-		"Security Station"
+		"Security Station" 6
 		"Tactical Scanner"
 		
 		"X5700 Ion Thruster"
