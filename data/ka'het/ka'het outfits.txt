@@ -262,6 +262,60 @@ outfit "Ka'het EMP Deployer"
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
 
+outfit "Ka'het Emergency Deployer"
+	category "Secondary Weapons"
+	cost 645000
+	thumbnail "outfit/ka'het mhd deployer"
+	"mass" 13
+	"outfit space" -17
+	"gun ports" -1
+	weapon
+		sprite "projectile/mhd"
+			"frame rate" 2
+		sound "rocket"
+		ammo "Ka'het MHD Generator"
+		icon "icon/mhd"
+		"hit effect" "mhd explosion"
+		"hit effect" "mhd spark" 860
+		"die effect" "small explosion"
+		"inaccuracy" 3
+		"velocity" 12
+		"lifetime" 230
+		"reload" 60
+		"firing energy" 60
+		"firing heat" 180
+		"trigger radius" 40
+		"blast radius" 230
+		"shield damage" 8750
+		"hull damage" 1130
+		"heat damage" 4920
+		"firing hull" 60
+		"hit force" 1600
+		"missile strength" 280
+	description "Most drones the Builders possessed were completely unarmed, making them very vulnerable to enemy attacks. Since installing weapons would have greatly reduced its cargo capacity, they instead decided to dissuade possible hijackers by developing these Emergency Deployers: they work by activating a series of reactions inside the ship's MHD generator and then ejecting it towards the enemy, resulting in a large scale detonation as soon as it hits something."
+
+effect "mhd spark"
+	sprite "effect/mhd spark"
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	"random angle" 360
+	"lifetime" 30
+	"velocity scale" .2
+	"random lifetime" 30
+	"random velocity" 4.45
+
+effect "mhd explosion"
+	sprite "effect/ion explosion"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion nuke"
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .2
+
 # Cooling:
 
 outfit "Ka'het Support Cooling"
