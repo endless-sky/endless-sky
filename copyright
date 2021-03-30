@@ -351,6 +351,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
+ images/effect/mhd?spark*
  images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/inhibitor?turret*
@@ -848,6 +849,7 @@ Files:
  images/outfit/ka'het?mhd?generator*
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/ka'het?nullifier*
+ images/outfit/ka'het?mhd?deployer*
  images/outfit/mouthparts*
  images/outfit/fuel?pod*
  images/outfit/fusion*
@@ -896,6 +898,7 @@ Files:
  images/planet/station4bd*
  images/projectile/annihilator*
  images/projectile/ravager?beam*
+ images/projectile/mhd*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
