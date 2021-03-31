@@ -282,6 +282,7 @@ outfit "Ka'het Emergency Deployer"
 		"velocity" 12
 		"lifetime" 230
 		"reload" 60
+		"range override" 400
 		"firing energy" 60
 		"firing heat" 180
 		"trigger radius" 40
