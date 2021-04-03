@@ -19,7 +19,7 @@ ship "Korath Dredger"
 		"hull" 16000
 		"required crew" 201
 		"bunks" 395
-		"mass" 1654
+		"mass" 2500
 		"drag" 18.3
 		"heat dissipation" .65
 		"fuel capacity" 900
@@ -121,7 +121,7 @@ ship "Korath Raider"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 756
+		"mass" 1000
 		"drag" 12
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -303,7 +303,7 @@ ship "Korath World-Ship"
 		hull 34000
 		"required crew" 794
 		"bunks" 1492
-		"mass" 2082
+		"mass" 3500
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
@@ -515,7 +515,7 @@ ship "Kar Ik Vot 349"
 		"shields" 57200
 		"hull" 65400
 		"automaton" 1
-		"mass" 1485
+		"mass" 2700
 		"drag" 16.8
 		"heat dissipation" .5
 		"fuel capacity" 400
@@ -672,7 +672,7 @@ ship "Tek Far 71 - Lek"
 		"shields" 25400
 		"hull" 29500
 		"automaton" 1
-		"mass" 641
+		"mass" 900
 		"drag" 9.6
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -765,7 +765,7 @@ ship "Tek Far 78 - Osk"
 		"shields" 27600
 		"hull" 34100
 		"automaton" 1
-		"mass" 725
+		"mass" 1000
 		"drag" 10.2
 		"heat dissipation" .55
 		"fuel capacity" 400
@@ -857,7 +857,7 @@ ship "Tek Far 109"
 		"shields" 17900
 		"hull" 15800
 		"automaton" 1
-		"mass" 567
+		"mass" 800
 		"drag" 9.1
 		"heat dissipation" .65
 		"fuel capacity" 400
@@ -928,7 +928,7 @@ ship "Met Par Tek 53"
 		"shields" 15100
 		"hull" 22200
 		"automaton" 1
-		"mass" 420
+		"mass" 650
 		"drag" 5.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -1254,7 +1254,7 @@ ship "Model 64"
 		"shields" 41700
 		"hull" 18000
 		"automaton" 1
-		"mass" 609
+		"mass" 870
 		"drag" 11.1
 		"heat dissipation" 1.1
 		"fuel capacity" 400
@@ -1310,7 +1310,7 @@ ship "Model 128"
 		"shields" 57000
 		"hull" 23100
 		"automaton" 1
-		"mass" 819
+		"mass" 1170
 		"drag" 13.2
 		"heat dissipation" 1.0
 		"fuel capacity" 400
@@ -1367,7 +1367,7 @@ ship "Model 256"
 		"shields" 71700
 		"hull" 28700
 		"automaton" 1
-		"mass" 1067
+		"mass" 1940
 		"drag" 15.3
 		"heat dissipation" .9
 		"fuel capacity" 400
@@ -1426,7 +1426,7 @@ ship "Model 512"
 		"shields" 86400
 		"hull" 34200
 		"automaton" 1
-		"mass" 1265
+		"mass" 2300
 		"drag" 17.4
 		"heat dissipation" .8
 		"fuel capacity" 400

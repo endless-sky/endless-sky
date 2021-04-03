@@ -18,7 +18,7 @@ ship "Emerald Sword"
 		"hull" 45000
 		"required crew" 86
 		"bunks" 302
-		"mass" 1672
+		"mass" 3200
 		"drag" 20
 		"heat dissipation" 0.45
 		"fuel capacity" 900
