@@ -7117,7 +7117,7 @@ system Convector
 	government Uninhabited
 	attributes "ember waste"
 	habitable 4131.68
-	belt 1961
+	belt 2111
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 7 1.805
@@ -7149,24 +7149,24 @@ system Convector
 		offset 180
 	object
 		sprite planet/cloud1
-		distance 311.885
-		period 34.2759
+		distance 463.524
+		period 62.102
 	object
 		sprite planet/desert9-b
-		distance 749.895
-		period 127.79
+		distance 901.534
+		period 168.45
 	object
 		sprite planet/rock6
-		distance 941.385
-		period 179.741
+		distance 1093.02
+		period 224.875
 	object
 		sprite planet/rock5-b
-		distance 1178.23
-		period 251.674
+		distance 1329.87
+		period 301.794
 	object
 		sprite planet/gas11-b
-		distance 1600.52
-		period 398.461
+		distance 1752.16
+		period 456.412
 		object
 			sprite planet/rock3-b
 			distance 270
@@ -8708,24 +8708,24 @@ system Edusa
 		period 10
 	object
 		sprite planet/ice4
-		distance 211.61
-		period 25.2777
+		distance 360.187
+		period 56.1339
 	object
 		sprite planet/desert10-b
-		distance 423.82
-		period 71.6482
+		distance 572.397
+		period 112.455
 	object
 		sprite planet/rock19-b
-		distance 680.82
-		period 145.875
+		distance 829.397
+		period 196.145
 	object
 		sprite planet/dust4
-		distance 981.71
-		period 252.585
+		distance 1130.29
+		period 312.044
 	object "Remnant Wormhole"
 		sprite planet/wormhole-red
-		distance 3465.15
-		period 1675.01
+		distance 3613.73
+		period 1783.88
 
 system Egeria
 	pos 288 146
@@ -11244,24 +11244,24 @@ system Gerenus
 		period 8.42267
 	object
 		sprite planet/gas4-hot
-		distance 329.94
-		period 25.1772
+		distance 390.558
+		period 32.4252
 	object "Palarei"
 		sprite planet/rock10-b
-		distance 757.43
-		period 87.5725
+		distance 818.048
+		period 98.2929
 	object
 		sprite planet/mars
-		distance 1413.32
-		period 223.211
+		distance 1473.94
+		period 237.724
 	object
 		sprite planet/ice5-b
-		distance 1666.32
-		period 285.754
+		distance 1726.94
+		period 301.487
 	object
 		sprite planet/gas9
-		distance 2533.32
-		period 535.66
+		distance 2593.94
+		period 555.001
 		object
 			sprite planet/io
 			distance 269
@@ -17943,7 +17943,7 @@ system Oblate
 	government Pirate
 	attributes "core"
 	habitable 12000
-	belt 1704
+	belt 1954
 	haze _menu/haze-133
 	link Alcyone
 	link Moktar
@@ -17974,28 +17974,28 @@ system Oblate
 		period 10
 	object
 		sprite planet/ice4
-		distance 397.973
-		period 70.3976
+		distance 556.207
+		period 47.8988
 		object
 			sprite planet/dust0-b
 			distance 110
 			period 13.1646
 	object
 		sprite planet/lava2
-		distance 673.733
-		period 155.063
+		distance 831.967
+		period 87.6251
 	object
 		sprite planet/rock17
-		distance 1201.97
-		period 369.505
+		distance 1360.2
+		period 183.179
 	object
 		sprite planet/cloud6
-		distance 1560.53
-		period 546.622
+		distance 1718.76
+		period 260.192
 	object
 		sprite planet/gas0-b
-		distance 4260.49
-		period 2465.86
+		distance 4418.72
+		period 1072.54
 
 system Orbona
 	pos -735.99 -97.2491
@@ -19647,20 +19647,20 @@ system Prosa
 		period 7
 	object
 		sprite planet/cloud1
-		distance 311
-		period 34
+		distance 443.879
+		period 76.7945
 	object
 		sprite planet/desert9
-		distance 749
-		period 127
+		distance 881.879
+		period 215.054
 	object
 		sprite planet/rock6
-		distance 941
-		period 179
+		distance 1073.88
+		period 288.979
 	object
 		sprite planet/gas17
-		distance 1311
-		period 695
+		distance 1443.88
+		period 450.536
 		object
 			sprite planet/callisto
 			distance 227
