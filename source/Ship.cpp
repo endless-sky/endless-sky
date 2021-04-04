@@ -2058,6 +2058,7 @@ void Ship::DoGeneration()
 		{
 			// Also, only convert fuel if it won't create more power than the batteries can hold.
 			double scale = min(1., (attributes.Get("energy capacity") - energy) / attributes.Get("fuel energy"));
+			scale = max(-1., scale);
 			// "regenerative fuel consumption" can run in reverse
 			if (scale < 0)
 				fuel -= scale * attributes.Get("regenerative fuel consumption");
