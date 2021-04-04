@@ -1249,7 +1249,7 @@ system "5 Axis"
 	fleet "Large Saryd" 1800
 	fleet Heliarch 300
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/rock11
@@ -1328,7 +1328,7 @@ system "5 Spring Below"
 		period 12.9082
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 91.2829
 		period 12.9082
 	object
@@ -1807,7 +1807,7 @@ system Ablub
 	fleet "Large Saryd" 8000
 	fleet Heliarch 200
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Ablub's Invention"
 		sprite planet/forest1-b
@@ -1996,7 +1996,7 @@ system Acrux
 		distance 17.9429
 		period 11.4474
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 60.5571
 		period 11.4474
 		offset 180
@@ -2122,7 +2122,7 @@ system Aescolanus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert4
@@ -2383,7 +2383,7 @@ system Albireo
 		distance 15.6316
 		period 11.9778
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 72.3684
 		period 11.9778
 		offset 180
@@ -2434,12 +2434,12 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	object
-		sprite star/m4
+		sprite star/m3
 		distance 45.5
 		period 21.132
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 45.5
 		period 21.132
 	object Stormhold
@@ -2736,7 +2736,7 @@ system Algieba
 		distance 5.86085
 		period 9.75123
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 111.139
 		period 9.75123
 		offset 180
@@ -3290,7 +3290,7 @@ system Alnair
 	fleet "Large Syndicate" 6000
 	fleet "Human Miners" 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Hippocrates
 		sprite planet/cloud4
@@ -3502,7 +3502,7 @@ system Alnitak
 		distance 31.1055
 		period 15.4564
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 49.3945
 		period 15.4564
 		offset 180
@@ -3702,7 +3702,7 @@ system "Alpha Centauri"
 		period 16.011
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 63.2967
 		period 16.011
 	object Chiron
@@ -4812,7 +4812,7 @@ system Aspidiske
 	fleet "Small Deep Merchants" 1400
 	fleet "Large Deep Merchants" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/cloud2
@@ -4946,7 +4946,7 @@ system Avior
 		distance 11
 		period 11.3038
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 		offset 180
@@ -7027,7 +7027,7 @@ system Coluber
 		period 19.2131
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 74.3034
 		period 19.2131
 	object
@@ -7264,7 +7264,7 @@ system "Da Ent"
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Newhome
 		sprite planet/ice4
@@ -7443,7 +7443,7 @@ system Danoa
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert7-b
@@ -8081,7 +8081,7 @@ system Diphda
 		distance 20.9143
 		period 14.4057
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 70.5857
 		period 14.4057
 		offset 180
@@ -8395,7 +8395,7 @@ system Dubhe
 		period 24.8575
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 67.8023
 		period 24.8575
 	object Haze
@@ -8448,7 +8448,7 @@ system "Due Yoot"
 	fleet "Hai Surveillance" 5000
 	fleet Quarg 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Greenbloom
 		sprite planet/cloud3
@@ -9650,7 +9650,7 @@ system Eteron
 	fleet "Small Northern Pirates" 1000
 	fleet "Human Miners" 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/rock9
@@ -10669,7 +10669,7 @@ system Fingol
 	fleet "Small Northern Pirates" 2000
 	fleet "Human Miners" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/cloud4
@@ -11504,7 +11504,7 @@ system Glubatub
 	fleet "Large Saryd" 4000
 	fleet Heliarch 500
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Weir of Glubatub"
 		sprite planet/cloud0
@@ -12969,7 +12969,7 @@ system Insitor
 		period 18.0359
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 60.1504
 		period 18.0359
 	object
@@ -13547,7 +13547,7 @@ system "Kappa Centauri"
 		distance 10.2222
 		period 10.1264
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 81.7778
 		period 10.1264
 		offset 180
@@ -13775,7 +13775,7 @@ system "Kaus Borealis"
 		distance 20.4571
 		period 13.936
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 69.0429
 		period 13.936
 		offset 180
@@ -14476,7 +14476,7 @@ system "Kor Nor'peli"
 		distance 25.4857
 		period 19.3783
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 86.0143
 		period 19.3783
 		offset 180
@@ -14930,7 +14930,7 @@ system Kursa
 		period 16.8182
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 65.4066
 		period 16.8182
 	object Farseer
@@ -15300,7 +15300,7 @@ system Lolami
 		period 11.3038
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 	object
@@ -15435,7 +15435,7 @@ system "Lone Cloud"
 	fleet "Large Saryd" 2500
 	fleet Heliarch 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Vibrant Water"
 		sprite planet/cloud1
@@ -17265,7 +17265,7 @@ system Moktar
 		period 18.1925
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 68.9231
 		period 18.1925
 	object
@@ -17779,7 +17779,7 @@ system Nocte
 	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert8-b
@@ -18169,7 +18169,7 @@ system Ossipago
 		distance 11.9736
 		period 9.06221
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88.0264
 		period 9.06221
 		offset 180
@@ -18223,7 +18223,7 @@ system "Over the Rainbow"
 		period 875.481048
 		offset 180
 		object
-			sprite star/m4
+			sprite star/m3
 			distance 75
 			period 12.179969
 	object
@@ -18231,7 +18231,7 @@ system "Over the Rainbow"
 		distance 544.9
 		period 875.481048
 		object
-			sprite star/m4
+			sprite star/m5
 			distance 107
 			period 12.701281
 
@@ -19015,7 +19015,7 @@ system Pherkad
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Solace
 		sprite planet/forest5-b
@@ -19127,7 +19127,7 @@ system Pik'ro'iyak
 	fleet "Wanderer Drones" 3000
 	fleet "Wanderer Defense" 4000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Var' Kayi"
 		sprite planet/forest1-b
@@ -19425,7 +19425,7 @@ system Porrima
 		period 18.8353
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 97.8618
 		period 18.8353
 	object
@@ -19467,7 +19467,7 @@ system Postverta
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 19
 	object
 		sprite planet/desert7
@@ -21693,7 +21693,7 @@ system Seginus
 	fleet "Small Militia" 3000
 	fleet "Small Southern Pirates" 5000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Clark
 		sprite planet/forest6-b
@@ -22107,7 +22107,7 @@ system Si'yak'ku
 		distance 19.5395
 		period 12.7342
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 90.4605
 		period 12.7342
 		offset 180
@@ -22954,7 +22954,7 @@ system "Sol Saryd"
 		period 12.9082
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 91.2829
 		period 12.9082
 	object
@@ -23266,7 +23266,7 @@ system Statina
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert4
@@ -23849,7 +23849,7 @@ system Tarazed
 		distance 11
 		period 11.3038
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 		offset 180
@@ -23916,7 +23916,7 @@ system Tebuteb
 		period 15.7461
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 54.9451
 		period 15.7461
 	object "Tebuteb's Table"
