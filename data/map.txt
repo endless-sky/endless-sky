@@ -5848,7 +5848,7 @@ system "Bote Asu"
 	fleet "Large Human Merchants (Hai)" 12000
 	fleet "Hai Surveillance" 3000
 	object
-		sprite star/f0
+		sprite star/f3
 		distance 17.3605
 		period 7.70584
 	object
@@ -10473,7 +10473,7 @@ system Fereti
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/a0
+		sprite star/a3
 		period 10
 	object
 		sprite planet/lava7
@@ -15607,7 +15607,7 @@ system Makferuti
 		period 12.3508
 		offset 180
 	object
-		sprite star/m8
+		sprite star/m-dwarf
 		distance 65.7591
 		period 12.3508
 	object
@@ -16961,7 +16961,7 @@ system Mintaka
 		period 10.9588
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k8
 		distance 49.0504
 		period 10.9588
 	object
@@ -17026,7 +17026,7 @@ system Mirach
 		period 16.4224
 		offset 180
 	object
-		sprite star/m8
+		sprite star/k-dwarf
 		distance 57.8996
 		period 16.4224
 	object Placer
@@ -18102,7 +18102,7 @@ system Orvala
 		period 17.8357
 		offset 180
 	object
-		sprite star/m8
+		sprite star/l-dwarf
 		distance 87.0703
 		period 17.8357
 	object
@@ -18546,12 +18546,12 @@ system Pelubta
 	fleet "Large Saryd" 2500
 	fleet Heliarch 400
 	object
-		sprite star/b5
+		sprite star/b3
 		distance 10.9957
 		period 8.64806
 		offset 180
 	object
-		sprite star/g5
+		sprite star/a-dwarf
 		distance 152.004
 		period 8.64806
 	object
@@ -20383,7 +20383,7 @@ system Regulus
 	fleet "Small Republic" 10000
 	fleet "Human Miners" 3000
 	object
-		sprite star/b5
+		sprite star/b0
 		period 10
 	object
 		sprite planet/gas15-b
@@ -20940,7 +20940,7 @@ system Sabriset
 		distance 35.1028
 		period 12.1391
 	object
-		sprite star/k0
+		sprite star/k3
 		distance 77.8972
 		period 12.1391
 		offset 180
@@ -22039,7 +22039,7 @@ system Sheratan
 	fleet "Large Core Pirates" 5000
 	fleet "Korath Raid" 30000
 	object
-		sprite star/f5
+		sprite star/f8
 		distance 21.0713
 		period 13.7542
 		offset 180
@@ -22647,12 +22647,12 @@ system Sobarati
 	fleet "Small Kor Sestor" 800
 	fleet "Large Kor Sestor" 4000
 	object
-		sprite star/a5
+		sprite star/a8
 		distance 4.57143
 		period 9.4217
 		offset 180
 	object
-		sprite star/m8
+		sprite star/f-dwarf
 		distance 123.429
 		period 9.4217
 	object
@@ -25021,7 +25021,7 @@ system "Wah Oh"
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
 	object
-		sprite star/a0
+		sprite star/b8
 		period 10
 	object
 		sprite planet/gas8-hot
@@ -25347,7 +25347,7 @@ system Wezen
 		distance 11.8889
 		period 8.24972
 	object
-		sprite star/k5
+		sprite star/g-dwarf
 		distance 95.1111
 		period 8.24972
 		offset 180
