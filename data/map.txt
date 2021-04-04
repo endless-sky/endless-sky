@@ -21310,10 +21310,10 @@ system Saquergen
 	trade Metal 276
 	trade Plastic 328
 	object
-		sprite star/nova-core-old
+		sprite star/nova-old
 		period 1000
 	object
-		sprite star/nova-old
+		sprite star/nova-core-old
 		period 1000
 	object
 		sprite planet/lava2
